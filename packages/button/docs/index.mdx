@@ -1,0 +1,36 @@
+---
+title: Button
+description: Action trigger component with variants and sizes.
+---
+
+# Button
+
+The Button component provides consistent, accessible triggers for user actions across the design system.
+
+## Usage
+
+```tsx
+import { Button } from '@design-system/button';
+
+export function Example() {
+  return (
+    <Button variant="primary" size="md">
+      Click me
+    </Button>
+  );
+}
+```
+
+## Variants
+
+- `primary` — main calls to action
+- `secondary` — secondary emphasis
+- `ghost` — low-emphasis contextual actions
+
+## Props
+
+- `variant` (`primary | secondary | ghost`) — visual styling
+- `size` (`sm | md | lg`) — control density
+- `isFullWidth` (`boolean`) — stretch to container width
+- `...ButtonHTMLAttributes` — all native button props
+

@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# builds
+dist
+build
+.turbo
+
+# env
+.env
+.env.*
+
+# editor
+.DS_Store
+*.log
+.idea
+.vscode
+
+# storybook
+storybook-static
+
+# astro
+.astro
+
