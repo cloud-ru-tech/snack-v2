@@ -1,5 +1,9 @@
 ---
-const { title = 'Design System Docs', description = 'Components and guidelines' } = Astro.props;
+const {
+  title = 'Design System Docs',
+  description = 'Components and guidelines',
+  nav = []
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -51,8 +55,15 @@ const { title = 'Design System Docs', description = 'Components and guidelines' 
   </head>
   <body>
     <header>
-      <nav>
+      <nav style="display:flex; gap:16px; align-items:center;">
         <a href="/">Design System</a>
+        {nav.length ? (
+          <div style="display:flex; gap:12px; font-size: 14px;">
+            {nav.map((item) => (
+              <a href={item.route}>{item.title}</a>
+            ))}
+          </div>
+        ) : null}
       </nav>
     </header>
     <main>

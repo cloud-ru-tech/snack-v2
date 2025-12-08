@@ -11,6 +11,9 @@ export default defineConfig({
         '@packages': new URL('../../packages/', import.meta.url).pathname
       }
     }
+  },
+  markdown: {
+    syntaxHighlight: false
   }
 });
 
