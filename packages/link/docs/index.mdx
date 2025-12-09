@@ -6,7 +6,45 @@ order: 10
 
 # Link
 
+import { Link } from '../src';
+
 Use Link for inline navigation and contextual actions. It supports visual variants, weight, underline behavior, and automatic external attributes.
+
+## Live examples
+
+<div style={{ display: 'grid', gap: 12 }}>
+  <Link href="#">Primary link</Link>
+  <Link href="#" variant="muted">
+    Muted link
+  </Link>
+  <Link href="#" variant="ghost">
+    Ghost link
+  </Link>
+  <Link href="https://example.com" isExternal>
+    External link
+  </Link>
+  <Link href="#" underline="always">
+    Always underline
+  </Link>
+  <Link href="#" underline="none" weight="semibold">
+    No underline, semibold
+  </Link>
+</div>
+
+## Storybook
+
+<iframe
+  src={`${import.meta.env.PUBLIC_STORYBOOK_URL ?? 'http://localhost:6008'}/iframe.html?id=components-link--basic&viewMode=story`}
+  style={{
+    width: '100%',
+    height: '320px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '12px',
+    background: '#fff',
+  }}
+  loading="lazy"
+  allow="clipboard-write"
+/>
 
 ## Usage
 
@@ -44,4 +82,3 @@ export function Example() {
 - `underline` (`hover | always | none`)
 - `isExternal` (`boolean`) — adds `target="_blank" rel="noopener noreferrer"`
 - All native anchor attributes
-
