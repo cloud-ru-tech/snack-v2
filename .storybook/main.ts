@@ -18,7 +18,8 @@ const config: StorybookConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      '@design-system/button': new URL('../packages/button/src', import.meta.url).pathname
+      '@design-system/button': new URL('../packages/button/src', import.meta.url).pathname,
+      '@design-system/link': new URL('../packages/link/src', import.meta.url).pathname
     };
     return config;
   }

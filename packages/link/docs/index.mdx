@@ -1,0 +1,47 @@
+---
+title: Link
+description: Textual navigation element with variants and underline control.
+order: 10
+---
+
+# Link
+
+Use Link for inline navigation and contextual actions. It supports visual variants, weight, underline behavior, and automatic external attributes.
+
+## Usage
+
+```tsx
+import { Link } from '@design-system/link';
+
+export function Example() {
+  return (
+    <p>
+      Go to{' '}
+      <Link href="https://example.com" isExternal>
+        example.com
+      </Link>
+    </p>
+  );
+}
+```
+
+## Variants
+
+- `primary` — brand accent
+- `muted` — subdued text links
+- `ghost` — neutral text
+
+## Underline
+
+- `hover` (default) — underline on hover/focus
+- `always` — underline always visible
+- `none` — no underline
+
+## Props
+
+- `variant` (`primary | muted | ghost`)
+- `weight` (`regular | semibold`)
+- `underline` (`hover | always | none`)
+- `isExternal` (`boolean`) — adds `target="_blank" rel="noopener noreferrer"`
+- All native anchor attributes
+
