@@ -1,9 +1,12 @@
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
+import starlight from '@astrojs/starlight';
+import expressiveCode from 'astro-expressive-code';
 import { defineConfig } from 'astro/config';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import syncPackageDocs from './src/integrations/sync-package-docs.js';
 
 const llmTxt = () => ({
   name: 'llm-txt',
@@ -18,8 +21,29 @@ const llmTxt = () => ({
 });
 
 export default defineConfig({
-  integrations: [react(), mdx(), llmTxt()],
+  site: process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') || 'http://localhost:4321',
   srcDir: 'src',
+  integrations: [
+    syncPackageDocs(),
+    react(),
+    expressiveCode(),
+    mdx(),
+    starlight({
+      title: 'Design System',
+      description: 'React components and documentation',
+      sidebar: [
+        {
+          label: 'Guides',
+          autogenerate: { directory: 'guides' },
+        },
+        {
+          label: 'Components',
+          autogenerate: { directory: 'components' },
+        },
+      ],
+    }),
+    llmTxt(),
+  ],
   vite: {
     resolve: {
       alias: {

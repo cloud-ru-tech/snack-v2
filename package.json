@@ -52,9 +52,14 @@
     "build:packages": "pnpm -r --filter ./packages... run build",
     "build:docs": "pnpm --filter @design-system/docs build",
     "build": "pnpm run build:packages && pnpm run build:docs",
-    "dev:docs": "pnpm --filter @design-system/docs dev -- --port 4321",
+    "dev": "pnpm --filter @design-system/docs dev -- --port 4321",
+    "dev:docs": "pnpm dev",
+    "docs": "pnpm dev",
+    "docs:dev": "pnpm dev",
     "docs:build": "pnpm --filter @design-system/docs build",
+    "docs:preview": "pnpm --filter @design-system/docs preview",
     "storybook": "storybook dev -p 6006",
+    "sb": "pnpm storybook",
     "build-storybook": "storybook build",
     "test": "pnpm -r test"
   }
