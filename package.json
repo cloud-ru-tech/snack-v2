@@ -61,6 +61,8 @@
     "storybook": "storybook dev -p 6006",
     "sb": "pnpm storybook",
     "build-storybook": "storybook build",
+    "build:storybook": "storybook build",
+    "build:all": "pnpm run build:packages && pnpm run build:docs && pnpm run build:storybook",
     "test": "pnpm -r test"
   }
 }

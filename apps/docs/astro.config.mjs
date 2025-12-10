@@ -21,7 +21,12 @@ const llmTxt = () => ({
 });
 
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') || 'http://localhost:4321',
+  // For GitLab Pages, use CI_PAGES_URL if available, otherwise default
+  site:
+    process.env.CI_PAGES_URL ||
+    process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') ||
+    'http://localhost:4321',
+  base: '/', // Docs are served from root
   srcDir: 'src',
   integrations: [
     syncPackageDocs(),
