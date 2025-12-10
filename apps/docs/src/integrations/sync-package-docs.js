@@ -93,6 +93,21 @@ async function syncDocs(logger, addWatchFile = null) {
             content = content.replace(from, to);
           }
 
+          // Transform StorybookIframe imports to correct path after sync
+          // From packages/*/docs/../../../../apps/docs/src/components/StorybookIframe.astro
+          // To apps/docs/src/content/docs/components/*/../../../../components/StorybookIframe.astro
+          // Path calculation: from components/button/ to src/components/
+          // ../ -> components/, ../../ -> docs/, ../../../ -> content/, ../../../../ -> src/
+          const storybookIframePattern =
+            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/StorybookIframe\.astro['"]/g;
+          content = content.replace(
+            storybookIframePattern,
+            "from '../../../../components/StorybookIframe.astro'"
+          );
+
+          // Keep HTML comments as-is - MDX/Astro supports HTML comments
+          // JSX comments outside JSX blocks cause parsing errors
+
           // Write transformed content
           await fs.writeFile(targetPath, content, 'utf-8');
           logger.debug(`[sync-package-docs] Synced ${docFile} -> ${targetPath}`);

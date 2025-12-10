@@ -1,0 +1,36 @@
+---
+interface Props {
+  storyId: string;
+  height?: string;
+  width?: string;
+}
+
+const { storyId, height = '420px', width = '100%' } = Astro.props;
+
+// Determine Storybook base URL based on environment
+const getStorybookBaseUrl = () => {
+  // In production/GitLab Pages, use relative path
+  // Astro sets import.meta.env.PROD in production builds
+  if (import.meta.env.PROD) {
+    return '/storybook';
+  }
+  // In dev, use localhost
+  return 'http://localhost:6006';
+};
+
+const baseUrl = getStorybookBaseUrl();
+const iframeUrl = `${baseUrl}/iframe.html?id=${storyId}&viewMode=story`;
+---
+
+<iframe
+  src={iframeUrl}
+  style={{
+    width,
+    height,
+    border: '1px solid #e2e8f0',
+    borderRadius: '12px',
+    background: '#fff',
+  }}
+  loading="lazy"
+  allow="clipboard-write"
+/>

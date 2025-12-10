@@ -1,84 +1,21 @@
-stages:
-  - build
-  - deploy
-
 variables:
-  PNPM_VERSION: '10.23.0'
   NODE_BASE_IMAGE: clp-docker.pkg.sbercloud.tech/cp/base-images/sberlinux-node:2.0.0
 
-# Cache pnpm store and node_modules
-.pnpm_cache: &pnpm_cache
-  cache:
-    key:
-      files:
-        - pnpm-lock.yaml
-    paths:
-      - .pnpm-store
-      - node_modules
-      - packages/*/node_modules
-      - apps/*/node_modules
-
-# Install dependencies
-.pnpm_install: &pnpm_install
-  before_script:
-    - corepack enable
-    - corepack prepare pnpm@${PNPM_VERSION} --activate
-    - pnpm config set store-dir .pnpm-store
+pages:
+  image: ${NODE_BASE_IMAGE}
   script:
-    - pnpm install --frozen-lockfile
-
-# Build stage
-build:docs:
-  stage: build
-  image: $NODE_BASE_IMAGE
-  <<: *pnpm_cache
-  <<: *pnpm_install
-  script:
+    - npm install -g pnpm@latest-10
+    - pnpm install --shamefully-hoist --frozen-lockfile
     - pnpm run build:packages
     - pnpm run build:docs
-  artifacts:
-    paths:
-      - apps/docs/dist/
-    expire_in: 1 hour
-
-build:storybook:
-  stage: build
-  image: $NODE_BASE_IMAGE
-  <<: *pnpm_cache
-  <<: *pnpm_install
-  variables:
-    # Set base path for Storybook in CI
-    STORYBOOK_BASE_PATH: '/storybook/'
-  script:
-    - pnpm run build:packages
-    - pnpm run build:storybook
-  artifacts:
-    paths:
-      - storybook-static/
-    expire_in: 1 hour
-
-# Deploy stage
-pages:
-  stage: deploy
-  image: $NODE_BASE_IMAGE
-  dependencies:
-    - build:docs
-    - build:storybook
-  script:
-    # Create public directory for GitLab Pages
+    - STORYBOOK_BASE_PATH='/storybook/' pnpm run build:storybook
+    - rm -rf public
     - mkdir -p public
-    # Copy Astro docs to root
-    - cp -r apps/docs/dist/* public/ || echo "Warning: docs dist not found"
-    # Copy Storybook to /storybook subdirectory
+    - cp -r apps/docs/dist/* public/
     - mkdir -p public/storybook
-    - cp -r storybook-static/* public/storybook/ || echo "Warning: storybook-static not found"
-    # Create .nojekyll to prevent Jekyll processing
+    - cp -r storybook-static/* public/storybook/
     - touch public/.nojekyll
-    # List contents for debugging
-    - echo "Public directory contents:"
-    - ls -la public/
-    - echo "Storybook directory contents:"
-    - ls -la public/storybook/ || echo "Storybook directory not found"
   artifacts:
     paths:
       - public
+    expire_in: 5 days

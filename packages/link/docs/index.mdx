@@ -33,18 +33,15 @@ Use Link for inline navigation and contextual actions. It supports visual varian
 
 ## Storybook
 
-<iframe
-  src={`https://cloud-ru-tech.github.io/snack-uikit/iframe.html?args=&globals=&id=components-link--link&viewMode=story`}
-  style={{
-    width: '100%',
-    height: '320px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '12px',
-    background: '#fff',
-  }}
-  loading="lazy"
-  allow="clipboard-write"
-/>
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/StorybookIframe.astro
+After sync: ../../../../components/StorybookIframe.astro */}
+</>
+
+import StorybookIframe from '../../../../apps/docs/src/components/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-link--basic" height="320px" />
 
 ## Usage
 

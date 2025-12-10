@@ -3,8 +3,6 @@ title: Button
 description: Action trigger component with variants and sizes.
 ---
 
-### BIBA & BOBA
-
 # Button
 
 import { Button } from '../src';
@@ -30,18 +28,15 @@ The Button component provides consistent, accessible triggers for user actions a
 
 ## Storybook
 
-<iframe
-  src={`https://cloud-ru-tech.github.io/snack-uikit/iframe.html?globals=&args=&id=components-button-button-filled--button-filled&viewMode=story`}
-  style={{
-    width: '100%',
-    height: '420px',
-    border: '1px solid #e2e8f0',
-    borderRadius: '12px',
-    background: '#fff',
-  }}
-  loading="lazy"
-  allow="clipboard-write"
-/>
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/StorybookIframe.astro
+After sync: ../../../../components/StorybookIframe.astro */}
+</>
+
+import StorybookIframe from '../../../../apps/docs/src/components/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-button--basic" />
 
 ## Usage
 
