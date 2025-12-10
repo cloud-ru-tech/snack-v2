@@ -33,6 +33,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@snack-uikit/link": "0.17.15"
   }
 }
-

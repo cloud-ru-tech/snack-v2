@@ -8,23 +8,23 @@ const meta: Meta<LinkProps> = {
     children: 'Open link',
     href: '#',
     variant: 'primary',
-    underline: 'hover'
+    underline: 'hover',
   },
   argTypes: {
     variant: {
       control: 'radio',
-      options: ['primary', 'muted', 'ghost']
+      options: ['primary', 'muted', 'ghost'],
     },
     weight: {
       control: 'radio',
-      options: ['regular', 'semibold']
+      options: ['regular', 'semibold'],
     },
     underline: {
       control: 'radio',
-      options: ['hover', 'always', 'none']
+      options: ['hover', 'always', 'none'],
     },
-    isExternal: { control: 'boolean' }
-  }
+    isExternal: { control: 'boolean' },
+  },
 };
 
 export default meta;
@@ -35,8 +35,8 @@ export const Basic: Story = {};
 export const External: Story = {
   args: {
     isExternal: true,
-    href: 'https://example.com'
-  }
+    href: 'https://example.com',
+  },
 };
 
 export const Variants: Story = {
@@ -52,6 +52,5 @@ export const Variants: Story = {
         Ghost link
       </Link>
     </div>
-  )
+  ),
 };
-

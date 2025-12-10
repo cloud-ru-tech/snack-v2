@@ -16,7 +16,7 @@ const Component = doc.module.default;
 const description = doc.description ?? 'Component documentation';
 ---
 
-<BaseLayout title={doc.title} description={description} nav={nav}>
+<BaseLayout title={doc.title} description={description} nav={nav} currentRoute={doc.route}>
   <Component />
 </BaseLayout>
 

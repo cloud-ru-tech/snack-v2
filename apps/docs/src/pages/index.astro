@@ -5,7 +5,12 @@ import { getDocsList } from '../lib/docs';
 const docs = getDocsList();
 ---
 
-<BaseLayout title="Design System" description="React components and documentation" nav={docs}>
+<BaseLayout
+  title="Design System"
+  description="React components and documentation"
+  nav={docs}
+  currentRoute="/"
+>
   <h1>Design System</h1>
   <p>Reusable React components, tokens, and documentation.</p>
 

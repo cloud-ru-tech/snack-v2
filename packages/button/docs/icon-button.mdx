@@ -1,0 +1,42 @@
+---
+title: Icon Button
+description: Compact button variant for icon-only or icon-first actions.
+order: 2
+---
+
+import { IconButton } from '../src';
+
+# Icon Button
+
+Use IconButton for icon-forward actions like close, share, or navigation, while keeping consistent button styling.
+
+## Live examples
+
+<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+  <IconButton icon="🔍" label="Search" variant="primary" />
+  <IconButton icon="✉️" label="Mail" variant="secondary" />
+  <IconButton icon="❌" label="Close" variant="ghost" />
+  <IconButton icon="⭐" label="Favorite" variant="primary">
+    Star
+  </IconButton>
+</div>
+
+## Usage
+
+```tsx
+import { IconButton } from '@design-system/button';
+
+export function Example() {
+  return <IconButton icon="❌" label="Close dialog" />;
+}
+```
+
+## Props
+
+- `icon` (`ReactNode`) — required visual icon
+- `label` (`string`) — accessible label; recommended when no children text
+- `variant` (`primary | secondary | ghost`)
+- `size` (`sm | md | lg`)
+- All native button props
+
+
