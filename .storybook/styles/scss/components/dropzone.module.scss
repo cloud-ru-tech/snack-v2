@@ -1,0 +1,36 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$dropzone: (
+  "color": (
+    "container": (
+      "border": (
+        "border-default": styles-theme-variables.$dropzone-color-container-border-border-default,
+        "border-activated": styles-theme-variables.$dropzone-color-container-border-border-activated
+      )
+    )
+  ),
+  "anatomy": (
+    "container": (
+      "border-radius": styles-theme-variables.$dropzone-anatomy-container-corner-radius,
+      "min-height": styles-theme-variables.$dropzone-anatomy-container-min-height,
+      "border-width": styles-theme-variables.$dropzone-anatomy-container-stroke-weigth
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "container": (
+        "border": $dropzone-effect-opacity-container-border
+      )
+    )
+  )
+);
+
+$dropzone-effect-opacity-container-border: (
+  "border-default": styles-theme-variables.$dropzone-effect-opacity-container-border-border-default,
+  "border-hovered": styles-theme-variables.$dropzone-effect-opacity-container-border-border-hovered
+);

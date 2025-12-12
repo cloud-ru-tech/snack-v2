@@ -1,0 +1,58 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$divider: (
+  "color": (
+    "line": (
+      "background-color": styles-theme-variables.$divider-color-line-bg-default
+    )
+  ),
+  "anatomy": (
+    "container": (
+      "height": styles-theme-variables.$divider-anatomy-container-height,
+      "width": styles-theme-variables.$divider-anatomy-container-width
+    ),
+    "container-line": (
+      "regular": (
+        "width": styles-theme-variables.$divider-anatomy-container-line-regular-width,
+        "height": styles-theme-variables.$divider-anatomy-container-line-regular-height
+      ),
+      "thin": (
+        "width": styles-theme-variables.$divider-anatomy-container-line-thin-width,
+        "height": styles-theme-variables.$divider-anatomy-container-line-thin-height
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "line": (
+        "background-color": styles-theme-variables.$divider-effect-opacity-line-bg-default
+      )
+    )
+  )
+);
+
+$divider-anatomy-container-line: (
+  "regular": (
+    "width": styles-theme-variables.$divider-anatomy-container-line-regular-width,
+    "height": styles-theme-variables.$divider-anatomy-container-line-regular-height
+  ),
+  "thin": (
+    "width": styles-theme-variables.$divider-anatomy-container-line-thin-width,
+    "height": styles-theme-variables.$divider-anatomy-container-line-thin-height
+  )
+);
+
+$divider-anatomy-container-line-regular: (
+  "width": styles-theme-variables.$divider-anatomy-container-line-regular-width,
+  "height": styles-theme-variables.$divider-anatomy-container-line-regular-height
+);
+
+$divider-anatomy-container-line-thin: (
+  "width": styles-theme-variables.$divider-anatomy-container-line-thin-width,
+  "height": styles-theme-variables.$divider-anatomy-container-line-thin-height
+);

@@ -1,0 +1,25 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$progressBar: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "height": styles-theme-variables.$progress-bar-anatomy-size-s-container-height,
+          "border-radius": styles-theme-variables.$progress-bar-anatomy-size-s-container-corner-radius
+        )
+      ),
+      "m": (
+        "container": (
+          "height": styles-theme-variables.$progress-bar-anatomy-size-m-container-height,
+          "border-radius": styles-theme-variables.$progress-bar-anatomy-size-m-container-corner-radius
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,58 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$promoTag: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "min-height": styles-theme-variables.$promo-tag-anatomy-size-s-container-min-height,
+          "padding": styles-theme-variables.$promo-tag-anatomy-size-s-container-padding,
+          "border-radius": styles-theme-variables.$promo-tag-anatomy-size-s-container-corner-radius,
+          "min-width": styles-theme-variables.$promo-tag-anatomy-size-s-container-min-width
+        ),
+        "container-text-wrapper": (
+          "padding": styles-theme-variables.$promo-tag-anatomy-size-s-container-text-wrapper-padding
+        )
+      ),
+      "xs": (
+        "container": (
+          "min-height": styles-theme-variables.$promo-tag-anatomy-size-xs-container-min-height,
+          "padding": styles-theme-variables.$promo-tag-anatomy-size-xs-container-padding,
+          "min-width": styles-theme-variables.$promo-tag-anatomy-size-xs-container-min-width,
+          "border-radius": styles-theme-variables.$promo-tag-anatomy-size-xs-container-corner-radius
+        ),
+        "container-text-wrapper": (
+          "padding": styles-theme-variables.$promo-tag-anatomy-size-xs-container-text-wrapper-padding
+        )
+      ),
+      "m": (
+        "container": (
+          "padding": styles-theme-variables.$promo-tag-anatomy-size-m-container-padding,
+          "border-radius": styles-theme-variables.$promo-tag-anatomy-size-m-container-corner-radius,
+          "min-height": styles-theme-variables.$promo-tag-anatomy-size-m-container-min-height,
+          "min-width": styles-theme-variables.$promo-tag-anatomy-size-m-container-min-width
+        ),
+        "container-text-wrapper": (
+          "padding": styles-theme-variables.$promo-tag-anatomy-size-m-container-text-wrapper-padding
+        )
+      )
+    )
+  )
+);
+
+$promo-tag-anatomy-size-s-container-text-wrapper: (
+  "padding": styles-theme-variables.$promo-tag-anatomy-size-s-container-text-wrapper-padding
+);
+
+$promo-tag-anatomy-size-xs-container-text-wrapper: (
+  "padding": styles-theme-variables.$promo-tag-anatomy-size-xs-container-text-wrapper-padding
+);
+
+$promo-tag-anatomy-size-m-container-text-wrapper: (
+  "padding": styles-theme-variables.$promo-tag-anatomy-size-m-container-text-wrapper-padding
+);

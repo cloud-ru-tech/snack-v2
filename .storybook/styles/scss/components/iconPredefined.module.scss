@@ -1,0 +1,40 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$iconPredefined: (
+  "anatomy": (
+    "size": (
+      "m": (
+        "square": (
+          "border-radius": styles-theme-variables.$icon-predefined-anatomy-size-m-square-corner-radius
+        ),
+        "min-height": styles-theme-variables.$icon-predefined-anatomy-size-m-min-height,
+        "round": (
+          "border-radius": styles-theme-variables.$icon-predefined-anatomy-size-m-round-corner-radius
+        )
+      ),
+      "l": (
+        "square": (
+          "border-radius": styles-theme-variables.$icon-predefined-anatomy-size-l-square-corner-radius
+        ),
+        "min-height": styles-theme-variables.$icon-predefined-anatomy-size-l-min-height,
+        "round": (
+          "border-radius": styles-theme-variables.$icon-predefined-anatomy-size-l-round-corner-radius
+        )
+      ),
+      "5xl": (
+        "square": (
+          "border-radius": styles-theme-variables.$icon-predefined-anatomy-size-5xl-square-corner-radius
+        ),
+        "min-height": styles-theme-variables.$icon-predefined-anatomy-size-5xl-min-height,
+        "round": (
+          "border-radius": styles-theme-variables.$icon-predefined-anatomy-size-5xl-round-corner-radius
+        )
+      )
+    )
+  )
+);

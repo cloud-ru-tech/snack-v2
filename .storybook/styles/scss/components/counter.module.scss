@@ -1,0 +1,142 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$counter: (
+  "color": (
+    "container": (
+
+    ),
+    "container-accent": (
+      "primary": (
+        "background-color": styles-theme-variables.$counter-color-container-accent-primary-bg-default,
+        "color": styles-theme-variables.$counter-color-container-accent-primary-fg-default,
+        "border-default": styles-theme-variables.$counter-color-container-accent-primary-border-default
+      ),
+      "neutral": (
+        "background-color": styles-theme-variables.$counter-color-container-accent-neutral-bg-default,
+        "color": styles-theme-variables.$counter-color-container-accent-neutral-fg-default,
+        "border-default": styles-theme-variables.$counter-color-container-accent-neutral-border-default
+      ),
+      "red": (
+        "background-color": styles-theme-variables.$counter-color-container-accent-red-bg-default,
+        "color": styles-theme-variables.$counter-color-container-accent-red-fg-default,
+        "border-default": styles-theme-variables.$counter-color-container-accent-red-border-default
+      )
+    ),
+    "container-decor": (
+      "primary": (
+        "background-color": styles-theme-variables.$counter-color-container-decor-primary-bg-default,
+        "color": styles-theme-variables.$counter-color-container-decor-primary-fg-default,
+        "border-default": styles-theme-variables.$counter-color-container-decor-primary-border-default
+      ),
+      "neutral": (
+        "background-color": styles-theme-variables.$counter-color-container-decor-neutral-bg-default,
+        "color": styles-theme-variables.$counter-color-container-decor-neutral-fg-default,
+        "border-default": styles-theme-variables.$counter-color-container-decor-neutral-border-default
+      ),
+      "red": (
+        "background-color": styles-theme-variables.$counter-color-container-decor-red-bg-default,
+        "color": styles-theme-variables.$counter-color-container-decor-red-fg-default,
+        "border-default": styles-theme-variables.$counter-color-container-decor-red-border-default
+      )
+    )
+  ),
+  "anatomy": (
+    "size": (
+      "xs": (
+        "min-height": styles-theme-variables.$counter-anatomy-size-xs-min-height,
+        "min-width": styles-theme-variables.$counter-anatomy-size-xs-min-width,
+        "container": (
+          "padding-container": styles-theme-variables.$counter-anatomy-size-xs-container-padding-container,
+          "min-height": styles-theme-variables.$counter-anatomy-size-xs-container-min-height,
+          "min-width": styles-theme-variables.$counter-anatomy-size-xs-container-min-width
+        )
+      ),
+      "s": (
+        "min-height": styles-theme-variables.$counter-anatomy-size-s-min-height,
+        "min-width": styles-theme-variables.$counter-anatomy-size-s-min-width,
+        "container": (
+          "padding-container": styles-theme-variables.$counter-anatomy-size-s-container-padding-container,
+          "min-height": styles-theme-variables.$counter-anatomy-size-s-container-min-height,
+          "min-width": styles-theme-variables.$counter-anatomy-size-s-container-min-width
+        )
+      )
+    )
+  )
+);
+
+$counter-color-container-accent: (
+  "primary": (
+    "background-color": styles-theme-variables.$counter-color-container-accent-primary-bg-default,
+    "color": styles-theme-variables.$counter-color-container-accent-primary-fg-default,
+    "border-default": styles-theme-variables.$counter-color-container-accent-primary-border-default
+  ),
+  "neutral": (
+    "background-color": styles-theme-variables.$counter-color-container-accent-neutral-bg-default,
+    "color": styles-theme-variables.$counter-color-container-accent-neutral-fg-default,
+    "border-default": styles-theme-variables.$counter-color-container-accent-neutral-border-default
+  ),
+  "red": (
+    "background-color": styles-theme-variables.$counter-color-container-accent-red-bg-default,
+    "color": styles-theme-variables.$counter-color-container-accent-red-fg-default,
+    "border-default": styles-theme-variables.$counter-color-container-accent-red-border-default
+  )
+);
+
+$counter-color-container-decor: (
+  "primary": (
+    "background-color": styles-theme-variables.$counter-color-container-decor-primary-bg-default,
+    "color": styles-theme-variables.$counter-color-container-decor-primary-fg-default,
+    "border-default": styles-theme-variables.$counter-color-container-decor-primary-border-default
+  ),
+  "neutral": (
+    "background-color": styles-theme-variables.$counter-color-container-decor-neutral-bg-default,
+    "color": styles-theme-variables.$counter-color-container-decor-neutral-fg-default,
+    "border-default": styles-theme-variables.$counter-color-container-decor-neutral-border-default
+  ),
+  "red": (
+    "background-color": styles-theme-variables.$counter-color-container-decor-red-bg-default,
+    "color": styles-theme-variables.$counter-color-container-decor-red-fg-default,
+    "border-default": styles-theme-variables.$counter-color-container-decor-red-border-default
+  )
+);
+
+$counter-color-container-accent-primary: (
+  "background-color": styles-theme-variables.$counter-color-container-accent-primary-bg-default,
+  "color": styles-theme-variables.$counter-color-container-accent-primary-fg-default,
+  "border-default": styles-theme-variables.$counter-color-container-accent-primary-border-default
+);
+
+$counter-color-container-accent-neutral: (
+  "background-color": styles-theme-variables.$counter-color-container-accent-neutral-bg-default,
+  "color": styles-theme-variables.$counter-color-container-accent-neutral-fg-default,
+  "border-default": styles-theme-variables.$counter-color-container-accent-neutral-border-default
+);
+
+$counter-color-container-accent-red: (
+  "background-color": styles-theme-variables.$counter-color-container-accent-red-bg-default,
+  "color": styles-theme-variables.$counter-color-container-accent-red-fg-default,
+  "border-default": styles-theme-variables.$counter-color-container-accent-red-border-default
+);
+
+$counter-color-container-decor-primary: (
+  "background-color": styles-theme-variables.$counter-color-container-decor-primary-bg-default,
+  "color": styles-theme-variables.$counter-color-container-decor-primary-fg-default,
+  "border-default": styles-theme-variables.$counter-color-container-decor-primary-border-default
+);
+
+$counter-color-container-decor-neutral: (
+  "background-color": styles-theme-variables.$counter-color-container-decor-neutral-bg-default,
+  "color": styles-theme-variables.$counter-color-container-decor-neutral-fg-default,
+  "border-default": styles-theme-variables.$counter-color-container-decor-neutral-border-default
+);
+
+$counter-color-container-decor-red: (
+  "background-color": styles-theme-variables.$counter-color-container-decor-red-bg-default,
+  "color": styles-theme-variables.$counter-color-container-decor-red-fg-default,
+  "border-default": styles-theme-variables.$counter-color-container-decor-red-border-default
+);

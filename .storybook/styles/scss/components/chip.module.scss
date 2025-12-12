@@ -1,0 +1,101 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$chip: (
+  "color": (
+    "border-default": styles-theme-variables.$chip-color-border-default,
+    "color": styles-theme-variables.$chip-color-fg-default,
+    "border-disabled": styles-theme-variables.$chip-color-border-disabled,
+    "fg-checked": styles-theme-variables.$chip-color-fg-checked
+  ),
+  "anatomy": (
+    "size": (
+      "l": (
+        "container": (
+          "min-height": styles-theme-variables.$chip-anatomy-size-l-container-min-height,
+          "border-radius": styles-theme-variables.$chip-anatomy-size-l-container-corner-radius,
+          "border-width": styles-theme-variables.$chip-anatomy-size-l-container-stroke-weigth,
+          "padding-left": styles-theme-variables.$chip-anatomy-size-l-container-padding-horizontal,
+          "padding-right": styles-theme-variables.$chip-anatomy-size-l-container-padding-horizontal,
+          "min-width": styles-theme-variables.$chip-anatomy-size-l-container-min-width
+        ),
+        "centered-wrapper": (
+          "max-width": styles-theme-variables.$chip-anatomy-size-l-centered-wrapper-max-width,
+          "max-height": styles-theme-variables.$chip-anatomy-size-l-centered-wrapper-max-height
+        ),
+        "container-text-wrapper": (
+          "padding-left": styles-theme-variables.$chip-anatomy-size-l-container-text-wrapper-padding-horizontal,
+          "padding-right": styles-theme-variables.$chip-anatomy-size-l-container-text-wrapper-padding-horizontal,
+          "gap": styles-theme-variables.$chip-anatomy-size-l-container-text-wrapper-gap
+        )
+      ),
+      "m": (
+        "container": (
+          "padding-left": styles-theme-variables.$chip-anatomy-size-m-container-padding-horizontal,
+          "padding-right": styles-theme-variables.$chip-anatomy-size-m-container-padding-horizontal,
+          "border-width": styles-theme-variables.$chip-anatomy-size-m-container-stroke-weigth,
+          "border-radius": styles-theme-variables.$chip-anatomy-size-m-container-corner-radius,
+          "min-height": styles-theme-variables.$chip-anatomy-size-m-container-min-height,
+          "min-width": styles-theme-variables.$chip-anatomy-size-m-container-min-width
+        ),
+        "centered-wrapper": (
+          "max-width": styles-theme-variables.$chip-anatomy-size-m-centered-wrapper-max-width,
+          "max-height": styles-theme-variables.$chip-anatomy-size-m-centered-wrapper-max-height
+        ),
+        "container-text-wrapper": (
+          "gap": styles-theme-variables.$chip-anatomy-size-m-container-text-wrapper-gap,
+          "padding-left": styles-theme-variables.$chip-anatomy-size-m-container-text-wrapper-padding-horizontal,
+          "padding-right": styles-theme-variables.$chip-anatomy-size-m-container-text-wrapper-padding-horizontal
+        )
+      ),
+      "s": (
+        "container": (
+          "padding-left": styles-theme-variables.$chip-anatomy-size-s-container-padding-horizontal,
+          "padding-right": styles-theme-variables.$chip-anatomy-size-s-container-padding-horizontal,
+          "border-width": styles-theme-variables.$chip-anatomy-size-s-container-stroke-weigth,
+          "border-radius": styles-theme-variables.$chip-anatomy-size-s-container-corner-radius,
+          "min-height": styles-theme-variables.$chip-anatomy-size-s-container-min-height,
+          "min-width": styles-theme-variables.$chip-anatomy-size-s-container-min-width
+        ),
+        "centered-wrapper": (
+          "max-width": styles-theme-variables.$chip-anatomy-size-s-centered-wrapper-max-width,
+          "max-height": styles-theme-variables.$chip-anatomy-size-s-centered-wrapper-max-height
+        ),
+        "container-text-wrapper": (
+          "gap": styles-theme-variables.$chip-anatomy-size-s-container-text-wrapper-gap,
+          "padding-left": styles-theme-variables.$chip-anatomy-size-s-container-text-wrapper-padding-horizontal,
+          "padding-right": styles-theme-variables.$chip-anatomy-size-s-container-text-wrapper-padding-horizontal
+        )
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "outline": (
+        "border-default": styles-theme-variables.$chip-effect-opacity-outline-border-default
+      )
+    )
+  )
+);
+
+$chip-anatomy-size-l-container-text-wrapper: (
+  "padding-left": styles-theme-variables.$chip-anatomy-size-l-container-text-wrapper-padding-horizontal,
+  "padding-right": styles-theme-variables.$chip-anatomy-size-l-container-text-wrapper-padding-horizontal,
+  "gap": styles-theme-variables.$chip-anatomy-size-l-container-text-wrapper-gap
+);
+
+$chip-anatomy-size-m-container-text-wrapper: (
+  "gap": styles-theme-variables.$chip-anatomy-size-m-container-text-wrapper-gap,
+  "padding-left": styles-theme-variables.$chip-anatomy-size-m-container-text-wrapper-padding-horizontal,
+  "padding-right": styles-theme-variables.$chip-anatomy-size-m-container-text-wrapper-padding-horizontal
+);
+
+$chip-anatomy-size-s-container-text-wrapper: (
+  "gap": styles-theme-variables.$chip-anatomy-size-s-container-text-wrapper-gap,
+  "padding-left": styles-theme-variables.$chip-anatomy-size-s-container-text-wrapper-padding-horizontal,
+  "padding-right": styles-theme-variables.$chip-anatomy-size-s-container-text-wrapper-padding-horizontal
+);

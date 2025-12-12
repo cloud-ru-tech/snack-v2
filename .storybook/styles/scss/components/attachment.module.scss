@@ -1,0 +1,41 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$attachment: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "height": styles-theme-variables.$attachment-anatomy-size-s-container-height,
+          "width": styles-theme-variables.$attachment-anatomy-size-s-container-width,
+          "gap": styles-theme-variables.$attachment-anatomy-size-s-container-gap
+        ),
+        "container-content": (
+          "padding": styles-theme-variables.$attachment-anatomy-size-s-container-content-padding
+        )
+      ),
+      "m": (
+        "container": (
+          "height": styles-theme-variables.$attachment-anatomy-size-m-container-height,
+          "width": styles-theme-variables.$attachment-anatomy-size-m-container-width,
+          "gap": styles-theme-variables.$attachment-anatomy-size-m-container-gap
+        ),
+        "container-content": (
+          "padding": styles-theme-variables.$attachment-anatomy-size-m-container-content-padding
+        )
+      )
+    )
+  )
+);
+
+$attachment-anatomy-size-s-container-content: (
+  "padding": styles-theme-variables.$attachment-anatomy-size-s-container-content-padding
+);
+
+$attachment-anatomy-size-m-container-content: (
+  "padding": styles-theme-variables.$attachment-anatomy-size-m-container-content-padding
+);

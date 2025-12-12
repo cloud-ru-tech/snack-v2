@@ -1,0 +1,298 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$toggles: (
+  "color": (
+    "radio": (
+      "checked-true": (
+        "framing": (
+          "flag": (
+            "surface": (
+              "background-color": styles-theme-variables.$toggles-color-radio-checked-true-framing-flag-surface-bg-disabled
+            )
+          ),
+          "border-default": styles-theme-variables.$toggles-color-radio-checked-true-framing-border-default,
+          "border-disabled": styles-theme-variables.$toggles-color-radio-checked-true-framing-border-disabled
+        )
+      ),
+      "checked-false": (
+        "framing": (
+          "border-default": styles-theme-variables.$toggles-color-radio-checked-false-framing-border-default,
+          "border-disabled": styles-theme-variables.$toggles-color-radio-checked-false-framing-border-disabled,
+          "flag": (
+            "surface": (
+              "background-color": styles-theme-variables.$toggles-color-radio-checked-false-framing-flag-surface-bg-disabled,
+              "fg-load": styles-theme-variables.$toggles-color-radio-checked-false-framing-flag-surface-fg-load
+            )
+          )
+        )
+      )
+    ),
+    "switch": (
+      "checked-true": (
+        "framing": (
+          "background-color": styles-theme-variables.$toggles-color-switch-checked-true-framing-bg-disabled,
+          "border-default": styles-theme-variables.$toggles-color-switch-checked-true-framing-border-default,
+          "flag": (
+            "surface": (
+              "background-color": styles-theme-variables.$toggles-color-switch-checked-true-framing-flag-surface-bg-disabled,
+              "color": styles-theme-variables.$toggles-color-switch-checked-true-framing-flag-surface-fg-disabled,
+              "fg-load": styles-theme-variables.$toggles-color-switch-checked-true-framing-flag-surface-fg-load
+            )
+          ),
+          "border-disabled": styles-theme-variables.$toggles-color-switch-checked-true-framing-border-disabled
+        )
+      ),
+      "checked-false": (
+        "framing": (
+          "border-default": styles-theme-variables.$toggles-color-switch-checked-false-framing-border-default,
+          "flag": (
+            "surface": (
+              "background-color": styles-theme-variables.$toggles-color-switch-checked-false-framing-flag-surface-bg-disabled,
+              "fg-load": styles-theme-variables.$toggles-color-switch-checked-false-framing-flag-surface-fg-load
+            )
+          ),
+          "border-disabled": styles-theme-variables.$toggles-color-switch-checked-false-framing-border-disabled
+        )
+      )
+    ),
+    "checkbox": (
+      "checked-true": (
+        "framing": (
+          "border-default": styles-theme-variables.$toggles-color-checkbox-checked-true-framing-border-default,
+          "flag": (
+            "surface": (
+              "background-color": styles-theme-variables.$toggles-color-checkbox-checked-true-framing-flag-surface-bg-disabled,
+              "color": styles-theme-variables.$toggles-color-checkbox-checked-true-framing-flag-surface-fg-disabled
+            )
+          ),
+          "border-disabled": styles-theme-variables.$toggles-color-checkbox-checked-true-framing-border-disabled
+        )
+      ),
+      "checked-false": (
+        "framing": (
+          "border-default": styles-theme-variables.$toggles-color-checkbox-checked-false-framing-border-default,
+          "flag": (
+            "surface": (
+              "background-color": styles-theme-variables.$toggles-color-checkbox-checked-false-framing-flag-surface-bg-disabled,
+              "color": styles-theme-variables.$toggles-color-checkbox-checked-false-framing-flag-surface-fg-disabled,
+              "fg-load": styles-theme-variables.$toggles-color-checkbox-checked-false-framing-flag-surface-fg-load
+            )
+          ),
+          "border-disabled": styles-theme-variables.$toggles-color-checkbox-checked-false-framing-border-disabled
+        )
+      )
+    ),
+    "favourite-star": (
+      "checked-true": (
+        "framing": (
+          "flag": (
+            "surface": (
+              "color": styles-theme-variables.$toggles-color-favourite-star-checked-true-framing-flag-surface-fg-disabled
+            )
+          )
+        )
+      ),
+      "checked-false": (
+        "framing": (
+          "flag": (
+            "surface": (
+              "color": styles-theme-variables.$toggles-color-favourite-star-checked-false-framing-flag-surface-fg-disabled,
+              "fg-load": styles-theme-variables.$toggles-color-favourite-star-checked-false-framing-flag-surface-fg-load
+            )
+          )
+        )
+      )
+    ),
+    "favourite-heart": (
+      "checked-true": (
+        "framing": (
+          "flag": (
+            "surface": (
+              "color": styles-theme-variables.$toggles-color-favourite-heart-checked-true-framing-flag-surface-fg-disabled
+            )
+          )
+        )
+      ),
+      "checked-false": (
+        "framing": (
+          "flag": (
+            "surface": (
+              "color": styles-theme-variables.$toggles-color-favourite-heart-checked-false-framing-flag-surface-fg-disabled,
+              "fg-load": styles-theme-variables.$toggles-color-favourite-heart-checked-false-framing-flag-surface-fg-load
+            )
+          )
+        )
+      )
+    )
+  ),
+  "anatomy": (
+    "size": (
+      "xs": (
+        "switch": (
+          "framing": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-min-height,
+            "flag": (
+              "min-width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-min-width,
+              "min-height": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-min-height,
+              "surface": (
+                "checked-false": (
+                  "width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-false-width,
+                  "height": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-false-height,
+                  "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-false-corner-radius,
+                  "border-width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-false-stroke-weigth
+                ),
+                "checked-true": (
+                  "width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-true-width,
+                  "height": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-true-height,
+                  "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-true-corner-radius,
+                  "border-width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-flag-surface-checked-true-stroke-weigth
+                )
+              )
+            ),
+            "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-corner-radius,
+            "border-width": styles-theme-variables.$toggles-anatomy-size-xs-switch-framing-stroke-weigth
+          ),
+          "container": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-xs-switch-container-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-xs-switch-container-min-height
+          )
+        ),
+        "radio": (
+          "framing": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-min-width,
+            "flag": (
+              "min-width": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-flag-min-width,
+              "min-height": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-flag-min-height,
+              "surface": (
+                "width": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-flag-surface-width,
+                "height": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-flag-surface-height,
+                "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-flag-surface-corner-radius,
+                "border-width": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-flag-surface-stroke-weigth
+              )
+            ),
+            "min-height": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-min-height,
+            "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-corner-radius,
+            "border-width": styles-theme-variables.$toggles-anatomy-size-xs-radio-framing-stroke-weigth
+          ),
+          "container": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-xs-radio-container-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-xs-radio-container-min-height
+          )
+        ),
+        "checkbox": (
+          "framing": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-min-width,
+            "flag": (
+              "min-width": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-flag-min-width,
+              "min-height": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-flag-min-height,
+              "surface": (
+                "width": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-flag-surface-width,
+                "height": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-flag-surface-height,
+                "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-flag-surface-corner-radius,
+                "border-width": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-flag-surface-stroke-weigth
+              )
+            ),
+            "min-height": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-min-height,
+            "border-radius": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-corner-radius,
+            "border-width": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-framing-stroke-weigth
+          ),
+          "container": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-container-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-xs-checkbox-container-min-height
+          )
+        )
+      ),
+      "s": (
+        "radio": (
+          "framing": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-min-width,
+            "flag": (
+              "min-width": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-flag-min-width,
+              "min-height": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-flag-min-height,
+              "surface": (
+                "width": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-flag-surface-width,
+                "height": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-flag-surface-height,
+                "border-radius": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-flag-surface-corner-radius,
+                "border-width": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-flag-surface-stroke-weigth
+              )
+            ),
+            "min-height": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-min-height,
+            "border-radius": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-corner-radius,
+            "border-width": styles-theme-variables.$toggles-anatomy-size-s-radio-framing-stroke-weigth
+          ),
+          "container": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-s-radio-container-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-s-radio-container-min-height
+          )
+        ),
+        "checkbox": (
+          "framing": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-min-width,
+            "flag": (
+              "min-width": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-flag-min-width,
+              "min-height": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-flag-min-height,
+              "surface": (
+                "width": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-flag-surface-width,
+                "height": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-flag-surface-height,
+                "border-radius": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-flag-surface-corner-radius,
+                "border-width": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-flag-surface-stroke-weigth
+              )
+            ),
+            "min-height": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-min-height,
+            "border-radius": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-corner-radius,
+            "border-width": styles-theme-variables.$toggles-anatomy-size-s-checkbox-framing-stroke-weigth
+          ),
+          "container": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-s-checkbox-container-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-s-checkbox-container-min-height
+          )
+        ),
+        "switch": (
+          "framing": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-min-height,
+            "border-radius": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-corner-radius,
+            "flag": (
+              "min-width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-min-width,
+              "min-height": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-min-height,
+              "surface": (
+                "checked-false": (
+                  "width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-false-width,
+                  "height": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-false-height,
+                  "border-radius": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-false-corner-radius,
+                  "border-width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-false-stroke-weigth
+                ),
+                "checked-true": (
+                  "width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-true-width,
+                  "height": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-true-height,
+                  "border-radius": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-true-corner-radius,
+                  "border-width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-flag-surface-checked-true-stroke-weigth
+                )
+              )
+            ),
+            "border-width": styles-theme-variables.$toggles-anatomy-size-s-switch-framing-stroke-weigth
+          ),
+          "container": (
+            "min-width": styles-theme-variables.$toggles-anatomy-size-s-switch-container-min-width,
+            "min-height": styles-theme-variables.$toggles-anatomy-size-s-switch-container-min-height
+          )
+        )
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "framing": (
+        "flag": (
+          "bg-hovered": styles-theme-variables.$toggles-effect-opacity-framing-flag-bg-hovered
+        )
+      )
+    )
+  )
+);

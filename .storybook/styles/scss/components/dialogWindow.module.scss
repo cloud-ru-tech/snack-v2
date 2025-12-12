@@ -1,0 +1,78 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$dialogWindow: (
+  "anatomy": (
+    "badge-button-closed": (
+      "button-closed": (
+        "min-height": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-button-closed-min-height,
+        "min-width": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-button-closed-min-width,
+        "border-radius": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-button-closed-corner-radius
+      ),
+      "padding-buttom": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-padding-buttom,
+      "padding-top": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-padding-top,
+      "padding-right": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-padding-right,
+      "padding-left": styles-theme-variables.$dialog-window-anatomy-badge-button-closed-padding-left
+    ),
+    "padding-left": styles-theme-variables.$dialog-window-anatomy-padding-left,
+    "padding-right": styles-theme-variables.$dialog-window-anatomy-padding-right,
+    "padding-top": styles-theme-variables.$dialog-window-anatomy-padding-top,
+    "padding-bottom": styles-theme-variables.$dialog-window-anatomy-padding-bottom,
+    "container": (
+      "corner-radius-top-left": styles-theme-variables.$dialog-window-anatomy-container-corner-radius-top-left,
+      "corner-radius-top-right": styles-theme-variables.$dialog-window-anatomy-container-corner-radius-top-right,
+      "width": (
+        "s": (
+          "max-width": styles-theme-variables.$dialog-window-anatomy-container-width-s-max-width
+        ),
+        "m": (
+          "max-width": styles-theme-variables.$dialog-window-anatomy-container-width-m-max-width
+        ),
+        "l": (
+          "max-width": styles-theme-variables.$dialog-window-anatomy-container-width-l-max-width
+        )
+      ),
+      "height": (
+        "max-height": styles-theme-variables.$dialog-window-anatomy-container-height-max-height
+      ),
+      "corner-radius-bottom-right": styles-theme-variables.$dialog-window-anatomy-container-corner-radius-bottom-right,
+      "corner-radius-bottom-left": styles-theme-variables.$dialog-window-anatomy-container-corner-radius-bottom-left
+    ),
+    "header": (
+      "headline": (
+        "padding-left": styles-theme-variables.$dialog-window-anatomy-header-headline-padding-horizontal,
+        "padding-right": styles-theme-variables.$dialog-window-anatomy-header-headline-padding-horizontal,
+        "headline-wrapper": (
+          "gap": styles-theme-variables.$dialog-window-anatomy-header-headline-headline-wrapper-gap,
+          "padding-right": styles-theme-variables.$dialog-window-anatomy-header-headline-headline-wrapper-padding-right,
+          "padding-left": styles-theme-variables.$dialog-window-anatomy-header-headline-headline-wrapper-padding-left,
+          "padding-top": styles-theme-variables.$dialog-window-anatomy-header-headline-headline-wrapper-padding-top
+        )
+      ),
+      "padding-bottom": styles-theme-variables.$dialog-window-anatomy-header-padding-bottom,
+      "gap": styles-theme-variables.$dialog-window-anatomy-header-gap,
+      "padding-top": styles-theme-variables.$dialog-window-anatomy-header-padding-top
+    ),
+    "footer": (
+      "padding-top": styles-theme-variables.$dialog-window-anatomy-footer-padding-top,
+      "padding-left": styles-theme-variables.$dialog-window-anatomy-footer-padding-horizontal,
+      "padding-right": styles-theme-variables.$dialog-window-anatomy-footer-padding-horizontal,
+      "content-wrapper": (
+        "padding-left": styles-theme-variables.$dialog-window-anatomy-footer-content-wrapper-padding-horizontal,
+        "padding-right": styles-theme-variables.$dialog-window-anatomy-footer-content-wrapper-padding-horizontal
+      ),
+      "padding-bottom": styles-theme-variables.$dialog-window-anatomy-footer-padding-bottom
+    )
+  ),
+  "effect": (
+    "blur": (
+      "blackout": (
+        "background-color": styles-theme-variables.$dialog-window-effect-blur-blackout-bg-default
+      )
+    )
+  )
+);

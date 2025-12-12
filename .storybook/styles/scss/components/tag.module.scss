@@ -1,0 +1,56 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$tag: (
+  "anatomy": (
+    "size": (
+      "m": (
+        "padding-text-wrapper": styles-theme-variables.$tag-anatomy-size-m-padding-text-wrapper,
+        "min-height": styles-theme-variables.$tag-anatomy-size-m-min-height,
+        "border-radius": styles-theme-variables.$tag-anatomy-size-m-corner-radius,
+        "padding-tag-container": styles-theme-variables.$tag-anatomy-size-m-padding-tag-container,
+        "min-width": styles-theme-variables.$tag-anatomy-size-m-min-width,
+        "border-width": styles-theme-variables.$tag-anatomy-size-m-stroke-weigth,
+        "tag-row": (
+          "gap": styles-theme-variables.$tag-anatomy-size-m-tag-row-gap
+        )
+      ),
+      "s": (
+        "padding-text-wrapper": styles-theme-variables.$tag-anatomy-size-s-padding-text-wrapper,
+        "padding-tag-container": styles-theme-variables.$tag-anatomy-size-s-padding-tag-container,
+        "border-radius": styles-theme-variables.$tag-anatomy-size-s-corner-radius,
+        "min-height": styles-theme-variables.$tag-anatomy-size-s-min-height,
+        "min-width": styles-theme-variables.$tag-anatomy-size-s-min-width,
+        "border-width": styles-theme-variables.$tag-anatomy-size-s-stroke-weigth,
+        "tag-row": (
+          "gap": styles-theme-variables.$tag-anatomy-size-s-tag-row-gap
+        )
+      ),
+      "xs": (
+        "min-height": styles-theme-variables.$tag-anatomy-size-xs-min-height,
+        "border-radius": styles-theme-variables.$tag-anatomy-size-xs-corner-radius,
+        "padding-tag-container": styles-theme-variables.$tag-anatomy-size-xs-padding-tag-container,
+        "padding-text-wrapper": styles-theme-variables.$tag-anatomy-size-xs-padding-text-wrapper,
+        "min-width": styles-theme-variables.$tag-anatomy-size-xs-min-width,
+        "border-width": styles-theme-variables.$tag-anatomy-size-xs-stroke-weigth,
+        "tag-row": (
+          "gap": styles-theme-variables.$tag-anatomy-size-xs-tag-row-gap
+        )
+      ),
+      "tag-row": (
+        "gap": styles-theme-variables.$tag-anatomy-size-tag-row-gap
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "tag-truncate": (
+        "border-default": styles-theme-variables.$tag-effect-opacity-tag-truncate-border-default
+      )
+    )
+  )
+);

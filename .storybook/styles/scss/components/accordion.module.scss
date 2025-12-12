@@ -1,0 +1,108 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$accordion: (
+  "anatomy": (
+    "accordion-primary": (
+      "container": (
+        "padding-top": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-vertical,
+        "padding-bottom": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-vertical,
+        "padding-left": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-horizontal,
+        "padding-right": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-horizontal,
+        "border-radius": styles-theme-variables.$accordion-anatomy-accordion-primary-container-corner-radius,
+        "border-width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-stroke-weigth,
+        "gap": styles-theme-variables.$accordion-anatomy-accordion-primary-container-gap
+      ),
+      "container-title-content": (
+        "chevron-wrapper": (
+          "width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square,
+          "height": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square
+        ),
+        "gap": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-gap
+      )
+    ),
+    "accordion-secondary": (
+      "container": (
+        "padding-top": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-vertical,
+        "padding-bottom": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-vertical,
+        "padding-left": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-horizontal,
+        "padding-right": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-horizontal,
+        "gap": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-gap,
+        "border-radius": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-corner-radius,
+        "border-width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-stroke-weigth
+      ),
+      "container-title-content": (
+        "chevron-wrapper": (
+          "width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper-size
+        ),
+        "gap": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-gap
+      )
+    ),
+    "accordion-tertiary": (
+      "container": (
+        "padding-top": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-vertical,
+        "padding-bottom": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-vertical,
+        "padding-left": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-horizontal,
+        "padding-right": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-horizontal,
+        "gap": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-gap,
+        "border-radius": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-corner-radius
+      ),
+      "container-title-content": (
+        "chevron-wrapper": (
+          "width": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square,
+          "height": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square
+        ),
+        "gap": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-gap
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "container": (
+        "border-default": styles-theme-variables.$accordion-effect-opacity-container-border-default,
+        "border-hovered": styles-theme-variables.$accordion-effect-opacity-container-border-hovered
+      )
+    )
+  )
+);
+
+$accordion-anatomy-accordion-primary-container-title-content: (
+  "chevron-wrapper": (
+    "width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square,
+    "height": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square
+  ),
+  "gap": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-gap
+);
+
+$accordion-anatomy-accordion-secondary-container-title-content: (
+  "chevron-wrapper": (
+    "width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper-size
+  ),
+  "gap": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-gap
+);
+
+$accordion-anatomy-accordion-tertiary-container-title-content: (
+  "chevron-wrapper": (
+    "width": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square,
+    "height": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square
+  ),
+  "gap": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-gap
+);
+
+$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper: (
+  "width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square,
+  "height": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square
+);
+
+$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper: (
+  "width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper-size
+);
+
+$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper: (
+  "width": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square,
+  "height": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square
+);

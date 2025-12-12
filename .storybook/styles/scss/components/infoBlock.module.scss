@@ -1,0 +1,79 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$infoBlock: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "gap": styles-theme-variables.$info-block-anatomy-size-s-container-gap
+        ),
+        "container-content": (
+          "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-gap,
+          "text": (
+            "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-text-gap
+          )
+        )
+      ),
+      "m": (
+        "container": (
+          "gap": styles-theme-variables.$info-block-anatomy-size-m-container-gap
+        ),
+        "container-content": (
+          "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-gap,
+          "text": (
+            "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-text-gap
+          )
+        )
+      ),
+      "l": (
+        "container": (
+          "gap": styles-theme-variables.$info-block-anatomy-size-l-container-gap
+        ),
+        "container-content": (
+          "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-gap,
+          "text": (
+            "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-text-gap
+          )
+        )
+      )
+    )
+  )
+);
+
+$info-block-anatomy-size-s-container-content: (
+  "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-gap,
+  "text": (
+    "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-text-gap
+  )
+);
+
+$info-block-anatomy-size-m-container-content: (
+  "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-gap,
+  "text": (
+    "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-text-gap
+  )
+);
+
+$info-block-anatomy-size-l-container-content: (
+  "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-gap,
+  "text": (
+    "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-text-gap
+  )
+);
+
+$info-block-anatomy-size-s-container-content-text: (
+  "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-text-gap
+);
+
+$info-block-anatomy-size-m-container-content-text: (
+  "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-text-gap
+);
+
+$info-block-anatomy-size-l-container-content-text: (
+  "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-text-gap
+);

@@ -1,0 +1,21 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$tooltip: (
+  "color": (
+    "bg": styles-theme-variables.$tooltip-color-bg
+  ),
+  "anatomy": (
+    "pointer": (
+      "padding": styles-theme-variables.$tooltip-anatomy-pointer-padding
+    ),
+    "container": (
+      "border-radius": styles-theme-variables.$tooltip-anatomy-container-corner-radius,
+      "padding": styles-theme-variables.$tooltip-anatomy-container-padding
+    )
+  )
+);

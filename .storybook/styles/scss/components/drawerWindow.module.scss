@@ -1,0 +1,136 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$drawerWindow: (
+  "anatomy": (
+    "vertical": (
+      "position-left": (
+        "padding-bottom": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-padding-bottom,
+        "padding-right": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-padding-right,
+        "padding-left": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-padding-left,
+        "padding-top": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-padding-top,
+        "container": (
+          "corner-radius-top-right": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-container-corner-radius-top-right,
+          "corner-radius-top-left": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-container-corner-radius-top-left,
+          "corner-radius-bottom-right": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-container-corner-radius-bottom-right,
+          "corner-radius-bottom-left": styles-theme-variables.$drawer-window-anatomy-vertical-position-left-container-corner-radius-bottom-left
+        )
+      ),
+      "width": (
+        "container": (
+
+        ),
+        "container-s": (
+          "max-width": styles-theme-variables.$drawer-window-anatomy-vertical-width-container-s-max-width
+        ),
+        "container-l": (
+          "max-width": styles-theme-variables.$drawer-window-anatomy-vertical-width-container-l-max-width
+        ),
+        "container-m": (
+          "max-width": styles-theme-variables.$drawer-window-anatomy-vertical-width-container-m-max-width
+        )
+      ),
+      "position-right": (
+        "container": (
+          "corner-radius-top-left": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-container-corner-radius-top-left,
+          "corner-radius-top-right": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-container-corner-radius-top-right,
+          "corner-radius-bottom-right": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-container-corner-radius-bottom-right,
+          "corner-radius-bottom-left": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-container-corner-radius-bottom-left
+        ),
+        "padding-left": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-padding-left,
+        "padding-bottom": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-padding-bottom,
+        "padding-right": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-padding-right,
+        "padding-top": styles-theme-variables.$drawer-window-anatomy-vertical-position-right-padding-top
+      )
+    ),
+    "horizontal": (
+      "position-top": (
+        "padding-top": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-padding-top,
+        "padding-right": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-padding-right,
+        "padding-bottom": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-padding-bottom,
+        "padding-left": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-padding-left,
+        "container": (
+          "corner-radius-top-left": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-container-corner-radius-top-left,
+          "corner-radius-top-right": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-container-corner-radius-top-right,
+          "corner-radius-bottom-right": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-container-corner-radius-bottom-right,
+          "corner-radius-bottom-left": styles-theme-variables.$drawer-window-anatomy-horizontal-position-top-container-corner-radius-bottom-left
+        )
+      ),
+      "position-bottom": (
+        "padding-top": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-padding-top,
+        "padding-right": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-padding-right,
+        "padding-bottom": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-padding-bottom,
+        "padding-left": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-padding-left,
+        "container": (
+          "corner-radius-top-left": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-container-corner-radius-top-left,
+          "corner-radius-top-right": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-container-corner-radius-top-right,
+          "corner-radius-bottom-right": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-container-corner-radius-bottom-right,
+          "corner-radius-bottom-left": styles-theme-variables.$drawer-window-anatomy-horizontal-position-bottom-container-corner-radius-bottom-left
+        )
+      )
+    ),
+    "badge-button-closed": (
+      "button-closed": (
+        "min-width": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-button-closed-min-width,
+        "border-radius": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-button-closed-corner-radius,
+        "min-height": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-button-closed-min-height
+      ),
+      "padding-buttom": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-padding-buttom,
+      "padding-top": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-padding-top,
+      "padding-right": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-padding-right,
+      "padding-left": styles-theme-variables.$drawer-window-anatomy-badge-button-closed-padding-left
+    ),
+    "badge-swiper": (
+      "swiper": (
+        "min-height": styles-theme-variables.$drawer-window-anatomy-badge-swiper-swiper-min-height,
+        "min-width": styles-theme-variables.$drawer-window-anatomy-badge-swiper-swiper-min-width,
+        "border-radius": styles-theme-variables.$drawer-window-anatomy-badge-swiper-swiper-corner-radius
+      ),
+      "padding-buttom": styles-theme-variables.$drawer-window-anatomy-badge-swiper-padding-buttom,
+      "padding-top": styles-theme-variables.$drawer-window-anatomy-badge-swiper-padding-top,
+      "padding-right": styles-theme-variables.$drawer-window-anatomy-badge-swiper-padding-right,
+      "padding-left": styles-theme-variables.$drawer-window-anatomy-badge-swiper-padding-left
+    ),
+    "header": (
+      "headline": (
+        "padding-left": styles-theme-variables.$drawer-window-anatomy-header-headline-padding-horizontal,
+        "padding-right": styles-theme-variables.$drawer-window-anatomy-header-headline-padding-horizontal,
+        "headline-wrapper": (
+          "padding-left": styles-theme-variables.$drawer-window-anatomy-header-headline-headline-wrapper-padding-left,
+          "padding-right": styles-theme-variables.$drawer-window-anatomy-header-headline-headline-wrapper-padding-right,
+          "gap": styles-theme-variables.$drawer-window-anatomy-header-headline-headline-wrapper-gap,
+          "padding-top": styles-theme-variables.$drawer-window-anatomy-header-headline-headline-wrapper-padding-top
+        )
+      ),
+      "padding-bottom": styles-theme-variables.$drawer-window-anatomy-header-padding-bottom,
+      "gap": styles-theme-variables.$drawer-window-anatomy-header-gap,
+      "padding-top": styles-theme-variables.$drawer-window-anatomy-header-padding-top
+    ),
+    "footer": (
+      "padding-top": styles-theme-variables.$drawer-window-anatomy-footer-padding-top,
+      "padding-left": styles-theme-variables.$drawer-window-anatomy-footer-padding-horizontal,
+      "padding-right": styles-theme-variables.$drawer-window-anatomy-footer-padding-horizontal,
+      "content-wrapper": (
+        "padding-left": styles-theme-variables.$drawer-window-anatomy-footer-content-wrapper-padding-horizontal,
+        "padding-right": styles-theme-variables.$drawer-window-anatomy-footer-content-wrapper-padding-horizontal
+      ),
+      "padding-bottom": styles-theme-variables.$drawer-window-anatomy-footer-padding-bottom
+    )
+  )
+);
+
+$drawer-window-anatomy-vertical-width-container-s: (
+  "max-width": styles-theme-variables.$drawer-window-anatomy-vertical-width-container-s-max-width
+);
+
+$drawer-window-anatomy-vertical-width-container-l: (
+  "max-width": styles-theme-variables.$drawer-window-anatomy-vertical-width-container-l-max-width
+);
+
+$drawer-window-anatomy-vertical-width-container-m: (
+  "max-width": styles-theme-variables.$drawer-window-anatomy-vertical-width-container-m-max-width
+);

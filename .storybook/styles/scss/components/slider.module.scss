@@ -1,0 +1,72 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$slider: (
+  "anatomy": (
+    "handle": (
+      "color": (
+        "background-color": styles-theme-variables.$slider-anatomy-handle-color-bg-disabled
+      ),
+      "size": (
+        "container": styles-theme-variables.$slider-anatomy-handle-size-container,
+        "border-radius": styles-theme-variables.$slider-anatomy-handle-size-corner-radius
+      )
+    ),
+    "track-line": (
+      "color": (
+        "bg-active": styles-theme-variables.$slider-anatomy-track-line-color-bg-active,
+        "background-color": styles-theme-variables.$slider-anatomy-track-line-color-bg-default
+      ),
+      "size": (
+        "max-height": styles-theme-variables.$slider-anatomy-track-line-size-max-height,
+        "border-radius": styles-theme-variables.$slider-anatomy-track-line-size-corner-radius
+      ),
+      "effect": (
+        "opacity": (
+          "background-color": styles-theme-variables.$slider-anatomy-track-line-effect-opacity-bg-default
+        )
+      )
+    ),
+    "scale-step": (
+      "scale-step": (
+        "color": $slider-anatomy-scale-step-scale-step-color,
+        "size": $slider-anatomy-scale-step-scale-step-size,
+        "effect": (
+          "opacity": $slider-anatomy-scale-step-scale-step-effect-opacity
+        )
+      )
+    ),
+    "container": (
+      "gap": styles-theme-variables.$slider-anatomy-container-gap
+    )
+  )
+);
+
+$slider-anatomy-scale-step-scale-step-color: (
+  "step-line": (
+    "background-color": styles-theme-variables.$slider-anatomy-scale-step-scale-step-color-step-line-bg-default
+  ),
+  "step-text": (
+    "default": styles-theme-variables.$slider-anatomy-scale-step-scale-step-color-step-text-default
+  )
+);
+
+$slider-anatomy-scale-step-scale-step-size: (
+  "step-line": (
+    "max-height": styles-theme-variables.$slider-anatomy-scale-step-scale-step-size-step-line-max-height,
+    "border-radius": styles-theme-variables.$slider-anatomy-scale-step-scale-step-size-step-line-corner-radius
+  ),
+  "container": (
+    "width": styles-theme-variables.$slider-anatomy-scale-step-scale-step-size-container-width
+  )
+);
+
+$slider-anatomy-scale-step-scale-step-effect-opacity: (
+  "step-line": (
+    "default": styles-theme-variables.$slider-anatomy-scale-step-scale-step-effect-opacity-step-line-default
+  )
+);

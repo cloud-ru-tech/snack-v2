@@ -8,15 +8,42 @@ $shapes: 'round', 'square';
 // $appearances: 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink', 'neutral';
 
 $appearances: (
-  'primary': light.$sn-color-primary-decor,
-  'red': light.$sn-color-red-decor,
-  'orange': light.$sn-color-orange-decor,
-  'yellow': light.$sn-color-yellow-decor,
-  'green': light.$sn-color-green-decor,
-  'blue': light.$sn-color-blue-decor,
-  'violet': light.$sn-color-violet-decor,
-  'pink': light.$sn-color-pink-decor,
-  'neutral': light.$sn-color-neutral-decor,
+  'primary': (
+    'color': light.$sn-color-primary-text,
+    'background-color': light.$sn-color-primary-decor,
+  ),
+  'red': (
+    'color': light.$sn-color-red-text,
+    'background-color': light.$sn-color-red-decor,
+  ),
+  'orange': (
+    'color': light.$sn-color-orange-text,
+    'background-color': light.$sn-color-orange-decor,
+  ),
+  'yellow': (
+    'color': light.$sn-color-yellow-text,
+    'background-color': light.$sn-color-yellow-decor,
+  ),
+  'green': (
+    'color': light.$sn-color-green-text,
+    'background-color': light.$sn-color-green-decor,
+  ),
+  'blue': (
+    'color': light.$sn-color-blue-text,
+    'background-color': light.$sn-color-blue-decor,
+  ),
+  'violet': (
+    'color': light.$sn-color-violet-text,
+    'background-color': light.$sn-color-violet-decor,
+  ),
+  'pink': (
+    'color': light.$sn-color-pink-text,
+    'background-color': light.$sn-color-pink-decor,
+  ),
+  'neutral': (
+    'color': light.$sn-color-neutral-text,
+    'background-color': light.$sn-color-neutral-decor,
+  ),
 );
 
 .avatar {
@@ -55,11 +82,19 @@ $appearances: (
 
   @each $appearance-name, $appearance-value in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      background-color: $appearance-value;
+      background-color: base.simple-var($appearances, $appearance-name, 'background-color');
+
+      //   color: base.simple-var($appearance-value, 'color');
+
+      color: base.color-on-background-with-opacity(
+        base.simple-var($appearance-value, 'color'),
+        base.simple-var($appearance-value, 'background-color'),
+        avatar.$sn-effect-opacity-text-secondary
+      );
 
       border-color: base.color-on-background-with-opacity(
         light.$sn-color-available-complementary,
-        $appearance-value,
+        base.simple-var($appearance-value, 'background-color'),
         avatar.$sn-avatar-effect-opacity-border
       );
     }

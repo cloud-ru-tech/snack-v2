@@ -1,0 +1,42 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$codeEditor: (
+  "anatomy": (
+    "size": (
+      "row-numbers": (
+        "padding-left": styles-theme-variables.$code-editor-anatomy-size-row-numbers-padding-left,
+        "padding-right": styles-theme-variables.$code-editor-anatomy-size-row-numbers-padding-right,
+        "padding-top": styles-theme-variables.$code-editor-anatomy-size-row-numbers-padding-vertical,
+        "padding-bottom": styles-theme-variables.$code-editor-anatomy-size-row-numbers-padding-vertical,
+        "gap": styles-theme-variables.$code-editor-anatomy-size-row-numbers-gap
+      ),
+      "content": (
+        "padding-top": styles-theme-variables.$code-editor-anatomy-size-content-padding-vertical,
+        "padding-bottom": styles-theme-variables.$code-editor-anatomy-size-content-padding-vertical
+      ),
+      "scroll": (
+        "vertical": (
+          "min-height": styles-theme-variables.$code-editor-anatomy-size-scroll-vertical-min-height
+        ),
+        "horizontal": (
+          "min-width": styles-theme-variables.$code-editor-anatomy-size-scroll-horizontal-min-width
+        ),
+        "border-width": styles-theme-variables.$code-editor-anatomy-size-scroll-stroke-weigth
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "scroll": (
+        "border-default": styles-theme-variables.$code-editor-effect-opacity-scroll-border-default,
+        "background-color": styles-theme-variables.$code-editor-effect-opacity-scroll-bg-pressed,
+        "bg-hovered": styles-theme-variables.$code-editor-effect-opacity-scroll-bg-hovered
+      )
+    )
+  )
+);

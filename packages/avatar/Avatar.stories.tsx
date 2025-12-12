@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar, AvatarProps, APPEARANCE, SIZE, SHAPE } from './src';
+import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from './src';
 
 const meta: Meta<AvatarProps> = {
   title: 'Components/Avatar',
@@ -103,18 +103,20 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       {Object.values(SIZE).map((size) => (
-        <div key={size} style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <div
+          key={size}
+          style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}
+        >
           <div style={{ minWidth: 80, fontSize: 12, color: '#666' }}>{size}</div>
-          <Avatar name="JD" size={size} shape={SHAPE.Round} appearance={APPEARANCE.Primary} />
-          <Avatar name="JD" size={size} shape={SHAPE.Square} appearance={APPEARANCE.Primary} />
-          <Avatar name="John Doe" size={size} shape={SHAPE.Round} appearance={APPEARANCE.Neutral} showTwoSymbols />
-          <Avatar
-            name="John Doe"
-            size={size}
-            shape={SHAPE.Square}
-            appearance={APPEARANCE.Neutral}
-            showTwoSymbols
-          />
+          {Object.values(APPEARANCE).map((appearance) => (
+            <div
+              key={appearance}
+              style={{ display: 'flex', gap: 8, alignItems: 'center', flexDirection: 'column' }}
+            >
+              <Avatar name="JD" size={size} shape={SHAPE.Round} appearance={appearance} />
+              <Avatar name="JD" size={size} shape={SHAPE.Square} appearance={appearance} />
+            </div>
+          ))}
         </div>
       ))}
     </div>
@@ -141,4 +143,3 @@ export const ImageFallback: Story = {
     </div>
   ),
 };
-
