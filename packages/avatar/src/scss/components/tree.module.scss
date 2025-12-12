@@ -1,0 +1,148 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$tree: (
+  "anatomy": (
+    "size": (
+      "l": (
+        "tree-item": (
+          "content-wrapper": (
+            "text-wrapper": (
+              "text-contetn": (
+                "gap": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-text-contetn-gap,
+                "min-width": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-text-contetn-min-width,
+                "padding-left": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-text-contetn-padding-horizontal,
+                "padding-right": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-text-contetn-padding-horizontal,
+                "headline": (
+                  "min-height": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-text-contetn-headline-min-height,
+                  "gap": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-text-contetn-headline-gap
+                )
+              ),
+              "padding-top": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-vertical-padding,
+              "padding-bottom": styles-theme-variables.$tree-anatomy-size-l-tree-item-content-wrapper-text-wrapper-vertical-padding
+            )
+          ),
+          "centered-wrapper": (
+            "width": styles-theme-variables.$tree-anatomy-size-l-tree-item-centered-wrapper-width,
+            "height": styles-theme-variables.$tree-anatomy-size-l-tree-item-centered-wrapper-height,
+            "padding-top": styles-theme-variables.$tree-anatomy-size-l-tree-item-centered-wrapper-padding-vertical,
+            "padding-bottom": styles-theme-variables.$tree-anatomy-size-l-tree-item-centered-wrapper-padding-vertical,
+            "padding-right": styles-theme-variables.$tree-anatomy-size-l-tree-item-centered-wrapper-padding-right
+          ),
+          "nesting-level": (
+            "levelindicator": (
+              "level": (
+                "padding-right": styles-theme-variables.$tree-anatomy-size-l-tree-item-nesting-level-levelindicator-level-padding-right,
+                "padding-top": styles-theme-variables.$tree-anatomy-size-l-tree-item-nesting-level-levelindicator-level-padding-top
+              ),
+              "padding-left": styles-theme-variables.$tree-anatomy-size-l-tree-item-nesting-level-levelindicator-padding-left
+            )
+          ),
+          "gap": styles-theme-variables.$tree-anatomy-size-l-tree-item-gap,
+          "border-radius": styles-theme-variables.$tree-anatomy-size-l-tree-item-corner-radius,
+          "padding-left": styles-theme-variables.$tree-anatomy-size-l-tree-item-padding-horizontal,
+          "padding-right": styles-theme-variables.$tree-anatomy-size-l-tree-item-padding-horizontal,
+          "padding-top": styles-theme-variables.$tree-anatomy-size-l-tree-item-padding-vertical,
+          "padding-bottom": styles-theme-variables.$tree-anatomy-size-l-tree-item-padding-vertical
+        )
+      ),
+      "m": (
+        "tree-item": (
+          "content-wrapper": (
+            "text-wrapper": (
+              "text-contetn": (
+                "min-width": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-text-contetn-min-width,
+                "padding-left": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-text-contetn-padding-horizontal,
+                "padding-right": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-text-contetn-padding-horizontal,
+                "headline": (
+                  "min-height": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-text-contetn-headline-min-height,
+                  "gap": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-text-contetn-headline-gap
+                ),
+                "gap": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-text-contetn-gap
+              ),
+              "padding-top": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-vertical-padding,
+              "padding-bottom": styles-theme-variables.$tree-anatomy-size-m-tree-item-content-wrapper-text-wrapper-vertical-padding
+            )
+          ),
+          "centered-wrapper": (
+            "width": styles-theme-variables.$tree-anatomy-size-m-tree-item-centered-wrapper-width,
+            "padding-top": styles-theme-variables.$tree-anatomy-size-m-tree-item-centered-wrapper-padding-vertical,
+            "padding-bottom": styles-theme-variables.$tree-anatomy-size-m-tree-item-centered-wrapper-padding-vertical,
+            "height": styles-theme-variables.$tree-anatomy-size-m-tree-item-centered-wrapper-height,
+            "padding-right": styles-theme-variables.$tree-anatomy-size-m-tree-item-centered-wrapper-padding-right
+          ),
+          "padding-top": styles-theme-variables.$tree-anatomy-size-m-tree-item-padding-vertical,
+          "padding-bottom": styles-theme-variables.$tree-anatomy-size-m-tree-item-padding-vertical,
+          "padding-left": styles-theme-variables.$tree-anatomy-size-m-tree-item-padding-horizontal,
+          "padding-right": styles-theme-variables.$tree-anatomy-size-m-tree-item-padding-horizontal,
+          "gap": styles-theme-variables.$tree-anatomy-size-m-tree-item-gap,
+          "nesting-level": (
+            "levelindicator": (
+              "level": (
+                "padding-right": styles-theme-variables.$tree-anatomy-size-m-tree-item-nesting-level-levelindicator-level-padding-right,
+                "padding-top": styles-theme-variables.$tree-anatomy-size-m-tree-item-nesting-level-levelindicator-level-padding-top
+              ),
+              "padding-left": styles-theme-variables.$tree-anatomy-size-m-tree-item-nesting-level-levelindicator-padding-left
+            )
+          ),
+          "border-radius": styles-theme-variables.$tree-anatomy-size-m-tree-item-corner-radius
+        )
+      ),
+      "s": (
+        "tree-item": (
+          "border-radius": styles-theme-variables.$tree-anatomy-size-s-tree-item-corner-radius,
+          "padding-top": styles-theme-variables.$tree-anatomy-size-s-tree-item-padding-vertical,
+          "padding-bottom": styles-theme-variables.$tree-anatomy-size-s-tree-item-padding-vertical,
+          "gap": styles-theme-variables.$tree-anatomy-size-s-tree-item-gap,
+          "content-wrapper": (
+            "text-wrapper": (
+              "text-contetn": (
+                "padding-left": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-text-contetn-padding-horizontal,
+                "padding-right": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-text-contetn-padding-horizontal,
+                "gap": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-text-contetn-gap,
+                "min-width": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-text-contetn-min-width,
+                "headline": (
+                  "gap": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-text-contetn-headline-gap,
+                  "min-height": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-text-contetn-headline-min-height
+                )
+              ),
+              "padding-top": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-vertical-padding,
+              "padding-bottom": styles-theme-variables.$tree-anatomy-size-s-tree-item-content-wrapper-text-wrapper-vertical-padding
+            )
+          ),
+          "padding-left": styles-theme-variables.$tree-anatomy-size-s-tree-item-padding-horizontal,
+          "padding-right": styles-theme-variables.$tree-anatomy-size-s-tree-item-padding-horizontal,
+          "nesting-level": (
+            "levelindicator": (
+              "level": (
+                "padding-right": styles-theme-variables.$tree-anatomy-size-s-tree-item-nesting-level-levelindicator-level-padding-right,
+                "padding-top": styles-theme-variables.$tree-anatomy-size-s-tree-item-nesting-level-levelindicator-level-padding-top
+              ),
+              "padding-left": styles-theme-variables.$tree-anatomy-size-s-tree-item-nesting-level-levelindicator-padding-left
+            )
+          ),
+          "centered-wrapper": (
+            "padding-top": styles-theme-variables.$tree-anatomy-size-s-tree-item-centered-wrapper-padding-vertical,
+            "padding-bottom": styles-theme-variables.$tree-anatomy-size-s-tree-item-centered-wrapper-padding-vertical,
+            "width": styles-theme-variables.$tree-anatomy-size-s-tree-item-centered-wrapper-width,
+            "height": styles-theme-variables.$tree-anatomy-size-s-tree-item-centered-wrapper-height,
+            "padding-right": styles-theme-variables.$tree-anatomy-size-s-tree-item-centered-wrapper-padding-right
+          )
+        )
+      )
+    ),
+    "group-indicator": (
+      "container": styles-theme-variables.$tree-anatomy-group-indicator-container,
+      "border-radius": styles-theme-variables.$tree-anatomy-group-indicator-corner-radius
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "levelindicator": styles-theme-variables.$tree-effect-opacity-levelindicator
+    )
+  )
+);

@@ -1,0 +1,101 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$segmentControl: (
+  "color": (
+    "container": (
+      "background-color": styles-theme-variables.$segment-control-color-container-bg-default,
+      "border-default": styles-theme-variables.$segment-control-color-container-border-default
+    ),
+    "segment": (
+      "bg-checked": styles-theme-variables.$segment-control-color-segment-bg-checked,
+      "color": styles-theme-variables.$segment-control-color-segment-fg-default
+    )
+  ),
+  "anatomy": (
+    "size": (
+      "l": (
+        "container": (
+          "border-width": styles-theme-variables.$segment-control-anatomy-size-l-container-stroke-weigth,
+          "border-radius": styles-theme-variables.$segment-control-anatomy-size-l-container-corner-radius,
+          "padding": styles-theme-variables.$segment-control-anatomy-size-l-container-padding,
+          "min-height": styles-theme-variables.$segment-control-anatomy-size-l-container-min-height
+        ),
+        "segment": (
+          "container": (
+            "border-radius": styles-theme-variables.$segment-control-anatomy-size-l-segment-container-corner-radius,
+            "padding": styles-theme-variables.$segment-control-anatomy-size-l-segment-container-padding,
+            "border-width": styles-theme-variables.$segment-control-anatomy-size-l-segment-container-stroke-weigth
+          ),
+          "text-wrapper": (
+            "padding": styles-theme-variables.$segment-control-anatomy-size-l-segment-text-wrapper-padding,
+            "gap": styles-theme-variables.$segment-control-anatomy-size-l-segment-text-wrapper-gap
+          ),
+          "container-icon-only": (
+            "min-width": styles-theme-variables.$segment-control-anatomy-size-l-segment-container-icon-only-min-width
+          )
+        )
+      ),
+      "m": (
+        "container": (
+          "border-width": styles-theme-variables.$segment-control-anatomy-size-m-container-stroke-weigth,
+          "border-radius": styles-theme-variables.$segment-control-anatomy-size-m-container-corner-radius,
+          "padding": styles-theme-variables.$segment-control-anatomy-size-m-container-padding,
+          "min-height": styles-theme-variables.$segment-control-anatomy-size-m-container-min-height
+        ),
+        "segment": (
+          "container": (
+            "border-radius": styles-theme-variables.$segment-control-anatomy-size-m-segment-container-corner-radius,
+            "padding": styles-theme-variables.$segment-control-anatomy-size-m-segment-container-padding,
+            "border-width": styles-theme-variables.$segment-control-anatomy-size-m-segment-container-stroke-weigth
+          ),
+          "text-wrapper": (
+            "padding": styles-theme-variables.$segment-control-anatomy-size-m-segment-text-wrapper-padding,
+            "gap": styles-theme-variables.$segment-control-anatomy-size-m-segment-text-wrapper-gap
+          ),
+          "container-icon-only": (
+            "min-width": styles-theme-variables.$segment-control-anatomy-size-m-segment-container-icon-only-min-width
+          )
+        )
+      ),
+      "s": (
+        "container": (
+          "border-radius": styles-theme-variables.$segment-control-anatomy-size-s-container-corner-radius,
+          "border-width": styles-theme-variables.$segment-control-anatomy-size-s-container-stroke-weigth,
+          "padding": styles-theme-variables.$segment-control-anatomy-size-s-container-padding,
+          "min-height": styles-theme-variables.$segment-control-anatomy-size-s-container-min-height
+        ),
+        "segment": (
+          "container": (
+            "border-radius": styles-theme-variables.$segment-control-anatomy-size-s-segment-container-corner-radius,
+            "padding": styles-theme-variables.$segment-control-anatomy-size-s-segment-container-padding,
+            "border-width": styles-theme-variables.$segment-control-anatomy-size-s-segment-container-stroke-weigth
+          ),
+          "text-wrapper": (
+            "padding": styles-theme-variables.$segment-control-anatomy-size-s-segment-text-wrapper-padding,
+            "gap": styles-theme-variables.$segment-control-anatomy-size-s-segment-text-wrapper-gap
+          ),
+          "container-icon-only": (
+            "min-width": styles-theme-variables.$segment-control-anatomy-size-s-segment-container-icon-only-min-width
+          )
+        )
+      )
+    )
+  )
+);
+
+$segment-control-anatomy-size-l-segment-container-icon-only: (
+  "min-width": styles-theme-variables.$segment-control-anatomy-size-l-segment-container-icon-only-min-width
+);
+
+$segment-control-anatomy-size-m-segment-container-icon-only: (
+  "min-width": styles-theme-variables.$segment-control-anatomy-size-m-segment-container-icon-only-min-width
+);
+
+$segment-control-anatomy-size-s-segment-container-icon-only: (
+  "min-width": styles-theme-variables.$segment-control-anatomy-size-s-segment-container-icon-only-min-width
+);

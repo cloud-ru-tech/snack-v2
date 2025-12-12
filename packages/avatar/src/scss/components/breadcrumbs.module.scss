@@ -1,0 +1,33 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$breadcrumbs: (
+  "anatomy": (
+    "size": (
+      "xs": (
+        "separator": (
+          "min-width": styles-theme-variables.$breadcrumbs-anatomy-size-xs-separator-min-width,
+          "min-height": styles-theme-variables.$breadcrumbs-anatomy-size-xs-separator-min-height
+        ),
+        "container": (
+          "gap": styles-theme-variables.$breadcrumbs-anatomy-size-xs-container-gap,
+          "min-height": styles-theme-variables.$breadcrumbs-anatomy-size-xs-container-min-height
+        )
+      ),
+      "s": (
+        "separator": (
+          "min-width": styles-theme-variables.$breadcrumbs-anatomy-size-s-separator-min-width,
+          "min-height": styles-theme-variables.$breadcrumbs-anatomy-size-s-separator-min-height
+        ),
+        "container": (
+          "gap": styles-theme-variables.$breadcrumbs-anatomy-size-s-container-gap,
+          "min-height": styles-theme-variables.$breadcrumbs-anatomy-size-s-container-min-height
+        )
+      )
+    )
+  )
+);

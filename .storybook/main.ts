@@ -1,4 +1,8 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
   stories: [
@@ -21,9 +25,28 @@ const config: StorybookConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      '@design-system/button': new URL('../packages/button/src', import.meta.url).pathname,
-      '@design-system/link': new URL('../packages/link/src', import.meta.url).pathname,
+      '@design-system/button': path.resolve(dirname, '../packages/button/src'),
+      '@design-system/link': path.resolve(dirname, '../packages/link/src'),
+      '@design-system/avatar': path.resolve(dirname, '../packages/avatar/src'),
     };
+    
+    // Ensure CSS modules are properly handled
+    config.css = config.css || {};
+    config.css.modules = {
+      ...(config.css.modules || {}),
+      localsConvention: 'camelCase',
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    };
+    
+    // Ensure SCSS is properly configured
+    if (!config.css.preprocessorOptions) {
+      config.css.preprocessorOptions = {};
+    }
+    config.css.preprocessorOptions.scss = {
+      ...(config.css.preprocessorOptions.scss || {}),
+      additionalData: '',
+    };
+    
     return config;
   },
 };

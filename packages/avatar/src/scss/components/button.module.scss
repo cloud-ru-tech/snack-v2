@@ -1,0 +1,205 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$button: (
+  "color": (
+    "filled": (
+      "primary": (
+        "background-color": styles-theme-variables.$button-color-filled-primary-bg-default,
+        "color": styles-theme-variables.$button-color-filled-primary-fg-default
+      ),
+      "neutral": (
+        "background-color": styles-theme-variables.$button-color-filled-neutral-bg-default,
+        "color": styles-theme-variables.$button-color-filled-neutral-fg-default
+      ),
+      "destructive": (
+        "background-color": styles-theme-variables.$button-color-filled-destructive-bg-default,
+        "color": styles-theme-variables.$button-color-filled-destructive-fg-default
+      ),
+      "disabled": (
+        "color": styles-theme-variables.$button-color-filled-disabled-fg-disabled,
+        "background-color": styles-theme-variables.$button-color-filled-disabled-bg-disabled
+      )
+    ),
+    "outline": (
+      "primary": (
+        "background-color": styles-theme-variables.$button-color-outline-primary-bg-default,
+        "color": styles-theme-variables.$button-color-outline-primary-fg-default
+      ),
+      "neutral": (
+        "background-color": styles-theme-variables.$button-color-outline-neutral-bg-default,
+        "color": styles-theme-variables.$button-color-outline-neutral-fg-default
+      ),
+      "destructive": (
+        "background-color": styles-theme-variables.$button-color-outline-destructive-bg-default,
+        "color": styles-theme-variables.$button-color-outline-destructive-fg-default
+      ),
+      "disabled": (
+        "color": styles-theme-variables.$button-color-outline-disabled-fg-disabled,
+        "background-color": styles-theme-variables.$button-color-outline-disabled-bg-default
+      )
+    ),
+    "tonal": (
+      "primary": (
+        "background-color": styles-theme-variables.$button-color-tonal-primary-bg-default,
+        "color": styles-theme-variables.$button-color-tonal-primary-fg-default
+      ),
+      "neutral": (
+        "background-color": styles-theme-variables.$button-color-tonal-neutral-bg-default,
+        "color": styles-theme-variables.$button-color-tonal-neutral-fg-default
+      ),
+      "destructive": (
+        "background-color": styles-theme-variables.$button-color-tonal-destructive-bg-default,
+        "color": styles-theme-variables.$button-color-tonal-destructive-fg-default
+      ),
+      "disabled": (
+        "color": styles-theme-variables.$button-color-tonal-disabled-fg-disabled,
+        "background-color": styles-theme-variables.$button-color-tonal-disabled-bg-disabled
+      )
+    ),
+    "elevated": (
+      "primary": (
+        "background-color": styles-theme-variables.$button-color-elevated-primary-bg-default,
+        "color": styles-theme-variables.$button-color-elevated-primary-fg-default
+      ),
+      "neutral": (
+        "background-color": styles-theme-variables.$button-color-elevated-neutral-bg-default,
+        "color": styles-theme-variables.$button-color-elevated-neutral-fg-default
+      ),
+      "destructive": (
+        "background-color": styles-theme-variables.$button-color-elevated-destructive-bg-default,
+        "color": styles-theme-variables.$button-color-elevated-destructive-fg-default
+      ),
+      "disabled": (
+        "background-color": styles-theme-variables.$button-color-elevated-disabled-bg-disabled,
+        "color": styles-theme-variables.$button-color-elevated-disabled-fg-disabled
+      )
+    ),
+    "simple": (
+      "primary": (
+        "color": styles-theme-variables.$button-color-simple-primary-fg-default
+      ),
+      "neutral": (
+        "color": styles-theme-variables.$button-color-simple-neutral-fg-default
+      ),
+      "destructive": (
+        "color": styles-theme-variables.$button-color-simple-destructive-fg-default
+      ),
+      "disabled": (
+        "color": styles-theme-variables.$button-color-simple-disabled-fg-disabled
+      )
+    ),
+    "function": (
+      "primary": (
+        "color": styles-theme-variables.$button-color-function-primary-fg-default
+      ),
+      "neutral": (
+        "color": styles-theme-variables.$button-color-function-neutral-fg-default
+      ),
+      "destructive": (
+        "color": styles-theme-variables.$button-color-function-destructive-fg-default
+      ),
+      "disabled": (
+        "color": styles-theme-variables.$button-color-function-disabled-fg-disabled
+      )
+    )
+  ),
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "min-height": styles-theme-variables.$button-anatomy-size-s-container-min-height,
+          "border-radius": styles-theme-variables.$button-anatomy-size-s-container-corner-radius,
+          "padding": styles-theme-variables.$button-anatomy-size-s-container-padding,
+          "min-width": styles-theme-variables.$button-anatomy-size-s-container-min-width,
+          "border-width": styles-theme-variables.$button-anatomy-size-s-container-stroke-weigth
+        ),
+        "container-text-wrapper": (
+          "padding": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-padding,
+          "gap": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-gap
+        ),
+        "container-icon-only": (
+          "min-width": styles-theme-variables.$button-anatomy-size-s-container-icon-only-min-width
+        )
+      ),
+      "m": (
+        "container": (
+          "min-height": styles-theme-variables.$button-anatomy-size-m-container-min-height,
+          "border-radius": styles-theme-variables.$button-anatomy-size-m-container-corner-radius,
+          "padding": styles-theme-variables.$button-anatomy-size-m-container-padding,
+          "min-width": styles-theme-variables.$button-anatomy-size-m-container-min-width,
+          "border-width": styles-theme-variables.$button-anatomy-size-m-container-stroke-weigth
+        ),
+        "container-text-wrapper": (
+          "padding": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-padding,
+          "gap": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-gap
+        ),
+        "container-icon-only": (
+          "min-width": styles-theme-variables.$button-anatomy-size-m-container-icon-only-min-width
+        )
+      ),
+      "l": (
+        "container": (
+          "min-height": styles-theme-variables.$button-anatomy-size-l-container-min-height,
+          "border-radius": styles-theme-variables.$button-anatomy-size-l-container-corner-radius,
+          "padding": styles-theme-variables.$button-anatomy-size-l-container-padding,
+          "min-width": styles-theme-variables.$button-anatomy-size-l-container-min-width,
+          "border-width": styles-theme-variables.$button-anatomy-size-l-container-stroke-weigth
+        ),
+        "container-text-wrapper": (
+          "padding": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-padding,
+          "gap": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-gap
+        ),
+        "container-icon-only": (
+          "min-width": styles-theme-variables.$button-anatomy-size-l-container-icon-only-min-width
+        )
+      )
+    ),
+    "button-group": (
+      "container": (
+        "gap": styles-theme-variables.$button-anatomy-button-group-container-gap
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "function": (
+        "color": styles-theme-variables.$button-effect-opacity-function-fg-default
+      ),
+      "outline": (
+        "border-default": styles-theme-variables.$button-effect-opacity-outline-border-default
+      )
+    )
+  )
+);
+
+$button-anatomy-size-s-container-text-wrapper: (
+  "padding": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-padding,
+  "gap": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-gap
+);
+
+$button-anatomy-size-s-container-icon-only: (
+  "min-width": styles-theme-variables.$button-anatomy-size-s-container-icon-only-min-width
+);
+
+$button-anatomy-size-m-container-text-wrapper: (
+  "padding": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-padding,
+  "gap": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-gap
+);
+
+$button-anatomy-size-m-container-icon-only: (
+  "min-width": styles-theme-variables.$button-anatomy-size-m-container-icon-only-min-width
+);
+
+$button-anatomy-size-l-container-text-wrapper: (
+  "padding": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-padding,
+  "gap": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-gap
+);
+
+$button-anatomy-size-l-container-icon-only: (
+  "min-width": styles-theme-variables.$button-anatomy-size-l-container-icon-only-min-width
+);

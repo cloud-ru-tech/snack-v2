@@ -1,0 +1,45 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$scroll: (
+  "color": (
+    "slider": (
+      "background-color": styles-theme-variables.$scroll-color-slider-bg-pressed,
+      "bg-hovered": styles-theme-variables.$scroll-color-slider-bg-hovered
+    )
+  ),
+  "anatomy": (
+    "slider": (
+      "size": (
+        "s": (
+          "width": styles-theme-variables.$scroll-anatomy-slider-size-s-min-size,
+          "border-radius": styles-theme-variables.$scroll-anatomy-slider-size-s-corner-radius
+        ),
+        "m": (
+          "width": styles-theme-variables.$scroll-anatomy-slider-size-m-min-size,
+          "border-radius": styles-theme-variables.$scroll-anatomy-slider-size-m-corner-radius
+        )
+      )
+    ),
+    "container": (
+      "size": (
+        "s": (
+          "width": styles-theme-variables.$scroll-anatomy-container-size-s-min-size
+        ),
+        "m": (
+          "width": styles-theme-variables.$scroll-anatomy-container-size-m-min-size
+        )
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "background-color": styles-theme-variables.$scroll-effect-opacity-bg-pressed,
+      "bg-hovered": styles-theme-variables.$scroll-effect-opacity-bg-hovered
+    )
+  )
+);

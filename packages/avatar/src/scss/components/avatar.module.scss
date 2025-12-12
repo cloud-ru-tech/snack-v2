@@ -1,0 +1,153 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
+
+$avatar: (
+  'typography': (
+    'xs': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-xs-font-family,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-xs-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-xs-line-height,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-xs-font-weight,
+    ),
+    's': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-s-font-family,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-s-font-weight,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-s-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-s-line-height,
+    ),
+    'm': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-m-font-family,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-m-font-weight,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-m-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-m-line-height,
+    ),
+    'xl': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-xl-font-family,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-xl-font-weight,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-xl-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-xl-line-height,
+    ),
+    '3xl': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-3xl-font-family,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-3xl-font-weight,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-3xl-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-3xl-line-height,
+    ),
+    '6xl': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-6xl-font-family,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-6xl-font-weight,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-6xl-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-6xl-line-height,
+    ),
+    '10xl': (
+      'font-family': styles-theme-variables.$sn-platform-avatar-typography-10xl-font-family,
+      'font-weight': styles-theme-variables.$sn-platform-avatar-typography-10xl-font-weight,
+      'font-size': styles-theme-variables.$sn-platform-avatar-typography-10xl-font-size,
+      'line-height': styles-theme-variables.$sn-platform-avatar-typography-10xl-line-height,
+    ),
+  ),
+  'effect': (
+    'opacity': (
+      'border': styles-theme-variables.$sn-avatar-effect-opacity-border,
+    ),
+  ),
+  'anatomy': (
+    'size': (
+      'xs': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-xs-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-xs-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-xs-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-xs-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-xs-square-corner-radius,
+        ),
+      ),
+      's': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-s-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-s-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-s-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-s-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-s-square-corner-radius,
+        ),
+      ),
+      'm': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-m-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-m-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-m-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-m-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-m-square-corner-radius,
+        ),
+      ),
+      'xl': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-xl-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-xl-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-xl-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-xl-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-xl-square-corner-radius,
+        ),
+      ),
+      '3xl': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-3xl-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-3xl-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-3xl-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-3xl-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-3xl-square-corner-radius,
+        ),
+      ),
+      '6xl': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-6xl-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-6xl-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-6xl-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-6xl-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-6xl-square-corner-radius,
+        ),
+      ),
+      '10xl': (
+        'container': (
+          'width': styles-theme-variables.$sn-avatar-anatomy-size-10xl-height,
+          'height': styles-theme-variables.$sn-avatar-anatomy-size-10xl-height,
+          'border-width': styles-theme-variables.$sn-avatar-anatomy-size-10xl-stroke-weigth,
+        ),
+        'round': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-10xl-round-corner-radius,
+        ),
+        'square': (
+          'border-radius': styles-theme-variables.$sn-avatar-anatomy-size-10xl-square-corner-radius,
+        ),
+      ),
+    ),
+  ),
+);

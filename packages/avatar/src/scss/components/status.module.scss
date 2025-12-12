@@ -1,0 +1,61 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$status: (
+  "anatomy": (
+    "status-indicator": (
+      "size": (
+        "4xs": (
+          "height": styles-theme-variables.$status-anatomy-status-indicator-size-4xs-height,
+          "border-width": styles-theme-variables.$status-anatomy-status-indicator-size-4xs-stroke-weigth
+        ),
+        "border-radius": styles-theme-variables.$status-anatomy-status-indicator-size-corner-radius,
+        "3xs": (
+          "height": styles-theme-variables.$status-anatomy-status-indicator-size-3xs-height,
+          "border-width": styles-theme-variables.$status-anatomy-status-indicator-size-3xs-stroke-weigth
+        ),
+        "2xs": (
+          "height": styles-theme-variables.$status-anatomy-status-indicator-size-2xs-height,
+          "border-width": styles-theme-variables.$status-anatomy-status-indicator-size-2xs-stroke-weigth,
+          "padding": styles-theme-variables.$status-anatomy-status-indicator-size-2xs-padding
+        ),
+        "xs": (
+          "height": styles-theme-variables.$status-anatomy-status-indicator-size-xs-height,
+          "border-width": styles-theme-variables.$status-anatomy-status-indicator-size-xs-stroke-weigth
+        ),
+        "s": (
+          "height": styles-theme-variables.$status-anatomy-status-indicator-size-s-height,
+          "border-width": styles-theme-variables.$status-anatomy-status-indicator-size-s-stroke-weigth
+        )
+      )
+    ),
+    "size": (
+      "xs": (
+        "text-wrapper": (
+          "gap": styles-theme-variables.$status-anatomy-size-xs-text-wrapper-gap,
+          "padding": styles-theme-variables.$status-anatomy-size-xs-text-wrapper-padding
+        ),
+        "container": (
+          "padding": styles-theme-variables.$status-anatomy-size-xs-container-padding,
+          "min-height": styles-theme-variables.$status-anatomy-size-xs-container-min-height,
+          "border-radius": styles-theme-variables.$status-anatomy-size-xs-container-corner-radius
+        )
+      ),
+      "s": (
+        "text-wrapper": (
+          "gap": styles-theme-variables.$status-anatomy-size-s-text-wrapper-gap,
+          "padding": styles-theme-variables.$status-anatomy-size-s-text-wrapper-padding
+        ),
+        "container": (
+          "padding": styles-theme-variables.$status-anatomy-size-s-container-padding,
+          "min-height": styles-theme-variables.$status-anatomy-size-s-container-min-height,
+          "border-radius": styles-theme-variables.$status-anatomy-size-s-container-corner-radius
+        )
+      )
+    )
+  )
+);

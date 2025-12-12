@@ -1,0 +1,57 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$rating: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "min-width": styles-theme-variables.$rating-anatomy-size-s-container-min-width,
+          "min-height": styles-theme-variables.$rating-anatomy-size-s-container-min-height
+        ),
+        "bg-flag": (
+          "height": styles-theme-variables.$rating-anatomy-size-s-bg-flag-height,
+          "width": styles-theme-variables.$rating-anatomy-size-s-bg-flag-width,
+          "border-width": styles-theme-variables.$rating-anatomy-size-s-bg-flag-stroke-weigth,
+          "border-radius": styles-theme-variables.$rating-anatomy-size-s-bg-flag-corner-radius
+        ),
+        "flag": (
+          "min-width": styles-theme-variables.$rating-anatomy-size-s-flag-min-width,
+          "min-height": styles-theme-variables.$rating-anatomy-size-s-flag-min-height
+        ),
+        "bg-surface": (
+          "min-height": styles-theme-variables.$rating-anatomy-size-s-bg-surface-min-height,
+          "border-width": styles-theme-variables.$rating-anatomy-size-s-bg-surface-stroke-weigth,
+          "border-radius": styles-theme-variables.$rating-anatomy-size-s-bg-surface-corner-radius,
+          "min-width": styles-theme-variables.$rating-anatomy-size-s-bg-surface-min-width
+        )
+      ),
+      "xs": (
+        "container": (
+          "min-width": styles-theme-variables.$rating-anatomy-size-xs-container-min-width,
+          "min-height": styles-theme-variables.$rating-anatomy-size-xs-container-min-height
+        ),
+        "bg-surface": (
+          "min-width": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-min-width,
+          "min-height": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-min-height,
+          "border-radius": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-corner-radius,
+          "border-width": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-stroke-weigth
+        ),
+        "flag": (
+          "min-width": styles-theme-variables.$rating-anatomy-size-xs-flag-min-width,
+          "min-height": styles-theme-variables.$rating-anatomy-size-xs-flag-min-height
+        ),
+        "bg-flag": (
+          "width": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-width,
+          "height": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-height,
+          "border-radius": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-corner-radius,
+          "border-width": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-stroke-weigth
+        )
+      )
+    )
+  )
+);

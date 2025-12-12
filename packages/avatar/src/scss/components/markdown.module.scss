@@ -1,0 +1,144 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$markdown: (
+  "anatomy": (
+    "size": (
+      "container": (
+        "gap": styles-theme-variables.$markdown-anatomy-size-container-gap
+      ),
+      "buttons": (
+        "button": (
+          "padding-right": styles-theme-variables.$markdown-anatomy-size-buttons-button-padding-right,
+          "gap": styles-theme-variables.$markdown-anatomy-size-buttons-button-gap
+        ),
+        "padding-left": styles-theme-variables.$markdown-anatomy-size-buttons-padding-horizontal,
+        "padding-right": styles-theme-variables.$markdown-anatomy-size-buttons-padding-horizontal,
+        "padding-top": styles-theme-variables.$markdown-anatomy-size-buttons-padding-top,
+        "padding-bottom": styles-theme-variables.$markdown-anatomy-size-buttons-padding-bottom,
+        "gap": styles-theme-variables.$markdown-anatomy-size-buttons-gap
+      ),
+      "syntax": (
+        "table": (
+          "table-cell": (
+            "padding-left": styles-theme-variables.$markdown-anatomy-size-syntax-table-table-cell-padding-horizontal,
+            "padding-right": styles-theme-variables.$markdown-anatomy-size-syntax-table-table-cell-padding-horizontal,
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-table-table-cell-padding-vertical,
+            "padding-bottom": styles-theme-variables.$markdown-anatomy-size-syntax-table-table-cell-padding-vertical,
+            "min-height": styles-theme-variables.$markdown-anatomy-size-syntax-table-table-cell-min-height
+          ),
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-table-padding-top
+        ),
+        "inline-code": (
+          "padding-left": styles-theme-variables.$markdown-anatomy-size-syntax-inline-code-padding-horizontal,
+          "padding-right": styles-theme-variables.$markdown-anatomy-size-syntax-inline-code-padding-horizontal,
+          "border-radius": styles-theme-variables.$markdown-anatomy-size-syntax-inline-code-corner-radius,
+          "min-height": styles-theme-variables.$markdown-anatomy-size-syntax-inline-code-min-height
+        ),
+        "quote": (
+          "wrapper": (
+            "padding-left": styles-theme-variables.$markdown-anatomy-size-syntax-quote-wrapper-padding-horizontal,
+            "padding-right": styles-theme-variables.$markdown-anatomy-size-syntax-quote-wrapper-padding-horizontal,
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-quote-wrapper-padding-vertical,
+            "padding-bottom": styles-theme-variables.$markdown-anatomy-size-syntax-quote-wrapper-padding-vertical,
+            "min-height": styles-theme-variables.$markdown-anatomy-size-syntax-quote-wrapper-min-height,
+            "width": styles-theme-variables.$markdown-anatomy-size-syntax-quote-wrapper-border-width
+          ),
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-quote-padding-top
+        ),
+        "headings": (
+          "h1": (
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-headings-h1-padding-top
+          ),
+          "h2": (
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-headings-h2-padding-top
+          ),
+          "h3": (
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-headings-h3-padding-top
+          ),
+          "h4": (
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-headings-h4-padding-top
+          ),
+          "h5": (
+            "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-headings-h5-padding-top
+          )
+        ),
+        "paragraphs": (
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-paragraphs-padding-top
+        ),
+        "list": (
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-list-padding-top
+        ),
+        "code-editor": (
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-code-editor-padding-top
+        ),
+        "image": (
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-image-padding-top
+        ),
+        "divider": (
+          "padding-top": styles-theme-variables.$markdown-anatomy-size-syntax-divider-padding-top
+        )
+      ),
+      "table-select": (
+        "container": (
+          "padding-left": styles-theme-variables.$markdown-anatomy-size-table-select-container-padding-horizontal,
+          "padding-right": styles-theme-variables.$markdown-anatomy-size-table-select-container-padding-horizontal,
+          "padding-bottom": styles-theme-variables.$markdown-anatomy-size-table-select-container-padding-bottom,
+          "gap": styles-theme-variables.$markdown-anatomy-size-table-select-container-gap
+        ),
+        "container-item": (
+          "width": styles-theme-variables.$markdown-anatomy-size-table-select-container-item-border-width,
+          "border-radius": styles-theme-variables.$markdown-anatomy-size-table-select-container-item-corner-radius
+        ),
+        "container-grid": (
+          "gap": styles-theme-variables.$markdown-anatomy-size-table-select-container-grid-gap
+        )
+      ),
+      "container-headline-wrapper": (
+        "headline": (
+          "gap": styles-theme-variables.$markdown-anatomy-size-container-headline-wrapper-headline-gap
+        )
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "syntax": (
+        "table-cell": (
+          "background-color": styles-theme-variables.$markdown-effect-opacity-syntax-table-cell-bg-default,
+          "border-default": styles-theme-variables.$markdown-effect-opacity-syntax-table-cell-border-default
+        ),
+        "inline-code": (
+          "background-color": styles-theme-variables.$markdown-effect-opacity-syntax-inline-code-bg-default
+        ),
+        "quote": (
+          "border-default": styles-theme-variables.$markdown-effect-opacity-syntax-quote-border-default,
+          "background-color": styles-theme-variables.$markdown-effect-opacity-syntax-quote-bg-default
+        )
+      )
+    )
+  )
+);
+
+$markdown-anatomy-size-container-headline-wrapper: (
+  "headline": (
+    "gap": styles-theme-variables.$markdown-anatomy-size-container-headline-wrapper-headline-gap
+  )
+);
+
+$markdown-anatomy-size-table-select-container-item: (
+  "width": styles-theme-variables.$markdown-anatomy-size-table-select-container-item-border-width,
+  "border-radius": styles-theme-variables.$markdown-anatomy-size-table-select-container-item-corner-radius
+);
+
+$markdown-anatomy-size-table-select-container-grid: (
+  "gap": styles-theme-variables.$markdown-anatomy-size-table-select-container-grid-gap
+);
+
+$markdown-anatomy-size-container-headline-wrapper-headline: (
+  "gap": styles-theme-variables.$markdown-anatomy-size-container-headline-wrapper-headline-gap
+);

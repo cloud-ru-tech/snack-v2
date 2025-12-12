@@ -1,0 +1,75 @@
+@use './scss/components/avatar.module' as avatar;
+@use './scss/base/base.module' as base;
+@use './scss/thememode/light.module' as light;
+
+// $sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl';
+$sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';
+$shapes: 'round', 'square';
+// $appearances: 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink', 'neutral';
+
+$appearances: (
+  'primary': light.$sn-color-primary-decor,
+  'red': light.$sn-color-red-decor,
+  'orange': light.$sn-color-orange-decor,
+  'yellow': light.$sn-color-yellow-decor,
+  'green': light.$sn-color-green-decor,
+  'blue': light.$sn-color-blue-decor,
+  'violet': light.$sn-color-violet-decor,
+  'pink': light.$sn-color-pink-decor,
+  'neutral': light.$sn-color-neutral-decor,
+);
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  border-style: solid;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .abbreviation {
+        @include base.composite-var(avatar.$avatar, 'typography', $size);
+      }
+
+      @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'container');
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @each $shape in $shapes {
+        &[data-shape='#{$shape}'] {
+          @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, $shape);
+        }
+      }
+    }
+  }
+
+  @each $appearance-name, $appearance-value in $appearances {
+    &[data-appearance='#{$appearance-name}'] {
+      background-color: $appearance-value;
+
+      border-color: base.color-on-background-with-opacity(
+        light.$sn-color-available-complementary,
+        $appearance-value,
+        avatar.$sn-avatar-effect-opacity-border
+      );
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+  }
+}

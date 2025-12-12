@@ -1,0 +1,76 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$skeleton: (
+  "anatomy": (
+    "size": (
+      "text": (
+        "line-height": $skeleton-anatomy-size-text-line-height,
+        "font": (
+          "display": $skeleton-anatomy-size-text-font-display,
+          "headline": (
+            "s": styles-theme-variables.$skeleton-anatomy-size-text-font-headline-s,
+            "m": styles-theme-variables.$skeleton-anatomy-size-text-font-headline-m,
+            "l": styles-theme-variables.$skeleton-anatomy-size-text-font-headline-l
+          ),
+          "title": (
+            "s": styles-theme-variables.$skeleton-anatomy-size-text-font-title-s,
+            "m": styles-theme-variables.$skeleton-anatomy-size-text-font-title-m,
+            "l": styles-theme-variables.$skeleton-anatomy-size-text-font-title-l
+          ),
+          "label": (
+            "s": styles-theme-variables.$skeleton-anatomy-size-text-font-label-s,
+            "m": styles-theme-variables.$skeleton-anatomy-size-text-font-label-m,
+            "l": styles-theme-variables.$skeleton-anatomy-size-text-font-label-l
+          ),
+          "body": (
+            "s": styles-theme-variables.$skeleton-anatomy-size-text-font-body-s,
+            "m": styles-theme-variables.$skeleton-anatomy-size-text-font-body-m,
+            "l": styles-theme-variables.$skeleton-anatomy-size-text-font-body-l
+          )
+        ),
+        "border-radius": styles-theme-variables.$skeleton-anatomy-size-text-corner-radius
+      )
+    )
+  )
+);
+
+$skeleton-anatomy-size-text-line-height-display: (
+  "s": styles-theme-variables.$skeleton-anatomy-size-text-line-height-display-s,
+  "m": styles-theme-variables.$skeleton-anatomy-size-text-line-height-display-m,
+  "l": styles-theme-variables.$skeleton-anatomy-size-text-line-height-display-l
+);
+
+$skeleton-anatomy-size-text-line-height: (
+  "display": $skeleton-anatomy-size-text-line-height-display,
+  "headline": (
+    "s": styles-theme-variables.$skeleton-anatomy-size-text-line-height-headline-s,
+    "m": styles-theme-variables.$skeleton-anatomy-size-text-line-height-headline-m,
+    "l": styles-theme-variables.$skeleton-anatomy-size-text-line-height-headline-l
+  ),
+  "title": (
+    "s": styles-theme-variables.$skeleton-anatomy-size-text-line-height-title-s,
+    "m": styles-theme-variables.$skeleton-anatomy-size-text-line-height-title-m,
+    "l": styles-theme-variables.$skeleton-anatomy-size-text-line-height-title-l
+  ),
+  "label": (
+    "s": styles-theme-variables.$skeleton-anatomy-size-text-line-height-label-s,
+    "m": styles-theme-variables.$skeleton-anatomy-size-text-line-height-label-m,
+    "l": styles-theme-variables.$skeleton-anatomy-size-text-line-height-label-l
+  ),
+  "body": (
+    "s": styles-theme-variables.$skeleton-anatomy-size-text-line-height-body-s,
+    "m": styles-theme-variables.$skeleton-anatomy-size-text-line-height-body-m,
+    "l": styles-theme-variables.$skeleton-anatomy-size-text-line-height-body-l
+  )
+);
+
+$skeleton-anatomy-size-text-font-display: (
+  "s": styles-theme-variables.$skeleton-anatomy-size-text-font-display-s,
+  "m": styles-theme-variables.$skeleton-anatomy-size-text-font-display-m,
+  "l": styles-theme-variables.$skeleton-anatomy-size-text-font-display-l
+);

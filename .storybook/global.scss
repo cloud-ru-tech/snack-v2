@@ -1,0 +1,108 @@
+/* Глобальные стили для Storybook */
+
+/* Подключение шрифтов через Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Сброс стилей */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Базовые стили для body */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  background-color: #ffffff;
+  line-height: 1.5;
+}
+
+/* Базовые стили для контейнера stories */
+.sb-story-wrapper {
+  padding: 0;
+  min-height: 100vh;
+  background-color: #ffffff;
+  width: 100%;
+  position: relative;
+}
+
+/* Утилиты для демонстрации компонентов */
+.sb-flex {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sb-flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sb-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.sb-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.sb-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Стили для разделителей между примерами */
+.sb-divider {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Стили для меток размеров/вариантов */
+.sb-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Стили для секций в stories */
+.sb-section {
+  margin-bottom: 32px;
+}
+
+.sb-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+/* Стили для контейнеров с отступами */
+.sb-container {
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.sb-container-white {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}

@@ -1,0 +1,139 @@
+// @use './scss/components/avatar.module' as avatar;
+
+// // Размеры аватара
+// $sizes: (
+//   'xs': 16px,
+//   's': 24px,
+//   'm': 32px,
+//   'xl': 48px,
+//   '3xl': 64px,
+//   '6xl': 88px,
+//   '10xl': 112px,
+// );
+
+// // Размеры шрифта для аббревиатур
+// $font-sizes: (
+//   'xs': 11px,
+//   's': 14px,
+//   'm': 16px,
+//   'xl': 20px,
+//   '3xl': 24px,
+//   '6xl': 32px,
+//   '10xl': 40px,
+// );
+
+// // Цвета для различных appearance
+// $appearances: (
+//   'neutral': (
+//     'bg': #f5f5f6,
+//     'text': #262631,
+//   ),
+//   'primary': (
+//     'bg': #e6f4f0,
+//     'text': #0d5c3e,
+//   ),
+//   'red': (
+//     'bg': #fef2f2,
+//     'text': #991b1b,
+//   ),
+//   'orange': (
+//     'bg': #fff7ed,
+//     'text': #9a3412,
+//   ),
+//   'yellow': (
+//     'bg': #fefce8,
+//     'text': #854d0e,
+//   ),
+//   'green': (
+//     'bg': #f0fdf4,
+//     'text': #166534,
+//   ),
+//   'blue': (
+//     'bg': #eff6ff,
+//     'text': #1e40af,
+//   ),
+//   'violet': (
+//     'bg': #f5f3ff,
+//     'text': #6b21a8,
+//   ),
+//   'pink': (
+//     'bg': #fdf2f8,
+//     'text': #9f1239,
+//   ),
+// );
+
+// .avatar {
+//   position: relative;
+//   display: inline-flex;
+//   flex-shrink: 0;
+//   align-items: center;
+//   justify-content: center;
+//   font-weight: 600;
+//   line-height: 1;
+//   user-select: none;
+//   overflow: hidden;
+
+//   // Стили для каждого размера
+//   @each $size-name, $size-value in $sizes {
+//     &[data-size='#{$size-name}'] {
+//       width: $size-value;
+//       height: $size-value;
+//       font-size: map-get($font-sizes, $size-name);
+//     }
+//   }
+
+//   // Стили для каждой формы
+//   &[data-shape='round'] {
+//     border-radius: 50%;
+//   }
+
+//   &[data-shape='square'] {
+//     border-radius: 4px;
+//   }
+
+//   // Стили для каждого appearance
+//   @each $appearance-name, $colors in $appearances {
+//     &[data-appearance='#{$appearance-name}'] {
+//       background-color: map-get($colors, 'bg');
+//       color: map-get($colors, 'text');
+//     }
+//   }
+// }
+
+// .image {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   object-position: center;
+//   border-radius: inherit;
+// }
+
+// .abbreviation {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   height: 100%;
+//   text-align: center;
+//   line-height: 1;
+// }
+
+@use './scss/components/avatar.module' as avatar;
+@use './scss/base/base.module' as base;
+
+// $sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl';
+$sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';
+
+.abbreviation {
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(avatar.$avatar, 'typography', $size);
+
+      //   @each $shape in $shapes {
+      //     &[data-shape='#{$shape}'] {
+      //       @include styles-tokens-avatar.composite-var(styles-tokens-avatar.$avatar, $shape, $size);
+      //     }
+      //   }
+    }
+  }
+}

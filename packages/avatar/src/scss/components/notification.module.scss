@@ -1,0 +1,181 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$notification: (
+  "color": (
+    "notification-card": (
+      "validation": (
+        "default": (
+          "background-color": styles-theme-variables.$notification-color-notification-card-validation-default-bg-default
+        ),
+        "error": (
+          "background-color": styles-theme-variables.$notification-color-notification-card-validation-error-bg-default
+        ),
+        "warning": (
+          "background-color": styles-theme-variables.$notification-color-notification-card-validation-warning-bg-default
+        ),
+        "success": (
+          "background-color": styles-theme-variables.$notification-color-notification-card-validation-success-bg-default
+        )
+      )
+    )
+  ),
+  "anatomy": (
+    "size": (
+      "container": (
+        "border-radius": styles-theme-variables.$notification-anatomy-size-container-corner-radius,
+        "max-width": styles-theme-variables.$notification-anatomy-size-container-max-width,
+        "padding-top": styles-theme-variables.$notification-anatomy-size-container-padding-top,
+        "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-padding-bottom,
+        "min-width": styles-theme-variables.$notification-anatomy-size-container-min-width
+      ),
+      "container-notification-card": (
+        "padding-left": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-horizontal,
+        "padding-right": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-horizontal,
+        "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-gap,
+        "width": styles-theme-variables.$notification-anatomy-size-container-notification-card-stroke-weight,
+        "padding-top": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-vertical,
+        "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-vertical,
+        "title": (
+          "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-gap,
+          "icon-wrapper": (
+            "min-height": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-icon-wrapper-min-height
+          )
+        ),
+        "buttons": (
+          "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-buttons-gap
+        ),
+        "date": (
+          "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-date-gap
+        )
+      ),
+      "container-footer": (
+        "min-height": styles-theme-variables.$notification-anatomy-size-container-footer-min-height,
+        "width": styles-theme-variables.$notification-anatomy-size-container-footer-stroke-weight,
+        "border-radius": styles-theme-variables.$notification-anatomy-size-container-footer-corner-radius
+      ),
+      "container-header": (
+        "padding-left": styles-theme-variables.$notification-anatomy-size-container-header-padding-horizontal,
+        "padding-right": styles-theme-variables.$notification-anatomy-size-container-header-padding-horizontal,
+        "padding-top": styles-theme-variables.$notification-anatomy-size-container-header-padding-top,
+        "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-header-padding-bottom,
+        "filter": (
+          "gap": styles-theme-variables.$notification-anatomy-size-container-header-filter-gap
+        ),
+        "gap": styles-theme-variables.$notification-anatomy-size-container-header-gap,
+        "button-function": (
+          "width": styles-theme-variables.$notification-anatomy-size-container-header-button-function-size
+        )
+      ),
+      "container-content": (
+        "max-height": styles-theme-variables.$notification-anatomy-size-container-content-max-height,
+        "info-content": (
+          "padding-left": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-horizontal,
+          "padding-right": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-horizontal,
+          "padding-top": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-vertical,
+          "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-vertical
+        )
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "card": (
+        "border": styles-theme-variables.$notification-effect-opacity-card-border,
+        "background": styles-theme-variables.$notification-effect-opacity-card-background
+      ),
+      "footer": (
+        "border": styles-theme-variables.$notification-effect-opacity-footer-border
+      )
+    )
+  )
+);
+
+$notification-anatomy-size-container-notification-card: (
+  "padding-left": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-horizontal,
+  "padding-right": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-horizontal,
+  "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-gap,
+  "border-width": styles-theme-variables.$notification-anatomy-size-container-notification-card-stroke-weight,
+  "padding-top": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-vertical,
+  "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-notification-card-padding-vertical,
+  "title": (
+    "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-gap,
+    "icon-wrapper": (
+      "min-height": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-icon-wrapper-min-height
+    )
+  ),
+  "buttons": (
+    "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-buttons-gap
+  ),
+  "date": (
+    "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-date-gap
+  )
+);
+
+$notification-anatomy-size-container-footer: (
+  "min-height": styles-theme-variables.$notification-anatomy-size-container-footer-min-height,
+  "border-width": styles-theme-variables.$notification-anatomy-size-container-footer-stroke-weight,
+  "border-radius": styles-theme-variables.$notification-anatomy-size-container-footer-corner-radius
+);
+
+$notification-anatomy-size-container-header: (
+  "padding-left": styles-theme-variables.$notification-anatomy-size-container-header-padding-horizontal,
+  "padding-right": styles-theme-variables.$notification-anatomy-size-container-header-padding-horizontal,
+  "padding-top": styles-theme-variables.$notification-anatomy-size-container-header-padding-top,
+  "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-header-padding-bottom,
+  "filter": (
+    "gap": styles-theme-variables.$notification-anatomy-size-container-header-filter-gap
+  ),
+  "gap": styles-theme-variables.$notification-anatomy-size-container-header-gap,
+  "button-function": (
+    "width": styles-theme-variables.$notification-anatomy-size-container-header-button-function-size
+  )
+);
+
+$notification-anatomy-size-container-content: (
+  "max-height": styles-theme-variables.$notification-anatomy-size-container-content-max-height,
+  "info-content": (
+    "padding-left": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-horizontal,
+    "padding-right": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-horizontal,
+    "padding-top": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-vertical,
+    "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-vertical
+  )
+);
+
+$notification-anatomy-size-container-notification-card-title: (
+  "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-gap,
+  "icon-wrapper": (
+    "min-height": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-icon-wrapper-min-height
+  )
+);
+
+$notification-anatomy-size-container-notification-card-title-icon-wrapper: (
+  "min-height": styles-theme-variables.$notification-anatomy-size-container-notification-card-title-icon-wrapper-min-height
+);
+
+$notification-anatomy-size-container-notification-card-buttons: (
+  "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-buttons-gap
+);
+
+$notification-anatomy-size-container-notification-card-date: (
+  "gap": styles-theme-variables.$notification-anatomy-size-container-notification-card-date-gap
+);
+
+$notification-anatomy-size-container-header-filter: (
+  "gap": styles-theme-variables.$notification-anatomy-size-container-header-filter-gap
+);
+
+$notification-anatomy-size-container-header-button-function: (
+  "width": styles-theme-variables.$notification-anatomy-size-container-header-button-function-size
+);
+
+$notification-anatomy-size-container-content-info-content: (
+  "padding-left": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-horizontal,
+  "padding-right": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-horizontal,
+  "padding-top": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-vertical,
+  "padding-bottom": styles-theme-variables.$notification-anatomy-size-container-content-info-content-padding-vertical
+);

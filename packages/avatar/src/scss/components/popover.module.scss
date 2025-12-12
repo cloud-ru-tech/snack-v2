@@ -1,0 +1,27 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$popover: (
+  "color": (
+    "bg": styles-theme-variables.$popover-color-bg
+  ),
+  "anatomy": (
+    "private-popover": (
+      "offset": styles-theme-variables.$popover-anatomy-private-popover-offset,
+      "pointer": (
+        "padding": styles-theme-variables.$popover-anatomy-private-popover-pointer-padding,
+        "border-radius": styles-theme-variables.$popover-anatomy-private-popover-pointer-corner-radius,
+        "height": styles-theme-variables.$popover-anatomy-private-popover-pointer-height,
+        "width": styles-theme-variables.$popover-anatomy-private-popover-pointer-width
+      )
+    ),
+    "container": (
+      "padding": styles-theme-variables.$popover-anatomy-container-padding,
+      "cormer-radius": styles-theme-variables.$popover-anatomy-container-cormer-radius
+    )
+  )
+);

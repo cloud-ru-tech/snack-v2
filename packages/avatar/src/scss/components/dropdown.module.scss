@@ -1,0 +1,25 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$dropdown: (
+  "anatomy": (
+    "container": (
+      "padding-top": styles-theme-variables.$dropdown-anatomy-container-padding-vertical,
+      "padding-bottom": styles-theme-variables.$dropdown-anatomy-container-padding-vertical,
+      "border-radius": styles-theme-variables.$dropdown-anatomy-container-corner-radius
+    ),
+    "container-dropdown-info-block": (
+      "padding-top": styles-theme-variables.$dropdown-anatomy-container-dropdown-info-block-padding-vertical,
+      "padding-bottom": styles-theme-variables.$dropdown-anatomy-container-dropdown-info-block-padding-vertical
+    )
+  )
+);
+
+$dropdown-anatomy-container-dropdown-info-block: (
+  "padding-top": styles-theme-variables.$dropdown-anatomy-container-dropdown-info-block-padding-vertical,
+  "padding-bottom": styles-theme-variables.$dropdown-anatomy-container-dropdown-info-block-padding-vertical
+);

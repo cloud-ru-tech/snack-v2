@@ -1,0 +1,128 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles';
+@use '../styles/styles' as styles-theme-variables;
+
+$alert: (
+  "anatomy": (
+    "size": (
+      "m": (
+        "container": (
+          "border-radius": styles-theme-variables.$alert-anatomy-size-m-container-corner-radius,
+          "gap": styles-theme-variables.$alert-anatomy-size-m-container-gap,
+          "padding-top": styles-theme-variables.$alert-anatomy-size-m-container-padding-vertical,
+          "padding-bottom": styles-theme-variables.$alert-anatomy-size-m-container-padding-vertical,
+          "border-width": styles-theme-variables.$alert-anatomy-size-m-container-stroke-weigth,
+          "padding-left": styles-theme-variables.$alert-anatomy-size-m-container-padding-horizontal,
+          "padding-right": styles-theme-variables.$alert-anatomy-size-m-container-padding-horizontal
+        ),
+        "container-content": (
+          "gap": styles-theme-variables.$alert-anatomy-size-m-container-content-gap,
+          "text": (
+            "padding-top": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-vertical,
+            "padding-bottom": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-vertical,
+            "padding-left": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-horizontal,
+            "padding-right": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-horizontal
+          )
+        ),
+        "container-action-wrapper": (
+          "gap": styles-theme-variables.$alert-anatomy-size-m-container-action-wrapper-gap,
+          "height": styles-theme-variables.$alert-anatomy-size-m-container-action-wrapper-height
+        ),
+        "container-centered-wrapper": (
+          "width": styles-theme-variables.$alert-anatomy-size-m-container-centered-wrapper-width,
+          "height": styles-theme-variables.$alert-anatomy-size-m-container-centered-wrapper-height
+        )
+      ),
+      "s": (
+        "container": (
+          "border-radius": styles-theme-variables.$alert-anatomy-size-s-container-corner-radius,
+          "border-width": styles-theme-variables.$alert-anatomy-size-s-container-stroke-weigth,
+          "gap": styles-theme-variables.$alert-anatomy-size-s-container-gap,
+          "padding-top": styles-theme-variables.$alert-anatomy-size-s-container-padding-vertical,
+          "padding-bottom": styles-theme-variables.$alert-anatomy-size-s-container-padding-vertical,
+          "padding-left": styles-theme-variables.$alert-anatomy-size-s-container-padding-horizontal,
+          "padding-right": styles-theme-variables.$alert-anatomy-size-s-container-padding-horizontal
+        ),
+        "container-content": (
+          "gap": styles-theme-variables.$alert-anatomy-size-s-container-content-gap,
+          "text": (
+            "padding-top": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-vertical,
+            "padding-bottom": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-vertical,
+            "padding-left": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-horizontal,
+            "padding-right": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-horizontal
+          )
+        ),
+        "container-action-wrapper": (
+          "gap": styles-theme-variables.$alert-anatomy-size-s-container-action-wrapper-gap,
+          "height": styles-theme-variables.$alert-anatomy-size-s-container-action-wrapper-height
+        ),
+        "container-centered-wrapper": (
+          "width": styles-theme-variables.$alert-anatomy-size-s-container-centered-wrapper-width,
+          "height": styles-theme-variables.$alert-anatomy-size-s-container-centered-wrapper-height
+        )
+      )
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "border-default": styles-theme-variables.$alert-effect-opacity-border-default
+    )
+  )
+);
+
+$alert-anatomy-size-m-container-content: (
+  "gap": styles-theme-variables.$alert-anatomy-size-m-container-content-gap,
+  "text": (
+    "padding-top": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-vertical,
+    "padding-bottom": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-vertical,
+    "padding-left": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-horizontal,
+    "padding-right": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-horizontal
+  )
+);
+
+$alert-anatomy-size-m-container-action-wrapper: (
+  "gap": styles-theme-variables.$alert-anatomy-size-m-container-action-wrapper-gap,
+  "height": styles-theme-variables.$alert-anatomy-size-m-container-action-wrapper-height
+);
+
+$alert-anatomy-size-m-container-centered-wrapper: (
+  "width": styles-theme-variables.$alert-anatomy-size-m-container-centered-wrapper-width,
+  "height": styles-theme-variables.$alert-anatomy-size-m-container-centered-wrapper-height
+);
+
+$alert-anatomy-size-s-container-content: (
+  "gap": styles-theme-variables.$alert-anatomy-size-s-container-content-gap,
+  "text": (
+    "padding-top": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-vertical,
+    "padding-bottom": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-vertical,
+    "padding-left": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-horizontal,
+    "padding-right": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-horizontal
+  )
+);
+
+$alert-anatomy-size-s-container-action-wrapper: (
+  "gap": styles-theme-variables.$alert-anatomy-size-s-container-action-wrapper-gap,
+  "height": styles-theme-variables.$alert-anatomy-size-s-container-action-wrapper-height
+);
+
+$alert-anatomy-size-s-container-centered-wrapper: (
+  "width": styles-theme-variables.$alert-anatomy-size-s-container-centered-wrapper-width,
+  "height": styles-theme-variables.$alert-anatomy-size-s-container-centered-wrapper-height
+);
+
+$alert-anatomy-size-m-container-content-text: (
+  "padding-top": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-vertical,
+  "padding-bottom": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-vertical,
+  "padding-left": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-horizontal,
+  "padding-right": styles-theme-variables.$alert-anatomy-size-m-container-content-text-padding-horizontal
+);
+
+$alert-anatomy-size-s-container-content-text: (
+  "padding-top": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-vertical,
+  "padding-bottom": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-vertical,
+  "padding-left": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-horizontal,
+  "padding-right": styles-theme-variables.$alert-anatomy-size-s-container-content-text-padding-horizontal
+);

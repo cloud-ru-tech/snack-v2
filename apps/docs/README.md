@@ -80,9 +80,12 @@ order: 1
 Интеграция `sync-package-docs` автоматически:
 
 1. Сканирует все `packages/*/docs/**/*.mdx`
-2. Копирует их в `src/content/docs/components/<package-name>/`
-3. Преобразует относительные импорты (`../src`) в алиасы (`@packages/<name>/src`)
-4. Отслеживает изменения и пересинхронизирует при обновлении
+2. Читает версию из `package.json` каждого пакета
+3. Добавляет или обновляет поле `version` в frontmatter документации
+4. Синхронизирует `CHANGELOG.md` из корня пакета в `CHANGELOG.mdx` с frontmatter
+5. Копирует файлы в `src/content/docs/components/<package-name>/`
+6. Преобразует относительные импорты (`../src`) в алиасы (`@packages/<name>/src`)
+7. Отслеживает изменения и пересинхронизирует при обновлении
 
 Синхронизация происходит:
 
@@ -95,6 +98,63 @@ order: 1
 - Эти файлы добавлены в `.gitignore` и не попадают в git
 - **Не редактируйте их напрямую** — изменения будут потеряны при следующей синхронизации
 - **Всегда редактируйте исходные файлы в `packages/*/docs/`**
+
+### Changelog
+
+Если в корне пакета есть `CHANGELOG.md`, он автоматически синхронизируется в документацию:
+
+```
+packages/button/
+  ├── CHANGELOG.md          # ← Исходный файл
+  └── docs/
+      └── index.mdx
+```
+
+После синхронизации:
+
+```
+src/content/docs/components/button/
+  ├── CHANGELOG.mdx         # ← Автоматически создан с frontmatter
+  └── index.mdx
+```
+
+Changelog доступен по адресу `/components/<package-name>/CHANGELOG` и автоматически появляется в навигации Starlight.
+
+**Формат CHANGELOG.md:**
+
+Рекомендуется использовать формат [Keep a Changelog](https://keepachangelog.com/):
+
+```markdown
+# Changelog
+
+## [0.1.0] - 2024-01-15
+
+### Added
+
+- Initial release
+- Support for variants
+
+## [Unreleased]
+
+### Planned
+
+- New features
+```
+
+**Использование в документации:**
+
+```mdx
+---
+title: Button
+version: '0.1.0'
+---
+
+import Changelog from '../../../../apps/docs/src/components/Changelog.astro';
+
+# Button
+
+<Changelog packageName="button" />
+```
 
 ## Структура Starlight
 
@@ -152,3 +212,75 @@ import { Link } from '@packages/link/src';
 - [Button](/components/button/)
 - [Link](/components/link/)
 ```
+
+## Версионирование документации
+
+Документация автоматически версионируется вместе с пакетами. Версия из `package.json` каждого пакета автоматически добавляется в frontmatter всех MDX файлов документации.
+
+### Автоматическое версионирование
+
+При синхронизации документации:
+
+1. Интеграция `sync-package-docs` читает версию из `packages/<name>/package.json`
+2. Автоматически добавляет поле `version` в frontmatter каждого MDX файла
+3. Если версия уже есть в frontmatter, она обновляется до актуальной версии пакета
+
+**Пример frontmatter после синхронизации:**
+
+```mdx
+---
+title: Button
+description: Action trigger component
+version: '0.1.0'
+---
+```
+
+### Использование версии в документации
+
+Версия доступна через frontmatter и может использоваться в компонентах:
+
+```mdx
+---
+title: Button
+version: '0.1.0'
+---
+
+import VersionSwitcher from '../../components/VersionSwitcher.astro';
+
+# Button
+
+<VersionSwitcher />
+
+Документация для версии {frontmatter.version}
+```
+
+### Стратегии версионирования
+
+Подробная информация о различных подходах к версионированию документации описана в [VERSIONING.md](./VERSIONING.md).
+
+**Рекомендуемый подход:**
+
+- **В разработке:** Автоматическая синхронизация версии из `package.json`
+- **В production:** Версионированные деплои через Git tags (опционально)
+- **Version Switcher:** Компонент для переключения между версиями (см. `src/components/VersionSwitcher.astro`)
+
+### Переключение версий
+
+Для добавления возможности переключения версий в документацию используйте компонент `VersionSwitcher`:
+
+```mdx
+---
+title: Button
+version: '0.1.0'
+---
+
+import VersionSwitcher from '../../components/VersionSwitcher.astro';
+
+# Button
+
+<VersionSwitcher />
+
+[Содержание документации]
+```
+
+**Примечание:** Для полноценной работы version switcher требуется настройка версионированных деплоев через Git tags (см. [VERSIONING.md](./VERSIONING.md)).

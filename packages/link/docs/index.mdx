@@ -2,6 +2,7 @@
 title: Link
 description: Textual navigation element with variants and underline control.
 order: 10
+version: '0.1.0'
 ---
 
 # Link
@@ -9,6 +10,20 @@ order: 10
 import { Link } from '../src';
 
 Use Link for inline navigation and contextual actions. It supports visual variants, weight, underline behavior, and automatic external attributes.
+
+**Version:** `{frontmatter.version}`
+
+## Changelog
+
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/Changelog.astro
+After sync: ../../../../components/Changelog.astro */}
+</>
+
+import Changelog from '../../../../apps/docs/src/components/Changelog.astro';
+
+<Changelog packageName="link" />
 
 ## Live examples
 
