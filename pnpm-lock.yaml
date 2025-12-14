@@ -24,6 +24,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^4.1.3
         version: 4.1.3(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
+      '@sbercloud/figma-variables':
+        specifier: 0.0.1-beta.2
+        version: 0.0.1-beta.2
       '@storybook/addon-a11y':
         specifier: ^10.1.4
         version: 10.1.4(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
@@ -117,6 +120,9 @@ importers:
       astro-expressive-code:
         specifier: ^0.41.3
         version: 0.41.3(astro@5.16.4(@types/node@24.10.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(typescript@5.9.3)(yaml@2.8.2))
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^19.2.1
         version: 19.2.1
@@ -1524,6 +1530,9 @@ packages:
     resolution: {integrity: sha512-UhTd8u31dXadv0MopwGgNOBpUVROFKWVQgAg5N1ESyCz8AuBcMqm4AuTjrwgQKGDfoFuz02EuMRHQIw/frmYKQ==}
     cpu: [x64]
     os: [win32]
+
+  '@sbercloud/figma-variables@0.0.1-beta.2':
+    resolution: {integrity: sha512-FXEt0ka6ONQEKa68V4uU6b8mKsO9lsgp2PHFKmMFG/xmlyq7m3qbRRWrtbaIjpRfG5zJneJ5U5wSIhZFlLydEQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-0.0.1-beta.2.tgz}
 
   '@shikijs/core@3.19.0':
     resolution: {integrity: sha512-L7SrRibU7ZoYi1/TrZsJOFAnnHyLTE1SwHG1yNWjZIVCqjOEmCSuK2ZO9thnRbJG6TOkPp+Z963JmpCNw5nzvA==}
@@ -7563,6 +7572,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.53.3':
     optional: true
+
+  '@sbercloud/figma-variables@0.0.1-beta.2': {}
 
   '@shikijs/core@3.19.0':
     dependencies:

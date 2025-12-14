@@ -1,0 +1,53 @@
+.container {
+  /* Изоляция от стилей Starlight темы */
+  isolation: isolate;
+
+  /* Сброс всех нежелательных стилей от темы */
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  padding: 24px;
+  background-color: var(--sn-color-neutral-background1-level, #f5f5f5);
+  border-radius: 8px;
+  margin-bottom: 32px;
+  border: 1px solid var(--sn-color-neutral-border, #e5e7eb);
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Отключение стилей от Starlight content для всех дочерних элементов */
+  :global(*) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Отключение специфичных правил Starlight для соседних элементов */
+  :global(
+    :not(a, strong, em, del, span, input, code, br)
+      + :not(a, strong, em, del, span, input, code, br)
+  ) {
+    margin-top: 0 !important;
+  }
+
+  /* Дополнительная защита от правил Starlight */
+  :global(:where(.sl-markdown-content *)) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.containerPaddingSmall {
+  padding: 24px;
+}
+
+.containerPaddingLarge {
+  padding: 32px;
+}
+
+.containerMarginSmall {
+  margin-bottom: 24px;
+}
+
+.containerMarginLarge {
+  margin-bottom: 32px;
+}

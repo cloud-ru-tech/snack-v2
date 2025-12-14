@@ -1,6 +1,9 @@
-@use './scss/components/avatar.module' as avatar;
-@use './scss/base/base.module' as base;
-@use './scss/thememode/light.module' as light;
+// Базовые функции и миксины из пакета
+@use '@sbercloud/figma-variables/build/scss/base/base.module' as base;
+// Переменные темы из пакета
+@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+// Структуры компонентов используем локальные (т.к. структура в пакете отличается)
+@use '@sbercloud/figma-variables/build/scss/components/avatar.module' as avatar;
 
 // $sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl';
 $sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';

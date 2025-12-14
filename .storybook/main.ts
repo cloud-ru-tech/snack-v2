@@ -2,7 +2,8 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const dirname =
+  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
   stories: [
@@ -29,7 +30,7 @@ const config: StorybookConfig = {
       '@design-system/link': path.resolve(dirname, '../packages/link/src'),
       '@design-system/avatar': path.resolve(dirname, '../packages/avatar/src'),
     };
-    
+
     // Ensure CSS modules are properly handled
     config.css = config.css || {};
     config.css.modules = {
@@ -37,7 +38,7 @@ const config: StorybookConfig = {
       localsConvention: 'camelCase',
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     };
-    
+
     // Ensure SCSS is properly configured
     if (!config.css.preprocessorOptions) {
       config.css.preprocessorOptions = {};
@@ -46,7 +47,7 @@ const config: StorybookConfig = {
       ...(config.css.preprocessorOptions.scss || {}),
       additionalData: '',
     };
-    
+
     return config;
   },
 };

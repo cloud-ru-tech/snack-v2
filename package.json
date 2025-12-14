@@ -39,7 +39,8 @@
     "ts-node": "10.9.2",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.15",
+    "@sbercloud/figma-variables": "0.0.1-beta.2"
   },
   "dependencies": {
     "@types/react": "19.2.7",
@@ -48,7 +49,7 @@
     "react-dom": "19.2.1"
   },
   "scripts": {
-    "bootstrap": "pnpm install",
+    "deps": "pnpm install",
     "lint": "eslint \"packages/**/*.{ts,tsx}\" \"stories/**/*.{ts,tsx}\" \".storybook/**/*.{ts,tsx}\"",
     "build:packages": "pnpm -r --filter \"@design-system/button\" --filter \"@design-system/link\" --filter \"@design-system/avatar\" run build",
     "build:docs": "pnpm --filter @design-system/docs build",

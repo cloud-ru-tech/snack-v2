@@ -172,6 +172,20 @@ order: 999
             content = content.replace(from, to);
           }
 
+          // Transform Example components imports
+          // From packages/*/docs/../../../../apps/docs/src/components/ExampleComponents
+          // To apps/docs/src/content/docs/components/*/../../../../components/ExampleComponents
+          const exampleComponentPatterns = [
+            {
+              from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/ExampleComponents['"]/g,
+              to: "from '../../../../components/ExampleComponents'",
+            },
+          ];
+
+          for (const { from, to } of exampleComponentPatterns) {
+            content = content.replace(from, to);
+          }
+
           // Transform component imports to correct path after sync
           // From packages/*/docs/../../../../apps/docs/src/components/*.astro
           // To apps/docs/src/content/docs/components/*/../../../../components/*.astro
