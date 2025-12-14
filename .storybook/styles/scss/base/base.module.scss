@@ -4,6 +4,7 @@
   
 @use 'sass:map';
 @use 'sass:list';
+@use 'sass:meta';
 
 @function could-not-find-token-message($keys) {
   @return 'Couldn\'t find token by given keys: #{$keys}';
@@ -37,7 +38,10 @@
   }
 
   @each $key, $value in $inner-map {
-    #{$key}: simple-var($inner-map, $key);
+    // Пропускаем свойства, которые являются вложенными картами (не листовые значения)
+    @if meta.type-of($value) != map {
+      #{$key}: simple-var($inner-map, $key);
+    }
   }
 }
 
@@ -66,7 +70,7 @@
 }
 
 @function color-on-background-with-opacity($color, $background-color, $opacity) {
-  @return color-mix(in srgb, $color, $background-color calc((1 - $opacity) * 100%));
+  @return color-mix(in srgb, $color, $background-color calc((1 - calc($opacity / 100)) * 100%));
 }
 
 $base-styles: (
@@ -511,31 +515,31 @@ $sn-base-typeface-mono-role-headline: var(--sn-base-typeface-mono-role-headline,
 $sn-base-typeface-mono-role-title: var(--sn-base-typeface-mono-role-title, Roboto Mono);
 $sn-base-typeface-mono-role-label: var(--sn-base-typeface-mono-role-label, Roboto Mono);
 $sn-base-typeface-mono-role-body: var(--sn-base-typeface-mono-role-body, Roboto Mono);
-$sn-base-font-font-size-11: var(--sn-base-font-font-size-11, 11);
-$sn-base-font-font-size-12: var(--sn-base-font-font-size-12, 12);
-$sn-base-font-font-size-14: var(--sn-base-font-font-size-14, 14);
-$sn-base-font-font-size-16: var(--sn-base-font-font-size-16, 16);
-$sn-base-font-font-size-18: var(--sn-base-font-font-size-18, 18);
-$sn-base-font-font-size-20: var(--sn-base-font-font-size-20, 20);
-$sn-base-font-font-size-24: var(--sn-base-font-font-size-24, 24);
-$sn-base-font-font-size-28: var(--sn-base-font-font-size-28, 28);
-$sn-base-font-font-size-32: var(--sn-base-font-font-size-32, 32);
-$sn-base-font-font-size-36: var(--sn-base-font-font-size-36, 36);
-$sn-base-font-font-size-40: var(--sn-base-font-font-size-40, 40);
-$sn-base-font-font-size-48: var(--sn-base-font-font-size-48, 48);
-$sn-base-font-font-size-56: var(--sn-base-font-font-size-56, 56);
-$sn-base-font-line-height-by11: var(--sn-base-font-line-height-by11, 14);
-$sn-base-font-line-height-by12: var(--sn-base-font-line-height-by12, 16);
-$sn-base-font-line-height-by14: var(--sn-base-font-line-height-by14, 20);
-$sn-base-font-line-height-by16: var(--sn-base-font-line-height-by16, 24);
-$sn-base-font-line-height-by20: var(--sn-base-font-line-height-by20, 28);
-$sn-base-font-line-height-by24: var(--sn-base-font-line-height-by24, 32);
-$sn-base-font-line-height-by28: var(--sn-base-font-line-height-by28, 36);
-$sn-base-font-line-height-by32: var(--sn-base-font-line-height-by32, 40);
-$sn-base-font-line-height-by40: var(--sn-base-font-line-height-by40, 48);
-$sn-base-font-line-height-by48: var(--sn-base-font-line-height-by48, 60);
-$sn-base-font-line-height-by56: var(--sn-base-font-line-height-by56, 72);
-$sn-base-font-line-height-by18: var(--sn-base-font-line-height-by18, 24);
+$sn-base-font-font-size-11: var(--sn-base-font-font-size-11, 11px);
+$sn-base-font-font-size-12: var(--sn-base-font-font-size-12, 12px);
+$sn-base-font-font-size-14: var(--sn-base-font-font-size-14, 14px);
+$sn-base-font-font-size-16: var(--sn-base-font-font-size-16, 16px);
+$sn-base-font-font-size-18: var(--sn-base-font-font-size-18, 18px);
+$sn-base-font-font-size-20: var(--sn-base-font-font-size-20, 20px);
+$sn-base-font-font-size-24: var(--sn-base-font-font-size-24, 24px);
+$sn-base-font-font-size-28: var(--sn-base-font-font-size-28, 28px);
+$sn-base-font-font-size-32: var(--sn-base-font-font-size-32, 32px);
+$sn-base-font-font-size-36: var(--sn-base-font-font-size-36, 36px);
+$sn-base-font-font-size-40: var(--sn-base-font-font-size-40, 40px);
+$sn-base-font-font-size-48: var(--sn-base-font-font-size-48, 48px);
+$sn-base-font-font-size-56: var(--sn-base-font-font-size-56, 56px);
+$sn-base-font-line-height-by11: var(--sn-base-font-line-height-by11, 14px);
+$sn-base-font-line-height-by12: var(--sn-base-font-line-height-by12, 16px);
+$sn-base-font-line-height-by14: var(--sn-base-font-line-height-by14, 20px);
+$sn-base-font-line-height-by16: var(--sn-base-font-line-height-by16, 24px);
+$sn-base-font-line-height-by20: var(--sn-base-font-line-height-by20, 28px);
+$sn-base-font-line-height-by24: var(--sn-base-font-line-height-by24, 32px);
+$sn-base-font-line-height-by28: var(--sn-base-font-line-height-by28, 36px);
+$sn-base-font-line-height-by32: var(--sn-base-font-line-height-by32, 40px);
+$sn-base-font-line-height-by40: var(--sn-base-font-line-height-by40, 48px);
+$sn-base-font-line-height-by48: var(--sn-base-font-line-height-by48, 60px);
+$sn-base-font-line-height-by56: var(--sn-base-font-line-height-by56, 72px);
+$sn-base-font-line-height-by18: var(--sn-base-font-line-height-by18, 24px);
 $sn-base-font-font-weight-value-100: var(--sn-base-font-font-weight-value-100, 100);
 $sn-base-font-font-weight-value-150: var(--sn-base-font-font-weight-value-150, 150);
 $sn-base-font-font-weight-value-200: var(--sn-base-font-font-weight-value-200, 200);
@@ -557,56 +561,56 @@ $sn-base-font-letter-spacing-xs: var(--sn-base-font-letter-spacing-xs, -0.5);
 $sn-base-font-letter-spacing-s: var(--sn-base-font-letter-spacing-s, 0);
 $sn-base-font-letter-spacing-m: var(--sn-base-font-letter-spacing-m, 0.1);
 $sn-base-font-letter-spacing-l: var(--sn-base-font-letter-spacing-l, 0.15);
-$sn-base-font-paragraph-spacing-by-font-size11: var(--sn-base-font-paragraph-spacing-by-font-size11, 5);
-$sn-base-font-paragraph-spacing-by-font-size12: var(--sn-base-font-paragraph-spacing-by-font-size12, 6);
-$sn-base-font-paragraph-spacing-by-font-size14: var(--sn-base-font-paragraph-spacing-by-font-size14, 7);
-$sn-base-font-paragraph-spacing-by-font-size16: var(--sn-base-font-paragraph-spacing-by-font-size16, 8);
-$sn-base-font-paragraph-spacing-by-font-size20: var(--sn-base-font-paragraph-spacing-by-font-size20, 10);
-$sn-base-font-paragraph-spacing-by-font-size24: var(--sn-base-font-paragraph-spacing-by-font-size24, 12);
-$sn-base-font-paragraph-spacing-by-font-size28: var(--sn-base-font-paragraph-spacing-by-font-size28, 14);
-$sn-base-font-paragraph-spacing-by-font-size32: var(--sn-base-font-paragraph-spacing-by-font-size32, 16);
-$sn-base-font-paragraph-spacing-by-font-size36: var(--sn-base-font-paragraph-spacing-by-font-size36, 18);
-$sn-base-font-paragraph-spacing-by-font-size40: var(--sn-base-font-paragraph-spacing-by-font-size40, 20);
-$sn-base-font-paragraph-spacing-by-font-size48: var(--sn-base-font-paragraph-spacing-by-font-size48, 24);
-$sn-base-font-paragraph-spacing-by-font-size56: var(--sn-base-font-paragraph-spacing-by-font-size56, 28);
-$sn-standard-stroke-weigth-stroke-thin: var(--sn-standard-stroke-weigth-stroke-thin, 0.5);
-$sn-standard-stroke-weigth-stroke-regular: var(--sn-standard-stroke-weigth-stroke-regular, 1);
-$sn-standard-stroke-weigth-stroke-medium: var(--sn-standard-stroke-weigth-stroke-medium, 1.5);
-$sn-standard-stroke-weigth-stroke-semi-bold: var(--sn-standard-stroke-weigth-stroke-semi-bold, 2);
-$sn-standard-stroke-weigth-stroke-bold: var(--sn-standard-stroke-weigth-stroke-bold, 3);
+$sn-base-font-paragraph-spacing-by-font-size11: var(--sn-base-font-paragraph-spacing-by-font-size11, 5px);
+$sn-base-font-paragraph-spacing-by-font-size12: var(--sn-base-font-paragraph-spacing-by-font-size12, 6px);
+$sn-base-font-paragraph-spacing-by-font-size14: var(--sn-base-font-paragraph-spacing-by-font-size14, 7px);
+$sn-base-font-paragraph-spacing-by-font-size16: var(--sn-base-font-paragraph-spacing-by-font-size16, 8px);
+$sn-base-font-paragraph-spacing-by-font-size20: var(--sn-base-font-paragraph-spacing-by-font-size20, 10px);
+$sn-base-font-paragraph-spacing-by-font-size24: var(--sn-base-font-paragraph-spacing-by-font-size24, 12px);
+$sn-base-font-paragraph-spacing-by-font-size28: var(--sn-base-font-paragraph-spacing-by-font-size28, 14px);
+$sn-base-font-paragraph-spacing-by-font-size32: var(--sn-base-font-paragraph-spacing-by-font-size32, 16px);
+$sn-base-font-paragraph-spacing-by-font-size36: var(--sn-base-font-paragraph-spacing-by-font-size36, 18px);
+$sn-base-font-paragraph-spacing-by-font-size40: var(--sn-base-font-paragraph-spacing-by-font-size40, 20px);
+$sn-base-font-paragraph-spacing-by-font-size48: var(--sn-base-font-paragraph-spacing-by-font-size48, 24px);
+$sn-base-font-paragraph-spacing-by-font-size56: var(--sn-base-font-paragraph-spacing-by-font-size56, 28px);
+$sn-standard-stroke-weigth-stroke-thin: var(--sn-standard-stroke-weigth-stroke-thin, 0.5px);
+$sn-standard-stroke-weigth-stroke-regular: var(--sn-standard-stroke-weigth-stroke-regular, 1px);
+$sn-standard-stroke-weigth-stroke-medium: var(--sn-standard-stroke-weigth-stroke-medium, 1.5px);
+$sn-standard-stroke-weigth-stroke-semi-bold: var(--sn-standard-stroke-weigth-stroke-semi-bold, 2px);
+$sn-standard-stroke-weigth-stroke-bold: var(--sn-standard-stroke-weigth-stroke-bold, 3px);
 $sn-standard-size-0: var(--sn-standard-size-0, 0);
-$sn-standard-size-1: var(--sn-standard-size-1, 1);
-$sn-standard-size-2: var(--sn-standard-size-2, 2);
-$sn-standard-size-4: var(--sn-standard-size-4, 4);
-$sn-standard-size-6: var(--sn-standard-size-6, 6);
-$sn-standard-size-8: var(--sn-standard-size-8, 8);
-$sn-standard-size-12: var(--sn-standard-size-12, 12);
-$sn-standard-size-16: var(--sn-standard-size-16, 16);
-$sn-standard-size-20: var(--sn-standard-size-20, 20);
-$sn-standard-size-24: var(--sn-standard-size-24, 24);
-$sn-standard-size-28: var(--sn-standard-size-28, 28);
-$sn-standard-size-32: var(--sn-standard-size-32, 32);
-$sn-standard-size-36: var(--sn-standard-size-36, 36);
-$sn-standard-size-40: var(--sn-standard-size-40, 40);
-$sn-standard-size-44: var(--sn-standard-size-44, 44);
-$sn-standard-size-48: var(--sn-standard-size-48, 48);
-$sn-standard-size-52: var(--sn-standard-size-52, 52);
-$sn-standard-size-56: var(--sn-standard-size-56, 56);
-$sn-standard-size-60: var(--sn-standard-size-60, 60);
-$sn-standard-size-64: var(--sn-standard-size-64, 64);
-$sn-standard-size-68: var(--sn-standard-size-68, 68);
-$sn-standard-size-72: var(--sn-standard-size-72, 72);
-$sn-standard-size-76: var(--sn-standard-size-76, 76);
-$sn-standard-size-80: var(--sn-standard-size-80, 80);
-$sn-standard-size-84: var(--sn-standard-size-84, 84);
-$sn-standard-size-88: var(--sn-standard-size-88, 88);
-$sn-standard-size-92: var(--sn-standard-size-92, 92);
-$sn-standard-size-96: var(--sn-standard-size-96, 96);
-$sn-standard-radius-2xs: var(--sn-standard-radius-2xs, 4);
-$sn-standard-radius-xs: var(--sn-standard-radius-xs, 6);
-$sn-standard-radius-s: var(--sn-standard-radius-s, 8);
-$sn-standard-radius-m: var(--sn-standard-radius-m, 12);
-$sn-standard-radius-l: var(--sn-standard-radius-l, 16);
-$sn-standard-radius-xl: var(--sn-standard-radius-xl, 20);
-$sn-standard-radius-2xl: var(--sn-standard-radius-2xl, 24);
-$sn-standard-radius-full: var(--sn-standard-radius-full, 10000);
+$sn-standard-size-1: var(--sn-standard-size-1, 1px);
+$sn-standard-size-2: var(--sn-standard-size-2, 2px);
+$sn-standard-size-4: var(--sn-standard-size-4, 4px);
+$sn-standard-size-6: var(--sn-standard-size-6, 6px);
+$sn-standard-size-8: var(--sn-standard-size-8, 8px);
+$sn-standard-size-12: var(--sn-standard-size-12, 12px);
+$sn-standard-size-16: var(--sn-standard-size-16, 16px);
+$sn-standard-size-20: var(--sn-standard-size-20, 20px);
+$sn-standard-size-24: var(--sn-standard-size-24, 24px);
+$sn-standard-size-28: var(--sn-standard-size-28, 28px);
+$sn-standard-size-32: var(--sn-standard-size-32, 32px);
+$sn-standard-size-36: var(--sn-standard-size-36, 36px);
+$sn-standard-size-40: var(--sn-standard-size-40, 40px);
+$sn-standard-size-44: var(--sn-standard-size-44, 44px);
+$sn-standard-size-48: var(--sn-standard-size-48, 48px);
+$sn-standard-size-52: var(--sn-standard-size-52, 52px);
+$sn-standard-size-56: var(--sn-standard-size-56, 56px);
+$sn-standard-size-60: var(--sn-standard-size-60, 60px);
+$sn-standard-size-64: var(--sn-standard-size-64, 64px);
+$sn-standard-size-68: var(--sn-standard-size-68, 68px);
+$sn-standard-size-72: var(--sn-standard-size-72, 72px);
+$sn-standard-size-76: var(--sn-standard-size-76, 76px);
+$sn-standard-size-80: var(--sn-standard-size-80, 80px);
+$sn-standard-size-84: var(--sn-standard-size-84, 84px);
+$sn-standard-size-88: var(--sn-standard-size-88, 88px);
+$sn-standard-size-92: var(--sn-standard-size-92, 92px);
+$sn-standard-size-96: var(--sn-standard-size-96, 96px);
+$sn-standard-radius-2xs: var(--sn-standard-radius-2xs, 4px);
+$sn-standard-radius-xs: var(--sn-standard-radius-xs, 6px);
+$sn-standard-radius-s: var(--sn-standard-radius-s, 8px);
+$sn-standard-radius-m: var(--sn-standard-radius-m, 12px);
+$sn-standard-radius-l: var(--sn-standard-radius-l, 16px);
+$sn-standard-radius-xl: var(--sn-standard-radius-xl, 20px);
+$sn-standard-radius-2xl: var(--sn-standard-radius-2xl, 24px);
+$sn-standard-radius-full: var(--sn-standard-radius-full, 10000px);

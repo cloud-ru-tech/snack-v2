@@ -1,153 +1,132 @@
 /**
  * Do not edit directly, this file was auto-generated.
  */
-
-@forward "../styles/styles";
-@use "../styles/styles" as styles-theme-variables;
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $avatar: (
   "typography": (
     "xs": (
-      "font-family": styles-theme-variables.$avatar-typography-xs-font-family,
-      "font-size": styles-theme-variables.$avatar-typography-xs-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-xs-line-height,
-      "font-weight": styles-theme-variables.$avatar-typography-xs-font-weight,
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-xs-font-family,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-xs-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-xs-line-height,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-xs-font-weight
     ),
     "s": (
-      "font-family": styles-theme-variables.$avatar-typography-s-font-family,
-      "font-weight": styles-theme-variables.$avatar-typography-s-font-weight,
-      "font-size": styles-theme-variables.$avatar-typography-s-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-s-line-height,
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-s-font-family,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-s-font-weight,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-s-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-s-line-height
     ),
     "m": (
-      "font-family": styles-theme-variables.$avatar-typography-m-font-family,
-      "font-weight": styles-theme-variables.$avatar-typography-m-font-weight,
-      "font-size": styles-theme-variables.$avatar-typography-m-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-m-line-height,
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-m-font-family,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-m-font-weight,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-m-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-m-line-height
     ),
     "xl": (
-      "font-family": styles-theme-variables.$avatar-typography-xl-font-family,
-      "font-weight": styles-theme-variables.$avatar-typography-xl-font-weight,
-      "font-size": styles-theme-variables.$avatar-typography-xl-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-xl-line-height,
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-xl-font-family,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-xl-font-weight,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-xl-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-xl-line-height
     ),
     "3xl": (
-      "font-family": styles-theme-variables.$avatar-typography-3xl-font-family,
-      "font-weight": styles-theme-variables.$avatar-typography-3xl-font-weight,
-      "font-size": styles-theme-variables.$avatar-typography-3xl-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-3xl-line-height,
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-3xl-font-family,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-3xl-font-weight,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-3xl-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-3xl-line-height
     ),
     "6xl": (
-      "font-family": styles-theme-variables.$avatar-typography-6xl-font-family,
-      "font-weight": styles-theme-variables.$avatar-typography-6xl-font-weight,
-      "font-size": styles-theme-variables.$avatar-typography-6xl-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-6xl-line-height,
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-6xl-font-family,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-6xl-font-weight,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-6xl-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-6xl-line-height
     ),
     "10xl": (
-      "font-family": styles-theme-variables.$avatar-typography-10xl-font-family,
-      "font-weight": styles-theme-variables.$avatar-typography-10xl-font-weight,
-      "font-size": styles-theme-variables.$avatar-typography-10xl-font-size,
-      "line-height": styles-theme-variables.$avatar-typography-10xl-line-height,
-    ),
+      "font-family": styles-theme-variables.$sn-platform-avatar-typography-10xl-font-family,
+      "font-weight": styles-theme-variables.$sn-platform-avatar-typography-10xl-font-weight,
+      "font-size": styles-theme-variables.$sn-platform-avatar-typography-10xl-font-size,
+      "line-height": styles-theme-variables.$sn-platform-avatar-typography-10xl-line-height
+    )
   ),
   "effect": (
     "opacity": (
-      "border": styles-theme-variables.$avatar-effect-opacity-border,
-    ),
+      "border": styles-theme-variables.$sn-avatar-effect-opacity-border
+    )
   ),
   "anatomy": (
     "size": (
       "xs": (
-        "height": styles-theme-variables.$avatar-anatomy-size-xs-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-xs-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-xs-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-xs-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-xs-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-xs-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-xs-stroke-weigth,
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
       ),
       "s": (
-        "height": styles-theme-variables.$avatar-anatomy-size-s-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-s-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-s-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-s-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-s-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-s-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-s-stroke-weigth,
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
       ),
       "m": (
-        "height": styles-theme-variables.$avatar-anatomy-size-m-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-m-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-m-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-m-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-m-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-m-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-m-stroke-weigth,
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
       ),
       "xl": (
-        "height": styles-theme-variables.$avatar-anatomy-size-xl-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-xl-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-xl-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-xl-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-xl-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-xl-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-xl-stroke-weigth,
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
       ),
       "3xl": (
-        "height": styles-theme-variables.$avatar-anatomy-size-3xl-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-3xl-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-3xl-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-3xl-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-3xl-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-3xl-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-3xl-stroke-weigth,
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
       ),
       "6xl": (
-        "height": styles-theme-variables.$avatar-anatomy-size-6xl-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-6xl-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-6xl-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-6xl-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-6xl-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-6xl-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-6xl-stroke-weigth,
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
       ),
       "10xl": (
-        "height": styles-theme-variables.$avatar-anatomy-size-10xl-height,
+        "height": styles-theme-variables.$sn-platform-avatar-size-10xl-height,
         "round": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-10xl-round-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-10xl-corner-radius-round
         ),
         "square": (
-          "border-radius":
-            styles-theme-variables.$avatar-anatomy-size-10xl-square-corner-radius,
+          "border-radius": styles-theme-variables.$sn-platform-avatar-size-10xl-corner-radius-square
         ),
-        "border-width":
-          styles-theme-variables.$avatar-anatomy-size-10xl-stroke-weigth,
-      ),
-    ),
-  ),
+        "border-width": styles-theme-variables.$sn-platform-avatar-stroke-weigth
+      )
+    )
+  )
 );

@@ -66,7 +66,8 @@ $appearances: (
         @include base.composite-var(avatar.$avatar, 'typography', $size);
       }
 
-      @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'container');
+      //   @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'container');
+      @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size);
     }
   }
 

@@ -2,54 +2,54 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $rating: (
   "anatomy": (
     "size": (
       "s": (
         "container": (
-          "min-width": styles-theme-variables.$rating-anatomy-size-s-container-min-width,
-          "min-height": styles-theme-variables.$rating-anatomy-size-s-container-min-height
+          "min-width": styles-theme-variables.$sn-platform-toggles-size-container-s,
+          "min-height": styles-theme-variables.$sn-platform-toggles-size-container-s
         ),
         "bg-flag": (
-          "height": styles-theme-variables.$rating-anatomy-size-s-bg-flag-height,
-          "width": styles-theme-variables.$rating-anatomy-size-s-bg-flag-width,
-          "border-width": styles-theme-variables.$rating-anatomy-size-s-bg-flag-stroke-weigth,
-          "border-radius": styles-theme-variables.$rating-anatomy-size-s-bg-flag-corner-radius
+          "height": styles-theme-variables.$sn-platform-toggles-size-bg-flag-checkbox-s,
+          "width": styles-theme-variables.$sn-platform-toggles-size-bg-flag-checkbox-s,
+          "border-width": styles-theme-variables.$sn-platform-toggles-stroke-weigth-all,
+          "border-radius": styles-theme-variables.$sn-platform-toggles-round-corner-bg-flag-checkbox-s
         ),
         "flag": (
-          "min-width": styles-theme-variables.$rating-anatomy-size-s-flag-min-width,
-          "min-height": styles-theme-variables.$rating-anatomy-size-s-flag-min-height
+          "min-width": styles-theme-variables.$sn-platform-toggles-size-bg-surface-s,
+          "min-height": styles-theme-variables.$sn-platform-toggles-size-bg-surface-s
         ),
         "bg-surface": (
-          "min-height": styles-theme-variables.$rating-anatomy-size-s-bg-surface-min-height,
-          "border-width": styles-theme-variables.$rating-anatomy-size-s-bg-surface-stroke-weigth,
-          "border-radius": styles-theme-variables.$rating-anatomy-size-s-bg-surface-corner-radius,
-          "min-width": styles-theme-variables.$rating-anatomy-size-s-bg-surface-min-width
+          "min-height": styles-theme-variables.$sn-platform-toggles-size-bg-surface-s,
+          "border-width": styles-theme-variables.$sn-platform-toggles-stroke-weigth-all,
+          "border-radius": styles-theme-variables.$sn-platform-toggles-round-corner-bg-surface-checkbox-s,
+          "min-width": styles-theme-variables.$sn-platform-toggles-size-bg-surface-s
         )
       ),
       "xs": (
         "container": (
-          "min-width": styles-theme-variables.$rating-anatomy-size-xs-container-min-width,
-          "min-height": styles-theme-variables.$rating-anatomy-size-xs-container-min-height
+          "min-width": styles-theme-variables.$sn-platform-toggles-size-container-xs,
+          "min-height": styles-theme-variables.$sn-platform-toggles-size-container-xs
         ),
         "bg-surface": (
-          "min-width": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-min-width,
-          "min-height": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-min-height,
-          "border-radius": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-corner-radius,
-          "border-width": styles-theme-variables.$rating-anatomy-size-xs-bg-surface-stroke-weigth
+          "min-width": styles-theme-variables.$sn-platform-toggles-size-bg-surface-xs,
+          "min-height": styles-theme-variables.$sn-platform-toggles-size-bg-surface-xs,
+          "border-radius": styles-theme-variables.$sn-platform-toggles-round-corner-bg-surface-checkbox-xs,
+          "border-width": styles-theme-variables.$sn-platform-toggles-stroke-weigth-all
         ),
         "flag": (
-          "min-width": styles-theme-variables.$rating-anatomy-size-xs-flag-min-width,
-          "min-height": styles-theme-variables.$rating-anatomy-size-xs-flag-min-height
+          "min-width": styles-theme-variables.$sn-platform-toggles-size-bg-surface-xs,
+          "min-height": styles-theme-variables.$sn-platform-toggles-size-bg-surface-xs
         ),
         "bg-flag": (
-          "width": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-width,
-          "height": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-height,
-          "border-radius": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-corner-radius,
-          "border-width": styles-theme-variables.$rating-anatomy-size-xs-bg-flag-stroke-weigth
+          "width": styles-theme-variables.$sn-platform-toggles-size-bg-flag-checkbox-xs,
+          "height": styles-theme-variables.$sn-platform-toggles-size-bg-flag-checkbox-xs,
+          "border-radius": styles-theme-variables.$sn-platform-toggles-round-corner-bg-flag-checkbox-xs,
+          "border-width": styles-theme-variables.$sn-platform-toggles-stroke-weigth-all
         )
       )
     )

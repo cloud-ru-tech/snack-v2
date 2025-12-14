@@ -2,29 +2,29 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $pagination: (
   "color": (
     "item-pagination-number": (
       "activated-true": (
-        "color": styles-theme-variables.$pagination-color-item-pagination-number-activated-true-fg-default
+        "color": styles-theme-variables.$sn-color-primary-accent
       ),
       "activated-false": (
-        "color": styles-theme-variables.$pagination-color-item-pagination-number-activated-false-fg-default
+        "color": styles-theme-variables.$sn-color-neutral-text
       )
     ),
     "pagination-slider": (
       "item-pagination-slider": (
         "activated-false": (
-          "background-color": styles-theme-variables.$pagination-color-pagination-slider-item-pagination-slider-activated-false-bg-default
+          "background-color": styles-theme-variables.$sn-color-neutral-background2-level
         ),
         "activated-true": (
-          "background-color": styles-theme-variables.$pagination-color-pagination-slider-item-pagination-slider-activated-true-bg-default
+          "background-color": styles-theme-variables.$sn-color-primary-accent
         )
       ),
-      "background-color": styles-theme-variables.$pagination-color-pagination-slider-bg-default
+      "background-color": styles-theme-variables.$sn-color-available-complementary
     )
   ),
   "anatomy": (
@@ -33,60 +33,60 @@ $pagination: (
         "pagination-number": (
           "item-pagination-number": (
             "text-wrapper": (
-              "padding": styles-theme-variables.$pagination-anatomy-size-m-pagination-number-item-pagination-number-text-wrapper-padding
+              "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m
             ),
-            "min-width": styles-theme-variables.$pagination-anatomy-size-m-pagination-number-item-pagination-number-min-width,
-            "border-radius": styles-theme-variables.$pagination-anatomy-size-m-pagination-number-item-pagination-number-corner-radius,
-            "height": styles-theme-variables.$pagination-anatomy-size-m-pagination-number-item-pagination-number-height
+            "min-width": styles-theme-variables.$sn-platform-controls-size-m,
+            "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-m,
+            "height": styles-theme-variables.$sn-platform-controls-size-m
           ),
-          "gap": styles-theme-variables.$pagination-anatomy-size-m-pagination-number-gap
+          "gap": styles-theme-variables.$sn-standard-size-4
         )
       ),
       "s": (
         "pagination-number": (
           "item-pagination-number": (
-            "border-radius": styles-theme-variables.$pagination-anatomy-size-s-pagination-number-item-pagination-number-corner-radius,
-            "min-width": styles-theme-variables.$pagination-anatomy-size-s-pagination-number-item-pagination-number-min-width,
-            "height": styles-theme-variables.$pagination-anatomy-size-s-pagination-number-item-pagination-number-height,
+            "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-s,
+            "min-width": styles-theme-variables.$sn-platform-controls-size-s,
+            "height": styles-theme-variables.$sn-platform-controls-size-s,
             "text-wrapper": (
-              "padding": styles-theme-variables.$pagination-anatomy-size-s-pagination-number-item-pagination-number-text-wrapper-padding
+              "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s
             )
           ),
-          "gap": styles-theme-variables.$pagination-anatomy-size-s-pagination-number-gap
+          "gap": styles-theme-variables.$sn-standard-size-4
         ),
         "pagination-slider": (
           "item-pagination-slider": (
-            "height": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-height,
-            "min-width": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-min-width,
-            "padding": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-padding,
+            "height": styles-theme-variables.$sn-platform-controls-size-s,
+            "min-width": styles-theme-variables.$sn-platform-controls-size-s,
+            "padding": styles-theme-variables.$sn-standard-size-4,
             "slider": (
               "activated-false": (
                 "default": (
-                  "width": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-default-width,
-                  "height": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-default-height,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-default-corner-radius
+                  "width": styles-theme-variables.$sn-standard-size-8,
+                  "height": styles-theme-variables.$sn-standard-size-8,
+                  "border-radius": styles-theme-variables.$sn-pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-default-corner-radius
                 ),
                 "hovered": (
-                  "width": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-hovered-width,
-                  "height": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-hovered-height,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-hovered-corner-radius
+                  "width": styles-theme-variables.$sn-standard-size-12,
+                  "height": styles-theme-variables.$sn-standard-size-12,
+                  "border-radius": styles-theme-variables.$sn-pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-hovered-corner-radius
                 ),
                 "pressed": (
-                  "width": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-pressed-width,
-                  "height": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-pressed-height,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-pressed-corner-radius
+                  "width": styles-theme-variables.$sn-standard-size-8,
+                  "height": styles-theme-variables.$sn-standard-size-8,
+                  "border-radius": styles-theme-variables.$sn-pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-false-pressed-corner-radius
                 )
               ),
               "activated-true": (
                 "default": (
-                  "width": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-true-default-width,
-                  "height": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-true-default-height,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-true-default-corner-radius
+                  "width": styles-theme-variables.$sn-standard-size-12,
+                  "height": styles-theme-variables.$sn-standard-size-12,
+                  "border-radius": styles-theme-variables.$sn-pagination-anatomy-size-s-pagination-slider-item-pagination-slider-slider-activated-true-default-corner-radius
                 )
               )
             )
           ),
-          "border-radius": styles-theme-variables.$pagination-anatomy-size-s-pagination-slider-corner-radius
+          "border-radius": styles-theme-variables.$sn-standard-radius-full
         )
       ),
       "xs": (
@@ -95,34 +95,34 @@ $pagination: (
             "slider": (
               "activated-true": (
                 "default": (
-                  "height": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-true-default-height,
-                  "width": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-true-default-width,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-true-default-corner-radius
+                  "height": styles-theme-variables.$sn-standard-size-8,
+                  "width": styles-theme-variables.$sn-standard-size-8,
+                  "border-radius": styles-theme-variables.$sn-standard-radius-full
                 )
               ),
               "activated-false": (
                 "default": (
-                  "height": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-default-height,
-                  "width": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-default-width,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-default-corner-radius
+                  "height": styles-theme-variables.$sn-standard-size-6,
+                  "width": styles-theme-variables.$sn-standard-size-6,
+                  "border-radius": styles-theme-variables.$sn-standard-radius-full
                 ),
                 "hovered": (
-                  "height": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-hovered-height,
-                  "width": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-hovered-width,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-hovered-corner-radius
+                  "height": styles-theme-variables.$sn-standard-size-8,
+                  "width": styles-theme-variables.$sn-standard-size-8,
+                  "border-radius": styles-theme-variables.$sn-standard-radius-full
                 ),
                 "pressed": (
-                  "height": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-pressed-height,
-                  "width": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-pressed-width,
-                  "border-radius": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-slider-activated-false-pressed-corner-radius
+                  "height": styles-theme-variables.$sn-standard-size-6,
+                  "width": styles-theme-variables.$sn-standard-size-6,
+                  "border-radius": styles-theme-variables.$sn-standard-radius-full
                 )
               )
             ),
-            "min-width": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-min-width,
-            "height": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-height,
-            "padding": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-item-pagination-slider-padding
+            "min-width": styles-theme-variables.$sn-platform-controls-size-xs,
+            "height": styles-theme-variables.$sn-platform-controls-size-xs,
+            "padding": styles-theme-variables.$sn-standard-size-4
           ),
-          "border-radius": styles-theme-variables.$pagination-anatomy-size-xs-pagination-slider-corner-radius
+          "border-radius": styles-theme-variables.$sn-standard-radius-full
         )
       )
     )
@@ -130,7 +130,7 @@ $pagination: (
   "effect": (
     "opacity": (
       "pagination-slider": (
-        "background-color": styles-theme-variables.$pagination-effect-opacity-pagination-slider-bg-default
+        "background-color": styles-theme-variables.$sn-pagination-effect-opacity-pagination-slider-bg-default
       )
     )
   )

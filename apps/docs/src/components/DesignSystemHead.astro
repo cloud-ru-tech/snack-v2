@@ -1,0 +1,29 @@
+---
+// Кастомный Head компонент для Starlight
+// Добавляет стили дизайн-системы на всех страницах
+import Default from '@astrojs/starlight/components/Head.astro';
+import '../styles/global.css';
+---
+
+<Default>
+  <slot />
+</Default>
+
+<script is:inline>
+  // Применяем классы дизайн-системы к body при загрузке страницы
+  (function() {
+    if (typeof document !== 'undefined') {
+      const body = document.body;
+      
+      // Базовые классы (всегда применяются)
+      body.classList.add('sn-base-styles');
+      body.classList.add('sn-figmaStyles');
+      
+      // Классы по умолчанию (можно будет сделать переключаемыми)
+      body.classList.add('sn-desktop');
+      body.classList.add('sn-light');
+      body.classList.add('sn-brandA');
+    }
+  })();
+</script>
+

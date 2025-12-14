@@ -2,8 +2,8 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $toaster: (
   "anatomy": (
@@ -11,47 +11,47 @@ $toaster: (
       "toast": (
         "system-event": (
           "container": (
-            "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-padding-horizontal,
-            "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-padding-horizontal,
-            "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-padding-vertical,
-            "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-padding-vertical,
-            "gap": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-gap,
-            "border-radius": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-corner-radius,
-            "min-height": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-min-height,
-            "max-width": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-max-width
+            "padding-left": styles-theme-variables.$sn-standard-size-16,
+            "padding-right": styles-theme-variables.$sn-standard-size-16,
+            "padding-top": styles-theme-variables.$sn-standard-size-16,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-16,
+            "gap": styles-theme-variables.$sn-standard-size-16,
+            "border-radius": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-corner-radius,
+            "min-height": styles-theme-variables.$sn-standard-size-56,
+            "max-width": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-max-width
           ),
-          "gap": styles-theme-variables.$toaster-anatomy-size-toast-system-event-gap,
-          "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-system-event-padding-vertical,
-          "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-system-event-padding-vertical,
-          "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-system-event-padding-horizontal,
-          "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-system-event-padding-horizontal,
+          "gap": styles-theme-variables.$sn-standard-size-8,
+          "padding-top": styles-theme-variables.$sn-standard-size-16,
+          "padding-bottom": styles-theme-variables.$sn-standard-size-16,
+          "padding-left": styles-theme-variables.$sn-standard-size-16,
+          "padding-right": styles-theme-variables.$sn-standard-size-16,
           "stack": (
             "level1": (
-              "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-system-event-stack-level1-padding-horizontal,
-              "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-system-event-stack-level1-padding-horizontal
+              "padding-left": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-corner-radius,
+              "padding-right": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-corner-radius
             ),
             "level2": (
-              "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-system-event-stack-level2-padding-horizontal,
-              "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-system-event-stack-level2-padding-horizontal
+              "padding-left": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-corner-radius,
+              "padding-right": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-corner-radius
             )
           ),
           "container-content": (
-            "gap": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-gap,
+            "gap": styles-theme-variables.$sn-standard-size-8,
             "text": (
-              "paddint-top": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-text-paddint-top
+              "paddint-top": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-content-text-padding-top
             ),
             "button-close": (
-              "width": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-button-close-size
+              "width": styles-theme-variables.$sn-platform-icon-size-s
             )
           ),
           "container-actions": (
-            "gap": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-actions-gap
+            "gap": styles-theme-variables.$sn-standard-size-4
           ),
           "container-progress": (
-            "height": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-progress-height
+            "height": styles-theme-variables.$sn-standard-size-4
           ),
           "container-close-all": (
-            "min-height": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-close-all-min-height
+            "min-height": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-close-all-min-height
           )
         ),
         "upload": (
@@ -59,52 +59,52 @@ $toaster: (
 
           ),
           "progress": (
-            "height": styles-theme-variables.$toaster-anatomy-size-toast-upload-progress-height,
-            "border-radius": styles-theme-variables.$toaster-anatomy-size-toast-upload-progress-corner-radius
+            "height": styles-theme-variables.$sn-standard-size-2,
+            "border-radius": styles-theme-variables.$sn-standard-radius-2xs
           ),
           "container-title-line": (
             "title": (
-              "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-gap,
-              "min-height": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-min-height,
+              "gap": styles-theme-variables.$sn-standard-size-16,
+              "min-height": styles-theme-variables.$sn-standard-size-24,
               "title": (
                 "title": (
                   "title": (
                     "button": (
-                      "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+                      "width": styles-theme-variables.$sn-standard-size-24
                     )
                   )
                 )
               )
             ),
             "general-progress": (
-              "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-gap,
+              "gap": styles-theme-variables.$sn-standard-size-4,
               "status-line": (
-                "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-gap,
+                "gap": styles-theme-variables.$sn-standard-size-8,
                 "status-wrapper": (
-                  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-gap,
+                  "gap": styles-theme-variables.$sn-standard-size-4,
                   "button": (
-                    "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button-size
+                    "width": styles-theme-variables.$sn-standard-size-24
                   )
                 )
               )
             )
           ),
           "container-file-line": (
-            "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-padding-vertical,
-            "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-padding-vertical,
+            "padding-top": styles-theme-variables.$sn-standard-size-4,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-4,
             "headline": (
-              "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-gap,
-              "min-height": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-min-height,
+              "gap": styles-theme-variables.$sn-standard-size-16,
+              "min-height": styles-theme-variables.$sn-standard-size-24,
               "button": (
-                "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-button-size
+                "width": styles-theme-variables.$sn-standard-size-24
               )
             ),
             "status-line": (
-              "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-gap,
+              "gap": styles-theme-variables.$sn-standard-size-8,
               "status-wrapper": (
-                "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-gap,
+                "gap": styles-theme-variables.$sn-standard-size-4,
                 "button": (
-                  "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-button-size
+                  "width": styles-theme-variables.$sn-standard-size-24
                 )
               )
             )
@@ -112,24 +112,24 @@ $toaster: (
         ),
         "user-action": (
           "container": (
-            "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-padding-left,
-            "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-padding-right,
-            "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-padding-vertical,
-            "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-padding-vertical,
-            "border-radius": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-corner-radius
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-4,
+            "padding-top": styles-theme-variables.$sn-standard-size-4,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-4,
+            "border-radius": styles-theme-variables.$sn-platform-toaster-size-toast-user-action-container-corner-radius
           ),
-          "gap": styles-theme-variables.$toaster-anatomy-size-toast-user-action-gap,
-          "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-user-action-padding-bottom,
+          "gap": styles-theme-variables.$sn-standard-size-8,
+          "padding-bottom": styles-theme-variables.$sn-standard-size-8,
           "container-text": (
-            "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-left,
-            "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-right,
-            "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-vertical,
-            "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-vertical
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-12,
+            "padding-top": styles-theme-variables.$sn-standard-size-6,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-6
           ),
           "container-timer": (
-            "container": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-timer-container,
-            "width": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-timer-stroke-weigth,
-            "circle": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-timer-circle
+            "container": styles-theme-variables.$sn-standard-size-24,
+            "width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-semi-bold,
+            "circle": styles-theme-variables.$sn-standard-size-20
           )
         )
       )
@@ -141,10 +141,10 @@ $toaster: (
         "system-event": (
           "stack": (
             "level1": (
-              "opacity": styles-theme-variables.$toaster-effect-opacity-toast-system-event-stack-level1-opacity
+              "opacity": styles-theme-variables.$sn-toaster-effect-opacity-toast-system-event-stack-level1-opacity
             ),
             "level2": (
-              "opacity": styles-theme-variables.$toaster-effect-opacity-toast-system-event-stack-level2-opacity
+              "opacity": styles-theme-variables.$sn-toaster-effect-opacity-toast-system-event-stack-level2-opacity
             )
           )
         )
@@ -154,49 +154,49 @@ $toaster: (
 );
 
 $toaster-anatomy-size-toast-system-event-container-content: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-gap,
+  "gap": styles-theme-variables.$sn-standard-size-8,
   "text": (
-    "paddint-top": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-text-paddint-top
+    "paddint-top": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-content-text-padding-top
   ),
   "button-close": (
-    "width": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-button-close-size
+    "width": styles-theme-variables.$sn-platform-icon-size-s
   )
 );
 
 $toaster-anatomy-size-toast-system-event-container-actions: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-actions-gap
+  "gap": styles-theme-variables.$sn-standard-size-4
 );
 
 $toaster-anatomy-size-toast-system-event-container-progress: (
-  "height": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-progress-height
+  "height": styles-theme-variables.$sn-standard-size-4
 );
 
 $toaster-anatomy-size-toast-system-event-container-close-all: (
-  "min-height": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-close-all-min-height
+  "min-height": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-close-all-min-height
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line: (
   "title": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-gap,
-    "min-height": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-min-height,
+    "gap": styles-theme-variables.$sn-standard-size-16,
+    "min-height": styles-theme-variables.$sn-standard-size-24,
     "title": (
       "title": (
         "title": (
           "button": (
-            "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+            "width": styles-theme-variables.$sn-standard-size-24
           )
         )
       )
     )
   ),
   "general-progress": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-gap,
+    "gap": styles-theme-variables.$sn-standard-size-4,
     "status-line": (
-      "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-gap,
+      "gap": styles-theme-variables.$sn-standard-size-8,
       "status-wrapper": (
-        "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-gap,
+        "gap": styles-theme-variables.$sn-standard-size-4,
         "button": (
-          "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button-size
+          "width": styles-theme-variables.$sn-standard-size-24
         )
       )
     )
@@ -204,55 +204,55 @@ $toaster-anatomy-size-toast-upload-container-title-line: (
 );
 
 $toaster-anatomy-size-toast-upload-container-file-line: (
-  "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-padding-vertical,
-  "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-padding-vertical,
+  "padding-top": styles-theme-variables.$sn-standard-size-4,
+  "padding-bottom": styles-theme-variables.$sn-standard-size-4,
   "headline": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-gap,
-    "min-height": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-min-height,
+    "gap": styles-theme-variables.$sn-standard-size-16,
+    "min-height": styles-theme-variables.$sn-standard-size-24,
     "button": (
-      "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-button-size
+      "width": styles-theme-variables.$sn-standard-size-24
     )
   ),
   "status-line": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-gap,
+    "gap": styles-theme-variables.$sn-standard-size-8,
     "status-wrapper": (
-      "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-gap,
+      "gap": styles-theme-variables.$sn-standard-size-4,
       "button": (
-        "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-button-size
+        "width": styles-theme-variables.$sn-standard-size-24
       )
     )
   )
 );
 
 $toaster-anatomy-size-toast-user-action-container-text: (
-  "padding-left": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-left,
-  "padding-right": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-right,
-  "padding-top": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-vertical,
-  "padding-bottom": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-text-padding-vertical
+  "padding-left": styles-theme-variables.$sn-standard-size-8,
+  "padding-right": styles-theme-variables.$sn-standard-size-12,
+  "padding-top": styles-theme-variables.$sn-standard-size-6,
+  "padding-bottom": styles-theme-variables.$sn-standard-size-6
 );
 
 $toaster-anatomy-size-toast-user-action-container-timer: (
-  "container": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-timer-container,
-  "border-width": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-timer-stroke-weigth,
-  "circle": styles-theme-variables.$toaster-anatomy-size-toast-user-action-container-timer-circle
+  "container": styles-theme-variables.$sn-standard-size-24,
+  "border-width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-semi-bold,
+  "circle": styles-theme-variables.$sn-standard-size-20
 );
 
 $toaster-anatomy-size-toast-system-event-container-content-text: (
-  "paddint-top": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-text-paddint-top
+  "paddint-top": styles-theme-variables.$sn-platform-toaster-size-toast-system-event-container-content-text-padding-top
 );
 
 $toaster-anatomy-size-toast-system-event-container-content-button-close: (
-  "width": styles-theme-variables.$toaster-anatomy-size-toast-system-event-container-content-button-close-size
+  "width": styles-theme-variables.$sn-platform-icon-size-s
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-title: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-gap,
-  "min-height": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-min-height,
+  "gap": styles-theme-variables.$sn-standard-size-16,
+  "min-height": styles-theme-variables.$sn-standard-size-24,
   "title": (
     "title": (
       "title": (
         "button": (
-          "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+          "width": styles-theme-variables.$sn-standard-size-24
         )
       )
     )
@@ -263,7 +263,7 @@ $toaster-anatomy-size-toast-upload-container-title-line-title-title: (
   "title": (
     "title": (
       "button": (
-        "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+        "width": styles-theme-variables.$sn-standard-size-24
       )
     )
   )
@@ -272,84 +272,84 @@ $toaster-anatomy-size-toast-upload-container-title-line-title-title: (
 $toaster-anatomy-size-toast-upload-container-title-line-title-title-title: (
   "title": (
     "button": (
-      "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+      "width": styles-theme-variables.$sn-standard-size-24
     )
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title: (
   "button": (
-    "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+    "width": styles-theme-variables.$sn-standard-size-24
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button: (
-  "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-title-title-title-title-button-size
+  "width": styles-theme-variables.$sn-standard-size-24
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-general-progress: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-gap,
+  "gap": styles-theme-variables.$sn-standard-size-4,
   "status-line": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-gap,
+    "gap": styles-theme-variables.$sn-standard-size-8,
     "status-wrapper": (
-      "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-gap,
+      "gap": styles-theme-variables.$sn-standard-size-4,
       "button": (
-        "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button-size
+        "width": styles-theme-variables.$sn-standard-size-24
       )
     )
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-gap,
+  "gap": styles-theme-variables.$sn-standard-size-8,
   "status-wrapper": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-gap,
+    "gap": styles-theme-variables.$sn-standard-size-4,
     "button": (
-      "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button-size
+      "width": styles-theme-variables.$sn-standard-size-24
     )
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-gap,
+  "gap": styles-theme-variables.$sn-standard-size-4,
   "button": (
-    "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button-size
+    "width": styles-theme-variables.$sn-standard-size-24
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button: (
-  "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-title-line-general-progress-status-line-status-wrapper-button-size
+  "width": styles-theme-variables.$sn-standard-size-24
 );
 
 $toaster-anatomy-size-toast-upload-container-file-line-headline: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-gap,
-  "min-height": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-min-height,
+  "gap": styles-theme-variables.$sn-standard-size-16,
+  "min-height": styles-theme-variables.$sn-standard-size-24,
   "button": (
-    "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-button-size
+    "width": styles-theme-variables.$sn-standard-size-24
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-file-line-headline-button: (
-  "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-headline-button-size
+  "width": styles-theme-variables.$sn-standard-size-24
 );
 
 $toaster-anatomy-size-toast-upload-container-file-line-status-line: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-gap,
+  "gap": styles-theme-variables.$sn-standard-size-8,
   "status-wrapper": (
-    "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-gap,
+    "gap": styles-theme-variables.$sn-standard-size-4,
     "button": (
-      "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-button-size
+      "width": styles-theme-variables.$sn-standard-size-24
     )
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper: (
-  "gap": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-gap,
+  "gap": styles-theme-variables.$sn-standard-size-4,
   "button": (
-    "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-button-size
+    "width": styles-theme-variables.$sn-standard-size-24
   )
 );
 
 $toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-button: (
-  "width": styles-theme-variables.$toaster-anatomy-size-toast-upload-container-file-line-status-line-status-wrapper-button-size
+  "width": styles-theme-variables.$sn-standard-size-24
 );

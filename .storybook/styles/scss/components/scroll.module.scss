@@ -2,44 +2,44 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $scroll: (
   "color": (
     "slider": (
-      "background-color": styles-theme-variables.$scroll-color-slider-bg-pressed,
-      "bg-hovered": styles-theme-variables.$scroll-color-slider-bg-hovered
+      "background-color": styles-theme-variables.$sn-color-neutral-accent,
+      "bg-hovered": styles-theme-variables.$sn-color-neutral-accent
     )
   ),
   "anatomy": (
     "slider": (
       "size": (
         "s": (
-          "width": styles-theme-variables.$scroll-anatomy-slider-size-s-min-size,
-          "border-radius": styles-theme-variables.$scroll-anatomy-slider-size-s-corner-radius
+          "width": styles-theme-variables.$sn-standard-size-4,
+          "border-radius": styles-theme-variables.$sn-standard-radius-full
         ),
         "m": (
-          "width": styles-theme-variables.$scroll-anatomy-slider-size-m-min-size,
-          "border-radius": styles-theme-variables.$scroll-anatomy-slider-size-m-corner-radius
+          "width": styles-theme-variables.$sn-standard-size-6,
+          "border-radius": styles-theme-variables.$sn-standard-radius-full
         )
       )
     ),
     "container": (
       "size": (
         "s": (
-          "width": styles-theme-variables.$scroll-anatomy-container-size-s-min-size
+          "width": styles-theme-variables.$sn-standard-size-8
         ),
         "m": (
-          "width": styles-theme-variables.$scroll-anatomy-container-size-m-min-size
+          "width": styles-theme-variables.$sn-standard-size-16
         )
       )
     )
   ),
   "effect": (
     "opacity": (
-      "background-color": styles-theme-variables.$scroll-effect-opacity-bg-pressed,
-      "bg-hovered": styles-theme-variables.$scroll-effect-opacity-bg-hovered
+      "background-color": styles-theme-variables.$sn-scroll-effect-opacity-bg-pressed,
+      "bg-hovered": styles-theme-variables.$sn-scroll-effect-opacity-bg-hovered
     )
   )
 );

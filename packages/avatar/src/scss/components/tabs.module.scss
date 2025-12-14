@@ -2,8 +2,8 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $tabs: (
   "anatomy": (
@@ -12,91 +12,91 @@ $tabs: (
         "tabs-vertical": (
           "tab-container": (
             "text-wrapper": (
-              "min-width": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-text-wrapper-min-width,
-              "padding-left": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-text-wrapper-horizontal-padding,
-              "padding-right": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-text-wrapper-horizontal-padding,
-              "border-radius": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-text-wrapper-corner-radius,
-              "gap": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-text-wrapper-gap,
-              "min-height": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-text-wrapper-min-height
+              "min-width": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-text-wrapper-min-width,
+              "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-text-wrapper-horizontal-padding,
+              "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-text-wrapper-horizontal-padding,
+              "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tabs-l,
+              "gap": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-text-wrapper-gap,
+              "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-text-wrapper-min-height
             ),
-            "padding-left": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-horizontal-padding,
-            "padding-right": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-horizontal-padding,
-            "min-height": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-tab-container-min-height
+            "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-horizontal-padding,
+            "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-horizontal-padding,
+            "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-tab-container-min-height
           ),
-          "gap": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-gap,
-          "border-radius": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-selected-corner-radius,
-          "height": styles-theme-variables.$tabs-anatomy-size-l-tabs-vertical-selected-height
+          "gap": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-l-tabs-container-gap,
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs,
+          "height": styles-theme-variables.$sn-standard-size-2
         ),
         "tabs-horizontal": (
           "tab-container": (
             "text-wrapper": (
-              "min-width": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-text-wrapper-min-width,
-              "min-height": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-text-wrapper-min-height,
-              "gap": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-text-wrapper-gap,
-              "border-radius": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-text-wrapper-corner-radius,
-              "padding-left": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-text-wrapper-horizontal-padding,
-              "padding-right": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-text-wrapper-horizontal-padding
+              "min-width": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-text-wrapper-min-width,
+              "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-text-wrapper-min-height,
+              "gap": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-text-wrapper-gap,
+              "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tabs-l,
+              "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-text-wrapper-horizontal-padding,
+              "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-text-wrapper-horizontal-padding
             ),
-            "min-height": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-min-height,
-            "padding-left": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-horizontal-padding,
-            "padding-right": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-tab-container-horizontal-padding
+            "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-min-height,
+            "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-horizontal-padding,
+            "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-tab-container-horizontal-padding
           ),
-          "height": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-selected-height,
-          "gap": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-gap,
-          "border-radius": styles-theme-variables.$tabs-anatomy-size-l-tabs-horizontal-selected-corner-radius
+          "height": styles-theme-variables.$sn-standard-size-2,
+          "gap": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-l-tabs-container-gap,
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs
         ),
         "control": (
           "forward": (
-            "padding": styles-theme-variables.$tabs-anatomy-size-l-control-forward-padding
+            "padding": styles-theme-variables.$sn-standard-size-4
           ),
           "back": (
-            "padding": styles-theme-variables.$tabs-anatomy-size-l-control-back-padding
+            "padding": styles-theme-variables.$sn-standard-size-4
           )
         )
       ),
       "m": (
         "tabs-horizontal": (
           "tab-container": (
-            "min-height": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-min-height,
+            "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-min-height,
             "text-wrapper": (
-              "padding-left": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-text-wrapper-horizontal-padding,
-              "padding-right": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-text-wrapper-horizontal-padding,
-              "border-radius": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-text-wrapper-corner-radius,
-              "min-width": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-text-wrapper-min-width,
-              "gap": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-text-wrapper-gap,
-              "min-height": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-text-wrapper-min-height
+              "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-text-wrapper-horizontal-padding,
+              "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-text-wrapper-horizontal-padding,
+              "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tabs-m,
+              "min-width": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-text-wrapper-min-width,
+              "gap": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-text-wrapper-gap,
+              "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-text-wrapper-min-height
             ),
-            "padding-left": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-horizontal-padding,
-            "padding-right": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-tab-container-horizontal-padding
+            "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-horizontal-padding,
+            "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-tab-container-horizontal-padding
           ),
-          "border-radius": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-selected-corner-radius,
-          "gap": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-gap,
-          "height": styles-theme-variables.$tabs-anatomy-size-m-tabs-horizontal-selected-height
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs,
+          "gap": styles-theme-variables.$sn-platform-tabs-size-tab-horizontal-m-tabs-container-gap,
+          "height": styles-theme-variables.$sn-standard-size-2
         ),
         "tabs-vertical": (
           "tab-container": (
             "text-wrapper": (
-              "min-width": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-text-wrapper-min-width,
-              "gap": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-text-wrapper-gap,
-              "min-height": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-text-wrapper-min-height,
-              "border-radius": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-text-wrapper-corner-radius,
-              "padding-left": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-text-wrapper-horizontal-padding,
-              "padding-right": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-text-wrapper-horizontal-padding
+              "min-width": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-text-wrapper-min-width,
+              "gap": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-text-wrapper-gap,
+              "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-text-wrapper-min-height,
+              "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tabs-m,
+              "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-text-wrapper-horizontal-padding,
+              "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-text-wrapper-horizontal-padding
             ),
-            "padding-left": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-horizontal-padding,
-            "padding-right": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-horizontal-padding,
-            "min-height": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-tab-container-min-height
+            "padding-left": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-horizontal-padding,
+            "padding-right": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-horizontal-padding,
+            "min-height": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-tab-container-min-height
           ),
-          "border-radius": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-selected-corner-radius,
-          "gap": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-gap,
-          "height": styles-theme-variables.$tabs-anatomy-size-m-tabs-vertical-selected-height
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs,
+          "gap": styles-theme-variables.$sn-platform-tabs-size-tab-vertical-m-tabs-container-gap,
+          "height": styles-theme-variables.$sn-standard-size-2
         ),
         "control": (
           "forward": (
-            "padding": styles-theme-variables.$tabs-anatomy-size-m-control-forward-padding
+            "padding": styles-theme-variables.$sn-standard-size-2
           ),
           "back": (
-            "padding": styles-theme-variables.$tabs-anatomy-size-m-control-back-padding
+            "padding": styles-theme-variables.$sn-standard-size-2
           )
         )
       )

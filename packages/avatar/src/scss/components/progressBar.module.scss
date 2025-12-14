@@ -2,22 +2,22 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $progressBar: (
   "anatomy": (
     "size": (
       "s": (
         "container": (
-          "height": styles-theme-variables.$progress-bar-anatomy-size-s-container-height,
-          "border-radius": styles-theme-variables.$progress-bar-anatomy-size-s-container-corner-radius
+          "height": styles-theme-variables.$sn-standard-size-2,
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs
         )
       ),
       "m": (
         "container": (
-          "height": styles-theme-variables.$progress-bar-anatomy-size-m-container-height,
-          "border-radius": styles-theme-variables.$progress-bar-anatomy-size-m-container-corner-radius
+          "height": styles-theme-variables.$sn-standard-size-4,
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs
         )
       )
     )

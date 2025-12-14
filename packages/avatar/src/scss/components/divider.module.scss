@@ -2,35 +2,35 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $divider: (
   "color": (
     "line": (
-      "background-color": styles-theme-variables.$divider-color-line-bg-default
+      "background-color": styles-theme-variables.$sn-color-available-complementary
     )
   ),
   "anatomy": (
     "container": (
-      "height": styles-theme-variables.$divider-anatomy-container-height,
-      "width": styles-theme-variables.$divider-anatomy-container-width
+      "height": styles-theme-variables.$sn-standard-size-1,
+      "width": styles-theme-variables.$sn-standard-size-1
     ),
     "container-line": (
       "regular": (
-        "width": styles-theme-variables.$divider-anatomy-container-line-regular-width,
-        "height": styles-theme-variables.$divider-anatomy-container-line-regular-height
+        "width": styles-theme-variables.$sn-standard-size-1,
+        "height": styles-theme-variables.$sn-standard-size-1
       ),
       "thin": (
-        "width": styles-theme-variables.$divider-anatomy-container-line-thin-width,
-        "height": styles-theme-variables.$divider-anatomy-container-line-thin-height
+        "width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-thin,
+        "height": styles-theme-variables.$sn-standard-stroke-weigth-stroke-thin
       )
     )
   ),
   "effect": (
     "opacity": (
       "line": (
-        "background-color": styles-theme-variables.$divider-effect-opacity-line-bg-default
+        "background-color": styles-theme-variables.$sn-divider-effect-opacity-line-bg-default
       )
     )
   )
@@ -38,21 +38,21 @@ $divider: (
 
 $divider-anatomy-container-line: (
   "regular": (
-    "width": styles-theme-variables.$divider-anatomy-container-line-regular-width,
-    "height": styles-theme-variables.$divider-anatomy-container-line-regular-height
+    "width": styles-theme-variables.$sn-standard-size-1,
+    "height": styles-theme-variables.$sn-standard-size-1
   ),
   "thin": (
-    "width": styles-theme-variables.$divider-anatomy-container-line-thin-width,
-    "height": styles-theme-variables.$divider-anatomy-container-line-thin-height
+    "width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-thin,
+    "height": styles-theme-variables.$sn-standard-stroke-weigth-stroke-thin
   )
 );
 
 $divider-anatomy-container-line-regular: (
-  "width": styles-theme-variables.$divider-anatomy-container-line-regular-width,
-  "height": styles-theme-variables.$divider-anatomy-container-line-regular-height
+  "width": styles-theme-variables.$sn-standard-size-1,
+  "height": styles-theme-variables.$sn-standard-size-1
 );
 
 $divider-anatomy-container-line-thin: (
-  "width": styles-theme-variables.$divider-anatomy-container-line-thin-width,
-  "height": styles-theme-variables.$divider-anatomy-container-line-thin-height
+  "width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-thin,
+  "height": styles-theme-variables.$sn-standard-stroke-weigth-stroke-thin
 );

@@ -2,26 +2,26 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $popover: (
   "color": (
-    "bg": styles-theme-variables.$popover-color-bg
+    "bg": styles-theme-variables.$sn-color-neutral-background2-level
   ),
   "anatomy": (
     "private-popover": (
-      "offset": styles-theme-variables.$popover-anatomy-private-popover-offset,
+      "offset": styles-theme-variables.$sn-platform-popover-offset,
       "pointer": (
-        "padding": styles-theme-variables.$popover-anatomy-private-popover-pointer-padding,
-        "border-radius": styles-theme-variables.$popover-anatomy-private-popover-pointer-corner-radius,
-        "height": styles-theme-variables.$popover-anatomy-private-popover-pointer-height,
-        "width": styles-theme-variables.$popover-anatomy-private-popover-pointer-width
+        "padding": styles-theme-variables.$sn-popover-anatomy-container-cormer-radius,
+        "border-radius": styles-theme-variables.$sn-platform-popover-popover-pointer-round-corner-pointer,
+        "height": styles-theme-variables.$sn-platform-popover-popover-pointer-heihgt-popover-pointer,
+        "width": styles-theme-variables.$sn-platform-popover-popover-pointer-width-popover-pointer
       )
     ),
     "container": (
-      "padding": styles-theme-variables.$popover-anatomy-container-padding,
-      "cormer-radius": styles-theme-variables.$popover-anatomy-container-cormer-radius
+      "padding": styles-theme-variables.$sn-popover-anatomy-container-cormer-radius,
+      "cormer-radius": styles-theme-variables.$sn-platform-popover-round-corner-popover
     )
   )
 );

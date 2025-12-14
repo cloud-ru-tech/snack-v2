@@ -2,35 +2,35 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $carousel: (
   "anatomy": (
     "content-wrapper": (
       "content": (
-        "padding-top": styles-theme-variables.$carousel-anatomy-content-wrapper-content-padding-vertical,
-        "padding-bottom": styles-theme-variables.$carousel-anatomy-content-wrapper-content-padding-vertical,
-        "padding-left": styles-theme-variables.$carousel-anatomy-content-wrapper-content-padding-horizontal,
-        "padding-right": styles-theme-variables.$carousel-anatomy-content-wrapper-content-padding-horizontal
+        "padding-top": styles-theme-variables.$sn-standard-size-4,
+        "padding-bottom": styles-theme-variables.$sn-standard-size-4,
+        "padding-left": styles-theme-variables.$sn-standard-size-4,
+        "padding-right": styles-theme-variables.$sn-standard-size-4
       ),
       "control-wrapper": (
         "control-back": (
-          "padding-top": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-back-padding-top,
-          "padding-bottom": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-back-padding-bottom,
-          "padding-left": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-back-padding-left,
-          "padding-right": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-back-padding-right
+          "padding-top": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-back-padding-top,
+          "padding-bottom": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-back-padding-bottom,
+          "padding-left": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-back-padding-left,
+          "padding-right": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-back-padding-right
         ),
         "control-forward": (
-          "padding-top": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-forward-padding-top,
-          "padding-bottom": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-forward-padding-bottom,
-          "padding-left": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-forward-padding-left,
-          "padding-right": styles-theme-variables.$carousel-anatomy-content-wrapper-control-wrapper-control-forward-padding-right
+          "padding-top": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-forward-padding-top,
+          "padding-bottom": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-forward-padding-bottom,
+          "padding-left": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-forward-padding-left,
+          "padding-right": styles-theme-variables.$sn-platform-carousel-control-wrapper-control-forward-padding-right
         )
       )
     ),
     "slider-wrapper": (
-      "padding-top": styles-theme-variables.$carousel-anatomy-slider-wrapper-padding-top
+      "padding-top": styles-theme-variables.$sn-standard-size-8
     )
   )
 );

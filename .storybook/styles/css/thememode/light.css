@@ -1,7 +1,7 @@
 /**
  * Do not edit directly, this file was auto-generated.
  */
-
+  
 .sn-light {
   --sn-color-primary-background: var(--sn-brand-color-primary-90, #f3e8ff);
   --sn-color-primary-background1-level: var(--sn-brand-color-primary-95, #f7f2fc);
@@ -131,35 +131,35 @@
   --sn-effect-acryl-acrul-color2level: #333333;
   --sn-effect-acryl-acrul-effect: true;
   --sn-effect-acryl-background-blur: 50px;
-  --sn-effect-acryl-background-opacity: 60px;
+  --sn-effect-acryl-background-opacity: 60;
   --sn-effect-acrylic-color: #1c1c1c;
   --sn-effect-acrylic-color2-level: #333333;
   --sn-effect-acrylic-color1-level: #0a0a0a;
-  --sn-effect-acrylic-opacity: 75px;
+  --sn-effect-acrylic-opacity: 75;
   --sn-effect-acrylic-blur: 50px;
-  --sn-effect-acrylic-opacity2-level: 75px;
-  --sn-effect-acrylic-opacity1-level: 75px;
+  --sn-effect-acrylic-opacity2-level: 75;
+  --sn-effect-acrylic-opacity1-level: 75;
   --sn-effect-acrylic-blur1-level: 50px;
   --sn-effect-acrylic-blur2-level: 50px;
   --sn-effect-background-blur: var(--sn-standard-size-4, 4px);
-  --sn-effect-opacity-text-tertiary: 60px;
+  --sn-effect-opacity-text-tertiary: 60;
   --sn-effect-opacity-text-secondary: 80;
-  --sn-effect-opacity-disabled: 40px;
+  --sn-effect-opacity-disabled: 40;
   --sn-effect-opacity-state-layer-regular-default: 0;
-  --sn-effect-opacity-state-layer-regular-hovered: 5px;
-  --sn-effect-opacity-state-layer-regular-pressed: 10px;
-  --sn-effect-opacity-state-layer-checked-default: 15px;
-  --sn-effect-opacity-state-layer-checked-hovered: 20px;
-  --sn-effect-opacity-state-layer-checked-pressed: 25px;
-  --sn-effect-opacity-state-layer-on-accent-color-default: 10px;
-  --sn-effect-opacity-state-layer-on-accent-color-hovered: 15px;
-  --sn-effect-opacity-state-layer-on-accent-color-pressed: 20px;
-  --sn-effect-opacity-state-layer-opposite-color-default: 100px;
-  --sn-effect-opacity-state-layer-opposite-color-hovered: 85px;
-  --sn-effect-opacity-state-layer-opposite-color-pressed: 70px;
-  --sn-effect-opacity-state-layer-on-color-default: 6px;
-  --sn-effect-opacity-state-layer-on-color-hovered: 10px;
-  --sn-effect-opacity-state-layer-on-color-pressed: 15px;
+  --sn-effect-opacity-state-layer-regular-hovered: 5;
+  --sn-effect-opacity-state-layer-regular-pressed: 10;
+  --sn-effect-opacity-state-layer-checked-default: 15;
+  --sn-effect-opacity-state-layer-checked-hovered: 20;
+  --sn-effect-opacity-state-layer-checked-pressed: 25;
+  --sn-effect-opacity-state-layer-on-accent-color-default: 10;
+  --sn-effect-opacity-state-layer-on-accent-color-hovered: 15;
+  --sn-effect-opacity-state-layer-on-accent-color-pressed: 20;
+  --sn-effect-opacity-state-layer-opposite-color-default: 100;
+  --sn-effect-opacity-state-layer-opposite-color-hovered: 85;
+  --sn-effect-opacity-state-layer-opposite-color-pressed: 70;
+  --sn-effect-opacity-state-layer-on-color-default: 6;
+  --sn-effect-opacity-state-layer-on-color-hovered: 10;
+  --sn-effect-opacity-state-layer-on-color-pressed: 15;
   --sn-typography-font-weight-regular-display-s: var(--sn-base-font-font-weight-value-700, 700);
   --sn-typography-font-weight-regular-display-m: var(--sn-base-font-font-weight-value-700, 700);
   --sn-typography-font-weight-regular-display-l: var(--sn-base-font-font-weight-value-700, 700);

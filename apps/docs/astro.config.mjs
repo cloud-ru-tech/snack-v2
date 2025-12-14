@@ -46,10 +46,31 @@ export default defineConfig({
           autogenerate: { directory: 'components' },
         },
       ],
+      components: {
+        // Переопределяем Content для добавления стилей дизайн-системы
+        Content: './src/components/DesignSystemContent.astro',
+      },
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            type: 'text/javascript',
+          },
+          content: `(function(){if(typeof document!=='undefined'){const b=document.body;b.classList.add('sn-base-styles','sn-figmaStyles','sn-desktop','sn-light','sn-brandA');}})();`,
+        },
+      ],
     }),
     llmTxt(),
   ],
   vite: {
+    css: {
+      // Подключение глобальных стилей дизайн-системы
+      preprocessorOptions: {
+        scss: {
+          // Дополнительные опции для SCSS если нужно
+        },
+      },
+    },
     resolve: {
       alias: {
         '@packages': new URL('../../packages/', import.meta.url).pathname,

@@ -2,43 +2,43 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $promoTag: (
   "anatomy": (
     "size": (
       "s": (
         "container": (
-          "min-height": styles-theme-variables.$promo-tag-anatomy-size-s-container-min-height,
-          "padding": styles-theme-variables.$promo-tag-anatomy-size-s-container-padding,
-          "border-radius": styles-theme-variables.$promo-tag-anatomy-size-s-container-corner-radius,
-          "min-width": styles-theme-variables.$promo-tag-anatomy-size-s-container-min-width
+          "min-height": styles-theme-variables.$sn-platform-controls-size-s,
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-container-s,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tag-s,
+          "min-width": styles-theme-variables.$sn-platform-controls-min-width-tag-s
         ),
         "container-text-wrapper": (
-          "padding": styles-theme-variables.$promo-tag-anatomy-size-s-container-text-wrapper-padding
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s
         )
       ),
       "xs": (
         "container": (
-          "min-height": styles-theme-variables.$promo-tag-anatomy-size-xs-container-min-height,
-          "padding": styles-theme-variables.$promo-tag-anatomy-size-xs-container-padding,
-          "min-width": styles-theme-variables.$promo-tag-anatomy-size-xs-container-min-width,
-          "border-radius": styles-theme-variables.$promo-tag-anatomy-size-xs-container-corner-radius
+          "min-height": styles-theme-variables.$sn-platform-controls-size-xs,
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-container-xs,
+          "min-width": styles-theme-variables.$sn-platform-controls-min-width-tag-xs,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tag-xs
         ),
         "container-text-wrapper": (
-          "padding": styles-theme-variables.$promo-tag-anatomy-size-xs-container-text-wrapper-padding
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-xs
         )
       ),
       "m": (
         "container": (
-          "padding": styles-theme-variables.$promo-tag-anatomy-size-m-container-padding,
-          "border-radius": styles-theme-variables.$promo-tag-anatomy-size-m-container-corner-radius,
-          "min-height": styles-theme-variables.$promo-tag-anatomy-size-m-container-min-height,
-          "min-width": styles-theme-variables.$promo-tag-anatomy-size-m-container-min-width
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-container-m,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-tag-m,
+          "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+          "min-width": styles-theme-variables.$sn-platform-controls-min-width-tag-m
         ),
         "container-text-wrapper": (
-          "padding": styles-theme-variables.$promo-tag-anatomy-size-m-container-text-wrapper-padding
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m
         )
       )
     )
@@ -46,13 +46,13 @@ $promoTag: (
 );
 
 $promo-tag-anatomy-size-s-container-text-wrapper: (
-  "padding": styles-theme-variables.$promo-tag-anatomy-size-s-container-text-wrapper-padding
+  "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s
 );
 
 $promo-tag-anatomy-size-xs-container-text-wrapper: (
-  "padding": styles-theme-variables.$promo-tag-anatomy-size-xs-container-text-wrapper-padding
+  "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-xs
 );
 
 $promo-tag-anatomy-size-m-container-text-wrapper: (
-  "padding": styles-theme-variables.$promo-tag-anatomy-size-m-container-text-wrapper-padding
+  "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m
 );

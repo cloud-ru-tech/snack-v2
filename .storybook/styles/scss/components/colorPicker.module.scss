@@ -2,8 +2,8 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $colorPicker: (
   "anatomy": (
@@ -11,118 +11,118 @@ $colorPicker: (
       "s": (
         "color-picker": (
           "color-setting": (
-            "padding-left": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-padding-horizontal,
-            "padding-right": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-padding-horizontal,
-            "padding-bottom": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-padding-bottom,
-            "gap": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-gap,
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-8,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-16,
+            "gap": styles-theme-variables.$sn-platform-controls-spacing-container-s,
             "slider-track": (
-              "border-radius": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-slider-track-corner-radius
+              "border-radius": styles-theme-variables.$sn-standard-radius-full
             ),
             "parameter": (
-              "gap": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-parameter-gap
+              "gap": styles-theme-variables.$sn-color-picker-anatomy-size-s-color-picker-color-setting-gap
             ),
             "color-area": (
-              "min-height": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-color-area-min-height,
-              "min-width": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-color-area-min-width,
-              "corner-raidus": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-color-setting-color-area-corner-raidus
+              "min-height": styles-theme-variables.$sn-platform-color-picker-size-color-area-min-height-s,
+              "min-width": styles-theme-variables.$sn-platform-color-picker-size-color-area-min-width-s,
+              "corner-raidus": styles-theme-variables.$sn-platform-controls-corner-radius-button-s
             )
           ),
           "footer": (
-            "padding-left": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-footer-padding-horizontal,
-            "padding-right": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-footer-padding-horizontal,
-            "padding-top": styles-theme-variables.$color-picker-anatomy-size-s-color-picker-footer-padding-top
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-8,
+            "padding-top": styles-theme-variables.$sn-standard-size-8
           )
         ),
         "handle-color": (
           "bg": (
-            "border-radius": styles-theme-variables.$color-picker-anatomy-size-s-handle-color-bg-corner-radius,
-            "border-width": styles-theme-variables.$color-picker-anatomy-size-s-handle-color-bg-stroke-weigth,
-            "width": styles-theme-variables.$color-picker-anatomy-size-s-handle-color-bg-width,
-            "height": styles-theme-variables.$color-picker-anatomy-size-s-handle-color-bg-height
+            "border-radius": styles-theme-variables.$sn-standard-radius-full,
+            "border-width": styles-theme-variables.$sn-standard-size-4,
+            "width": styles-theme-variables.$sn-platform-controls-size-s,
+            "height": styles-theme-variables.$sn-platform-controls-size-s
           )
         ),
         "preview-color": (
-          "border-radius": styles-theme-variables.$color-picker-anatomy-size-s-preview-color-corner-radius,
-          "width": styles-theme-variables.$color-picker-anatomy-size-s-preview-color-width,
-          "height": styles-theme-variables.$color-picker-anatomy-size-s-preview-color-height
+          "border-radius": styles-theme-variables.$sn-standard-radius-2xs,
+          "width": styles-theme-variables.$sn-platform-icon-size-xs,
+          "height": styles-theme-variables.$sn-platform-icon-size-xs
         )
       ),
       "m": (
         "color-picker": (
           "color-setting": (
-            "padding-left": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-padding-horizontal,
-            "padding-right": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-padding-horizontal,
-            "padding-bottom": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-padding-bottom,
-            "gap": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-gap,
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-8,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-16,
+            "gap": styles-theme-variables.$sn-platform-controls-spacing-container-m,
             "slider-track": (
-              "border-radius": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-slider-track-corner-radius
+              "border-radius": styles-theme-variables.$sn-standard-radius-full
             ),
             "parameter": (
-              "gap": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-parameter-gap
+              "gap": styles-theme-variables.$sn-color-picker-anatomy-size-m-color-picker-color-setting-gap
             ),
             "color-area": (
-              "min-width": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-color-area-min-width,
-              "min-height": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-color-area-min-height,
-              "corner-raidus": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-color-setting-color-area-corner-raidus
+              "min-width": styles-theme-variables.$sn-platform-color-picker-size-color-area-min-width-m,
+              "min-height": styles-theme-variables.$sn-platform-color-picker-size-color-area-min-height-m,
+              "corner-raidus": styles-theme-variables.$sn-platform-controls-corner-radius-button-m
             )
           ),
           "footer": (
-            "padding-left": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-footer-padding-horizontal,
-            "padding-right": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-footer-padding-horizontal,
-            "padding-top": styles-theme-variables.$color-picker-anatomy-size-m-color-picker-footer-padding-top
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-8,
+            "padding-top": styles-theme-variables.$sn-standard-size-8
           )
         ),
         "handle-color": (
           "bg": (
-            "border-radius": styles-theme-variables.$color-picker-anatomy-size-m-handle-color-bg-corner-radius,
-            "border-width": styles-theme-variables.$color-picker-anatomy-size-m-handle-color-bg-stroke-weigth,
-            "width": styles-theme-variables.$color-picker-anatomy-size-m-handle-color-bg-width,
-            "height": styles-theme-variables.$color-picker-anatomy-size-m-handle-color-bg-height
+            "border-radius": styles-theme-variables.$sn-standard-radius-full,
+            "border-width": styles-theme-variables.$sn-color-picker-anatomy-size-m-handle-color-bg-stroke-weigth,
+            "width": styles-theme-variables.$sn-platform-controls-size-m,
+            "height": styles-theme-variables.$sn-platform-controls-size-m
           )
         ),
         "preview-color": (
-          "border-radius": styles-theme-variables.$color-picker-anatomy-size-m-preview-color-corner-radius,
-          "width": styles-theme-variables.$color-picker-anatomy-size-m-preview-color-width,
-          "height": styles-theme-variables.$color-picker-anatomy-size-m-preview-color-height
+          "border-radius": styles-theme-variables.$sn-standard-radius-s,
+          "width": styles-theme-variables.$sn-platform-icon-size-s,
+          "height": styles-theme-variables.$sn-platform-icon-size-s
         )
       ),
       "l": (
         "color-picker": (
           "color-setting": (
-            "padding-left": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-padding-horizontal,
-            "padding-right": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-padding-horizontal,
-            "padding-bottom": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-padding-bottom,
-            "gap": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-gap,
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-8,
+            "padding-bottom": styles-theme-variables.$sn-standard-size-16,
+            "gap": styles-theme-variables.$sn-platform-controls-spacing-container-l,
             "slider-track": (
-              "border-radius": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-slider-track-corner-radius
+              "border-radius": styles-theme-variables.$sn-standard-radius-full
             ),
             "parameter": (
-              "gap": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-parameter-gap
+              "gap": styles-theme-variables.$sn-color-picker-anatomy-size-l-color-picker-color-setting-gap
             ),
             "color-area": (
-              "min-width": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-color-area-min-width,
-              "min-height": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-color-area-min-height,
-              "corner-raidus": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-color-setting-color-area-corner-raidus
+              "min-width": styles-theme-variables.$sn-platform-color-picker-size-color-area-min-width-l,
+              "min-height": styles-theme-variables.$sn-platform-color-picker-size-color-area-min-width-l,
+              "corner-raidus": styles-theme-variables.$sn-platform-controls-corner-radius-button-l
             )
           ),
           "footer": (
-            "padding-left": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-footer-padding-horizontal,
-            "padding-right": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-footer-padding-horizontal,
-            "padding-top": styles-theme-variables.$color-picker-anatomy-size-l-color-picker-footer-padding-top
+            "padding-left": styles-theme-variables.$sn-standard-size-8,
+            "padding-right": styles-theme-variables.$sn-standard-size-8,
+            "padding-top": styles-theme-variables.$sn-standard-size-8
           )
         ),
         "handle-color": (
           "bg": (
-            "border-radius": styles-theme-variables.$color-picker-anatomy-size-l-handle-color-bg-corner-radius,
-            "border-width": styles-theme-variables.$color-picker-anatomy-size-l-handle-color-bg-stroke-weigth,
-            "width": styles-theme-variables.$color-picker-anatomy-size-l-handle-color-bg-width,
-            "height": styles-theme-variables.$color-picker-anatomy-size-l-handle-color-bg-height
+            "border-radius": styles-theme-variables.$sn-standard-radius-full,
+            "border-width": styles-theme-variables.$sn-color-picker-anatomy-size-l-handle-color-bg-stroke-weigth,
+            "width": styles-theme-variables.$sn-platform-controls-size-l,
+            "height": styles-theme-variables.$sn-platform-controls-size-l
           )
         ),
         "preview-color": (
-          "border-radius": styles-theme-variables.$color-picker-anatomy-size-l-preview-color-corner-radius,
-          "width": styles-theme-variables.$color-picker-anatomy-size-l-preview-color-width,
-          "height": styles-theme-variables.$color-picker-anatomy-size-l-preview-color-height
+          "border-radius": styles-theme-variables.$sn-standard-radius-s,
+          "width": styles-theme-variables.$sn-platform-icon-size-m,
+          "height": styles-theme-variables.$sn-platform-icon-size-m
         )
       )
     )

@@ -2,20 +2,20 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $tooltip: (
   "color": (
-    "bg": styles-theme-variables.$tooltip-color-bg
+    "bg": styles-theme-variables.$sn-color-invert-neutral-background
   ),
   "anatomy": (
     "pointer": (
-      "padding": styles-theme-variables.$tooltip-anatomy-pointer-padding
+      "padding": styles-theme-variables.$sn-tooltip-anatomy-container-corner-radius
     ),
     "container": (
-      "border-radius": styles-theme-variables.$tooltip-anatomy-container-corner-radius,
-      "padding": styles-theme-variables.$tooltip-anatomy-container-padding
+      "border-radius": styles-theme-variables.$sn-platform-popover-round-corner-tooltip,
+      "padding": styles-theme-variables.$sn-tooltip-anatomy-container-corner-radius
     )
   )
 );

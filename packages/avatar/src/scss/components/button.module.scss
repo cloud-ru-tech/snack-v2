@@ -2,109 +2,109 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $button: (
   "color": (
     "filled": (
       "primary": (
-        "background-color": styles-theme-variables.$button-color-filled-primary-bg-default,
-        "color": styles-theme-variables.$button-color-filled-primary-fg-default
+        "background-color": styles-theme-variables.$sn-color-primary-accent,
+        "color": styles-theme-variables.$sn-color-primary-on-accent
       ),
       "neutral": (
-        "background-color": styles-theme-variables.$button-color-filled-neutral-bg-default,
-        "color": styles-theme-variables.$button-color-filled-neutral-fg-default
+        "background-color": styles-theme-variables.$sn-color-neutral-accent,
+        "color": styles-theme-variables.$sn-color-neutral-on-accent
       ),
       "destructive": (
-        "background-color": styles-theme-variables.$button-color-filled-destructive-bg-default,
-        "color": styles-theme-variables.$button-color-filled-destructive-fg-default
+        "background-color": styles-theme-variables.$sn-color-red-accent,
+        "color": styles-theme-variables.$sn-color-red-on-accent
       ),
       "disabled": (
-        "color": styles-theme-variables.$button-color-filled-disabled-fg-disabled,
-        "background-color": styles-theme-variables.$button-color-filled-disabled-bg-disabled
+        "color": styles-theme-variables.$sn-color-neutral-text,
+        "background-color": styles-theme-variables.$sn-color-neutral-decor
       )
     ),
     "outline": (
       "primary": (
-        "background-color": styles-theme-variables.$button-color-outline-primary-bg-default,
-        "color": styles-theme-variables.$button-color-outline-primary-fg-default
+        "background-color": styles-theme-variables.$sn-color-primary-accent,
+        "color": styles-theme-variables.$sn-color-primary-accent
       ),
       "neutral": (
-        "background-color": styles-theme-variables.$button-color-outline-neutral-bg-default,
-        "color": styles-theme-variables.$button-color-outline-neutral-fg-default
+        "background-color": styles-theme-variables.$sn-color-available-complementary,
+        "color": styles-theme-variables.$sn-color-neutral-text
       ),
       "destructive": (
-        "background-color": styles-theme-variables.$button-color-outline-destructive-bg-default,
-        "color": styles-theme-variables.$button-color-outline-destructive-fg-default
+        "background-color": styles-theme-variables.$sn-color-red-accent,
+        "color": styles-theme-variables.$sn-color-red-accent
       ),
       "disabled": (
-        "color": styles-theme-variables.$button-color-outline-disabled-fg-disabled,
-        "background-color": styles-theme-variables.$button-color-outline-disabled-bg-default
+        "color": styles-theme-variables.$sn-color-neutral-text,
+        "background-color": styles-theme-variables.$sn-color-available-complementary
       )
     ),
     "tonal": (
       "primary": (
-        "background-color": styles-theme-variables.$button-color-tonal-primary-bg-default,
-        "color": styles-theme-variables.$button-color-tonal-primary-fg-default
+        "background-color": styles-theme-variables.$sn-color-primary-decor,
+        "color": styles-theme-variables.$sn-color-primary-text
       ),
       "neutral": (
-        "background-color": styles-theme-variables.$button-color-tonal-neutral-bg-default,
-        "color": styles-theme-variables.$button-color-tonal-neutral-fg-default
+        "background-color": styles-theme-variables.$sn-color-neutral-decor,
+        "color": styles-theme-variables.$sn-color-neutral-text
       ),
       "destructive": (
-        "background-color": styles-theme-variables.$button-color-tonal-destructive-bg-default,
-        "color": styles-theme-variables.$button-color-tonal-destructive-fg-default
+        "background-color": styles-theme-variables.$sn-color-red-decor,
+        "color": styles-theme-variables.$sn-color-red-text
       ),
       "disabled": (
-        "color": styles-theme-variables.$button-color-tonal-disabled-fg-disabled,
-        "background-color": styles-theme-variables.$button-color-tonal-disabled-bg-disabled
+        "color": styles-theme-variables.$sn-color-neutral-text,
+        "background-color": styles-theme-variables.$sn-color-neutral-decor
       )
     ),
     "elevated": (
       "primary": (
-        "background-color": styles-theme-variables.$button-color-elevated-primary-bg-default,
-        "color": styles-theme-variables.$button-color-elevated-primary-fg-default
+        "background-color": styles-theme-variables.$sn-color-neutral-background2-level,
+        "color": styles-theme-variables.$sn-color-primary-accent
       ),
       "neutral": (
-        "background-color": styles-theme-variables.$button-color-elevated-neutral-bg-default,
-        "color": styles-theme-variables.$button-color-elevated-neutral-fg-default
+        "background-color": styles-theme-variables.$sn-color-neutral-background2-level,
+        "color": styles-theme-variables.$sn-color-neutral-accent
       ),
       "destructive": (
-        "background-color": styles-theme-variables.$button-color-elevated-destructive-bg-default,
-        "color": styles-theme-variables.$button-color-elevated-destructive-fg-default
+        "background-color": styles-theme-variables.$sn-color-neutral-background2-level,
+        "color": styles-theme-variables.$sn-color-red-accent
       ),
       "disabled": (
-        "background-color": styles-theme-variables.$button-color-elevated-disabled-bg-disabled,
-        "color": styles-theme-variables.$button-color-elevated-disabled-fg-disabled
+        "background-color": styles-theme-variables.$sn-color-neutral-decor,
+        "color": styles-theme-variables.$sn-color-neutral-text
       )
     ),
     "simple": (
       "primary": (
-        "color": styles-theme-variables.$button-color-simple-primary-fg-default
+        "color": styles-theme-variables.$sn-color-primary-accent
       ),
       "neutral": (
-        "color": styles-theme-variables.$button-color-simple-neutral-fg-default
+        "color": styles-theme-variables.$sn-color-neutral-text
       ),
       "destructive": (
-        "color": styles-theme-variables.$button-color-simple-destructive-fg-default
+        "color": styles-theme-variables.$sn-color-red-accent
       ),
       "disabled": (
-        "color": styles-theme-variables.$button-color-simple-disabled-fg-disabled
+        "color": styles-theme-variables.$sn-color-neutral-text
       )
     ),
     "function": (
       "primary": (
-        "color": styles-theme-variables.$button-color-function-primary-fg-default
+        "color": styles-theme-variables.$sn-color-primary-text
       ),
       "neutral": (
-        "color": styles-theme-variables.$button-color-function-neutral-fg-default
+        "color": styles-theme-variables.$sn-color-neutral-text
       ),
       "destructive": (
-        "color": styles-theme-variables.$button-color-function-destructive-fg-default
+        "color": styles-theme-variables.$sn-color-red-text
       ),
       "disabled": (
-        "color": styles-theme-variables.$button-color-function-disabled-fg-disabled
+        "color": styles-theme-variables.$sn-color-neutral-text
       )
     )
   ),
@@ -112,94 +112,94 @@ $button: (
     "size": (
       "s": (
         "container": (
-          "min-height": styles-theme-variables.$button-anatomy-size-s-container-min-height,
-          "border-radius": styles-theme-variables.$button-anatomy-size-s-container-corner-radius,
-          "padding": styles-theme-variables.$button-anatomy-size-s-container-padding,
-          "min-width": styles-theme-variables.$button-anatomy-size-s-container-min-width,
-          "border-width": styles-theme-variables.$button-anatomy-size-s-container-stroke-weigth
+          "min-height": styles-theme-variables.$sn-platform-controls-size-s,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-s,
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-container-s,
+          "min-width": styles-theme-variables.$sn-platform-controls-min-width-s,
+          "border-width": styles-theme-variables.$sn-platform-controls-stroke-weigth-button
         ),
         "container-text-wrapper": (
-          "padding": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-padding,
-          "gap": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-gap
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s,
+          "gap": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s
         ),
         "container-icon-only": (
-          "min-width": styles-theme-variables.$button-anatomy-size-s-container-icon-only-min-width
+          "min-width": styles-theme-variables.$sn-platform-controls-size-s
         )
       ),
       "m": (
         "container": (
-          "min-height": styles-theme-variables.$button-anatomy-size-m-container-min-height,
-          "border-radius": styles-theme-variables.$button-anatomy-size-m-container-corner-radius,
-          "padding": styles-theme-variables.$button-anatomy-size-m-container-padding,
-          "min-width": styles-theme-variables.$button-anatomy-size-m-container-min-width,
-          "border-width": styles-theme-variables.$button-anatomy-size-m-container-stroke-weigth
+          "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-m,
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-container-m,
+          "min-width": styles-theme-variables.$sn-platform-controls-min-width-m,
+          "border-width": styles-theme-variables.$sn-platform-controls-stroke-weigth-button
         ),
         "container-text-wrapper": (
-          "padding": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-padding,
-          "gap": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-gap
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m,
+          "gap": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m
         ),
         "container-icon-only": (
-          "min-width": styles-theme-variables.$button-anatomy-size-m-container-icon-only-min-width
+          "min-width": styles-theme-variables.$sn-platform-controls-size-m
         )
       ),
       "l": (
         "container": (
-          "min-height": styles-theme-variables.$button-anatomy-size-l-container-min-height,
-          "border-radius": styles-theme-variables.$button-anatomy-size-l-container-corner-radius,
-          "padding": styles-theme-variables.$button-anatomy-size-l-container-padding,
-          "min-width": styles-theme-variables.$button-anatomy-size-l-container-min-width,
-          "border-width": styles-theme-variables.$button-anatomy-size-l-container-stroke-weigth
+          "min-height": styles-theme-variables.$sn-platform-controls-size-l,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-l,
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-container-l,
+          "min-width": styles-theme-variables.$sn-platform-controls-min-width-l,
+          "border-width": styles-theme-variables.$sn-platform-controls-stroke-weigth-button
         ),
         "container-text-wrapper": (
-          "padding": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-padding,
-          "gap": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-gap
+          "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-l,
+          "gap": styles-theme-variables.$sn-platform-controls-spacing-wrapper-l
         ),
         "container-icon-only": (
-          "min-width": styles-theme-variables.$button-anatomy-size-l-container-icon-only-min-width
+          "min-width": styles-theme-variables.$sn-platform-controls-size-l
         )
       )
     ),
     "button-group": (
       "container": (
-        "gap": styles-theme-variables.$button-anatomy-button-group-container-gap
+        "gap": styles-theme-variables.$sn-standard-size-8
       )
     )
   ),
   "effect": (
     "opacity": (
       "function": (
-        "color": styles-theme-variables.$button-effect-opacity-function-fg-default
+        "color": styles-theme-variables.$sn-effect-opacity-text-tertiary
       ),
       "outline": (
-        "border-default": styles-theme-variables.$button-effect-opacity-outline-border-default
+        "border-default": styles-theme-variables.$sn-button-effect-opacity-outline-border-default
       )
     )
   )
 );
 
 $button-anatomy-size-s-container-text-wrapper: (
-  "padding": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-padding,
-  "gap": styles-theme-variables.$button-anatomy-size-s-container-text-wrapper-gap
+  "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s,
+  "gap": styles-theme-variables.$sn-platform-controls-spacing-wrapper-s
 );
 
 $button-anatomy-size-s-container-icon-only: (
-  "min-width": styles-theme-variables.$button-anatomy-size-s-container-icon-only-min-width
+  "min-width": styles-theme-variables.$sn-platform-controls-size-s
 );
 
 $button-anatomy-size-m-container-text-wrapper: (
-  "padding": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-padding,
-  "gap": styles-theme-variables.$button-anatomy-size-m-container-text-wrapper-gap
+  "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m,
+  "gap": styles-theme-variables.$sn-platform-controls-spacing-wrapper-m
 );
 
 $button-anatomy-size-m-container-icon-only: (
-  "min-width": styles-theme-variables.$button-anatomy-size-m-container-icon-only-min-width
+  "min-width": styles-theme-variables.$sn-platform-controls-size-m
 );
 
 $button-anatomy-size-l-container-text-wrapper: (
-  "padding": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-padding,
-  "gap": styles-theme-variables.$button-anatomy-size-l-container-text-wrapper-gap
+  "padding": styles-theme-variables.$sn-platform-controls-spacing-wrapper-l,
+  "gap": styles-theme-variables.$sn-platform-controls-spacing-wrapper-l
 );
 
 $button-anatomy-size-l-container-icon-only: (
-  "min-width": styles-theme-variables.$button-anatomy-size-l-container-icon-only-min-width
+  "min-width": styles-theme-variables.$sn-platform-controls-size-l
 );

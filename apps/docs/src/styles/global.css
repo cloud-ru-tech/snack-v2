@@ -1,0 +1,31 @@
+/* Глобальные стили для документации Astro */
+/* Импорт стилей из Storybook для единообразного отображения компонентов */
+/* Стили применяются только к body с классами дизайн-системы */
+
+/* Импорт глобальных стилей Storybook */
+@import '../../../../.storybook/global.scss';
+
+/* Импорт базовых стилей */
+@import '../../../../.storybook/styles/css/base/base.css';
+
+/* Импорт стилей брендов */
+@import '../../../../.storybook/styles/css/brandmode/brandA.css';
+@import '../../../../.storybook/styles/css/brandmode/brandB.css';
+
+/* Импорт стилей платформ */
+@import '../../../../.storybook/styles/css/platformmode/desktop.css';
+@import '../../../../.storybook/styles/css/platformmode/mobile.css';
+
+/* Импорт основных стилей */
+@import '../../../../.storybook/styles/css/styles/styles.css';
+
+/* Импорт тем */
+@import '../../../../.storybook/styles/css/thememode/dark.css';
+@import '../../../../.storybook/styles/css/thememode/light.css';
+
+/* Ограничиваем область применения стилей, чтобы не конфликтовать со Starlight */
+/* Стили дизайн-системы применяются только когда body имеет соответствующие классы */
+body.sn-base-styles {
+  /* Стили уже применены через импорты выше */
+}
+

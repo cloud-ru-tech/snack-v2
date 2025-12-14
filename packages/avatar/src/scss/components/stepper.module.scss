@@ -2,39 +2,39 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $stepper: (
   "anatomy": (
     "step": (
       "step-status": (
-        "height": styles-theme-variables.$stepper-anatomy-step-step-status-height,
-        "width": styles-theme-variables.$stepper-anatomy-step-step-status-width,
-        "border-radius": styles-theme-variables.$stepper-anatomy-step-step-status-corner-radius,
-        "border-width": styles-theme-variables.$stepper-anatomy-step-step-status-stroke-weigth
+        "height": styles-theme-variables.$sn-platform-stepper-step-status-height,
+        "width": styles-theme-variables.$sn-platform-stepper-step-status-width,
+        "border-radius": styles-theme-variables.$sn-standard-radius-full,
+        "border-width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-semi-bold
       ),
       "progress-wrapper": (
         "progress-line": (
-          "height": styles-theme-variables.$stepper-anatomy-step-progress-wrapper-progress-line-height,
-          "border-radius": styles-theme-variables.$stepper-anatomy-step-progress-wrapper-progress-line-corner-radius
+          "height": styles-theme-variables.$sn-platform-stepper-step-progress-height,
+          "border-radius": styles-theme-variables.$sn-platform-stepper-step-progress-corner-radius
         ),
-        "padding-left": styles-theme-variables.$stepper-anatomy-step-progress-wrapper-padding-horizontal,
-        "padding-right": styles-theme-variables.$stepper-anatomy-step-progress-wrapper-padding-horizontal,
-        "height": styles-theme-variables.$stepper-anatomy-step-progress-wrapper-height
+        "padding-left": styles-theme-variables.$sn-platform-stepper-step-progress-padding-horizontal,
+        "padding-right": styles-theme-variables.$sn-platform-stepper-step-progress-padding-horizontal,
+        "height": styles-theme-variables.$sn-platform-stepper-step-progress-height
       ),
-      "height": styles-theme-variables.$stepper-anatomy-step-height,
-      "gap": styles-theme-variables.$stepper-anatomy-step-gap,
-      "padding-left": styles-theme-variables.$stepper-anatomy-step-padding-horizontal,
-      "padding-right": styles-theme-variables.$stepper-anatomy-step-padding-horizontal
+      "height": styles-theme-variables.$sn-platform-controls-size-m,
+      "gap": styles-theme-variables.$sn-standard-size-8,
+      "padding-left": styles-theme-variables.$sn-standard-size-4,
+      "padding-right": styles-theme-variables.$sn-standard-size-4
     ),
     "step-row": (
-      "gap": styles-theme-variables.$stepper-anatomy-step-row-gap,
+      "gap": styles-theme-variables.$sn-platform-stepper-step-row-gap,
       "content-wrapper": (
-        "gap": styles-theme-variables.$stepper-anatomy-step-row-content-wrapper-gap,
+        "gap": styles-theme-variables.$sn-platform-stepper-step-row-gap,
         "step-text": (
-          "padding-left": styles-theme-variables.$stepper-anatomy-step-row-content-wrapper-step-text-padding-horizontal,
-          "padding-right": styles-theme-variables.$stepper-anatomy-step-row-content-wrapper-step-text-padding-horizontal
+          "padding-left": styles-theme-variables.$sn-stepper-anatomy-step-padding-horizontal,
+          "padding-right": styles-theme-variables.$sn-stepper-anatomy-step-padding-horizontal
         )
       )
     )

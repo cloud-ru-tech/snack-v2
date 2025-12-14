@@ -2,23 +2,23 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $dropzone: (
   "color": (
     "container": (
       "border": (
-        "border-default": styles-theme-variables.$dropzone-color-container-border-border-default,
-        "border-activated": styles-theme-variables.$dropzone-color-container-border-border-activated
+        "border-default": styles-theme-variables.$sn-color-available-complementary,
+        "border-activated": styles-theme-variables.$sn-color-primary-accent
       )
     )
   ),
   "anatomy": (
     "container": (
-      "border-radius": styles-theme-variables.$dropzone-anatomy-container-corner-radius,
-      "min-height": styles-theme-variables.$dropzone-anatomy-container-min-height,
-      "border-width": styles-theme-variables.$dropzone-anatomy-container-stroke-weigth
+      "border-radius": styles-theme-variables.$sn-platform-dropzone-container-corner-radius,
+      "min-height": styles-theme-variables.$sn-standard-size-48,
+      "border-width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-semi-bold
     )
   ),
   "effect": (
@@ -31,6 +31,6 @@ $dropzone: (
 );
 
 $dropzone-effect-opacity-container-border: (
-  "border-default": styles-theme-variables.$dropzone-effect-opacity-container-border-border-default,
-  "border-hovered": styles-theme-variables.$dropzone-effect-opacity-container-border-border-hovered
+  "border-default": styles-theme-variables.$sn-dropzone-effect-opacity-container-border-border-default,
+  "border-hovered": styles-theme-variables.$sn-dropzone-effect-opacity-container-border-border-hovered
 );

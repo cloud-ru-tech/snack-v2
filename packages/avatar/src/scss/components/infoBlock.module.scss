@@ -2,42 +2,42 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $infoBlock: (
   "anatomy": (
     "size": (
       "s": (
         "container": (
-          "gap": styles-theme-variables.$info-block-anatomy-size-s-container-gap
+          "gap": styles-theme-variables.$sn-standard-size-12
         ),
         "container-content": (
-          "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-gap,
+          "gap": styles-theme-variables.$sn-standard-size-16,
           "text": (
-            "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-text-gap
+            "gap": styles-theme-variables.$sn-standard-size-4
           )
         )
       ),
       "m": (
         "container": (
-          "gap": styles-theme-variables.$info-block-anatomy-size-m-container-gap
+          "gap": styles-theme-variables.$sn-standard-size-16
         ),
         "container-content": (
-          "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-gap,
+          "gap": styles-theme-variables.$sn-standard-size-24,
           "text": (
-            "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-text-gap
+            "gap": styles-theme-variables.$sn-standard-size-8
           )
         )
       ),
       "l": (
         "container": (
-          "gap": styles-theme-variables.$info-block-anatomy-size-l-container-gap
+          "gap": styles-theme-variables.$sn-standard-size-24
         ),
         "container-content": (
-          "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-gap,
+          "gap": styles-theme-variables.$sn-standard-size-24,
           "text": (
-            "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-text-gap
+            "gap": styles-theme-variables.$sn-standard-size-8
           )
         )
       )
@@ -46,34 +46,34 @@ $infoBlock: (
 );
 
 $info-block-anatomy-size-s-container-content: (
-  "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-gap,
+  "gap": styles-theme-variables.$sn-standard-size-16,
   "text": (
-    "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-text-gap
+    "gap": styles-theme-variables.$sn-standard-size-4
   )
 );
 
 $info-block-anatomy-size-m-container-content: (
-  "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-gap,
+  "gap": styles-theme-variables.$sn-standard-size-24,
   "text": (
-    "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-text-gap
+    "gap": styles-theme-variables.$sn-standard-size-8
   )
 );
 
 $info-block-anatomy-size-l-container-content: (
-  "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-gap,
+  "gap": styles-theme-variables.$sn-standard-size-24,
   "text": (
-    "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-text-gap
+    "gap": styles-theme-variables.$sn-standard-size-8
   )
 );
 
 $info-block-anatomy-size-s-container-content-text: (
-  "gap": styles-theme-variables.$info-block-anatomy-size-s-container-content-text-gap
+  "gap": styles-theme-variables.$sn-standard-size-4
 );
 
 $info-block-anatomy-size-m-container-content-text: (
-  "gap": styles-theme-variables.$info-block-anatomy-size-m-container-content-text-gap
+  "gap": styles-theme-variables.$sn-standard-size-8
 );
 
 $info-block-anatomy-size-l-container-content-text: (
-  "gap": styles-theme-variables.$info-block-anatomy-size-l-container-content-text-gap
+  "gap": styles-theme-variables.$sn-standard-size-8
 );

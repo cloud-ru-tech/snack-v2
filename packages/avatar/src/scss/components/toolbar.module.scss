@@ -2,56 +2,56 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $toolbar: (
   "anatomy": (
     "container": (
-      "gap": styles-theme-variables.$toolbar-anatomy-container-gap
+      "gap": styles-theme-variables.$sn-platform-toolbar-container-gap
     ),
     "bulk-action-mobile": (
-      "padding-left": styles-theme-variables.$toolbar-anatomy-bulk-action-mobile-padding-horizontal,
-      "padding-right": styles-theme-variables.$toolbar-anatomy-bulk-action-mobile-padding-horizontal,
-      "padding-top": styles-theme-variables.$toolbar-anatomy-bulk-action-mobile-padding-top,
-      "padding-bottom": styles-theme-variables.$toolbar-anatomy-bulk-action-mobile-padding-bottom,
-      "max-height": styles-theme-variables.$toolbar-anatomy-bulk-action-mobile-max-height,
+      "padding-left": styles-theme-variables.$sn-standard-size-16,
+      "padding-right": styles-theme-variables.$sn-standard-size-16,
+      "padding-top": styles-theme-variables.$sn-standard-size-16,
+      "padding-bottom": styles-theme-variables.$sn-standard-size-8,
+      "max-height": styles-theme-variables.$sn-platform-controls-size-m,
       "caunter-selected": (
-        "gap": styles-theme-variables.$toolbar-anatomy-bulk-action-mobile-caunter-selected-gap
+        "gap": styles-theme-variables.$sn-standard-size-4
       )
     ),
     "container-tool": (
       "toggle": (
         "сheckbox-wrapper": (
-          "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-height,
-          "min-width": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-width,
-          "border-radius": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-corner-radius
+          "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+          "min-width": styles-theme-variables.$sn-platform-controls-size-m,
+          "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-m
         ),
-        "gap": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-gap
+        "gap": styles-theme-variables.$sn-standard-size-4
       ),
-      "width": styles-theme-variables.$toolbar-anatomy-container-tool-stroke-weigth,
-      "border-radius": styles-theme-variables.$toolbar-anatomy-container-tool-corner-radius,
+      "width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-regular,
+      "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-field-m,
       "bulk-action": (
-        "gap": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-gap,
-        "padding-right": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-padding-right,
-        "padding-left": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-padding-left
+        "gap": styles-theme-variables.$sn-standard-size-8,
+        "padding-right": styles-theme-variables.$sn-platform-toolbar-container-tool-bulk-actions-padding-right,
+        "padding-left": styles-theme-variables.$sn-platform-toolbar-container-tool-bulk-actions-padding-left
       ),
       "search": (
-        "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-search-min-height,
-        "width": styles-theme-variables.$toolbar-anatomy-container-tool-search-stroke-weigth
+        "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+        "width": styles-theme-variables.$sn-platform-controls-corner-radius-field-m
       ),
-      "padding-left": styles-theme-variables.$toolbar-anatomy-container-tool-padding-horizontal,
-      "padding-right": styles-theme-variables.$toolbar-anatomy-container-tool-padding-horizontal,
-      "gap": styles-theme-variables.$toolbar-anatomy-container-tool-gap,
-      "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-min-height
+      "padding-left": styles-theme-variables.$sn-platform-toolbar-container-tool-padding-horizontal,
+      "padding-right": styles-theme-variables.$sn-platform-toolbar-container-tool-padding-horizontal,
+      "gap": styles-theme-variables.$sn-platform-toolbar-container-tool-gap,
+      "min-height": styles-theme-variables.$sn-platform-toolbar-container-tool-min-height
     )
   ),
   "effect": (
     "container": (
-      "border-default": styles-theme-variables.$toolbar-effect-container-border-default
+      "border-default": styles-theme-variables.$sn-toolbar-effect-container-border-default
     ),
     "bulk-actions-mobile": (
-      "border-default": styles-theme-variables.$toolbar-effect-bulk-actions-mobile-border-default
+      "border-default": styles-theme-variables.$sn-toolbar-effect-bulk-actions-mobile-border-default
     )
   )
 );
@@ -59,51 +59,51 @@ $toolbar: (
 $toolbar-anatomy-container-tool: (
   "toggle": (
     "сheckbox-wrapper": (
-      "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-height,
-      "min-width": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-width,
-      "border-radius": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-corner-radius
+      "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+      "min-width": styles-theme-variables.$sn-platform-controls-size-m,
+      "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-m
     ),
-    "gap": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-gap
+    "gap": styles-theme-variables.$sn-standard-size-4
   ),
-  "border-width": styles-theme-variables.$toolbar-anatomy-container-tool-stroke-weigth,
-  "border-radius": styles-theme-variables.$toolbar-anatomy-container-tool-corner-radius,
+  "border-width": styles-theme-variables.$sn-standard-stroke-weigth-stroke-regular,
+  "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-field-m,
   "bulk-action": (
-    "gap": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-gap,
-    "padding-right": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-padding-right,
-    "padding-left": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-padding-left
+    "gap": styles-theme-variables.$sn-standard-size-8,
+    "padding-right": styles-theme-variables.$sn-platform-toolbar-container-tool-bulk-actions-padding-right,
+    "padding-left": styles-theme-variables.$sn-platform-toolbar-container-tool-bulk-actions-padding-left
   ),
   "search": (
-    "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-search-min-height,
-    "border-width": styles-theme-variables.$toolbar-anatomy-container-tool-search-stroke-weigth
+    "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+    "border-width": styles-theme-variables.$sn-platform-controls-corner-radius-field-m
   ),
-  "padding-left": styles-theme-variables.$toolbar-anatomy-container-tool-padding-horizontal,
-  "padding-right": styles-theme-variables.$toolbar-anatomy-container-tool-padding-horizontal,
-  "gap": styles-theme-variables.$toolbar-anatomy-container-tool-gap,
-  "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-min-height
+  "padding-left": styles-theme-variables.$sn-platform-toolbar-container-tool-padding-horizontal,
+  "padding-right": styles-theme-variables.$sn-platform-toolbar-container-tool-padding-horizontal,
+  "gap": styles-theme-variables.$sn-platform-toolbar-container-tool-gap,
+  "min-height": styles-theme-variables.$sn-platform-toolbar-container-tool-min-height
 );
 
 $toolbar-anatomy-container-tool-toggle: (
   "сheckbox-wrapper": (
-    "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-height,
-    "min-width": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-width,
-    "border-radius": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-corner-radius
+    "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+    "min-width": styles-theme-variables.$sn-platform-controls-size-m,
+    "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-m
   ),
-  "gap": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-gap
+  "gap": styles-theme-variables.$sn-standard-size-4
 );
 
 $toolbar-anatomy-container-tool-toggle-сheckbox-wrapper: (
-  "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-height,
-  "min-width": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-min-width,
-  "border-radius": styles-theme-variables.$toolbar-anatomy-container-tool-toggle-сheckbox-wrapper-corner-radius
+  "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+  "min-width": styles-theme-variables.$sn-platform-controls-size-m,
+  "border-radius": styles-theme-variables.$sn-platform-controls-corner-radius-button-m
 );
 
 $toolbar-anatomy-container-tool-bulk-action: (
-  "gap": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-gap,
-  "padding-right": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-padding-right,
-  "padding-left": styles-theme-variables.$toolbar-anatomy-container-tool-bulk-action-padding-left
+  "gap": styles-theme-variables.$sn-standard-size-8,
+  "padding-right": styles-theme-variables.$sn-platform-toolbar-container-tool-bulk-actions-padding-right,
+  "padding-left": styles-theme-variables.$sn-platform-toolbar-container-tool-bulk-actions-padding-left
 );
 
 $toolbar-anatomy-container-tool-search: (
-  "min-height": styles-theme-variables.$toolbar-anatomy-container-tool-search-min-height,
-  "width": styles-theme-variables.$toolbar-anatomy-container-tool-search-stroke-weigth
+  "min-height": styles-theme-variables.$sn-platform-controls-size-m,
+  "width": styles-theme-variables.$sn-platform-controls-corner-radius-field-m
 );

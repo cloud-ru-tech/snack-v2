@@ -2,69 +2,69 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $accordion: (
   "anatomy": (
     "accordion-primary": (
       "container": (
-        "padding-top": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-vertical,
-        "padding-bottom": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-vertical,
-        "padding-left": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-horizontal,
-        "padding-right": styles-theme-variables.$accordion-anatomy-accordion-primary-container-padding-horizontal,
-        "border-radius": styles-theme-variables.$accordion-anatomy-accordion-primary-container-corner-radius,
-        "border-width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-stroke-weigth,
-        "gap": styles-theme-variables.$accordion-anatomy-accordion-primary-container-gap
+        "padding-top": styles-theme-variables.$sn-platform-accordion-primary-padding-vertical,
+        "padding-bottom": styles-theme-variables.$sn-platform-accordion-primary-padding-vertical,
+        "padding-left": styles-theme-variables.$sn-platform-accordion-primary-padding-horizontal,
+        "padding-right": styles-theme-variables.$sn-platform-accordion-primary-padding-horizontal,
+        "border-radius": styles-theme-variables.$sn-platform-accordion-primary-corner-radius,
+        "border-width": styles-theme-variables.$sn-platform-accordion-primary-stroke-weigth,
+        "gap": styles-theme-variables.$sn-platform-accordion-primary-gap
       ),
       "container-title-content": (
         "chevron-wrapper": (
-          "width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square,
-          "height": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square
+          "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-l,
+          "height": styles-theme-variables.$sn-platform-typography-role-title-line-height-l
         ),
-        "gap": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-gap
+        "gap": styles-theme-variables.$sn-platform-accordion-primary-header-gap
       )
     ),
     "accordion-secondary": (
       "container": (
-        "padding-top": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-vertical,
-        "padding-bottom": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-vertical,
-        "padding-left": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-horizontal,
-        "padding-right": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-padding-horizontal,
-        "gap": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-gap,
-        "border-radius": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-corner-radius,
-        "border-width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-stroke-weigth
+        "padding-top": styles-theme-variables.$sn-platform-accordion-secondary-padding-vertical,
+        "padding-bottom": styles-theme-variables.$sn-platform-accordion-secondary-padding-vertical,
+        "padding-left": styles-theme-variables.$sn-platform-accordion-secondary-padding-horizontal,
+        "padding-right": styles-theme-variables.$sn-platform-accordion-secondary-padding-horizontal,
+        "gap": styles-theme-variables.$sn-platform-accordion-secondary-gap,
+        "border-radius": styles-theme-variables.$sn-platform-accordion-secondary-corner-radius,
+        "border-width": styles-theme-variables.$sn-platform-accordion-secondary-stroke-weigth
       ),
       "container-title-content": (
         "chevron-wrapper": (
-          "width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper-size
+          "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-m
         ),
-        "gap": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-gap
+        "gap": styles-theme-variables.$sn-platform-accordion-secondary-header-gap
       )
     ),
     "accordion-tertiary": (
       "container": (
-        "padding-top": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-vertical,
-        "padding-bottom": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-vertical,
-        "padding-left": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-horizontal,
-        "padding-right": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-padding-horizontal,
-        "gap": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-gap,
-        "border-radius": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-corner-radius
+        "padding-top": styles-theme-variables.$sn-platform-accordion-tertiary-padding-vertical,
+        "padding-bottom": styles-theme-variables.$sn-platform-accordion-tertiary-padding-vertical,
+        "padding-left": styles-theme-variables.$sn-platform-accordion-tertiary-padding-horizontal,
+        "padding-right": styles-theme-variables.$sn-platform-accordion-tertiary-padding-horizontal,
+        "gap": styles-theme-variables.$sn-platform-accordion-tertiary-gap,
+        "border-radius": styles-theme-variables.$sn-platform-accordion-tertiary-corner-radius
       ),
       "container-title-content": (
         "chevron-wrapper": (
-          "width": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square,
-          "height": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square
+          "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-m,
+          "height": styles-theme-variables.$sn-platform-typography-role-title-line-height-m
         ),
-        "gap": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-gap
+        "gap": styles-theme-variables.$sn-platform-accordion-tertiary-header-gap
       )
     )
   ),
   "effect": (
     "opacity": (
       "container": (
-        "border-default": styles-theme-variables.$accordion-effect-opacity-container-border-default,
-        "border-hovered": styles-theme-variables.$accordion-effect-opacity-container-border-hovered
+        "border-default": styles-theme-variables.$sn-accordion-effect-opacity-container-border-default,
+        "border-hovered": styles-theme-variables.$sn-accordion-effect-opacity-container-border-hovered
       )
     )
   )
@@ -72,37 +72,37 @@ $accordion: (
 
 $accordion-anatomy-accordion-primary-container-title-content: (
   "chevron-wrapper": (
-    "width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square,
-    "height": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square
+    "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-l,
+    "height": styles-theme-variables.$sn-platform-typography-role-title-line-height-l
   ),
-  "gap": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-gap
+  "gap": styles-theme-variables.$sn-platform-accordion-primary-header-gap
 );
 
 $accordion-anatomy-accordion-secondary-container-title-content: (
   "chevron-wrapper": (
-    "width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper-size
+    "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-m
   ),
-  "gap": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-gap
+  "gap": styles-theme-variables.$sn-platform-accordion-secondary-header-gap
 );
 
 $accordion-anatomy-accordion-tertiary-container-title-content: (
   "chevron-wrapper": (
-    "width": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square,
-    "height": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square
+    "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-m,
+    "height": styles-theme-variables.$sn-platform-typography-role-title-line-height-m
   ),
-  "gap": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-gap
+  "gap": styles-theme-variables.$sn-platform-accordion-tertiary-header-gap
 );
 
 $accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper: (
-  "width": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square,
-  "height": styles-theme-variables.$accordion-anatomy-accordion-primary-container-title-content-chevron-wrapper-square
+  "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-l,
+  "height": styles-theme-variables.$sn-platform-typography-role-title-line-height-l
 );
 
 $accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper: (
-  "width": styles-theme-variables.$accordion-anatomy-accordion-secondary-container-title-content-chevron-wrapper-size
+  "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-m
 );
 
 $accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper: (
-  "width": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square,
-  "height": styles-theme-variables.$accordion-anatomy-accordion-tertiary-container-title-content-chevron-wrapper-square
+  "width": styles-theme-variables.$sn-platform-typography-role-title-line-height-m,
+  "height": styles-theme-variables.$sn-platform-typography-role-title-line-height-m
 );

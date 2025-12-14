@@ -2,32 +2,32 @@
  * Do not edit directly, this file was auto-generated.
  */
   
-@forward '../styles/styles';
-@use '../styles/styles' as styles-theme-variables;
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as styles-theme-variables;
 
 $slider: (
   "anatomy": (
     "handle": (
       "color": (
-        "background-color": styles-theme-variables.$slider-anatomy-handle-color-bg-disabled
+        "background-color": styles-theme-variables.$sn-color-neutral-decor
       ),
       "size": (
-        "container": styles-theme-variables.$slider-anatomy-handle-size-container,
-        "border-radius": styles-theme-variables.$slider-anatomy-handle-size-corner-radius
+        "container": styles-theme-variables.$sn-standard-size-16,
+        "border-radius": styles-theme-variables.$sn-standard-radius-full
       )
     ),
     "track-line": (
       "color": (
-        "bg-active": styles-theme-variables.$slider-anatomy-track-line-color-bg-active,
-        "background-color": styles-theme-variables.$slider-anatomy-track-line-color-bg-default
+        "bg-active": styles-theme-variables.$sn-color-primary-accent,
+        "background-color": styles-theme-variables.$sn-color-neutral-decor
       ),
       "size": (
-        "max-height": styles-theme-variables.$slider-anatomy-track-line-size-max-height,
-        "border-radius": styles-theme-variables.$slider-anatomy-track-line-size-corner-radius
+        "max-height": styles-theme-variables.$sn-standard-size-2,
+        "border-radius": styles-theme-variables.$sn-standard-radius-2xs
       ),
       "effect": (
         "opacity": (
-          "background-color": styles-theme-variables.$slider-anatomy-track-line-effect-opacity-bg-default
+          "background-color": styles-theme-variables.$sn-slider-anatomy-track-line-effect-opacity-bg-default
         )
       )
     ),
@@ -41,32 +41,32 @@ $slider: (
       )
     ),
     "container": (
-      "gap": styles-theme-variables.$slider-anatomy-container-gap
+      "gap": styles-theme-variables.$sn-standard-size-8
     )
   )
 );
 
 $slider-anatomy-scale-step-scale-step-color: (
   "step-line": (
-    "background-color": styles-theme-variables.$slider-anatomy-scale-step-scale-step-color-step-line-bg-default
+    "background-color": styles-theme-variables.$sn-color-available-complementary
   ),
   "step-text": (
-    "default": styles-theme-variables.$slider-anatomy-scale-step-scale-step-color-step-text-default
+    "default": styles-theme-variables.$sn-color-neutral-text
   )
 );
 
 $slider-anatomy-scale-step-scale-step-size: (
   "step-line": (
-    "max-height": styles-theme-variables.$slider-anatomy-scale-step-scale-step-size-step-line-max-height,
-    "border-radius": styles-theme-variables.$slider-anatomy-scale-step-scale-step-size-step-line-corner-radius
+    "max-height": styles-theme-variables.$sn-standard-size-4,
+    "border-radius": styles-theme-variables.$sn-standard-radius-2xs
   ),
   "container": (
-    "width": styles-theme-variables.$slider-anatomy-scale-step-scale-step-size-container-width
+    "width": styles-theme-variables.$sn-standard-size-2
   )
 );
 
 $slider-anatomy-scale-step-scale-step-effect-opacity: (
   "step-line": (
-    "default": styles-theme-variables.$slider-anatomy-scale-step-scale-step-effect-opacity-step-line-default
+    "default": styles-theme-variables.$sn-slider-anatomy-scale-step-scale-step-effect-opacity-step-line-default
   )
 );

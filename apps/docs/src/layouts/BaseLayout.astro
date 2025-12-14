@@ -1,0 +1,16 @@
+---
+// Базовый layout для применения стилей дизайн-системы
+// Этот компонент можно использовать в кастомных страницах
+import '../styles/global.css';
+---
+
+<script is:inline>
+  // Применяем классы дизайн-системы к body
+  (function() {
+    if (typeof document !== 'undefined') {
+      const body = document.body;
+      body.classList.add('sn-base-styles', 'sn-figmaStyles', 'sn-desktop', 'sn-light', 'sn-brandA');
+    }
+  })();
+</script>
+
