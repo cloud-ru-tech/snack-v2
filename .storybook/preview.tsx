@@ -121,7 +121,7 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
           `sn-${theme}`,
           `sn-${brand}`
         )}
-        style={{ backgroundColor: 'var(--sn-color-neutral-background1-level)', padding: '16px' }}
+        style={{ backgroundColor: 'var(--sn-color-neutral-background)', padding: '16px' }}
       >
         {children}
       </div>

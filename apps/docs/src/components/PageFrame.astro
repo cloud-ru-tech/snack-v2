@@ -5,13 +5,15 @@ import Default from '@astrojs/starlight/components/PageFrame.astro';
 import '../styles/global.css';
 ---
 
-<Default>
-  <slot />
-  <slot name="head" slot="head" />
-  <slot name="sidebar" slot="sidebar" />
-  <slot name="content" slot="content" />
-  <slot name="footer" slot="footer" />
-</Default>
+<div class="sn-base-styles sn-figmaStyles sn-desktop sn-light sn-brandA">
+  <Default>
+    <slot />
+    <slot name="head" slot="head" />
+    <slot name="sidebar" slot="sidebar" />
+    <slot name="content" slot="content" />
+    <slot name="footer" slot="footer" />
+  </Default>
+</div>
 
 <script is:inline>
   // Применяем классы дизайн-системы к body при загрузке страницы

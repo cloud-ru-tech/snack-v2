@@ -27,6 +27,9 @@ importers:
       '@sbercloud/figma-variables':
         specifier: 0.0.1-beta.2
         version: 0.0.1-beta.2
+      '@snack-uikit/counter':
+        specifier: 0.8.10
+        version: 0.8.10(react@19.2.1)
       '@storybook/addon-a11y':
         specifier: ^10.1.4
         version: 10.1.4(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
@@ -1581,6 +1584,9 @@ packages:
 
   '@sinclair/typebox@0.34.41':
     resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
+
+  '@snack-uikit/counter@0.8.10':
+    resolution: {integrity: sha512-6txaEh4l26G92AIzFOM6mDAqiANgPzbH3VDiyakZjnmfwQFh9qNIrQJAHgF9y3r8XTT3KlAwV+7/rtk61pDvzw==}
 
   '@snack-uikit/icons@0.27.4':
     resolution: {integrity: sha512-C4aj+DK1ee2DkrP9/EakYJgJ/FcbQSrqNQF8ewtEaw+DIC1lXiX6aRqdSZztIpsKJRfNKbIsLmQZpEFsLVyB4g==}
@@ -7641,6 +7647,13 @@ snapshots:
       '@sigstore/protobuf-specs': 0.5.0
 
   '@sinclair/typebox@0.34.41': {}
+
+  '@snack-uikit/counter@0.8.10(react@19.2.1)':
+    dependencies:
+      '@snack-uikit/utils': 4.0.0(react@19.2.1)
+      classnames: 2.5.1
+    transitivePeerDependencies:
+      - react
 
   '@snack-uikit/icons@0.27.4': {}
 

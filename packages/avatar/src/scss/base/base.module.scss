@@ -1,0 +1,658 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+
+@function could-not-find-token-message($keys) {
+  @return "Couldn't find token by given keys: #{$keys}";
+}
+
+@function getValidKeys($map: (), $keys...) {
+  $no-keys-passed: list.length($keys) == 0;
+
+  @if ($no-keys-passed != true and map.has-key($map, $keys...) != true) {
+    @return false;
+  }
+
+  @return if(sass($no-keys-passed): $map; else: map.get($map, $keys...));
+}
+
+@function simple-var($map: (), $keys...) {
+  $value: getValidKeys($map, $keys...);
+
+  @if ($value == false) {
+    @error could-not-find-token-message($keys);
+  }
+
+  @return $value;
+}
+
+@mixin composite-var($map: (), $keys...) {
+  $inner-map: getValidKeys($map, $keys...);
+
+  @if ($inner-map == false) {
+    @error could-not-find-token-message($keys);
+  }
+
+  @each $key, $value in $inner-map {
+    // Пропускаем свойства, которые являются вложенными картами (не листовые значения)
+    @if meta.type-of($value) != map {
+      #{$key}: simple-var($inner-map, $key);
+    }
+  }
+}
+
+@mixin outline-var($map: (), $keys...) {
+  $inner-map: getValidKeys($map, $keys...);
+
+  @if ($inner-map == false) {
+    @error could-not-find-token-message($keys);
+  }
+
+  outline-width: simple-var($inner-map, 'border-width');
+  outline-style: simple-var($inner-map, 'border-style');
+  outline-color: simple-var($inner-map, 'border-color');
+}
+
+@mixin outline-inside-var($map: (), $keys...) {
+  $inner-map: getValidKeys($map, $keys...);
+
+  @if ($inner-map == false) {
+    @error could-not-find-token-message($keys);
+  }
+
+  @include outline-var($inner-map, $keys...);
+
+  outline-offset: calc(simple-var($inner-map, 'border-width') * -1);
+}
+
+@function color-on-background-with-opacity($color, $background-color, $opacity) {
+  @return color-mix(in srgb, $color, $background-color calc((1 - calc($opacity / 100)) * 100%));
+}
+
+$base-styles: (
+  'sn': (
+    'base': (
+      'color': (
+        'brand-a': (
+          '5': var(--sn-base-color-brand-a-5, #262334),
+          '10': var(--sn-base-color-brand-a-10, #2c273f),
+          '15': var(--sn-base-color-brand-a-15, #302a4b),
+          '25': var(--sn-base-color-brand-a-25, #5b43a3),
+          '45': var(--sn-base-color-brand-a-45, #6642bd),
+          '55': var(--sn-base-color-brand-a-55, #794ed3),
+          '60': var(--sn-base-color-brand-a-60, #b494f9),
+          '65': var(--sn-base-color-brand-a-65, #c4aaf9),
+          '80': var(--sn-base-color-brand-a-80, #e2cefd),
+          '90': var(--sn-base-color-brand-a-90, #f3e8ff),
+          '95': var(--sn-base-color-brand-a-95, #f7f2fc),
+          '99': var(--sn-base-color-brand-a-99, #fdfbff),
+        ),
+        'brand-b': (
+          '5': var(--sn-base-color-brand-b-5, #2e1e26),
+          '10': var(--sn-base-color-brand-b-10, #38232c),
+          '15': var(--sn-base-color-brand-b-15, #422632),
+          '25': var(--sn-base-color-brand-b-25, #744256),
+          '45': var(--sn-base-color-brand-b-45, #af587d),
+          '55': var(--sn-base-color-brand-b-55, #d1668e),
+          '60': var(--sn-base-color-brand-b-60, #df82a2),
+          '65': var(--sn-base-color-brand-b-65, #e69ab3),
+          '80': var(--sn-base-color-brand-b-80, #fcdce5),
+          '90': var(--sn-base-color-brand-b-90, #fdebf0),
+          '95': var(--sn-base-color-brand-b-95, #fdf5f7),
+          '99': var(--sn-base-color-brand-b-99, #fdfcfc),
+        ),
+        'gray': (
+          '5': var(--sn-base-color-gray-5, #262631),
+          '10': var(--sn-base-color-gray-10, #2c2c3a),
+          '15': var(--sn-base-color-gray-15, #333342),
+          '25': var(--sn-base-color-gray-25, #4f515e),
+          '45': var(--sn-base-color-gray-45, #5e606e),
+          '55': var(--sn-base-color-gray-55, #666975),
+          '60': var(--sn-base-color-gray-60, #8b8e9b),
+          '65': var(--sn-base-color-gray-65, #c6c8d2),
+          '80': var(--sn-base-color-gray-80, #dee1e8),
+          '90': var(--sn-base-color-gray-90, #eeeff3),
+          '95': var(--sn-base-color-gray-95, #fdfdfd),
+          '99': var(--sn-base-color-gray-99, #ffffff),
+        ),
+        'red': (
+          '5': var(--sn-base-color-red-5, #292020),
+          '10': var(--sn-base-color-red-10, #312323),
+          '15': var(--sn-base-color-red-15, #3c2626),
+          '25': var(--sn-base-color-red-25, #732f31),
+          '45': var(--sn-base-color-red-45, #a93533),
+          '55': var(--sn-base-color-red-55, #cb3f3e),
+          '60': var(--sn-base-color-red-60, #eb695e),
+          '65': var(--sn-base-color-red-65, #f98274),
+          '80': var(--sn-base-color-red-80, #fedad4),
+          '90': var(--sn-base-color-red-90, #fee8e5),
+          '95': var(--sn-base-color-red-95, #fef5f1),
+          '99': var(--sn-base-color-red-99, #fffaf7),
+        ),
+        'orange': (
+          '5': var(--sn-base-color-orange-5, #292120),
+          '10': var(--sn-base-color-orange-10, #362621),
+          '15': var(--sn-base-color-orange-15, #412a20),
+          '25': var(--sn-base-color-orange-25, #854e29),
+          '45': var(--sn-base-color-orange-45, #c46917),
+          '55': var(--sn-base-color-orange-55, #fb8e42),
+          '60': var(--sn-base-color-orange-60, #e78940),
+          '65': var(--sn-base-color-orange-65, #ef9f5e),
+          '80': var(--sn-base-color-orange-80, #ffdeb4),
+          '90': var(--sn-base-color-orange-90, #ffedcf),
+          '95': var(--sn-base-color-orange-95, #fff6e5),
+          '99': var(--sn-base-color-orange-99, #fffcf4),
+        ),
+        'yellow': (
+          '5': var(--sn-base-color-yellow-5, #29221c),
+          '10': var(--sn-base-color-yellow-10, #33271a),
+          '15': var(--sn-base-color-yellow-15, #42301b),
+          '25': var(--sn-base-color-yellow-25, #71531d),
+          '45': var(--sn-base-color-yellow-45, #af8103),
+          '55': var(--sn-base-color-yellow-55, #e2b134),
+          '60': var(--sn-base-color-yellow-60, #d4a72d),
+          '65': var(--sn-base-color-yellow-65, #dfb54e),
+          '80': var(--sn-base-color-yellow-80, #fbe7a6),
+          '90': var(--sn-base-color-yellow-90, #faf4d7),
+          '95': var(--sn-base-color-yellow-95, #fffbe6),
+          '99': var(--sn-base-color-yellow-99, #fffef6),
+        ),
+        'green': (
+          '5': var(--sn-base-color-green-5, #1e211e),
+          '10': var(--sn-base-color-green-10, #212720),
+          '15': var(--sn-base-color-green-15, #273124),
+          '25': var(--sn-base-color-green-25, #3f5836),
+          '45': var(--sn-base-color-green-45, #438b4b),
+          '55': var(--sn-base-color-green-55, #57b762),
+          '60': var(--sn-base-color-green-60, #63b66a),
+          '65': var(--sn-base-color-green-65, #89ca87),
+          '80': var(--sn-base-color-green-80, #cbedc8),
+          '90': var(--sn-base-color-green-90, #e4f5df),
+          '95': var(--sn-base-color-green-95, #f1faed),
+          '99': var(--sn-base-color-green-99, #fcfefa),
+        ),
+        'blue': (
+          '5': var(--sn-base-color-blue-5, #1e222b),
+          '10': var(--sn-base-color-blue-10, #1d2736),
+          '15': var(--sn-base-color-blue-15, #202f40),
+          '25': var(--sn-base-color-blue-25, #305177),
+          '45': var(--sn-base-color-blue-45, #3b6fad),
+          '55': var(--sn-base-color-blue-55, #5388d1),
+          '60': var(--sn-base-color-blue-60, #6d9ee3),
+          '65': var(--sn-base-color-blue-65, #8ab4ef),
+          '80': var(--sn-base-color-blue-80, #cce0ff),
+          '90': var(--sn-base-color-blue-90, #e6f4fd),
+          '95': var(--sn-base-color-blue-95, #f2f9ff),
+          '99': var(--sn-base-color-blue-99, #fdfeff),
+        ),
+        'violet': (
+          '5': var(--sn-base-color-violet-5, #231e2c),
+          '10': var(--sn-base-color-violet-10, #2b2535),
+          '15': var(--sn-base-color-violet-15, #332a40),
+          '25': var(--sn-base-color-violet-25, #58476d),
+          '45': var(--sn-base-color-violet-45, #875699),
+          '55': var(--sn-base-color-violet-55, #aa6cc1),
+          '60': var(--sn-base-color-violet-60, #b889d9),
+          '65': var(--sn-base-color-violet-65, #c6a4e6),
+          '80': var(--sn-base-color-violet-80, #e5dbff),
+          '90': var(--sn-base-color-violet-90, #f3edfc),
+          '95': var(--sn-base-color-violet-95, #f9f5ff),
+          '99': var(--sn-base-color-violet-99, #fdfdfd),
+        ),
+        'pink': (
+          '5': var(--sn-base-color-pink-5, #2e1e26),
+          '10': var(--sn-base-color-pink-10, #38232c),
+          '15': var(--sn-base-color-pink-15, #422632),
+          '25': var(--sn-base-color-pink-25, #774559),
+          '45': var(--sn-base-color-pink-45, #a85278),
+          '55': var(--sn-base-color-pink-55, #d1668e),
+          '60': var(--sn-base-color-pink-60, #df82a2),
+          '65': var(--sn-base-color-pink-65, #e999b3),
+          '80': var(--sn-base-color-pink-80, #ffdae5),
+          '90': var(--sn-base-color-pink-90, #fceaf0),
+          '95': var(--sn-base-color-pink-95, #fff5f7),
+          '99': var(--sn-base-color-pink-99, #fdfcfc),
+        ),
+      ),
+      'font-family': (
+        'sans': var(--sn-base-font-family-sans, Inter),
+        'mono': var(--sn-base-font-family-mono, Roboto Mono),
+        'font-weight': (
+          'regular': var(--sn-base-font-family-font-weight-regular, Regular),
+          'semi-bold': var(--sn-base-font-family-font-weight-semi-bold, Semibold),
+          'bold': var(--sn-base-font-family-font-weight-bold, Bold),
+          'light-sans': var(--sn-base-font-family-font-weight-light-sans, Light),
+          'light': var(--sn-base-font-family-font-weight-light, Light),
+        ),
+      ),
+      'typeface': (
+        'regular': (
+          'role-display': var(--sn-base-typeface-regular-role-display, Inter),
+          'role-headline': var(--sn-base-typeface-regular-role-headline, Inter),
+          'role-title': var(--sn-base-typeface-regular-role-title, Inter),
+          'role-label': var(--sn-base-typeface-regular-role-label, Inter),
+          'role-body': var(--sn-base-typeface-regular-role-body, Inter),
+        ),
+        'thin': (
+          'role-display': var(--sn-base-typeface-thin-role-display, Inter),
+          'role-headline': var(--sn-base-typeface-thin-role-headline, Inter),
+          'role-title': var(--sn-base-typeface-thin-role-title, Inter),
+          'role-label': var(--sn-base-typeface-thin-role-label, Inter),
+          'role-body': var(--sn-base-typeface-thin-role-body, Inter),
+        ),
+        'mono': (
+          'role-display': var(--sn-base-typeface-mono-role-display, Roboto Mono),
+          'role-headline': var(--sn-base-typeface-mono-role-headline, Roboto Mono),
+          'role-title': var(--sn-base-typeface-mono-role-title, Roboto Mono),
+          'role-label': var(--sn-base-typeface-mono-role-label, Roboto Mono),
+          'role-body': var(--sn-base-typeface-mono-role-body, Roboto Mono),
+        ),
+      ),
+      'font': (
+        'font-size': (
+          '11': var(--sn-base-font-font-size-11, 11px),
+          '12': var(--sn-base-font-font-size-12, 12px),
+          '14': var(--sn-base-font-font-size-14, 14px),
+          '16': var(--sn-base-font-font-size-16, 16px),
+          '18': var(--sn-base-font-font-size-18, 18px),
+          '20': var(--sn-base-font-font-size-20, 20px),
+          '24': var(--sn-base-font-font-size-24, 24px),
+          '28': var(--sn-base-font-font-size-28, 28px),
+          '32': var(--sn-base-font-font-size-32, 32px),
+          '36': var(--sn-base-font-font-size-36, 36px),
+          '40': var(--sn-base-font-font-size-40, 40px),
+          '48': var(--sn-base-font-font-size-48, 48px),
+          '56': var(--sn-base-font-font-size-56, 56px),
+        ),
+        'line-height': (
+          'by11': var(--sn-base-font-line-height-by11, 14px),
+          'by12': var(--sn-base-font-line-height-by12, 16px),
+          'by14': var(--sn-base-font-line-height-by14, 20px),
+          'by16': var(--sn-base-font-line-height-by16, 24px),
+          'by20': var(--sn-base-font-line-height-by20, 28px),
+          'by24': var(--sn-base-font-line-height-by24, 32px),
+          'by28': var(--sn-base-font-line-height-by28, 36px),
+          'by32': var(--sn-base-font-line-height-by32, 40px),
+          'by40': var(--sn-base-font-line-height-by40, 48px),
+          'by48': var(--sn-base-font-line-height-by48, 60px),
+          'by56': var(--sn-base-font-line-height-by56, 72px),
+          'by18': var(--sn-base-font-line-height-by18, 24px),
+        ),
+        'font-weight-value': (
+          '100': var(--sn-base-font-font-weight-value-100, 100),
+          '150': var(--sn-base-font-font-weight-value-150, 150),
+          '200': var(--sn-base-font-font-weight-value-200, 200),
+          '250': var(--sn-base-font-font-weight-value-250, 250),
+          '300': var(--sn-base-font-font-weight-value-300, 300),
+          '350': var(--sn-base-font-font-weight-value-350, 350),
+          '400': var(--sn-base-font-font-weight-value-400, 400),
+          '450': var(--sn-base-font-font-weight-value-450, 450),
+          '500': var(--sn-base-font-font-weight-value-500, 500),
+          '550': var(--sn-base-font-font-weight-value-550, 550),
+          '600': var(--sn-base-font-font-weight-value-600, 600),
+          '650': var(--sn-base-font-font-weight-value-650, 650),
+          '700': var(--sn-base-font-font-weight-value-700, 700),
+          '750': var(--sn-base-font-font-weight-value-750, 750),
+          '800': var(--sn-base-font-font-weight-value-800, 800),
+          '850': var(--sn-base-font-font-weight-value-850, 850),
+          '900': var(--sn-base-font-font-weight-value-900, 900),
+        ),
+        'letter-spacing': (
+          'xs': var(--sn-base-font-letter-spacing-xs, -0.5),
+          's': var(--sn-base-font-letter-spacing-s, 0),
+          'm': var(--sn-base-font-letter-spacing-m, 0.1),
+          'l': var(--sn-base-font-letter-spacing-l, 0.15),
+        ),
+        'paragraph-spacing': (
+          'by-font-size11': var(--sn-base-font-paragraph-spacing-by-font-size11, 5px),
+          'by-font-size12': var(--sn-base-font-paragraph-spacing-by-font-size12, 6px),
+          'by-font-size14': var(--sn-base-font-paragraph-spacing-by-font-size14, 7px),
+          'by-font-size16': var(--sn-base-font-paragraph-spacing-by-font-size16, 8px),
+          'by-font-size20': var(--sn-base-font-paragraph-spacing-by-font-size20, 10px),
+          'by-font-size24': var(--sn-base-font-paragraph-spacing-by-font-size24, 12px),
+          'by-font-size28': var(--sn-base-font-paragraph-spacing-by-font-size28, 14px),
+          'by-font-size32': var(--sn-base-font-paragraph-spacing-by-font-size32, 16px),
+          'by-font-size36': var(--sn-base-font-paragraph-spacing-by-font-size36, 18px),
+          'by-font-size40': var(--sn-base-font-paragraph-spacing-by-font-size40, 20px),
+          'by-font-size48': var(--sn-base-font-paragraph-spacing-by-font-size48, 24px),
+          'by-font-size56': var(--sn-base-font-paragraph-spacing-by-font-size56, 28px),
+        ),
+      ),
+    ),
+    'standard-stroke-weigth': (
+      'stroke-thin': var(--sn-standard-stroke-weigth-stroke-thin, 0.5px),
+      'stroke-regular': var(--sn-standard-stroke-weigth-stroke-regular, 1px),
+      'stroke-medium': var(--sn-standard-stroke-weigth-stroke-medium, 1.5px),
+      'stroke-semi-bold': var(--sn-standard-stroke-weigth-stroke-semi-bold, 2px),
+      'stroke-bold': var(--sn-standard-stroke-weigth-stroke-bold, 3px),
+    ),
+    'standard-size': (
+      '0': var(--sn-standard-size-0, 0),
+      '1': var(--sn-standard-size-1, 1px),
+      '2': var(--sn-standard-size-2, 2px),
+      '4': var(--sn-standard-size-4, 4px),
+      '6': var(--sn-standard-size-6, 6px),
+      '8': var(--sn-standard-size-8, 8px),
+      '12': var(--sn-standard-size-12, 12px),
+      '16': var(--sn-standard-size-16, 16px),
+      '20': var(--sn-standard-size-20, 20px),
+      '24': var(--sn-standard-size-24, 24px),
+      '28': var(--sn-standard-size-28, 28px),
+      '32': var(--sn-standard-size-32, 32px),
+      '36': var(--sn-standard-size-36, 36px),
+      '40': var(--sn-standard-size-40, 40px),
+      '44': var(--sn-standard-size-44, 44px),
+      '48': var(--sn-standard-size-48, 48px),
+      '52': var(--sn-standard-size-52, 52px),
+      '56': var(--sn-standard-size-56, 56px),
+      '60': var(--sn-standard-size-60, 60px),
+      '64': var(--sn-standard-size-64, 64px),
+      '68': var(--sn-standard-size-68, 68px),
+      '72': var(--sn-standard-size-72, 72px),
+      '76': var(--sn-standard-size-76, 76px),
+      '80': var(--sn-standard-size-80, 80px),
+      '84': var(--sn-standard-size-84, 84px),
+      '88': var(--sn-standard-size-88, 88px),
+      '92': var(--sn-standard-size-92, 92px),
+      '96': var(--sn-standard-size-96, 96px),
+    ),
+    'standard-radius': (
+      '2xs': var(--sn-standard-radius-2xs, 4px),
+      'xs': var(--sn-standard-radius-xs, 6px),
+      's': var(--sn-standard-radius-s, 8px),
+      'm': var(--sn-standard-radius-m, 12px),
+      'l': var(--sn-standard-radius-l, 16px),
+      'xl': var(--sn-standard-radius-xl, 20px),
+      '2xl': var(--sn-standard-radius-2xl, 24px),
+      'full': var(--sn-standard-radius-full, 10000px),
+    ),
+  ),
+);
+
+$sn-base-color-brand-a-5: var(--sn-base-color-brand-a-5, #262334);
+$sn-base-color-brand-a-10: var(--sn-base-color-brand-a-10, #2c273f);
+$sn-base-color-brand-a-15: var(--sn-base-color-brand-a-15, #302a4b);
+$sn-base-color-brand-a-25: var(--sn-base-color-brand-a-25, #5b43a3);
+$sn-base-color-brand-a-45: var(--sn-base-color-brand-a-45, #6642bd);
+$sn-base-color-brand-a-55: var(--sn-base-color-brand-a-55, #794ed3);
+$sn-base-color-brand-a-60: var(--sn-base-color-brand-a-60, #b494f9);
+$sn-base-color-brand-a-65: var(--sn-base-color-brand-a-65, #c4aaf9);
+$sn-base-color-brand-a-80: var(--sn-base-color-brand-a-80, #e2cefd);
+$sn-base-color-brand-a-90: var(--sn-base-color-brand-a-90, #f3e8ff);
+$sn-base-color-brand-a-95: var(--sn-base-color-brand-a-95, #f7f2fc);
+$sn-base-color-brand-a-99: var(--sn-base-color-brand-a-99, #fdfbff);
+$sn-base-color-brand-b-5: var(--sn-base-color-brand-b-5, #2e1e26);
+$sn-base-color-brand-b-10: var(--sn-base-color-brand-b-10, #38232c);
+$sn-base-color-brand-b-15: var(--sn-base-color-brand-b-15, #422632);
+$sn-base-color-brand-b-25: var(--sn-base-color-brand-b-25, #744256);
+$sn-base-color-brand-b-45: var(--sn-base-color-brand-b-45, #af587d);
+$sn-base-color-brand-b-55: var(--sn-base-color-brand-b-55, #d1668e);
+$sn-base-color-brand-b-60: var(--sn-base-color-brand-b-60, #df82a2);
+$sn-base-color-brand-b-65: var(--sn-base-color-brand-b-65, #e69ab3);
+$sn-base-color-brand-b-80: var(--sn-base-color-brand-b-80, #fcdce5);
+$sn-base-color-brand-b-90: var(--sn-base-color-brand-b-90, #fdebf0);
+$sn-base-color-brand-b-95: var(--sn-base-color-brand-b-95, #fdf5f7);
+$sn-base-color-brand-b-99: var(--sn-base-color-brand-b-99, #fdfcfc);
+$sn-base-color-gray-5: var(--sn-base-color-gray-5, #262631);
+$sn-base-color-gray-10: var(--sn-base-color-gray-10, #2c2c3a);
+$sn-base-color-gray-15: var(--sn-base-color-gray-15, #333342);
+$sn-base-color-gray-25: var(--sn-base-color-gray-25, #4f515e);
+$sn-base-color-gray-45: var(--sn-base-color-gray-45, #5e606e);
+$sn-base-color-gray-55: var(--sn-base-color-gray-55, #666975);
+$sn-base-color-gray-60: var(--sn-base-color-gray-60, #8b8e9b);
+$sn-base-color-gray-65: var(--sn-base-color-gray-65, #c6c8d2);
+$sn-base-color-gray-80: var(--sn-base-color-gray-80, #dee1e8);
+$sn-base-color-gray-90: var(--sn-base-color-gray-90, #eeeff3);
+$sn-base-color-gray-95: var(--sn-base-color-gray-95, #fdfdfd);
+$sn-base-color-gray-99: var(--sn-base-color-gray-99, #ffffff);
+$sn-base-color-red-5: var(--sn-base-color-red-5, #292020);
+$sn-base-color-red-10: var(--sn-base-color-red-10, #312323);
+$sn-base-color-red-15: var(--sn-base-color-red-15, #3c2626);
+$sn-base-color-red-25: var(--sn-base-color-red-25, #732f31);
+$sn-base-color-red-45: var(--sn-base-color-red-45, #a93533);
+$sn-base-color-red-55: var(--sn-base-color-red-55, #cb3f3e);
+$sn-base-color-red-60: var(--sn-base-color-red-60, #eb695e);
+$sn-base-color-red-65: var(--sn-base-color-red-65, #f98274);
+$sn-base-color-red-80: var(--sn-base-color-red-80, #fedad4);
+$sn-base-color-red-90: var(--sn-base-color-red-90, #fee8e5);
+$sn-base-color-red-95: var(--sn-base-color-red-95, #fef5f1);
+$sn-base-color-red-99: var(--sn-base-color-red-99, #fffaf7);
+$sn-base-color-orange-5: var(--sn-base-color-orange-5, #292120);
+$sn-base-color-orange-10: var(--sn-base-color-orange-10, #362621);
+$sn-base-color-orange-15: var(--sn-base-color-orange-15, #412a20);
+$sn-base-color-orange-25: var(--sn-base-color-orange-25, #854e29);
+$sn-base-color-orange-45: var(--sn-base-color-orange-45, #c46917);
+$sn-base-color-orange-55: var(--sn-base-color-orange-55, #fb8e42);
+$sn-base-color-orange-60: var(--sn-base-color-orange-60, #e78940);
+$sn-base-color-orange-65: var(--sn-base-color-orange-65, #ef9f5e);
+$sn-base-color-orange-80: var(--sn-base-color-orange-80, #ffdeb4);
+$sn-base-color-orange-90: var(--sn-base-color-orange-90, #ffedcf);
+$sn-base-color-orange-95: var(--sn-base-color-orange-95, #fff6e5);
+$sn-base-color-orange-99: var(--sn-base-color-orange-99, #fffcf4);
+$sn-base-color-yellow-5: var(--sn-base-color-yellow-5, #29221c);
+$sn-base-color-yellow-10: var(--sn-base-color-yellow-10, #33271a);
+$sn-base-color-yellow-15: var(--sn-base-color-yellow-15, #42301b);
+$sn-base-color-yellow-25: var(--sn-base-color-yellow-25, #71531d);
+$sn-base-color-yellow-45: var(--sn-base-color-yellow-45, #af8103);
+$sn-base-color-yellow-55: var(--sn-base-color-yellow-55, #e2b134);
+$sn-base-color-yellow-60: var(--sn-base-color-yellow-60, #d4a72d);
+$sn-base-color-yellow-65: var(--sn-base-color-yellow-65, #dfb54e);
+$sn-base-color-yellow-80: var(--sn-base-color-yellow-80, #fbe7a6);
+$sn-base-color-yellow-90: var(--sn-base-color-yellow-90, #faf4d7);
+$sn-base-color-yellow-95: var(--sn-base-color-yellow-95, #fffbe6);
+$sn-base-color-yellow-99: var(--sn-base-color-yellow-99, #fffef6);
+$sn-base-color-green-5: var(--sn-base-color-green-5, #1e211e);
+$sn-base-color-green-10: var(--sn-base-color-green-10, #212720);
+$sn-base-color-green-15: var(--sn-base-color-green-15, #273124);
+$sn-base-color-green-25: var(--sn-base-color-green-25, #3f5836);
+$sn-base-color-green-45: var(--sn-base-color-green-45, #438b4b);
+$sn-base-color-green-55: var(--sn-base-color-green-55, #57b762);
+$sn-base-color-green-60: var(--sn-base-color-green-60, #63b66a);
+$sn-base-color-green-65: var(--sn-base-color-green-65, #89ca87);
+$sn-base-color-green-80: var(--sn-base-color-green-80, #cbedc8);
+$sn-base-color-green-90: var(--sn-base-color-green-90, #e4f5df);
+$sn-base-color-green-95: var(--sn-base-color-green-95, #f1faed);
+$sn-base-color-green-99: var(--sn-base-color-green-99, #fcfefa);
+$sn-base-color-blue-5: var(--sn-base-color-blue-5, #1e222b);
+$sn-base-color-blue-10: var(--sn-base-color-blue-10, #1d2736);
+$sn-base-color-blue-15: var(--sn-base-color-blue-15, #202f40);
+$sn-base-color-blue-25: var(--sn-base-color-blue-25, #305177);
+$sn-base-color-blue-45: var(--sn-base-color-blue-45, #3b6fad);
+$sn-base-color-blue-55: var(--sn-base-color-blue-55, #5388d1);
+$sn-base-color-blue-60: var(--sn-base-color-blue-60, #6d9ee3);
+$sn-base-color-blue-65: var(--sn-base-color-blue-65, #8ab4ef);
+$sn-base-color-blue-80: var(--sn-base-color-blue-80, #cce0ff);
+$sn-base-color-blue-90: var(--sn-base-color-blue-90, #e6f4fd);
+$sn-base-color-blue-95: var(--sn-base-color-blue-95, #f2f9ff);
+$sn-base-color-blue-99: var(--sn-base-color-blue-99, #fdfeff);
+$sn-base-color-violet-5: var(--sn-base-color-violet-5, #231e2c);
+$sn-base-color-violet-10: var(--sn-base-color-violet-10, #2b2535);
+$sn-base-color-violet-15: var(--sn-base-color-violet-15, #332a40);
+$sn-base-color-violet-25: var(--sn-base-color-violet-25, #58476d);
+$sn-base-color-violet-45: var(--sn-base-color-violet-45, #875699);
+$sn-base-color-violet-55: var(--sn-base-color-violet-55, #aa6cc1);
+$sn-base-color-violet-60: var(--sn-base-color-violet-60, #b889d9);
+$sn-base-color-violet-65: var(--sn-base-color-violet-65, #c6a4e6);
+$sn-base-color-violet-80: var(--sn-base-color-violet-80, #e5dbff);
+$sn-base-color-violet-90: var(--sn-base-color-violet-90, #f3edfc);
+$sn-base-color-violet-95: var(--sn-base-color-violet-95, #f9f5ff);
+$sn-base-color-violet-99: var(--sn-base-color-violet-99, #fdfdfd);
+$sn-base-color-pink-5: var(--sn-base-color-pink-5, #2e1e26);
+$sn-base-color-pink-10: var(--sn-base-color-pink-10, #38232c);
+$sn-base-color-pink-15: var(--sn-base-color-pink-15, #422632);
+$sn-base-color-pink-25: var(--sn-base-color-pink-25, #774559);
+$sn-base-color-pink-45: var(--sn-base-color-pink-45, #a85278);
+$sn-base-color-pink-55: var(--sn-base-color-pink-55, #d1668e);
+$sn-base-color-pink-60: var(--sn-base-color-pink-60, #df82a2);
+$sn-base-color-pink-65: var(--sn-base-color-pink-65, #e999b3);
+$sn-base-color-pink-80: var(--sn-base-color-pink-80, #ffdae5);
+$sn-base-color-pink-90: var(--sn-base-color-pink-90, #fceaf0);
+$sn-base-color-pink-95: var(--sn-base-color-pink-95, #fff5f7);
+$sn-base-color-pink-99: var(--sn-base-color-pink-99, #fdfcfc);
+$sn-base-font-family-sans: var(--sn-base-font-family-sans, Inter);
+$sn-base-font-family-mono: var(--sn-base-font-family-mono, Roboto Mono);
+$sn-base-font-family-font-weight-regular: var(--sn-base-font-family-font-weight-regular, Regular);
+$sn-base-font-family-font-weight-semi-bold: var(
+  --sn-base-font-family-font-weight-semi-bold,
+  Semibold
+);
+$sn-base-font-family-font-weight-bold: var(--sn-base-font-family-font-weight-bold, Bold);
+$sn-base-font-family-font-weight-light-sans: var(
+  --sn-base-font-family-font-weight-light-sans,
+  Light
+);
+$sn-base-font-family-font-weight-light: var(--sn-base-font-family-font-weight-light, Light);
+$sn-base-typeface-regular-role-display: var(--sn-base-typeface-regular-role-display, Inter);
+$sn-base-typeface-regular-role-headline: var(--sn-base-typeface-regular-role-headline, Inter);
+$sn-base-typeface-regular-role-title: var(--sn-base-typeface-regular-role-title, Inter);
+$sn-base-typeface-regular-role-label: var(--sn-base-typeface-regular-role-label, Inter);
+$sn-base-typeface-regular-role-body: var(--sn-base-typeface-regular-role-body, Inter);
+$sn-base-typeface-thin-role-display: var(--sn-base-typeface-thin-role-display, Inter);
+$sn-base-typeface-thin-role-headline: var(--sn-base-typeface-thin-role-headline, Inter);
+$sn-base-typeface-thin-role-title: var(--sn-base-typeface-thin-role-title, Inter);
+$sn-base-typeface-thin-role-label: var(--sn-base-typeface-thin-role-label, Inter);
+$sn-base-typeface-thin-role-body: var(--sn-base-typeface-thin-role-body, Inter);
+$sn-base-typeface-mono-role-display: var(--sn-base-typeface-mono-role-display, Roboto Mono);
+$sn-base-typeface-mono-role-headline: var(--sn-base-typeface-mono-role-headline, Roboto Mono);
+$sn-base-typeface-mono-role-title: var(--sn-base-typeface-mono-role-title, Roboto Mono);
+$sn-base-typeface-mono-role-label: var(--sn-base-typeface-mono-role-label, Roboto Mono);
+$sn-base-typeface-mono-role-body: var(--sn-base-typeface-mono-role-body, Roboto Mono);
+$sn-base-font-font-size-11: var(--sn-base-font-font-size-11, 11px);
+$sn-base-font-font-size-12: var(--sn-base-font-font-size-12, 12px);
+$sn-base-font-font-size-14: var(--sn-base-font-font-size-14, 14px);
+$sn-base-font-font-size-16: var(--sn-base-font-font-size-16, 16px);
+$sn-base-font-font-size-18: var(--sn-base-font-font-size-18, 18px);
+$sn-base-font-font-size-20: var(--sn-base-font-font-size-20, 20px);
+$sn-base-font-font-size-24: var(--sn-base-font-font-size-24, 24px);
+$sn-base-font-font-size-28: var(--sn-base-font-font-size-28, 28px);
+$sn-base-font-font-size-32: var(--sn-base-font-font-size-32, 32px);
+$sn-base-font-font-size-36: var(--sn-base-font-font-size-36, 36px);
+$sn-base-font-font-size-40: var(--sn-base-font-font-size-40, 40px);
+$sn-base-font-font-size-48: var(--sn-base-font-font-size-48, 48px);
+$sn-base-font-font-size-56: var(--sn-base-font-font-size-56, 56px);
+$sn-base-font-line-height-by11: var(--sn-base-font-line-height-by11, 14px);
+$sn-base-font-line-height-by12: var(--sn-base-font-line-height-by12, 16px);
+$sn-base-font-line-height-by14: var(--sn-base-font-line-height-by14, 20px);
+$sn-base-font-line-height-by16: var(--sn-base-font-line-height-by16, 24px);
+$sn-base-font-line-height-by20: var(--sn-base-font-line-height-by20, 28px);
+$sn-base-font-line-height-by24: var(--sn-base-font-line-height-by24, 32px);
+$sn-base-font-line-height-by28: var(--sn-base-font-line-height-by28, 36px);
+$sn-base-font-line-height-by32: var(--sn-base-font-line-height-by32, 40px);
+$sn-base-font-line-height-by40: var(--sn-base-font-line-height-by40, 48px);
+$sn-base-font-line-height-by48: var(--sn-base-font-line-height-by48, 60px);
+$sn-base-font-line-height-by56: var(--sn-base-font-line-height-by56, 72px);
+$sn-base-font-line-height-by18: var(--sn-base-font-line-height-by18, 24px);
+$sn-base-font-font-weight-value-100: var(--sn-base-font-font-weight-value-100, 100);
+$sn-base-font-font-weight-value-150: var(--sn-base-font-font-weight-value-150, 150);
+$sn-base-font-font-weight-value-200: var(--sn-base-font-font-weight-value-200, 200);
+$sn-base-font-font-weight-value-250: var(--sn-base-font-font-weight-value-250, 250);
+$sn-base-font-font-weight-value-300: var(--sn-base-font-font-weight-value-300, 300);
+$sn-base-font-font-weight-value-350: var(--sn-base-font-font-weight-value-350, 350);
+$sn-base-font-font-weight-value-400: var(--sn-base-font-font-weight-value-400, 400);
+$sn-base-font-font-weight-value-450: var(--sn-base-font-font-weight-value-450, 450);
+$sn-base-font-font-weight-value-500: var(--sn-base-font-font-weight-value-500, 500);
+$sn-base-font-font-weight-value-550: var(--sn-base-font-font-weight-value-550, 550);
+$sn-base-font-font-weight-value-600: var(--sn-base-font-font-weight-value-600, 600);
+$sn-base-font-font-weight-value-650: var(--sn-base-font-font-weight-value-650, 650);
+$sn-base-font-font-weight-value-700: var(--sn-base-font-font-weight-value-700, 700);
+$sn-base-font-font-weight-value-750: var(--sn-base-font-font-weight-value-750, 750);
+$sn-base-font-font-weight-value-800: var(--sn-base-font-font-weight-value-800, 800);
+$sn-base-font-font-weight-value-850: var(--sn-base-font-font-weight-value-850, 850);
+$sn-base-font-font-weight-value-900: var(--sn-base-font-font-weight-value-900, 900);
+$sn-base-font-letter-spacing-xs: var(--sn-base-font-letter-spacing-xs, -0.5);
+$sn-base-font-letter-spacing-s: var(--sn-base-font-letter-spacing-s, 0);
+$sn-base-font-letter-spacing-m: var(--sn-base-font-letter-spacing-m, 0.1);
+$sn-base-font-letter-spacing-l: var(--sn-base-font-letter-spacing-l, 0.15);
+$sn-base-font-paragraph-spacing-by-font-size11: var(
+  --sn-base-font-paragraph-spacing-by-font-size11,
+  5px
+);
+$sn-base-font-paragraph-spacing-by-font-size12: var(
+  --sn-base-font-paragraph-spacing-by-font-size12,
+  6px
+);
+$sn-base-font-paragraph-spacing-by-font-size14: var(
+  --sn-base-font-paragraph-spacing-by-font-size14,
+  7px
+);
+$sn-base-font-paragraph-spacing-by-font-size16: var(
+  --sn-base-font-paragraph-spacing-by-font-size16,
+  8px
+);
+$sn-base-font-paragraph-spacing-by-font-size20: var(
+  --sn-base-font-paragraph-spacing-by-font-size20,
+  10px
+);
+$sn-base-font-paragraph-spacing-by-font-size24: var(
+  --sn-base-font-paragraph-spacing-by-font-size24,
+  12px
+);
+$sn-base-font-paragraph-spacing-by-font-size28: var(
+  --sn-base-font-paragraph-spacing-by-font-size28,
+  14px
+);
+$sn-base-font-paragraph-spacing-by-font-size32: var(
+  --sn-base-font-paragraph-spacing-by-font-size32,
+  16px
+);
+$sn-base-font-paragraph-spacing-by-font-size36: var(
+  --sn-base-font-paragraph-spacing-by-font-size36,
+  18px
+);
+$sn-base-font-paragraph-spacing-by-font-size40: var(
+  --sn-base-font-paragraph-spacing-by-font-size40,
+  20px
+);
+$sn-base-font-paragraph-spacing-by-font-size48: var(
+  --sn-base-font-paragraph-spacing-by-font-size48,
+  24px
+);
+$sn-base-font-paragraph-spacing-by-font-size56: var(
+  --sn-base-font-paragraph-spacing-by-font-size56,
+  28px
+);
+$sn-standard-stroke-weigth-stroke-thin: var(--sn-standard-stroke-weigth-stroke-thin, 0.5px);
+$sn-standard-stroke-weigth-stroke-regular: var(--sn-standard-stroke-weigth-stroke-regular, 1px);
+$sn-standard-stroke-weigth-stroke-medium: var(--sn-standard-stroke-weigth-stroke-medium, 1.5px);
+$sn-standard-stroke-weigth-stroke-semi-bold: var(--sn-standard-stroke-weigth-stroke-semi-bold, 2px);
+$sn-standard-stroke-weigth-stroke-bold: var(--sn-standard-stroke-weigth-stroke-bold, 3px);
+$sn-standard-size-0: var(--sn-standard-size-0, 0);
+$sn-standard-size-1: var(--sn-standard-size-1, 1px);
+$sn-standard-size-2: var(--sn-standard-size-2, 2px);
+$sn-standard-size-4: var(--sn-standard-size-4, 4px);
+$sn-standard-size-6: var(--sn-standard-size-6, 6px);
+$sn-standard-size-8: var(--sn-standard-size-8, 8px);
+$sn-standard-size-12: var(--sn-standard-size-12, 12px);
+$sn-standard-size-16: var(--sn-standard-size-16, 16px);
+$sn-standard-size-20: var(--sn-standard-size-20, 20px);
+$sn-standard-size-24: var(--sn-standard-size-24, 24px);
+$sn-standard-size-28: var(--sn-standard-size-28, 28px);
+$sn-standard-size-32: var(--sn-standard-size-32, 32px);
+$sn-standard-size-36: var(--sn-standard-size-36, 36px);
+$sn-standard-size-40: var(--sn-standard-size-40, 40px);
+$sn-standard-size-44: var(--sn-standard-size-44, 44px);
+$sn-standard-size-48: var(--sn-standard-size-48, 48px);
+$sn-standard-size-52: var(--sn-standard-size-52, 52px);
+$sn-standard-size-56: var(--sn-standard-size-56, 56px);
+$sn-standard-size-60: var(--sn-standard-size-60, 60px);
+$sn-standard-size-64: var(--sn-standard-size-64, 64px);
+$sn-standard-size-68: var(--sn-standard-size-68, 68px);
+$sn-standard-size-72: var(--sn-standard-size-72, 72px);
+$sn-standard-size-76: var(--sn-standard-size-76, 76px);
+$sn-standard-size-80: var(--sn-standard-size-80, 80px);
+$sn-standard-size-84: var(--sn-standard-size-84, 84px);
+$sn-standard-size-88: var(--sn-standard-size-88, 88px);
+$sn-standard-size-92: var(--sn-standard-size-92, 92px);
+$sn-standard-size-96: var(--sn-standard-size-96, 96px);
+$sn-standard-radius-2xs: var(--sn-standard-radius-2xs, 4px);
+$sn-standard-radius-xs: var(--sn-standard-radius-xs, 6px);
+$sn-standard-radius-s: var(--sn-standard-radius-s, 8px);
+$sn-standard-radius-m: var(--sn-standard-radius-m, 12px);
+$sn-standard-radius-l: var(--sn-standard-radius-l, 16px);
+$sn-standard-radius-xl: var(--sn-standard-radius-xl, 20px);
+$sn-standard-radius-2xl: var(--sn-standard-radius-2xl, 24px);
+$sn-standard-radius-full: var(--sn-standard-radius-full, 10000px);

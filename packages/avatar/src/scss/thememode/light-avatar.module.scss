@@ -1,0 +1,29 @@
+/**
+ * Оптимизированный модуль для Avatar компонента
+ * Экспортирует только необходимые переменные из light темы
+ * Это уменьшает размер итогового CSS файла
+ */
+
+@use './light.module' as light;
+
+// Экспортируем только используемые переменные цветов
+$sn-color-primary-text: light.$sn-color-primary-text;
+$sn-color-primary-decor: light.$sn-color-primary-decor;
+$sn-color-red-text: light.$sn-color-red-text;
+$sn-color-red-decor: light.$sn-color-red-decor;
+$sn-color-orange-text: light.$sn-color-orange-text;
+$sn-color-orange-decor: light.$sn-color-orange-decor;
+$sn-color-yellow-text: light.$sn-color-yellow-text;
+$sn-color-yellow-decor: light.$sn-color-yellow-decor;
+$sn-color-green-text: light.$sn-color-green-text;
+$sn-color-green-decor: light.$sn-color-green-decor;
+$sn-color-blue-text: light.$sn-color-blue-text;
+$sn-color-blue-decor: light.$sn-color-blue-decor;
+$sn-color-violet-text: light.$sn-color-violet-text;
+$sn-color-violet-decor: light.$sn-color-violet-decor;
+$sn-color-pink-text: light.$sn-color-pink-text;
+$sn-color-pink-decor: light.$sn-color-pink-decor;
+$sn-color-neutral-text: light.$sn-color-neutral-text;
+$sn-color-neutral-decor: light.$sn-color-neutral-decor;
+$sn-color-available-complementary: light.$sn-color-available-complementary;
+

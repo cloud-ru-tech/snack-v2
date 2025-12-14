@@ -74,6 +74,10 @@ export default defineConfig({
     resolve: {
       alias: {
         '@packages': new URL('../../packages/', import.meta.url).pathname,
+        '@sbercloud/figma-variables': new URL(
+          '../../node_modules/@sbercloud/figma-variables',
+          import.meta.url
+        ).pathname,
       },
     },
   },
