@@ -4,6 +4,8 @@ variables:
 pages:
   image: ${NODE_BASE_IMAGE}
   script:
+    - touch ~/.npmrc
+    - cat $NPMRC > ~/.npmrc
     - npm install -g pnpm@latest-10
     - pnpm install --shamefully-hoist --frozen-lockfile
     - pnpm run build:packages
