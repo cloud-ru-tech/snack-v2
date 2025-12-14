@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { generateReadmeFromMdx } from './generate-readme.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../../..');
@@ -128,6 +129,89 @@ order: 999
 
           if (addWatchFile) {
             addWatchFile(changelogPath);
+          }
+        }
+
+        // Sync MIGRATION.md if it exists
+        const migrationPath = path.join(pkgPath, 'MIGRATION.md');
+        const migrationExists = await fs
+          .access(migrationPath)
+          .then(() => true)
+          .catch(() => false);
+
+        if (migrationExists) {
+          const targetMigrationPath = path.join(targetPkgDir, 'MIGRATION.mdx');
+          let migrationContent = await fs.readFile(migrationPath, 'utf-8');
+
+          // Check if migration already has frontmatter
+          const hasFrontmatter = migrationContent.match(/^---\s*\n/);
+
+          if (!hasFrontmatter) {
+            // Add frontmatter with package info
+            const migrationHeader = `---
+title: Migration Guide
+description: Migration instructions for ${pkg.name} package versions
+version: "${pkgVersion}"
+order: 998
+---
+
+# Migration Guide
+
+**Package:** \`${pkg.name}\`  
+**Current version:** \`${pkgVersion}\`
+
+This guide provides instructions for LLM agents to migrate between versions of the \`${pkg.name}\` package.
+
+`;
+
+            migrationContent = migrationHeader + migrationContent;
+          } else {
+            // Update version in existing frontmatter
+            migrationContent = updateFrontmatterVersion(migrationContent, pkgVersion);
+
+            // Ensure title and description exist
+            const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
+            const match = migrationContent.match(frontmatterRegex);
+            if (match) {
+              let frontmatter = match[1];
+              if (!/^title:\s*/m.test(frontmatter)) {
+                frontmatter = `title: Migration Guide\n${frontmatter}`;
+              }
+              if (!/^description:\s*/m.test(frontmatter)) {
+                frontmatter = `${frontmatter}\ndescription: Migration instructions for ${pkg.name} package versions`;
+              }
+              migrationContent = migrationContent.replace(
+                frontmatterRegex,
+                `---\n${frontmatter}\n---\n`
+              );
+            }
+          }
+
+          await fs.writeFile(targetMigrationPath, migrationContent, 'utf-8');
+          logger.debug(`[sync-package-docs] Synced MIGRATION.md for ${pkg.name}`);
+
+          if (addWatchFile) {
+            addWatchFile(migrationPath);
+          }
+        }
+
+        // Generate README.md from index.mdx if it exists
+        const indexMdxPath = path.join(docsPath, 'index.mdx');
+        const indexMdxExists = await fs
+          .access(indexMdxPath)
+          .then(() => true)
+          .catch(() => false);
+
+        if (indexMdxExists) {
+          const readmePath = path.join(pkgPath, 'README.md');
+          const mdxContent = await fs.readFile(indexMdxPath, 'utf-8');
+          const readmeContent = generateReadmeFromMdx(mdxContent, pkg.name, pkgVersion);
+
+          await fs.writeFile(readmePath, readmeContent, 'utf-8');
+          logger.debug(`[sync-package-docs] Generated README.md for ${pkg.name}`);
+
+          if (addWatchFile) {
+            addWatchFile(indexMdxPath);
           }
         }
 

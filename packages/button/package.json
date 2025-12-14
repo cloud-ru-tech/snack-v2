@@ -15,7 +15,10 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
   ],
   "sideEffects": false,
   "scripts": {
@@ -35,4 +38,3 @@
     "access": "public"
   }
 }
-

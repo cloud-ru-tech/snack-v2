@@ -24,5 +24,3 @@ export const SHAPE = {
   Round: 'round',
   Square: 'square',
 } as const;
-
-

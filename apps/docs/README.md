@@ -82,10 +82,12 @@ order: 1
 1. Сканирует все `packages/*/docs/**/*.mdx`
 2. Читает версию из `package.json` каждого пакета
 3. Добавляет или обновляет поле `version` в frontmatter документации
-4. Синхронизирует `CHANGELOG.md` из корня пакета в `CHANGELOG.mdx` с frontmatter
-5. Копирует файлы в `src/content/docs/components/<package-name>/`
-6. Преобразует относительные импорты (`../src`) в алиасы (`@packages/<name>/src`)
-7. Отслеживает изменения и пересинхронизирует при обновлении
+4. **Генерирует `README.md`** из `docs/index.mdx` (усеченная версия без интерактивных компонентов)
+5. Синхронизирует `CHANGELOG.md` из корня пакета в `CHANGELOG.mdx` с frontmatter
+6. Синхронизирует `MIGRATION.md` из корня пакета в `MIGRATION.mdx` с frontmatter (если существует)
+7. Копирует файлы в `src/content/docs/components/<package-name>/`
+8. Преобразует относительные импорты (`../src`) в алиасы (`@packages/<name>/src`)
+9. Отслеживает изменения и пересинхронизирует при обновлении
 
 Синхронизация происходит:
 
@@ -183,6 +185,79 @@ order: 1
 ## Переопределение документации
 
 **Не рекомендуется.** Если нужно изменить документацию компонента, редактируйте исходный файл в `packages/<package-name>/docs/`. Синхронизация автоматически обновит файлы в Astro.
+
+## README.md генерация
+
+Для каждого пакета автоматически генерируется `README.md` из `docs/index.mdx`. README содержит усеченную версию документации:
+
+- **Удаляются** интерактивные компоненты (ExampleContainer, ExampleRow, ExampleGrid, StorybookIframe, Changelog)
+- **Сохраняются** текстовые описания, примеры кода, API документация
+- **Добавляются** ссылки на CHANGELOG.md и MIGRATION.md
+
+README.md синхронизируется автоматически при изменении `docs/index.mdx` и включается в npm пакет через поле `files` в `package.json`.
+
+**Структура:**
+
+```
+packages/avatar/
+  ├── package.json
+  ├── README.md          # ← Автоматически генерируется из docs/index.mdx
+  ├── CHANGELOG.md
+  ├── MIGRATION.md
+  └── docs/
+      └── index.mdx      # ← Единственный источник правды
+```
+
+## Migration Guide
+
+Для каждого пакета можно создать `MIGRATION.md` с инструкциями для LLM агентов по миграции между версиями:
+
+```
+packages/avatar/
+  ├── MIGRATION.md       # ← Инструкции для LLM агентов
+  └── docs/
+      └── index.mdx
+```
+
+После синхронизации:
+
+```
+src/content/docs/components/avatar/
+  ├── MIGRATION.mdx      # ← Автоматически создан с frontmatter
+  └── index.mdx
+```
+
+Migration Guide доступен по адресу `/components/<package-name>/MIGRATION` и автоматически появляется в навигации Starlight.
+
+**Формат MIGRATION.md:**
+
+````markdown
+# Migration Guide
+
+## Migration from X.Y.Z to A.B.C
+
+### Breaking Changes
+
+1. **Prop Rename: `oldProp` → `newProp`**
+   - **Reason:** Better naming convention
+   - **Action Required:** Replace all instances
+   - **Example:**
+
+     ```tsx
+     // Before
+     <Component oldProp="value" />
+
+     // After
+     <Component newProp="value" />
+     ```
+
+### Migration Steps
+
+1. Update package version
+2. Apply code transformations
+3. Run type checking
+4. Test affected components
+````
 
 ## Добавление гайдлайна или паттерна
 
