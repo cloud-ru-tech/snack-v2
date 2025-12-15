@@ -61,7 +61,10 @@ export function Avatar({
           aria-hidden="true"
         />
       ) : (
-        <div className={styles.abbreviation}>{getAbbreviation(name, numberOfSymbols)}</div>
+        <>
+          <div className={styles.abbreviation}>{getAbbreviation(name, numberOfSymbols)}</div>
+          <div className={styles.border} />
+        </>
       )}
     </div>
   );

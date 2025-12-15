@@ -4,37 +4,11 @@
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 // Типографика для label (используется в status)
 @use '@sbercloud/figma-variables/build/scss/styles/typography.module' as typography;
+// Структуры компонентов используем локальные (т.к. структура в пакете отличается)
+@use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
 
 $statusSizes: 'xs', 's';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
-
-// Размеры для Status контейнера
-$statusMinHeights: (
-  'xs': 16px,
-  's': 24px,
-);
-
-$statusContainerPadding: (
-  'xs': 2px,
-  's': 4px,
-);
-
-$statusContainerCornerRadius: (
-  'xs': 2px,
-  's': 2px,
-);
-
-// Gap между индикатором и текстом в Status
-$statusTextWrapperGap: (
-  'xs': 2px,
-  's': 2px,
-);
-
-// Padding для текстового обёртки в Status
-$statusTextWrapperPadding: (
-  'xs': 2px,
-  's': 2px,
-);
 
 // Типографика для Status
 $statusTypography: (
@@ -51,33 +25,33 @@ $statusTypography: (
 );
 
 // Цвета для appearances
-$appearanceColors: (
+$appearances: (
   'primary': (
-    'decor': light.$sn-color-primary-decor,
-  ),
-  'neutral': (
-    'decor': light.$sn-color-neutral-decor,
+    'background-color': light.$sn-color-primary-decor,
   ),
   'red': (
-    'decor': light.$sn-color-red-decor,
+    'background-color': light.$sn-color-red-decor,
   ),
   'orange': (
-    'decor': light.$sn-color-orange-decor,
+    'background-color': light.$sn-color-orange-decor,
   ),
   'yellow': (
-    'decor': light.$sn-color-yellow-decor,
+    'background-color': light.$sn-color-yellow-decor,
   ),
   'green': (
-    'decor': light.$sn-color-green-decor,
+    'background-color': light.$sn-color-green-decor,
   ),
   'blue': (
-    'decor': light.$sn-color-blue-decor,
+    'background-color': light.$sn-color-blue-decor,
   ),
   'violet': (
-    'decor': light.$sn-color-violet-decor,
+    'background-color': light.$sn-color-violet-decor,
   ),
   'pink': (
-    'decor': light.$sn-color-pink-decor,
+    'background-color': light.$sn-color-pink-decor,
+  ),
+  'neutral': (
+    'background-color': light.$sn-color-neutral-decor,
   ),
 );
 
@@ -90,31 +64,48 @@ $appearanceColors: (
   box-sizing: border-box;
   white-space: nowrap;
 
+  @include base.composite-var(status.$status, 'anatomy', 'status-indicator', 'size');
+
   @each $size in $statusSizes {
     &[data-size='#{$size}'] {
-      min-height: base.simple-var($statusMinHeights, $size);
-      padding: 0 base.simple-var($statusContainerPadding, $size);
-      border-radius: base.simple-var($statusContainerCornerRadius, $size);
+      @include base.composite-var(status.$status, 'anatomy', 'size', $size, 'container');
 
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  @each $size in $statusSizes {
+    &[data-size='#{$size}'] {
+      .textWrapper {
+        @include base.composite-var(status.$status, 'anatomy', 'size', $size, 'text-wrapper');
+
+        display: flex;
+        align-items: center;
+
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  @each $size in $statusSizes {
+    &[data-size='#{$size}'] {
       .text {
         @include base.composite-var($statusTypography, $size);
-        padding-left: base.simple-var($statusTextWrapperPadding, $size);
-      }
-
-      :global(.statusIndicator) {
-        margin-right: base.simple-var($statusTextWrapperGap, $size);
       }
     }
   }
 
-  @each $appearance-name in $appearances {
+  @each $appearance-name, $appearance-value in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      $color-map: base.simple-var($appearanceColors, $appearance-name);
-      background-color: base.simple-var($color-map, 'decor');
+      background-color: base.simple-var($appearances, $appearance-name, 'background-color');
+
+      color: base.color-on-background-with-opacity(
+        light.$sn-color-neutral-text,
+        base.simple-var($appearance-value, 'background-color'),
+        status.$sn-effect-opacity-text-secondary
+      );
     }
   }
-}
-
-.text {
-  color: light.$sn-color-neutral-text;
 }

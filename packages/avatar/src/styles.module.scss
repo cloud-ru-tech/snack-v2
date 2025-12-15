@@ -61,6 +61,7 @@ $appearances: (
   overflow: hidden;
   box-sizing: border-box;
 
+  aspect-ratio: 1 / 1;
   border-style: solid;
 
   @each $size in $sizes {
@@ -69,7 +70,7 @@ $appearances: (
         @include base.composite-var(avatar.$avatar, 'typography', $size);
       }
 
-      //   @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'container');
+      // @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'container');
       @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size);
     }
   }
@@ -96,11 +97,11 @@ $appearances: (
         avatar.$sn-effect-opacity-text-secondary
       );
 
-      border-color: base.color-on-background-with-opacity(
-        light.$sn-color-available-complementary,
-        base.simple-var($appearance-value, 'background-color'),
-        avatar.$sn-avatar-effect-opacity-border
-      );
+      // border-color: base.color-on-background-with-opacity(
+      //   light.$sn-color-available-complementary,
+      //   base.simple-var($appearance-value, 'background-color'),
+      //   avatar.$sn-avatar-effect-opacity-border
+      // );
     }
   }
 

@@ -34,11 +34,15 @@ export function Status({
       data-appearance={appearance}
       {...rest}
     >
-      <StatusIndicator
-        appearance={appearance}
-        size={size === STATUS_SIZE.Xs ? STATUS_INDICATOR_SIZE.Xs : STATUS_INDICATOR_SIZE.S}
-      />
-      <span className={styles.text}>{children}</span>
+      <div className={styles.textWrapper}>
+        <StatusIndicator
+          appearance={appearance}
+          size={
+            size === STATUS_SIZE.Xs ? STATUS_INDICATOR_SIZE['3Xs'] : STATUS_INDICATOR_SIZE['2Xs']
+          }
+        />
+        <span className={styles.text}>{children}</span>
+      </div>
     </div>
   );
 }
