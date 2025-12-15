@@ -1,0 +1,293 @@
+---
+title: Status Indicator
+description: A simple circular dot indicator for displaying status visually.
+version: '0.1.0'
+---
+
+import { StatusIndicator, APPEARANCE, STATUS_INDICATOR_SIZE } from '../src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '../../../../apps/docs/src/components/ExampleComponents';
+
+The StatusIndicator component provides a simple circular dot indicator for displaying status information visually in your application.
+
+**Version:** `{frontmatter.version}`
+
+## Changelog
+
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/Changelog.astro
+After sync: ../../../../components/Changelog.astro */}
+</>
+
+import Changelog from '../../../../apps/docs/src/components/Changelog.astro';
+
+<Changelog packageName="status" />
+
+## Overview
+
+StatusIndicator is a simple circular dot indicator for displaying status visually. It supports:
+
+- **Multiple sizes** — From extra small (4xs) to small (s)
+- **Nine color schemes** — Primary, neutral, red, orange, yellow, green, blue, violet, and pink
+- **Accessibility** — Proper semantic HTML and color contrast
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <ExampleRow>
+    <StatusIndicator appearance={APPEARANCE.Primary} />
+    <StatusIndicator appearance={APPEARANCE.Neutral} />
+    <StatusIndicator appearance={APPEARANCE.Red} />
+  </ExampleRow>
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="4xs">
+      <StatusIndicator appearance={APPEARANCE.Primary} size={STATUS_INDICATOR_SIZE['4Xs']} />
+    </ExampleItem>
+    <ExampleItem label="3xs">
+      <StatusIndicator appearance={APPEARANCE.Primary} size={STATUS_INDICATOR_SIZE['3Xs']} />
+    </ExampleItem>
+    <ExampleItem label="2xs">
+      <StatusIndicator appearance={APPEARANCE.Primary} size={STATUS_INDICATOR_SIZE['2Xs']} />
+    </ExampleItem>
+    <ExampleItem label="xs">
+      <StatusIndicator appearance={APPEARANCE.Primary} size={STATUS_INDICATOR_SIZE.Xs} />
+    </ExampleItem>
+    <ExampleItem label="s">
+      <StatusIndicator appearance={APPEARANCE.Primary} size={STATUS_INDICATOR_SIZE.S} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Appearances
+
+<ExampleContainer>
+  <ExampleGrid columns={3} minColumnWidth="120px">
+    <ExampleItem label="Primary" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Primary} />
+    </ExampleItem>
+    <ExampleItem label="Neutral" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Neutral} />
+    </ExampleItem>
+    <ExampleItem label="Red" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Red} />
+    </ExampleItem>
+    <ExampleItem label="Orange" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Orange} />
+    </ExampleItem>
+    <ExampleItem label="Yellow" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Yellow} />
+    </ExampleItem>
+    <ExampleItem label="Green" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Green} />
+    </ExampleItem>
+    <ExampleItem label="Blue" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Blue} />
+    </ExampleItem>
+    <ExampleItem label="Violet" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Violet} />
+    </ExampleItem>
+    <ExampleItem label="Pink" gap="medium">
+      <StatusIndicator appearance={APPEARANCE.Pink} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+## Storybook
+
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/StorybookIframe.astro
+After sync: ../../../../components/StorybookIframe.astro */}
+</>
+
+import StorybookIframe from '../../../../apps/docs/src/components/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-status-status-indicator--all-variants" />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { StatusIndicator } from '@design-system/status';
+
+export function UserStatus() {
+  return <StatusIndicator appearance="primary" />;
+}
+```
+
+### With size
+
+```tsx
+import { StatusIndicator, STATUS_INDICATOR_SIZE } from '@design-system/status';
+
+export function StatusIndicators() {
+  return (
+    <>
+      <StatusIndicator appearance="primary" size={STATUS_INDICATOR_SIZE.Xs} />
+      <StatusIndicator appearance="primary" size={STATUS_INDICATOR_SIZE.S} />
+    </>
+  );
+}
+```
+
+## Use cases
+
+### User status indicators
+
+Display user online/offline status, activity indicators, and presence information:
+
+<ExampleContainer marginBottom="24px">
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <StatusIndicator appearance={APPEARANCE.Green} size={STATUS_INDICATOR_SIZE.Xs} />
+      <span>John Doe</span>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <StatusIndicator appearance={APPEARANCE.Neutral} size={STATUS_INDICATOR_SIZE.Xs} />
+      <span>Jane Smith</span>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <StatusIndicator appearance={APPEARANCE.Yellow} size={STATUS_INDICATOR_SIZE.Xs} />
+      <span>Bob Johnson</span>
+    </div>
+  </div>
+</ExampleContainer>
+
+```tsx
+<div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+  <StatusIndicator appearance={APPEARANCE.Green} size={STATUS_INDICATOR_SIZE.Xs} />
+  <span>John Doe</span>
+</div>
+```
+
+### Notification status
+
+Show notification states, message status, and alert indicators:
+
+<ExampleContainer marginBottom="24px">
+  <div
+    style={{
+      border: '1px solid var(--sn-color-neutral-border, #e5e7eb)',
+      padding: 16,
+      borderRadius: 8,
+      backgroundColor: 'var(--sn-color-neutral-background, #ffffff)',
+    }}
+  >
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <StatusIndicator appearance={APPEARANCE.Green} size={STATUS_INDICATOR_SIZE.S} />
+        <div>
+          <div style={{ fontWeight: 500, marginBottom: '4px' }}>Message delivered</div>
+          <div style={{ fontSize: 12, color: 'var(--sn-color-neutral-text-secondary, #6b7280)' }}>
+            Your message was sent successfully
+          </div>
+        </div>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <StatusIndicator appearance={APPEARANCE.Yellow} size={STATUS_INDICATOR_SIZE.S} />
+        <div>
+          <div style={{ fontWeight: 500, marginBottom: '4px' }}>Pending</div>
+          <div style={{ fontSize: 12, color: 'var(--sn-color-neutral-text-secondary, #6b7280)' }}>
+            Message is being processed
+          </div>
+        </div>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <StatusIndicator appearance={APPEARANCE.Red} size={STATUS_INDICATOR_SIZE.S} />
+        <div>
+          <div style={{ fontWeight: 500, marginBottom: '4px' }}>Failed</div>
+          <div style={{ fontSize: 12, color: 'var(--sn-color-neutral-text-secondary, #6b7280)' }}>
+            Unable to send message
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ExampleContainer>
+
+```tsx
+<div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+  <StatusIndicator appearance={APPEARANCE.Green} size={STATUS_INDICATOR_SIZE.S} />
+  <div>
+    <div style={{ fontWeight: 500 }}>Message delivered</div>
+    <div style={{ fontSize: 12, color: '#666' }}>Your message was sent successfully</div>
+  </div>
+</div>
+```
+
+## Sizes
+
+StatusIndicator supports five size variants:
+
+- `4xs` — Extra extra extra small (4px). Use for minimal indicators, inline dots
+- `3xs` — Extra extra small (8px). Use for compact indicators
+- `2xs` — Extra small (12px). Use for small status dots
+- `xs` — Extra small (16px, default). Use for standard status indicators
+- `s` — Small (24px). Use for prominent status indicators
+
+Choose sizes based on context:
+
+- **4xs, 3xs**: Minimal indicators, inline status dots, compact spaces
+- **2xs, xs**: Standard status indicators, list items, user avatars
+- **s**: Prominent indicators, card headers, dashboard widgets
+
+## Appearances
+
+StatusIndicator supports nine color schemes:
+
+- `primary` (green) — Success, positive status, active states
+- `neutral` (grey) — Default, neutral status, inactive states
+- `red` — Error, critical status, danger states
+- `orange` — Warning, pending status, attention-required
+- `yellow` — Caution, alert status, temporary states
+- `green` — Success, healthy status, completed states
+- `blue` — Information, processing status, in-progress states
+- `violet` — Special status, custom states
+- `pink` — Custom status, special indicators
+
+Use appearances to convey meaning:
+
+- **Primary/Green**: Success, healthy, active, completed
+- **Neutral**: Default, inactive, neutral information
+- **Red**: Error, critical, danger, blocked
+- **Orange**: Warning, pending, attention-required
+- **Yellow**: Caution, alert, temporary
+- **Blue**: Information, processing, in-progress
+- **Violet/Pink**: Custom states, special indicators
+
+## Props
+
+### Optional
+
+- `appearance` (`'primary' | 'neutral' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'violet' | 'pink'`) — Color scheme. Default: `'primary'`.
+- `size` (`'4xs' | '3xs' | '2xs' | 'xs' | 's'`) — Component size. Default: `'xs'`.
+- `className` (`string`) — Additional CSS class.
+- `...HTMLDivAttributes` — All standard div HTML attributes are supported.
+
+## Accessibility
+
+- Uses semantic HTML elements (`<div>`)
+- Color contrast meets WCAG guidelines for all variants
+- Component accepts all standard HTML attributes for customization
+- Can be used with `aria-label` for screen reader support
+
+## Best practices
+
+1. **Use appropriate colors** — Match appearance to the meaning (red for errors, green for success)
+2. **Choose the right size** — Use smaller sizes for compact spaces, larger for prominent displays
+3. **Maintain consistency** — Use consistent sizing and appearance within the same context
+4. **Consider accessibility** — Ensure color is not the only indicator of status, use `aria-label` when needed
+5. **Use StatusIndicator for minimal UI** — When space is limited or visual indicator is sufficient
