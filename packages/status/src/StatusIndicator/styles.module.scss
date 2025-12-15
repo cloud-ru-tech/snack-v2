@@ -1,0 +1,66 @@
+// Базовые функции и миксины из пакета
+@use '@sbercloud/figma-variables/build/scss/base/base.module' as base;
+// Переменные темы из пакета
+@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+
+// Структуры компонентов используем локальные (т.к. структура в пакете отличается)
+@use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
+
+$statusIndicatorSizes: '4xs', '3xs', '2xs', 'xs', 's';
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+// Цвета для appearances
+$appearanceColors: (
+  'primary': (
+    'accent': light.$sn-color-primary-accent,
+  ),
+  'neutral': (
+    'accent': light.$sn-color-neutral-accent,
+  ),
+  'red': (
+    'accent': light.$sn-color-red-accent,
+  ),
+  'orange': (
+    'accent': light.$sn-color-orange-accent,
+  ),
+  'yellow': (
+    'accent': light.$sn-color-yellow-accent,
+  ),
+  'green': (
+    'accent': light.$sn-color-green-accent,
+  ),
+  'blue': (
+    'accent': light.$sn-color-blue-accent,
+  ),
+  'violet': (
+    'accent': light.$sn-color-violet-accent,
+  ),
+  'pink': (
+    'accent': light.$sn-color-pink-accent,
+  ),
+);
+
+// StatusIndicator
+.statusIndicator {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-style: solid;
+
+  @include base.composite-var(status.$status, 'anatomy', 'status-indicator', 'size');
+
+  border-color: light.$sn-color-neutral-background1-level;
+
+  @each $size in $statusIndicatorSizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(status.$status, 'anatomy', 'status-indicator', 'size', $size);
+    }
+  }
+
+  @each $appearance-name in $appearances {
+    &[data-appearance='#{$appearance-name}'] {
+      background-color: base.simple-var($appearanceColors, $appearance-name, 'accent');
+    }
+  }
+}

@@ -1,0 +1,120 @@
+// Базовые функции и миксины из пакета
+@use '@sbercloud/figma-variables/build/scss/base/base.module' as base;
+// Переменные темы из пакета
+@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+// Типографика для label (используется в status)
+@use '@sbercloud/figma-variables/build/scss/styles/typography.module' as typography;
+
+$statusSizes: 'xs', 's';
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+// Размеры для Status контейнера
+$statusMinHeights: (
+  'xs': 16px,
+  's': 24px,
+);
+
+$statusContainerPadding: (
+  'xs': 2px,
+  's': 4px,
+);
+
+$statusContainerCornerRadius: (
+  'xs': 2px,
+  's': 2px,
+);
+
+// Gap между индикатором и текстом в Status
+$statusTextWrapperGap: (
+  'xs': 2px,
+  's': 2px,
+);
+
+// Padding для текстового обёртки в Status
+$statusTextWrapperPadding: (
+  'xs': 2px,
+  's': 2px,
+);
+
+// Типографика для Status
+$statusTypography: (
+  'xs': (
+    'font-size': typography.$sn-platform-typography-role-label-font-size-s,
+    'line-height': typography.$sn-platform-typography-role-label-line-height-s,
+    'font-weight': typography.$sn-typography-font-weight-regular-label-s,
+  ),
+  's': (
+    'font-size': typography.$sn-platform-typography-role-label-font-size-m,
+    'line-height': typography.$sn-platform-typography-role-label-line-height-m,
+    'font-weight': typography.$sn-typography-font-weight-regular-label-m,
+  ),
+);
+
+// Цвета для appearances
+$appearanceColors: (
+  'primary': (
+    'decor': light.$sn-color-primary-decor,
+  ),
+  'neutral': (
+    'decor': light.$sn-color-neutral-decor,
+  ),
+  'red': (
+    'decor': light.$sn-color-red-decor,
+  ),
+  'orange': (
+    'decor': light.$sn-color-orange-decor,
+  ),
+  'yellow': (
+    'decor': light.$sn-color-yellow-decor,
+  ),
+  'green': (
+    'decor': light.$sn-color-green-decor,
+  ),
+  'blue': (
+    'decor': light.$sn-color-blue-decor,
+  ),
+  'violet': (
+    'decor': light.$sn-color-violet-decor,
+  ),
+  'pink': (
+    'decor': light.$sn-color-pink-decor,
+  ),
+);
+
+// Status
+.status {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+
+  @each $size in $statusSizes {
+    &[data-size='#{$size}'] {
+      min-height: base.simple-var($statusMinHeights, $size);
+      padding: 0 base.simple-var($statusContainerPadding, $size);
+      border-radius: base.simple-var($statusContainerCornerRadius, $size);
+
+      .text {
+        @include base.composite-var($statusTypography, $size);
+        padding-left: base.simple-var($statusTextWrapperPadding, $size);
+      }
+
+      :global(.statusIndicator) {
+        margin-right: base.simple-var($statusTextWrapperGap, $size);
+      }
+    }
+  }
+
+  @each $appearance-name in $appearances {
+    &[data-appearance='#{$appearance-name}'] {
+      $color-map: base.simple-var($appearanceColors, $appearance-name);
+      background-color: base.simple-var($color-map, 'decor');
+    }
+  }
+}
+
+.text {
+  color: light.$sn-color-neutral-text;
+}

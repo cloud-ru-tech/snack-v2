@@ -41,6 +41,7 @@
     "typescript": "5.9.3",
     "vitest": "^4.0.15",
     "@snack-uikit/counter": "0.8.10",
+    "@snack-uikit/status": "0.10.7",
     "@sbercloud/figma-variables": "0.0.1-beta.2"
   },
   "dependencies": {

@@ -1,0 +1,46 @@
+{
+  "name": "@design-system/status",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Status and StatusIndicator components for the design system",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "tsup --clean",
+    "lint": "eslint \"src/**/*.{ts,tsx}\""
+  },
+  "peerDependencies": {
+    "react": ">=18.3.0",
+    "react-dom": ">=18.3.0"
+  },
+  "devDependencies": {
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

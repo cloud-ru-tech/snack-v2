@@ -12,7 +12,10 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: ['src/index.ts'],
   format: ['esm', 'cjs'],
-  dts: true,
+  dts: {
+    resolve: true,
+  },
+  tsconfig: './tsconfig.json',
   sourcemap: true,
   clean: true,
   treeshake: true, // Удаляет неиспользуемый JS код
