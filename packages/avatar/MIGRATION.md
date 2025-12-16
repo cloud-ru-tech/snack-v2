@@ -114,3 +114,5 @@ function migrateAvatarComponent(code: string, fromVersion: string, toVersion: st
 - Minor and patch versions (0.X.Y) are backward compatible
 - When in doubt, refer to the component's TypeScript types for the current API
 - Test migrations in a separate branch before applying to main codebase
+
+

@@ -25,8 +25,8 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
       '@sbercloud/figma-variables':
-        specifier: 0.0.1-beta.2
-        version: 0.0.1-beta.2
+        specifier: 0.0.1-beta.8
+        version: 0.0.1-beta.8
       '@snack-uikit/counter':
         specifier: 0.8.10
         version: 0.8.10(react@19.2.1)
@@ -1541,8 +1541,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sbercloud/figma-variables@0.0.1-beta.2':
-    resolution: {integrity: sha512-FXEt0ka6ONQEKa68V4uU6b8mKsO9lsgp2PHFKmMFG/xmlyq7m3qbRRWrtbaIjpRfG5zJneJ5U5wSIhZFlLydEQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-0.0.1-beta.2.tgz}
+  '@sbercloud/figma-variables@0.0.1-beta.8':
+    resolution: {integrity: sha512-ys1+VabxeBOoGwM2IwyA0KW8ixekvcq/T6e/QIvJREEP6hmrLjRZTW6A+Y7BpzYLt8IqRx6rF2UEuLqf9YKl5g==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-0.0.1-beta.8.tgz}
 
   '@shikijs/core@3.19.0':
     resolution: {integrity: sha512-L7SrRibU7ZoYi1/TrZsJOFAnnHyLTE1SwHG1yNWjZIVCqjOEmCSuK2ZO9thnRbJG6TOkPp+Z963JmpCNw5nzvA==}
@@ -7589,7 +7589,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.53.3':
     optional: true
 
-  '@sbercloud/figma-variables@0.0.1-beta.2': {}
+  '@sbercloud/figma-variables@0.0.1-beta.8': {}
 
   '@shikijs/core@3.19.0':
     dependencies:

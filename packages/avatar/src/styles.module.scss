@@ -1,5 +1,5 @@
 // Базовые функции и миксины из пакета
-@use '@sbercloud/figma-variables/build/scss/base/base.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 // Переменные темы из пакета
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
@@ -97,11 +97,11 @@ $appearances: (
         avatar.$sn-effect-opacity-text-secondary
       );
 
-      // border-color: base.color-on-background-with-opacity(
-      //   light.$sn-color-available-complementary,
-      //   base.simple-var($appearance-value, 'background-color'),
-      //   avatar.$sn-avatar-effect-opacity-border
-      // );
+      border-color: base.color-on-background-with-opacity(
+        light.$sn-color-available-complementary,
+        base.simple-var($appearance-value, 'background-color'),
+        avatar.$sn-avatar-effect-opacity-border
+      );
     }
   }
 

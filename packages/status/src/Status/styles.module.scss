@@ -1,58 +1,15 @@
 // Базовые функции и миксины из пакета
-@use '@sbercloud/figma-variables/build/scss/base/base.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 // Переменные темы из пакета
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
-// Типографика для label (используется в status)
-@use '@sbercloud/figma-variables/build/scss/styles/typography.module' as typography;
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
 
 $statusSizes: 'xs', 's';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
-
-// Типографика для Status
 $statusTypography: (
-  'xs': (
-    'font-size': typography.$sn-platform-typography-role-label-font-size-s,
-    'line-height': typography.$sn-platform-typography-role-label-line-height-s,
-    'font-weight': typography.$sn-typography-font-weight-regular-label-s,
-  ),
-  's': (
-    'font-size': typography.$sn-platform-typography-role-label-font-size-m,
-    'line-height': typography.$sn-platform-typography-role-label-line-height-m,
-    'font-weight': typography.$sn-typography-font-weight-regular-label-m,
-  ),
-);
-
-// Цвета для appearances
-$appearances: (
-  'primary': (
-    'background-color': light.$sn-color-primary-decor,
-  ),
-  'red': (
-    'background-color': light.$sn-color-red-decor,
-  ),
-  'orange': (
-    'background-color': light.$sn-color-orange-decor,
-  ),
-  'yellow': (
-    'background-color': light.$sn-color-yellow-decor,
-  ),
-  'green': (
-    'background-color': light.$sn-color-green-decor,
-  ),
-  'blue': (
-    'background-color': light.$sn-color-blue-decor,
-  ),
-  'violet': (
-    'background-color': light.$sn-color-violet-decor,
-  ),
-  'pink': (
-    'background-color': light.$sn-color-pink-decor,
-  ),
-  'neutral': (
-    'background-color': light.$sn-color-neutral-decor,
-  ),
+  'xs': 's',
+  's': 'm',
 );
 
 // Status
@@ -63,8 +20,6 @@ $appearances: (
   align-items: center;
   box-sizing: border-box;
   white-space: nowrap;
-
-  @include base.composite-var(status.$status, 'anatomy', 'status-indicator', 'size');
 
   @each $size in $statusSizes {
     &[data-size='#{$size}'] {
@@ -92,18 +47,26 @@ $appearances: (
   @each $size in $statusSizes {
     &[data-size='#{$size}'] {
       .text {
-        @include base.composite-var($statusTypography, $size);
+        @include base.composite-var(
+          base.$base-styles,
+          'sn',
+          'regular',
+          'label',
+          base.simple-var($statusTypography, $size)
+        );
       }
     }
   }
 
-  @each $appearance-name, $appearance-value in $appearances {
+  @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      background-color: base.simple-var($appearances, $appearance-name, 'background-color');
+      --background-color: #{base.simple-var(light.$sn-color, $appearance-name, 'decor')};
+
+      background-color: var(--background-color);
 
       color: base.color-on-background-with-opacity(
         light.$sn-color-neutral-text,
-        base.simple-var($appearance-value, 'background-color'),
+        var(--background-color),
         status.$sn-effect-opacity-text-secondary
       );
     }

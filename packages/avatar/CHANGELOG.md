@@ -36,3 +36,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Animation support for image loading
 - Group avatar component for displaying multiple avatars
 - Avatar with border/stroke options
+
+

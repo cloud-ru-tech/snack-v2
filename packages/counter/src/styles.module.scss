@@ -1,44 +1,19 @@
 // Базовые функции и миксины из пакета
-@use '@sbercloud/figma-variables/build/scss/base/base.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 // Переменные темы из пакета
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/counter.module' as counter;
-// Типографика для label (используется в counter)
-@use '@sbercloud/figma-variables/build/scss/styles/typography.module' as typography;
-//
-@use '@sbercloud/figma-variables/build/scss/platformmode/desktop.module' as platform;
+
+@use '@sbercloud/figma-variables/build/scss/adaptivemode/desktop.module' as adaptive;
 
 $sizes: 'xs', 's';
 $variants: 'accent', 'decor';
 $appearances: 'primary', 'neutral', 'red';
 
-$border-radius: (
-  'xs': platform.$sn-platform-counters-round-corner-xs,
-  's': platform.$sn-platform-counters-round-corner-s,
-);
-
-$border-width: (
-  'xs': platform.$sn-platform-counters-stroke-weigth-xs,
-  's': platform.$sn-platform-counters-stroke-weigth-s,
-);
-
-$padding: (
-  'xs': platform.$sn-platform-counters-spacing-container-xs,
-  's': platform.$sn-platform-counters-spacing-container-s,
-);
-
 $typography: (
-  'xs': (
-    'font-size': typography.$sn-platform-typography-role-label-font-size-s,
-    'line-height': typography.$sn-platform-typography-role-label-line-height-s,
-    'font-weight': typography.$sn-typography-font-weight-regular-label-s,
-  ),
-  's': (
-    'font-size': typography.$sn-platform-typography-role-label-font-size-m,
-    'line-height': typography.$sn-platform-typography-role-label-line-height-m,
-    'font-weight': typography.$sn-typography-font-weight-regular-label-m,
-  ),
+  'xs': 's',
+  's': 'm',
 );
 
 .counter {
@@ -56,13 +31,27 @@ $typography: (
     &[data-size='#{$size}'] {
       // Применяем анатомию (padding, min-width, min-height)
       @include base.composite-var(counter.$counter, 'anatomy', 'size', $size);
-      padding: 0 base.simple-var($padding, $size);
 
-      border-radius: base.simple-var($border-radius, $size);
-      border-width: base.simple-var($border-width, $size);
+      border-radius: base.simple-var(adaptive.$sn-adaptive, 'counters', 'round-corner', $size);
+      border-width: base.simple-var(adaptive.$sn-adaptive, 'counters', 'stroke-weigth', $size);
 
       .text {
-        @include base.composite-var($typography, $size);
+        @include base.composite-var(
+          base.$base-styles,
+          'sn',
+          'regular',
+          'label',
+          base.simple-var($typography, $size)
+        );
+
+        @include base.composite-var(counter.$counter, 'anatomy', 'size', $size, 'container');
+
+        border-radius: base.simple-var(adaptive.$sn-adaptive, 'counters', 'round-corner', $size);
+
+        // todo: fix padding
+        padding: 0 base.simple-var(adaptive.$sn-adaptive, 'counters', 'spacing-container', $size);
+
+        text-align: center;
       }
     }
   }

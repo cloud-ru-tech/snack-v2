@@ -75,3 +75,5 @@ find dist -name "*.css" -exec du -h {} \;
 2. ✅ Собирайте в production режиме: `NODE_ENV=production npm run build`
 3. ✅ Проверяйте размер итоговых файлов после изменений
 4. ⚠️ Не используйте `@forward` для больших модулей без необходимости
+
+
