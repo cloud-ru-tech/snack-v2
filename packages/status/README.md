@@ -1,4 +1,4 @@
-# Status
+# Status Overview
 
 Status and StatusIndicator components for displaying status information with visual indicators.
 

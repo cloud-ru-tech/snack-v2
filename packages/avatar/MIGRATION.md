@@ -116,3 +116,6 @@ function migrateAvatarComponent(code: string, fromVersion: string, toVersion: st
 - Test migrations in a separate branch before applying to main codebase
 
 
+
+
+

@@ -8,46 +8,9 @@
 // $sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl';
 $sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';
 $shapes: 'round', 'square';
-// $appearances: 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink', 'neutral';
+// $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
-$appearances: (
-  'primary': (
-    'color': light.$sn-color-primary-text,
-    'background-color': light.$sn-color-primary-decor,
-  ),
-  'red': (
-    'color': light.$sn-color-red-text,
-    'background-color': light.$sn-color-red-decor,
-  ),
-  'orange': (
-    'color': light.$sn-color-orange-text,
-    'background-color': light.$sn-color-orange-decor,
-  ),
-  'yellow': (
-    'color': light.$sn-color-yellow-text,
-    'background-color': light.$sn-color-yellow-decor,
-  ),
-  'green': (
-    'color': light.$sn-color-green-text,
-    'background-color': light.$sn-color-green-decor,
-  ),
-  'blue': (
-    'color': light.$sn-color-blue-text,
-    'background-color': light.$sn-color-blue-decor,
-  ),
-  'violet': (
-    'color': light.$sn-color-violet-text,
-    'background-color': light.$sn-color-violet-decor,
-  ),
-  'pink': (
-    'color': light.$sn-color-pink-text,
-    'background-color': light.$sn-color-pink-decor,
-  ),
-  'neutral': (
-    'color': light.$sn-color-neutral-text,
-    'background-color': light.$sn-color-neutral-decor,
-  ),
-);
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
 .avatar {
   position: relative;
@@ -70,7 +33,6 @@ $appearances: (
         @include base.composite-var(avatar.$avatar, 'typography', $size);
       }
 
-      // @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'container');
       @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size);
     }
   }
@@ -85,21 +47,21 @@ $appearances: (
     }
   }
 
-  @each $appearance-name, $appearance-value in $appearances {
+  @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      background-color: base.simple-var($appearances, $appearance-name, 'background-color');
+      --background-color: #{base.simple-var(light.$sn-color, $appearance-name, 'decor')};
 
-      //   color: base.simple-var($appearance-value, 'color');
+      background-color: var(--background-color);
 
       color: base.color-on-background-with-opacity(
-        base.simple-var($appearance-value, 'color'),
-        base.simple-var($appearance-value, 'background-color'),
+        light.$sn-color-neutral-text,
+        var(--background-color),
         avatar.$sn-effect-opacity-text-secondary
       );
 
       border-color: base.color-on-background-with-opacity(
         light.$sn-color-available-complementary,
-        base.simple-var($appearance-value, 'background-color'),
+        var(--background-color),
         avatar.$sn-avatar-effect-opacity-border
       );
     }

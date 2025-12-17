@@ -2,14 +2,15 @@ import type { Preview } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import './global.scss';
 
-import '@sbercloud/figma-variables/build/css/adaptivemode/desktop.css';
-import '@sbercloud/figma-variables/build/css/adaptivemode/mobile.css';
-import '@sbercloud/figma-variables/build/css/base/base.css';
-import '@sbercloud/figma-variables/build/css/brandmode/brandA.css';
-import '@sbercloud/figma-variables/build/css/brandmode/brandB.css';
-import '@sbercloud/figma-variables/build/css/styles/styles.css';
-import '@sbercloud/figma-variables/build/css/thememode/dark.css';
-import '@sbercloud/figma-variables/build/css/thememode/light.css';
+// import '@sbercloud/figma-variables/build/css/adaptivemode/desktop.css';
+// import '@sbercloud/figma-variables/build/css/adaptivemode/mobile.css';
+// import '@sbercloud/figma-variables/build/css/base/base.css';
+// import '@sbercloud/figma-variables/build/css/brandmode/brandA.css';
+// import '@sbercloud/figma-variables/build/css/brandmode/brandB.css';
+// import '@sbercloud/figma-variables/build/css/styles/styles.css';
+// import '@sbercloud/figma-variables/build/css/thememode/dark.css';
+// import '@sbercloud/figma-variables/build/css/thememode/light.css';
+import '@sbercloud/figma-variables/build/css/tokens.css';
 
 import cn from 'classnames';
 
@@ -39,6 +40,7 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         'sb-story-wrapper',
         'sn-base-styles',
         'sn-figmaStyles',
+        'sn-primitive',
         `sn-${platform}`,
         `sn-${theme}`,
         `sn-${brand}`
