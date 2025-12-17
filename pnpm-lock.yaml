@@ -27,6 +27,9 @@ importers:
       '@sbercloud/figma-variables':
         specifier: 0.0.1-beta.9
         version: 0.0.1-beta.9
+      '@snack-uikit/button':
+        specifier: 0.19.16
+        version: 0.19.16(react@19.2.1)
       '@snack-uikit/counter':
         specifier: 0.8.10
         version: 0.8.10(react@19.2.1)
@@ -1591,6 +1594,9 @@ packages:
 
   '@sinclair/typebox@0.34.41':
     resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
+
+  '@snack-uikit/button@0.19.16':
+    resolution: {integrity: sha512-MnqtJGUhlgE3JuZr53dhpG99j7hj1ehzrZS82sMp6Ne4y307rR4aDTkEzInX8OSMAkokgKE++cAJTGIg1c9jzQ==}
 
   '@snack-uikit/counter@0.8.10':
     resolution: {integrity: sha512-6txaEh4l26G92AIzFOM6mDAqiANgPzbH3VDiyakZjnmfwQFh9qNIrQJAHgF9y3r8XTT3KlAwV+7/rtk61pDvzw==}
@@ -7657,6 +7663,15 @@ snapshots:
       '@sigstore/protobuf-specs': 0.5.0
 
   '@sinclair/typebox@0.34.41': {}
+
+  '@snack-uikit/button@0.19.16(react@19.2.1)':
+    dependencies:
+      '@snack-uikit/counter': 0.8.10(react@19.2.1)
+      '@snack-uikit/loaders': 0.9.9(react@19.2.1)
+      '@snack-uikit/utils': 4.0.0(react@19.2.1)
+      classnames: 2.5.1
+    transitivePeerDependencies:
+      - react
 
   '@snack-uikit/counter@0.8.10(react@19.2.1)':
     dependencies:

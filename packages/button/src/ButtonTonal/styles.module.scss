@@ -1,0 +1,121 @@
+// Базовые функции и миксины из пакета
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+// Переменные темы из пакета
+@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+// Структуры компонентов используем локальные (т.к. структура в пакете отличается)
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as button;
+
+$buttonSizes: 's', 'm', 'l';
+$appearances: 'primary', 'neutral', 'destructive';
+$buttonTypography: (
+  's': 's',
+  'm': 'm',
+  'l': 'l',
+);
+
+// ButtonTonal
+.button {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+
+  @each $size in $buttonSizes {
+    &[data-size='#{$size}'] {
+      min-height: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'min-height');
+      border-radius: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'border-radius');
+      padding: 0 base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'padding');
+      min-width: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'min-width');
+
+      &[data-variant='icon-only'] {
+        min-width: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container-icon-only', 'min-width');
+        padding: 0;
+      }
+
+      .textWrapper {
+        display: flex;
+        align-items: center;
+        gap: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container-text-wrapper', 'gap');
+        padding: 0 base.simple-var(button.$button, 'anatomy', 'size', $size, 'container-text-wrapper', 'padding');
+      }
+
+      .label {
+        @include base.composite-var(
+          base.$base-styles,
+          'sn',
+          'regular',
+          'label',
+          base.simple-var($buttonTypography, $size)
+        );
+      }
+    }
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  @each $appearance-name in $appearances {
+    &[data-appearance='#{$appearance-name}'] {
+      background-color: base.simple-var(button.$button, 'color', 'tonal', $appearance-name, 'background-color');
+      color: base.simple-var(button.$button, 'color', 'tonal', $appearance-name, 'color');
+
+      .label {
+        color: base.simple-var(button.$button, 'color', 'tonal', $appearance-name, 'color');
+      }
+
+      .icon {
+        color: base.simple-var(button.$button, 'color', 'tonal', $appearance-name, 'color');
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      @media (hover: none) or (hover: hover) {
+        &:focus-visible {
+          outline: 2px solid base.simple-var(light.$sn-color, 'available', 'complementary');
+          outline-offset: 2px;
+        }
+
+        &:active {
+          opacity: 0.8;
+        }
+
+        &[data-loading] {
+          opacity: 0.8;
+        }
+
+        &:disabled,
+        &[data-disabled] {
+          background-color: base.simple-var(button.$button, 'color', 'tonal', 'disabled', 'background-color');
+          color: base.simple-var(button.$button, 'color', 'tonal', 'disabled', 'color');
+
+          .label {
+            color: base.simple-var(button.$button, 'color', 'tonal', 'disabled', 'color');
+          }
+
+          .icon {
+            color: base.simple-var(button.$button, 'color', 'tonal', 'disabled', 'color');
+          }
+        }
+      }
+    }
+  }
+
+  &[data-full-width] {
+    width: 100%;
+  }
+}
+
