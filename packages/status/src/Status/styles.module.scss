@@ -64,11 +64,13 @@ $statusTypography: (
 
       background-color: var(--background-color);
 
-      color: base.color-on-background-with-opacity(
-        light.$sn-color-neutral-text,
-        var(--background-color),
-        status.$sn-effect-opacity-text-secondary
-      );
+      // color: base.color-on-background-with-opacity(
+      //   light.$sn-color-neutral-text,
+      //   var(--background-color),
+      //   status.$sn-effect-opacity-text-secondary
+      // );
+
+      color: rbg(from light.$sn-color-neutral-text, r g b / 0.5);
     }
   }
 }

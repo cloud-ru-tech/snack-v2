@@ -119,3 +119,15 @@ function migrateAvatarComponent(code: string, fromVersion: string, toVersion: st
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
