@@ -38,9 +38,9 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       }}
       className={cn(
         'sb-story-wrapper',
-        'sn-base-styles',
-        'sn-figmaStyles',
         'sn-primitive',
+        'sn-figmaStyles',
+        'sn-conmonents',
         `sn-${platform}`,
         `sn-${theme}`,
         `sn-${brand}`
