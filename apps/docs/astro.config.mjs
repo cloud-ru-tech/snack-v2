@@ -6,6 +6,8 @@ import { defineConfig } from 'astro/config';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import starlightLlmsTxt from 'starlight-llms-txt';
+import fixLlmsEncoding from './src/integrations/fixLlmsEncoding.js';
 import syncPackageDocs from './src/integrations/sync-package-docs.js';
 
 const llmTxt = () => ({
@@ -30,6 +32,7 @@ export default defineConfig({
   srcDir: 'src',
   integrations: [
     syncPackageDocs(),
+    fixLlmsEncoding(),
     react(),
     expressiveCode(),
     mdx(),
@@ -50,14 +53,34 @@ export default defineConfig({
         // Переопределяем Content для добавления стилей дизайн-системы
         Content: './src/components/DesignSystemContent.astro',
       },
+      customCss: [
+        // Подключаем глобальные стили дизайн-системы
+        './src/styles/global.css',
+      ],
       head: [
         {
           tag: 'script',
           attrs: {
             type: 'text/javascript',
           },
-          content: `(function(){if(typeof document!=='undefined'){const b=document.body;b.classList.add('sn-base-styles','sn-figmaStyles','sn-desktop','sn-light','sn-brandA');}})();`,
+          content: `(function(){function addClasses(){const b=document.body;if(b){b.classList.add('sn-primitive','sn-figmaStyles','sn-conmonents','sn-desktop','sn-light','sn-brandA');}else{requestAnimationFrame(addClasses);}}if(typeof document!=='undefined'){if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',addClasses);}else{addClasses();}}})();`,
         },
+      ],
+      plugins: [
+        starlightLlmsTxt({
+          projectName: 'Design System',
+          rawContent: true,
+          customSets: [
+            {
+              label: 'components',
+              paths: ['components/**'],
+            },
+            {
+              label: 'guides',
+              paths: ['guides/**'],
+            },
+          ],
+        }),
       ],
     }),
     llmTxt(),
