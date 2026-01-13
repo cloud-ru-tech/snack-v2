@@ -28,21 +28,64 @@ $buttonTypography: (
 
   @each $size in $buttonSizes {
     &[data-size='#{$size}'] {
-      min-height: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'min-height');
-      border-radius: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'border-radius');
+      min-height: base.simple-var(
+        button.$button,
+        'anatomy',
+        'size',
+        $size,
+        'container',
+        'min-height'
+      );
+      border-radius: base.simple-var(
+        button.$button,
+        'anatomy',
+        'size',
+        $size,
+        'container',
+        'border-radius'
+      );
       padding: 0 base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'padding');
-      min-width: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container', 'min-width');
+      min-width: base.simple-var(
+        button.$button,
+        'anatomy',
+        'size',
+        $size,
+        'container',
+        'min-width'
+      );
 
       &[data-variant='icon-only'] {
-        min-width: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container-icon-only', 'min-width');
+        min-width: base.simple-var(
+          button.$button,
+          'anatomy',
+          'size',
+          $size,
+          'container-icon-only',
+          'min-width'
+        );
         padding: 0;
       }
 
       .textWrapper {
         display: flex;
         align-items: center;
-        gap: base.simple-var(button.$button, 'anatomy', 'size', $size, 'container-text-wrapper', 'gap');
-        padding: 0 base.simple-var(button.$button, 'anatomy', 'size', $size, 'container-text-wrapper', 'padding');
+        gap: base.simple-var(
+          button.$button,
+          'anatomy',
+          'size',
+          $size,
+          'container-text-wrapper',
+          'gap'
+        );
+        padding: 0
+          base.simple-var(
+            button.$button,
+            'anatomy',
+            'size',
+            $size,
+            'container-text-wrapper',
+            'padding'
+          );
       }
 
       .label {
@@ -66,7 +109,13 @@ $buttonTypography: (
 
   @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      background-color: base.simple-var(button.$button, 'color', 'filled', $appearance-name, 'background-color');
+      background-color: base.simple-var(
+        button.$button,
+        'color',
+        'filled',
+        $appearance-name,
+        'background-color'
+      );
       color: base.simple-var(button.$button, 'color', 'filled', $appearance-name, 'color');
 
       .label {
@@ -99,7 +148,13 @@ $buttonTypography: (
 
         &:disabled,
         &[data-disabled] {
-          background-color: base.simple-var(button.$button, 'color', 'filled', 'disabled', 'background-color');
+          background-color: base.simple-var(
+            button.$button,
+            'color',
+            'filled',
+            'disabled',
+            'background-color'
+          );
           color: base.simple-var(button.$button, 'color', 'filled', 'disabled', 'color');
 
           .label {
@@ -118,4 +173,3 @@ $buttonTypography: (
     width: 100%;
   }
 }
-

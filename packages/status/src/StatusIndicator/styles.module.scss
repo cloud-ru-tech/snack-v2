@@ -1,7 +1,7 @@
 // Базовые функции и миксины из пакета
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-// Переменные темы из пакета
-@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+// // Переменные темы из пакета
+// @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
 
@@ -19,7 +19,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
 
   @include base.composite-var(status.$status, 'anatomy', 'status-indicator', 'size');
 
-  border-color: light.$sn-color-neutral-background1-level;
+  border-color: base.$sn-color-neutral-background1-level;
 
   @each $size in $statusIndicatorSizes {
     &[data-size='#{$size}'] {
@@ -29,7 +29,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
 
   @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      background-color: base.simple-var(light.$sn-color, $appearance-name, 'accent');
+      background-color: base.simple-var(base.$sn-color, $appearance-name, 'accent');
     }
   }
 }

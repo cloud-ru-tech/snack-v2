@@ -1,7 +1,7 @@
 // Базовые функции и миксины из пакета
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-// Переменные темы из пакета
-@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+// // Переменные темы из пакета
+// @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
 
@@ -60,17 +60,17 @@ $statusTypography: (
 
   @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      --background-color: #{base.simple-var(light.$sn-color, $appearance-name, 'decor')};
+      --background-color: #{base.simple-var(base.$sn-color, $appearance-name, 'decor')};
 
       background-color: var(--background-color);
 
       // color: base.color-on-background-with-opacity(
-      //   light.$sn-color-neutral-text,
+      //   base.$sn-color-neutral-text,
       //   var(--background-color),
       //   status.$sn-effect-opacity-text-secondary
       // );
 
-      color: rbg(from light.$sn-color-neutral-text, r g b / 0.5);
+      color: rbg(from base.$sn-color-neutral-text, r g b / 0.5);
     }
   }
 }

@@ -7,9 +7,22 @@ import '../styles/global.css';
 <script is:inline>
   // Применяем классы дизайн-системы к body
   (function() {
-    if (typeof document !== 'undefined') {
+    function addClasses() {
       const body = document.body;
-      body.classList.add('sn-base-styles', 'sn-figmaStyles', 'sn-desktop', 'sn-light', 'sn-brandA');
+      if (body) {
+        body.classList.add('sn-primitive', 'sn-figmaStyles', 'sn-conmonents', 'sn-desktop', 'sn-light', 'sn-brandA');
+      } else {
+        // Если body еще не существует, повторим попытку
+        requestAnimationFrame(addClasses);
+      }
+    }
+    
+    if (typeof document !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addClasses);
+      } else {
+        addClasses();
+      }
     }
   })();
 </script>

@@ -1,7 +1,7 @@
 // Базовые функции и миксины из пакета
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-// Переменные темы из пакета
-@use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+// // Переменные темы из пакета
+// @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/button.module' as button;
 
@@ -85,7 +85,7 @@ $buttonTypography: (
 
       @media (hover: none) or (hover: hover) {
         &:focus-visible {
-          outline: 2px solid base.simple-var(light.$sn-color, 'available', 'complementary');
+          outline: 2px solid base.simple-var(base.$sn-color, 'available', 'complementary');
           outline-offset: 2px;
         }
 

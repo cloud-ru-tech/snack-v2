@@ -2,29 +2,157 @@
 /* Импорт стилей из figma-variables для единообразного отображения компонентов */
 /* Стили применяются только к body с классами дизайн-системы */
 
+/* Импорт токенов дизайн-системы из figma-variables */
+/* tokens.css содержит все CSS-переменные (primitive, thememode, adaptivemode, brandmode) */
+@import '@sbercloud/figma-variables/build/css/tokens.css';
+
 /* Подключение шрифтов через Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-/* Импорт базовых стилей из figma-variables */
-@import '@sbercloud/figma-variables/build/css/base/base.css';
+/* Подключение шрифтов SB Sans */
+@font-face {
+  font-family: 'SB Sans Interface';
+  src:
+    url('/fonts/SBSansInterface-Semibold.woff2') format('woff2'),
+    url('/fonts/SBSansInterface-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* Импорт стилей брендов */
-@import '@sbercloud/figma-variables/build/css/brandmode/brandA.css';
-@import '@sbercloud/figma-variables/build/css/brandmode/brandB.css';
+@font-face {
+  font-family: 'SB Sans Interface';
+  src:
+    url('/fonts/SBSansInterface-Light.woff2') format('woff2'),
+    url('/fonts/SBSansInterface-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* Импорт стилей платформ */
-@import '@sbercloud/figma-variables/build/css/platformmode/desktop.css';
-@import '@sbercloud/figma-variables/build/css/platformmode/mobile.css';
+@font-face {
+  font-family: 'SB Sans Interface';
+  src:
+    url('/fonts/SBSansInterface-Bold.woff2') format('woff2'),
+    url('/fonts/SBSansInterface-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* Импорт основных стилей */
-@import '@sbercloud/figma-variables/build/css/styles/styles.css';
+@font-face {
+  font-family: 'SB Sans Interface Caps';
+  src:
+    url('/fonts/SBSansInterface-Caps.woff2') format('woff2'),
+    url('/fonts/SBSansInterface-Caps.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* Импорт тем */
-@import '@sbercloud/figma-variables/build/css/thememode/dark.css';
-@import '@sbercloud/figma-variables/build/css/thememode/light.css';
+@font-face {
+  font-family: 'SB Sans Interface';
+  src:
+    url('/fonts/SBSansInterface-Regular.woff2') format('woff2'),
+    url('/fonts/SBSansInterface-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Text Mono';
+  src:
+    url('/fonts/SBSansTextMono-Bold.woff2') format('woff2'),
+    url('/fonts/SBSansTextMono-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Text Mono';
+  src:
+    url('/fonts/SBSansTextMono-Regular.woff2') format('woff2'),
+    url('/fonts/SBSansTextMono-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Display';
+  src:
+    url('/fonts/SBSansDisplay-Regular.woff2') format('woff2'),
+    url('/fonts/SBSansDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Display';
+  src:
+    url('/fonts/SBSansDisplay-SemiBold.woff2') format('woff2'),
+    url('/fonts/SBSansDisplay-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Display';
+  src:
+    url('/fonts/SBSansDisplay-Light.otf') format('otf'),
+    url('/fonts/SBSansDisplay-Light.ttf') format('ttf');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  src:
+    url('/fonts/SBSansText.woff2') format('woff2'),
+    url('/fonts/SBSansText.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  src:
+    url('/fonts/SBSansText-SemiBold.woff2') format('woff2'),
+    url('/fonts/SBSansText-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  src:
+    url('/fonts/SBSansText-Italic.woff2') format('woff2'),
+    url('/fonts/SBSansText-Italic.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  src:
+    url('/fonts/SBSansText-SemiBoldItalic.woff2') format('woff2'),
+    url('/fonts/SBSansText-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* Ограничиваем область применения стилей, чтобы не конфликтовать со Starlight */
 /* Стили дизайн-системы применяются только когда body имеет соответствующие классы */
-body.sn-base-styles {
+body.sn-primitive {
   /* Стили уже применены через импорты выше */
 }

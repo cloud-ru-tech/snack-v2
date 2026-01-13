@@ -12,17 +12,30 @@ import '../styles/global.css';
 <script is:inline>
   // Применяем классы дизайн-системы к body при загрузке страницы
   (function() {
-    if (typeof document !== 'undefined') {
+    function addClasses() {
       const body = document.body;
-      
-      // Базовые классы (всегда применяются)
-      body.classList.add('sn-base-styles');
-      body.classList.add('sn-figmaStyles');
-      
-      // Классы по умолчанию (можно будет сделать переключаемыми)
-      body.classList.add('sn-desktop');
-      body.classList.add('sn-light');
-      body.classList.add('sn-brandA');
+      if (body) {
+        // Базовые классы (всегда применяются)
+        body.classList.add('sn-primitive');
+        body.classList.add('sn-figmaStyles');
+        body.classList.add('sn-conmonents');
+        
+        // Классы по умолчанию (можно будет сделать переключаемыми)
+        body.classList.add('sn-desktop');
+        body.classList.add('sn-light');
+        body.classList.add('sn-brandA');
+      } else {
+        // Если body еще не существует, повторим попытку
+        requestAnimationFrame(addClasses);
+      }
+    }
+    
+    if (typeof document !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addClasses);
+      } else {
+        addClasses();
+      }
     }
   })();
 </script>
