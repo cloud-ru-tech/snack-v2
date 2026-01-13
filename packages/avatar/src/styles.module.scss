@@ -1,14 +1,21 @@
 // Базовые функции и миксины из пакета
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-// // Переменные темы из пакета
-// @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
+
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/avatar.module' as avatar;
 
-// $sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl';
 $sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';
 $shapes: 'round', 'square';
-// $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+$typography: (
+  'xs': base.$sn-regular-label-s,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+  'xl': base.$sn-regular-title-m,
+  '3xl': base.$sn-regular-headline-m,
+  '6xl': base.$sn-regular-display-s,
+  '10xl': base.$sn-regular-display-m,
+);
 
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
@@ -30,7 +37,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       .abbreviation {
-        // @include base.composite-var(avatar.$avatar, 'typography', $size);
+        @include base.composite-var($typography, $size);
       }
 
       @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size);
