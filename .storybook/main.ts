@@ -6,11 +6,7 @@ const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
-  stories: [
-    '../stories/**/*.mdx',
-    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../packages/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)',
-  ],
+  stories: ['../stories/**/*.mdx', '../packages/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
   addons: [
     '@chromatic-com/storybook',
     '@storybook/addon-vitest',
@@ -26,9 +22,9 @@ const config: StorybookConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      '@design-system/button': path.resolve(dirname, '../packages/button/src'),
-      '@design-system/link': path.resolve(dirname, '../packages/link/src'),
-      '@design-system/avatar': path.resolve(dirname, '../packages/avatar/src'),
+      // '@design-system/button': path.resolve(dirname, '../packages/button/src'),
+      // '@design-system/link': path.resolve(dirname, '../packages/link/src'),
+      // '@design-system/avatar': path.resolve(dirname, '../packages/avatar/src'),
     };
 
     // Ensure CSS modules are properly handled

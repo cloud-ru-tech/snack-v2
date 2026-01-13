@@ -165,48 +165,6 @@ importers:
         specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
 
-  packages/button:
-    dependencies:
-      '@sbercloud/figma-variables':
-        specifier: 0.0.1-beta.9
-        version: 0.0.1-beta.9
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
-
-  packages/counter:
-    dependencies:
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
-
-  packages/status:
-    dependencies:
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
-
 packages:
 
   '@adobe/css-tools@4.4.4':
@@ -1574,9 +1532,6 @@ packages:
 
   '@sbercloud/figma-variables@0.0.1-beta.13':
     resolution: {integrity: sha512-PzrxkEcQHqxPD21lBXIJ7oEe+4vcv7mMdPhnNks2W6p5qUeelYjutat8jB5NCzBXeoe7uap/xu6Ec9pIPlGl2w==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-0.0.1-beta.13.tgz}
-
-  '@sbercloud/figma-variables@0.0.1-beta.9':
-    resolution: {integrity: sha512-ZPeEbTNXzez20J53Ue4ewHejKRPR3jZbKE7vPtWfdf5oBsBq2g2HHWcD7Y/Vnu8OUqVCqVI8QAWwkM/S4+P7qQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-0.0.1-beta.9.tgz}
 
   '@shikijs/core@3.19.0':
     resolution: {integrity: sha512-L7SrRibU7ZoYi1/TrZsJOFAnnHyLTE1SwHG1yNWjZIVCqjOEmCSuK2ZO9thnRbJG6TOkPp+Z963JmpCNw5nzvA==}
@@ -7657,8 +7612,6 @@ snapshots:
   '@sbercloud/figma-variables@0.0.1-beta.10': {}
 
   '@sbercloud/figma-variables@0.0.1-beta.13': {}
-
-  '@sbercloud/figma-variables@0.0.1-beta.9': {}
 
   '@shikijs/core@3.19.0':
     dependencies:
