@@ -1,0 +1,142 @@
+---
+title: Button Layout Patterns
+description: Guidelines for button placement and grouping in interfaces
+order: 1
+---
+
+# Button Layout Patterns
+
+Guidelines for proper placement and grouping of buttons in various interface contexts.
+
+## Core Principles
+
+### Action Grouping
+
+Group related actions together. Use visual separation for different types of actions:
+
+```tsx
+import { Button } from '@design-system/button';
+import { Link } from '@design-system/link';
+
+// ✅ Correct: primary actions separated from secondary
+<div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
+  <Link href="/cancel">Cancel</Link>
+  <Button variant="secondary">Save Draft</Button>
+  <Button variant="primary">Publish</Button>
+</div>;
+```
+
+### Action Priority
+
+Primary actions should be visually dominant:
+
+```tsx
+// ✅ Correct: primary action is emphasized
+<div style={{ display: 'flex', gap: 12 }}>
+  <Button variant="secondary">Cancel</Button>
+  <Button variant="primary">Confirm</Button>
+</div>
+
+// ❌ Incorrect: multiple primary actions create confusion
+<div style={{ display: 'flex', gap: 12 }}>
+  <Button variant="primary">Back</Button>
+  <Button variant="primary">Next</Button>
+</div>
+```
+
+## Common Layout Patterns
+
+### Dialog Footer
+
+Buttons in dialogs should be right-aligned, with the primary action on the right:
+
+```tsx
+<div style={{ 
+  display: 'flex', 
+  gap: 12, 
+  justifyContent: 'flex-end',
+  padding: '16px 24px',
+  borderTop: '1px solid #e5e7eb'
+}}>
+  <Button variant="tertiary" onClick={onCancel}>
+    Cancel
+  </Button>
+  <Button variant="primary" onClick={onConfirm}>
+    Confirm
+  </Button>
+</div>
+```
+
+### Form Footer
+
+Forms should have consistent button placement:
+
+```tsx
+<form>
+  {/* Form fields */}
+  
+  <div style={{ 
+    display: 'flex', 
+    gap: 12, 
+    justifyContent: 'flex-end',
+    marginTop: 24 
+  }}>
+    <Button variant="secondary" type="button">
+      Cancel
+    </Button>
+    <Button variant="primary" type="submit">
+      Save
+    </Button>
+  </div>
+</form>
+```
+
+### Toolbar
+
+Actions in toolbars should be left-aligned:
+
+```tsx
+<div style={{ 
+  display: 'flex', 
+  gap: 8,
+  padding: '8px 16px',
+  borderBottom: '1px solid #e5e7eb'
+}}>
+  <Button variant="secondary" icon="edit">
+    Edit
+  </Button>
+  <Button variant="secondary" icon="copy">
+    Copy
+  </Button>
+  <Button variant="secondary" icon="delete">
+    Delete
+  </Button>
+</div>
+```
+
+### Mobile Considerations
+
+On mobile, buttons should stack vertically:
+
+```tsx
+// Desktop
+<div style={{ display: 'flex', gap: 12 }}>
+  <Button variant="secondary">Cancel</Button>
+  <Button variant="primary">Confirm</Button>
+</div>
+
+// Mobile
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+  <Button variant="primary" fullWidth>Confirm</Button>
+  <Button variant="secondary" fullWidth>Cancel</Button>
+</div>
+```
+
+## Best Practices
+
+1. **Limit primary actions** - One primary action per screen section
+2. **Consistent positioning** - Use same patterns throughout the app
+3. **Clear hierarchy** - Visual weight should match action importance
+4. **Adequate spacing** - 12-16px gap between buttons is recommended
+5. **Responsive design** - Stack buttons on mobile when needed
+6. **Destructive actions** - Use clear warnings for destructive operations
