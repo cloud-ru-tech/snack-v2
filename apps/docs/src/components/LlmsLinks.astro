@@ -1,0 +1,114 @@
+---
+const llmsFiles = [
+  {
+    title: 'llms.txt',
+    description: 'Полный индекс документации',
+    url: '/llms.txt',
+  },
+  {
+    title: 'llms-full.txt',
+    description: 'Полная версия документации',
+    url: '/llms-full.txt',
+  },
+  {
+    title: 'llms-small.txt',
+    description: 'Сокращенная версия',
+    url: '/llms-small.txt',
+  },
+  {
+    title: 'llms-components.txt',
+    description: 'Документация по компонентам',
+    url: '/llms-components.txt',
+  },
+  {
+    title: 'llms-guides.txt',
+    description: 'Руководства и гайды',
+    url: '/llms-guides.txt',
+  },
+  {
+    title: '_llms-txt/components/',
+    description: 'Отдельные файлы для каждого компонента',
+    url: '/_llms-txt/components/index.txt',
+  },
+];
+---
+
+<div class="llms-links">
+  <h2>🤖 LLM-оптимизированная документация</h2>
+  <p>Для AI-ассистентов и LLM-агентов доступны специальные версии документации в текстовом формате:</p>
+  <ul>
+    {llmsFiles.map((file) => (
+      <li>
+        <a href={file.url} target="_blank" rel="noopener noreferrer">
+          <code>{file.title}</code>
+        </a>
+        {file.description && <span> — {file.description}</span>}
+      </li>
+    ))}
+  </ul>
+  <p class="note">
+    Эти файлы оптимизированы для чтения AI-моделями и содержат всю документацию в структурированном текстовом формате.
+  </p>
+</div>
+
+<style>
+  .llms-links {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+  }
+
+  .llms-links h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+
+  .llms-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .llms-links li {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+  }
+
+  .llms-links li:hover {
+    background-color: var(--sl-color-gray-5);
+  }
+
+  .llms-links a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--sl-color-text-accent);
+  }
+
+  .llms-links a:hover {
+    text-decoration: underline;
+  }
+
+  .llms-links code {
+    background: var(--sl-color-gray-5);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: var(--sl-font-mono);
+  }
+
+  .llms-links span {
+    color: var(--sl-color-gray-2);
+    font-size: 0.95em;
+  }
+
+  .llms-links .note {
+    margin-top: 1rem;
+    font-size: 0.9em;
+    color: var(--sl-color-gray-3);
+    font-style: italic;
+  }
+</style>

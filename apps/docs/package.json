@@ -1,0 +1,26 @@
+{
+  "name": "@design-system/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/starlight": "^0.36.0",
+    "@sbercloud/figma-variables": "0.0.1-beta.10",
+    "astro": "^5.16.4",
+    "astro-expressive-code": "^0.41.3",
+    "classnames": "^2.5.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "starlight-llms-txt": "0.6.0",
+    "typescript": "^5.9.3"
+  }
+}

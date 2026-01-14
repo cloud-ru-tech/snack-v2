@@ -1,0 +1,72 @@
+.row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+
+  /* Сброс стилей от Starlight */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  /* Отключение стилей для дочерних элементов */
+  :global(> *) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Отключение специфичных правил Starlight */
+  :global(
+    :not(a, strong, em, del, span, input, code, br)
+      + :not(a, strong, em, del, span, input, code, br)
+  ) {
+    margin-top: 0 !important;
+  }
+
+  /* Дополнительная защита от правил Starlight */
+  :global(:where(.sl-markdown-content *)) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.rowGapSmall {
+  gap: 16px;
+}
+
+.rowGapMedium {
+  gap: 20px;
+}
+
+.rowGapLarge {
+  gap: 24px;
+}
+
+.rowGapXLarge {
+  gap: 32px;
+}
+
+.rowJustifyCenter {
+  justify-content: center;
+}
+
+.rowJustifyStart {
+  justify-content: flex-start;
+}
+
+.rowJustifyEnd {
+  justify-content: flex-end;
+}
+
+.rowAlignStart {
+  align-items: flex-start;
+}
+
+.rowAlignCenter {
+  align-items: center;
+}
+
+.rowAlignEnd {
+  align-items: flex-end;
+}

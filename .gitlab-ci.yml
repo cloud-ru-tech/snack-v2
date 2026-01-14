@@ -1,0 +1,23 @@
+variables:
+  NODE_BASE_IMAGE: clp-docker.pkg.sbercloud.tech/cp/base-images/sberlinux-node:2.0.0
+
+pages:
+  image: ${NODE_BASE_IMAGE}
+  script:
+    - touch ~/.npmrc
+    - cat $NPMRC > ~/.npmrc
+    - npm install -g pnpm@latest-10
+    - pnpm install --shamefully-hoist --frozen-lockfile
+    - pnpm run build:packages
+    - pnpm run build:docs
+    - STORYBOOK_BASE_PATH='/storybook/' pnpm run build:storybook
+    - rm -rf public
+    - mkdir -p public
+    - cp -r apps/docs/dist/* public/
+    - mkdir -p public/storybook
+    - cp -r storybook-static/* public/storybook/
+    - touch public/.nojekyll
+  artifacts:
+    paths:
+      - public
+    expire_in: 5 days

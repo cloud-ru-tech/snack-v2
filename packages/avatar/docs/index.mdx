@@ -1,0 +1,326 @@
+---
+title: Avatar
+description: User avatar component
+version: '0.1.0'
+---
+
+import { Avatar, APPEARANCE, SHAPE, SIZE } from '../src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '../../../apps/docs/src/components/ExampleComponents';
+import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../apps/docs/src/components/Trans';
+import { translations } from './i18n';
+
+export const t = translations;
+
+<LocaleProvider locale={frontmatter.locale || 'en'}>
+
+# {t[frontmatter.locale || 'en'].title}
+
+{t[frontmatter.locale || 'en'].intro}
+
+**Version:** `{frontmatter.version}`
+
+## Changelog
+
+import Changelog from '../../../apps/docs/src/components/Changelog.astro';
+
+<Changelog packageName="avatar" />
+
+import LlmLink from '../../../apps/docs/src/components/LlmLink.astro';
+
+<LlmLink component="avatar" />
+
+## {t[frontmatter.locale || 'en'].overview.title}
+
+{t[frontmatter.locale || 'en'].overview.description}
+
+- **{t[frontmatter.locale || 'en'].overview.features.imageLoading}**
+- **{t[frontmatter.locale || 'en'].overview.features.initialsGeneration}**
+- **{t[frontmatter.locale || 'en'].overview.features.multipleSizes}**
+- **{t[frontmatter.locale || 'en'].overview.features.twoShapes}**
+- **{t[frontmatter.locale || 'en'].overview.features.colorSchemes}**
+- **{t[frontmatter.locale || 'en'].overview.features.accessibility}**
+
+## {t[frontmatter.locale || 'en'].examples.title}
+
+### {t[frontmatter.locale || 'en'].examples.basicUsage}
+
+<ExampleContainer>
+  <ExampleRow>
+    <LocaleSwitch>
+      <LocaleCase locale="en">
+        <Avatar name="John Doe" />
+        <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
+        <Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
+      </LocaleCase>
+      <LocaleCase locale="ru">
+        <Avatar name="Иван Иванов" />
+        <Avatar name="Мария Петрова" appearance={APPEARANCE.Primary} />
+        <Avatar name="Алексей Сидоров" appearance={APPEARANCE.Blue} />
+      </LocaleCase>
+    </LocaleSwitch>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.withImages}
+
+<ExampleContainer>
+  <ExampleRow>
+    <LocaleSwitch>
+      <LocaleCase locale="en">
+        <Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
+        <Avatar
+          name="Jane Smith"
+          src="https://i.pravatar.cc/150?img=2"
+          appearance={APPEARANCE.Primary}
+        />
+        <Avatar
+          name="Bob Johnson"
+          src="https://i.pravatar.cc/150?img=3"
+          appearance={APPEARANCE.Green}
+        />
+      </LocaleCase>
+      <LocaleCase locale="ru">
+        <Avatar name="Иван Иванов" src="https://i.pravatar.cc/150?img=1" />
+        <Avatar
+          name="Мария Петрова"
+          src="https://i.pravatar.cc/150?img=2"
+          appearance={APPEARANCE.Primary}
+        />
+        <Avatar
+          name="Алексей Сидоров"
+          src="https://i.pravatar.cc/150?img=3"
+          appearance={APPEARANCE.Green}
+        />
+      </LocaleCase>
+    </LocaleSwitch>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.sizes}
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="xs">
+      <Avatar name="XS" size={SIZE.Xs} />
+    </ExampleItem>
+    <ExampleItem label="s">
+      <Avatar name="S" size={SIZE.S} />
+    </ExampleItem>
+    <ExampleItem label="m">
+      <Avatar name="M" size={SIZE.M} />
+    </ExampleItem>
+    <ExampleItem label="xl">
+      <Avatar name="XL" size={SIZE.Xl} />
+    </ExampleItem>
+    <ExampleItem label="3xl">
+      <Avatar name="3XL" size={SIZE['3Xl']} />
+    </ExampleItem>
+    <ExampleItem label="6xl">
+      <Avatar name="6XL" size={SIZE['6Xl']} />
+    </ExampleItem>
+    <ExampleItem label="10xl">
+      <Avatar name="10XL" size={SIZE['10Xl']} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.shapes}
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label={t[frontmatter.locale || 'en'].shapes.round} labelSize="medium" gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Round" shape={SHAPE.Round} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Круг" shape={SHAPE.Round} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].shapes.square} labelSize="medium" gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Square" shape={SHAPE.Square} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Квадрат" shape={SHAPE.Square} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.colorSchemes}
+
+<ExampleContainer>
+  <ExampleGrid columns={3} minColumnWidth="120px">
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.neutral} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Нейтр" appearance={APPEARANCE.Neutral} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.primary} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Primary" appearance={APPEARANCE.Primary} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Основ" appearance={APPEARANCE.Primary} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.red} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Red" appearance={APPEARANCE.Red} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Красн" appearance={APPEARANCE.Red} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.orange} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Orange" appearance={APPEARANCE.Orange} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Оранж" appearance={APPEARANCE.Orange} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.yellow} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Желт" appearance={APPEARANCE.Yellow} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.green} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Green" appearance={APPEARANCE.Green} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Зелен" appearance={APPEARANCE.Green} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.blue} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Blue" appearance={APPEARANCE.Blue} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Синяя" appearance={APPEARANCE.Blue} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.violet} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Violet" appearance={APPEARANCE.Violet} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Фиол" appearance={APPEARANCE.Violet} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.pink} gap="medium">
+      <LocaleSwitch>
+        <LocaleCase locale="en">
+          <Avatar name="Pink" appearance={APPEARANCE.Pink} />
+        </LocaleCase>
+        <LocaleCase locale="ru">
+          <Avatar name="Розов" appearance={APPEARANCE.Pink} />
+        </LocaleCase>
+      </LocaleSwitch>
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+## {t[frontmatter.locale || 'en'].storybook.title}
+
+import StorybookIframe from '../../../apps/docs/src/components/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-avatar--all-variants" />
+
+## {t[frontmatter.locale || 'en'].usage.title}
+
+### {t[frontmatter.locale || 'en'].usage.basicExample}
+
+```tsx
+import { Avatar } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="John Doe" />;
+}
+```
+
+### {t[frontmatter.locale || 'en'].usage.withImage}
+
+```tsx
+import { Avatar } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="John Doe" src="https://example.com/avatar.jpg" />;
+}
+```
+
+### {t[frontmatter.locale || 'en'].usage.customAppearance}
+
+```tsx
+import { Avatar, APPEARANCE, SIZE } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} size={SIZE.Xl} />;
+}
+```
+
+## {t[frontmatter.locale || 'en'].props.title}
+
+### {t[frontmatter.locale || 'en'].props.required}
+
+- {t[frontmatter.locale || 'en'].props.name}
+
+### {t[frontmatter.locale || 'en'].props.optional}
+
+- {t[frontmatter.locale || 'en'].props.src}
+- {t[frontmatter.locale || 'en'].props.appearance}
+- {t[frontmatter.locale || 'en'].props.size}
+- {t[frontmatter.locale || 'en'].props.shape}
+- {t[frontmatter.locale || 'en'].props.showTwoSymbols}
+- {t[frontmatter.locale || 'en'].props.className}
+- {t[frontmatter.locale || 'en'].props.htmlAttributes}
+
+## {t[frontmatter.locale || 'en'].accessibility.title}
+
+- {t[frontmatter.locale || 'en'].accessibility.images}
+- {t[frontmatter.locale || 'en'].accessibility.initials}
+- {t[frontmatter.locale || 'en'].accessibility.attributes}
+- {t[frontmatter.locale || 'en'].accessibility.semantic}
+
+## {t[frontmatter.locale || 'en'].bestPractices.title}
+
+1. **{t[frontmatter.locale || 'en'].bestPractices.provideName}**
+2. **{t[frontmatter.locale || 'en'].bestPractices.appropriateSizes}**
+3. **{t[frontmatter.locale || 'en'].bestPractices.consistentColors}**
+4. **{t[frontmatter.locale || 'en'].bestPractices.handleErrors}**
+5. **{t[frontmatter.locale || 'en'].bestPractices.considerContrast}**
+6. **{t[frontmatter.locale || 'en'].bestPractices.groupAvatars}**
+
+</LocaleProvider>

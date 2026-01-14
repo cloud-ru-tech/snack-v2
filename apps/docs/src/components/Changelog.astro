@@ -1,0 +1,132 @@
+---
+/**
+ * Changelog component for displaying package changelog link in documentation
+ * 
+ * The changelog is automatically synced from packages/<package-name>/CHANGELOG.md
+ * to components/<package-name>/CHANGELOG.md and available as a separate page.
+ * 
+ * Usage in MDX:
+ * ```mdx
+ * import Changelog from '../../components/Changelog.astro';
+ * 
+ * <Changelog packageName="button" />
+ * ```
+ */
+
+interface Props {
+  /** Package name (e.g., "button") */
+  packageName: string;
+  /** Show inline link or full changelog section */
+  inline?: boolean;
+}
+
+const { packageName, inline = false } = Astro.props;
+const changelogUrl = `/components/${packageName}/CHANGELOG`;
+---
+
+{inline ? (
+  <div class="changelog-inline">
+    <a href={changelogUrl} class="changelog-link">
+      View Changelog →
+    </a>
+  </div>
+) : (
+  <div class="changelog-container">
+    <div class="changelog-header">
+      <h2>Changelog</h2>
+    </div>
+    <div class="changelog-content">
+      <p>
+        See the complete version history and migration guides in the{' '}
+        <a href={changelogUrl}>Changelog</a>.
+      </p>
+      <a href={changelogUrl} class="changelog-button">
+        View Changelog →
+      </a>
+    </div>
+  </div>
+)}
+
+<style>
+  .changelog-container {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--sl-color-gray-6);
+    border-radius: 0.5rem;
+    border: 1px solid var(--sl-color-gray-4);
+  }
+
+  .changelog-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--sl-color-gray-4);
+  }
+
+  .changelog-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--sl-color-text);
+  }
+
+  .changelog-content {
+    color: var(--sl-color-text);
+  }
+
+  .changelog-content p {
+    margin-bottom: 1rem;
+  }
+
+  .changelog-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--sl-color-blue);
+    color: var(--sl-color-white);
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+
+  .changelog-button:hover {
+    background: var(--sl-color-blue-high);
+  }
+
+  .changelog-inline {
+    margin: 1rem 0;
+  }
+
+  .changelog-link {
+    color: var(--sl-color-blue);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .changelog-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

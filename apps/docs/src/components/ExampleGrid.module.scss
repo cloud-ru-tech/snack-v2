@@ -1,0 +1,47 @@
+.grid {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+  justify-items: center;
+  width: 100%;
+
+  /* Сброс стилей от Starlight */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  /* Отключение стилей для дочерних элементов */
+  :global(> *) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Отключение специфичных правил Starlight */
+  :global(
+    :not(a, strong, em, del, span, input, code, br)
+      + :not(a, strong, em, del, span, input, code, br)
+  ) {
+    margin-top: 0 !important;
+  }
+
+  /* Дополнительная защита от правил Starlight */
+  :global(:where(.sl-markdown-content *)) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.gridAutoFit {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.gridGapSmall {
+  gap: 16px;
+}
+
+.gridGapMedium {
+  gap: 24px;
+}
+
+.gridGapLarge {
+  gap: 32px;
+}

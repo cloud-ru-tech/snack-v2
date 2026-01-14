@@ -1,0 +1,126 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get current language from URL or default to 'en'
+const currentLang = Astro.currentLocale || 'en';
+
+// Get all docs from components directory for current locale
+const componentsDocs = await getCollection('docs', ({ id }) => {
+  return id.startsWith(`${currentLang}/components/`);
+});
+
+// Get all docs from guides directory for current locale
+const guidesDocs = await getCollection('docs', ({ id }) => {
+  return id.startsWith(`${currentLang}/guides/`);
+});
+
+// Process components - исключаем только CHANGELOG и MIGRATION
+// Группируем по package, приоритет отдаем index файлам
+const componentsByPackage = new Map();
+
+// Сначала собираем все файлы по пакетам
+componentsDocs.forEach((doc) => {
+  const parts = doc.id.split('/');
+  // parts[0] is locale, parts[1] is 'components', parts[2] is package name
+  const fileName = parts[parts.length - 1].toLowerCase();
+  const packageName = parts[2];
+  const title = doc.data.title?.toLowerCase() || '';
+  const description = doc.data.description?.toLowerCase() || '';
+  
+  // Исключаем CHANGELOG и MIGRATION файлы
+  // Проверяем по fileName, title и description
+  const isChangelog = fileName === 'changelog' || 
+                      title === 'changelog' ||
+                      description.includes('version history');
+  const isMigration = fileName === 'migration' || 
+                      title === 'migration guide' ||
+                      description.includes('migration instructions');
+  
+  if (isChangelog || isMigration) {
+    return;
+  }
+  
+  if (!packageName) {
+    return;
+  }
+  
+  if (!componentsByPackage.has(packageName)) {
+    componentsByPackage.set(packageName, []);
+  }
+  
+  const slug = fileName === 'index'
+    ? `/${currentLang}/components/${packageName}/`
+    : `/${currentLang}/components/${parts.slice(2).join('/')}/`;
+  
+  componentsByPackage.get(packageName)!.push({
+    title: doc.data.title,
+    description: doc.data.description,
+    slug,
+    order: doc.data.order ?? 999,
+    packageName,
+    fileName: parts[parts.length - 1], // Сохраняем оригинальное имя для сортировки
+  });
+});
+
+// Для каждого пакета берем index файл, если есть, иначе первую найденную страницу
+const components = Array.from(componentsByPackage.entries())
+  .map(([packageName, docs]) => {
+    // Сортируем: сначала index, потом остальные
+    docs.sort((a, b) => {
+      const aIsIndex = a.fileName.toLowerCase() === 'index';
+      const bIsIndex = b.fileName.toLowerCase() === 'index';
+      if (aIsIndex && !bIsIndex) return -1;
+      if (!aIsIndex && bIsIndex) return 1;
+      return a.order - b.order || a.title.localeCompare(b.title);
+    });
+    
+    return docs[0]; // Берем первый (index, если есть)
+  })
+  .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
+
+// Process guides
+const guides = guidesDocs
+  .map((doc) => {
+    const parts = doc.id.split('/');
+    // parts[0] is locale, parts[1] is 'guides'
+    const slug = `/${currentLang}/guides/${parts.slice(2).join('/')}/`;
+    
+    return {
+      title: doc.data.title,
+      description: doc.data.description,
+      slug,
+      order: doc.data.order ?? 999,
+    };
+  })
+  .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
+---
+
+{guides.length > 0 && (
+  <>
+    <h2>Паттерны и гайдлайны</h2>
+    <p>Рекомендации по использованию компонентов и общие принципы:</p>
+    <ul>
+      {guides.map((guide) => (
+        <li>
+          <a href={guide.slug}>{guide.title}</a>
+          {guide.description && <span> — {guide.description}</span>}
+        </li>
+      ))}
+    </ul>
+  </>
+)}
+
+{components.length > 0 && (
+  <>
+    <h2>Компоненты</h2>
+    <p>Готовые UI-элементы с примерами и API:</p>
+    <ul>
+      {components.map((component) => (
+        <li>
+          <a href={component.slug}>{component.title}</a>
+          {component.description && <span> — {component.description}</span>}
+        </li>
+      ))}
+    </ul>
+  </>
+)}

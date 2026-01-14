@@ -1,93 +1,206 @@
-# storybook
+# Design System - Storybook
 
+React компонентная библиотека с современной документацией на базе Storybook.
 
+## Возможности
 
-## Getting started
+- 🎨 **Design Tokens** - интеграция с Figma Variables
+- 📚 **Storybook** - интерактивная документация компонентов
+- ♿ **Accessibility** - встроенная проверка a11y с axe-core
+- 🎨 **Figma Integration** - просмотр дизайнов рядом с компонентами
+- 🧪 **Vitest** - тестирование компонентов
+- 📦 **Monorepo** - организация пакетов с Lerna и pnpm
+- 🚀 **CI/CD** - автоматическая сборка и деплой на GitLab Pages
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Быстрый старт
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Установка зависимостей
 
-## Add your files
+```bash
+pnpm install
+```
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Запуск Storybook
+
+```bash
+pnpm storybook
+```
+
+Storybook будет доступен по адресу: http://localhost:6006/
+
+### Разработка компонентов
+
+1. Создайте новый компонент в `packages/your-component/src/`
+2. Добавьте story в `packages/your-component/YourComponent.stories.tsx`
+3. Запустите Storybook для просмотра компонента
+
+### Сборка
+
+```bash
+# Сборка всех пакетов
+pnpm build:packages
+
+# Сборка Storybook
+pnpm build:storybook
+
+# Полная сборка (пакеты + docs + storybook)
+pnpm build:all
+```
+
+## Storybook аддоны
+
+Проект использует следующие аддоны для расширения возможностей Storybook:
+
+### Установленные аддоны
+
+- **[@storybook/addon-docs](https://storybook.js.org/docs/writing-docs/introduction)** - автоматическая документация
+- **[@storybook/addon-designs](https://github.com/storybookjs/addon-designs)** - интеграция с Figma
+- **[@storybook/addon-links](https://storybook.js.org/addons/@storybook/addon-links)** - навигация между stories
+- **[@storybook/addon-a11y](https://storybook.js.org/addons/@storybook/addon-a11y)** - проверка accessibility
+- **[@storybook/addon-vitest](https://storybook.js.org/addons/@storybook/addon-vitest)** - интеграция с Vitest
+- **[@chromatic-com/storybook](https://www.chromatic.com/)** - visual regression testing
+
+### Встроенные возможности (Storybook 10.x)
+
+- **Controls** - динамическое изменение props
+- **Actions** - логирование событий
+- **Viewport** - тестирование разных размеров экрана
+- **Backgrounds** - изменение фона canvas
+
+📖 **[Подробная документация по аддонам](.storybook/ADDONS.md)**
+
+## Структура проекта
 
 ```
-cd existing_repo
-git remote add origin https://git.sbercloud.tech/niershov/storybook.git
-git branch -M main
-git push -uf origin main
+.
+├── .storybook/          # Конфигурация Storybook
+│   ├── main.ts          # Основная конфигурация
+│   ├── preview.tsx      # Глобальные декораторы
+│   ├── ADDONS.md        # Документация по аддонам
+│   └── README.md        # Документация Storybook
+├── packages/            # React компоненты
+│   ├── avatar/          # Компонент Avatar
+│   ├── button/          # Компонент Button (coming soon)
+│   └── link/            # Компонент Link (coming soon)
+├── stories/             # Демонстрационные stories
+│   └── AddonsDemo.stories.tsx
+├── apps/                # Приложения (Astro docs site)
+└── types/               # Глобальные TypeScript типы
 ```
 
-## Integrate with your tools
+## Создание нового компонента
 
-- [ ] [Set up project integrations](https://git.sbercloud.tech/niershov/storybook/-/settings/integrations)
+```bash
+# Создайте новую папку в packages/
+mkdir -p packages/my-component/src
 
-## Collaborate with your team
+# Создайте компонент
+touch packages/my-component/src/index.tsx
+touch packages/my-component/src/styles.module.scss
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+# Создайте story
+touch packages/my-component/MyComponent.stories.tsx
 
-## Test and Deploy
+# Добавьте package.json
+touch packages/my-component/package.json
+```
 
-Use the built-in continuous integration in GitLab.
+### Пример story с Figma интеграцией
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { MyComponent } from './src';
 
-***
+const meta: Meta<typeof MyComponent> = {
+  title: 'Components/MyComponent',
+  component: MyComponent,
+  parameters: {
+    // Добавьте ссылку на Figma дизайн
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/YOUR_FILE_ID/...',
+    },
+  },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary'],
+    },
+  },
+};
 
-# Editing this README
+export default meta;
+type Story = StoryObj<typeof MyComponent>;
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+  },
+};
+```
 
-## Suggestions for a good README
+## Тестирование
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```bash
+# Запуск всех тестов
+pnpm test
 
-## Name
-Choose a self-explaining name for your project.
+# Запуск тестов с coverage
+pnpm test:coverage
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## CI/CD
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Проект настроен для автоматического деплоя на GitLab Pages:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- **Storybook**: доступен по адресу `/storybook/`
+- **Docs**: доступен по адресу `/docs/` (coming soon)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Скрипты
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```bash
+# Разработка
+pnpm storybook          # Запуск Storybook
+pnpm dev                # Запуск Astro docs site
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+# Сборка
+pnpm build:packages     # Сборка пакетов
+pnpm build:storybook    # Сборка Storybook
+pnpm build:all          # Полная сборка
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+# Тестирование
+pnpm test               # Запуск тестов
+pnpm lint               # Проверка кода
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+# Зависимости
+pnpm deps               # Установка зависимостей
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Технологии
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- **React 19** - UI библиотека
+- **TypeScript 5.9** - типизация
+- **Storybook 10.1** - документация компонентов
+- **Vitest** - тестирование
+- **SCSS Modules** - стилизация
+- **Lerna** - управление monorepo
+- **pnpm** - package manager
+- **Figma Variables** - дизайн токены
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Документация
 
-## License
-For open source projects, say how it is licensed.
+- [Документация по Storybook](.storybook/README.md)
+- [Документация по аддонам](.storybook/ADDONS.md)
+- [Демонстрация аддонов](./stories/AddonsDemo.stories.tsx)
+- [Деплой инструкция](./DEPLOY.md)
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## Ресурсы
+
+- [Storybook Documentation](https://storybook.js.org/docs)
+- [React Documentation](https://react.dev/)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [pnpm Documentation](https://pnpm.io/)
+
+## Лицензия
+
+MIT

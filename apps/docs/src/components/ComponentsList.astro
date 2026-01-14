@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get current language from URL or default to 'en'
+const currentLang = Astro.currentLocale || 'en';
+
+// Get all docs from components directory for current locale
+const allDocs = await getCollection('docs', ({ id }) => {
+  return id.startsWith(`${currentLang}/components/`);
+});
+
+// Group by package and sort by order
+const components = allDocs
+  .map((doc) => {
+    const parts = doc.id.split('/');
+    // parts[0] is locale, parts[1] is 'components', parts[2] is package name
+    const packageName = parts[2];
+    const fileName = parts[parts.length - 1];
+    const isIndex = fileName === 'index';
+    const slug = isIndex
+      ? `/${currentLang}/components/${packageName}/`
+      : `/${currentLang}/components/${parts.slice(2).join('/')}/`;
+    
+    return {
+      title: doc.data.title,
+      description: doc.data.description,
+      slug,
+      order: doc.data.order ?? 999,
+      packageName,
+    };
+  })
+  .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
+---
+
+{components.length > 0 && (
+  <ul>
+    {components.map((component) => (
+      <li>
+        <a href={component.slug}>{component.title}</a>
+        {component.description && (
+          <span> — {component.description}</span>
+        )}
+      </li>
+    ))}
+  </ul>
+)}

@@ -1,0 +1,84 @@
+// Базовые функции и миксины из пакета
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Структуры компонентов используем локальные (т.к. структура в пакете отличается)
+@use '@sbercloud/figma-variables/build/scss/components/avatar.module' as avatar;
+
+$sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';
+$shapes: 'round', 'square';
+
+$typography: (
+  'xs': base.$sn-regular-label-s,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+  'xl': base.$sn-regular-title-m,
+  '3xl': base.$sn-regular-headline-m,
+  '6xl': base.$sn-regular-display-s,
+  '10xl': base.$sn-regular-display-m,
+);
+
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  aspect-ratio: 1 / 1;
+  border-style: solid;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .abbreviation {
+        @include base.composite-var($typography, $size);
+      }
+
+      @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size);
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @each $shape in $shapes {
+        &[data-shape='#{$shape}'] {
+          @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, $shape);
+        }
+      }
+    }
+  }
+
+  @each $appearance-name in $appearances {
+    &[data-appearance='#{$appearance-name}'] {
+      --background-color: #{base.simple-var(base.$sn-color, $appearance-name, 'decor')};
+
+      background-color: var(--background-color);
+
+      color: base.color-on-background-with-opacity(
+        base.$sn-color-neutral-text,
+        var(--background-color),
+        avatar.$sn-effect-opacity-text-secondary
+      );
+
+      border-color: base.color-on-background-with-opacity(
+        base.$sn-color-available-complementary,
+        var(--background-color),
+        avatar.$sn-avatar-effect-opacity-border
+      );
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+  }
+}
