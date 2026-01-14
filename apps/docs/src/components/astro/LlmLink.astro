@@ -13,7 +13,9 @@ interface Props {
 const { component } = Astro.props;
 
 // Get base URL - use relative path for production flexibility
-const llmUrl = `/_llms-txt/components/llm-${component}.txt`;
+const base = import.meta.env.BASE_URL;
+const llmPath = `_llms-txt/components/llm-${component}.txt`;
+const llmUrl = base.endsWith('/') ? `${base}${llmPath}` : `${base}/${llmPath}`;
 const fullUrl = import.meta.env.SITE ? 
   `${import.meta.env.SITE.replace(/\/+$/, '')}${llmUrl}` : 
   `http://localhost:4321${llmUrl}`;

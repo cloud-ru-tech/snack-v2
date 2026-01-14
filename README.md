@@ -43,8 +43,17 @@ pnpm build:packages
 # Сборка Storybook
 pnpm build:storybook
 
+# Сборка документации (по умолчанию для /snack-v2/)
+pnpm build:docs
+
+# Сборка документации для корня домена
+pnpm build:docs:root
+
 # Полная сборка (пакеты + docs + storybook)
 pnpm build:all
+
+# Сборка с кастомным базовым путем
+BASE_PATH=/custom-path/ pnpm build:docs
 ```
 
 ## Storybook аддоны

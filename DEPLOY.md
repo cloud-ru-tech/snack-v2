@@ -45,6 +45,43 @@ ls -la storybook-static/    # Storybook
 - `CI` — автоматически устанавливается GitLab CI
 - `CI_PAGES_URL` — URL GitLab Pages (используется Astro для генерации sitemap)
 - `PUBLIC_SITE_URL` — можно задать вручную для кастомного домена
+- `BASE_PATH` — базовый путь для деплоя на подпути (например, `/snack-v2/` для `https://example.com/snack-v2/`)
+
+### Деплой на подпути домена
+
+Если приложение разворачивается не в корне домена, а на подпути (например, `https://frontend.cp.sbercloud.tech/snack-v2/`), нужно установить переменную `BASE_PATH`:
+
+```bash
+# В CI/CD переменных GitLab или в команде сборки
+export BASE_PATH=/snack-v2/
+pnpm run build
+
+# Или через docker build
+docker build --build-arg BASE_PATH=/snack-v2/ .
+```
+
+**Важно:**
+- Путь должен начинаться и заканчиваться слешем: `/snack-v2/`
+- Все редиректы и ссылки будут автоматически использовать этот базовый путь
+- Без установки `BASE_PATH` приложение работает в корне домена (`/`)
+
+#### Пример с Docker и nginx
+
+```bash
+# 1. Сборка приложения с базовым путем
+BASE_PATH=/snack-v2/ pnpm run build
+
+# 2. Сборка Docker образа
+docker build -t design-system:snack-v2 .
+
+# 3. Запуск контейнера
+docker run -p 8080:80 design-system:snack-v2
+```
+
+При развертывании на Kubernetes с Ingress, убедитесь что:
+- В CI/CD установлена переменная `BASE_PATH` соответствующая пути в Ingress
+- Nginx проксирует запросы с правильным base path
+- В приложении будут работать редиректы: `https://example.com/snack-v2/` → `https://example.com/snack-v2/en/`
 
 ## Troubleshooting
 

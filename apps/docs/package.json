@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "BASE_PATH=${BASE_PATH:-/snack-v2/} astro build",
+    "build:root": "BASE_PATH=/ astro build",
     "preview": "astro preview"
   },
   "dependencies": {

@@ -29,7 +29,10 @@ export default defineConfig({
     process.env.CI_PAGES_URL ||
     process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') ||
     'http://localhost:4321',
-  base: '/', // Docs are served from root
+  // Support deployment on subpaths via BASE_PATH env variable
+  base: process.env.BASE_PATH || '/',
+  // Ensure all URLs have trailing slashes for consistency
+  trailingSlash: 'always',
   srcDir: 'src',
   integrations: [
     syncPackageDocs(),

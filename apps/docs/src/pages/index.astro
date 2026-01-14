@@ -3,6 +3,8 @@
  * Root redirect page
  * Redirects to default locale (en)
  */
+const base = import.meta.env.BASE_URL;
+const targetUrl = `${base}en/`;
 ---
 
 <!DOCTYPE html>
@@ -10,14 +12,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="refresh" content="0; url=/en/" />
-    <link rel="canonical" href="/en/" />
+    <meta http-equiv="refresh" content={`0; url=${targetUrl}`} />
+    <link rel="canonical" href={targetUrl} />
     <title>Redirecting...</title>
-    <script>
-      window.location.href = '/en/';
+    <script define:vars={{ targetUrl }}>
+      window.location.href = targetUrl;
     </script>
   </head>
   <body>
-    <p>Redirecting to <a href="/en/">documentation</a>...</p>
+    <p>Redirecting to <a href={targetUrl}>documentation</a>...</p>
   </body>
 </html>

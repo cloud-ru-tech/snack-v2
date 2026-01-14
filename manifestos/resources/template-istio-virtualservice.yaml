@@ -1,0 +1,31 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: uikit-snack-v2-$CI_COMMIT_BRANCH_CUT
+  namespace: ui-uikit-snack-v2
+  labels:
+    app: uikit-snack-v2
+    todo: delete
+  annotations:
+    janitor/ttl: 7d
+spec:
+  hosts:
+    - '*'
+  gateways:
+    - cloud-ui/ui-gateway
+  http:
+    - match:
+        - uri:
+            prefix: '/snack-v2/'
+          headers:
+            ui-uikit-snack-v2:
+              regex: '^.*(?i)$CI_COMMIT_BRANCH_CUT.*$'
+      rewrite:
+        uri: '/'
+      route:
+        - destination:
+            host: uikit-snack-v2
+            subset: $CI_COMMIT_BRANCH_CUT
+            port:
+              number: 8080

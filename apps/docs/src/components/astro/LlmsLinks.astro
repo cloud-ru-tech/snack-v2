@@ -1,34 +1,42 @@
 ---
+// Helper to generate paths with base URL
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${normalizedBase}${normalizedPath}`;
+};
+
 const llmsFiles = [
   {
     title: 'llms.txt',
     description: 'Полный индекс документации',
-    url: '/llms.txt',
+    url: withBase('/llms.txt'),
   },
   {
     title: 'llms-full.txt',
     description: 'Полная версия документации',
-    url: '/llms-full.txt',
+    url: withBase('/llms-full.txt'),
   },
   {
     title: 'llms-small.txt',
     description: 'Сокращенная версия',
-    url: '/llms-small.txt',
+    url: withBase('/llms-small.txt'),
   },
   {
     title: 'llms-components.txt',
     description: 'Документация по компонентам',
-    url: '/llms-components.txt',
+    url: withBase('/llms-components.txt'),
   },
   {
     title: 'llms-guides.txt',
     description: 'Руководства и гайды',
-    url: '/llms-guides.txt',
+    url: withBase('/llms-guides.txt'),
   },
   {
     title: '_llms-txt/components/',
     description: 'Отдельные файлы для каждого компонента',
-    url: '/_llms-txt/components/index.txt',
+    url: withBase('/_llms-txt/components/index.txt'),
   },
 ];
 ---

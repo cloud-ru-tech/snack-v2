@@ -21,7 +21,14 @@ interface Props {
 }
 
 const { packageName, inline = false } = Astro.props;
-const changelogUrl = `/components/${packageName}/changelog/`;
+
+// Get current language from URL or default to 'en'
+const currentLang = Astro.currentLocale || 'en';
+
+// Generate changelog URL with base path support
+const base = import.meta.env.BASE_URL;
+const relativePath = `${currentLang}/components/${packageName}/changelog/`;
+const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${relativePath}`;
 ---
 
 {inline ? (

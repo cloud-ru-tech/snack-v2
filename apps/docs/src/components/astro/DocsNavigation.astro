@@ -1,6 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 
+// Helper to generate paths with base URL
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  // Remove leading slash from path if base already has trailing slash
+  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${normalizedBase}${normalizedPath}`;
+};
+
 // Get current language from URL or default to 'en'
 const currentLang = Astro.currentLocale || 'en';
 
@@ -48,9 +57,10 @@ componentsDocs.forEach((doc) => {
     componentsByPackage.set(packageName, []);
   }
   
-  const slug = fileName === 'index'
-    ? `/${currentLang}/components/${packageName}/`
-    : `/${currentLang}/components/${parts.slice(2).join('/')}/`;
+  const relativePath = fileName === 'index'
+    ? `${currentLang}/components/${packageName}/`
+    : `${currentLang}/components/${parts.slice(2).join('/')}/`;
+  const slug = withBase(relativePath);
   
   componentsByPackage.get(packageName)!.push({
     title: doc.data.title,
@@ -83,7 +93,8 @@ const guides = guidesDocs
   .map((doc) => {
     const parts = doc.id.split('/');
     // parts[0] is locale, parts[1] is 'guides'
-    const slug = `/${currentLang}/guides/${parts.slice(2).join('/')}/`;
+    const relativePath = `${currentLang}/guides/${parts.slice(2).join('/')}/`;
+    const slug = withBase(relativePath);
     
     return {
       title: doc.data.title,

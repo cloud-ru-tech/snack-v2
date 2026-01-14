@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uikit-snack-v2-new
+  namespace: ui-uikit-snack-v2
+  labels:
+    app: uikit-snack-v2
+    version: new
+    test: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      version: new
+  template:
+    metadata:
+      labels:
+        app: uikit-snack-v2
+        version: new
+        test: 'true'
+      annotations:
+        sidecar.istio.io/proxyCPU: '10m'
+        sidecar.istio.io/proxyMemory: '64Mi'
+    spec:
+      containers:
+        - name: uikit-snack-v2-new
+          image: new
+          env:
+            - name: LOG_LEVEL
+              value: 'info'
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '20m'
+            requests:
+              memory: '64Mi'
+              cpu: '10m'
+      imagePullSecrets:
+        - name: docker-auth-config
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  revisionHistoryLimit: 2

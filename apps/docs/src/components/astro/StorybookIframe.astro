@@ -9,10 +9,13 @@ const { storyId, height = '420px', width = '100%' } = Astro.props;
 
 // Determine Storybook base URL based on environment
 const getStorybookBaseUrl = () => {
-  // In production/GitLab Pages, use relative path
+  // In production/GitLab Pages, use relative path with base URL
   // Astro sets import.meta.env.PROD in production builds
   if (import.meta.env.PROD) {
-    return '/storybook';
+    const base = import.meta.env.BASE_URL;
+    const storybookPath = 'storybook';
+    // Normalize base path and combine with storybook path
+    return base.endsWith('/') ? `${base}${storybookPath}` : `${base}/${storybookPath}`;
   }
   // In dev, use localhost
   return 'http://localhost:6006';
