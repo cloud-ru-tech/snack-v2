@@ -1,0 +1,156 @@
+---
+/**
+ * Компонент для переключения темы, бренда и платформы
+ * Работает с глобальным theme-manager
+ */
+---
+
+<div class="theme-switcher">
+  <div class="theme-controls">
+    <label class="theme-control">
+      <span class="theme-label">Тема:</span>
+      <select id="theme-select" class="theme-select">
+        <option value="light">Светлая</option>
+        <option value="dark">Темная</option>
+      </select>
+    </label>
+
+    <label class="theme-control">
+      <span class="theme-label">Бренд:</span>
+      <select id="brand-select" class="theme-select">
+        <option value="brandA">Brand A</option>
+        <option value="brandB">Brand B</option>
+      </select>
+    </label>
+
+    <label class="theme-control">
+      <span class="theme-label">Платформа:</span>
+      <select id="platform-select" class="theme-select">
+        <option value="desktop">Desktop</option>
+        <option value="mobile">Mobile</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<style>
+  .theme-switcher {
+    padding: 1rem;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--sl-color-hairline);
+  }
+
+  .theme-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .theme-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .theme-label {
+    font-weight: 500;
+    color: var(--sl-color-text);
+  }
+
+  .theme-select {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--sl-color-hairline);
+    background: var(--sl-color-bg);
+    color: var(--sl-color-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .theme-select:hover {
+    border-color: var(--sl-color-text-accent);
+  }
+
+  .theme-select:focus {
+    outline: 2px solid var(--sl-color-text-accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .theme-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .theme-control {
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  // Инициализация переключателя темы
+  function initThemeSwitcher() {
+    // Получаем глобальный менеджер темы
+    const manager = (window as any).snThemeManager;
+    if (!manager) {
+      console.warn('Theme manager not found');
+      return;
+    }
+
+    // Получаем элементы
+    const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+    const brandSelect = document.getElementById('brand-select') as HTMLSelectElement;
+    const platformSelect = document.getElementById('platform-select') as HTMLSelectElement;
+
+    if (!themeSelect || !brandSelect || !platformSelect) {
+      return;
+    }
+
+    // Устанавливаем текущие значения
+    themeSelect.value = manager.getTheme();
+    brandSelect.value = manager.getBrand();
+    platformSelect.value = manager.getPlatform();
+
+    // Слушаем изменения
+    themeSelect.addEventListener('change', (e) => {
+      manager.setTheme((e.target as HTMLSelectElement).value);
+    });
+
+    brandSelect.addEventListener('change', (e) => {
+      manager.setBrand((e.target as HTMLSelectElement).value);
+    });
+
+    platformSelect.addEventListener('change', (e) => {
+      manager.setPlatform((e.target as HTMLSelectElement).value);
+    });
+
+    // Слушаем изменения от других источников (например, из devtools)
+    window.addEventListener('themeChange', ((e: CustomEvent) => {
+      themeSelect.value = e.detail.value;
+    }) as EventListener);
+
+    window.addEventListener('brandChange', ((e: CustomEvent) => {
+      brandSelect.value = e.detail.value;
+    }) as EventListener);
+
+    window.addEventListener('platformChange', ((e: CustomEvent) => {
+      platformSelect.value = e.detail.value;
+    }) as EventListener);
+  }
+
+  // Инициализация после загрузки DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeSwitcher);
+  } else {
+    initThemeSwitcher();
+  }
+
+  // Реинициализация при навигации (для SPA режима Astro)
+  document.addEventListener('astro:page-load', initThemeSwitcher);
+</script>

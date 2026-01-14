@@ -4,27 +4,12 @@
 import '../styles/global.css';
 ---
 
-<script is:inline>
-  // Применяем классы дизайн-системы к body
-  (function() {
-    function addClasses() {
-      const body = document.body;
-      if (body) {
-        body.classList.add('sn-primitive', 'sn-figmaStyles', 'sn-conmonents', 'sn-desktop', 'sn-light', 'sn-brandA');
-      } else {
-        // Если body еще не существует, повторим попытку
-        requestAnimationFrame(addClasses);
-      }
-    }
-    
-    if (typeof document !== 'undefined') {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addClasses);
-      } else {
-        addClasses();
-      }
-    }
-  })();
+<!-- Подключаем менеджер темы -->
+<script>
+  import { getThemeManager } from '../scripts/theme-manager';
+  
+  // Инициализация происходит автоматически в модуле
+  const manager = getThemeManager();
 </script>
 
 

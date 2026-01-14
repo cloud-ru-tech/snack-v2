@@ -1,0 +1,12 @@
+---
+/**
+ * Кастомный Sidebar компонент для Starlight
+ * Используем стандартный sidebar без дополнительных модификаций
+ * (переключатель темы теперь в toolbar)
+ */
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+---
+
+<Default {...Astro.props}>
+  <slot />
+</Default>

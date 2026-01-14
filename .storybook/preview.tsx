@@ -19,6 +19,26 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const [brand, setBrand] = useState<Brand>('brandA');
   const [platform, setPlatform] = useState<Platform>('desktop');
 
+  // Синхронизация темы с родительским окном (документацией)
+  React.useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'theme-sync') {
+        if (event.data.theme) setTheme(event.data.theme);
+        if (event.data.brand) setBrand(event.data.brand);
+        if (event.data.platform) setPlatform(event.data.platform);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    
+    // Запрашиваем текущую тему при загрузке
+    window.parent?.postMessage({ type: 'theme-sync-request' }, '*');
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
   return (
     <div
       style={{

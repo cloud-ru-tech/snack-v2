@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Демо переключателя темы</title>
+</head>
+<body>
+  <BaseLayout>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+      <h1>Демонстрация переключателя темы</h1>
+      
+      <p>
+        Этот компонент позволяет переключать тему, бренд и платформу для всей документации.
+        Все изменения сохраняются в localStorage и синхронизируются между страницами.
+      </p>
+
+      <ThemeSwitcher />
+
+      <div style="margin-top: 2rem;">
+        <h2>Примеры компонентов</h2>
+        
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+          <button 
+            style="
+              padding: 0.75rem 1.5rem;
+              background: var(--sn-color-primary-default);
+              color: var(--sn-color-on-primary);
+              border: none;
+              border-radius: 0.5rem;
+              cursor: pointer;
+              font-weight: 500;
+            "
+          >
+            Кнопка Primary
+          </button>
+
+          <button 
+            style="
+              padding: 0.75rem 1.5rem;
+              background: transparent;
+              color: var(--sn-color-text-primary);
+              border: 1px solid var(--sn-color-border-default);
+              border-radius: 0.5rem;
+              cursor: pointer;
+              font-weight: 500;
+            "
+          >
+            Кнопка Secondary
+          </button>
+        </div>
+
+        <div 
+          style="
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--sn-color-neutral-background1-level);
+            border: 1px solid var(--sn-color-border-default);
+            border-radius: 0.5rem;
+          "
+        >
+          <h3 style="margin-top: 0; color: var(--sn-color-text-primary);">Карточка</h3>
+          <p style="color: var(--sn-color-text-secondary);">
+            Этот блок демонстрирует как меняются цвета при переключении темы.
+            Обратите внимание на фон, границы и цвета текста.
+          </p>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h3>Текущие настройки:</h3>
+          <div id="current-settings" style="
+            padding: 1rem;
+            background: var(--sn-color-neutral-background);
+            border: 1px solid var(--sn-color-border-default);
+            border-radius: 0.5rem;
+            font-family: monospace;
+          ">
+            Загрузка...
+          </div>
+        </div>
+      </div>
+    </div>
+  </BaseLayout>
+
+  <script>
+    function updateCurrentSettings() {
+      const manager = (window as any).snThemeManager;
+      if (!manager) return;
+
+      const settingsEl = document.getElementById('current-settings');
+      if (settingsEl) {
+        settingsEl.innerHTML = `
+          <div><strong>Тема:</strong> ${manager.getTheme()}</div>
+          <div><strong>Бренд:</strong> ${manager.getBrand()}</div>
+          <div><strong>Платформа:</strong> ${manager.getPlatform()}</div>
+          <div style="margin-top: 0.5rem;"><strong>Классы body:</strong></div>
+          <div style="margin-left: 1rem; color: var(--sn-color-text-secondary);">
+            ${Array.from(document.body.classList).filter(c => c.startsWith('sn-')).join(', ')}
+          </div>
+        `;
+      }
+    }
+
+    // Обновляем при загрузке
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateCurrentSettings);
+    } else {
+      setTimeout(updateCurrentSettings, 100);
+    }
+
+    // Обновляем при изменении темы
+    window.addEventListener('themeChange', updateCurrentSettings);
+    window.addEventListener('brandChange', updateCurrentSettings);
+    window.addEventListener('platformChange', updateCurrentSettings);
+  </script>
+</body>
+</html>

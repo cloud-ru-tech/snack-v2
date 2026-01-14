@@ -71,20 +71,16 @@ export default defineConfig({
       components: {
         // Переопределяем Content для добавления стилей дизайн-системы
         Content: './src/components/DesignSystemContent.astro',
+        // Переопределяем Head для подключения theme-manager
+        Head: './src/components/DesignSystemHead.astro',
+        // Переопределяем ThemeSelect для добавления переключателя темы в toolbar
+        ThemeSelect: './src/components/ThemeSelect.astro',
       },
       customCss: [
         // Подключаем глобальные стили дизайн-системы
         './src/styles/global.css',
       ],
-      head: [
-        {
-          tag: 'script',
-          attrs: {
-            type: 'text/javascript',
-          },
-          content: `(function(){function addClasses(){const b=document.body;if(b){b.classList.add('sn-primitive','sn-figmaStyles','sn-conmonents','sn-desktop','sn-light','sn-brandA');}else{requestAnimationFrame(addClasses);}}if(typeof document!=='undefined'){if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',addClasses);}else{addClasses();}}})();`,
-        },
-      ],
+      head: [],
       plugins: [
         starlightLlmsTxt({
           projectName: 'Design System',

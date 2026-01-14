@@ -27,10 +27,77 @@ const iframeUrl = `${baseUrl}/iframe.html?id=${storyId}&viewMode=story`;
   style={{
     width,
     height,
-    border: '1px solid #e2e8f0',
+    border: '1px solid var(--sl-color-hairline, #e2e8f0)',
     borderRadius: '12px',
-    background: '#fff',
+    background: 'var(--sl-color-bg, #fff)',
   }}
   loading="lazy"
   allow="clipboard-write"
+  class="storybook-iframe"
+  data-story-id={storyId}
 />
+
+<script>
+  /**
+   * Синхронизация темы между документацией и Storybook iframe
+   */
+  function syncThemeWithIframes() {
+    const manager = (window as any).snThemeManager;
+    if (!manager) return;
+
+    // Находим все iframe со Storybook
+    const iframes = document.querySelectorAll('iframe.storybook-iframe');
+    
+    iframes.forEach((iframe) => {
+      // Отправляем текущую тему при загрузке iframe
+      iframe.addEventListener('load', () => {
+        try {
+          (iframe as HTMLIFrameElement).contentWindow?.postMessage(
+            {
+              type: 'theme-sync',
+              theme: manager.getTheme(),
+              brand: manager.getBrand(),
+              platform: manager.getPlatform(),
+            },
+            '*'
+          );
+        } catch (error) {
+          // Cross-origin iframe, игнорируем
+        }
+      });
+    });
+
+    // Слушаем изменения темы и передаем в iframe
+    const syncHandler = () => {
+      iframes.forEach((iframe) => {
+        try {
+          (iframe as HTMLIFrameElement).contentWindow?.postMessage(
+            {
+              type: 'theme-sync',
+              theme: manager.getTheme(),
+              brand: manager.getBrand(),
+              platform: manager.getPlatform(),
+            },
+            '*'
+          );
+        } catch (error) {
+          // Cross-origin iframe, игнорируем
+        }
+      });
+    };
+
+    window.addEventListener('themeChange', syncHandler);
+    window.addEventListener('brandChange', syncHandler);
+    window.addEventListener('platformChange', syncHandler);
+  }
+
+  // Инициализация
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncThemeWithIframes);
+  } else {
+    syncThemeWithIframes();
+  }
+
+  // Реинициализация при навигации (для SPA режима Astro)
+  document.addEventListener('astro:page-load', syncThemeWithIframes);
+</script>

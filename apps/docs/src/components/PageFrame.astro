@@ -5,44 +5,12 @@ import Default from '@astrojs/starlight/components/PageFrame.astro';
 import '../styles/global.css';
 ---
 
-<div class="sn-primitive sn-figmaStyles sn-conmonents sn-desktop sn-light sn-brandA">
-  <Default>
-    <slot />
-    <slot name="head" slot="head" />
-    <slot name="sidebar" slot="sidebar" />
-    <slot name="content" slot="content" />
-    <slot name="footer" slot="footer" />
-  </Default>
-</div>
-
-<script is:inline>
-  // Применяем классы дизайн-системы к body при загрузке страницы
-  (function() {
-    function addClasses() {
-      const body = document.body;
-      if (body) {
-        // Базовые классы (всегда применяются)
-        body.classList.add('sn-primitive');
-        body.classList.add('sn-figmaStyles');
-        body.classList.add('sn-conmonents');
-        
-        // Классы по умолчанию (можно будет сделать переключаемыми)
-        body.classList.add('sn-desktop');
-        body.classList.add('sn-light');
-        body.classList.add('sn-brandA');
-      } else {
-        // Если body еще не существует, повторим попытку
-        requestAnimationFrame(addClasses);
-      }
-    }
-    
-    if (typeof document !== 'undefined') {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addClasses);
-      } else {
-        addClasses();
-      }
-    }
-  })();
-</script>
+<!-- Классы будут применены динамически через theme-manager -->
+<Default>
+  <slot />
+  <slot name="head" slot="head" />
+  <slot name="sidebar" slot="sidebar" />
+  <slot name="content" slot="content" />
+  <slot name="footer" slot="footer" />
+</Default>
 

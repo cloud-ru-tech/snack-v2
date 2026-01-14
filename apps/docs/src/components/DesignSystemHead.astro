@@ -9,35 +9,12 @@ import '../styles/global.css';
   <slot />
 </Default>
 
-<script is:inline>
-  // Применяем классы дизайн-системы к body при загрузке страницы
-  (function() {
-    function addClasses() {
-      const body = document.body;
-      if (body) {
-        // Базовые классы (всегда применяются)
-        body.classList.add('sn-primitive');
-        body.classList.add('sn-figmaStyles');
-        body.classList.add('sn-conmonents');
-        
-        // Классы по умолчанию (можно будет сделать переключаемыми)
-        body.classList.add('sn-desktop');
-        body.classList.add('sn-light');
-        body.classList.add('sn-brandA');
-      } else {
-        // Если body еще не существует, повторим попытку
-        requestAnimationFrame(addClasses);
-      }
-    }
-    
-    if (typeof document !== 'undefined') {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addClasses);
-      } else {
-        addClasses();
-      }
-    }
-  })();
+<!-- Подключаем менеджер темы -->
+<script>
+  import { getThemeManager } from '../scripts/theme-manager';
+  
+  // Инициализация происходит автоматически в модуле
+  const manager = getThemeManager();
 </script>
 
 
