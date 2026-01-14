@@ -4,6 +4,55 @@ import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from './src';
 const meta: Meta<AvatarProps> = {
   title: 'Components/Avatar',
   component: Avatar,
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4672-337&m=dev',
+    },
+    docs: {
+      description: {
+        component: `
+# Avatar Component
+
+Компонент для отображения аватара пользователя или организации.
+
+## Features
+
+- ✅ Автоматическая генерация инициалов из имени
+- ✅ Поддержка изображений с fallback
+- ✅ Несколько размеров и форм
+- ✅ Цветовые схемы для различных состояний
+- ✅ Accessibility ready
+
+## Installation
+
+\`\`\`bash
+pnpm add @design-system/avatar
+\`\`\`
+
+## Quick Start
+
+\`\`\`tsx
+import { Avatar, SIZE, SHAPE, APPEARANCE } from '@design-system/avatar';
+
+function UserProfile() {
+  return (
+    <Avatar 
+      name="John Doe"
+      size={SIZE.M}
+      shape={SHAPE.Round}
+    />
+  );
+}
+\`\`\`
+
+## Source Code
+
+- [GitLab Repository](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/tree/main/packages/avatar)
+        `,
+      },
+    },
+  },
   args: {
     name: 'John Doe',
     size: SIZE.S,
@@ -51,12 +100,45 @@ export const WithImage: Story = {
     src: 'https://i.pravatar.cc/150?img=1',
     name: 'John Doe',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Avatar с изображением. При ошибке загрузки автоматически отобразятся инициалы:
+
+\`\`\`tsx
+<Avatar 
+  name="John Doe"
+  src="https://i.pravatar.cc/150?img=1"
+/>
+\`\`\`
+        `,
+      },
+    },
+  },
 };
 
 export const TwoSymbols: Story = {
   args: {
     name: 'John Doe',
     showTwoSymbols: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Отображение двух символов вместо одного:
+
+\`\`\`tsx
+<Avatar 
+  name="John Doe"
+  showTwoSymbols={true}
+/>
+// Отобразит "JD"
+\`\`\`
+        `,
+      },
+    },
   },
 };
 
@@ -72,6 +154,40 @@ export const Sizes: Story = {
       <Avatar name="10XL" size={SIZE['10Xl']} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Все доступные размеры аватара:
+
+\`\`\`tsx
+import { Avatar, SIZE } from '@design-system/avatar';
+
+// Extra Small (16px)
+<Avatar name="User" size={SIZE.Xs} />
+
+// Small (24px)
+<Avatar name="User" size={SIZE.S} />
+
+// Medium (32px) - default
+<Avatar name="User" size={SIZE.M} />
+
+// Extra Large (48px)
+<Avatar name="User" size={SIZE.Xl} />
+
+// 3XL (64px)
+<Avatar name="User" size={SIZE['3Xl']} />
+
+// 6XL (96px)
+<Avatar name="User" size={SIZE['6Xl']} />
+
+// 10XL (128px)
+<Avatar name="User" size={SIZE['10Xl']} />
+\`\`\`
+        `,
+      },
+    },
+  },
 };
 
 export const Shapes: Story = {
@@ -81,6 +197,25 @@ export const Shapes: Story = {
       <Avatar name="Square" shape={SHAPE.Square} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Две доступные формы аватара:
+
+\`\`\`tsx
+import { Avatar, SHAPE } from '@design-system/avatar';
+
+// Круглый (для пользователей)
+<Avatar name="John Doe" shape={SHAPE.Round} />
+
+// Квадратный (для организаций/брендов)
+<Avatar name="Company" shape={SHAPE.Square} />
+\`\`\`
+        `,
+      },
+    },
+  },
 };
 
 export const Appearances: Story = {
@@ -97,6 +232,36 @@ export const Appearances: Story = {
       <Avatar name="Pink" appearance={APPEARANCE.Pink} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Цветовые схемы для различных состояний или категорий:
+
+\`\`\`tsx
+import { Avatar, APPEARANCE } from '@design-system/avatar';
+
+// Нейтральный (по умолчанию)
+<Avatar name="User" appearance={APPEARANCE.Neutral} />
+
+// Акцентный
+<Avatar name="User" appearance={APPEARANCE.Primary} />
+
+// Семантические цвета
+<Avatar name="Error" appearance={APPEARANCE.Red} />
+<Avatar name="Warning" appearance={APPEARANCE.Orange} />
+<Avatar name="Info" appearance={APPEARANCE.Blue} />
+<Avatar name="Success" appearance={APPEARANCE.Green} />
+
+// Дополнительные цвета
+<Avatar name="User" appearance={APPEARANCE.Yellow} />
+<Avatar name="User" appearance={APPEARANCE.Violet} />
+<Avatar name="User" appearance={APPEARANCE.Pink} />
+\`\`\`
+        `,
+      },
+    },
+  },
 };
 
 export const AllVariants: Story = {

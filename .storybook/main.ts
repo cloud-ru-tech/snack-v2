@@ -6,13 +6,14 @@ const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*.mdx', '../packages/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
+  stories: ['../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@chromatic-com/storybook',
     '@storybook/addon-vitest',
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
-    '@storybook/addon-onboarding',
+    '@storybook/addon-links',
+    '@storybook/addon-designs',
   ],
   framework: '@storybook/react-vite',
   // Base path for GitLab Pages deployment

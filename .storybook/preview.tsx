@@ -146,10 +146,22 @@ const preview: Preview = {
       test: 'todo',
     },
 
+    // Сортировка stories
+    options: {
+      storySort: {
+        order: ['Introduction', 'Documentation', 'Components', '*'],
+      },
+    },
+
+    // Настройки для addon-designs (Figma)
+    design: {
+      type: 'figma',
+    },
+
     // Глобальные настройки для всех stories
     layout: 'padded',
     backgrounds: {
-      default: 'dark',
+      default: 'light',
       values: [
         {
           name: 'light',
@@ -164,6 +176,13 @@ const preview: Preview = {
           value: '#f5f5f5',
         },
       ],
+    },
+
+    // Настройки для addon-actions
+    // argTypesRegex отключен для совместимости с visual test addon
+    // Используйте явные action handlers в stories вместо regex
+    actions: {
+      // argTypesRegex: '^on[A-Z].*',
     },
   },
 };
