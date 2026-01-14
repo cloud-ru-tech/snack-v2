@@ -1,14 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Get all docs from components directory
+// Get current language from URL or default to 'en'
+const currentLang = Astro.currentLocale || 'en';
+
+// Get all docs from components directory for current locale
 const componentsDocs = await getCollection('docs', ({ id }) => {
-  return id.startsWith('components/');
+  return id.startsWith(`${currentLang}/components/`);
 });
 
-// Get all docs from guides directory
+// Get all docs from guides directory for current locale
 const guidesDocs = await getCollection('docs', ({ id }) => {
-  return id.startsWith('guides/');
+  return id.startsWith(`${currentLang}/guides/`);
 });
 
 // Process components - исключаем только CHANGELOG и MIGRATION
@@ -18,8 +21,9 @@ const componentsByPackage = new Map();
 // Сначала собираем все файлы по пакетам
 componentsDocs.forEach((doc) => {
   const parts = doc.id.split('/');
+  // parts[0] is locale, parts[1] is 'components', parts[2] is package name
   const fileName = parts[parts.length - 1].toLowerCase();
-  const packageName = parts[1];
+  const packageName = parts[2];
   const title = doc.data.title?.toLowerCase() || '';
   const description = doc.data.description?.toLowerCase() || '';
   
@@ -45,8 +49,8 @@ componentsDocs.forEach((doc) => {
   }
   
   const slug = fileName === 'index'
-    ? `/components/${packageName}/`
-    : `/components/${parts.slice(1).join('/')}/`;
+    ? `/${currentLang}/components/${packageName}/`
+    : `/${currentLang}/components/${parts.slice(2).join('/')}/`;
   
   componentsByPackage.get(packageName)!.push({
     title: doc.data.title,
@@ -78,7 +82,8 @@ const components = Array.from(componentsByPackage.entries())
 const guides = guidesDocs
   .map((doc) => {
     const parts = doc.id.split('/');
-    const slug = `/guides/${parts.slice(1).join('/')}/`;
+    // parts[0] is locale, parts[1] is 'guides'
+    const slug = `/${currentLang}/guides/${parts.slice(2).join('/')}/`;
     
     return {
       title: doc.data.title,

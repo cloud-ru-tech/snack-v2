@@ -1,21 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Get all docs from components directory
+// Get current language from URL or default to 'en'
+const currentLang = Astro.currentLocale || 'en';
+
+// Get all docs from components directory for current locale
 const allDocs = await getCollection('docs', ({ id }) => {
-  return id.startsWith('components/');
+  return id.startsWith(`${currentLang}/components/`);
 });
 
 // Group by package and sort by order
 const components = allDocs
   .map((doc) => {
     const parts = doc.id.split('/');
-    const packageName = parts[1];
+    // parts[0] is locale, parts[1] is 'components', parts[2] is package name
+    const packageName = parts[2];
     const fileName = parts[parts.length - 1];
     const isIndex = fileName === 'index';
     const slug = isIndex
-      ? `/components/${packageName}/`
-      : `/components/${parts.slice(1).join('/')}/`;
+      ? `/${currentLang}/components/${packageName}/`
+      : `/${currentLang}/components/${parts.slice(2).join('/')}/`;
     
     return {
       title: doc.data.title,
