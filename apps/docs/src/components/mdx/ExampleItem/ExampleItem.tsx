@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import React from 'react';
-import styles from './ExampleItem.module.scss';
+import styles from './styles.module.scss';
 
 interface ExampleItemProps {
   children: React.ReactNode;

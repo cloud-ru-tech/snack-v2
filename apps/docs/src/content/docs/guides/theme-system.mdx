@@ -3,7 +3,7 @@ title: Система управления темой
 description: Как работает система тем в документации
 ---
 
-import ThemeSwitcher from '../../../components/ThemeSwitcher.astro';
+import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
 
 ## Обзор
 
@@ -91,7 +91,7 @@ window.addEventListener('platformChange', (event: CustomEvent) => {
 
 ```astro
 ---
-import ThemeSwitcher from '@/components/ThemeSwitcher.astro';
+import ThemeSwitcher from '@/components/astro/ThemeSwitcher.astro';
 ---
 
 <div class="my-component">
@@ -118,7 +118,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.astro';
 
 ```astro
 ---
-import StorybookIframe from '@/components/StorybookIframe.astro';
+import StorybookIframe from '@/components/astro/StorybookIframe.astro';
 ---
 
 <StorybookIframe 

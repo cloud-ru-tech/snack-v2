@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import React from 'react';
-import styles from './ExampleGrid.module.scss';
+import styles from './styles.module.scss';
 
 interface ExampleGridProps {
   children: React.ReactNode;

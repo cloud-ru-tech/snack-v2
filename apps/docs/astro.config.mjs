@@ -70,11 +70,11 @@ export default defineConfig({
       ],
       components: {
         // Переопределяем Content для добавления стилей дизайн-системы
-        Content: './src/components/DesignSystemContent.astro',
+        Content: './src/components/astro/DesignSystemContent.astro',
         // Переопределяем Head для подключения theme-manager
-        Head: './src/components/DesignSystemHead.astro',
+        Head: './src/components/astro/DesignSystemHead.astro',
         // Переопределяем ThemeSelect для добавления переключателя темы в toolbar
-        ThemeSelect: './src/components/ThemeSelect.astro',
+        ThemeSelect: './src/components/astro/ThemeSelect.astro',
       },
       customCss: [
         // Подключаем глобальные стили дизайн-системы

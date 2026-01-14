@@ -10,7 +10,8 @@ import {
   ExampleRow,
   ExampleGrid,
   ExampleItem,
-} from '../../../../../components/ExampleComponents';
+} from '../../../../../components/mdx';
+import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../../../components/mdx';
 
 
 # Avatar (Аватар)
@@ -21,11 +22,11 @@ import {
 
 ## Changelog
 
-import Changelog from '../../../../../components/Changelog.astro';
+import Changelog from '../../../../../components/astro/Changelog.astro';
 
 <Changelog packageName="avatar" />
 
-import LlmLink from '../../../../../components/LlmLink.astro';
+import LlmLink from '../../../../../components/astro/LlmLink.astro';
 
 <LlmLink component="avatar" />
 
@@ -147,7 +148,7 @@ Avatar — это гибкий компонент для отображения 
 
 ## Storybook
 
-import StorybookIframe from '../../../../../components/StorybookIframe.astro';
+import StorybookIframe from '../../../../../components/astro/StorybookIframe.astro';
 
 <StorybookIframe storyId="components-avatar--all-variants" />
 

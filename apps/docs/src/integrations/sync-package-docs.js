@@ -722,12 +722,12 @@ async function syncPackageLocale(
     // Both should point to: ../../../../../components/
     const exampleComponentPatterns = [
       {
-        from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/ExampleComponents['"]/g,
-        to: "from '../../../../../components/ExampleComponents'",
+        from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
+        to: "from '../../../../../components/mdx'",
       },
       {
-        from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/ExampleComponents['"]/g,
-        to: "from '../../../../../components/ExampleComponents'",
+        from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
+        to: "from '../../../../../components/mdx'",
       },
     ];
 
@@ -739,27 +739,35 @@ async function syncPackageLocale(
     const componentImportPatterns = [
       {
         from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/StorybookIframe\.astro['"]/g,
-        to: "from '../../../../../components/StorybookIframe.astro'",
+        to: "from '../../../../../components/astro/StorybookIframe.astro'",
       },
       {
         from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/StorybookIframe\.astro['"]/g,
-        to: "from '../../../../../components/StorybookIframe.astro'",
+        to: "from '../../../../../components/astro/StorybookIframe.astro'",
       },
       {
         from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/Changelog\.astro['"]/g,
-        to: "from '../../../../../components/Changelog.astro'",
+        to: "from '../../../../../components/astro/Changelog.astro'",
       },
       {
         from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/Changelog\.astro['"]/g,
-        to: "from '../../../../../components/Changelog.astro'",
+        to: "from '../../../../../components/astro/Changelog.astro'",
       },
       {
         from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/VersionSwitcher\.astro['"]/g,
-        to: "from '../../../../../components/VersionSwitcher.astro'",
+        to: "from '../../../../../components/astro/VersionSwitcher.astro'",
       },
       {
         from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/VersionSwitcher\.astro['"]/g,
-        to: "from '../../../../../components/VersionSwitcher.astro'",
+        to: "from '../../../../../components/astro/VersionSwitcher.astro'",
+      },
+      {
+        from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/LlmLink\.astro['"]/g,
+        to: "from '../../../../../components/astro/LlmLink.astro'",
+      },
+      {
+        from: /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/LlmLink\.astro['"]/g,
+        to: "from '../../../../../components/astro/LlmLink.astro'",
       },
     ];
 
