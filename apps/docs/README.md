@@ -359,3 +359,61 @@ import VersionSwitcher from '../../components/VersionSwitcher.astro';
 ```
 
 **Примечание:** Для полноценной работы version switcher требуется настройка версионированных деплоев через Git tags (см. [VERSIONING.md](./VERSIONING.md)).
+
+## LLM.txt генерация
+
+Документация автоматически преобразуется в LLM-оптимизированный текстовый формат для AI-ассистентов и языковых моделей.
+
+### Генерируемые файлы
+
+При сборке проекта (`pnpm build`) автоматически создаются:
+
+1. **Основные файлы** (в корне dist):
+   - `llms.txt` — индекс всех страниц документации
+   - `llms-full.txt` — полная версия документации
+   - `llms-small.txt` — сокращенная версия
+   - `llms-components.txt` — документация всех компонентов
+   - `llms-guides.txt` — все руководства и гайды
+
+2. **Компонент-специфичные файлы** (в `_llms-txt/components/`):
+   - `llm-{component}.txt` — отдельный файл для каждого компонента
+   - `index.txt` — индекс всех компонент-специфичных файлов
+
+### Добавление LlmLink в документацию
+
+Для отображения ссылки на компонент-специфичный LLM.txt файл используйте компонент `LlmLink`:
+
+```mdx
+---
+title: Button
+version: '0.1.0'
+---
+
+import Changelog from '../../../../apps/docs/src/components/Changelog.astro';
+import LlmLink from '../../../../apps/docs/src/components/LlmLink.astro';
+
+# Button
+
+## Changelog
+
+<Changelog packageName="button" />
+
+<LlmLink component="button" />
+
+## Overview
+
+[Содержание документации]
+```
+
+### Шаблон для новых компонентов
+
+Используйте `COMPONENT_DOC_TEMPLATE.mdx` при создании документации для новых компонентов. Шаблон уже включает:
+
+- Правильную структуру frontmatter
+- Интеграцию Changelog
+- Компонент LlmLink
+- Стандартные секции документации
+
+### Подробная документация
+
+Для детального описания системы генерации LLM.txt файлов см. [LLMS_COMPONENT_GENERATION.md](./LLMS_COMPONENT_GENERATION.md).

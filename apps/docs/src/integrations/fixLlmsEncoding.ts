@@ -1,5 +1,5 @@
 import type { AstroIntegration } from 'astro';
-import { writeFileSync, readFileSync, existsSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync, copyFileSync } from 'fs';
 import { join } from 'path';
 
 export default function fixLlmsEncoding(): AstroIntegration {
@@ -8,14 +8,31 @@ export default function fixLlmsEncoding(): AstroIntegration {
     hooks: {
       'astro:build:done': async ({ dir }) => {
         const distPath = dir.pathname;
+        
+        // Copy component and guide files to root for easier access
+        const componentsSrc = join(distPath, '_llms-txt/components.txt');
+        const guidesSrc = join(distPath, '_llms-txt/guides.txt');
+        const componentsDest = join(distPath, 'llms-components.txt');
+        const guidesDest = join(distPath, 'llms-guides.txt');
+        
+        if (existsSync(componentsSrc)) {
+          copyFileSync(componentsSrc, componentsDest);
+          console.log('[fix-llms-encoding] ✅ Copied llms-components.txt to root');
+        }
+        
+        if (existsSync(guidesSrc)) {
+          copyFileSync(guidesSrc, guidesDest);
+          console.log('[fix-llms-encoding] ✅ Copied llms-guides.txt to root');
+        }
+        
         const llmsFiles = [
           'llms-full.txt',
           'llms-components.txt',
           'llms-guides.txt',
           'llms.txt',
           'llms-small.txt',
-          '_llms-txt/llms-components.txt',
-          '_llms-txt/llms-guides.txt',
+          '_llms-txt/components.txt',
+          '_llms-txt/guides.txt',
         ];
 
         console.log(`[fix-llms-encoding] Checking files in ${distPath}`);

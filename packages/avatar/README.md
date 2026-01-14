@@ -18,6 +18,8 @@ export const t = translations;
 
 ## Changelog
 
+<LlmLink component="avatar" />
+
 ## 
 
 - ****

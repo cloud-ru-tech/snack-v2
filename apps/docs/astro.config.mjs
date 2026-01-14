@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import starlightLlmsTxt from 'starlight-llms-txt';
 import fixLlmsEncoding from './src/integrations/fixLlmsEncoding.js';
+import generateComponentLlms from './src/integrations/generate-component-llms.js';
 import syncPackageDocs from './src/integrations/sync-package-docs.js';
 
 const llmTxt = () => ({
@@ -32,6 +33,7 @@ export default defineConfig({
   srcDir: 'src',
   integrations: [
     syncPackageDocs(),
+    generateComponentLlms(),
     fixLlmsEncoding(),
     react(),
     expressiveCode(),
