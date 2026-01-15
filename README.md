@@ -10,6 +10,7 @@ React компонентная библиотека с современной д
 - 🎨 **Figma Integration** - просмотр дизайнов рядом с компонентами
 - 🧪 **Vitest** - тестирование компонентов
 - 📦 **Monorepo** - организация пакетов с Lerna и pnpm
+- 🤖 **Code Generation** - автоматическое создание компонентов с полной структурой
 - 🚀 **CI/CD** - автоматическая сборка и деплой на GitLab Pages
 
 ## Быстрый старт
@@ -91,6 +92,10 @@ BASE_PATH=/custom-path/ pnpm build:docs
 │   ├── avatar/          # Компонент Avatar
 │   ├── button/          # Компонент Button (coming soon)
 │   └── link/            # Компонент Link (coming soon)
+├── scripts/             # Утилиты для автоматизации
+│   ├── npm-init.ts      # Генератор новых пакетов
+│   ├── utils/           # Вспомогательные функции
+│   └── README.md        # Документация по скриптам
 ├── stories/             # Демонстрационные stories
 │   └── AddonsDemo.stories.tsx
 ├── apps/                # Приложения (Astro docs site)
@@ -99,20 +104,46 @@ BASE_PATH=/custom-path/ pnpm build:docs
 
 ## Создание нового компонента
 
+Используйте встроенный генератор для автоматического создания компонента:
+
+```bash
+pnpm add-package
+```
+
+Генератор создаст:
+- ✅ Полную структуру пакета (`src/`, `docs/`)
+- ✅ TypeScript компонент с типами и константами
+- ✅ SCSS модули для стилей
+- ✅ Storybook stories с примерами
+- ✅ Документацию (README, CHANGELOG, MIGRATION)
+- ✅ Конфигурацию сборки (tsconfig, tsup, sass)
+- ✅ i18n файлы (en.json, ru.json)
+
+### Ручное создание
+
+Если нужно создать компонент вручную:
+
 ```bash
 # Создайте новую папку в packages/
 mkdir -p packages/my-component/src
 
 # Создайте компонент
 touch packages/my-component/src/index.tsx
+touch packages/my-component/src/MyComponent.tsx
+touch packages/my-component/src/types.ts
+touch packages/my-component/src/constants.ts
 touch packages/my-component/src/styles.module.scss
 
 # Создайте story
 touch packages/my-component/MyComponent.stories.tsx
 
-# Добавьте package.json
+# Добавьте конфигурацию
 touch packages/my-component/package.json
+touch packages/my-component/tsconfig.json
+touch packages/my-component/tsup.config.ts
 ```
+
+📖 **[Подробная документация по генератору](./scripts/README.md)**
 
 ### Пример story с Figma интеграцией
 
@@ -171,10 +202,12 @@ pnpm test:coverage
 # Разработка
 pnpm storybook          # Запуск Storybook
 pnpm dev                # Запуск Astro docs site
+pnpm add-package        # Создание нового компонента
 
 # Сборка
 pnpm build:packages     # Сборка пакетов
 pnpm build:storybook    # Сборка Storybook
+pnpm build:docs         # Сборка документации
 pnpm build:all          # Полная сборка
 
 # Тестирование
@@ -200,6 +233,7 @@ pnpm deps               # Установка зависимостей
 
 - [Документация по Storybook](.storybook/README.md)
 - [Документация по аддонам](.storybook/ADDONS.md)
+- [Генератор компонентов](./scripts/README.md)
 - [Демонстрация аддонов](./stories/AddonsDemo.stories.tsx)
 - [Деплой инструкция](./DEPLOY.md)
 

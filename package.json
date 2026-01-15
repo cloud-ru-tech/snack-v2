@@ -27,6 +27,7 @@
     "@storybook/addon-vitest": "^10.1.4",
     "@storybook/react-vite": "^10.1.4",
     "@storybook/test": "8.6.15",
+    "@types/inquirer": "9.0.9",
     "@types/node": "24.10.1",
     "@typescript-eslint/eslint-plugin": "8.48.1",
     "@typescript-eslint/parser": "8.48.1",
@@ -39,6 +40,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-storybook": "^10.1.4",
+    "inquirer": "13.2.0",
     "lerna": "9.0.3",
     "playwright": "^1.57.0",
     "prettier": "3.7.4",
@@ -47,7 +49,8 @@
     "ts-node": "10.9.2",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.15",
+    "@sbercloud/ft-logger": "0.0.1-preview-7fab8818.0"
   },
   "dependencies": {
     "@types/react": "19.2.7",
@@ -73,6 +76,7 @@
     "build-storybook": "storybook build",
     "build:storybook": "storybook build",
     "build:all": "pnpm run build:packages && pnpm run build:docs && pnpm run build:storybook",
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "add-package": "ts-node --project scripts/tsconfig.json scripts/npm-init.ts"
   }
 }
