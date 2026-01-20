@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, HTMLAttributes } from 'react';
 
 import { APPEARANCE, SHAPE, SIZE } from './constants';
 import styles from './styles.module.scss';
 import { Appearance, Shape, Size } from './types';
 import { getAbbreviation } from './utils';
 
-export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   /** Имя пользователя для генерации аббревиатуры */
   name: string;
   /** URL изображения аватара */
