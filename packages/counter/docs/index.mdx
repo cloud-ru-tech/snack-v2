@@ -1,0 +1,240 @@
+---
+title: Counter
+description: Counter component
+version: '0.1.0'
+---
+
+import { Counter, APPEARANCE, SIZE, VARIANT, COLOR } from '../src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '../../../apps/docs/src/components/mdx';
+import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../apps/docs/src/components/mdx';
+import { translations } from './i18n';
+
+export const t = translations;
+
+<LocaleProvider locale={frontmatter.locale || 'en'}>
+
+# {t[frontmatter.locale || 'en'].title}
+
+{t[frontmatter.locale || 'en'].intro}
+
+**Version:** `{frontmatter.version}`
+
+## Changelog
+
+import Changelog from '../../../apps/docs/src/components/astro/Changelog.astro';
+
+<Changelog packageName="counter" />
+
+import LlmLink from '../../../apps/docs/src/components/astro/LlmLink.astro';
+
+<LlmLink component="counter" />
+
+## {t[frontmatter.locale || 'en'].overview.title}
+
+{t[frontmatter.locale || 'en'].overview.description}
+
+- **{t[frontmatter.locale || 'en'].overview.features.valueFormatting}**
+- **{t[frontmatter.locale || 'en'].overview.features.thresholdControl}**
+- **{t[frontmatter.locale || 'en'].overview.features.multipleSizes}**
+- **{t[frontmatter.locale || 'en'].overview.features.appearances}**
+- **{t[frontmatter.locale || 'en'].overview.features.colorSchemes}**
+- **{t[frontmatter.locale || 'en'].overview.features.compactDisplay}**
+
+## {t[frontmatter.locale || 'en'].examples.title}
+
+### {t[frontmatter.locale || 'en'].examples.basicUsage}
+
+<ExampleContainer>
+  <ExampleRow>
+    <LocaleSwitch>
+      <LocaleCase locale="en">
+        <Counter value={9} />
+        <Counter value={42} appearance={APPEARANCE.Primary} />
+        <Counter value={128} appearance={APPEARANCE.Neutral} />
+      </LocaleCase>
+      <LocaleCase locale="ru">
+        <Counter value={9} />
+        <Counter value={42} appearance={APPEARANCE.Primary} />
+        <Counter value={128} appearance={APPEARANCE.Neutral} />
+      </LocaleCase>
+    </LocaleSwitch>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.variants}
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label={t[frontmatter.locale || 'en'].variants.count}>
+      <Counter value={9} variant={VARIANT.Count} />
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].variants.countPlus}>
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].variants.countK}>
+      <Counter value={8500} variant={VARIANT.CountK} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.sizes}
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="xs">
+      <Counter value={9} size={SIZE.XS} />
+    </ExampleItem>
+    <ExampleItem label="s">
+      <Counter value={9} size={SIZE.S} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.appearances}
+
+<ExampleContainer>
+  <ExampleGrid columns={3} minColumnWidth="120px">
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.primary} gap="medium">
+      <Counter value={9} appearance={APPEARANCE.Primary} />
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.neutral} gap="medium">
+      <Counter value={9} appearance={APPEARANCE.Neutral} />
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.red} gap="medium">
+      <Counter value={9} appearance={APPEARANCE.Red} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.colors}
+
+<ExampleContainer>
+  <ExampleGrid columns={2} minColumnWidth="120px">
+    <ExampleItem label={t[frontmatter.locale || 'en'].colors.accent} gap="medium">
+      <Counter value={9} color={COLOR.Accent} />
+    </ExampleItem>
+    <ExampleItem label={t[frontmatter.locale || 'en'].colors.decor} gap="medium">
+      <Counter value={9} color={COLOR.Decor} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### {t[frontmatter.locale || 'en'].examples.withPlusLimit}
+
+<ExampleContainer>
+  <ExampleRow>
+    <ExampleItem label="plusLimit = 10, value = 9">
+      <Counter value={9} variant={VARIANT.CountPlus} plusLimit={10} />
+    </ExampleItem>
+    <ExampleItem label="plusLimit = 10, value = 15">
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+    </ExampleItem>
+    <ExampleItem label="plusLimit = 100, value = 150">
+      <Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+## {t[frontmatter.locale || 'en'].storybook.title}
+
+import StorybookIframe from '../../../apps/docs/src/components/astro/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-counter--basic" />
+
+## {t[frontmatter.locale || 'en'].usage.title}
+
+### {t[frontmatter.locale || 'en'].usage.basicExample}
+
+```tsx
+import { Counter } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return <Counter value={9} />;
+}
+```
+
+### {t[frontmatter.locale || 'en'].usage.withVariant}
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <>
+      <Counter value={9} variant={VARIANT.Count} />
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+      <Counter value={8500} variant={VARIANT.CountK} />
+    </>
+  );
+}
+```
+
+### {t[frontmatter.locale || 'en'].usage.customAppearance}
+
+```tsx
+import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <Counter
+      value={10}
+      appearance={APPEARANCE.Red}
+      size={SIZE.S}
+    />
+  );
+}
+```
+
+### {t[frontmatter.locale || 'en'].usage.withPlusLimit}
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <Counter
+      value={150}
+      variant={VARIANT.CountPlus}
+      plusLimit={100}
+    />
+  );
+}
+```
+
+## {t[frontmatter.locale || 'en'].props.title}
+
+### {t[frontmatter.locale || 'en'].props.required}
+
+- {t[frontmatter.locale || 'en'].props.value}
+
+### {t[frontmatter.locale || 'en'].props.optional}
+
+- {t[frontmatter.locale || 'en'].props.appearance}
+- {t[frontmatter.locale || 'en'].props.variant}
+- {t[frontmatter.locale || 'en'].props.size}
+- {t[frontmatter.locale || 'en'].props.plusLimit}
+- {t[frontmatter.locale || 'en'].props.color}
+- {t[frontmatter.locale || 'en'].props.className}
+- {t[frontmatter.locale || 'en'].props.htmlAttributes}
+
+## {t[frontmatter.locale || 'en'].accessibility.title}
+
+- {t[frontmatter.locale || 'en'].accessibility.semantic}
+- {t[frontmatter.locale || 'en'].accessibility.attributes}
+- {t[frontmatter.locale || 'en'].accessibility.readable}
+
+## {t[frontmatter.locale || 'en'].bestPractices.title}
+
+1. **{t[frontmatter.locale || 'en'].bestPractices.appropriateVariants}**
+2. **{t[frontmatter.locale || 'en'].bestPractices.setPlusLimit}**
+3. **{t[frontmatter.locale || 'en'].bestPractices.consistentSizes}**
+4. **{t[frontmatter.locale || 'en'].bestPractices.considerContrast}**
+5. **{t[frontmatter.locale || 'en'].bestPractices.useInContext}**
+6. **{t[frontmatter.locale || 'en'].bestPractices.handleLargeValues}**
+
+</LocaleProvider>

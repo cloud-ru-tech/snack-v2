@@ -1,0 +1,78 @@
+{
+  "title": "Counter",
+  "description": "Numeric counter component for displaying notifications, item counts, metrics, and other indicators in a compact format.",
+  "intro": "The Counter component displays numeric indicators (notification counters, item counts, metrics, etc.) in a compact format. It supports multiple value display variants: regular counter (count), plus format when threshold is exceeded (count-plus), and shortened notation in thousands (count-k), controlled by variant and plusLimit props.",
+  "overview": {
+    "title": "Overview",
+    "description": "Counter is a flexible component for displaying numeric indicators in your application. It automatically handles:",
+    "features": {
+      "valueFormatting": "Value formatting with multiple variants (count, count-plus, count-k)",
+      "thresholdControl": "Threshold control for plus format (plusLimit prop)",
+      "multipleSizes": "Multiple sizes (xs, s)",
+      "appearances": "Three appearance options (primary, neutral, red)",
+      "colorSchemes": "Two color schemes (accent, decor)",
+      "compactDisplay": "Compact display suitable for use inside other UI elements"
+    }
+  },
+  "examples": {
+    "title": "Live examples",
+    "basicUsage": "Basic usage",
+    "variants": "Variants",
+    "sizes": "Sizes",
+    "appearances": "Appearances",
+    "colors": "Colors",
+    "withPlusLimit": "With plus limit"
+  },
+  "variants": {
+    "count": "Count",
+    "countPlus": "Count Plus",
+    "countK": "Count K"
+  },
+  "appearances": {
+    "primary": "Primary",
+    "neutral": "Neutral",
+    "red": "Red"
+  },
+  "colors": {
+    "accent": "Accent",
+    "decor": "Decor"
+  },
+  "storybook": {
+    "title": "Storybook"
+  },
+  "usage": {
+    "title": "Usage",
+    "basicExample": "Basic example",
+    "withVariant": "With variant",
+    "customAppearance": "Custom appearance and size",
+    "withPlusLimit": "With plus limit"
+  },
+  "props": {
+    "title": "Props",
+    "required": "Required",
+    "optional": "Optional",
+    "value": "value (number) — Numeric value to display. Required.",
+    "appearance": "appearance ('primary' | 'neutral' | 'red') — Visual appearance. Default: 'primary'.",
+    "variant": "variant ('count' | 'count-plus' | 'count-k') — Value display variant. Default: 'count'.",
+    "size": "size ('xs' | 's') — Counter size. Default: 'xs'.",
+    "plusLimit": "plusLimit (number) — Threshold for shortening value to v+ format. For example, 1500 -> 999+ for 1000. Default: 10.",
+    "color": "color ('accent' | 'decor') — Semantic color. Default: 'accent'.",
+    "className": "className (string) — Additional CSS class.",
+    "htmlAttributes": "...HTMLDivAttributes — All standard div HTML attributes are supported."
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "semantic": "Semantic HTML structure ensures screen reader compatibility",
+    "attributes": "Component accepts all standard HTML attributes for customization",
+    "readable": "Numeric values are readable text, providing meaningful information"
+  },
+  "bestPractices": {
+    "title": "Best practices",
+    "appropriateVariants": "Use appropriate variants — Choose count, count-plus, or count-k based on your use case",
+    "setPlusLimit": "Set plusLimit appropriately — Configure the threshold based on your data range",
+    "consistentSizes": "Consistent size usage — Match counter size to context and importance",
+    "considerContrast": "Consider contrast — Ensure counter values are readable against background colors",
+    "useInContext": "Use in context — Counter is designed to be used inside other UI elements (buttons, tags, menu items)",
+    "handleLargeValues": "Handle large values — Use count-k variant for values over 1000 to keep display compact"
+  }
+}

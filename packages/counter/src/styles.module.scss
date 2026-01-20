@@ -1,0 +1,44 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/counter.module' as counter;
+
+$sizes: 'xs', 's';
+$contexts: 'primary', 'neutral', 'red';
+$roleColors: 'accent', 'decor';
+
+$typography: (
+  xs: base.$sn-regular-label-s,
+  s: base.$sn-regular-label-l,
+);
+
+.counter {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: max-content;
+
+  border: 0 solid transparent;
+
+  @each $roleColor in $roleColors {
+    @each $appearance in $contexts {
+      &[data-color='#{$roleColor}'] {
+        &[data-appearance='#{$appearance}'] {
+          @include base.composite-var(counter.$counter, 'color', 'container-#{$roleColor}', $appearance);
+
+          @each $size in $sizes {
+            &[data-size='#{$size}'] {
+              @include base.composite-var($typography, $size);
+              @include base.composite-var(counter.$counter, 'anatomy', 'size', $size, 'container');
+              height: base.simple-var(counter.$counter, 'anatomy', 'size', $size, 'container', 'min-height');
+
+              border-style: solid;
+              border-color: base.simple-var(counter.$counter, 'color', 'container-#{$roleColor}', $appearance, 'border-default');
+            }
+          }
+        }
+      }
+    }
+  }
+}

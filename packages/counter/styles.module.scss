@@ -1,0 +1,40 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$border-width: 0.5px;
+
+.wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  width: max-content;
+  height: 64px;
+  margin-bottom: 16px;
+  padding: 0 24px;
+
+  background-color: base.$sn-color-neutral-background1-level;
+  border: 1px solid base.$sn-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+}
+
+.table {
+  display: inline-grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: base.$sn-color-neutral-background1-level;
+  border: $border-width solid base.$sn-color-neutral-decor;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px;
+
+  border: $border-width solid base.$sn-color-neutral-decor;
+}
+
+.headerCell {
+  text-transform: uppercase;
+}
