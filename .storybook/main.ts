@@ -16,19 +16,13 @@ const config: StorybookConfig = {
     '@storybook/addon-designs',
   ],
   framework: '@storybook/react-vite',
-  // Base path for GitLab Pages deployment
-  // Storybook is served from /storybook/ subdirectory
   base: process.env.STORYBOOK_BASE_PATH || (process.env.CI ? '/storybook/' : '/'),
   viteFinal: async (config) => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      // '@design-system/button': path.resolve(dirname, '../packages/button/src'),
-      // '@design-system/link': path.resolve(dirname, '../packages/link/src'),
-      // '@design-system/avatar': path.resolve(dirname, '../packages/avatar/src'),
     };
 
-    // Ensure CSS modules are properly handled
     config.css = config.css || {};
     config.css.modules = {
       ...(config.css.modules || {}),
@@ -36,7 +30,6 @@ const config: StorybookConfig = {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     };
 
-    // Ensure SCSS is properly configured
     if (!config.css.preprocessorOptions) {
       config.css.preprocessorOptions = {};
     }
