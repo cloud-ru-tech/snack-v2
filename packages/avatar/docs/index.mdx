@@ -68,6 +68,8 @@ import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
 
 ### {t[frontmatter.locale || 'en'].examples.withImages}
 
+# BIBA & BOBA
+
 <ExampleContainer>
   <ExampleRow>
     <LocaleSwitch>
@@ -143,7 +145,11 @@ import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
         </LocaleCase>
       </LocaleSwitch>
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].shapes.square} labelSize="medium" gap="medium">
+    <ExampleItem
+      label={t[frontmatter.locale || 'en'].shapes.square}
+      labelSize="medium"
+      gap="medium"
+    >
       <LocaleSwitch>
         <LocaleCase locale="en">
           <Avatar name="Square" shape={SHAPE.Square} />

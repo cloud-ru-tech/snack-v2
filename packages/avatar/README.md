@@ -1,85 +1,21 @@
-# Avatar
-
-User avatar component
-
-**Version:** `0.1.0`
-
-**Package:** `@design-system/avatar`
-
----
-
-export const t = translations;
-
-<LocaleProvider locale=>
-
-# 
-
-**Version:** `0.1.0`
-
+**Version:** ``
 ## Changelog
-
-<LlmLink component="avatar" />
-
-## 
-
 - ****
 - ****
 - ****
 - ****
 - ****
 - ****
-
-## 
-
-### 
-
-### 
-
-### 
-
-### 
-
-### 
-
-## 
-
-## 
-
-### 
-
+# BIBA & BOBA
 ```tsx
-
-export function UserProfile() {
-  return <Avatar name="John Doe" />;
-}
+export function UserProfile() 
 ```
-
-### 
-
 ```tsx
-
-export function UserProfile() {
-  return <Avatar name="John Doe" src="https://example.com/avatar.jpg" />;
-}
+export function UserProfile() 
 ```
-
-### 
-
 ```tsx
-
-export function UserProfile() {
-  return <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} size={SIZE.Xl} />;
-}
+export function UserProfile()  size= />;
 ```
-
-## 
-
-### 
-
-- 
-
-### 
-
 - 
 - 
 - 
@@ -87,24 +23,17 @@ export function UserProfile() {
 - 
 - 
 - 
-
-## 
-
 - 
 - 
 - 
 - 
-
-## 
-
+- 
 1. ****
 2. ****
 3. ****
 4. ****
 5. ****
 6. ****
-
-</LocaleProvider>
 
 ---
 

@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import { useEffect, useState, HTMLAttributes } from 'react';
+import { useEffect, useState } from 'react';
 
 import { APPEARANCE, SHAPE, SIZE } from './constants';
 import styles from './styles.module.scss';
 import { Appearance, Shape, Size } from './types';
 import { getAbbreviation } from './utils';
 
-export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
+export type AvatarProps = {
   /** Имя пользователя для генерации аббревиатуры */
   name: string;
   /** URL изображения аватара */
@@ -21,11 +21,35 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   showTwoSymbols?: boolean;
   /** CSS-класс */
   className?: string;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Компонент отображения аватара пользователя.
- * Поддерживает изображения, аббревиатуры из имени, различные размеры, формы и цвета.
+ *
+ * Поддерживает:
+ * - Отображение изображения аватара (с fallback на аббревиатуру)
+ * - Генерацию аббревиатуры из имени пользователя (1 или 2 символа)
+ * - Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl
+ * - Различные формы: круглая (round) или квадратная (square)
+ * - Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink
+ *
+ * @example
+ * ```tsx
+ * // Базовое использование с именем
+ * <Avatar name="John Doe" />
+ *
+ * // С изображением
+ * <Avatar name="John Doe" src="https://example.com/avatar.jpg" />
+ *
+ * // С кастомными параметрами
+ * <Avatar
+ *   name="Jane Smith"
+ *   appearance={APPEARANCE.Primary}
+ *   size={SIZE.Xl}
+ *   shape={SHAPE.Square}
+ *   showTwoSymbols
+ * />
+ * ```
  */
 export function Avatar({
   name,

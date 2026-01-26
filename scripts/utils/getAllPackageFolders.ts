@@ -7,7 +7,10 @@ const TSCONFIG_CJS_PATH = path.resolve(__dirname, '../../packages/tsconfig.cjs.j
 const TSCONFIG_ESM_PATH = path.resolve(__dirname, '../../packages/tsconfig.esm.json');
 
 export function getAllPackageFolders(filter = '*') {
-  return globSync(`${path.resolve(__dirname, PACKAGES_PATTERN, filter)}`, {
+  const fullPaths = globSync(`${path.resolve(__dirname, PACKAGES_PATTERN, filter)}`, {
     ignore: [TSCONFIG_CJS_PATH, TSCONFIG_ESM_PATH],
   });
+
+  // Возвращаем только имена папок (последний сегмент пути)
+  return fullPaths.map((fullPath) => path.basename(fullPath));
 }
