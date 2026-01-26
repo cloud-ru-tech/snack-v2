@@ -1,7 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ensureDirectory, ensureParentDirectory } from './ensureDirectory';
+
 import { logDebug, logSuccess } from './console';
+import { ensureDirectory } from './ensureDirectory';
 
 const PACKAGES_DIR = path.resolve(__dirname, '../../packages');
 
@@ -21,7 +22,7 @@ export function getExistingPackageNames(): string[] {
 
 export const ExistingPackageNames = getExistingPackageNames();
 
-export interface PackageConfig {
+export type PackageConfig = {
   packageRootFolderName: string;
   user: string;
   email: string;
@@ -29,86 +30,30 @@ export interface PackageConfig {
   packageName: string;
   componentName: string;
   packageDescription: string;
-}
+};
 
-/**
- * Bootstrap files for a new package
- */
-export function bootstrapFiles(config: PackageConfig): void {
-  const packageDir = path.join(PACKAGES_DIR, config.packageRootFolderName);
-  
-  ensureDirectory(packageDir);
-  ensureDirectory(path.join(packageDir, 'src'));
-  ensureDirectory(path.join(packageDir, 'docs'));
-  ensureDirectory(path.join(packageDir, 'docs/i18n'));
-
-  // Create package.json
-  createPackageJson(packageDir, config);
-  
-  // Create tsconfig.json
-  createTsConfig(packageDir);
-  
-  // Create tsup.config.ts
-  createTsupConfig(packageDir);
-  
-  // Create .sassrc.js
-  createSassrc(packageDir);
-  
-  // Create postcss.config.js
-  createPostcssConfig(packageDir);
-  
-  // Create source files
-  createComponentFile(packageDir, config);
-  createIndexFile(packageDir, config);
-  createTypesFile(packageDir, config);
-  createConstantsFile(packageDir, config);
-  createStylesFile(packageDir, config);
-  
-  // Create stories directory and story file
-  ensureDirectory(path.join(packageDir, 'stories'));
-  createStoryFile(packageDir, config);
-  
-  // Create docs/index.mdx
-  createDocsIndexMdx(packageDir, config);
-  
-  // Create README
-  createReadme(packageDir, config);
-  
-  // Create CHANGELOG
-  createChangelog(packageDir, config);
-  
-  // Create MIGRATION
-  createMigration(packageDir);
-  
-  // Create i18n files
-  createI18nFiles(packageDir, config);
-
-  logSuccess(`Created package structure in ${packageDir}`);
-}
-
+// Function declarations (hoisted)
 function createPackageJson(packageDir: string, config: PackageConfig): void {
   const content = {
     name: `@design-system/${config.packageRootFolderName}`,
     version: '0.1.0',
     private: false,
-    description: config.packageDescription || `${config.packageTitle} component for the design system`,
-    main: 'dist/index.cjs',
-    module: 'dist/index.mjs',
-    types: 'dist/index.d.ts',
+    description:
+      config.packageDescription || `${config.packageTitle} component for the design system`,
+    types: './dist/esm/index.d.ts',
+    main: './dist/cjs/index.js',
+    module: './dist/esm/index.js',
     exports: {
       '.': {
-        types: './dist/index.d.ts',
-        import: './dist/index.mjs',
-        require: './dist/index.cjs',
+        types: './dist/esm/index.d.ts',
+        import: './dist/esm/index.js',
+        require: './dist/cjs/index.js',
       },
+      './package.json': './package.json',
     },
-    files: ['dist', 'src', 'README.md', 'CHANGELOG.md', 'MIGRATION.md'],
+    files: ['dist/cjs', 'dist/esm', 'src', 'README.md', 'CHANGELOG.md', 'MIGRATION.md'],
     sideEffects: ['**/*.css', '**/*.scss'],
-    scripts: {
-      build: 'tsup',
-      clean: 'tsup --clean',
-      lint: 'eslint "src/**/*.{ts,tsx}"',
-    },
+    scripts: {},
     peerDependencies: {
       react: '>=18.3.0',
       'react-dom': '>=18.3.0',
@@ -129,118 +74,30 @@ function createPackageJson(packageDir: string, config: PackageConfig): void {
   logDebug('Created package.json');
 }
 
-function createTsConfig(packageDir: string): void {
-  const content = {
-    extends: '../../tsconfig.base.json',
+function createTsConfigs(packageDir: string): void {
+  const esmConfig = {
+    extends: '../tsconfig.esm.json',
     compilerOptions: {
-      outDir: 'dist',
-      declaration: true,
-      declarationMap: true,
-      rootDir: 'src',
+      rootDir: './src',
+      outDir: './dist/esm',
     },
-    include: ['src', '../../types'],
+    include: ['./src', '../../types'],
+    exclude: ['./dist', './stories', './__tests__', './__test__', './docs'],
   };
 
-  fs.writeFileSync(path.join(packageDir, 'tsconfig.json'), JSON.stringify(content, null, 2));
-  logDebug('Created tsconfig.json');
-}
+  const cjsConfig = {
+    extends: '../tsconfig.cjs.json',
+    compilerOptions: {
+      rootDir: './src',
+      outDir: './dist/cjs',
+    },
+    include: ['./src', '../../types'],
+    exclude: ['./dist', './stories', './__tests__', './__test__', './docs'],
+  };
 
-function createTsupConfig(packageDir: string): void {
-  const content = `import { defineConfig } from 'tsup';
-
-/**
- * Конфигурация tsup с оптимизацией CSS
- *
- * Оптимизации:
- * 1. Tree-shaking для JS кода
- * 2. Минификация CSS через esbuild
- * 3. Оптимизированные SCSS импорты (через оптимизированные модули)
- * 4. Удаление комментариев из CSS
- */
-export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['esm', 'cjs'],
-  dts: {
-    resolve: true,
-  },
-  tsconfig: './tsconfig.json',
-  sourcemap: true,
-  clean: true,
-  treeshake: true, // Удаляет неиспользуемый JS код
-  target: 'es2022',
-  external: ['react', 'react-dom', 'classnames'],
-
-  // Настройка для обработки CSS/SCSS
-  loader: {
-    '.css': 'css',
-    '.scss': 'css', // esbuild обработает SCSS через sass-embedded
-  },
-
-  // Оптимизация CSS через esbuild
-  esbuildOptions(options) {
-    options.loader = {
-      ...options.loader,
-      '.css': 'css',
-      '.scss': 'css',
-    };
-
-    // Минифицируем CSS в production
-    if (process.env.NODE_ENV === 'production') {
-      options.minify = true;
-      options.legalComments = 'none'; // Удаляем комментарии
-    }
-  },
-
-  // Включаем минификацию в production
-  minify: process.env.NODE_ENV === 'production',
-});
-`;
-
-  fs.writeFileSync(path.join(packageDir, 'tsup.config.ts'), content);
-  logDebug('Created tsup.config.ts');
-}
-
-function createSassrc(packageDir: string): void {
-  const content = `/**
- * Конфигурация Sass для оптимизации компиляции
- * Уменьшает размер итогового CSS
- *
- * Примечание: esbuild использует sass-embedded, который может не использовать этот файл
- * Настройки применяются через esbuildOptions в tsup.config.ts
- */
-module.exports = {
-  // Стиль вывода: compressed - максимальная минификация
-  outputStyle: 'compressed',
-  // Удаляем комментарии
-  omitSourceMapUrl: true,
-  // Не генерируем source map для CSS (уменьшает размер)
-  sourceMap: false,
-  // Оптимизируем импорты
-  precision: 10,
-  // Удаляем неиспользуемые импорты (если поддерживается)
-  quietDeps: true,
-  // Оптимизируем селекторы
-  sourceComments: false,
-};
-`;
-
-  fs.writeFileSync(path.join(packageDir, '.sassrc.js'), content);
-  logDebug('Created .sassrc.js');
-}
-
-function createPostcssConfig(packageDir: string): void {
-  const content = `/**
- * PostCSS конфигурация для оптимизации CSS
- * Удаляет неиспользуемый CSS и минифицирует результат
- */
-
-module.exports = {
-  plugins: [],
-};
-`;
-
-  fs.writeFileSync(path.join(packageDir, 'postcss.config.js'), content);
-  logDebug('Created postcss.config.js');
+  fs.writeFileSync(path.join(packageDir, 'tsconfig.esm.json'), JSON.stringify(esmConfig, null, 2));
+  fs.writeFileSync(path.join(packageDir, 'tsconfig.cjs.json'), JSON.stringify(cjsConfig, null, 2));
+  logDebug('Created tsconfig.esm.json and tsconfig.cjs.json');
 }
 
 function createComponentFile(packageDir: string, config: PackageConfig): void {
@@ -274,7 +131,7 @@ export type { ${config.componentName}Props } from './${config.componentName}';
   logDebug('Created index.ts');
 }
 
-function createTypesFile(packageDir: string, config: PackageConfig): void {
+function createTypesFile(packageDir: string): void {
   const content = `// TODO: Добавьте типы для компонента
 `;
 
@@ -282,7 +139,7 @@ function createTypesFile(packageDir: string, config: PackageConfig): void {
   logDebug('Created types.ts');
 }
 
-function createConstantsFile(packageDir: string, config: PackageConfig): void {
+function createConstantsFile(packageDir: string): void {
   const content = `// TODO: Добавьте константы для компонента (например, размеры, варианты и т.д.)
 `;
 
@@ -524,6 +381,52 @@ export { default as ru } from './ru.json';
     JSON.stringify(ruContent, null, 2)
   );
   fs.writeFileSync(path.join(packageDir, 'docs/i18n', 'index.ts'), indexContent);
-  
+
   logDebug('Created i18n files');
+}
+
+/**
+ * Bootstrap files for a new package
+ */
+export function bootstrapFiles(config: PackageConfig): void {
+  const packageDir = path.join(PACKAGES_DIR, config.packageRootFolderName);
+
+  ensureDirectory(packageDir);
+  ensureDirectory(path.join(packageDir, 'src'));
+  ensureDirectory(path.join(packageDir, 'docs'));
+  ensureDirectory(path.join(packageDir, 'docs/i18n'));
+
+  // Create package.json
+  createPackageJson(packageDir, config);
+
+  // Create tsconfig.esm.json and tsconfig.cjs.json
+  createTsConfigs(packageDir);
+
+  // Create source files
+  createComponentFile(packageDir, config);
+  createIndexFile(packageDir, config);
+  createTypesFile(packageDir);
+  createConstantsFile(packageDir);
+  createStylesFile(packageDir, config);
+
+  // Create stories directory and story file
+  ensureDirectory(path.join(packageDir, 'stories'));
+  createStoryFile(packageDir, config);
+
+  // Create docs/index.mdx
+  createDocsIndexMdx(packageDir, config);
+
+  // Create README
+  createReadme(packageDir, config);
+
+  // Create CHANGELOG
+  createChangelog(packageDir, config);
+
+  // Create MIGRATION
+  createMigration(packageDir);
+
+  // Create i18n files
+  createI18nFiles(packageDir, config);
+
+  logSuccess(`Created package structure in ${packageDir}`);
 }

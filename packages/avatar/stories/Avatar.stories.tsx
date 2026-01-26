@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from '../src';
 
 const meta: Meta<AvatarProps> = {

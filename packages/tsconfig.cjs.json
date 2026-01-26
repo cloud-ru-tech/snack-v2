@@ -1,19 +1,32 @@
 {
-  "extends": "../tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./avatar/tsconfig.cjs.json" }
+  ],
   "compilerOptions": {
+    "target": "es6",
+    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
     "module": "CommonJS",
-    "moduleResolution": "Node",
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "jsx": "react-jsx",
-    "declaration": true,
-    "declarationMap": true,
     "strict": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "declaration": true,
+    "composite": true,
+    "plugins": [
+      {
+        "transform": "../../scripts/scss-extension-transformer.ts"
+      },
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customRenderer": "../../scripts/compile/sass-custom-renderer.js"
+        }
+      }
+    ]
   }
 }

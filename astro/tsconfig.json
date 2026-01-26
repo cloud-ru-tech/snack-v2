@@ -2,9 +2,11 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "types": ["astro/client"]
+    "types": ["astro/client"],
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".astro"]
 }
 
 

@@ -1,28 +1,17 @@
-shamefullyHoist: true
-sideEffectsCache: false
+packages:
+  - packages/*
+  - astro
+
+ignoredBuiltDependencies:
+  - ejs
+
 linkWorkspacePackages: true
+
+onlyBuiltDependencies:
+  - '@cloud-ru/ft-config-husky'
+
 saveWorkspaceProtocol: false
 
-packages:
-  - "packages/*"
-  - "astro"
+shamefullyHoist: true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sideEffectsCache: false

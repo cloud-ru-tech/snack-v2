@@ -3,7 +3,21 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["packages", "apps", "scripts", ".storybook"]
+  "include": ["packages", "apps", "scripts", "storybook"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "scripts/**/*.js",
+    "scripts/**/*.d.ts",
+    "astro/**",
+    "storybook/**/*.js",
+    "storybook/**/*.d.ts",
+    "packages/*/docs/**",
+    "packages/*/stories/**",
+    "packages/*/__tests__/**",
+    "packages/*/__test__/**"
+  ]
 }
 
 

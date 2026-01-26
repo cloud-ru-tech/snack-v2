@@ -1,5 +1,7 @@
-import inquirer from 'inquirer';
 import { execSync } from 'child_process';
+
+import inquirer from 'inquirer';
+
 import { logDebug, logError, logHelp, logInfo, logSuccess } from './utils/console';
 import { bootstrapFiles, ExistingPackageNames } from './utils/files';
 import * as gitUtils from './utils/git';
@@ -32,7 +34,9 @@ const printInfoMessages = () => {
   2. Folder- and filenames - will be converted to lowercase and hyphen-separated (for example my-new-package)
   3. Componentname - will remove spaces and get PascalCased (for example MyNewPackage)`);
 
-  logHelp('Answer the following questions to get started, or press CTRL+C (or Control+C) to abort...');
+  logHelp(
+    'Answer the following questions to get started, or press CTRL+C (or Control+C) to abort...'
+  );
 };
 
 printInfoMessages();
@@ -85,7 +89,7 @@ inquirer
     try {
       execSync('pnpm install', { stdio: 'inherit' });
       logSuccess('Dependencies installed!');
-    } catch (error) {
+    } catch {
       logError('Failed to install dependencies');
       logError('Please run "pnpm install" manually');
     }
@@ -96,17 +100,17 @@ inquirer
 Next steps:
   1. Customize the component in packages/${packageRootFolderName}/src/${componentName}.tsx
   2. Update styles in packages/${packageRootFolderName}/src/styles.module.scss
-  3. Add stories in packages/${packageRootFolderName}/${componentName}.stories.tsx
-  4. Build the package: pnpm --filter @design-system/${packageRootFolderName} build
+  3. Add stories in packages/${packageRootFolderName}/stories/${componentName}.stories.tsx
+  4. Build all packages: pnpm -w run build:packages
   5. View in Storybook: pnpm storybook
     `);
   })
-  .catch((error) => {
-    if (error.isTtyError) {
+  .catch((err) => {
+    if (err.isTtyError) {
       logError("Prompt couldn't be rendered in the current environment");
     } else {
       logError('Something went wrong:');
-      logError(error.message);
+      logError(err.message);
     }
     process.exit(1);
   });

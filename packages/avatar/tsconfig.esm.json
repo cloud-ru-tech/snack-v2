@@ -3,8 +3,8 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist/esm",
-    "declarationDir": "./dist/esm"
+    "composite": true
   },
-  "include": ["src/**/*", "../../types/**/*"],
-  "exclude": ["dist", "stories", "__tests__", "node_modules"]
+  "include": ["./src", "../../types"],
+  "exclude": ["./dist", "./stories", "./__tests__", "./__test__", "./docs"]
 }

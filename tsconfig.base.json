@@ -15,7 +15,21 @@
     "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": ["packages", "apps", "scripts", "storybook", "types"],
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "scripts/**/*.js",
+    "scripts/**/*.d.ts",
+    "astro/**/*.js",
+    "astro/**/*.d.ts",
+    "storybook/**/*.js",
+    "storybook/**/*.d.ts",
+    "packages/*/docs/**/*.js",
+    "packages/*/docs/**/*.d.ts",
+    "packages/*/stories/**/*.js",
+    "packages/*/stories/**/*.d.ts"
+  ]
 }
 
 

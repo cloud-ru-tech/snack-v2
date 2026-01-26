@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": false,
   "description": "Avatar component for the design system",
-  "types": "./dist/esm/index.d.mts",
+  "types": "./dist/esm/index.d.ts",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.mjs",
+  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
-      "types": "./dist/esm/index.d.mts",
-      "import": "./dist/esm/index.mjs",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./package.json": "./package.json"
@@ -26,13 +26,7 @@
     "**/*.css",
     "**/*.scss"
   ],
-  "scripts": {
-    "build": "pnpm build:esm && pnpm build:cjs",
-    "build:esm": "tsup --config tsup.config.ts --format esm --outDir dist/esm --tsconfig tsconfig.esm.json",
-    "build:cjs": "tsup --config tsup.config.ts --format cjs --outDir dist/cjs --tsconfig tsconfig.cjs.json",
-    "clean": "rm -rf dist",
-    "lint": "eslint \"src/**/*.{ts,tsx}\""
-  },
+  "scripts": {},
   "peerDependencies": {
     "react": ">=18.3.0",
     "react-dom": ">=18.3.0"
