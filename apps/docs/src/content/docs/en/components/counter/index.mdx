@@ -1,0 +1,227 @@
+---
+title: Counter
+description: Counter component
+version: "0.1.0"
+locale: en
+---
+import { Counter, APPEARANCE, SIZE, VARIANT, COLOR } from '@packages/counter/src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '../../../../../components/mdx';
+import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../../../components/mdx';
+
+
+# Counter
+
+The Counter component displays numeric indicators (notification counters, item counts, metrics, etc.) in a compact format. It supports multiple value display variants: regular counter (count), plus format when threshold is exceeded (count-plus), and shortened notation in thousands (count-k), controlled by variant and plusLimit props.
+
+**Version:** `{frontmatter.version}`
+
+## Changelog
+
+import Changelog from '../../../../../components/astro/Changelog.astro';
+
+<Changelog packageName="counter" />
+
+import LlmLink from '../../../../../components/astro/LlmLink.astro';
+
+<LlmLink component="counter" />
+
+## Overview
+
+Counter is a flexible component for displaying numeric indicators in your application. It automatically handles:
+
+- **Value formatting with multiple variants (count, count-plus, count-k)**
+- **Threshold control for plus format (plusLimit prop)**
+- **Multiple sizes (xs, s)**
+- **Three appearance options (primary, neutral, red)**
+- **Two color schemes (accent, decor)**
+- **Compact display suitable for use inside other UI elements**
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <ExampleRow>
+    <Counter value={9} />
+        <Counter value={42} appearance={APPEARANCE.Primary} />
+        <Counter value={128} appearance={APPEARANCE.Neutral} />
+  </ExampleRow>
+</ExampleContainer>
+
+### Variants
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="Count">
+      <Counter value={9} variant={VARIANT.Count} />
+    </ExampleItem>
+    <ExampleItem label="Count Plus">
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+    </ExampleItem>
+    <ExampleItem label="Count K">
+      <Counter value={8500} variant={VARIANT.CountK} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="xs">
+      <Counter value={9} size={SIZE.XS} />
+    </ExampleItem>
+    <ExampleItem label="s">
+      <Counter value={9} size={SIZE.S} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Appearances
+
+<ExampleContainer>
+  <ExampleGrid columns={3} minColumnWidth="120px">
+    <ExampleItem label="Primary" gap="medium">
+      <Counter value={9} appearance={APPEARANCE.Primary} />
+    </ExampleItem>
+    <ExampleItem label="Neutral" gap="medium">
+      <Counter value={9} appearance={APPEARANCE.Neutral} />
+    </ExampleItem>
+    <ExampleItem label="Red" gap="medium">
+      <Counter value={9} appearance={APPEARANCE.Red} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### Colors
+
+<ExampleContainer>
+  <ExampleGrid columns={2} minColumnWidth="120px">
+    <ExampleItem label="Accent" gap="medium">
+      <Counter value={9} color={COLOR.Accent} />
+    </ExampleItem>
+    <ExampleItem label="Decor" gap="medium">
+      <Counter value={9} color={COLOR.Decor} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### With plus limit
+
+<ExampleContainer>
+  <ExampleRow>
+    <ExampleItem label="plusLimit = 10, value = 9">
+      <Counter value={9} variant={VARIANT.CountPlus} plusLimit={10} />
+    </ExampleItem>
+    <ExampleItem label="plusLimit = 10, value = 15">
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+    </ExampleItem>
+    <ExampleItem label="plusLimit = 100, value = 150">
+      <Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '../../../../../components/astro/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-counter--basic" />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { Counter } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return <Counter value={9} />;
+}
+```
+
+### With variant
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <>
+      <Counter value={9} variant={VARIANT.Count} />
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+      <Counter value={8500} variant={VARIANT.CountK} />
+    </>
+  );
+}
+```
+
+### Custom appearance and size
+
+```tsx
+import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <Counter
+      value={10}
+      appearance={APPEARANCE.Red}
+      size={SIZE.S}
+    />
+  );
+}
+```
+
+### With plus limit
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <Counter
+      value={150}
+      variant={VARIANT.CountPlus}
+      plusLimit={100}
+    />
+  );
+}
+```
+
+## Props
+
+### Required
+
+- value (number) — Numeric value to display. Required.
+
+### Optional
+
+- appearance ('primary' | 'neutral' | 'red') — Visual appearance. Default: 'primary'.
+- variant ('count' | 'count-plus' | 'count-k') — Value display variant. Default: 'count'.
+- size ('xs' | 's') — Counter size. Default: 'xs'.
+- plusLimit (number) — Threshold for shortening value to v+ format. For example, 1500 -> 999+ for 1000. Default: 10.
+- color ('accent' | 'decor') — Semantic color. Default: 'accent'.
+- className (string) — Additional CSS class.
+- ...HTMLDivAttributes — All standard div HTML attributes are supported.
+
+## Accessibility
+
+- Semantic HTML structure ensures screen reader compatibility
+- Component accepts all standard HTML attributes for customization
+- Numeric values are readable text, providing meaningful information
+
+## Best practices
+
+1. **Use appropriate variants — Choose count, count-plus, or count-k based on your use case**
+2. **Set plusLimit appropriately — Configure the threshold based on your data range**
+3. **Consistent size usage — Match counter size to context and importance**
+4. **Consider contrast — Ensure counter values are readable against background colors**
+5. **Use in context — Counter is designed to be used inside other UI elements (buttons, tags, menu items)**
+6. **Handle large values — Use count-k variant for values over 1000 to keep display compact**
+
+

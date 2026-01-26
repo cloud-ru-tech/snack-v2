@@ -25,16 +25,18 @@ $typography: (
     @each $appearance in $contexts {
       &[data-color='#{$roleColor}'] {
         &[data-appearance='#{$appearance}'] {
-          @include base.composite-var(counter.$counter, 'color', 'container-#{$roleColor}', $appearance);
+          background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+          color: base.simple-var(base.$sn-theme, 'color', $appearance, 'on-accent');
 
           @each $size in $sizes {
             &[data-size='#{$size}'] {
               @include base.composite-var($typography, $size);
               @include base.composite-var(counter.$counter, 'anatomy', 'size', $size, 'container');
-              height: base.simple-var(counter.$counter, 'anatomy', 'size', $size, 'container', 'min-height');
+
+              height: 0;
 
               border-style: solid;
-              border-color: base.simple-var(counter.$counter, 'color', 'container-#{$roleColor}', $appearance, 'border-default');
+              border-color: base.$sn-theme-color-neutral-background1-level;
             }
           }
         }
