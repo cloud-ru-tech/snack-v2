@@ -14,7 +14,7 @@
     "jsx": "react-jsx",
     "typeRoots": ["./node_modules/@types", "./types"]
   },
-  "include": ["packages", "apps", "scripts", ".storybook", "types"],
+  "include": ["packages", "apps", "scripts", "storybook", "types"],
   "exclude": ["node_modules", "dist", "build"]
 }
 

@@ -6,6 +6,7 @@ node_modules
 dist
 build
 .turbo
+*.tsbuildinfo
 
 # Storybook
 storybook-static

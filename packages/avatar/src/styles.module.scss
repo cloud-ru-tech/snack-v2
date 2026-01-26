@@ -1,7 +1,7 @@
-// Базовые функции и миксины из пакета
+/* Базовые функции и миксины из пакета */
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-// Структуры компонентов используем локальные (т.к. структура в пакете отличается)
+/* Структуры компонентов используем локальные (т.к. структура в пакете отличается) */
 @use '@sbercloud/figma-variables/build/scss/components/avatar.module' as avatar;
 
 $sizes: 'xs', 's', 'm', 'l', '3xl', '6xl', '10xl';
