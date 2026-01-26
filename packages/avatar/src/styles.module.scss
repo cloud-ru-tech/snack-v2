@@ -4,14 +4,14 @@
 // Структуры компонентов используем локальные (т.к. структура в пакете отличается)
 @use '@sbercloud/figma-variables/build/scss/components/avatar.module' as avatar;
 
-$sizes: 'xs', 's', 'm', 'xl', '3xl', '6xl', '10xl';
+$sizes: 'xs', 's', 'm', 'l', '3xl', '6xl', '10xl';
 $shapes: 'round', 'square';
 
 $typography: (
   'xs': base.$sn-regular-label-s,
   's': base.$sn-regular-label-s,
   'm': base.$sn-regular-label-m,
-  'xl': base.$sn-regular-title-m,
+  'l': base.$sn-regular-title-m,
   '3xl': base.$sn-regular-headline-m,
   '6xl': base.$sn-regular-display-s,
   '10xl': base.$sn-regular-display-m,
@@ -25,7 +25,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+
   line-height: 1;
   user-select: none;
   overflow: hidden;
@@ -56,21 +56,10 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
 
   @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      --background-color: #{base.simple-var(base.$sn-color, $appearance-name, 'decor')};
-
-      background-color: var(--background-color);
-
-      color: base.color-on-background-with-opacity(
-        base.$sn-color-neutral-text,
-        var(--background-color),
-        avatar.$sn-effect-opacity-text-secondary
-      );
-
-      border-color: base.color-on-background-with-opacity(
-        base.$sn-color-available-complementary,
-        var(--background-color),
-        avatar.$sn-avatar-effect-opacity-border
-      );
+      background-color: base.simple-var(base.$sn-theme, 'color', $appearance-name, 'decor');
+      text-align: center;
+      color: base.$sn-theme-color-available-version-text-secondary;
+      border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
     }
   }
 

@@ -30,7 +30,7 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     };
 
     window.addEventListener('message', handleMessage);
-    
+
     // Запрашиваем текущую тему при загрузке
     window.parent?.postMessage({ type: 'theme-sync-request' }, '*');
 
@@ -43,7 +43,7 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     <div
       style={{
         padding: '16px',
-        backgroundColor: 'var(--sn-color-neutral-background)',
+        backgroundColor: 'var(--sn-theme-color-neutral-background)',
         boxSizing: 'border-box',
         margin: '-1rem',
         width: 'calc(100% + 2rem)',
@@ -52,7 +52,7 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         'sb-story-wrapper',
         'sn-primitive',
         'sn-figmaStyles',
-        'sn-conmonents',
+        'sn-components',
         `sn-${platform}`,
         `sn-${theme}`,
         `sn-${brand}`
@@ -68,7 +68,7 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
           borderRadius: '8px',
           alignItems: 'center',
           flexWrap: 'wrap',
-          backgroundColor: 'var(--sn-color-neutral-background1-level)',
+          backgroundColor: 'var(--sn-theme-color-neutral-background1-level)',
         }}
       >
         <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px' }}>
@@ -131,11 +131,12 @@ const StoryWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
           'sb-story-wrapper',
           'sn-base-styles',
           'sn-figmaStyles',
+          'sn-components',
           `sn-${platform}`,
           `sn-${theme}`,
           `sn-${brand}`
         )}
-        style={{ backgroundColor: 'var(--sn-color-neutral-background)', padding: '16px' }}
+        style={{ backgroundColor: 'var(--sn-theme-color-neutral-background)', padding: '16px' }}
       >
         {children}
       </div>

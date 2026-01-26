@@ -58,9 +58,9 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   .changelog-container {
     margin: 2rem 0;
     padding: 1.5rem;
-    background: var(--sn-color-neutral-background1-level);
+    background: var(--sn-theme-color-neutral-background1-level);
     border-radius: 0.75rem;
-    border: 2px solid var(--sn-color-neutral-decor);
+    border: 2px solid var(--sn-theme-color-neutral-decor);
     box-shadow: 
       0 1px 3px rgba(0, 0, 0, 0.05),
       0 0 0 1px rgba(0, 0, 0, 0.03);
@@ -84,7 +84,7 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   .changelog-header {
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--sn-color-neutral-decor);
+    border-bottom: 2px solid var(--sn-theme-color-neutral-decor);
   }
 
   :global(.sn-light) .changelog-header {
@@ -94,23 +94,23 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   .changelog-header h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: var(--sn-color-text-primary);
+    color: var(--sn-theme-color-text-primary);
   }
 
   .changelog-content {
-    color: var(--sn-color-text-primary);
+    color: var(--sn-theme-color-text-primary);
   }
 
   .changelog-content p {
     margin-bottom: 1rem;
-    color: var(--sn-color-text-secondary);
+    color: var(--sn-theme-color-text-secondary);
   }
 
   .changelog-button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background: var(--sn-color-primary-default);
-    color: var(--sn-color-on-primary);
+    background: var(--sn-theme-color-primary-default);
+    color: var(--sn-theme-color-on-primary);
     border-radius: 0.5rem;
     text-decoration: none;
     font-weight: 600;
@@ -121,7 +121,7 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   }
 
   .changelog-button:hover {
-    background: var(--sn-color-primary-hover);
+    background: var(--sn-theme-color-primary-hover);
     transform: translateY(-1px);
     box-shadow: 
       0 4px 8px rgba(0, 0, 0, 0.15),
@@ -129,7 +129,7 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   }
 
   .changelog-button:active {
-    background: var(--sn-color-primary-active);
+    background: var(--sn-theme-color-primary-active);
     transform: translateY(0);
     box-shadow: 
       0 1px 2px rgba(0, 0, 0, 0.1);
@@ -140,7 +140,7 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   }
 
   .changelog-link {
-    color: var(--sn-color-primary-default);
+    color: var(--sn-theme-color-primary-default);
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
@@ -150,7 +150,7 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
   }
 
   .changelog-link:hover {
-    color: var(--sn-color-primary-hover);
+    color: var(--sn-theme-color-primary-hover);
     text-decoration: underline;
   }
 </style>

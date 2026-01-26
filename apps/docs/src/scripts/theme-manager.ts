@@ -37,20 +37,20 @@ class ThemeManager {
    */
   private loadThemeFromStorage(): Theme {
     if (typeof window === 'undefined') return DEFAULTS.THEME;
-    
+
     try {
       // Проверяем сначала нашу тему
       const snTheme = localStorage.getItem(STORAGE_KEYS.THEME);
       if (snTheme === 'light' || snTheme === 'dark') {
         return snTheme;
       }
-      
+
       // Если нет нашей темы, проверяем Starlight
       const starlightTheme = localStorage.getItem('starlight-theme');
       if (starlightTheme === 'light' || starlightTheme === 'dark') {
         return starlightTheme;
       }
-      
+
       // Проверяем data-theme на html
       const htmlTheme = document.documentElement.getAttribute('data-theme');
       if (htmlTheme === 'light' || htmlTheme === 'dark') {
@@ -59,13 +59,13 @@ class ThemeManager {
     } catch {
       // Игнорируем ошибки
     }
-    
+
     return DEFAULTS.THEME;
   }
 
   private loadFromStorage<T>(key: string, defaultValue: T): T {
     if (typeof window === 'undefined') return defaultValue;
-    
+
     try {
       const stored = localStorage.getItem(key);
       return (stored as T) || defaultValue;
@@ -76,7 +76,7 @@ class ThemeManager {
 
   private saveToStorage(key: string, value: string): void {
     if (typeof window === 'undefined') return;
-    
+
     try {
       localStorage.setItem(key, value);
     } catch (error) {
@@ -99,7 +99,7 @@ class ThemeManager {
     body.classList.remove('sn-desktop', 'sn-mobile');
 
     // Базовые классы (всегда применяются)
-    body.classList.add('sn-primitive', 'sn-figmaStyles', 'sn-conmonents');
+    body.classList.add('sn-primitive', 'sn-figmaStyles', 'sn-components');
 
     // Применяем текущие значения
     body.classList.add(`sn-${this.theme}`);
@@ -122,10 +122,10 @@ class ThemeManager {
     if (typeof document === 'undefined') return;
 
     const htmlElement = document.documentElement;
-    
+
     // Устанавливаем data-theme на html элемент (используется Starlight)
     htmlElement.setAttribute('data-theme', this.theme);
-    
+
     // Сохраняем в localStorage для Starlight
     // Starlight использует ключ "starlight-theme"
     try {
@@ -264,7 +264,7 @@ class ThemeManager {
             // Обновляем нашу тему без повторной синхронизации с Starlight
             this.theme = newTheme;
             this.saveToStorage(STORAGE_KEYS.THEME, newTheme);
-            
+
             // Применяем только наши классы (без syncStarlightTheme чтобы избежать цикла)
             const body = document.body;
             if (body) {
@@ -272,7 +272,7 @@ class ThemeManager {
               body.classList.add(`sn-${newTheme}`);
               body.dataset.theme = newTheme;
             }
-            
+
             this.notifyIframes();
             this.dispatchEvent('themeChange', newTheme);
           }
@@ -300,7 +300,7 @@ export function getThemeManager(): ThemeManager {
 // Автоматическая инициализация при загрузке скрипта
 if (typeof window !== 'undefined') {
   const manager = getThemeManager();
-  
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => manager.init());
   } else {

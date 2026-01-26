@@ -15,7 +15,7 @@
   "packageManager": "pnpm@10.23.0",
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",
-    "@sbercloud/figma-variables": "0.0.1-beta.13",
+    "@sbercloud/figma-variables": "0.0.1-beta.23",
     "@snack-uikit/button": "0.19.16",
     "@snack-uikit/counter": "0.8.10",
     "@snack-uikit/status": "0.10.7",

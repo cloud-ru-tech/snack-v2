@@ -27,8 +27,9 @@ Error: Can't find stylesheet to import.
 ```
 
 Этот файл содержит ВСЕ необходимые CSS-переменные:
+
 - Primitive colors
-- Thememode (light/dark) 
+- Thememode (light/dark)
 - Adaptivemode (desktop/mobile)
 - Brandmode (brandA/brandB)
 - Все компонентные токены
@@ -43,7 +44,7 @@ head: [
     tag: 'script',
     content: `(function(){...b.classList.add('sn-primitive','sn-figmaStyles','sn-conmonents','sn-desktop','sn-light','sn-brandA');...})();`,
   },
-]
+];
 ```
 
 ## ⚠️ Что осталось сделать
@@ -55,22 +56,25 @@ head: [
 Заменить SCSS импорты на использование CSS-переменных напрямую.
 
 **Было:**
+
 ```scss
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 
 .button {
-  border-color: base.simple-var(light.$sn-color, 'neutral', 'decor');
+  border-color: base.simple-var(light.$sn-theme-color, 'neutral', 'decor');
 }
 ```
 
 **Стало:**
+
 ```scss
 .button {
-  border-color: var(--sn-color-neutral-decor);
+  border-color: var(--sn-theme-color-neutral-decor);
 }
 ```
 
 **Файлы для изменения:**
+
 ```
 packages/button/src/ButtonElevated/styles.module.scss
 packages/button/src/ButtonFilled/styles.module.scss
@@ -88,27 +92,46 @@ packages/status/src/StatusIndicator/styles.module.scss
 Создать файлы-заглушки с минимальными переменными:
 
 **Файл:** `packages/_shims/scss/thememode/light.module.scss`
+
 ```scss
 // Shim для отсутствующего модуля
-$sn-color: (
-  'available': ('complementary': #000),
-  'neutral': ('decor': #666, 'accent': #666, 'background1-level': #fff),
-  'primary': ('decor': #000, 'accent': #000),
-  // ... остальные цвета
+$sn-theme-color: (
+  'available': (
+    'complementary': #000,
+  ),
+  'neutral': (
+    'decor': #666,
+    'accent': #666,
+    'background1-level': #fff,
+  ),
+  'primary': (
+    'decor': #000,
+    'accent': #000,
+  ), // ... остальные цвета
 ) !default;
 
-$sn-color-neutral-text: #000 !default;
-$sn-color-neutral-background1-level: #fff !default;
+$sn-theme-color-neutral-text: #000 !default;
+$sn-theme-color-neutral-background1-level: #fff !default;
 ```
 
 **Файл:** `packages/_shims/scss/adaptivemode/desktop.module.scss`
+
 ```scss
-// Shim для отсутствующего модуля  
+// Shim для отсутствующего модуля
 $sn-adaptive: (
   'counters': (
-    'round-corner': ('xs': 4px, 's': 4px),
-    'stroke-weigth': ('xs': 1px, 's': 1px),
-    'spacing-container': ('xs': 4px, 's': 6px),
+    'round-corner': (
+      'xs': 4px,
+      's': 4px,
+    ),
+    'stroke-weigth': (
+      'xs': 1px,
+      's': 1px,
+    ),
+    'spacing-container': (
+      'xs': 4px,
+      's': 6px,
+    ),
   ),
 ) !default;
 ```
@@ -124,6 +147,7 @@ $sn-adaptive: (
 В Storybook используется только CSS:
 
 **Файл:** `.storybook/preview.tsx`
+
 ```typescript
 import '@sbercloud/figma-variables/build/css/tokens.css';
 // Все SCSS импорты закомментированы
@@ -134,6 +158,7 @@ Storybook НЕ импортирует SCSS модули в компонента�
 ## Проверка доступных файлов
 
 ### ✅ CSS (все работает):
+
 ```bash
 ls node_modules/@sbercloud/figma-variables/build/css/
 # tokens.css ✅
@@ -142,6 +167,7 @@ ls node_modules/@sbercloud/figma-variables/build/css/
 ```
 
 ### ❌ SCSS (частично):
+
 ```bash
 ls node_modules/@sbercloud/figma-variables/build/scss/
 # styles/styles.module ✅
@@ -155,6 +181,7 @@ ls node_modules/@sbercloud/figma-variables/build/scss/
 **Используйте Вариант 1** - переписать компоненты на CSS-переменные:
 
 ### Преимущества:
+
 - ✅ Нет зависимости от отсутствующих SCSS модулей
 - ✅ Проще поддержка (меньше абстракций)
 - ✅ Работает и в Storybook, и в Astro
@@ -162,6 +189,7 @@ ls node_modules/@sbercloud/figma-variables/build/scss/
 - ✅ Меньше слоев абстракции
 
 ### Недостатки:
+
 - ⚠️ Требует времени на рефакторинг
 - ⚠️ Нужно найти соответствие между SCSS переменными и CSS-переменными
 
@@ -182,7 +210,7 @@ head -100 node_modules/@sbercloud/figma-variables/build/css/tokens.css
 # Поиск использований light.$ в компонентах
 rg "light\.\$" packages/
 
-# Поиск использований adaptive.$ в компонентах  
+# Поиск использований adaptive.$ в компонентах
 rg "adaptive\.\$" packages/
 
 # Тестовая сборка Astro

@@ -27,7 +27,7 @@ import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
 
 ```html
 <!-- Пример: светлая тема, Brand A, Desktop -->
-<body class="sn-primitive sn-figmaStyles sn-conmonents sn-light sn-brandA sn-desktop">
+<body class="sn-primitive sn-figmaStyles sn-conmonents sn-light sn-brandA sn-desktop"></body>
 ```
 
 ### Сохранение настроек
@@ -37,6 +37,7 @@ import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
 ### Синхронизация
 
 Тема автоматически синхронизируется:
+
 - Между страницами документации
 - С iframe встроенных Storybook компонентов
 - При навигации (в SPA режиме)
@@ -104,9 +105,9 @@ import ThemeSwitcher from '@/components/astro/ThemeSwitcher.astro';
 ```astro
 <script>
   import { getThemeManager } from '@/scripts/theme-manager';
-  
+
   const manager = getThemeManager();
-  
+
   // Использование менеджера
   manager.setTheme('dark');
 </script>
@@ -121,9 +122,9 @@ import ThemeSwitcher from '@/components/astro/ThemeSwitcher.astro';
 import StorybookIframe from '@/components/astro/StorybookIframe.astro';
 ---
 
-<StorybookIframe 
-  storyId="components-button--primary" 
-  height="400px" 
+<StorybookIframe
+  storyId="components-button--primary"
+  height="400px"
 />
 ```
 
@@ -134,23 +135,19 @@ import StorybookIframe from '@/components/astro/StorybookIframe.astro';
 Помимо классов, также доступны data-атрибуты для использования в CSS:
 
 ```html
-<body 
-  data-theme="dark" 
-  data-brand="brandB" 
-  data-platform="mobile"
->
+<body data-theme="dark" data-brand="brandB" data-platform="mobile"></body>
 ```
 
 Пример использования в CSS:
 
 ```css
 /* Стили для темной темы */
-body[data-theme="dark"] .my-component {
-  background: var(--sn-color-neutral-background);
+body[data-theme='dark'] .my-component {
+  background: var(--sn-theme-color-neutral-background);
 }
 
 /* Стили для мобильной платформы */
-body[data-platform="mobile"] .my-component {
+body[data-platform='mobile'] .my-component {
   padding: var(--sn-spacing-small);
 }
 ```
@@ -171,7 +168,7 @@ console.log({
     theme: localStorage.getItem('sn-theme'),
     brand: localStorage.getItem('sn-brand'),
     platform: localStorage.getItem('sn-platform'),
-  }
+  },
 });
 ```
 
@@ -186,6 +183,7 @@ console.log({
 ## Дополнительная информация
 
 Для более подробной информации см.:
+
 - [Полная документация системы](/apps/docs/THEME_SYSTEM.md)
 - [Краткое руководство](/apps/docs/THEME_QUICK_START.md)
 - [Демо страница](/theme-demo)

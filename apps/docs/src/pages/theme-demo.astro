@@ -29,8 +29,8 @@ import ThemeSwitcher from '../components/astro/ThemeSwitcher.astro';
           <button 
             style="
               padding: 0.75rem 1.5rem;
-              background: var(--sn-color-primary-default);
-              color: var(--sn-color-on-primary);
+              background: var(--sn-theme-color-primary-default);
+              color: var(--sn-theme-color-on-primary);
               border: none;
               border-radius: 0.5rem;
               cursor: pointer;
@@ -44,8 +44,8 @@ import ThemeSwitcher from '../components/astro/ThemeSwitcher.astro';
             style="
               padding: 0.75rem 1.5rem;
               background: transparent;
-              color: var(--sn-color-text-primary);
-              border: 1px solid var(--sn-color-border-default);
+              color: var(--sn-theme-color-text-primary);
+              border: 1px solid var(--sn-theme-color-border-default);
               border-radius: 0.5rem;
               cursor: pointer;
               font-weight: 500;
@@ -59,13 +59,13 @@ import ThemeSwitcher from '../components/astro/ThemeSwitcher.astro';
           style="
             margin-top: 2rem;
             padding: 1.5rem;
-            background: var(--sn-color-neutral-background1-level);
-            border: 1px solid var(--sn-color-border-default);
+            background: var(--sn-theme-color-neutral-background1-level);
+            border: 1px solid var(--sn-theme-color-border-default);
             border-radius: 0.5rem;
           "
         >
-          <h3 style="margin-top: 0; color: var(--sn-color-text-primary);">Карточка</h3>
-          <p style="color: var(--sn-color-text-secondary);">
+          <h3 style="margin-top: 0; color: var(--sn-theme-color-text-primary);">Карточка</h3>
+          <p style="color: var(--sn-theme-color-text-secondary);">
             Этот блок демонстрирует как меняются цвета при переключении темы.
             Обратите внимание на фон, границы и цвета текста.
           </p>
@@ -75,8 +75,8 @@ import ThemeSwitcher from '../components/astro/ThemeSwitcher.astro';
           <h3>Текущие настройки:</h3>
           <div id="current-settings" style="
             padding: 1rem;
-            background: var(--sn-color-neutral-background);
-            border: 1px solid var(--sn-color-border-default);
+            background: var(--sn-theme-color-neutral-background);
+            border: 1px solid var(--sn-theme-color-border-default);
             border-radius: 0.5rem;
             font-family: monospace;
           ">
@@ -99,7 +99,7 @@ import ThemeSwitcher from '../components/astro/ThemeSwitcher.astro';
           <div><strong>Бренд:</strong> ${manager.getBrand()}</div>
           <div><strong>Платформа:</strong> ${manager.getPlatform()}</div>
           <div style="margin-top: 0.5rem;"><strong>Классы body:</strong></div>
-          <div style="margin-left: 1rem; color: var(--sn-color-text-secondary);">
+          <div style="margin-left: 1rem; color: var(--sn-theme-color-text-secondary);">
             ${Array.from(document.body.classList).filter(c => c.startsWith('sn-')).join(', ')}
           </div>
         `;

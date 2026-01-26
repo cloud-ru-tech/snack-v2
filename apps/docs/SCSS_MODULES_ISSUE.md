@@ -17,6 +17,7 @@ Error: Can't find stylesheet to import.
 ## Причина
 
 В текущей версии пакета `@sbercloud/figma-variables@0.0.1-beta.13` в директории `build/scss/` отсутствуют модули:
+
 - `thememode/light.module.scss`
 - `thememode/dark.module.scss`
 - `adaptivemode/desktop.module.scss`
@@ -37,6 +38,7 @@ Error: Can't find stylesheet to import.
 ```
 
 Файл `tokens.css` включает все токены:
+
 - Primitive colors
 - Thememode (light/dark)
 - Adaptivemode (desktop/mobile)
@@ -50,6 +52,7 @@ Error: Can't find stylesheet to import.
 ## Структура пакета
 
 ### CSS файлы (работают):
+
 ```
 build/css/
 ├── tokens.css          ✅ Все токены (используется в Storybook)
@@ -66,6 +69,7 @@ build/css/
 ```
 
 ### SCSS файлы (частично):
+
 ```
 build/scss/
 ├── styles/
@@ -88,6 +92,7 @@ import '@sbercloud/figma-variables/build/css/tokens.css';
 ```
 
 Классы применяются динамически:
+
 ```typescript
 className={cn(
   'sn-primitive',
@@ -106,7 +111,7 @@ className={cn(
 Использовать `tokens.css` и управлять темами через классы на body:
 
 ```html
-<body class="sn-primitive sn-figmaStyles sn-desktop sn-light sn-brandA">
+<body class="sn-primitive sn-figmaStyles sn-desktop sn-light sn-brandA"></body>
 ```
 
 ### Вариант 2: Обновить пакет
@@ -118,14 +123,16 @@ className={cn(
 Переписать компоненты для использования CSS-переменных напрямую вместо SCSS импортов:
 
 **Было (не работает):**
+
 ```scss
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
-border-color: light.$sn-color-neutral-background1-level;
+border-color: light.$sn-theme-color-neutral-background1-level;
 ```
 
 **Стало (работает):**
+
 ```scss
-border-color: var(--sn-color-neutral-background1-level);
+border-color: var(--sn-theme-color-neutral-background1-level);
 ```
 
 ## Текущий статус
@@ -152,6 +159,7 @@ packages/status/src/StatusIndicator/styles.module.scss
 ```
 
 Все эти файлы импортируют:
+
 ```scss
 @use '@sbercloud/figma-variables/build/scss/thememode/light.module' as light;
 @use '@sbercloud/figma-variables/build/scss/adaptivemode/desktop.module' as adaptive;

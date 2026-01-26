@@ -14,7 +14,7 @@ export const SIZE = {
   Xs: 'xs',
   S: 's',
   M: 'm',
-  Xl: 'xl',
+  L: 'l',
   '3Xl': '3xl',
   '6Xl': '6xl',
   '10Xl': '10xl',
@@ -24,23 +24,3 @@ export const SHAPE = {
   Round: 'round',
   Square: 'square',
 } as const;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

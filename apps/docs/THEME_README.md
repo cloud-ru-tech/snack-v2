@@ -85,11 +85,11 @@ apps/docs/
 const manager = window.snThemeManager;
 
 // API
-manager.getTheme();           // 'light' | 'dark'
+manager.getTheme(); // 'light' | 'dark'
 manager.setTheme('dark');
-manager.getBrand();           // 'brandA' | 'brandB'
+manager.getBrand(); // 'brandA' | 'brandB'
 manager.setBrand('brandB');
-manager.getPlatform();        // 'desktop' | 'mobile'
+manager.getPlatform(); // 'desktop' | 'mobile'
 manager.setPlatform('mobile');
 ```
 
@@ -97,10 +97,12 @@ manager.setPlatform('mobile');
 
 ```html
 <!-- Классы применяются автоматически к <body> -->
-<body class="sn-primitive sn-figmaStyles sn-conmonents sn-dark sn-brandB sn-mobile"
-      data-theme="dark" 
-      data-brand="brandB" 
-      data-platform="mobile">
+<body
+  class="sn-primitive sn-figmaStyles sn-conmonents sn-dark sn-brandB sn-mobile"
+  data-theme="dark"
+  data-brand="brandB"
+  data-platform="mobile"
+></body>
 ```
 
 ### 3. События для подписки
@@ -124,13 +126,13 @@ import StorybookIframe from '@/components/StorybookIframe.astro';
 
 ## 📚 Документация
 
-| Файл | Описание | Для кого |
-|------|----------|----------|
-| **THEME_QUICK_START.md** | Быстрый старт, основные команды | Все |
-| **THEME_SYSTEM.md** | Полная документация системы | Разработчики |
-| **THEME_INTEGRATION_SUMMARY.md** | Детали реализации и архитектура | Архитекторы |
-| **THEME_VERIFICATION.md** | План тестирования | QA, Разработчики |
-| **theme-system.mdx** | Документация в guides | Пользователи |
+| Файл                             | Описание                        | Для кого         |
+| -------------------------------- | ------------------------------- | ---------------- |
+| **THEME_QUICK_START.md**         | Быстрый старт, основные команды | Все              |
+| **THEME_SYSTEM.md**              | Полная документация системы     | Разработчики     |
+| **THEME_INTEGRATION_SUMMARY.md** | Детали реализации и архитектура | Архитекторы      |
+| **THEME_VERIFICATION.md**        | План тестирования               | QA, Разработчики |
+| **theme-system.mdx**             | Документация в guides           | Пользователи     |
 
 ## 🧪 Тестирование
 
@@ -181,7 +183,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.astro';
 ```astro
 <script>
   import { getThemeManager } from '@/scripts/theme-manager';
-  
+
   const manager = getThemeManager();
   manager.setTheme('dark');
 </script>
@@ -213,11 +215,11 @@ window.snThemeManager.setTheme('dark');
 
 ```css
 /* Альтернативный подход через data-атрибуты */
-body[data-theme="dark"] .my-component {
+body[data-theme='dark'] .my-component {
   background: #1a1a1a;
 }
 
-body[data-platform="mobile"] .my-component {
+body[data-platform='mobile'] .my-component {
   padding: 8px;
 }
 ```
@@ -227,8 +229,8 @@ body[data-platform="mobile"] .my-component {
 ```css
 /* Рекомендуемый подход - используйте CSS переменные */
 .my-component {
-  background: var(--sn-color-neutral-background);
-  color: var(--sn-color-text-primary);
+  background: var(--sn-theme-color-neutral-background);
+  color: var(--sn-theme-color-text-primary);
 }
 ```
 

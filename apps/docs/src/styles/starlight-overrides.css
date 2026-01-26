@@ -9,8 +9,8 @@
 
 /* Основной контейнер sidebar */
 .sidebar {
-  background-color: var(--sn-color-neutral-background1-level) !important;
-  border-right: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background1-level) !important;
+  border-right: 1px solid var(--sn-theme-color-neutral-decor) !important;
 }
 
 /* Светлая тема - более заметная граница */
@@ -27,7 +27,7 @@
 
 /* Навигационные ссылки в sidebar */
 .sidebar a {
-  color: var(--sn-color-text-primary) !important;
+  color: var(--sn-theme-color-text-primary) !important;
   transition: all 0.2s ease !important;
   position: relative !important;
   border-radius: 0.375rem !important;
@@ -36,10 +36,10 @@
 /* Активная ссылка - с декоративной полоской слева */
 .sidebar a[aria-current='page'],
 .sidebar a.active {
-  background-color: var(--sn-color-primary-default-alpha-12) !important;
-  color: var(--sn-color-primary-default) !important;
+  background-color: var(--sn-theme-color-primary-default-alpha-12) !important;
+  color: var(--sn-theme-color-primary-default) !important;
   font-weight: 600 !important;
-  border-left: 3px solid var(--sn-color-primary-default) !important;
+  border-left: 3px solid var(--sn-theme-color-primary-default) !important;
   padding-left: calc(1rem - 3px) !important;
 }
 
@@ -56,8 +56,8 @@
 
 /* Hover состояние для ссылок */
 .sidebar a:hover:not([aria-current='page']) {
-  background-color: var(--sn-color-neutral-background2-level) !important;
-  color: var(--sn-color-primary-default) !important;
+  background-color: var(--sn-theme-color-neutral-background2-level) !important;
+  color: var(--sn-theme-color-primary-default) !important;
   border-left: 3px solid transparent !important;
   padding-left: calc(1rem - 3px) !important;
 }
@@ -70,14 +70,14 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: var(--sn-color-primary-default);
+  background-color: var(--sn-theme-color-primary-default);
   opacity: 0.3;
   border-radius: 0 2px 2px 0;
 }
 
 /* Группы в sidebar */
 .sidebar details {
-  border-color: var(--sn-color-neutral-decor) !important;
+  border-color: var(--sn-theme-color-neutral-decor) !important;
 }
 
 .sn-light .sidebar details {
@@ -86,12 +86,12 @@
 
 /* Заголовки групп */
 .sidebar summary {
-  color: var(--sn-color-text-primary) !important;
+  color: var(--sn-theme-color-text-primary) !important;
   font-weight: 600 !important;
 }
 
 .sidebar summary:hover {
-  background-color: var(--sn-color-neutral-background2-level) !important;
+  background-color: var(--sn-theme-color-neutral-background2-level) !important;
   border-radius: 0.375rem !important;
 }
 
@@ -101,8 +101,8 @@
 
 /* Основной header */
 .header {
-  background-color: var(--sn-color-neutral-background) !important;
-  border-bottom: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background) !important;
+  border-bottom: 1px solid var(--sn-theme-color-neutral-decor) !important;
 }
 
 .sn-light .header {
@@ -117,7 +117,7 @@
 
 /* Заголовок сайта */
 .site-title a {
-  color: var(--sn-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-default) !important;
   font-weight: 600 !important;
 }
 
@@ -127,7 +127,7 @@
 
 /* Основной контент */
 .main-frame {
-  background-color: var(--sn-color-neutral-background) !important;
+  background-color: var(--sn-theme-color-neutral-background) !important;
 }
 
 /* Заголовки */
@@ -137,23 +137,23 @@
 .content h4,
 .content h5,
 .content h6 {
-  color: var(--sn-color-text-primary) !important;
+  color: var(--sn-theme-color-text-primary) !important;
 }
 
 /* Параграфы и текст */
 .content p,
 .content li,
 .content td {
-  color: var(--sn-color-text-secondary) !important;
+  color: var(--sn-theme-color-text-secondary) !important;
 }
 
 /* Ссылки в контенте */
 .content a {
-  color: var(--sn-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-default) !important;
 }
 
 .content a:hover {
-  color: var(--sn-color-primary-hover) !important;
+  color: var(--sn-theme-color-primary-hover) !important;
 }
 
 /* ============================================
@@ -162,9 +162,9 @@
 
 /* Inline code - только для простого inline кода, не для code blocks */
 .content code:not([class*='language-']):not(pre code) {
-  background-color: var(--sn-color-neutral-background1-level) !important;
-  color: var(--sn-color-text-primary) !important;
-  border: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background1-level) !important;
+  color: var(--sn-theme-color-text-primary) !important;
+  border: 1px solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: 0.25rem !important;
   padding: 0.125rem 0.375rem !important;
   font-family: 'SB Sans Text Mono', monospace !important;
@@ -178,8 +178,8 @@
 /* Code blocks - НЕ применяем стили к Expressive Code блокам */
 /* Expressive Code использует свои собственные стили и темы */
 .content pre:not([class*='expressive-code']):not(.expressive-code) {
-  background-color: var(--sn-color-neutral-background1-level) !important;
-  border: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background1-level) !important;
+  border: 1px solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: 0.5rem !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -194,17 +194,17 @@
    ============================================ */
 
 .content table {
-  border-color: var(--sn-color-neutral-decor) !important;
+  border-color: var(--sn-theme-color-neutral-decor) !important;
 }
 
 .content th {
-  background-color: var(--sn-color-neutral-background1-level) !important;
-  color: var(--sn-color-text-primary) !important;
-  border-color: var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background1-level) !important;
+  color: var(--sn-theme-color-text-primary) !important;
+  border-color: var(--sn-theme-color-neutral-decor) !important;
 }
 
 .content td {
-  border-color: var(--sn-color-neutral-decor) !important;
+  border-color: var(--sn-theme-color-neutral-decor) !important;
 }
 
 .sn-light .content th,
@@ -217,9 +217,9 @@
    ============================================ */
 
 .content .badge {
-  background-color: var(--sn-color-neutral-background2-level) !important;
-  color: var(--sn-color-text-primary) !important;
-  border: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background2-level) !important;
+  color: var(--sn-theme-color-text-primary) !important;
+  border: 1px solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: 0.25rem !important;
 }
 
@@ -233,16 +233,16 @@
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: var(--sn-color-neutral-background);
+  background: var(--sn-theme-color-neutral-background);
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: var(--sn-color-neutral-decor);
+  background: var(--sn-theme-color-neutral-decor);
   border-radius: 4px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: var(--sn-color-text-secondary);
+  background: var(--sn-theme-color-text-secondary);
 }
 
 /* ============================================
@@ -252,8 +252,8 @@
 @media (max-width: 768px) {
   /* Мобильное меню */
   .mobile-menu {
-    background-color: var(--sn-color-neutral-background) !important;
-    border-color: var(--sn-color-neutral-decor) !important;
+    background-color: var(--sn-theme-color-neutral-background) !important;
+    border-color: var(--sn-theme-color-neutral-decor) !important;
   }
 
   .sn-light .mobile-menu {
@@ -268,9 +268,9 @@
 
 /* Поисковая панель */
 .search-input {
-  background-color: var(--sn-color-neutral-background1-level) !important;
-  border: 1px solid var(--sn-color-neutral-decor) !important;
-  color: var(--sn-color-text-primary) !important;
+  background-color: var(--sn-theme-color-neutral-background1-level) !important;
+  border: 1px solid var(--sn-theme-color-neutral-decor) !important;
+  color: var(--sn-theme-color-text-primary) !important;
   border-radius: 0.5rem !important;
 }
 
@@ -279,15 +279,15 @@
 }
 
 .search-input:focus {
-  border-color: var(--sn-color-primary-default) !important;
-  outline: 2px solid var(--sn-color-primary-default) !important;
+  border-color: var(--sn-theme-color-primary-default) !important;
+  outline: 2px solid var(--sn-theme-color-primary-default) !important;
   outline-offset: 2px;
 }
 
 /* Результаты поиска */
 .search-results {
-  background-color: var(--sn-color-neutral-background) !important;
-  border: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background) !important;
+  border: 1px solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: 0.5rem !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -302,16 +302,16 @@
    ============================================ */
 
 .pagination a {
-  background-color: var(--sn-color-neutral-background1-level) !important;
-  color: var(--sn-color-text-primary) !important;
-  border: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background1-level) !important;
+  color: var(--sn-theme-color-text-primary) !important;
+  border: 1px solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: 0.5rem !important;
 }
 
 .pagination a:hover {
-  background-color: var(--sn-color-primary-default) !important;
-  color: var(--sn-color-on-primary) !important;
-  border-color: var(--sn-color-primary-default) !important;
+  background-color: var(--sn-theme-color-primary-default) !important;
+  color: var(--sn-theme-color-on-primary) !important;
+  border-color: var(--sn-theme-color-primary-default) !important;
 }
 
 /* ============================================
@@ -319,8 +319,8 @@
    ============================================ */
 
 .right-sidebar {
-  background-color: var(--sn-color-neutral-background) !important;
-  border-left: 1px solid var(--sn-color-neutral-decor) !important;
+  background-color: var(--sn-theme-color-neutral-background) !important;
+  border-left: 1px solid var(--sn-theme-color-neutral-decor) !important;
 }
 
 .sn-light .right-sidebar {
@@ -328,11 +328,11 @@
 }
 
 .right-sidebar a {
-  color: var(--sn-color-text-secondary) !important;
+  color: var(--sn-theme-color-text-secondary) !important;
 }
 
 .right-sidebar a:hover,
 .right-sidebar a[aria-current='true'] {
-  color: var(--sn-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-default) !important;
   font-weight: 500;
 }
