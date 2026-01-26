@@ -64,7 +64,8 @@ export function bootstrapFiles(config: PackageConfig): void {
   createConstantsFile(packageDir, config);
   createStylesFile(packageDir, config);
   
-  // Create story file
+  // Create stories directory and story file
+  ensureDirectory(path.join(packageDir, 'stories'));
   createStoryFile(packageDir, config);
   
   // Create docs/index.mdx
@@ -308,7 +309,7 @@ function createStylesFile(packageDir: string, config: PackageConfig): void {
 
 function createStoryFile(packageDir: string, config: PackageConfig): void {
   const content = `import type { Meta, StoryObj } from '@storybook/react';
-import { ${config.componentName}, ${config.componentName}Props } from './src';
+import { ${config.componentName}, ${config.componentName}Props } from '../src';
 
 const meta: Meta<${config.componentName}Props> = {
   title: 'Components/${config.packageTitle}',
@@ -331,8 +332,9 @@ export const Basic: Story = {
 };
 `;
 
-  fs.writeFileSync(path.join(packageDir, `${config.componentName}.stories.tsx`), content);
-  logDebug(`Created ${config.componentName}.stories.tsx`);
+  const storiesDir = path.join(packageDir, 'stories');
+  fs.writeFileSync(path.join(storiesDir, `${config.componentName}.stories.tsx`), content);
+  logDebug(`Created stories/${config.componentName}.stories.tsx`);
 }
 
 function createDocsIndexMdx(packageDir: string, config: PackageConfig): void {
@@ -348,8 +350,8 @@ import {
   ExampleRow,
   ExampleGrid,
   ExampleItem,
-} from '../../../apps/docs/src/components/mdx';
-import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../apps/docs/src/components/mdx';
+} from '../../../astro/src/components/mdx';
+import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../astro/src/components/mdx';
 import { translations } from './i18n';
 
 export const t = translations;
@@ -364,11 +366,11 @@ export const t = translations;
 
 ## Changelog
 
-import Changelog from '../../../apps/docs/src/components/astro/Changelog.astro';
+import Changelog from '../../../astro/src/components/astro/Changelog.astro';
 
 <Changelog packageName="${config.packageRootFolderName}" />
 
-import LlmLink from '../../../apps/docs/src/components/astro/LlmLink.astro';
+import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
 
 <LlmLink component="${config.packageRootFolderName}" />
 

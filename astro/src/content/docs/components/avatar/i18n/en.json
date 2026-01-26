@@ -1,0 +1,163 @@
+{
+  "title": "Avatar",
+  "description": "User avatar component with image support, initials fallback, multiple sizes, shapes, and color schemes.",
+  "intro": "The Avatar component displays user profile pictures or initials. It supports images with automatic fallback to generated initials, multiple sizes, shapes (round and square), and various color schemes.",
+  "overview": {
+    "title": "Overview",
+    "description": "Avatar is a flexible component for displaying user identity in your application. It automatically handles:",
+    "features": {
+      "imageLoading": "Image loading with graceful fallback to initials",
+      "initialsGeneration": "Initials generation from user names (1 or 2 characters)",
+      "multipleSizes": "Multiple sizes from extra small (xs) to extra large (10xl)",
+      "twoShapes": "Two shapes: round and square",
+      "colorSchemes": "Nine color schemes for visual variety and categorization",
+      "accessibility": "Accessibility with proper ARIA attributes"
+    }
+  },
+  "examples": {
+    "title": "Live examples",
+    "basicUsage": "Basic usage",
+    "withImages": "With images",
+    "twoSymbols": "Two symbols",
+    "sizes": "Sizes",
+    "shapes": "Shapes",
+    "colorSchemes": "Color schemes"
+  },
+  "shapes": {
+    "round": "Round",
+    "square": "Square"
+  },
+  "appearances": {
+    "neutral": "Neutral",
+    "primary": "Primary",
+    "red": "Red",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "violet": "Violet",
+    "pink": "Pink"
+  },
+  "storybook": {
+    "title": "Storybook"
+  },
+  "usage": {
+    "title": "Usage",
+    "basicExample": "Basic example",
+    "withImage": "With image",
+    "customAppearance": "Custom appearance and size",
+    "twoSymbols": "Two symbols"
+  },
+  "useCases": {
+    "title": "Use cases",
+    "userProfiles": {
+      "title": "User profiles and lists",
+      "description": "Display user avatars in profile pages, user lists, comments, and activity feeds:"
+    },
+    "navigation": {
+      "title": "Navigation and menus",
+      "description": "Use smaller avatars in navigation bars, dropdown menus, and user account sections:"
+    },
+    "statusIndicators": {
+      "title": "Status indicators",
+      "description": "Combine with status badges or use different color schemes to indicate user status, roles, or categories:",
+      "admin": "Admin",
+      "user": "User",
+      "guest": "Guest"
+    },
+    "teamDisplays": {
+      "title": "Team and group displays",
+      "description": "Show team members, collaborators, or group participants:"
+    },
+    "cards": {
+      "title": "Cards and previews",
+      "description": "Use in card layouts, preview components, and dashboard widgets:"
+    }
+  },
+  "sizes": {
+    "title": "Sizes",
+    "description": "Avatar supports seven size variants:",
+    "xs": "Extra small (16px)",
+    "s": "Small (24px, default)",
+    "m": "Medium (32px)",
+    "xl": "Extra large (48px)",
+    "3xl": "3X large (64px)",
+    "6xl": "6X large (96px)",
+    "10xl": "10X large (128px)",
+    "chooseBasedOn": "Choose sizes based on context:",
+    "contextXsS": "Navigation, compact lists, badges",
+    "contextMXl": "Standard user profiles, cards, comments",
+    "context3xl": "Hero sections, profile pages, featured displays"
+  },
+  "shapesSection": {
+    "title": "Shapes",
+    "round": "round (default) — Circular avatar, most common for user profiles",
+    "square": "square — Square avatar with rounded corners, useful for brand logos or special cases"
+  },
+  "appearanceSection": {
+    "title": "Appearance (color schemes)",
+    "description": "Avatar provides nine color schemes for visual variety:",
+    "neutral": "neutral (default) — Subtle gray, suitable for most cases",
+    "primary": "primary — Brand primary color",
+    "red": "red — For warnings, errors, or high-priority users",
+    "orange": "orange — Warm accent color",
+    "yellow": "yellow — Bright accent color",
+    "green": "green — Success states, active users",
+    "blue": "blue — Trust, information, standard users",
+    "violet": "violet — Premium or special roles",
+    "pink": "pink — Soft accent color",
+    "useFor": "Use color schemes to:",
+    "categorize": "Categorize users by role, status, or type",
+    "indicatePriority": "Indicate priority or importance",
+    "matchBrand": "Match brand or design system colors",
+    "createHierarchy": "Create visual hierarchy in lists and grids"
+  },
+  "initialsGeneration": {
+    "title": "Initials generation",
+    "description": "Avatar automatically generates initials from the name prop:",
+    "singleWord": "Single word: First letter (e.g., \"John\" → \"J\")",
+    "multipleWords": "Multiple words: First letter of first and last word (e.g., \"John Michael Doe\" → \"JD\")",
+    "twoSymbolsMode": "Two symbols mode: Use showTwoSymbols={true} to always show two characters",
+    "handles": "The component handles:",
+    "specialChars": "Special characters and punctuation (removed)",
+    "alphabets": "Cyrillic and Latin alphabets",
+    "edgeCases": "Edge cases (empty strings, single characters)"
+  },
+  "imageFallback": {
+    "title": "Image fallback",
+    "description": "When an image URL is provided via src:",
+    "step1": "Component attempts to load the image",
+    "step2": "If loading fails, automatically falls back to initials",
+    "step3": "If src changes, the error state resets and the component tries loading again",
+    "ensures": "This ensures avatars always display something meaningful, even with broken image URLs."
+  },
+  "props": {
+    "title": "Props",
+    "required": "Required",
+    "optional": "Optional",
+    "name": "name (string) — User name for generating initials. Required even when src is provided (used as fallback).",
+    "src": "src (string) — URL of the avatar image. Falls back to initials if loading fails.",
+    "appearance": "appearance — Color scheme. Default: 'neutral'.",
+    "size": "size — Avatar size. Default: 's'.",
+    "shape": "shape ('round' | 'square') — Avatar shape. Default: 'round'.",
+    "showTwoSymbols": "showTwoSymbols (boolean) — Display two characters instead of one. Default: false.",
+    "className": "className (string) — Additional CSS class.",
+    "htmlAttributes": "...HTMLDivAttributes — All standard div HTML attributes are supported."
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "images": "Images use alt=\"\" and aria-hidden=\"true\" since they are decorative",
+    "initials": "Initials are readable text, providing meaningful fallback",
+    "attributes": "Component accepts all standard HTML attributes for customization",
+    "semantic": "Semantic HTML structure ensures screen reader compatibility"
+  },
+  "bestPractices": {
+    "title": "Best practices",
+    "provideName": "Always provide a meaningful name — Even with images, names ensure fallback works correctly",
+    "appropriateSizes": "Use appropriate sizes — Match avatar size to context and importance",
+    "consistentColors": "Consistent color usage — Establish clear rules for when to use each appearance",
+    "handleErrors": "Handle image errors gracefully — Component handles this automatically, but ensure image URLs are valid",
+    "considerContrast": "Consider contrast — Ensure text/initials are readable against background colors",
+    "groupAvatars": "Group related avatars — Use consistent sizing and spacing when displaying multiple avatars"
+  }
+}

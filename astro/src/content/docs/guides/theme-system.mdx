@@ -1,0 +1,187 @@
+---
+title: Система управления темой
+description: Как работает система тем в документации
+---
+
+import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
+
+## Обзор
+
+Система управления темой позволяет переключать внешний вид документации между различными режимами:
+
+- **Тема**: Светлая (`sn-light`) или темная (`sn-dark`)
+- **Бренд**: Brand A (`sn-brandA`) или Brand B (`sn-brandB`)
+- **Платформа**: Desktop (`sn-desktop`) или Mobile (`sn-mobile`)
+
+## Переключатель темы
+
+Переключатель уже доступен в левом sidebar (вверху). Вы также можете добавить его на любую страницу:
+
+<ThemeSwitcher />
+
+## Как это работает
+
+### CSS классы
+
+При переключении темы автоматически обновляются классы на элементе `<body>`:
+
+```html
+<!-- Пример: светлая тема, Brand A, Desktop -->
+<body class="sn-primitive sn-figmaStyles sn-conmonents sn-light sn-brandA sn-desktop"></body>
+```
+
+### Сохранение настроек
+
+Все настройки сохраняются в `localStorage` и восстанавливаются при перезагрузке страницы.
+
+### Синхронизация
+
+Тема автоматически синхронизируется:
+
+- Между страницами документации
+- С iframe встроенных Storybook компонентов
+- При навигации (в SPA режиме)
+
+## API
+
+### Глобальный менеджер
+
+Доступен через `window.snThemeManager`:
+
+```typescript
+// Получить текущую тему
+const theme = window.snThemeManager.getTheme(); // 'light' | 'dark'
+
+// Установить тему
+window.snThemeManager.setTheme('dark');
+
+// Получить текущий бренд
+const brand = window.snThemeManager.getBrand(); // 'brandA' | 'brandB'
+
+// Установить бренд
+window.snThemeManager.setBrand('brandB');
+
+// Получить текущую платформу
+const platform = window.snThemeManager.getPlatform(); // 'desktop' | 'mobile'
+
+// Установить платформу
+window.snThemeManager.setPlatform('mobile');
+```
+
+### События
+
+Подписка на изменения темы:
+
+```typescript
+window.addEventListener('themeChange', (event: CustomEvent) => {
+  console.log('Новая тема:', event.detail.value);
+});
+
+window.addEventListener('brandChange', (event: CustomEvent) => {
+  console.log('Новый бренд:', event.detail.value);
+});
+
+window.addEventListener('platformChange', (event: CustomEvent) => {
+  console.log('Новая платформа:', event.detail.value);
+});
+```
+
+## Использование в компонентах
+
+### В Astro компонентах
+
+```astro
+---
+import ThemeSwitcher from '@/components/astro/ThemeSwitcher.astro';
+---
+
+<div class="my-component">
+  <ThemeSwitcher />
+</div>
+```
+
+### В скриптах
+
+```astro
+<script>
+  import { getThemeManager } from '@/scripts/theme-manager';
+
+  const manager = getThemeManager();
+
+  // Использование менеджера
+  manager.setTheme('dark');
+</script>
+```
+
+## Встраивание Storybook
+
+При встраивании Storybook компонентов используйте `StorybookIframe`:
+
+```astro
+---
+import StorybookIframe from '@/components/astro/StorybookIframe.astro';
+---
+
+<StorybookIframe
+  storyId="components-button--primary"
+  height="400px"
+/>
+```
+
+Тема автоматически синхронизируется с iframe.
+
+## Data-атрибуты
+
+Помимо классов, также доступны data-атрибуты для использования в CSS:
+
+```html
+<body data-theme="dark" data-brand="brandB" data-platform="mobile"></body>
+```
+
+Пример использования в CSS:
+
+```css
+/* Стили для темной темы */
+body[data-theme='dark'] .my-component {
+  background: var(--sn-theme-color-neutral-background);
+}
+
+/* Стили для мобильной платформы */
+body[data-platform='mobile'] .my-component {
+  padding: var(--sn-spacing-small);
+}
+```
+
+## Тестирование
+
+### Проверка состояния
+
+Откройте консоль браузера и выполните:
+
+```javascript
+console.log({
+  theme: window.snThemeManager.getTheme(),
+  brand: window.snThemeManager.getBrand(),
+  platform: window.snThemeManager.getPlatform(),
+  bodyClasses: Array.from(document.body.classList),
+  localStorage: {
+    theme: localStorage.getItem('sn-theme'),
+    brand: localStorage.getItem('sn-brand'),
+    platform: localStorage.getItem('sn-platform'),
+  },
+});
+```
+
+### Checklist
+
+- ✅ Переключатель виден в sidebar
+- ✅ Смена темы обновляет классы body
+- ✅ Настройки сохраняются при перезагрузке
+- ✅ Тема синхронизируется между страницами
+- ✅ Storybook iframe синхронизируется с темой
+
+## Дополнительная информация
+
+Для более подробной информации см.:
+
+- [Демо страница](/theme-demo)

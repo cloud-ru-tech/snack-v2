@@ -1,0 +1,435 @@
+---
+title: Avatar
+description: User avatar component with image support, initials fallback, multiple sizes, shapes, and color schemes.
+version: "0.1.0"
+---
+import { Avatar, APPEARANCE, SHAPE, SIZE } from '@packages/avatar/src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '../../../../components/mdx';
+
+The Avatar component displays user profile pictures or initials. It supports images with automatic fallback to generated initials, multiple sizes, shapes (round and square), and various color schemes.
+
+**Version:** `{frontmatter.version}`
+
+## Changelog
+
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/Changelog.astro
+After sync: ../../../../components/Changelog.astro */}
+</>
+
+import Changelog from '../../../../components/astro/Changelog.astro';
+
+<Changelog packageName="avatar" />
+
+## Overview
+
+Avatar is a flexible component for displaying user identity in your application. It automatically handles:
+
+- **Image loading** with graceful fallback to initials
+- **Initials generation** from user names (1 or 2 characters)
+- **Multiple sizes** from extra small (xs) to extra large (10xl)
+- **Two shapes**: round and square
+- **Nine color schemes** for visual variety and categorization
+- **Accessibility** with proper ARIA attributes
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <ExampleRow>
+    <Avatar name="John Doe" />
+    <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
+    <Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
+  </ExampleRow>
+</ExampleContainer>
+
+### With images
+
+<ExampleContainer>
+  <ExampleRow>
+    <Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
+    <Avatar
+      name="Jane Smith"
+      src="https://i.pravatar.cc/150?img=2"
+      appearance={APPEARANCE.Primary}
+    />
+    <Avatar
+      name="Bob Johnson"
+      src="https://i.pravatar.cc/150?img=3"
+      appearance={APPEARANCE.Green}
+    />
+  </ExampleRow>
+</ExampleContainer>
+
+### Two symbols
+
+<ExampleContainer>
+  <ExampleRow>
+    <Avatar name="John Doe" showTwoSymbols />
+    <Avatar name="Jane Smith" showTwoSymbols appearance={APPEARANCE.Violet} />
+    <Avatar name="Bob Johnson" showTwoSymbols appearance={APPEARANCE.Orange} />
+  </ExampleRow>
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="xs">
+      <Avatar name="XS" size={SIZE.Xs} />
+    </ExampleItem>
+    <ExampleItem label="s">
+      <Avatar name="S" size={SIZE.S} />
+    </ExampleItem>
+    <ExampleItem label="m">
+      <Avatar name="M" size={SIZE.M} />
+    </ExampleItem>
+    <ExampleItem label="xl">
+      <Avatar name="XL" size={SIZE.Xl} />
+    </ExampleItem>
+    <ExampleItem label="3xl">
+      <Avatar name="3XL" size={SIZE['3Xl']} />
+    </ExampleItem>
+    <ExampleItem label="6xl">
+      <Avatar name="6XL" size={SIZE['6Xl']} />
+    </ExampleItem>
+    <ExampleItem label="10xl">
+      <Avatar name="10XL" size={SIZE['10Xl']} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Shapes
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="Round" labelSize="medium" gap="medium">
+      <Avatar name="Round" shape={SHAPE.Round} />
+    </ExampleItem>
+    <ExampleItem label="Square" labelSize="medium" gap="medium">
+      <Avatar name="Square" shape={SHAPE.Square} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Color schemes
+
+<ExampleContainer>
+  <ExampleGrid columns={3} minColumnWidth="120px">
+    <ExampleItem label="Neutral" gap="medium">
+      <Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
+    </ExampleItem>
+    <ExampleItem label="Primary" gap="medium">
+      <Avatar name="Primary" appearance={APPEARANCE.Primary} />
+    </ExampleItem>
+    <ExampleItem label="Red" gap="medium">
+      <Avatar name="Red" appearance={APPEARANCE.Red} />
+    </ExampleItem>
+    <ExampleItem label="Orange" gap="medium">
+      <Avatar name="Orange" appearance={APPEARANCE.Orange} />
+    </ExampleItem>
+    <ExampleItem label="Yellow" gap="medium">
+      <Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
+    </ExampleItem>
+    <ExampleItem label="Green" gap="medium">
+      <Avatar name="Green" appearance={APPEARANCE.Green} />
+    </ExampleItem>
+    <ExampleItem label="Blue" gap="medium">
+      <Avatar name="Blue" appearance={APPEARANCE.Blue} />
+    </ExampleItem>
+    <ExampleItem label="Violet" gap="medium">
+      <Avatar name="Violet" appearance={APPEARANCE.Violet} />
+    </ExampleItem>
+    <ExampleItem label="Pink" gap="medium">
+      <Avatar name="Pink" appearance={APPEARANCE.Pink} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+## Storybook
+
+<>
+  {/* Note: Import path will be transformed during sync
+Original: ../../../../apps/docs/src/components/StorybookIframe.astro
+After sync: ../../../../components/StorybookIframe.astro */}
+</>
+
+import StorybookIframe from '../../../../components/astro/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-avatar--all-variants" />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { Avatar } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="John Doe" />;
+}
+```
+
+### With image
+
+```tsx
+import { Avatar } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="John Doe" src="https://example.com/avatar.jpg" />;
+}
+```
+
+### Custom appearance and size
+
+```tsx
+import { Avatar, APPEARANCE, SIZE } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} size={SIZE.Xl} />;
+}
+```
+
+### Two symbols
+
+```tsx
+import { Avatar } from '@design-system/avatar';
+
+export function UserProfile() {
+  return <Avatar name="John Doe" showTwoSymbols />;
+}
+```
+
+## Use cases
+
+### User profiles and lists
+
+Display user avatars in profile pages, user lists, comments, and activity feeds:
+
+<ExampleContainer marginBottom="24px">
+  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+    <Avatar name="John Doe" size={SIZE.M} />
+    <div>
+      <div style={{ fontWeight: 500, marginBottom: '4px' }}>John Doe</div>
+      <div style={{ fontSize: 12, color: 'var(--sn-color-neutral-text-secondary, #6b7280)' }}>
+        Software Engineer
+      </div>
+    </div>
+  </div>
+</ExampleContainer>
+
+```tsx
+<div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+  <Avatar name="John Doe" size={SIZE.M} />
+  <div>
+    <div>John Doe</div>
+    <div style={{ fontSize: 12, color: '#666' }}>Software Engineer</div>
+  </div>
+</div>
+```
+
+### Navigation and menus
+
+Use smaller avatars in navigation bars, dropdown menus, and user account sections:
+
+<ExampleContainer marginBottom="24px">
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <Avatar name="John Doe" size={SIZE.S} appearance={APPEARANCE.Primary} />
+  </div>
+</ExampleContainer>
+
+```tsx
+<Avatar name="John Doe" size={SIZE.S} appearance={APPEARANCE.Primary} />
+```
+
+### Status indicators
+
+Combine with status badges or use different color schemes to indicate user status, roles, or categories:
+
+<ExampleContainer marginBottom="24px">
+  <ExampleRow gap="16px">
+    <ExampleItem label="Admin">
+      <Avatar name="Admin" appearance={APPEARANCE.Red} size={SIZE.M} />
+    </ExampleItem>
+    <ExampleItem label="User">
+      <Avatar name="User" appearance={APPEARANCE.Neutral} size={SIZE.M} />
+    </ExampleItem>
+    <ExampleItem label="Guest">
+      <Avatar name="Guest" appearance={APPEARANCE.Blue} size={SIZE.M} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+```tsx
+<div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+  <Avatar name="Admin" appearance={APPEARANCE.Red} size={SIZE.M} />
+  <Avatar name="User" appearance={APPEARANCE.Neutral} size={SIZE.M} />
+  <Avatar name="Guest" appearance={APPEARANCE.Blue} size={SIZE.M} />
+</div>
+```
+
+### Team and group displays
+
+Show team members, collaborators, or group participants:
+
+<ExampleContainer marginBottom="24px">
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: -8 }}>
+      <Avatar name="John Doe" size={SIZE.S} />
+      <Avatar name="Jane Smith" size={SIZE.S} appearance={APPEARANCE.Green} />
+      <Avatar name="Bob Johnson" size={SIZE.S} appearance={APPEARANCE.Blue} />
+    </div>
+  </div>
+</ExampleContainer>
+
+```tsx
+<div style={{ display: 'flex', gap: -8 }}>
+  <Avatar name="John Doe" size={SIZE.S} />
+  <Avatar name="Jane Smith" size={SIZE.S} appearance={APPEARANCE.Green} />
+  <Avatar name="Bob Johnson" size={SIZE.S} appearance={APPEARANCE.Blue} />
+</div>
+```
+
+### Cards and previews
+
+Use in card layouts, preview components, and dashboard widgets:
+
+<ExampleContainer marginBottom="24px">
+  <div
+    style={{
+      border: '1px solid var(--sn-color-neutral-border, #e5e7eb)',
+      padding: 16,
+      borderRadius: 8,
+      backgroundColor: 'var(--sn-color-neutral-background, #ffffff)',
+    }}
+  >
+    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+      <Avatar name="John Doe" size={SIZE.Xl} />
+      <div>
+        <div style={{ fontWeight: 600, marginBottom: '4px' }}>Project Name</div>
+        <div style={{ fontSize: 12, color: 'var(--sn-color-neutral-text-secondary, #6b7280)' }}>
+          Last updated 2 hours ago
+        </div>
+      </div>
+    </div>
+  </div>
+</ExampleContainer>
+
+```tsx
+<div style={{ border: '1px solid #ddd', padding: 16, borderRadius: 8 }}>
+  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+    <Avatar name="John Doe" size={SIZE.Xl} />
+    <div>
+      <div style={{ fontWeight: 'bold' }}>Project Name</div>
+      <div style={{ fontSize: 12, color: '#666' }}>Last updated 2 hours ago</div>
+    </div>
+  </div>
+</div>
+```
+
+## Sizes
+
+Avatar supports seven size variants:
+
+- `xs` — Extra small (16px)
+- `s` — Small (24px, default)
+- `m` — Medium (32px)
+- `xl` — Extra large (48px)
+- `3xl` — 3X large (64px)
+- `6xl` — 6X large (96px)
+- `10xl` — 10X large (128px)
+
+Choose sizes based on context:
+
+- **xs, s**: Navigation, compact lists, badges
+- **m, xl**: Standard user profiles, cards, comments
+- **3xl, 6xl, 10xl**: Hero sections, profile pages, featured displays
+
+## Shapes
+
+- `round` (default) — Circular avatar, most common for user profiles
+- `square` — Square avatar with rounded corners, useful for brand logos or special cases
+
+## Appearance (color schemes)
+
+Avatar provides nine color schemes for visual variety:
+
+- `neutral` (default) — Subtle gray, suitable for most cases
+- `primary` — Brand primary color
+- `red` — For warnings, errors, or high-priority users
+- `orange` — Warm accent color
+- `yellow` — Bright accent color
+- `green` — Success states, active users
+- `blue` — Trust, information, standard users
+- `violet` — Premium or special roles
+- `pink` — Soft accent color
+
+Use color schemes to:
+
+- **Categorize users** by role, status, or type
+- **Indicate priority** or importance
+- **Match brand** or design system colors
+- **Create visual hierarchy** in lists and grids
+
+## Initials generation
+
+Avatar automatically generates initials from the `name` prop:
+
+- **Single word**: First letter (e.g., "John" → "J")
+- **Multiple words**: First letter of first and last word (e.g., "John Michael Doe" → "JD")
+- **Two symbols mode**: Use `showTwoSymbols={true}` to always show two characters
+
+The component handles:
+
+- Special characters and punctuation (removed)
+- Cyrillic and Latin alphabets
+- Edge cases (empty strings, single characters)
+
+## Image fallback
+
+When an image URL is provided via `src`:
+
+1. Component attempts to load the image
+2. If loading fails, automatically falls back to initials
+3. If `src` changes, the error state resets and the component tries loading again
+
+This ensures avatars always display something meaningful, even with broken image URLs.
+
+## Props
+
+### Required
+
+- `name` (`string`) — User name for generating initials. Required even when `src` is provided (used as fallback).
+
+### Optional
+
+- `src` (`string`) — URL of the avatar image. Falls back to initials if loading fails.
+- `appearance` (`'neutral' | 'primary' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'violet' | 'pink'`) — Color scheme. Default: `'neutral'`.
+- `size` (`'xs' | 's' | 'm' | 'xl' | '3xl' | '6xl' | '10xl'`) — Avatar size. Default: `'s'`.
+- `shape` (`'round' | 'square'`) — Avatar shape. Default: `'round'`.
+- `showTwoSymbols` (`boolean`) — Display two characters instead of one. Default: `false`.
+- `className` (`string`) — Additional CSS class.
+- `...HTMLDivAttributes` — All standard div HTML attributes are supported.
+
+## Accessibility
+
+- Images use `alt=""` and `aria-hidden="true"` since they are decorative
+- Initials are readable text, providing meaningful fallback
+- Component accepts all standard HTML attributes for customization
+- Semantic HTML structure ensures screen reader compatibility
+
+## Best practices
+
+1. **Always provide a meaningful `name`** — Even with images, names ensure fallback works correctly
+2. **Use appropriate sizes** — Match avatar size to context and importance
+3. **Consistent color usage** — Establish clear rules for when to use each appearance
+4. **Handle image errors gracefully** — Component handles this automatically, but ensure image URLs are valid
+5. **Consider contrast** — Ensure text/initials are readable against background colors
+6. **Group related avatars** — Use consistent sizing and spacing when displaying multiple avatars
