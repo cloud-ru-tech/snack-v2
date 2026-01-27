@@ -44,30 +44,13 @@ export default defineConfig({
     starlight({
       title: 'Design System',
       description: 'React components and documentation',
-      defaultLocale: 'en',
-      locales: {
-        en: {
-          label: 'English',
-          lang: 'en',
-        },
-        ru: {
-          label: 'Русский',
-          lang: 'ru',
-        },
-      },
       sidebar: [
         {
           label: 'Guides',
-          translations: {
-            ru: 'Руководства',
-          },
           autogenerate: { directory: 'guides' },
         },
         {
           label: 'Components',
-          translations: {
-            ru: 'Компоненты',
-          },
           autogenerate: { directory: 'components' },
         },
       ],

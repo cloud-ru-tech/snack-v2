@@ -10,53 +10,28 @@ const withBase = (path: string) => {
   return `${normalizedBase}${normalizedPath}`;
 };
 
-// Get current language from URL or default to 'en'
-const currentLang = Astro.currentLocale || 'en';
-
-// Get all docs from components directory (without locale prefix since they're in components/)
+// Get all docs from components directory
 const componentsDocs = await getCollection('docs', ({ id }) => {
-  // Check both patterns: "components/" (new) and "${currentLang}/components/" (old)
-  return id.startsWith('components/') || id.startsWith(`${currentLang}/components/`);
+  return id.startsWith('components/');
 });
 
-// Get all docs from guides directory for current locale
+// Get all docs from guides directory
 const guidesDocs = await getCollection('docs', ({ id }) => {
-  return id.startsWith(`${currentLang}/guides/`);
+  return id.startsWith('guides/');
 });
 
-// Process components - исключаем только CHANGELOG и MIGRATION
-// Группируем по package, приоритет отдаем index файлам
+// Process components - exclude CHANGELOG and MIGRATION
 const componentsByPackage = new Map();
 
-// Сначала собираем все файлы по пакетам
 componentsDocs.forEach((doc) => {
   const parts = doc.id.split('/');
-  
-  // Определяем, есть ли языковой префикс
-  const hasLocalePrefix = parts[0] === currentLang;
-  
-  // parts[0] может быть locale или 'components'
-  // parts[1] может быть 'components' или packageName
-  // parts[2] может быть packageName или fileName
-  let packageName: string;
-  let startIndex: number;
-  
-  if (hasLocalePrefix) {
-    // Old structure: en/components/avatar/index.mdx
-    packageName = parts[2];
-    startIndex = 2;
-  } else {
-    // New structure: components/avatar/index.mdx
-    packageName = parts[1];
-    startIndex = 1;
-  }
-  
+  // parts[0] is 'components', parts[1] is packageName
+  const packageName = parts[1];
   const fileName = parts[parts.length - 1].toLowerCase();
   const title = doc.data.title?.toLowerCase() || '';
   const description = doc.data.description?.toLowerCase() || '';
   
-  // Исключаем CHANGELOG и MIGRATION файлы
-  // Проверяем по fileName, title и description
+  // Exclude CHANGELOG and MIGRATION files
   const isChangelog = fileName === 'changelog' || 
                       title === 'changelog' ||
                       description.includes('version history');
@@ -76,13 +51,13 @@ componentsDocs.forEach((doc) => {
     componentsByPackage.set(packageName, []);
   }
   
-  // Build relative path based on structure
+  // Build relative path
   let relativePath: string;
   if (fileName === 'index') {
-    relativePath = `${currentLang}/components/${packageName}/`;
+    relativePath = `components/${packageName}/`;
   } else {
-    const pathParts = hasLocalePrefix ? parts.slice(2) : parts.slice(1);
-    relativePath = `${currentLang}/components/${pathParts.join('/')}/`;
+    const pathParts = parts.slice(1);
+    relativePath = `components/${pathParts.join('/')}/`;
   }
   
   const slug = withBase(relativePath);
@@ -93,14 +68,14 @@ componentsDocs.forEach((doc) => {
     slug,
     order: doc.data.order ?? 999,
     packageName,
-    fileName: parts[parts.length - 1], // Сохраняем оригинальное имя для сортировки
+    fileName: parts[parts.length - 1],
   });
 });
 
-// Для каждого пакета берем index файл, если есть, иначе первую найденную страницу
+// For each package, take index file if exists, otherwise first found page
 const components = Array.from(componentsByPackage.entries())
   .map(([packageName, docs]) => {
-    // Сортируем: сначала index, потом остальные
+    // Sort: index first, then others
     docs.sort((a, b) => {
       const aIsIndex = a.fileName.toLowerCase() === 'index';
       const bIsIndex = b.fileName.toLowerCase() === 'index';
@@ -109,7 +84,7 @@ const components = Array.from(componentsByPackage.entries())
       return a.order - b.order || a.title.localeCompare(b.title);
     });
     
-    return docs[0]; // Берем первый (index, если есть)
+    return docs[0]; // Take first (index if exists)
   })
   .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
 
@@ -117,8 +92,8 @@ const components = Array.from(componentsByPackage.entries())
 const guides = guidesDocs
   .map((doc) => {
     const parts = doc.id.split('/');
-    // parts[0] is locale, parts[1] is 'guides'
-    const relativePath = `${currentLang}/guides/${parts.slice(2).join('/')}/`;
+    // parts[0] is 'guides'
+    const relativePath = `guides/${parts.slice(1).join('/')}/`;
     const slug = withBase(relativePath);
     
     return {
@@ -133,8 +108,8 @@ const guides = guidesDocs
 
 {guides.length > 0 && (
   <>
-    <h2>Паттерны и гайдлайны</h2>
-    <p>Рекомендации по использованию компонентов и общие принципы:</p>
+    <h2>Guides and Patterns</h2>
+    <p>Recommendations for using components and general principles:</p>
     <ul>
       {guides.map((guide) => (
         <li>
@@ -148,8 +123,8 @@ const guides = guidesDocs
 
 {components.length > 0 && (
   <>
-    <h2>Компоненты</h2>
-    <p>Готовые UI-элементы с примерами и API:</p>
+    <h2>Components</h2>
+    <p>Ready-to-use UI elements with examples and API:</p>
     <ul>
       {components.map((component) => (
         <li>

@@ -1,6 +1,6 @@
 ---
 title: Counter
-description: Counter component
+description: Numeric counter component for displaying notifications, item counts, metrics, and other indicators in a compact format.
 version: "0.1.0"
 ---
 
@@ -11,16 +11,10 @@ import {
   ExampleGrid,
   ExampleItem,
 } from '../../../../components/mdx';
-import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../../components/mdx';
-import { translations } from './i18n';
 
-export const t = translations;
+# Counter
 
-<LocaleProvider locale={frontmatter.locale || 'en'}>
-
-# {t[frontmatter.locale || 'en'].title}
-
-{t[frontmatter.locale || 'en'].intro}
+The Counter component displays numeric indicators (notification counters, item counts, metrics, etc.) in a compact format. It supports multiple value display variants: regular counter (count), plus format when threshold is exceeded (count-plus), and shortened notation in thousands (count-k), controlled by variant and plusLimit props.
 
 **Version:** `{frontmatter.version}`
 
@@ -34,55 +28,46 @@ import LlmLink from '../../../../components/astro/LlmLink.astro';
 
 <LlmLink component="counter" />
 
-## {t[frontmatter.locale || 'en'].overview.title}
+## Overview
 
-{t[frontmatter.locale || 'en'].overview.description}
+Counter is a flexible component for displaying numeric indicators in your application. It automatically handles:
 
-- **{t[frontmatter.locale || 'en'].overview.features.valueFormatting}**
-- **{t[frontmatter.locale || 'en'].overview.features.thresholdControl}**
-- **{t[frontmatter.locale || 'en'].overview.features.multipleSizes}**
-- **{t[frontmatter.locale || 'en'].overview.features.appearances}**
-- **{t[frontmatter.locale || 'en'].overview.features.colorSchemes}**
-- **{t[frontmatter.locale || 'en'].overview.features.compactDisplay}**
+- **Value formatting with multiple variants (count, count-plus, count-k)**
+- **Threshold control for plus format (plusLimit prop)**
+- **Multiple sizes (xs, s)**
+- **Three appearance options (primary, neutral, red)**
+- **Two color schemes (accent, decor)**
+- **Compact display suitable for use inside other UI elements**
 
-## {t[frontmatter.locale || 'en'].examples.title}
+## Live examples
 
-### {t[frontmatter.locale || 'en'].examples.basicUsage}
+### Basic usage
 
 <ExampleContainer>
   <ExampleRow>
-    <LocaleSwitch>
-      <LocaleCase locale="en">
-        <Counter value={9} />
-        <Counter value={42} appearance={APPEARANCE.Primary} />
-        <Counter value={128} appearance={APPEARANCE.Neutral} />
-      </LocaleCase>
-      <LocaleCase locale="ru">
-        <Counter value={9} />
-        <Counter value={42} appearance={APPEARANCE.Primary} />
-        <Counter value={128} appearance={APPEARANCE.Neutral} />
-      </LocaleCase>
-    </LocaleSwitch>
+    <Counter value={9} />
+    <Counter value={42} appearance={APPEARANCE.Primary} />
+    <Counter value={128} appearance={APPEARANCE.Neutral} />
   </ExampleRow>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.variants}
+### Variants
 
 <ExampleContainer padding="large">
   <ExampleRow gap="large" justifyContent="center">
-    <ExampleItem label={t[frontmatter.locale || 'en'].variants.count}>
+    <ExampleItem label="Count">
       <Counter value={9} variant={VARIANT.Count} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].variants.countPlus}>
+    <ExampleItem label="Count Plus">
       <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].variants.countK}>
+    <ExampleItem label="Count K">
       <Counter value={8500} variant={VARIANT.CountK} />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.sizes}
+### Sizes
 
 <ExampleContainer padding="large">
   <ExampleRow gap="large" justifyContent="center">
@@ -95,36 +80,36 @@ import LlmLink from '../../../../components/astro/LlmLink.astro';
   </ExampleRow>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.appearances}
+### Appearances
 
 <ExampleContainer>
   <ExampleGrid columns={3} minColumnWidth="120px">
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.primary} gap="medium">
+    <ExampleItem label="Primary" gap="medium">
       <Counter value={9} appearance={APPEARANCE.Primary} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.neutral} gap="medium">
+    <ExampleItem label="Neutral" gap="medium">
       <Counter value={9} appearance={APPEARANCE.Neutral} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.red} gap="medium">
+    <ExampleItem label="Red" gap="medium">
       <Counter value={9} appearance={APPEARANCE.Red} />
     </ExampleItem>
   </ExampleGrid>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.colors}
+### Colors
 
 <ExampleContainer>
   <ExampleGrid columns={2} minColumnWidth="120px">
-    <ExampleItem label={t[frontmatter.locale || 'en'].colors.accent} gap="medium">
+    <ExampleItem label="Accent" gap="medium">
       <Counter value={9} color={COLOR.Accent} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].colors.decor} gap="medium">
+    <ExampleItem label="Decor" gap="medium">
       <Counter value={9} color={COLOR.Decor} />
     </ExampleItem>
   </ExampleGrid>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.withPlusLimit}
+### With plus limit
 
 <ExampleContainer>
   <ExampleRow>
@@ -140,15 +125,15 @@ import LlmLink from '../../../../components/astro/LlmLink.astro';
   </ExampleRow>
 </ExampleContainer>
 
-## {t[frontmatter.locale || 'en'].storybook.title}
+## Storybook
 
 import StorybookIframe from '../../../../components/astro/StorybookIframe.astro';
 
 <StorybookIframe storyId="components-counter--basic" />
 
-## {t[frontmatter.locale || 'en'].usage.title}
+## Usage
 
-### {t[frontmatter.locale || 'en'].usage.basicExample}
+### Basic example
 
 ```tsx
 import { Counter } from '@design-system/counter';
@@ -158,7 +143,7 @@ export function NotificationBadge() {
 }
 ```
 
-### {t[frontmatter.locale || 'en'].usage.withVariant}
+### With variant
 
 ```tsx
 import { Counter, VARIANT } from '@design-system/counter';
@@ -174,7 +159,7 @@ export function NotificationBadge() {
 }
 ```
 
-### {t[frontmatter.locale || 'en'].usage.customAppearance}
+### Custom appearance and size
 
 ```tsx
 import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
@@ -190,7 +175,7 @@ export function NotificationBadge() {
 }
 ```
 
-### {t[frontmatter.locale || 'en'].usage.withPlusLimit}
+### With plus limit
 
 ```tsx
 import { Counter, VARIANT } from '@design-system/counter';
@@ -206,35 +191,33 @@ export function NotificationBadge() {
 }
 ```
 
-## {t[frontmatter.locale || 'en'].props.title}
+## Props
 
-### {t[frontmatter.locale || 'en'].props.required}
+### Required
 
-- {t[frontmatter.locale || 'en'].props.value}
+- **value** (number) — Numeric value to display. Required.
 
-### {t[frontmatter.locale || 'en'].props.optional}
+### Optional
 
-- {t[frontmatter.locale || 'en'].props.appearance}
-- {t[frontmatter.locale || 'en'].props.variant}
-- {t[frontmatter.locale || 'en'].props.size}
-- {t[frontmatter.locale || 'en'].props.plusLimit}
-- {t[frontmatter.locale || 'en'].props.color}
-- {t[frontmatter.locale || 'en'].props.className}
-- {t[frontmatter.locale || 'en'].props.htmlAttributes}
+- **appearance** ('primary' | 'neutral' | 'red') — Visual appearance. Default: 'primary'.
+- **variant** ('count' | 'count-plus' | 'count-k') — Value display variant. Default: 'count'.
+- **size** ('xs' | 's') — Counter size. Default: 'xs'.
+- **plusLimit** (number) — Threshold for shortening value to v+ format. For example, 1500 -> 999+ for 1000. Default: 10.
+- **color** ('accent' | 'decor') — Semantic color. Default: 'accent'.
+- **className** (string) — Additional CSS class.
+- **...HTMLDivAttributes** — All standard div HTML attributes are supported.
 
-## {t[frontmatter.locale || 'en'].accessibility.title}
+## Accessibility
 
-- {t[frontmatter.locale || 'en'].accessibility.semantic}
-- {t[frontmatter.locale || 'en'].accessibility.attributes}
-- {t[frontmatter.locale || 'en'].accessibility.readable}
+- Semantic HTML structure ensures screen reader compatibility
+- Component accepts all standard HTML attributes for customization
+- Numeric values are readable text, providing meaningful information
 
-## {t[frontmatter.locale || 'en'].bestPractices.title}
+## Best practices
 
-1. **{t[frontmatter.locale || 'en'].bestPractices.appropriateVariants}**
-2. **{t[frontmatter.locale || 'en'].bestPractices.setPlusLimit}**
-3. **{t[frontmatter.locale || 'en'].bestPractices.consistentSizes}**
-4. **{t[frontmatter.locale || 'en'].bestPractices.considerContrast}**
-5. **{t[frontmatter.locale || 'en'].bestPractices.useInContext}**
-6. **{t[frontmatter.locale || 'en'].bestPractices.handleLargeValues}**
-
-</LocaleProvider>
+1. **Use appropriate variants** — Choose count, count-plus, or count-k based on your use case
+2. **Set plusLimit appropriately** — Configure the threshold based on your data range
+3. **Consistent size usage** — Match counter size to context and importance
+4. **Consider contrast** — Ensure counter values are readable against background colors
+5. **Use in context** — Counter is designed to be used inside other UI elements (buttons, tags, menu items)
+6. **Handle large values** — Use count-k variant for values over 1000 to keep display compact

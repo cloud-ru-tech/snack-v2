@@ -19,7 +19,6 @@ const __dirname = dirname(__filename);
 type SyncOptions = {
   packagesRoot?: string;
   contentDir?: string;
-  locales?: string[];
 };
 
 /**
@@ -35,7 +34,7 @@ type SyncOptions = {
  */
 // eslint-disable-next-line import/no-default-export
 export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegration {
-  const { contentDir = 'src/content/docs', locales = ['en', 'ru'] } = options;
+  const { contentDir = 'src/content/docs' } = options;
   // __dirname points to astro/src/integrations, so we need to go up 3 levels to get to project root
   const projectRoot = join(__dirname, '../../..');
   const packagesPath = join(projectRoot, 'packages');
@@ -217,61 +216,6 @@ version: "${version}"
 ${migrationContent}`;
       writeFileSync(join(targetPath, 'MIGRATION.mdx'), migrationMdx, 'utf-8');
       console.info(`[sync-package-docs] ✅ Synced ${packageName}/MIGRATION.mdx`);
-    }
-
-    // Create localized versions for each locale
-    const syncedIndexPath = join(targetPath, 'index.mdx');
-    if (existsSync(syncedIndexPath)) {
-      for (const locale of locales) {
-        const localeComponentsPath = join(
-          __dirname,
-          '../..',
-          contentDir,
-          locale,
-          'components',
-          packageName
-        );
-        mkdirSync(localeComponentsPath, { recursive: true });
-
-        // Copy index.mdx with locale in frontmatter
-        let localeContent = readFileSync(syncedIndexPath, 'utf-8');
-
-        // Update frontmatter to include locale
-        const frontmatterMatch = localeContent.match(/^---\n([\s\S]*?)\n---/);
-        if (frontmatterMatch) {
-          let frontmatter = frontmatterMatch[1];
-
-          // Add or update locale
-          if (frontmatter.includes('locale:')) {
-            frontmatter = frontmatter.replace(/locale:\s*['"]?[^'"]*['"]?/g, `locale: ${locale}`);
-          } else {
-            frontmatter = `${frontmatter}\nlocale: ${locale}`;
-          }
-
-          localeContent = localeContent.replace(/^---\n[\s\S]*?\n---/, `---\n${frontmatter}\n---`);
-        } else {
-          // Add frontmatter with locale if missing
-          localeContent = `---\nlocale: ${locale}\n---\n\n${localeContent}`;
-        }
-
-        // Fix import paths for localized versions
-        // From en/components/avatar/ to src/components/ we need to go up 5 levels
-        // ../../../../components/mdx -> ../../../../../components/mdx
-        localeContent = localeContent.replace(
-          /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\//g,
-          "from '../../../../../"
-        );
-
-        // Fix i18n import to point to common location
-        // ./i18n -> ../../../components/{package}/i18n
-        localeContent = localeContent.replace(
-          /from\s+['"]\.\/i18n['"]/g,
-          `from '../../../components/${packageName}/i18n'`
-        );
-
-        writeFileSync(join(localeComponentsPath, 'index.mdx'), localeContent, 'utf-8');
-      }
-      console.info(`[sync-package-docs] ✅ Created localized versions for ${packageName}`);
     }
 
     // Generate README.md from docs/index.mdx (stripped version)

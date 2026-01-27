@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: User avatar component
+description: User avatar component with image support, initials fallback, multiple sizes, shapes, and color schemes.
 version: '0.1.0'
 ---
 
@@ -11,16 +11,10 @@ import {
   ExampleGrid,
   ExampleItem,
 } from '../../../astro/src/components/mdx';
-import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../astro/src/components/mdx';
-import { translations } from './i18n';
 
-export const t = translations;
+# Avatar
 
-<LocaleProvider locale={frontmatter.locale || 'en'}>
-
-# {t[frontmatter.locale || 'en'].title}
-
-{t[frontmatter.locale || 'en'].intro}
+The Avatar component displays user profile pictures or initials. It supports images with automatic fallback to generated initials, multiple sizes, shapes (round and square), and various color schemes.
 
 **Version:** `{frontmatter.version}`
 
@@ -34,76 +28,48 @@ import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
 
 <LlmLink component="avatar" />
 
-## {t[frontmatter.locale || 'en'].overview.title}
+## Overview
 
-{t[frontmatter.locale || 'en'].overview.description}
+Avatar is a flexible component for displaying user identity in your application. It automatically handles:
 
-- **{t[frontmatter.locale || 'en'].overview.features.imageLoading}**
-- **{t[frontmatter.locale || 'en'].overview.features.initialsGeneration}**
-- **{t[frontmatter.locale || 'en'].overview.features.multipleSizes}**
-- **{t[frontmatter.locale || 'en'].overview.features.twoShapes}**
-- **{t[frontmatter.locale || 'en'].overview.features.colorSchemes}**
-- **{t[frontmatter.locale || 'en'].overview.features.accessibility}**
+- **Image loading with graceful fallback to initials**
+- **Initials generation from user names (1 or 2 characters)**
+- **Multiple sizes from extra small (xs) to extra large (10xl)**
+- **Two shapes: round and square**
+- **Nine color schemes for visual variety and categorization**
+- **Accessibility with proper ARIA attributes**
 
-## {t[frontmatter.locale || 'en'].examples.title}
+## Live examples
 
-### {t[frontmatter.locale || 'en'].examples.basicUsage}
-
-<ExampleContainer>
-  <ExampleRow>
-    <LocaleSwitch>
-      <LocaleCase locale="en">
-        <Avatar name="John Doe" />
-        <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
-        <Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
-      </LocaleCase>
-      <LocaleCase locale="ru">
-        <Avatar name="Иван Иванов" />
-        <Avatar name="Мария Петрова" appearance={APPEARANCE.Primary} />
-        <Avatar name="Алексей Сидоров" appearance={APPEARANCE.Blue} />
-      </LocaleCase>
-    </LocaleSwitch>
-  </ExampleRow>
-</ExampleContainer>
-
-### {t[frontmatter.locale || 'en'].examples.withImages}
-
-# BIBA & BOBA
+### Basic usage
 
 <ExampleContainer>
   <ExampleRow>
-    <LocaleSwitch>
-      <LocaleCase locale="en">
-        <Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
-        <Avatar
-          name="Jane Smith"
-          src="https://i.pravatar.cc/150?img=2"
-          appearance={APPEARANCE.Primary}
-        />
-        <Avatar
-          name="Bob Johnson"
-          src="https://i.pravatar.cc/150?img=3"
-          appearance={APPEARANCE.Green}
-        />
-      </LocaleCase>
-      <LocaleCase locale="ru">
-        <Avatar name="Иван Иванов" src="https://i.pravatar.cc/150?img=1" />
-        <Avatar
-          name="Мария Петрова"
-          src="https://i.pravatar.cc/150?img=2"
-          appearance={APPEARANCE.Primary}
-        />
-        <Avatar
-          name="Алексей Сидоров"
-          src="https://i.pravatar.cc/150?img=3"
-          appearance={APPEARANCE.Green}
-        />
-      </LocaleCase>
-    </LocaleSwitch>
+    <Avatar name="John Doe" />
+    <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
+    <Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
   </ExampleRow>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.sizes}
+### With images
+
+<ExampleContainer>
+  <ExampleRow>
+    <Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
+    <Avatar
+      name="Jane Smith"
+      src="https://i.pravatar.cc/150?img=2"
+      appearance={APPEARANCE.Primary}
+    />
+    <Avatar
+      name="Bob Johnson"
+      src="https://i.pravatar.cc/150?img=3"
+      appearance={APPEARANCE.Green}
+    />
+  </ExampleRow>
+</ExampleContainer>
+
+### Sizes
 
 <ExampleContainer padding="large">
   <ExampleRow gap="large" justifyContent="center">
@@ -131,143 +97,62 @@ import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
   </ExampleRow>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.shapes}
+### Shapes
 
 <ExampleContainer>
   <ExampleRow gap="xlarge">
-    <ExampleItem label={t[frontmatter.locale || 'en'].shapes.round} labelSize="medium" gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Round" shape={SHAPE.Round} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Круг" shape={SHAPE.Round} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Round" labelSize="medium" gap="medium">
+      <Avatar name="Round" shape={SHAPE.Round} />
     </ExampleItem>
-    <ExampleItem
-      label={t[frontmatter.locale || 'en'].shapes.square}
-      labelSize="medium"
-      gap="medium"
-    >
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Square" shape={SHAPE.Square} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Квадрат" shape={SHAPE.Square} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Square" labelSize="medium" gap="medium">
+      <Avatar name="Square" shape={SHAPE.Square} />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
 
-### {t[frontmatter.locale || 'en'].examples.colorSchemes}
+### Color schemes
 
 <ExampleContainer>
   <ExampleGrid columns={3} minColumnWidth="120px">
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.neutral} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Нейтр" appearance={APPEARANCE.Neutral} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Neutral" gap="medium">
+      <Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.primary} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Primary" appearance={APPEARANCE.Primary} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Основ" appearance={APPEARANCE.Primary} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Primary" gap="medium">
+      <Avatar name="Primary" appearance={APPEARANCE.Primary} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.red} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Red" appearance={APPEARANCE.Red} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Красн" appearance={APPEARANCE.Red} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Red" gap="medium">
+      <Avatar name="Red" appearance={APPEARANCE.Red} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.orange} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Orange" appearance={APPEARANCE.Orange} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Оранж" appearance={APPEARANCE.Orange} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Orange" gap="medium">
+      <Avatar name="Orange" appearance={APPEARANCE.Orange} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.yellow} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Желт" appearance={APPEARANCE.Yellow} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Yellow" gap="medium">
+      <Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.green} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Green" appearance={APPEARANCE.Green} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Зелен" appearance={APPEARANCE.Green} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Green" gap="medium">
+      <Avatar name="Green" appearance={APPEARANCE.Green} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.blue} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Blue" appearance={APPEARANCE.Blue} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Синяя" appearance={APPEARANCE.Blue} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Blue" gap="medium">
+      <Avatar name="Blue" appearance={APPEARANCE.Blue} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.violet} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Violet" appearance={APPEARANCE.Violet} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Фиол" appearance={APPEARANCE.Violet} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Violet" gap="medium">
+      <Avatar name="Violet" appearance={APPEARANCE.Violet} />
     </ExampleItem>
-    <ExampleItem label={t[frontmatter.locale || 'en'].appearances.pink} gap="medium">
-      <LocaleSwitch>
-        <LocaleCase locale="en">
-          <Avatar name="Pink" appearance={APPEARANCE.Pink} />
-        </LocaleCase>
-        <LocaleCase locale="ru">
-          <Avatar name="Розов" appearance={APPEARANCE.Pink} />
-        </LocaleCase>
-      </LocaleSwitch>
+    <ExampleItem label="Pink" gap="medium">
+      <Avatar name="Pink" appearance={APPEARANCE.Pink} />
     </ExampleItem>
   </ExampleGrid>
 </ExampleContainer>
 
-## {t[frontmatter.locale || 'en'].storybook.title}
+## Storybook
 
 import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
 
 <StorybookIframe storyId="components-avatar--all-variants" />
 
-## {t[frontmatter.locale || 'en'].usage.title}
+## Usage
 
-### {t[frontmatter.locale || 'en'].usage.basicExample}
+### Basic example
 
 ```tsx
 import { Avatar } from '@design-system/avatar';
@@ -277,7 +162,7 @@ export function UserProfile() {
 }
 ```
 
-### {t[frontmatter.locale || 'en'].usage.withImage}
+### With image
 
 ```tsx
 import { Avatar } from '@design-system/avatar';
@@ -287,7 +172,7 @@ export function UserProfile() {
 }
 ```
 
-### {t[frontmatter.locale || 'en'].usage.customAppearance}
+### Custom appearance and size
 
 ```tsx
 import { Avatar, APPEARANCE, SIZE } from '@design-system/avatar';
@@ -297,36 +182,34 @@ export function UserProfile() {
 }
 ```
 
-## {t[frontmatter.locale || 'en'].props.title}
+## Props
 
-### {t[frontmatter.locale || 'en'].props.required}
+### Required
 
-- {t[frontmatter.locale || 'en'].props.name}
+- **name** (string) — User name for generating initials. Required even when src is provided (used as fallback).
 
-### {t[frontmatter.locale || 'en'].props.optional}
+### Optional
 
-- {t[frontmatter.locale || 'en'].props.src}
-- {t[frontmatter.locale || 'en'].props.appearance}
-- {t[frontmatter.locale || 'en'].props.size}
-- {t[frontmatter.locale || 'en'].props.shape}
-- {t[frontmatter.locale || 'en'].props.showTwoSymbols}
-- {t[frontmatter.locale || 'en'].props.className}
-- {t[frontmatter.locale || 'en'].props.htmlAttributes}
+- **src** (string) — URL of the avatar image. Falls back to initials if loading fails.
+- **appearance** — Color scheme. Default: 'neutral'.
+- **size** — Avatar size. Default: 's'.
+- **shape** ('round' | 'square') — Avatar shape. Default: 'round'.
+- **showTwoSymbols** (boolean) — Display two characters instead of one. Default: false.
+- **className** (string) — Additional CSS class.
+- **...HTMLDivAttributes** — All standard div HTML attributes are supported.
 
-## {t[frontmatter.locale || 'en'].accessibility.title}
+## Accessibility
 
-- {t[frontmatter.locale || 'en'].accessibility.images}
-- {t[frontmatter.locale || 'en'].accessibility.initials}
-- {t[frontmatter.locale || 'en'].accessibility.attributes}
-- {t[frontmatter.locale || 'en'].accessibility.semantic}
+- Images use `alt=""` and `aria-hidden="true"` since they are decorative
+- Initials are readable text, providing meaningful fallback
+- Component accepts all standard HTML attributes for customization
+- Semantic HTML structure ensures screen reader compatibility
 
-## {t[frontmatter.locale || 'en'].bestPractices.title}
+## Best practices
 
-1. **{t[frontmatter.locale || 'en'].bestPractices.provideName}**
-2. **{t[frontmatter.locale || 'en'].bestPractices.appropriateSizes}**
-3. **{t[frontmatter.locale || 'en'].bestPractices.consistentColors}**
-4. **{t[frontmatter.locale || 'en'].bestPractices.handleErrors}**
-5. **{t[frontmatter.locale || 'en'].bestPractices.considerContrast}**
-6. **{t[frontmatter.locale || 'en'].bestPractices.groupAvatars}**
-
-</LocaleProvider>
+1. **Always provide a meaningful name** — Even with images, names ensure fallback works correctly
+2. **Use appropriate sizes** — Match avatar size to context and importance
+3. **Consistent color usage** — Establish clear rules for when to use each appearance
+4. **Handle image errors gracefully** — Component handles this automatically, but ensure image URLs are valid
+5. **Consider contrast** — Ensure text/initials are readable against background colors
+6. **Group related avatars** — Use consistent sizing and spacing when displaying multiple avatars

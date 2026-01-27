@@ -208,16 +208,10 @@ import {
   ExampleGrid,
   ExampleItem,
 } from '../../../astro/src/components/mdx';
-import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../astro/src/components/mdx';
-import { translations } from './i18n';
 
-export const t = translations;
+# ${config.packageTitle}
 
-<LocaleProvider locale={frontmatter.locale || 'en'}>
-
-# {t[frontmatter.locale || 'en'].title}
-
-{/* TODO: Добавьте введение для компонента */}
+{/* TODO: Add component introduction */}
 
 **Version:** \`{frontmatter.version}\`
 
@@ -273,13 +267,11 @@ export function Example() {
 
 ## Best Practices
 
-{/* TODO: Добавьте best practices */}
+{/* TODO: Add best practices */}
 
 1. Recommendation 1
 2. Recommendation 2
 3. Recommendation 3
-
-</LocaleProvider>
 `;
 
   fs.writeFileSync(path.join(packageDir, 'docs', 'index.mdx'), content);
@@ -357,34 +349,6 @@ Initial release. No migration needed.
   logDebug('Created MIGRATION.md');
 }
 
-function createI18nFiles(packageDir: string, config: PackageConfig): void {
-  const enContent = {
-    title: config.packageTitle,
-    description: config.packageDescription || `${config.packageTitle} component`,
-  };
-
-  const ruContent = {
-    title: config.packageTitle,
-    description: config.packageDescription || `Компонент ${config.packageTitle}`,
-  };
-
-  const indexContent = `export { default as en } from './en.json';
-export { default as ru } from './ru.json';
-`;
-
-  fs.writeFileSync(
-    path.join(packageDir, 'docs/i18n', 'en.json'),
-    JSON.stringify(enContent, null, 2)
-  );
-  fs.writeFileSync(
-    path.join(packageDir, 'docs/i18n', 'ru.json'),
-    JSON.stringify(ruContent, null, 2)
-  );
-  fs.writeFileSync(path.join(packageDir, 'docs/i18n', 'index.ts'), indexContent);
-
-  logDebug('Created i18n files');
-}
-
 /**
  * Bootstrap files for a new package
  */
@@ -394,7 +358,6 @@ export function bootstrapFiles(config: PackageConfig): void {
   ensureDirectory(packageDir);
   ensureDirectory(path.join(packageDir, 'src'));
   ensureDirectory(path.join(packageDir, 'docs'));
-  ensureDirectory(path.join(packageDir, 'docs/i18n'));
 
   // Create package.json
   createPackageJson(packageDir, config);
@@ -424,9 +387,6 @@ export function bootstrapFiles(config: PackageConfig): void {
 
   // Create MIGRATION
   createMigration(packageDir);
-
-  // Create i18n files
-  createI18nFiles(packageDir, config);
 
   logSuccess(`Created package structure in ${packageDir}`);
 }
