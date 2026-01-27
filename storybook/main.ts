@@ -1,12 +1,10 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const dirname =
-  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
-  stories: ['../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: [
     '@chromatic-com/storybook',
     '@storybook/addon-vitest',
@@ -17,7 +15,9 @@ const config: StorybookConfig = {
   ],
   framework: '@storybook/react-vite',
   base: process.env.STORYBOOK_BASE_PATH || (process.env.CI ? '/storybook/' : '/'),
-  viteFinal: async (config) => {
+  viteFinal: async (config, { configType }) => {
+    const isProd = configType === 'PRODUCTION';
+
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -27,7 +27,7 @@ const config: StorybookConfig = {
     config.css.modules = {
       ...(config.css.modules || {}),
       localsConvention: 'camelCase',
-      generateScopedName: '[name]__[local]___[hash:base64:5]',
+      generateScopedName: isProd ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
     };
 
     if (!config.css.preprocessorOptions) {
@@ -38,7 +38,12 @@ const config: StorybookConfig = {
       additionalData: '',
     };
 
+    // Ensure CSS files are properly handled
+    config.assetsInclude = config.assetsInclude || [];
+
     return config;
   },
 };
+
+// eslint-disable-next-line import/no-default-export -- Storybook requires default export
 export default config;
