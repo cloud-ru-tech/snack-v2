@@ -226,7 +226,18 @@ ${migrationContent}`;
       // Remove frontmatter
       readmeContent = readmeContent.replace(/^---\n[\s\S]*?\n---\n/, '');
 
-      // Remove import statements
+      // STEP 1: Extract and preserve code blocks first
+      const codeBlockRegex = /```[\s\S]*?```/g;
+      const codeBlocks: string[] = [];
+
+      readmeContent = readmeContent.replace(codeBlockRegex, (match) => {
+        const placeholder = `___CODE_BLOCK_${codeBlocks.length}___`;
+        codeBlocks.push(match);
+        return placeholder;
+      });
+
+      // STEP 2: Now safely remove content outside code blocks
+      // Remove import statements (outside code blocks)
       readmeContent = readmeContent.replace(/^import\s+[\s\S]*?from\s+['"].*?['"];?\s*$/gm, '');
 
       // Remove interactive components (but preserve their content if possible)
@@ -249,22 +260,36 @@ ${migrationContent}`;
         readmeContent = readmeContent.replace(pattern, '');
       }
 
-      // Remove JSX expressions (including nested ones)
+      // Remove JSX expressions outside code blocks
       readmeContent = readmeContent.replace(/\{[^}]*\}/g, '');
       readmeContent = readmeContent.replace(/export const t = translations;/g, '');
 
+      // Remove version line (it contains JSX expression that gets removed, leaving empty backticks)
+      readmeContent = readmeContent.replace(/^\*\*Version:\*\*.*$/gm, '');
+
+      // STEP 3: Clean up before restoring code blocks
       // Remove empty headings and sections
       readmeContent = readmeContent.replace(/^#{1,6}\s*\{[^}]+\}\s*$/gm, '');
       readmeContent = readmeContent.replace(/^#{1,6}\s*$/gm, '');
 
-      // Remove lines that only contain JSX expressions or are empty
+      // Remove lines that only contain JSX expressions or are empty (but keep code block placeholders)
       readmeContent = readmeContent
         .split('\n')
         .filter((line) => {
           const trimmed = line.trim();
+          // Keep code block placeholders
+          if (trimmed.startsWith('___CODE_BLOCK_')) {
+            return true;
+          }
           return trimmed.length > 0 && !trimmed.match(/^[{} ]*$/);
         })
         .join('\n');
+
+      // STEP 4: Restore code blocks (after all cleanup is done)
+      readmeContent = readmeContent.replace(
+        /___CODE_BLOCK_(\d+)___/g,
+        (_, index) => codeBlocks[parseInt(index, 10)]
+      );
 
       // Clean up multiple empty lines
       readmeContent = readmeContent.replace(/\n{3,}/g, '\n\n');
