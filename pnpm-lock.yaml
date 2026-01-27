@@ -51,15 +51,6 @@ importers:
       '@sbercloud/ft-logger':
         specifier: 0.0.1-preview-7fab8818.0
         version: 0.0.1-preview-7fab8818.0
-      '@snack-uikit/button':
-        specifier: 0.19.16
-        version: 0.19.16(react@19.2.1)
-      '@snack-uikit/counter':
-        specifier: 0.8.10
-        version: 0.8.10(react@19.2.1)
-      '@snack-uikit/status':
-        specifier: 0.10.7
-        version: 0.10.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@storybook/addon-a11y':
         specifier: ^10.1.4
         version: 10.1.4(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
@@ -872,27 +863,6 @@ packages:
     resolution: {integrity: sha512-xflqJ3XQZVzm8+7dsm8OFxVAmBNNA3Mg65sqwNHiq7VRSMSD7qwH4BPsBy07ZaX+9nHeaacBpFZd3Q0aIsISqw==}
     peerDependencies:
       react: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  '@floating-ui/core@1.7.3':
-    resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
-
-  '@floating-ui/dom@1.7.4':
-    resolution: {integrity: sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA==}
-
-  '@floating-ui/react-dom@2.1.6':
-    resolution: {integrity: sha512-4JX6rEatQEvlmgU80wZyq9RT96HZJa88q8hp0pBd+LrczeDI4o6uA2M+uvxngVHo4Ihr8uibXxH6+70zhAFrVw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-
-  '@floating-ui/react@0.26.24':
-    resolution: {integrity: sha512-2ly0pCkZIGEQUq5H8bBK0XJmc1xIK/RM3tvVzY3GBER7IOD1UgmC2Y2tjj4AuS+TC+vTE1KJv2053290jua0Sw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-
-  '@floating-ui/utils@0.2.10':
-    resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2071,30 +2041,6 @@ packages:
 
   '@sinclair/typebox@0.34.41':
     resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
-
-  '@snack-uikit/button@0.19.16':
-    resolution: {integrity: sha512-MnqtJGUhlgE3JuZr53dhpG99j7hj1ehzrZS82sMp6Ne4y307rR4aDTkEzInX8OSMAkokgKE++cAJTGIg1c9jzQ==}
-
-  '@snack-uikit/counter@0.8.10':
-    resolution: {integrity: sha512-6txaEh4l26G92AIzFOM6mDAqiANgPzbH3VDiyakZjnmfwQFh9qNIrQJAHgF9y3r8XTT3KlAwV+7/rtk61pDvzw==}
-
-  '@snack-uikit/icons@0.27.4':
-    resolution: {integrity: sha512-C4aj+DK1ee2DkrP9/EakYJgJ/FcbQSrqNQF8ewtEaw+DIC1lXiX6aRqdSZztIpsKJRfNKbIsLmQZpEFsLVyB4g==}
-
-  '@snack-uikit/loaders@0.9.9':
-    resolution: {integrity: sha512-pBKoNnjxOVMrHm/k6eSP/0WCwaHUh4lcoO2/9YV41AHd/wSk8gbpaOSSWUDPrwBd5gHYK44IJxAUPuBSvheBDw==}
-
-  '@snack-uikit/popover-private@0.15.3':
-    resolution: {integrity: sha512-KMsWDMqNWfxJWJgENF3t6Q79EOgclKM4P/YrbSOdVyTBSniUo3bwo5AM/2V0B/CQYdK0aH32Nz1I5ExKVzQZpg==}
-
-  '@snack-uikit/status@0.10.7':
-    resolution: {integrity: sha512-v6d93wd4vfyqKSPeMYSvtpLjyN2SR7L6/q5erMT3xrxwFpNktHnLRrpPcWLZKf0xbfZDF4b93ZXne6lIzHq9cA==}
-
-  '@snack-uikit/tooltip@0.18.7':
-    resolution: {integrity: sha512-vdplgI655LD28ffKDMcCsgc7QqTjiIZdBVAoxCPwMrNvHcNlAu+lEZxtCsPiTQT3JbhoGDF7T4KDpli1zryM9g==}
-
-  '@snack-uikit/truncate-string@0.7.6':
-    resolution: {integrity: sha512-gsxhYdwQGZIxYp4j8jDyHUYM9gwMcQJSjNQG4OVidzJgFCgbfgxmvF91ZTJBHO67AJkfGCMtDDPXT6Dmg3/PgQ==}
 
   '@snack-uikit/utils@4.0.0':
     resolution: {integrity: sha512-u+NGDWLMU+zcCC3sBJ+rmMDpMSVw4Z+VLj+cnf2hHHMNtY1xI4yTnuyZ0AMSxoOi2LXUTwtttYCS7/MoRjq/3A==}
@@ -5352,9 +5298,6 @@ packages:
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
 
-  lodash.throttle@4.1.1:
-    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
-
   lodash.trim@4.5.1:
     resolution: {integrity: sha512-nJAlRl/K+eiOehWKDzoBVrSMhK0K3A3YQsUNXHQa5yIrKBAhsZgSu3KoAFoFT+mEgiyBHddZ0pRk1ITpIp90Wg==}
 
@@ -6585,9 +6528,6 @@ packages:
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  react-is@18.2.0:
-    resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
-
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
@@ -7438,9 +7378,6 @@ packages:
   synckit@0.11.12:
     resolution: {integrity: sha512-Bh7QjT8/SuKUIfObSXNHNSK6WHo6J1tHCqJsuaFDP7gP0fkzSfTxI8y85JrppZ0h8l0maIgc2tfuZQ6/t3GtnQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
-
-  tabbable@6.3.0:
-    resolution: {integrity: sha512-EIHvdY5bPLuWForiR/AN2Bxngzpuwn1is4asboytXtpTgsArc+WmSJKVLlhdh71u7jFcryDqB2A8lQvj78MkyQ==}
 
   table@6.9.0:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
@@ -8930,31 +8867,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@floating-ui/core@1.7.3':
-    dependencies:
-      '@floating-ui/utils': 0.2.10
-
-  '@floating-ui/dom@1.7.4':
-    dependencies:
-      '@floating-ui/core': 1.7.3
-      '@floating-ui/utils': 0.2.10
-
-  '@floating-ui/react-dom@2.1.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      '@floating-ui/dom': 1.7.4
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
-
-  '@floating-ui/react@0.26.24(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      '@floating-ui/utils': 0.2.10
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
-      tabbable: 6.3.0
-
-  '@floating-ui/utils@0.2.10': {}
-
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.7':
@@ -10179,73 +10091,6 @@ snapshots:
       '@sigstore/protobuf-specs': 0.5.0
 
   '@sinclair/typebox@0.34.41': {}
-
-  '@snack-uikit/button@0.19.16(react@19.2.1)':
-    dependencies:
-      '@snack-uikit/counter': 0.8.10(react@19.2.1)
-      '@snack-uikit/loaders': 0.9.9(react@19.2.1)
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/counter@0.8.10(react@19.2.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/icons@0.27.4': {}
-
-  '@snack-uikit/loaders@0.9.9(react@19.2.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/popover-private@0.15.3(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      '@floating-ui/react': 0.26.24(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-      react-is: 18.2.0
-      uncontrollable: 8.0.4(react@19.2.1)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/status@0.10.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      '@snack-uikit/loaders': 0.9.9(react@19.2.1)
-      '@snack-uikit/truncate-string': 0.7.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/tooltip@0.18.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      '@snack-uikit/icons': 0.27.4
-      '@snack-uikit/popover-private': 0.15.3(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-      uncontrollable: 8.0.4(react@19.2.1)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/truncate-string@0.7.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      '@snack-uikit/tooltip': 0.18.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      '@snack-uikit/utils': 4.0.0(react@19.2.1)
-      classnames: 2.5.1
-      lodash.throttle: 4.1.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
 
   '@snack-uikit/utils@4.0.0(react@19.2.1)':
     dependencies:
@@ -14273,8 +14118,6 @@ snapshots:
 
   lodash.startcase@4.4.0: {}
 
-  lodash.throttle@4.1.1: {}
-
   lodash.trim@4.5.1: {}
 
   lodash.trimend@4.5.1: {}
@@ -15916,8 +15759,6 @@ snapshots:
 
   react-is@17.0.2: {}
 
-  react-is@18.2.0: {}
-
   react-is@18.3.1: {}
 
   react-refresh@0.17.0: {}
@@ -17044,8 +16885,6 @@ snapshots:
   synckit@0.11.12:
     dependencies:
       '@pkgr/core': 0.2.9
-
-  tabbable@6.3.0: {}
 
   table@6.9.0:
     dependencies:

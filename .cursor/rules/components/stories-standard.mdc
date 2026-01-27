@@ -1,0 +1,822 @@
+# Стандарт создания компонентов и Storybook Stories
+
+## Обзор
+
+Этот стандарт определяет единый подход к созданию компонентов и их stories на основе индустрийных best practices 2026 года. Основные принципы:
+
+- **CSF3 (Component Story Format 3)** - современный формат с минимальным boilerplate
+- **Tags система** - организация и фильтрация stories для разных целей
+- **Separation of Concerns** - разделение stories для документации и тестирования
+- **Play functions** - автоматизация взаимодействий для e2e тестов
+- **Visual Regression Ready** - подготовка к screenshot тестированию
+- **Модульная структура** - каждая story в отдельном файле для лучшей читаемости
+
+## Структура файлов
+
+### Организация stories
+
+Каждый компонент имеет подпапку в `stories/` с отдельными файлами для каждой story:
+
+```
+packages/component-name/stories/
+└── ComponentName/
+    ├── ComponentName.Playground.stories.tsx    # Main story with full config
+    ├── ComponentName.WithImage.stories.tsx     # Use case story
+    ├── ComponentName.LoadingState.stories.tsx  # Use case story
+    ├── ComponentName.Sizes.stories.tsx         # Variants story
+    └── ComponentName.VisualMatrix.stories.tsx  # Test story (hidden)
+```
+
+### Главный файл (ComponentName.Playground.stories.tsx)
+
+Playground story содержит полную meta configuration с documentation, args, и argTypes:
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName, ComponentProps, CONSTANTS } from '../../src';
+
+const meta: Meta<ComponentProps> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'figma-link',
+    },
+    docs: {
+      description: {
+        component: 'Component description...',
+      },
+    },
+  },
+  args: {
+    // Дефолтные значения для всех stories
+    prop1: 'default',
+  },
+  argTypes: {
+    // Настройки controls
+    prop1: {
+      control: 'text',
+      description: 'Description',
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<ComponentProps>;
+
+export const Playground: Story = {
+  tags: ['dev', 'test', 'autodocs'],
+};
+```
+
+**Ключевые моменты:**
+- Playground файл содержит полную конфигурацию компонента
+- Используется для генерации документации и controls
+- Именно этот файл показывается первым в Storybook
+
+### Отдельные story файлы
+
+Каждая story в своем файле с минимальной meta для группировки:
+
+**Story с custom args:**
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName, ComponentProps } from '../../src';
+
+const meta: Meta<ComponentProps> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+};
+
+export default meta;
+type Story = StoryObj<ComponentProps>;
+
+export const WithImage: Story = {
+  tags: ['dev', 'autodocs'],
+  args: {
+    src: 'https://example.com/image.jpg',
+    alt: 'Example',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Story with image...',
+      },
+    },
+  },
+};
+```
+
+**Story с custom render:**
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { ComponentName, ComponentProps, SIZE } from '../../src';
+
+const meta: Meta<ComponentProps> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+};
+
+export default meta;
+type Story = StoryObj<ComponentProps>;
+
+export const Sizes: Story = {
+  tags: ['dev', 'autodocs'],
+  render: () => (
+    <div style={{ display: 'flex', gap: 16 }}>
+      <ComponentName size={SIZE.S} />
+      <ComponentName size={SIZE.M} />
+      <ComponentName size={SIZE.L} />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Available sizes...',
+      },
+    },
+  },
+};
+```
+
+**Test story (скрытая):**
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { ComponentName, ComponentProps } from '../../src';
+
+const meta: Meta<ComponentProps> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+};
+
+export default meta;
+type Story = StoryObj<ComponentProps>;
+
+export const VisualMatrix: Story = {
+  tags: ['test', '!dev'], // скрыта из sidebar
+  render: () => (
+    // Матрица для visual regression тестирования
+    <div>...</div>
+  ),
+};
+```
+
+**Важно:**
+- Каждый файл имеет свой `export default meta`
+- Meta содержит только `title` и `component` для группировки
+- Полная конфигурация (args, argTypes, docs) только в Playground файле
+
+### Именование файлов
+
+- **Формат:** `ComponentName.StoryName.stories.tsx`
+- **Префикс компонента** для ясности
+- **PascalCase** для StoryName
+- **Суффикс** `.stories.tsx` обязателен
+
+**Примеры:**
+- ✅ `Avatar.Playground.stories.tsx`
+- ✅ `Avatar.WithImage.stories.tsx`
+- ✅ `Avatar.VisualMatrix.stories.tsx`
+- ❌ `Playground.stories.tsx` (нет префикса)
+- ❌ `avatar-playground.stories.tsx` (kebab-case)
+- ❌ `01-Playground.stories.tsx` (нумерация не нужна)
+
+### Преимущества модульной структуры
+
+✅ **Читаемость** - каждая story ~30-50 строк вместо 300+  
+✅ **Maintainability** - легко найти и изменить конкретную story  
+✅ **Git diff** - изменения в одной story не влияют на другие  
+✅ **Code review** - проще ревьюить отдельные файлы  
+✅ **Переиспользование** - общая meta конфигурация  
+✅ **Масштабируемость** - легко добавлять новые stories  
+
+## Формат: CSF3
+
+Всегда используй современный CSF3 формат:
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName, ComponentProps } from '../src';
+
+const meta: Meta<ComponentProps> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  args: {
+    // Дефолтные значения для всех stories
+  },
+  argTypes: {
+    // Настройки controls
+  },
+};
+
+export default meta;
+type Story = StoryObj<ComponentProps>;
+
+// CSF3: объект вместо функции
+export const MyStory: Story = {
+  args: { prop: 'value' },
+  parameters: { /* ... */ },
+  play: async ({ canvasElement }) => { /* ... */ }
+};
+```
+
+**НЕ используй** старый CSF2 формат:
+```typescript
+// ❌ Устаревший подход
+export const MyStory = (args) => <Component {...args} />;
+MyStory.args = { prop: 'value' };
+```
+
+## Структура Stories
+
+### 1. Playground Story (ОБЯЗАТЕЛЬНАЯ)
+
+Единственная fully-controlled story для manual testing и экспериментов.
+
+```typescript
+export const Playground: Story = {
+  tags: ['dev', 'test', 'autodocs'],
+};
+```
+
+**Правила:**
+- Всегда называй `Playground`
+- Используй `meta.args` и `meta.argTypes` для настройки controls
+- Все props компонента должны быть доступны через controls
+- Видна в sidebar, документации и включена в тесты
+- Не добавляй кастомный `render` - используй дефолтное поведение
+
+### 2. Use Case Stories (МИНИМАЛЬНО ДОСТАТОЧНЫЕ)
+
+Stories для демонстрации конкретных сценариев использования.
+
+```typescript
+export const WithImage: Story = {
+  tags: ['dev', 'autodocs'],
+  args: {
+    src: 'https://example.com/image.jpg',
+    alt: 'Example',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Компонент с изображением. При ошибке загрузки показывается fallback.',
+      },
+    },
+  },
+};
+
+export const LoadingState: Story = {
+  tags: ['dev', 'autodocs'],
+  args: {
+    isLoading: true,
+  },
+};
+```
+
+**Правила:**
+- 3-5 stories максимум для простых компонентов
+- Показывают ключевые возможности и варианты использования
+- Видны в sidebar и документации
+- Используй `args` вместо кастомного `render` где возможно
+- Добавляй описание в `parameters.docs.description.story`
+
+**Когда нужен кастомный render:**
+- Демонстрация нескольких вариантов рядом (sizes, colors)
+- Композиция компонентов
+- Контекстное окружение (layouts, wrappers)
+
+### 3. Test Stories (ДЛЯ E2E/PLAYWRIGHT)
+
+Stories с автоматизированными взаимодействиями для e2e тестирования.
+
+```typescript
+import { expect, userEvent, within } from '@storybook/test';
+
+export const InteractionTest: Story = {
+  tags: ['test', '!dev'],
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    
+    await step('User opens modal', async () => {
+      const button = canvas.getByRole('button', { name: 'Open' });
+      await userEvent.click(button);
+    });
+    
+    await step('Modal is visible', async () => {
+      const modal = canvas.getByRole('dialog');
+      expect(modal).toBeInTheDocument();
+    });
+    
+    await step('User closes modal', async () => {
+      const closeButton = canvas.getByRole('button', { name: 'Close' });
+      await userEvent.click(closeButton);
+    });
+    
+    await step('Modal is hidden', async () => {
+      expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+  },
+};
+
+export const KeyboardNavigationTest: Story = {
+  tags: ['test', '!dev'],
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    
+    await step('Tab focuses first button', async () => {
+      await userEvent.tab();
+      expect(canvas.getByRole('button', { name: 'First' })).toHaveFocus();
+    });
+    
+    await step('Tab moves to second button', async () => {
+      await userEvent.tab();
+      expect(canvas.getByRole('button', { name: 'Second' })).toHaveFocus();
+    });
+  },
+};
+```
+
+**Правила:**
+- Используй тег `!dev` чтобы СКРЫТЬ из sidebar
+- Используй `play` функции для автоматизации
+- Группируй действия через `step()` для читаемости
+- Тестируй interactions, edge cases, async behavior
+- Используй Testing Library queries через `canvas`
+- Добавляй assertions через `expect()`
+
+**API для play functions:**
+- `canvasElement` - DOM element story
+- `canvas = within(canvasElement)` - Testing Library queries
+- `userEvent.click()`, `userEvent.type()`, `userEvent.tab()`
+- `step('description', async () => {})` - группировка
+- `expect()` - assertions
+- `waitFor()` - async assertions
+
+### 4. Visual Regression Stories (ДЛЯ SCREENSHOT ТЕСТОВ)
+
+Матрицы комбинаций для visual regression тестирования.
+
+```typescript
+export const VisualMatrix: Story = {
+  tags: ['test', '!dev'],
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {[SIZE.S, SIZE.M, SIZE.L].map((size) => (
+        <div key={size} style={{ display: 'flex', gap: 16 }}>
+          {[APPEARANCE.Primary, APPEARANCE.Secondary].map((appearance) => (
+            <Component key={appearance} size={size} appearance={appearance} />
+          ))}
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+export const AllStates: Story = {
+  tags: ['test', '!dev'],
+  render: () => (
+    <div style={{ display: 'flex', gap: 16 }}>
+      <Component state="default" />
+      <Component state="hover" />
+      <Component state="active" />
+      <Component state="disabled" />
+    </div>
+  ),
+};
+```
+
+**Правила:**
+- Скрыты из sidebar (`!dev`)
+- Компактные матрицы ключевых комбинаций
+- НЕ показывай ВСЕ комбинации - только критичные для визуальной проверки
+- Оптимизируй количество: 3 sizes × 4 appearances = 12 вариантов (не 7 × 9 = 63)
+
+## Tags система
+
+Storybook использует tags для фильтрации и организации stories:
+
+- **`dev`** - показывать в Storybook sidebar (по умолчанию включен)
+- **`test`** - включать в Test Runner/Playwright тесты (по умолчанию включен)
+- **`autodocs`** - включать в автоматическую документацию
+- **`!dev`** - ИСКЛЮЧИТЬ из sidebar (используй для test stories)
+
+**Примеры:**
+
+```typescript
+// Видимая story для пользователей
+export const Example: Story = {
+  tags: ['dev', 'autodocs'],
+};
+
+// Playground - везде
+export const Playground: Story = {
+  tags: ['dev', 'test', 'autodocs'],
+};
+
+// Test story - скрыта из sidebar
+export const EdgeCaseTest: Story = {
+  tags: ['test', '!dev'],
+};
+```
+
+## Naming Convention
+
+### Stories
+
+- **Английские названия**
+- **PascalCase**
+- **Описательные и понятные**
+
+**Паттерны:**
+
+- `Playground` - всегда для главной controlled story
+- `WithX` - сценарии с дополнительными props
+  - `WithImage`, `WithIcon`, `WithTooltip`
+- `XState` - различные состояния
+  - `LoadingState`, `ErrorState`, `DisabledState`
+- `XVariant` - варианты компонента
+  - `PrimaryVariant`, `SecondaryVariant`
+- `XTest` - тестовые stories (скрытые)
+  - `InteractionTest`, `KeyboardNavigationTest`, `EdgeCaseTest`
+- `VisualMatrix` / `AllStates` - visual regression (скрытые)
+
+### Не используй
+
+- ❌ `Basic`, `Default`, `Example` - неинформативные
+- ❌ `Story1`, `Story2` - непонятные
+- ❌ Русские названия
+
+## Количество Stories
+
+**Простые компоненты (Button, Avatar, Badge):**
+- 1 Playground
+- 3-5 Use Cases
+- 1-3 Test Stories (если нужны interactions)
+- 1 Visual Matrix (если много вариантов)
+
+**Средние компоненты (Input, Select, Modal):**
+- 1 Playground
+- 5-8 Use Cases
+- 3-5 Test Stories (interactions, keyboard, validation)
+- 1-2 Visual Matrices
+
+**Сложные компоненты (DataTable, Form, Chart):**
+- 1 Playground
+- 8-12 Use Cases (сгруппированных по функционалу)
+- 5-10 Test Stories (разные сценарии)
+- 2-3 Visual Matrices (по группам вариантов)
+
+**Правило:** Минимально достаточное количество. Лучше меньше качественных stories, чем много мусорных.
+
+## Что НЕ делать
+
+### ❌ Пустые stories
+```typescript
+// ПЛОХО
+export const Basic: Story = {};
+```
+
+Если story не добавляет ценности - не создавай её. Playground покрывает базовый случай.
+
+### ❌ Смешивание Playground и таблиц
+
+```typescript
+// ПЛОХО
+export const Basic: Story = {
+  render: (args) => (
+    <>
+      <div>Controlled: <Component {...args} /></div>
+      <div>All variants: {/* huge table */}</div>
+    </>
+  ),
+};
+```
+
+Разделяй: Playground отдельно, Visual Matrix отдельно.
+
+### ❌ Перегруженные Visual Matrices
+
+```typescript
+// ПЛОХО - 7 sizes × 9 colors × 2 shapes = 126 вариантов
+{Object.values(SIZE).map(size => 
+  Object.values(COLOR).map(color =>
+    Object.values(SHAPE).map(shape => ...)
+  )
+)}
+```
+
+Выбирай ключевые комбинации: 3-4 sizes × 4-5 colors × 2 shapes = 24-40 вариантов.
+
+### ❌ Test stories без !dev
+
+```typescript
+// ПЛОХО - будет мешать в sidebar
+export const EdgeCaseTest: Story = {
+  tags: ['test'],  // нужен !dev
+  play: async () => { /* ... */ }
+};
+```
+
+Всегда добавляй `!dev` к test stories.
+
+### ❌ Дублирование функционала
+
+```typescript
+// ПЛОХО - ImageFallback дублирует WithImage
+export const WithImage: Story = {
+  args: { src: 'https://valid.com/image.jpg' }
+};
+
+export const ImageFallback: Story = {
+  args: { src: 'https://invalid.com/image.jpg' }
+};
+```
+
+Объедини или перемести fallback case в test story.
+
+## Meta конфигурация
+
+Хорошая настройка meta:
+
+```typescript
+const meta: Meta<ComponentProps> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'figma-link',
+    },
+    docs: {
+      description: {
+        component: `
+# ComponentName
+
+Краткое описание компонента и его назначения.
+
+## Features
+
+- Ключевая особенность 1
+- Ключевая особенность 2
+
+## Installation
+
+\`\`\`bash
+pnpm add @design-system/component-name
+\`\`\`
+
+## Quick Start
+
+\`\`\`tsx
+import { ComponentName } from '@design-system/component-name';
+
+function Example() {
+  return <ComponentName prop="value" />;
+}
+\`\`\`
+        `,
+      },
+    },
+  },
+  args: {
+    // Дефолтные значения - появятся в Playground
+    prop1: 'default',
+    prop2: true,
+  },
+  argTypes: {
+    prop1: {
+      control: 'text',
+      description: 'Описание prop1',
+    },
+    prop2: {
+      control: 'boolean',
+      description: 'Описание prop2',
+    },
+    size: {
+      control: 'select',
+      options: Object.values(SIZE),
+      description: 'Размер компонента',
+    },
+    appearance: {
+      control: 'radio',
+      options: Object.values(APPEARANCE),
+      description: 'Внешний вид',
+    },
+  },
+};
+```
+
+## Тестирование
+
+### Storybook Test Runner
+
+Stories автоматически тестируются через Storybook Test Runner (powered by Playwright):
+
+```bash
+# Запуск всех тестов
+pnpm test-storybook
+
+# Watch mode
+pnpm test-storybook --watch
+
+# Конкретный компонент
+pnpm test-storybook --stories-pattern="**/Avatar.stories.*"
+```
+
+**Что тестируется:**
+- Stories с тегом `test` (по умолчанию все)
+- Рендеринг без ошибок
+- Play functions (если есть)
+- Visual regression screenshots
+
+### Play Functions Best Practices
+
+```typescript
+export const ComplexInteractionTest: Story = {
+  tags: ['test', '!dev'],
+  args: {
+    onSubmit: fn(),  // mock function для проверки вызовов
+  },
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    
+    // 1. Используй step для группировки
+    await step('Fill form', async () => {
+      await userEvent.type(
+        canvas.getByLabelText('Email'),
+        'test@example.com'
+      );
+      await userEvent.type(
+        canvas.getByLabelText('Password'),
+        'password123'
+      );
+    });
+    
+    // 2. Проверяй промежуточные состояния
+    await step('Submit button is enabled', async () => {
+      const submitButton = canvas.getByRole('button', { name: 'Submit' });
+      expect(submitButton).toBeEnabled();
+    });
+    
+    // 3. Симулируй действия
+    await step('Submit form', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: 'Submit' }));
+    });
+    
+    // 4. Проверяй результат
+    await step('Form submitted', async () => {
+      await waitFor(() => {
+        expect(args.onSubmit).toHaveBeenCalledWith({
+          email: 'test@example.com',
+          password: 'password123',
+        });
+      });
+    });
+  },
+};
+```
+
+## Примеры
+
+### Простой компонент (Button)
+
+```typescript
+const meta: Meta<ButtonProps> = {
+  title: 'Components/Button',
+  component: Button,
+  args: {
+    children: 'Button',
+    size: SIZE.M,
+    appearance: APPEARANCE.Primary,
+  },
+  argTypes: {
+    size: { control: 'select', options: Object.values(SIZE) },
+    appearance: { control: 'radio', options: Object.values(APPEARANCE) },
+    disabled: { control: 'boolean' },
+  },
+};
+
+export default meta;
+type Story = StoryObj<ButtonProps>;
+
+// 1. Playground
+export const Playground: Story = {
+  tags: ['dev', 'test', 'autodocs'],
+};
+
+// 2. Use Cases
+export const WithIcon: Story = {
+  tags: ['dev', 'autodocs'],
+  args: {
+    icon: <IconCheck />,
+    children: 'Save',
+  },
+};
+
+export const LoadingState: Story = {
+  tags: ['dev', 'autodocs'],
+  args: {
+    isLoading: true,
+    children: 'Loading...',
+  },
+};
+
+export const Sizes: Story = {
+  tags: ['dev', 'autodocs'],
+  render: () => (
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      <Button size={SIZE.S}>Small</Button>
+      <Button size={SIZE.M}>Medium</Button>
+      <Button size={SIZE.L}>Large</Button>
+    </div>
+  ),
+};
+
+// 3. Test Story
+export const ClickTest: Story = {
+  tags: ['test', '!dev'],
+  args: {
+    onClick: fn(),
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+    expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+
+// 4. Visual Matrix
+export const VisualMatrix: Story = {
+  tags: ['test', '!dev'],
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {[SIZE.S, SIZE.M, SIZE.L].map(size => (
+        <div key={size} style={{ display: 'flex', gap: 16 }}>
+          {[APPEARANCE.Primary, APPEARANCE.Secondary].map(appearance => (
+            <Button key={appearance} size={size} appearance={appearance}>
+              Button
+            </Button>
+          ))}
+        </div>
+      ))}
+    </div>
+  ),
+};
+```
+
+### Компонент с формой (Input)
+
+```typescript
+export const ValidationTest: Story = {
+  tags: ['test', '!dev'],
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox');
+    
+    await step('Empty input shows error', async () => {
+      await userEvent.click(input);
+      await userEvent.tab(); // blur
+      expect(canvas.getByText('Required field')).toBeInTheDocument();
+    });
+    
+    await step('Valid input clears error', async () => {
+      await userEvent.type(input, 'valid@email.com');
+      await userEvent.tab();
+      expect(canvas.queryByText('Required field')).not.toBeInTheDocument();
+    });
+  },
+};
+```
+
+## Checklist для ревью
+
+При создании stories проверь:
+
+- [ ] Используется CSF3 формат
+- [ ] Есть обязательная Playground story
+- [ ] Use case stories минимально достаточные (3-5 для простых компонентов)
+- [ ] Test stories имеют тег `!dev`
+- [ ] Visual matrices оптимизированы (не все комбинации)
+- [ ] Используются правильные tags (`dev`, `test`, `autodocs`, `!dev`)
+- [ ] Названия stories описательные и на английском
+- [ ] Play functions используют `step()` для группировки
+- [ ] Нет пустых stories типа `Basic: Story = {}`
+- [ ] Нет дублирования функционала между stories
+- [ ] Meta содержит description и argTypes
+- [ ] Stories готовы для Test Runner и visual regression
+
+## Дополнительные ресурсы
+
+- [Storybook CSF3 Documentation](https://storybook.js.org/docs/api/csf)
+- [Play Functions Guide](https://storybook.js.org/docs/writing-stories/play-function)
+- [Tags System](https://storybook.js.org/docs/writing-stories/tags)
+- [Test Runner](https://storybook.js.org/docs/writing-tests/test-runner)
+- [Visual Testing](https://storybook.js.org/docs/writing-tests/visual-testing)
