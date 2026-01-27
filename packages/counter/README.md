@@ -64,13 +64,7 @@ export function NotificationBadge() {
 import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return (
-    <Counter
-      value={10}
-      appearance={APPEARANCE.Red}
-      size={SIZE.S}
-    />
-  );
+  return <Counter value={10} appearance={APPEARANCE.Red} size={SIZE.S} />;
 }
 ```
 

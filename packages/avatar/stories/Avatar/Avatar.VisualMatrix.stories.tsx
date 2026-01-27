@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from '../../src';
+import styles from './styles.module.scss';
 
 const meta: Meta<AvatarProps> = {
   title: 'Components/Avatar',
@@ -12,9 +13,9 @@ export default meta;
 type Story = StoryObj<AvatarProps>;
 
 export const VisualMatrix: Story = {
-  tags: ['test', '!dev'],
+  tags: ['test', 'dev'],
   render: () => {
-    // Оптимизированная матрица: 3 sizes × 4 appearances × 2 shapes = 24 варианта
+    // Оптимизированная матрица: ключевые размеры и появления
     const keySizes = [SIZE.S, SIZE.M, SIZE.L];
     const keyAppearances = [
       APPEARANCE.Neutral,
@@ -22,24 +23,47 @@ export const VisualMatrix: Story = {
       APPEARANCE.Red,
       APPEARANCE.Blue,
     ];
+    const shapes = Object.values(SHAPE);
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        {keySizes.map((size) => (
-          <div
-            key={size}
-            style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}
-          >
-            <div style={{ minWidth: 80, fontSize: 12, color: '#666' }}>{size}</div>
-            {keyAppearances.map((appearance) => (
-              <div
-                key={appearance}
-                style={{ display: 'flex', gap: 8, alignItems: 'center', flexDirection: 'column' }}
-              >
-                <Avatar name="JD" size={size} shape={SHAPE.Round} appearance={appearance} />
-                <Avatar name="JD" size={size} shape={SHAPE.Square} appearance={appearance} />
-              </div>
-            ))}
+      <div className={styles.container}>
+        {shapes.map((shape, shapeIndex) => (
+          <div key={shape}>
+            {shapeIndex > 0 && <div className={styles.sectionSpacer} />}
+            <div
+              className={styles.sectionHeader}
+              style={{ textTransform: 'capitalize', fontWeight: 600 }}
+            >
+              {shape} Shape
+            </div>
+            <table className={styles.table}>
+              <thead className={styles.tableHeader}>
+                <tr>
+                  <th className={`${styles.tableHeaderCell} ${styles.tableHeaderCellFirst}`}>
+                    Appearance
+                  </th>
+                  {keySizes.map((size) => (
+                    <th key={size} className={styles.tableHeaderCell}>
+                      {size.toUpperCase()}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {keyAppearances.map((appearance) => (
+                  <tr key={appearance}>
+                    <td className={`${styles.tableCell} ${styles.tableCellVariant}`}>
+                      {appearance}
+                    </td>
+                    {keySizes.map((size) => (
+                      <td key={size} className={styles.tableCell}>
+                        <Avatar name="JD" size={size} shape={shape} appearance={appearance} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ))}
       </div>

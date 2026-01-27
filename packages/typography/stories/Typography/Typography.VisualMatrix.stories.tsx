@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<TypographyProps>;
 
 export const VisualMatrix: Story = {
-  tags: ['test', '!dev'],
+  tags: ['test', 'dev'],
   render: () => {
     const variants = Object.values(VARIANT);
     const sizes = Object.values(SIZE);

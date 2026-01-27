@@ -4,13 +4,13 @@ description: Typography component
 version: '0.1.0'
 ---
 
-import { Typography, VARIANT, SIZE, WEIGHT } from '../src';
 import {
   ExampleContainer,
-  ExampleRow,
   ExampleGrid,
   ExampleItem,
+  ExampleRow,
 } from '../../../astro/src/components/mdx';
+import { SIZE, Typography, VARIANT, WEIGHT } from '../src';
 
 # Typography
 
@@ -146,11 +146,15 @@ import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe
 
 <StorybookIframe storyId="components-typography--playground" showControls={true} height="400px" />
 
-### Variants Table
+### Visual Matrix
 
-Для просмотра всех доступных комбинаций используйте story **Variants Table** в Storybook. Таблица показывает все варианты типографики в структурированном виде с четкими границами и заголовками, что упрощает сравнение стилей.
+Для просмотра всех доступных комбинаций используйте story **Visual Matrix** в Storybook. Таблица показывает все варианты типографики в структурированном виде с четкими границами и заголовками, что упрощает сравнение стилей.
 
-<StorybookIframe storyId="components-typography--variants-table" showControls={false} height="800px" />
+<StorybookIframe
+  storyId="components-typography--visual-matrix"
+  showControls={false}
+  height="800px"
+/>
 
 ## Usage
 

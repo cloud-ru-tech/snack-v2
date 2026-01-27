@@ -71,6 +71,7 @@ export const Playground: Story = {
 ```
 
 **Ключевые моменты:**
+
 - Playground файл содержит полную конфигурацию компонента
 - Используется для генерации документации и controls
 - Именно этот файл показывается первым в Storybook
@@ -168,6 +169,7 @@ export const VisualMatrix: Story = {
 ```
 
 **Важно:**
+
 - Каждый файл имеет свой `export default meta`
 - Meta содержит только `title` и `component` для группировки
 - Полная конфигурация (args, argTypes, docs) только в Playground файле
@@ -180,6 +182,7 @@ export const VisualMatrix: Story = {
 - **Суффикс** `.stories.tsx` обязателен
 
 **Примеры:**
+
 - ✅ `Avatar.Playground.stories.tsx`
 - ✅ `Avatar.WithImage.stories.tsx`
 - ✅ `Avatar.VisualMatrix.stories.tsx`
@@ -194,7 +197,7 @@ export const VisualMatrix: Story = {
 ✅ **Git diff** - изменения в одной story не влияют на другие  
 ✅ **Code review** - проще ревьюить отдельные файлы  
 ✅ **Переиспользование** - общая meta конфигурация  
-✅ **Масштабируемость** - легко добавлять новые stories  
+✅ **Масштабируемость** - легко добавлять новые stories
 
 ## Формат: CSF3
 
@@ -221,12 +224,17 @@ type Story = StoryObj<ComponentProps>;
 // CSF3: объект вместо функции
 export const MyStory: Story = {
   args: { prop: 'value' },
-  parameters: { /* ... */ },
-  play: async ({ canvasElement }) => { /* ... */ }
+  parameters: {
+    /* ... */
+  },
+  play: async ({ canvasElement }) => {
+    /* ... */
+  },
 };
 ```
 
 **НЕ используй** старый CSF2 формат:
+
 ```typescript
 // ❌ Устаревший подход
 export const MyStory = (args) => <Component {...args} />;
@@ -246,6 +254,7 @@ export const Playground: Story = {
 ```
 
 **Правила:**
+
 - Всегда называй `Playground`
 - Используй `meta.args` и `meta.argTypes` для настройки controls
 - Все props компонента должны быть доступны через controls
@@ -281,6 +290,7 @@ export const LoadingState: Story = {
 ```
 
 **Правила:**
+
 - 3-5 stories максимум для простых компонентов
 - Показывают ключевые возможности и варианты использования
 - Видны в sidebar и документации
@@ -288,6 +298,7 @@ export const LoadingState: Story = {
 - Добавляй описание в `parameters.docs.description.story`
 
 **Когда нужен кастомный render:**
+
 - Демонстрация нескольких вариантов рядом (sizes, colors)
 - Композиция компонентов
 - Контекстное окружение (layouts, wrappers)
@@ -303,22 +314,22 @@ export const InteractionTest: Story = {
   tags: ['test', '!dev'],
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('User opens modal', async () => {
       const button = canvas.getByRole('button', { name: 'Open' });
       await userEvent.click(button);
     });
-    
+
     await step('Modal is visible', async () => {
       const modal = canvas.getByRole('dialog');
       expect(modal).toBeInTheDocument();
     });
-    
+
     await step('User closes modal', async () => {
       const closeButton = canvas.getByRole('button', { name: 'Close' });
       await userEvent.click(closeButton);
     });
-    
+
     await step('Modal is hidden', async () => {
       expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
     });
@@ -329,12 +340,12 @@ export const KeyboardNavigationTest: Story = {
   tags: ['test', '!dev'],
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Tab focuses first button', async () => {
       await userEvent.tab();
       expect(canvas.getByRole('button', { name: 'First' })).toHaveFocus();
     });
-    
+
     await step('Tab moves to second button', async () => {
       await userEvent.tab();
       expect(canvas.getByRole('button', { name: 'Second' })).toHaveFocus();
@@ -344,6 +355,7 @@ export const KeyboardNavigationTest: Story = {
 ```
 
 **Правила:**
+
 - Используй тег `!dev` чтобы СКРЫТЬ из sidebar
 - Используй `play` функции для автоматизации
 - Группируй действия через `step()` для читаемости
@@ -352,6 +364,7 @@ export const KeyboardNavigationTest: Story = {
 - Добавляй assertions через `expect()`
 
 **API для play functions:**
+
 - `canvasElement` - DOM element story
 - `canvas = within(canvasElement)` - Testing Library queries
 - `userEvent.click()`, `userEvent.type()`, `userEvent.tab()`
@@ -393,6 +406,7 @@ export const AllStates: Story = {
 ```
 
 **Правила:**
+
 - Скрыты из sidebar (`!dev`)
 - Компактные матрицы ключевых комбинаций
 - НЕ показывай ВСЕ комбинации - только критичные для визуальной проверки
@@ -445,7 +459,7 @@ export const EdgeCaseTest: Story = {
   - `PrimaryVariant`, `SecondaryVariant`
 - `XTest` - тестовые stories (скрытые)
   - `InteractionTest`, `KeyboardNavigationTest`, `EdgeCaseTest`
-- `VisualMatrix` / `AllStates` - visual regression (скрытые)
+- `VisualMatrix` / `AllStates`
 
 ### Не используй
 
@@ -456,18 +470,21 @@ export const EdgeCaseTest: Story = {
 ## Количество Stories
 
 **Простые компоненты (Button, Avatar, Badge):**
+
 - 1 Playground
 - 3-5 Use Cases
 - 1-3 Test Stories (если нужны interactions)
 - 1 Visual Matrix (если много вариантов)
 
 **Средние компоненты (Input, Select, Modal):**
+
 - 1 Playground
 - 5-8 Use Cases
 - 3-5 Test Stories (interactions, keyboard, validation)
 - 1-2 Visual Matrices
 
 **Сложные компоненты (DataTable, Form, Chart):**
+
 - 1 Playground
 - 8-12 Use Cases (сгруппированных по функционалу)
 - 5-10 Test Stories (разные сценарии)
@@ -478,6 +495,7 @@ export const EdgeCaseTest: Story = {
 ## Что НЕ делать
 
 ### ❌ Пустые stories
+
 ```typescript
 // ПЛОХО
 export const Basic: Story = {};
@@ -505,7 +523,7 @@ export const Basic: Story = {
 
 ```typescript
 // ПЛОХО - 7 sizes × 9 colors × 2 shapes = 126 вариантов
-{Object.values(SIZE).map(size => 
+{Object.values(SIZE).map(size =>
   Object.values(COLOR).map(color =>
     Object.values(SHAPE).map(shape => ...)
   )
@@ -519,8 +537,10 @@ export const Basic: Story = {
 ```typescript
 // ПЛОХО - будет мешать в sidebar
 export const EdgeCaseTest: Story = {
-  tags: ['test'],  // нужен !dev
-  play: async () => { /* ... */ }
+  tags: ['test'], // нужен !dev
+  play: async () => {
+    /* ... */
+  },
 };
 ```
 
@@ -531,11 +551,11 @@ export const EdgeCaseTest: Story = {
 ```typescript
 // ПЛОХО - ImageFallback дублирует WithImage
 export const WithImage: Story = {
-  args: { src: 'https://valid.com/image.jpg' }
+  args: { src: 'https://valid.com/image.jpg' },
 };
 
 export const ImageFallback: Story = {
-  args: { src: 'https://invalid.com/image.jpg' }
+  args: { src: 'https://invalid.com/image.jpg' },
 };
 ```
 
@@ -631,6 +651,7 @@ pnpm test-storybook --stories-pattern="**/Avatar.stories.*"
 ```
 
 **Что тестируется:**
+
 - Stories с тегом `test` (по умолчанию все)
 - Рендеринг без ошибок
 - Play functions (если есть)
@@ -642,34 +663,28 @@ pnpm test-storybook --stories-pattern="**/Avatar.stories.*"
 export const ComplexInteractionTest: Story = {
   tags: ['test', '!dev'],
   args: {
-    onSubmit: fn(),  // mock function для проверки вызовов
+    onSubmit: fn(), // mock function для проверки вызовов
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     // 1. Используй step для группировки
     await step('Fill form', async () => {
-      await userEvent.type(
-        canvas.getByLabelText('Email'),
-        'test@example.com'
-      );
-      await userEvent.type(
-        canvas.getByLabelText('Password'),
-        'password123'
-      );
+      await userEvent.type(canvas.getByLabelText('Email'), 'test@example.com');
+      await userEvent.type(canvas.getByLabelText('Password'), 'password123');
     });
-    
+
     // 2. Проверяй промежуточные состояния
     await step('Submit button is enabled', async () => {
       const submitButton = canvas.getByRole('button', { name: 'Submit' });
       expect(submitButton).toBeEnabled();
     });
-    
+
     // 3. Симулируй действия
     await step('Submit form', async () => {
       await userEvent.click(canvas.getByRole('button', { name: 'Submit' }));
     });
-    
+
     // 4. Проверяй результат
     await step('Form submitted', async () => {
       await waitFor(() => {
@@ -780,13 +795,13 @@ export const ValidationTest: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const input = canvas.getByRole('textbox');
-    
+
     await step('Empty input shows error', async () => {
       await userEvent.click(input);
       await userEvent.tab(); // blur
       expect(canvas.getByText('Required field')).toBeInTheDocument();
     });
-    
+
     await step('Valid input clears error', async () => {
       await userEvent.type(input, 'valid@email.com');
       await userEvent.tab();

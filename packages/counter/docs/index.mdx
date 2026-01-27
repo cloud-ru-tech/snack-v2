@@ -4,13 +4,13 @@ description: Numeric counter component for displaying notifications, item counts
 version: '0.1.0'
 ---
 
-import { Counter, APPEARANCE, SIZE, VARIANT, COLOR } from '../src';
 import {
   ExampleContainer,
-  ExampleRow,
   ExampleGrid,
   ExampleItem,
+  ExampleRow,
 } from '../../../astro/src/components/mdx';
+import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '../src';
 
 # Counter
 
@@ -139,7 +139,15 @@ Counter is a flexible component for displaying numeric indicators in your applic
 
 import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
 
-<StorybookIframe storyId="components-counter--playground" showControls={true} height="600px" />
+### Playground
+
+<StorybookIframe storyId="components-counter--playground" showControls={true} height="400px" />
+
+### Visual Matrix
+
+Для просмотра всех доступных комбинаций используйте story **Visual Matrix** в Storybook. Таблица показывает все варианты типографики в структурированном виде с четкими границами и заголовками, что упрощает сравнение стилей.
+
+<StorybookIframe storyId="components-counter--visual-matrix" showControls={false} height="800px" />
 
 ## Usage
 
@@ -175,13 +183,7 @@ export function NotificationBadge() {
 import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return (
-    <Counter
-      value={10}
-      appearance={APPEARANCE.Red}
-      size={SIZE.S}
-    />
-  );
+  return <Counter value={10} appearance={APPEARANCE.Red} size={SIZE.S} />;
 }
 ```
 
@@ -191,13 +193,7 @@ export function NotificationBadge() {
 import { Counter, VARIANT } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return (
-    <Counter
-      value={150}
-      variant={VARIANT.CountPlus}
-      plusLimit={100}
-    />
-  );
+  return <Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />;
 }
 ```
 
