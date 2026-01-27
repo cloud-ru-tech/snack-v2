@@ -1,0 +1,28 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$weights: 'regular', 'thin', 'mono';
+$variants: 'display', 'headline', 'title', 'label', 'body';
+$sizes: 's', 'm', 'l';
+
+.typography {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow-wrap: break-word;
+
+  @each $weight in $weights {
+    &[data-weight='#{$weight}'] {
+      @each $variant in $variants {
+        &[data-variant='#{$variant}'] {
+          @each $size in $sizes {
+            &[data-size='#{$size}'] {
+              @include base.composite-var(base.$base-styles, 'sn', $weight, $variant, $size);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,280 @@
+---
+title: Typography
+description: Typography component
+version: '0.1.0'
+---
+
+import { Typography, VARIANT, SIZE, WEIGHT } from '../src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '../../../astro/src/components/mdx';
+
+# Typography
+
+Компонент типографики, использующий стили из `@sbercloud/figma-variables`. Поддерживает различные варианты, размеры и начертания шрифтов.
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/typography
+# or
+yarn add @design-system/typography
+# or
+pnpm add @design-system/typography
+```
+
+## Changelog
+
+import Changelog from '../../../astro/src/components/astro/Changelog.astro';
+
+<Changelog packageName="typography" />
+
+import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
+
+<LlmLink component="typography" />
+
+## Overview
+
+Typography — это компонент для отображения текста с использованием типографических стилей из дизайн-системы. Компонент автоматически применяет правильные стили на основе выбранного варианта, размера и начертания.
+
+Typography автоматически обрабатывает:
+
+- **Варианты типографики**: display, headline, title, label, body
+- **Размеры**: s (small), m (medium), l (large)
+- **Начертания**: regular, thin, mono
+- **Семантические HTML теги**: автоматический выбор тега на основе варианта
+- **Стили из Figma Variables**: все стили берутся из `@sbercloud/figma-variables`
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <Typography>Базовый текст</Typography>
+</ExampleContainer>
+
+### Variants Table
+
+Для просмотра всех доступных комбинаций вариантов, размеров и начертаний используйте story **Variants Table** в Storybook. Таблица позволяет легко сравнивать все стили типографики в структурированном виде.
+
+### Variants
+
+<ExampleContainer>
+  <ExampleGrid>
+    <ExampleItem>
+      <Typography variant={VARIANT.display} size={SIZE.l}>
+        Display Large
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.l}>
+        Headline Large
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.title} size={SIZE.m}>
+        Title Medium
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.label} size={SIZE.s}>
+        Label Small
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.body} size={SIZE.m}>
+        Body Medium - основной текст для чтения
+      </Typography>
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer>
+  <ExampleGrid>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.s}>
+        Headline Small
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.m}>
+        Headline Medium
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.l}>
+        Headline Large
+      </Typography>
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### Weights
+
+<ExampleContainer>
+  <ExampleGrid>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.regular}>
+        Regular Weight
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.thin}>
+        Thin Weight
+      </Typography>
+    </ExampleItem>
+    <ExampleItem>
+      <Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.mono}>
+        Mono Weight
+      </Typography>
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
+
+### Playground
+
+<StorybookIframe storyId="components-typography--playground" showControls={true} height="400px" />
+
+### Variants Table
+
+Для просмотра всех доступных комбинаций используйте story **Variants Table** в Storybook. Таблица показывает все варианты типографики в структурированном виде с четкими границами и заголовками, что упрощает сравнение стилей.
+
+<StorybookIframe storyId="components-typography--variants-table" showControls={false} height="800px" />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { Typography } from '@design-system/typography';
+
+export function Example() {
+  return <Typography>Текст</Typography>;
+}
+```
+
+### With variant and size
+
+```tsx
+import { Typography, VARIANT, SIZE } from '@design-system/typography';
+
+export function Example() {
+  return (
+    <Typography variant={VARIANT.headline} size={SIZE.l}>
+      Заголовок
+    </Typography>
+  );
+}
+```
+
+### With weight
+
+```tsx
+import { Typography, VARIANT, SIZE, WEIGHT } from '@design-system/typography';
+
+export function Example() {
+  return (
+    <Typography variant={VARIANT.body} size={SIZE.m} weight={WEIGHT.thin}>
+      Тонкий текст
+    </Typography>
+  );
+}
+```
+
+### Custom HTML tag
+
+```tsx
+import { Typography, VARIANT, SIZE } from '@design-system/typography';
+
+export function Example() {
+  return (
+    <Typography as="h1" variant={VARIANT.display} size={SIZE.l}>
+      Главный заголовок
+    </Typography>
+  );
+}
+```
+
+### All variants showcase
+
+```tsx
+import { Typography, VARIANT, SIZE } from '@design-system/typography';
+
+export function Example() {
+  return (
+    <div>
+      <Typography variant={VARIANT.display} size={SIZE.l}>
+        Display Large
+      </Typography>
+      <Typography variant={VARIANT.headline} size={SIZE.l}>
+        Headline Large
+      </Typography>
+      <Typography variant={VARIANT.title} size={SIZE.m}>
+        Title Medium
+      </Typography>
+      <Typography variant={VARIANT.label} size={SIZE.s}>
+        Label Small
+      </Typography>
+      <Typography variant={VARIANT.body} size={SIZE.m}>
+        Body Medium
+      </Typography>
+    </div>
+  );
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### Props
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| children | `ReactNode` | - | Дочерние элементы |
+| variant | enum TypographyVariant: `"title"`, `"display"`, `"headline"`, `"label"`, `"body"` | VARIANT.body | Вариант типографики |
+| size | enum TypographySize: `"s"`, `"m"`, `"l"` | SIZE.m | Размер типографики |
+| weight | enum TypographyWeight: `"regular"`, `"thin"`, `"mono"` | WEIGHT.regular | Начертание шрифта |
+| as | `ElementType<any, keyof IntrinsicElements>` | - | HTML тег для рендеринга |
+| className | `string` | - | CSS-класс |
+### Props
+| name | type | default value | description |
+|------|------|---------------|-------------|
+### Props
+| name | type | default value | description |
+|------|------|---------------|-------------|
+### Props
+| name | type | default value | description |
+|------|------|---------------|-------------|
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+## Accessibility
+
+- Семантическая HTML структура обеспечивает совместимость со screen readers
+- Автоматический выбор правильного HTML тега на основе варианта типографики
+- Компонент принимает все стандартные HTML атрибуты для кастомизации
+- Поддержка ARIA атрибутов через spread props
+
+## Best practices
+
+1. **Используйте правильные варианты** — выбирайте вариант типографики в соответствии с семантикой контента (display для главных заголовков, body для основного текста)
+
+2. **Соблюдайте иерархию** — используйте размеры последовательно для создания визуальной иерархии
+
+3. **Выбирайте начертание осознанно** — regular для основного контента, thin для акцентов, mono для кода и технических данных
+
+4. **Используйте семантические теги** — позвольте компоненту автоматически выбирать тег, или явно укажите `as` для лучшей семантики
+
+5. **Не смешивайте стили** — используйте компонент Typography вместо прямого применения CSS классов для консистентности

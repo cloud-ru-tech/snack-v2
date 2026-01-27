@@ -33,6 +33,7 @@
     "@storybook/addon-onboarding": "^10.1.4",
     "@storybook/addon-vitest": "^10.1.4",
     "@storybook/react-vite": "^10.1.4",
+    "@snack-uikit/typography": "0.8.12",
     "@storybook/test": "8.6.15",
     "@types/inquirer": "9.0.9",
     "@types/node": "24.10.1",

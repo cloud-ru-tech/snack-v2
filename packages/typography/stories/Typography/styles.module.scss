@@ -1,0 +1,53 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: base.$sn-primitive-dimension-48;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+}
+
+.tableHeader {
+  background-color: base.$sn-theme-color-neutral-background1-level;
+}
+
+.tableHeaderCell {
+  padding: base.$sn-primitive-dimension-12 base.$sn-primitive-dimension-16;
+  text-align: left;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  border-bottom: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  font-weight: 600;
+  font-size: base.$sn-regular-label-m-font-size;
+  color: base.$sn-theme-color-available-version-text-main;
+}
+
+.tableHeaderCellFirst {
+  width: 150px;
+}
+
+.tableCell {
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  vertical-align: baseline;
+}
+
+.tableCellVariant {
+  font-weight: 600;
+  font-size: base.$sn-regular-label-m-font-size;
+  color: base.$sn-theme-color-available-version-text-secondary;
+  text-transform: capitalize;
+  min-width: 120px;
+}
+
+.sectionHeader {
+  margin-bottom: base.$sn-primitive-dimension-16;
+  margin-top: base.$sn-primitive-dimension-48;
+}
+
+.sectionSpacer {
+  height: base.$sn-primitive-dimension-48;
+}
+
+.container {
+  padding: base.$sn-primitive-dimension-24 base.$sn-primitive-dimension-0;
+}

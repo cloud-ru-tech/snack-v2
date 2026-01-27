@@ -57,6 +57,9 @@ importers:
       '@sbercloud/ft-logger':
         specifier: 0.0.1-preview-7fab8818.0
         version: 0.0.1-preview-7fab8818.0
+      '@snack-uikit/typography':
+        specifier: 0.8.12
+        version: 0.8.12(react@19.2.1)
       '@storybook/addon-a11y':
         specifier: ^10.1.4
         version: 10.1.4(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
@@ -266,6 +269,19 @@ importers:
       '@snack-uikit/utils':
         specifier: 4.0.0
         version: 4.0.0(react@19.2.1)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
+    devDependencies:
+      react:
+        specifier: ^19.2.1
+        version: 19.2.1
+      react-dom:
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
+
+  packages/typography:
+    dependencies:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -2070,8 +2086,14 @@ packages:
   '@sinclair/typebox@0.34.41':
     resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
 
+  '@snack-uikit/typography@0.8.12':
+    resolution: {integrity: sha512-6nXdgQ+/sZGDPg7izZzhJKfotuGXb3FP9LyiOagkoZkolqIaFNNKnPCsVEdHXbjuZQlvmgVnxHqzkF2f4ZE64A==}
+
   '@snack-uikit/utils@4.0.0':
     resolution: {integrity: sha512-u+NGDWLMU+zcCC3sBJ+rmMDpMSVw4Z+VLj+cnf2hHHMNtY1xI4yTnuyZ0AMSxoOi2LXUTwtttYCS7/MoRjq/3A==}
+
+  '@snack-uikit/utils@4.0.1':
+    resolution: {integrity: sha512-7v0JtRBstfcia+LwI30Hfa2OAqxkkE6LMI1YlejpfN5pn6uBUPOScw2R1I5aKalMDHYFYJNjGhdyBUUyiSbCAA==}
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
@@ -10192,7 +10214,21 @@ snapshots:
 
   '@sinclair/typebox@0.34.41': {}
 
+  '@snack-uikit/typography@0.8.12(react@19.2.1)':
+    dependencies:
+      '@snack-uikit/utils': 4.0.1(react@19.2.1)
+      classnames: 2.5.1
+    transitivePeerDependencies:
+      - react
+
   '@snack-uikit/utils@4.0.0(react@19.2.1)':
+    dependencies:
+      react-swipeable: 7.0.2(react@19.2.1)
+      uncontrollable: 8.0.4(react@19.2.1)
+    transitivePeerDependencies:
+      - react
+
+  '@snack-uikit/utils@4.0.1(react@19.2.1)':
     dependencies:
       react-swipeable: 7.0.2(react@19.2.1)
       uncontrollable: 8.0.4(react@19.2.1)
