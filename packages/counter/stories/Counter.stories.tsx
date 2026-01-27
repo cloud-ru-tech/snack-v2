@@ -1,8 +1,8 @@
-import type { Meta, StoryObj, StoryFn } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 import cn from 'classnames';
 import { Fragment } from 'react';
-import { Counter, CounterProps, APPEARANCE, SIZE, VARIANT, DEFAULT_PLUS_LIMIT } from './src';
 
+import { APPEARANCE, Counter, CounterProps, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '../src';
 import styles from './styles.module.scss';
 
 const sizes = Object.values(SIZE);
@@ -121,20 +121,20 @@ const Template: StoryFn<StoryProps> = ({ ...args }) => {
             {size}
           </div>
         ))}
-        {variants.map(variant => (
+        {variants.map((variant) => (
           <div key={variant} className={headerCellClassnames}>
             {variant}
           </div>
         ))}
-        {variants.map(variant => (
+        {variants.map((variant) => (
           <div key={variant} className={headerCellClassnames}>
             {variant}
           </div>
         ))}
-        {appearances.map(appearance => (
+        {appearances.map((appearance) => (
           <Fragment key={appearance}>
             <div className={headerCellClassnames}>{appearance}</div>
-            {variants.map(variant => (
+            {variants.map((variant) => (
               <div key={variant} className={styles.cell}>
                 <Counter
                   value={variant === VARIANT.Count ? 9 : 9000}
@@ -145,7 +145,7 @@ const Template: StoryFn<StoryProps> = ({ ...args }) => {
                 />
               </div>
             ))}
-            {variants.map(variant => (
+            {variants.map((variant) => (
               <div key={variant} className={styles.cell}>
                 <Counter
                   value={variant === VARIANT.Count ? 9 : 9000}

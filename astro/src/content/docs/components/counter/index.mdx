@@ -1,17 +1,17 @@
 ---
 title: Counter
 description: Counter component
-version: '0.1.0'
+version: "0.1.0"
 ---
 
-import { Counter, APPEARANCE, SIZE, VARIANT, COLOR } from '../src';
+import { Counter, APPEARANCE, SIZE, VARIANT, COLOR } from '@packages/counter/src';
 import {
   ExampleContainer,
   ExampleRow,
   ExampleGrid,
   ExampleItem,
-} from '../../../astro/src/components/mdx';
-import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../astro/src/components/mdx';
+} from '../../../../components/mdx';
+import { LocaleProvider, LocaleSwitch, LocaleCase } from '../../../../components/mdx';
 import { translations } from './i18n';
 
 export const t = translations;
@@ -26,11 +26,11 @@ export const t = translations;
 
 ## Changelog
 
-import Changelog from '../../../astro/src/components/astro/Changelog.astro';
+import Changelog from '../../../../components/astro/Changelog.astro';
 
 <Changelog packageName="counter" />
 
-import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
+import LlmLink from '../../../../components/astro/LlmLink.astro';
 
 <LlmLink component="counter" />
 
@@ -142,7 +142,7 @@ import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
 
 ## {t[frontmatter.locale || 'en'].storybook.title}
 
-import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
+import StorybookIframe from '../../../../components/astro/StorybookIframe.astro';
 
 <StorybookIframe storyId="components-counter--basic" />
 

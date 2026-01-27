@@ -19,6 +19,7 @@ const __dirname = dirname(__filename);
 type SyncOptions = {
   packagesRoot?: string;
   contentDir?: string;
+  locales?: string[];
 };
 
 /**
@@ -34,7 +35,7 @@ type SyncOptions = {
  */
 // eslint-disable-next-line import/no-default-export
 export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegration {
-  const { contentDir = 'src/content/docs' } = options;
+  const { contentDir = 'src/content/docs', locales = ['en', 'ru'] } = options;
   // __dirname points to astro/src/integrations, so we need to go up 3 levels to get to project root
   const projectRoot = join(__dirname, '../../..');
   const packagesPath = join(projectRoot, 'packages');
@@ -112,6 +113,8 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
             /from\s+['"]\.\.\/src['"]/g,
             `from '@packages/${packageName}/src'`
           );
+
+          // Transform new Astro paths
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
             `from '../../../../components/mdx'`
@@ -120,16 +123,63 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
             /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
             `from '../../../../components/mdx'`
           );
-          // Transform Astro component imports
+
+          // Transform old apps/docs paths (for backward compatibility)
+          content = content.replace(
+            /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
+            `from '../../../../components/mdx'`
+          );
+          content = content.replace(
+            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
+            `from '../../../../components/mdx'`
+          );
+
+          // Transform Astro component imports (new paths)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
             `from '../../../../components/astro/$1'`
           );
 
+          // Transform Astro component imports (old apps/docs paths)
+          content = content.replace(
+            /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/astro\/([^'"]+)['"]/g,
+            `from '../../../../components/astro/$1'`
+          );
+
           writeFileSync(targetFilePath, content, 'utf-8');
           // File synced successfully
+        } else if (item.endsWith('.ts') || item.endsWith('.tsx')) {
+          // Process TypeScript files - convert require to import
+          const targetFilePath = join(targetDir, item);
+          let tsContent = readFileSync(sourcePath, 'utf-8');
+
+          // Find all require statements for JSON files
+          const requireMatches: Array<{ match: string; filename: string; varName: string }> = [];
+          const requireRegex = /require\(['"]\.\/([^'"]+)\.json['"]\)/g;
+          let match;
+
+          while ((match = requireRegex.exec(tsContent)) !== null) {
+            const filename = match[1];
+            const varName = `${filename}Translations`;
+            requireMatches.push({ match: match[0], filename, varName });
+          }
+
+          // Replace require with variable names
+          for (const { match, varName } of requireMatches) {
+            tsContent = tsContent.replace(match, varName);
+          }
+
+          // Add imports at the beginning
+          if (requireMatches.length > 0) {
+            const imports = requireMatches
+              .map(({ filename, varName }) => `import ${varName} from './${filename}.json';`)
+              .join('\n');
+            tsContent = `${imports}\n${tsContent}`;
+          }
+
+          writeFileSync(targetFilePath, tsContent, 'utf-8');
         } else if (stat.isFile() && !item.endsWith('.mdx')) {
-          // Copy other files (like i18n JSON files)
+          // Copy other files (like JSON files)
           const targetFilePath = join(targetDir, item);
           copyFileSync(sourcePath, targetFilePath);
         }
@@ -167,6 +217,61 @@ version: "${version}"
 ${migrationContent}`;
       writeFileSync(join(targetPath, 'MIGRATION.mdx'), migrationMdx, 'utf-8');
       console.info(`[sync-package-docs] ✅ Synced ${packageName}/MIGRATION.mdx`);
+    }
+
+    // Create localized versions for each locale
+    const syncedIndexPath = join(targetPath, 'index.mdx');
+    if (existsSync(syncedIndexPath)) {
+      for (const locale of locales) {
+        const localeComponentsPath = join(
+          __dirname,
+          '../..',
+          contentDir,
+          locale,
+          'components',
+          packageName
+        );
+        mkdirSync(localeComponentsPath, { recursive: true });
+
+        // Copy index.mdx with locale in frontmatter
+        let localeContent = readFileSync(syncedIndexPath, 'utf-8');
+
+        // Update frontmatter to include locale
+        const frontmatterMatch = localeContent.match(/^---\n([\s\S]*?)\n---/);
+        if (frontmatterMatch) {
+          let frontmatter = frontmatterMatch[1];
+
+          // Add or update locale
+          if (frontmatter.includes('locale:')) {
+            frontmatter = frontmatter.replace(/locale:\s*['"]?[^'"]*['"]?/g, `locale: ${locale}`);
+          } else {
+            frontmatter = `${frontmatter}\nlocale: ${locale}`;
+          }
+
+          localeContent = localeContent.replace(/^---\n[\s\S]*?\n---/, `---\n${frontmatter}\n---`);
+        } else {
+          // Add frontmatter with locale if missing
+          localeContent = `---\nlocale: ${locale}\n---\n\n${localeContent}`;
+        }
+
+        // Fix import paths for localized versions
+        // From en/components/avatar/ to src/components/ we need to go up 5 levels
+        // ../../../../components/mdx -> ../../../../../components/mdx
+        localeContent = localeContent.replace(
+          /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\//g,
+          "from '../../../../../"
+        );
+
+        // Fix i18n import to point to common location
+        // ./i18n -> ../../../components/{package}/i18n
+        localeContent = localeContent.replace(
+          /from\s+['"]\.\/i18n['"]/g,
+          `from '../../../components/${packageName}/i18n'`
+        );
+
+        writeFileSync(join(localeComponentsPath, 'index.mdx'), localeContent, 'utf-8');
+      }
+      console.info(`[sync-package-docs] ✅ Created localized versions for ${packageName}`);
     }
 
     // Generate README.md from docs/index.mdx (stripped version)

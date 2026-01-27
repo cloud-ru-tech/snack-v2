@@ -13,9 +13,10 @@ const withBase = (path: string) => {
 // Get current language from URL or default to 'en'
 const currentLang = Astro.currentLocale || 'en';
 
-// Get all docs from components directory for current locale
+// Get all docs from components directory (without locale prefix since they're in components/)
 const componentsDocs = await getCollection('docs', ({ id }) => {
-  return id.startsWith(`${currentLang}/components/`);
+  // Check both patterns: "components/" (new) and "${currentLang}/components/" (old)
+  return id.startsWith('components/') || id.startsWith(`${currentLang}/components/`);
 });
 
 // Get all docs from guides directory for current locale
@@ -30,9 +31,27 @@ const componentsByPackage = new Map();
 // Сначала собираем все файлы по пакетам
 componentsDocs.forEach((doc) => {
   const parts = doc.id.split('/');
-  // parts[0] is locale, parts[1] is 'components', parts[2] is package name
+  
+  // Определяем, есть ли языковой префикс
+  const hasLocalePrefix = parts[0] === currentLang;
+  
+  // parts[0] может быть locale или 'components'
+  // parts[1] может быть 'components' или packageName
+  // parts[2] может быть packageName или fileName
+  let packageName: string;
+  let startIndex: number;
+  
+  if (hasLocalePrefix) {
+    // Old structure: en/components/avatar/index.mdx
+    packageName = parts[2];
+    startIndex = 2;
+  } else {
+    // New structure: components/avatar/index.mdx
+    packageName = parts[1];
+    startIndex = 1;
+  }
+  
   const fileName = parts[parts.length - 1].toLowerCase();
-  const packageName = parts[2];
   const title = doc.data.title?.toLowerCase() || '';
   const description = doc.data.description?.toLowerCase() || '';
   
@@ -57,9 +76,15 @@ componentsDocs.forEach((doc) => {
     componentsByPackage.set(packageName, []);
   }
   
-  const relativePath = fileName === 'index'
-    ? `${currentLang}/components/${packageName}/`
-    : `${currentLang}/components/${parts.slice(2).join('/')}/`;
+  // Build relative path based on structure
+  let relativePath: string;
+  if (fileName === 'index') {
+    relativePath = `${currentLang}/components/${packageName}/`;
+  } else {
+    const pathParts = hasLocalePrefix ? parts.slice(2) : parts.slice(1);
+    relativePath = `${currentLang}/components/${pathParts.join('/')}/`;
+  }
+  
   const slug = withBase(relativePath);
   
   componentsByPackage.get(packageName)!.push({

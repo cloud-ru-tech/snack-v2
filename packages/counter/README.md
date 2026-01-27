@@ -1,114 +1,35 @@
-# Counter
-
-Counter component
-
-**Version:** `0.1.0`
-
-**Package:** `@design-system/counter`
-
----
-
-export const t = translations;
-
-<LocaleProvider locale=>
-
-# 
-
-**Version:** `0.1.0`
-
+**Version:** ``
 ## Changelog
-
-<LlmLink component="counter" />
-
-## 
-
 - ****
 - ****
 - ****
 - ****
 - ****
 - ****
-
-## 
-
-### 
-
-### 
-
-### 
-
-### 
-
-### 
-
-### 
-
-## 
-
-## 
-
-### 
-
 ```tsx
-
-export function NotificationBadge() {
-  return <Counter value={9} />;
-}
+export function NotificationBadge()  />;
 ```
-
-### 
-
 ```tsx
-
-export function NotificationBadge() {
-  return (
-    <>
-      <Counter value={9} variant={VARIANT.Count} />
-      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
-      <Counter value={8500} variant={VARIANT.CountK} />
+export function NotificationBadge()  variant= />
+      <Counter value= variant= plusLimit= />
+      <Counter value= variant= />
     </>
   );
-}
 ```
-
-### 
-
 ```tsx
-
-export function NotificationBadge() {
-  return (
-    <Counter
-      value={10}
-      appearance={APPEARANCE.Red}
-      size={SIZE.S}
+export function NotificationBadge() 
+      appearance=
+      size=
     />
   );
-}
 ```
-
-### 
-
 ```tsx
-
-export function NotificationBadge() {
-  return (
-    <Counter
-      value={150}
-      variant={VARIANT.CountPlus}
-      plusLimit={100}
+export function NotificationBadge() 
+      variant=
+      plusLimit=
     />
   );
-}
 ```
-
-## 
-
-### 
-
-- 
-
-### 
-
 - 
 - 
 - 
@@ -116,23 +37,16 @@ export function NotificationBadge() {
 - 
 - 
 - 
-
-## 
-
 - 
 - 
 - 
-
-## 
-
+- 
 1. ****
 2. ****
 3. ****
 4. ****
 5. ****
 6. ****
-
-</LocaleProvider>
 
 ---
 

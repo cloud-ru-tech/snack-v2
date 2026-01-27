@@ -1,7 +1,8 @@
 {
   "files": [],
   "references": [
-    { "path": "./avatar/tsconfig.esm.json" }
+    { "path": "./avatar/tsconfig.esm.json" },
+    { "path": "./counter/tsconfig.esm.json" }
   ],
   "compilerOptions": {
     "target": "es6",

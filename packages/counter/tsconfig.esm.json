@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.esm.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/esm",
+    "composite": true
+  },
+  "include": ["./src", "../../types"],
+  "exclude": ["./dist", "./stories", "./__tests__", "./__test__", "./docs"]
+}
