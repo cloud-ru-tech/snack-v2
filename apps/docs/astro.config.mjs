@@ -123,6 +123,9 @@ export default defineConfig({
         ).pathname,
       },
     },
+    ssr: {
+      noExternal: ['nanoid', 'starlight-llms-txt', '@snack-uikit/utils'],
+    },
   },
   markdown: {
     syntaxHighlight: false,
