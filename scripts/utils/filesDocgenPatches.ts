@@ -28,6 +28,16 @@ import {
 
 **Version:** \`{frontmatter.version}\`
 
+## Installation
+
+\`\`\`bash
+npm install @design-system/${config.packageRootFolderName}
+# or
+yarn add @design-system/${config.packageRootFolderName}
+# or
+pnpm add @design-system/${config.packageRootFolderName}
+\`\`\`
+
 ## Changelog
 
 import Changelog from '../../../astro/src/components/astro/Changelog.astro';
