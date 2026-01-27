@@ -120,6 +120,11 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
             /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
             `from '../../../../components/mdx'`
           );
+          // Transform Astro component imports
+          content = content.replace(
+            /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
+            `from '../../../../components/astro/$1'`
+          );
 
           writeFileSync(targetFilePath, content, 'utf-8');
           // File synced successfully

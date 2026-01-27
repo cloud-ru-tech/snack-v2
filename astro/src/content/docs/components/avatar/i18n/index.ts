@@ -1,8 +1,11 @@
 // JSON translations - imported dynamically
 // Type definitions can be kept here if needed for TypeScript support
-export type AvatarTranslations = typeof import('./en.json');
+import enTranslations from './en.json';
+import ruTranslations from './ru.json';
+
+export type AvatarTranslations = typeof enTranslations;
 
 export const translations = {
-  en: require('./en.json'),
-  ru: require('./ru.json'),
+  en: enTranslations,
+  ru: ruTranslations,
 };
