@@ -101,6 +101,13 @@ function Example() {
       options: ['accent', 'decor'],
       description: 'Цветовая схема',
     },
+    'data-test-id': {
+      control: 'text',
+      description: 'Test ID для автотестов',
+      table: {
+        category: 'HTML Attributes',
+      },
+    },
   },
 };
 

@@ -43,3 +43,7 @@ astro/src/content/docs/ru/components/
 .cache
 
 
+
+# Playwright test results
+playwright/test-results/
+test-results/

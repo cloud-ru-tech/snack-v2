@@ -88,6 +88,13 @@ function UserProfile() {
       control: 'boolean',
       description: 'Отображать два символа вместо одного',
     },
+    'data-test-id': {
+      control: 'text',
+      description: 'Test ID для автотестов',
+      table: {
+        category: 'HTML Attributes',
+      },
+    },
   },
 };
 
