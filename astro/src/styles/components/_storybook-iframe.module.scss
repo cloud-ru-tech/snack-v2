@@ -10,7 +10,10 @@
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-lg;
   background: base.$sn-theme-color-neutral-background2-level;
-  transition: box-shadow $transition-base;
+  transition: all $transition-base;
+  display: block;
+  margin: $spacing-lg base.$sn-primitive-dimension-0;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
 
   &:hover {
     box-shadow: base.$sn-box-shadow-elevation-level2;
@@ -19,5 +22,13 @@
   &:focus {
     outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
     outline-offset: base.$sn-primitive-dimension-2;
+  }
+
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  }
+
+  :global(.sn-dark) & {
+    border-color: base.$sn-theme-color-neutral-decor-transparent;
   }
 }

@@ -5,9 +5,27 @@ interface Props {
   storyId: string;
   height?: string;
   width?: string;
+  /**
+   * Показывать ли панель с контроллами и кодом
+   * @default false - только компонент
+   * true - полный Storybook UI с контроллами
+   */
+  showControls?: boolean;
+  /**
+   * Режим отображения
+   * @default 'story' - только компонент
+   * 'docs' - документация с контроллами и кодом
+   */
+  viewMode?: 'story' | 'docs';
 }
 
-const { storyId, height = '420px', width = '100%' } = Astro.props;
+const { 
+  storyId, 
+  height = '420px', 
+  width = '100%',
+  showControls = false,
+  viewMode = 'story'
+} = Astro.props;
 
 // Determine Storybook base URL based on environment
 const getStorybookBaseUrl = () => {
@@ -24,7 +42,20 @@ const getStorybookBaseUrl = () => {
 };
 
 const baseUrl = getStorybookBaseUrl();
-const iframeUrl = `${baseUrl}/iframe.html?id=${storyId}&viewMode=story`;
+
+// Если showControls=true, используем полную страницу story с панелями
+// Иначе используем iframe.html для компактного отображения
+let iframeUrl: string;
+if (showControls) {
+  // Story с контроллами справа, но без sidebar слева
+  // nav=0 - скрыть sidebar
+  // panel=right - показать панель контроллов справа
+  // shortcuts=0 - скрыть shortcuts toolbar
+  iframeUrl = `${baseUrl}/?path=/story/${storyId}&nav=0&panel=right&shortcuts=0`;
+} else {
+  // Только компонент без панелей
+  iframeUrl = `${baseUrl}/iframe.html?id=${storyId}&viewMode=${viewMode}`;
+}
 ---
 
 <iframe

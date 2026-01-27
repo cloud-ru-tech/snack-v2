@@ -10,7 +10,7 @@
 .labelText {
   color: base.$sn-theme-color-neutral-text;
 
-  @include base.composite-var(base.$sn-regular, 'label', 'm');
+  @include base.composite-var(base.$sn-regular-label-m);
 }
 
 .select {
