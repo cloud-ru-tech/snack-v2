@@ -1,0 +1,12 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.panel {
+  display: flex;
+  gap: base.$sn-adaptive-spacing-interval-l;
+  margin-bottom: base.$sn-adaptive-spacing-interval-l;
+  padding: base.$sn-adaptive-spacing-control-container-horizontal-m;
+  border-radius: base.$sn-adaptive-radius-xs;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: base.$sn-theme-color-neutral-background1-level;
+}

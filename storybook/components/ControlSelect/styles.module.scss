@@ -1,0 +1,36 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: base.$sn-adaptive-spacing-interval-m;
+  font-size: base.$sn-primitive-font-font-size-14;
+}
+
+.labelText {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular, 'label', 'm');
+}
+
+.select {
+  padding: base.$sn-adaptive-spacing-control-container-vertical-s
+    base.$sn-adaptive-spacing-control-container-horizontal-s;
+  border-radius: base.$sn-adaptive-radius-2xs;
+  border: base.$sn-primitive-stroke-weight-stroke-regular solid
+    base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  font-size: base.$sn-primitive-font-font-size-14;
+  cursor: pointer;
+  background-color: base.$sn-theme-color-neutral-background;
+  color: base.$sn-theme-color-neutral-text;
+
+  &:hover {
+    border-color: base.$sn-theme-color-material-state-layer-regular-hovered-border-color;
+  }
+
+  &:focus {
+    outline: base.$sn-primitive-stroke-weight-stroke-semi-bold solid
+      base.$sn-theme-color-material-state-layer-activated-default-border-color;
+    outline-offset: base.$sn-primitive-dimension-2;
+  }
+}
