@@ -1,0 +1,15 @@
+/**
+ * Component Styles Index
+ * Экспорт всех SCSS модулей компонентов
+ * 
+ * Можно импортировать все стили одной строкой:
+ * @use 'astro/src/styles/components' as components;
+ */
+
+@forward './theme-switcher.module.scss';
+@forward './theme-select.module.scss';
+@forward './version-switcher.module.scss';
+@forward './storybook-iframe.module.scss';
+@forward './llm-link.module.scss';
+@forward './llms-links.module.scss';
+@forward './changelog.module.scss';

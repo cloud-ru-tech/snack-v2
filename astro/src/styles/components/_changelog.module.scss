@@ -1,0 +1,96 @@
+/**
+ * Changelog Component Styles
+ * Использует SCSS переменные из design system
+ */
+
+@use '../variables' as *;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.changelog-container {
+  margin: $spacing-xl base.$sn-primitive-dimension-0;
+  padding: $spacing-lg;
+  background: base.$sn-theme-color-neutral-background1-level;
+  border-radius: $radius-lg;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
+
+  // Theme-specific styles
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  }
+
+  :global(.sn-dark) & {
+    border-color: base.$sn-theme-color-neutral-decor-transparent;
+  }
+}
+
+.changelog-header {
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+
+  :global(.sn-light) & {
+    border-bottom-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  }
+
+  h2 {
+    margin: base.$sn-primitive-dimension-0;
+
+    @include base.composite-var(base.$sn-regular-headline-s);
+    color: base.$sn-theme-color-available-version-text-main;
+  }
+}
+
+.changelog-content {
+  color: base.$sn-theme-color-available-version-text-main;
+
+  p {
+    margin-bottom: $spacing-md;
+    color: base.$sn-theme-color-available-version-text-secondary;
+  }
+}
+
+.changelog-button {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  background: base.$sn-theme-color-primary-accent;
+  color: base.$sn-theme-color-primary-on-accent;
+  border-radius: $radius-md;
+  text-decoration: none;
+
+  @include base.composite-var(base.$sn-regular-title-s);
+  transition: all $transition-base;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
+
+  &:hover {
+    background: base.$sn-theme-color-primary-text;
+    transform: translateY(calc(-1 * #{base.$sn-primitive-dimension-1}));
+    box-shadow: base.$sn-box-shadow-elevation-level2;
+  }
+
+  &:active {
+    background: base.$sn-theme-color-primary-text;
+    transform: translateY(base.$sn-primitive-dimension-0);
+    box-shadow: base.$sn-box-shadow-elevation-level1;
+  }
+}
+
+.changelog-inline {
+  margin: $spacing-md base.$sn-primitive-dimension-0;
+}
+
+.changelog-link {
+  color: base.$sn-theme-color-primary-accent;
+  text-decoration: none;
+
+  @include base.composite-var(base.$sn-regular-body-m);
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  transition: color $transition-base;
+
+  &:hover {
+    color: base.$sn-theme-color-primary-text;
+    text-decoration: underline;
+  }
+}

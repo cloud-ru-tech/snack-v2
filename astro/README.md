@@ -1,419 +1,294 @@
-# Design System Documentation
+# Astro Documentation - Architecture
 
-Документация компонентов дизайн-системы на базе Astro Starlight.
-
-## Структура документации
-
-**Важно:** Документация по компонентам должна описываться **только** рядом с компонентом в `packages/<package-name>/docs/**/*.mdx`. Файлы в `astro/src/content/docs/components/` генерируются автоматически и не должны редактироваться вручную.
-
-### 1. Рядом с компонентом (единственный источник)
-
-Документация описывается в `packages/<package-name>/docs/**/*.mdx` рядом с компонентом. Это позволяет держать документацию рядом с кодом и версионировать её вместе с компонентом.
-
-**Пример:**
+## Структура проекта
 
 ```
-packages/button/docs/
-  ├── index.mdx          # Основная документация Button
-  └── icon-button.mdx    # Документация IconButton
+astro/
+├── src/
+│   ├── components/
+│   │   ├── astro/           # Astro компоненты
+│   │   └── mdx/             # React компоненты для MDX (уже используют CSS модули)
+│   ├── scripts/             # TypeScript скрипты для клиентской логики
+│   │   ├── theme-switcher.ts
+│   │   ├── theme-select-toolbar.ts
+│   │   ├── version-switcher.ts
+│   │   ├── storybook-iframe-sync.ts
+│   │   ├── llm-link-copy.ts
+│   │   └── theme-manager.ts
+│   ├── styles/
+│   │   ├── _variables.scss   # Общие переменные + импорт из figma-variables
+│   │   ├── components/        # SCSS модули для компонентов
+│   │   │   ├── _theme-switcher.module.scss
+│   │   │   ├── _theme-select.module.scss
+│   │   │   ├── _version-switcher.module.scss
+│   │   │   ├── _storybook-iframe.module.scss
+│   │   │   ├── _llm-link.module.scss
+│   │   │   ├── _llms-links.module.scss
+│   │   │   └── _changelog.module.scss
+│   │   ├── global.css         # Глобальные стили и шрифты
+│   │   └── starlight-overrides.css
+│   ├── content/              # MDX контент
+│   ├── layouts/              # Layout компоненты
+│   └── pages/                # Страницы
 ```
 
-**Импорты в документации:**
+## Принципы организации
 
-```mdx
-import { Button } from '../src';
-```
+### 1. Модульные SCSS стили
 
-Интеграция `sync-package-docs` автоматически синхронизирует эти файлы в `src/content/docs/components/<package-name>/` и преобразует импорты в `@packages/<package-name>/src`.
+Все компоненты используют SCSS модули вместо инлайн стилей:
 
-### 2. В Astro проекте (паттерны, гайдлайны, общая документация)
-
-Документация может быть описана напрямую в `src/content/docs/guides/**/*.mdx` для документации, которая:
-
-- Относится к нескольким компонентам одновременно (паттерны использования)
-- Описывает общие принципы и гайдлайны дизайн-системы
-- Не привязана к конкретному пакету
-
-**Важно:**
-
-- НЕ создавайте файлы в `src/content/docs/components/` — эта директория полностью управляется автоматической синхронизацией из `packages/*/docs/`
-- Используйте `src/content/docs/guides/` для документации паттернов и гайдлайнов
-
-**Пример:**
-
-```
-src/content/docs/
-  ├── index.mdx                              # Главная страница
-  ├── guides/                                # Паттерны и гайдлайны
-  │   ├── button-layout-patterns.mdx        # Паттерны использования кнопок
-  │   └── accessibility-guidelines.mdx      # Гайдлайны по доступности
-  └── components/                            # ⚠️ Автогенерируется из packages/*/docs/
-      ├── button/
-      └── link/
-```
-
-**Пример документации паттерна:**
-
-```mdx
+```astro
 ---
-title: Паттерны использования кнопок в layout
-description: Рекомендации по размещению и группировке кнопок
-order: 1
+import styles from '../../styles/components/_component-name.module.scss';
 ---
 
-# Паттерны использования кнопок в layout
-
-Рекомендации по правильному размещению кнопок...
-
-## Основные принципы
-
-[Содержание гайдлайна]
-
-## См. также
-
-- [Button](/components/button/) — документация компонента
-- [Icon Button](/components/button/icon-button/) — документация компонента
+<div class={styles['component-class']}>
+  <!-- ... -->
+</div>
 ```
 
-## Автоматическая синхронизация
+**Преимущества:**
+- ✅ Переиспользование стилей
+- ✅ Использование SCSS переменных и миксинов
+- ✅ Изоляция стилей (CSS Modules)
+- ✅ Легче рефакторить и поддерживать
+- ✅ Типизация классов
 
-Интеграция `sync-package-docs` автоматически:
+### 2. Design Tokens из figma-variables
 
-1. Сканирует все `packages/*/docs/**/*.mdx`
-2. Читает версию из `package.json` каждого пакета
-3. Добавляет или обновляет поле `version` в frontmatter документации
-4. **Генерирует `README.md`** из `docs/index.mdx` (усеченная версия без интерактивных компонентов)
-5. Синхронизирует `CHANGELOG.md` из корня пакета в `CHANGELOG.mdx` с frontmatter
-6. Синхронизирует `MIGRATION.md` из корня пакета в `MIGRATION.mdx` с frontmatter (если существует)
-7. Копирует файлы в `src/content/docs/components/<package-name>/`
-8. Преобразует относительные импорты (`../src`) в алиасы (`@packages/<name>/src`)
-9. Отслеживает изменения и пересинхронизирует при обновлении
+Все переменные импортируются из `@sbercloud/figma-variables`:
 
-Синхронизация происходит:
+```scss
+// astro/src/styles/_variables.scss
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module.scss' as *;
 
-- При запуске `astro dev` или `astro build`
-- При изменении файлов в `packages/*/docs/` (watch mode)
-
-**Примечание:**
-
-- Синхронизированные файлы в `src/content/docs/components/` генерируются автоматически
-- Эти файлы добавлены в `.gitignore` и не попадают в git
-- **Не редактируйте их напрямую** — изменения будут потеряны при следующей синхронизации
-- **Всегда редактируйте исходные файлы в `packages/*/docs/`**
-
-### Changelog
-
-Если в корне пакета есть `CHANGELOG.md`, он автоматически синхронизируется в документацию:
-
-```
-packages/button/
-  ├── CHANGELOG.md          # ← Исходный файл
-  └── docs/
-      └── index.mdx
+// Теперь доступны все миксины и функции:
+// - simple-var($map, $keys...)
+// - composite-var($map, $keys...)
+// - outline-var($map, $keys...)
 ```
 
-После синхронизации:
+**Доступные CSS переменные:**
+- `--sn-theme-color-*` - цвета темы
+- `--sn-theme-spacing-*` - отступы
+- `--sl-color-*` - цвета Starlight
 
-```
-src/content/docs/components/button/
-  ├── CHANGELOG.mdx         # ← Автоматически создан с frontmatter
-  └── index.mdx
-```
+### 3. Вынесенные скрипты
 
-Changelog доступен по адресу `/components/<package-name>/CHANGELOG` и автоматически появляется в навигации Starlight.
+Клиентская логика вынесена в отдельные TypeScript файлы:
 
-**Формат CHANGELOG.md:**
-
-Рекомендуется использовать формат [Keep a Changelog](https://keepachangelog.com/):
-
-```markdown
-# Changelog
-
-## [0.1.0] - 2024-01-15
-
-### Added
-
-- Initial release
-- Support for variants
-
-## [Unreleased]
-
-### Planned
-
-- New features
+```astro
+<script>
+  import '../../scripts/theme-switcher';
+</script>
 ```
 
-**Использование в документации:**
+**Преимущества:**
+- ✅ Переиспользование между компонентами
+- ✅ Типизация
+- ✅ Легче тестировать
+- ✅ Auto-init с поддержкой SPA навигации Astro
 
-```mdx
+## Использование переменных
+
+### В SCSS модулях
+
+```scss
+@use '../variables' as *;
+
+.my-component {
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  transition: all $transition-base;
+  
+  // Используем design tokens через CSS переменные
+  background: var(--sn-theme-color-neutral-background1-level);
+  color: var(--sn-theme-color-text-primary);
+}
+```
+
+### Доступные SCSS переменные
+
+```scss
+// Spacing
+$spacing-xs: 0.25rem;  // 4px
+$spacing-sm: 0.5rem;   // 8px
+$spacing-md: 1rem;     // 16px
+$spacing-lg: 1.5rem;   // 24px
+$spacing-xl: 2rem;     // 32px
+
+// Border radius
+$radius-sm: 0.25rem;   // 4px
+$radius-md: 0.5rem;    // 8px
+$radius-lg: 0.75rem;   // 12px
+
+// Typography
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-md: 1rem;      // 16px
+$font-size-lg: 1.125rem;  // 18px
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// Breakpoints
+$breakpoint-mobile: 640px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+```
+
+## Создание нового компонента
+
+### 1. Создайте SCSS модуль
+
+```scss
+// astro/src/styles/components/_my-component.module.scss
+@use '../variables' as *;
+
+.my-component {
+  padding: $spacing-md;
+  background: var(--sn-theme-color-neutral-background1-level);
+  border-radius: $radius-md;
+  
+  &__title {
+    font-size: $font-size-lg;
+    color: var(--sn-theme-color-text-primary);
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-sm;
+  }
+}
+```
+
+### 2. Создайте компонент
+
+```astro
 ---
-title: Button
-version: '0.1.0'
----
+import styles from '../../styles/components/_my-component.module.scss';
 
-import Changelog from '../../../../astro/src/components/Changelog.astro';
+interface Props {
+  title: string;
+}
 
-# Button
-
-<Changelog packageName="button" />
-```
-
-## Структура Starlight
-
-Starlight автоматически генерирует навигацию в сайдбаре из двух источников:
-
-1. **Guides** — из `src/content/docs/guides/` (паттерны и гайдлайны)
-2. **Components** — из `src/content/docs/components/` (синхронизированные из пакетов)
-
-Порядок определяется полем `order` в frontmatter:
-
-```mdx
----
-title: Button
-description: Action trigger component
-order: 1
----
-```
-
-## Добавление нового компонента
-
-1. Создайте документацию в `packages/<package-name>/docs/index.mdx`
-2. При необходимости добавьте дополнительные страницы в `packages/<package-name>/docs/`
-3. Запустите dev сервер - документация синхронизируется автоматически
-4. Документация появится в сайдбаре Starlight
-
-## Переопределение документации
-
-**Не рекомендуется.** Если нужно изменить документацию компонента, редактируйте исходный файл в `packages/<package-name>/docs/`. Синхронизация автоматически обновит файлы в Astro.
-
-## README.md генерация
-
-Для каждого пакета автоматически генерируется `README.md` из `docs/index.mdx`. README содержит усеченную версию документации:
-
-- **Удаляются** интерактивные компоненты (ExampleContainer, ExampleRow, ExampleGrid, StorybookIframe, Changelog)
-- **Сохраняются** текстовые описания, примеры кода, API документация
-- **Добавляются** ссылки на CHANGELOG.md и MIGRATION.md
-
-README.md синхронизируется автоматически при изменении `docs/index.mdx` и включается в npm пакет через поле `files` в `package.json`.
-
-**Структура:**
-
-```
-packages/avatar/
-  ├── package.json
-  ├── README.md          # ← Автоматически генерируется из docs/index.mdx
-  ├── CHANGELOG.md
-  ├── MIGRATION.md
-  └── docs/
-      └── index.mdx      # ← Единственный источник правды
-```
-
-## Migration Guide
-
-Для каждого пакета можно создать `MIGRATION.md` с инструкциями для LLM агентов по миграции между версиями:
-
-```
-packages/avatar/
-  ├── MIGRATION.md       # ← Инструкции для LLM агентов
-  └── docs/
-      └── index.mdx
-```
-
-После синхронизации:
-
-```
-src/content/docs/components/avatar/
-  ├── MIGRATION.mdx      # ← Автоматически создан с frontmatter
-  └── index.mdx
-```
-
-Migration Guide доступен по адресу `/components/<package-name>/MIGRATION` и автоматически появляется в навигации Starlight.
-
-**Формат MIGRATION.md:**
-
-````markdown
-# Migration Guide
-
-## Migration from X.Y.Z to A.B.C
-
-### Breaking Changes
-
-1. **Prop Rename: `oldProp` → `newProp`**
-   - **Reason:** Better naming convention
-   - **Action Required:** Replace all instances
-   - **Example:**
-
-     ```tsx
-     // Before
-     <Component oldProp="value" />
-
-     // After
-     <Component newProp="value" />
-     ```
-
-### Migration Steps
-
-1. Update package version
-2. Apply code transformations
-3. Run type checking
-4. Test affected components
-````
-
-## Добавление гайдлайна или паттерна
-
-1. Создайте файл в `src/content/docs/guides/<name>.mdx`
-2. Добавьте frontmatter с `title`, `description` и `order`
-3. Используйте импорты компонентов через `@packages/<name>/src` или ссылки на документацию компонентов
-4. Файл автоматически появится в сайдбаре Starlight в разделе "Guides"
-
-**Пример:**
-
-```mdx
----
-title: Паттерны использования форм
-description: Рекомендации по созданию доступных форм
-order: 2
+const { title } = Astro.props;
 ---
 
-import { Button } from '@packages/button/src';
-import { Link } from '@packages/link/src';
-
-# Паттерны использования форм
-
-[Содержание гайдлайна с примерами использования нескольких компонентов]
-
-## См. также
-
-- [Button](/components/button/)
-- [Link](/components/link/)
+<div class={styles['my-component']}>
+  <h2 class={styles['my-component__title']}>{title}</h2>
+</div>
 ```
 
-## Версионирование документации
+### 3. (Опционально) Создайте скрипт
 
-Документация автоматически версионируется вместе с пакетами. Версия из `package.json` каждого пакета автоматически добавляется в frontmatter всех MDX файлов документации.
+```typescript
+// astro/src/scripts/my-component.ts
+export function initMyComponent(): void {
+  // ... логика
+}
 
-### Автоматическое версионирование
+// Auto-init
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMyComponent);
+  } else {
+    initMyComponent();
+  }
 
-При синхронизации документации:
-
-1. Интеграция `sync-package-docs` читает версию из `packages/<name>/package.json`
-2. Автоматически добавляет поле `version` в frontmatter каждого MDX файла
-3. Если версия уже есть в frontmatter, она обновляется до актуальной версии пакета
-
-**Пример frontmatter после синхронизации:**
-
-```mdx
----
-title: Button
-description: Action trigger component
-version: '0.1.0'
----
+  // Поддержка SPA навигации Astro
+  document.addEventListener('astro:page-load', initMyComponent);
+}
 ```
 
-### Использование версии в документации
-
-Версия доступна через frontmatter и может использоваться в компонентах:
-
-```mdx
----
-title: Button
-version: '0.1.0'
----
-
-import VersionSwitcher from '../../components/VersionSwitcher.astro';
-
-# Button
-
-<VersionSwitcher />
-
-Документация для версии {frontmatter.version}
+```astro
+<script>
+  import '../../scripts/my-component';
+</script>
 ```
 
-### Стратегии версионирования
+## Best Practices
 
-Подробная информация о различных подходах к версионированию документации описана в [VERSIONING.md](./VERSIONING.md).
+### ❌ Не делать
 
-**Рекомендуемый подход:**
+```astro
+<!-- Инлайн стили -->
+<div style="padding: 1rem; background: #fff;">
+  ...
+</div>
 
-- **В разработке:** Автоматическая синхронизация версии из `package.json`
-- **В production:** Версионированные деплои через Git tags (опционально)
-- **Version Switcher:** Компонент для переключения между версиями (см. `src/components/VersionSwitcher.astro`)
+<!-- Инлайн скрипты -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ... много кода
+  });
+</script>
 
-### Переключение версий
-
-Для добавления возможности переключения версий в документацию используйте компонент `VersionSwitcher`:
-
-```mdx
----
-title: Button
-version: '0.1.0'
----
-
-import VersionSwitcher from '../../components/VersionSwitcher.astro';
-
-# Button
-
-<VersionSwitcher />
-
-[Содержание документации]
+<!-- <style> блоки -->
+<style>
+  .component {
+    padding: 1rem;
+  }
+</style>
 ```
 
-**Примечание:** Для полноценной работы version switcher требуется настройка версионированных деплоев через Git tags (см. [VERSIONING.md](./VERSIONING.md)).
+### ✅ Делать
 
-## LLM.txt генерация
-
-Документация автоматически преобразуется в LLM-оптимизированный текстовый формат для AI-ассистентов и языковых моделей.
-
-### Генерируемые файлы
-
-При сборке проекта (`pnpm build`) автоматически создаются:
-
-1. **Основные файлы** (в корне dist):
-   - `llms.txt` — индекс всех страниц документации
-   - `llms-full.txt` — полная версия документации
-   - `llms-small.txt` — сокращенная версия
-   - `llms-components.txt` — документация всех компонентов
-   - `llms-guides.txt` — все руководства и гайды
-
-2. **Компонент-специфичные файлы** (в `_llms-txt/components/`):
-   - `llm-{component}.txt` — отдельный файл для каждого компонента
-   - `index.txt` — индекс всех компонент-специфичных файлов
-
-### Добавление LlmLink в документацию
-
-Для отображения ссылки на компонент-специфичный LLM.txt файл используйте компонент `LlmLink`:
-
-```mdx
+```astro
 ---
-title: Button
-version: '0.1.0'
+import styles from '../../styles/components/_component.module.scss';
 ---
 
-import Changelog from '../../../../astro/src/components/Changelog.astro';
-import LlmLink from '../../../../astro/src/components/LlmLink.astro';
+<div class={styles['component']}>
+  ...
+</div>
 
-# Button
-
-## Changelog
-
-<Changelog packageName="button" />
-
-<LlmLink component="button" />
-
-## Overview
-
-[Содержание документации]
+<script>
+  import '../../scripts/component';
+</script>
 ```
 
-### Шаблон для новых компонентов
+## Theme Support
 
-Используйте `COMPONENT_DOC_TEMPLATE.mdx` при создании документации для новых компонентов. Шаблон уже включает:
+Компоненты поддерживают темы через CSS переменные:
 
-- Правильную структуру frontmatter
-- Интеграцию Changelog
-- Компонент LlmLink
-- Стандартные секции документации
+```scss
+.my-component {
+  background: var(--sn-theme-color-neutral-background1-level);
+  
+  // Theme-specific styles
+  :global(.sn-light) & {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
 
-### Подробная документация
+  :global(.sn-dark) & {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+```
 
-Для детального описания системы генерации LLM.txt файлов см. [LLMS_COMPONENT_GENERATION.md](./LLMS_COMPONENT_GENERATION.md).
+## Адаптивность
+
+Используйте SCSS переменные для breakpoints:
+
+```scss
+@use '../variables' as *;
+
+.my-component {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+}
+```

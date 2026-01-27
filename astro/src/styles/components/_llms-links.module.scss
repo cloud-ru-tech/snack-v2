@@ -1,0 +1,105 @@
+/**
+ * LlmsLinks Component Styles
+ * Использует SCSS переменные из design system
+ */
+
+@use '../variables' as *;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.llms-links {
+  margin: $spacing-xl base.$sn-primitive-dimension-0;
+  padding: $spacing-lg;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-lg;
+  background: base.$sn-theme-color-neutral-background1-level;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
+
+  // Theme-specific styles
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  }
+
+  :global(.sn-dark) & {
+    border-color: base.$sn-theme-color-neutral-decor-transparent;
+  }
+
+  h2 {
+    margin-top: base.$sn-primitive-dimension-0;
+
+    @include base.composite-var(base.$sn-regular-headline-s);
+    color: base.$sn-theme-color-available-version-text-main;
+  }
+
+  > p {
+    color: base.$sn-theme-color-available-version-text-secondary;
+
+    @include base.composite-var(base.$sn-regular-body-m);
+  }
+
+  ul {
+    list-style: none;
+    padding: base.$sn-primitive-dimension-0;
+    margin: $spacing-md base.$sn-primitive-dimension-0;
+  }
+
+  li {
+    margin: $spacing-sm base.$sn-primitive-dimension-0;
+    padding: $spacing-sm;
+    border-radius: $radius-md;
+    transition: all $transition-base;
+    background: base.$sn-theme-color-neutral-background2-level;
+    border: base.$sn-primitive-dimension-2 solid transparent;
+
+    &:hover {
+      background: base.$sn-theme-color-neutral-background1-level;
+      border-color: base.$sn-theme-color-primary-accent;
+      transform: translateX(base.$sn-primitive-dimension-2);
+      box-shadow: base.$sn-box-shadow-elevation-level1;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    @include base.composite-var(base.$sn-regular-title-s);
+    color: base.$sn-theme-color-primary-accent;
+    transition: color $transition-base;
+
+    &:hover {
+      color: base.$sn-theme-color-primary-text;
+      text-decoration: underline;
+    }
+  }
+
+  code {
+    background: base.$sn-theme-color-neutral-background;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: base.$sn-primitive-dimension-6;
+
+    @include base.composite-var(base.$sn-regular-label-m);
+    color: base.$sn-theme-color-available-version-text-main;
+    border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+
+    :global(.sn-light) & {
+      border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+    }
+  }
+
+  span {
+    color: base.$sn-theme-color-available-version-text-secondary;
+
+    @include base.composite-var(base.$sn-regular-body-s);
+  }
+
+  .note {
+    margin-top: $spacing-md;
+    padding: $spacing-sm;
+
+    @include base.composite-var(base.$sn-regular-label-m);
+    color: base.$sn-theme-color-available-version-text-secondary;
+    font-style: italic;
+    background: base.$sn-theme-color-neutral-background;
+    border-radius: base.$sn-primitive-dimension-6;
+    border-left: base.$sn-primitive-dimension-4 solid base.$sn-theme-color-primary-accent;
+  }
+}

@@ -12,6 +12,7 @@
  * <Changelog packageName="button" />
  * ```
  */
+import styles from '../../styles/components/_changelog.module.scss';
 
 interface Props {
   /** Package name (e.g., "button") */
@@ -29,128 +30,27 @@ const changelogUrl = base.endsWith('/') ? `${base}${relativePath}` : `${base}/${
 ---
 
 {inline ? (
-  <div class="changelog-inline">
-    <a href={changelogUrl} class="changelog-link">
+  <div class={styles['changelog-inline']}>
+    <a href={changelogUrl} class={styles['changelog-link']}>
       View Changelog →
     </a>
   </div>
 ) : (
-  <div class="changelog-container">
-    <div class="changelog-header">
+  <div class={styles['changelog-container']}>
+    <div class={styles['changelog-header']}>
       <h2>Changelog</h2>
     </div>
-    <div class="changelog-content">
+    <div class={styles['changelog-content']}>
       <p>
         See the complete version history and migration guides in the{' '}
         <a href={changelogUrl}>Changelog</a>.
       </p>
-      <a href={changelogUrl} class="changelog-button">
+      <a href={changelogUrl} class={styles['changelog-button']}>
         View Changelog →
       </a>
     </div>
   </div>
 )}
-
-<style>
-  .changelog-container {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: var(--sn-theme-color-neutral-background1-level);
-    border-radius: 0.75rem;
-    border: 2px solid var(--sn-theme-color-neutral-decor);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.05),
-      0 0 0 1px rgba(0, 0, 0, 0.03);
-  }
-
-  /* Улучшенный контраст для светлой темы */
-  :global(.sn-light) .changelog-container {
-    border-color: rgba(0, 0, 0, 0.12);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.08),
-      0 0 0 1px rgba(0, 0, 0, 0.05);
-  }
-
-  :global(.sn-dark) .changelog-container {
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
-  }
-
-  .changelog-header {
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--sn-theme-color-neutral-decor);
-  }
-
-  :global(.sn-light) .changelog-header {
-    border-bottom-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .changelog-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: var(--sn-theme-color-text-primary);
-  }
-
-  .changelog-content {
-    color: var(--sn-theme-color-text-primary);
-  }
-
-  .changelog-content p {
-    margin-bottom: 1rem;
-    color: var(--sn-theme-color-text-secondary);
-  }
-
-  .changelog-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: var(--sn-theme-color-primary-default);
-    color: var(--sn-theme-color-on-primary);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.1),
-      0 1px 2px rgba(0, 0, 0, 0.06);
-  }
-
-  .changelog-button:hover {
-    background: var(--sn-theme-color-primary-hover);
-    transform: translateY(-1px);
-    box-shadow: 
-      0 4px 8px rgba(0, 0, 0, 0.15),
-      0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .changelog-button:active {
-    background: var(--sn-theme-color-primary-active);
-    transform: translateY(0);
-    box-shadow: 
-      0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .changelog-inline {
-    margin: 1rem 0;
-  }
-
-  .changelog-link {
-    color: var(--sn-theme-color-primary-default);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    transition: color 0.2s ease;
-  }
-
-  .changelog-link:hover {
-    color: var(--sn-theme-color-primary-hover);
-    text-decoration: underline;
-  }
-</style>
 
 
 

@@ -1,0 +1,66 @@
+/**
+ * ThemeSelect Component Styles (Toolbar version)
+ * Использует SCSS переменные из design system
+ */
+
+@use '../variables' as *;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.design-system-theme-controls {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+}
+
+.theme-control {
+  display: flex;
+  align-items: center;
+}
+
+.theme-select {
+  padding: $spacing-xs $spacing-sm;
+  border-radius: base.$sn-primitive-dimension-6;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background;
+  color: base.$sn-theme-color-available-version-text-main;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+  cursor: pointer;
+  transition: all $transition-base;
+  min-width: base.$sn-primitive-dimension-120;
+
+  &:hover {
+    border-color: base.$sn-theme-color-neutral-text;
+    background: base.$sn-theme-color-neutral-background1-level;
+  }
+
+  &:focus {
+    outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-2;
+    border-color: base.$sn-theme-color-primary-accent;
+  }
+
+  option {
+    @media (max-width: 400px) {
+      @include base.composite-var(base.$sn-regular-label-s);
+    }
+  }
+}
+
+// Responsive
+
+@media (max-width: $breakpoint-tablet) {
+  .design-system-theme-controls {
+    flex-direction: column;
+    gap: $spacing-xs;
+    width: 100%;
+  }
+
+  .theme-control {
+    width: 100%;
+  }
+
+  .theme-select {
+    width: 100%;
+  }
+}

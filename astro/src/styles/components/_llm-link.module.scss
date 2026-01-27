@@ -1,0 +1,147 @@
+/**
+ * LlmLink Component Styles
+ * Использует SCSS переменные из design system
+ */
+
+@use '../variables' as *;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.llm-link-container {
+  margin: $spacing-lg base.$sn-primitive-dimension-0;
+  padding: base.$sn-primitive-dimension-20;
+  background: base.$sn-theme-color-neutral-background1-level;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-lg;
+  border-left: base.$sn-primitive-dimension-4 solid base.$sn-theme-color-primary-accent;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
+
+  // Theme-specific styles
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  }
+
+  :global(.sn-dark) & {
+    border-color: base.$sn-theme-color-neutral-decor-transparent;
+  }
+}
+
+.llm-link-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  color: base.$sn-theme-color-available-version-text-main;
+
+  @include base.composite-var(base.$sn-regular-title-s);
+}
+
+.llm-icon-large {
+  flex-shrink: 0;
+  width: base.$sn-primitive-dimension-20;
+  height: base.$sn-primitive-dimension-20;
+  color: base.$sn-theme-color-primary-accent;
+}
+
+.llm-description {
+  margin: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-0 $spacing-md base.$sn-primitive-dimension-0;
+  color: base.$sn-theme-color-available-version-text-secondary;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.llm-link-row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.llm-link {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  color: base.$sn-theme-color-primary-accent;
+  text-decoration: none;
+
+  @include base.composite-var(base.$sn-regular-body-m);
+  padding: base.$sn-primitive-dimension-8 $spacing-md;
+  background: base.$sn-theme-color-neutral-background2-level;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+  flex: 1;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
+
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-hovered-border-color;
+  }
+
+  &:hover {
+    background: base.$sn-theme-color-neutral-background1-level;
+    border-color: base.$sn-theme-color-primary-accent;
+    text-decoration: none;
+    transform: translateX(base.$sn-primitive-dimension-2);
+    box-shadow: base.$sn-box-shadow-elevation-level1;
+  }
+}
+
+.llm-icon {
+  flex-shrink: 0;
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+}
+
+.copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: base.$sn-primitive-dimension-8;
+  background: base.$sn-theme-color-neutral-background2-level;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-base;
+  color: base.$sn-theme-color-available-version-text-main;
+  box-shadow: base.$sn-box-shadow-elevation-level1;
+
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-hovered-border-color;
+  }
+
+  &:hover {
+    background: base.$sn-theme-color-neutral-background1-level;
+    border-color: base.$sn-theme-color-primary-accent;
+    box-shadow: base.$sn-box-shadow-elevation-level1;
+  }
+
+  &.copied {
+    background: base.$sn-theme-color-green-accent;
+    border-color: base.$sn-theme-color-green-accent;
+    color: base.$sn-theme-color-green-on-accent;
+    box-shadow: base.$sn-box-shadow-elevation-level2;
+  }
+}
+
+.copy-icon {
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+}
+
+.llm-url {
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  background: base.$sn-theme-color-neutral-background;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-6;
+  overflow-x: auto;
+
+  :global(.sn-light) & {
+    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+  }
+
+  code {
+    @include base.composite-var(base.$sn-regular-label-s);
+    color: base.$sn-theme-color-available-version-text-main;
+    background: none;
+    padding: base.$sn-primitive-dimension-0;
+  }
+}

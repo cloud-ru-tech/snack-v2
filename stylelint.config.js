@@ -6,5 +6,11 @@ module.exports = {
       'always',
       { except: ['first-nested', 'blockless-after-same-name-blockless'] },
     ],
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global', 'local'],
+      },
+    ],
   },
 };

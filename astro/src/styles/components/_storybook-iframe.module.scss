@@ -1,0 +1,23 @@
+/**
+ * StorybookIframe Component Styles
+ * Использует SCSS переменные из design system
+ */
+
+@use '../variables' as *;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.storybook-iframe {
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-lg;
+  background: base.$sn-theme-color-neutral-background2-level;
+  transition: box-shadow $transition-base;
+
+  &:hover {
+    box-shadow: base.$sn-box-shadow-elevation-level2;
+  }
+
+  &:focus {
+    outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-2;
+  }
+}

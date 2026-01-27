@@ -1,0 +1,37 @@
+/**
+ * Design System Variables
+ * Импорт переменных и миксинов из @sbercloud/figma-variables
+ * 
+ * Используется паттерн как в packages/avatar/src/styles.module.scss
+ */
+
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Spacing (используем primitive-dimension)
+$spacing-xs: base.$sn-primitive-dimension-4;   // 4px
+$spacing-sm: base.$sn-primitive-dimension-8;   // 8px
+$spacing-md: base.$sn-primitive-dimension-16;  // 16px
+$spacing-lg: base.$sn-primitive-dimension-24;  // 24px
+$spacing-xl: base.$sn-primitive-dimension-32;  // 32px
+
+// Border radius (используем primitive-dimension)
+$radius-sm: base.$sn-primitive-dimension-4;    // 4px
+$radius-md: base.$sn-primitive-dimension-8;    // 8px
+$radius-lg: base.$sn-primitive-dimension-12;   // 12px
+
+// Typography (используем regular-label для мелкого текста)
+$font-size-xs: base.$sn-regular-label-s-font-size;   // 12px
+$font-size-sm: base.$sn-regular-label-m-font-size;   // 14px
+$font-size-md: base.$sn-regular-body-m-font-size;    // 16px
+$font-size-lg: base.$sn-regular-title-s-font-size;   // 18px
+
+// Transitions (используем стандартные значения, т.к. в tokens нет transition переменных)
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// Breakpoints (для адаптивности)
+// Используем стандартные значения, т.к. в tokens нет breakpoint переменных
+$breakpoint-mobile: 640px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;

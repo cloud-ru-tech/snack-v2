@@ -1,4 +1,6 @@
 ---
+import styles from '../../styles/components/_llms-links.module.scss';
+
 // Helper to generate paths with base URL
 const base = import.meta.env.BASE_URL;
 const withBase = (path: string) => {
@@ -41,7 +43,7 @@ const llmsFiles = [
 ];
 ---
 
-<div class="llms-links">
+<div class={styles['llms-links']}>
   <h2>🤖 LLM-оптимизированная документация</h2>
   <p>Для AI-ассистентов и LLM-агентов доступны специальные версии документации в текстовом формате:</p>
   <ul>
@@ -54,120 +56,7 @@ const llmsFiles = [
       </li>
     ))}
   </ul>
-  <p class="note">
+  <p class={styles['note']}>
     Эти файлы оптимизированы для чтения AI-моделями и содержат всю документацию в структурированном текстовом формате.
   </p>
 </div>
-
-<style>
-  .llms-links {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border: 2px solid var(--sn-theme-color-neutral-decor);
-    border-radius: 0.75rem;
-    background: var(--sn-theme-color-neutral-background1-level);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.05),
-      0 0 0 1px rgba(0, 0, 0, 0.03);
-  }
-
-  /* Улучшенный контраст для светлой темы */
-  :global(.sn-light) .llms-links {
-    border-color: rgba(0, 0, 0, 0.12);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.08),
-      0 0 0 1px rgba(0, 0, 0, 0.05);
-  }
-
-  :global(.sn-dark) .llms-links {
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
-  }
-
-  .llms-links h2 {
-    margin-top: 0;
-    font-size: 1.5rem;
-    color: var(--sn-theme-color-text-primary);
-    font-weight: 600;
-  }
-
-  .llms-links > p {
-    color: var(--sn-theme-color-text-secondary);
-    line-height: 1.6;
-  }
-
-  .llms-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-  }
-
-  .llms-links li {
-    margin: 0.5rem 0;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
-    background: var(--sn-theme-color-neutral-background2-level);
-    border: 1.5px solid transparent;
-  }
-
-  :global(.sn-light) .llms-links li {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  }
-
-  .llms-links li:hover {
-    background: var(--sn-theme-color-neutral-background3-level);
-    border-color: var(--sn-theme-color-primary-default);
-    transform: translateX(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  }
-
-  .llms-links a {
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--sn-theme-color-primary-default);
-    transition: color 0.2s ease;
-  }
-
-  .llms-links a:hover {
-    color: var(--sn-theme-color-primary-hover);
-    text-decoration: underline;
-  }
-
-  .llms-links code {
-    background: var(--sn-theme-color-neutral-background);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.375rem;
-    font-size: 0.9em;
-    font-family: 'SBSansTextMono', monospace;
-    color: var(--sn-theme-color-text-primary);
-    border: 1px solid var(--sn-theme-color-neutral-decor);
-  }
-
-  :global(.sn-light) .llms-links code {
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
-  }
-
-  .llms-links span {
-    color: var(--sn-theme-color-text-secondary);
-    font-size: 0.95em;
-  }
-
-  .llms-links .note {
-    margin-top: 1rem;
-    padding: 0.75rem;
-    font-size: 0.9em;
-    color: var(--sn-theme-color-text-secondary);
-    font-style: italic;
-    background: var(--sn-theme-color-neutral-background);
-    border-radius: 0.375rem;
-    border-left: 3px solid var(--sn-theme-color-primary-default);
-  }
-
-  :global(.sn-light) .llms-links .note {
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
-  }
-</style>

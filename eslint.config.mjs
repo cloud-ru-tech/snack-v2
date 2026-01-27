@@ -58,4 +58,11 @@ export default [
       'import/no-default-export': 'off',
     },
   },
+  {
+    files: ['astro/src/scripts/**/*'],
+    rules: {
+      '@cloud-ru/ssr-safe-react/domApi': 'off',
+      'import/no-default-export': 'off',
+    },
+  },
 ];

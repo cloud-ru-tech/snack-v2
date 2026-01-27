@@ -12,6 +12,7 @@
  * <VersionSwitcher />
  * ```
  */
+import styles from '../../styles/components/_version-switcher.module.scss';
 
 interface Props {
   /** Package name to show versions for (optional, defaults to detecting from URL) */
@@ -34,34 +35,16 @@ const currentVersion = currentPath.match(/\/v(\d+\.\d+\.\d+)\//)?.[1] || 'latest
 
 // Detect package name from URL if not provided
 const detectedPackageName = packageName || currentPath.split('/components/')[1]?.split('/')[0] || '';
-
-function getVersionUrl(version: string): string {
-  if (version === 'latest') {
-    return currentPath.replace(/\/v\d+\.\d+\.\d+\//, '/');
-  }
-  
-  // Insert version into path: /components/button/ -> /v0.1.0/components/button/
-  if (currentPath.startsWith('/components/')) {
-    return `/v${version}${currentPath}`;
-  }
-  
-  return currentPath;
-}
 ---
 
-<div class="version-switcher">
-  <label for="version-select" class="version-label">
+<div class={styles['version-switcher']}>
+  <label for="version-select" class={styles['version-label']}>
     Version:
   </label>
   <select
     id="version-select"
-    class="version-select"
+    class={styles['version-select']}
     value={currentVersion}
-    onChange={(e) => {
-      const selectedVersion = e.target.value;
-      const url = getVersionUrl(selectedVersion);
-      window.location.href = url;
-    }}
   >
     {availableVersions.map((version) => (
       <option value={version} selected={version === currentVersion}>
@@ -70,76 +53,12 @@ function getVersionUrl(version: string): string {
     ))}
   </select>
   {detectedPackageName && (
-    <span class="package-name">({detectedPackageName})</span>
+    <span class={styles['package-name']}>({detectedPackageName})</span>
   )}
 </div>
 
-<style>
-  .version-switcher {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background: var(--sl-color-gray-5);
-    border-radius: 0.5rem;
-    margin: 1rem 0;
-  }
-
-  .version-label {
-    font-weight: 600;
-    font-size: 0.875rem;
-    color: var(--sl-color-text);
-  }
-
-  .version-select {
-    padding: 0.375rem 0.75rem;
-    border: 1px solid var(--sl-color-gray-3);
-    border-radius: 0.25rem;
-    background: var(--sl-color-white);
-    color: var(--sl-color-text);
-    font-size: 0.875rem;
-    cursor: pointer;
-  }
-
-  .version-select:hover {
-    border-color: var(--sl-color-blue);
-  }
-
-  .package-name {
-    font-size: 0.75rem;
-    color: var(--sl-color-gray-1);
-    margin-left: auto;
-  }
-</style>
-
 <script>
-  // Client-side version switching
-  document.addEventListener('DOMContentLoaded', () => {
-    const select = document.getElementById('version-select');
-    if (select) {
-      select.addEventListener('change', (e) => {
-        const selectedVersion = e.target.value;
-        const currentPath = window.location.pathname;
-        
-        let newPath;
-        if (selectedVersion === 'latest') {
-          // Remove version from path
-          newPath = currentPath.replace(/\/v\d+\.\d+\.\d+\//, '/');
-        } else {
-          // Insert or update version in path
-          if (currentPath.match(/\/v\d+\.\d+\.\d+\//)) {
-            newPath = currentPath.replace(/\/v\d+\.\d+\.\d+\//, `/v${selectedVersion}/`);
-          } else if (currentPath.startsWith('/components/')) {
-            newPath = `/v${selectedVersion}${currentPath}`;
-          } else {
-            newPath = currentPath;
-          }
-        }
-        
-        window.location.href = newPath;
-      });
-    }
-  });
+  import '../../scripts/version-switcher';
 </script>
 
 

@@ -5,6 +5,7 @@
  * Usage in MDX:
  * <LlmLink component="avatar" />
  */
+import styles from '../../styles/components/_llm-link.module.scss';
 
 interface Props {
   component: string;
@@ -21,10 +22,10 @@ const fullUrl = import.meta.env.SITE ?
   `http://localhost:4321${llmUrl}`;
 ---
 
-<div class="llm-link-container">
-  <div class="llm-link-header">
+<div class={styles['llm-link-container']}>
+  <div class={styles['llm-link-header']}>
     <svg
-      class="llm-icon-large"
+      class={styles['llm-icon-large']}
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
@@ -44,14 +45,14 @@ const fullUrl = import.meta.env.SITE ?
     <strong>LLM-оптимизированная документация</strong>
   </div>
   
-  <p class="llm-description">
+  <p class={styles['llm-description']}>
     Документация этого компонента доступна в текстовом формате для AI-ассистентов и языковых моделей:
   </p>
   
-  <div class="llm-link-row">
-    <a href={llmUrl} class="llm-link" target="_blank" rel="noopener noreferrer">
+  <div class={styles['llm-link-row']}>
+    <a href={llmUrl} class={styles['llm-link']} target="_blank" rel="noopener noreferrer">
       <svg
-        class="llm-icon"
+        class={styles['llm-icon']}
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -69,9 +70,9 @@ const fullUrl = import.meta.env.SITE ?
       <span>Открыть llm-{component}.txt</span>
     </a>
     
-    <button class="copy-button" data-url={fullUrl} title="Скопировать ссылку">
+    <button class={styles['copy-button']} data-url={fullUrl} title="Скопировать ссылку">
       <svg
-        class="copy-icon"
+        class={styles['copy-icon']}
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -88,208 +89,11 @@ const fullUrl = import.meta.env.SITE ?
     </button>
   </div>
   
-  <div class="llm-url">
+  <div class={styles['llm-url']}>
     <code>{llmUrl}</code>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const copyButtons = document.querySelectorAll('.copy-button');
-    
-    copyButtons.forEach(button => {
-      button.addEventListener('click', async () => {
-        const url = button.getAttribute('data-url');
-        if (!url) return;
-        
-        try {
-          await navigator.clipboard.writeText(url);
-          
-          // Visual feedback
-          const originalHTML = button.innerHTML;
-          button.innerHTML = `
-            <svg
-              class="copy-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          `;
-          button.classList.add('copied');
-          
-          setTimeout(() => {
-            button.innerHTML = originalHTML;
-            button.classList.remove('copied');
-          }, 2000);
-        } catch (err) {
-          console.error('Failed to copy:', err);
-        }
-      });
-    });
-  });
+  import '../../scripts/llm-link-copy';
 </script>
-
-<style>
-  .llm-link-container {
-    margin: 1.5rem 0;
-    padding: 1.25rem;
-    background: var(--sn-theme-color-neutral-background1-level);
-    border: 2px solid var(--sn-theme-color-neutral-decor);
-    border-radius: 0.75rem;
-    border-left: 4px solid var(--sn-theme-color-primary-default);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.05),
-      0 0 0 1px rgba(0, 0, 0, 0.03);
-  }
-
-  /* Улучшенный контраст для светлой темы */
-  :global(.sn-light) .llm-link-container {
-    border-color: rgba(0, 0, 0, 0.12);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.08),
-      0 0 0 1px rgba(0, 0, 0, 0.05);
-  }
-
-  :global(.sn-dark) .llm-link-container {
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 1px 3px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
-  }
-
-  .llm-link-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    color: var(--sn-theme-color-text-primary);
-    font-weight: 600;
-  }
-
-  .llm-icon-large {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    color: var(--sn-theme-color-primary-default);
-  }
-
-  .llm-description {
-    margin: 0 0 1rem 0;
-    color: var(--sn-theme-color-text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .llm-link-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .llm-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--sn-theme-color-primary-default);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.625rem 1rem;
-    background: var(--sn-theme-color-neutral-background2-level);
-    border: 1.5px solid var(--sn-theme-color-neutral-decor);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
-    flex: 1;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
-
-  :global(.sn-light) .llm-link {
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: 
-      0 1px 2px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(0, 0, 0, 0.04);
-  }
-
-  .llm-link:hover {
-    background: var(--sn-theme-color-neutral-background3-level);
-    border-color: var(--sn-theme-color-primary-default);
-    text-decoration: none;
-    transform: translateX(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  }
-
-  .llm-icon {
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-  }
-
-  .copy-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.625rem;
-    background: var(--sn-theme-color-neutral-background2-level);
-    border: 1.5px solid var(--sn-theme-color-neutral-decor);
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--sn-theme-color-text-primary);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
-
-  :global(.sn-light) .copy-button {
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: 
-      0 1px 2px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(0, 0, 0, 0.04);
-  }
-
-  .copy-button:hover {
-    background: var(--sn-theme-color-neutral-background3-level);
-    border-color: var(--sn-theme-color-primary-default);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  }
-
-  .copy-button.copied {
-    background: var(--sn-theme-color-success-default);
-    border-color: var(--sn-theme-color-success-default);
-    color: var(--sn-theme-color-on-success);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .copy-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .llm-url {
-    padding: 0.625rem 0.875rem;
-    background: var(--sn-theme-color-neutral-background);
-    border: 1.5px solid var(--sn-theme-color-neutral-decor);
-    border-radius: 0.375rem;
-    overflow-x: auto;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
-
-  :global(.sn-light) .llm-url {
-    border-color: rgba(0, 0, 0, 0.12);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
-  }
-
-  .llm-url code {
-    font-size: 0.85rem;
-    font-family: 'SBSansTextMono', monospace;
-    color: var(--sn-theme-color-text-primary);
-    background: none;
-    padding: 0;
-  }
-</style>

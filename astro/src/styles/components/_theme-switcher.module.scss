@@ -1,0 +1,69 @@
+/**
+ * ThemeSwitcher Component Styles
+ * Использует SCSS переменные из design system
+ */
+
+@use '../variables' as *;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.theme-switcher {
+  padding: $spacing-md;
+  background: base.$sn-theme-color-neutral-background1-level;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+}
+
+.theme-controls {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.theme-control {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+}
+
+.theme-label {
+  @include base.composite-var(base.$sn-regular-body-m);
+  color: base.$sn-theme-color-available-version-text-main;
+}
+
+.theme-select {
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background2-level;
+  color: base.$sn-theme-color-available-version-text-main;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+  cursor: pointer;
+  transition: border-color $transition-base;
+
+  &:hover {
+    border-color: base.$sn-theme-color-primary-accent;
+  }
+
+  &:focus {
+    outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-2;
+  }
+}
+
+// Responsive
+
+@media (max-width: $breakpoint-mobile) {
+  .theme-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .theme-control {
+    justify-content: space-between;
+  }
+}
