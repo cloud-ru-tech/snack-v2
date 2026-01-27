@@ -13,28 +13,36 @@ type Options = {
   packagesRoot: string;
   docPlaceholder: [string, string];
   parserOptions: ParserOptions;
+  targetFile?: 'README.md' | 'docs/index.mdx'; // Новый параметр для выбора целевого файла
 };
 
 export class Docgen {
   private readonly packagesRootPath: string;
   private readonly parserOptions: ParserOptions;
   private readonly docPlaceholder: [string, string];
+  private readonly targetFile: string;
 
-  constructor({ packagesRoot, parserOptions, docPlaceholder }: Options) {
+  constructor({
+    packagesRoot,
+    parserOptions,
+    docPlaceholder,
+    targetFile = 'docs/index.mdx',
+  }: Options) {
     this.packagesRootPath = path.resolve(packagesRoot);
     this.parserOptions = parserOptions;
     this.docPlaceholder = docPlaceholder;
+    this.targetFile = targetFile;
   }
 
   private path(...paths: string[]): string {
     return path.resolve(this.packagesRootPath, ...paths);
   }
 
-  private readReadmeFile(packageName: string) {
+  private readDocFile(packageName: string) {
     try {
-      return fs.readFileSync(this.path(packageName, 'README.md'), 'utf-8');
+      return fs.readFileSync(this.path(packageName, this.targetFile), 'utf-8');
     } catch (_e) {
-      console.warn(`Error while reading README.md file in "${packageName}".`);
+      console.warn(`Error while reading ${this.targetFile} file in "${packageName}".`);
       return '';
     }
   }
@@ -44,22 +52,22 @@ export class Docgen {
     const packages = entities.filter((entity) => fs.statSync(this.path(entity)).isDirectory());
     const [startDocPlaceholder, endDocPlaceholder] = this.docPlaceholder;
     return packages.filter((packageName: string) => {
-      const readmeFile = this.readReadmeFile(packageName);
-      return readmeFile.includes(startDocPlaceholder) && readmeFile.includes(endDocPlaceholder);
+      const docFile = this.readDocFile(packageName);
+      return docFile.includes(startDocPlaceholder) && docFile.includes(endDocPlaceholder);
     });
   }
 
-  private writeDocsSectionToReadmeFile(packageName: string, doc: string) {
+  private writeDocsSectionToFile(packageName: string, doc: string) {
     const [placeholderStart, placeholderEnd] = this.docPlaceholder;
-    const readmeFile = this.readReadmeFile(packageName);
-    const startPosition = readmeFile.indexOf(placeholderStart);
-    const endPosition = readmeFile.indexOf(placeholderEnd);
+    const docFile = this.readDocFile(packageName);
+    const startPosition = docFile.indexOf(placeholderStart);
+    const endPosition = docFile.indexOf(placeholderEnd);
 
-    const startOfFile = readmeFile.slice(0, startPosition);
-    const endOfFile = readmeFile.slice(endPosition + placeholderEnd.length);
+    const startOfFile = docFile.slice(0, startPosition);
+    const endOfFile = docFile.slice(endPosition + placeholderEnd.length);
 
     fs.writeFileSync(
-      this.path(packageName, 'README.md'),
+      this.path(packageName, this.targetFile),
       [
         startOfFile,
         [placeholderStart, CAUTION, doc, '\n', placeholderEnd].join('\n'),
@@ -93,8 +101,8 @@ export class Docgen {
       : this.parserOptions;
 
     return parse(packageSrc, parserOptions).map((docData) => {
-      const doc = new Markdown(docData).renderComponentSpec();
-      logInfo(`✔ doc generated for ${packageName}/README.md - ${docData.displayName}`);
+      const doc = new Markdown(docData).renderPropsTable();
+      logInfo(`✔ doc generated for ${packageName}/${this.targetFile} - ${docData.displayName}`);
       return doc;
     });
   }
@@ -111,7 +119,7 @@ export class Docgen {
       }
 
       const docs = await this.generateDoc(packageName);
-      this.writeDocsSectionToReadmeFile(packageName, docs.join('\n'));
+      this.writeDocsSectionToFile(packageName, docs.join('\n'));
     }
   }
 }

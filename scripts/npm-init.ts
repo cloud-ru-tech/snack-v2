@@ -99,10 +99,19 @@ inquirer
     logInfo(`
 Next steps:
   1. Customize the component in packages/${packageRootFolderName}/src/${componentName}.tsx
-  2. Update styles in packages/${packageRootFolderName}/src/styles.module.scss
-  3. Add stories in packages/${packageRootFolderName}/stories/${componentName}.stories.tsx
-  4. Build all packages: pnpm -w run build:packages
-  5. View in Storybook: pnpm storybook
+  2. Add JSDoc comments to props for automatic documentation
+  3. Update documentation in packages/${packageRootFolderName}/docs/index.mdx
+  4. Update styles in packages/${packageRootFolderName}/src/styles.module.scss
+  5. Add stories in packages/${packageRootFolderName}/stories/${componentName}.stories.tsx
+  6. Generate documentation: pnpm docgen:all
+  7. Build all packages: pnpm -w run build:packages
+  8. View in Storybook: pnpm storybook
+
+Documentation generation:
+  - Props table will be auto-generated in docs/index.mdx from TypeScript types
+  - README.md will be auto-generated from the documentation
+  - Use JSDoc comments (/** ... */) to document your props
+  - Run 'pnpm docgen:all' after making changes to regenerate docs
     `);
   })
   .catch((err) => {

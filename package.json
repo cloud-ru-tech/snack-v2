@@ -126,6 +126,8 @@
     "add-package": "ts-node --project scripts/tsconfig.json scripts/npm-init.ts",
     "postinstall": "ts-patch install",
     "docgen": "ts-node --project scripts/tsconfig.json scripts/docgen/docgenForAllPackages.ts",
+    "docgen:readme": "ts-node --project scripts/tsconfig.json scripts/docgen/generateReadmeForAllPackages.ts",
+    "docgen:all": "ts-node --project scripts/tsconfig.json scripts/docgen/generateAllDocs.ts",
     "docgen:staged": "ts-node --project scripts/tsconfig.json scripts/docgen/docgenForStagedPackages.ts"
   }
 }

@@ -1,9 +1,12 @@
 import { DOCGEN_SECTION_PLACEHOLDER_END, DOCGEN_SECTION_PLACEHOLDER_START } from './constants';
 import { Docgen } from './Docgen';
+import { ReadmeGenerator } from './ReadmeGenerator';
 
-const instance = new Docgen({
+// Instance для генерации таблицы пропсов в документацию
+const docgenInstance = new Docgen({
   packagesRoot: './packages',
   docPlaceholder: [DOCGEN_SECTION_PLACEHOLDER_START, DOCGEN_SECTION_PLACEHOLDER_END],
+  targetFile: 'docs/index.mdx',
   parserOptions: {
     shouldExtractLiteralValuesFromEnum: true,
     propFilter: (prop) => {
@@ -23,4 +26,10 @@ const instance = new Docgen({
   },
 });
 
-export const docgen = (packages?: string[]) => instance.run(packages);
+// Instance для генерации README
+const readmeGeneratorInstance = new ReadmeGenerator({
+  packagesRoot: './packages',
+});
+
+export const docgen = (packages?: string[]) => docgenInstance.run(packages);
+export const generateReadme = (packages?: string[]) => readmeGeneratorInstance.run(packages);

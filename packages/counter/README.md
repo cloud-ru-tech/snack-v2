@@ -1,68 +1,81 @@
 # Counter
+
 The Counter component displays numeric indicators (notification counters, item counts, metrics, etc.) in a compact format. It supports multiple value display variants: regular counter (count), plus format when threshold is exceeded (count-plus), and shortened notation in thousands (count-k), controlled by variant and plusLimit props.
-**Version:** ``
-## Changelog
-## Overview
-Counter is a flexible component for displaying numeric indicators in your application. It automatically handles:
-- **Value formatting with multiple variants (count, count-plus, count-k)**
-- **Threshold control for plus format (plusLimit prop)**
-- **Multiple sizes (xs, s)**
-- **Three appearance options (primary, neutral, red)**
-- **Two color schemes (accent, decor)**
-- **Compact display suitable for use inside other UI elements**
-## Live examples
-### Basic usage
-### Variants
-### Sizes
-### Appearances
-### Colors
-### With plus limit
-## Storybook
-## Usage
-### Basic example
-```tsx
-export function NotificationBadge()  />;
+
+## Installation
+
+```bash
+npm install @design-system/counter
+# or
+yarn add @design-system/counter
+# or
+pnpm add @design-system/counter
 ```
-### With variant
+
+## Exports
+
+```typescript
+import {
+  Counter,
+  type CounterProps,
+  APPEARANCE,
+  VARIANT,
+  SIZE,
+  COLOR,
+  DEFAULT_PLUS_LIMIT,
+  type Appearance,
+  type Variant,
+  type Size,
+  type Color
+} from '@design-system/counter';
+```
+
+## Usage
+
+### Basic example
+
 ```tsx
-export function NotificationBadge()  variant= />
-      <Counter value= variant= plusLimit= />
-      <Counter value= variant= />
+import { Counter } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return <Counter value={9} />;
+}
+```
+
+### With variant
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <>
+      <Counter value={9} variant={VARIANT.Count} />
+      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+      <Counter value={8500} variant={VARIANT.CountK} />
     </>
   );
+}
 ```
+
 ### Custom appearance and size
+
 ```tsx
-export function NotificationBadge() 
-      appearance=
-      size=
+import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
+
+export function NotificationBadge() {
+  return (
+    <Counter
+      value={10}
+      appearance={APPEARANCE.Red}
+      size={SIZE.S}
     />
   );
+}
 ```
-### With plus limit
-```tsx
-export function NotificationBadge() 
-      variant=
-      plusLimit=
-    />
-  );
-```
-## Props
-### Required
-- **value** (number) — Numeric value to display. Required.
-### Optional
-- **appearance** ('primary' | 'neutral' | 'red') — Visual appearance. Default: 'primary'.
-- **variant** ('count' | 'count-plus' | 'count-k') — Value display variant. Default: 'count'.
-- **size** ('xs' | 's') — Counter size. Default: 'xs'.
-- **plusLimit** (number) — Threshold for shortening value to v+ format. For example, 1500 -> 999+ for 1000. Default: 10.
-- **color** ('accent' | 'decor') — Semantic color. Default: 'accent'.
-- **className** (string) — Additional CSS class.
-- **...HTMLDivAttributes** — All standard div HTML attributes are supported.
-## Accessibility
-- Semantic HTML structure ensures screen reader compatibility
-- Component accepts all standard HTML attributes for customization
-- Numeric values are readable text, providing meaningful information
-## Best practices
+
+## Best Practices
+
 1. **Use appropriate variants** — Choose count, count-plus, or count-k based on your use case
 2. **Set plusLimit appropriately** — Configure the threshold based on your data range
 3. **Consistent size usage** — Match counter size to context and importance
@@ -74,5 +87,6 @@ export function NotificationBadge()
 
 ## Additional Resources
 
-- **Changelog:** See [CHANGELOG.md](./CHANGELOG.md) for version history
-- **Migration Guide:** See [MIGRATION.md](./MIGRATION.md) for migration instructions between versions
+- **Full Documentation:** [View documentation](./docs/index.mdx)
+- **Changelog:** [View changelog](./CHANGELOG.md)
+- **Migration Guide:** [View migration guide](./MIGRATION.md)

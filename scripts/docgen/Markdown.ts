@@ -69,7 +69,16 @@ export class Markdown {
     return tags.length ? `${tags.join(' ')} \n` : '';
   }
 
-  private renderPropsTable(): string {
+  renderComponentSpec() {
+    return this.isNotReactComponent()
+      ? this.blocks([this.renderHeader()]) // TODO: для функций можно сделать рендер аргументов
+      : this.blocks([this.renderHeader(), this.renderPropsTable()]);
+  }
+
+  // Публичный метод для рендера только таблицы пропсов (для docs)
+  renderPropsTable(): string {
+    if (this.isNotReactComponent()) return '';
+
     return this.lines([
       '### Props',
       '| name | type | default value | description |',
@@ -93,11 +102,5 @@ export class Markdown {
           return `| ${propRow} |`;
         }),
     ]);
-  }
-
-  renderComponentSpec() {
-    return this.isNotReactComponent()
-      ? this.blocks([this.renderHeader()]) // TODO: для функций можно сделать рендер аргументов
-      : this.blocks([this.renderHeader(), this.renderPropsTable()]);
   }
 }
