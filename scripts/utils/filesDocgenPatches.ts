@@ -157,6 +157,10 @@ export function Example() {
 }
 \`\`\`
 
+## Props
+
+{/* Props table will be auto-generated here from TypeScript types */}
+
 ## Best Practices
 
 1. **Best practice 1** — Description

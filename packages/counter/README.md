@@ -74,6 +74,18 @@ export function NotificationBadge() {
 }
 ```
 
+## Props
+
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| value* | `number` | - | Значение |
+| appearance | enum Appearance: `"primary"`, `"neutral"`, `"red"` | primary | Внешний вид |
+| variant | enum Variant: `"count"`, `"count-plus"`, `"count-k"` | count | Вариант |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
+| plusLimit | `number` | 10 | Порог сокращения значения в формат v+. Например `1500` -> `999+` для 1000 |
+| className | `string` | - | CSS-класс |
+| color | enum Color: `"accent"`, `"decor"` | accent | Семантический цвет |
+
 ## Best Practices
 
 1. **Use appropriate variants** — Choose count, count-plus, or count-k based on your use case

@@ -59,6 +59,18 @@ export function UserProfile() {
 }
 ```
 
+## Props
+
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| name* | `string` | - | Имя пользователя для генерации аббревиатуры |
+| src | `string` | - | URL изображения аватара |
+| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral | Внешний вид (цвет) |
+| size | enum Size: `"xs"`, `"s"`, `"m"`, `"l"`, `"3xl"`, `"6xl"`, `"10xl"` | s | Размер |
+| shape | enum Shape: `"round"`, `"square"` | round | Форма: круглая или квадратная |
+| showTwoSymbols | `boolean` | - | Отображение двух заглавных символов имени вместо одного |
+| className | `string` | - | CSS-класс |
+
 ## Best Practices
 
 1. **Always provide a meaningful name** — Even with images, names ensure fallback works correctly
