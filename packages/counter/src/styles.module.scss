@@ -5,6 +5,11 @@ $sizes: 'xs', 's';
 $contexts: 'primary', 'neutral', 'red';
 $roleColors: 'accent', 'decor';
 
+$textColor: (
+  'accent': 'on-accent',
+  'decor': 'accent',
+);
+
 $typography: (
   xs: base.$sn-regular-label-s,
   s: base.$sn-regular-label-l,
@@ -25,8 +30,14 @@ $typography: (
     @each $appearance in $contexts {
       &[data-color='#{$roleColor}'] {
         &[data-appearance='#{$appearance}'] {
-          background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
-          color: base.simple-var(base.$sn-theme, 'color', $appearance, 'on-accent');
+          background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleColor);
+
+          color: base.simple-var(
+            base.$sn-theme,
+            'color',
+            $appearance,
+            base.simple-var($textColor, $roleColor)
+          );
 
           @each $size in $sizes {
             &[data-size='#{$size}'] {
