@@ -1,6 +1,7 @@
 import type { AstroIntegration } from 'astro';
-import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync, readFileSync } from 'fs';
-import { join, relative, parse } from 'path';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
+import { fileURLToPath } from 'node:url';
+import { join, parse } from 'path';
 
 interface ComponentLlmsOptions {
   contentDir?: string;
@@ -20,9 +21,9 @@ export default function generateComponentLlms(
     name: 'generate-component-llms',
     hooks: {
       'astro:build:done': async ({ dir, pages }) => {
-        const distPath = dir.pathname;
+        const distPath = typeof dir === 'string' ? dir : fileURLToPath(dir);
         const projectRoot = process.cwd();
-        const componentsPath = join(projectRoot, contentDir, 'en', 'components');
+        const componentsPath = join(projectRoot, contentDir, 'components');
 
         if (!existsSync(componentsPath)) {
           console.log('[generate-component-llms] Components directory not found:', componentsPath);

@@ -37,7 +37,6 @@ export default defineConfig({
   integrations: [
     syncPackageDocs(),
     generateComponentLlms(),
-    fixLlmsEncoding(),
     react(),
     expressiveCode(),
     mdx(),
@@ -87,6 +86,7 @@ export default defineConfig({
       ],
     }),
     llmTxt(),
+    fixLlmsEncoding(),
   ],
   vite: {
     css: {
