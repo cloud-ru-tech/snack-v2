@@ -7,7 +7,7 @@ import {
   statSync,
   writeFileSync,
 } from 'fs';
-import { dirname, join } from 'path';
+import { dirname, join, normalize, relative } from 'path';
 import { fileURLToPath } from 'url';
 
 import type { AstroIntegration } from 'astro';
@@ -337,12 +337,13 @@ ${migrationContent}`;
         // Initial sync
         syncAllPackages();
 
-        // Watch mode for dev
+        // Watch mode for dev — автосинхронизация docs пакетов в astro content при изменениях
         if (command === 'dev') {
-          console.info('[sync-package-docs] Watching for changes...');
+          console.info('[sync-package-docs] Watching packages/*/docs for changes...');
 
           const watchPaths = [
             join(packagesPath, '*/docs/**/*.mdx'),
+            join(packagesPath, '*/docs/**/*.md'),
             join(packagesPath, '*/CHANGELOG.md'),
             join(packagesPath, '*/MIGRATION.md'),
             join(packagesPath, '*/package.json'),
@@ -351,27 +352,27 @@ ${migrationContent}`;
           const watcher = chokidar.watch(watchPaths, {
             ignored: /node_modules/,
             persistent: true,
+            ignoreInitial: true,
           });
 
-          watcher.on('change', (path) => {
-            const match = path.match(/packages\/([^/]+)/);
-            if (match) {
-              const packageName = match[1];
-              console.info(`[sync-package-docs] Change detected in ${packageName}, re-syncing...`);
-              syncPackage(packageName);
-            }
-          });
+          const getPackageName = (eventPath: string): string | null => {
+            const normalized = normalize(eventPath);
+            const rel = relative(packagesPath, normalized);
+            const firstSegment = rel.split(/[/\\]/)[0];
+            return firstSegment && !firstSegment.startsWith('..') ? firstSegment : null;
+          };
 
-          watcher.on('add', (path) => {
-            const match = path.match(/packages\/([^/]+)/);
-            if (match) {
-              const packageName = match[1];
-              console.info(
-                `[sync-package-docs] New file detected in ${packageName}, re-syncing...`
-              );
+          const handleSync = (event: string, eventPath: string) => {
+            const packageName = getPackageName(eventPath);
+            if (packageName) {
+              console.info(`[sync-package-docs] ${event} in ${packageName}, re-syncing...`);
               syncPackage(packageName);
             }
-          });
+          };
+
+          watcher.on('change', (eventPath) => handleSync('Change', eventPath));
+          watcher.on('add', (eventPath) => handleSync('New file', eventPath));
+          watcher.on('unlink', (eventPath) => handleSync('File removed', eventPath));
         }
       },
     },
