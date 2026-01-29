@@ -21,9 +21,8 @@ export const VisualMatrix: Story = {
 
     return (
       <div className={styles.container}>
-        {weights.map((weight, weightIndex) => (
+        {weights.map(weight => (
           <div key={weight}>
-            {weightIndex > 0 && <div className={styles.sectionSpacer} style={{ height: '32px' }} />}
             <Typography
               variant={VARIANT.headline}
               size={SIZE.m}
@@ -36,10 +35,8 @@ export const VisualMatrix: Story = {
             <table className={styles.table}>
               <thead className={styles.tableHeader}>
                 <tr>
-                  <th className={`${styles.tableHeaderCell} ${styles.tableHeaderCellFirst}`}>
-                    Variant
-                  </th>
-                  {sizes.map((size) => (
+                  <th className={`${styles.tableHeaderCell} ${styles.tableHeaderCellFirst}`}>Variant</th>
+                  {sizes.map(size => (
                     <th key={size} className={styles.tableHeaderCell}>
                       {size.toUpperCase()}
                     </th>
@@ -47,10 +44,10 @@ export const VisualMatrix: Story = {
                 </tr>
               </thead>
               <tbody>
-                {variants.map((variant) => (
+                {variants.map(variant => (
                   <tr key={variant}>
                     <td className={`${styles.tableCell} ${styles.tableCellVariant}`}>{variant}</td>
-                    {sizes.map((size) => (
+                    {sizes.map(size => (
                       <td key={size} className={styles.tableCell}>
                         <Typography variant={variant} size={size} weight={weight}>
                           {variant.charAt(0).toUpperCase() + variant.slice(1)} {size.toUpperCase()}

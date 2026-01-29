@@ -17,8 +17,8 @@ export function getExistingPackageNames(): string[] {
 
   return fs
     .readdirSync(PACKAGES_DIR, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name);
 }
 
 export const ExistingPackageNames = getExistingPackageNames();
@@ -39,8 +39,7 @@ function createPackageJson(packageDir: string, config: PackageConfig): void {
     name: `@design-system/${config.packageRootFolderName}`,
     version: '0.1.0',
     private: false,
-    description:
-      config.packageDescription || `${config.packageTitle} component for the design system`,
+    description: config.packageDescription || `${config.packageTitle} component for the design system`,
     types: './dist/esm/index.d.ts',
     main: './dist/cjs/index.js',
     module: './dist/esm/index.js',
@@ -227,6 +226,26 @@ Initial release. No migration needed.
   logDebug('Created MIGRATION.md');
 }
 
+function addPackageToTsconfigReferences(packageRootFolderName: string): void {
+  const tsconfigCjsPath = path.join(PACKAGES_DIR, 'tsconfig.cjs.json');
+  const tsconfigEsmPath = path.join(PACKAGES_DIR, 'tsconfig.esm.json');
+
+  const addReference = (configPath: string, refPath: string): void => {
+    const content = fs.readFileSync(configPath, 'utf-8');
+    const config = JSON.parse(content) as { references: Array<{ path: string }> };
+    const newRef = { path: refPath };
+    if (config.references.some(r => r.path === newRef.path)) {
+      return;
+    }
+    config.references.push(newRef);
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+  };
+
+  addReference(tsconfigCjsPath, `./${packageRootFolderName}/tsconfig.cjs.json`);
+  addReference(tsconfigEsmPath, `./${packageRootFolderName}/tsconfig.esm.json`);
+  logDebug('Added package to packages/tsconfig.cjs.json and packages/tsconfig.esm.json references');
+}
+
 /**
  * Bootstrap files for a new package
  */
@@ -265,6 +284,9 @@ export function bootstrapFiles(config: PackageConfig): void {
 
   // Create MIGRATION
   createMigration(packageDir);
+
+  // Add package to packages/tsconfig.cjs.json and packages/tsconfig.esm.json references
+  addPackageToTsconfigReferences(config.packageRootFolderName);
 
   logSuccess(`Created package structure in ${packageDir}`);
 }

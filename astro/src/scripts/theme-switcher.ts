@@ -2,6 +2,7 @@
  * Theme Switcher Script
  * Инициализация переключателя темы для работы с глобальным theme-manager
  */
+import { consola } from 'consola';
 
 type ThemeManager = {
   getTheme: () => string;
@@ -23,7 +24,7 @@ export function initThemeSwitcher(): void {
   const manager = window.snThemeManager;
 
   if (!manager) {
-    console.warn('Theme manager not found');
+    consola.warn('Theme manager not found');
     return;
   }
 
@@ -42,15 +43,15 @@ export function initThemeSwitcher(): void {
   platformSelect.value = manager.getPlatform();
 
   // Слушаем изменения
-  themeSelect.addEventListener('change', (e) => {
+  themeSelect.addEventListener('change', e => {
     manager.setTheme((e.target as HTMLSelectElement).value);
   });
 
-  brandSelect.addEventListener('change', (e) => {
+  brandSelect.addEventListener('change', e => {
     manager.setBrand((e.target as HTMLSelectElement).value);
   });
 
-  platformSelect.addEventListener('change', (e) => {
+  platformSelect.addEventListener('change', e => {
     manager.setPlatform((e.target as HTMLSelectElement).value);
   });
 

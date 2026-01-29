@@ -2,11 +2,12 @@
  * LLM Link Copy Script
  * Обработка копирования URL в буфер обмена
  */
+import { consola } from 'consola';
 
 export function initLlmLinkCopy(): void {
   const copyButtons = document.querySelectorAll('.copy-button');
 
-  copyButtons.forEach((button) => {
+  copyButtons.forEach(button => {
     button.addEventListener('click', async () => {
       const url = button.getAttribute('data-url');
 
@@ -42,7 +43,7 @@ export function initLlmLinkCopy(): void {
           button.classList.remove('copied');
         }, 2000);
       } catch (err) {
-        console.error('Failed to copy:', err);
+        consola.error('Failed to copy:', err);
       }
     });
   });

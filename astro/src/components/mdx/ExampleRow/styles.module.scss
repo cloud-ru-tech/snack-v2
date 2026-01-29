@@ -1,30 +1,25 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
 .row {
   display: flex;
-  gap: 20px;
+  gap: base.$sn-primitive-dimension-20;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 100%;
 
-  /* Сброс стилей от Starlight */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 
-  /* Отключение стилей для дочерних элементов */
   :global(> *) {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
 
-  /* Отключение специфичных правил Starlight */
-  :global(
-    :not(a, strong, em, del, span, input, code, br)
-      + :not(a, strong, em, del, span, input, code, br)
-  ) {
+  :global(:not(a, strong, em, del, span, input, code, br) + :not(a, strong, em, del, span, input, code, br)) {
     margin-top: 0 !important;
   }
 
-  /* Дополнительная защита от правил Starlight */
   :global(:where(.sl-markdown-content *)) {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
@@ -32,19 +27,19 @@
 }
 
 .rowGapSmall {
-  gap: 16px;
+  gap: base.$sn-adaptive-spacing-interval-l;
 }
 
 .rowGapMedium {
-  gap: 20px;
+  gap: base.$sn-primitive-dimension-20;
 }
 
 .rowGapLarge {
-  gap: 24px;
+  gap: base.$sn-adaptive-spacing-interval-xl;
 }
 
 .rowGapXLarge {
-  gap: 32px;
+  gap: base.$sn-adaptive-spacing-interval-2xl;
 }
 
 .rowJustifyCenter {

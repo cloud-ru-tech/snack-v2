@@ -1,8 +1,11 @@
-import type { AstroIntegration } from 'astro';
 import { copyFileSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
-import { fileURLToPath } from 'node:url';
 import { join } from 'path';
 
+import type { AstroIntegration } from 'astro';
+import { consola } from 'consola';
+import { fileURLToPath } from 'node:url';
+
+// eslint-disable-next-line import/no-default-export
 export default function fixLlmsEncoding(): AstroIntegration {
   return {
     name: 'fix-llms-encoding',
@@ -18,12 +21,12 @@ export default function fixLlmsEncoding(): AstroIntegration {
 
         if (existsSync(componentsSrc)) {
           copyFileSync(componentsSrc, componentsDest);
-          console.log('[fix-llms-encoding] ✅ Copied llms-components.txt to root');
+          consola.success('[fix-llms-encoding] Copied llms-components.txt to root');
         }
 
         if (existsSync(guidesSrc)) {
           copyFileSync(guidesSrc, guidesDest);
-          console.log('[fix-llms-encoding] ✅ Copied llms-guides.txt to root');
+          consola.success('[fix-llms-encoding] Copied llms-guides.txt to root');
         }
 
         const llmsFiles = [
@@ -39,13 +42,13 @@ export default function fixLlmsEncoding(): AstroIntegration {
         // Add component-specific files from _llms-txt/components/
         const componentsDir = join(distPath, '_llms-txt/components');
         if (existsSync(componentsDir)) {
-          const componentFiles = readdirSync(componentsDir).filter((f) => f.endsWith('.txt'));
+          const componentFiles = readdirSync(componentsDir).filter(f => f.endsWith('.txt'));
           for (const file of componentFiles) {
             llmsFiles.push(`_llms-txt/components/${file}`);
           }
         }
 
-        console.log(`[fix-llms-encoding] Checking files in ${distPath}`);
+        consola.info(`[fix-llms-encoding] Checking files in ${distPath}`);
 
         for (const fileName of llmsFiles) {
           const filePath = join(distPath, fileName);
@@ -68,11 +71,11 @@ export default function fixLlmsEncoding(): AstroIntegration {
             const contentWithBom = '\uFEFF' + normalizedContent;
             writeFileSync(filePath, contentWithBom, { encoding: 'utf8' });
 
-            console.log(`✅ Fixed encoding for ${fileName}`);
+            consola.success(`Fixed encoding for ${fileName}`);
           } catch (error) {
             // File might not exist, which is fine
             if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
-              console.warn(`⚠️  Could not fix encoding for ${fileName}:`, error);
+              consola.warn(`Could not fix encoding for ${fileName}:`, error);
             }
           }
         }

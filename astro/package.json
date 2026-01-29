@@ -10,6 +10,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "consola": "3.4.2",
     "@astrojs/mdx": "^4.3.12",
     "@astrojs/react": "^4.4.2",
     "@astrojs/starlight": "^0.36.0",

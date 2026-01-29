@@ -1,20 +1,21 @@
-import type { AstroIntegration } from 'astro';
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
-import { fileURLToPath } from 'node:url';
 import { join, parse } from 'path';
 
-interface ComponentLlmsOptions {
+import type { AstroIntegration } from 'astro';
+import { consola } from 'consola';
+import { fileURLToPath } from 'node:url';
+
+type ComponentLlmsOptions = {
   contentDir?: string;
   outputDir?: string;
-}
+};
 
 /**
  * Generate individual llm.txt file for each component
  * Creates llm-{component-name}.txt in the output directory
  */
-export default function generateComponentLlms(
-  options: ComponentLlmsOptions = {}
-): AstroIntegration {
+// eslint-disable-next-line import/no-default-export
+export default function generateComponentLlms(options: ComponentLlmsOptions = {}): AstroIntegration {
   const { contentDir = 'src/content/docs', outputDir = '_llms-txt/components' } = options;
 
   return {
@@ -26,7 +27,7 @@ export default function generateComponentLlms(
         const componentsPath = join(projectRoot, contentDir, 'components');
 
         if (!existsSync(componentsPath)) {
-          console.log('[generate-component-llms] Components directory not found:', componentsPath);
+          consola.info('[generate-component-llms] Components directory not found:', componentsPath);
           return;
         }
 
@@ -34,10 +35,10 @@ export default function generateComponentLlms(
         const outputPath = join(distPath, outputDir);
         mkdirSync(outputPath, { recursive: true });
 
-        console.log('[generate-component-llms] Generating component-specific llm.txt files...');
+        consola.info('[generate-component-llms] Generating component-specific llm.txt files...');
 
         // Get all component directories
-        const componentDirs = readdirSync(componentsPath).filter((item) => {
+        const componentDirs = readdirSync(componentsPath).filter(item => {
           const itemPath = join(componentsPath, item);
           return statSync(itemPath).isDirectory();
         });
@@ -47,7 +48,7 @@ export default function generateComponentLlms(
 
         for (const componentName of componentDirs) {
           const componentPath = join(componentsPath, componentName);
-          const files = readdirSync(componentPath).filter((f) => f.endsWith('.mdx'));
+          const files = readdirSync(componentPath).filter(f => f.endsWith('.mdx'));
 
           if (files.length === 0) {
             continue;
@@ -63,13 +64,11 @@ export default function generateComponentLlms(
           lines.push('');
 
           // Add URLs for all pages related to this component
-          const componentPages = pages.filter((p) =>
-            p.pathname.includes(`/components/${componentName}/`)
-          );
+          const componentPages = pages.filter(p => p.pathname.includes(`/components/${componentName}/`));
 
           if (componentPages.length > 0) {
             lines.push('## Pages:');
-            componentPages.forEach((page) => {
+            componentPages.forEach(page => {
               lines.push(`- ${base}${page.pathname}`);
             });
             lines.push('');
@@ -142,7 +141,7 @@ export default function generateComponentLlms(
           const contentWithBom = '\uFEFF' + finalContent;
           writeFileSync(outputFilePath, contentWithBom, { encoding: 'utf8' });
 
-          console.log(`✅ Generated ${outputFileName}`);
+          consola.success(`Generated ${outputFileName}`);
         }
 
         // Create index file listing all component llm.txt files
@@ -152,7 +151,7 @@ export default function generateComponentLlms(
         indexLines.push('Each component has its own dedicated LLM.txt file:');
         indexLines.push('');
 
-        componentDirs.forEach((componentName) => {
+        componentDirs.forEach(componentName => {
           const fileName = `llm-${componentName}.txt`;
           const filePath = join(outputPath, fileName);
           if (existsSync(filePath)) {
@@ -164,7 +163,7 @@ export default function generateComponentLlms(
         const indexContent = '\uFEFF' + indexLines.join('\n');
         writeFileSync(indexFilePath, indexContent, { encoding: 'utf8' });
 
-        console.log('[generate-component-llms] ✅ Component LLM.txt files generated successfully');
+        consola.success('[generate-component-llms] Component LLM.txt files generated successfully');
       },
     },
   };

@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 
 import { BabelFileResult, transformFileSync } from '@babel/core';
 import { globSync } from 'glob';
@@ -10,6 +11,8 @@ import { getAllPackageFolders } from './utils/getAllPackageFolders';
 const argv = minimist(process.argv.slice(2));
 const pkg = argv.pkg || '*';
 
+const PACKAGES_DIR = path.resolve(__dirname, '..', 'packages');
+
 (async function () {
   const start = performance.now();
   logDebug(`Compiling css modules...`);
@@ -18,7 +21,8 @@ const pkg = argv.pkg || '*';
   const srcPart = 'dist/cjs';
 
   for (const folder of folders) {
-    const src = `${folder}/${srcPart}`;
+    const packagePath = path.join(PACKAGES_DIR, folder);
+    const src = path.join(packagePath, srcPart);
 
     const jsFiles = globSync(`${src}/**/*.js`);
     for (const file of jsFiles) {

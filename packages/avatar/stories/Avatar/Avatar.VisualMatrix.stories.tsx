@@ -17,32 +17,21 @@ export const VisualMatrix: Story = {
   render: () => {
     // Оптимизированная матрица: ключевые размеры и появления
     const keySizes = [SIZE.S, SIZE.M, SIZE.L];
-    const keyAppearances = [
-      APPEARANCE.Neutral,
-      APPEARANCE.Primary,
-      APPEARANCE.Red,
-      APPEARANCE.Blue,
-    ];
+    const keyAppearances = [APPEARANCE.Neutral, APPEARANCE.Primary, APPEARANCE.Red, APPEARANCE.Blue];
     const shapes = Object.values(SHAPE);
 
     return (
       <div className={styles.container}>
-        {shapes.map((shape, shapeIndex) => (
+        {shapes.map(shape => (
           <div key={shape}>
-            {shapeIndex > 0 && <div className={styles.sectionSpacer} />}
-            <div
-              className={styles.sectionHeader}
-              style={{ textTransform: 'capitalize', fontWeight: 600 }}
-            >
+            <div className={styles.sectionHeader} style={{ textTransform: 'capitalize', fontWeight: 600 }}>
               {shape} Shape
             </div>
             <table className={styles.table}>
               <thead className={styles.tableHeader}>
                 <tr>
-                  <th className={`${styles.tableHeaderCell} ${styles.tableHeaderCellFirst}`}>
-                    Appearance
-                  </th>
-                  {keySizes.map((size) => (
+                  <th className={`${styles.tableHeaderCell} ${styles.tableHeaderCellFirst}`}>Appearance</th>
+                  {keySizes.map(size => (
                     <th key={size} className={styles.tableHeaderCell}>
                       {size.toUpperCase()}
                     </th>
@@ -50,14 +39,12 @@ export const VisualMatrix: Story = {
                 </tr>
               </thead>
               <tbody>
-                {keyAppearances.map((appearance) => (
+                {keyAppearances.map(appearance => (
                   <tr key={appearance}>
-                    <td className={`${styles.tableCell} ${styles.tableCellVariant}`}>
-                      {appearance}
-                    </td>
-                    {keySizes.map((size) => (
+                    <td className={`${styles.tableCell} ${styles.tableCellVariant}`}>{appearance}</td>
+                    {keySizes.map(size => (
                       <td key={size} className={styles.tableCell}>
-                        <Avatar name="JD" size={size} shape={shape} appearance={appearance} />
+                        <Avatar name='JD' size={size} shape={shape} appearance={appearance} />
                       </td>
                     ))}
                   </tr>

@@ -2,6 +2,7 @@
  * Глобальный менеджер темы для документации
  * Синхронизирует тему между страницами и Storybook iframe
  */
+import { consola } from 'consola';
 
 export type Theme = 'light' | 'dark';
 export type Brand = 'brandA' | 'brandB';
@@ -80,7 +81,7 @@ class ThemeManager {
     try {
       localStorage.setItem(key, value);
     } catch (error) {
-      console.warn(`Failed to save ${key} to localStorage:`, error);
+      consola.warn(`Failed to save ${key} to localStorage:`, error);
     }
   }
 
@@ -131,7 +132,7 @@ class ThemeManager {
     try {
       localStorage.setItem('starlight-theme', this.theme);
     } catch (error) {
-      console.warn('Failed to sync Starlight theme:', error);
+      consola.warn('Failed to sync Starlight theme:', error);
     }
 
     // Обновляем CSS классы для Starlight (если они используются)
@@ -200,7 +201,7 @@ class ThemeManager {
     if (typeof window === 'undefined') return;
 
     const iframes = document.querySelectorAll('iframe');
-    iframes.forEach((iframe) => {
+    iframes.forEach(iframe => {
       try {
         iframe.contentWindow?.postMessage(
           {
@@ -209,9 +210,9 @@ class ThemeManager {
             brand: this.brand,
             platform: this.platform,
           },
-          '*'
+          '*',
         );
-      } catch (error) {
+      } catch (_error) {
         // Cross-origin iframe, игнорируем
       }
     });
@@ -226,7 +227,7 @@ class ThemeManager {
     window.dispatchEvent(
       new CustomEvent(type, {
         detail: { value },
-      })
+      }),
     );
   }
 
@@ -238,7 +239,7 @@ class ThemeManager {
 
     // Слушаем сообщения от iframe (например, когда тема меняется в Storybook)
     if (typeof window !== 'undefined') {
-      window.addEventListener('message', (event) => {
+      window.addEventListener('message', event => {
         if (event.data?.type === 'theme-sync-request') {
           this.notifyIframes();
         }
@@ -256,8 +257,8 @@ class ThemeManager {
     if (typeof window === 'undefined' || typeof MutationObserver === 'undefined') return;
 
     // Наблюдаем за изменениями data-theme на html элементе
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
           const newTheme = document.documentElement.getAttribute('data-theme');
           if ((newTheme === 'light' || newTheme === 'dark') && newTheme !== this.theme) {
@@ -308,5 +309,5 @@ if (typeof window !== 'undefined') {
   }
 
   // Делаем доступным глобально для использования в inline скриптах
-  (window as any).snThemeManager = manager;
+  window.snThemeManager = manager;
 }

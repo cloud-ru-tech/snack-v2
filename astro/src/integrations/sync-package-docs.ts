@@ -1,17 +1,10 @@
-import {
-  copyFileSync,
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  statSync,
-  writeFileSync,
-} from 'fs';
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
 import { dirname, join, normalize, relative } from 'path';
 import { fileURLToPath } from 'url';
 
 import type { AstroIntegration } from 'astro';
 import chokidar from 'chokidar';
+import { consola } from 'consola';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -86,10 +79,7 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
 
             // Update or add version
             if (frontmatter.includes('version:')) {
-              frontmatter = frontmatter.replace(
-                /version:\s*['"]?[^'"]*['"]?/g,
-                `version: "${version}"`
-              );
+              frontmatter = frontmatter.replace(/version:\s*['"]?[^'"]*['"]?/g, `version: "${version}"`);
             } else {
               // Add version after title or description
               const titleMatch = frontmatter.match(/^(title:.*)$/m);
@@ -108,41 +98,38 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
 
           // Transform imports: '../src' -> '@packages/<packageName>/src'
           // Also handle '../../../astro/src/components/mdx' -> '../../../../components/mdx'
-          content = content.replace(
-            /from\s+['"]\.\.\/src['"]/g,
-            `from '@packages/${packageName}/src'`
-          );
+          content = content.replace(/from\s+['"]\.\.\/src['"]/g, `from '@packages/${packageName}/src'`);
 
           // Transform new Astro paths
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`
+            `from '../../../../components/mdx'`,
           );
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`
+            `from '../../../../components/mdx'`,
           );
 
           // Transform old apps/docs paths (for backward compatibility)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`
+            `from '../../../../components/mdx'`,
           );
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`
+            `from '../../../../components/mdx'`,
           );
 
           // Transform Astro component imports (new paths)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
-            `from '../../../../components/astro/$1'`
+            `from '../../../../components/astro/$1'`,
           );
 
           // Transform Astro component imports (old apps/docs paths)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/astro\/([^'"]+)['"]/g,
-            `from '../../../../components/astro/$1'`
+            `from '../../../../components/astro/$1'`,
           );
 
           writeFileSync(targetFilePath, content, 'utf-8');
@@ -200,7 +187,7 @@ version: "${version}"
 
 ${changelogContent}`;
       writeFileSync(join(targetPath, 'CHANGELOG.mdx'), changelogMdx, 'utf-8');
-      console.info(`[sync-package-docs] ✅ Synced ${packageName}/CHANGELOG.mdx`);
+      consola.success(`[sync-package-docs] Synced ${packageName}/CHANGELOG.mdx`);
     }
 
     // Sync MIGRATION.md -> MIGRATION.mdx
@@ -215,7 +202,7 @@ version: "${version}"
 
 ${migrationContent}`;
       writeFileSync(join(targetPath, 'MIGRATION.mdx'), migrationMdx, 'utf-8');
-      console.info(`[sync-package-docs] ✅ Synced ${packageName}/MIGRATION.mdx`);
+      consola.success(`[sync-package-docs] Synced ${packageName}/MIGRATION.mdx`);
     }
 
     // Generate README.md from docs/index.mdx (stripped version)
@@ -230,7 +217,7 @@ ${migrationContent}`;
       const codeBlockRegex = /```[\s\S]*?```/g;
       const codeBlocks: string[] = [];
 
-      readmeContent = readmeContent.replace(codeBlockRegex, (match) => {
+      readmeContent = readmeContent.replace(codeBlockRegex, match => {
         const placeholder = `___CODE_BLOCK_${codeBlocks.length}___`;
         codeBlocks.push(match);
         return placeholder;
@@ -275,7 +262,7 @@ ${migrationContent}`;
       // Remove lines that only contain JSX expressions or are empty (but keep code block placeholders)
       readmeContent = readmeContent
         .split('\n')
-        .filter((line) => {
+        .filter(line => {
           const trimmed = line.trim();
           // Keep code block placeholders
           if (trimmed.startsWith('___CODE_BLOCK_')) {
@@ -286,10 +273,7 @@ ${migrationContent}`;
         .join('\n');
 
       // STEP 4: Restore code blocks (after all cleanup is done)
-      readmeContent = readmeContent.replace(
-        /___CODE_BLOCK_(\d+)___/g,
-        (_, index) => codeBlocks[parseInt(index, 10)]
-      );
+      readmeContent = readmeContent.replace(/___CODE_BLOCK_(\d+)___/g, (_, index) => codeBlocks[parseInt(index, 10)]);
 
       // Clean up multiple empty lines
       readmeContent = readmeContent.replace(/\n{3,}/g, '\n\n');
@@ -307,18 +291,18 @@ ${migrationContent}`;
       readmeContent += additionalResources + changelogLink + migrationLink;
 
       writeFileSync(join(packagePath, 'README.md'), readmeContent, 'utf-8');
-      console.info(`[sync-package-docs] ✅ Generated ${packageName}/README.md`);
+      consola.success(`[sync-package-docs] Generated ${packageName}/README.md`);
     }
   };
 
   const syncAllPackages = () => {
     if (!existsSync(packagesPath)) {
-      console.warn(`[sync-package-docs] Packages directory not found: ${packagesPath}`);
+      consola.warn(`[sync-package-docs] Packages directory not found: ${packagesPath}`);
       return;
     }
 
-    console.info('[sync-package-docs] Starting sync...');
-    const packages = readdirSync(packagesPath).filter((item) => {
+    consola.info('[sync-package-docs] Starting sync...');
+    const packages = readdirSync(packagesPath).filter(item => {
       const itemPath = join(packagesPath, item);
       return statSync(itemPath).isDirectory() && existsSync(join(itemPath, 'package.json'));
     });
@@ -327,7 +311,7 @@ ${migrationContent}`;
       syncPackage(packageName);
     }
 
-    console.info('[sync-package-docs] ✅ Sync completed');
+    consola.success('[sync-package-docs] Sync completed');
   };
 
   return {
@@ -339,7 +323,7 @@ ${migrationContent}`;
 
         // Watch mode for dev — автосинхронизация docs пакетов в astro content при изменениях
         if (command === 'dev') {
-          console.info('[sync-package-docs] Watching packages/*/docs for changes...');
+          consola.info('[sync-package-docs] Watching packages/*/docs for changes...');
 
           const watchPaths = [
             join(packagesPath, '*/docs/**/*.mdx'),
@@ -365,14 +349,14 @@ ${migrationContent}`;
           const handleSync = (event: string, eventPath: string) => {
             const packageName = getPackageName(eventPath);
             if (packageName) {
-              console.info(`[sync-package-docs] ${event} in ${packageName}, re-syncing...`);
+              consola.info(`[sync-package-docs] ${event} in ${packageName}, re-syncing...`);
               syncPackage(packageName);
             }
           };
 
-          watcher.on('change', (eventPath) => handleSync('Change', eventPath));
-          watcher.on('add', (eventPath) => handleSync('New file', eventPath));
-          watcher.on('unlink', (eventPath) => handleSync('File removed', eventPath));
+          watcher.on('change', eventPath => handleSync('Change', eventPath));
+          watcher.on('add', eventPath => handleSync('New file', eventPath));
+          watcher.on('unlink', eventPath => handleSync('File removed', eventPath));
         }
       },
     },

@@ -5,6 +5,9 @@ import { ensureParentDirectory } from '../utils/ensureDirectory';
 
 export function simpleCopy({ src, dist }: { src: string; dist: string }) {
   return (file: string) => {
+    if (!fs.statSync(file).isFile()) {
+      return;
+    }
     const relativePathToSrcFile = path.relative(src, file);
     const dirname = path.dirname(relativePathToSrcFile);
     const extension = path.extname(relativePathToSrcFile);

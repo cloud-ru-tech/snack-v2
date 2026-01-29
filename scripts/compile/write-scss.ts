@@ -1,22 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 
-import * as sass from 'sass-embedded';
+import sass from 'sass';
 
+import { logInfo } from '../utils/console';
 import { ensureParentDirectory } from '../utils/ensureDirectory';
 import { postProcessCss } from './post-process-css';
 
-export function writeScss({
-  src,
-  distESM,
-  distCJS,
-}: {
-  src: string;
-  distCJS: string;
-  distESM: string;
-}) {
+export function writeScss({ src, distESM, distCJS }: { src: string; distCJS: string; distESM: string }) {
   return async (file: string) => {
-    console.log(`SCSS transforming: ${file}...`);
+    logInfo(`SCSS transforming: ${file}...`);
 
     const { css } = await sass.compileAsync(file, {
       loadPaths: [path.resolve(__dirname, '../../node_modules')],
@@ -31,7 +24,6 @@ export function writeScss({
     const cjsOutFile = path.resolve(distCJS, filename);
     const esmOutFile = path.resolve(distESM, filename);
 
-    ensureParentDirectory(srcOutFile);
     ensureParentDirectory(cjsOutFile);
     ensureParentDirectory(esmOutFile);
 

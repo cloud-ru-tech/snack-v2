@@ -1,29 +1,24 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
 .grid {
   display: grid;
-  gap: 24px;
+  gap: base.$sn-adaptive-spacing-interval-xl;
   align-items: start;
   justify-items: center;
   width: 100%;
 
-  /* Сброс стилей от Starlight */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 
-  /* Отключение стилей для дочерних элементов */
   :global(> *) {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
 
-  /* Отключение специфичных правил Starlight */
-  :global(
-    :not(a, strong, em, del, span, input, code, br)
-      + :not(a, strong, em, del, span, input, code, br)
-  ) {
+  :global(:not(a, strong, em, del, span, input, code, br) + :not(a, strong, em, del, span, input, code, br)) {
     margin-top: 0 !important;
   }
 
-  /* Дополнительная защита от правил Starlight */
   :global(:where(.sl-markdown-content *)) {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
@@ -35,13 +30,13 @@
 }
 
 .gridGapSmall {
-  gap: 16px;
+  gap: base.$sn-adaptive-spacing-interval-l;
 }
 
 .gridGapMedium {
-  gap: 24px;
+  gap: base.$sn-adaptive-spacing-interval-xl;
 }
 
 .gridGapLarge {
-  gap: 32px;
+  gap: base.$sn-adaptive-spacing-interval-2xl;
 }

@@ -1,29 +1,25 @@
 /**
- * Обертка над @sbercloud/ft-logger для использования в скриптах
+ * Обертка над consola для использования в скриптах
  */
-import {
-  logSuccess as ftLogSuccess,
-  logInfo as ftLogInfo,
-  logWarn,
-  logError as ftLogError,
-  logDebug as ftLogDebug,
-  logSilly as ftLogSilly,
-  logger,
-} from '@sbercloud/ft-logger';
+import { consola } from 'consola';
 
-// Инициализируем логгер с уровнем info
-logger.init('info');
+type LogFn = (...args: unknown[]) => void;
 
-export const logSuccess = ftLogSuccess;
-export const logInfo = ftLogInfo;
-export const logWarning = logWarn;
-export const logError = ftLogError;
-export const logDebug = ftLogDebug;
-export const logSilly = ftLogSilly;
+const log =
+  (fn: LogFn): LogFn =>
+  (...args) =>
+    fn(...args);
+
+export const logSuccess = log(consola.success as LogFn);
+export const logInfo = log(consola.info as LogFn);
+export const logWarning = log(consola.warn as LogFn);
+export const logError = log(consola.error as LogFn);
+export const logDebug = log(consola.debug as LogFn);
+export const logSilly = log(consola.log as LogFn);
 
 /**
- * Вывод подсказки (используем subsection для выделения)
+ * Вывод подсказки (информационное сообщение)
  */
 export const logHelp = (message: string) => {
-  logger.subsection(message);
+  consola.log(message);
 };
