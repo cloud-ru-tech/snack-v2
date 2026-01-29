@@ -124,6 +124,6 @@
     "docgen:all": "ts-node --project scripts/tsconfig.json scripts/docgen/generateAllDocs.ts",
     "docgen:staged": "ts-node --project scripts/tsconfig.json scripts/docgen/docgenForStagedPackages.ts",
     "add-package": "ts-node --project scripts/tsconfig.json scripts/npm-init.ts",
-    "postinstall": "ts-patch install"
+    "postinstall": "ts-patch install && node scripts/patch-storybook-mocker.mjs"
   }
 }
