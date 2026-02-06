@@ -1,9 +1,18 @@
 {
   "files": [],
   "references": [
-    { "path": "./avatar/tsconfig.cjs.json" },
-    { "path": "./counter/tsconfig.cjs.json" },
-    { "path": "./typography/tsconfig.cjs.json" }
+    {
+      "path": "./avatar/tsconfig.cjs.json"
+    },
+    {
+      "path": "./counter/tsconfig.cjs.json"
+    },
+    {
+      "path": "./typography/tsconfig.cjs.json"
+    },
+    {
+      "path": "./loader/tsconfig.cjs.json"
+    }
   ],
   "compilerOptions": {
     "target": "es6",

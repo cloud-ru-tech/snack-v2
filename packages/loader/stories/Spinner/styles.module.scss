@@ -1,0 +1,47 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.container {
+  margin-bottom: base.$sn-primitive-dimension-32;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: base.$sn-primitive-dimension-32;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+}
+
+.tableHeader {
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.tableHeaderCell {
+  @include base.composite-var(base.$sn-regular-label-m);
+
+  padding: base.$sn-primitive-dimension-12 base.$sn-primitive-dimension-16;
+  text-align: center;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  border-bottom: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.tableHeaderCellFirst {
+  width: 80px;
+  text-align: left;
+}
+
+.tableCell {
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.tableCellVariant {
+  @include base.composite-var(base.$sn-regular-label-m);
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-transform: uppercase;
+  min-width: 80px;
+}

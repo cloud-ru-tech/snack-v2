@@ -1,5 +1,23 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Фоны по теме (figma-variables): цикл + simple-var по theme.color
+$theme-background-colors: (
+  'primary': 'primary',
+  'neutral': 'neutral',
+  'red': 'red',
+  'orange': 'orange',
+  'yellow': 'yellow',
+  'green': 'green',
+  'blue': 'blue',
+  'pink': 'pink',
+  'invertNeutral': 'invertNeutral',
+);
+$background-levels: (
+  'background': 'background',
+  'background1Level': 'background1Level',
+  'background2Level': 'background2Level',
+);
+
 .wrapper {
   padding: base.$sn-adaptive-spacing-interval-l;
   background-color: base.$sn-theme-color-neutral-background;
@@ -12,4 +30,30 @@
 .content {
   background-color: base.$sn-theme-color-neutral-background;
   color: base.$sn-theme-color-neutral-text;
+
+  padding: base.$sn-adaptive-spacing-interval-l;
+  margin: calc(0px - base.$sn-adaptive-spacing-interval-m);
+
+  min-width: calc(100% + 2 * base.$sn-adaptive-spacing-interval-m);
+
+  border-radius: base.$sn-primitive-dimension-16;
+
+  @each $data-color, $theme-color in $theme-background-colors {
+    @each $data-level, $theme-key in $background-levels {
+      &[data-background='#{$data-color}-#{$data-level}'] {
+        background-color: base.simple-var(base.$sn-theme, 'color', $theme-color, $theme-key);
+        color: base.simple-var(base.$sn-theme, 'color', $theme-color, 'text');
+      }
+    }
+  }
+
+  // Фон-картинка (как в block/stories)
+  &[data-background='image'] {
+    background-color: transparent;
+    background-image: url('../../../packages/block/stories/assets/sample-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: base.simple-var(base.$sn-theme, 'color', 'neutral', 'onAccent');
+  }
 }
