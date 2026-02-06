@@ -10,11 +10,11 @@
 - **Play functions** - автоматизация взаимодействий для e2e тестов
 - **Visual Regression Ready** - подготовка к screenshot тестированию
 - **Модульная структура** - каждая story в отдельном файле для лучшей читаемости
-- **Общие компоненты/стили** - переиспользование `@storybook/components` и при необходимости локальных стилей в stories
+- **Общие компоненты/стили** - переиспользование `#storybook/components` и при необходимости локальных стилей в stories
 
 ## Общие компоненты и стили для stories
 
-В репозитории есть общая папка **`storybook/components/`** с переиспользуемыми компонентами и стилями для stories. Они доступны в любой story через алиас **`@storybook/components`** (настроен в `storybook/main.ts`).
+В репозитории есть общая папка **`storybook/components/`** с переиспользуемыми компонентами и стилями для stories. Они доступны в любой story через алиас **`#storybook/components`** (настроен в `storybook/main.ts`).
 
 ### Что доступно
 
@@ -28,19 +28,19 @@
 **Импорт в stories:**
 
 ```typescript
-import { StoryTable, StoryWrapper } from '@storybook/components';
+import { StoryTable, StoryWrapper } from '#storybook/components';
 ```
 
 ### Когда использовать общие компоненты
 
 - **Visual Matrix в виде таблицы** (варианты × размеры, appearance × size и т.п.) — используй **`StoryTable`**: единый вид, меньше дублирования, консистентность с другими пакетами.
-- Обёртки, контролы для сценариев — по необходимости бери `StoryWrapper`, `ControlPanel`, `ControlSelect` из `@storybook/components`.
+- Обёртки, контролы для сценариев — по необходимости бери `StoryWrapper`, `ControlPanel`, `ControlSelect` из `#storybook/components`.
 
 ### Когда использовать свои стили в stories
 
 Если макета нет среди общих компонентов (например, сложная матрица с несколькими таблицами/секциями или особая вёрстка), в папке stories компонента можно завести **локальный** `styles.module.scss` (например `packages/component-name/stories/ComponentName/styles.module.scss`) и подключать его только в нужных stories. Предпочтительно опираться на те же design tokens, что и в `storybook/components` (см. README в `storybook/components/`).
 
-**Итог:** сначала используй `StoryTable` и другие компоненты из `@storybook/components`; свои стили — только если общих недостаточно.
+**Итог:** сначала используй `StoryTable` и другие компоненты из `#storybook/components`; свои стили — только если общих недостаточно.
 
 ## Структура файлов
 
@@ -407,10 +407,10 @@ export const KeyboardNavigationTest: Story = {
 
 Матрицы комбинаций для visual regression тестирования.
 
-**Для табличных матриц** (варианты по строкам, размеры/типы по столбцам) используй общий компонент **`StoryTable`** из `@storybook/components`:
+**Для табличных матриц** (варианты по строкам, размеры/типы по столбцам) используй общий компонент **`StoryTable`** из `#storybook/components`:
 
 ```typescript
-import { StoryTable } from '@storybook/components';
+import { StoryTable } from '#storybook/components';
 
 const keySizes = [SIZE.S, SIZE.M, SIZE.L];
 const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Secondary];
@@ -814,7 +814,7 @@ export const ClickTest: Story = {
   },
 };
 
-// 4. Visual Matrix (в начале файла: import { StoryTable } from '@storybook/components')
+// 4. Visual Matrix (в начале файла: import { StoryTable } from '#storybook/components')
 const keySizes = [SIZE.S, SIZE.M, SIZE.L];
 const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Secondary];
 
@@ -871,7 +871,7 @@ export const ValidationTest: Story = {
 - [ ] Use case stories минимально достаточные (3-5 для простых компонентов)
 - [ ] Test stories имеют тег `!dev`
 - [ ] Visual matrices оптимизированы (не все комбинации)
-- [ ] Для табличных матриц используется `StoryTable` из `@storybook/components` (или локальные стили при необходимости)
+- [ ] Для табличных матриц используется `StoryTable` из `#storybook/components` (или локальные стили при необходимости)
 - [ ] Используются правильные tags (`dev`, `test`, `autodocs`, `!dev`)
 - [ ] Названия stories описательные и на английском
 - [ ] Play functions используют `step()` для группировки

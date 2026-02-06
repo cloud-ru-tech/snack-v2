@@ -12,7 +12,12 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@types", "./types"]
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "baseUrl": ".",
+    "paths": {
+      "#storybook/components": ["storybook/components"],
+      "#storybook/components/*": ["storybook/components/*"]
+    }
   },
   "include": ["packages", "apps", "scripts", "storybook", "types"],
   "exclude": [

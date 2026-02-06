@@ -1,6 +1,6 @@
-import { StoryTable } from '@storybook/components';
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+
+import { StoryTable } from '#storybook/components';
 
 import { APPEARANCE, Counter, CounterProps, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '../../src';
 

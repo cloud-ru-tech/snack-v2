@@ -14,7 +14,6 @@
     "storybook/**/*.js",
     "storybook/**/*.d.ts",
     "packages/*/docs/**",
-    "packages/*/stories/**",
     "packages/*/__tests__/**",
     "packages/*/__test__/**"
   ]
