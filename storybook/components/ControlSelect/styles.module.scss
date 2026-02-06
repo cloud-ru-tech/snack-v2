@@ -2,8 +2,8 @@
 
 .label {
   display: flex;
-  align-items: center;
   gap: base.$sn-adaptive-spacing-interval-m;
+  align-items: center;
   font-size: base.$sn-primitive-font-fontSize-14;
 }
 
@@ -14,15 +14,18 @@
 }
 
 .select {
+  cursor: pointer;
+
   padding: base.$sn-adaptive-spacing-control-container-vertical-s
     base.$sn-adaptive-spacing-control-container-horizontal-s;
-  border-radius: base.$sn-adaptive-radius-2xs;
   border: base.$sn-primitive-strokeWeight-strokeRegular solid
     base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-radius: base.$sn-adaptive-radius-2xs;
+
   font-size: base.$sn-primitive-font-fontSize-14;
-  cursor: pointer;
-  background-color: base.$sn-theme-color-neutral-background;
   color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background;
 
   &:hover {
     border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;

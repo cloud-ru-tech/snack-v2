@@ -11,6 +11,7 @@
   padding: $spacing-lg;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-lg;
+
   background: base.$sn-theme-color-neutral-background1Level;
   box-shadow: base.$sn-boxShadow-elevation-level1;
 
@@ -27,6 +28,7 @@
     margin-top: base.$sn-primitive-dimension-0;
 
     @include base.composite-var(base.$sn-regular-headline-s);
+
     color: base.$sn-theme-color-available-version-textMain;
   }
 
@@ -37,33 +39,35 @@
   }
 
   ul {
-    list-style: none;
-    padding: base.$sn-primitive-dimension-0;
     margin: $spacing-md base.$sn-primitive-dimension-0;
+    padding: base.$sn-primitive-dimension-0;
+    list-style: none;
   }
 
   li {
     margin: $spacing-sm base.$sn-primitive-dimension-0;
     padding: $spacing-sm;
-    border-radius: $radius-md;
-    transition: all $transition-base;
-    background: base.$sn-theme-color-neutral-background2Level;
     border: base.$sn-primitive-dimension-2 solid transparent;
+    border-radius: $radius-md;
+
+    background: base.$sn-theme-color-neutral-background2Level;
+
+    transition: all $transition-base;
 
     &:hover {
-      background: base.$sn-theme-color-neutral-background1Level;
-      border-color: base.$sn-theme-color-primary-accent;
       transform: translateX(base.$sn-primitive-dimension-2);
+      border-color: base.$sn-theme-color-primary-accent;
+      background: base.$sn-theme-color-neutral-background1Level;
       box-shadow: base.$sn-boxShadow-elevation-level1;
     }
   }
 
   a {
+    color: base.$sn-theme-color-primary-accent;
     text-decoration: none;
+    transition: color $transition-base;
 
     @include base.composite-var(base.$sn-regular-title-s);
-    color: base.$sn-theme-color-primary-accent;
-    transition: color $transition-base;
 
     &:hover {
       color: base.$sn-theme-color-primary-text;
@@ -72,13 +76,15 @@
   }
 
   code {
-    background: base.$sn-theme-color-neutral-background;
     padding: $spacing-xs $spacing-sm;
+    border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
     border-radius: base.$sn-primitive-dimension-6;
 
-    @include base.composite-var(base.$sn-regular-label-m);
     color: base.$sn-theme-color-available-version-textMain;
-    border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+
+    background: base.$sn-theme-color-neutral-background;
+
+    @include base.composite-var(base.$sn-regular-label-m);
 
     :global(.sn-light) & {
       border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
@@ -94,12 +100,14 @@
   .note {
     margin-top: $spacing-md;
     padding: $spacing-sm;
+    border-left: base.$sn-primitive-dimension-4 solid base.$sn-theme-color-primary-accent;
+    border-radius: base.$sn-primitive-dimension-6;
+
+    font-style: italic;
+    color: base.$sn-theme-color-available-version-textSecondary;
+
+    background: base.$sn-theme-color-neutral-background;
 
     @include base.composite-var(base.$sn-regular-label-m);
-    color: base.$sn-theme-color-available-version-textSecondary;
-    font-style: italic;
-    background: base.$sn-theme-color-neutral-background;
-    border-radius: base.$sn-primitive-dimension-6;
-    border-left: base.$sn-primitive-dimension-4 solid base.$sn-theme-color-primary-accent;
   }
 }

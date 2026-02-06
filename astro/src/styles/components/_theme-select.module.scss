@@ -18,16 +18,20 @@
 }
 
 .theme-select {
+  cursor: pointer;
+
+  min-width: base.$sn-primitive-dimension-120;
   padding: $spacing-xs $spacing-sm;
-  border-radius: base.$sn-primitive-dimension-6;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
-  background: base.$sn-theme-color-neutral-background;
+  border-radius: base.$sn-primitive-dimension-6;
+
   color: base.$sn-theme-color-available-version-textMain;
 
-  @include base.composite-var(base.$sn-regular-label-m);
-  cursor: pointer;
+  background: base.$sn-theme-color-neutral-background;
+
   transition: all $transition-base;
-  min-width: base.$sn-primitive-dimension-120;
+
+  @include base.composite-var(base.$sn-regular-label-m);
 
   &:hover {
     border-color: base.$sn-theme-color-neutral-text;
@@ -35,13 +39,13 @@
   }
 
   &:focus {
+    border-color: base.$sn-theme-color-primary-accent;
     outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
     outline-offset: base.$sn-primitive-dimension-2;
-    border-color: base.$sn-theme-color-primary-accent;
   }
 
   option {
-    @media (max-width: 400px) {
+    @media (width <= 400px) {
       @include base.composite-var(base.$sn-regular-label-s);
     }
   }

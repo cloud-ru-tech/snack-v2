@@ -9,9 +9,10 @@
 .changelog-container {
   margin: $spacing-xl base.$sn-primitive-dimension-0;
   padding: $spacing-lg;
-  background: base.$sn-theme-color-neutral-background1Level;
-  border-radius: $radius-lg;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-lg;
+
+  background: base.$sn-theme-color-neutral-background1Level;
   box-shadow: base.$sn-boxShadow-elevation-level1;
 
   // Theme-specific styles
@@ -37,6 +38,7 @@
     margin: base.$sn-primitive-dimension-0;
 
     @include base.composite-var(base.$sn-regular-headline-s);
+
     color: base.$sn-theme-color-available-version-textMain;
   }
 }
@@ -52,25 +54,29 @@
 
 .changelog-button {
   display: inline-block;
+
   padding: $spacing-sm $spacing-lg;
-  background: base.$sn-theme-color-primary-accent;
-  color: base.$sn-theme-color-primary-onAccent;
   border-radius: $radius-md;
+
+  color: base.$sn-theme-color-primary-onAccent;
   text-decoration: none;
 
-  @include base.composite-var(base.$sn-regular-title-s);
-  transition: all $transition-base;
+  background: base.$sn-theme-color-primary-accent;
   box-shadow: base.$sn-boxShadow-elevation-level1;
 
+  transition: all $transition-base;
+
+  @include base.composite-var(base.$sn-regular-title-s);
+
   &:hover {
-    background: base.$sn-theme-color-primary-text;
     transform: translateY(calc(-1 * #{base.$sn-primitive-dimension-1}));
+    background: base.$sn-theme-color-primary-text;
     box-shadow: base.$sn-boxShadow-elevation-level2;
   }
 
   &:active {
-    background: base.$sn-theme-color-primary-text;
     transform: translateY(base.$sn-primitive-dimension-0);
+    background: base.$sn-theme-color-primary-text;
     box-shadow: base.$sn-boxShadow-elevation-level1;
   }
 }
@@ -80,14 +86,16 @@
 }
 
 .changelog-link {
+  display: inline-flex;
+  gap: $spacing-xs;
+  align-items: center;
+
   color: base.$sn-theme-color-primary-accent;
   text-decoration: none;
 
-  @include base.composite-var(base.$sn-regular-body-m);
-  display: inline-flex;
-  align-items: center;
-  gap: $spacing-xs;
   transition: color $transition-base;
+
+  @include base.composite-var(base.$sn-regular-body-m);
 
   &:hover {
     color: base.$sn-theme-color-primary-text;

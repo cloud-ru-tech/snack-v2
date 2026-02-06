@@ -3,10 +3,9 @@
 .grid {
   display: grid;
   gap: base.$sn-adaptive-spacing-interval-xl;
-  align-items: start;
-  justify-items: center;
-  width: 100%;
+  place-items: start center;
 
+  width: 100%;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 

@@ -7,13 +7,16 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .storybook-iframe {
+  display: block;
+
+  margin: $spacing-lg base.$sn-primitive-dimension-0;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-lg;
+
   background: base.$sn-theme-color-neutral-background2Level;
-  transition: all $transition-base;
-  display: block;
-  margin: $spacing-lg base.$sn-primitive-dimension-0;
   box-shadow: base.$sn-boxShadow-elevation-level1;
+
+  transition: all $transition-base;
 
   &:hover {
     box-shadow: base.$sn-boxShadow-elevation-level2;

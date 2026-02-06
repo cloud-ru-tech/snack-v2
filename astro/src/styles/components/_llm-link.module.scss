@@ -9,10 +9,11 @@
 .llm-link-container {
   margin: $spacing-lg base.$sn-primitive-dimension-0;
   padding: base.$sn-primitive-dimension-20;
-  background: base.$sn-theme-color-neutral-background1Level;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
-  border-radius: $radius-lg;
   border-left: base.$sn-primitive-dimension-4 solid base.$sn-theme-color-primary-accent;
+  border-radius: $radius-lg;
+
+  background: base.$sn-theme-color-neutral-background1Level;
   box-shadow: base.$sn-boxShadow-elevation-level1;
 
   // Theme-specific styles
@@ -27,9 +28,11 @@
 
 .llm-link-header {
   display: flex;
-  align-items: center;
   gap: $spacing-sm;
+  align-items: center;
+
   margin-bottom: $spacing-sm;
+
   color: base.$sn-theme-color-available-version-textMain;
 
   @include base.composite-var(base.$sn-regular-title-s);
@@ -51,36 +54,43 @@
 
 .llm-link-row {
   display: flex;
-  align-items: center;
   gap: $spacing-sm;
+  align-items: center;
   margin-bottom: $spacing-sm;
 }
 
 .llm-link {
   display: flex;
-  align-items: center;
+  flex: 1;
   gap: $spacing-sm;
+  align-items: center;
+
+  padding: base.$sn-primitive-dimension-8 $spacing-md;
+  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
+  border-radius: $radius-md;
+
   color: base.$sn-theme-color-primary-accent;
   text-decoration: none;
 
-  @include base.composite-var(base.$sn-regular-body-m);
-  padding: base.$sn-primitive-dimension-8 $spacing-md;
   background: base.$sn-theme-color-neutral-background2Level;
-  border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
-  border-radius: $radius-md;
-  transition: all $transition-base;
-  flex: 1;
   box-shadow: base.$sn-boxShadow-elevation-level1;
+
+  transition: all $transition-base;
+
+  @include base.composite-var(base.$sn-regular-body-m);
 
   :global(.sn-light) & {
     border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
   }
 
   &:hover {
-    background: base.$sn-theme-color-neutral-background1Level;
-    border-color: base.$sn-theme-color-primary-accent;
-    text-decoration: none;
     transform: translateX(base.$sn-primitive-dimension-2);
+
+    border-color: base.$sn-theme-color-primary-accent;
+
+    text-decoration: none;
+
+    background: base.$sn-theme-color-neutral-background1Level;
     box-shadow: base.$sn-boxShadow-elevation-level1;
   }
 }
@@ -92,32 +102,37 @@
 }
 
 .copy-button {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: base.$sn-primitive-dimension-8;
-  background: base.$sn-theme-color-neutral-background2Level;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-md;
-  cursor: pointer;
-  transition: all $transition-base;
+
   color: base.$sn-theme-color-available-version-textMain;
+
+  background: base.$sn-theme-color-neutral-background2Level;
   box-shadow: base.$sn-boxShadow-elevation-level1;
+
+  transition: all $transition-base;
 
   :global(.sn-light) & {
     border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
   }
 
   &:hover {
-    background: base.$sn-theme-color-neutral-background1Level;
     border-color: base.$sn-theme-color-primary-accent;
+    background: base.$sn-theme-color-neutral-background1Level;
     box-shadow: base.$sn-boxShadow-elevation-level1;
   }
 
   &.copied {
-    background: base.$sn-theme-color-green-accent;
     border-color: base.$sn-theme-color-green-accent;
     color: base.$sn-theme-color-green-onAccent;
+    background: base.$sn-theme-color-green-accent;
     box-shadow: base.$sn-boxShadow-elevation-level2;
   }
 }
@@ -128,11 +143,13 @@
 }
 
 .llm-url {
+  overflow-x: auto;
+
   padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
-  background: base.$sn-theme-color-neutral-background;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-6;
-  overflow-x: auto;
+
+  background: base.$sn-theme-color-neutral-background;
 
   :global(.sn-light) & {
     border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
@@ -140,8 +157,9 @@
 
   code {
     @include base.composite-var(base.$sn-regular-label-s);
+
+    padding: base.$sn-primitive-dimension-0;
     color: base.$sn-theme-color-available-version-textMain;
     background: none;
-    padding: base.$sn-primitive-dimension-0;
   }
 }

@@ -3,17 +3,17 @@
 .container {
   isolation: isolate;
 
-  margin-top: 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-
-  padding: base.$sn-adaptive-spacing-interval-xl;
-  background-color: base.$sn-theme-color-neutral-background1Level;
-  border-radius: base.$sn-primitive-dimension-8;
-  margin-bottom: base.$sn-adaptive-spacing-interval-2xl;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
-  width: 100%;
   box-sizing: border-box;
+  width: 100%;
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: base.$sn-adaptive-spacing-interval-2xl;
+  margin-left: 0 !important;
+  padding: base.$sn-adaptive-spacing-interval-xl;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
 
   :global(*) {
     margin-top: 0 !important;

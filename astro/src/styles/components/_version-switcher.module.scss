@@ -8,29 +8,36 @@
 
 .version-switcher {
   display: flex;
-  align-items: center;
   gap: $spacing-sm;
-  padding: $spacing-sm $spacing-md;
-  background: base.$sn-theme-color-neutral-background1-level;
-  border-radius: $radius-md;
+  align-items: center;
+
   margin: $spacing-md base.$sn-primitive-dimension-0;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+
+  background: base.$sn-theme-color-neutral-background1-level;
 }
 
 .version-label {
   @include base.composite-var(base.$sn-regular-label-m);
+
   color: base.$sn-theme-color-available-version-text-main;
 }
 
 .version-select {
+  cursor: pointer;
+
   padding: base.$sn-primitive-dimension-6 $spacing-sm;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-sm;
-  background: base.$sn-theme-color-neutral-background2-level;
+
   color: base.$sn-theme-color-available-version-text-main;
 
-  @include base.composite-var(base.$sn-regular-label-m);
-  cursor: pointer;
+  background: base.$sn-theme-color-neutral-background2-level;
+
   transition: border-color $transition-base;
+
+  @include base.composite-var(base.$sn-regular-label-m);
 
   &:hover {
     border-color: base.$sn-theme-color-primary-accent;
@@ -44,6 +51,7 @@
 
 .package-name {
   @include base.composite-var(base.$sn-regular-label-s);
-  color: base.$sn-theme-color-available-version-text-secondary;
+
   margin-left: auto;
+  color: base.$sn-theme-color-available-version-text-secondary;
 }

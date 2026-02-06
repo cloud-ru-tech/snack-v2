@@ -2,12 +2,12 @@
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   gap: base.$sn-primitive-dimension-20;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
 
+  width: 100%;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 
