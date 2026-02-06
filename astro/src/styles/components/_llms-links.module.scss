@@ -11,27 +11,27 @@
   padding: $spacing-lg;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-lg;
-  background: base.$sn-theme-color-neutral-background1-level;
-  box-shadow: base.$sn-box-shadow-elevation-level1;
+  background: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
 
   // Theme-specific styles
   :global(.sn-light) & {
-    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
   }
 
   :global(.sn-dark) & {
-    border-color: base.$sn-theme-color-neutral-decor-transparent;
+    border-color: base.$sn-theme-color-neutral-decorTransparent;
   }
 
   h2 {
     margin-top: base.$sn-primitive-dimension-0;
 
     @include base.composite-var(base.$sn-regular-headline-s);
-    color: base.$sn-theme-color-available-version-text-main;
+    color: base.$sn-theme-color-available-version-textMain;
   }
 
   > p {
-    color: base.$sn-theme-color-available-version-text-secondary;
+    color: base.$sn-theme-color-available-version-textSecondary;
 
     @include base.composite-var(base.$sn-regular-body-m);
   }
@@ -47,14 +47,14 @@
     padding: $spacing-sm;
     border-radius: $radius-md;
     transition: all $transition-base;
-    background: base.$sn-theme-color-neutral-background2-level;
+    background: base.$sn-theme-color-neutral-background2Level;
     border: base.$sn-primitive-dimension-2 solid transparent;
 
     &:hover {
-      background: base.$sn-theme-color-neutral-background1-level;
+      background: base.$sn-theme-color-neutral-background1Level;
       border-color: base.$sn-theme-color-primary-accent;
       transform: translateX(base.$sn-primitive-dimension-2);
-      box-shadow: base.$sn-box-shadow-elevation-level1;
+      box-shadow: base.$sn-boxShadow-elevation-level1;
     }
   }
 
@@ -77,16 +77,16 @@
     border-radius: base.$sn-primitive-dimension-6;
 
     @include base.composite-var(base.$sn-regular-label-m);
-    color: base.$sn-theme-color-available-version-text-main;
+    color: base.$sn-theme-color-available-version-textMain;
     border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
 
     :global(.sn-light) & {
-      border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+      border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
     }
   }
 
   span {
-    color: base.$sn-theme-color-available-version-text-secondary;
+    color: base.$sn-theme-color-available-version-textSecondary;
 
     @include base.composite-var(base.$sn-regular-body-s);
   }
@@ -96,7 +96,7 @@
     padding: $spacing-sm;
 
     @include base.composite-var(base.$sn-regular-label-m);
-    color: base.$sn-theme-color-available-version-text-secondary;
+    color: base.$sn-theme-color-available-version-textSecondary;
     font-style: italic;
     background: base.$sn-theme-color-neutral-background;
     border-radius: base.$sn-primitive-dimension-6;

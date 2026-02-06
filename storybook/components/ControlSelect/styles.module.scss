@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: base.$sn-adaptive-spacing-interval-m;
-  font-size: base.$sn-primitive-font-font-size-14;
+  font-size: base.$sn-primitive-font-fontSize-14;
 }
 
 .labelText {
@@ -17,20 +17,20 @@
   padding: base.$sn-adaptive-spacing-control-container-vertical-s
     base.$sn-adaptive-spacing-control-container-horizontal-s;
   border-radius: base.$sn-adaptive-radius-2xs;
-  border: base.$sn-primitive-stroke-weight-stroke-regular solid
-    base.$sn-theme-color-material-state-layer-regular-default-border-color;
-  font-size: base.$sn-primitive-font-font-size-14;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid
+    base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  font-size: base.$sn-primitive-font-fontSize-14;
   cursor: pointer;
   background-color: base.$sn-theme-color-neutral-background;
   color: base.$sn-theme-color-neutral-text;
 
   &:hover {
-    border-color: base.$sn-theme-color-material-state-layer-regular-hovered-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
   }
 
   &:focus {
-    outline: base.$sn-primitive-stroke-weight-stroke-semi-bold solid
-      base.$sn-theme-color-material-state-layer-activated-default-border-color;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
+      base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
     outline-offset: base.$sn-primitive-dimension-2;
   }
 }

@@ -8,7 +8,7 @@
 
 .theme-switcher {
   padding: $spacing-md;
-  background: base.$sn-theme-color-neutral-background1-level;
+  background: base.$sn-theme-color-neutral-background1Level;
   border-radius: $radius-md;
   margin-bottom: $spacing-md;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
@@ -31,15 +31,15 @@
 
 .theme-label {
   @include base.composite-var(base.$sn-regular-body-m);
-  color: base.$sn-theme-color-available-version-text-main;
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .theme-select {
   padding: $spacing-xs $spacing-sm;
   border-radius: $radius-sm;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
-  background: base.$sn-theme-color-neutral-background2-level;
-  color: base.$sn-theme-color-available-version-text-main;
+  background: base.$sn-theme-color-neutral-background2Level;
+  color: base.$sn-theme-color-available-version-textMain;
 
   @include base.composite-var(base.$sn-regular-label-m);
   cursor: pointer;

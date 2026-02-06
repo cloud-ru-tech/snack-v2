@@ -22,7 +22,7 @@
   border-radius: base.$sn-primitive-dimension-6;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   background: base.$sn-theme-color-neutral-background;
-  color: base.$sn-theme-color-available-version-text-main;
+  color: base.$sn-theme-color-available-version-textMain;
 
   @include base.composite-var(base.$sn-regular-label-m);
   cursor: pointer;
@@ -31,7 +31,7 @@
 
   &:hover {
     border-color: base.$sn-theme-color-neutral-text;
-    background: base.$sn-theme-color-neutral-background1-level;
+    background: base.$sn-theme-color-neutral-background1Level;
   }
 
   &:focus {

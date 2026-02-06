@@ -6,7 +6,7 @@ $contexts: 'primary', 'neutral', 'red';
 $roleColors: 'accent', 'decor';
 
 $textColor: (
-  'accent': 'on-accent',
+  'accent': 'onAccent',
   'decor': 'accent',
 );
 
@@ -32,12 +32,7 @@ $typography: (
         &[data-appearance='#{$appearance}'] {
           background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleColor);
 
-          color: base.simple-var(
-            base.$sn-theme,
-            'color',
-            $appearance,
-            base.simple-var($textColor, $roleColor)
-          );
+          color: base.simple-var(base.$sn-theme, 'color', $appearance, base.simple-var($textColor, $roleColor));
 
           @each $size in $sizes {
             &[data-size='#{$size}'] {
@@ -47,7 +42,7 @@ $typography: (
               height: 0;
 
               border-style: solid;
-              border-color: base.$sn-theme-color-neutral-background1-level;
+              border-color: base.$sn-theme-color-neutral-background1Level;
             }
           }
         }

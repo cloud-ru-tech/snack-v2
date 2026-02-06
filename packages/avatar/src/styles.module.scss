@@ -58,8 +58,8 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
     &[data-appearance='#{$appearance-name}'] {
       background-color: base.simple-var(base.$sn-theme, 'color', $appearance-name, 'decor');
       text-align: center;
-      color: base.$sn-theme-color-available-version-text-secondary;
-      border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+      color: base.$sn-theme-color-available-version-textSecondary;
+      border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
     }
   }
 

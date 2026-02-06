@@ -8,7 +8,7 @@
 }
 
 .tableHeader {
-  background-color: base.$sn-theme-color-neutral-background1-level;
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .tableHeaderCell {
@@ -17,8 +17,8 @@
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   border-bottom: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   font-weight: 600;
-  font-size: base.$sn-regular-label-m-font-size;
-  color: base.$sn-theme-color-available-version-text-main;
+  font-size: base.$sn-regular-label-m-fontSize;
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .tableHeaderCellFirst {
@@ -33,8 +33,8 @@
 
 .tableCellVariant {
   font-weight: 600;
-  font-size: base.$sn-regular-label-m-font-size;
-  color: base.$sn-theme-color-available-version-text-secondary;
+  font-size: base.$sn-regular-label-m-fontSize;
+  color: base.$sn-theme-color-available-version-textSecondary;
   text-transform: capitalize;
   min-width: 120px;
 }

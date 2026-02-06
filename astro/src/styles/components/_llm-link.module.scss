@@ -9,19 +9,19 @@
 .llm-link-container {
   margin: $spacing-lg base.$sn-primitive-dimension-0;
   padding: base.$sn-primitive-dimension-20;
-  background: base.$sn-theme-color-neutral-background1-level;
+  background: base.$sn-theme-color-neutral-background1Level;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-lg;
   border-left: base.$sn-primitive-dimension-4 solid base.$sn-theme-color-primary-accent;
-  box-shadow: base.$sn-box-shadow-elevation-level1;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
 
   // Theme-specific styles
   :global(.sn-light) & {
-    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
   }
 
   :global(.sn-dark) & {
-    border-color: base.$sn-theme-color-neutral-decor-transparent;
+    border-color: base.$sn-theme-color-neutral-decorTransparent;
   }
 }
 
@@ -30,7 +30,7 @@
   align-items: center;
   gap: $spacing-sm;
   margin-bottom: $spacing-sm;
-  color: base.$sn-theme-color-available-version-text-main;
+  color: base.$sn-theme-color-available-version-textMain;
 
   @include base.composite-var(base.$sn-regular-title-s);
 }
@@ -44,7 +44,7 @@
 
 .llm-description {
   margin: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-0 $spacing-md base.$sn-primitive-dimension-0;
-  color: base.$sn-theme-color-available-version-text-secondary;
+  color: base.$sn-theme-color-available-version-textSecondary;
 
   @include base.composite-var(base.$sn-regular-body-s);
 }
@@ -65,23 +65,23 @@
 
   @include base.composite-var(base.$sn-regular-body-m);
   padding: base.$sn-primitive-dimension-8 $spacing-md;
-  background: base.$sn-theme-color-neutral-background2-level;
+  background: base.$sn-theme-color-neutral-background2Level;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-md;
   transition: all $transition-base;
   flex: 1;
-  box-shadow: base.$sn-box-shadow-elevation-level1;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
 
   :global(.sn-light) & {
-    border-color: base.$sn-theme-color-material-state-layer-regular-hovered-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
   }
 
   &:hover {
-    background: base.$sn-theme-color-neutral-background1-level;
+    background: base.$sn-theme-color-neutral-background1Level;
     border-color: base.$sn-theme-color-primary-accent;
     text-decoration: none;
     transform: translateX(base.$sn-primitive-dimension-2);
-    box-shadow: base.$sn-box-shadow-elevation-level1;
+    box-shadow: base.$sn-boxShadow-elevation-level1;
   }
 }
 
@@ -96,29 +96,29 @@
   align-items: center;
   justify-content: center;
   padding: base.$sn-primitive-dimension-8;
-  background: base.$sn-theme-color-neutral-background2-level;
+  background: base.$sn-theme-color-neutral-background2Level;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   border-radius: $radius-md;
   cursor: pointer;
   transition: all $transition-base;
-  color: base.$sn-theme-color-available-version-text-main;
-  box-shadow: base.$sn-box-shadow-elevation-level1;
+  color: base.$sn-theme-color-available-version-textMain;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
 
   :global(.sn-light) & {
-    border-color: base.$sn-theme-color-material-state-layer-regular-hovered-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
   }
 
   &:hover {
-    background: base.$sn-theme-color-neutral-background1-level;
+    background: base.$sn-theme-color-neutral-background1Level;
     border-color: base.$sn-theme-color-primary-accent;
-    box-shadow: base.$sn-box-shadow-elevation-level1;
+    box-shadow: base.$sn-boxShadow-elevation-level1;
   }
 
   &.copied {
     background: base.$sn-theme-color-green-accent;
     border-color: base.$sn-theme-color-green-accent;
-    color: base.$sn-theme-color-green-on-accent;
-    box-shadow: base.$sn-box-shadow-elevation-level2;
+    color: base.$sn-theme-color-green-onAccent;
+    box-shadow: base.$sn-boxShadow-elevation-level2;
   }
 }
 
@@ -135,12 +135,12 @@
   overflow-x: auto;
 
   :global(.sn-light) & {
-    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
   }
 
   code {
     @include base.composite-var(base.$sn-regular-label-s);
-    color: base.$sn-theme-color-available-version-text-main;
+    color: base.$sn-theme-color-available-version-textMain;
     background: none;
     padding: base.$sn-primitive-dimension-0;
   }

@@ -3,12 +3,12 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: base.$sn-primitive-dimension-32;
+  margin-bottom: base.$sn-primitive-dimension-48;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
 }
 
 .tableHeader {
-  background-color: base.$sn-theme-color-neutral-background1-level;
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .tableHeaderCell {
@@ -17,8 +17,8 @@
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   border-bottom: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
   font-weight: 600;
-  font-size: base.$sn-regular-label-m-font-size;
-  color: base.$sn-theme-color-available-version-text-main;
+  font-size: base.$sn-regular-label-m-fontSize;
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .tableHeaderCellFirst {
@@ -28,26 +28,18 @@
 .tableCell {
   padding: base.$sn-primitive-dimension-16;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
-  vertical-align: middle;
-  text-align: center;
+  vertical-align: baseline;
 }
 
 .tableCellVariant {
   font-weight: 600;
-  font-size: base.$sn-regular-label-m-font-size;
-  color: base.$sn-theme-color-available-version-text-secondary;
+  font-size: base.$sn-regular-label-m-fontSize;
+  color: base.$sn-theme-color-available-version-textSecondary;
   text-transform: capitalize;
   min-width: 120px;
 }
 
 .sectionHeader {
   margin-bottom: base.$sn-primitive-dimension-16;
-  margin-top: base.$sn-primitive-dimension-32;
-}
-
-.cellContent {
-  display: flex;
-  gap: base.$sn-primitive-dimension-8;
-  align-items: center;
-  justify-content: center;
+  margin-top: base.$sn-primitive-dimension-48;
 }

@@ -9,18 +9,18 @@
 .changelog-container {
   margin: $spacing-xl base.$sn-primitive-dimension-0;
   padding: $spacing-lg;
-  background: base.$sn-theme-color-neutral-background1-level;
+  background: base.$sn-theme-color-neutral-background1Level;
   border-radius: $radius-lg;
   border: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
-  box-shadow: base.$sn-box-shadow-elevation-level1;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
 
   // Theme-specific styles
   :global(.sn-light) & {
-    border-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+    border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
   }
 
   :global(.sn-dark) & {
-    border-color: base.$sn-theme-color-neutral-decor-transparent;
+    border-color: base.$sn-theme-color-neutral-decorTransparent;
   }
 }
 
@@ -30,23 +30,23 @@
   border-bottom: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-neutral-decor;
 
   :global(.sn-light) & {
-    border-bottom-color: base.$sn-theme-color-material-state-layer-regular-default-border-color;
+    border-bottom-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
   }
 
   h2 {
     margin: base.$sn-primitive-dimension-0;
 
     @include base.composite-var(base.$sn-regular-headline-s);
-    color: base.$sn-theme-color-available-version-text-main;
+    color: base.$sn-theme-color-available-version-textMain;
   }
 }
 
 .changelog-content {
-  color: base.$sn-theme-color-available-version-text-main;
+  color: base.$sn-theme-color-available-version-textMain;
 
   p {
     margin-bottom: $spacing-md;
-    color: base.$sn-theme-color-available-version-text-secondary;
+    color: base.$sn-theme-color-available-version-textSecondary;
   }
 }
 
@@ -54,24 +54,24 @@
   display: inline-block;
   padding: $spacing-sm $spacing-lg;
   background: base.$sn-theme-color-primary-accent;
-  color: base.$sn-theme-color-primary-on-accent;
+  color: base.$sn-theme-color-primary-onAccent;
   border-radius: $radius-md;
   text-decoration: none;
 
   @include base.composite-var(base.$sn-regular-title-s);
   transition: all $transition-base;
-  box-shadow: base.$sn-box-shadow-elevation-level1;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
 
   &:hover {
     background: base.$sn-theme-color-primary-text;
     transform: translateY(calc(-1 * #{base.$sn-primitive-dimension-1}));
-    box-shadow: base.$sn-box-shadow-elevation-level2;
+    box-shadow: base.$sn-boxShadow-elevation-level2;
   }
 
   &:active {
     background: base.$sn-theme-color-primary-text;
     transform: translateY(base.$sn-primitive-dimension-0);
-    box-shadow: base.$sn-box-shadow-elevation-level1;
+    box-shadow: base.$sn-boxShadow-elevation-level1;
   }
 }
 
