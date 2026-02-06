@@ -1,5 +1,9 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+.container {
+  margin-bottom: base.$sn-primitive-dimension-48;
+}
+
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -42,6 +46,12 @@
 }
 
 .sectionHeader {
-  margin-top: base.$sn-primitive-dimension-48;
   margin-bottom: base.$sn-primitive-dimension-16;
+}
+
+.cellContentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
 }
