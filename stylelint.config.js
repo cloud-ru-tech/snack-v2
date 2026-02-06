@@ -1,8 +1,8 @@
 module.exports = {
-  extends: ['@cloud-ru/ft-config-stylelint'],
+  extends: ['stylelint-config-standard', 'stylelint-config-recommended-scss'],
   rules: {
     'no-descending-specificity': true,
-    'at-rule-empty-line-before': ['always', { except: ['first-nested', 'blockless-after-same-name-blockless'] }],
+    'custom-property-pattern': null,
     'selector-pseudo-class-no-unknown': [
       true,
       {
@@ -12,12 +12,23 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['astro/src/components/mdx/**/*.scss'],
-      rules: { 'declaration-no-important': null },
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+      rules: {
+        'scss/at-import-partial-extension': null,
+      },
+    },
+    {
+      files: ['astro/src/components/mdx/**/*.scss', 'astro/src/styles/starlight-overrides.scss'],
+      rules: {
+        'declaration-no-important': null,
+        'no-descending-specificity': null,
+      },
     },
     {
       files: ['storybook/components/ControlPanel/**/*.scss'],
       rules: { 'declaration-property-value-allowed-list': null },
     },
   ],
+  ignoreFiles: ['**/dist/**', '**/node_modules/**', '**/storybook-static/**', '**/packages/icons/**'],
 };

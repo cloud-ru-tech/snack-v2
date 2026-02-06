@@ -65,7 +65,7 @@ export default defineConfig({
         // Подключаем глобальные стили дизайн-системы
         './src/styles/global.css',
         // Переопределение стилей Starlight для использования цветов дизайн-системы
-        './src/styles/starlight-overrides.css',
+        './src/styles/starlight-overrides.scss',
       ],
       head: [],
       plugins: [

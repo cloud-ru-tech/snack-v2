@@ -11,18 +11,18 @@
   },
   "dependencies": {
     "consola": "3.4.2",
-    "@astrojs/mdx": "^4.3.12",
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/starlight": "^0.36.0",
+    "@astrojs/mdx": "4.3.13",
+    "@astrojs/react": "4.4.2",
+    "@astrojs/starlight": "0.37.6",
     "@sbercloud/figma-variables": "1.1.0",
-    "astro": "^5.16.4",
-    "astro-expressive-code": "^0.41.3",
-    "classnames": "^2.5.1",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "astro": "5.17.1",
+    "astro-expressive-code": "0.41.6",
+    "classnames": "2.5.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "starlight-llms-txt": "0.6.0",
-    "typescript": "^5.9.3"
+    "starlight-llms-txt": "0.7.0",
+    "typescript": "5.9.3"
   }
 }

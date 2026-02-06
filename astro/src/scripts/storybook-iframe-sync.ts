@@ -45,11 +45,9 @@ export function syncThemeWithIframes(): void {
   }
 
   // Находим все iframe со Storybook
-  const iframes = document.querySelectorAll(
-    'iframe.storybook-iframe'
-  ) as NodeListOf<HTMLIFrameElement>;
+  const iframes = document.querySelectorAll('iframe.storybook-iframe') as NodeListOf<HTMLIFrameElement>;
 
-  iframes.forEach((iframe) => {
+  iframes.forEach(iframe => {
     // Отправляем текущую тему при загрузке iframe
     iframe.addEventListener('load', () => {
       sendThemeToIframe(iframe, manager);
@@ -58,7 +56,7 @@ export function syncThemeWithIframes(): void {
 
   // Слушаем изменения темы и передаем в iframe
   const syncHandler = (): void => {
-    iframes.forEach((iframe) => {
+    iframes.forEach(iframe => {
       sendThemeToIframe(iframe, manager);
     });
   };

@@ -7,62 +7,58 @@
    SIDEBAR STYLING
    ============================================ */
 
-/* Основной контейнер sidebar */
 .sidebar {
   background-color: var(--sn-theme-color-neutral-background1-level) !important;
   border-right: 1px solid var(--sn-theme-color-neutral-decor) !important;
 }
 
-/* Светлая тема - более заметная граница */
 .sn-light .sidebar {
-  border-right-color: rgba(0, 0, 0, 0.12) !important;
-  box-shadow: var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4) rgba(0, 0, 0, 0.05);
+  border-right-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
+  box-shadow:
+    var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4)
+    var(--sn-theme-effect-shadow-layer2Color);
 }
 
-/* Темная тема */
 .sn-dark .sidebar {
-  border-right-color: rgba(255, 255, 255, 0.1) !important;
-  box-shadow: var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4) rgba(0, 0, 0, 0.2);
+  border-right-color: var(--sn-theme-color-neutral-decorTransparent) !important;
+  box-shadow:
+    var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4)
+    var(--sn-theme-effect-shadow-layer1Color);
 }
 
-/* Навигационные ссылки в sidebar */
 .sidebar a {
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   transition: all 0.2s ease !important;
   position: relative !important;
   border-radius: var(--sn-primitive-dimension-6) !important;
 }
 
-/* Активная ссылка - с декоративной полоской слева */
 .sidebar a[aria-current='page'],
 .sidebar a.active {
-  background-color: var(--sn-theme-color-primary-default-alpha-12) !important;
-  color: var(--sn-theme-color-primary-default) !important;
+  background-color: var(--sn-theme-color-material-stateLayer-activated-default-background) !important;
+  color: var(--sn-theme-color-primary-accent) !important;
   font-weight: 600 !important;
-  border-left: var(--sn-primitive-dimension-4) solid var(--sn-theme-color-primary-default) !important;
+  border-left: var(--sn-primitive-dimension-4) solid var(--sn-theme-color-primary-accent) !important;
   padding-left: calc(var(--sn-primitive-dimension-16) - var(--sn-primitive-dimension-4)) !important;
 }
 
-/* Fallback если alpha переменная недоступна */
 .sn-light .sidebar a[aria-current='page'],
 .sn-light .sidebar a.active {
-  background-color: rgba(55, 107, 251, 0.12) !important;
+  background-color: var(--sn-theme-color-material-stateLayer-activated-default-background) !important;
 }
 
 .sn-dark .sidebar a[aria-current='page'],
 .sn-dark .sidebar a.active {
-  background-color: rgba(99, 143, 255, 0.16) !important;
+  background-color: var(--sn-theme-color-material-stateLayer-activated-default-background) !important;
 }
 
-/* Hover состояние для ссылок */
 .sidebar a:hover:not([aria-current='page']) {
   background-color: var(--sn-theme-color-neutral-background2-level) !important;
-  color: var(--sn-theme-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-accent) !important;
   border-left: var(--sn-primitive-dimension-4) solid transparent !important;
   padding-left: calc(var(--sn-primitive-dimension-16) - var(--sn-primitive-dimension-4)) !important;
 }
 
-/* Плавное появление border при hover */
 .sidebar a:hover:not([aria-current='page'])::before {
   content: '';
   position: absolute;
@@ -70,23 +66,21 @@
   top: 0;
   bottom: 0;
   width: var(--sn-primitive-dimension-4);
-  background-color: var(--sn-theme-color-primary-default);
+  background-color: var(--sn-theme-color-primary-accent);
   opacity: 0.3;
   border-radius: 0 var(--sn-primitive-dimension-2) var(--sn-primitive-dimension-2) 0;
 }
 
-/* Группы в sidebar */
 .sidebar details {
   border-color: var(--sn-theme-color-neutral-decor) !important;
 }
 
 .sn-light .sidebar details {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
 }
 
-/* Заголовки групп */
 .sidebar summary {
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   font-weight: 600 !important;
 }
 
@@ -99,25 +93,27 @@
    HEADER / TOP BAR
    ============================================ */
 
-/* Основной header */
 .header {
   background-color: var(--sn-theme-color-neutral-background) !important;
   border-bottom: 1px solid var(--sn-theme-color-neutral-decor) !important;
 }
 
 .sn-light .header {
-  border-bottom-color: rgba(0, 0, 0, 0.12) !important;
-  box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4) rgba(0, 0, 0, 0.05);
+  border-bottom-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
+  box-shadow:
+    var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4)
+    var(--sn-theme-effect-shadow-layer2Color);
 }
 
 .sn-dark .header {
-  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
-  box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4) rgba(0, 0, 0, 0.2);
+  border-bottom-color: var(--sn-theme-color-neutral-decor) !important;
+  box-shadow:
+    var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4)
+    var(--sn-theme-effect-shadow-layer1Color);
 }
 
-/* Заголовок сайта */
 .site-title a {
-  color: var(--sn-theme-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-accent) !important;
   font-weight: 600 !important;
 }
 
@@ -125,68 +121,65 @@
    CONTENT AREA
    ============================================ */
 
-/* Основной контент */
 .main-frame {
   background-color: var(--sn-theme-color-neutral-background) !important;
 }
 
-/* Заголовки */
 .content h1,
 .content h2,
 .content h3,
 .content h4,
 .content h5,
 .content h6 {
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
 }
 
-/* Параграфы и текст */
 .content p,
 .content li,
 .content td {
-  color: var(--sn-theme-color-text-secondary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
 }
 
-/* Ссылки в контенте */
 .content a {
-  color: var(--sn-theme-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-accent) !important;
 }
 
 .content a:hover {
-  color: var(--sn-theme-color-primary-hover) !important;
+  color: var(--sn-theme-color-primary-accent) !important;
 }
 
 /* ============================================
    CODE BLOCKS
    ============================================ */
 
-/* Inline code - только для простого inline кода, не для code blocks */
-.content code:not([class*='language-']):not(pre code) {
+.content code:not([class*='language-'], pre code) {
   background-color: var(--sn-theme-color-neutral-background1-level) !important;
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   border: var(--sn-primitive-dimension-1) solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: var(--sn-primitive-dimension-4) !important;
   padding: var(--sn-primitive-dimension-2) var(--sn-primitive-dimension-6) !important;
   font-family: 'SB Sans Text Mono', monospace !important;
 }
 
-.sn-light .content code:not([class*='language-']):not(pre code) {
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+.sn-light .content code:not([class*='language-'], pre code) {
+  border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
+  box-shadow: inset 0 1px 2px var(--sn-theme-effect-shadow-layer2Color);
 }
 
-/* Code blocks - НЕ применяем стили к Expressive Code блокам */
-/* Expressive Code использует свои собственные стили и темы */
-.content pre:not([class*='expressive-code']):not(.expressive-code) {
+.content pre:not([class*='expressive-code'], .expressive-code) {
   background-color: var(--sn-theme-color-neutral-background1-level) !important;
   border: var(--sn-primitive-dimension-1) solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: var(--sn-primitive-dimension-8) !important;
-  box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4) rgba(0, 0, 0, 0.05);
+  box-shadow:
+    var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4)
+    var(--sn-theme-effect-shadow-layer2Color);
 }
 
-.sn-light .content pre:not([class*='expressive-code']):not(.expressive-code) {
-  border-color: rgba(0, 0, 0, 0.12) !important;
-  box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4) rgba(0, 0, 0, 0.08);
+.sn-light .content pre:not([class*='expressive-code'], .expressive-code) {
+  border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
+  box-shadow:
+    var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-1) var(--sn-primitive-dimension-4)
+    var(--sn-theme-effect-shadow-layer2Color);
 }
 
 /* ============================================
@@ -199,7 +192,7 @@
 
 .content th {
   background-color: var(--sn-theme-color-neutral-background1-level) !important;
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   border-color: var(--sn-theme-color-neutral-decor) !important;
 }
 
@@ -209,7 +202,7 @@
 
 .sn-light .content th,
 .sn-light .content td {
-  border-color: rgba(0, 0, 0, 0.1) !important;
+  border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
 }
 
 /* ============================================
@@ -218,7 +211,7 @@
 
 .content .badge {
   background-color: var(--sn-theme-color-neutral-background2-level) !important;
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   border: var(--sn-primitive-dimension-1) solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: var(--sn-primitive-dimension-4) !important;
 }
@@ -227,7 +220,6 @@
    SCROLLBAR CUSTOMIZATION
    ============================================ */
 
-/* Scrollbar для sidebar */
 .sidebar::-webkit-scrollbar {
   width: var(--sn-primitive-dimension-8);
 }
@@ -242,23 +234,24 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: var(--sn-theme-color-text-secondary);
+  background: var(--sn-theme-color-neutral-text);
 }
 
 /* ============================================
    RESPONSIVE ADJUSTMENTS
    ============================================ */
 
-@media (max-width: 768px) {
-  /* Мобильное меню */
+@media (width <= 768px) {
   .mobile-menu {
     background-color: var(--sn-theme-color-neutral-background) !important;
     border-color: var(--sn-theme-color-neutral-decor) !important;
   }
 
   .sn-light .mobile-menu {
-    border-color: rgba(0, 0, 0, 0.12) !important;
-    box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-2) var(--sn-primitive-dimension-8) rgba(0, 0, 0, 0.1);
+    border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
+    box-shadow:
+      var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-2) var(--sn-primitive-dimension-8)
+      var(--sn-theme-effect-shadow-layer2Color);
   }
 }
 
@@ -266,35 +259,37 @@
    SEARCH
    ============================================ */
 
-/* Поисковая панель */
 .search-input {
   background-color: var(--sn-theme-color-neutral-background1-level) !important;
   border: var(--sn-primitive-dimension-1) solid var(--sn-theme-color-neutral-decor) !important;
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   border-radius: var(--sn-primitive-dimension-8) !important;
 }
 
 .sn-light .search-input {
-  border-color: rgba(0, 0, 0, 0.12) !important;
+  border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
 }
 
 .search-input:focus {
-  border-color: var(--sn-theme-color-primary-default) !important;
-  outline: var(--sn-primitive-dimension-2) solid var(--sn-theme-color-primary-default) !important;
+  border-color: var(--sn-theme-color-primary-accent) !important;
+  outline: var(--sn-primitive-dimension-2) solid var(--sn-theme-color-primary-accent) !important;
   outline-offset: var(--sn-primitive-dimension-2);
 }
 
-/* Результаты поиска */
 .search-results {
   background-color: var(--sn-theme-color-neutral-background) !important;
   border: var(--sn-primitive-dimension-1) solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: var(--sn-primitive-dimension-8) !important;
-  box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4) var(--sn-primitive-dimension-12) rgba(0, 0, 0, 0.15);
+  box-shadow:
+    var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4) var(--sn-primitive-dimension-12)
+    var(--sn-theme-effect-shadow-layer1Color);
 }
 
 .sn-light .search-results {
-  border-color: rgba(0, 0, 0, 0.12) !important;
-  box-shadow: var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4) var(--sn-primitive-dimension-12) rgba(0, 0, 0, 0.1);
+  border-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
+  box-shadow:
+    var(--sn-primitive-dimension-0) var(--sn-primitive-dimension-4) var(--sn-primitive-dimension-12)
+    var(--sn-theme-effect-shadow-layer2Color);
 }
 
 /* ============================================
@@ -303,15 +298,15 @@
 
 .pagination a {
   background-color: var(--sn-theme-color-neutral-background1-level) !important;
-  color: var(--sn-theme-color-text-primary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
   border: var(--sn-primitive-dimension-1) solid var(--sn-theme-color-neutral-decor) !important;
   border-radius: var(--sn-primitive-dimension-8) !important;
 }
 
 .pagination a:hover {
-  background-color: var(--sn-theme-color-primary-default) !important;
-  color: var(--sn-theme-color-on-primary) !important;
-  border-color: var(--sn-theme-color-primary-default) !important;
+  background-color: var(--sn-theme-color-primary-accent) !important;
+  color: var(--sn-theme-color-primary-onAccent) !important;
+  border-color: var(--sn-theme-color-primary-accent) !important;
 }
 
 /* ============================================
@@ -324,15 +319,15 @@
 }
 
 .sn-light .right-sidebar {
-  border-left-color: rgba(0, 0, 0, 0.08) !important;
+  border-left-color: var(--sn-theme-color-material-stateLayer-regular-default-borderColor) !important;
 }
 
 .right-sidebar a {
-  color: var(--sn-theme-color-text-secondary) !important;
+  color: var(--sn-theme-color-neutral-text) !important;
 }
 
 .right-sidebar a:hover,
 .right-sidebar a[aria-current='true'] {
-  color: var(--sn-theme-color-primary-default) !important;
+  color: var(--sn-theme-color-primary-accent) !important;
   font-weight: 500;
 }
