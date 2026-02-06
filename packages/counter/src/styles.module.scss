@@ -23,16 +23,14 @@ $typography: (
 
   box-sizing: border-box;
   width: max-content;
-
   border: 0 solid transparent;
 
   @each $roleColor in $roleColors {
     @each $appearance in $contexts {
       &[data-color='#{$roleColor}'] {
         &[data-appearance='#{$appearance}'] {
-          background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleColor);
-
           color: base.simple-var(base.$sn-theme, 'color', $appearance, base.simple-var($textColor, $roleColor));
+          background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleColor);
 
           @each $size in $sizes {
             &[data-size='#{$size}'] {
@@ -40,9 +38,8 @@ $typography: (
               @include base.composite-var(counter.$counter, 'anatomy', 'size', $size, 'container');
 
               height: 0;
-
-              border-style: solid;
               border-color: base.$sn-theme-color-neutral-background1Level;
+              border-style: solid;
             }
           }
         }

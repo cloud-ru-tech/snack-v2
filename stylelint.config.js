@@ -1,8 +1,9 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-recommended-scss'],
+  extends: ['stylelint-config-standard', 'stylelint-config-recommended-scss', 'stylelint-config-clean-order'],
   rules: {
     'no-descending-specificity': true,
     'custom-property-pattern': null,
+    'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': [
       true,
       {

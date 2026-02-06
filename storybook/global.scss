@@ -7,132 +7,145 @@
 
 @font-face {
   font-family: 'SB Sans Interface';
+  font-weight: 600;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansInterface-Semibold.woff2') format('woff2'),
     url('./fonts/SBSansInterface-Semibold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Interface';
+  font-weight: 300;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansInterface-Light.woff2') format('woff2'),
     url('./fonts/SBSansInterface-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Interface';
+  font-weight: bold;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansInterface-Bold.woff2') format('woff2'),
     url('./fonts/SBSansInterface-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Interface Caps';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansInterface-Caps.woff2') format('woff2'),
     url('./fonts/SBSansInterface-Caps.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Interface';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansInterface-Regular.woff2') format('woff2'),
     url('./fonts/SBSansInterface-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Text Mono';
+  font-weight: bold;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansTextMono-Bold.woff2') format('woff2'),
     url('./fonts/SBSansTextMono-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Text Mono';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansTextMono-Regular.woff2') format('woff2'),
     url('./fonts/SBSansTextMono-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Display';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansDisplay-Regular.woff2') format('woff2'),
     url('./fonts/SBSansDisplay-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Display';
+  font-weight: 600;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansDisplay-SemiBold.woff2') format('woff2'),
     url('./fonts/SBSansDisplay-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Display';
+  font-weight: 300;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansDisplay-Light.otf') format('otf'),
     url('./fonts/SBSansDisplay-Light.ttf') format('ttf');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Text';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansText.woff2') format('woff2'),
     url('./fonts/SBSansText.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Text';
+  font-weight: 600;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansText-SemiBold.woff2') format('woff2'),
     url('./fonts/SBSansText-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'SB Sans Text';
+  font-weight: 300;
+  font-style: normal;
+
+  font-display: swap;
   src:
     url('./fonts/SBSansText-Italic.woff2') format('woff2'),
     url('./fonts/SBSansText-Italic.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
 }
 
 /* Сброс стилей */
@@ -146,29 +159,34 @@
 body {
   margin: 0;
   padding: 0;
+
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: base.$sn-theme-color-neutral-text;
-  background-color: base.$sn-theme-color-neutral-background2Level;
-  line-height: 1.5;
 }
 
 /* Базовые стили для контейнера stories */
 .sb-story-wrapper {
-  padding: 0;
-  min-height: 100vh;
-  background-color: base.$sn-theme-color-neutral-background2Level;
-  width: 100%;
   position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
 }
 
 /* Утилиты для демонстрации компонентов */
 .sb-flex {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .sb-flex-column {
@@ -203,10 +221,11 @@ body {
 
 /* Стили для меток размеров/вариантов */
 .sb-label {
-  font-size: 12px;
-  color: base.$sn-theme-color-neutral-text;
-  font-weight: 500;
   margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 500;
+  color: base.$sn-theme-color-neutral-text;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -217,24 +236,25 @@ body {
 }
 
 .sb-section-title {
+  margin-bottom: 16px;
   font-size: 14px;
   font-weight: 600;
   color: base.$sn-theme-color-neutral-text;
-  margin-bottom: 16px;
 }
 
 /* Стили для контейнеров с отступами */
 .sb-container {
-  padding: 16px;
-  background-color: base.$sn-theme-color-neutral-background1Level;
-  border-radius: 8px;
   margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .sb-container-white {
+  margin-bottom: 16px;
   padding: 16px;
-  background-color: base.$sn-theme-color-neutral-background2Level;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: 8px;
-  margin-bottom: 16px;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
 }

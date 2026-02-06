@@ -74,6 +74,7 @@
     "shelljs": "0.8.5",
     "storybook": "10.2.7",
     "stylelint": "16.26.1",
+    "stylelint-config-clean-order": "8.0.0",
     "stylelint-config-recommended-scss": "16.0.2",
     "stylelint-config-standard": "39.0.1",
     "ts-node": "10.9.2",
@@ -92,7 +93,7 @@
   "scripts": {
     "deps": "pnpm install",
     "lint": "eslint \"packages/**/*.{ts,tsx}\" \"storybook/**/*.{ts,tsx}\" \"astro/src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" \"playwright/**/*.ts\"",
-    "stylelint": "stylelint \"**/*.css\" \"**/*.scss\"",
+    "stylelint": "stylelint \"**/*.css\" \"**/*.scss\" --fix",
     "build": "pnpm run build:packages && pnpm run build:docs",
     "build:all": "pnpm run build:packages && pnpm run build:docs && pnpm run build:storybook",
     "build:packages": "pnpm compile:packages && pnpm build:ts && pnpm build:css",

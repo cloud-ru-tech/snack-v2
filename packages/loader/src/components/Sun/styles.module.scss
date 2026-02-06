@@ -4,7 +4,7 @@ $sizes:  'xs', 's', 'm', 'l';
 
 .sun {
   pointer-events: none;
-  fill: currentColor;
+  fill: currentcolor;
 
   @each $size in $sizes {
     &[data-size="#{$size}"] {
@@ -14,7 +14,7 @@ $sizes:  'xs', 's', 'm', 'l';
   }
 
   & > path {
-    stroke: currentColor;
+    stroke: currentcolor;
     animation-name: loading-wheel;
     animation-timing-function: linear;
     animation-iteration-count: infinite;

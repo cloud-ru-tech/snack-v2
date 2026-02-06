@@ -20,19 +20,21 @@ $typography: (
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
 .avatar {
+  user-select: none;
+
   position: relative;
+
+  overflow: hidden;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
 
-  line-height: 1;
-  user-select: none;
-  overflow: hidden;
   box-sizing: border-box;
-
   aspect-ratio: 1 / 1;
   border-style: solid;
+
+  line-height: 1;
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
@@ -56,18 +58,19 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
 
   @each $appearance-name in $appearances {
     &[data-appearance='#{$appearance-name}'] {
-      background-color: base.simple-var(base.$sn-theme, 'color', $appearance-name, 'decor');
-      text-align: center;
-      color: base.$sn-theme-color-available-version-textSecondary;
       border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+      color: base.$sn-theme-color-available-version-textSecondary;
+      text-align: center;
+      background-color: base.simple-var(base.$sn-theme, 'color', $appearance-name, 'decor');
     }
   }
 
   .image {
     width: 100%;
     height: 100%;
+    border-radius: inherit;
+
     object-fit: cover;
     object-position: center;
-    border-radius: inherit;
   }
 }

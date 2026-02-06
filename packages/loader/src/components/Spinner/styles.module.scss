@@ -4,11 +4,11 @@ $sizes: '2xs', 'xs', 's', 'm', 'l';
 
 .spinner {
   pointer-events: none;
-  stroke: currentColor;
+  stroke: currentcolor;
   animation: spin 1s ease-in-out infinite;
 
   & > g > path {
-    fill: currentColor;
+    fill: currentcolor;
   }
 
   & > mask {
