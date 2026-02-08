@@ -21,6 +21,8 @@ pnpm add @design-system/{PACKAGE_NAME}
 
 {EXPORTS}
 
+{LIVE_EXAMPLES}
+
 ## Usage
 
 {USAGE_EXAMPLES}
@@ -103,6 +105,67 @@ export class ReadmeGenerator {
     return titleMatch ? titleMatch[1] : '';
   }
 
+  /**
+   * Извлекает секцию "Live examples" из mdx и конвертирует JSX-блоки в tsx-сниппеты для README.
+   * Убирает обёртки ExampleContainer/ExampleRow/ExampleGrid/ExampleItem, оставляет только использование компонента.
+   */
+  private extractLiveExamplesCode(docContent: string, packageName: string, componentName: string): string {
+    const liveMatch = docContent.match(/## Live examples\s*\n([\s\S]*?)(?=\n## )/);
+    if (!liveMatch) return '';
+
+    const section = liveMatch[1];
+    const examples: string[] = [];
+    const wrapperTagRegex = /^\s*<\/?(?:ExampleContainer|ExampleRow|ExampleGrid|ExampleItem)(?:\s[^>]*)?>\s*$/;
+
+    // Разбиваем по ### заголовкам
+    const parts = section.split(/(?=###\s+)/);
+
+    for (const part of parts) {
+      if (!part.trim()) continue;
+
+      const titleMatch = part.match(/###\s+(.+?)(?:\n|$)/);
+      if (!titleMatch) continue;
+
+      const title = titleMatch[1].trim();
+      const body = part.replace(/###\s+.+?(?:\n|$)/, '').trim();
+
+      // Ищем JSX-блок: от первой < до последней >
+      const jsxMatch = body.match(/<[\s\S]+?>/);
+      if (!jsxMatch) continue;
+
+      const lines = body.split('\n').filter(line => {
+        const t = line.trim();
+        return t && !wrapperTagRegex.test(line.trim());
+      });
+
+      if (lines.length === 0) continue;
+
+      // Убираем отступ: находим минимальный отступ и срезаем его
+      const minIndent = Math.min(...lines.map(l => (/^\s*/.exec(l) ?? [''])[0].length).filter(n => n < 200));
+      const codeLines = lines.map(l => (minIndent > 0 && l.length >= minIndent ? l.slice(minIndent) : l.trim()));
+      const snippet = codeLines.join('\n').trim();
+
+      // Собираем импорт: компоненты из JSX (<Avatar, <Spinner) + enum-символы (APPEARANCE, SIZE, …)
+      const usedSymbols = new Set<string>();
+      const componentInJsxRegex = /<([A-Z][a-zA-Z0-9]*)(?:\s|>)/g;
+      let cm: RegExpExecArray | null;
+      while ((cm = componentInJsxRegex.exec(snippet)) !== null) usedSymbols.add(cm[1]);
+      const symbolRegex = /\b(APPEARANCE|SIZE|SHAPE|VARIANT|LOADER_SIZE|SUN_SIZE)\b/g;
+      let sm: RegExpExecArray | null;
+      while ((sm = symbolRegex.exec(snippet)) !== null) usedSymbols.add(sm[1]);
+      if (usedSymbols.size === 0) usedSymbols.add(componentName);
+
+      const importLine = `import { ${[...usedSymbols].sort().join(', ')} } from '@design-system/${packageName}';`;
+      const fullSnippet = `${importLine}\n\n${snippet}`;
+
+      examples.push(`### ${title}\n\n\`\`\`tsx\n${fullSnippet}\n\`\`\``);
+    }
+
+    if (examples.length === 0) return '';
+
+    return `## Live examples\n\n${examples.join('\n\n')}\n`;
+  }
+
   private extractUsageExamples(docContent: string): string {
     // Извлекаем секцию Usage из документации
     const usageMatch = docContent.match(/## Usage\s*\n([\s\S]*?)(?=\n## )/);
@@ -153,10 +216,10 @@ export class ReadmeGenerator {
 
     let propsContent = propsMatch[1].trim();
 
-    // Убираем заголовок ### Props, так как он уже есть в шаблоне как ## Props
-    propsContent = propsContent.replace(/^###\s+Props\n/, '');
+    // Убираем все подзаголовки ### Props, чтобы в README не было лишних секций в превью
+    propsContent = propsContent.replace(/(?:^|\n)###\s+Props\n?/g, '\n');
 
-    return propsContent;
+    return propsContent.trim();
   }
 
   private extractExports(srcContent: string, packageName: string): string {
@@ -208,6 +271,7 @@ export class ReadmeGenerator {
 
     const componentName = this.extractComponentName(docContent);
     const description = this.extractDescription(docContent);
+    const liveExamples = this.extractLiveExamplesCode(docContent, packageName, componentName || packageName);
     const usageExamples = this.extractUsageExamples(docContent);
     const bestPractices = this.extractBestPractices(docContent);
     const propsTable = this.extractPropsTable(docContent);
@@ -217,6 +281,7 @@ export class ReadmeGenerator {
       .replace(/{PACKAGE_NAME}/g, packageName)
       .replace(/{DESCRIPTION}/g, description)
       .replace(/{EXPORTS}/g, exports)
+      .replace(/{LIVE_EXAMPLES}/g, liveExamples)
       .replace(/{USAGE_EXAMPLES}/g, usageExamples)
       .replace(/{PROPS_TABLE}/g, propsTable)
       .replace(/{BEST_PRACTICES}/g, bestPractices)

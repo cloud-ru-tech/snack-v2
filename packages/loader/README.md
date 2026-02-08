@@ -16,6 +16,41 @@ pnpm add @design-system/loader
 
 
 
+## Live examples
+
+### Spinner
+
+```tsx
+import { LOADER_SIZE, Spinner } from '@design-system/loader';
+
+<Spinner size={LOADER_SIZE['2XS']} />
+<Spinner size={LOADER_SIZE.XS} />
+<Spinner size={LOADER_SIZE.S} />
+<Spinner size={LOADER_SIZE.M} />
+<Spinner size={LOADER_SIZE.L} />
+```
+
+### Sun
+
+```tsx
+import { SUN_SIZE, Sun } from '@design-system/loader';
+
+<Sun size={SUN_SIZE.XS} />
+<Sun size={SUN_SIZE.S} />
+<Sun size={SUN_SIZE.M} />
+<Sun size={SUN_SIZE.L} />
+```
+
+### Both variants
+
+```tsx
+import { LOADER_SIZE, SUN_SIZE, Spinner, Sun } from '@design-system/loader';
+
+<Spinner size={LOADER_SIZE.M} />
+<Sun size={SUN_SIZE.M} />
+```
+
+
 ## Usage
 
 ### Spinner
@@ -55,11 +90,12 @@ export function Example() {
 
 ## Props
 
+### SpinnerProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | size | enum LoaderSize: `"2xs"`, `"xs"`, `"s"`, `"m"`, `"l"` | s | Размер |
 | className | `string` | - | CSS-класс |
-### Props
+### SunProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | size | enum SunSize: `"xs"`, `"s"`, `"m"`, `"l"` | s | Размер |

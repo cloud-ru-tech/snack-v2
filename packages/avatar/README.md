@@ -27,6 +27,76 @@ import {
 } from '@design-system/avatar';
 ```
 
+## Live examples
+
+### Basic usage
+
+```tsx
+import { APPEARANCE, Avatar } from '@design-system/avatar';
+
+<Avatar name="John Doe" />
+<Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
+<Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
+```
+
+### With images
+
+```tsx
+import { APPEARANCE, Avatar } from '@design-system/avatar';
+
+<Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
+<Avatar
+  name="Jane Smith"
+  src="https://i.pravatar.cc/150?img=2"
+  appearance={APPEARANCE.Primary}
+/>
+<Avatar
+  name="Bob Johnson"
+  src="https://i.pravatar.cc/150?img=3"
+  appearance={APPEARANCE.Green}
+/>
+```
+
+### Sizes
+
+```tsx
+import { Avatar, SIZE } from '@design-system/avatar';
+
+<Avatar name="XS" size={SIZE.Xs} />
+<Avatar name="S" size={SIZE.S} />
+<Avatar name="M" size={SIZE.M} />
+<Avatar name="L" size={SIZE.L} />
+<Avatar name="3XL" size={SIZE['3Xl']} />
+<Avatar name="6XL" size={SIZE['6Xl']} />
+<Avatar name="10XL" size={SIZE['10Xl']} />
+```
+
+### Shapes
+
+```tsx
+import { Avatar, SHAPE } from '@design-system/avatar';
+
+<Avatar name="Round" shape={SHAPE.Round} />
+<Avatar name="Square" shape={SHAPE.Square} />
+```
+
+### Color schemes
+
+```tsx
+import { APPEARANCE, Avatar } from '@design-system/avatar';
+
+<Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
+<Avatar name="Primary" appearance={APPEARANCE.Primary} />
+<Avatar name="Red" appearance={APPEARANCE.Red} />
+<Avatar name="Orange" appearance={APPEARANCE.Orange} />
+<Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
+<Avatar name="Green" appearance={APPEARANCE.Green} />
+<Avatar name="Blue" appearance={APPEARANCE.Blue} />
+<Avatar name="Violet" appearance={APPEARANCE.Violet} />
+<Avatar name="Pink" appearance={APPEARANCE.Pink} />
+```
+
+
 ## Usage
 
 ### Basic example
@@ -61,6 +131,7 @@ export function UserProfile() {
 
 ## Props
 
+### AvatarProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | name* | `string` | - | Имя пользователя для генерации аббревиатуры |

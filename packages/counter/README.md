@@ -30,6 +30,67 @@ import {
 } from '@design-system/counter';
 ```
 
+## Live examples
+
+### Basic usage
+
+```tsx
+import { APPEARANCE, Counter } from '@design-system/counter';
+
+<Counter value={9} />
+<Counter value={42} appearance={APPEARANCE.Primary} />
+<Counter value={128} appearance={APPEARANCE.Neutral} />
+```
+
+### Variants
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+<Counter value={9} variant={VARIANT.Count} />
+<Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+<Counter value={8500} variant={VARIANT.CountK} />
+```
+
+### Sizes
+
+```tsx
+import { Counter, SIZE } from '@design-system/counter';
+
+<Counter value={9} size={SIZE.XS} />
+<Counter value={9} size={SIZE.S} />
+```
+
+### Appearances
+
+```tsx
+import { APPEARANCE, Counter } from '@design-system/counter';
+
+<Counter value={9} appearance={APPEARANCE.Primary} />
+<Counter value={9} appearance={APPEARANCE.Neutral} />
+<Counter value={9} appearance={APPEARANCE.Red} />
+```
+
+### Colors
+
+```tsx
+import { Counter } from '@design-system/counter';
+
+<Counter value={9} color={COLOR.Accent} />
+<Counter value={9} color={COLOR.Decor} />
+```
+
+### With plus limit
+
+```tsx
+import { Counter, VARIANT } from '@design-system/counter';
+
+<Counter value={9} variant={VARIANT.CountPlus} plusLimit={10} />
+<Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+<Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />
+```
+
+
 ## Usage
 
 ### Basic example
@@ -70,6 +131,7 @@ export function NotificationBadge() {
 
 ## Props
 
+### CounterProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | value* | `number` | - | Значение |

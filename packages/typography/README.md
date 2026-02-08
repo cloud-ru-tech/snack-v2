@@ -30,6 +30,71 @@ import {
 } from '@design-system/typography';
 ```
 
+## Live examples
+
+### Basic usage
+
+```tsx
+import { Typography } from '@design-system/typography';
+
+<Typography>Базовый текст</Typography>
+```
+
+### Variants
+
+```tsx
+import { SIZE, Typography, VARIANT } from '@design-system/typography';
+
+<Typography variant={VARIANT.display} size={SIZE.l}>
+  Display Large
+</Typography>
+<Typography variant={VARIANT.headline} size={SIZE.l}>
+  Headline Large
+</Typography>
+<Typography variant={VARIANT.title} size={SIZE.m}>
+  Title Medium
+</Typography>
+<Typography variant={VARIANT.label} size={SIZE.s}>
+  Label Small
+</Typography>
+<Typography variant={VARIANT.body} size={SIZE.m}>
+  Body Medium - основной текст для чтения
+</Typography>
+```
+
+### Sizes
+
+```tsx
+import { SIZE, Typography, VARIANT } from '@design-system/typography';
+
+<Typography variant={VARIANT.headline} size={SIZE.s}>
+  Headline Small
+</Typography>
+<Typography variant={VARIANT.headline} size={SIZE.m}>
+  Headline Medium
+</Typography>
+<Typography variant={VARIANT.headline} size={SIZE.l}>
+  Headline Large
+</Typography>
+```
+
+### Weights
+
+```tsx
+import { SIZE, Typography, VARIANT } from '@design-system/typography';
+
+<Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.regular}>
+  Regular Weight
+</Typography>
+<Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.thin}>
+  Thin Weight
+</Typography>
+<Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.mono}>
+  Mono Weight
+</Typography>
+```
+
+
 ## Usage
 
 ### Basic example
@@ -72,6 +137,7 @@ export function Example() {
 
 ## Props
 
+### TypographyProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | children | `ReactNode` | - | Дочерние элементы |
@@ -80,13 +146,13 @@ export function Example() {
 | weight | enum TypographyWeight: `"regular"`, `"thin"`, `"mono"` | WEIGHT.regular | Начертание шрифта |
 | as | `ElementType<any, keyof IntrinsicElements>` | - | HTML тег для рендеринга |
 | className | `string` | - | CSS-класс |
-### Props
+### TypographySizeProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
-### Props
+### TypographyVariantProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
-### Props
+### TypographyWeightProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
 

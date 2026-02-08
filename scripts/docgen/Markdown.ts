@@ -8,7 +8,7 @@ export class Markdown {
   }
 
   private lines(lines: string[]) {
-    return lines.map((line) => line.replaceAll('\n', ' ')).join('\n');
+    return lines.map(line => line.replaceAll('\n', ' ')).join('\n');
   }
 
   private blocks(blocks: string[]) {
@@ -32,9 +32,7 @@ export class Markdown {
         }
         const enumItems = Array.isArray(value)
           ? `: ${value
-              .map(
-                ({ value, description }) => `\`${value}\`${description ? ` - ${description}` : ''}`
-              )
+              .map(({ value, description }) => `\`${value}\`${description ? ` - ${description}` : ''}`)
               .join(', ')}`
           : '';
         return `enum ${raw}${enumItems}`;
@@ -76,15 +74,16 @@ export class Markdown {
   }
 
   // Публичный метод для рендера только таблицы пропсов (для docs)
+  // Подзаголовок как в коде: CounterProps, AvatarProps, SpinnerProps…
   renderPropsTable(): string {
     if (this.isNotReactComponent()) return '';
 
     return this.lines([
-      '### Props',
+      `### ${this.doc.displayName}Props`,
       '| name | type | default value | description |',
       '|------|------|---------------|-------------|',
       ...this.getProps()
-        .sort((a) => (a[1].required ? -1 : 1))
+        .sort(a => (a[1].required ? -1 : 1))
         .map(([name, { type, defaultValue, description, required }]) => {
           const defaultPropValue = defaultValue?.value || '-';
           const propRow = [
