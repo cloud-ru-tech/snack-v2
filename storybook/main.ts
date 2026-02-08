@@ -13,6 +13,7 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     '@storybook/addon-links',
     '@storybook/addon-designs',
+    path.resolve(__dirname, 'addons/theme-controls/preset.ts'),
   ],
   framework: '@storybook/react-vite',
   base: process.env.STORYBOOK_BASE_PATH || (process.env.CI ? '/storybook/' : '/'),

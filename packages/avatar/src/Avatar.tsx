@@ -77,16 +77,10 @@ export function Avatar({
       {...rest}
     >
       {src && !imageError ? (
-        <img
-          className={styles.image}
-          src={src}
-          onError={() => setImageError(true)}
-          alt=""
-          aria-hidden="true"
-        />
+        <img className={styles.image} src={src} onError={() => setImageError(true)} alt='' aria-hidden='true' />
       ) : (
         <>
-          <div className={styles.abbreviation}>{getAbbreviation(name, numberOfSymbols)}</div>
+          <div className={cn('sn-desktop', styles.abbreviation)}>{getAbbreviation(name, numberOfSymbols)}</div>
           <div className={styles.border} />
         </>
       )}

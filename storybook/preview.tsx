@@ -5,15 +5,22 @@ import './global.scss';
 import type { Preview } from '@storybook/react-vite';
 import React from 'react';
 
+import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
 import { StoryWrapper } from './components';
 
 const preview: Preview = {
+  initialGlobals: INITIAL_GLOBALS,
   decorators: [
-    (Story) => (
-      <StoryWrapper>
-        <Story />
-      </StoryWrapper>
-    ),
+    (Story, context) => {
+      const theme = (context.globals?.[GLOBAL_KEYS.THEME] as 'light' | 'dark') ?? 'light';
+      const brand = (context.globals?.[GLOBAL_KEYS.BRAND] as 'brandA' | 'brandB') ?? 'brandA';
+      const platform = (context.globals?.[GLOBAL_KEYS.PLATFORM] as 'desktop' | 'mobile') ?? 'desktop';
+      return (
+        <StoryWrapper theme={theme} brand={brand} platform={platform}>
+          <Story />
+        </StoryWrapper>
+      );
+    },
   ],
   parameters: {
     controls: {
