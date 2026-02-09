@@ -10,7 +10,7 @@ import {
   ExampleItem,
   ExampleRow,
 } from '#astro/components/mdx';
-import { SIZE, Typography, VARIANT, WEIGHT } from '../src';
+import { Typography } from '../src';
 
 # Typography
 
@@ -67,27 +67,27 @@ Typography автоматически обрабатывает:
 <ExampleContainer>
   <ExampleGrid>
     <ExampleItem>
-      <Typography variant={VARIANT.display} size={SIZE.l}>
+      <Typography variant="display" size="l">
         Display Large
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.l}>
+      <Typography variant="headline" size="l">
         Headline Large
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.title} size={SIZE.m}>
+      <Typography variant="title" size="m">
         Title Medium
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.label} size={SIZE.s}>
+      <Typography variant="label" size="s">
         Label Small
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.body} size={SIZE.m}>
+      <Typography variant="body" size="m">
         Body Medium - основной текст для чтения
       </Typography>
     </ExampleItem>
@@ -99,17 +99,17 @@ Typography автоматически обрабатывает:
 <ExampleContainer>
   <ExampleGrid>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.s}>
+      <Typography variant="headline" size="s">
         Headline Small
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.m}>
+      <Typography variant="headline" size="m">
         Headline Medium
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.l}>
+      <Typography variant="headline" size="l">
         Headline Large
       </Typography>
     </ExampleItem>
@@ -121,17 +121,17 @@ Typography автоматически обрабатывает:
 <ExampleContainer>
   <ExampleGrid>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.regular}>
+      <Typography variant="headline" size="l" weight="regular">
         Regular Weight
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.thin}>
+      <Typography variant="headline" size="l" weight="thin">
         Thin Weight
       </Typography>
     </ExampleItem>
     <ExampleItem>
-      <Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.mono}>
+      <Typography variant="headline" size="l" weight="mono">
         Mono Weight
       </Typography>
     </ExampleItem>
@@ -171,11 +171,11 @@ export function Example() {
 ### With variant and size
 
 ```tsx
-import { Typography, VARIANT, SIZE } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
 export function Example() {
   return (
-    <Typography variant={VARIANT.headline} size={SIZE.l}>
+    <Typography variant="headline" size="l">
       Заголовок
     </Typography>
   );
@@ -185,11 +185,11 @@ export function Example() {
 ### With weight
 
 ```tsx
-import { Typography, VARIANT, SIZE, WEIGHT } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
 export function Example() {
   return (
-    <Typography variant={VARIANT.body} size={SIZE.m} weight={WEIGHT.thin}>
+    <Typography variant="body" size="m" weight="thin">
       Тонкий текст
     </Typography>
   );
@@ -199,11 +199,11 @@ export function Example() {
 ### Custom HTML tag
 
 ```tsx
-import { Typography, VARIANT, SIZE } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
 export function Example() {
   return (
-    <Typography as="h1" variant={VARIANT.display} size={SIZE.l}>
+    <Typography as="h1" variant="display" size="l">
       Главный заголовок
     </Typography>
   );
@@ -213,24 +213,24 @@ export function Example() {
 ### All variants showcase
 
 ```tsx
-import { Typography, VARIANT, SIZE } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
 export function Example() {
   return (
     <div>
-      <Typography variant={VARIANT.display} size={SIZE.l}>
+      <Typography variant="display" size="l">
         Display Large
       </Typography>
-      <Typography variant={VARIANT.headline} size={SIZE.l}>
+      <Typography variant="headline" size="l">
         Headline Large
       </Typography>
-      <Typography variant={VARIANT.title} size={SIZE.m}>
+      <Typography variant="title" size="m">
         Title Medium
       </Typography>
-      <Typography variant={VARIANT.label} size={SIZE.s}>
+      <Typography variant="label" size="s">
         Label Small
       </Typography>
-      <Typography variant={VARIANT.body} size={SIZE.m}>
+      <Typography variant="body" size="m">
         Body Medium
       </Typography>
     </div>

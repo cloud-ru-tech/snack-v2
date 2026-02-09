@@ -10,7 +10,7 @@ import {
   ExampleRow,
 } from '#astro/components/mdx';
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-import { Sun, SUN_SIZE } from '../../src';
+import { Sun } from '../../src';
 
 # Sun
 
@@ -23,16 +23,16 @@ import { Sun, SUN_SIZE } from '../../src';
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="center">
     <ExampleItem label="XS">
-      <Sun size={SUN_SIZE.XS} />
+      <Sun size="xs" />
     </ExampleItem>
     <ExampleItem label="S">
-      <Sun size={SUN_SIZE.S} />
+      <Sun size="s" />
     </ExampleItem>
     <ExampleItem label="M">
-      <Sun size={SUN_SIZE.M} />
+      <Sun size="m" />
     </ExampleItem>
     <ExampleItem label="L">
-      <Sun size={SUN_SIZE.L} />
+      <Sun size="l" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -54,10 +54,10 @@ import { Sun, SUN_SIZE } from '../../src';
 ### Basic
 
 ```tsx
-import { Sun, SUN_SIZE } from '@design-system/loader';
+import { Sun } from '@design-system/loader';
 
 export function LoadingState() {
-  return <Sun size={SUN_SIZE.M} />;
+  return <Sun size="m" />;
 }
 ```
 

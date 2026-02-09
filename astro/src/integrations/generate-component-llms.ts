@@ -5,7 +5,7 @@ import type { AstroIntegration } from 'astro';
 import { consola } from 'consola';
 import { fileURLToPath } from 'node:url';
 
-import { listMdxRecursive, stripMdxForPlainText } from '../utils/docContentUtils';
+import { listMdxRecursive, replaceLiveExamplesWithCodeBlocks, stripMdxForPlainText } from '../utils/docContentUtils';
 
 type ComponentLlmsOptions = {
   contentDir?: string;
@@ -78,7 +78,7 @@ export default function generateComponentLlms(options: ComponentLlmsOptions = {}
 
           for (const relativeFile of files) {
             const filePath = join(componentPath, relativeFile);
-            const content = readFileSync(filePath, 'utf-8');
+            let content = readFileSync(filePath, 'utf-8');
 
             const sectionTitle = relativeFile.replace(/\.mdx$/, '').replace(/\//g, ' / ');
             lines.push(`## ${sectionTitle}`);
@@ -94,6 +94,8 @@ export default function generateComponentLlms(options: ComponentLlmsOptions = {}
               lines.push('');
             }
 
+            // Live examples — те же tsx-сниппеты, что и в README (вместо пустых заголовков)
+            content = replaceLiveExamplesWithCodeBlocks(content, componentName);
             const cleanContent = stripMdxForPlainText(content);
             lines.push(cleanContent);
             lines.push('');

@@ -10,7 +10,7 @@ import {
   ExampleRow,
 } from '#astro/components/mdx';
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-import { LOADER_SIZE, Spinner } from '@packages/loader/src';
+import { Spinner } from '@packages/loader/src';
 
 # Spinner
 
@@ -23,19 +23,19 @@ import { LOADER_SIZE, Spinner } from '@packages/loader/src';
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="center">
     <ExampleItem label="2XS">
-      <Spinner size={LOADER_SIZE['2XS']} />
+      <Spinner size="2xs" />
     </ExampleItem>
     <ExampleItem label="XS">
-      <Spinner size={LOADER_SIZE.XS} />
+      <Spinner size="xs" />
     </ExampleItem>
     <ExampleItem label="S">
-      <Spinner size={LOADER_SIZE.S} />
+      <Spinner size="s" />
     </ExampleItem>
     <ExampleItem label="M">
-      <Spinner size={LOADER_SIZE.M} />
+      <Spinner size="m" />
     </ExampleItem>
     <ExampleItem label="L">
-      <Spinner size={LOADER_SIZE.L} />
+      <Spinner size="l" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -57,10 +57,10 @@ import { LOADER_SIZE, Spinner } from '@packages/loader/src';
 ### Basic
 
 ```tsx
-import { Spinner, LOADER_SIZE } from '@design-system/loader';
+import { Spinner } from '@design-system/loader';
 
 export function LoadingState() {
-  return <Spinner size={LOADER_SIZE.M} />;
+  return <Spinner size="m" />;
 }
 ```
 

@@ -11,7 +11,7 @@ import {
   ExampleRow,
 } from '#astro/components/mdx';
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src';
+import { Counter } from '@packages/counter/src';
 
 # Counter
 
@@ -24,8 +24,8 @@ import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src
 <ExampleContainer>
   <ExampleRow>
     <Counter value={9} />
-    <Counter value={42} appearance={APPEARANCE.Primary} />
-    <Counter value={128} appearance={APPEARANCE.Neutral} />
+    <Counter value={42} appearance="primary" />
+    <Counter value={128} appearance="neutral" />
   </ExampleRow>
 </ExampleContainer>
 
@@ -34,13 +34,13 @@ import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src
 <ExampleContainer padding="large">
   <ExampleRow gap="large" justifyContent="center">
     <ExampleItem label="Count">
-      <Counter value={9} variant={VARIANT.Count} />
+      <Counter value={9} variant="count" />
     </ExampleItem>
     <ExampleItem label="Count Plus">
-      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+      <Counter value={15} variant="count-plus" plusLimit={10} />
     </ExampleItem>
     <ExampleItem label="Count K">
-      <Counter value={8500} variant={VARIANT.CountK} />
+      <Counter value={8500} variant="count-k" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -50,10 +50,10 @@ import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src
 <ExampleContainer padding="large">
   <ExampleRow gap="large" justifyContent="center">
     <ExampleItem label="xs">
-      <Counter value={9} size={SIZE.XS} />
+      <Counter value={9} size="xs" />
     </ExampleItem>
     <ExampleItem label="s">
-      <Counter value={9} size={SIZE.S} />
+      <Counter value={9} size="s" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -63,13 +63,13 @@ import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src
 <ExampleContainer>
   <ExampleGrid columns={3} minColumnWidth="120px">
     <ExampleItem label="Primary" gap="medium">
-      <Counter value={9} appearance={APPEARANCE.Primary} />
+      <Counter value={9} appearance="primary" />
     </ExampleItem>
     <ExampleItem label="Neutral" gap="medium">
-      <Counter value={9} appearance={APPEARANCE.Neutral} />
+      <Counter value={9} appearance="neutral" />
     </ExampleItem>
     <ExampleItem label="Red" gap="medium">
-      <Counter value={9} appearance={APPEARANCE.Red} />
+      <Counter value={9} appearance="red" />
     </ExampleItem>
   </ExampleGrid>
 </ExampleContainer>
@@ -79,10 +79,10 @@ import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src
 <ExampleContainer>
   <ExampleGrid columns={2} minColumnWidth="120px">
     <ExampleItem label="Accent" gap="medium">
-      <Counter value={9} color={COLOR.Accent} />
+      <Counter value={9} color="accent" />
     </ExampleItem>
     <ExampleItem label="Decor" gap="medium">
-      <Counter value={9} color={COLOR.Decor} />
+      <Counter value={9} color="decor" />
     </ExampleItem>
   </ExampleGrid>
 </ExampleContainer>
@@ -92,13 +92,13 @@ import { APPEARANCE, COLOR, Counter, SIZE, VARIANT } from '@packages/counter/src
 <ExampleContainer>
   <ExampleRow>
     <ExampleItem label="plusLimit = 10, value = 9">
-      <Counter value={9} variant={VARIANT.CountPlus} plusLimit={10} />
+      <Counter value={9} variant="count-plus" plusLimit={10} />
     </ExampleItem>
     <ExampleItem label="plusLimit = 10, value = 15">
-      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
+      <Counter value={15} variant="count-plus" plusLimit={10} />
     </ExampleItem>
     <ExampleItem label="plusLimit = 100, value = 150">
-      <Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />
+      <Counter value={150} variant="count-plus" plusLimit={100} />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -130,14 +130,14 @@ export function NotificationBadge() {
 ### With variant
 
 ```tsx
-import { Counter, VARIANT } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
 export function NotificationBadge() {
   return (
     <>
-      <Counter value={9} variant={VARIANT.Count} />
-      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
-      <Counter value={8500} variant={VARIANT.CountK} />
+      <Counter value={9} variant="count" />
+      <Counter value={15} variant="count-plus" plusLimit={10} />
+      <Counter value={8500} variant="count-k" />
     </>
   );
 }
@@ -146,20 +146,20 @@ export function NotificationBadge() {
 ### Custom appearance and size
 
 ```tsx
-import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return <Counter value={10} appearance={APPEARANCE.Red} size={SIZE.S} />;
+  return <Counter value={10} appearance="red" size="s" />;
 }
 ```
 
 ### With plus limit
 
 ```tsx
-import { Counter, VARIANT } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return <Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />;
+  return <Counter value={150} variant="count-plus" plusLimit={100} />;
 }
 ```
 

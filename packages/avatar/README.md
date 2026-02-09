@@ -32,68 +32,60 @@ import {
 ### Basic usage
 
 ```tsx
-import { APPEARANCE, Avatar } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
-<Avatar name="John Doe" />
-<Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
-<Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
+<Avatar name='John Doe' />
+<Avatar name='Jane Smith' appearance="primary" />
+<Avatar name='Bob Johnson' appearance="blue" />
 ```
 
 ### With images
 
 ```tsx
-import { APPEARANCE, Avatar } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
-<Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
-<Avatar
-  name="Jane Smith"
-  src="https://i.pravatar.cc/150?img=2"
-  appearance={APPEARANCE.Primary}
-/>
-<Avatar
-  name="Bob Johnson"
-  src="https://i.pravatar.cc/150?img=3"
-  appearance={APPEARANCE.Green}
-/>
+<Avatar name='John Doe' src='https://i.pravatar.cc/150?img=1' />
+<Avatar name='Jane Smith' src='https://i.pravatar.cc/150?img=2' appearance="primary" />
+<Avatar name='Bob Johnson' src='https://i.pravatar.cc/150?img=3' appearance="green" />
 ```
 
 ### Sizes
 
 ```tsx
-import { Avatar, SIZE } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
-<Avatar name="XS" size={SIZE.Xs} />
-<Avatar name="S" size={SIZE.S} />
-<Avatar name="M" size={SIZE.M} />
-<Avatar name="L" size={SIZE.L} />
-<Avatar name="3XL" size={SIZE['3Xl']} />
-<Avatar name="6XL" size={SIZE['6Xl']} />
-<Avatar name="10XL" size={SIZE['10Xl']} />
+<Avatar name='XS' size="xs" />
+<Avatar name='S' size="s" />
+<Avatar name='M' size="m" />
+<Avatar name='L' size="l" />
+<Avatar name='3XL' size="3xl" />
+<Avatar name='6XL' size="6xl" />
+<Avatar name='10XL' size="10xl" />
 ```
 
 ### Shapes
 
 ```tsx
-import { Avatar, SHAPE } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
-<Avatar name="Round" shape={SHAPE.Round} />
-<Avatar name="Square" shape={SHAPE.Square} />
+<Avatar name='Round' shape="round" />
+<Avatar name='Square' shape="square" />
 ```
 
 ### Color schemes
 
 ```tsx
-import { APPEARANCE, Avatar } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
-<Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
-<Avatar name="Primary" appearance={APPEARANCE.Primary} />
-<Avatar name="Red" appearance={APPEARANCE.Red} />
-<Avatar name="Orange" appearance={APPEARANCE.Orange} />
-<Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
-<Avatar name="Green" appearance={APPEARANCE.Green} />
-<Avatar name="Blue" appearance={APPEARANCE.Blue} />
-<Avatar name="Violet" appearance={APPEARANCE.Violet} />
-<Avatar name="Pink" appearance={APPEARANCE.Pink} />
+<Avatar name='Neutral' appearance="neutral" />
+<Avatar name='Primary' appearance="primary" />
+<Avatar name='Red' appearance="red" />
+<Avatar name='Orange' appearance="orange" />
+<Avatar name='Yellow' appearance="yellow" />
+<Avatar name='Green' appearance="green" />
+<Avatar name='Blue' appearance="blue" />
+<Avatar name='Violet' appearance="violet" />
+<Avatar name='Pink' appearance="pink" />
 ```
 
 
@@ -105,7 +97,7 @@ import { APPEARANCE, Avatar } from '@design-system/avatar';
 import { Avatar } from '@design-system/avatar';
 
 export function UserProfile() {
-  return <Avatar name="John Doe" />;
+  return <Avatar name='John Doe' />;
 }
 ```
 
@@ -115,17 +107,17 @@ export function UserProfile() {
 import { Avatar } from '@design-system/avatar';
 
 export function UserProfile() {
-  return <Avatar name="John Doe" src="https://example.com/avatar.jpg" />;
+  return <Avatar name='John Doe' src='https://example.com/avatar.jpg' />;
 }
 ```
 
 ### Custom appearance and size
 
 ```tsx
-import { Avatar, APPEARANCE, SIZE } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
 export function UserProfile() {
-  return <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} size={SIZE.Xl} />;
+  return <Avatar name='Jane Smith' appearance="primary" size="l" />;
 }
 ```
 

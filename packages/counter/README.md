@@ -35,59 +35,59 @@ import {
 ### Basic usage
 
 ```tsx
-import { APPEARANCE, Counter } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
 <Counter value={9} />
-<Counter value={42} appearance={APPEARANCE.Primary} />
-<Counter value={128} appearance={APPEARANCE.Neutral} />
+<Counter value={42} appearance="primary" />
+<Counter value={128} appearance="neutral" />
 ```
 
 ### Variants
 
 ```tsx
-import { Counter, VARIANT } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
-<Counter value={9} variant={VARIANT.Count} />
-<Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
-<Counter value={8500} variant={VARIANT.CountK} />
+<Counter value={9} variant="count" />
+<Counter value={15} variant="count-plus" plusLimit={10} />
+<Counter value={8500} variant="count-k" />
 ```
 
 ### Sizes
 
 ```tsx
-import { Counter, SIZE } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
-<Counter value={9} size={SIZE.XS} />
-<Counter value={9} size={SIZE.S} />
+<Counter value={9} size="xs" />
+<Counter value={9} size="s" />
 ```
 
 ### Appearances
 
 ```tsx
-import { APPEARANCE, Counter } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
-<Counter value={9} appearance={APPEARANCE.Primary} />
-<Counter value={9} appearance={APPEARANCE.Neutral} />
-<Counter value={9} appearance={APPEARANCE.Red} />
+<Counter value={9} appearance="primary" />
+<Counter value={9} appearance="neutral" />
+<Counter value={9} appearance="red" />
 ```
 
 ### Colors
 
 ```tsx
-import { COLOR, Counter } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
-<Counter value={9} color={COLOR.Accent} />
-<Counter value={9} color={COLOR.Decor} />
+<Counter value={9} color="accent" />
+<Counter value={9} color="decor" />
 ```
 
 ### With plus limit
 
 ```tsx
-import { Counter, VARIANT } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
-<Counter value={9} variant={VARIANT.CountPlus} plusLimit={10} />
-<Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
-<Counter value={150} variant={VARIANT.CountPlus} plusLimit={100} />
+<Counter value={9} variant="count-plus" plusLimit={10} />
+<Counter value={15} variant="count-plus" plusLimit={10} />
+<Counter value={150} variant="count-plus" plusLimit={100} />
 ```
 
 
@@ -106,14 +106,14 @@ export function NotificationBadge() {
 ### With variant
 
 ```tsx
-import { Counter, VARIANT } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
 export function NotificationBadge() {
   return (
     <>
-      <Counter value={9} variant={VARIANT.Count} />
-      <Counter value={15} variant={VARIANT.CountPlus} plusLimit={10} />
-      <Counter value={8500} variant={VARIANT.CountK} />
+      <Counter value={9} variant="count" />
+      <Counter value={15} variant="count-plus" plusLimit={10} />
+      <Counter value={8500} variant="count-k" />
     </>
   );
 }
@@ -122,10 +122,10 @@ export function NotificationBadge() {
 ### Custom appearance and size
 
 ```tsx
-import { Counter, APPEARANCE, SIZE } from '@design-system/counter';
+import { Counter } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return <Counter value={10} appearance={APPEARANCE.Red} size={SIZE.S} />;
+  return <Counter value={10} appearance="red" size="s" />;
 }
 ```
 

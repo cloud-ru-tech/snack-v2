@@ -4,13 +4,8 @@ description: User avatar component with image support, initials fallback, multip
 version: "0.1.0"
 ---
 
-import {
-  ExampleContainer,
-  ExampleGrid,
-  ExampleItem,
-  ExampleRow,
-} from '#astro/components/mdx';
-import { APPEARANCE, Avatar, SHAPE, SIZE } from '@packages/avatar/src';
+import { ExampleContainer, ExampleGrid, ExampleItem, ExampleRow } from '#astro/components/mdx';
+import { Avatar } from '@packages/avatar/src';
 
 # Avatar
 
@@ -32,11 +27,11 @@ pnpm add @design-system/avatar
 
 import Changelog from '#astro/components/astro/Changelog.astro';
 
-<Changelog packageName="avatar" />
+<Changelog packageName='avatar' />
 
 import LlmLink from '#astro/components/astro/LlmLink.astro';
 
-<LlmLink component="avatar" />
+<LlmLink component='avatar' />
 
 ## Overview
 
@@ -55,9 +50,9 @@ Avatar is a flexible component for displaying user identity in your application.
 
 <ExampleContainer>
   <ExampleRow>
-    <Avatar name="John Doe" />
-    <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} />
-    <Avatar name="Bob Johnson" appearance={APPEARANCE.Blue} />
+    <Avatar name='John Doe' />
+    <Avatar name='Jane Smith' appearance="primary" />
+    <Avatar name='Bob Johnson' appearance="blue" />
   </ExampleRow>
 </ExampleContainer>
 
@@ -65,44 +60,36 @@ Avatar is a flexible component for displaying user identity in your application.
 
 <ExampleContainer>
   <ExampleRow>
-    <Avatar name="John Doe" src="https://i.pravatar.cc/150?img=1" />
-    <Avatar
-      name="Jane Smith"
-      src="https://i.pravatar.cc/150?img=2"
-      appearance={APPEARANCE.Primary}
-    />
-    <Avatar
-      name="Bob Johnson"
-      src="https://i.pravatar.cc/150?img=3"
-      appearance={APPEARANCE.Green}
-    />
+    <Avatar name='John Doe' src='https://i.pravatar.cc/150?img=1' />
+    <Avatar name='Jane Smith' src='https://i.pravatar.cc/150?img=2' appearance="primary" />
+    <Avatar name='Bob Johnson' src='https://i.pravatar.cc/150?img=3' appearance="green" />
   </ExampleRow>
 </ExampleContainer>
 
 ### Sizes
 
-<ExampleContainer padding="large">
-  <ExampleRow gap="large" justifyContent="center">
-    <ExampleItem label="xs">
-      <Avatar name="XS" size={SIZE.Xs} />
+<ExampleContainer padding='large'>
+  <ExampleRow gap='large' justifyContent='center'>
+    <ExampleItem label='xs'>
+      <Avatar name='XS' size="xs" />
     </ExampleItem>
-    <ExampleItem label="s">
-      <Avatar name="S" size={SIZE.S} />
+    <ExampleItem label='s'>
+      <Avatar name='S' size="s" />
     </ExampleItem>
-    <ExampleItem label="m">
-      <Avatar name="M" size={SIZE.M} />
+    <ExampleItem label='m'>
+      <Avatar name='M' size="m" />
     </ExampleItem>
-    <ExampleItem label="xl">
-      <Avatar name="L" size={SIZE.L} />
+    <ExampleItem label='xl'>
+      <Avatar name='L' size="l" />
     </ExampleItem>
-    <ExampleItem label="3xl">
-      <Avatar name="3XL" size={SIZE['3Xl']} />
+    <ExampleItem label='3xl'>
+      <Avatar name='3XL' size="3xl" />
     </ExampleItem>
-    <ExampleItem label="6xl">
-      <Avatar name="6XL" size={SIZE['6Xl']} />
+    <ExampleItem label='6xl'>
+      <Avatar name='6XL' size="6xl" />
     </ExampleItem>
-    <ExampleItem label="10xl">
-      <Avatar name="10XL" size={SIZE['10Xl']} />
+    <ExampleItem label='10xl'>
+      <Avatar name='10XL' size="10xl" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -110,12 +97,12 @@ Avatar is a flexible component for displaying user identity in your application.
 ### Shapes
 
 <ExampleContainer>
-  <ExampleRow gap="xlarge">
-    <ExampleItem label="Round" labelSize="medium" gap="medium">
-      <Avatar name="Round" shape={SHAPE.Round} />
+  <ExampleRow gap='xlarge'>
+    <ExampleItem label='Round' labelSize='medium' gap='medium'>
+      <Avatar name='Round' shape="round" />
     </ExampleItem>
-    <ExampleItem label="Square" labelSize="medium" gap="medium">
-      <Avatar name="Square" shape={SHAPE.Square} />
+    <ExampleItem label='Square' labelSize='medium' gap='medium'>
+      <Avatar name='Square' shape="square" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -123,33 +110,33 @@ Avatar is a flexible component for displaying user identity in your application.
 ### Color schemes
 
 <ExampleContainer>
-  <ExampleGrid columns={3} minColumnWidth="120px">
-    <ExampleItem label="Neutral" gap="medium">
-      <Avatar name="Neutral" appearance={APPEARANCE.Neutral} />
+  <ExampleGrid columns={3} minColumnWidth='120px'>
+    <ExampleItem label='Neutral' gap='medium'>
+      <Avatar name='Neutral' appearance="neutral" />
     </ExampleItem>
-    <ExampleItem label="Primary" gap="medium">
-      <Avatar name="Primary" appearance={APPEARANCE.Primary} />
+    <ExampleItem label='Primary' gap='medium'>
+      <Avatar name='Primary' appearance="primary" />
     </ExampleItem>
-    <ExampleItem label="Red" gap="medium">
-      <Avatar name="Red" appearance={APPEARANCE.Red} />
+    <ExampleItem label='Red' gap='medium'>
+      <Avatar name='Red' appearance="red" />
     </ExampleItem>
-    <ExampleItem label="Orange" gap="medium">
-      <Avatar name="Orange" appearance={APPEARANCE.Orange} />
+    <ExampleItem label='Orange' gap='medium'>
+      <Avatar name='Orange' appearance="orange" />
     </ExampleItem>
-    <ExampleItem label="Yellow" gap="medium">
-      <Avatar name="Yellow" appearance={APPEARANCE.Yellow} />
+    <ExampleItem label='Yellow' gap='medium'>
+      <Avatar name='Yellow' appearance="yellow" />
     </ExampleItem>
-    <ExampleItem label="Green" gap="medium">
-      <Avatar name="Green" appearance={APPEARANCE.Green} />
+    <ExampleItem label='Green' gap='medium'>
+      <Avatar name='Green' appearance="green" />
     </ExampleItem>
-    <ExampleItem label="Blue" gap="medium">
-      <Avatar name="Blue" appearance={APPEARANCE.Blue} />
+    <ExampleItem label='Blue' gap='medium'>
+      <Avatar name='Blue' appearance="blue" />
     </ExampleItem>
-    <ExampleItem label="Violet" gap="medium">
-      <Avatar name="Violet" appearance={APPEARANCE.Violet} />
+    <ExampleItem label='Violet' gap='medium'>
+      <Avatar name='Violet' appearance="violet" />
     </ExampleItem>
-    <ExampleItem label="Pink" gap="medium">
-      <Avatar name="Pink" appearance={APPEARANCE.Pink} />
+    <ExampleItem label='Pink' gap='medium'>
+      <Avatar name='Pink' appearance="pink" />
     </ExampleItem>
   </ExampleGrid>
 </ExampleContainer>
@@ -160,13 +147,13 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 ### Playground
 
-<StorybookIframe storyId="components-avatar--playground" showControls={true} height="400px" />
+<StorybookIframe storyId='components-avatar--playground' showControls={true} height='400px' />
 
 ### Visual Matrix
 
 Для просмотра всех доступных комбинаций используйте story **Visual Matrix** в Storybook. Таблица показывает все варианты типографики в структурированном виде с четкими границами и заголовками, что упрощает сравнение стилей.
 
-<StorybookIframe storyId="components-avatar--visual-matrix" showControls={false} height="800px" />
+<StorybookIframe storyId='components-avatar--visual-matrix' showControls={false} height='800px' />
 
 ## Usage
 
@@ -176,7 +163,7 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 import { Avatar } from '@design-system/avatar';
 
 export function UserProfile() {
-  return <Avatar name="John Doe" />;
+  return <Avatar name='John Doe' />;
 }
 ```
 
@@ -186,17 +173,17 @@ export function UserProfile() {
 import { Avatar } from '@design-system/avatar';
 
 export function UserProfile() {
-  return <Avatar name="John Doe" src="https://example.com/avatar.jpg" />;
+  return <Avatar name='John Doe' src='https://example.com/avatar.jpg' />;
 }
 ```
 
 ### Custom appearance and size
 
 ```tsx
-import { Avatar, APPEARANCE, SIZE } from '@design-system/avatar';
+import { Avatar } from '@design-system/avatar';
 
 export function UserProfile() {
-  return <Avatar name="Jane Smith" appearance={APPEARANCE.Primary} size={SIZE.Xl} />;
+  return <Avatar name='Jane Smith' appearance="primary" size="l" />;
 }
 ```
 
@@ -204,17 +191,18 @@ export function UserProfile() {
 
 [//]: DOCUMENTATION_SECTION_START
 [//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### AvatarProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| name* | `string` | - | Имя пользователя для генерации аббревиатуры |
-| src | `string` | - | URL изображения аватара |
-| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral | Внешний вид (цвет) |
-| size | enum Size: `"xs"`, `"s"`, `"m"`, `"l"`, `"3xl"`, `"6xl"`, `"10xl"` | s | Размер |
-| shape | enum Shape: `"round"`, `"square"` | round | Форма: круглая или квадратная |
-| showTwoSymbols | `boolean` | - | Отображение двух заглавных символов имени вместо одного |
-| className | `string` | - | CSS-класс |
 
+### AvatarProps
+
+| name           | type                                                                                                                  | default value | description                                             |
+| -------------- | --------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------- |
+| name\*         | `string`                                                                                                              | -             | Имя пользователя для генерации аббревиатуры             |
+| src            | `string`                                                                                                              | -             | URL изображения аватара                                 |
+| appearance     | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral       | Внешний вид (цвет)                                      |
+| size           | enum Size: `"xs"`, `"s"`, `"m"`, `"l"`, `"3xl"`, `"6xl"`, `"10xl"`                                                    | s             | Размер                                                  |
+| shape          | enum Shape: `"round"`, `"square"`                                                                                     | round         | Форма: круглая или квадратная                           |
+| showTwoSymbols | `boolean`                                                                                                             | -             | Отображение двух заглавных символов имени вместо одного |
+| className      | `string`                                                                                                              | -             | CSS-класс                                               |
 
 [//]: DOCUMENTATION_SECTION_END
 

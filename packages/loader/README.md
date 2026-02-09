@@ -21,24 +21,24 @@ pnpm add @design-system/loader
 ### Sizes
 
 ```tsx
-import { LOADER_SIZE, Spinner } from '@design-system/loader';
+import { Spinner } from '@design-system/loader';
 
-<Spinner size={LOADER_SIZE['2XS']} />
-<Spinner size={LOADER_SIZE.XS} />
-<Spinner size={LOADER_SIZE.S} />
-<Spinner size={LOADER_SIZE.M} />
-<Spinner size={LOADER_SIZE.L} />
+<Spinner size="2xs" />
+<Spinner size="xs" />
+<Spinner size="s" />
+<Spinner size="m" />
+<Spinner size="l" />
 ```
 
 ### Sizes
 
 ```tsx
-import { SUN_SIZE, Sun } from '@design-system/loader';
+import { Sun } from '@design-system/loader';
 
-<Sun size={SUN_SIZE.XS} />
-<Sun size={SUN_SIZE.S} />
-<Sun size={SUN_SIZE.M} />
-<Sun size={SUN_SIZE.L} />
+<Sun size="xs" />
+<Sun size="s" />
+<Sun size="m" />
+<Sun size="l" />
 ```
 
 
@@ -47,10 +47,10 @@ import { SUN_SIZE, Sun } from '@design-system/loader';
 ### Basic
 
 ```tsx
-import { Spinner, LOADER_SIZE } from '@design-system/loader';
+import { Spinner } from '@design-system/loader';
 
 export function LoadingState() {
-  return <Spinner size={LOADER_SIZE.M} />;
+  return <Spinner size="m" />;
 }
 ```
 
@@ -67,10 +67,10 @@ export function Example() {
 ### Basic
 
 ```tsx
-import { Sun, SUN_SIZE } from '@design-system/loader';
+import { Sun } from '@design-system/loader';
 
 export function LoadingState() {
-  return <Sun size={SUN_SIZE.M} />;
+  return <Sun size="m" />;
 }
 ```
 

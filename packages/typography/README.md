@@ -43,21 +43,21 @@ import { Typography } from '@design-system/typography';
 ### Variants
 
 ```tsx
-import { SIZE, Typography, VARIANT } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
-<Typography variant={VARIANT.display} size={SIZE.l}>
+<Typography variant="display" size="l">
   Display Large
 </Typography>
-<Typography variant={VARIANT.headline} size={SIZE.l}>
+<Typography variant="headline" size="l">
   Headline Large
 </Typography>
-<Typography variant={VARIANT.title} size={SIZE.m}>
+<Typography variant="title" size="m">
   Title Medium
 </Typography>
-<Typography variant={VARIANT.label} size={SIZE.s}>
+<Typography variant="label" size="s">
   Label Small
 </Typography>
-<Typography variant={VARIANT.body} size={SIZE.m}>
+<Typography variant="body" size="m">
   Body Medium - основной текст для чтения
 </Typography>
 ```
@@ -65,15 +65,15 @@ import { SIZE, Typography, VARIANT } from '@design-system/typography';
 ### Sizes
 
 ```tsx
-import { SIZE, Typography, VARIANT } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
-<Typography variant={VARIANT.headline} size={SIZE.s}>
+<Typography variant="headline" size="s">
   Headline Small
 </Typography>
-<Typography variant={VARIANT.headline} size={SIZE.m}>
+<Typography variant="headline" size="m">
   Headline Medium
 </Typography>
-<Typography variant={VARIANT.headline} size={SIZE.l}>
+<Typography variant="headline" size="l">
   Headline Large
 </Typography>
 ```
@@ -81,15 +81,15 @@ import { SIZE, Typography, VARIANT } from '@design-system/typography';
 ### Weights
 
 ```tsx
-import { SIZE, Typography, VARIANT } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
-<Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.regular}>
+<Typography variant="headline" size="l" weight="regular">
   Regular Weight
 </Typography>
-<Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.thin}>
+<Typography variant="headline" size="l" weight="thin">
   Thin Weight
 </Typography>
-<Typography variant={VARIANT.headline} size={SIZE.l} weight={WEIGHT.mono}>
+<Typography variant="headline" size="l" weight="mono">
   Mono Weight
 </Typography>
 ```
@@ -110,11 +110,11 @@ export function Example() {
 ### With variant and size
 
 ```tsx
-import { Typography, VARIANT, SIZE } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
 export function Example() {
   return (
-    <Typography variant={VARIANT.headline} size={SIZE.l}>
+    <Typography variant="headline" size="l">
       Заголовок
     </Typography>
   );
@@ -124,11 +124,11 @@ export function Example() {
 ### With weight
 
 ```tsx
-import { Typography, VARIANT, SIZE, WEIGHT } from '@design-system/typography';
+import { Typography } from '@design-system/typography';
 
 export function Example() {
   return (
-    <Typography variant={VARIANT.body} size={SIZE.m} weight={WEIGHT.thin}>
+    <Typography variant="body" size="m" weight="thin">
       Тонкий текст
     </Typography>
   );
