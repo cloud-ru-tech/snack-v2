@@ -2,6 +2,15 @@ packages:
   - packages/*
   - astro
 
+# Только общие зависимости корня и astro. Публикуемые пакеты (packages/*) — версии явно.
+catalog:
+  "classnames": "2.5.1"
+  "consola": "3.4.2"
+  "react": "19.2.4"
+  "react-dom": "19.2.4"
+  "typescript": "5.9.3"
+  "@sbercloud/figma-variables": "1.1.0"
+
 ignoredBuiltDependencies:
   - ejs
 

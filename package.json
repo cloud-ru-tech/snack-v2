@@ -51,8 +51,8 @@
     "postinstall": "ts-patch install && node scripts/patch-storybook-mocker.mjs"
   },
   "dependencies": {
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
@@ -63,7 +63,7 @@
     "@cloud-ru/ft-config-lint-staged": "1.1.4",
     "@cloud-ru/ft-config-prettier": "1.1.3",
     "@playwright/test": "1.58.1",
-    "@sbercloud/figma-variables": "1.1.0",
+    "@sbercloud/figma-variables": "catalog:",
     "@storybook/addon-a11y": "10.2.7",
     "@storybook/addon-designs": "11.1.2",
     "@storybook/addon-docs": "10.2.7",
@@ -85,8 +85,8 @@
     "autoprefixer": "10.4.24",
     "babel-plugin-react-css-modules": "5.2.6",
     "chokidar": "5.0.0",
-    "classnames": "2.5.1",
-    "consola": "3.4.2",
+    "classnames": "catalog:",
+    "consola": "catalog:",
     "dompurify": "3.3.1",
     "dotenv": "17.2.4",
     "eslint": "9.39.2",
@@ -118,7 +118,7 @@
     "stylelint-config-standard": "39.0.1",
     "ts-node": "10.9.2",
     "ts-patch": "3.3.0",
-    "typescript": "5.9.3",
+    "typescript": "catalog:",
     "typescript-plugin-css-modules": "5.2.0",
     "vitest": "4.0.18"
   },

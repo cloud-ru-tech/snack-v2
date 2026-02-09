@@ -50,3 +50,7 @@ astro/src/content/docs/ru/components/
 # Playwright test results
 playwright/test-results/
 test-results/
+
+
+# Cursor
+.history
