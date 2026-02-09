@@ -96,18 +96,17 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
             content = `---\ntitle: ${packageName}\nversion: "${version}"\n---\n\n${content}`;
           }
 
-          // Transform imports: '../src' -> '@packages/<packageName>/src'
-          // Also handle '../../../astro/src/components/mdx' -> '../../../../components/mdx'
-          content = content.replace(/from\s+['"]\.\.\/src['"]/g, `from '@packages/${packageName}/src'`);
+          // Transform imports: '../src' или '../../src' (вложенные docs/components/) -> '@packages/<packageName>/src'
+          content = content.replace(/from\s+['"](\.\.\/)+src['"]/g, `from '@packages/${packageName}/src'`);
 
-          // Transform new Astro paths
+          // Transform new Astro paths (3 уровня из docs/, 4 из docs/components/ и т.д.)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
             `from '../../../../components/mdx'`,
           );
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`,
+            `from '../../../../../components/mdx'`,
           );
 
           // Transform old apps/docs paths (for backward compatibility)
@@ -120,16 +119,23 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
             `from '../../../../components/mdx'`,
           );
 
-          // Transform Astro component imports (new paths)
+          // Transform Astro component imports (3 уровня из docs/, 4 из docs/components/)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
             `from '../../../../components/astro/$1'`,
           );
-
+          content = content.replace(
+            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
+            `from '../../../../../components/astro/$1'`,
+          );
           // Transform Astro component imports (old apps/docs paths)
           content = content.replace(
             /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/astro\/([^'"]+)['"]/g,
             `from '../../../../components/astro/$1'`,
+          );
+          content = content.replace(
+            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/astro\/([^'"]+)['"]/g,
+            `from '../../../../../components/astro/$1'`,
           );
 
           writeFileSync(targetFilePath, content, 'utf-8');

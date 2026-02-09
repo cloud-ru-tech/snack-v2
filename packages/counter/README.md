@@ -74,7 +74,7 @@ import { APPEARANCE, Counter } from '@design-system/counter';
 ### Colors
 
 ```tsx
-import { Counter } from '@design-system/counter';
+import { COLOR, Counter } from '@design-system/counter';
 
 <Counter value={9} color={COLOR.Accent} />
 <Counter value={9} color={COLOR.Decor} />

@@ -33,36 +33,66 @@ export class Docgen {
     return path.resolve(this.packagesRootPath, ...paths);
   }
 
-  private readDocFile(packageName: string) {
+  private readDocFile(packageName: string, relativePath: string = this.targetFile) {
     try {
-      return fs.readFileSync(this.path(packageName, this.targetFile), 'utf-8');
+      return fs.readFileSync(this.path(packageName, relativePath), 'utf-8');
     } catch (_e) {
-      logWarning(`Error while reading ${this.targetFile} file in "${packageName}".`);
       return '';
     }
   }
 
+  /** Рекурсивный список .mdx в docs/ (вложенность: components/Spinner.mdx, hooks/useX.mdx) */
+  private getDocsMdxFilesRecursive(packageName: string): string[] {
+    const docsDir = this.path(packageName, 'docs');
+    if (!fs.existsSync(docsDir)) return [];
+    const list: string[] = [];
+    const walk = (dir: string, base = '') => {
+      const items = fs.readdirSync(dir);
+      for (const item of items) {
+        const full = path.join(dir, item);
+        const rel = base ? `${base}/${item}` : item;
+        if (fs.statSync(full).isDirectory()) {
+          walk(full, rel);
+        } else if (item.endsWith('.mdx')) {
+          list.push(rel);
+        }
+      }
+    };
+    walk(docsDir);
+    return list.sort();
+  }
+
+  /** Пакет участвует в docgen, если хотя бы один файл в docs/ (в т.ч. вложенный) содержит оба плейсхолдера */
   private getPackagesList() {
     const entities = fs.readdirSync(this.packagesRootPath);
     const packages = entities.filter(entity => fs.statSync(this.path(entity)).isDirectory());
     const [startDocPlaceholder, endDocPlaceholder] = this.docPlaceholder;
     return packages.filter((packageName: string) => {
-      const docFile = this.readDocFile(packageName);
-      return docFile.includes(startDocPlaceholder) && docFile.includes(endDocPlaceholder);
+      const files = this.getDocsMdxFilesRecursive(packageName);
+      return files.some(file => {
+        const content = this.readDocFile(packageName, `docs/${file}`);
+        return content.includes(startDocPlaceholder) && content.includes(endDocPlaceholder);
+      });
     });
   }
 
-  private writeDocsSectionToFile(packageName: string, doc: string) {
+  /** Записать секцию в конкретный файл (docs/index.mdx или docs/Counter.mdx) */
+  private writeDocsSectionToFile(packageName: string, relativePath: string, doc: string) {
     const [placeholderStart, placeholderEnd] = this.docPlaceholder;
-    const docFile = this.readDocFile(packageName);
+    const docFile = this.readDocFile(packageName, relativePath);
     const startPosition = docFile.indexOf(placeholderStart);
     const endPosition = docFile.indexOf(placeholderEnd);
+
+    if (startPosition === -1 || endPosition === -1) {
+      logWarning(`Placeholders not found in ${packageName}/${relativePath}, skip write`);
+      return;
+    }
 
     const startOfFile = docFile.slice(0, startPosition);
     const endOfFile = docFile.slice(endPosition + placeholderEnd.length);
 
     fs.writeFileSync(
-      this.path(packageName, this.targetFile),
+      this.path(packageName, relativePath),
       [startOfFile, [placeholderStart, CAUTION, doc, '\n', placeholderEnd].join('\n'), endOfFile].join(''),
       'utf-8',
     );
@@ -83,21 +113,22 @@ export class Docgen {
     }
   }
 
-  private async generateDoc(packageName: string) {
+  private async generateDoc(packageName: string): Promise<Array<{ displayName: string; content: string }>> {
     const packageSrc = path.resolve(this.packagesRootPath, packageName, 'src', 'index.ts');
+    if (!fs.existsSync(packageSrc)) return [];
 
     const packageDocOptions = await this.resolvePackageParserOptions(packageName);
     const parserOptions = packageDocOptions ? Object.assign(this.parserOptions, packageDocOptions) : this.parserOptions;
 
-    return parse(packageSrc, parserOptions).map(docData => {
-      const doc = new Markdown(docData).renderPropsTable();
-      logInfo(`✔ doc generated for ${packageName}/${this.targetFile} - ${docData.displayName}`);
-      return doc;
-    });
+    return parse(packageSrc, parserOptions).map(docData => ({
+      displayName: docData.displayName,
+      content: new Markdown(docData).renderPropsTable(),
+    }));
   }
 
   async run(packagesPaths: string[] = []) {
     const packages = this.getPackagesList();
+    const [placeholderStart, placeholderEnd] = this.docPlaceholder;
 
     for (const packageName of packages) {
       if (packagesPaths.length && !packagesPaths.some(packagePath => packagePath.endsWith(packageName))) {
@@ -105,7 +136,32 @@ export class Docgen {
       }
 
       const docs = await this.generateDoc(packageName);
-      this.writeDocsSectionToFile(packageName, docs.join('\n'));
+      const indexParts: string[] = [];
+
+      const allMdx = this.getDocsMdxFilesRecursive(packageName);
+      for (const { displayName, content } of docs) {
+        const candidate = allMdx.find(f => f === `${displayName}.mdx` || f.endsWith(`/${displayName}.mdx`));
+        const componentFile = candidate ? `docs/${candidate}` : `docs/${displayName}.mdx`;
+        const componentPath = this.path(packageName, componentFile);
+        if (fs.existsSync(componentPath)) {
+          const fileContent = this.readDocFile(packageName, componentFile);
+          if (fileContent.includes(placeholderStart) && fileContent.includes(placeholderEnd)) {
+            this.writeDocsSectionToFile(packageName, componentFile, content);
+            logInfo(`✔ doc generated for ${packageName}/${componentFile} - ${displayName}`);
+            continue;
+          }
+        }
+        indexParts.push(content);
+      }
+
+      const indexPath = this.path(packageName, this.targetFile);
+      if (indexParts.length > 0 && fs.existsSync(indexPath)) {
+        const indexContent = this.readDocFile(packageName, this.targetFile);
+        if (indexContent.includes(placeholderStart) && indexContent.includes(placeholderEnd)) {
+          this.writeDocsSectionToFile(packageName, this.targetFile, indexParts.join('\n'));
+          logInfo(`✔ doc generated for ${packageName}/${this.targetFile} (${indexParts.length} component(s))`);
+        }
+      }
     }
   }
 }

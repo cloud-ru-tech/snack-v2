@@ -18,7 +18,7 @@ pnpm add @design-system/loader
 
 ## Live examples
 
-### Spinner
+### Sizes
 
 ```tsx
 import { LOADER_SIZE, Spinner } from '@design-system/loader';
@@ -30,7 +30,7 @@ import { LOADER_SIZE, Spinner } from '@design-system/loader';
 <Spinner size={LOADER_SIZE.L} />
 ```
 
-### Sun
+### Sizes
 
 ```tsx
 import { SUN_SIZE, Sun } from '@design-system/loader';
@@ -41,19 +41,10 @@ import { SUN_SIZE, Sun } from '@design-system/loader';
 <Sun size={SUN_SIZE.L} />
 ```
 
-### Both variants
-
-```tsx
-import { LOADER_SIZE, SUN_SIZE, Spinner, Sun } from '@design-system/loader';
-
-<Spinner size={LOADER_SIZE.M} />
-<Sun size={SUN_SIZE.M} />
-```
-
 
 ## Usage
 
-### Spinner
+### Basic
 
 ```tsx
 import { Spinner, LOADER_SIZE } from '@design-system/loader';
@@ -63,28 +54,23 @@ export function LoadingState() {
 }
 ```
 
-### Sun
+### Default size
+
+```tsx
+import { Spinner } from '@design-system/loader';
+
+export function Example() {
+  return <Spinner />;   {/* size S by default */}
+}
+```
+
+### Basic
 
 ```tsx
 import { Sun, SUN_SIZE } from '@design-system/loader';
 
 export function LoadingState() {
   return <Sun size={SUN_SIZE.M} />;
-}
-```
-
-### Default size
-
-```tsx
-import { Spinner, Sun } from '@design-system/loader';
-
-export function Example() {
-  return (
-    <>
-      <Spinner />   {/* size S by default */}
-      <Sun />       {/* size S by default */}
-    </>
-  );
 }
 ```
 
@@ -95,6 +81,7 @@ export function Example() {
 |------|------|---------------|-------------|
 | size | enum LoaderSize: `"2xs"`, `"xs"`, `"s"`, `"m"`, `"l"` | s | Размер |
 | className | `string` | - | CSS-класс |
+
 ### SunProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
@@ -103,10 +90,8 @@ export function Example() {
 
 ## Best Practices
 
-1. **Choose the right variant** — Use Spinner for generic loading; Sun when a lighter or alternative style is needed
-2. **Match size to context** — Use smaller sizes (2XS, XS, S) inline; M/L for full-page or prominent loading
-3. **Provide context** — Combine with text or `aria-live` so screen reader users know loading is in progress
-4. **Avoid multiple loaders** — One loader per logical loading state to reduce visual noise
+1. **Match size to context** — Use smaller sizes (2XS, XS, S) inline; M/L for full-page or prominent loading
+2. **Provide context** — Combine with text or `aria-live` so screen reader users know loading is in progress
 
 ---
 
