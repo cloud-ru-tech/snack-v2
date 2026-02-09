@@ -54,16 +54,8 @@ function createPackageJson(packageDir: string, config: PackageConfig): void {
     files: ['dist/cjs', 'dist/esm', 'src', 'README.md', 'CHANGELOG.md', 'MIGRATION.md'],
     sideEffects: ['**/*.css', '**/*.scss'],
     scripts: {},
-    peerDependencies: {
-      react: '>=18.3.0',
-      'react-dom': '>=18.3.0',
-    },
-    devDependencies: {
-      react: '^19.2.1',
-      'react-dom': '^19.2.1',
-    },
     dependencies: {
-      classnames: '^2.5.1',
+      classnames: '2.5.1',
     },
     publishConfig: {
       access: 'public',

@@ -278,57 +278,29 @@ importers:
   packages/avatar:
     dependencies:
       classnames:
-        specifier: ^2.5.1
+        specifier: 2.5.1
         version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
 
   packages/counter:
     dependencies:
       '@snack-uikit/utils':
         specifier: 4.0.0
-        version: 4.0.0(react@19.2.1)
+        version: 4.0.0(react@19.2.4)
       classnames:
-        specifier: ^2.5.1
+        specifier: 2.5.1
         version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
 
   packages/loader:
     dependencies:
       classnames:
-        specifier: 'catalog:'
+        specifier: 2.5.1
         version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
 
   packages/typography:
     dependencies:
       classnames:
-        specifier: ^2.5.1
+        specifier: 2.5.1
         version: 2.5.1
-    devDependencies:
-      react:
-        specifier: ^19.2.1
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
 
 packages:
 
@@ -6278,11 +6250,6 @@ packages:
     resolution: {integrity: sha512-+NRMYs2DyTP4/tqWz371Oo50JqmWltR1h2gcdgUMAWZJIAvrd0/SqlCfx7tpzpl/s36rzw6qH2MjoNrxtRNYhA==}
     engines: {node: ^20.9.0 || >=22}
 
-  react-dom@19.2.1:
-    resolution: {integrity: sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg==}
-    peerDependencies:
-      react: ^19.2.1
-
   react-dom@19.2.4:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
@@ -6305,10 +6272,6 @@ packages:
     resolution: {integrity: sha512-v1Qx1l+aC2fdxKa9aKJiaU/ZxmJ5o98RMoFwUqAAzVWUcxgfHFXDDruCKXhw6zIYXm6V64JiHgP9f6mlME5l8w==}
     peerDependencies:
       react: ^16.8.3 || ^17 || ^18 || ^19.0.0 || ^19.0.0-rc
-
-  react@19.2.1:
-    resolution: {integrity: sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==}
-    engines: {node: '>=0.10.0'}
 
   react@19.2.4:
     resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
@@ -9623,10 +9586,10 @@ snapshots:
 
   '@sinclair/typebox@0.34.41': {}
 
-  '@snack-uikit/utils@4.0.0(react@19.2.1)':
+  '@snack-uikit/utils@4.0.0(react@19.2.4)':
     dependencies:
-      react-swipeable: 7.0.2(react@19.2.1)
-      uncontrollable: 8.0.4(react@19.2.1)
+      react-swipeable: 7.0.2(react@19.2.4)
+      uncontrollable: 8.0.4(react@19.2.4)
     transitivePeerDependencies:
       - react
 
@@ -14974,11 +14937,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-dom@19.2.1(react@19.2.1):
-    dependencies:
-      react: 19.2.1
-      scheduler: 0.27.0
-
   react-dom@19.2.4(react@19.2.4):
     dependencies:
       react: 19.2.4
@@ -14992,11 +14950,9 @@ snapshots:
 
   react-refresh@0.17.0: {}
 
-  react-swipeable@7.0.2(react@19.2.1):
+  react-swipeable@7.0.2(react@19.2.4):
     dependencies:
-      react: 19.2.1
-
-  react@19.2.1: {}
+      react: 19.2.4
 
   react@19.2.4: {}
 
@@ -16344,9 +16300,9 @@ snapshots:
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
 
-  uncontrollable@8.0.4(react@19.2.1):
+  uncontrollable@8.0.4(react@19.2.4):
     dependencies:
-      react: 19.2.1
+      react: 19.2.4
 
   uncrypto@0.1.3: {}
 
