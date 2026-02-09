@@ -18,6 +18,9 @@
     },
     {
       "path": "./divider/tsconfig.esm.json"
+    },
+    {
+      "path": "./block/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

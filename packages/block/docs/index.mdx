@@ -1,0 +1,221 @@
+---
+title: Block
+description: Компонент-слот для отображения любого содержимого на подложке с эффектом акрила (матовое/полупрозрачное стекло).
+version: '0.1.0'
+---
+
+import {
+  ExampleContainer,
+  ExampleGrid,
+  ExampleItem,
+  ExampleRow,
+} from '../../../astro/src/components/mdx';
+import { Block, SIZE, VARIANT } from '../src';
+
+# Block
+
+Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).
+
+Поддерживает:
+- **Акриловый фон** с эффектом backdrop blur
+- **Варианты:** simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)
+- **Размеры:** s (малый), m (средний), l (большой) — по умолчанию `l`
+- **Гибкое содержимое** — любые React children
+- **Нативные атрибуты** — принимает все свойства `HTMLDivElement` (className, style, onClick, aria-*, data-* и др.)
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/block
+# or
+yarn add @design-system/block
+# or
+pnpm add @design-system/block
+```
+
+## Changelog
+
+import Changelog from '../../../astro/src/components/astro/Changelog.astro';
+
+<Changelog packageName="block" />
+
+import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
+
+<LlmLink component="block" />
+
+## Overview
+
+Block — контейнер для контента с эффектом акрила (glassmorphism). Рендерит семантичный `<div>`, расширяемый любыми атрибутами `HTMLDivElement`.
+
+- **Акриловый фон** — слой с backdrop blur (`data-acrylic-background`)
+- **Варианты** — simple (по умолчанию), outline, shadow, transparent
+- **Размеры** — s, m, l (по умолчанию l)
+- **Дочерние элементы** — любые React children
+- **Доступность** — можно передавать aria-*, role и прочие атрибуты div
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <ExampleRow>
+    <Block variant={VARIANT.Simple}>Simple acrylic</Block>
+    <Block variant={VARIANT.Outline}>With outline</Block>
+    <Block variant={VARIANT.Shadow}>With shadow</Block>
+    <Block variant={VARIANT.Transparent}>Transparent</Block>
+  </ExampleRow>
+</ExampleContainer>
+
+### Variants
+
+<ExampleContainer>
+  <ExampleGrid columns={2} minColumnWidth="200px">
+    <ExampleItem label="Simple" gap="medium">
+      <Block variant={VARIANT.Simple} size={SIZE.M}>
+        Simple acrylic background
+      </Block>
+    </ExampleItem>
+    <ExampleItem label="Outline" gap="medium">
+      <Block variant={VARIANT.Outline} size={SIZE.M}>
+        Acrylic with border
+      </Block>
+    </ExampleItem>
+    <ExampleItem label="Shadow" gap="medium">
+      <Block variant={VARIANT.Shadow} size={SIZE.M}>
+        Acrylic with shadow
+      </Block>
+    </ExampleItem>
+    <ExampleItem label="Transparent" gap="medium">
+      <Block variant={VARIANT.Transparent} size={SIZE.M}>
+        Transparent matte glass
+      </Block>
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="s">
+      <Block variant={VARIANT.Simple} size={SIZE.S}>
+        Small
+      </Block>
+    </ExampleItem>
+    <ExampleItem label="m">
+      <Block variant={VARIANT.Simple} size={SIZE.M}>
+        Medium
+      </Block>
+    </ExampleItem>
+    <ExampleItem label="l">
+      <Block variant={VARIANT.Simple} size={SIZE.L}>
+        Large
+      </Block>
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
+
+### Playground
+
+<StorybookIframe storyId="components-block--playground" showControls={true} height="400px" />
+
+### Visual Matrix
+
+Для просмотра всех комбинаций вариантов и размеров используйте story **Visual Matrix** в Storybook.
+
+<StorybookIframe storyId="components-block--visual-matrix" showControls={false} height="800px" />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { Block } from '@design-system/block';
+
+export function ContentCard() {
+  return (
+    <Block>
+      <span>Your content here</span>
+    </Block>
+  );
+}
+```
+
+По умолчанию используются `variant={VARIANT.Simple}` и `size={SIZE.L}`.
+
+### With variant and size
+
+```tsx
+import { Block, VARIANT, SIZE } from '@design-system/block';
+
+export function ContentCard() {
+  return (
+    <Block variant={VARIANT.Shadow} size={SIZE.L}>
+      <h3>Card Title</h3>
+      <p>Card content with shadow effect</p>
+    </Block>
+  );
+}
+```
+
+### Different variants
+
+```tsx
+import { Block, VARIANT, SIZE } from '@design-system/block';
+
+export function Example() {
+  return (
+    <>
+      <Block variant={VARIANT.Simple} size={SIZE.M}>
+        Simple acrylic
+      </Block>
+      <Block variant={VARIANT.Outline} size={SIZE.M}>
+        With outline
+      </Block>
+      <Block variant={VARIANT.Shadow} size={SIZE.M}>
+        With shadow
+      </Block>
+      <Block variant={VARIANT.Transparent} size={SIZE.M}>
+        Transparent
+      </Block>
+    </>
+  );
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### BlockProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| children | `ReactNode` | - | Содержимое |
+| variant | enum Variant: `"simple"`, `"outline"`, `"shadow"`, `"transparent"` | simple | Вариант |
+| size | enum Size: `"s"`, `"m"`, `"l"` | l | Размер |
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+Кроме перечисленных пропсов компонент принимает все нативные атрибуты `HTMLDivElement` (например, `style`, `onClick`, `aria-*`, `data-*`, `id`), которые пробрасываются на корневой `div`.
+
+## Accessibility
+
+- Рендер в виде семантичного `<div>` обеспечивает совместимость со скринридерами
+- Можно передавать любые стандартные HTML-атрибуты, в том числе `aria-*` и `role`
+- Контент внутри блока доступен через обычную DOM-структуру
+
+## Best practices
+
+1. **Вариант** — simple для базовых контейнеров, outline для акцента, shadow для приподнятых элементов, transparent для оверлеев
+2. **Размер** — s в компактных местах, m для обычного контента, l для крупных блоков
+3. **Фон** — из-за backdrop blur важен контраст с контентом под блоком
+4. **Группировка** — Block удобен для визуальной группировки связанного контента
+5. **Читаемость** — обеспечивайте достаточный контраст текста на акриловом фоне
+6. **Композиция** — Block хорошо сочетается с карточками, панелями и другими UI-компонентами

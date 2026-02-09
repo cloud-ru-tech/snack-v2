@@ -18,6 +18,9 @@
     },
     {
       "path": "./divider/tsconfig.cjs.json"
+    },
+    {
+      "path": "./block/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {
