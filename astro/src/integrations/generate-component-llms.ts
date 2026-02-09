@@ -1,9 +1,11 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
-import { join, parse } from 'path';
+import { join } from 'path';
 
 import type { AstroIntegration } from 'astro';
 import { consola } from 'consola';
 import { fileURLToPath } from 'node:url';
+
+import { listMdxRecursive, stripMdxForPlainText } from '../utils/docContentUtils';
 
 type ComponentLlmsOptions = {
   contentDir?: string;
@@ -48,13 +50,13 @@ export default function generateComponentLlms(options: ComponentLlmsOptions = {}
 
         for (const componentName of componentDirs) {
           const componentPath = join(componentsPath, componentName);
-          const files = readdirSync(componentPath).filter(f => f.endsWith('.mdx'));
+          const files = listMdxRecursive(componentPath);
 
           if (files.length === 0) {
             continue;
           }
 
-          // Generate content for this component
+          // Generate content for this component (все страницы, в т.ч. вложенные components/Spinner.mdx)
           const lines: string[] = [];
           lines.push(`# ${componentName} Component Documentation`);
           lines.push('');
@@ -74,58 +76,25 @@ export default function generateComponentLlms(options: ComponentLlmsOptions = {}
             lines.push('');
           }
 
-          // Extract content from MDX files
-          for (const file of files) {
-            const filePath = join(componentPath, file);
+          for (const relativeFile of files) {
+            const filePath = join(componentPath, relativeFile);
             const content = readFileSync(filePath, 'utf-8');
 
-            lines.push(`## ${parse(file).name}`);
+            const sectionTitle = relativeFile.replace(/\.mdx$/, '').replace(/\//g, ' / ');
+            lines.push(`## ${sectionTitle}`);
             lines.push('');
 
-            // Extract frontmatter
             const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
             if (frontmatterMatch) {
               const frontmatter = frontmatterMatch[1];
               const titleMatch = frontmatter.match(/^title:\s*(.+)$/m);
               const descMatch = frontmatter.match(/^description:\s*(.+)$/m);
-
-              if (titleMatch) {
-                lines.push(`**Title:** ${titleMatch[1].trim()}`);
-              }
-              if (descMatch) {
-                lines.push(`**Description:** ${descMatch[1].trim()}`);
-              }
+              if (titleMatch) lines.push(`**Title:** ${titleMatch[1].trim()}`);
+              if (descMatch) lines.push(`**Description:** ${descMatch[1].trim()}`);
               lines.push('');
             }
 
-            // Add content (stripped of frontmatter and some MDX-specific elements)
-            let cleanContent = content.replace(/^---\n[\s\S]*?\n---\n/, '');
-
-            // Remove import statements
-            cleanContent = cleanContent.replace(/^import\s+[\s\S]*?from\s+['"].*?['"];?\s*$/gm, '');
-
-            // Remove JSX comments
-            cleanContent = cleanContent.replace(/<>\s*\{\s*\/\*[\s\S]*?\*\/\s*\}\s*<\/>/g, '');
-
-            // Remove interactive components
-            const componentPatterns = [
-              /<ExampleContainer[^>]*>[\s\S]*?<\/ExampleContainer>/g,
-              /<ExampleRow[^>]*>[\s\S]*?<\/ExampleRow>/g,
-              /<ExampleGrid[^>]*>[\s\S]*?<\/ExampleGrid>/g,
-              /<ExampleItem[^>]*>[\s\S]*?<\/ExampleItem>/g,
-              /<StorybookIframe[^>]*\/?>/g,
-              /<Changelog[^>]*\/?>/g,
-              /<LlmLink[^>]*\/?>/g,
-            ];
-
-            for (const pattern of componentPatterns) {
-              cleanContent = cleanContent.replace(pattern, '');
-            }
-
-            // Clean up multiple empty lines
-            cleanContent = cleanContent.replace(/\n{3,}/g, '\n\n');
-            cleanContent = cleanContent.trim();
-
+            const cleanContent = stripMdxForPlainText(content);
             lines.push(cleanContent);
             lines.push('');
             lines.push('---');

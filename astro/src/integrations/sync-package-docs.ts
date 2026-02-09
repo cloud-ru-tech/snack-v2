@@ -1,5 +1,6 @@
+import { spawnSync } from 'child_process';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
-import { dirname, join, normalize, relative } from 'path';
+import { dirname, join, normalize, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import type { AstroIntegration } from 'astro';
@@ -8,6 +9,24 @@ import { consola } from 'consola';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+function findMonorepoRoot(): string | null {
+  let d = resolve(__dirname, '../..');
+  for (;;) {
+    const pkgPath = join(d, 'package.json');
+    if (existsSync(pkgPath)) {
+      try {
+        const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+        if (pkg?.scripts?.['docgen:readme']) return d;
+      } catch {
+        // ignore
+      }
+    }
+    const parent = join(d, '..');
+    if (parent === d) return null;
+    d = parent;
+  }
+}
 
 type SyncOptions = {
   packagesRoot?: string;
@@ -23,7 +42,7 @@ type SyncOptions = {
  * - Transforms imports from relative to package aliases
  * - Syncs CHANGELOG.md to CHANGELOG.mdx
  * - Syncs MIGRATION.md to MIGRATION.mdx
- * - Generates README.md from docs/index.mdx (stripped version)
+ * - Generates README.md via docgen:readme (тот же результат, что и pnpm run docgen:readme)
  */
 // eslint-disable-next-line import/no-default-export
 export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegration {
@@ -99,44 +118,9 @@ export default function syncPackageDocs(options: SyncOptions = {}): AstroIntegra
           // Transform imports: '../src' или '../../src' (вложенные docs/components/) -> '@packages/<packageName>/src'
           content = content.replace(/from\s+['"](\.\.\/)+src['"]/g, `from '@packages/${packageName}/src'`);
 
-          // Transform new Astro paths (3 уровня из docs/, 4 из docs/components/ и т.д.)
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`,
-          );
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/mdx['"]/g,
-            `from '../../../../../components/mdx'`,
-          );
-
-          // Transform old apps/docs paths (for backward compatibility)
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`,
-          );
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/mdx['"]/g,
-            `from '../../../../components/mdx'`,
-          );
-
-          // Transform Astro component imports (3 уровня из docs/, 4 из docs/components/)
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
-            `from '../../../../components/astro/$1'`,
-          );
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/astro\/src\/components\/astro\/([^'"]+)['"]/g,
-            `from '../../../../../components/astro/$1'`,
-          );
-          // Transform Astro component imports (old apps/docs paths)
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/astro\/([^'"]+)['"]/g,
-            `from '../../../../components/astro/$1'`,
-          );
-          content = content.replace(
-            /from\s+['"]\.\.\/\.\.\/\.\.\/\.\.\/apps\/docs\/src\/components\/astro\/([^'"]+)['"]/g,
-            `from '../../../../../components/astro/$1'`,
-          );
+          // Короткие импорты Astro: .../astro/src/... -> #astro/... (алиас в Vite)
+          content = content.replace(/from\s+['"](?:\.\.\/)+astro\/src\/([^'"]+)['"]/g, "from '#astro/$1'");
+          content = content.replace(/from\s+['"](?:\.\.\/)+apps\/docs\/src\/([^'"]+)['"]/g, "from '#astro/$1'");
 
           writeFileSync(targetFilePath, content, 'utf-8');
           // File synced successfully
@@ -211,97 +195,10 @@ ${migrationContent}`;
       consola.success(`[sync-package-docs] Synced ${packageName}/MIGRATION.mdx`);
     }
 
-    // Generate README.md from docs/index.mdx (stripped version)
-    const indexMdxPath = join(docsPath, 'index.mdx');
-    if (existsSync(indexMdxPath)) {
-      let readmeContent = readFileSync(indexMdxPath, 'utf-8');
-
-      // Remove frontmatter
-      readmeContent = readmeContent.replace(/^---\n[\s\S]*?\n---\n/, '');
-
-      // STEP 1: Extract and preserve code blocks first
-      const codeBlockRegex = /```[\s\S]*?```/g;
-      const codeBlocks: string[] = [];
-
-      readmeContent = readmeContent.replace(codeBlockRegex, match => {
-        const placeholder = `___CODE_BLOCK_${codeBlocks.length}___`;
-        codeBlocks.push(match);
-        return placeholder;
-      });
-
-      // STEP 2: Now safely remove content outside code blocks
-      // Remove import statements (outside code blocks)
-      readmeContent = readmeContent.replace(/^import\s+[\s\S]*?from\s+['"].*?['"];?\s*$/gm, '');
-
-      // Remove interactive components (but preserve their content if possible)
-      const componentPatterns = [
-        /<ExampleContainer[^>]*>[\s\S]*?<\/ExampleContainer>/g,
-        /<ExampleRow[^>]*>[\s\S]*?<\/ExampleRow>/g,
-        /<ExampleGrid[^>]*>[\s\S]*?<\/ExampleGrid>/g,
-        /<ExampleItem[^>]*>[\s\S]*?<\/ExampleItem>/g,
-        /<StorybookIframe[^>]*\/?>/g,
-        /<Changelog[^>]*\/?>/g,
-        /<LlmLink[^>]*\/?>/g,
-        /<LocaleProvider[^>]*>/g,
-        /<\/LocaleProvider>/g,
-        /<LocaleSwitch[^>]*\/?>/g,
-        /<LocaleCase[^>]*>/g,
-        /<\/LocaleCase>/g,
-      ];
-
-      for (const pattern of componentPatterns) {
-        readmeContent = readmeContent.replace(pattern, '');
-      }
-
-      // Remove JSX expressions outside code blocks
-      readmeContent = readmeContent.replace(/\{[^}]*\}/g, '');
-      readmeContent = readmeContent.replace(/export const t = translations;/g, '');
-
-      // Remove version line (it contains JSX expression that gets removed, leaving empty backticks)
-      readmeContent = readmeContent.replace(/^\*\*Version:\*\*.*$/gm, '');
-
-      // STEP 3: Clean up before restoring code blocks
-      // Remove empty headings and sections
-      readmeContent = readmeContent.replace(/^#{1,6}\s*\{[^}]+\}\s*$/gm, '');
-      readmeContent = readmeContent.replace(/^#{1,6}\s*$/gm, '');
-
-      // Remove lines that only contain JSX expressions or are empty (but keep code block placeholders)
-      readmeContent = readmeContent
-        .split('\n')
-        .filter(line => {
-          const trimmed = line.trim();
-          // Keep code block placeholders
-          if (trimmed.startsWith('___CODE_BLOCK_')) {
-            return true;
-          }
-          return trimmed.length > 0 && !trimmed.match(/^[{} ]*$/);
-        })
-        .join('\n');
-
-      // STEP 4: Restore code blocks (after all cleanup is done)
-      readmeContent = readmeContent.replace(/___CODE_BLOCK_(\d+)___/g, (_, index) => codeBlocks[parseInt(index, 10)]);
-
-      // Clean up multiple empty lines
-      readmeContent = readmeContent.replace(/\n{3,}/g, '\n\n');
-      readmeContent = readmeContent.trim();
-
-      // Add links to CHANGELOG and MIGRATION
-      const additionalResources = `\n\n---\n\n## Additional Resources\n\n`;
-      const changelogLink = existsSync(changelogPath)
-        ? `- **Changelog:** See [CHANGELOG.md](./CHANGELOG.md) for version history\n`
-        : '';
-      const migrationLink = existsSync(migrationPath)
-        ? `- **Migration Guide:** See [MIGRATION.md](./MIGRATION.md) for migration instructions between versions\n`
-        : '';
-
-      readmeContent += additionalResources + changelogLink + migrationLink;
-
-      writeFileSync(join(packagePath, 'README.md'), readmeContent, 'utf-8');
-      consola.success(`[sync-package-docs] Generated ${packageName}/README.md`);
-    }
+    // README.md генерируется единообразно через docgen:readme в syncAllPackages()
   };
 
-  const syncAllPackages = () => {
+  const syncAllPackages = (command?: string) => {
     if (!existsSync(packagesPath)) {
       consola.warn(`[sync-package-docs] Packages directory not found: ${packagesPath}`);
       return;
@@ -317,6 +214,25 @@ ${migrationContent}`;
       syncPackage(packageName);
     }
 
+    // README.md — только в dev, чтобы при build (в т.ч. генерация llm txt) не вызывать docgen:readme
+    if (command === 'dev') {
+      const monorepoRoot = findMonorepoRoot();
+      if (monorepoRoot) {
+        const result = spawnSync('pnpm', ['run', 'docgen:readme'], {
+          cwd: monorepoRoot,
+          stdio: 'inherit',
+          shell: true,
+        });
+        if (result.status !== 0) {
+          consola.warn('[sync-package-docs] docgen:readme finished with non-zero exit code');
+        }
+      } else {
+        consola.warn(
+          '[sync-package-docs] Monorepo root (package.json with docgen:readme) not found, skipping README generation',
+        );
+      }
+    }
+
     consola.success('[sync-package-docs] Sync completed');
   };
 
@@ -324,8 +240,8 @@ ${migrationContent}`;
     name: 'sync-package-docs',
     hooks: {
       'astro:config:setup': async ({ command }) => {
-        // Initial sync
-        syncAllPackages();
+        // Initial sync (docgen:readme только при command === 'dev')
+        syncAllPackages(command);
 
         // Watch mode for dev — автосинхронизация docs пакетов в astro content при изменениях
         if (command === 'dev') {

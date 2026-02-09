@@ -20,7 +20,7 @@ import {
   ExampleRow,
   ExampleGrid,
   ExampleItem,
-} from '../../../astro/src/components/mdx';
+} from '#astro/components/mdx';
 
 # ${config.packageTitle}
 
@@ -40,11 +40,11 @@ pnpm add @design-system/${config.packageRootFolderName}
 
 ## Changelog
 
-import Changelog from '../../../astro/src/components/astro/Changelog.astro';
+import Changelog from '#astro/components/astro/Changelog.astro';
 
 <Changelog packageName="${config.packageRootFolderName}" />
 
-import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
+import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 <LlmLink component="${config.packageRootFolderName}" />
 
@@ -70,7 +70,7 @@ ${config.packageTitle} is a component for... It automatically handles:
 
 ## Storybook
 
-import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 <StorybookIframe storyId="components-${config.packageRootFolderName}--basic" showControls={true} height="600px" />
 

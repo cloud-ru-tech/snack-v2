@@ -7,6 +7,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import starlightLlmsTxt from 'starlight-llms-txt';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+
 import fixLlmsEncoding from './src/integrations/fixLlmsEncoding.js';
 import generateComponentLlms from './src/integrations/generate-component-llms.js';
 import syncPackageDocs from './src/integrations/sync-package-docs.js';
@@ -17,7 +20,7 @@ const llmTxt = () => ({
     'astro:build:done': async ({ dir, pages }) => {
       const outDir = typeof dir === 'string' ? dir : fileURLToPath(dir);
       const base = process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') || 'http://localhost:4321';
-      const lines = pages.map((p) => `${base}${p.pathname}`).sort((a, b) => a.localeCompare(b));
+      const lines = pages.map(p => `${base}${p.pathname}`).sort((a, b) => a.localeCompare(b));
       await fs.writeFile(path.join(outDir, 'llm.txt'), lines.join('\n'), 'utf8');
     },
   },
@@ -25,10 +28,7 @@ const llmTxt = () => ({
 
 export default defineConfig({
   // For GitLab Pages, use CI_PAGES_URL if available, otherwise default
-  site:
-    process.env.CI_PAGES_URL ||
-    process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') ||
-    'http://localhost:4321',
+  site: process.env.CI_PAGES_URL || process.env.PUBLIC_SITE_URL?.replace(/\/+$/, '') || 'http://localhost:4321',
   // Support deployment on subpaths via BASE_PATH env variable
   base: process.env.BASE_PATH || '/',
   // Ensure all URLs have trailing slashes for consistency
@@ -99,11 +99,10 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        '@packages': new URL('../packages/', import.meta.url).pathname,
-        '@sbercloud/figma-variables': new URL(
-          '../node_modules/@sbercloud/figma-variables',
-          import.meta.url
-        ).pathname,
+        '@packages': path.resolve(__dirname, '../packages'),
+        '@sbercloud/figma-variables': path.resolve(__dirname, '../node_modules/@sbercloud/figma-variables'),
+        // Короткие импорты в .mdx: #astro/components/mdx, #astro/components/astro/Changelog.astro
+        '#astro': path.resolve(__dirname, 'src'),
       },
     },
     ssr: {
