@@ -4,8 +4,26 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Ensure __REACT__ / __REACT_DOM__ are set before manager addon chunks run.
+ * Addon chunks may execute before globals-runtime.js in some load orders; this avoids "React is not defined".
+ */
+const MANAGER_REACT_POLYFILL = `
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+(function(){ if (typeof globalThis.__REACT__ !== 'undefined') return;
+  globalThis.__REACT__ = globalThis.React;
+  globalThis.__REACT_DOM__ = globalThis.ReactDOM;
+  var r = globalThis.ReactDOM;
+  globalThis.__REACT_DOM_CLIENT__ = r && { createRoot: r.createRoot, hydrateRoot: r.hydrateRoot };
+})();
+</script>
+`;
+
 const config: StorybookConfig = {
   stories: ['../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
   addons: [
     path.resolve(__dirname, 'addons/readme-panel/preset.ts'),
     '@chromatic-com/storybook',
