@@ -10,7 +10,7 @@ const meta: Meta<CounterProps> = {
     readme: { content: counterReadme },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/branch/xj0bh1ewSCgStOUXNKS2rp/Snack-Ui-Kit-variables?node-id=2088-10548&p=f&m=dev',
+      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2088-10548&m=dev',
     },
     docs: {
       description: {

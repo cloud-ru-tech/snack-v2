@@ -10,7 +10,7 @@ const meta: Meta<SunProps> = {
     readme: { content: loaderReadme },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables',
+      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2918-21302&m=dev',
     },
     docs: {
       description: {

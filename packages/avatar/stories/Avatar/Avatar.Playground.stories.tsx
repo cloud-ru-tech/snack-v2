@@ -13,7 +13,7 @@ const meta: Meta<AvatarProps> = {
     },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4672-337&m=dev',
+      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3910-70&m=dev',
     },
     docs: {
       description: {

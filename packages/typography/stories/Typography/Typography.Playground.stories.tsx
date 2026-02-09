@@ -19,7 +19,7 @@ const meta: Meta<TypographyProps> = {
     readme: { content: typographyReadme },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/YOUR_FILE_ID/...',
+      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2663-191875&m=dev',
     },
     docs: {
       description: {
