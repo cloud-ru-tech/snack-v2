@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import counterReadme from '../../README.md?raw';
 import { APPEARANCE, Counter, CounterProps, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '../../src';
 
 const meta: Meta<CounterProps> = {
   title: 'Components/Counter',
   component: Counter,
   parameters: {
+    readme: { content: counterReadme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/branch/xj0bh1ewSCgStOUXNKS2rp/Snack-Ui-Kit-variables?node-id=2088-10548&p=f&m=dev',

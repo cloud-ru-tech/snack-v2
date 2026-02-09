@@ -2,11 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
+import counterReadme from '../../README.md?raw';
 import { APPEARANCE, Counter, CounterProps, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '../../src';
 
 const meta: Meta<CounterProps> = {
   title: 'Components/Counter',
   component: Counter,
+  parameters: {
+    readme: { content: counterReadme },
+  },
 };
 
 export default meta;

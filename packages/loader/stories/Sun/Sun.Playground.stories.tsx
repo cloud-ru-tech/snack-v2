@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import loaderReadme from '../../README.md?raw';
 import { Sun, SUN_SIZE, SunProps } from '../../src';
 
 const meta: Meta<SunProps> = {
   title: 'Components/Loader/Sun',
   component: Sun,
   parameters: {
+    readme: { content: loaderReadme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables',

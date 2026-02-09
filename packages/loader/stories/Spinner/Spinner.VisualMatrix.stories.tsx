@@ -1,12 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
+import loaderReadme from '../../README.md?raw';
 import { LOADER_SIZE, Spinner, SpinnerProps } from '../../src';
 import styles from './styles.module.scss';
 
 const meta: Meta<SpinnerProps> = {
   title: 'Components/Loader/Spinner',
   component: Spinner,
+  parameters: {
+    readme: { content: loaderReadme },
+  },
 };
 
 export default meta;

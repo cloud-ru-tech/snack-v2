@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import typographyReadme from '../../README.md?raw';
 import {
   DEFAULT_SIZE,
   DEFAULT_VARIANT,
@@ -15,6 +16,7 @@ const meta: Meta<TypographyProps> = {
   title: 'Components/Typography',
   component: Typography,
   parameters: {
+    readme: { content: typographyReadme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/YOUR_FILE_ID/...',

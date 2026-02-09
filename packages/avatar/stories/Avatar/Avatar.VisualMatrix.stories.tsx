@@ -3,11 +3,15 @@ import React from 'react';
 
 import { StoryTable } from '#storybook/components';
 
+import avatarReadme from '../../README.md?raw';
 import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from '../../src';
 
 const meta: Meta<AvatarProps> = {
   title: 'Components/Avatar',
   component: Avatar,
+  parameters: {
+    readme: { content: avatarReadme },
+  },
 };
 
 export default meta;

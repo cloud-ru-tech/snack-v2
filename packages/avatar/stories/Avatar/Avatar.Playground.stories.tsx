@@ -1,11 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+// README для вкладки Readme в панели (readme-panel addon)
+import avatarReadme from '../../README.md?raw';
 import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from '../../src';
 
 const meta: Meta<AvatarProps> = {
   title: 'Components/Avatar',
   component: Avatar,
   parameters: {
+    readme: {
+      content: avatarReadme,
+    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4672-337&m=dev',

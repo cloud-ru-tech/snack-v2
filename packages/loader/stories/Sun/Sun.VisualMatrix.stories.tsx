@@ -1,12 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
+import loaderReadme from '../../README.md?raw';
 import { Sun, SUN_SIZE, SunProps } from '../../src';
 import styles from './styles.module.scss';
 
 const meta: Meta<SunProps> = {
   title: 'Components/Loader/Sun',
   component: Sun,
+  parameters: {
+    readme: { content: loaderReadme },
+  },
 };
 
 export default meta;

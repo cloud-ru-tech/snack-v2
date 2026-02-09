@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import loaderReadme from '../../README.md?raw';
 import { LOADER_SIZE, Spinner, SpinnerProps } from '../../src';
 
 const meta: Meta<SpinnerProps> = {
   title: 'Components/Loader/Spinner',
   component: Spinner,
   parameters: {
+    readme: { content: loaderReadme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables',
