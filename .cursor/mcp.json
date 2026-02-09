@@ -2,10 +2,20 @@
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
+      "args": ["-y", "@upstash/context7-mcp"]
     }
+  },
+  "Figma": {
+    "url": "https://mcp.figma.com/mcp",
+    "headers": {}
+  },
+  "Astro docs server": {
+    "url": "https://mcp.docs.astro.build/mcp",
+    "headers": {}
+  },
+  "Playwright": {
+    "command": "npx -y @playwright/mcp@latest",
+    "env": {},
+    "args": []
   }
 }
