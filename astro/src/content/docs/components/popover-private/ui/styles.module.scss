@@ -1,0 +1,11 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.popoverContent {
+  position: relative;
+
+  padding: 8px;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  border-radius: 8px;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}

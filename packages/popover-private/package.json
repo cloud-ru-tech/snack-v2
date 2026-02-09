@@ -1,0 +1,43 @@
+{
+  "name": "@design-system/popover-private",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Popover Private component for the design system",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@floating-ui/react": "0.27.17",
+    "@snack-uikit/utils": "4.0.1",
+    "react-is": "19.2.4",
+    "uncontrollable": "8.0.4",
+    "classnames": "2.5.1"
+  },
+  "devDependencies": {
+    "@types/react-is": "19.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
