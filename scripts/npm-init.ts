@@ -17,7 +17,7 @@ const generatePackageName = (title: string) => title.trim().replace(/\s+/g, '-')
 const generatePackageTitle = (input: string) =>
   input
     .toLowerCase()
-    .replace(/(^| )(\w)/g, (x) => x.toUpperCase())
+    .replace(/(^| )(\w)/g, x => x.toUpperCase())
     .replace(/\s+/g, ' ')
     .trim();
 
@@ -34,9 +34,7 @@ const printInfoMessages = () => {
   2. Folder- and filenames - will be converted to lowercase and hyphen-separated (for example my-new-package)
   3. Componentname - will remove spaces and get PascalCased (for example MyNewPackage)`);
 
-  logHelp(
-    'Answer the following questions to get started, or press CTRL+C (or Control+C) to abort...'
-  );
+  logHelp('Answer the following questions to get started, or press CTRL+C (or Control+C) to abort...');
 };
 
 printInfoMessages();
@@ -65,7 +63,7 @@ inquirer
       default: '',
     },
   ])
-  .then((answers) => {
+  .then(answers => {
     logDebug('Generating files...');
 
     const packageTitle = answers.packageTitle.trim();
@@ -102,7 +100,7 @@ Next steps:
   2. Add JSDoc comments to props for automatic documentation
   3. Update documentation in packages/${packageRootFolderName}/docs/index.mdx
   4. Update styles in packages/${packageRootFolderName}/src/styles.module.scss
-  5. Add stories in packages/${packageRootFolderName}/stories/${componentName}.stories.tsx
+  5. Add stories in packages/${packageRootFolderName}/stories/${componentName}/ (Playground уже создан по стандарту)
   6. Generate documentation: pnpm docgen:all
   7. Build all packages: pnpm -w run build:packages
   8. View in Storybook: pnpm storybook
@@ -114,7 +112,7 @@ Documentation generation:
   - Run 'pnpm docgen:all' after making changes to regenerate docs
     `);
   })
-  .catch((err) => {
+  .catch(err => {
     if (err.isTtyError) {
       logError("Prompt couldn't be rendered in the current environment");
     } else {

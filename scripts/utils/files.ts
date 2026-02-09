@@ -157,17 +157,62 @@ function createStylesFile(packageDir: string, config: PackageConfig): void {
 }
 
 function createStoryFile(packageDir: string, config: PackageConfig): void {
+  const readmeVarName = `${config.packageRootFolderName.replace(/-/g, '')}Readme`;
+  const packageScopeName = `@design-system/${config.packageRootFolderName}`;
+
   const content = `import type { Meta, StoryObj } from '@storybook/react';
-import { ${config.componentName}, ${config.componentName}Props } from '../src';
+
+import ${readmeVarName} from '../../README.md?raw';
+import { ${config.componentName}, ${config.componentName}Props } from '../../src';
 
 const meta: Meta<${config.componentName}Props> = {
-  title: 'Components/${config.packageTitle}',
+  title: 'Components/${config.componentName}',
   component: ${config.componentName},
   parameters: {
-    // TODO: Добавьте ссылку на Figma дизайн
+    readme: { content: ${readmeVarName} },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/YOUR_FILE_ID/...',
+    },
+    docs: {
+      description: {
+        component: \`
+# ${config.componentName}
+
+Краткое описание компонента и его назначения.
+
+## Features
+
+- Ключевая особенность 1
+- Ключевая особенность 2
+
+## Installation
+
+\\\`\\\`\\\`bash
+pnpm add ${packageScopeName}
+\\\`\\\`\\\`
+
+## Quick Start
+
+\\\`\\\`\\\`tsx
+import { ${config.componentName} } from '${packageScopeName}';
+
+function Example() {
+  return <${config.componentName} />;
+}
+\\\`\\\`\\\`
+        \`,
+      },
+    },
+  },
+  args: {},
+  argTypes: {
+    'data-test-id': {
+      control: 'text',
+      description: 'Test ID для автотестов',
+      table: {
+        category: 'HTML Attributes',
+      },
     },
   },
 };
@@ -175,15 +220,15 @@ const meta: Meta<${config.componentName}Props> = {
 export default meta;
 type Story = StoryObj<${config.componentName}Props>;
 
-// TODO: Добавьте stories для компонента
-export const Basic: Story = {
-  args: {},
+export const Playground: Story = {
+  tags: ['dev', 'test', 'autodocs'],
 };
 `;
 
-  const storiesDir = path.join(packageDir, 'stories');
-  fs.writeFileSync(path.join(storiesDir, `${config.componentName}.stories.tsx`), content);
-  logDebug(`Created stories/${config.componentName}.stories.tsx`);
+  const storiesComponentDir = path.join(packageDir, 'stories', config.componentName);
+  ensureDirectory(storiesComponentDir);
+  fs.writeFileSync(path.join(storiesComponentDir, `${config.componentName}.Playground.stories.tsx`), content);
+  logDebug(`Created stories/${config.componentName}/${config.componentName}.Playground.stories.tsx`);
 }
 
 function createChangelog(packageDir: string, config: PackageConfig): void {
