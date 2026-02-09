@@ -1,0 +1,5 @@
+@use '../../../index' as m;
+
+.withStateLayer {
+  @include m.has-state-layer-as-child();
+}

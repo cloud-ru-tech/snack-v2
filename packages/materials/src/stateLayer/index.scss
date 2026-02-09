@@ -1,0 +1,147 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+/**
+  * Переменные ниже не используются в коде, только для референса:
+  * $states – то, какие виды состояний бывают с точки зрения пропа компонента.
+  * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
+  */
+$states: 'regularBackground', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground', 'onAccentBackground', 'maskColor';
+$internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'maskColor';
+
+/**
+  * Миксин для применения состояний ко всему элементу.
+  * Требует добавления в класс корневого компонента (чтобы ховер на всё содержимое компонента влиял на state layer).
+  * Требует создания слоя с атрибутом [data-state-layer] в качестве ребёнка компонента.
+  * Итерация невозможна по причине ручного маппинга названий свойств пропа и структуры в Figma Variables.
+  * См. пример в Playground.stories.tsx и stories/components/SampleBlock
+  */
+@mixin has-state-layer-as-child() {
+  & > [data-state-layer] {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    &[data-state='regularBackground'] {
+      background: base.$sn-theme-color-material-stateLayer-regular-default-background;
+    }
+
+    &[data-state='regularBorder'] {
+      border: 1px solid base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+    };
+
+    &[data-state='activatedBackground'] {
+      background: base.$sn-theme-color-material-stateLayer-activated-default-background;
+    }
+
+    &[data-state='activatedBorder'] {
+      border: 1px solid base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
+    };
+
+    &[data-state='onColorBackground'] {
+      background: base.$sn-theme-color-material-stateLayer-onColor-default-background;
+    }
+
+    &[data-state='onAccentBackground'] {
+      background: base.$sn-theme-color-material-stateLayer-onAccent-default-background;
+    };
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      & > [data-state-layer] {
+        &[data-state='regularBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
+        }
+
+        &[data-state='regularBorder'] {
+          border: 1px solid base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+        };
+
+        &[data-state='activatedBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-activated-hovered-background;
+        }
+
+        &[data-state='activatedBorder'] {
+          border: 1px solid base.$sn-theme-color-material-stateLayer-activated-hovered-borderColor;
+        };
+
+        &[data-state='onColorBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-onColor-hovered-background;
+        }
+
+        &[data-state='onAccentBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-onAccent-hovered-background;
+        };
+      }
+    }
+
+    &:active {
+      & > [data-state-layer] {
+        &[data-state='regularBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
+        }
+
+        &[data-state='regularBorder'] {
+          border: 1px solid base.$sn-theme-color-material-stateLayer-regular-pressed-borderColor;
+        };
+
+        &[data-state='activatedBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-activated-pressed-background;
+        }
+
+        &[data-state='activatedBorder'] {
+          border: 1px solid base.$sn-theme-color-material-stateLayer-activated-pressed-borderColor;
+        };
+
+        &[data-state='onColorBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-onColor-pressed-background;
+        }
+
+        &[data-state='onAccentBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-onAccent-pressed-background;
+        };
+      }
+    }
+  }
+}
+
+/**
+  * Миксин для применения состояний к тексту компонента (т.н. маска).
+  * Требует добавления в класс корневого компонента (чтобы ховер на всё содержимое компонента влиял на контент).
+  * Требует создания слоя с атрибутом [data-content-layer] в качестве ребёнка компонента.
+  * Требует указания атрибута [data-masked-content] тем детям компонента, которые являются текстом/иконками (можно гибко настраивать что должно менять цвет благодаря маске, а что нет).
+  * См. пример в Playground.stories.tsx
+  */
+@mixin has-mask-color-layer-as-child {
+  & > [data-content-layer][data-state='maskColor'] {
+    [data-masked-content] {
+      color: transparent;
+      background-color: base.$sn-theme-color-material-stateLayer-maskColor-default-background;
+      background-clip: text;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      & > [data-content-layer][data-state='maskColor'] {
+        [data-masked-content] {
+          $maskColor: base.$sn-theme-color-material-stateLayer-maskColor-hovered-background;
+
+          background-color: $maskColor;
+          fill: $maskColor;
+        }
+      }
+    }
+
+    &:active {
+      & > [data-content-layer][data-state='maskColor'] {
+        [data-masked-content] {
+          $maskColor: base.$sn-theme-color-material-stateLayer-maskColor-pressed-background;
+
+          background-color: $maskColor;
+          fill: $maskColor;
+        }
+      }
+    }
+  }
+}

@@ -12,3 +12,13 @@ export const LEVEL = {
   FirstLevel: '1Level',
   SecondLevel: '2Level',
 } as const;
+
+export const STATE = {
+  RegularBackground: 'regularBackground',
+  RegularBorder: 'regularBorder',
+  ActivatedBackground: 'activatedBackground',
+  ActivatedBorder: 'activatedBorder',
+  OnColorBackground: 'onColorBackground',
+  OnAccentBackground: 'onAccentBackground',
+  MaskColor: 'maskColor',
+} as const;

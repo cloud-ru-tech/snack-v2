@@ -1,0 +1,65 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/block.module' as block;
+@use '../../../index' as m;
+
+$variants: 'simple', 'outline', 'shadow', 'transparent';
+$sizes: 's', 'm', 'l';
+$priorities: 'primary', 'secondary', 'tertiary';
+
+// NOTE: CSS does not know anything about states, except mixins
+.block {
+  display: flex;
+  align-items: center;
+
+  &[data-variant='outline'] {
+    .border-layer {
+      position: absolute;
+      inset: 0;
+      border: block.$sn-block-anatomy-s-borderWidth solid base.$sn-theme-color-available-borderColor;
+      border-radius: inherit;
+    }
+  }
+
+  &[data-variant='shadow'] {
+    &[data-size='l'] {
+      box-shadow: base.$sn-boxShadow-elevation-level2;
+    }
+
+    &[data-size='m'],
+    &[data-size='s'] {
+      box-shadow: base.$sn-boxShadow-elevation-level1;
+    }
+  }
+
+  &[data-variant='transparent'] {
+    background: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  &[data-variant='transparent'] > [data-acrylic-background] {
+    display: none;
+  }
+
+  @include m.acrylic(
+    base.$sn-theme-effect-acrylic-blur1Level,
+    base.$sn-theme-effect-acrylic-opacity1Level,
+    base.$sn-theme-color-neutral-background1Level,
+    base.$sn-acrylic-colorEffect1Level
+  );
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(block.$block, 'anatomy', $size);
+    }
+  }
+
+  // We need to place it here to handle hover/active states for block (not for its child "div.content")
+  // Otherwise if we hover over div.content no state will be applied to block
+  @include m.has-state-layer-as-child();
+
+  // We need to place it here to handle hover/active states for block (not for its child "div.content")
+  @include m.has-mask-color-layer-as-child();
+}
+
+.content {
+  position: relative;
+}

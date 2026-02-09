@@ -12,6 +12,7 @@
   justify-content: center;
 
   min-height: 450px;
+  padding: 0 base.$sn-primitive-dimension-32;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 
@@ -36,4 +37,82 @@
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-16;
+}
+
+// StateLayers.VisualMatrix.stories.tsx
+.sampleTextWrapper {
+  justify-content: start; //end;
+  width: 100%;
+}
+
+.withMaskForDemo {
+  & > [data-pseudo-mask-layer] {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: base.$sn-theme-color-material-stateLayer-maskColor-default-background;
+  }
+
+  &:hover {
+    & > [data-pseudo-mask-layer] {
+      background: base.$sn-theme-color-material-stateLayer-maskColor-hovered-background;
+    }
+  }
+
+  &:active {
+    & > [data-pseudo-mask-layer] {
+      background: base.$sn-theme-color-material-stateLayer-maskColor-pressed-background;
+    }
+  }
+}
+
+.squareWrapper {
+  padding: base.$sn-primitive-dimension-40;
+
+  &[data-state='regularBackground'],
+  &[data-state='regularBorder'],
+  &[data-state='activatedBorder'],
+  &[data-state='maskColor'] {
+    background-color: base.$sn-theme-color-neutral-background;
+  }
+
+  &[data-state='activatedBackground'] {
+    background-color: base.$sn-theme-color-neutral-background1Level;
+  }
+
+  &[data-state='onColorBackground'] {
+    background-color: base.$sn-theme-color-primary-background;
+  }
+
+  &[data-state='onAccentBackground'] {
+    background-color: base.$sn-theme-color-primary-accent;
+  }
+}
+
+
+// Playground.stories.tsx
+.withResize {
+  resize: both;
+}
+
+.draggable {
+  cursor: move;
+  position: absolute;
+}
+
+.sampleContent {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.sampleText {
+  @include base.composite-var(base.$sn-thin-label-s);
+
+  // Despite any basic font color settings here in case of maskColor state this prop will be overridden
+  color: base.$sn-brand-color-text-version-main;
+}
+
+.sampleIcon {
+  fill: base.$sn-brand-color-text-version-main;
 }

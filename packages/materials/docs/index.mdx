@@ -1,0 +1,185 @@
+---
+title: Materials
+description: SCSS-миксины для акрилового фона и слоя состояний (state layer) — вспомогательные стили для разработки компонентов дизайн-системы.
+version: '0.1.0'
+---
+
+import Changelog from '../../../astro/src/components/astro/Changelog.astro';
+import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
+
+# Materials
+
+Пакет **не предоставляет React-компоненты**, только вспомогательные **SCSS-миксины** для общих визуальных модификаторов: акриловый фон (acrylic) и слой состояний (state layer). Используется при разработке компонентов дизайн-системы для единообразного оформления фона и интерактивных состояний.
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/materials
+# or
+yarn add @design-system/materials
+# or
+pnpm add @design-system/materials
+```
+
+## Changelog
+
+<Changelog packageName="materials" />
+
+<LlmLink component="materials" />
+
+## Overview
+
+Materials экспортирует два набора миксинов:
+
+- **Acrylic** — эффект «матового стекла» (backdrop blur + полупрозрачный слой). Один вызов миксина применяет стили к корневому элементу и к дочернему с атрибутом `data-acrylic-background`.
+- **State layer** — слой состояний (hover, active) для кнопок, карточек и других интерактивных элементов. Поддерживает варианты: обычный фон/бордер, активированный, onColor, onAccent и маска для текста/иконок. Использует переменные из `@sbercloud/figma-variables`.
+
+Подключение в SCSS:
+
+```scss
+@use '@design-system/materials' as m;
+```
+
+После этого доступны миксины из модулей `acrylic` и `stateLayer` (через общий namespace `m`).
+
+## Storybook
+
+import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
+
+В Storybook показаны примеры компонентов, построенных с использованием этих миксинов (акриловый блок, слой состояний). Они служат референсом по разметке и подключению стилей.
+
+### Playground
+
+<StorybookIframe storyId="materials-playground--playground" showControls={true} height="400px" />
+
+### Materials Visual Matrix
+
+<StorybookIframe storyId="materials-state-layers-visual-matrix--state-layers-visual-matrix" showControls={false} height="800px" />
+
+## Usage
+
+### Acrylic — базовый пример
+
+В разметке нужны: корневой элемент (к которому применяется класс со стилями) и один дочерний элемент с атрибутом `data-acrylic-background`. Контент размещайте поверх фонового слоя (например, в отдельном блоке с `position: relative` и `z-index`).
+
+**Разметка (JSX):**
+
+```tsx
+<div className={styles.card}>
+  <div data-acrylic-background />
+  <div className={styles.content}>{children}</div>
+</div>
+```
+
+**SCSS:**
+
+```scss
+@use '@design-system/materials' as m;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.card {
+  @include m.acrylic(
+    base.simple-var(base.$sn-theme-effect-acrylic-blur1Level),
+    calc(base.$sn-theme-effect-acrylic-opacity1Level / 100),
+    base.simple-var(base.$sn-theme-color-neutral-background1Level),
+    base.simple-var(base.$sn-acrylic-colorEffect1Level)
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+```
+
+### State layer — слой состояний
+
+Миксин `has-state-layer-as-child()` применяет стили к дочернему элементу с атрибутом `[data-state-layer]`. На корневой класс вешается hover/active, чтобы при наведении и нажатии менялся вид слоя. У слоя задаётся атрибут `data-state` (например, `regularBackground`, `regularBorder`, `activatedBackground`, `onColorBackground`, `onAccentBackground`).
+
+**Важно:** у разрабатываемого компонента может быть применён только **один** state layer — один дочерний элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`).
+
+**Разметка (JSX):**
+
+```tsx
+<button type="button" className={styles.button}>
+  <span data-state-layer data-state="regularBackground" />
+  <span className={styles.label}>Текст кнопки</span>
+</button>
+```
+
+**SCSS:**
+
+```scss
+@use '@design-system/materials' as m;
+
+.button {
+  position: relative;
+  @include m.has-state-layer-as-child();
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+}
+```
+
+### State layer — маска для текста (maskColor)
+
+Миксин `has-mask-color-layer-as-child` меняет цвет текста и иконок при hover/active. В разметке нужен слой с `[data-content-layer][data-state='maskColor']` и дочерние элементы с `[data-masked-content]` (текст или иконки, которые должны менять цвет).
+
+**Разметка (JSX):**
+
+```tsx
+<div className={styles.iconButton}>
+  <div data-content-layer data-state="maskColor" />
+  <span data-masked-content>
+    <Icon />
+  </span>
+</div>
+```
+
+**SCSS:**
+
+```scss
+@use '@design-system/materials' as m;
+
+.iconButton {
+  position: relative;
+  @include m.has-mask-color-layer-as-child();
+}
+```
+
+## API миксинов
+
+### Acrylic
+
+| миксин | параметры | описание |
+|--------|-----------|----------|
+| `acrylic($blurLevel, $primaryBgOpacity, $primaryBgColor, $colorDodgeBgColor)` | `$blurLevel` — размытие в px (например, из Figma Variables); `$primaryBgOpacity` — непрозрачность фона (0–1); `$primaryBgColor` — цвет фона; `$colorDodgeBgColor` — цвет эффекта наложения | Применяет к корню `position: relative` и backdrop-filter, к дочернему `[data-acrylic-background]` — слой с акриловым фоном |
+
+Требуемая разметка: корень + один дочерний элемент с `data-acrylic-background`. Опционально дочерний элемент с `data-acrylic-effect` для color-dodge слоя.
+
+### State layer
+
+| миксин | разметка | описание |
+|--------|----------|----------|
+| `has-state-layer-as-child()` | Корень с классом + **один** дочерний элемент `[data-state-layer]` (например, `div[data-state-layer]`) с атрибутом `data-state` | Стилизует слой состояний (default, hover, active). У компонента допускается только один такой элемент. Значения `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground` |
+| `has-mask-color-layer-as-child` | Корень + дочерний `[data-content-layer][data-state='maskColor']` и внутри него элементы с `[data-masked-content]` | Меняет цвет текста/иконок при hover и active через маску |
+
+Переменные цветов и состояний берутся из `@sbercloud/figma-variables` (stateLayer подключает этот пакет внутри себя).
+
+## Accessibility
+
+- Разметка с `data-acrylic-background` и `data-state-layer` не меняет семантику: используйте корректные теги и атрибуты (`button`, `aria-*`, `role`) на корневом элементе.
+- Слои состояний визуально не должны подменять индикацию фокуса: сохраняйте видимый focus outline для клавиатурной навигации.
+- Контент поверх акрилового фона должен сохранять достаточный контраст для читаемости.
+
+## Best practices
+
+1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
+2. **Один state layer на компонент** — у компонента может быть только один элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`); миксин применяется к корню, hover/active обрабатываются на корне.
+3. **Переменные дизайн-системы** — для acrylic подставляйте значения из `@sbercloud/figma-variables` (blur, opacity, цвета), чтобы сохранять единый стиль.
+4. **Маска только для нужного контента** — помечайте `data-masked-content` только у текста и иконок, которые должны менять цвет при наведении/нажатии.
+5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.
