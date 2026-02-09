@@ -7,16 +7,6 @@
 ```
 components/
 ├── types.ts                    # Общие типы (Theme, Brand, Platform)
-├── hooks/
-│   └── useThemeSync.ts        # Хук для синхронизации с родительским окном
-├── ControlSelect/
-│   ├── ControlSelect.tsx      # Переиспользуемый селект
-│   ├── styles.module.scss     # Стили компонента
-│   └── index.ts
-├── ControlPanel/
-│   ├── ControlPanel.tsx       # Панель с контролами (тема, бренд, платформа)
-│   ├── styles.module.scss     # Стили компонента
-│   └── index.ts
 ├── StoryWrapper/
 │   ├── StoryWrapper.tsx       # Основная обертка для stories
 │   ├── styles.module.scss     # Стили компонента
@@ -37,6 +27,7 @@ components/
 ### Основные категории переменных:
 
 #### Spacing (отступы и промежутки)
+
 ```scss
 base.$sn-adaptive-spacing-interval-xs    // 2px
 base.$sn-adaptive-spacing-interval-s     // 4px
@@ -50,6 +41,7 @@ base.$sn-adaptive-spacing-control-container-horizontal-m   // 12px
 ```
 
 #### Border Radius (скругление углов)
+
 ```scss
 base.$sn-adaptive-radius-3xs   // 2px
 base.$sn-adaptive-radius-2xs   // 4px
@@ -60,6 +52,7 @@ base.$sn-adaptive-radius-l     // 16px (desktop) / 24px (mobile)
 ```
 
 #### Font (шрифты)
+
 ```scss
 base.$sn-primitive-font-font-size-11   // 11px
 base.$sn-primitive-font-font-size-12   // 12px
@@ -69,6 +62,7 @@ base.$sn-primitive-font-font-size-18   // 18px
 ```
 
 #### Stroke Weight (толщина линий для border, outline)
+
 ```scss
 base.$sn-primitive-stroke-weight-stroke-thin        // 0.5px
 base.$sn-primitive-stroke-weight-stroke-regular     // 1px
@@ -78,6 +72,7 @@ base.$sn-primitive-stroke-weight-stroke-bold        // 3px
 ```
 
 #### Dimensions (базовые размеры)
+
 ```scss
 base.$sn-primitive-dimension-0     // 0
 base.$sn-primitive-dimension-1     // 1px
@@ -90,6 +85,7 @@ base.$sn-primitive-dimension-32    // 32px
 ```
 
 #### Colors (цвета)
+
 ```scss
 base.$sn-theme-color-neutral-background
 base.$sn-theme-color-neutral-background1-level

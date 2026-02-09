@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { addons } from 'storybook/preview-api';
 
 import { CHANNEL_SYNC_EVENT } from '../constants';
@@ -7,7 +7,7 @@ import { CHANNEL_SYNC_EVENT } from '../constants';
  * Слушает postMessage от родителя (документация) и синхронизирует
  * тему/бренд/платформу с глобалами Storybook через channel (обрабатывается в manager).
  */
-export function ThemeSyncBridge({ children }: { children: React.ReactNode }) {
+export function ThemeSyncBridge({ children }: { children: ReactNode }) {
   useEffect(() => {
     const channel = addons.getChannel();
 

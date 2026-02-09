@@ -1,41 +1,29 @@
-/* Light theme (Storybook panel) */
-.readme-panel-body--light {
-  --readme-fg: #24292f;
-  --readme-fg-muted: #57606a;
-  --readme-border: #d0d7de;
-  --readme-canvas: #fff;
-  --readme-canvas-subtle: #f6f8fa;
-  --readme-accent: #0969da;
-  --readme-code-bg: rgb(175 184 193 / 20%);
-}
+@charset "UTF-8";
 
-/* Dark theme */
-.readme-panel-body--dark {
-  --readme-fg: #c9d1d9;
-  --readme-fg-muted: #8b949e;
-  --readme-border: #30363d;
-  --readme-canvas: #0d1117;
-  --readme-canvas-subtle: #161b22;
-  --readme-accent: #58a6ff;
-  --readme-code-bg: rgb(110 118 129 / 40%);
-}
+/**
+ * Readme panel styles via @sbercloud/figma-variables (SCSS).
+ * Theme is applied by .sn-light / .sn-dark on the container (ReadmePanel.tsx).
+ */
 
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
 .readme-panel-body {
   margin: 0;
-  padding: 12px 16px;
+  padding: var(--sn-primitive-dimension-12, 12px) var(--sn-primitive-dimension-16, 16px);
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.6;
-  color: var(--readme-fg);
+  color: var(--sn-theme-color-neutral-text, var(--sn-primitive-color-gray-45, #5e606e));
   overflow-wrap: break-word;
 
-  background-color: var(--readme-canvas);
+  background-color: var(--sn-theme-color-neutral-background2Level, var(--sn-primitive-color-gray-99, #fff));
 }
 
 .readme-panel-empty {
   font-size: 13px;
-  color: var(--readme-fg-muted);
+  color: var(--sn-theme-color-neutral-accent, var(--sn-primitive-color-gray-55, #666975));
 }
 
 .readme-panel-body h1,
@@ -44,21 +32,21 @@
 .readme-panel-body h4,
 .readme-panel-body h5,
 .readme-panel-body h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: var(--sn-primitive-dimension-24, 24px);
+  margin-bottom: var(--sn-primitive-dimension-16, 16px);
   font-weight: 600;
   line-height: 1.25;
 }
 
 .readme-panel-body h1 {
   padding-bottom: 0.3em;
-  border-bottom: 1px solid var(--readme-border);
+  border-bottom: 1px solid var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
   font-size: 1.75em;
 }
 
 .readme-panel-body h2 {
   padding-bottom: 0.3em;
-  border-bottom: 1px solid var(--readme-border);
+  border-bottom: 1px solid var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
   font-size: 1.35em;
 }
 
@@ -72,11 +60,14 @@
 
 .readme-panel-body p {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: var(--sn-primitive-dimension-16, 16px);
 }
 
 .readme-panel-body a {
-  color: var(--readme-accent);
+  color: var(
+    --sn-theme-color-primary-accent,
+    var(--sn-brand-color-primary-55, var(--sn-primitive-color-brandA-55, #389f74))
+  );
   text-decoration: none;
 }
 
@@ -87,7 +78,7 @@
 .readme-panel-body ul,
 .readme-panel-body ol {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: var(--sn-primitive-dimension-16, 16px);
   padding-left: 2em;
 }
 
@@ -96,46 +87,50 @@
 }
 
 .readme-panel-body blockquote {
-  margin: 0 0 16px;
+  margin: 0 0 var(--sn-primitive-dimension-16, 16px);
   padding: 0 1em;
-  border-left: 0.25em solid var(--readme-border);
-  color: var(--readme-fg-muted);
+  border-left: 0.25em solid var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
+  color: var(--sn-theme-color-neutral-accent, var(--sn-primitive-color-gray-55, #666975));
 }
 
 .readme-panel-body code,
 .readme-panel-body tt {
   padding: 0.2em 0.4em;
-  border-radius: 6px;
+  border-radius: var(--sn-primitive-dimension-6, 6px);
 
   font-family: ui-monospace, SFMono-Regular, monospace;
   font-size: 85%;
 
-  background-color: var(--readme-code-bg);
+  background-color: var(--sn-theme-color-neutral-decorTransparent, rgb(102 105 117 / 5.1%));
 }
 
 .readme-panel-body pre {
   overflow: auto;
 
-  margin: 0 0 16px;
-  border-radius: 6px;
+  margin: 0 0 var(--sn-primitive-dimension-16, 16px);
+  padding: var(--sn-primitive-dimension-12, 12px) var(--sn-primitive-dimension-16, 16px);
+  border: 1px solid var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
+  border-radius: var(--sn-primitive-dimension-6, 6px);
 
-  font-size: 85%;
-  line-height: 1.45;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .readme-panel-body pre code {
   padding: 0;
-  font-size: 100%;
+  font-size: inherit;
+  line-height: inherit;
   background: transparent;
 }
 
 .readme-panel-body hr {
   height: 0.25em;
-  margin: 24px 0;
+  margin: var(--sn-primitive-dimension-24, 24px) 0;
   padding: 0;
   border: 0;
 
-  background-color: var(--readme-border);
+  background-color: var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
 }
 
 .readme-panel-body table {
@@ -144,22 +139,22 @@
   border-collapse: collapse;
 
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: var(--sn-primitive-dimension-16, 16px);
 }
 
 .readme-panel-body table th,
 .readme-panel-body table td {
-  padding: 6px 13px;
-  border: 1px solid var(--readme-border);
+  padding: var(--sn-primitive-dimension-6, 6px) 13px;
+  border: 1px solid var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
 }
 
 .readme-panel-body table tr {
-  border-top: 1px solid var(--readme-border);
-  background-color: var(--readme-canvas);
+  border-top: 1px solid var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
+  background-color: var(--sn-theme-color-neutral-background2Level, var(--sn-primitive-color-gray-99, #fff));
 }
 
 .readme-panel-body table tr:nth-child(2n) {
-  background-color: var(--readme-canvas-subtle);
+  background-color: var(--sn-theme-color-neutral-background1Level, var(--sn-primitive-color-gray-95, #fdfdfd));
 }
 
 .readme-panel-body > *:first-child {
@@ -170,8 +165,88 @@
   margin-bottom: 0 !important;
 }
 
-/* Тёмная тема для блоков кода (highlight.js) */
-.readme-panel-body--dark pre code.hljs {
-  color: var(--readme-fg);
-  background: var(--readme-canvas-subtle);
+/* Code blocks (highlight.js): dark theme — контрастные цвета подсветки */
+.readme-panel-body.sn-dark pre {
+  border-color: var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
+  background-color: var(--sn-theme-color-neutral-background1Level, var(--sn-primitive-color-gray-95, #fdfdfd));
+}
+
+.readme-panel-body.sn-dark pre code.hljs {
+  color: var(--sn-theme-color-neutral-text, var(--sn-primitive-color-gray-45, #5e606e));
+  background: transparent;
+}
+
+.readme-panel-body.sn-dark pre .hljs-doctag,
+.readme-panel-body.sn-dark pre .hljs-keyword,
+.readme-panel-body.sn-dark pre .hljs-meta .hljs-keyword,
+.readme-panel-body.sn-dark pre .hljs-template-tag,
+.readme-panel-body.sn-dark pre .hljs-template-variable,
+.readme-panel-body.sn-dark pre .hljs-type,
+.readme-panel-body.sn-dark pre .hljs-variable.language_ {
+  color: var(
+    --sn-theme-color-primary-accent,
+    var(--sn-brand-color-primary-55, var(--sn-primitive-color-brandA-55, #389f74))
+  );
+}
+
+.readme-panel-body.sn-dark pre .hljs-title,
+.readme-panel-body.sn-dark pre .hljs-title.class_,
+.readme-panel-body.sn-dark pre .hljs-title.class_.inherited__,
+.readme-panel-body.sn-dark pre .hljs-title.function_ {
+  color: var(--sn-theme-color-violet-accent, var(--sn-primitive-color-violet-55, #aa6cc1));
+}
+
+.readme-panel-body.sn-dark pre .hljs-attr,
+.readme-panel-body.sn-dark pre .hljs-attribute,
+.readme-panel-body.sn-dark pre .hljs-literal,
+.readme-panel-body.sn-dark pre .hljs-meta,
+.readme-panel-body.sn-dark pre .hljs-number,
+.readme-panel-body.sn-dark pre .hljs-operator,
+.readme-panel-body.sn-dark pre .hljs-variable,
+.readme-panel-body.sn-dark pre .hljs-selector-attr,
+.readme-panel-body.sn-dark pre .hljs-selector-class,
+.readme-panel-body.sn-dark pre .hljs-selector-id {
+  color: var(--sn-theme-color-blue-accent, var(--sn-primitive-color-blue-55, #5388d1));
+}
+
+.readme-panel-body.sn-dark pre .hljs-regexp,
+.readme-panel-body.sn-dark pre .hljs-string,
+.readme-panel-body.sn-dark pre .hljs-meta .hljs-string {
+  color: var(--sn-theme-color-green-accent, var(--sn-primitive-color-green-55, #57b762));
+}
+
+.readme-panel-body.sn-dark pre .hljs-built_in,
+.readme-panel-body.sn-dark pre .hljs-symbol {
+  color: var(--sn-theme-color-orange-accent, var(--sn-primitive-color-orange-55, #fb8e42));
+}
+
+.readme-panel-body.sn-dark pre .hljs-comment,
+.readme-panel-body.sn-dark pre .hljs-code,
+.readme-panel-body.sn-dark pre .hljs-formula {
+  color: var(--sn-theme-color-neutral-accent, var(--sn-primitive-color-gray-55, #666975));
+}
+
+.readme-panel-body.sn-dark pre .hljs-name,
+.readme-panel-body.sn-dark pre .hljs-quote,
+.readme-panel-body.sn-dark pre .hljs-selector-tag,
+.readme-panel-body.sn-dark pre .hljs-selector-pseudo {
+  color: var(--sn-theme-color-green-text, var(--sn-primitive-color-green-45, #438b4b));
+}
+
+.readme-panel-body.sn-dark pre .hljs-section {
+  font-weight: 600;
+  color: var(--sn-theme-color-blue-accent, var(--sn-primitive-color-blue-55, #5388d1));
+}
+
+.readme-panel-body.sn-dark pre .hljs-params,
+.readme-panel-body.sn-dark pre .hljs-property,
+.readme-panel-body.sn-dark pre .hljs-punctuation,
+.readme-panel-body.sn-dark pre .hljs-tag {
+  color: var(--sn-theme-color-neutral-text, var(--sn-primitive-color-gray-45, #5e606e));
+}
+
+/* Code blocks in light theme: свой фон и рамка для единообразия */
+.readme-panel-body.sn-light pre {
+  border-color: var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #dee1e8));
+  background-color: var(--sn-theme-color-neutral-background1Level, var(--sn-primitive-color-gray-95, #fdfdfd));
 }

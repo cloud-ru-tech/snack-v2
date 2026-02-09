@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { type HTMLAttributes, useEffect, useState } from 'react';
 
 import { APPEARANCE, SHAPE, SIZE } from './constants';
 import styles from './styles.module.scss';
@@ -21,7 +21,7 @@ export type AvatarProps = {
   showTwoSymbols?: boolean;
   /** CSS-класс */
   className?: string;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & HTMLAttributes<HTMLDivElement>;
 
 /**
  * Компонент отображения аватара пользователя.

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -7,7 +7,7 @@ type GapPreset = 'small' | 'medium' | 'large' | 'xlarge';
 type AlignPreset = 'start' | 'center' | 'end';
 
 type ExampleRowProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   gap?: GapPreset | string;
   alignItems?: AlignPreset;
   justifyContent?: AlignPreset;

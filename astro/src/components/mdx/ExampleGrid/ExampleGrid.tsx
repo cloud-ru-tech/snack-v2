@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import React from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
 type GapPreset = 'small' | 'medium' | 'large';
 
 type ExampleGridProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   minColumnWidth?: string;
   gap?: GapPreset | string;
   columns?: number;
@@ -26,7 +26,7 @@ export function ExampleGrid({ children, minColumnWidth = '100px', gap = 'medium'
   const customGap = typeof gap === 'string' && !isPresetGap(gap) ? (gap as string) : undefined;
   const useAutoFit = columns == null;
 
-  const style: React.CSSProperties = {
+  const style: CSSProperties = {
     ...(columns != null && { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }),
     ...(useAutoFit &&
       minColumnWidth !== '100px' && {

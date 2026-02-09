@@ -17,6 +17,7 @@ alwaysApply: true
 - **НЕ** создавай типы с `unknown` без явной необходимости
 
 ## React и компоненты
+- **НЕ** используй типы через `React.*` (React.ReactNode, React.CSSProperties и т.д.) — импортируй типы из `'react'` (ReactNode, CSSProperties, ComponentType, HTMLAttributes, ElementType). См. правило react-types.
 - **НЕ** создавай компоненты без мемоизации при необходимости
 - **НЕ** используй прямые импорты мобильных компонентов - используй адаптивные
 - **НЕ** игнорируй правила адаптивности из workspace rules

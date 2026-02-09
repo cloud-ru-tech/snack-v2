@@ -9,11 +9,11 @@ const docgenInstance = new Docgen({
   targetFile: 'docs/index.mdx',
   parserOptions: {
     shouldExtractLiteralValuesFromEnum: true,
-    propFilter: (prop) => {
-      // Исключаем стандартные HTML атрибуты из React.HTMLAttributes
+    propFilter: prop => {
+      // Исключаем стандартные HTML-атрибуты (HTMLAttributes из react)
       if (prop.declarations && prop.declarations.length > 0) {
         const hasPropAdditionalDescription = prop.declarations.some(
-          (declaration) => !declaration.fileName.includes('node_modules')
+          declaration => !declaration.fileName.includes('node_modules'),
         );
         return Boolean(hasPropAdditionalDescription);
       }

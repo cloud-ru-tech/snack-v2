@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -7,7 +7,7 @@ type GapPreset = 'small' | 'medium' | 'large';
 type LabelSizePreset = 'small' | 'medium' | 'large';
 
 type ExampleItemProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   label?: string;
   labelSize?: LabelSizePreset | string;
   gap?: GapPreset | string;

@@ -1,10 +1,10 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
 export type StoryTableRow = {
   variantLabel: string;
-  cells: React.ReactNode[];
+  cells: ReactNode[];
 };
 
 export type StoryTableProps = {
@@ -31,7 +31,7 @@ export function StoryTable({
 
   return (
     <div className={styles.container}>
-      {sectionTitle != null && (
+      {sectionTitle && (
         <div className={styles.sectionHeader} style={{ textTransform: 'capitalize', fontWeight: 600 }}>
           {sectionTitle}
         </div>

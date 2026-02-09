@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { type CSSProperties, type ReactNode, useCallback, useEffect } from 'react';
 import { Select } from 'storybook/internal/components';
 import { addons, useGlobals } from 'storybook/manager-api';
 
@@ -15,10 +15,10 @@ import {
   THEME_OPTIONS,
 } from '../constants';
 
-type SelectOption = { value: string; title: string; icon: React.ReactNode };
+type SelectOption = { value: string; title: string; icon: ReactNode };
 
 const iconSize = 14;
-const iconStyle: React.CSSProperties = { width: iconSize, height: iconSize, flexShrink: 0, display: 'block' };
+const iconStyle: CSSProperties = { width: iconSize, height: iconSize, flexShrink: 0, display: 'block' };
 
 function SvgIcon({ d }: { d: string }) {
   return (
@@ -65,7 +65,7 @@ const platformOptionsWithIcons: SelectOption[] = [
   { value: 'mobile', title: PLATFORM_OPTIONS[1].label, icon: <SvgIcon d={MOBILE_PHONE_PATH} /> },
 ];
 
-const wrapperStyle: React.CSSProperties = {
+const wrapperStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   gap: 4,

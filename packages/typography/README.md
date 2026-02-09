@@ -144,7 +144,7 @@ export function Example() {
 | variant | enum TypographyVariant: `"title"`, `"display"`, `"headline"`, `"label"`, `"body"` | VARIANT.body | Вариант типографики |
 | size | enum TypographySize: `"s"`, `"m"`, `"l"` | SIZE.m | Размер типографики |
 | weight | enum TypographyWeight: `"regular"`, `"thin"`, `"mono"` | WEIGHT.regular | Начертание шрифта |
-| as | `ElementType<any, keyof IntrinsicElements>` | - | HTML тег для рендеринга |
+| as | `ElementType` | - | HTML тег для рендеринга |
 | className | `string` | - | CSS-класс |
 ### TypographySizeProps
 | name | type | default value | description |

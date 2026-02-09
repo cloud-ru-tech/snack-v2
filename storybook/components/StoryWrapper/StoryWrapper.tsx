@@ -1,11 +1,11 @@
 import cn from 'classnames';
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import type { Brand, Platform, Theme } from '../types';
 import styles from './styles.module.scss';
 
 type StoryWrapperProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   theme: Theme;
   brand: Brand;
   platform: Platform;

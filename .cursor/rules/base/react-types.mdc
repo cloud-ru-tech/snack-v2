@@ -1,0 +1,42 @@
+---
+description: Типы React — импорт из 'react', не использовать префикс React.
+globs: "**/*.ts","**/*.tsx"
+alwaysApply: false
+---
+
+# Типы React
+
+Не используй обращение к типам через пространство имён `React.*`. Импортируй типы напрямую из `'react'` и используй их по имени.
+
+## Примеры
+
+```ts
+// ❌ Плохо
+children: React.ReactNode;
+style: React.CSSProperties;
+(Story: React.ComponentType) => ...
+} & React.HTMLAttributes<HTMLDivElement>;
+as?: React.ElementType;
+
+// ✅ Хорошо
+import type { ReactNode, CSSProperties, ComponentType, HTMLAttributes, ElementType } from 'react';
+
+children: ReactNode;
+style: CSSProperties;
+(Story: ComponentType) => ...
+} & HTMLAttributes<HTMLDivElement>;
+as?: ElementType;
+```
+
+## Частые типы
+
+| Вместо           | Импорт и использование      |
+|------------------|-----------------------------|
+| `React.ReactNode` | `import type { ReactNode } from 'react'` → `ReactNode` |
+| `React.CSSProperties` | `import type { CSSProperties } from 'react'` → `CSSProperties` |
+| `React.ComponentType` | `import type { ComponentType } from 'react'` → `ComponentType` |
+| `React.ElementType` | `import type { ElementType } from 'react'` → `ElementType` |
+| `React.HTMLAttributes<T>` | `import type { HTMLAttributes } from 'react'` → `HTMLAttributes<T>` |
+| `React.FC`       | предпочтительно явная типизация пропсов, не `FC` |
+
+В комментариях и документации тоже не использовать форму `React.HTMLAttributes` — писать «HTMLAttributes из react» или «HTML-атрибуты».

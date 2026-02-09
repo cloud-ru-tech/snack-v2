@@ -1,3 +1,7 @@
+import '@sbercloud/figma-variables/build/css/base/base.css';
+import '@sbercloud/figma-variables/build/css/brand/brandB.css';
+import '@sbercloud/figma-variables/build/css/theme/light.css';
+import '@sbercloud/figma-variables/build/css/theme/dark.css';
 import 'highlight.js/styles/github.css';
 
 import './theme/style.css';
@@ -5,7 +9,7 @@ import './theme/style.css';
 import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
 import { marked } from 'marked';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParameter } from 'storybook/manager-api';
 import { useTheme } from 'storybook/theming';
 
@@ -24,8 +28,8 @@ function getMarkdownSource(params: ReadmeParameters | undefined): string {
 }
 
 const README_BODY_CLASS = {
-  light: 'readme-panel-body readme-panel-body--light',
-  dark: 'readme-panel-body readme-panel-body--dark',
+  light: 'readme-panel-body sn-base-styles sn-brandB sn-light',
+  dark: 'readme-panel-body sn-base-styles sn-brandB sn-dark',
 } as const;
 
 marked.setOptions({ gfm: true });

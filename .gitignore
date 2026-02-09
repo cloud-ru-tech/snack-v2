@@ -10,6 +10,9 @@ build
 
 # Storybook
 storybook-static
+# Readme panel: CSS генерируется из style.scss при storybook/build:storybook
+storybook/addons/readme-panel/theme/style.css
+storybook/addons/readme-panel/theme/style.css.map
 
 # Astro
 .astro

@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import React from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
 type ExampleContainerProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   padding?: 'small' | 'large' | string;
   marginBottom?: 'small' | 'large' | string;
 };
@@ -28,7 +28,7 @@ function isPresetMargin(m: ExampleContainerProps['marginBottom']): m is 'small' 
 }
 
 export function ExampleContainer({ children, padding = 'small', marginBottom = 'large' }: ExampleContainerProps) {
-  const style: React.CSSProperties | undefined =
+  const style: CSSProperties | undefined =
     !isPresetPadding(padding) || !isPresetMargin(marginBottom)
       ? {
           ...(!isPresetPadding(padding) && padding ? { padding } : {}),

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { forwardRef } from 'react';
+import { type ElementType, forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 
 import { DEFAULT_SIZE, DEFAULT_VARIANT, DEFAULT_WEIGHT, VARIANT } from './constants';
 import styles from './styles.module.scss';
@@ -7,7 +7,7 @@ import type { TypographySize, TypographyVariant, TypographyWeight } from './type
 
 export type TypographyProps = {
   /** Дочерние элементы */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Вариант типографики */
   variant?: TypographyVariant;
   /** Размер типографики */
@@ -15,15 +15,15 @@ export type TypographyProps = {
   /** Начертание шрифта */
   weight?: TypographyWeight;
   /** HTML тег для рендеринга */
-  as?: React.ElementType;
+  as?: ElementType;
   /** CSS-класс */
   className?: string;
-} & React.HTMLAttributes<HTMLElement>;
+} & HTMLAttributes<HTMLElement>;
 
 /**
  * Определяет HTML тег по умолчанию на основе варианта
  */
-function getDefaultTag(variant: TypographyVariant): React.ElementType {
+function getDefaultTag(variant: TypographyVariant): ElementType {
   switch (variant) {
     case VARIANT.display:
     case VARIANT.headline:
@@ -68,16 +68,8 @@ function getDefaultTag(variant: TypographyVariant): React.ElementType {
  */
 export const Typography = forwardRef<HTMLElement, TypographyProps>(
   (
-    {
-      children,
-      variant = DEFAULT_VARIANT,
-      size = DEFAULT_SIZE,
-      weight = DEFAULT_WEIGHT,
-      as,
-      className,
-      ...rest
-    },
-    ref
+    { children, variant = DEFAULT_VARIANT, size = DEFAULT_SIZE, weight = DEFAULT_WEIGHT, as, className, ...rest },
+    ref,
   ) => {
     const Component = as || getDefaultTag(variant);
 
@@ -93,7 +85,7 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(
         {children}
       </Component>
     );
-  }
+  },
 );
 
 Typography.displayName = 'Typography';
