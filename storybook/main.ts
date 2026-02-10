@@ -43,6 +43,7 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       '#storybook/components': path.resolve(__dirname, 'components'),
+      '#storybook/hooks': path.resolve(__dirname, 'hooks'),
     };
 
     config.css = config.css || {};

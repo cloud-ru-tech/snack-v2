@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "#storybook/components": ["storybook/components"],
-      "#storybook/components/*": ["storybook/components/*"]
+      "#storybook/components/*": ["storybook/components/*"],
+      "#storybook/hooks": ["storybook/hooks"],
+      "#storybook/hooks/*": ["storybook/hooks/*"]
     }
   },
   "include": ["packages", "apps", "scripts", "storybook", "types"],
