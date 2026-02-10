@@ -17,6 +17,9 @@
       "path": "./loader/tsconfig.cjs.json"
     },
     {
+      "path": "./portal-context/tsconfig.cjs.json"
+    },
+    {
       "path": "./popover-private/tsconfig.cjs.json"
     },
     {

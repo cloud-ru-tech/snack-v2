@@ -17,6 +17,9 @@
       "path": "./loader/tsconfig.esm.json"
     },
     {
+      "path": "./portal-context/tsconfig.esm.json"
+    },
+    {
       "path": "./popover-private/tsconfig.esm.json"
     },
     {

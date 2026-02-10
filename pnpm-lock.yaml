@@ -360,6 +360,12 @@ importers:
         specifier: 19.2.0
         version: 19.2.0
 
+  packages/portal-context:
+    dependencies:
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/progress-bar:
     dependencies:
       '@design-system/utils':
