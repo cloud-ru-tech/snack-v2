@@ -1,3 +1,4 @@
+import { usePortalContext } from '@design-system/portal-context';
 import { extractSupportProps, isBrowser, usePopstateSubscription, WithSupportProps } from '@design-system/utils';
 import {
   arrow,
@@ -34,7 +35,6 @@ import {
 import { Placement, PopoverHeightStrategy, PopoverWidthStrategy, Trigger } from '../../types';
 import {
   getArrowOffset,
-  getPopoverRootElement,
   getPopoverTriggerJSX,
   getTriggerProps,
   mapPopoverActionsToSynthetic,
@@ -183,6 +183,7 @@ function PopoverPrivateComponent({
   ...rest
 }: PopoverPrivateProps) {
   const arrowRef = useRef<HTMLDivElement | null>(null);
+  const portalRoot = usePortalContext();
 
   const [isOpen, setIsOpen] = useUncontrolledProp(openProp, false, onOpenChange);
 
@@ -301,7 +302,7 @@ function PopoverPrivateComponent({
   }, [children, addOrRemoveTriggerRefEvents, getReferenceProps]);
 
   const portal = isOpen && (
-    <FloatingPortal root={getPopoverRootElement()} key='portal'>
+    <FloatingPortal root={portalRoot} key='portal'>
       <div
         role='presentation'
         {...extractSupportProps(rest)}

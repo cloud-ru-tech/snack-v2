@@ -340,6 +340,9 @@ importers:
 
   packages/popover-private:
     dependencies:
+      '@design-system/portal-context':
+        specifier: ^0.1.0
+        version: link:../portal-context
       '@design-system/utils':
         specifier: 0.1.0
         version: link:../utils

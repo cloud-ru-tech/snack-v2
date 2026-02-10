@@ -3,8 +3,9 @@ import '@sbercloud/figma-variables/build/css/acrylic/yes.css';
 
 import './global.scss';
 
+import { PortalContextProvider } from '@design-system/portal-context';
 import type { Preview } from '@storybook/react-vite';
-import React from 'react';
+import { useRef } from 'react';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
 import { StoryWrapper } from './components';
@@ -13,14 +14,18 @@ const preview: Preview = {
   initialGlobals: INITIAL_GLOBALS,
   decorators: [
     (Story, context) => {
+      const storyWrapperRef = useRef<HTMLDivElement>(null);
       const theme = (context.globals?.[GLOBAL_KEYS.THEME] as 'light' | 'dark') ?? 'light';
       const brand = (context.globals?.[GLOBAL_KEYS.BRAND] as 'brandA' | 'brandB') ?? 'brandA';
       const platform = (context.globals?.[GLOBAL_KEYS.PLATFORM] as 'desktop' | 'mobile') ?? 'desktop';
       const acrylic = (context.globals?.[GLOBAL_KEYS.ACRYLIC] as 'enabled' | 'disabled') ?? 'disabled';
+
       return (
-        <StoryWrapper theme={theme} brand={brand} platform={platform} acrylic={acrylic}>
-          <Story />
-        </StoryWrapper>
+        <PortalContextProvider root={storyWrapperRef}>
+          <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform} acrylic={acrylic}>
+            <Story />
+          </StoryWrapper>
+        </PortalContextProvider>
       );
     },
   ],

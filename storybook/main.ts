@@ -2,7 +2,10 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { tsconfigPathsConverter } from './utils/tsconfigPathsConverter';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(__dirname, '..');
 
 /**
  * Ensure __REACT__ / __REACT_DOM__ are set before manager addon chunks run.
@@ -35,6 +38,8 @@ const config: StorybookConfig = {
     path.resolve(__dirname, 'addons/theme-controls/preset.ts'),
   ],
   framework: '@storybook/react-vite',
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Storybook requires base to be set
+  // @ts-ignore
   base: process.env.STORYBOOK_BASE_PATH || (process.env.CI ? '/storybook/' : '/'),
   viteFinal: async (config, { configType }) => {
     const isProd = configType === 'PRODUCTION';
@@ -42,8 +47,7 @@ const config: StorybookConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      '#storybook/components': path.resolve(__dirname, 'components'),
-      '#storybook/hooks': path.resolve(__dirname, 'hooks'),
+      ...tsconfigPathsConverter(path.resolve(projectRoot, 'tsconfig.base.json'), projectRoot),
     };
 
     config.css = config.css || {};

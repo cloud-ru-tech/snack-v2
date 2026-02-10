@@ -60,8 +60,6 @@ export function getArrowPositionStyles({ placement, x, y, ref }: Params): CSSPro
   }
 }
 
-export const getPopoverRootElement = () => (isBrowser() ? document.body : undefined);
-
 export const getArrowOffset = (arrowElement?: HTMLElement | null): number => arrowElement?.offsetWidth || 0;
 
 type GetPopoverContentProps = {

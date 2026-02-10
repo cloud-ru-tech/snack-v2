@@ -19,7 +19,8 @@
       "#storybook/components": ["storybook/components"],
       "#storybook/components/*": ["storybook/components/*"],
       "#storybook/hooks": ["storybook/hooks"],
-      "#storybook/hooks/*": ["storybook/hooks/*"]
+      "#storybook/hooks/*": ["storybook/hooks/*"],
+      "@design-system/*": ["./packages/*/src"]
     }
   },
   "include": ["packages", "apps", "scripts", "storybook", "types"],
