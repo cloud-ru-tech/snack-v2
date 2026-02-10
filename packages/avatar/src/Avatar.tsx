@@ -1,3 +1,4 @@
+import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import { type HTMLAttributes, useEffect, useState } from 'react';
 
@@ -6,7 +7,7 @@ import styles from './styles.module.scss';
 import { Appearance, Shape, Size } from './types';
 import { getAbbreviation } from './utils';
 
-export type AvatarProps = {
+export type AvatarProps = WithSupportProps<{
   /** Имя пользователя для генерации аббревиатуры */
   name: string;
   /** URL изображения аватара */
@@ -21,7 +22,8 @@ export type AvatarProps = {
   showTwoSymbols?: boolean;
   /** CSS-класс */
   className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+}> &
+  HTMLAttributes<HTMLDivElement>;
 
 /**
  * Компонент отображения аватара пользователя.
@@ -74,7 +76,7 @@ export function Avatar({
       data-size={size}
       data-appearance={appearance}
       data-shape={shape}
-      {...rest}
+      {...extractSupportProps(rest)}
     >
       {src && !imageError ? (
         <img className={styles.image} src={src} onError={() => setImageError(true)} alt='' aria-hidden='true' />

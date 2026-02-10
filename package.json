@@ -27,6 +27,7 @@
     "build:docs": "pnpm --filter @design-system/docs build",
     "build:storybook": "storybook build -c storybook",
     "clean:dist": "rimraf --glob ./packages/*/dist",
+    "clean:modules": "rimraf --glob ./packages/*/node_modules",
     "clean:buildinfo": "rimraf --glob ./packages/**/*.tsbuildinfo",
     "clean:packages": "pnpm -r --filter \"@design-system/*\" run clean",
     "clean:empty": "ts-node scripts/removeEmptyPackages.ts",
@@ -49,7 +50,8 @@
     "docgen:all": "ts-node --project scripts/tsconfig.json scripts/docgen/generateAllDocs.ts",
     "docgen:staged": "ts-node --project scripts/tsconfig.json scripts/docgen/docgenForStagedPackages.ts",
     "add-package": "ts-node --project scripts/tsconfig.json scripts/npm-init.ts",
-    "postinstall": "ts-patch install && node scripts/patch-storybook-mocker.mjs"
+    "postinstall": "ts-patch install && node scripts/patch-storybook-mocker.mjs",
+    "deps:reinstall": "pnpm clean:modules && rm -rf node_modules pnpm-lock.yaml && pnpm deps"
   },
   "dependencies": {
     "react": "catalog:",
@@ -103,6 +105,7 @@
     "lerna": "9.0.3",
     "marked": "17.0.1",
     "minimist": "1.2.8",
+    "minimatch": "10.1.2",
     "postcss": "8.5.6",
     "postcss-discard-comments": "7.0.5",
     "postcss-scss": "4.0.9",
