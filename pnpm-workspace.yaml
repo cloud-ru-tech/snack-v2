@@ -9,7 +9,7 @@ catalog:
   "react": "19.2.4"
   "react-dom": "19.2.4"
   "typescript": "5.9.3"
-  "@sbercloud/figma-variables": "1.2.0"
+  "@sbercloud/figma-variables": "1.2.1-20383714.0"
 
 ignoredBuiltDependencies:
   - ejs

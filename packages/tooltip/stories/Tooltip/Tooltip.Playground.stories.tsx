@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PLACEMENT, Tooltip, type TooltipProps, TRIGGER } from '../../src';
+import styles from './styles.module.scss';
 
 const meta: Meta<TooltipProps> = {
   title: 'Components/Tooltip',
@@ -91,10 +92,19 @@ type Story = StoryObj<TooltipProps>;
 const DefaultTrigger = () => <button type='button'>Наведи курсор</button>;
 
 export const Playground: Story = {
+  args: {
+    hoverDelayOpen: 0,
+    hoverDelayClose: 0,
+    offset: 4,
+  },
+
   tags: ['dev', 'test', 'autodocs'],
+
   render: args => (
-    <Tooltip {...args}>
-      <DefaultTrigger />
-    </Tooltip>
+    <div className={styles.pageWrapper}>
+      <Tooltip {...args}>
+        <DefaultTrigger />
+      </Tooltip>
+    </div>
   ),
 };

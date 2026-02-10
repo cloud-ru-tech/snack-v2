@@ -1,20 +1,16 @@
 ---
 title: Tooltip
-description: Tooltip component
+description: Всплывающая подсказка при наведении, по фокусу или клику. Настраиваемое расположение, триггеры и задержки.
 version: '0.1.0'
 ---
 
-import { Tooltip } from '../src';
-import {
-  ExampleContainer,
-  ExampleRow,
-  ExampleGrid,
-  ExampleItem,
-} from '#astro/components/mdx';
+import { TooltipBasicExample } from './ui/TooltipBasicExample';
+import { ExampleContainer } from '#astro/components/mdx';
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 # Tooltip
 
-{/* TODO: Add component description */}
+Всплывающая подсказка при наведении на элемент-триггер (или по фокусу/клику). Стили и анатомия — из design tokens (Figma variables).
 
 **Version:** `{frontmatter.version}`
 
@@ -40,29 +36,45 @@ import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 ## Overview
 
-{/* TODO: Add detailed component overview */}
+Tooltip показывает краткий текст или разметку рядом с элементом-триггером. Компонент автоматически обеспечивает:
 
-Tooltip is a component for... It automatically handles:
-
-- **Feature 1**: Description
-- **Feature 2**: Description
-- **Feature 3**: Description
+- **Триггер** — открытие по hover, focus, click или комбинациям (prop `trigger`). По умолчанию: hover и focus-visible.
+- **Задержки по hover** — настраиваемые `hoverDelayOpen` и `hoverDelayClose` (мс).
+- **Расположение** — 12 вариантов `placement` (top, bottom, left, right и -start/-end). При нехватке места — flip.
+- **Стрелка** — указатель к триггеру.
+- **Стили** — отступы, скругления, макс. ширина из design tokens.
 
 ## Live examples
-
-{/* TODO: Add live examples */}
 
 ### Basic usage
 
 <ExampleContainer>
-  <Tooltip />
+  <TooltipBasicExample client:load />
 </ExampleContainer>
+
+### Разные положения (placement)
+
+Наведи курсор на кнопки — тултип показывается сверху, снизу, слева или справа от триггера.
+
+<StorybookIframe storyId="components-tooltip--placements" showControls={false} height="400px" />
+
+### По клику (trigger)
+
+Для мобильных или явного показа подсказки можно открывать тултип по клику: `trigger="click"`.
+
+<StorybookIframe storyId="components-tooltip--with-click-trigger" showControls={false} height="300px" />
+
+### Длинный текст
+
+Тултип ограничивает максимальную ширину и переносит строки — длинный текст остаётся читаемым.
+
+<StorybookIframe storyId="components-tooltip--with-long-content" showControls={false} height="300px" />
 
 ## Storybook
 
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+### Playground
 
-<StorybookIframe storyId="components-tooltip--basic" showControls={true} height="600px" />
+<StorybookIframe storyId="components-tooltip--playground" showControls={true} height="600px" />
 
 ## Usage
 
@@ -72,17 +84,47 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 import { Tooltip } from '@design-system/tooltip';
 
 export function Example() {
-  return <Tooltip />;
+  return (
+    <Tooltip content="Подсказка">
+      <button type="button">Наведи курсор</button>
+    </Tooltip>
+  );
 }
 ```
 
-### With props
+### Placement и trigger
 
 ```tsx
 import { Tooltip } from '@design-system/tooltip';
 
 export function Example() {
-  return <Tooltip prop="value" />;
+  return (
+    <Tooltip
+      content="Тултип по клику"
+      placement="bottom"
+      trigger="click"
+    >
+      <button type="button">Нажми</button>
+    </Tooltip>
+  );
+}
+```
+
+### Задержки по hover
+
+```tsx
+import { Tooltip } from '@design-system/tooltip';
+
+export function Example() {
+  return (
+    <Tooltip
+      content="Откроется через 500 мс"
+      hoverDelayOpen={500}
+      hoverDelayClose={200}
+    >
+      <span>Наведи курсор</span>
+    </Tooltip>
+  );
 }
 ```
 
@@ -95,25 +137,23 @@ export function Example() {
 |------|------|---------------|-------------|
 | content* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
 | children* | `ReactNode` | - | Элемент, при наведении на который показывается тултип |
-| hoverDelayOpen | `number` | 200 | Задержка открытия по ховеру (мс) |
-| hoverDelayClose | `number` | 100 | Задержка закрытия по ховеру (мс) |
+| hoverDelayOpen | `number` | - | Задержка открытия по ховеру (мс) |
+| hoverDelayClose | `number` | - | Задержка закрытия по ховеру (мс) |
 | placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
 | trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| offset | `number` | 4 | Отступ поповера от его триггер-элемента (в пикселях). |
 
 
 [//]: DOCUMENTATION_SECTION_END
 
 ## Accessibility
 
-{/* TODO: Add accessibility information */}
-
-- Semantic HTML structure ensures screen reader compatibility
-- Component accepts all standard HTML attributes for customization
+- Контейнер тултипа имеет `role="tooltip"`. Триггер должен быть доступен с клавиатуры (кнопка, ссылка или элемент с `tabIndex`).
+- По умолчанию используется `trigger="hoverAndFocusVisible"` — тултип показывается при наведении и при фокусе (в т.ч. с клавиатуры), что соответствует рекомендациям по доступности.
+- Для интерактивного контента внутри тултипа предпочтительнее использовать Popover с триггером по клику, чтобы пользователь мог перейти к контенту с клавиатуры.
 
 ## Best practices
 
-{/* TODO: Add best practices */}
-
-1. **Best practice 1** — Description
-2. **Best practice 2** — Description
-3. **Best practice 3** — Description
+1. **Краткий текст** — используйте тултип для коротких подсказок; длинный текст лучше выносить в отдельный блок или Popover.
+2. **Не дублируйте видимый текст** — не показывайте в тултипе то, что уже написано на триггере.
+3. **Триггер по контексту** — на десктопе удобен hover; для тач-устройств рассмотрите `trigger="click"` или `trigger="hoverAndFocusVisible"`.

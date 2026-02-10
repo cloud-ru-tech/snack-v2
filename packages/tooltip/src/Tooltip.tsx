@@ -1,4 +1,5 @@
 import { PLACEMENT, PopoverPrivate, PopoverPrivateProps, TRIGGER } from '@design-system/popover-private';
+import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
@@ -12,7 +13,9 @@ export type TooltipProps = {
   hoverDelayOpen?: number;
   /** Задержка закрытия по ховеру (мс) */
   hoverDelayClose?: number;
-} & Pick<Partial<PopoverPrivateProps>, 'placement' | 'trigger'>;
+} & Pick<Partial<PopoverPrivateProps>, 'placement' | 'trigger' | 'offset' | 'triggerClassName'>;
+
+export const DEFAULT_FALLBACK_PLACEMENTS = [PLACEMENT.Top, PLACEMENT.Right, PLACEMENT.Bottom, PLACEMENT.Left];
 
 /**
  * Tooltip — всплывающая подсказка при наведении.
@@ -24,8 +27,10 @@ export function Tooltip({
   content,
   placement = PLACEMENT.Top,
   trigger = TRIGGER.HoverAndFocusVisible,
-  hoverDelayOpen = 200,
-  hoverDelayClose = 100,
+  hoverDelayOpen = 0,
+  hoverDelayClose = 0,
+  offset,
+  triggerClassName,
 }: TooltipProps) {
   return (
     <PopoverPrivate
@@ -36,12 +41,12 @@ export function Tooltip({
       arrowElementClassName={styles.pointerShape}
       hoverDelayOpen={hoverDelayOpen}
       hoverDelayClose={hoverDelayClose}
+      fallbackPlacements={DEFAULT_FALLBACK_PLACEMENTS}
+      triggerClassName={cn(styles.triggerClassName, triggerClassName)}
+      offset={offset}
       popoverContent={
-        <div className={styles.root} role='tooltip'>
-          <div className={styles.layerBackground} aria-hidden />
-          <div className={styles.layerContainer}>
-            <div className={styles.content}>{content}</div>
-          </div>
+        <div className={styles.tooltipContainer} role='tooltip'>
+          {content}
         </div>
       }
     >

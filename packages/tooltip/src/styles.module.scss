@@ -1,63 +1,36 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/tooltip.module' as tooltip;
+@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
 
-// Корневой контейнер (Frame в Figma) — position: relative, все слои внутри с absolute
-.root {
-  position: relative;
-  box-sizing: border-box;
-  max-width: tooltip.$sn-tooltip-anatomy-container-maxWidth;
+.triggerClassName {
+  --offset: #{base.simple-var(popover.$popover, 'anatomy', 'privatePopover', 'offset')};
 }
 
-// Слой 1: фон (накладывается первым, absolute)
-.layerBackground {
-  pointer-events: none;
-
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-
-  border-radius: tooltip.$sn-tooltip-anatomy-container-borderRadius;
-
-  background-color: base.$sn-theme-color-material-stateLayer-maskColor-default-background;
-}
-
-// Слой 2: контейнер с контентом (absolute, поверх фона)
-.layerContainer {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
+.tooltipContainer {
+  @include base.composite-var(tooltip.$tooltip, 'anatomy', 'container');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
-  box-sizing: border-box;
-  min-width: 0;
-  padding: tooltip.$sn-tooltip-anatomy-container-padding;
-  border-radius: tooltip.$sn-tooltip-anatomy-container-borderRadius;
-}
-
-// Контент тултипа — типографика inversion (светлый текст на тёмном фоне)
-.content {
-  min-width: 0;
   color: base.$sn-theme-color-available-inversion-textMain;
   overflow-wrap: break-word;
 
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+  background: base.$sn-theme-color-invertNeutral-background;
 }
 
-// Обёртка для стрелки (pointer) — стили из anatomy, слой поверх контента
 .pointerWrapper {
-  pointer-events: none;
+  @include base.composite-var(tooltip.$tooltip, 'anatomy', 'pointer');
 
   position: absolute;
-  z-index: 2;
 
-  box-sizing: border-box;
-  padding: tooltip.$sn-tooltip-anatomy-pointer-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-invertNeutral-background;
 }
 
 .pointerShape {
-  width: 100%;
-  height: 100%;
-  fill: base.$sn-theme-color-material-stateLayer-maskColor-default-background;
+  fill: currentcolor;
 }
