@@ -27,6 +27,9 @@
     },
     {
       "path": "./progress-bar/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tooltip/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

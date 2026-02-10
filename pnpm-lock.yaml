@@ -372,6 +372,15 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
 
+  packages/tooltip:
+    dependencies:
+      '@design-system/popover-private':
+        specifier: 0.1.0
+        version: link:../popover-private
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/typography:
     dependencies:
       classnames:

@@ -13,7 +13,7 @@
     "astro/**",
     "storybook/**/*.js",
     "storybook/**/*.d.ts",
-    "packages/*/docs/**",
+    "packages/*/docs/**/*.mdx",
     "packages/*/__tests__/**",
     "packages/*/__test__/**"
   ]
