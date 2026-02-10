@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["packages", "apps", "scripts", "storybook"],
+  "include": ["packages", "apps", "scripts", "storybook", "types"],
   "exclude": [
     "node_modules",
     "dist",
