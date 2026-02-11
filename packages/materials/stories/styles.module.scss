@@ -1,0 +1,39 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../index' as m;
+
+// Common
+.externalWrapper {
+  position: relative;
+
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 450px;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  &[data-show-background] {
+    background-image: url('assets/sample-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-32;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 base.$sn-primitive-dimension-32;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}

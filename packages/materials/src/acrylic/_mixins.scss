@@ -1,0 +1,49 @@
+// Низкоуровневые миксины (для кастомных сценариев)
+
+/**
+  * Универсальный миксин для добавления эффекта размытия фона
+  * $blurLevel – значение в px, пример: $sn-theme-effect-acrylic-blur1Level
+  */
+@mixin backdrop-filter-universal-blur($blurLevel) {
+  $blur: blur(calc($blurLevel / 2));
+
+  backdrop-filter: $blur;
+}
+
+/**
+  * Миксин для упрощения создания слоя
+  */
+@mixin absolute-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/**
+  * Миксин для имитации эффекта акрилового материала (backdrop blur + фоновый слой).
+  * Один вызов миксина применяет стили и к корневому элементу, и к дочернему с `data-acrylic-background`.
+  * $primaryBgOpacity – значение в виде десятичной дроби (number), пример: 0.8.
+  * $primaryBgColor – цвет основного фона, к которому применяется эффект.
+  * $colorDodgeBgColor – цвет эффекта наложения, который смешивается с основным.
+  */
+@mixin acrylic-material-background-layer(
+  $primaryBgOpacity,
+  $primaryBgColor,
+  $colorDodgeBgColor,
+) {
+  & > [data-acrylic-effect] {
+    @include absolute-layer();
+
+    // background: $colorDodgeBgColor; // TODO: temporarily disabled – does not work as expected
+    background-blend-mode: color-dodge;
+    mix-blend-mode: color-dodge;
+  }
+
+  & > [data-acrylic-background] {
+    @include absolute-layer();
+
+    opacity: $primaryBgOpacity;
+    background: $primaryBgColor;
+  }
+}

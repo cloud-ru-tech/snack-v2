@@ -1,0 +1,33 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../../index' as m;
+
+$appearances: 'primary', 'neutral', 'blue', 'red', 'yellow', 'green';
+$levels: "default", "1Level", "2Level";
+
+.withAcrylic {
+  @each $appearance in $appearances {
+    &[data-appearance='#{$appearance}'] {
+      @each $level in $levels {
+        &[data-level='#{$level}'] {
+          @if ($level == 'default') {
+            @include m.acrylic(
+              base.$sn-acrylic-blurBackground,
+              base.$sn-acrylic-opacityBackground,
+              base.simple-var(base.$sn-theme, 'color', $appearance, 'background'),
+              base.$sn-acrylic-colorEffect,
+            );
+          }
+
+          @else {
+            @include m.acrylic(
+              base.simple-var(base.$sn-acrylic, 'blurBackground#{$level}'),
+              base.simple-var(base.$sn-acrylic, 'opacityBackground#{$level}'),
+              base.simple-var(base.$sn-theme, 'color', $appearance, 'background#{$level}'),
+              base.simple-var(base.$sn-acrylic, 'colorEffect#{$level}'),
+            );
+          }
+        }
+      }
+    }
+  }
+}
