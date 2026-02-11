@@ -21,6 +21,9 @@
     },
     {
       "path": "./block/tsconfig.esm.json"
+    },
+    {
+      "path": "./progress-bar/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {
