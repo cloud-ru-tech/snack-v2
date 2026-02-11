@@ -30,37 +30,48 @@ export function getArrowPositionStyles({ placement, x, y, ref }: Params): CSSPro
     return {};
   }
 
+  const height = ref.current.offsetHeight;
   const width = ref.current.offsetWidth;
+  const style = getComputedStyle(ref.current);
+
+  const widthWithoutPadding =
+    ref.current.offsetWidth -
+    parseInt(style.paddingLeft) -
+    parseInt(style.paddingRight) -
+    parseInt(style.borderLeftWidth) -
+    parseInt(style.borderRightWidth);
+
+  const horizontalOffset = (ref.current.offsetWidth - widthWithoutPadding) / 2;
 
   switch (true) {
     case placement.startsWith('top'):
       return {
         left: x,
-        bottom: -width,
-        transform: 'rotate(-90deg)',
+        bottom: -height,
       };
     case placement.startsWith('bottom'):
       return {
         left: x,
-        top: -width,
-        transform: 'rotate(90deg)',
+        top: -height,
+        transform: 'rotate(180deg)',
       };
     case placement.startsWith('left'):
       return {
         top: y,
-        right: -(width - 1),
-        transform: 'rotate(180deg)',
+        right: -width + horizontalOffset + height / 2,
+        transform: 'rotate(-90deg)',
       };
     case placement.startsWith('right'):
     default:
       return {
         top: y,
-        left: -(width - 1),
+        left: -width + horizontalOffset + height / 2,
+        transform: 'rotate(90deg)',
       };
   }
 }
 
-export const getArrowOffset = (arrowElement?: HTMLElement | null): number => arrowElement?.offsetWidth || 0;
+export const getArrowOffset = (arrowElement?: HTMLElement | null): number => arrowElement?.offsetHeight || 0;
 
 type GetPopoverContentProps = {
   children: PopoverPrivateProps['children'];

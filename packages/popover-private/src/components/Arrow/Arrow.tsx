@@ -19,8 +19,15 @@ export function Arrow({ placement, x, y, arrowContainerClassName, arrowElementCl
       ref={arrowRef}
       style={getArrowPositionStyles({ x, y, placement, ref: arrowRef })}
     >
-      <svg className={arrowElementClassName} viewBox='0 0 4 8' fill='none' xmlns='http://www.w3.org/2000/svg'>
-        <path d='M4 0V8L0.707106 4.70711C0.316582 4.31658 0.316583 3.68342 0.707107 3.29289L4 0Z' />
+      <svg
+        className={arrowElementClassName}
+        width='12'
+        height='6'
+        viewBox='0 0 12 6'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <path d='M0 0L12 0L6.70711 5.29289C6.31658 5.68342 5.68342 5.68342 5.29289 5.29289L0 0Z' />
       </svg>
     </div>
   );

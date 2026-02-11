@@ -137,9 +137,11 @@ function Example() {
     },
   },
   render: args => (
-    <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
-      <button type='button'>Open popover</button>
-    </PopoverPrivate>
+    <div className={styles.pageWrapper}>
+      <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
+        <button type='button'>Open popover</button>
+      </PopoverPrivate>
+    </div>
   ),
 };
 

@@ -11,7 +11,7 @@ const meta: Meta<PopoverPrivateProps> = {
 export default meta;
 type Story = StoryObj<PopoverPrivateProps>;
 
-const PopoverContent = () => <div className={styles.popoverContent}>Popover with arrow</div>;
+const PopoverContent = () => <div className={styles.popoverContent}>Popover</div>;
 
 export const WithArrow: Story = {
   tags: ['dev', 'autodocs'],
@@ -46,9 +46,11 @@ export const WithArrow: Story = {
     },
   },
   render: (args: PopoverPrivateProps) => (
-    <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
-      <button type='button'>Open</button>
-    </PopoverPrivate>
+    <div className={styles.pageWrapper}>
+      <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
+        <button type='button'>Open</button>
+      </PopoverPrivate>
+    </div>
   ),
   parameters: {
     docs: {

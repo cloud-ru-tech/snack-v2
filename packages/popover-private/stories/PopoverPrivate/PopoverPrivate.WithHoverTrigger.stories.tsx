@@ -23,9 +23,11 @@ export const WithHoverTrigger: Story = {
     hoverDelayClose: 100,
   },
   render: (args: PopoverPrivateProps) => (
-    <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
-      <button type='button'>Hover me</button>
-    </PopoverPrivate>
+    <div className={styles.pageWrapper}>
+      <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
+        <button type='button'>Hover me</button>
+      </PopoverPrivate>
+    </div>
   ),
   argTypes: {
     placement: {
