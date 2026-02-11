@@ -29,15 +29,15 @@ pnpm storybook    # http://localhost:6006
 ### Запуск Astro
 
 ```bash
-pnpm dev          # Astro docs http://localhost:4321
+pnpm docs:dev          # Astro docs http://localhost:4321
 ```
 
 ### Основные команды
 
 | Действие             | Команда                        |
-| -------------------- | ------------------------------ |
+| -------------------- |--------------------------------|
 | Storybook            | `pnpm storybook`               |
-| Документация (Astro) | `pnpm dev`                     |
+| Документация (Astro) | `pnpm docs:dev`                |
 | Сборка всего         | `pnpm build` (packages + docs) |
 | Полная сборка        | `pnpm build:all` (+ storybook) |
 | Линт                 | `pnpm lint`                    |

@@ -30,7 +30,7 @@
     "clean:buildinfo": "rimraf --glob ./packages/**/*.tsbuildinfo",
     "clean:packages": "pnpm -r --filter \"@design-system/*\" run clean",
     "clean:empty": "ts-node scripts/removeEmptyPackages.ts",
-    "dev": "pnpm --filter @design-system/docs dev -- --port 4321",
+    "docs:dev": "pnpm --filter @design-system/docs dev -- --port 4321",
     "docs:preview": "pnpm --filter @design-system/docs preview",
     "storybook": "storybook dev -c storybook -p 6006",
     "test": "pnpm -r test",
