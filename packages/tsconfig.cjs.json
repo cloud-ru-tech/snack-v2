@@ -36,6 +36,9 @@
     },
     {
       "path": "./truncate-string/tsconfig.cjs.json"
+    },
+    {
+      "path": "./status/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

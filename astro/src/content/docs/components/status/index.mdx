@@ -1,0 +1,44 @@
+---
+title: Status
+description: Компоненты индикации статуса — Status (точка с подписью) и StatusIndicator (точка) для дизайн-системы.
+version: "1.0.0"
+---
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+# Status
+
+Пакет содержит компоненты для отображения статуса: **Status** (индикатор с подписью) и **StatusIndicator** (только точка).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/status
+# or
+yarn add @design-system/status
+# or
+pnpm add @design-system/status
+```
+
+## Changelog
+
+<Changelog packageName="status" />
+
+<LlmLink component="status" />
+
+## Overview
+
+Компоненты пакета используются для визуальной индикации состояния (активен, в работе, завершён и т.д.):
+
+- **Status** — индикатор с подписью (точка + текст), два размера (XS, S), варианты: точка, загрузка (Spinner), прогресс (ProgressBarCircle)
+- **StatusIndicator** — только точка-индикатор, несколько размеров (4xs–s), несколько цветовых схем (appearance)
+
+Общие возможности: единая палитра `appearance` (neutral, primary, red, green и др.), доступность, константы `STATUS_SIZE`, `STATUS_INDICATOR_SIZE` и `APPEARANCE` для типизации.
+
+## Components
+
+- **[Status](./components/Status.mdx)** — индикатор статуса с подписью (примеры, API)
+- **[StatusIndicator](./components/StatusIndicator.mdx)** — точечный индикатор статуса (примеры, API)

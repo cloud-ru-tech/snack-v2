@@ -1,0 +1,39 @@
+{
+  "name": "@design-system/status",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Индикация статуса (точка или точка с текстом)",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@design-system/progress-bar": "1.0.0",
+    "@design-system/loader": "0.1.0",
+    "@design-system/utils": "0.1.0",
+    "classnames": "2.5.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

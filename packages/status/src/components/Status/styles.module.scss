@@ -1,0 +1,67 @@
+/* Базовые функции и миксины из пакета */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+/* Структуры компонентов (локальные) */
+@use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
+
+$sizes: 'xs', 's';
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+
+.container {
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'container');
+
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &[data-has-background] {
+    @each $appearance in $appearances {
+      &[data-appearance='#{$appearance}'] {
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decorTransparent');
+      }
+    }
+  }
+}
+
+.centeredWrapper {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'container', 'centeredWrapper');
+    }
+  }
+}
+
+.textWrapper {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'textWrapper');
+    }
+  }
+
+  @each $appearance in $appearances {
+    [data-appearance='#{$appearance}'] & {
+      color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
+    }
+  }
+}

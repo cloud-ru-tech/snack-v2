@@ -36,6 +36,9 @@
     },
     {
       "path": "./truncate-string/tsconfig.esm.json"
+    },
+    {
+      "path": "./status/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {
