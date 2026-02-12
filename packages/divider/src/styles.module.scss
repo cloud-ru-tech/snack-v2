@@ -1,0 +1,45 @@
+/**
+ * Стили Divider в соответствии с Figma (Snack-Ui-Kit-variables).
+ * Дом-структура повторяет слои из макета: контейнер + абсолютно позиционированный слой линии.
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/divider.module' as divider;
+
+$variants: 'regular', 'thin';
+
+/* Контейнер (первый слой): размеры из anatomy */
+.root {
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  &[data-orientation='horizontal'] {
+    width: 100%;
+    height: base.simple-var(divider.$divider, 'anatomy', 'container', 'height');
+  }
+
+  &[data-orientation='vertical'] {
+    width: base.simple-var(divider.$divider, 'anatomy', 'container', 'width');
+    height: 100%;
+  }
+}
+
+/* Слой линии (второй слой): абсолютное позиционирование поверх контейнера, как в Figma */
+.line {
+  pointer-events: none;
+  position: absolute;
+  margin: auto;
+  background-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+
+  @each $variant in $variants {
+    .root[data-orientation='horizontal'][data-variant='#{$variant}'] & {
+      width: 100%;
+      height: base.simple-var(divider.$divider, 'anatomy', 'container', 'line', $variant, 'height');
+    }
+  
+    .root[data-orientation='vertical'][data-variant='#{$variant}'] & {
+      width: base.simple-var(divider.$divider, 'anatomy', 'container', 'line', $variant, 'width');
+      height: 100%;
+    }
+  }
+}

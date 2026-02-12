@@ -1,0 +1,55 @@
+/**
+ * Стили для stories компонента Divider.
+ * Обёртки для корректного отображения горизонтального и вертикального разделителя.
+ */
+
+/* Контейнер для горизонтального разделителя в Playground */
+.horizontalWrapper {
+  width: 240px;
+}
+
+/* Контейнер для вертикального разделителя: flex-ряд с растягиванием по высоте */
+.verticalRow {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  height: 64px;
+}
+
+/* Подпись слева/справа в вертикальном ряду (центрирование по вертикали) */
+.verticalRowLabel {
+  display: flex;
+  align-items: center;
+}
+
+/* Ячейка с вертикальным разделителем (фиксированная ширина, не сжимается) */
+.verticalRowDividerCell {
+  flex-shrink: 0;
+  width: 4px;
+  min-width: 1px;
+}
+
+/* Компактный вертикальный ряд (для WithVerticalOrientation) */
+.verticalRowCompact {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  height: 48px;
+}
+
+.verticalRowCompactLabel {
+  display: flex;
+  align-items: center;
+}
+
+/* Ячейка матрицы: горизонтальный разделитель */
+.matrixCellHorizontal {
+  width: 80px;
+}
+
+/* Ячейка матрицы: вертикальный разделитель */
+.matrixCellVertical {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
