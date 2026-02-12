@@ -1,4 +1,5 @@
 import '@sbercloud/figma-variables/build/css/tokens.css';
+import '@sbercloud/figma-variables/build/css/acrylic/yes.css';
 
 import './global.scss';
 
@@ -15,8 +16,9 @@ const preview: Preview = {
       const theme = (context.globals?.[GLOBAL_KEYS.THEME] as 'light' | 'dark') ?? 'light';
       const brand = (context.globals?.[GLOBAL_KEYS.BRAND] as 'brandA' | 'brandB') ?? 'brandA';
       const platform = (context.globals?.[GLOBAL_KEYS.PLATFORM] as 'desktop' | 'mobile') ?? 'desktop';
+      const acrylic = (context.globals?.[GLOBAL_KEYS.ACRYLIC] as 'enabled' | 'disabled') ?? 'disabled';
       return (
-        <StoryWrapper theme={theme} brand={brand} platform={platform}>
+        <StoryWrapper theme={theme} brand={brand} platform={platform} acrylic={acrylic}>
           <Story />
         </StoryWrapper>
       );
@@ -40,7 +42,7 @@ const preview: Preview = {
     // Сортировка stories
     options: {
       storySort: {
-        order: ['Introduction', 'Documentation', 'Components', '*'],
+        order: ['Introduction', 'Documentation', 'Materials', 'Components', '*'],
       },
     },
 

@@ -3,8 +3,10 @@ import { Select } from 'storybook/internal/components';
 import { addons, useGlobals } from 'storybook/manager-api';
 
 import { BRAND_COLOR } from '../config/brandColors';
-import { DAY_PATH, LAPTOP_PATH, MOBILE_PHONE_PATH, NIGHT_PATH } from '../config/svgPaths';
+import { ACRYLIC_OFF, ACRYLIC_ON, DAY_PATH, LAPTOP_PATH, MOBILE_PHONE_PATH, NIGHT_PATH } from '../config/svgPaths';
 import {
+  Acrylic,
+  ACRYLIC_OPTIONS,
   Brand,
   BRAND_OPTIONS,
   CHANNEL_SYNC_EVENT,
@@ -50,6 +52,10 @@ function PlatformIcon({ platform }: { platform: Platform }) {
   return <SvgIcon d={platform === 'mobile' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
 }
 
+function AcrylicIcon({ acrylic }: { acrylic: Acrylic }) {
+  return <SvgIcon d={acrylic === 'enabled' ? ACRYLIC_ON : ACRYLIC_OFF} />;
+}
+
 const themeOptionsWithIcons: SelectOption[] = [
   { value: 'light', title: THEME_OPTIONS[0].label, icon: <SvgIcon d={DAY_PATH} /> },
   { value: 'dark', title: THEME_OPTIONS[1].label, icon: <SvgIcon d={NIGHT_PATH} /> },
@@ -65,11 +71,23 @@ const platformOptionsWithIcons: SelectOption[] = [
   { value: 'mobile', title: PLATFORM_OPTIONS[1].label, icon: <SvgIcon d={MOBILE_PHONE_PATH} /> },
 ];
 
+const acrylicOptionsWithIcons: SelectOption[] = [
+  { value: 'enabled', title: ACRYLIC_OPTIONS[0].label, icon: <SvgIcon d={ACRYLIC_ON} /> },
+  { value: 'disabled', title: ACRYLIC_OPTIONS[1].label, icon: <SvgIcon d={ACRYLIC_OFF} /> },
+];
+
 const wrapperStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   gap: 4,
   height: '100%',
+};
+
+type ControlsPayload = {
+  theme?: Theme;
+  brand?: Brand;
+  platform?: Platform;
+  acrylic?: Acrylic;
 };
 
 /**
@@ -81,6 +99,7 @@ export function ThemeControlsToolbar() {
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
   const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
   const platform = (globals[GLOBAL_KEYS.PLATFORM] as Platform) ?? 'desktop';
+  const acrylic = (globals[GLOBAL_KEYS.ACRYLIC] as Acrylic) ?? 'disabled';
 
   const setTheme = useCallback((value: Theme) => updateGlobals({ [GLOBAL_KEYS.THEME]: value }), [updateGlobals]);
   const setBrand = useCallback((value: Brand) => updateGlobals({ [GLOBAL_KEYS.BRAND]: value }), [updateGlobals]);
@@ -88,14 +107,16 @@ export function ThemeControlsToolbar() {
     (value: Platform) => updateGlobals({ [GLOBAL_KEYS.PLATFORM]: value }),
     [updateGlobals],
   );
+  const setAcrylic = useCallback((value: Acrylic) => updateGlobals({ [GLOBAL_KEYS.ACRYLIC]: value }), [updateGlobals]);
 
   useEffect(() => {
     const channel = addons.getChannel();
-    const handler = (payload: { theme?: Theme; brand?: Brand; platform?: Platform }) => {
+    const handler = (payload: ControlsPayload) => {
       const next: Record<string, string> = {};
       if (payload.theme) next[GLOBAL_KEYS.THEME] = payload.theme;
       if (payload.brand) next[GLOBAL_KEYS.BRAND] = payload.brand;
       if (payload.platform) next[GLOBAL_KEYS.PLATFORM] = payload.platform;
+      if (payload.acrylic) next[GLOBAL_KEYS.ACRYLIC] = payload.acrylic;
       if (Object.keys(next).length) updateGlobals(next);
     };
     channel.on(CHANNEL_SYNC_EVENT, handler);
@@ -131,6 +152,16 @@ export function ThemeControlsToolbar() {
         options={platformOptionsWithIcons}
         defaultOptions={platform}
         onSelect={v => setPlatform(String(v) as Platform)}
+        size='small'
+        padding='small'
+      />
+      <Select
+        key={`acrylic-${acrylic}`}
+        ariaLabel='Акрил'
+        icon={<AcrylicIcon acrylic={acrylic} />}
+        options={acrylicOptionsWithIcons}
+        defaultOptions={acrylic}
+        onSelect={v => setAcrylic(String(v) as Acrylic)}
         size='small'
         padding='small'
       />

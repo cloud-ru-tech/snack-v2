@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import type { ReactNode } from 'react';
 
-import type { Brand, Platform, Theme } from '../types';
+import type { Acrylic, Brand, Platform, Theme } from '../types';
 import styles from './styles.module.scss';
 
 type StoryWrapperProps = {
@@ -9,6 +9,7 @@ type StoryWrapperProps = {
   theme: Theme;
   brand: Brand;
   platform: Platform;
+  acrylic: Acrylic;
 };
 
 /**
@@ -16,7 +17,7 @@ type StoryWrapperProps = {
  * Подключает глобальные стили, шрифты и обеспечивает единообразное отображение.
  * Тема, бренд и платформа задаются через аддон "Тема / Бренд / Платформа" в панели Storybook.
  */
-export function StoryWrapper({ children, theme, brand, platform }: StoryWrapperProps) {
+export function StoryWrapper({ children, theme, brand, platform, acrylic }: StoryWrapperProps) {
   return (
     <div
       className={cn(
@@ -28,6 +29,7 @@ export function StoryWrapper({ children, theme, brand, platform }: StoryWrapperP
         `sn-${platform}`,
         `sn-${theme}`,
         `sn-${brand}`,
+        acrylic === 'enabled' ? 'sn-yes' : 'sn-no',
       )}
     >
       <div

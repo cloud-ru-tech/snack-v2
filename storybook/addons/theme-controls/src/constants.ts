@@ -6,12 +6,14 @@ export const GLOBAL_KEYS = {
   THEME: 'theme',
   BRAND: 'brand',
   PLATFORM: 'platform',
+  ACRYLIC: 'acrylic',
 } as const;
 
 export const INITIAL_GLOBALS = {
   [GLOBAL_KEYS.THEME]: 'light',
   [GLOBAL_KEYS.BRAND]: 'brandA',
   [GLOBAL_KEYS.PLATFORM]: 'desktop',
+  [GLOBAL_KEYS.ACRYLIC]: 'disabled',
 } as const;
 
 export const THEME_OPTIONS = [
@@ -29,9 +31,15 @@ export const PLATFORM_OPTIONS = [
   { value: 'mobile', label: 'Mobile' },
 ] as const;
 
+export const ACRYLIC_OPTIONS = [
+  { value: 'enabled', label: 'Acryl ON' },
+  { value: 'disabled', label: 'Acryl OFF' },
+] as const;
+
 export type Theme = (typeof THEME_OPTIONS)[number]['value'];
 export type Brand = (typeof BRAND_OPTIONS)[number]['value'];
 export type Platform = (typeof PLATFORM_OPTIONS)[number]['value'];
+export type Acrylic = (typeof ACRYLIC_OPTIONS)[number]['value'];
 
 /** Event from preview when parent (docs) sends theme-sync */
 export const CHANNEL_SYNC_EVENT = `${ADDON_ID}/sync`;
