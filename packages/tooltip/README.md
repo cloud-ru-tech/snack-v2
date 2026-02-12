@@ -1,6 +1,6 @@
 # Tooltip
 
-Всплывающая подсказка при наведении на элемент-триггер (или по фокусу/клику). Стили и анатомия — из design tokens (Figma variables).
+Пакет компонентов для всплывающих подсказок: **Tooltip** (с произвольным триггером) и **QuestionTooltip** (с иконкой «вопрос»). Стили и анатомия — из design tokens (Figma variables).
 
 ## Installation
 
@@ -18,13 +18,20 @@ pnpm add @design-system/tooltip
 import {
   TRIGGER,
   PLACEMENT,
-  Tooltip,
-  type TooltipProps,
   type Placement
 } from '@design-system/tooltip';
 ```
 
 ## Live examples
+
+### Basic
+
+```tsx
+import { QuestionTooltip } from '@design-system/tooltip';
+
+<QuestionTooltip content="Краткая подсказка при наведении на иконку" />
+<QuestionTooltip content="Тултип справа" placement="right" />
+```
 
 ### Basic usage
 
@@ -64,57 +71,61 @@ import { StorybookIframe } from '@design-system/tooltip';
 
 ## Usage
 
-### Basic example
+### Basic
 
 ```tsx
-import { Tooltip } from '@design-system/tooltip';
+import { QuestionTooltip } from '@design-system/tooltip';
 
 export function Example() {
   return (
-    <Tooltip content="Подсказка">
-      <button type="button">Наведи курсор</button>
-    </Tooltip>
+    <QuestionTooltip content="Краткая подсказка при наведении на иконку" />
   );
 }
 ```
 
-### Placement и trigger
+### Placement и triggerLabel
 
 ```tsx
-import { Tooltip } from '@design-system/tooltip';
+import { QuestionTooltip } from '@design-system/tooltip';
 
 export function Example() {
   return (
-    <Tooltip
-      content="Тултип по клику"
+    <QuestionTooltip
+      content="Тултип снизу"
       placement="bottom"
-      trigger="click"
-    >
-      <button type="button">Нажми</button>
-    </Tooltip>
+      triggerLabel="Подсказка о поле"
+    />
   );
 }
 ```
 
-### Задержки по hover
+### По клику (мобильные / явное открытие)
 
 ```tsx
-import { Tooltip } from '@design-system/tooltip';
+import { QuestionTooltip, TRIGGER } from '@design-system/tooltip';
 
 export function Example() {
   return (
-    <Tooltip
-      content="Откроется через 500 мс"
-      hoverDelayOpen={500}
-      hoverDelayClose={200}
-    >
-      <span>Наведи курсор</span>
-    </Tooltip>
+    <QuestionTooltip
+      content="Открывается по клику"
+      trigger={TRIGGER.Click}
+    />
   );
 }
 ```
 
 ## Props
+
+### QuestionTooltipProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| content* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
+| hoverDelayOpen | `number` | - | Задержка открытия по ховеру (мс) |
+| hoverDelayClose | `number` | - | Задержка закрытия по ховеру (мс) |
+| triggerLabel | `string` | Подсказка | Доступное имя для иконки-триггера |
+| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
+| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| offset | `number` | 4 | Отступ поповера от его триггер-элемента (в пикселях). |
 
 ### TooltipProps
 | name | type | default value | description |
@@ -125,13 +136,14 @@ export function Example() {
 | hoverDelayClose | `number` | - | Задержка закрытия по ховеру (мс) |
 | placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
 | trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| offset | `number` | 4 | Отступ поповера от его триггер-элемента (в пикселях). |
+| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
+| triggerClassName | `string` | - | CSS-класс триггера |
 
 ## Best Practices
 
-1. **Краткий текст** — используйте тултип для коротких подсказок; длинный текст лучше выносить в отдельный блок или Popover.
-2. **Не дублируйте видимый текст** — не показывайте в тултипе то, что уже написано на триггере.
-3. **Триггер по контексту** — на десктопе удобен hover; для тач-устройств рассмотрите `trigger="click"` или `trigger="hoverAndFocusVisible"`.
+1. **Краткий текст** — используйте для коротких пояснений к полям, меткам или настройкам.
+2. **Осмысленный triggerLabel** — задайте `triggerLabel` под контекст (например, «Подсказка о сумме»), чтобы скринридеры озвучивали назначение кнопки.
+3. **Триггер по контексту** — на десктопе удобен hover; для тач-устройств можно использовать `trigger={TRIGGER.Click}`.
 
 ---
 

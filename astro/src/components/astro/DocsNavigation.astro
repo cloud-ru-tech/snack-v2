@@ -69,16 +69,17 @@ componentsDocs.forEach((doc) => {
     order: doc.data.order ?? 999,
     packageName,
     fileName: parts[parts.length - 1],
+    isPackageIndex: parts.length === 2 || parts[parts.length - 1].toLowerCase() === 'index',
   });
 });
 
 // For each package, take index file if exists, otherwise first found page
 const components = Array.from(componentsByPackage.entries())
   .map(([packageName, docs]) => {
-    // Sort: index first, then others
+    // Sort: package index first (id "components/packageName" or ".../index"), then others
     docs.sort((a, b) => {
-      const aIsIndex = a.fileName.toLowerCase() === 'index';
-      const bIsIndex = b.fileName.toLowerCase() === 'index';
+      const aIsIndex = a.isPackageIndex;
+      const bIsIndex = b.isPackageIndex;
       if (aIsIndex && !bIsIndex) return -1;
       if (!aIsIndex && bIsIndex) return 1;
       return a.order - b.order || a.title.localeCompare(b.title);

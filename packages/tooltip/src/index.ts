@@ -1,4 +1,3 @@
 export { TRIGGER, PLACEMENT } from '@design-system/popover-private';
-export { Tooltip } from './Tooltip';
-export type { TooltipProps } from './Tooltip';
+export * from './components';
 export type { Placement } from './types';
