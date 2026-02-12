@@ -1,6 +1,6 @@
 # Portal Context
 
-{/* TODO: Add component description */}
+Контекст задаёт корневой DOM-узел, в который компоненты (Tooltip, Popover и др.) рендерят порталы. По умолчанию используется `document.body`. Через проп `root` можно указать другой контейнер — например, область внутри iframe или изолированный блок для тестов и изоляции стилей.
 
 ## Installation
 
@@ -16,36 +16,64 @@ pnpm add @design-system/portal-context
 
 
 
-## Live examples
-
-### Basic usage
-
-```tsx
-import { PortalContextProvider } from '@design-system/portal-context';
-
-<PortalContextProvider />
-```
 
 
 ## Usage
 
-### Basic example
+### Базовое использование
 
 ```tsx
 import { PortalContextProvider } from '@design-system/portal-context';
 
-export function Example() {
-  return <PortalContextProvider />;
+export function App() {
+  return (
+    <PortalContextProvider>
+      <YourApp />
+    </PortalContextProvider>
+  );
 }
 ```
 
-### With props
+### Кастомный контейнер для порталов
 
 ```tsx
+import { useRef } from 'react';
 import { PortalContextProvider } from '@design-system/portal-context';
 
-export function Example() {
-  return <PortalContextProvider prop="value" />;
+export function App() {
+  const portalRootRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={portalRootRef} className="portal-container">
+      <PortalContextProvider root={portalRootRef}>
+        <YourApp />
+      </PortalContextProvider>
+    </div>
+  );
+}
+```
+
+### Использование в компонентах с порталами
+
+```tsx
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { usePortalContext } from '@design-system/portal-context';
+
+function PortalContent() {
+  const portalRoot = usePortalContext();
+  const [target, setTarget] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      const el = portalRoot?.current ?? null;
+      if (el) setTarget(el);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [portalRoot]);
+
+  if (!target) return null;
+  return createPortal(<div>Контент портала</div>, target);
 }
 ```
 
@@ -58,11 +86,9 @@ export function Example() {
 
 ## Best Practices
 
-{/* TODO: Add best practices */}
-
-1. **Best practice 1** — Description
-2. **Best practice 2** — Description
-3. **Best practice 3** — Description
+1. **Один провайдер на приложение** — оборачивайте корень приложения в один `PortalContextProvider`; вложенные провайдеры переопределяют корень для своего поддерева.
+2. **Кастомный root для iframe и изоляции** — при встраивании в iframe или нужде изолировать порталы передавайте `root` на контейнер внутри нужной области.
+3. **Тесты** — в тестах передавайте `root` на контейнер внутри тестового DOM, чтобы порталы не уходили в общий `document.body` и не мешали другим тестам.
 
 ---
 

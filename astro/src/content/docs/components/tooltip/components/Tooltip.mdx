@@ -4,9 +4,9 @@ description: Tooltip — всплывающая подсказка с произ
 version: "0.1.0"
 ---
 
-import { TooltipBasicExample } from '../ui/TooltipBasicExample';
 import { ExampleContainer } from '#astro/components/mdx';
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+import { Tooltip } from '@packages/tooltip/src';
 
 # Tooltip
 
@@ -17,36 +17,10 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 ### Basic usage
 
 <ExampleContainer>
-  <TooltipBasicExample client:load />
+  <Tooltip content='Подсказка при наведении' placement='right' client:load>
+    <button type='button' client:load>Наведи курсор</button>
+  </Tooltip>
 </ExampleContainer>
-
-### Разные положения (placement)
-
-Наведи курсор на кнопки — тултип показывается сверху, снизу, слева или справа от триггера.
-
-<StorybookIframe storyId="components-tooltip--placements" showControls={false} height="400px" />
-
-### По клику (trigger)
-
-Для мобильных или явного показа подсказки можно открывать тултип по клику: `trigger="click"`.
-
-<StorybookIframe storyId="components-tooltip--with-click-trigger" showControls={false} height="300px" />
-
-### Длинный текст
-
-Тултип ограничивает максимальную ширину и переносит строки — длинный текст остаётся читаемым.
-
-<StorybookIframe storyId="components-tooltip--with-long-content" showControls={false} height="300px" />
-
-## Storybook
-
-### Playground
-
-<StorybookIframe storyId="components-tooltip--playground" showControls={true} height="600px" />
-
-## Usage
-
-### Basic example
 
 ```tsx
 import { Tooltip } from '@design-system/tooltip';
@@ -60,7 +34,25 @@ export function Example() {
 }
 ```
 
-### Placement и trigger
+### Разные положения (placement)
+
+Наведи курсор на кнопки — тултип показывается сверху, снизу, слева или справа от триггера.
+
+<StorybookIframe storyId="components-tooltip--placements" showControls={false} height="400px" />
+
+### Длинный текст
+
+Тултип ограничивает максимальную ширину и переносит строки — длинный текст остаётся читаемым.
+
+<StorybookIframe storyId="components-tooltip--with-long-content" showControls={false} height="300px" />
+
+
+### Trigger по клику
+
+Для мобильных или явного показа подсказки можно открывать тултип по клику: `trigger="click"`.
+
+<StorybookIframe storyId="components-tooltip--with-click-trigger" showControls={false} height="300px" />
+
 
 ```tsx
 import { Tooltip } from '@design-system/tooltip';
@@ -69,16 +61,27 @@ export function Example() {
   return (
     <Tooltip
       content="Тултип по клику"
-      placement="bottom"
       trigger="click"
     >
-      <button type="button">Нажми</button>
+      <button type="button">Нажми, чтобы показать</button>
     </Tooltip>
   );
 }
 ```
 
 ### Задержки по hover
+
+<ExampleContainer>
+  <Tooltip
+    content="Откроется через 500 мс"
+    placement="right"
+    hoverDelayOpen={500}
+    hoverDelayClose={200}
+    client:load
+  >
+    <span client:load>Наведи курсор</span>
+  </Tooltip>
+</ExampleContainer>
 
 ```tsx
 import { Tooltip } from '@design-system/tooltip';
@@ -96,6 +99,18 @@ export function Example() {
 }
 ```
 
+## Storybook
+
+### Playground
+
+<StorybookIframe storyId="components-tooltip--playground" showControls={true} height="600px" />
+
+### Visual Matrix
+
+Для просмотра всех положений Tooltip в виде матрицы используйте story **Visual Matrix** в Storybook.
+
+<StorybookIframe storyId="components-tooltip--visual-matrix" showControls={false} height="400px" />
+
 ## Props
 
 [//]: DOCUMENTATION_SECTION_START
@@ -109,7 +124,8 @@ export function Example() {
 | hoverDelayClose | `number` | - | Задержка закрытия по ховеру (мс) |
 | placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
 | trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| offset | `number` | 4 | Отступ поповера от его триггер-элемента (в пикселях). |
+| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
+| triggerClassName | `string` | - | CSS-класс триггера |
 
 
 [//]: DOCUMENTATION_SECTION_END

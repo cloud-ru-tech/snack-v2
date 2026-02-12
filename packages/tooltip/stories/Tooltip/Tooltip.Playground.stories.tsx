@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PLACEMENT, Tooltip, type TooltipProps, TRIGGER } from '../../src';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 
 const meta: Meta<TooltipProps> = {
   title: 'Components/Tooltip',
@@ -95,7 +95,35 @@ export const Playground: Story = {
   args: {
     hoverDelayOpen: 0,
     hoverDelayClose: 0,
-    offset: 4,
+  },
+
+  argTypes: {
+    content: {
+      control: 'text',
+      description: 'Содержимое тултипа (текст или разметка)',
+    },
+    placement: {
+      control: 'select',
+      options: Object.values(PLACEMENT),
+      description: 'Расположение тултипа относительно триггера',
+    },
+    trigger: {
+      control: 'select',
+      options: Object.values(TRIGGER),
+      description: 'Событие, по которому показывается тултип',
+    },
+    hoverDelayOpen: {
+      control: 'number',
+      description: 'Задержка открытия по ховеру (мс)',
+    },
+    hoverDelayClose: {
+      control: 'number',
+      description: 'Задержка закрытия по ховеру (мс)',
+    },
+    offset: {
+      control: 'number',
+      description: 'Отступ тултипа от триггера (px)',
+    },
   },
 
   tags: ['dev', 'test', 'autodocs'],

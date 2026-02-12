@@ -15,7 +15,7 @@ type Story = StoryObj<PopoverPrivateProps>;
 const PopoverContent = () => <div className={styles.popoverContent}>Opens on hover</div>;
 
 export const WithHoverTrigger: Story = {
-  tags: ['dev', 'autodocs'],
+  tags: ['!dev', 'autodocs'],
   args: {
     trigger: TRIGGER.Hover,
     placement: PLACEMENT.Top,

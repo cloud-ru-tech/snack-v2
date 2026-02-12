@@ -67,7 +67,7 @@ function Example() {
     },
   },
   args: {
-    placement: PLACEMENT.Right,
+    placement: PLACEMENT.Top,
     trigger: TRIGGER.Click,
     hasArrow: false,
     outsideClick: true,

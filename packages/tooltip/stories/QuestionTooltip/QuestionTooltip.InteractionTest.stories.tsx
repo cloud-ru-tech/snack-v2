@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, waitFor, within } from '@storybook/test';
 
 import { QuestionTooltip, type QuestionTooltipProps } from '../../src';
-import styles from '../Tooltip/styles.module.scss';
+import styles from '../styles.module.scss';
 
 const meta: Meta<QuestionTooltipProps> = {
   title: 'Components/Tooltip/QuestionTooltip',

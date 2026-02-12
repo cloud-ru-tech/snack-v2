@@ -16,7 +16,7 @@ const keyPlacements = [PLACEMENT.Top, PLACEMENT.Bottom, PLACEMENT.Left, PLACEMEN
 const keyTriggers = [TRIGGER.HoverAndFocusVisible, TRIGGER.Click];
 
 export const VisualMatrix: Story = {
-  tags: ['test', '!dev'],
+  tags: ['test', 'dev'],
   render: () => (
     <StoryTable
       sectionTitle='Trigger × Placement'

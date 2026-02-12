@@ -14,7 +14,7 @@ type Story = StoryObj<PopoverPrivateProps>;
 const PopoverContent = () => <div className={styles.popoverContent}>Popover</div>;
 
 export const WithArrow: Story = {
-  tags: ['dev', 'autodocs'],
+  tags: ['!dev', 'autodocs'],
   args: {
     hasArrow: true,
     placement: PLACEMENT.Right,

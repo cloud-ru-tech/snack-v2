@@ -61,7 +61,7 @@ componentsDocs.forEach((doc) => {
   }
   
   const slug = withBase(relativePath);
-  
+
   componentsByPackage.get(packageName)!.push({
     title: doc.data.title,
     description: doc.data.description,
@@ -69,7 +69,7 @@ componentsDocs.forEach((doc) => {
     order: doc.data.order ?? 999,
     packageName,
     fileName: parts[parts.length - 1],
-    isPackageIndex: parts.length === 2 || parts[parts.length - 1].toLowerCase() === 'index',
+    isPackageIndex: doc.filePath.endsWith('index.mdx'),
   });
 });
 

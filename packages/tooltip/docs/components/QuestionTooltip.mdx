@@ -23,53 +23,35 @@ import { QuestionTooltip } from '../../src';
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="flex-start">
     <ExampleItem label="Подсказка по умолчанию">
-      <QuestionTooltip content="Краткая подсказка при наведении на иконку" />
-    </ExampleItem>
-    <ExampleItem label="Справа">
-      <QuestionTooltip content="Тултип справа" placement="right" />
+      <QuestionTooltip content="Подсказка при наведении на иконку" client:load />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
-
-## Storybook
-
-### Playground
-
-<StorybookIframe storyId="components-tooltip-questiontooltip--playground" showControls={true} height="400px" />
-
-### Placements
-
-<StorybookIframe storyId="components-tooltip-questiontooltip--placements" showControls={false} height="400px" />
-
-### Visual Matrix
-
-Для просмотра всех положений QuestionTooltip в виде матрицы используйте story **Visual Matrix** в Storybook.
-
-<StorybookIframe storyId="components-tooltip-questiontooltip--visual-matrix" showControls={false} height="400px" />
-
-### По клику (trigger)
-
-<StorybookIframe storyId="components-tooltip-questiontooltip--with-click-trigger" showControls={false} height="300px" />
-
-### Длинный текст
-
-<StorybookIframe storyId="components-tooltip-questiontooltip--with-long-content" showControls={false} height="300px" />
-
-## Usage
-
-### Basic
 
 ```tsx
 import { QuestionTooltip } from '@design-system/tooltip';
 
 export function Example() {
   return (
-    <QuestionTooltip content="Краткая подсказка при наведении на иконку" />
+    <QuestionTooltip content="Подсказка при наведении на иконку" />
   );
 }
 ```
 
 ### Placement и triggerLabel
+
+<ExampleContainer>
+  <ExampleRow gap="large" justifyContent="flex-start">
+    <ExampleItem label="Снизу с подписью">
+      <QuestionTooltip
+        content="Тултип снизу"
+        placement="bottom"
+        triggerLabel="Подсказка о поле"
+        client:load
+      />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
 
 ```tsx
 import { QuestionTooltip } from '@design-system/tooltip';
@@ -85,7 +67,23 @@ export function Example() {
 }
 ```
 
-### По клику (мобильные / явное открытие)
+### Разные положения (placement)
+
+Наведи курсор на иконки — тултип показывается сверху, снизу, слева или справа от триггера.
+
+<StorybookIframe storyId="components-tooltip-questiontooltip--placements" showControls={false} height="400px" />
+
+### Длинный текст
+
+Тултип ограничивает максимальную ширину и переносит строки — длинный текст остаётся читаемым.
+
+<StorybookIframe storyId="components-tooltip-questiontooltip--with-long-content" showControls={false} height="300px" />
+
+### По клику (trigger)
+
+Для мобильных или явного открытия подсказки можно открывать тултип по клику: `trigger={TRIGGER.Click}`.
+
+<StorybookIframe storyId="components-tooltip-questiontooltip--with-click-trigger" showControls={false} height="300px" />
 
 ```tsx
 import { QuestionTooltip, TRIGGER } from '@design-system/tooltip';
@@ -102,6 +100,19 @@ export function Example() {
 
 ### Задержки по hover
 
+<ExampleContainer>
+  <ExampleRow gap="large" justifyContent="flex-start">
+    <ExampleItem label="С задержкой 500 мс">
+      <QuestionTooltip
+        content="Откроется через 500 мс"
+        hoverDelayOpen={500}
+        hoverDelayClose={200}
+        client:load
+      />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
 ```tsx
 import { QuestionTooltip } from '@design-system/tooltip';
 
@@ -115,6 +126,18 @@ export function Example() {
   );
 }
 ```
+
+## Storybook
+
+### Playground
+
+<StorybookIframe storyId="components-tooltip-questiontooltip--playground" showControls={true} height="400px" />
+
+### Visual Matrix
+
+Для просмотра всех положений QuestionTooltip в виде матрицы используйте story **Visual Matrix** в Storybook.
+
+<StorybookIframe storyId="components-tooltip-questiontooltip--visual-matrix" showControls={false} height="400px" />
 
 ## Props
 

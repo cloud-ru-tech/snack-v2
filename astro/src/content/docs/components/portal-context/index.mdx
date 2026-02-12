@@ -14,7 +14,7 @@ import {
 
 # Portal Context
 
-{/* TODO: Add component description */}
+Контекст задаёт корневой DOM-узел, в который компоненты (Tooltip, Popover и др.) рендерят порталы. По умолчанию используется `document.body`. Через проп `root` можно указать другой контейнер — например, область внутри iframe или изолированный блок для тестов и изоляции стилей.
 
 **Version:** `{frontmatter.version}`
 
@@ -40,49 +40,80 @@ import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 ## Overview
 
-{/* TODO: Add detailed component overview */}
+`PortalContextProvider` и хук `usePortalContext` позволяют единообразно управлять контейнером для порталов во всём приложении. Компоненты вроде Tooltip и Popover вызывают `usePortalContext()` и рендерят содержимое через `createPortal` в полученный узел.
 
-Portal Context is a component for... It automatically handles:
-
-- **Feature 1**: Description
-- **Feature 2**: Description
-- **Feature 3**: Description
+- **Корень по умолчанию** — без пропа `root` порталы монтируются в `document.body`.
+- **Кастомный контейнер** — проп `root` (RefObject&lt;HTMLElement&gt;) задаёт узел для порталов (iframe, изоляция стилей, тесты).
+- **Единый контракт** — все компоненты с порталами используют один контекст, что упрощает встраивание в разные окружения.
 
 ## Live examples
 
-{/* TODO: Add live examples */}
-
-### Basic usage
-
-<ExampleContainer>
-  <PortalContextProvider />
-</ExampleContainer>
-
-## Storybook
-
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
-<StorybookIframe storyId="components-portal-context--basic" showControls={true} height="600px" />
+<StorybookIframe storyId="components-portalcontext--playground" showControls={true} height="600px" />
 
 ## Usage
 
-### Basic example
+### Базовое использование
+
+Оберните приложение в `PortalContextProvider`. Без пропа `root` порталы будут монтироваться в `document.body`.
 
 ```tsx
 import { PortalContextProvider } from '@design-system/portal-context';
 
-export function Example() {
-  return <PortalContextProvider />;
+export function App() {
+  return (
+    <PortalContextProvider>
+      <YourApp />
+    </PortalContextProvider>
+  );
 }
 ```
 
-### With props
+### Кастомный контейнер для порталов
+
+Передайте `root` — RefObject на DOM-элемент, в который должны рендериться порталы (например, внутри iframe или для изоляции стилей).
 
 ```tsx
+import { useRef } from 'react';
 import { PortalContextProvider } from '@design-system/portal-context';
 
-export function Example() {
-  return <PortalContextProvider prop="value" />;
+export function App() {
+  const portalRootRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={portalRootRef} className="portal-container">
+      <PortalContextProvider root={portalRootRef}>
+        <YourApp />
+      </PortalContextProvider>
+    </div>
+  );
+}
+```
+
+### Использование в компонентах с порталами
+
+Компоненты (Tooltip, Popover и т.п.) получают корень через хук `usePortalContext()` и рендерят содержимое через `createPortal`:
+
+```tsx
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { usePortalContext } from '@design-system/portal-context';
+
+function PortalContent() {
+  const portalRoot = usePortalContext();
+  const [target, setTarget] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      const el = portalRoot?.current ?? null;
+      if (el) setTarget(el);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [portalRoot]);
+
+  if (!target) return null;
+  return createPortal(<div>Контент портала</div>, target);
 }
 ```
 
@@ -100,15 +131,11 @@ export function Example() {
 
 ## Accessibility
 
-{/* TODO: Add accessibility information */}
-
-- Semantic HTML structure ensures screen reader compatibility
-- Component accepts all standard HTML attributes for customization
+- Контекст не рендерит разметку сам — он только передаёт ссылку на контейнер. Доступность обеспечивают компоненты, которые используют порталы (Tooltip, Popover и т.д.).
+- При кастомном `root` убедитесь, что контейнер доступен для скринридеров и не скрыт от навигации (например, не имеет `aria-hidden` без необходимости).
 
 ## Best practices
 
-{/* TODO: Add best practices */}
-
-1. **Best practice 1** — Description
-2. **Best practice 2** — Description
-3. **Best practice 3** — Description
+1. **Один провайдер на приложение** — оборачивайте корень приложения в один `PortalContextProvider`; вложенные провайдеры переопределяют корень для своего поддерева.
+2. **Кастомный root для iframe и изоляции** — при встраивании в iframe или нужде изолировать порталы передавайте `root` на контейнер внутри нужной области.
+3. **Тесты** — в тестах передавайте `root` на контейнер внутри тестового DOM, чтобы порталы не уходили в общий `document.body` и не мешали другим тестам.

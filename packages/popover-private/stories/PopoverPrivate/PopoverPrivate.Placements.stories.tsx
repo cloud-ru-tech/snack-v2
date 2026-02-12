@@ -29,7 +29,7 @@ const keyPlacements = [
 const PopoverContent = ({ label }: { label: string }) => <div className={styles.popoverContent}>{label}</div>;
 
 export const Placements: Story = {
-  tags: ['dev', 'autodocs'],
+  tags: ['!dev', 'autodocs'],
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 48, padding: 64, justifyContent: 'center' }}>
       {keyPlacements.map(placement => (

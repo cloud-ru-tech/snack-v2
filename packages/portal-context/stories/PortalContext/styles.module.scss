@@ -1,0 +1,65 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 560px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.container {
+  min-height: 100px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.containerBody {
+  position: relative;
+  border: 2px dashed base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.containerCustom {
+  position: relative;
+  border: 2px dashed base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.portalContent {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 8px;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+
+  background: base.$sn-theme-color-invertNeutral-background;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+}
+
+.hint {
+  margin: 0;
+  font-size: 13px;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
