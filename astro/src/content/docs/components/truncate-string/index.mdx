@@ -1,0 +1,209 @@
+---
+title: Truncate String
+description: Компонент для обрезки длинного текста с многоточием и опциональным тултипом с полным текстом.
+version: "1.0.0"
+---
+
+import { TruncateString, VARIANT } from '@design-system/truncate-string';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '#astro/components/mdx';
+
+# Truncate String
+
+Компонент для обрезки длинного текста с многоточием. При обрезке по умолчанию показывает тултип с полным текстом при наведении. Поддерживает два варианта: обрезка с конца (End) и по середине (Middle).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/truncate-string
+# or
+yarn add @design-system/truncate-string
+# or
+pnpm add @design-system/truncate-string
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName="truncate-string" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="truncate-string" />
+
+## Overview
+
+Truncate String автоматически:
+
+- **Обрезает текст с многоточием** — в одну строку (End) или по середине (Middle)
+- **Показывает тултип с полным текстом** при наведении, если текст обрезан (можно отключить через `hideTooltip`)
+- **Поддерживает многострочность** (только вариант End) — `maxLines` задаёт максимальное количество строк
+- **Реагирует на изменение размера контейнера** — при ресайзе пересчитывает необходимость обрезки и тултипа
+
+Дополнительно экспортируются утилиты: `truncateStringMiddle`, `isEllipsisActive` — для кастомной логики обрезки и проверки, обрезан ли текст в DOM.
+
+## Live examples
+
+### Обрезка с конца (End)
+
+Вариант по умолчанию. Текст обрезается с конца, многоточие в конце строки.
+
+<ExampleContainer>
+  <div style={{ maxWidth: '280px' }}>
+    <TruncateString
+      text="Очень длинная строка текста, которая будет обрезана с конца и при наведении покажет полный текст в тултипе"
+    />
+  </div>
+</ExampleContainer>
+
+### Обрезка по середине (Middle)
+
+Удобно для длинных путей, URL и идентификаторов: сохраняются начало и конец строки, середина заменяется на `...`.
+
+<ExampleContainer>
+  <div style={{ maxWidth: '280px' }}>
+    <TruncateString
+      variant={VARIANT.Middle}
+      text="Путь/к/очень/длинному/файлу/или/ссылке.txt"
+    />
+  </div>
+</ExampleContainer>
+
+### Многострочный текст (maxLines)
+
+Только для варианта End. Текст сворачивается до заданного числа строк.
+
+<ExampleContainer>
+  <ExampleRow>
+    <ExampleItem label="1 строка">
+      <div style={{ maxWidth: '200px' }}>
+        <TruncateString
+          text="Очень длинная строка или путь к файлу /project/src/components/TruncateString.tsx"
+          maxLines={1}
+          hideTooltip
+        />
+      </div>
+    </ExampleItem>
+    <ExampleItem label="2 строки">
+      <div style={{ maxWidth: '200px' }}>
+        <TruncateString
+          text="Очень длинная строка или путь к файлу /project/src/components/TruncateString.tsx"
+          maxLines={2}
+          hideTooltip
+        />
+      </div>
+    </ExampleItem>
+    <ExampleItem label="3 строки">
+      <div style={{ maxWidth: '200px' }}>
+        <TruncateString
+          text="Очень длинная строка или путь к файлу /project/src/components/TruncateString.tsx"
+          maxLines={3}
+          hideTooltip
+        />
+      </div>
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Без тултипа (hideTooltip)
+
+Текст по-прежнему обрезается, но тултип с полным текстом не показывается. Подходит для списков и таблиц, где полный текст доступен по клику или в другой колонке.
+
+<ExampleContainer>
+  <div style={{ maxWidth: '200px' }}>
+    <TruncateString
+      text="Длинная строка без тултипа при наведении"
+      hideTooltip
+    />
+  </div>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+<StorybookIframe storyId="components-truncatestring--playground" showControls={true} height="600px" />
+
+## Usage
+
+### Базовый пример (обрезка с конца)
+
+```tsx
+import { TruncateString } from '@design-system/truncate-string';
+
+export function Example() {
+  return (
+    <TruncateString text="Очень длинная строка текста, которая будет обрезана с конца" />
+  );
+}
+```
+
+### Обрезка по середине
+
+```tsx
+import { TruncateString, VARIANT } from '@design-system/truncate-string';
+
+export function Example() {
+  return (
+    <TruncateString
+      variant={VARIANT.Middle}
+      text="Путь/к/очень/длинному/файлу/или/ссылке.txt"
+    />
+  );
+}
+```
+
+### Многострочный текст и настройка тултипа
+
+```tsx
+import { TruncateString } from '@design-system/truncate-string';
+
+export function Example() {
+  return (
+    <TruncateString
+      text="Длинный текст на несколько строк"
+      maxLines={2}
+      placement="bottom"
+      tooltipClassName="my-tooltip"
+    />
+  );
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### TruncateStringProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| text* | `string` | - | Текст, который будет обрезаться |
+| variant | "middle" \| "end" | end | Вариант обрезания строки: `End` - с конца `Middle` - по середине |
+| className | `string` | - | CSS-класс |
+| tooltipClassName | `string` | - | Стиль для тултипа |
+| hideTooltip | `boolean` | - | Скрывать ли тултип с полным текстом |
+| maxLines | `number` | - | Максимальное кол-во строк, до которого может сворачиваться текст. |
+| placement | `any` | - | Положение тултипа относительно обрезанного текста. |
+| trigger | `any` | - | Условие отображения тултипа |
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+## Accessibility
+
+- При обрезке текста тултип даёт доступ к полному содержимому по наведению или фокусу
+- Компонент принимает стандартные HTML-атрибуты для кастомизации и тестирования
+- Для скринридеров полный текст доступен через тултип при взаимодействии с элементом
+
+## Best practices
+
+1. **Выбор варианта** — используйте **End** для обычного текста и подписей; **Middle** — для путей, URL и длинных идентификаторов, где важно видеть начало и конец.
+2. **Тултип** — в плотных списках или таблицах отключайте тултип через `hideTooltip`, если полный текст доступен по клику или в другой колонке.
+3. **Ограничение ширины** — задавайте `max-width` контейнеру (или родителю), иначе текст не будет обрезаться.

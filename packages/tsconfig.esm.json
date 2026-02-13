@@ -33,6 +33,9 @@
     },
     {
       "path": "./tooltip/tsconfig.esm.json"
+    },
+    {
+      "path": "./truncate-string/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

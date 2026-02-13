@@ -33,6 +33,9 @@
     },
     {
       "path": "./tooltip/tsconfig.cjs.json"
+    },
+    {
+      "path": "./truncate-string/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {
