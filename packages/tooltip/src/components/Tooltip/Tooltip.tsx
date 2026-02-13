@@ -2,9 +2,11 @@ import { PLACEMENT, PopoverPrivate, PopoverPrivateProps, TRIGGER } from '@design
 import cn from 'classnames';
 import { ReactNode } from 'react';
 
+import { extractSupportProps, WithSupportProps } from '@snack-uikit/utils';
+
 import styles from './styles.module.scss';
 
-export type TooltipProps = {
+export type TooltipProps = WithSupportProps<{
   /** Элемент, при наведении на который показывается тултип */
   children: ReactNode;
   /** Содержимое тултипа (текст или разметка) */
@@ -13,7 +15,8 @@ export type TooltipProps = {
   hoverDelayOpen?: number;
   /** Задержка закрытия по ховеру (мс) */
   hoverDelayClose?: number;
-} & Pick<Partial<PopoverPrivateProps>, 'placement' | 'trigger' | 'offset' | 'triggerClassName'>;
+}> &
+  Pick<PopoverPrivateProps, 'placement' | 'trigger' | 'offset' | 'triggerClassName' | 'open' | 'onOpenChange'>;
 
 export const DEFAULT_FALLBACK_PLACEMENTS = [PLACEMENT.Top, PLACEMENT.Right, PLACEMENT.Bottom, PLACEMENT.Left];
 
@@ -31,6 +34,9 @@ export function Tooltip({
   hoverDelayClose = 0,
   offset,
   triggerClassName,
+  open,
+  onOpenChange,
+  ...rest
 }: TooltipProps) {
   return (
     <PopoverPrivate
@@ -44,11 +50,14 @@ export function Tooltip({
       fallbackPlacements={DEFAULT_FALLBACK_PLACEMENTS}
       triggerClassName={cn(styles.triggerClassName, triggerClassName)}
       offset={offset}
+      open={open}
+      onOpenChange={onOpenChange}
       popoverContent={
         <div className={styles.tooltipContainer} role='tooltip'>
           {content}
         </div>
       }
+      {...extractSupportProps(rest)}
     >
       {children}
     </PopoverPrivate>

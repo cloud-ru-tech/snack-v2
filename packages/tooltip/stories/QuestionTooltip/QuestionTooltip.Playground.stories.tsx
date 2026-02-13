@@ -84,6 +84,13 @@ function Example() {
       control: 'number',
       description: 'Отступ тултипа от триггера (px)',
     },
+    'data-test-id': {
+      control: 'text',
+      description: 'Test ID для автотестов',
+      table: {
+        category: 'HTML Attributes',
+      },
+    },
   },
 };
 

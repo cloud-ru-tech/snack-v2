@@ -1,10 +1,12 @@
 import { PLACEMENT, PopoverPrivateProps, TRIGGER } from '@design-system/popover-private';
 import { ReactNode } from 'react';
 
+import { WithSupportProps } from '@snack-uikit/utils';
+
 import { Tooltip } from '../Tooltip';
 import styles from './styles.module.scss';
 
-export type QuestionTooltipProps = {
+export type QuestionTooltipProps = WithSupportProps<{
   /** Содержимое тултипа (текст или разметка) */
   content: ReactNode;
   /** Задержка открытия по ховеру (мс) */
@@ -13,7 +15,8 @@ export type QuestionTooltipProps = {
   hoverDelayClose?: number;
   /** Доступное имя для иконки-триггера */
   triggerLabel?: string;
-} & Pick<Partial<PopoverPrivateProps>, 'placement' | 'trigger' | 'offset'>;
+}> &
+  Pick<Partial<PopoverPrivateProps>, 'placement' | 'trigger' | 'offset'>;
 
 // Иконка «?» по Figma: размер 16 (sn/adaptive/size/icon/xs), цвет textMain.
 function QuestionIcon() {
@@ -41,6 +44,7 @@ export function QuestionTooltip({
   hoverDelayClose = 0,
   offset = 4,
   triggerLabel = 'Подсказка',
+  ...rest
 }: QuestionTooltipProps) {
   return (
     <Tooltip
@@ -51,6 +55,7 @@ export function QuestionTooltip({
       hoverDelayClose={hoverDelayClose}
       offset={offset}
       triggerClassName={styles.questionTooltipTrigger}
+      {...rest}
     >
       <button className={styles.button} type='button' aria-label={triggerLabel}>
         <QuestionIcon />

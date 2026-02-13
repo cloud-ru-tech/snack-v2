@@ -57,6 +57,10 @@ function Example() {
     hoverDelayClose: 100,
   },
   argTypes: {
+    open: {
+      control: 'boolean',
+      description: 'Открыт ли тултип',
+    },
     children: {
       control: false,
       description: 'Элемент, при наведении на который показывается тултип',
@@ -89,7 +93,11 @@ function Example() {
 export default meta;
 type Story = StoryObj<TooltipProps>;
 
-const DefaultTrigger = () => <button type='button'>Наведи курсор</button>;
+const DefaultTrigger = () => (
+  <button type='button' data-test-id='button-with-tooltip'>
+    Наведи курсор
+  </button>
+);
 
 export const Playground: Story = {
   args: {
@@ -124,15 +132,26 @@ export const Playground: Story = {
       control: 'number',
       description: 'Отступ тултипа от триггера (px)',
     },
+    'data-test-id': {
+      control: 'text',
+      description: 'Test ID для автотестов',
+      table: {
+        category: 'HTML Attributes',
+      },
+    },
   },
 
   tags: ['dev', 'test', 'autodocs'],
 
   render: args => (
-    <div className={styles.pageWrapper}>
-      <Tooltip {...args}>
-        <DefaultTrigger />
-      </Tooltip>
-    </div>
+    <>
+      <div className={styles.pageWrapper}>
+        <Tooltip {...args}>
+          <DefaultTrigger />
+        </Tooltip>
+      </div>
+
+      <div data-test-id='activity-removal' role='button' tabIndex={0} className={styles.item} />
+    </>
   ),
 };
