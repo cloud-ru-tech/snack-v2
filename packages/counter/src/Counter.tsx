@@ -1,6 +1,5 @@
+import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
-
-import { extractSupportProps, WithSupportProps } from '@snack-uikit/utils';
 
 import { APPEARANCE, COLOR, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from './constants';
 import classNames from './styles.module.scss';

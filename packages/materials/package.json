@@ -19,6 +19,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@design-system/utils": "0.1.0",
     "classnames": "2.5.1"
   }
 }

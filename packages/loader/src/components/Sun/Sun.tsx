@@ -1,6 +1,5 @@
+import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
-
-import { extractSupportProps, WithSupportProps } from '@snack-uikit/utils';
 
 import { LOADER_SIZE } from '../constants';
 import { SunSize } from '../types';

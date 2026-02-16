@@ -1,7 +1,6 @@
+import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import { ReactNode } from 'react';
-
-import { extractSupportProps, WithSupportProps } from '@snack-uikit/utils';
 
 import { State } from '../../types';
 import { SIZE, VARIANT } from './constants';

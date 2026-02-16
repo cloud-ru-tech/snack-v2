@@ -28,6 +28,7 @@
   ],
   "scripts": {},
   "dependencies": {
+    "@design-system/utils": "0.1.0",
     "@tanem/react-nprogress": "5.0.60",
     "classnames": "catalog:"
   },

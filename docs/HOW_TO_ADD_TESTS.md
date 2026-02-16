@@ -152,7 +152,7 @@ export function YourComponent({
 Или используйте утилиту `extractSupportProps`:
 
 ```typescript
-import { extractSupportProps, WithSupportProps } from '@snack-uikit/utils';
+import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 
 export type YourComponentProps = WithSupportProps<{
   // ... ваши props

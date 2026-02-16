@@ -28,8 +28,8 @@
   ],
   "scripts": {},
   "dependencies": {
+    "@design-system/utils": "0.1.0",
     "@floating-ui/react": "0.27.17",
-    "@snack-uikit/utils": "4.0.1",
     "react-is": "19.2.4",
     "uncontrollable": "8.0.4",
     "classnames": "2.5.1"

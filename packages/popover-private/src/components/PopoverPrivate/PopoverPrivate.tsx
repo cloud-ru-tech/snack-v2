@@ -1,3 +1,4 @@
+import { extractSupportProps, isBrowser, usePopstateSubscription, WithSupportProps } from '@design-system/utils';
 import {
   arrow,
   autoUpdate,
@@ -23,8 +24,6 @@ import {
 import cn from 'classnames';
 import { ForwardedRef, ReactNode, useCallback, useEffect, useRef } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
-
-import { extractSupportProps, isBrowser, usePopstateSubscription, WithSupportProps } from '@snack-uikit/utils';
 
 import {
   DEFAULT_FALLBACK_PLACEMENTS,

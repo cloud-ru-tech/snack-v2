@@ -1,4 +1,4 @@
-import { ValueOf } from '@snack-uikit/utils';
+import { ValueOf } from '@design-system/utils';
 
 import { LOADER_SIZE, SUN_SIZE } from './constants';
 

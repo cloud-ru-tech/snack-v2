@@ -1,3 +1,4 @@
+import { isBrowser } from '@design-system/utils';
 import { Placement, ReferenceType, useInteractions } from '@floating-ui/react';
 import cn from 'classnames';
 import {
@@ -12,8 +13,6 @@ import {
   TouchEvent,
 } from 'react';
 import { isForwardRef, isValidElementType } from 'react-is';
-
-import { isBrowser } from '@snack-uikit/utils';
 
 import { PopoverPrivateProps } from './components';
 import { TRIGGER } from './constants';

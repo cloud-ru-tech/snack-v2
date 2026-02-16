@@ -1,4 +1,4 @@
-import { ValueOf } from '@snack-uikit/utils';
+import { ValueOf } from '@design-system/utils';
 
 import { PLACEMENT, POPOVER_HEIGHT_STRATEGY, POPOVER_WIDTH_STRATEGY, TRIGGER } from './constants';
 

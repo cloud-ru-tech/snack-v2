@@ -1,4 +1,4 @@
-import { ValueOf } from '@snack-uikit/utils';
+import { ValueOf } from '@design-system/utils';
 
 import { APPEARANCE, COLOR, SIZE, VARIANT } from './constants';
 

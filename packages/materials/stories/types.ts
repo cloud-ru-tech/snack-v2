@@ -1,4 +1,4 @@
-import { ValueOf } from '@snack-uikit/utils';
+import { ValueOf } from '@design-system/utils';
 
 import { APPEARANCE, LEVEL, STATE } from './constants';
 

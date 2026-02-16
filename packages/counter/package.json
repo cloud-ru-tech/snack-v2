@@ -28,7 +28,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@snack-uikit/utils": "4.0.0",
+    "@design-system/utils": "0.1.0",
     "classnames": "2.5.1"
   },
   "publishConfig": {

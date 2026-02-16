@@ -1,6 +1,5 @@
+import { useLayoutEffect } from '@design-system/utils';
 import { useState } from 'react';
-
-import { useLayoutEffect } from '@snack-uikit/utils';
 
 type UseOffsetProps = {
   triggerClassName?: string;
