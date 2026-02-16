@@ -2,6 +2,9 @@
   "files": [],
   "references": [
     {
+      "path": "./utils/tsconfig.esm.json"
+    },
+    {
       "path": "./avatar/tsconfig.esm.json"
     },
     {

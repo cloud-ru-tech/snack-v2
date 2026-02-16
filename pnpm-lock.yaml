@@ -84,6 +84,9 @@ importers:
       '@storybook/test':
         specifier: 8.6.5
         version: 8.6.5(storybook@10.2.7(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+      '@types/dom-close-watcher':
+        specifier: 1.0.0
+        version: 1.0.0
       '@types/dompurify':
         specifier: 3.0.5
         version: 3.0.5
@@ -359,6 +362,15 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
+
+  packages/utils:
+    dependencies:
+      react-swipeable:
+        specifier: 7.0.2
+        version: 7.0.2(react@19.2.4)
+      uncontrollable:
+        specifier: 8.0.4
+        version: 8.0.4(react@19.2.4)
 
 packages:
 
@@ -2305,6 +2317,9 @@ packages:
 
   '@types/doctrine@0.0.9':
     resolution: {integrity: sha512-eOIHzCUSH7SMfonMG1LsC2f8vxBFtho6NGBznK41R84YzPuvSBzrhEps33IsQiOW9+VL6NQ9DbjQJznk/S4uRA==}
+
+  '@types/dom-close-watcher@1.0.0':
+    resolution: {integrity: sha512-7pL0By56sVVGMSJ3HdSY+u08Id0ljStCaf1VnGFxwfpuNdA0HMz0sl2J24eSi9M6ptl9ySkVK35jF75Fn8trUg==}
 
   '@types/dompurify@3.0.5':
     resolution: {integrity: sha512-1Wg0g3BtQF7sSb27fJQAKck1HECM6zV1EB66j8JH9i3LCjYabJa0FSdiSgsD5K/RbrsR0SiraKacLB+T8ZVYAg==}
@@ -10069,6 +10084,8 @@ snapshots:
   '@types/deep-eql@4.0.2': {}
 
   '@types/doctrine@0.0.9': {}
+
+  '@types/dom-close-watcher@1.0.0': {}
 
   '@types/dompurify@3.0.5':
     dependencies:

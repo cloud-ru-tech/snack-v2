@@ -42,7 +42,7 @@ const preview: Preview = {
     // Сортировка stories
     options: {
       storySort: {
-        order: ['Introduction', 'Documentation', 'Materials', 'Components', '*'],
+        order: ['Introduction', 'Documentation', 'Materials', 'Utils', 'Components', '*'],
       },
     },
 

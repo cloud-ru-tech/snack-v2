@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "typeRoots": ["./node_modules/@types", "./types"],
+    "types": ["node", "vitest/globals", "@types/dom-close-watcher"],
     "baseUrl": ".",
     "paths": {
       "#storybook/components": ["storybook/components"],
