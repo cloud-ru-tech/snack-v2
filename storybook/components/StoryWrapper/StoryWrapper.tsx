@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { forwardRef, ReactNode } from 'react';
 
-import type { Brand, Platform, Theme } from '../types';
+import type { Acrylic, Brand, Platform, Theme } from '../types';
 import styles from './styles.module.scss';
 
 type StoryWrapperProps = {
@@ -9,6 +9,7 @@ type StoryWrapperProps = {
   theme: Theme;
   brand: Brand;
   platform: Platform;
+  acrylic: Acrylic;
 };
 
 /**

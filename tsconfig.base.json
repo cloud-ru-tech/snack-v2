@@ -20,7 +20,8 @@
       "#storybook/components/*": ["storybook/components/*"],
       "#storybook/hooks": ["storybook/hooks"],
       "#storybook/hooks/*": ["storybook/hooks/*"],
-      "@design-system/*": ["./packages/*/src"]
+      "@design-system/*": ["./packages/*/src"],
+      "@design-system/materials": ["/packages/materials"]
     }
   },
   "include": ["packages", "apps", "scripts", "storybook", "types"],
