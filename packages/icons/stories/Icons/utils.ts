@@ -17,7 +17,7 @@ type ImportMetaWithGlob = ImportMeta & {
   glob: (pattern: string) => Record<string, () => Promise<unknown>>;
 };
 
-const SVG_FILES = (import.meta as ImportMetaWithGlob).glob('../svgs/**/Interface/S/**/*.svg');
+const SVG_FILES = (import.meta as ImportMetaWithGlob).glob('../../svgs/**/Interface/S/**/*.svg');
 
 export function normalizeToSymbolIdPart(value: string): string {
   return value
