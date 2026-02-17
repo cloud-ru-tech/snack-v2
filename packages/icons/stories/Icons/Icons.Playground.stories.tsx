@@ -24,8 +24,8 @@ type IconModalData = {
 };
 
 function IconModal({ data, onClose }: { data: IconModalData; onClose: () => void }): ReactElement {
-  const reactImport = `import { ${data.baseName}Svg } from '@design-system/icons';`;
-  const reactSpriteImport = `import { ${data.baseName}SpriteSvg } from '@design-system/icons';`;
+  const reactImport = `import { ${data.baseName}SVG } from '@design-system/icons';`;
+  const reactSpriteImport = `import { ${data.baseName}SpriteSVG } from '@design-system/icons';`;
 
   return (
     <>
