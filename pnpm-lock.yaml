@@ -301,9 +301,6 @@ importers:
 
   packages/block:
     dependencies:
-      '@design-system/materials':
-        specifier: workspace:*
-        version: link:../materials
       '@design-system/utils':
         specifier: 0.1.0
         version: link:../utils
@@ -391,9 +388,6 @@ importers:
 
   packages/materials:
     devDependencies:
-      '@design-system/utils':
-        specifier: 0.1.0
-        version: link:../utils
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -428,9 +422,6 @@ importers:
       '@design-system/utils':
         specifier: 0.1.0
         version: link:../utils
-      classnames:
-        specifier: 2.5.1
-        version: 2.5.1
 
   packages/progress-bar:
     dependencies:

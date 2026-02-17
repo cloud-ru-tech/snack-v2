@@ -1,0 +1,11 @@
+{
+  "rootPackagesFolderPattern": "packages/*",
+  "ignoredPackagesFolderFiles": ["packages/tsconfig.cjs.json", "packages/tsconfig.esm.json"],
+  "ignoreFilePatterns": ["dist", "__tests__", "docs", "stories"],
+  "ignorePackagePatterns": [
+    "react",
+    "react-dom",
+    "@sbercloud/figma-variables",
+    "@design-system/materials"
+  ]
+}

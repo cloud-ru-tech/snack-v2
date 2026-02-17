@@ -28,8 +28,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@design-system/utils": "0.1.0",
-    "classnames": "2.5.1"
+    "@design-system/utils": "0.1.0"
   },
   "publishConfig": {
     "access": "public"

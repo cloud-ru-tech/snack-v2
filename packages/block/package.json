@@ -27,7 +27,6 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@design-system/materials": "workspace:*",
     "@design-system/utils": "0.1.0",
     "classnames": "2.5.1"
   },
