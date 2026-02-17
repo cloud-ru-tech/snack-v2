@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import readme from '../../README.md?raw';
 import { PLACEMENT, QuestionTooltip, type QuestionTooltipProps, TRIGGER } from '../../src';
 import styles from '../styles.module.scss';
 
@@ -7,6 +8,7 @@ const meta: Meta<QuestionTooltipProps> = {
   title: 'Components/Tooltip/QuestionTooltip',
   component: QuestionTooltip,
   parameters: {
+    readme: { content: readme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3182-9180',
@@ -38,7 +40,7 @@ pnpm add @design-system/tooltip
 import { QuestionTooltip } from '@design-system/tooltip';
 
 function Example() {
-  return <QuestionTooltip content="Подсказка к полю" />;
+  return <QuestionTooltip tip="Подсказка к полю" />;
 }
 \`\`\`
         `,
@@ -46,7 +48,7 @@ function Example() {
     },
   },
   args: {
-    content: 'Текст подсказки',
+    tip: 'Текст подсказки',
     placement: PLACEMENT.Top,
     trigger: TRIGGER.HoverAndFocusVisible,
     hoverDelayOpen: 0,
@@ -54,7 +56,7 @@ function Example() {
     triggerLabel: 'Подсказка',
   },
   argTypes: {
-    content: {
+    tip: {
       control: 'text',
       description: 'Содержимое тултипа (текст или разметка)',
     },

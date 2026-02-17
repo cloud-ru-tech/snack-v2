@@ -4,7 +4,7 @@ import { expect, userEvent, waitFor, within } from '@storybook/test';
 import { Tooltip, TooltipProps } from '../../src';
 
 const meta: Meta<TooltipProps> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
 };
 
@@ -14,7 +14,7 @@ type Story = StoryObj<TooltipProps>;
 export const InteractionTest: Story = {
   tags: ['test', '!dev'],
   render: () => (
-    <Tooltip content='Test tooltip content'>
+    <Tooltip tip='Test tooltip content'>
       <button type='button'>Hover me</button>
     </Tooltip>
   ),

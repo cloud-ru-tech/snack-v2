@@ -2,21 +2,31 @@ import { PLACEMENT, PopoverPrivate, PopoverPrivateProps, TRIGGER } from '@design
 import cn from 'classnames';
 import { ReactNode } from 'react';
 
-import { extractSupportProps, WithSupportProps } from '@snack-uikit/utils';
+import { WithSupportProps } from '@snack-uikit/utils';
 
 import styles from './styles.module.scss';
 
 export type TooltipProps = WithSupportProps<{
-  /** Элемент, при наведении на который показывается тултип */
-  children: ReactNode;
   /** Содержимое тултипа (текст или разметка) */
-  content: ReactNode;
-  /** Задержка открытия по ховеру (мс) */
-  hoverDelayOpen?: number;
-  /** Задержка закрытия по ховеру (мс) */
-  hoverDelayClose?: number;
+  tip: ReactNode;
+  /** Отключение ограничения ширины тултипа @default false */
+  disableMaxWidth?: boolean;
 }> &
-  Pick<PopoverPrivateProps, 'placement' | 'trigger' | 'offset' | 'triggerClassName' | 'open' | 'onOpenChange'>;
+  Pick<
+    PopoverPrivateProps,
+    | 'className'
+    | 'triggerClassName'
+    | 'offset'
+    | 'open'
+    | 'onOpenChange'
+    | 'hoverDelayOpen'
+    | 'hoverDelayClose'
+    | 'triggerRef'
+    | 'disableSpanWrapper'
+    | 'fallbackPlacements'
+    | 'closeOnPopstate'
+  > &
+  Partial<Pick<PopoverPrivateProps, 'trigger' | 'placement' | 'children'>>;
 
 export const DEFAULT_FALLBACK_PLACEMENTS = [PLACEMENT.Top, PLACEMENT.Right, PLACEMENT.Bottom, PLACEMENT.Left];
 
@@ -27,16 +37,14 @@ export const DEFAULT_FALLBACK_PLACEMENTS = [PLACEMENT.Top, PLACEMENT.Right, PLAC
  */
 export function Tooltip({
   children,
-  content,
+  tip,
   placement = PLACEMENT.Top,
   trigger = TRIGGER.HoverAndFocusVisible,
   hoverDelayOpen = 0,
   hoverDelayClose = 0,
-  offset,
   triggerClassName,
-  open,
-  onOpenChange,
-  ...rest
+  disableMaxWidth = false,
+  ...otherProps
 }: TooltipProps) {
   return (
     <PopoverPrivate
@@ -49,15 +57,12 @@ export function Tooltip({
       hoverDelayClose={hoverDelayClose}
       fallbackPlacements={DEFAULT_FALLBACK_PLACEMENTS}
       triggerClassName={cn(styles.triggerClassName, triggerClassName)}
-      offset={offset}
-      open={open}
-      onOpenChange={onOpenChange}
       popoverContent={
-        <div className={styles.tooltipContainer} role='tooltip'>
-          {content}
+        <div className={styles.tooltipContainer} data-disable-max-width={disableMaxWidth} role='tooltip'>
+          {tip}
         </div>
       }
-      {...extractSupportProps(rest)}
+      {...otherProps}
     >
       {children}
     </PopoverPrivate>

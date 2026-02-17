@@ -17,6 +17,10 @@
   overflow-wrap: break-word;
 
   background: base.$sn-theme-color-invertNeutral-background;
+
+  &[data-disable-max-width='true'] {
+    max-width: calc(100vw - 16px);
+  }
 }
 
 .pointerWrapper {

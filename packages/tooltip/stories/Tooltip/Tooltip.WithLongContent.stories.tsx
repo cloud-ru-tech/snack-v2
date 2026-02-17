@@ -4,7 +4,7 @@ import { Tooltip, TooltipProps } from '../../src';
 import styles from '../styles.module.scss';
 
 const meta: Meta<TooltipProps> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
 };
 
@@ -17,7 +17,7 @@ const longContent =
 export const WithLongContent: Story = {
   tags: ['!dev', 'autodocs'],
   args: {
-    content: longContent,
+    tip: longContent,
   },
   render: args => (
     <div className={styles.pageWrapper}>

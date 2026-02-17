@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import readme from '../../README.md?raw';
 import { PLACEMENT, Tooltip, type TooltipProps, TRIGGER } from '../../src';
 import styles from '../styles.module.scss';
 
 const meta: Meta<TooltipProps> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
   parameters: {
+    readme: { content: readme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2254-443',
@@ -39,7 +41,7 @@ import { Tooltip } from '@design-system/tooltip';
 
 function Example() {
   return (
-    <Tooltip content="Подсказка">
+    <Tooltip tip="Подсказка">
       <button type="button">Наведи курсор</button>
     </Tooltip>
   );
@@ -50,7 +52,7 @@ function Example() {
     },
   },
   args: {
-    content: 'Текст подсказки',
+    tip: 'Текст подсказки',
     placement: PLACEMENT.Top,
     trigger: TRIGGER.HoverAndFocusVisible,
     hoverDelayOpen: 200,
@@ -65,7 +67,7 @@ function Example() {
       control: false,
       description: 'Элемент, при наведении на который показывается тултип',
     },
-    content: {
+    tip: {
       control: 'text',
       description: 'Содержимое тултипа (текст или разметка)',
     },
@@ -106,7 +108,7 @@ export const Playground: Story = {
   },
 
   argTypes: {
-    content: {
+    tip: {
       control: 'text',
       description: 'Содержимое тултипа (текст или разметка)',
     },

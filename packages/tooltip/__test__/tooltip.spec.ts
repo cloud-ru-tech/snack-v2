@@ -29,6 +29,7 @@ test.describe('Tooltip', () => {
   test('Should be open when controlled "open" flag is set', async ({ gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -43,6 +44,7 @@ test.describe('Tooltip', () => {
   test('Opens by click', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -57,6 +59,7 @@ test.describe('Tooltip', () => {
   test('Opens by hover', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -72,6 +75,7 @@ test.describe('Tooltip', () => {
   test('Opens by focus', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -86,6 +90,7 @@ test.describe('Tooltip', () => {
   test('Opens by click & focus', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -100,6 +105,7 @@ test.describe('Tooltip', () => {
   test('Opens by hover & focus', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -114,6 +120,7 @@ test.describe('Tooltip', () => {
   test('Opens by strong focus', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -128,6 +135,7 @@ test.describe('Tooltip', () => {
   test('Opens by hover & strong focus', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,
@@ -142,6 +150,7 @@ test.describe('Tooltip', () => {
   test('Should not disappear on scroll', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory({
       name: 'tooltip',
+      group: 'tooltip',
       story: 'playground',
       props: {
         'data-test-id': TOOLTIP_TEST_ID,

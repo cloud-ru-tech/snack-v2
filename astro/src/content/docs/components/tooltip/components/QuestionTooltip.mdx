@@ -23,7 +23,7 @@ import { QuestionTooltip } from '@packages/tooltip/src';
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="flex-start">
     <ExampleItem label="Подсказка по умолчанию">
-      <QuestionTooltip content="Подсказка при наведении на иконку" client:load />
+      <QuestionTooltip tip="Подсказка при наведении на иконку" client:load />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -33,7 +33,7 @@ import { QuestionTooltip } from '@design-system/tooltip';
 
 export function Example() {
   return (
-    <QuestionTooltip content="Подсказка при наведении на иконку" />
+    <QuestionTooltip tip="Подсказка при наведении на иконку" />
   );
 }
 ```
@@ -44,7 +44,7 @@ export function Example() {
   <ExampleRow gap="large" justifyContent="flex-start">
     <ExampleItem label="Снизу с подписью">
       <QuestionTooltip
-        content="Тултип снизу"
+        tip="Тултип снизу"
         placement="bottom"
         triggerLabel="Подсказка о поле"
         client:load
@@ -59,7 +59,7 @@ import { QuestionTooltip } from '@design-system/tooltip';
 export function Example() {
   return (
     <QuestionTooltip
-      content="Тултип снизу"
+      tip="Тултип снизу"
       placement="bottom"
       triggerLabel="Подсказка о поле"
     />
@@ -91,7 +91,7 @@ import { QuestionTooltip, TRIGGER } from '@design-system/tooltip';
 export function Example() {
   return (
     <QuestionTooltip
-      content="Открывается по клику"
+      tip="Открывается по клику"
       trigger={TRIGGER.Click}
     />
   );
@@ -104,7 +104,7 @@ export function Example() {
   <ExampleRow gap="large" justifyContent="flex-start">
     <ExampleItem label="С задержкой 500 мс">
       <QuestionTooltip
-        content="Откроется через 500 мс"
+        tip="Откроется через 500 мс"
         hoverDelayOpen={500}
         hoverDelayClose={200}
         client:load
@@ -119,7 +119,7 @@ import { QuestionTooltip } from '@design-system/tooltip';
 export function Example() {
   return (
     <QuestionTooltip
-      content="Откроется через 500 мс"
+      tip="Откроется через 500 мс"
       hoverDelayOpen={500}
       hoverDelayClose={200}
     />
@@ -146,13 +146,25 @@ export function Example() {
 ### QuestionTooltipProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
-| content* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
-| hoverDelayOpen | `number` | - | Задержка открытия по ховеру (мс) |
-| hoverDelayClose | `number` | - | Задержка закрытия по ховеру (мс) |
+| tip* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
+| disableMaxWidth | `boolean` | false | Отключение ограничения ширины тултипа |
+| className | `string` | - | CSS-класс |
+| triggerClassName | `string` | - | CSS-класс триггера |
+| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
+| open | `boolean` | - | Управляет состоянием показан/не показан. |
+| onOpenChange | `(isOpen: boolean) => void` | - | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
+| hoverDelayClose | `number` | - | Задержка закрытия по ховеру |
+| triggerRef | `ForwardedRef<ReferenceType \| HTMLElement>` | - | Ref ссылка на триггер |
+| disableSpanWrapper | `boolean` | - | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| fallbackPlacements | `Placement[]` | - | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| closeOnPopstate | `boolean` | - | Закрывать ли поповер при пекреходе по истории браузера |
+| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.Hover | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | top | Положение поповера относительно своего триггера (children). |
+| children | `ReactNode \| ChildrenFunction` | - | Триггер поповера (подробнее читайте ниже) |
+| tooltipClassname | `string` | - | CSS-класс контейнера подсказки |
 | triggerLabel | `string` | Подсказка | Доступное имя для иконки-триггера |
-| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
-| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| offset | `number` | 4 | Отступ поповера от его триггер-элемента (в пикселях). |
+| tabIndex | `number` | - | Tab index для кнопки-триггера |
 
 
 [//]: DOCUMENTATION_SECTION_END

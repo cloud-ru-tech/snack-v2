@@ -18,7 +18,7 @@ export const Placements: Story = {
   render: () => (
     <div className={styles.placementsWrapper}>
       {keyPlacements.map(placement => (
-        <QuestionTooltip key={placement} content={`Placement: ${placement}`} placement={placement} />
+        <QuestionTooltip key={placement} tip={`Placement: ${placement}`} placement={placement} />
       ))}
     </div>
   ),

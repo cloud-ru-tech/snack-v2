@@ -22,20 +22,18 @@
   margin: 0;
   padding: 0;
   border: none;
-  border-radius: base.$sn-adaptive-radius-full;
 
   font: inherit;
   color: base.$sn-theme-color-available-version-textTertiary;
 
   background: transparent;
 
-  &:active {
-    color: base.$sn-theme-color-available-version-textMain;
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
   }
 
-  &:focus-visible {
-    // TODO
-    outline: none;
+  &:active {
+    color: base.$sn-theme-color-available-version-textMain;
   }
 
   @media (hover: hover) {

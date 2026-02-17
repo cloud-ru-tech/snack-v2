@@ -14,7 +14,7 @@ type Story = StoryObj<QuestionTooltipProps>;
 export const WithClickTrigger: Story = {
   tags: ['!dev', 'autodocs'],
   args: {
-    content: 'Тултип по клику',
+    tip: 'Тултип по клику',
     trigger: TRIGGER.Click,
   },
   render: args => (

@@ -15,7 +15,7 @@ type Story = StoryObj<QuestionTooltipProps>;
 export const InteractionTest: Story = {
   tags: ['test', '!dev'],
   args: {
-    content: 'Test tooltip content',
+    tip: 'Test tooltip content',
     triggerLabel: 'Hover me',
   },
   render: args => (

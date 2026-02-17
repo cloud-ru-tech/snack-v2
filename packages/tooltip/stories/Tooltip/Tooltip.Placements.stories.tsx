@@ -4,7 +4,7 @@ import { PLACEMENT, Tooltip, TooltipProps } from '../../src';
 import styles from '../styles.module.scss';
 
 const meta: Meta<TooltipProps> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
 };
 
@@ -18,7 +18,7 @@ export const Placements: Story = {
   render: () => (
     <div className={styles.placementsWrapper}>
       {keyPlacements.map(placement => (
-        <Tooltip key={placement} content={`Placement: ${placement}`} placement={placement}>
+        <Tooltip key={placement} tip={`Placement: ${placement}`} placement={placement}>
           <button type='button'>{placement}</button>
         </Tooltip>
       ))}

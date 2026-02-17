@@ -30,7 +30,8 @@
   "dependencies": {
     "@design-system/popover-private": "0.1.0",
     "@snack-uikit/utils": "4.0.1",
-    "classnames": "2.5.1"
+    "classnames": "2.5.1",
+    "uncontrollable": "9.0.0"
   },
   "publishConfig": {
     "access": "public"

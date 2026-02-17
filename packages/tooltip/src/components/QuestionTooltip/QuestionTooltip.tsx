@@ -1,22 +1,18 @@
-import { PLACEMENT, PopoverPrivateProps, TRIGGER } from '@design-system/popover-private';
-import { ReactNode } from 'react';
+import { TRIGGER } from '@design-system/popover-private';
+import cn from 'classnames';
+import { useUncontrolledProp } from 'uncontrollable';
 
-import { WithSupportProps } from '@snack-uikit/utils';
-
-import { Tooltip } from '../Tooltip';
+import { Tooltip, TooltipProps } from '../Tooltip';
 import styles from './styles.module.scss';
 
-export type QuestionTooltipProps = WithSupportProps<{
-  /** Содержимое тултипа (текст или разметка) */
-  content: ReactNode;
-  /** Задержка открытия по ховеру (мс) */
-  hoverDelayOpen?: number;
-  /** Задержка закрытия по ховеру (мс) */
-  hoverDelayClose?: number;
+export type QuestionTooltipProps = TooltipProps & {
+  /** CSS-класс контейнера подсказки */
+  tooltipClassname?: string;
   /** Доступное имя для иконки-триггера */
   triggerLabel?: string;
-}> &
-  Pick<Partial<PopoverPrivateProps>, 'placement' | 'trigger' | 'offset'>;
+  /** Tab index для кнопки-триггера */
+  tabIndex?: number;
+};
 
 // Иконка «?» по Figma: размер 16 (sn/adaptive/size/icon/xs), цвет textMain.
 function QuestionIcon() {
@@ -37,27 +33,36 @@ function QuestionIcon() {
  * Переиспользует компонент Tooltip, добавляя стандартный триггер в виде иконки.
  */
 export function QuestionTooltip({
-  content,
-  placement = PLACEMENT.Top,
-  trigger = TRIGGER.HoverAndFocusVisible,
-  hoverDelayOpen = 0,
-  hoverDelayClose = 0,
-  offset = 4,
+  tip,
   triggerLabel = 'Подсказка',
+  trigger = TRIGGER.Hover,
+  className,
+  tooltipClassname,
+  open,
+  onOpenChange,
+  tabIndex = 0,
   ...rest
 }: QuestionTooltipProps) {
+  const [isOpen, setIsOpen] = useUncontrolledProp(open, false, onOpenChange);
+
   return (
     <Tooltip
-      content={content}
-      placement={placement}
-      trigger={trigger}
-      hoverDelayOpen={hoverDelayOpen}
-      hoverDelayClose={hoverDelayClose}
-      offset={offset}
+      tip={tip}
+      className={tooltipClassname}
       triggerClassName={styles.questionTooltipTrigger}
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      trigger={trigger}
       {...rest}
     >
-      <button className={styles.button} type='button' aria-label={triggerLabel}>
+      <button
+        type='button'
+        aria-label={triggerLabel}
+        data-opened={isOpen}
+        data-trigger={trigger}
+        tabIndex={tabIndex}
+        className={cn(styles.button, className)}
+      >
         <QuestionIcon />
       </button>
     </Tooltip>

@@ -17,7 +17,7 @@ const longContent =
 export const WithLongContent: Story = {
   tags: ['!dev', 'autodocs'],
   args: {
-    content: longContent,
+    tip: longContent,
   },
   render: args => (
     <div className={styles.pageWrapper}>
