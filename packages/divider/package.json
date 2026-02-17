@@ -28,8 +28,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@sbercloud/figma-variables": "1.2.0",
-    "@snack-uikit/utils": "4.0.1",
+    "@design-system/utils": "0.1.0",
     "classnames": "2.5.1"
   },
   "publishConfig": {

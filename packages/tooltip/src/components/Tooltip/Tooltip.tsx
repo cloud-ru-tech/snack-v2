@@ -1,8 +1,7 @@
 import { PLACEMENT, PopoverPrivate, PopoverPrivateProps, TRIGGER } from '@design-system/popover-private';
+import { WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import { ReactNode } from 'react';
-
-import { WithSupportProps } from '@snack-uikit/utils';
 
 import styles from './styles.module.scss';
 

@@ -1,6 +1,5 @@
+import { isBrowser } from '@design-system/utils';
 import { createContext, PropsWithChildren, RefObject, useContext } from 'react';
-
-import { isBrowser } from '@snack-uikit/utils';
 
 const DEFAULT_CONTEXT_VALUE = { current: isBrowser() ? document.body : null } as RefObject<HTMLElement | null>;
 
