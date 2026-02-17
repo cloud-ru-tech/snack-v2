@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M7.527 4.284 C 6.133 4.409,4.799 5.208,4.016 6.389 C 3.801 6.712,3.538 7.296,3.425 7.700 C 3.113 8.812,3.232 9.987,3.762 11.040 C 3.995 11.503,4.255 11.843,4.935 12.568 C 8.721 16.611,11.973 20.060,12.000 20.060 C 12.027 20.060,15.279 16.611,19.065 12.568 C 19.933 11.641,20.237 11.189,20.492 10.440 C 20.905 9.227,20.820 8.031,20.239 6.860 C 19.567 5.508,18.284 4.568,16.766 4.316 C 16.620 4.292,16.257 4.272,15.960 4.272 C 14.870 4.273,13.966 4.577,13.086 5.240 C 12.751 5.493,12.306 5.942,12.135 6.200 C 12.077 6.288,12.017 6.360,12.001 6.360 C 11.986 6.360,11.918 6.282,11.850 6.188 C 11.504 5.706,10.990 5.251,10.396 4.900 C 9.563 4.407,8.556 4.191,7.527 4.284 M8.914 5.878 C 9.373 6.010,9.751 6.221,10.190 6.590 C 10.581 6.919,10.884 7.390,11.122 8.040 L 11.232 8.340 12.000 8.340 L 12.768 8.340 12.902 7.966 C 13.279 6.909,14.055 6.173,15.108 5.872 C 15.562 5.742,16.446 5.741,16.892 5.870 C 17.961 6.180,18.833 7.034,19.127 8.060 C 19.249 8.483,19.258 9.356,19.145 9.760 C 19.042 10.131,18.829 10.545,18.588 10.847 C 18.366 11.126,12.038 17.880,12.000 17.880 C 11.987 17.880,11.231 17.085,10.318 16.113 C 9.406 15.141,7.932 13.570,7.043 12.623 C 5.433 10.907,5.185 10.608,4.987 10.138 C 4.650 9.335,4.700 8.224,5.107 7.480 C 5.531 6.704,6.283 6.098,7.088 5.883 C 7.524 5.766,7.539 5.764,8.100 5.780 C 8.473 5.790,8.703 5.818,8.914 5.878 " stroke="none" fill-rule="evenodd"></path>';
+
+const HeartSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-heart';
+  const symbolId = 'snack-uikit-snack-icons-' + 'heart';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default HeartSpriteSVG;

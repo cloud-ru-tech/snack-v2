@@ -1,0 +1,10 @@
+export { default as DetalisationSVG } from './Detalisation';
+export { default as FileAddFilledSVG } from './FileAddFilled';
+export { default as FileAddOutlineSVG } from './FileAddOutline';
+export { default as FileUploadFilledSVG } from './FileUploadFilled';
+export { default as FileUploadOutlineSVG } from './FileUploadOutline';
+export { default as FolderAddFilledSVG } from './FolderAddFilled';
+export { default as FolderAddOutlineSVG } from './FolderAddOutline';
+export { default as FolderUploadFilledSVG } from './FolderUploadFilled';
+export { default as FolderUploadOutlineSVG } from './FolderUploadOutline';
+export { default as LogsSVG } from './Logs';

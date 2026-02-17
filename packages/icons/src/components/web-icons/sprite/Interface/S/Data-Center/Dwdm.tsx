@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.240 12.000 L 3.240 20.760 12.000 20.760 L 20.760 20.760 20.760 12.000 L 20.760 3.240 12.000 3.240 L 3.240 3.240 3.240 12.000 M14.240 8.000 L 14.240 11.240 13.210 11.240 L 12.180 11.240 13.590 12.650 L 15.000 14.060 16.410 12.650 L 17.820 11.240 16.790 11.240 L 15.760 11.240 15.760 8.000 L 15.760 4.760 17.500 4.760 L 19.240 4.760 19.240 12.000 L 19.240 19.240 17.740 19.240 C 16.915 19.240,16.240 19.231,16.240 19.220 C 16.240 19.209,16.681 18.318,17.220 17.240 C 17.759 16.162,18.200 15.271,18.200 15.260 C 18.200 15.249,16.301 15.240,13.980 15.240 L 9.760 15.240 9.760 12.000 L 9.760 8.760 10.790 8.760 L 11.820 8.760 10.410 7.350 L 9.000 5.940 7.590 7.350 L 6.180 8.760 7.210 8.760 L 8.240 8.760 8.240 12.000 L 8.240 15.240 7.020 15.240 C 6.349 15.240,5.800 15.249,5.800 15.260 C 5.800 15.271,6.241 16.162,6.780 17.240 C 7.319 18.318,7.760 19.209,7.760 19.220 C 7.760 19.231,7.085 19.240,6.260 19.240 L 4.760 19.240 4.760 12.000 L 4.760 4.760 9.500 4.760 L 14.240 4.760 14.240 8.000 M15.760 16.780 C 15.760 16.791,15.486 17.349,15.150 18.020 L 14.541 19.240 12.000 19.240 L 9.459 19.240 8.850 18.020 C 8.514 17.349,8.240 16.791,8.240 16.780 C 8.240 16.769,9.932 16.760,12.000 16.760 C 14.068 16.760,15.760 16.769,15.760 16.780 " stroke="none" fill-rule="evenodd"></path>';
+
+const DwdmSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-dwdm';
+  const symbolId = 'snack-uikit-web-icons-' + 'dwdm';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default DwdmSpriteSVG;

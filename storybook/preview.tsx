@@ -1,11 +1,13 @@
-import '@sbercloud/figma-variables/build/css/tokens.css';
 import '@sbercloud/figma-variables/build/css/acrylic/yes.css';
+import '@sbercloud/figma-variables/build/css/tokens.css';
 
 import './global.scss';
 
 import { PortalContextProvider } from '@design-system/portal-context';
 import type { Preview } from '@storybook/react-vite';
 import { useRef } from 'react';
+
+import { Sprite, SpriteSVG } from '@snack-uikit/icons';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
 import { StoryWrapper } from './components';
@@ -23,6 +25,7 @@ const preview: Preview = {
       return (
         <PortalContextProvider root={storyWrapperRef}>
           <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform} acrylic={acrylic}>
+            <Sprite content={SpriteSVG as unknown as string} />
             <Story />
           </StoryWrapper>
         </PortalContextProvider>
@@ -47,7 +50,7 @@ const preview: Preview = {
     // Сортировка stories
     options: {
       storySort: {
-        order: ['Introduction', 'Documentation', 'Materials', 'Utils', 'Components', '*'],
+        order: ['Introduction', 'Documentation', 'Materials', 'Icons', 'Utils', 'Components', '*'],
       },
     },
 

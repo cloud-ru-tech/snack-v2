@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.000 4.000 L 3.000 4.760 4.120 4.760 L 5.240 4.760 5.240 12.880 L 5.240 21.000 6.000 21.000 L 6.760 21.000 6.760 19.880 L 6.760 18.760 14.260 18.760 L 21.760 18.760 21.760 12.000 L 21.760 5.240 14.260 5.240 L 6.760 5.240 6.760 4.240 L 6.760 3.240 4.880 3.240 L 3.000 3.240 3.000 4.000 M20.240 12.000 L 20.240 17.240 15.500 17.240 L 10.760 17.240 10.760 16.120 L 10.760 15.000 10.000 15.000 L 9.240 15.000 9.240 16.120 L 9.240 17.240 8.000 17.240 L 6.760 17.240 6.760 12.000 L 6.760 6.760 13.500 6.760 L 20.240 6.760 20.240 12.000 M13.240 10.540 L 13.240 12.760 15.540 12.760 L 17.840 12.760 17.840 10.540 L 17.840 8.320 15.540 8.320 L 13.240 8.320 13.240 10.540 M16.320 10.520 L 16.320 11.240 15.540 11.240 L 14.760 11.240 14.760 10.520 L 14.760 9.800 15.540 9.800 L 16.320 9.800 16.320 10.520 " stroke="none" fill-rule="evenodd"></path>';
+
+const NetworkCardSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-network-card';
+  const symbolId = 'snack-uikit-product-icons-' + 'network-card';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default NetworkCardSpriteSVG;

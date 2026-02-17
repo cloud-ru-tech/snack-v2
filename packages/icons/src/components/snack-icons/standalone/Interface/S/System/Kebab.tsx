@@ -1,0 +1,39 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const KebabSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  const testId = '-kebab';
+  const isCustomSize = typeof size === 'number';
+  const sizePx = isCustomSize ? size : 24;
+  const children = (
+    <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} fill='none' {...props}>
+      <path d='M11.701 3.285c-.334.048-.639.213-.932.502a1.65 1.65 0 0 0-.491 1.483c.069.401.204.66.498.954.294.294.553.429.954.498.326.056.699.004 1.023-.143.279-.127.699-.547.826-.826.295-.651.189-1.388-.275-1.902-.417-.46-.975-.658-1.603-.566m0 7c-.334.048-.639.213-.932.502a1.65 1.65 0 0 0-.491 1.483c.069.401.204.66.498.954.294.294.553.429.954.498.326.056.699.004 1.023-.143.279-.127.699-.547.826-.826.295-.651.189-1.388-.275-1.902-.417-.46-.975-.658-1.603-.566m0 7c-.334.048-.639.213-.932.502a1.65 1.65 0 0 0-.491 1.483c.069.401.204.66.498.954.294.294.553.429.954.498.326.056.699.004 1.023-.143.279-.127.699-.547.826-.826.295-.651.189-1.388-.275-1.902-.417-.46-.975-.658-1.603-.566' />
+    </svg>
+  ).props.children;
+  const style = isCustomSize
+    ? {
+        ...(props.style || {}),
+        width: sizePx,
+        height: sizePx,
+      }
+    : props.style;
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={sizePx}
+      height={sizePx}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      style={style}
+      {...props}
+    >
+      {children}
+    </svg>
+  );
+});
+export default KebabSVG;

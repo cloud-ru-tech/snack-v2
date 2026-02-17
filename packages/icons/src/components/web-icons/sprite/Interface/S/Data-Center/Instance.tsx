@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.240 5.620 L 3.240 8.000 4.000 8.000 L 4.760 8.000 4.760 6.380 L 4.760 4.760 6.380 4.760 L 8.000 4.760 8.000 4.000 L 8.000 3.240 5.620 3.240 L 3.240 3.240 3.240 5.620 M16.000 4.000 L 16.000 4.760 17.620 4.760 L 19.240 4.760 19.240 6.380 L 19.240 8.000 20.000 8.000 L 20.760 8.000 20.760 5.620 L 20.760 3.240 18.380 3.240 L 16.000 3.240 16.000 4.000 M3.970 11.970 L 3.240 12.701 3.240 16.001 L 3.240 19.301 3.970 20.030 L 4.701 20.760 8.001 20.760 L 11.301 20.760 12.030 20.030 L 12.760 19.299 12.760 15.999 L 12.760 12.699 12.030 11.970 L 11.299 11.240 7.999 11.240 L 4.699 11.240 3.970 11.970 M10.969 13.029 L 11.240 13.298 11.240 15.998 L 11.240 18.698 10.971 18.969 L 10.702 19.240 8.002 19.240 L 5.302 19.240 5.031 18.971 L 4.760 18.702 4.760 16.002 L 4.760 13.302 5.029 13.031 L 5.298 12.760 7.998 12.760 L 10.698 12.760 10.969 13.029 M19.240 17.620 L 19.240 19.240 17.620 19.240 L 16.000 19.240 16.000 20.000 L 16.000 20.760 18.380 20.760 L 20.760 20.760 20.760 18.380 L 20.760 16.000 20.000 16.000 L 19.240 16.000 19.240 17.620 " stroke="none" fill-rule="evenodd"></path>';
+
+const InstanceSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-instance';
+  const symbolId = 'snack-uikit-web-icons-' + 'instance';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default InstanceSpriteSVG;

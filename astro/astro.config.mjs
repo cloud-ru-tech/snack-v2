@@ -56,6 +56,8 @@ export default defineConfig({
       components: {
         // Переопределяем Content для добавления стилей дизайн-системы
         Content: './src/components/astro/DesignSystemContent.astro',
+        // Спрайт иконок в MarkdownContent, чтобы был в том же DOM, что и контент страницы
+        MarkdownContent: './src/components/astro/DesignSystemMarkdownContent.astro',
         // Переопределяем Head для подключения theme-manager
         Head: './src/components/astro/DesignSystemHead.astro',
         // Переопределяем ThemeSelect для добавления переключателя темы в toolbar

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M11.002 3.330 C 10.983 3.380,10.192 5.175,9.245 7.320 L 7.523 11.220 5.381 11.230 L 3.240 11.241 3.240 16.000 L 3.240 20.760 10.302 20.760 C 18.250 20.760,17.685 20.782,18.360 20.452 C 18.687 20.293,18.794 20.213,19.122 19.884 C 19.448 19.557,19.532 19.444,19.691 19.120 C 19.793 18.911,19.913 18.605,19.958 18.440 C 20.069 18.025,20.775 10.578,20.739 10.200 C 20.642 9.190,20.150 8.565,19.271 8.333 C 19.057 8.277,18.704 8.265,16.893 8.251 L 14.766 8.234 14.750 6.867 C 14.733 5.353,14.729 5.326,14.449 4.780 C 14.347 4.583,14.202 4.397,13.958 4.154 C 13.668 3.864,13.551 3.778,13.236 3.626 C 13.029 3.526,12.746 3.416,12.607 3.380 C 12.333 3.311,11.694 3.244,11.289 3.241 C 11.065 3.240,11.034 3.250,11.002 3.330 M12.520 4.945 C 12.776 5.060,13.010 5.273,13.133 5.500 C 13.219 5.657,13.220 5.695,13.231 7.710 L 13.243 9.760 16.031 9.762 C 18.082 9.764,18.857 9.777,18.960 9.812 C 19.136 9.872,19.240 10.067,19.240 10.338 C 19.240 10.545,18.579 17.678,18.537 17.918 C 18.457 18.383,18.110 18.882,17.715 19.101 L 17.500 19.220 13.130 19.231 L 8.760 19.241 8.760 15.690 L 8.760 12.138 10.323 8.599 C 11.182 6.653,11.911 4.999,11.942 4.926 C 11.997 4.798,12.008 4.792,12.150 4.818 C 12.232 4.833,12.399 4.890,12.520 4.945 M7.240 16.000 L 7.240 19.240 6.000 19.240 L 4.760 19.240 4.760 16.000 L 4.760 12.760 6.000 12.760 L 7.240 12.760 7.240 16.000 " stroke="none" fill-rule="evenodd"></path>';
+
+const LikeOutlineSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-like-outline';
+  const symbolId = 'snack-uikit-product-icons-' + 'like-outline';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default LikeOutlineSpriteSVG;

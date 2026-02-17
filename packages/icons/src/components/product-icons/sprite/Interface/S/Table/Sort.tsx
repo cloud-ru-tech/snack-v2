@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M4.730 9.210 L 2.480 11.460 3.010 11.990 L 3.540 12.520 4.890 11.170 L 6.240 9.820 6.240 13.410 L 6.240 17.000 7.000 17.000 L 7.760 17.000 7.760 13.410 L 7.760 9.820 9.110 11.170 L 10.461 12.520 10.990 11.990 L 11.520 11.459 9.270 9.210 C 8.032 7.972,7.011 6.960,7.000 6.960 C 6.989 6.960,5.967 7.973,4.730 9.210 M16.240 10.590 L 16.240 14.180 14.880 12.820 L 13.520 11.460 12.990 11.990 L 12.460 12.520 14.730 14.790 L 17.000 17.060 19.270 14.790 L 21.540 12.520 21.010 11.990 L 20.480 11.460 19.120 12.820 L 17.760 14.180 17.760 10.590 L 17.760 7.000 17.000 7.000 L 16.240 7.000 16.240 10.590 " stroke="none" fill-rule="evenodd"></path>';
+
+const SortSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-sort';
+  const symbolId = 'snack-uikit-product-icons-' + 'sort';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default SortSpriteSVG;

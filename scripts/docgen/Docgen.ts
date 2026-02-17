@@ -113,6 +113,51 @@ export class Docgen {
     }
   }
 
+  /**
+   * Ключ для группировки: таблица без первой строки (### XProps), чтобы объединять одинаковые пропы.
+   * TODO: обобщить — поддерживать пакеты с shared props через конфиг (doc.config.ts) или конвенцию.
+   */
+  private propsTableBodyKey(content: string): string {
+    const firstLineEnd = content.indexOf('\n');
+    return firstLineEnd === -1 ? content : content.slice(firstLineEnd + 1);
+  }
+
+  /**
+   * FIXME: костыль под пакет icons — все иконки используют ISvgIconProps, в доке нужна одна таблица.
+   * Результат: одна таблица ISvgIconProps для всех *SVG, одна SpriteProps для Sprite.
+   */
+  private deduplicateIconsProps(
+    docs: Array<{ displayName: string; content: string }>,
+  ): Array<{ displayName: string; content: string }> {
+    const byBody = new Map<string, { displayNames: string[]; content: string }>();
+    for (const { displayName, content } of docs) {
+      const key = this.propsTableBodyKey(content);
+      const existing = byBody.get(key);
+      if (existing) {
+        existing.displayNames.push(displayName);
+      } else {
+        byBody.set(key, { displayNames: [displayName], content });
+      }
+    }
+
+    const result: Array<{ displayName: string; content: string }> = [];
+    for (const { displayNames, content } of byBody.values()) {
+      const isSpriteOnly = displayNames.length === 1 && displayNames[0] === 'Sprite';
+      const isIconGroup = displayNames.some(name => name.endsWith('SVG'));
+      const replaceHeader = isIconGroup && !isSpriteOnly;
+      const newContent = replaceHeader ? content.replace(/^### \w+Props/, '### ISvgIconProps') : content;
+      result.push({ displayName: displayNames[0], content: newContent });
+    }
+    result.sort((a, b) => {
+      if (a.content.startsWith('### ISvgIconProps')) return -1;
+      if (b.content.startsWith('### ISvgIconProps')) return 1;
+      if (a.content.startsWith('### SpriteProps')) return -1;
+      if (b.content.startsWith('### SpriteProps')) return 1;
+      return 0;
+    });
+    return result;
+  }
+
   private async generateDoc(packageName: string): Promise<Array<{ displayName: string; content: string }>> {
     const packageSrc = path.resolve(this.packagesRootPath, packageName, 'src', 'index.ts');
     if (!fs.existsSync(packageSrc)) return [];
@@ -120,10 +165,17 @@ export class Docgen {
     const packageDocOptions = await this.resolvePackageParserOptions(packageName);
     const parserOptions = packageDocOptions ? Object.assign(this.parserOptions, packageDocOptions) : this.parserOptions;
 
-    return parse(packageSrc, parserOptions).map(docData => ({
+    let docs = parse(packageSrc, parserOptions).map(docData => ({
       displayName: docData.displayName,
       content: new Markdown(docData).renderPropsTable(),
     }));
+
+    // FIXME: специальная логика только для icons (см. deduplicateIconsProps)
+    if (packageName === 'icons' && docs.length > 0) {
+      docs = this.deduplicateIconsProps(docs);
+    }
+
+    return docs;
   }
 
   async run(packagesPaths: string[] = []) {

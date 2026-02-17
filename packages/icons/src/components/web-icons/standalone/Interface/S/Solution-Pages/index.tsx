@@ -1,0 +1,11 @@
+export { default as AiConciergeSVG } from './AiConcierge';
+export { default as AiInConstructionSVG } from './AiInConstruction';
+export { default as CloudFolderSVG } from './CloudFolder';
+export { default as CorporateChatWithAiSVG } from './CorporateChatWithAi';
+export { default as CreatingCorporateAiAgentsSVG } from './CreatingCorporateAiAgents';
+export { default as EnterpriseKnowledgeBaseSVG } from './EnterpriseKnowledgeBase';
+export { default as EnterpriseSystemCloudSVG } from './EnterpriseSystemCloud';
+export { default as FaultTolerantCloudSVG } from './FaultTolerantCloud';
+export { default as SmartSearchBasedOnDataSVG } from './SmartSearchBasedOnData';
+export { default as WebApplicationCloudSVG } from './WebApplicationCloud';
+export { default as WorkSafetyGuideSVG } from './WorkSafetyGuide';

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M7.600 5.716 L 3.260 8.273 3.250 14.516 L 3.240 20.760 12.000 20.760 L 20.760 20.760 20.750 14.517 L 20.740 8.273 16.420 5.730 C 14.044 4.332,12.064 3.181,12.020 3.174 C 11.970 3.165,10.337 4.104,7.600 5.716 M15.626 7.006 L 19.240 9.131 19.240 14.186 L 19.240 19.240 12.000 19.240 L 4.760 19.240 4.760 14.186 L 4.760 9.131 8.370 7.007 C 10.356 5.838,11.987 4.882,11.996 4.881 C 12.005 4.880,13.638 5.837,15.626 7.006 M9.277 9.282 C 8.501 9.408,8.036 10.287,8.367 11.003 C 8.819 11.985,10.181 11.985,10.633 11.003 C 10.713 10.831,10.737 10.716,10.737 10.500 C 10.737 9.725,10.053 9.155,9.277 9.282 M11.470 12.470 L 8.480 15.461 9.010 15.990 L 9.541 16.520 12.540 13.520 L 15.539 10.520 15.020 10.000 C 14.735 9.714,14.492 9.480,14.480 9.480 C 14.469 9.480,13.114 10.826,11.470 12.470 M14.277 14.282 C 13.501 14.408,13.036 15.287,13.367 16.003 C 13.819 16.985,15.181 16.985,15.633 16.003 C 15.713 15.831,15.737 15.716,15.737 15.500 C 15.737 14.725,15.053 14.155,14.277 14.282 " stroke="none" fill-rule="evenodd"></path>';
+
+const PercentSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-percent';
+  const symbolId = 'snack-uikit-web-icons-' + 'percent';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default PercentSpriteSVG;

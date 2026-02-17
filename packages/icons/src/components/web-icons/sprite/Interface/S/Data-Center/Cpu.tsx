@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.240 12.000 L 3.240 20.760 12.000 20.760 L 20.760 20.760 20.760 12.000 L 20.760 3.240 12.000 3.240 L 3.240 3.240 3.240 12.000 M19.240 12.000 L 19.240 19.240 12.000 19.240 L 4.760 19.240 4.760 12.000 L 4.760 4.760 12.000 4.760 L 19.240 4.760 19.240 12.000 M6.760 12.000 L 6.760 16.760 12.000 16.760 L 17.240 16.760 17.240 12.000 L 17.240 7.240 12.000 7.240 L 6.760 7.240 6.760 12.000 M15.760 12.000 L 15.760 15.240 12.000 15.240 L 8.240 15.240 8.240 12.000 L 8.240 8.760 12.000 8.760 L 15.760 8.760 15.760 12.000 M9.760 10.760 L 9.760 11.520 10.500 11.520 L 11.240 11.520 11.240 10.760 L 11.240 10.000 10.500 10.000 L 9.760 10.000 9.760 10.760 M12.760 10.760 L 12.760 11.520 13.500 11.520 L 14.240 11.520 14.240 10.760 L 14.240 10.000 13.500 10.000 L 12.760 10.000 12.760 10.760 M9.760 13.260 L 9.760 14.000 10.500 14.000 L 11.240 14.000 11.240 13.260 L 11.240 12.520 10.500 12.520 L 9.760 12.520 9.760 13.260 M12.760 13.260 L 12.760 14.000 13.500 14.000 L 14.240 14.000 14.240 13.260 L 14.240 12.520 13.500 12.520 L 12.760 12.520 12.760 13.260 " stroke="none" fill-rule="evenodd"></path>';
+
+const CpuSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-cpu';
+  const symbolId = 'snack-uikit-web-icons-' + 'cpu';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default CpuSpriteSVG;

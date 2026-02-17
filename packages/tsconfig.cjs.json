@@ -5,6 +5,9 @@
       "path": "./utils/tsconfig.cjs.json"
     },
     {
+      "path": "./icons/tsconfig.cjs.json"
+    },
+    {
       "path": "./avatar/tsconfig.cjs.json"
     },
     {
@@ -43,12 +46,7 @@
   ],
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "es2017",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
     "module": "CommonJS",
     "strict": true,
     "jsx": "react-jsx",

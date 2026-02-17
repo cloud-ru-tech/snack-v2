@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M11.540 3.282 C 11.129 3.316,10.613 3.431,10.238 3.572 C 8.480 4.233,7.224 5.738,6.853 7.625 C 6.816 7.813,6.767 7.973,6.743 7.979 C 6.719 7.985,6.583 8.012,6.440 8.038 C 5.053 8.294,3.657 9.345,2.928 10.680 C 1.331 13.605,2.683 17.306,5.764 18.442 C 6.417 18.682,6.745 18.726,8.050 18.749 L 9.240 18.769 9.240 20.295 L 9.240 21.820 11.150 19.910 L 13.060 18.000 11.150 16.090 L 9.240 14.180 9.240 15.714 L 9.240 17.247 8.030 17.230 C 6.841 17.213,6.814 17.211,6.480 17.102 C 5.138 16.667,4.191 15.635,3.853 14.240 C 3.745 13.796,3.755 12.777,3.872 12.350 C 4.129 11.408,4.686 10.589,5.407 10.093 C 5.785 9.832,5.963 9.744,6.412 9.593 C 6.756 9.477,6.828 9.468,7.504 9.450 L 8.228 9.431 8.253 8.803 C 8.282 8.051,8.361 7.626,8.563 7.129 C 8.937 6.210,9.646 5.472,10.540 5.073 C 11.071 4.836,11.342 4.781,12.000 4.781 C 12.682 4.781,12.947 4.838,13.514 5.104 C 13.980 5.322,14.303 5.552,14.645 5.906 C 15.414 6.705,15.755 7.673,15.759 9.065 L 15.760 9.430 16.490 9.450 C 17.172 9.468,17.244 9.477,17.588 9.593 C 18.248 9.814,18.621 10.049,19.120 10.559 C 19.618 11.067,19.927 11.616,20.128 12.350 C 20.198 12.605,20.214 12.777,20.216 13.320 C 20.219 13.920,20.209 14.015,20.111 14.368 C 19.667 15.962,18.377 17.090,16.840 17.229 L 16.500 17.260 16.500 18.000 L 16.500 18.740 16.820 18.728 C 17.650 18.696,18.577 18.387,19.319 17.897 C 21.226 16.637,22.141 14.255,21.583 12.005 C 21.198 10.453,20.193 9.180,18.800 8.481 C 18.359 8.260,17.928 8.106,17.560 8.038 C 17.417 8.012,17.280 7.985,17.255 7.978 C 17.230 7.971,17.189 7.848,17.164 7.704 C 17.060 7.108,16.782 6.347,16.491 5.862 C 15.430 4.095,13.550 3.116,11.540 3.282 " stroke="none" fill-rule="evenodd"></path>';
+
+const CloudArrowSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-cloud-arrow';
+  const symbolId = 'snack-uikit-web-icons-' + 'cloud-arrow';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default CloudArrowSpriteSVG;

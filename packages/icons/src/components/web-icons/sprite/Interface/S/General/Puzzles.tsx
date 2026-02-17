@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.240 12.000 L 3.240 20.760 12.000 20.760 L 20.760 20.760 20.760 12.000 L 20.760 3.240 12.000 3.240 L 3.240 3.240 3.240 12.000 M11.240 5.856 L 11.240 6.951 11.092 6.979 C 10.708 7.051,10.320 7.374,10.138 7.773 C 10.000 8.075,9.992 8.473,10.117 8.805 C 10.263 9.192,10.676 9.551,11.069 9.632 L 11.220 9.664 11.231 10.452 L 11.242 11.240 8.001 11.240 L 4.760 11.240 4.760 8.000 L 4.760 4.760 8.000 4.760 L 11.240 4.760 11.240 5.856 M19.240 8.001 L 19.240 11.242 18.452 11.231 L 17.664 11.220 17.632 11.069 C 17.557 10.708,17.252 10.332,16.890 10.154 C 16.729 10.074,16.639 10.060,16.300 10.060 C 15.944 10.061,15.878 10.073,15.700 10.167 C 15.343 10.357,15.045 10.739,14.979 11.092 L 14.951 11.240 13.856 11.240 L 12.760 11.240 12.760 8.000 L 12.760 4.760 16.000 4.760 L 19.240 4.760 19.240 8.001 M6.979 12.908 C 7.020 13.127,7.147 13.358,7.334 13.553 C 7.856 14.099,8.708 14.115,9.247 13.591 C 9.451 13.392,9.584 13.165,9.632 12.931 L 9.664 12.780 10.452 12.769 L 11.240 12.758 11.240 15.999 L 11.240 19.240 8.000 19.240 L 4.760 19.240 4.760 16.000 L 4.760 12.760 5.856 12.760 L 6.951 12.760 6.979 12.908 M19.240 16.000 L 19.240 19.240 15.999 19.240 L 12.758 19.240 12.769 18.452 L 12.780 17.664 12.931 17.632 C 13.290 17.558,13.699 17.226,13.849 16.888 C 14.016 16.511,14.006 16.045,13.822 15.686 C 13.648 15.347,13.258 15.045,12.908 14.979 L 12.760 14.951 12.760 13.856 L 12.760 12.760 16.000 12.760 L 19.240 12.760 19.240 16.000 " stroke="none" fill-rule="evenodd"></path>';
+
+const PuzzlesSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-puzzles';
+  const symbolId = 'snack-uikit-web-icons-' + 'puzzles';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default PuzzlesSpriteSVG;

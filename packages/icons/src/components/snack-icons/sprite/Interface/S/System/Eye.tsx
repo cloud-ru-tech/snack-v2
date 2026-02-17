@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M5.490 6.950 L 2.240 9.660 2.240 12.003 L 2.240 14.347 5.488 17.054 L 8.736 19.760 12.000 19.760 L 15.264 19.760 18.512 17.054 L 21.760 14.347 21.760 12.003 L 21.760 9.660 18.510 6.950 L 15.260 4.241 12.000 4.241 L 8.740 4.241 5.490 6.950 M17.489 8.051 L 20.238 10.340 20.239 12.000 L 20.240 13.661 17.492 15.950 L 14.744 18.240 12.000 18.240 L 9.256 18.240 6.508 15.950 L 3.760 13.661 3.761 12.000 L 3.762 10.340 6.511 8.051 L 9.260 5.761 12.000 5.761 L 14.740 5.761 17.489 8.051 M11.220 7.823 C 9.527 8.120,8.250 9.339,7.851 11.039 C 7.751 11.462,7.751 12.538,7.851 12.961 C 8.079 13.931,8.573 14.732,9.307 15.320 C 9.871 15.772,10.507 16.055,11.250 16.184 C 11.708 16.264,12.562 16.243,12.993 16.141 C 14.675 15.745,15.888 14.455,16.184 12.750 C 16.263 12.296,16.243 11.438,16.143 11.016 C 15.743 9.319,14.464 8.116,12.745 7.821 C 12.312 7.747,11.651 7.748,11.220 7.823 M12.740 9.344 C 13.452 9.512,14.119 10.038,14.433 10.681 C 14.671 11.167,14.725 11.412,14.725 12.000 C 14.725 12.588,14.671 12.833,14.433 13.319 C 14.126 13.946,13.549 14.414,12.800 14.645 C 12.555 14.721,12.409 14.737,12.000 14.737 C 11.591 14.737,11.445 14.721,11.200 14.645 C 10.451 14.414,9.874 13.946,9.567 13.319 C 9.329 12.833,9.275 12.588,9.275 12.000 C 9.275 11.412,9.329 11.167,9.567 10.681 C 9.859 10.085,10.434 9.601,11.114 9.381 C 11.545 9.241,12.238 9.225,12.740 9.344 " stroke="none" fill-rule="evenodd"></path>';
+
+const EyeSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-eye';
+  const symbolId = 'snack-uikit-snack-icons-' + 'eye';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default EyeSpriteSVG;

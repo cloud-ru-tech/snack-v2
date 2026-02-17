@@ -1,0 +1,109 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.catalogMinimal {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-20;
+}
+
+.minimalHeader {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+}
+
+.sectionMinimal {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.sectionHeaderMinimal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitleMinimal {
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.sectionCountMinimal {
+  color: base.$sn-brand-color-text-version-secondary;
+}
+
+.iconGridMinimal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-6;
+}
+
+.iconButtonMinimal {
+  min-width: 24px;
+  min-height: 24px;
+
+  aspect-ratio: 1/1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: base.$sn-primitive-dimension-8;
+  background: transparent;
+  color: base.$sn-theme-color-available-complementary;
+  cursor: pointer;
+
+  &:hover {
+    background: base.$sn-theme-color-neutral-background2Level;
+  }
+
+  &:focus-visible {
+    outline: 2px solid base.$sn-theme-color-primary-accent;
+    outline-offset: 1px;
+  }
+}
+
+.mutedText {
+  color: base.$sn-brand-color-text-version-secondary;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: base.$sn-primitive-dimension-8;
+  padding: base.$sn-primitive-dimension-32;
+
+  border-radius: base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+}
+
+.modalIconPreviewMinimal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84px;
+  border-radius: base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.modalCodeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background2Level;
+  overflow-x: auto;
+}
+
+.modalCodeLabel {
+  color: base.$sn-brand-color-text-version-secondary;
+}

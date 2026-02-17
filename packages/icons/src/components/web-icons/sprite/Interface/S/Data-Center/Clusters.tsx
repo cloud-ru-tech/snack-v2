@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M7.600 4.381 L 3.220 6.915 3.220 12.002 L 3.220 17.089 7.610 19.624 L 11.999 22.158 16.390 19.624 L 20.780 17.089 20.780 12.002 L 20.780 6.916 16.385 4.378 C 13.968 2.982,11.988 1.842,11.985 1.844 C 11.982 1.846,10.009 2.988,7.600 4.381 M15.677 5.700 L 19.280 7.780 19.280 12.001 L 19.280 16.223 15.663 18.311 C 13.673 19.460,12.025 20.400,12.000 20.400 C 11.974 20.400,10.326 19.460,8.337 18.311 L 4.720 16.223 4.720 12.001 L 4.720 7.780 8.330 5.692 C 10.316 4.543,11.970 3.607,12.008 3.612 C 12.045 3.616,13.696 4.556,15.677 5.700 M9.490 7.690 L 7.000 9.133 7.000 12.002 L 7.000 14.872 9.500 16.314 L 12.000 17.757 14.500 16.314 L 17.000 14.872 17.000 12.002 L 17.000 9.132 14.514 7.696 C 13.146 6.906,12.017 6.257,12.004 6.254 C 11.991 6.251,10.860 6.897,9.490 7.690 M13.776 9.000 L 15.477 9.980 15.478 12.000 L 15.479 14.020 13.817 14.980 C 12.903 15.508,12.114 15.956,12.065 15.975 C 11.989 16.005,11.700 15.852,10.248 15.015 L 8.521 14.020 8.522 12.000 L 8.523 9.980 10.231 8.992 C 11.171 8.448,11.970 8.007,12.007 8.012 C 12.044 8.016,12.840 8.461,13.776 9.000 " stroke="none" fill-rule="evenodd"></path>';
+
+const ClustersSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-clusters';
+  const symbolId = 'snack-uikit-web-icons-' + 'clusters';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default ClustersSpriteSVG;

@@ -1,0 +1,11 @@
+export { default as BarChartSVG } from './BarChart';
+export { default as BellSVG } from './Bell';
+export { default as CostControlSVG } from './CostControl';
+export { default as HeadphonesSVG } from './Headphones';
+export { default as LaptopSVG } from './Laptop';
+export { default as ListSVG } from './List';
+export { default as MainMenuSVG } from './MainMenu';
+export { default as MonitoringSVG } from './Monitoring';
+export { default as NoPhoneSVG } from './NoPhone';
+export { default as UserSVG } from './User';
+export { default as UsersSVG } from './Users';

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M4.469 4.471 L 3.239 5.702 3.249 7.101 L 3.260 8.500 4.000 8.500 L 4.740 8.500 4.751 7.400 L 4.761 6.300 5.530 5.530 L 6.299 4.760 11.999 4.760 L 17.699 4.760 18.470 5.530 L 19.240 6.299 19.240 12.000 L 19.240 17.701 18.470 18.470 L 17.699 19.240 12.000 19.240 L 6.301 19.240 5.530 18.470 L 4.760 17.701 4.760 16.610 L 4.760 15.520 4.000 15.520 L 3.240 15.520 3.240 16.910 L 3.240 18.300 4.470 19.530 L 5.700 20.760 12.000 20.760 L 18.300 20.760 19.530 19.530 L 20.760 18.300 20.760 12.000 L 20.760 5.700 19.530 4.470 L 18.300 3.240 12.000 3.240 L 5.700 3.240 4.469 4.471 M10.240 8.710 L 10.240 11.240 6.870 11.250 L 3.500 11.260 3.500 12.000 L 3.500 12.740 6.870 12.750 L 10.240 12.760 10.240 15.290 L 10.240 17.820 13.150 14.910 L 16.060 12.000 13.150 9.090 L 10.240 6.180 10.240 8.710 M12.850 13.090 L 11.760 14.180 11.760 12.000 L 11.760 9.820 12.850 10.910 L 13.940 12.000 12.850 13.090 " stroke="none" fill-rule="evenodd"></path>';
+
+const ImportSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-import';
+  const symbolId = 'snack-uikit-web-icons-' + 'import';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default ImportSpriteSVG;

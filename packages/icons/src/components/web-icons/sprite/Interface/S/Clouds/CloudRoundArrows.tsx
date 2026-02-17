@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M11.540 3.282 C 11.129 3.316,10.613 3.431,10.238 3.572 C 8.480 4.233,7.224 5.738,6.853 7.625 C 6.816 7.813,6.767 7.973,6.743 7.979 C 6.719 7.985,6.583 8.012,6.440 8.038 C 5.053 8.294,3.657 9.345,2.928 10.680 C 1.331 13.605,2.683 17.306,5.764 18.442 C 6.367 18.664,6.767 18.724,7.810 18.748 L 8.760 18.771 8.760 16.295 L 8.760 13.819 9.291 13.289 L 9.821 12.760 10.531 12.760 L 11.240 12.760 11.240 13.790 L 11.240 14.820 12.650 13.410 L 14.060 12.000 12.650 10.590 L 11.240 9.180 11.240 10.210 L 11.240 11.240 10.210 11.240 L 9.179 11.240 8.210 12.210 L 7.240 13.181 7.240 15.214 L 7.240 17.248 7.030 17.221 C 6.695 17.178,6.166 17.006,5.821 16.827 C 4.844 16.320,4.130 15.382,3.853 14.240 C 3.745 13.796,3.755 12.777,3.872 12.350 C 4.129 11.408,4.686 10.589,5.407 10.093 C 5.785 9.832,5.963 9.744,6.412 9.593 C 6.756 9.477,6.828 9.468,7.504 9.450 L 8.228 9.431 8.253 8.803 C 8.282 8.051,8.361 7.626,8.563 7.129 C 8.937 6.210,9.646 5.472,10.540 5.073 C 11.071 4.836,11.342 4.781,12.000 4.781 C 12.682 4.781,12.947 4.838,13.514 5.104 C 13.980 5.322,14.303 5.552,14.645 5.906 C 15.414 6.705,15.755 7.673,15.759 9.065 L 15.760 9.430 16.490 9.450 C 17.172 9.468,17.244 9.477,17.588 9.593 C 18.248 9.814,18.621 10.049,19.120 10.559 C 19.618 11.067,19.927 11.616,20.128 12.350 C 20.198 12.605,20.214 12.777,20.216 13.320 C 20.219 13.920,20.209 14.015,20.111 14.368 C 19.802 15.477,19.125 16.333,18.160 16.836 C 17.832 17.007,17.300 17.179,16.970 17.221 L 16.760 17.248 16.760 15.384 L 16.760 13.520 16.000 13.520 L 15.240 13.520 15.240 15.851 L 15.240 18.181 14.709 18.711 L 14.179 19.240 13.469 19.240 L 12.760 19.240 12.760 18.210 L 12.760 17.180 11.350 18.590 L 9.940 20.000 11.350 21.410 L 12.760 22.820 12.760 21.790 L 12.760 20.760 13.792 20.760 L 14.823 20.760 15.838 19.740 C 16.771 18.803,16.864 18.720,16.990 18.720 C 17.066 18.720,17.305 18.684,17.522 18.640 C 20.462 18.041,22.325 14.996,21.583 12.005 C 21.198 10.453,20.193 9.180,18.800 8.481 C 18.359 8.260,17.928 8.106,17.560 8.038 C 17.417 8.012,17.280 7.985,17.255 7.978 C 17.230 7.971,17.189 7.848,17.164 7.704 C 17.060 7.108,16.782 6.347,16.491 5.862 C 15.430 4.095,13.550 3.116,11.540 3.282 " stroke="none" fill-rule="evenodd"></path>';
+
+const CloudRoundArrowsSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-cloud-round-arrows';
+  const symbolId = 'snack-uikit-web-icons-' + 'cloud-round-arrows';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default CloudRoundArrowsSpriteSVG;

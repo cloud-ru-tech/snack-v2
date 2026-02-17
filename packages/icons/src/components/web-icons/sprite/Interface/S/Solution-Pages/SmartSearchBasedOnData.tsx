@@ -1,0 +1,48 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M6.402 4.477 L 5.824 5.833 4.490 6.404 C 3.756 6.718,3.149 6.985,3.142 6.998 C 3.134 7.010,3.735 7.279,4.478 7.597 L 5.827 8.173 6.403 9.526 C 6.721 10.270,6.989 10.879,7.000 10.879 C 7.011 10.879,7.279 10.270,7.597 9.526 L 8.173 8.173 9.522 7.597 C 10.265 7.279,10.866 7.010,10.858 6.998 C 10.851 6.985,10.244 6.718,9.509 6.404 L 8.173 5.832 7.597 4.477 C 7.279 3.731,7.011 3.121,7.000 3.121 C 6.989 3.121,6.720 3.732,6.402 4.477 M11.497 3.294 C 11.486 3.321,11.483 3.657,11.489 4.041 L 11.500 4.740 11.660 4.750 C 12.402 4.796,13.024 4.905,13.574 5.084 C 16.048 5.892,17.847 8.051,18.179 10.612 C 18.472 12.872,17.651 15.057,15.940 16.571 C 14.718 17.652,13.154 18.240,11.500 18.240 C 8.434 18.240,5.786 16.203,4.981 13.225 C 4.876 12.836,4.760 12.046,4.760 11.718 L 4.760 11.520 4.000 11.520 L 3.240 11.520 3.240 11.650 C 3.240 11.722,3.259 11.978,3.281 12.220 C 3.489 14.437,4.513 16.397,6.211 17.824 C 7.546 18.946,9.132 19.587,10.926 19.728 C 12.908 19.884,15.048 19.227,16.600 17.985 L 16.780 17.841 18.620 19.678 L 20.460 21.514 21.000 20.997 L 21.540 20.480 19.691 18.630 L 17.841 16.780 17.985 16.600 C 18.414 16.064,18.817 15.377,19.101 14.699 C 19.967 12.634,19.967 10.366,19.101 8.301 C 18.118 5.954,16.043 4.155,13.590 3.523 C 12.828 3.326,11.539 3.185,11.497 3.294 M7.040 7.000 C 7.040 7.022,7.022 7.040,7.000 7.040 C 6.978 7.040,6.960 7.022,6.960 7.000 C 6.960 6.978,6.978 6.960,7.000 6.960 C 7.022 6.960,7.040 6.978,7.040 7.000 M7.840 12.000 L 7.840 12.762 8.590 12.751 L 9.340 12.740 9.340 12.000 L 9.340 11.260 8.590 11.249 L 7.840 11.238 7.840 12.000 M10.858 11.291 C 10.847 11.320,10.843 11.657,10.849 12.041 L 10.860 12.740 11.610 12.751 L 12.360 12.762 12.360 12.001 L 12.360 11.240 11.619 11.240 C 11.052 11.240,10.873 11.252,10.858 11.291 M13.840 12.000 L 13.840 12.762 14.590 12.751 L 15.340 12.740 15.340 12.000 L 15.340 11.260 14.590 11.249 L 13.840 11.238 13.840 12.000 " stroke="none" fill-rule="evenodd"></path>';
+
+const SmartSearchBasedOnDataSpriteSVG = forwardRef(
+  ({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+    props.width = undefined;
+    props.height = undefined;
+    const testId = '-smart-search-based-on-data';
+    const symbolId = 'snack-uikit-web-icons-' + 'smart-search-based-on-data';
+    const [useFallback, setUseFallback] = useState(false);
+    useEffect(() => {
+      if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+        setUseFallback(true);
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+        }
+      }
+    }, [symbolId]);
+
+    const isCustomSize = typeof size === 'number';
+    if (isCustomSize) {
+      if (!props.style) props.style = {};
+      props.style.width = size + 'px';
+      props.style.height = size + 'px';
+    }
+    return (
+      <svg
+        ref={ref}
+        xmlns='http://www.w3.org/2000/svg'
+        width={24}
+        height={24}
+        fill='currentColor'
+        viewBox='0 0 24 24'
+        data-test-id={'icon' + testId}
+        {...props}
+      >
+        {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+      </svg>
+    );
+  },
+);
+export default SmartSearchBasedOnDataSpriteSVG;

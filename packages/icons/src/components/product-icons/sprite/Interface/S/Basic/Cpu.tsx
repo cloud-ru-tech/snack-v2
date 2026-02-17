@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M9.031 3.290 L 9.020 4.580 8.120 4.591 L 7.220 4.601 5.890 5.930 L 4.560 7.260 4.560 8.150 L 4.560 9.040 3.280 9.040 L 2.000 9.040 2.000 9.780 L 2.000 10.520 3.280 10.520 L 4.560 10.520 4.560 12.000 L 4.560 13.480 3.280 13.480 L 2.000 13.480 2.000 14.220 L 2.000 14.960 3.280 14.960 L 4.560 14.960 4.560 15.850 L 4.560 16.740 5.910 18.090 L 7.260 19.440 8.150 19.440 L 9.040 19.440 9.040 20.720 L 9.040 22.000 9.780 22.000 L 10.520 22.000 10.520 20.720 L 10.520 19.440 12.000 19.440 L 13.480 19.440 13.480 20.720 L 13.480 22.000 14.220 22.000 L 14.960 22.000 14.960 20.720 L 14.960 19.440 15.850 19.440 L 16.740 19.440 18.090 18.090 L 19.440 16.740 19.440 15.850 L 19.440 14.960 20.720 14.960 L 22.000 14.960 22.000 14.220 L 22.000 13.480 20.720 13.480 L 19.440 13.480 19.440 12.000 L 19.440 10.520 20.720 10.520 L 22.000 10.520 22.000 9.780 L 22.000 9.040 20.720 9.040 L 19.440 9.040 19.440 8.150 L 19.440 7.260 18.110 5.930 L 16.780 4.601 15.880 4.591 L 14.980 4.580 14.969 3.290 L 14.959 2.000 14.220 2.000 L 13.481 2.000 13.471 3.290 L 13.460 4.580 12.000 4.580 L 10.540 4.580 10.529 3.290 L 10.519 2.000 9.780 2.000 L 9.041 2.000 9.031 3.290 M17.030 6.970 L 17.920 7.861 17.920 12.000 L 17.920 16.139 17.030 17.030 L 16.141 17.920 12.000 17.920 L 7.859 17.920 6.970 17.030 L 6.080 16.139 6.080 12.000 L 6.080 7.861 6.970 6.970 L 7.859 6.080 12.000 6.080 L 16.141 6.080 17.030 6.970 M9.040 12.000 L 9.040 14.960 12.000 14.960 L 14.960 14.960 14.960 12.000 L 14.960 9.040 12.000 9.040 L 9.040 9.040 9.040 12.000 M13.480 12.000 L 13.480 13.480 12.000 13.480 L 10.520 13.480 10.520 12.000 L 10.520 10.520 12.000 10.520 L 13.480 10.520 13.480 12.000 " stroke="none" fill-rule="evenodd"></path>';
+
+const CpuSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-cpu';
+  const symbolId = 'snack-uikit-product-icons-' + 'cpu';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default CpuSpriteSVG;

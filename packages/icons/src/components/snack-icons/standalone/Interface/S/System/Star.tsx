@@ -1,0 +1,43 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const StarSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  const testId = '-star';
+  const isCustomSize = typeof size === 'number';
+  const sizePx = isCustomSize ? size : 24;
+  const children = (
+    <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} fill='none' {...props}>
+      <path
+        fill='currentColor'
+        fillRule='evenodd'
+        d='M10.267 5.415 8.555 8.267l-3.168.732c-1.742.403-3.201.745-3.242.759-.062.023.284.441 2.056 2.485 1.172 1.351 2.153 2.484 2.18 2.517.039.048-.009.724-.24 3.36a205.363 205.363 0 0 0-.277 3.315c.007.008 1.377-.564 3.046-1.27 1.668-.707 3.059-1.285 3.09-1.285.031 0 1.422.578 3.09 1.285 1.669.706 3.039 1.278 3.046 1.27.007-.008-.118-1.5-.277-3.315-.231-2.636-.279-3.312-.24-3.36.027-.033 1.008-1.166 2.18-2.517 1.772-2.044 2.118-2.462 2.056-2.485-.041-.014-1.5-.356-3.242-.759l-3.168-.732-1.712-2.852C12.791 3.847 12.011 2.563 12 2.563c-.011 0-.791 1.284-1.733 2.852m2.985 2.118 1.232 2.051 2.308.533c1.269.293 2.32.544 2.334.558.014.014-.68.836-1.541 1.828l-1.567 1.802.016.198c.008.108.101 1.178.205 2.377.105 1.199.185 2.187.177 2.196-.008.009-1.005-.404-2.215-.916L12 17.227l-2.201.932c-1.211.513-2.207.925-2.215.917-.008-.009.072-.997.177-2.196.104-1.199.197-2.269.205-2.377l.016-.198-1.567-1.802c-.862-.992-1.555-1.814-1.541-1.828.014-.014 1.065-.265 2.334-.558l2.308-.533 1.232-2.051c.678-1.128 1.241-2.05 1.252-2.05.011 0 .574.923 1.252 2.05'
+      />
+    </svg>
+  ).props.children;
+  const style = isCustomSize
+    ? {
+        ...(props.style || {}),
+        width: sizePx,
+        height: sizePx,
+      }
+    : props.style;
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={sizePx}
+      height={sizePx}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      style={style}
+      {...props}
+    >
+      {children}
+    </svg>
+  );
+});
+export default StarSVG;

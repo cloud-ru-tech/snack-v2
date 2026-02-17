@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.240 8.620 L 3.240 13.000 4.000 13.000 L 4.760 13.000 4.760 9.380 L 4.760 5.760 6.770 5.760 L 8.780 5.760 10.280 6.760 L 11.780 7.760 15.510 7.760 L 19.240 7.760 19.240 13.000 L 19.240 18.240 18.120 18.240 L 17.000 18.240 17.000 19.000 L 17.000 19.760 18.880 19.760 L 20.760 19.760 20.760 13.000 L 20.760 6.240 16.480 6.240 L 12.199 6.240 10.700 5.240 L 9.201 4.240 6.220 4.240 L 3.240 4.240 3.240 8.620 M8.617 9.283 C 8.032 9.352,7.519 9.611,7.065 10.064 C 6.729 10.399,6.518 10.739,6.372 11.180 C 6.281 11.457,6.267 11.567,6.267 12.000 C 6.267 12.433,6.281 12.543,6.372 12.820 C 6.518 13.260,6.729 13.601,7.064 13.936 C 7.399 14.271,7.740 14.482,8.180 14.628 C 8.457 14.719,8.567 14.733,9.000 14.733 C 9.433 14.733,9.543 14.719,9.820 14.628 C 10.260 14.482,10.601 14.271,10.936 13.936 C 11.271 13.601,11.482 13.260,11.628 12.820 C 11.719 12.543,11.733 12.433,11.733 12.000 C 11.733 11.568,11.719 11.457,11.628 11.180 C 11.203 9.886,9.986 9.120,8.617 9.283 M9.528 10.873 C 9.767 10.990,10.009 11.232,10.127 11.472 C 10.260 11.742,10.260 12.259,10.127 12.529 C 9.663 13.472,8.332 13.472,7.875 12.529 C 7.764 12.300,7.730 11.909,7.801 11.658 C 7.898 11.310,8.231 10.955,8.586 10.820 C 8.818 10.732,9.294 10.759,9.528 10.873 M4.324 17.922 C 3.794 18.847,3.360 19.610,3.360 19.619 C 3.360 19.627,3.650 19.800,4.004 20.002 C 4.513 20.294,4.656 20.359,4.684 20.315 C 4.703 20.285,5.039 19.698,5.430 19.011 L 6.140 17.762 9.000 17.762 L 11.860 17.762 12.570 19.011 C 12.961 19.698,13.297 20.285,13.316 20.315 C 13.344 20.359,13.487 20.294,13.996 20.002 C 14.350 19.800,14.640 19.629,14.640 19.622 C 14.640 19.615,14.207 18.851,13.677 17.925 L 12.714 16.240 9.001 16.240 L 5.287 16.240 4.324 17.922 " stroke="none" fill-rule="evenodd"></path>';
+
+const UserFolderSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-user-folder';
+  const symbolId = 'snack-uikit-web-icons-' + 'user-folder';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default UserFolderSpriteSVG;

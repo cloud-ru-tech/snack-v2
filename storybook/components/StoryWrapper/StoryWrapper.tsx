@@ -24,6 +24,7 @@ export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
       className={cn(
         styles.wrapper,
         'sb-story-wrapper',
+        'sn-base-styles',
         'sn-primitive',
         'sn-base-styles',
         'sn-figmaStyles',

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M4.470 4.470 L 3.240 5.700 3.240 7.730 L 3.240 9.760 11.240 9.760 L 19.240 9.760 19.240 13.730 L 19.240 17.701 18.470 18.470 L 17.700 19.239 15.600 19.250 L 13.500 19.260 13.500 20.000 L 13.500 20.740 15.899 20.750 L 18.299 20.761 19.529 19.531 L 20.760 18.300 20.760 12.000 L 20.760 5.700 19.530 4.470 L 18.300 3.240 12.000 3.240 L 5.700 3.240 4.470 4.470 M18.470 5.530 L 19.240 6.299 19.240 7.270 L 19.240 8.240 12.000 8.240 L 4.760 8.240 4.760 7.270 L 4.760 6.301 5.530 5.530 L 6.299 4.760 11.999 4.760 L 17.699 4.760 18.470 5.530 M4.945 11.970 C 3.899 13.613,2.121 16.503,2.136 16.537 C 2.147 16.560,2.810 17.624,3.609 18.900 L 5.063 21.220 7.500 21.220 L 9.937 21.220 11.410 18.864 C 12.221 17.567,12.875 16.487,12.864 16.464 C 12.853 16.440,12.190 15.376,11.391 14.100 L 9.937 11.780 7.508 11.770 L 5.079 11.759 4.945 11.970 M10.083 14.850 C 10.637 15.736,11.091 16.478,11.091 16.500 C 11.091 16.522,10.637 17.265,10.083 18.150 L 9.074 19.760 7.500 19.760 L 5.926 19.760 4.917 18.150 C 4.363 17.265,3.909 16.522,3.909 16.500 C 3.909 16.478,4.363 15.736,4.917 14.850 L 5.926 13.240 7.500 13.240 L 9.074 13.240 10.083 14.850 M7.242 15.285 C 6.852 15.350,6.477 15.639,6.280 16.025 C 6.194 16.192,6.180 16.274,6.180 16.600 C 6.180 17.046,6.263 17.256,6.555 17.548 C 6.770 17.764,6.950 17.858,7.265 17.920 C 7.697 18.005,8.123 17.871,8.445 17.548 C 8.688 17.305,8.807 17.047,8.831 16.716 C 8.868 16.195,8.663 15.769,8.238 15.485 C 8.024 15.342,7.936 15.313,7.560 15.262 C 7.505 15.255,7.362 15.265,7.242 15.285 " stroke="none" fill-rule="evenodd"></path>';
+
+const BrouserGeerSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-brouser-geer';
+  const symbolId = 'snack-uikit-web-icons-' + 'brouser-geer';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default BrouserGeerSpriteSVG;

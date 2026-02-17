@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M18.230 4.710 L 16.000 6.940 14.620 5.560 L 13.240 4.180 13.240 7.470 L 13.240 10.760 16.530 10.760 L 19.820 10.760 18.440 9.380 L 17.060 8.000 19.300 5.760 L 21.539 3.520 21.020 3.000 C 20.735 2.714,20.492 2.480,20.481 2.480 C 20.469 2.480,19.456 3.483,18.230 4.710 M15.480 8.540 L 16.179 9.240 15.470 9.240 L 14.760 9.240 14.760 8.540 C 14.760 8.155,14.765 7.840,14.770 7.840 C 14.776 7.840,15.095 8.155,15.480 8.540 M5.560 14.620 L 6.940 16.000 4.710 18.230 L 2.480 20.460 3.010 20.990 L 3.540 21.520 5.770 19.290 L 8.000 17.060 9.380 18.440 L 10.760 19.820 10.760 16.530 L 10.760 13.240 7.470 13.240 L 4.180 13.240 5.560 14.620 M9.240 15.460 C 9.240 15.845,9.235 16.160,9.230 16.160 C 9.224 16.160,8.905 15.845,8.520 15.460 L 7.821 14.760 8.530 14.760 L 9.240 14.760 9.240 15.460 " stroke="none" fill-rule="evenodd"></path>';
+
+const CollapseSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-collapse';
+  const symbolId = 'snack-uikit-product-icons-' + 'collapse';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default CollapseSpriteSVG;

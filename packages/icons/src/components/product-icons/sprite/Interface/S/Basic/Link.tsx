@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M13.980 4.440 L 12.021 6.400 12.560 6.940 L 13.099 7.480 14.800 5.780 L 16.500 4.080 18.210 5.790 L 19.920 7.500 16.510 10.908 L 13.100 14.315 12.201 13.457 C 11.706 12.986,11.290 12.604,11.276 12.610 C 11.262 12.615,11.025 12.855,10.748 13.142 L 10.246 13.665 11.428 14.792 L 12.611 15.920 13.135 15.920 L 13.660 15.920 17.590 11.990 L 21.520 8.060 21.520 7.500 L 21.520 6.940 19.290 4.710 L 17.060 2.480 16.500 2.480 L 15.940 2.480 13.980 4.440 M10.335 8.109 C 10.230 8.122,9.596 8.746,6.355 12.030 L 2.500 15.935 2.489 16.496 L 2.478 17.057 4.709 19.289 L 6.940 21.520 7.500 21.520 L 8.060 21.520 10.020 19.560 L 11.979 17.600 11.460 17.080 C 11.175 16.794,10.923 16.560,10.901 16.560 C 10.879 16.560,10.104 17.316,9.180 18.240 L 7.500 19.920 5.782 18.202 L 4.065 16.485 6.543 13.978 C 7.905 12.599,9.416 11.066,9.900 10.571 L 10.780 9.673 11.675 10.526 C 12.167 10.996,12.582 11.385,12.598 11.391 C 12.615 11.397,12.855 11.161,13.134 10.866 L 13.639 10.330 12.463 9.205 L 11.286 8.080 10.873 8.086 C 10.646 8.090,10.404 8.100,10.335 8.109 " stroke="none" fill-rule="evenodd"></path>';
+
+const LinkSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-link';
+  const symbolId = 'snack-uikit-product-icons-' + 'link';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default LinkSpriteSVG;

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M8.100 3.281 C 7.223 3.399,6.487 4.094,6.300 4.980 C 6.258 5.183,6.241 5.533,6.241 6.250 L 6.240 7.240 5.240 7.240 L 4.240 7.240 4.240 14.000 L 4.240 20.760 12.000 20.760 L 19.760 20.760 19.760 14.000 L 19.760 7.240 18.760 7.240 L 17.760 7.240 17.759 6.250 C 17.759 5.148,17.721 4.863,17.522 4.460 C 17.282 3.972,16.772 3.528,16.246 3.351 L 15.980 3.261 12.160 3.255 C 10.059 3.251,8.232 3.263,8.100 3.281 M15.866 4.826 C 15.942 4.862,16.053 4.955,16.112 5.032 L 16.220 5.174 16.232 6.207 L 16.244 7.240 12.002 7.240 L 7.760 7.240 7.760 6.259 C 7.760 5.231,7.778 5.100,7.945 4.953 C 8.171 4.752,7.987 4.761,11.994 4.760 C 15.373 4.760,15.741 4.766,15.866 4.826 M18.240 14.000 L 18.240 19.240 12.000 19.240 L 5.760 19.240 5.760 14.000 L 5.760 8.760 12.000 8.760 L 18.240 8.760 18.240 14.000 M11.617 11.283 C 11.032 11.352,10.519 11.611,10.065 12.064 C 9.729 12.399,9.518 12.739,9.372 13.180 C 9.281 13.457,9.267 13.567,9.267 14.000 C 9.267 14.433,9.281 14.543,9.372 14.820 C 9.518 15.260,9.729 15.601,10.064 15.936 C 10.399 16.271,10.740 16.482,11.180 16.628 C 11.457 16.719,11.567 16.733,12.000 16.733 C 12.433 16.733,12.543 16.719,12.820 16.628 C 13.260 16.482,13.601 16.271,13.936 15.936 C 14.271 15.601,14.482 15.260,14.628 14.820 C 14.719 14.543,14.733 14.433,14.733 14.000 C 14.733 13.568,14.719 13.457,14.628 13.180 C 14.203 11.886,12.986 11.120,11.617 11.283 M12.528 12.873 C 12.767 12.990,13.009 13.232,13.127 13.472 C 13.260 13.742,13.260 14.259,13.127 14.529 C 12.663 15.472,11.332 15.472,10.875 14.529 C 10.764 14.300,10.730 13.909,10.801 13.658 C 10.898 13.310,11.231 12.955,11.586 12.820 C 11.818 12.732,12.294 12.759,12.528 12.873 " stroke="none" fill-rule="evenodd"></path>';
+
+const LockSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-lock';
+  const symbolId = 'snack-uikit-product-icons-' + 'lock';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default LockSpriteSVG;

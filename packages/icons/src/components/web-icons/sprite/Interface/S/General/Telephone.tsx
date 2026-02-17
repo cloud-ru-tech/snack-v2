@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M5.083 4.416 C 4.282 5.217,3.603 5.916,3.574 5.971 C 3.364 6.373,3.214 7.380,3.257 8.100 C 3.379 10.133,4.288 12.281,5.896 14.340 C 7.257 16.082,9.339 17.993,11.045 19.069 C 13.501 20.616,15.825 21.112,17.658 20.481 C 17.884 20.403,17.969 20.326,19.458 18.850 C 20.317 17.997,21.020 17.280,21.020 17.256 C 21.020 17.232,19.935 16.136,18.609 14.821 L 16.198 12.430 15.118 13.497 L 14.038 14.565 11.738 12.292 L 9.438 10.020 10.525 8.960 L 11.612 7.900 9.105 5.440 C 7.727 4.087,6.585 2.976,6.569 2.970 C 6.553 2.965,5.884 3.615,5.083 4.416 M8.014 6.468 C 8.787 7.231,9.425 7.867,9.431 7.881 C 9.437 7.895,8.963 8.383,8.378 8.965 L 7.314 10.023 10.208 12.881 C 11.799 14.454,13.313 15.946,13.572 16.199 L 14.042 16.657 14.631 16.079 C 14.955 15.760,15.441 15.284,15.710 15.020 L 16.200 14.541 17.560 15.900 L 18.920 17.259 18.010 18.171 C 16.912 19.271,17.013 19.219,15.980 19.220 C 15.193 19.220,14.922 19.173,14.080 18.892 C 12.758 18.451,11.292 17.555,9.880 16.323 C 7.682 14.406,6.124 12.410,5.368 10.540 C 4.866 9.298,4.665 8.101,4.799 7.140 L 4.849 6.780 5.693 5.930 C 6.158 5.463,6.554 5.080,6.573 5.080 C 6.593 5.080,7.241 5.704,8.014 6.468 " stroke="none" fill-rule="evenodd"></path>';
+
+const TelephoneSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-telephone';
+  const symbolId = 'snack-uikit-web-icons-' + 'telephone';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default TelephoneSpriteSVG;

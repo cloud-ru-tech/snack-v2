@@ -44,6 +44,13 @@ astro/src/content/docs/ru/components/
 # Temporary files
 *.tmp
 .cache
+# Icons generation workspace (must stay local only)
+packages/icons/svgs-fixed/
+# Generated icon components/sprites are part of repository history
+!packages/icons/src/components/
+!packages/icons/src/components/**
+!packages/icons/src/sprite/
+!packages/icons/src/sprite/**
 
 
 

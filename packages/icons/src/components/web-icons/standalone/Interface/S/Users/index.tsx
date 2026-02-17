@@ -1,0 +1,11 @@
+export { default as LineManagerSVG } from './LineManager';
+export { default as LocalUserSVG } from './LocalUser';
+export { default as ProductManagerSVG } from './ProductManager';
+export { default as RoundUserSVG } from './RoundUser';
+export { default as RoundUserGearSVG } from './RoundUserGear';
+export { default as RoundUserPlusSVG } from './RoundUserPlus';
+export { default as RoundUserStarSVG } from './RoundUserStar';
+export { default as UserFederationSVG } from './UserFederation';
+export { default as UserInvitationSVG } from './UserInvitation';
+export { default as UserLaptopSVG } from './UserLaptop';
+export { default as UserSearchSVG } from './UserSearch';

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M3.440 10.500 L 3.440 17.760 5.940 17.760 L 8.440 17.760 8.440 19.480 C 8.440 20.426,8.449 21.200,8.460 21.200 C 8.471 21.200,10.028 20.426,11.920 19.480 L 15.360 17.760 18.160 17.760 L 20.960 17.760 20.960 10.500 L 20.960 3.240 12.200 3.240 L 3.440 3.240 3.440 10.500 M19.440 10.500 L 19.440 16.240 17.240 16.240 L 15.040 16.240 12.520 17.500 C 11.134 18.193,9.991 18.760,9.980 18.760 C 9.969 18.760,9.960 18.193,9.960 17.500 L 9.960 16.240 7.460 16.240 L 4.960 16.240 4.960 10.500 L 4.960 4.760 12.200 4.760 L 19.440 4.760 19.440 10.500 M10.240 10.500 C 10.240 12.359,10.249 13.880,10.260 13.880 C 10.293 13.880,15.320 10.522,15.320 10.500 C 15.320 10.478,10.293 7.120,10.260 7.120 C 10.249 7.120,10.240 8.641,10.240 10.500 " stroke="none" fill-rule="evenodd"></path>';
+
+const MessagePlaySpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-message-play';
+  const symbolId = 'snack-uikit-web-icons-' + 'message-play';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default MessagePlaySpriteSVG;

@@ -1,0 +1,13 @@
+export { default as AdminSVG } from './Admin';
+export { default as AdministrationSVG } from './Administration';
+export { default as CloudCheckmarkSVG } from './CloudCheckmark';
+export { default as DecorCheckedSVG } from './DecorChecked';
+export { default as DiscountSVG } from './Discount';
+export { default as FederationSVG } from './Federation';
+export { default as LogFileSVG } from './LogFile';
+export { default as PasswordLockSVG } from './PasswordLock';
+export { default as RubleSVG } from './Ruble';
+export { default as SatelliteSVG } from './Satellite';
+export { default as Step1SVG } from './Step1';
+export { default as Step2SVG } from './Step2';
+export { default as Step3SVG } from './Step3';

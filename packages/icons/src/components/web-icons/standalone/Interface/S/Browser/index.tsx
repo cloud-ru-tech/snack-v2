@@ -1,0 +1,11 @@
+export { default as BlogSVG } from './Blog';
+export { default as BrouserCodeSVG } from './BrouserCode';
+export { default as BrouserGeerSVG } from './BrouserGeer';
+export { default as BrouserTestSVG } from './BrouserTest';
+export { default as BrowserSVG } from './Browser';
+export { default as BrowserListSVG } from './BrowserList';
+export { default as DocumentCheckSVG } from './DocumentCheck';
+export { default as ExpandWindowSVG } from './ExpandWindow';
+export { default as MediaSVG } from './Media';
+export { default as MinimizeWindowSVG } from './MinimizeWindow';
+export { default as TableSVG } from './Table';

@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M11.540 4.282 C 11.129 4.316,10.613 4.431,10.238 4.572 C 8.480 5.233,7.224 6.738,6.853 8.625 C 6.816 8.813,6.767 8.973,6.743 8.979 C 6.719 8.985,6.583 9.012,6.440 9.038 C 5.053 9.294,3.657 10.345,2.928 11.680 C 1.566 14.175,2.336 17.347,4.681 18.897 C 5.220 19.253,5.810 19.499,6.492 19.650 L 6.900 19.740 12.000 19.740 L 17.100 19.740 17.508 19.650 C 19.842 19.133,21.486 17.251,21.723 14.824 C 21.906 12.949,21.032 10.992,19.532 9.923 C 18.932 9.495,18.162 9.149,17.560 9.038 C 17.417 9.012,17.280 8.985,17.255 8.978 C 17.230 8.971,17.189 8.848,17.164 8.704 C 17.060 8.108,16.782 7.347,16.491 6.862 C 15.430 5.095,13.550 4.116,11.540 4.282 M12.880 5.861 C 13.227 5.951,13.830 6.237,14.134 6.455 C 14.633 6.812,15.132 7.424,15.380 7.983 C 15.464 8.172,15.680 8.836,15.680 8.904 C 15.680 8.913,14.022 8.920,11.996 8.920 C 8.819 8.920,8.314 8.912,8.333 8.863 C 8.345 8.831,8.368 8.737,8.384 8.653 C 8.435 8.377,8.710 7.764,8.933 7.429 C 9.181 7.057,9.624 6.611,9.980 6.375 C 10.303 6.161,10.799 5.943,11.140 5.865 C 11.294 5.831,11.456 5.793,11.500 5.783 C 11.677 5.742,12.629 5.795,12.880 5.861 M17.588 10.588 C 18.259 10.822,18.625 11.054,19.120 11.559 C 19.756 12.208,20.142 13.040,20.224 13.940 L 20.251 14.240 12.000 14.240 L 3.749 14.240 3.776 13.940 C 3.919 12.359,5.016 11.001,6.500 10.567 C 6.654 10.522,6.834 10.477,6.900 10.468 C 6.966 10.459,9.315 10.453,12.120 10.455 L 17.220 10.460 17.588 10.588 M19.912 15.950 C 19.454 16.999,18.610 17.753,17.499 18.106 L 17.140 18.220 12.000 18.220 L 6.860 18.220 6.500 18.106 C 5.396 17.757,4.545 16.996,4.088 15.950 L 4.004 15.760 12.000 15.760 L 19.996 15.760 19.912 15.950 " stroke="none" fill-rule="evenodd"></path>';
+
+const PaaSCloudSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-paa-s-cloud';
+  const symbolId = 'snack-uikit-web-icons-' + 'paa-s-cloud';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default PaaSCloudSpriteSVG;

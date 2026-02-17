@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M8.010 5.410 L 5.840 7.580 5.840 10.180 L 5.840 12.780 4.540 14.080 L 3.240 15.380 3.240 16.320 L 3.240 17.260 4.990 19.010 L 6.740 20.760 7.667 20.760 L 8.594 20.760 10.107 19.461 L 11.620 18.162 14.020 18.161 L 16.420 18.160 18.590 15.990 L 20.760 13.820 20.760 11.350 L 20.760 8.880 19.570 8.880 L 18.380 8.880 16.860 10.400 L 15.340 11.920 15.134 11.920 C 14.892 11.920,15.022 12.042,13.486 10.368 L 12.520 9.315 12.521 9.068 L 12.521 8.820 14.040 7.260 L 15.559 5.700 15.560 4.470 L 15.560 3.240 12.870 3.240 L 10.180 3.240 8.010 5.410 M14.040 4.937 L 14.040 5.113 12.542 6.647 L 11.043 8.180 11.042 9.052 L 11.040 9.924 12.630 11.659 L 14.220 13.394 15.100 13.397 L 15.980 13.400 17.500 11.880 C 18.764 10.616,19.038 10.360,19.130 10.360 L 19.240 10.360 19.240 11.790 L 19.240 13.220 17.510 14.950 L 15.780 16.680 13.413 16.680 L 11.047 16.680 9.553 17.960 L 8.060 19.240 7.700 19.240 L 7.340 19.240 6.050 17.950 L 4.760 16.660 4.760 16.320 L 4.760 15.980 6.060 14.680 L 7.360 13.380 7.360 10.780 L 7.360 8.180 9.070 6.470 L 10.780 4.760 12.410 4.760 L 14.040 4.760 14.040 4.937 " stroke="none" fill-rule="evenodd"></path>';
+
+const ToolingSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-tooling';
+  const symbolId = 'snack-uikit-web-icons-' + 'tooling';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default ToolingSpriteSVG;
