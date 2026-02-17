@@ -33,7 +33,8 @@
     "create-export-index-file": "ts-node scripts/createExportIndexFile.ts",
     "build:icons": "ts-node scripts/buildIcons.ts",
     "fix:icons": "ts-node scripts/fixIcons.ts",
-    "post-process-icons": "ts-node scripts/postProcessIconFallback.ts"
+    "post-process-icons": "ts-node scripts/postProcessIconFallback.ts",
+    "copy:sprite-svg": "node scripts/copySpriteSvgToDist.cjs"
   },
   "devDependencies": {
     "@svgr/cli": "8.1.0",
