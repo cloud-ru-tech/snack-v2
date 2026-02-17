@@ -228,10 +228,45 @@ hoverDelayClose={200}
 ### QuestionTooltipProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
+| tip* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
+| disableMaxWidth | `boolean` | false | Отключение ограничения ширины тултипа |
+| className | `string` | - | CSS-класс |
+| triggerClassName | `string` | - | CSS-класс триггера |
+| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
+| open | `boolean` | - | Управляет состоянием показан/не показан. |
+| onOpenChange | `(isOpen: boolean) => void` | - | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
+| hoverDelayClose | `number` | - | Задержка закрытия по ховеру |
+| triggerRef | `ForwardedRef<ReferenceType \| HTMLElement>` | - | Ref ссылка на триггер |
+| disableSpanWrapper | `boolean` | - | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| fallbackPlacements | `Placement[]` | - | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| closeOnPopstate | `boolean` | - | Закрывать ли поповер при пекреходе по истории браузера |
+| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.Hover | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | top | Положение поповера относительно своего триггера (children). |
+| children | `ReactNode \| ChildrenFunction` | - | Триггер поповера (подробнее читайте ниже) |
+| tooltipClassname | `string` | - | CSS-класс контейнера подсказки |
+| triggerLabel | `string` | Подсказка | Доступное имя для иконки-триггера |
+| tabIndex | `number` | - | Tab index для кнопки-триггера |
 
 ### TooltipProps
 | name | type | default value | description |
 |------|------|---------------|-------------|
+| tip* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
+| disableMaxWidth | `boolean` | - | Отключение ограничения ширины тултипа |
+| className | `string` | - | CSS-класс |
+| triggerClassName | `string` | - | CSS-класс триггера |
+| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
+| open | `boolean` | - | Управляет состоянием показан/не показан. |
+| onOpenChange | `(isOpen: boolean) => void` | - | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
+| hoverDelayClose | `number` | - | Задержка закрытия по ховеру |
+| triggerRef | `ForwardedRef<ReferenceType \| HTMLElement>` | - | Ref ссылка на триггер |
+| disableSpanWrapper | `boolean` | - | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| fallbackPlacements | `Placement[]` | - | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| closeOnPopstate | `boolean` | - | Закрывать ли поповер при пекреходе по истории браузера |
+| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
+| children | `ReactNode \| ChildrenFunction` | - | Триггер поповера (подробнее читайте ниже) |
 
 ## Best Practices
 
