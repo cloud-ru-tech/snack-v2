@@ -1,4 +1,3 @@
-import '@sbercloud/figma-variables/build/css/acrylic/yes.css';
 import '@sbercloud/figma-variables/build/css/tokens.css';
 
 import './global.scss';
@@ -20,11 +19,10 @@ const preview: Preview = {
       const theme = (context.globals?.[GLOBAL_KEYS.THEME] as 'light' | 'dark') ?? 'light';
       const brand = (context.globals?.[GLOBAL_KEYS.BRAND] as 'brandA' | 'brandB') ?? 'brandA';
       const platform = (context.globals?.[GLOBAL_KEYS.PLATFORM] as 'desktop' | 'mobile') ?? 'desktop';
-      const acrylic = (context.globals?.[GLOBAL_KEYS.ACRYLIC] as 'enabled' | 'disabled') ?? 'disabled';
 
       return (
         <PortalContextProvider root={storyWrapperRef}>
-          <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform} acrylic={acrylic}>
+          <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform}>
             <Sprite content={SpriteSVG as unknown as string} />
             <Story />
           </StoryWrapper>
