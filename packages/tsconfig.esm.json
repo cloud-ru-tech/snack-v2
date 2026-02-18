@@ -42,6 +42,9 @@
     },
     {
       "path": "./status/tsconfig.esm.json"
+    },
+    {
+      "path": "./link/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

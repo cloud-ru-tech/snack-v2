@@ -1,0 +1,59 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@design-system/materials' as m;
+
+$roles: 'regular', 'onAccent';
+$appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'violet', 'pink', 'yellow', 'green';
+
+.link {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+  max-width: 100%;
+
+  text-decoration: none;
+  text-decoration-skip-ink: none;
+
+  @include m.has-content-with-text-opacity();
+
+  &[data-inside-text] {
+    display: inline;
+
+    & > [data-content-layer] {
+      display: inherit;
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+  }
+
+  &[data-role='regular'] {
+    @each $appearance in $appearances {
+      &[data-appearance='#{$appearance}'] {
+        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
+      }
+    }
+  }
+
+  &[data-role='onAccent'] {
+    @each $appearance in $appearances {
+      &[data-appearance='#{$appearance}'] {
+        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'onAccent');
+      }
+    }
+  }
+}
+
+.content {
+  display: inline;
+  min-width: 0;
+}
+
+.opacityLayer {
+  display: inline;
+}
