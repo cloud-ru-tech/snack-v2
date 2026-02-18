@@ -83,10 +83,10 @@ const Template: StoryFn<StoryProps> = ({ showBackground, customText, isDraggable
       >
         <SampleBlock {...args}>
           <div className={styles.sampleContent}>
-            <span className={styles.sampleText} data-masked-content>
+            <span className={styles.sampleText} data-text-opacity>
               {customText}
             </span>
-            <SvgCloud className={styles.sampleIcon} data-masked-content />
+            <SvgCloud className={styles.sampleIcon} data-text-opacity />
           </div>
         </SampleBlock>
       </div>

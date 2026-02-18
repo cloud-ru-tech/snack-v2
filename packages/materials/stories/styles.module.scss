@@ -45,24 +45,18 @@
   width: 100%;
 }
 
-.withMaskForDemo {
-  & > [data-pseudo-mask-layer] {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: base.$sn-theme-color-material-stateLayer-maskColor-default-background;
+.opacityDemo {
+  @include m.has-content-with-text-opacity();
+
+  .contentLayer {
+    width: 100%;
+    height: 100%;
   }
 
-  &:hover {
-    & > [data-pseudo-mask-layer] {
-      background: base.$sn-theme-color-material-stateLayer-maskColor-hovered-background;
-    }
-  }
-
-  &:active {
-    & > [data-pseudo-mask-layer] {
-      background: base.$sn-theme-color-material-stateLayer-maskColor-pressed-background;
-    }
+  .pseudoContentLayer {
+    width: 100%;
+    height: 100%;
+    background: #000;
   }
 }
 
@@ -72,7 +66,7 @@
   &[data-state='regularBackground'],
   &[data-state='regularBorder'],
   &[data-state='activatedBorder'],
-  &[data-state='maskColor'] {
+  &[data-state='textOpacity'] {
     background-color: base.$sn-theme-color-neutral-background;
   }
 
@@ -109,7 +103,7 @@
 .sampleText {
   @include base.composite-var(base.$sn-thin-label-s);
 
-  // Despite any basic font color settings here in case of maskColor state this prop will be overridden
+  // Despite any basic font color settings here in case of textOpacity state this prop will be overridden
   color: base.$sn-brand-color-text-version-main;
 }
 

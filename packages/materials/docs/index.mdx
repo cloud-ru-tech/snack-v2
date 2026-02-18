@@ -34,7 +34,7 @@ pnpm add @design-system/materials
 Materials экспортирует два набора миксинов:
 
 - **Acrylic** — эффект «матового стекла» (backdrop blur + полупрозрачный слой). Один вызов миксина применяет стили к корневому элементу и к дочернему с атрибутом `data-acrylic-background`.
-- **State layer** — слой состояний (hover, active) для кнопок, карточек и других интерактивных элементов. Поддерживает варианты: обычный фон/бордер, активированный, onColor, onAccent и маска для текста/иконок. Использует переменные из `@sbercloud/figma-variables`.
+- **State layer** — слой состояний (hover, active) для кнопок, карточек и других интерактивных элементов. Поддерживает варианты: обычный фон/бордер, активированный, onColor, onAccent и прозрачность текста/иконок (textOpacity). Использует переменные из `@sbercloud/figma-variables`.
 
 Подключение в SCSS:
 
@@ -125,18 +125,18 @@ import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe
 }
 ```
 
-### State layer — маска для текста (maskColor)
+### State layer — прозрачность текста (textOpacity)
 
-Миксин `has-mask-color-layer-as-child` меняет цвет текста и иконок при hover/active. В разметке нужен слой с `[data-content-layer][data-state='maskColor']` и дочерние элементы с `[data-masked-content]` (текст или иконки, которые должны менять цвет).
+Миксин `has-content-with-text-opacity` меняет прозрачность текста и иконок при hover/active. В разметке нужен слой с `[data-content-layer][data-state='textOpacity']` и дочерние элементы с `[data-text-opacity]` (текст или иконки, которые должны менять прозрачность).
 
 **Разметка (JSX):**
 
 ```tsx
-<div className={styles.iconButton}>
-  <div data-content-layer data-state="maskColor" />
-  <span data-masked-content>
-    <Icon />
-  </span>
+<div className={styles.button}>
+  <div data-content-layer data-state="textOpacity">
+    <span data-text-opacity>Click me</span>
+    <Icon data-text-opacity />
+  </div>
 </div>
 ```
 
@@ -147,7 +147,7 @@ import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe
 
 .iconButton {
   position: relative;
-  @include m.has-mask-color-layer-as-child();
+  @include m.has-content-with-text-opacity();
 }
 ```
 
@@ -166,7 +166,7 @@ import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe
 | миксин | разметка | описание |
 |--------|----------|----------|
 | `has-state-layer-as-child()` | Корень с классом + **один** дочерний элемент `[data-state-layer]` (например, `div[data-state-layer]`) с атрибутом `data-state` | Стилизует слой состояний (default, hover, active). У компонента допускается только один такой элемент. Значения `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground` |
-| `has-mask-color-layer-as-child` | Корень + дочерний `[data-content-layer][data-state='maskColor']` и внутри него элементы с `[data-masked-content]` | Меняет цвет текста/иконок при hover и active через маску |
+| `has-content-with-text-opacity()` | Корень + дочерний `[data-content-layer][data-state='textOpacity']` и внутри него элементы с `[data-text-opacity]` | Меняет прозрачность текста/иконок при hover и active |
 
 Переменные цветов и состояний берутся из `@sbercloud/figma-variables` (stateLayer подключает этот пакет внутри себя).
 
@@ -181,5 +181,5 @@ import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe
 1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
 2. **Один state layer на компонент** — у компонента может быть только один элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`); миксин применяется к корню, hover/active обрабатываются на корне.
 3. **Переменные дизайн-системы** — для acrylic подставляйте значения из `@sbercloud/figma-variables` (blur, opacity, цвета), чтобы сохранять единый стиль.
-4. **Маска только для нужного контента** — помечайте `data-masked-content` только у текста и иконок, которые должны менять цвет при наведении/нажатии.
+4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.
 5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.

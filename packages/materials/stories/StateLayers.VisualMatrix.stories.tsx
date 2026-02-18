@@ -31,9 +31,11 @@ const Template: StoryFn = () => (
           variantLabel: '',
           cells: stateValues.map(state => (
             <div key={state} className={styles.squareWrapper} data-state={state} data-background>
-              {state === STATE.MaskColor ? (
-                <Square className={styles.withMaskForDemo}>
-                  <div data-pseudo-mask-layer />
+              {state === STATE.TextOpacity ? (
+                <Square className={styles.opacityDemo}>
+                  <div className={styles.contentLayer} data-content-layer data-state={STATE.TextOpacity}>
+                    <div className={styles.pseudoContentLayer} data-text-opacity />
+                  </div>
                 </Square>
               ) : (
                 <StateSquare state={state} />

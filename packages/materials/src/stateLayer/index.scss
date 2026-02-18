@@ -5,8 +5,8 @@
   * $states – то, какие виды состояний бывают с точки зрения пропа компонента.
   * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
   */
-$states: 'regularBackground', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground', 'onAccentBackground', 'maskColor';
-$internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'maskColor';
+$states: 'regularBackground', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground', 'onAccentBackground', 'textOpacity';
+$internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
 /**
   * Миксин для применения состояний ко всему элементу.
@@ -106,40 +106,32 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'maskColor';
 }
 
 /**
-  * Миксин для применения состояний к тексту компонента (т.н. маска).
+  * Миксин для применения состояний к содержимому компонента (текст, иконки).
   * Требует добавления в класс корневого компонента (чтобы ховер на всё содержимое компонента влиял на контент).
   * Требует создания слоя с атрибутом [data-content-layer] в качестве ребёнка компонента.
-  * Требует указания атрибута [data-masked-content] тем детям компонента, которые являются текстом/иконками (можно гибко настраивать что должно менять цвет благодаря маске, а что нет).
+  * Требует указания атрибута [data-text-opacity] тем детям компонента, которые являются текстом/иконками (можно гибко настраивать что должно менять цвет, а что нет).
   * См. пример в Playground.stories.tsx
   */
-@mixin has-mask-color-layer-as-child {
-  & > [data-content-layer][data-state='maskColor'] {
-    [data-masked-content] {
-      color: transparent;
-      background-color: base.$sn-theme-color-material-stateLayer-maskColor-default-background;
-      background-clip: text;
+@mixin has-content-with-text-opacity() {
+  & > [data-content-layer][data-state='textOpacity'] {
+    [data-text-opacity] {
+      opacity: base.$sn-theme-color-material-stateLayer-text-default-opacity;
     }
   }
 
   @media (hover: hover) {
     &:hover {
-      & > [data-content-layer][data-state='maskColor'] {
-        [data-masked-content] {
-          $maskColor: base.$sn-theme-color-material-stateLayer-maskColor-hovered-background;
-
-          background-color: $maskColor;
-          fill: $maskColor;
+      & > [data-content-layer][data-state='textOpacity'] {
+        [data-text-opacity] {
+          opacity: base.$sn-theme-color-material-stateLayer-text-hovered-opacity;
         }
       }
     }
 
     &:active {
-      & > [data-content-layer][data-state='maskColor'] {
-        [data-masked-content] {
-          $maskColor: base.$sn-theme-color-material-stateLayer-maskColor-pressed-background;
-
-          background-color: $maskColor;
-          fill: $maskColor;
+      & > [data-content-layer][data-state='textOpacity'] {
+        [data-text-opacity] {
+          opacity: base.$sn-theme-color-material-stateLayer-text-pressed-opacity;
         }
       }
     }

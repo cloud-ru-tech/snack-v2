@@ -57,7 +57,7 @@ $priorities: 'primary', 'secondary', 'tertiary';
   @include m.has-state-layer-as-child();
 
   // We need to place it here to handle hover/active states for block (not for its child "div.content")
-  @include m.has-mask-color-layer-as-child();
+  @include m.has-content-with-text-opacity();
 }
 
 .content {

@@ -20,5 +20,5 @@ export const STATE = {
   ActivatedBorder: 'activatedBorder',
   OnColorBackground: 'onColorBackground',
   OnAccentBackground: 'onAccentBackground',
-  MaskColor: 'maskColor',
+  TextOpacity: 'textOpacity',
 } as const;

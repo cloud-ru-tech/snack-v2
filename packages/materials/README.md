@@ -38,14 +38,14 @@ pnpm add @design-system/materials
 </button>
 ```
 
-### State layer — маска для текста (maskColor)
+### State layer — прозрачность текста (textOpacity)
 
 ```tsx
-<div className={styles.iconButton}>
-  <div data-content-layer data-state="maskColor" />
-  <span data-masked-content>
-    <Icon />
-  </span>
+<div className={styles.button}>
+  <div data-content-layer data-state="textOpacity">
+    <span data-text-opacity>Click me</span>
+    <Icon data-text-opacity />
+  </div>
 </div>
 ```
 
@@ -58,7 +58,7 @@ pnpm add @design-system/materials
 1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
 2. **Один state layer на компонент** — у компонента может быть только один элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`); миксин применяется к корню, hover/active обрабатываются на корне.
 3. **Переменные дизайн-системы** — для acrylic подставляйте значения из `@sbercloud/figma-variables` (blur, opacity, цвета), чтобы сохранять единый стиль.
-4. **Маска только для нужного контента** — помечайте `data-masked-content` только у текста и иконок, которые должны менять цвет при наведении/нажатии.
+4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.
 5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.
 
 ---
