@@ -48,11 +48,19 @@
     },
     {
       "path": "./button/tsconfig.esm.json"
+    },
+    {
+      "path": "./rating/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {
     "target": "es6",
-    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "es6",
     "strict": true,
     "jsx": "react-jsx",

@@ -444,6 +444,21 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
 
+  packages/rating:
+    dependencies:
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+      uncontrollable:
+        specifier: 8.0.4
+        version: 8.0.4(react@19.2.4)
+
   packages/status:
     dependencies:
       '@design-system/loader':
