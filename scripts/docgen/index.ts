@@ -33,3 +33,5 @@ const readmeGeneratorInstance = new ReadmeGenerator({
 
 export const docgen = (packages?: string[]) => docgenInstance.run(packages);
 export const generateReadme = (packages?: string[]) => readmeGeneratorInstance.run(packages);
+
+export type { DocgenPackageConfig, PropsFallbackConfig, PropsFallbackExtraProp } from './Docgen';
