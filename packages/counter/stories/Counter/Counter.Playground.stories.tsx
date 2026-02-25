@@ -45,7 +45,7 @@ function Example() {
         value={10}
         variant='count-plus'
         plusLimit={9}
-        appearance='red'
+        appearance='critical'
         size='m'
       />
 

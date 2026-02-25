@@ -1,7 +1,7 @@
 export const APPEARANCE = {
   Primary: 'primary',
   Neutral: 'neutral',
-  Red: 'red',
+  Critical: 'critical',
 } as const;
 
 export const VARIANT = {

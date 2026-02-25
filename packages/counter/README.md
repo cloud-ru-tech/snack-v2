@@ -68,7 +68,7 @@ import { Counter } from '@design-system/counter';
 
 <Counter value={9} appearance="primary" />
 <Counter value={9} appearance="neutral" />
-<Counter value={9} appearance="red" />
+<Counter value={9} appearance="critical" />
 ```
 
 ### Colors
@@ -125,7 +125,7 @@ export function NotificationBadge() {
 import { Counter } from '@design-system/counter';
 
 export function NotificationBadge() {
-  return <Counter value={10} appearance="red" size="s" />;
+  return <Counter value={10} appearance="critical" size="s" />;
 }
 ```
 
@@ -135,7 +135,7 @@ export function NotificationBadge() {
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | value* | `number` | - | Значение |
-| appearance | enum Appearance: `"primary"`, `"neutral"`, `"red"` | primary | Внешний вид |
+| appearance | enum Appearance: `"primary"`, `"neutral"`, `"critical"` | primary | Внешний вид |
 | variant | enum Variant: `"count"`, `"count-plus"`, `"count-k"` | count | Вариант |
 | size | enum Size: `"xs"`, `"s"` | xs | Размер |
 | plusLimit | `number` | 10 | Порог сокращения значения в формат v+. Например `1500` -> `999+` для 1000 |

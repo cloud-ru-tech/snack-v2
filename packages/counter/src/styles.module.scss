@@ -2,7 +2,13 @@
 @use '@sbercloud/figma-variables/build/scss/components/counter.module' as counter;
 
 $sizes: 'xs', 's';
-$contexts: 'primary', 'neutral', 'red';
+$contexts: 'primary', 'neutral', 'critical';
+// Маппинг appearance (API) -> токен темы (figma-variables): critical использует токен red
+$appearance-to-theme: (
+  'primary': 'primary',
+  'neutral': 'neutral',
+  'critical': 'red',
+);
 $roleColors: 'accent', 'decor';
 
 $textColor: (
@@ -27,10 +33,11 @@ $typography: (
 
   @each $roleColor in $roleColors {
     @each $appearance in $contexts {
+      $token: base.simple-var($appearance-to-theme, $appearance);
       &[data-color='#{$roleColor}'] {
         &[data-appearance='#{$appearance}'] {
-          color: base.simple-var(base.$sn-theme, 'color', $appearance, base.simple-var($textColor, $roleColor));
-          background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleColor);
+          color: base.simple-var(base.$sn-theme, 'color', $token, base.simple-var($textColor, $roleColor));
+          background-color: base.simple-var(base.$sn-theme, 'color', $token, $roleColor);
 
           @each $size in $sizes {
             &[data-size='#{$size}'] {
