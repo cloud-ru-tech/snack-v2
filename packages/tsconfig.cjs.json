@@ -45,6 +45,9 @@
     },
     {
       "path": "./link/tsconfig.cjs.json"
+    },
+    {
+      "path": "./button/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

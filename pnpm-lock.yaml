@@ -311,6 +311,21 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
 
+  packages/button:
+    dependencies:
+      '@design-system/counter':
+        specifier: 0.1.0
+        version: link:../counter
+      '@design-system/loader':
+        specifier: 0.1.0
+        version: link:../loader
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/counter:
     dependencies:
       '@design-system/utils':

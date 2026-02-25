@@ -1,0 +1,332 @@
+/**
+ * Стили повторяют слоистую структуру Figma:
+ * - Контейнер (relative)
+ * - Слой 1: фон / бордер (absolute, inset: 0)
+ * - Слой 2: state layer — hover/pressed (absolute, inset: 0), токены material-stateLayer
+ * - Слой 3: контент (relative, z-index: 1)
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as btn;
+@use '@design-system/materials' as m;
+
+$sizes: 's', 'm', 'l';
+$appearances: 'primary', 'neutral', 'critical';
+// Маппинг appearance (API) -> токен темы (figma-variables): critical использует токен red
+$appearance-to-theme: (
+  'primary': 'primary',
+  'neutral': 'neutral',
+  'critical': 'red',
+);
+
+// --- Миксины: label/icon цвет ---
+@mixin label-icon-color($color) {
+  .label,
+  .loadingSpinner,
+  .icon {
+    color: $color;
+  }
+}
+
+// --- Миксин: disabled состояние (общий для всех view/appearance) ---
+@mixin disabled-state(
+  $bg-color: base.$sn-theme-color-neutral-decor,
+  $label-color: base.$sn-theme-color-neutral-accent
+) {
+  &:disabled,
+  &[data-disabled] {
+    box-shadow: none;
+
+    @include label-icon-color($label-color);
+
+    & > [data-state-layer][data-state='regularBackground'] {
+      background-color: $bg-color;
+    }
+  }
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  font-family: inherit;
+  color: transparent;
+  text-decoration: none;
+
+  background: transparent;
+  outline: 0;
+  outline-offset: 0;
+
+  &[data-full-width] {
+    width: 100%;
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &[data-loading] {
+    cursor: progress;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container');
+
+      .label {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'textWrapper');
+      }
+
+      [data-border-layer] {
+        border-width: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-width');
+      }
+
+      &[data-variant='icon-only'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly');
+      }
+    }
+  }
+
+  // тут подключаем state-layer
+  @include m.has-state-layer-as-child();
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors */
+.root[data-size='m'],
+.root[data-size='l'] {
+  .icon,
+  .label {
+    > svg {
+      max-width: base.$sn-adaptive-size-icon-s;
+      max-height: base.$sn-adaptive-size-icon-s;
+    }
+  }
+}
+
+.root[data-size='s'] {
+  .icon,
+  .label {
+    > svg {
+      max-width: base.$sn-adaptive-size-icon-xs;
+      max-height: base.$sn-adaptive-size-icon-xs;
+    }
+  }
+}
+
+.content {
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  border-radius: inherit;
+
+  color: inherit;
+}
+
+// Обёртка иконки с бейджем: position relative для абсолютного counter
+.iconWithCounter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+// Counter как бейдж: абсолютно относительно иконки при iconPosition=after (внутри .iconWithCounter)
+.counterSlot {
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Counter инлайн: в потоке контента после label/иконки, когда нет иконки после текста (iconPosition=before или без icon)
+.counterSlotInline {
+  display: inline-flex;
+  align-items: center;
+}
+
+.label {
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', $size);
+    }
+  }
+
+  display: inline-flex;
+  align-items: center;
+}
+
+// --- VIEW: filled ---
+.root[data-view='filled'] {
+  @each $appearance in $appearances {
+    $token: base.simple-var($appearance-to-theme, $appearance);
+    &[data-appearance='#{$appearance}'] {
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'onAccent'));
+
+      background-color: base.simple-var(base.$sn-theme, 'color', $token, 'accent');
+    }
+
+    &:disabled,
+    &[data-disabled] {
+      @include label-icon-color(base.$sn-theme-color-available-version-textMain);
+
+      background-color: base.$sn-theme-color-neutral-decor;
+    }
+  }
+}
+
+// --- VIEW: simple ---
+.root[data-view='simple'] {
+  @each $appearance in $appearances {
+    $token: base.simple-var($appearance-to-theme, $appearance);
+    &[data-appearance='#{$appearance}'] {
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'text'));
+    }
+
+    &:disabled,
+    &[data-disabled] {
+      @include label-icon-color(base.$sn-theme-color-available-version-textMain);
+    }
+  }
+}
+
+// --- VIEW: tonal ---
+.root[data-view='tonal'] {
+  @each $appearance in $appearances {
+    $token: base.simple-var($appearance-to-theme, $appearance);
+    &[data-appearance='#{$appearance}'] {
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'text'));
+
+      background-color: base.simple-var(base.$sn-theme, 'color', $token, 'decor');
+    }
+
+    &:disabled,
+    &[data-disabled] {
+      @include label-icon-color(base.$sn-theme-color-available-version-textMain);
+
+      background-color: base.$sn-theme-color-neutral-decor;
+    }
+  }
+}
+
+// --- VIEW: elevated ---
+.root[data-view='elevated'] {
+  background-color: base.$sn-theme-color-neutral-background2Level;
+  box-shadow: base.$sn-boxShadow-elevation-level3;
+
+  @each $appearance in $appearances {
+    $token: base.simple-var($appearance-to-theme, $appearance);
+    &[data-appearance='#{$appearance}'] {
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'text'));
+    }
+
+    &:disabled,
+    &[data-disabled] {
+      @include label-icon-color(base.$sn-theme-color-available-version-textMain);
+    }
+  }
+
+  &[data-loading] {
+    box-shadow: base.$sn-boxShadow-elevation-level1;
+  }
+}
+
+// --- VIEW: outline ---
+.root[data-view='outline'] {
+  [data-border-layer] {
+    position: absolute;
+    inset: 0;
+    border-style: solid;
+    border-radius: inherit;
+  }
+
+  @each $appearance in $appearances {
+    $token: base.simple-var($appearance-to-theme, $appearance);
+    &[data-appearance='#{$appearance}'] {
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'text'));
+
+      [data-border-layer] {
+        border-color: base.simple-var(base.$sn-theme, 'color', $token, 'decor');
+      }
+    }
+
+    &:disabled,
+    &[data-disabled] {
+      @include label-icon-color(base.$sn-theme-color-available-version-textMain);
+
+      [data-border-layer] {
+        border-color: base.$sn-theme-color-neutral-decor;
+      }
+    }
+  }
+}
+
+.root[data-view='function'] {
+  background-color: transparent;
+
+  @include m.has-content-with-text-opacity();
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      min-width: initial;
+      padding-right: 0;
+      padding-left: 0;
+
+      .content {
+        gap: btn.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal;
+      }
+
+      .label {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    $token: base.simple-var($appearance-to-theme, $appearance);
+    &[data-appearance='#{$appearance}'] {
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'accent'));
+    }
+
+    &:disabled,
+    &[data-disabled] {
+      @include label-icon-color(base.$sn-theme-color-available-version-textMain);
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+}

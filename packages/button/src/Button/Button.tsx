@@ -1,0 +1,132 @@
+import { Counter } from '@design-system/counter';
+import { Sun } from '@design-system/loader';
+import cn from 'classnames';
+import { type ComponentPropsWithoutRef, type ElementType, type MouseEvent, type ReactElement } from 'react';
+
+import { ICON_POSITION } from './constants';
+import styles from './styles.module.scss';
+import { type ButtonProps } from './types';
+import { getVariant } from './utils';
+
+const TARGET_BLANK = '_blank';
+
+export function Button<T extends ElementType = 'button'>({
+  className,
+  label,
+  icon,
+  iconPosition = ICON_POSITION.Before,
+  appearance = 'primary',
+  size = 'm',
+  view = 'elevated',
+  disabled = false,
+  loading = false,
+  fullWidth = false,
+  counter,
+  as,
+  innerRef,
+  ...rest
+}: ButtonProps<T>): ReactElement | null {
+  const Component: ElementType = as ?? 'button';
+  const variant = getVariant({ label, icon, iconPosition });
+  const isDisabled = disabled && !loading;
+
+  let spreadProps: Record<string, unknown>;
+  if (Component === 'a') {
+    const { href, target, download, onClick, ...anchorRest } = rest as ComponentPropsWithoutRef<'a'>;
+    spreadProps = {
+      ...anchorRest,
+      href: href ?? '#',
+      target,
+      download,
+      rel: target === TARGET_BLANK ? 'noopener noreferrer' : undefined,
+      onClick: isDisabled
+        ? (e: MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault();
+            onClick?.(e);
+          }
+        : onClick,
+    };
+  } else if (Component === 'button') {
+    const { type = 'button', onClick, ...buttonRest } = rest as ComponentPropsWithoutRef<'button'>;
+    spreadProps = {
+      type,
+      disabled: isDisabled,
+      onClick: isDisabled ? undefined : onClick,
+      ...buttonRest,
+    };
+  } else {
+    spreadProps = rest as Record<string, unknown>;
+  }
+  const showCounterAsBadge = counter && icon && iconPosition === ICON_POSITION.After;
+
+  const counterNode = counter && !loading && (
+    <span
+      className={cn({
+        [styles.counterSlot]: showCounterAsBadge,
+        [styles.counterSlotInline]: !showCounterAsBadge,
+      })}
+      aria-hidden
+    >
+      <Counter {...counter} size='xs' appearance={disabled ? 'neutral' : appearance} />
+    </span>
+  );
+
+  const iconNode = loading ? <Sun /> : icon;
+
+  return (
+    <Component
+      ref={innerRef as never}
+      className={cn(styles.root, className)}
+      data-size={size}
+      data-appearance={appearance}
+      data-view={view}
+      data-variant={variant}
+      data-disabled={isDisabled || undefined}
+      data-loading={loading || undefined}
+      data-full-width={fullWidth || undefined}
+      data-counter={counter != null || undefined}
+      aria-disabled={Component === 'a' && isDisabled ? true : undefined}
+      aria-busy={loading ?? undefined}
+      {...spreadProps}
+    >
+      {view === 'outline' && <span data-border-layer aria-hidden />}
+      {view !== 'function' && <span data-state-layer aria-hidden data-state='regularBackground' />}
+
+      <span className={styles.content} data-content-layer data-state='textOpacity'>
+        {variant === 'icon-only' ? (
+          <>
+            <span className={styles.icon} aria-hidden data-text-opacity>
+              {iconNode}
+            </span>
+            {counterNode}
+          </>
+        ) : (
+          <>
+            {icon && iconPosition === ICON_POSITION.Before && (
+              <span className={styles.icon} aria-hidden data-text-opacity>
+                {iconNode}
+              </span>
+            )}
+
+            {label && (
+              <span className={styles.label} data-text-opacity>
+                {variant === 'label-only' && loading ? <Sun /> : label}
+              </span>
+            )}
+
+            {!showCounterAsBadge && counterNode}
+
+            {icon && iconPosition === ICON_POSITION.After && (
+              <span className={styles.iconWithCounter} aria-hidden>
+                <span className={styles.icon} data-text-opacity>
+                  {iconNode}
+                </span>
+                {counterNode}
+              </span>
+            )}
+          </>
+        )}
+      </span>
+    </Component>
+  );
+}

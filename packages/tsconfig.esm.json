@@ -45,6 +45,9 @@
     },
     {
       "path": "./link/tsconfig.esm.json"
+    },
+    {
+      "path": "./button/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {
