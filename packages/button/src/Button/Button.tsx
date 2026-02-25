@@ -60,13 +60,7 @@ export function Button<T extends ElementType = 'button'>({
   const showCounterAsBadge = counter && icon && iconPosition === ICON_POSITION.After;
 
   const counterNode = counter && !loading && (
-    <span
-      className={cn({
-        [styles.counterSlot]: showCounterAsBadge,
-        [styles.counterSlotInline]: !showCounterAsBadge,
-      })}
-      aria-hidden
-    >
+    <span className={styles.counterSlot} data-absolute={showCounterAsBadge || undefined} aria-hidden>
       <Counter {...counter} size='xs' appearance={disabled ? 'neutral' : appearance} />
     </span>
   );
@@ -75,7 +69,7 @@ export function Button<T extends ElementType = 'button'>({
 
   return (
     <Component
-      ref={innerRef as never}
+      ref={innerRef}
       className={cn(styles.root, className)}
       data-size={size}
       data-appearance={appearance}

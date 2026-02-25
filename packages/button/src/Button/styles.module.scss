@@ -155,24 +155,22 @@ $appearance-to-theme: (
   align-items: center;
 }
 
-// Counter как бейдж: абсолютно относительно иконки при iconPosition=after (внутри .iconWithCounter)
-.counterSlot {
-  pointer-events: none;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(50%, -50%);
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 // Counter инлайн: в потоке контента после label/иконки, когда нет иконки после текста (iconPosition=before или без icon)
-.counterSlotInline {
+.counterSlot {
   display: inline-flex;
   align-items: center;
+
+  // Counter как бейдж: абсолютно относительно иконки при iconPosition=after (внутри .iconWithCounter)
+  &[data-absolute] {
+    pointer-events: none;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+
+    justify-content: center;
+  }
 }
 
 .label {

@@ -1,6 +1,6 @@
 # Button
 
-Кнопка для действий в интерфейсе. Поддерживает текст (label), иконку (icon + iconPosition: before | after), счётчик (counter), варианты оформления (view: filled, outline, simple, tonal, elevated, function) и семантические цвета (appearance: primary, neutral, red). Полиморфный проп **as** позволяет рендерить кнопку как ссылку (`as="a"`) или как компонент роутера (например `as={Link}` из react-router-dom). Состояния: disabled, loading, fullWidth.
+Кнопка для действий в интерфейсе. Поддерживает текст (label), иконку (icon + iconPosition: before | after), счётчик (counter), варианты оформления (view: filled, outline, simple, tonal, elevated, function) и семантические цвета (appearance: primary, neutral, critical). Полиморфный проп **as** позволяет рендерить кнопку как ссылку (`as="a"`) или как компонент роутера (например `as={Link}` из react-router-dom). Состояния: disabled, loading, fullWidth.
 
 ## Installation
 
