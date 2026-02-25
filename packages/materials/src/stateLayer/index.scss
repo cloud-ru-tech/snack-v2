@@ -5,7 +5,9 @@
   * $states – то, какие виды состояний бывают с точки зрения пропа компонента.
   * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
   */
-$states: 'regularBackground', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground', 'onAccentBackground', 'textOpacity';
+$states:
+  'regularBackground', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground',
+  'onAccentBackground', 'textOpacity';
 $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
 /**
@@ -21,21 +23,28 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
     inset: 0;
     border-radius: inherit;
 
+    // определяем общие стили для бордера
+    &[data-state='regularBorder'],
+    &[data-state='activatedBorder'] {
+      border-style: solid;
+      border-width: base.$sn-primitive-strokeWeight-strokeRegular;
+    }
+
     &[data-state='regularBackground'] {
       background: base.$sn-theme-color-material-stateLayer-regular-default-background;
     }
 
     &[data-state='regularBorder'] {
-      border: 1px solid base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
-    };
+      border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+    }
 
     &[data-state='activatedBackground'] {
       background: base.$sn-theme-color-material-stateLayer-activated-default-background;
     }
 
     &[data-state='activatedBorder'] {
-      border: 1px solid base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
-    };
+      border-color: base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
+    }
 
     &[data-state='onColorBackground'] {
       background: base.$sn-theme-color-material-stateLayer-onColor-default-background;
@@ -43,27 +52,27 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
     &[data-state='onAccentBackground'] {
       background: base.$sn-theme-color-material-stateLayer-onAccent-default-background;
-    };
+    }
   }
 
   @media (hover: hover) {
-    &:hover {
+    &:hover:not([data-disabled], [data-loading]) {
       & > [data-state-layer] {
         &[data-state='regularBackground'] {
           background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
         }
 
         &[data-state='regularBorder'] {
-          border: 1px solid base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
-        };
+          border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+        }
 
         &[data-state='activatedBackground'] {
           background: base.$sn-theme-color-material-stateLayer-activated-hovered-background;
         }
 
         &[data-state='activatedBorder'] {
-          border: 1px solid base.$sn-theme-color-material-stateLayer-activated-hovered-borderColor;
-        };
+          border-color: base.$sn-theme-color-material-stateLayer-activated-hovered-borderColor;
+        }
 
         &[data-state='onColorBackground'] {
           background: base.$sn-theme-color-material-stateLayer-onColor-hovered-background;
@@ -71,35 +80,37 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
         &[data-state='onAccentBackground'] {
           background: base.$sn-theme-color-material-stateLayer-onAccent-hovered-background;
-        };
+        }
       }
     }
+  }
 
-    &:active {
-      & > [data-state-layer] {
-        &[data-state='regularBackground'] {
-          background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
-        }
+  /* stylelint-disable-next-line order/order */
+  &[data-loading],
+  &:active:not([data-disabled], [data-loading]) {
+    & > [data-state-layer] {
+      &[data-state='regularBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
+      }
 
-        &[data-state='regularBorder'] {
-          border: 1px solid base.$sn-theme-color-material-stateLayer-regular-pressed-borderColor;
-        };
+      &[data-state='regularBorder'] {
+        border-color: base.$sn-theme-color-material-stateLayer-regular-pressed-borderColor;
+      }
 
-        &[data-state='activatedBackground'] {
-          background: base.$sn-theme-color-material-stateLayer-activated-pressed-background;
-        }
+      &[data-state='activatedBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-activated-pressed-background;
+      }
 
-        &[data-state='activatedBorder'] {
-          border: 1px solid base.$sn-theme-color-material-stateLayer-activated-pressed-borderColor;
-        };
+      &[data-state='activatedBorder'] {
+        border-color: base.$sn-theme-color-material-stateLayer-activated-pressed-borderColor;
+      }
 
-        &[data-state='onColorBackground'] {
-          background: base.$sn-theme-color-material-stateLayer-onColor-pressed-background;
-        }
+      &[data-state='onColorBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-onColor-pressed-background;
+      }
 
-        &[data-state='onAccentBackground'] {
-          background: base.$sn-theme-color-material-stateLayer-onAccent-pressed-background;
-        };
+      &[data-state='onAccentBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-onAccent-pressed-background;
       }
     }
   }
@@ -120,19 +131,21 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   }
 
   @media (hover: hover) {
-    &:hover {
+    &:hover:not([data-disabled], [data-loading]) {
       & > [data-content-layer][data-state='textOpacity'] {
         [data-text-opacity] {
           opacity: base.$sn-theme-color-material-stateLayer-text-hovered-opacity;
         }
       }
     }
+  }
 
-    &:active {
-      & > [data-content-layer][data-state='textOpacity'] {
-        [data-text-opacity] {
-          opacity: base.$sn-theme-color-material-stateLayer-text-pressed-opacity;
-        }
+  /* stylelint-disable-next-line order/order */
+  &[data-loading],
+  &:active:not([data-disabled], [data-loading]) {
+    & > [data-content-layer][data-state='textOpacity'] {
+      [data-text-opacity] {
+        opacity: base.$sn-theme-color-material-stateLayer-text-pressed-opacity;
       }
     }
   }
