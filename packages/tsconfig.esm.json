@@ -5,6 +5,9 @@
       "path": "./utils/tsconfig.esm.json"
     },
     {
+      "path": "./locale/tsconfig.esm.json"
+    },
+    {
       "path": "./icons/tsconfig.esm.json"
     },
     {

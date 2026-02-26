@@ -1,0 +1,34 @@
+{
+  "name": "@design-system/locale",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Locale component for the design system",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "dependencies": {
+    "lodash.merge": "4.6.2"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "4.6.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
