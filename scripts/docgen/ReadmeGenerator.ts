@@ -167,13 +167,25 @@ export class ReadmeGenerator {
       const title = titleMatch[1].trim();
       const body = part.replace(/###\s+.+?(?:\n|$)/, '').trim();
 
-      // Ищем JSX-блок: от первой < до последней >
+      // Приоритет: markdown-блок ```tsx/ts — полный пример с импортом
+      const codeBlockMatch = body.match(/```(?:tsx?|ts)\s*\n([\s\S]*?)```/);
+      if (codeBlockMatch) {
+        const code = codeBlockMatch[1].trim();
+        examples.push(`### ${title}\n\n\`\`\`tsx\n${code}\n\`\`\``);
+        continue;
+      }
+
+      // Fallback: извлекаем JSX из ExampleContainer
       const jsxMatch = body.match(/<[\s\S]+?>/);
       if (!jsxMatch) continue;
 
       const lines = body.split('\n').filter(line => {
         const t = line.trim();
-        return t && !wrapperTagRegex.test(line.trim());
+        if (!t) return false;
+        if (wrapperTagRegex.test(t)) return false;
+        // Исключаем строки markdown-блоков кода
+        if (/^```|^\s*```/.test(t)) return false;
+        return true;
       });
 
       if (lines.length === 0) continue;
