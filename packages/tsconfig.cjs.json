@@ -51,6 +51,9 @@
     },
     {
       "path": "./rating/tsconfig.cjs.json"
+    },
+    {
+      "path": "./skeleton/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

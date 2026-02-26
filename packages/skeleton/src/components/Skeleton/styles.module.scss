@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.skeleton {
+  box-sizing: border-box;
+  width: 100%;
+  height: 1em;
+
+  background: base.$sn-color-gradient-skeleton 0 0 / 200% 100% repeat fixed;
+
+  animation: loading 2s infinite linear;
+
+  @keyframes loading {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}

@@ -51,6 +51,9 @@
     },
     {
       "path": "./rating/tsconfig.esm.json"
+    },
+    {
+      "path": "./skeleton/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

@@ -1,0 +1,74 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  position: relative;
+  padding: base.$sn-primitive-dimension-24;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.contentCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  height: 120px;
+  border-radius: base.$sn-primitive-dimension-12;
+
+  font-weight: 600;
+  color: base.$sn-theme-color-available-inversion-textMain;
+
+  background-color: base.$sn-theme-color-primary-accent;
+}
+
+.avatarPlaceholder {
+  width: base.$sn-primitive-dimension-48;
+  height: base.$sn-primitive-dimension-48;
+  border-radius: 50%;
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.textAlignLeft {
+  text-align: left;
+}
+
+.textAlignRight {
+  text-align: right;
+}
+
+.linesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.linesLabel {
+  margin-bottom: base.$sn-primitive-dimension-8;
+  font-size: base.$sn-regular-label-s-fontSize;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.textContainer {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: start;
+
+  max-width: 800px;
+
+  > div {
+    width: 50%;
+  }
+}
+
+.textContent {
+  opacity: var(--text-opacity, 1);
+}
+
+.skeletonOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

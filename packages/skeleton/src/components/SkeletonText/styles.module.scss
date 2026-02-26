@@ -1,0 +1,52 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/skeleton.module' as skeleton;
+
+$purposes: 'display', 'headline', 'title', 'label', 'body';
+$sizes: 's', 'm', 'l';
+
+.skeletonTextLine {
+  display: inline-block;
+
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: base.simple-var(skeleton.$skeleton, 'anatomy', 'size', 'text', 'border-radius');
+
+  vertical-align: middle;
+}
+
+.skeletonTextRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.skeletonText {
+  position: relative;
+  width: 100%;
+
+  @each $purpose in $purposes {
+    @each $size in $sizes {
+      &[data-purpose='#{$purpose}'][data-size='#{$size}'] {
+        .skeletonTextRow {
+          height: base.simple-var(skeleton.$skeleton, 'anatomy', 'size', 'text', 'lineHeight', $purpose, $size);
+          line-height: base.simple-var(skeleton.$skeleton, 'anatomy', 'size', 'text', 'lineHeight', $purpose, $size);
+        }
+
+        .skeletonTextLine {
+          height: base.simple-var(skeleton.$skeleton, 'anatomy', 'size', 'text', 'font', $purpose, $size);
+        }
+      }
+    }
+  }
+}
+
+.skeletonTextRow + .skeletonTextRow:last-child {
+  .skeletonTextLine {
+    width: 50%;
+  }
+
+  .skeletonText[data-align='right'] & {
+    flex-direction: row-reverse;
+  }
+}
+
