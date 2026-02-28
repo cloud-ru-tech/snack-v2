@@ -296,9 +296,12 @@ $appearance-to-theme: (
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      min-width: initial;
       padding-right: 0;
       padding-left: 0;
+
+      &:not([data-variant='icon-only']) {
+        min-width: initial;
+      }
 
       .content {
         gap: btn.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal;
