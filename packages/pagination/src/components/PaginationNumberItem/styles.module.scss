@@ -1,0 +1,78 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/pagination.module' as pagination;
+@use '@design-system/materials' as m;
+
+$sizes: 's', 'm';
+
+$typography: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  font-family: inherit;
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-decoration: none;
+
+  background-color: transparent;
+  outline: 0;
+  outline-offset: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(
+        pagination.$pagination,
+        'anatomy',
+        'size',
+        $size,
+        'paginationNumber',
+        'itemPaginationNumber'
+      );
+
+      .textWrapper {
+        @include base.composite-var($typography, $size);
+
+        @include base.composite-var(
+          pagination.$pagination,
+          'anatomy',
+          'size',
+          $size,
+          'paginationNumber',
+          'itemPaginationNumber',
+          'textWrapper'
+        );
+      }
+    }
+  }
+
+  &[data-activated] {
+    color: base.$sn-theme-color-primary-text;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  @include m.has-state-layer-as-child();
+}
+
+.textWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}

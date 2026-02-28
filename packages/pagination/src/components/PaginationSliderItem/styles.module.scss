@@ -1,0 +1,157 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/pagination.module' as pagination;
+
+$sizes: 'xs', 's';
+
+@mixin internal-has-state-layer-as-child() {
+  & .dot > [data-state-layer] {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    &[data-state='regularBackground'] {
+      background: base.$sn-theme-color-material-stateLayer-regular-default-background;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-disabled], [data-loading]) {
+      & .dot > [data-state-layer] {
+        &[data-state='regularBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
+        }
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line order/order */
+  &[data-loading],
+  &:active:not([data-disabled], [data-loading]) {
+    & .dot > [data-state-layer] {
+      &[data-state='regularBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
+      }
+    }
+  }
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  background: transparent;
+  outline: 0;
+  outline-offset: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(
+        pagination.$pagination,
+        'anatomy',
+        'size',
+        $size,
+        'paginationSlider',
+        'itemPaginationSlider'
+      );
+
+      &:not(&[data-activated]) {
+        .dot {
+          @include base.composite-var(
+            pagination.$pagination,
+            'anatomy',
+            'size',
+            $size,
+            'paginationSlider',
+            'itemPaginationSlider',
+            'slider',
+            'activatedFalse',
+            'default'
+          );
+
+          background-color: base.$sn-theme-color-neutral-background2Level;
+          box-shadow: base.$sn-boxShadow-elevation-level1;
+        }
+
+        @media (hover: hover) {
+          &:hover .dot {
+            @include base.composite-var(
+              pagination.$pagination,
+              'anatomy',
+              'size',
+              $size,
+              'paginationSlider',
+              'itemPaginationSlider',
+              'slider',
+              'activatedFalse',
+              'hovered'
+            );
+          }
+        }
+
+        /* stylelint-disable-next-line order/order */
+        &:active .dot {
+          @include base.composite-var(
+            pagination.$pagination,
+            'anatomy',
+            'size',
+            $size,
+            'paginationSlider',
+            'itemPaginationSlider',
+            'slider',
+            'activatedFalse',
+            'pressed'
+          );
+        }
+      }
+
+      &[data-activated] {
+        .dot {
+          @include base.composite-var(
+            pagination.$pagination,
+            'anatomy',
+            'size',
+            $size,
+            'paginationSlider',
+            'itemPaginationSlider',
+            'slider',
+            'activatedTrue',
+            'default'
+          );
+
+          background-color: base.$sn-theme-color-primary-accent;
+          box-shadow: none;
+        }
+      }
+
+      &:focus-visible .dot {
+        outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+        outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+      }
+    }
+  }
+
+  @include internal-has-state-layer-as-child();
+}
+
+.dot {
+  position: relative;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  background: transparent;
+  outline: 0;
+  outline-offset: 0;
+}

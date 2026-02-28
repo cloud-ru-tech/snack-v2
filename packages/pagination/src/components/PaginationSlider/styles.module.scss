@@ -1,0 +1,31 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/pagination.module' as pagination;
+
+$sizes: 'xs', 's';
+
+.paginationSlider {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: center;
+
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+
+  list-style-type: none;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(pagination.$pagination, 'anatomy', 'size', $size, 'paginationSlider');
+    }
+  }
+
+  background-color: base.$sn-theme-color-material-stateLayer-onColor-default-background;
+
+  > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

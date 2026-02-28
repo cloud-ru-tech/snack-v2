@@ -54,16 +54,14 @@
     },
     {
       "path": "./skeleton/tsconfig.cjs.json"
+    },
+    {
+      "path": "./pagination/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "es2017",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
     "module": "CommonJS",
     "strict": true,
     "jsx": "react-jsx",
