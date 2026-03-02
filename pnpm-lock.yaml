@@ -383,6 +383,21 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
 
+  packages/input-private:
+    dependencies:
+      '@design-system/button':
+        specifier: 0.1.0
+        version: link:../button
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/link:
     dependencies:
       '@design-system/truncate-string':

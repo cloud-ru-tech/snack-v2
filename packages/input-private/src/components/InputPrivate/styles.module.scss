@@ -1,0 +1,43 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.inputPrivate {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+
+  background-color: transparent;
+  outline: 0;
+
+  //&::placeholder {
+  //  color: base.$sn-theme-color-available-version-textDisabled;
+  //}
+
+  //&:read-only {
+  //  color: base.$sn-theme-color-available-version-textDisabled;
+  //}
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+
+  &[disabled] {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+
+  &[type="number"] {
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button, {
+      margin: 0;
+      appearance: none;
+    }
+  }
+}

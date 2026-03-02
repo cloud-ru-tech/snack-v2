@@ -72,6 +72,9 @@
     },
     {
       "path": "./scroll/tsconfig.esm.json"
+    },
+    {
+      "path": "./input-private/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

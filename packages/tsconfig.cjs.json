@@ -72,6 +72,9 @@
     },
     {
       "path": "./scroll/tsconfig.cjs.json"
+    },
+    {
+      "path": "./input-private/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

@@ -6,6 +6,7 @@
     "react",
     "react-dom",
     "@sbercloud/figma-variables",
-    "@design-system/materials"
+    "@design-system/materials",
+    "vitest"
   ]
 }
