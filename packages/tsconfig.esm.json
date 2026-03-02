@@ -75,6 +75,9 @@
     },
     {
       "path": "./input-private/tsconfig.esm.json"
+    },
+    {
+      "path": "./search-private/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

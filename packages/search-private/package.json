@@ -1,0 +1,44 @@
+{
+  "name": "@design-system/search-private",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Search Private component for the design system",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@design-system/icons": "0.1.0",
+    "@design-system/input-private": "0.1.0",
+    "@design-system/loader": "0.1.0",
+    "@design-system/utils": "0.1.0",
+    "classnames": "2.5.1",
+    "merge-refs": "1.3.0"
+  },
+  "peerDependencies": {
+    "@design-system/locale": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

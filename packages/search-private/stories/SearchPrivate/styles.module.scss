@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+$sizes: 's', 'm', 'l';
+
+.wrapper {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      min-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'min-height');
+    }
+  }
+}
