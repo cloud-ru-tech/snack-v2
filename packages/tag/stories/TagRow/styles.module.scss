@@ -1,0 +1,13 @@
+.playgroundWrapper {
+  resize: horizontal;
+  overflow: hidden;
+  width: 200px;
+}
+
+.cellNarrow {
+  max-width: 200px;
+}
+
+.cellWide {
+  max-width: 300px;
+}

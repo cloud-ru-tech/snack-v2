@@ -1,0 +1,1 @@
+export { TagRowSimple } from './TagRowSimple';

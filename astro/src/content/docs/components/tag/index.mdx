@@ -1,0 +1,73 @@
+---
+title: Tag
+description: Компоненты тегов для дизайн-системы
+version: "0.1.0"
+---
+
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleGrid,
+  ExampleItem,
+} from '#astro/components/mdx';
+
+# Tag
+
+Пакет компонентов для отображения тегов: одиночный тег (**Tag**) и строка тегов (**TagRow**).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/tag
+# or
+yarn add @design-system/tag
+# or
+pnpm add @design-system/tag
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName="tag" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="tag" />
+
+## Компоненты
+
+- **[Tag](./tag.mdx)** — одиночный тег. Может быть обычным (с опциональной кнопкой удаления) или ссылкой (`href`). Тип определяется по пропсам; для проверки используется `isTagLinkProps`.
+- **[TagRow](./tag-row.mdx)** — строка из нескольких тегов. Поддерживает лимит отображаемых тегов (`rowLimit`) с выпадающим списком «ещё», размер и кастомизацию элементов (ссылки, удаление).
+
+## Exports
+
+```typescript
+import {
+  Tag,
+  TagRow,
+  isTagLinkProps,
+  SIZE,
+  APPEARANCE,
+} from '@design-system/tag';
+import type {
+  TagProps,
+  TagRowProps,
+  TagRowItem,
+  Appearance,
+  Size,
+} from '@design-system/tag';
+```
+
+## Overview
+
+- **Tag** — универсальный тег: либо `<span>` с кнопкой удаления (`onDelete`), либо `<a>` при передаче `href`. Размеры: `xs`, `s`, `m`. Цветовые схемы (appearance): neutral, primary, red, orange, yellow, green, blue, violet, pink.
+- **TagRow** — рендерит массив `items` как теги. При `rowLimit` лишние теги скрываются, показывается кнопка «+N» с выпадающим списком. Элементы могут быть ссылками (`href`, `onClick`, `target`) и поддерживают удаление через контекст строки.
+
+## Accessibility
+
+- Корректная семантика: тег-ссылка — `<a>`, обычный тег — `<span>`.
+- Кнопка удаления доступна с клавиатуры, поддерживается `tabIndex`.
+- Компоненты принимают стандартные HTML-атрибуты для кастомизации и доступности.

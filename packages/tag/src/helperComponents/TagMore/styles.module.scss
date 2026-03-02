@@ -1,0 +1,57 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
+
+$sizes: 'xs', 's', 'm';
+
+.button {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  border-color: base.$sn-theme-color-available-borderColor;
+  border-style: solid;
+  border-width: base.$sn-primitive-strokeWeight-strokeSemiBold;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  white-space: nowrap;
+
+  background: none;
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'tagRow', 'gap');
+      padding: 2px 4px;
+
+      @if $size == 'xs' {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+      }
+
+ @else if $size == 's' {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm');
+      }
+
+ @else {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
+      }
+    }
+  }
+}
+
+.tagRowDroplistContainer {
+  padding: 8px;
+}
+
+.tagRowDroplistScroll {
+  max-height: 200px;
+}
+
+.triggerClassName {
+  display: inline-flex;
+}

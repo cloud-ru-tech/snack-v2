@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@sbercloud/figma-variables':
-      specifier: 1.4.5-ed9bba65.0
-      version: 1.4.5-ed9bba65.0
+      specifier: 1.4.5-9553a8f6.0
+      version: 1.4.5-9553a8f6.0
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -62,16 +62,10 @@ importers:
         version: 1.47.2
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.5-ed9bba65.0
-      '@snack-uikit/drop-zone':
-        specifier: 0.9.11
-        version: 0.9.11(lodash.debounce@4.0.8)(react@19.2.4)
+        version: 1.4.5-9553a8f6.0
       '@snack-uikit/icons':
         specifier: 0.27.5
         version: 0.27.5
-      '@snack-uikit/info-block':
-        specifier: 0.6.37
-        version: 0.6.37(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@snack-uikit/modal':
         specifier: 0.19.7
         version: 0.19.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -269,7 +263,7 @@ importers:
         version: 0.37.6(astro@5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2))
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.5-ed9bba65.0
+        version: 1.4.5-9553a8f6.0
       astro:
         specifier: 5.17.1
         version: 5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -637,6 +631,24 @@ importers:
       '@design-system/progress-bar':
         specifier: 1.0.0
         version: link:../progress-bar
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
+  packages/tag:
+    dependencies:
+      '@design-system/dropdown':
+        specifier: 0.1.0
+        version: link:../dropdown
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/scroll':
+        specifier: 0.1.0
+        version: link:../scroll
       '@design-system/utils':
         specifier: 0.1.0
         version: link:../utils
@@ -2694,8 +2706,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-variables@1.4.5-ed9bba65.0':
-    resolution: {integrity: sha512-1iWv2aweaoweuQXCulN7qNBRv+0RF/VklPRCVL6Bu5ULLrnfWObNrOqchRx5oYAS/WWogj7EH1H8EtW2uLm4+g==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.5-ed9bba65.0.tgz}
+  '@sbercloud/figma-variables@1.4.5-9553a8f6.0':
+    resolution: {integrity: sha512-osLLeIA35Sfyxd31ks3I29S/QUjWHKjNIuNftE8phsplZ8jwgw9NxLvPZ9sLXUh3GN4A53EnaOCVOorjSIeEbQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.5-9553a8f6.0.tgz}
 
   '@shikijs/core@3.21.0':
     resolution: {integrity: sha512-AXSQu/2n1UIQekY8euBJlvFYZIw0PHY63jUzGbrOma4wPxzznJXTXkri+QcHeBNaFxiiOljKxxJkVSoB3PjbyA==}
@@ -2754,11 +2766,6 @@ packages:
   '@snack-uikit/divider@3.2.11':
     resolution: {integrity: sha512-RGFrHoB0G4YsuBgjzuC0eA1+/n0b/mmz940xgApiYHoU428tqO/E9rEPzoonlGekOJHihdDeiEDBcq1Lcc5hLg==}
 
-  '@snack-uikit/drop-zone@0.9.11':
-    resolution: {integrity: sha512-BkjEkahn/5pKpcBtM/MQnVFBn7+pJnXYI6kWmO8xT3/gmvPonnOfng00jemjVW+S2l7KhfHuSGGvMNANiyk4GA==}
-    peerDependencies:
-      lodash.debounce: 4.0.8
-
   '@snack-uikit/dropdown@0.5.4':
     resolution: {integrity: sha512-ma5f/5WeMQsdqLvdO6ShRWKeIMTjxbvtrYJSITcZGYAfdHUmEESajtUtnjUTwqGZdo8/o4x6d8fEFV4oqGiuog==}
 
@@ -2768,14 +2775,8 @@ packages:
   '@snack-uikit/icons@0.27.5':
     resolution: {integrity: sha512-y7HKvtht3bxZ7UhoyMBxFd5a4r68nudi/sV/bntJoOzaA6vYUjWfPoJ9SM8Xx1Cyk6bTXjahiPQvAKTiqGGnQQ==}
 
-  '@snack-uikit/icons@0.27.6':
-    resolution: {integrity: sha512-1h8qY1vtWGtG+V6miFrUNPeCxy8NluYvYNc/HPAllEXLSKeCRvuyjNR6ykl2OmXNwmos5RmwkYV+8QS72J5Ong==}
-
   '@snack-uikit/info-block@0.6.36':
     resolution: {integrity: sha512-4GEJz+KWM2xO7kzP54QL5aBrXbo9018+rVH9o4+JI2lL9wGCKj5rqDzOsMawrFTGTp9yss2oNOdmxl14rkmbtg==}
-
-  '@snack-uikit/info-block@0.6.37':
-    resolution: {integrity: sha512-853/+sQv6xmhe4cWCwwMGihzQuljPcCaVSTGPihKb0uiJCE1Q6yJtcr6HuEN3xU7clCesjee6JKm2ouU/L1dxg==}
 
   '@snack-uikit/input-private@4.8.6':
     resolution: {integrity: sha512-anI3COcm5bRcyn7S6D29Zz9qcy/CmPMBag29HsVoQTfv1DvaYJEtPowgRHXaP/ZKNk9bPRjWYBOVOFD6slsDqA==}
@@ -2816,9 +2817,6 @@ packages:
 
   '@snack-uikit/tooltip@0.18.8':
     resolution: {integrity: sha512-XGls3xS8bQNdbgKuN1cHPDEH0wZe5uEW2e/CMbrJp0X5MZH2y8AyEnnWKw09gX6DZ1uA3zr56bWkKhQiuu4tgQ==}
-
-  '@snack-uikit/tooltip@0.18.9':
-    resolution: {integrity: sha512-ChE7p4Re8/gE3wPqZSwQQpoJQRMo/pIvdVPmTB2Hi+PIdO3bSrL5WucLNs4YrZetuYjFhMt2J94KQj+BGow7nA==}
 
   '@snack-uikit/truncate-string@0.7.7':
     resolution: {integrity: sha512-jiZ9du5OS8X6VdThCe0Yi4WpnpqQy3m8/LAsG+TGBIOPdi/b66ysa6vt82EV4rVGO3NyN55nORgNn0W9ppGk2Q==}
@@ -11412,7 +11410,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-variables@1.4.5-ed9bba65.0': {}
+  '@sbercloud/figma-variables@1.4.5-9553a8f6.0': {}
 
   '@shikijs/core@3.21.0':
     dependencies:
@@ -11504,14 +11502,6 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@snack-uikit/drop-zone@0.9.11(lodash.debounce@4.0.8)(react@19.2.4)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.1(react@19.2.4)
-      classnames: 2.5.1
-      lodash.debounce: 4.0.8
-    transitivePeerDependencies:
-      - react
-
   '@snack-uikit/dropdown@0.5.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@snack-uikit/popover-private': 0.15.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -11530,25 +11520,11 @@ snapshots:
 
   '@snack-uikit/icons@0.27.5': {}
 
-  '@snack-uikit/icons@0.27.6': {}
-
   '@snack-uikit/info-block@0.6.36(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@snack-uikit/button': 0.19.17(react@19.2.4)
       '@snack-uikit/icon-predefined': 0.7.11(react@19.2.4)
       '@snack-uikit/tooltip': 0.18.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@snack-uikit/typography': 0.8.12(react@19.2.4)
-      '@snack-uikit/utils': 4.0.1(react@19.2.4)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/info-block@0.6.37(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@snack-uikit/button': 0.19.17(react@19.2.4)
-      '@snack-uikit/icon-predefined': 0.7.11(react@19.2.4)
-      '@snack-uikit/tooltip': 0.18.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@snack-uikit/typography': 0.8.12(react@19.2.4)
       '@snack-uikit/utils': 4.0.1(react@19.2.4)
       classnames: 2.5.1
@@ -11684,17 +11660,6 @@ snapshots:
   '@snack-uikit/tooltip@0.18.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@snack-uikit/icons': 0.27.5
-      '@snack-uikit/popover-private': 0.15.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@snack-uikit/utils': 4.0.1(react@19.2.4)
-      classnames: 2.5.1
-      uncontrollable: 8.0.4(react@19.2.4)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/tooltip@0.18.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@snack-uikit/icons': 0.27.6
       '@snack-uikit/popover-private': 0.15.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@snack-uikit/utils': 4.0.1(react@19.2.4)
       classnames: 2.5.1

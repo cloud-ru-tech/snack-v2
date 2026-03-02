@@ -1,0 +1,111 @@
+---
+title: Tag
+description: Одиночный тег (обычный или ссылка)
+version: "0.1.0"
+---
+
+import { ExampleContainer, ExampleGrid, ExampleItem, ExampleRow } from '#astro/components/mdx';
+import { APPEARANCE, SIZE, Tag } from '@packages/tag/src';
+
+# Tag
+
+Одиночный тег. В зависимости от пропсов рендерится как обычный тег (с опциональной кнопкой удаления) или как ссылка.
+
+**Version:** `{frontmatter.version}`
+
+## Использование
+
+Если передан `href`, компонент рендерит `<a>` (тег-ссылку). Иначе — `<span>`; при наличии `onDelete` отображается кнопка удаления. Тип пропсов можно проверить функцией `isTagLinkProps`.
+
+### Базовый пример
+
+```tsx
+import { Tag, SIZE, APPEARANCE } from '@design-system/tag';
+
+<Tag label='Тег' size={SIZE.S} appearance={APPEARANCE.Neutral} />;
+```
+
+### Тег-ссылка
+
+```tsx
+import { Tag } from '@design-system/tag';
+
+<Tag label='Ссылка' href='/path' />;
+```
+
+### С кнопкой удаления
+
+```tsx
+import { Tag } from '@design-system/tag';
+
+<Tag label='Удаляемый' onDelete={() => console.log('removed')} />;
+```
+
+## Live examples
+
+<ExampleContainer>
+  <ExampleRow>
+    <Tag label='Neutral' size={SIZE.S} appearance={APPEARANCE.Neutral} />
+    <Tag label='Primary' size={SIZE.S} appearance={APPEARANCE.Primary} />
+    <Tag label='Link' size={SIZE.S} href='#' />
+  </ExampleRow>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+<StorybookIframe storyId='components-tag-tag--playground' showControls={true} height='400px' />
+
+## Props
+
+`Tag` принимает объединённый тип **TagProps** = **TagBaseProps** | **TagLinkProps**.
+
+### Общие пропсы (CommonTagProps)
+
+| name         | type                 | default     | description               |
+| ------------ | -------------------- | ----------- | ------------------------- |
+| `label`      | `string`             | —           | Текст тега (обязательный) |
+| `size`       | `'xs' \| 's' \| 'm'` | `'xs'`      | Размер                    |
+| `appearance` | `Appearance`         | `'neutral'` | Цветовая схема            |
+| `className`  | `string`             | —           | CSS-класс                 |
+| `tabIndex`   | `number`             | —           | Порядок фокуса            |
+
+### TagBaseProps (обычный тег)
+
+Все общие пропсы плюс:
+
+| name       | type                                   | description                                                                      |
+| ---------- | -------------------------------------- | -------------------------------------------------------------------------------- |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | Обработчик клика по кнопке удаления; при переданном значении кнопка отображается |
+
+### TagLinkProps (тег-ссылка)
+
+Все общие пропсы плюс:
+
+| name      | type                                         | description                               |
+| --------- | -------------------------------------------- | ----------------------------------------- |
+| `href`    | `string`                                     | URL ссылки (обязательный для тега-ссылки) |
+| `onClick` | `(e: MouseEvent<HTMLAnchorElement>) => void` | Обработчик клика                          |
+| `target`  | `string`                                     | Атрибут `target` (например `_blank`)      |
+
+### isTagLinkProps
+
+```tsx
+import { Tag, isTagLinkProps } from '@design-system/tag';
+
+function MyComponent(props: TagProps) {
+  if (isTagLinkProps(props)) {
+    // props: TagLinkProps (есть href и т.д.)
+  } else {
+    // props: TagBaseProps (есть onDelete и т.д.)
+  }
+  return <Tag {...props} />;
+}
+```
+
+## Best practices
+
+1. Используйте **Tag** для одного тега; для списка — **TagRow**.
+2. Для навигации передавайте `href`; для действия (удаление) — `onDelete`.
+3. Задавайте `appearance` в соответствии с контекстом (нейтральный, основной, статус и т.д.).

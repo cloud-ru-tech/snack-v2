@@ -1,0 +1,148 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
+
+$sizes: 'xs', 's', 'm';
+
+$appearances: 'neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+$typography: (
+  'xs': base.$sn-regular-label-s,
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
+
+.tagButton {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: inherit;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  background: none;
+
+  &:active {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &:focus-visible {
+    color: base.$sn-theme-color-available-version-textSecondary;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: base.$sn-theme-color-available-version-textSecondary;
+    }
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  &[data-tag-link] {
+    text-decoration: none;
+
+    &:active {
+      outline: none;
+    }
+  }
+
+  .tagButton {
+    cursor: pointer;
+
+    position: relative;
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: inherit;
+
+    background: none;
+
+    &:focus-visible {
+      outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+      outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+    }
+
+    &:active {
+      outline: none;
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &[data-size='xs'] .tagButton,
+  &[data-size='s'] .tagButton {
+    min-width: 16px;
+    min-height: 16px;
+  }
+
+  &[data-size='m'] .tagButton {
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container');
+
+      .textWrapper {
+        @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'textWrapper');
+      }
+
+      .label {
+        @include base.composite-var($typography, $size);
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    &[data-appearance='#{$appearance}'] {
+      background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
+
+      .label {
+        overflow: hidden;
+        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &[data-tag-link]:focus-visible,
+      &[data-tag-link]:hover,
+      &[data-tag-link]:active {
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}

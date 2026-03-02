@@ -1,0 +1,102 @@
+---
+title: TagRow
+description: Строка тегов с опциональным лимитом и выпадающим списком
+version: '0.1.0'
+---
+
+import { ExampleContainer, ExampleGrid, ExampleItem, ExampleRow } from '#astro/components/mdx';
+import { APPEARANCE, SIZE, TagRow } from '../../src';
+
+# TagRow
+
+Компонент для отображения строки тегов. Поддерживает лимит видимых тегов (`rowLimit`) с кнопкой «+N» и выпадающим списком остальных.
+
+**Version:** `{frontmatter.version}`
+
+## Использование
+
+### Базовый пример
+
+```tsx
+import { TagRow, SIZE, APPEARANCE } from '@design-system/tag';
+
+const items = [
+  { label: 'Тег 1', appearance: APPEARANCE.Neutral },
+  { label: 'Тег 2', appearance: APPEARANCE.Primary },
+  { label: 'Тег 3', appearance: APPEARANCE.Green },
+];
+
+<TagRow items={items} size={SIZE.S} />;
+```
+
+### С лимитом строки
+
+При `rowLimit` отображаются только первые N тегов, остальные — в выпадающем списке по клику на «+N».
+
+```tsx
+import { TagRow } from '@design-system/tag';
+
+<TagRow items={items} rowLimit={3} moreButtonLabel='Ещё' onItemRemove={id => console.log('remove', id)} />;
+```
+
+### Теги-ссылки и удаление
+
+Элементы `items` могут содержать `href`, `onClick`, `target`. При передаче `onItemRemove` в списке «ещё» отображается кнопка удаления у каждого тега (идентификация по `id` или `label`).
+
+```tsx
+const items = [
+  { id: '1', label: 'Ссылка 1', href: '/a' },
+  { id: '2', label: 'Ссылка 2', href: '/b', target: '_blank' },
+];
+
+<TagRow items={items} onItemRemove={item => console.log(item)} />;
+```
+
+## Live examples
+
+<ExampleContainer>
+  <ExampleRow>
+    <TagRow
+      items={[
+        { label: 'One', appearance: APPEARANCE.Neutral },
+        { label: 'Two', appearance: APPEARANCE.Primary },
+        { label: 'Three', appearance: APPEARANCE.Green },
+      ]}
+      size={SIZE.S}
+    />
+  </ExampleRow>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+<StorybookIframe storyId='components-tag-tagrow--visual-matrix' showControls={false} height='500px' />
+
+## Props (TagRowProps)
+
+| name              | type                     | default | description                                            |
+| ----------------- | ------------------------ | ------- | ------------------------------------------------------ |
+| `items`           | `TagRowItem[]`           | —       | Массив элементов тегов (обязательный)                  |
+| `rowLimit`        | `number`                 | —       | Макс. число видимых тегов; остальные в выпадающем «+N» |
+| `size`            | `'xs' \| 's' \| 'm'`     | `'xs'`  | Размер тегов                                           |
+| `moreButtonLabel` | `string`                 | —       | Текст кнопки «ещё» (в выпадающем контексте)            |
+| `className`       | `string`                 | —       | CSS-класс контейнера                                   |
+| `onItemRemove`    | `(item: string) => void` | —       | Колбэк удаления элемента (передаётся `id` или `label`) |
+
+### TagRowItem
+
+| name         | type                                         | description                                     |
+| ------------ | -------------------------------------------- | ----------------------------------------------- |
+| `id`         | `string`                                     | Опциональный идентификатор (для `onItemRemove`) |
+| `label`      | `string`                                     | Текст тега (обязательный)                       |
+| `appearance` | `Appearance`                                 | Цветовая схема                                  |
+| `href`       | `string`                                     | URL — тег рендерится как ссылка                 |
+| `onClick`    | `(e: MouseEvent<HTMLAnchorElement>) => void` | Обработчик клика по ссылке                      |
+| `target`     | `string`                                     | Атрибут `target` ссылки                         |
+
+## Best practices
+
+1. Задавайте `rowLimit`, когда строка может быть длинной, чтобы не ломать верстку.
+2. Для удаляемых тегов в списке «ещё» передавайте `onItemRemove` и при необходимости уникальные `id` в `items`.
+3. Используйте один и тот же `size` для всей строки.

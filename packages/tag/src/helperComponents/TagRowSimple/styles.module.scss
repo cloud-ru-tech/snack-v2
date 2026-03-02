@@ -1,0 +1,15 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
+
+$sizes: 'xs', 's', 'm';
+
+.tagRowSimpleWrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'tagRow', 'gap');
+    }
+  }
+}
