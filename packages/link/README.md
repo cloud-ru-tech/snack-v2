@@ -45,6 +45,7 @@ import { APPEARANCE, Link } from '@design-system/link';
 <Link text="Neutral link" appearance={APPEARANCE.Neutral} href="#" />
 <Link text="Primary link" appearance={APPEARANCE.Primary} href="#" />
 <Link text="Blue link" appearance={APPEARANCE.Blue} href="#" />
+<Link text="Подчёркнутая ссылка" href="#" underlined />
 <p>
   Текст абзаца с <Link text="ссылкой внутри" href="#" insideText /> и продолжением.
 </p>
@@ -80,18 +81,13 @@ export function Example() {
 }
 ```
 
-### Inside text
+### Underlined
 
 ```tsx
 import { Link } from '@design-system/link';
 
-export function Article() {
-  return (
-    <p>
-      Подробнее смотрите в <Link text="документации" href="/docs" insideText /> и на странице
-      обновлений.
-    </p>
-  );
+export function Example() {
+  return <Link text="Подчёркнутая ссылка" href="#" underlined />;
 }
 ```
 
@@ -105,6 +101,7 @@ export function Article() {
 | appearance | enum Appearance: `"neutral"`, `"invertNeutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | primary | Стилизует ссылку для размещения на цветном фоне |
 | insideText | `boolean` | - | Находится ли ссылка внутри текста (и можно ли её переносить) |
 | truncateVariant | "end" \| "middle" | - | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
+| underlined | `boolean` | - | Наличие нижнего подчеркивания |
 | as | `ComponentType \| ElementType` | 'a' | Полиморфный компонент.  Оформить переданный компонент или html элемент в стиль ссылки.  Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
 
 ## Best Practices

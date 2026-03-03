@@ -27,6 +27,10 @@ export type BaseProps = WithSupportProps<{
    * <br/> - `middle` - посередине
    * */
   truncateVariant?: TruncateStringProps['variant'];
+  /** Наличие нижнего подчеркивания
+   * @default false
+   */
+  underlined?: boolean;
 }>;
 
 export type LinkProps<T extends ElementType = 'a'> = BaseProps & {

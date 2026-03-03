@@ -16,6 +16,7 @@ export function Link<T extends ElementType = 'a'>({
   role = ROLE.Regular,
   appearance = APPEARANCE.Primary,
   insideText = false,
+  underlined = false,
   truncateVariant,
   as,
   ...rest
@@ -29,7 +30,12 @@ export function Link<T extends ElementType = 'a'>({
      * Обратно совместимые изменения с предыдущей версией.
      */
     fallbackProps = Object.assign(
-      { target: rest?.target ?? TARGET.Blank, href: rest.href ?? '#', download: rest.download, onClick: rest.onClick },
+      {
+        target: rest?.target ?? TARGET.Blank,
+        href: rest.href ?? undefined,
+        download: rest.download,
+        onClick: rest.onClick,
+      },
       extractSupportProps(rest),
     );
     fallbackProps.rel = fallbackProps.target === TARGET.Blank ? 'noopener noreferrer' : undefined;
@@ -44,6 +50,7 @@ export function Link<T extends ElementType = 'a'>({
       data-role={role}
       data-appearance={appearance}
       data-inside-text={insideText || undefined}
+      data-underlined={underlined || undefined}
     >
       <div className={styles.content} data-state='textOpacity' data-content-layer>
         <span className={styles.opacityLayer} data-text-opacity>

@@ -22,6 +22,7 @@ import {
 Поддерживает:
 - **Роли** — `regular`, `onAccent` — для размещения на обычном фоне или на акцентной поверхности
 - **Внешний вид** — neutral, invertNeutral, primary, red, orange, yellow, green, blue, violet, pink — для контраста с фоном
+- **Подчёркивание** — `underlined={true}` для отображения ссылки с нижним подчёркиванием (по умолчанию без подчёркивания)
 - **Внутри текста** — `insideText={true}` для ссылки в абзаце с переносами; иначе текст обрезается с настраиваемым вариантом (`truncateVariant: 'end' | 'middle'`)
 - **Полиморфный компонент** — `as` для рендера в виде другого элемента или компонента (например, `Link as={ReactRouterLink} to="/path" />`)
 - **Безопасность** — при `target="_blank"` автоматически добавляется `rel="noopener noreferrer"`
@@ -53,6 +54,7 @@ Link рендерит по умолчанию семантичный `<a>`, ра
 
 - **Роль** — `regular` (по умолчанию) или `onAccent` для размещения на акцентном фоне
 - **Appearance** — цветовая схема ссылки (по умолчанию `primary`)
+- **underlined** — наличие нижнего подчёркивания (по умолчанию `false`)
 - **insideText** — ссылка внутри абзаца, с переносами
 - **truncateVariant** — при длинном тексте вне абзаца: `end` или `middle`
 
@@ -80,6 +82,9 @@ Link рендерит по умолчанию семантичный `<a>`, ра
     </ExampleItem>
     <ExampleItem label="Blue" gap="medium">
       <Link text="Blue link" appearance={APPEARANCE.Blue} href="#" />
+    </ExampleItem>
+    <ExampleItem label="Underlined" gap="medium">
+      <Link text="Подчёркнутая ссылка" href="#" underlined />
     </ExampleItem>
     <ExampleItem label="Inside text" gap="medium">
       <p>
@@ -134,6 +139,16 @@ export function Example() {
 }
 ```
 
+### Underlined
+
+```tsx
+import { Link } from '@design-system/link';
+
+export function Example() {
+  return <Link text="Подчёркнутая ссылка" href="#" underlined />;
+}
+```
+
 ### Inside text
 
 ```tsx
@@ -178,7 +193,7 @@ export function Nav() {
 }
 ```
 
-Переданный компонент должен принимать `className`, `data-role`, `data-appearance`, `data-inside-text` и остальные проброшенные пропы.
+Переданный компонент должен принимать `className`, `data-role`, `data-appearance`, `data-inside-text`, `data-underlined` и остальные проброшенные пропы.
 
 ## Props
 
@@ -192,6 +207,7 @@ export function Nav() {
 | appearance | enum Appearance: `"neutral"`, `"invertNeutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | primary | Стилизует ссылку для размещения на цветном фоне |
 | insideText | `boolean` | - | Находится ли ссылка внутри текста (и можно ли её переносить) |
 | truncateVariant | "end" \| "middle" | - | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
+| underlined | `boolean` | - | Наличие нижнего подчеркивания |
 | as | `ComponentType \| ElementType` | 'a' | Полиморфный компонент.  Оформить переданный компонент или html элемент в стиль ссылки.  Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
 
 

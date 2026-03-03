@@ -103,6 +103,7 @@ export const Playground: Story = {
     href: '#',
     target: '_blank',
     insideText: false,
+    underlined: false,
     truncateVariant: 'end',
   },
   argTypes: {

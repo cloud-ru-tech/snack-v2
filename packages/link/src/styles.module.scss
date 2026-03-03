@@ -28,6 +28,14 @@ $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'v
     }
   }
 
+  &[data-underlined] {
+    text-decoration: underline;
+
+    * {
+      text-decoration: underline;
+    }
+  }
+
   &:focus-visible {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
   }
