@@ -1,0 +1,149 @@
+/* stylelint-disable function-name-case */
+/* stylelint-disable length-zero-no-unit */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/hotSpot.module' as hotspot;
+
+$appearances: 'neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+@function withOffsetX($value) {
+  @return calc(var(--offset-x, 0px) + $value);
+}
+
+@function withInvertOffsetX($value) {
+  @return calc(calc(0px - var(--offset-x, 0px)) + $value);
+}
+
+@function withOffsetY($value) {
+  @return calc(var(--offset-y, 0px) + $value);
+}
+
+@function withInvertOffsetY($value) {
+  @return calc(calc(0px - var(--offset-y, 0px)) + $value);
+}
+
+.dotPlacementContainer {
+  position: absolute;
+
+  &[data-placement='left'],
+  &[data-placement='left-top'],
+  &[data-placement='left-bottom'] {
+    left: withOffsetX(0px);
+  }
+
+  &[data-placement='right'],
+  &[data-placement='right-top'],
+  &[data-placement='right-bottom'] {
+    right: withInvertOffsetX(0px);
+  }
+
+  &[data-placement='left-top'],
+  &[data-placement='center-top'],
+  &[data-placement='right-top'] {
+    top: withOffsetY(0px);
+  }
+
+  &[data-placement='left-bottom'],
+  &[data-placement='center-bottom'],
+  &[data-placement='right-bottom'] {
+    bottom: withInvertOffsetY(0px);
+  }
+
+  &[data-placement='center'],
+  &[data-placement='left'],
+  &[data-placement='right'] {
+    top: withOffsetY(50%);
+  }
+
+  &[data-placement='center'],
+  &[data-placement='center-top'],
+  &[data-placement='center-bottom'] {
+    left: withOffsetX(50%);
+  }
+
+  &[data-placement='center'] {
+    transform: translate(-50%, -50%);
+  }
+
+  &[data-placement='left'],
+  &[data-placement='right'] {
+    transform: translateY(-50%);
+  }
+
+  &[data-placement='center-top'],
+  &[data-placement='center-bottom'] {
+    transform: translateX(-50%);
+  }
+}
+
+.hotSpotDot {
+  @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+
+  position: relative;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: base.$sn-primitive-dimension-24;
+    height: base.$sn-primitive-dimension-24;
+  }
+
+  &[data-pulse] {
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+
+      opacity: hotspot.$sn-hotSpot-effect-opacity-pulse-background;
+
+      animation: pulse var(--duration, 2s) infinite;
+    }
+  }
+
+  @each $appearance in $appearances {
+    &[data-appearance='#{$appearance}'] {
+      &,
+      &::before {
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+      }
+    }
+  }
+}
+
+.hotSpotDotContainer {
+  @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@keyframes pulse {
+  0% {
+    @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+  }
+
+  70% {
+    @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'pulse');
+  }
+
+  100% {
+    @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+  }
+}
+
+.wrapper {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+}

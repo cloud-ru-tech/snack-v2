@@ -1,9 +1,8 @@
 import { Spinner } from '@design-system/loader';
 import { ProgressBarCircle } from '@design-system/progress-bar';
+import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import { JSX } from 'react';
-
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
 
 import { APPEARANCE, STATUS_SIZE } from '../../constants';
 import type { Appearance, StatusSize } from '../../types';

@@ -341,6 +341,15 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
 
+  packages/hot-spot:
+    dependencies:
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/icons:
     devDependencies:
       '@svgr/cli':

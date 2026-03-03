@@ -1,6 +1,5 @@
-import cn from 'classnames';
-
 import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import cn from 'classnames';
 
 import { APPEARANCE, STATUS_INDICATOR_SIZE } from '../../constants';
 import { Appearance, StatusIndicatorSize } from '../../types';
