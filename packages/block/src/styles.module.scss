@@ -11,7 +11,7 @@ $priorities: 'primary', 'secondary', 'tertiary';
   align-items: center;
 
   &[data-variant='outline'] {
-    .border-layer {
+    .borderLayer {
       position: absolute;
       inset: 0;
       border: block.$sn-block-anatomy-s-borderWidth solid base.$sn-theme-color-available-borderColor;
@@ -38,12 +38,7 @@ $priorities: 'primary', 'secondary', 'tertiary';
     display: none;
   }
 
-  @include m.acrylic(
-    base.$sn-theme-effect-acrylic-blur1Level,
-    base.$sn-theme-effect-acrylic-opacity1Level,
-    base.$sn-theme-color-neutral-background1Level,
-    base.$sn-acrylic-colorEffect1Level
-  );
+  @include m.with-material('acrylic');
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {

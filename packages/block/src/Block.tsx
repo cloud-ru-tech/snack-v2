@@ -50,7 +50,14 @@ export type BlockProps = {
  */
 export function Block({ children, variant = VARIANT.Simple, size = SIZE.L, className, ...rest }: BlockProps) {
   return (
-    <div className={cn(styles.block, className)} data-variant={variant} data-size={size} {...rest}>
+    <div
+      className={cn(styles.block, className)}
+      data-variant={variant}
+      data-size={size}
+      data-acrylic-appearance='neutral'
+      data-acrylic-level='1Level'
+      {...rest}
+    >
       <div data-acrylic-background />
       {variant === VARIANT.Outline && <div className={styles.borderLayer} />}
       <div className={styles.content}>{children}</div>
