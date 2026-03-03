@@ -1,0 +1,71 @@
+/* Базовые функции и миксины из пакета */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+/* Структуры компонентов (локальные) */
+@use '@sbercloud/figma-variables/build/scss/components/promoTag.module' as promoTag;
+
+@use '@design-system/materials' as materials;
+
+$sizes: 'xs', 's', 'm';
+$appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'violet', 'yellow';
+
+$typography: (
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+);
+
+.container {
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'container');
+
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  position: relative;
+
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-width: 0;
+
+  @include materials.has-state-layer-as-child();
+
+  &[data-clickable] {
+    cursor: pointer;
+  }
+
+  @each $appearance in $appearances {
+    &[data-appearance='#{$appearance}'] {
+      &[data-role='accent'] {
+        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'onAccent');
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+      }
+
+      &[data-role='decor'] {
+        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decorTransparent');
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}
+
+.textWrapper {
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      @include base.composite-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'container', 'textWrapper');
+
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}

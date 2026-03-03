@@ -63,6 +63,9 @@
     },
     {
       "path": "./icon-predefined/tsconfig.cjs.json"
+    },
+    {
+      "path": "./promo-tag/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {
