@@ -1,0 +1,228 @@
+---
+title: Icon Predefined
+description: Компонент для отображения SVG-иконок с предустановленным стилевым оформлением — цвет, размер, форма контейнера и опциональная цветная подложка.
+version: "0.1.0"
+---
+
+import {
+  ExampleContainer,
+  ExampleGrid,
+  ExampleItem,
+  ExampleRow,
+} from '#astro/components/mdx';
+import { PlaceholderSVG } from '@design-system/icons';
+import { APPEARANCE, IconPredefined, SIZE } from '@packages/icon-predefined/src';
+
+# Icon Predefined
+
+Компонент оборачивает SVG-иконки из пакета `@design-system/icons` и применяет к ним предустановленное стилевое оформление. Задаёт цвет через `appearance`, размер через `size`, форму контейнера через `shape` и опциональную цветную подложку через `decor`.
+
+**Version:** `{frontmatter.version}`
+
+Figma: [Icon Predefined](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5239-162127&m=dev)
+
+## Installation
+
+```bash
+npm install @design-system/icon-predefined
+# or
+yarn add @design-system/icon-predefined
+# or
+pnpm add @design-system/icon-predefined
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName="icon-predefined" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="icon-predefined" />
+
+## Overview
+
+Icon Predefined обеспечивает единообразный внешний вид иконок в интерфейсе:
+
+- **Цветовая схема** — 9 вариантов `appearance`: primary, neutral, red, orange, yellow, green, blue, violet, pink
+- **Размеры** — m (32px), l (40px), 5xl (80px)
+- **Форма контейнера** — `round` (круглая) или `square` (квадратная с закруглёнными углами)
+- **Цветная подложка** — опциональный фон `decor` для улучшения читаемости иконки
+- **Стилизация** — переменные из `@sbercloud/figma-variables` для соответствия макету
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <ExampleRow gap="medium">
+    <IconPredefined icon={PlaceholderSVG} />
+    <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Primary} />
+    <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Red} />
+  </ExampleRow>
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer padding="large">
+  <ExampleRow gap="large" justifyContent="center">
+    <ExampleItem label="m">
+      <IconPredefined icon={PlaceholderSVG} size={SIZE.M} />
+    </ExampleItem>
+    <ExampleItem label="l">
+      <IconPredefined icon={PlaceholderSVG} size={SIZE.L} />
+    </ExampleItem>
+    <ExampleItem label="5xl">
+      <IconPredefined icon={PlaceholderSVG} size={SIZE['5XL']} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Shapes
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="Round" labelSize="medium" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} shape="round" />
+    </ExampleItem>
+    <ExampleItem label="Square" labelSize="medium" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} shape="square" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### With and without decor
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="С подложкой (decor=true)" labelSize="medium" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} decor />
+    </ExampleItem>
+    <ExampleItem label="Без подложки (decor=false)" labelSize="medium" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} decor={false} />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Color schemes
+
+<ExampleContainer>
+  <ExampleGrid columns={3} minColumnWidth="100px">
+    <ExampleItem label="Primary" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Primary} />
+    </ExampleItem>
+    <ExampleItem label="Neutral" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Neutral} />
+    </ExampleItem>
+    <ExampleItem label="Red" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Red} />
+    </ExampleItem>
+    <ExampleItem label="Orange" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Orange} />
+    </ExampleItem>
+    <ExampleItem label="Yellow" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Yellow} />
+    </ExampleItem>
+    <ExampleItem label="Green" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Green} />
+    </ExampleItem>
+    <ExampleItem label="Blue" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Blue} />
+    </ExampleItem>
+    <ExampleItem label="Violet" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Violet} />
+    </ExampleItem>
+    <ExampleItem label="Pink" gap="medium">
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Pink} />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+### Playground
+
+<StorybookIframe storyId="components-iconpredefined--playground" showControls={true} height="400px" />
+
+### Visual Matrix
+
+Для просмотра всех комбинаций appearance × size × shape используйте story **Visual Matrix** в Storybook.
+
+<StorybookIframe storyId="components-iconpredefined--visual-matrix" showControls={false} height="800px" />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { IconPredefined } from '@design-system/icon-predefined';
+import { PlaceholderSVG } from '@design-system/icons';
+
+export function Example() {
+  return <IconPredefined icon={PlaceholderSVG} />;
+}
+```
+
+### With custom appearance and size
+
+```tsx
+import { IconPredefined, APPEARANCE, SIZE } from '@design-system/icon-predefined';
+import { PlaceholderSVG } from '@design-system/icons';
+
+export function Example() {
+  return (
+    <IconPredefined
+      icon={PlaceholderSVG}
+      appearance={APPEARANCE.Red}
+      size={SIZE.L}
+      shape="round"
+      decor
+    />
+  );
+}
+```
+
+### Without background (decor=false)
+
+```tsx
+import { IconPredefined } from '@design-system/icon-predefined';
+import { SearchSVG } from '@design-system/icons';
+
+export function Example() {
+  return <IconPredefined icon={SearchSVG} decor={false} appearance="neutral" />;
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### IconPredefinedProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| icon* | `JSXElementConstructor<{ size?: number; className?: string; }>` | - | JSX иконки |
+| className | `string` | - | CSS-класс |
+| appearance | enum Appearance: `"primary"`, `"neutral"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | primary | Внешний вид |
+| decor | `boolean` | true | Наличие цветной подложки |
+| size | enum Size: `"m"`, `"l"`, `"5xl"` | m | Размер |
+| shape | "round" \| "square" | round | Форма: круглая или квадратная |
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+## Accessibility
+
+- Иконки декоративные — цвет наследуется от контейнера через `currentColor`
+- Компонент поддерживает `data-test-id` и `aria-*` атрибуты через `WithSupportProps`
+- Для семантически значимых иконок добавьте `aria-label` или оберните в элемент с описательным текстом
+
+## Best practices
+
+1. **Используйте standalone-иконки** — передавайте компоненты из `@design-system/icons` (PlaceholderSVG, SearchSVG и т.д.)
+2. **Выбирайте appearance по контексту** — primary для основных действий, neutral для второстепенных, red/orange для предупреждений
+3. **decor для акцента** — включайте подложку, когда иконка должна выделяться на фоне
+4. **Согласованность размеров** — используйте SIZE.M для кнопок и списков, SIZE.L для крупных блоков
+5. **Контраст** — на тёмном фоне используйте appearance с достаточным контрастом (например, primary, neutral)

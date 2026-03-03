@@ -1,0 +1,61 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
+
+$sizes: 'm', 'l', '5xl';
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+$shapes: 'round', 'square';
+$shapeMap: (
+  'round': 'rounded',
+  'square': 'squared',
+);
+
+.decor {
+  overflow: hidden;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  @each $appearance in $appearances {
+    &[data-appearance='#{$appearance}'] {
+      color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+    }
+
+    &[data-decor][data-appearance='#{$appearance}'] {
+      background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size);
+
+      @each $shape in $shapes {
+        &[data-shape='#{$shape}'] {
+          @include base.composite-var(
+            iconPredefined.$iconPredefined,
+            'anatomy',
+            'size',
+            $size,
+            base.simple-var($shapeMap, $shape)
+          );
+        }
+      }
+    }
+  }
+}
+
+.decor[data-size='m'] svg.icon {
+  width: base.$sn-adaptive-size-icon-xs !important;
+  height: base.$sn-adaptive-size-icon-xs !important;
+}
+
+.decor[data-size='xl'] svg.icon {
+  width: base.$sn-adaptive-size-icon-s !important;
+  height: base.$sn-adaptive-size-icon-s !important;
+}
+
+.decor[data-size='5xl'] svg.icon {
+  width: base.$sn-adaptive-size-icon-l !important;
+  height: base.$sn-adaptive-size-icon-l !important;
+}
