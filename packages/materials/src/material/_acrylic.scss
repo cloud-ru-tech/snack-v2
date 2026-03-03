@@ -1,0 +1,45 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use 'acrylicLayers/index' as m;
+
+/**
+  * $appearances — варианты оформления акрила (primary, neutral, blue, red, yellow, green).
+  * $levels — уровни глубины (default, 1Level, 2Level).
+  */
+$appearances: 'primary', 'neutral', 'blue', 'red', 'yellow', 'green';
+$levels: 'default', '1Level', '2Level';
+
+/**
+  * Миксин акрилового материала (эффект «матового стекла»: backdrop blur + полупрозрачный слой).
+  * Требует на корневом элементе атрибутов data-acrylic-appearance (из $appearances) и data-acrylic-level (из $levels).
+  * Требует дочернего элемента с атрибутом [data-acrylic-background]; опционально [data-acrylic-effect] для color-dodge слоя.
+  * См. пример в stories/components/SampleBlock, MaterialSquare и docs/index.mdx.
+  */
+@mixin with-acrylic-material() {
+  position: relative;
+
+  @each $appearance in $appearances {
+    &[data-acrylic-appearance='#{$appearance}'] {
+      @each $level in $levels {
+        &[data-acrylic-level='#{$level}'] {
+          @if ($level == 'default') {
+            @include m.with-acrylic-layers(
+              base.$sn-acrylic-blurBackground,
+              base.$sn-acrylic-colorEffect,
+              base.$sn-acrylic-opacityBackground,
+              base.simple-var(base.$sn-theme, 'color', $appearance, 'background'),
+            );
+          }
+
+          @else {
+            @include m.with-acrylic-layers(
+              base.simple-var(base.$sn-acrylic, 'blurBackground#{$level}'),
+              base.simple-var(base.$sn-acrylic, 'colorEffect#{$level}'),
+              base.simple-var(base.$sn-acrylic, 'opacityBackground#{$level}'),
+              base.simple-var(base.$sn-theme, 'color', $appearance, 'background#{$level}'),
+            );
+          }
+        }
+      }
+    }
+  }
+}

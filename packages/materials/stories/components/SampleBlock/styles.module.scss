@@ -12,7 +12,7 @@ $priorities: 'primary', 'secondary', 'tertiary';
   align-items: center;
 
   &[data-variant='outline'] {
-    .border-layer {
+    .borderLayer {
       position: absolute;
       inset: 0;
       border: block.$sn-block-anatomy-s-borderWidth solid base.$sn-theme-color-available-borderColor;
@@ -39,18 +39,13 @@ $priorities: 'primary', 'secondary', 'tertiary';
     display: none;
   }
 
-  @include m.acrylic(
-    base.$sn-theme-effect-acrylic-blur1Level,
-    base.$sn-theme-effect-acrylic-opacity1Level,
-    base.$sn-theme-color-neutral-background1Level,
-    base.$sn-acrylic-colorEffect1Level
-  );
-
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(block.$block, 'anatomy', $size);
     }
   }
+
+  @include m.with-material('acrylic');
 
   // We need to place it here to handle hover/active states for block (not for its child "div.content")
   // Otherwise if we hover over div.content no state will be applied to block

@@ -1,4 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../utils/mixins' as m;
 
 /**
   * Переменные ниже не используются в коде, только для референса:
@@ -19,9 +20,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   */
 @mixin has-state-layer-as-child() {
   & > [data-state-layer] {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
+    @include m.absolute-layer();
 
     // определяем общие стили для бордера
     &[data-state='regularBorder'],

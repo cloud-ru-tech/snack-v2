@@ -1,0 +1,22 @@
+@use '../../utils/mixins' as utils;
+@use 'background';
+@use 'effect';
+
+/**
+  * Собирает слои акрила: размытие на корне, эффект и фон через дочерние слои.
+  * $blurLevel — значение размытия в px (например base.$sn-acrylic-blurBackground).
+  * $acrylicEffectColor — цвет эффекта наложения для слоя [data-acrylic-effect].
+  * $primaryBgOpacity — непрозрачность фона (0–1) для слоя [data-acrylic-background].
+  * $primaryBgColor — цвет фона для слоя [data-acrylic-background].
+  * Используется внутри _acrylic.scss по комбинациям appearance/level. Прямой вызов — только в кастомных сценариях.
+  */
+@mixin with-acrylic-layers(
+  $blurLevel,
+  $acrylicEffectColor,
+  $primaryBgOpacity,
+  $primaryBgColor,
+) {
+  @include utils.backdrop-filter-universal-blur($blurLevel);
+  @include effect.has-acrylic-effect-layer-as-child($acrylicEffectColor);
+  @include background.has-acrylic-background-layer-as-child($primaryBgOpacity, $primaryBgColor);
+}

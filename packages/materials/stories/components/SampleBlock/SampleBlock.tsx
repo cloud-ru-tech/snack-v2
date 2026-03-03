@@ -29,7 +29,14 @@ export function SampleBlock({
   ...rest
 }: SampleBlockProps) {
   return (
-    <div className={cn(styles.block, className)} data-variant={variant} data-size={size} {...extractSupportProps(rest)}>
+    <div
+      className={cn(styles.block, className)}
+      data-variant={variant}
+      data-size={size}
+      data-acrylic-appearance='neutral'
+      data-acrylic-level='1Level'
+      {...extractSupportProps(rest)}
+    >
       <div data-acrylic-background />
       {variant === VARIANT.Outline && <div className={styles.borderLayer} />}
       {state && <div data-state={state} data-state-layer />}

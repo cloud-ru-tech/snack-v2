@@ -1,0 +1,20 @@
+// Низкоуровневые миксины (для кастомных сценариев)
+
+/**
+  * Универсальный миксин для добавления эффекта размытия фона
+  * $blurLevel – значение в px, пример: $sn-theme-effect-acrylic-blur1Level
+  */
+@mixin backdrop-filter-universal-blur($blurLevel) {
+  $blur: blur(calc($blurLevel / 2));
+
+  backdrop-filter: $blur;
+}
+
+/**
+  * Миксин для упрощения создания слоя
+  */
+@mixin absolute-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}

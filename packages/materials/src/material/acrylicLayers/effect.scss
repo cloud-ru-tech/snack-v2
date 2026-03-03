@@ -1,0 +1,19 @@
+@use '../../utils/mixins' as m;
+
+/**
+  * Миксин для слоя эффекта наложения (color-dodge) поверх размытия.
+  * Требует дочернего элемента с атрибутом [data-acrylic-effect].
+  * $colorDodgeBgColor — цвет эффекта наложения, смешивается с основным фоном (сейчас отключён в коде).
+  * См. разметку в stories/components/MaterialSquare (опциональный слой data-acrylic-effect).
+  */
+@mixin has-acrylic-effect-layer-as-child($colorDodgeBgColor) {
+  & > [data-acrylic-effect] {
+    @include m.absolute-layer();
+
+    pointer-events: none;
+
+    // background: $colorDodgeBgColor; // TODO: temporarily disabled – does not work as expected
+    background-blend-mode: color-dodge;
+    mix-blend-mode: color-dodge;
+  }
+}
