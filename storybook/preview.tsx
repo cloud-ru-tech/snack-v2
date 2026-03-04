@@ -19,10 +19,11 @@ const preview: Preview = {
       const theme = (context.globals?.[GLOBAL_KEYS.THEME] as 'light' | 'dark') ?? 'light';
       const brand = (context.globals?.[GLOBAL_KEYS.BRAND] as 'brandA' | 'brandB') ?? 'brandA';
       const platform = (context.globals?.[GLOBAL_KEYS.PLATFORM] as 'desktop' | 'mobile') ?? 'desktop';
+      const language = (context.globals?.[GLOBAL_KEYS.LANGUAGE] as 'en-GB' | 'ru-RU') ?? 'en-GB';
 
       return (
         <PortalContextProvider root={storyWrapperRef}>
-          <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform}>
+          <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform} language={language}>
             <Sprite content={SpriteSVG as unknown as string} />
             <Story />
           </StoryWrapper>

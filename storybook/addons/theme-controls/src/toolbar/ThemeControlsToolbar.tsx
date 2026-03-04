@@ -9,6 +9,8 @@ import {
   BRAND_OPTIONS,
   CHANNEL_SYNC_EVENT,
   GLOBAL_KEYS,
+  Language,
+  LANGUAGE_OPTIONS,
   Platform,
   PLATFORM_OPTIONS,
   Theme,
@@ -38,6 +40,11 @@ function BrandColorDot({ color }: { color: string }) {
   );
 }
 
+const LANGUAGE_TO_EMOJI_MAP: Record<Language, string> = {
+  'en-GB': '🇬🇧',
+  'ru-RU': '🇷🇺',
+};
+
 function ThemeIcon({ theme }: { theme: Theme }) {
   return <SvgIcon d={theme === 'dark' ? NIGHT_PATH : DAY_PATH} />;
 }
@@ -48,6 +55,10 @@ function BrandIcon({ brand }: { brand: Brand }) {
 
 function PlatformIcon({ platform }: { platform: Platform }) {
   return <SvgIcon d={platform === 'mobile' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
+}
+
+function LanguageIcon({ language }: { language: Language }) {
+  return <span aria-hidden>{LANGUAGE_TO_EMOJI_MAP[language]}</span>;
 }
 
 const themeOptionsWithIcons: SelectOption[] = [
@@ -65,6 +76,11 @@ const platformOptionsWithIcons: SelectOption[] = [
   { value: 'mobile', title: PLATFORM_OPTIONS[1].label, icon: <SvgIcon d={MOBILE_PHONE_PATH} /> },
 ];
 
+const languageOptionsWithIcons: SelectOption[] = [
+  { value: 'en-GB', title: LANGUAGE_OPTIONS[0].label, icon: <LanguageIcon language={LANGUAGE_OPTIONS[0].value} /> },
+  { value: 'ru-RU', title: LANGUAGE_OPTIONS[1].label, icon: <LanguageIcon language={LANGUAGE_OPTIONS[1].value} /> },
+];
+
 const wrapperStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
@@ -76,6 +92,7 @@ type ControlsPayload = {
   theme?: Theme;
   brand?: Brand;
   platform?: Platform;
+  language?: Language;
 };
 
 /**
@@ -87,11 +104,16 @@ export function ThemeControlsToolbar() {
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
   const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
   const platform = (globals[GLOBAL_KEYS.PLATFORM] as Platform) ?? 'desktop';
+  const language = (globals[GLOBAL_KEYS.LANGUAGE] as Language) ?? 'en-GB';
 
   const setTheme = useCallback((value: Theme) => updateGlobals({ [GLOBAL_KEYS.THEME]: value }), [updateGlobals]);
   const setBrand = useCallback((value: Brand) => updateGlobals({ [GLOBAL_KEYS.BRAND]: value }), [updateGlobals]);
   const setPlatform = useCallback(
     (value: Platform) => updateGlobals({ [GLOBAL_KEYS.PLATFORM]: value }),
+    [updateGlobals],
+  );
+  const setLanguage = useCallback(
+    (language: Language) => updateGlobals({ [GLOBAL_KEYS.LANGUAGE]: language }),
     [updateGlobals],
   );
 
@@ -102,6 +124,7 @@ export function ThemeControlsToolbar() {
       if (payload.theme) next[GLOBAL_KEYS.THEME] = payload.theme;
       if (payload.brand) next[GLOBAL_KEYS.BRAND] = payload.brand;
       if (payload.platform) next[GLOBAL_KEYS.PLATFORM] = payload.platform;
+      if (payload.language) next[GLOBAL_KEYS.LANGUAGE] = payload.language;
       if (Object.keys(next).length) updateGlobals(next);
     };
     channel.on(CHANNEL_SYNC_EVENT, handler);
@@ -137,6 +160,16 @@ export function ThemeControlsToolbar() {
         options={platformOptionsWithIcons}
         defaultOptions={platform}
         onSelect={v => setPlatform(String(v) as Platform)}
+        size='small'
+        padding='small'
+      />
+      <Select
+        key={`language-${language}`}
+        ariaLabel='Язык'
+        icon={<LanguageIcon language={language} />}
+        options={languageOptionsWithIcons}
+        defaultOptions={language}
+        onSelect={v => setLanguage(String(v) as Language)}
         size='small'
         padding='small'
       />

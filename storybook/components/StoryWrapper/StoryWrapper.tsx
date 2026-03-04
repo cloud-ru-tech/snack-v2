@@ -1,7 +1,8 @@
+import { LocaleProvider } from '@design-system/locale';
 import cn from 'classnames';
 import { forwardRef, ReactNode } from 'react';
 
-import type { Brand, Platform, Theme } from '../types';
+import type { Brand, Language, Platform, Theme } from '../types';
 import styles from './styles.module.scss';
 
 type StoryWrapperProps = {
@@ -9,6 +10,7 @@ type StoryWrapperProps = {
   theme: Theme;
   brand: Brand;
   platform: Platform;
+  language: Language;
 };
 
 /**
@@ -17,7 +19,7 @@ type StoryWrapperProps = {
  * Тема, бренд и платформа задаются через аддон "Тема / Бренд / Платформа" в панели Storybook.
  */
 export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
-  ({ children, theme, brand, platform }, ref) => (
+  ({ children, theme, brand, platform, language }, ref) => (
     <div
       ref={ref}
       className={cn(
@@ -34,7 +36,9 @@ export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
         `sn-no`, // Acrylic, temporarily disabled (acrylic === 'enabled' ? 'sn-yes' : 'sn-no')
       )}
     >
-      <div className={cn(styles.content)}>{children}</div>
+      <LocaleProvider lang={language}>
+        <div className={cn(styles.content)}>{children}</div>
+      </LocaleProvider>
     </div>
   ),
 );
