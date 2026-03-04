@@ -6,6 +6,10 @@
 
 $sizes: 'xs', 's', 'm', 'l', '3xl', '6xl', '10xl';
 $shapes: 'round', 'square';
+$shapeMap: (  
+  "round": "rounded",
+  "square": "squared"
+);
 
 $typography: (
   'xs': base.$sn-regular-label-s,
@@ -31,7 +35,6 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
   justify-content: center;
 
   box-sizing: border-box;
-  aspect-ratio: 1 / 1;
   border-style: solid;
 
   line-height: 1;
@@ -50,7 +53,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
     &[data-size='#{$size}'] {
       @each $shape in $shapes {
         &[data-shape='#{$shape}'] {
-          @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, $shape);
+          @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, base.simple-var($shapeMap, $shape));
         }
       }
     }
