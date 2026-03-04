@@ -1,0 +1,154 @@
+/**
+ * Стили Scroll (OverlayScrollbars) в соответствии с Figma.
+ * Темизация через :global .osThemeSnack, токены из @sbercloud/figma-variables.
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/scroll.module' as scroll;
+@use '@design-system/materials' as m;
+
+$orientations: 'vertical', 'horizontal';
+$sizes: 's', 'm';
+/* stylelint-disable-next-line */
+$theme-name: osThemeSnack;
+$scrollbar-slider-active-zone: 12px;
+
+.scroll {
+  position: relative;
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  z-index: 0;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+/**
+ * Темизация OverlayScrollbars: селекторы из документации библиотеки.
+ * Размеры и цвета — из @sbercloud/figma-variables (scroll anatomy + theme).
+ */
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+:global {
+  /* ——— Базовые скроллбары ——— */
+  .#{$theme-name} .os-scrollbar {
+    padding: 0;
+  }
+
+  @each $orientation in $orientations {
+    .#{$theme-name}[data-untouchable-scrollbars] > .os-scrollbar-#{$orientation} {
+      pointer-events: none;
+
+      > .os-scrollbar-track {
+        pointer-events: none;
+
+        > .os-scrollbar-handle {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  /* ——— Размеры (s/m) и resize-disabled ——— */
+  @each $size in $sizes {
+    @each $orientation in $orientations {
+      .#{$theme-name}[data-size='#{$size}'] > .os-scrollbar-#{$orientation} {
+        @if $orientation == 'vertical' {
+          width: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', $size, 'width');
+        }
+
+        @else {
+          height: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', $size, 'height');
+        }
+
+        pointer-events: none;
+        overflow: hidden;
+
+        & > .os-scrollbar-track > .os-scrollbar-handle {
+          border-radius: scroll.simple-var(scroll.$scroll, 'anatomy', 'slider', 'size', $size, 'border-radius');
+
+          @if $orientation == 'vertical' {
+            width: scroll.simple-var(scroll.$scroll, 'anatomy', 'slider', 'size', $size, 'width');
+          }
+
+          @else {
+            height: scroll.simple-var(scroll.$scroll, 'anatomy', 'slider', 'size', $size, 'height');
+          }
+        }
+      }
+    }
+
+    .#{$theme-name}[data-size='#{$size}'].os-host-resize-disabled > .os-scrollbar-horizontal {
+      right: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', $size, 'width');
+    }
+    .#{$theme-name}[data-size='#{$size}'].os-host-resize-disabled.os-host-rtl > .os-scrollbar-horizontal {
+      right: 0;
+      left: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', $size, 'width');
+    }
+    .#{$theme-name}[data-size='#{$size}'].os-host-resize-disabled > .os-scrollbar-vertical {
+      bottom: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', $size, 'height');
+    }
+  }
+
+  /* ——— Handle: база + позиция по ориентации. State-layer инжектируется в Scroll.tsx. ——— */
+  @each $orientation in $orientations {
+    .#{$theme-name} > .os-scrollbar-#{$orientation} > .os-scrollbar-track > .os-scrollbar-handle {
+      pointer-events: initial;
+      position: relative;
+      border: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-invertNeutral-decorTransparent;
+      background: base.$sn-theme-color-neutral-decorTransparent;
+
+      [data-state-layer] {
+        transition: background 0.15s;
+      }
+
+      @include m.has-state-layer-as-child();
+
+      @if $orientation == 'vertical' {
+        left: 50%;
+        translate: -50% 0;
+
+        &::before {
+          right: -$scrollbar-slider-active-zone;
+          left: -$scrollbar-slider-active-zone;
+        }
+      }
+
+      @else {
+        top: 50%;
+        translate: 0 -50%;
+
+        &::before {
+          top: -$scrollbar-slider-active-zone;
+          bottom: -$scrollbar-slider-active-zone;
+        }
+      }
+    }
+  }
+
+  // TODO: кажется, это не используется, и у нас применяется нативный ресайз
+
+  /* ——— Corner (resize grip) ——— */
+
+  /* .#{$theme-name} > .os-scrollbar-corner {
+   --bg-icon-mask: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iYmxhY2siIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuNTMwMyAzLjQ2OTY3QzEzLjgyMzIgMy43NjI1NiAxMy44MjMyIDQuMjM3NDQgMTMuNTMwMyA0LjUzMDMzTDQuNTMwMzMgMTMuNTMwM0M0LjIzNzQ0IDEzLjgyMzIgMy43NjI1NiAxMy44MjMyIDMuNDY5NjcgMTMuNTMwM0MzLjE3Njc4IDEzLjIzNzQgMy4xNzY3OCAxMi43NjI2IDMuNDY5NjcgMTIuNDY5N0wxMi40Njk3IDMuNDY5NjdDMTIuNzYyNiAzLjE3Njc4IDEzLjIzNzQgMy4xNzY3OCAxMy41MzAzIDMuNDY5NjdaTTEzLjUzMDMgNy40Njk2N0MxMy44MjMyIDcuNzYyNTYgMTMuODIzMiA4LjIzNzQ0IDEzLjUzMDMgOC41MzAzM0w4LjUzMDMzIDEzLjUzMDNDOC4yMzc0NCAxMy44MjMyIDcuNzYyNTYgMTMuODIzMiA3LjQ2OTY3IDEzLjUzMDNDNy4xNzY3OCAxMy4yMzc0IDcuMTc2NzggMTIuNzYyNiA3LjQ2OTY3IDEyLjQ2OTdMMTIuNDY5NyA3LjQ2OTY3QzEyLjc2MjYgNy4xNzY3OCAxMy4yMzc0IDcuMTc2NzggMTMuNTMwMyA3LjQ2OTY3Wk0xMy41MzAzIDEyLjUzMDNDMTMuODIzMiAxMi4yMzc0IDEzLjgyMzIgMTEuNzYyNiAxMy41MzAzIDExLjQ2OTdDMTMuMjM3NCAxMS4xNzY4IDEyLjc2MjYgMTEuMTc2OCAxMi40Njk3IDExLjQ2OTdMMTEuNDY5NyAxMi40Njk3QzExLjE3NjggMTIuNzYyNiAxMS4xNzY4IDEzLjIzNzQgMTEuNDY5NyAxMy41MzAzQzExLjc2MjYgMTMuODIzMiAxMi4yMzc0IDEzLjgyMzIgMTIuNTMwMyAxMy41MzAzTDEzLjUzMDMgMTIuNTMwM1oiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=');
+   z-index: 0;
+  
+   width: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 'm', 'width');
+   height: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 'm', 'height');
+  
+   background-color: base.simple-var(base.$sn-theme, 'color', 'neutral', 'decor');
+   background-image: unset;
+  
+   mask-image: var(--bg-icon-mask);
+  
+   &:hover {
+     background-color: base.simple-var(base.$sn-theme, 'color', 'neutral', 'text');
+   }
+  }
+  
+  .os-dragging .#{$theme-name} > .os-scrollbar-corner:hover {
+   background-color: base.simple-var(base.$sn-theme, 'color', 'primary', 'accent');
+  }
+  .#{$theme-name}.os-host-resize-disabled > .os-scrollbar-corner {
+   display: none;
+  } */
+}

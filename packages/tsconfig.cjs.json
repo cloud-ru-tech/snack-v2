@@ -66,6 +66,9 @@
     },
     {
       "path": "./promo-tag/tsconfig.cjs.json"
+    },
+    {
+      "path": "./scroll/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

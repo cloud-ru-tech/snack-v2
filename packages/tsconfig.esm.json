@@ -66,6 +66,9 @@
     },
     {
       "path": "./promo-tag/tsconfig.esm.json"
+    },
+    {
+      "path": "./scroll/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

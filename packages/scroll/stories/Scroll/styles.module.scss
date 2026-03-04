@@ -1,0 +1,45 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.scroll {
+  width: 400px;
+  height: 400px;
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.scrollContent {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  height: 100%;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.playgroundLine {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  width: max-content;
+  min-width: 100%;
+  padding: 4px 8px;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  white-space: nowrap;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.cellContent {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.decoratorPad24 {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  padding: 24px;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.matrixCell {
+  width: 180px;
+  height: 140px;
+}

@@ -1,8 +1,8 @@
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
-import expressiveCode from 'astro-expressive-code';
 import { defineConfig } from 'astro/config';
+import expressiveCode from 'astro-expressive-code';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
