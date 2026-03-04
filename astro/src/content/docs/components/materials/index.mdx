@@ -1,6 +1,6 @@
 ---
 title: Materials
-description: SCSS-миксины для акрилового фона и слоя состояний (state layer) — вспомогательные стили для разработки компонентов дизайн-системы.
+description: SCSS-миксины для материалов (акрил и др.) и слоя состояний (state layer) — вспомогательные стили для разработки компонентов дизайн-системы.
 version: "0.1.0"
 ---
 
@@ -9,7 +9,7 @@ import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 # Materials
 
-Пакет **не предоставляет React-компоненты**, только вспомогательные **SCSS-миксины** для общих визуальных модификаторов: акриловый фон (acrylic) и слой состояний (state layer). Используется при разработке компонентов дизайн-системы для единообразного оформления фона и интерактивных состояний.
+Пакет **не предоставляет React-компоненты**, только вспомогательные **SCSS-миксины** для общих визуальных модификаторов: материалы (корневой миксин `with-material`, сейчас — акрил, далее — например градиент) и слой состояний (state layer). Используется при разработке компонентов дизайн-системы для единообразного оформления фона и интерактивных состояний.
 
 **Version:** `{frontmatter.version}`
 
@@ -31,9 +31,10 @@ pnpm add @design-system/materials
 
 ## Overview
 
-Materials экспортирует два набора миксинов:
+Пакет построен вокруг **корневого миксина материалов** и двух наборов миксинов:
 
-- **Acrylic** — эффект «матового стекла» (backdrop blur + полупрозрачный слой). Один вызов миксина применяет стили к корневому элементу и к дочернему с атрибутом `data-acrylic-background`.
+- **Material (корень)** — миксин `with-material($material, $props...)` применяет выбранный материал к элементу. Сейчас доступен материал `'acrylic'`; со временем добавятся другие (например gradient). Разметка и параметры зависят от материала.
+- **Acrylic** — материал «матового стекла» (backdrop blur + полупрозрачный слой). Вызывается через `with-material('acrylic')`. Требует на корне атрибуты `data-acrylic-appearance` и `data-acrylic-level`, дочерний элемент `[data-acrylic-background]`; опционально `[data-acrylic-effect]`.
 - **State layer** — слой состояний (hover, active) для кнопок, карточек и других интерактивных элементов. Поддерживает варианты: обычный фон/бордер, активированный, onColor, onAccent и прозрачность текста/иконок (textOpacity). Использует переменные из `@sbercloud/figma-variables`.
 
 Подключение в SCSS:
@@ -42,32 +43,41 @@ Materials экспортирует два набора миксинов:
 @use '@design-system/materials' as m;
 ```
 
-После этого доступны миксины из модулей `acrylic` и `stateLayer` (через общий namespace `m`).
+Через namespace `m` доступны миксины материалов (`with-material`), state layer (`has-state-layer-as-child`, `has-content-with-text-opacity`) и при необходимости низкоуровневые утилиты.
 
 ## Storybook
 
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
-В Storybook показаны примеры компонентов, построенных с использованием этих миксинов (акриловый блок, слой состояний). Они служат референсом по разметке и подключению стилей.
+В Storybook показаны примеры компонентов, построенных с использованием миксинов материалов и state layer. Они служат референсом по разметке и подключению стилей.
 
 ### Playground
 
 <StorybookIframe storyId="materials-playground--playground" showControls={true} height="400px" />
 
-### Materials Visual Matrix
+### Materials Visual Matrix (акрил)
+
+<StorybookIframe storyId="materials-materials-visual-matrix--materials-visual-matrix" showControls={false} height="800px" />
+
+### State Layers Visual Matrix
 
 <StorybookIframe storyId="materials-state-layers-visual-matrix--state-layers-visual-matrix" showControls={false} height="800px" />
 
 ## Usage
 
-### Acrylic — базовый пример
+### Material (корень) и Acrylic
 
-В разметке нужны: корневой элемент (к которому применяется класс со стилями) и один дочерний элемент с атрибутом `data-acrylic-background`. Контент размещайте поверх фонового слоя (например, в отдельном блоке с `position: relative` и `z-index`).
+Материал подключается одним вызовом `with-material('acrylic')`. На корневом элементе задайте атрибуты:
+
+- **`data-acrylic-appearance`** — вариант оформления: `'primary'`, `'neutral'`, `'blue'`, `'red'`, `'yellow'`, `'green'`.
+- **`data-acrylic-level`** — уровень глубины: `'default'`, `'1Level'`, `'2Level'`.
+
+В разметке обязателен один дочерний элемент с атрибутом `data-acrylic-background`. Опционально — дочерний `[data-acrylic-effect]` для color-dodge слоя. Контент размещайте поверх фонового слоя (например, в отдельном блоке с `position: relative` и `z-index`).
 
 **Разметка (JSX):**
 
 ```tsx
-<div className={styles.card}>
+<div className={styles.card} data-acrylic-appearance="neutral" data-acrylic-level="1Level">
   <div data-acrylic-background />
   <div className={styles.content}>{children}</div>
 </div>
@@ -77,15 +87,9 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 ```scss
 @use '@design-system/materials' as m;
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .card {
-  @include m.acrylic(
-    base.simple-var(base.$sn-theme-effect-acrylic-blur1Level),
-    calc(base.$sn-theme-effect-acrylic-opacity1Level / 100),
-    base.simple-var(base.$sn-theme-color-neutral-background1Level),
-    base.simple-var(base.$sn-acrylic-colorEffect1Level)
-  );
+  @include m.with-material('acrylic');
 }
 
 .content {
@@ -153,13 +157,17 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 ## API миксинов
 
-### Acrylic
+### Material (корень)
 
 | миксин | параметры | описание |
 |--------|-----------|----------|
-| `acrylic($blurLevel, $primaryBgOpacity, $primaryBgColor, $colorDodgeBgColor)` | `$blurLevel` — размытие в px (например, из Figma Variables); `$primaryBgOpacity` — непрозрачность фона (0–1); `$primaryBgColor` — цвет фона; `$colorDodgeBgColor` — цвет эффекта наложения | Применяет к корню `position: relative` и backdrop-filter, к дочернему `[data-acrylic-background]` — слой с акриловым фоном |
+| `with-material($material, $props...)` | `$material` — название материала (сейчас только `'acrylic'`); `$props...` — зарезервировано для будущих параметров | Применяет выбранный материал к элементу. Для acrylic требует на корне `data-acrylic-appearance` и `data-acrylic-level`, дочерний `[data-acrylic-background]`; опционально `[data-acrylic-effect]`. |
 
-Требуемая разметка: корень + один дочерний элемент с `data-acrylic-background`. Опционально дочерний элемент с `data-acrylic-effect` для color-dodge слоя.
+### Acrylic
+
+Акрил подключается через `with-material('acrylic')`. Параметры задаются атрибутами на корне, значения берутся из `@sbercloud/figma-variables` внутри пакета.
+
+- **Разметка:** корень с `data-acrylic-appearance` (primary, neutral, blue, red, yellow, green) и `data-acrylic-level` (default, 1Level, 2Level); один дочерний элемент с `data-acrylic-background`; опционально дочерний `[data-acrylic-effect]` для color-dodge слоя.
 
 ### State layer
 
@@ -180,6 +188,6 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
 2. **Один state layer на компонент** — у компонента может быть только один элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`); миксин применяется к корню, hover/active обрабатываются на корне.
-3. **Переменные дизайн-системы** — для acrylic подставляйте значения из `@sbercloud/figma-variables` (blur, opacity, цвета), чтобы сохранять единый стиль.
+3. **Переменные дизайн-системы** — для acrylic используйте значения `data-acrylic-appearance` и `data-acrylic-level` из палитры дизайн-системы; пакет подставляет blur, opacity и цвета из `@sbercloud/figma-variables`.
 4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.
 5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.
