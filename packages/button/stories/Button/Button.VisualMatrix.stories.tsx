@@ -9,7 +9,7 @@ import { Button, type ButtonProps } from '../../src/Button';
 import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constants';
 
 const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: {
     readme: { content: readme },

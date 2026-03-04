@@ -6,7 +6,7 @@ import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constant
 import { type PlaygroundArgs, renderButtonPlayground } from './helpers';
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: {
     readme: { content: readme },
@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<PlaygroundArgs>;
 
 export const WithCounterAndIconAfter: Story = {
-  tags: ['dev', 'autodocs'],
+  tags: ['dev'],
   args: {
     label: 'Уведомления',
     iconKey: 'placeholder',

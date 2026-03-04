@@ -1,0 +1,33 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as btn;
+
+.root {
+  display: flex;
+  gap: base.simple-var(btn.$button, 'anatomy', 'buttonGroup', 'container', 'gap');
+  align-items: center;
+
+  &[data-vertical] {
+    flex-direction: column-reverse;
+  }
+
+  &[data-centered] {
+    justify-content: center;
+  }
+
+  &[data-break] {
+    justify-content: space-between;
+  }
+
+  &[data-filled] {
+    & > * {
+      display: flex;
+      flex: 1;
+    }
+
+    &[data-vertical] {
+      & > * {
+        width: 100%;
+      }
+    }
+  }
+}

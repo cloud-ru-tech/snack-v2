@@ -6,7 +6,7 @@ import { APPEARANCE, SIZE, VIEW } from '../../src/Button/constants';
 import { type PlaygroundArgs, renderButtonPlayground } from './helpers';
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: {
     readme: { content: readme },

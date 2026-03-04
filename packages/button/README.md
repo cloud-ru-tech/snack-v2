@@ -1,6 +1,6 @@
 # Button
 
-Кнопка для действий в интерфейсе. Поддерживает текст (label), иконку (icon + iconPosition: before | after), счётчик (counter), варианты оформления (view: filled, outline, simple, tonal, elevated, function) и семантические цвета (appearance: primary, neutral, critical). Полиморфный проп **as** позволяет рендерить кнопку как ссылку (`as="a"`) или как компонент роутера (например `as={Link}` из react-router-dom). Состояния: disabled, loading, fullWidth.
+Пакет содержит компоненты **Button** (кнопка с поддержкой view, appearance, иконок, counter) и **ButtonGroup** (группа primary + secondary кнопок). Используются в InfoBlock, формах и других интерфейсах.
 
 ## Installation
 
@@ -67,6 +67,71 @@ import { Button } from '@design-system/button';
 <Button as='a' href='#' label='Внешняя ссылка' view='outline' target='_blank' />
 ```
 
+### Basic (primary + secondary)
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+
+<ButtonGroup
+  primaryAction={{ label: 'Подтвердить' }}
+  secondaryAction={{ label: 'Отмена' }}
+/>
+```
+
+### Primary only
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+
+<ButtonGroup primaryAction={{ label: 'Продолжить' }} />
+```
+
+### With tertiary
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+
+<ButtonGroup
+  primaryAction={{ label: 'Подтвердить' }}
+  secondaryAction={{ label: 'Отмена' }}
+  tertiaryAction={{ label: 'Ещё' }}
+/>
+```
+
+### Vertical layout
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+
+<ButtonGroup
+  primaryAction={{ label: 'Подтвердить' }}
+  secondaryAction={{ label: 'Отмена' }}
+  vertical
+/>
+```
+
+### Sizes
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+
+<ButtonGroup
+  size='s'
+  primaryAction={{ label: 'S' }}
+  secondaryAction={{ label: 'S' }}
+/>
+<ButtonGroup
+  size='m'
+  primaryAction={{ label: 'M' }}
+  secondaryAction={{ label: 'M' }}
+/>
+<ButtonGroup
+  size='l'
+  primaryAction={{ label: 'L' }}
+  secondaryAction={{ label: 'L' }}
+/>
+```
+
 
 ## Usage
 
@@ -126,6 +191,19 @@ import { SomeIcon } from '@design-system/icons';
 | counter | `Omit<CounterProps, "appearance" \| "size">` | - | Пропсы для counter |
 | as | `ElementType` | - | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | innerRef | `any` | - | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+
+### ButtonGroupProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| primaryAction | `ActionProps` | - | Основное действие (filled) |
+| secondaryAction | `ActionProps` | - | Вторичное действие (outline), опционально |
+| tertiaryAction | `ActionProps` | - | Третичное действие (simple/text-only), опционально |
+| size | "s" \| "m" \| "l" | m | Размер кнопок |
+| vertical | `boolean` | - | Вертикальное расположение |
+| centered | `boolean` | - | Центрирование по горизонтали |
+| break | `boolean` | - | Перенос на новую строку при нехватке места |
+| filled | `boolean` | - | Заливка контейнера |
+| className | `string` | - | Дополнительный класс |
 
 ## Best Practices
 

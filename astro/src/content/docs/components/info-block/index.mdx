@@ -1,0 +1,250 @@
+---
+title: Info Block
+description: Блок с иконкой, заголовком, описанием и опциональным футером с кнопками. Поддерживает вертикальную и горизонтальную компоновку.
+version: "0.1.0"
+---
+
+import { ExampleContainer, ExampleGrid, ExampleItem, ExampleRow } from '#astro/components/mdx';
+import { PlaceholderSVG } from '@design-system/icons';
+import { ALIGN, InfoBlock, SIZE } from '@packages/info-block/src';
+
+# Info Block
+
+Info Block — компонент для отображения информационных блоков с иконкой, заголовком, описанием и опциональными действиями (кнопками в футере). Поддерживает вертикальную и горизонтальную компоновку, три размера (s, m, l).
+
+**Version:** `{frontmatter.version}`
+
+Figma: [Info Block](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5828-4043&m=dev)
+
+## Installation
+
+```bash
+npm install @design-system/info-block
+# or
+yarn add @design-system/info-block
+# or
+pnpm add @design-system/info-block
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName='info-block' />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component='info-block' />
+
+## Overview
+
+Info Block автоматически обрабатывает:
+
+- **Иконка** — через `icon` (IconPredefined props), размер иконки зависит от размера блока (s→m, m→l, l→5xl)
+- **Три размера** — s, m, l (влияют на типографику, отступы и размер иконки)
+- **Два варианта компоновки** — vertical (центрированная колонка) и horizontal (иконка слева, контент справа)
+- **Футер** — произвольный ReactNode или `ButtonGroup` из `@design-system/button` с primaryAction и опциональными secondaryAction, tertiaryAction
+- **Стилизация** — переменные из `@sbercloud/figma-variables` для соответствия макету
+
+## Live examples
+
+### Basic usage
+
+<ExampleContainer>
+  <InfoBlock title='Title text' description='Content text' />
+</ExampleContainer>
+
+### With icon
+
+<ExampleContainer>
+  <InfoBlock
+    title='Title text'
+    description='Content text'
+    icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+  />
+</ExampleContainer>
+
+### Sizes
+
+<ExampleContainer padding='large'>
+  <ExampleRow gap='large' justifyContent='center'>
+    <ExampleItem label='s'>
+      <InfoBlock
+        title='Title text'
+        description='Content text'
+        size={SIZE.S}
+        icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      />
+    </ExampleItem>
+    <ExampleItem label='m'>
+      <InfoBlock
+        title='Title text'
+        description='Content text'
+        size={SIZE.M}
+        icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      />
+    </ExampleItem>
+    <ExampleItem label='l'>
+      <InfoBlock
+        title='Title text'
+        description='Content text'
+        size={SIZE.L}
+        icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Alignments
+
+<ExampleContainer padding='large'>
+  <ExampleGrid columns={2} minColumnWidth='280px'>
+    <ExampleItem label='Vertical (по умолчанию)' gap='medium'>
+      <InfoBlock
+        title='Title text'
+        description='Content text'
+        align={ALIGN.Vertical}
+        icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      />
+    </ExampleItem>
+    <ExampleItem label='Horizontal' gap='medium'>
+      <InfoBlock
+        title='Title text'
+        description='Content text'
+        align={ALIGN.Horizontal}
+        icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      />
+    </ExampleItem>
+  </ExampleGrid>
+</ExampleContainer>
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+### Playground
+
+<StorybookIframe storyId='components-infoblock--playground' showControls={true} height='600px' />
+
+### Visual Matrix
+
+Для просмотра всех комбинаций align × size используйте story **Visual Matrix** в Storybook.
+
+<StorybookIframe storyId='components-infoblock--visual-matrix' showControls={false} height='600px' />
+
+## Usage
+
+### Basic example
+
+```tsx
+import { InfoBlock } from '@design-system/info-block';
+
+export function Example() {
+  return <InfoBlock title='Заголовок' description='Описание блока' />;
+}
+```
+
+### With icon and footer
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+import { PlaceholderSVG } from '@design-system/icons';
+import { InfoBlock } from '@design-system/info-block';
+
+export function Example() {
+  return (
+    <InfoBlock
+      title='Заголовок'
+      description='Описание блока'
+      icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      footer={
+        <ButtonGroup
+          size='m'
+          primaryAction={{ label: 'Подтвердить', onClick: () => {} }}
+          secondaryAction={{ label: 'Отмена', onClick: () => {} }}
+        />
+      }
+    />
+  );
+}
+```
+
+### Horizontal layout
+
+```tsx
+import { PlaceholderSVG } from '@design-system/icons';
+import { ALIGN, InfoBlock } from '@design-system/info-block';
+
+export function Example() {
+  return (
+    <InfoBlock
+      title='Заголовок'
+      description='Описание'
+      align={ALIGN.Horizontal}
+      icon={{ icon: PlaceholderSVG }}
+      size='m'
+    />
+  );
+}
+```
+
+### With tooltip on button
+
+```tsx
+import { ButtonGroup } from '@design-system/button';
+import { PlaceholderSVG } from '@design-system/icons';
+import { InfoBlock } from '@design-system/info-block';
+
+export function Example() {
+  return (
+    <InfoBlock
+      title='Заголовок'
+      description='Описание'
+      icon={{ icon: PlaceholderSVG }}
+      footer={
+        <ButtonGroup
+          size='m'
+          primaryAction={{
+            label: 'Действие',
+            tooltip: { tip: 'Подсказка для кнопки' },
+          }}
+        />
+      }
+    />
+  );
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### InfoBlockProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| title | `string` | - | Заголовок |
+| description | `ReactNode` | - | Подзаголовок |
+| icon | `InfoBlockIconProps` | - | Иконка |
+| size | enum Size: `"s"`, `"m"`, `"l"` | s | Размер |
+| align | enum Align: `"vertical"`, `"horizontal"` | vertical | Расположение элементов |
+| footer | `ReactNode` | - | Вложенный контент (например ButtonGroup) |
+| className | `string` | - | Дополнительный класс |
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+## Accessibility
+
+- Семантичная структура HTML обеспечивает совместимость со скринридерами
+- Компонент принимает `data-test-id` и ARIA-атрибуты через `WithSupportProps`
+- Заголовок и описание — читаемый текст, не декоративные элементы
+- Кнопки в ButtonGroup наследуют доступность от `@design-system/button`
+
+## Best practices
+
+1. **Используйте осмысленные заголовки** — заголовок должен кратко описывать суть блока
+2. **Ограничьте длину описания** — для horizontal layout длинный текст может ухудшить читаемость
+3. **Выбирайте подходящий размер** — s для компактных областей, l для акцентных блоков
+4. **Vertical для центрированного контента** — например, пустые состояния, результаты поиска
+5. **Horizontal для списков и карточек** — когда нужно экономить вертикальное пространство
+6. **Primary action в ButtonGroup** — primaryAction всегда справа, secondaryAction и tertiaryAction — слева

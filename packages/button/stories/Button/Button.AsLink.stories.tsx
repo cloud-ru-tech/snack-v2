@@ -6,7 +6,7 @@ import { APPEARANCE, SIZE, VIEW } from '../../src/Button/constants';
 import { type PlaygroundArgs } from './helpers';
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: {
     readme: { content: readme },
@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<PlaygroundArgs>;
 
 export const AsLink: Story = {
-  tags: ['dev', 'autodocs'],
+  tags: ['dev'],
   args: {
     label: 'О нас',
     as: 'a',

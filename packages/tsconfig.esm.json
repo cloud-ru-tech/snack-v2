@@ -81,6 +81,9 @@
     },
     {
       "path": "./dropzone/tsconfig.esm.json"
+    },
+    {
+      "path": "./info-block/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

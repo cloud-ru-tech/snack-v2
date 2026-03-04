@@ -125,10 +125,11 @@
     "typescript-plugin-css-modules": "5.2.0",
     "vitest": "4.0.18",
     "cross-env": "7.0.3",
+    "@snack-uikit/drop-zone": "0.9.11",
     "@snack-uikit/modal": "0.19.7",
     "@snack-uikit/search": "0.12.22",
     "@snack-uikit/icons": "0.27.5",
-    "@snack-uikit/drop-zone": "0.9.11"
+    "@snack-uikit/info-block": "0.6.37"
   },
   "pnpm": {
     "peerDependencyRules": {

@@ -6,19 +6,13 @@ import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constant
 import { type PlaygroundArgs, renderButtonPlayground } from './helpers';
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: {
     readme: { content: readme },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2782-111011',
-    },
-    docs: {
-      description: {
-        component:
-          'Кнопка с поддержкой label, иконки (icon + iconPosition), counter, состояний loading/disabled. Полиморфный as: button (по умолчанию), a (ссылка) или кастомный компонент (напр. react-router Link). Варианты view: filled, outline, simple, tonal, elevated, function. При iconPosition=after и counter счётчик отображается абсолютно относительно иконки; при iconPosition=before или без иконки — инлайн после текста.',
-      },
     },
   },
   args: {
@@ -89,6 +83,6 @@ export default meta;
 type Story = StoryObj<PlaygroundArgs>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
   render: (args: PlaygroundArgs) => renderButtonPlayground(args),
 };
