@@ -350,6 +350,33 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
 
+  packages/dropdown:
+    dependencies:
+      '@design-system/button':
+        specifier: 0.1.0
+        version: link:../button
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/info-block':
+        specifier: 0.1.0
+        version: link:../info-block
+      '@design-system/loader':
+        specifier: 0.1.0
+        version: link:../loader
+      '@design-system/locale':
+        specifier: 0.1.0
+        version: link:../locale
+      '@design-system/popover-private':
+        specifier: 0.1.0
+        version: link:../popover-private
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/dropzone:
     dependencies:
       '@design-system/utils':
