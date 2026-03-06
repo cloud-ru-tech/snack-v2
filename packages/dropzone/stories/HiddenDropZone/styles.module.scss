@@ -1,0 +1,45 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filesList {
+  font-size: 12px;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.contentTitle {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.contentDescription {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.card {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  width: 400px;
+  height: 220px;
+  border: 1px solid base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-radius: 5px;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

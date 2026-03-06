@@ -1,0 +1,20 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$width: 200px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: $width;
+}
+
+.dropzoneCell {
+  width: $width;
+}
+
+.filesList {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

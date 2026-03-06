@@ -1,0 +1,95 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/dropzone.module' as dropzone;
+@use '@design-system/materials' as m;
+
+$sizes: 's', 'm', 'l';
+
+.hidden {
+  display: none;
+}
+
+.content {
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.overLayer {
+  visibility: hidden;
+}
+
+.container {
+  cursor: pointer;
+
+  position: relative;
+  z-index: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  font-family: inherit;
+  color: transparent;
+  text-decoration: none;
+
+  background: transparent;
+  background-color: base.$sn-theme-color-neutral-background2Level;
+  outline: 0;
+  outline-offset: 0;
+
+  @include m.with-material('acrylic');
+
+  .content {
+    @include base.composite-var(base.$sn-thin-label-s);
+
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
+      base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  &[data-over] {
+    .overLayer {
+      visibility: inherit;
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(dropzone.$dropzone, 'anatomy', 'size', $size);
+
+      .content {
+        @include base.composite-var(dropzone.$dropzone, 'anatomy', 'size', $size, 'contentWrapper');
+      }
+    }
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+
+    .content {
+      opacity: base.$sn-theme-effect-opacity-disabled;
+    }
+  }
+
+  @include m.has-state-layer-as-child();
+
+  > [data-state-layer] {
+    border-style: dashed !important;
+  }
+}

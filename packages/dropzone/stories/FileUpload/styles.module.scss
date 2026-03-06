@@ -1,0 +1,12 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filesList {
+  font-size: 12px;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

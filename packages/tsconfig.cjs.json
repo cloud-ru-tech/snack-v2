@@ -78,6 +78,9 @@
     },
     {
       "path": "./search-private/tsconfig.cjs.json"
+    },
+    {
+      "path": "./dropzone/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

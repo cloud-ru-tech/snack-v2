@@ -1,0 +1,45 @@
+---
+title: Dropzone
+description: Компоненты загрузки файлов — видимая дропзона, скрытая дропзона и кнопка выбора файлов.
+version: "0.1.0"
+---
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+# Dropzone
+
+Пакет компонентов для загрузки файлов: **Dropzone** (видимая область drag-and-drop), **FileUpload** (кнопка выбора файлов) и **HiddenDropZone** (скрытая дропзона поверх контента). Стили — из design tokens (Figma variables).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/dropzone
+# or
+yarn add @design-system/dropzone
+# or
+pnpm add @design-system/dropzone
+```
+
+## Changelog
+
+<Changelog packageName="dropzone" />
+
+<LlmLink component="dropzone" />
+
+## Overview
+
+Компоненты поддерживают загрузку по drag-and-drop и через диалог выбора файлов. В пакет входят:
+
+- **Dropzone** — видимая область с пунктирной рамкой. Принимает `children` для кастомного контента. Размеры s, m, l.
+- **FileUpload** — обёртка над кнопкой или другим элементом: клик открывает диалог выбора файлов. Режимы single/multiple.
+- **HiddenDropZone** — обёртка над произвольным контентом (форма, карточка). При перетаскивании файлов поверх показывается overlay с dropzone. Принимает `content` для overlay.
+- **Стили** — отступы, границы, цвета из design tokens.
+
+## Components
+
+- **[Dropzone](./components/dropzone/)** — видимая область drag-and-drop (примеры, API)
+- **[FileUpload](./components/fileupload/)** — кнопка выбора файлов (примеры, API)
+- **[HiddenDropZone](./components/hiddendropzone/)** — скрытая дропзона поверх контента (примеры, API)

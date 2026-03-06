@@ -1,0 +1,105 @@
+---
+description: "Инструкция по написанию E2E тестов через Playwright и Storybook"
+globs: ["packages/**/__test__/**/*.spec.ts", "playwright/**/*.ts"]
+---
+
+# Playwright E2E тесты (Storybook)
+
+## Структура
+
+- Функциональные тесты: `packages/<pkg>/__test__/<component>.spec.ts`
+- Визуальная регрессия: `packages/<pkg>/__test__/<component>.visual.spec.ts`
+- Хелперы для пакета: `packages/<pkg>/__test__/helpers.ts`
+
+## Импорты
+
+```typescript
+import { expect, test } from '../../../playwright/fixtures';
+```
+
+Импорт констант/типов из тестируемого пакета — из `../src/constants`, `../src` и т.д.
+
+## data-test-id
+
+Всегда передавать в `props` при вызове `gotoStory`, чтобы однозначно находить компонент:
+
+```typescript
+props: {
+  'data-test-id': TEST_ID,
+  // ...остальные props
+}
+```
+
+Компонент должен прокидывать поддержку props (в т.ч. `data-test-id`) через `extractSupportProps` / `...rest`.
+
+## gotoStory
+
+Использовать fixture `gotoStory` с опциями:
+
+- `name` — имя компонента в Storybook (lowercase, без префикса категории), например `'counter'`
+- `story` — имя story, обычно `'playground'`
+- `props` — объект props для компонента (в т.ч. `data-test-id`, `value`, `variant` и т.д.)
+- При необходимости: `category`, `group`, `globals`
+
+Пример:
+
+```typescript
+await gotoStory({
+  name: 'counter',
+  story: 'playground',
+  props: { 'data-test-id': TEST_ID, value: 5, variant: 'count' },
+});
+```
+
+## Хелперы
+
+Выносить повторяющиеся паттерны в хелперы:
+
+- Базовые props для story: `baseCounterProps(overrides)` или аналог
+- Опции для gotoStory: `counterStoryProps({ value: 1, size: 's' })` и т.п.
+- Получение элемента и проверка видимости: `getCounterAndAssertVisible(getByTestId)`
+
+Хелперы держать в `packages/<pkg>/__test__/helpers.ts`.
+
+## Параметризация
+
+Для проверки всех размеров/вариантов/appearance использовать цикл:
+
+```typescript
+for (const size of Object.values(SIZE)) {
+  test(`should render with size ${size}`, async ({ gotoStory, getByTestId }) => {
+    await gotoStory(counterStoryProps({ size }));
+    const el = await getCounterAndAssertVisible(getByTestId);
+    await expect(el).toHaveAttribute('data-size', size);
+  });
+}
+```
+
+## Проверки
+
+- Предпочитать `toBeVisible()`, `toHaveText()`, `toHaveAttribute()`, `toHaveClass()`.
+- Избегать хрупких селекторов по классам/вложенности; использовать `data-test-id` и семантичные атрибуты.
+
+## Скриншотные тесты (visual)
+
+- Отдельный файл `*.visual.spec.ts` для визуальной регрессии.
+- Снимки сохраняются в `packages/<pkg>/__snapshots__/` (папка в корне пакета, рядом с `__test__`). Путь задаётся в `playwright.config.ts` через `expect.toHaveScreenshot.pathTemplate`.
+- Снимать скриншот конкретного элемента (locator), а не всей страницы.
+- Обновление baseline: `pnpm test:e2e --update-snapshots` (или с путём к нужному spec).
+
+```typescript
+const counter = await getCounterAndAssertVisible(getByTestId);
+await expect(counter).toHaveScreenshot('counter-default.png');
+```
+
+## Запуск
+
+- Все E2E: `pnpm test:e2e`
+- Конкретный пакет: `pnpm test:e2e packages/counter/__test__`
+- С UI: `pnpm test:e2e:ui`
+- Обновить snapshots: `pnpm test:e2e --update-snapshots`
+
+## Ссылки
+
+- [docs/HOW_TO_ADD_TESTS.md](../../docs/HOW_TO_ADD_TESTS.md) — пошаговое добавление тестов
+- [playwright/README.md](../../playwright/README.md) — fixtures и утилиты
