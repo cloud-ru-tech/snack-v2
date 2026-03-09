@@ -21,3 +21,12 @@
 
   background-color: base.$sn-theme-color-neutral-background2Level;
 }
+
+.matrixCell {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  min-height: 280px;
+  padding: base.$sn-primitive-dimension-24;
+}

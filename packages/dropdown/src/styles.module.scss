@@ -1,5 +1,6 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/dropdown.module' as dropdown;
+@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
 @use '@design-system/materials' as m;
 
 .root {
@@ -7,12 +8,15 @@
 
   display: flex;
   flex-direction: column;
+  // TODO: need check in figma
+  box-shadow: base.$sn-boxShadow-elevation-level2;
 
   @include m.with-material('acrylic');
 }
 
 .defaultTriggerClassName {
-  --offset: 12px; // TODO: where to get from? used to be styles-tokens-dropList.$space-drop-list-drop-offset
+  // --offset: 12px; // TODO: where to get from? used to be styles-tokens-dropList.$space-drop-list-drop-offset
+  --offset: #{popover.$sn-popover-anatomy-privatePopover-offset};
 }
 
 .infoBlock {
