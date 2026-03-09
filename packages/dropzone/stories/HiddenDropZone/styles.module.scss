@@ -38,8 +38,24 @@
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
+.formHeader {
+  @include base.composite-var(base.$sn-regular-label-m);
+
+  margin: 0 0 12px;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.dropHint {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  color: base.$sn-theme-color-available-version-textSecondary;
 }

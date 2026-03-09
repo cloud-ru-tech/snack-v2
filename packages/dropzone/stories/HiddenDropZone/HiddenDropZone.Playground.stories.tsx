@@ -7,9 +7,6 @@ import styles from './styles.module.scss';
 
 const defaultContent = (
   <>
-    <h4 data-test-id='title' className={styles.contentTitle}>
-      Загрузите вложения
-    </h4>
     <div data-test-id='description' className={styles.contentDescription}>
       Перетащите файлы на форму, чтобы прикрепить их
     </div>
@@ -46,9 +43,6 @@ const meta: Meta<HiddenDropZoneProps> = {
       description: 'Test ID для автотестов',
       table: { category: 'HTML Attributes' },
     },
-    _storybookForceOver: {
-      table: { disable: true },
-    },
   },
 };
 
@@ -70,9 +64,12 @@ function HiddenDropZoneWithFiles(args: HiddenDropZoneProps) {
           </form>
         </div>
       </HiddenDropZone>
+
+      <div className={styles.dropHint}>Перетащите файлы на форму чтобы прикрепить вложения</div>
+
       {files.length > 0 && (
         <div className={styles.filesList} data-test-id='files-list'>
-          Загружено: {files.map(f => f.name).join(', ')}
+          Прикреплено: {files.map(f => f.name).join(', ')}
         </div>
       )}
     </div>

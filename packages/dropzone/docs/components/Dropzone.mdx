@@ -26,6 +26,7 @@ import { Dropzone, SIZE, UPLOAD_MODE } from '../../src';
       <Dropzone
         onFilesUpload={() => {}}
         mode={UPLOAD_MODE.Multiple}
+        client:load
       >
         <span># slot content</span>
       </Dropzone>
@@ -50,17 +51,17 @@ export function Example() {
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="flex-start">
     <ExampleItem label="S">
-      <Dropzone size={SIZE.S} onFilesUpload={() => {}}>
+      <Dropzone size={SIZE.S} onFilesUpload={() => {}} client:load>
         <span># slot content</span>
       </Dropzone>
     </ExampleItem>
     <ExampleItem label="M">
-      <Dropzone size={SIZE.M} onFilesUpload={() => {}}>
+      <Dropzone size={SIZE.M} onFilesUpload={() => {}} client:load>
         <span># slot content</span>
       </Dropzone>
     </ExampleItem>
     <ExampleItem label="L">
-      <Dropzone size={SIZE.L} onFilesUpload={() => {}}>
+      <Dropzone size={SIZE.L} onFilesUpload={() => {}} client:load>
         <span># slot content</span>
       </Dropzone>
     </ExampleItem>
