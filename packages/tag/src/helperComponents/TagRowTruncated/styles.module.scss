@@ -1,35 +1,18 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
-
-$sizes: 'xs', 's', 'm';
+@use '../styles/tagRowLayout' as layout;
 
 .wrapper {
   position: relative;
-
   overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
-
   width: 100%;
   max-width: 100%;
 
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'tagRow', 'gap');
-    }
-  }
+  @include layout.tag-row-flex-with-gap;
 }
 
 .visibleRow {
-  display: flex;
-  flex-wrap: wrap;
   max-width: 100%;
 
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'tagRow', 'gap');
-    }
-  }
+  @include layout.tag-row-flex-with-gap;
 }
 
 .hiddenRow {
@@ -37,18 +20,11 @@ $sizes: 'xs', 's', 'm';
   top: 0;
   left: 0;
 
-  display: flex;
-  flex-wrap: wrap;
-
   width: 100%;
 
   visibility: hidden;
 
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'tagRow', 'gap');
-    }
-  }
+  @include layout.tag-row-flex-with-gap;
 }
 
 .hiddenMoreButton {

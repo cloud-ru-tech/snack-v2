@@ -21,7 +21,6 @@ export function TagMore({ items, text = '', size = SIZE.Xs, buttonRef, onItemRem
     <Dropdown
       placement='bottom-end'
       trigger='hoverAndFocusVisible'
-      triggerClassName={styles.triggerClassName}
       content={
         <div className={styles.tagRowDroplistContainer} data-size={size}>
           <Scroll className={styles.tagRowDroplistScroll} size='s' barHideStrategy='move'>
@@ -41,7 +40,9 @@ export function TagMore({ items, text = '', size = SIZE.Xs, buttonRef, onItemRem
         ref={buttonRef}
         data-size={size}
         data-test-id={TAG_ROW_TEST_IDS.moreButton}
-      >{`${text}${items.length}`}</button>
+      >
+        <div className={styles.textWrapper}>{`${text}${items.length}`}</div>
+      </button>
     </Dropdown>
   );
 }

@@ -1,7 +1,14 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
+@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
 
 $sizes: 'xs', 's', 'm';
+
+$typography: (
+  'xs': base.$sn-regular-label-s,
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
 
 .button {
   cursor: pointer;
@@ -26,32 +33,26 @@ $sizes: 'xs', 's', 'm';
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'tagRow', 'gap');
-      padding: 2px 4px;
+      @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container');
 
-      @if $size == 'xs' {
-        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
-      }
+      height: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'min-height');
 
- @else if $size == 's' {
-        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm');
-      }
+      .textWrapper {
+        @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'textWrapper');
 
- @else {
-        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
+        @include base.composite-var($typography, $size);
+
+        display: inline-flex;
       }
     }
   }
 }
 
 .tagRowDroplistContainer {
-  padding: 8px;
+  max-width: 256px;
 }
 
 .tagRowDroplistScroll {
   max-height: 200px;
-}
-
-.triggerClassName {
-  display: inline-flex;
+  padding: base.simple-var(popover.$popover, 'anatomy', 'container', 'padding');
 }

@@ -112,8 +112,12 @@ $typography: (
     &[data-size='#{$size}'] {
       @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container');
 
+      // height: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'min-height');
+
       .textWrapper {
         @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'textWrapper');
+
+        display: inline-flex;
       }
 
       .label {
