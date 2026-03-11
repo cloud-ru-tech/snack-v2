@@ -18,6 +18,7 @@ type TagMoreProps = {
 
 export function TagMore({ items, text = '', size = SIZE.Xs, buttonRef, onItemRemove }: TagMoreProps) {
   return (
+    // TODO: replace with Popover
     <Dropdown
       placement='bottom-end'
       trigger='hoverAndFocusVisible'
