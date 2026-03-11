@@ -3,7 +3,7 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/hotSpot.module' as hotspot;
 
-$appearances: 'neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+$appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
 @function withOffsetX($value) {
   @return calc(var(--offset-x, 0px) + $value);

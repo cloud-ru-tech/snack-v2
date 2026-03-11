@@ -1,5 +1,4 @@
 export const APPEARANCE = {
-  Neutral: 'neutral',
   Primary: 'primary',
   Red: 'red',
   Orange: 'orange',

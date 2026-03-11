@@ -163,9 +163,6 @@ export function Example() {
 | placement | enum Placement: `"left"`, `"right"`, `"top"`, `"bottom"`, `"left-start"`, `"left-end"`, `"right-start"`, `"right-end"`, `"top-start"`, `"top-end"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
 | className | `string` | - | CSS-класс |
 | triggerClassName | `string` | - | CSS-класс триггера |
-| hasArrow | `boolean` | true | Параметр наличия стрелки у поповера. В размеры стрелки встроен отступ. Дополнительный отступ может быть задан параметром `offset`. У элемента стрелки нет цвета, необходимо задавать его через параметр `arrowClassName`. |
-| arrowContainerClassName | `string` | - | CSS-класс контейнера стрелки поповера |
-| arrowElementClassName | `string` | - | CSS-класс стрелки поповера |
 | offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
 | trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.Click | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
