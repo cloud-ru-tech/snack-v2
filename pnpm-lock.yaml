@@ -505,6 +505,18 @@ importers:
         specifier: 0.1.0
         version: link:../utils
 
+  packages/popover:
+    dependencies:
+      '@design-system/popover-private':
+        specifier: 0.1.0
+        version: link:../popover-private
+      '@design-system/portal-context':
+        specifier: ^0.1.0
+        version: link:../portal-context
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/popover-private:
     dependencies:
       '@design-system/portal-context':

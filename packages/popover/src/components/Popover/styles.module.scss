@@ -1,0 +1,40 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
+
+.triggerClassName {
+  --offset: #{base.simple-var(popover.$popover, 'anatomy', 'privatePopover', 'offset')};
+}
+
+.tooltipContainer {
+  @include base.composite-var(popover.$popover, 'anatomy', 'container');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  display: flex;
+  flex-direction: column;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+  box-shadow: base.$sn-boxShadow-elevation-level2;
+
+  &[data-disable-max-width='true'] {
+    max-width: calc(100vw - 16px);
+  }
+}
+
+.pointerWrapper {
+  // @include base.composite-var(popover.$popover, 'anatomy', 'privatePopover', 'pointer');
+
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.pointerShape {
+  fill: currentcolor;
+}

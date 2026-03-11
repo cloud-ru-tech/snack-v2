@@ -1,0 +1,5 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.popoverContent {
+  color: base.$sn-theme-color-available-version-textMain;
+}
