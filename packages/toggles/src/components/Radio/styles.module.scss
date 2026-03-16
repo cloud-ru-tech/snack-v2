@@ -1,0 +1,150 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toggles.module' as toggles;
+@use '@design-system/materials' as m;
+
+$sizes: 'xs', 's';
+
+.inputPrivate {
+  cursor: pointer;
+
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  opacity: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.backgroundStateLayer {
+  visibility: initial;
+}
+
+.framing {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  &[data-loading="false"] {
+    border-color: base.$sn-theme-color-neutral-accent;
+    border-style: solid;
+    background-color: base.$sn-theme-color-neutral-background1Level;
+
+    &[data-disabled="true"] {
+      opacity: base.$sn-theme-effect-opacity-disabled;
+    }
+
+    &[data-disabled="false"] {
+      &[data-checked="true"] {
+        border-color: base.$sn-theme-color-primary-accent;
+      }
+
+      &[data-focusvisible="true"] {
+        $outlineWidth: base.$sn-primitive-strokeWeight-strokeSemiBold;
+
+        outline: $outlineWidth solid base.$sn-theme-color-available-complementary;
+        outline-offset: $outlineWidth;
+      }
+    }
+  }
+}
+
+.flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &[data-loading="false"][data-checked="true"] {
+    &[data-disabled="false"] {
+      background: base.$sn-theme-color-primary-accent;
+    }
+
+    &[data-disabled="true"] {
+      background: base.$sn-theme-color-neutral-accent;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root {
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+
+  vertical-align: middle;
+
+  // Sizes
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .container {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'container');
+      }
+
+      .framing {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing');
+
+        width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'min-width');
+        height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'min-height');
+      }
+
+      .flag {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'flag')
+      }
+
+      .surface {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'flag', 'surface');
+      }
+    }
+  }
+
+  // States management
+  &[data-loading="false"][data-disabled="false"] {
+    // Default state
+    &[data-checked="false"] {
+      .container {
+        @include m.has-state-layer-as-child(#{backgroundStateLayer});
+      }
+    }
+
+    // Checked state
+    &[data-checked="true"] {
+      .container {
+        @include m.has-content-with-text-opacity(#{flag});
+      }
+    }
+  }
+
+  &[data-loading="true"],
+  &[data-disabled="true"] {
+    .backgroundStateLayer {
+      visibility: hidden;
+    }
+  }
+}

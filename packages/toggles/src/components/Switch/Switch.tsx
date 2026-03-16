@@ -1,0 +1,94 @@
+import { CheckSVG } from '@design-system/icons';
+import { LOADER_SIZE, Spinner } from '@design-system/loader';
+import cn from 'classnames';
+import { useState } from 'react';
+import { useUncontrolledProp } from 'uncontrollable';
+
+import { MODE, SIZE } from '../../constants';
+import { ToggleProps } from '../../types';
+import { getIconSize, getVisualStateAttributes } from '../../utils';
+import styles from './styles.module.scss';
+
+export type SwitchProps = ToggleProps;
+
+const SPINNER_SIZE_MAP = {
+  [SIZE.XS]: LOADER_SIZE.XS,
+  [SIZE.S]: LOADER_SIZE.S,
+};
+
+function Icon({ size, loading }: Required<Pick<SwitchProps, 'loading' | 'size'>>) {
+  if (loading) {
+    return <Spinner size={SPINNER_SIZE_MAP[size]} />;
+  }
+
+  const iconSize = getIconSize(size);
+
+  return <CheckSVG aria-hidden className={styles.icon} size={iconSize} />;
+}
+
+export function Switch({
+  inputRef,
+  checked: checkedProp,
+  defaultChecked,
+  onChange,
+  onBlur,
+  onFocus,
+  disabled = false,
+  loading = false,
+  size = SIZE.XS,
+  className,
+  'data-test-id': dataTestId,
+  ...otherProps
+}: SwitchProps) {
+  const [checked, setChecked] = useUncontrolledProp(checkedProp, Boolean(defaultChecked), onChange);
+  const [focusVisible, setFocusVisible] = useState(false);
+
+  const stateDataAttributes = getVisualStateAttributes({
+    loading,
+    disabled,
+    checked,
+  });
+
+  return (
+    <span
+      className={cn(styles.root, className)}
+      role={MODE.Checkbox}
+      data-size={size}
+      {...stateDataAttributes}
+      data-focusvisible={focusVisible || undefined}
+      data-test-id={dataTestId || undefined}
+    >
+      <div className={styles.container}>
+        <div className={styles.framing} {...stateDataAttributes}>
+          <div className={styles.backgroundStateLayer} data-state='regularBackground' />
+          <div className={styles.flag}>
+            <div className={styles.surface} {...stateDataAttributes}>
+              <Icon size={size} loading={Boolean(loading)} />
+            </div>
+          </div>
+        </div>
+
+        {!loading && (
+          <input
+            {...otherProps}
+            data-test-id={dataTestId ? `${dataTestId}-native-input` : undefined}
+            ref={inputRef}
+            type={MODE.Checkbox}
+            className={styles.inputPrivate}
+            checked={checked}
+            disabled={disabled}
+            onChange={e => setChecked(e.target.checked)}
+            onFocus={event => {
+              setFocusVisible(event.target.matches(':focus-visible'));
+              onFocus?.(event);
+            }}
+            onBlur={event => {
+              setFocusVisible(false);
+              onBlur?.(event);
+            }}
+          />
+        )}
+      </div>
+    </span>
+  );
+}

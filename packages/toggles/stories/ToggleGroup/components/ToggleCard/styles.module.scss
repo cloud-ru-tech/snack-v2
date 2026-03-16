@@ -1,0 +1,30 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+@mixin item ($type) {
+  width: 100px;
+  height: 60px;
+  margin: 10px;
+  border: 3px solid base.simple-var(base.$sn-theme, 'color', $type, 'decor');
+  border-radius: 0.2em;
+
+  font-size: 1.2rem;
+  color: base.simple-var(base.$sn-theme, 'color', $type, 'text');
+
+  background-color: base.simple-var(base.$sn-theme, 'color', $type, 'background');
+}
+
+.checked {
+  @include item('primary');
+
+  &::before {
+    content: '🌝 ';
+  }
+}
+
+.unchecked {
+  @include item('neutral');
+
+  &::before {
+    content: '🌚 ';
+  }
+}

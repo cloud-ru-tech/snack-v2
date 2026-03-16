@@ -1,0 +1,130 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toggles.module' as toggles;
+@use '@design-system/materials' as m;
+
+$sizes: 'xs', 's';
+
+.inputPrivate {
+  cursor: pointer;
+
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  opacity: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.backgroundStateLayer {
+  border-radius: 0 !important;
+  visibility: initial;
+}
+
+.flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.framing {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+.surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  position: absolute;
+
+  &[data-checked='true'] {
+    &[data-variant='star'] {
+      color: base.$sn-theme-color-yellow-accent;
+    }
+
+    &[data-variant='heart'] {
+      color: base.$sn-theme-color-red-accent;
+    }
+
+    &[data-disabled='true'] {
+      color: base.$sn-theme-color-neutral-accent;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root {
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+
+  vertical-align: middle;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .container {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'container');
+      }
+
+      .framing {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing');
+
+        width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-width');
+        height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-height');
+      }
+
+      .flag {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'flag');
+      }
+
+      .surface {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'flag', 'surface');
+      }
+    }
+  }
+
+  &[data-loading='false'][data-disabled='false'] {
+    .container {
+      @include m.has-content-with-text-opacity(#{framing});
+    }
+  }
+
+  &[data-disabled='true'] {
+    .framing {
+      opacity: base.$sn-theme-effect-opacity-disabled;
+    }
+  }
+
+  &[data-focusvisible='true'] {
+    .framing {
+      outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+      outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+    }
+  }
+}

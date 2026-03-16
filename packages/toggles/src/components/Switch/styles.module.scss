@@ -1,0 +1,243 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toggles.module' as toggles;
+@use '@design-system/materials' as m;
+
+$sizes: 'xs', 's';
+$switchAnimationDuration: 0.1s;
+$iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
+
+.icon {
+  pointer-events: none;
+
+  position: absolute;
+  transform: scale(0.72);
+
+  opacity: 0;
+
+  transition:
+    opacity $switchAnimationDuration $iconRevealEasing,
+    transform $switchAnimationDuration $iconRevealEasing,
+    color $switchAnimationDuration linear;
+}
+
+.surface[data-checked="true"]:not([data-loading="true"]) .icon {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.inputPrivate {
+  cursor: pointer;
+
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  opacity: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.backgroundStateLayer {
+  visibility: initial;
+}
+
+.flag {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: left $switchAnimationDuration linear;
+}
+
+.framing {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  outline-style: solid;
+
+  transition:
+    background-color $switchAnimationDuration linear,
+    outline-color $switchAnimationDuration linear;
+
+  &[data-checked="false"] {
+    outline-color: base.$sn-theme-color-neutral-accent;
+
+    &[data-disabled="false"][data-loading="false"] {
+      background-color: base.$sn-theme-color-neutral-background1Level;
+    }
+  }
+
+  &[data-checked="true"] {
+    &[data-disabled="false"] {
+      background-color: base.$sn-theme-color-primary-accent;
+      outline-color: base.$sn-theme-color-primary-accent;
+    }
+
+    &[data-disabled="true"] {
+      background-color: base.$sn-theme-color-neutral-accent;
+      outline-color: base.$sn-theme-color-neutral-accent;
+    }
+  }
+
+  &[data-disabled="true"] {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surface {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  transition:
+    width $switchAnimationDuration linear,
+    height $switchAnimationDuration linear,
+    background-color $switchAnimationDuration linear,
+    color $switchAnimationDuration linear;
+
+  &[data-checked="false"] {
+    &[data-loading="false"] {
+      background-color: base.$sn-theme-color-neutral-accent;
+    }
+
+    &[data-disabled="false"][data-loading="true"] {
+      color: base.$sn-theme-color-neutral-accent;
+    }
+  }
+
+  &[data-checked="true"] {
+    &[data-loading="false"] {
+      background-color: base.$sn-theme-color-neutral-onAccent;
+
+      &[data-disabled="false"] {
+        color: base.$sn-theme-color-primary-accent;
+      }
+
+      &[data-disabled="true"] {
+        color: base.$sn-theme-color-neutral-accent;
+      }
+    }
+
+    &[data-loading="true"] {
+      color: base.$sn-theme-color-neutral-onAccent;
+    }
+  }
+}
+
+.root {
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+
+  vertical-align: middle;
+
+  // Sizes
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .container {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'container');
+      }
+
+      .framing {
+        // Pseudo-border
+        $offsetWidth: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'border-width');
+
+        width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'min-width');
+        height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'min-height');
+        border-radius: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'border-radius');
+
+        outline-width: $offsetWidth;
+        outline-offset: calc(0px - $offsetWidth);
+      }
+
+      .flag {
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'flag');
+      }
+
+      .framing[data-checked="true"] .flag {
+        $flagTrackWidth: base.simple-var(
+          toggles.$toggles,
+          'anatomy',
+          'size',
+          $size,
+          'switch',
+          'framing',
+          'flag',
+          'min-width'
+        );
+
+        left: calc(100% - #{$flagTrackWidth});
+      }
+
+      &[data-focusvisible="true"] {
+        .container {
+          // Real offset
+          $offsetWidth: base.$sn-primitive-strokeWeight-strokeSemiBold;
+
+          @if ($size == 'xs') {
+            outline-offset: $offsetWidth;
+          }
+
+          border-radius: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'border-radius');
+          outline: $offsetWidth solid base.$sn-theme-color-available-complementary;
+        }
+      }
+
+      &[data-checked="false"] {
+        .surface {
+          @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'flag', 'surface', 'checkedFalse');
+        }
+      }
+
+      &[data-checked="true"] {
+        .surface {
+          @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'flag', 'surface', 'checkedTrue');
+        }
+      }
+    }
+  }
+
+  // States management
+  &[data-loading="false"][data-disabled="false"] {
+    .container {
+      @include m.has-state-layer-as-child(#{backgroundStateLayer});
+    }
+  }
+
+  &[data-loading="true"],
+  &[data-disabled="true"] {
+    .backgroundStateLayer {
+      visibility: hidden;
+    }
+  }
+}

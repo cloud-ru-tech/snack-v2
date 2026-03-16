@@ -1,0 +1,655 @@
+---
+title: Toggles
+description: Радиокнопка, чекбокс, переключатель, избранное и группа выбора.
+version: '0.1.0'
+---
+
+import {
+  Checkbox,
+  Favourite,
+  FAVOURITE_ICON,
+  Radio,
+  SIZE,
+  Switch,
+} from '../src';
+import {
+  ExampleContainer,
+  ExampleRow,
+  ExampleItem,
+} from '#astro/components/mdx';
+
+# Toggles
+
+Пакет **@design-system/toggles** содержит примитивы **`Radio`**, **`Checkbox`**, **`Switch`**, **`Favourite`** и обёртку **`ToggleGroup`** с хуком **`useToggleGroup`**. Визуальные контролы строятся на скрытом нативном `<input>` (кроме состояния **`loading`**, когда инпут не монтируется), поддерживают размеры **`SIZE.XS`** / **`SIZE.S`** и общий контракт пропов на базе **`ToggleProps`**.
+
+- **`Radio`** — взаимоисключающий выбор: `<input type="radio">`, на корне **`role="radio"`**; общий **`name`** и разные **`value`** для группы.
+- **`Checkbox`** — независимое включение/выключение; **`indeterminate`** / **`indeterminateDefault`** для «частично выбрано»; корень с **`role="checkbox"`**.
+- **`Switch`** — переключатель «вкл/выкл»: нативно **`type="checkbox"`**, на корне **`role="checkbox"`** (иконка галочки вместо «ползунка»); те же **`disabled`**, **`loading`**, **`size`**, что у чекбокса, **без** `indeterminate`.
+- **`Favourite`** — избранное с иконкой **звезды** или **сердца** (`FAVOURITE_ICON`); под капотом **`type="checkbox"`**, **`role="checkbox"`** на корне; опционально **`onKeyUp`** и прочие пропы попадают на нативный **`<input>`** через `...`-пропы.
+- **`ToggleGroup`** — контекст выбора **одного** (`SELECTION_MODE.Single`) или **нескольких** (`SELECTION_MODE.Multiple`) строковых **`value`**; **`useToggleGroup({ value })`** выдаёт **`isChecked`**, **`handleClick`** и **`multipleSelection`** для кастомных дочерних контролов (см. сторис «Toggle Group»).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/toggles
+# or
+yarn add @design-system/toggles
+# or
+pnpm add @design-system/toggles
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName="toggles" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="toggles" />
+
+## Экспорты
+
+```ts
+import {
+  Checkbox,
+  Favourite,
+  FAVOURITE_ICON,
+  Radio,
+  Switch,
+  ToggleGroup,
+  useToggleGroup,
+  ToggleGroupContext,
+  useToggleGroupContext,
+  SIZE,
+  SELECTION_MODE,
+  type CheckboxProps,
+  type FavouriteIcon,
+  type FavouriteProps,
+  type RadioProps,
+  type SwitchProps,
+  type ToggleGroupProps,
+  type Size,
+  type SelectionMode,
+} from '@design-system/toggles';
+```
+
+- **`Radio`** — радиокнопка.
+- **`Checkbox`** — чекбокс.
+- **`Switch`** — переключатель (визуально — тумблер с галочкой).
+- **`Favourite`** — избранное (звезда / сердце).
+- **`ToggleGroup`** — провайдер состояния группы (single / multiple).
+- **`useToggleGroup`** — связка дочернего элемента с группой по строковому **`value`**.
+- **`ToggleGroupContext`**, **`useToggleGroupContext`** — низкоуровневый контекст (редко нужен снаружи **`useToggleGroup`**).
+- **`FAVOURITE_ICON`** — варианты иконки: `star`, `heart`.
+- **`SIZE`** — константы размеров: `xs` (по умолчанию), `s`.
+- **`SELECTION_MODE`** — `single` | `multiple` для **`ToggleGroup`**.
+- **`Size`**, **`SelectionMode`**, **`RadioProps`**, **`CheckboxProps`**, **`SwitchProps`**, **`FavouriteProps`**, **`FavouriteIcon`**, **`ToggleGroupProps`** — типы.
+
+## Overview
+
+### Radio
+
+- **Группа выбора** — несколько `Radio` с общим атрибутом **`name`** и разными **`value`** ведут себя как стандартная группа радиокнопок.
+- **Семантика** — скрытый **`<input type="radio">`**, корневая обёртка с **`role="radio"`** и **`data-size`**.
+- **Контролируемый режим** — **`checked`** + **`onChange(checked: boolean)`**; **неконтролируемый** — **`defaultChecked`**.
+- **Состояния** — **`disabled`**, **`loading`** (индикатор загрузки вместо маркера выбора).
+- **Размер** — **`size`**: `SIZE.XS` | `SIZE.S`.
+- **Тесты** — **`data-test-id`** на корне; у нативного инпута — **`${dataTestId}-native-input`** (как у остальных тумблеров).
+
+### Checkbox
+
+- **Независимое значение** — в отличие от радио, каждый `Checkbox` управляет своим **`checked`**; для форм используйте **`name`**, **`value`**, **`id`** при необходимости.
+- **Контролируемый режим** — **`checked`** + **`onChange(checked: boolean)`**; **неконтролируемый** — **`defaultChecked`**.
+- **Частичный выбор** — **`indeterminate`** (контролируемо) или **`indeterminateDefault`** (начальное значение); при смене значения через UI компонент сбрасывает indeterminate в пользу явного `checked`.
+- **Состояния и размер** — те же **`disabled`**, **`loading`**, **`size`**, что у `Radio`.
+- **Нативный инпут** — `<input type="checkbox">` визуально скрыт, в фокусном порядке; корневой элемент с **`role="checkbox"`** и **`data-size`**. При **`loading={true}`** нативный `<input>` **не монтируется** (показывается спиннер) — учитывайте это в формах и тестах.
+- **Автотесты** — задайте **`data-test-id`** на корне; у нативного инпута будет **`${dataTestId}-native-input`**.
+
+### Switch
+
+- **Назначение** — бинарное вкл/выкл; API совпадает с **`ToggleProps`** у чекбокса (**без** `indeterminate`).
+- **Семантика** — **`<input type="checkbox">`**, корень с **`role="checkbox"`** и **`data-size`**; внутри — иконка галочки (`CheckSVG`), при **`loading`** — спиннер.
+- **Состояния и размер** — те же **`disabled`**, **`loading`**, **`size`**, что у `Checkbox`; при **`loading={true}`** нативный инпут **не монтируется**.
+- **Автотесты** — тот же паттерн **`data-test-id`** / **`${dataTestId}-native-input`**.
+
+### Favourite
+
+- **Назначение** — отметка элемента как избранного (лайк / закладка); семантика как у чекбокса: **`checked`**, **`defaultChecked`**, **`onChange`**, **`disabled`**, **`loading`**, **`size`**.
+- **Иконка** — **`icon`**: `FAVOURITE_ICON.Star` или `FAVOURITE_ICON.Heart` (по умолчанию — сердце).
+- **Нативный инпут** — `<input type="checkbox">`; при **`loading`** инпут не монтируется (как у `Checkbox`).
+- **Корень** — **`role="checkbox"`**, **`data-icon`**, **`data-size`**, атрибуты состояния (`data-checked`, **`data-focusvisible`** и др.).
+- **Клавиатура** — при необходимости **`onKeyUp`** и остальные HTML-пропы пробрасываются на **нативный `<input>`** (не на `span`).
+- **Автотесты** — тот же паттерн **`data-test-id`** / **`${dataTestId}-native-input`**.
+
+### ToggleGroup
+
+- **Назначение** — общее состояние для набора опций с строковыми идентификаторами; дочерние элементы сами по себе **не** подключаются к контексту — используйте **`useToggleGroup({ value: 'id' })`** (или **`useToggleGroupContext`**) и вызывайте **`handleClick`** на своём UI (кнопка, карточка и т.д.). Хук отдаёт **`isChecked`**, **`handleClick`**, **`multipleSelection`** (флаг режима **multiple**).
+- **Режимы** — **`selectionMode={SELECTION_MODE.Single}`** (по умолчанию): в `value` хранится **одна** строка или **`undefined`** (повторный клик по выбранному снимает выбор). **`SELECTION_MODE.Multiple`**: `value` — **массив** строк, клик по пункту переключает членство в массиве.
+- **Контроль** — **`value`** + **`onChange`** или **`defaultValue`**; тип `value` / `onChange` сужается по **`selectionMode`** (об этом знает TypeScript).
+- **Связь с `Radio` / `Checkbox`** — **`ToggleGroup`** не заменяет нативный **`name`** у `Radio`; это отдельный паттерн для кастомных списков опций.
+
+## Live examples
+
+### Одна радиокнопка (выбрана по умолчанию)
+
+<ExampleContainer>
+  <Radio name="demo-single" value="on" defaultChecked aria-label="Демо" />
+</ExampleContainer>
+
+```tsx
+import { Radio } from '@design-system/toggles';
+
+export function Example() {
+  return <Radio name="demo-single" value="on" defaultChecked aria-label="Включено" />;
+}
+```
+
+### Группа (неконтролируемая)
+
+<ExampleContainer>
+  <ExampleRow gap="large">
+    <Radio name="demo-plan" value="month" defaultChecked aria-label="Ежемесячно" />
+    <Radio name="demo-plan" value="year" aria-label="Ежегодно" />
+  </ExampleRow>
+</ExampleContainer>
+
+```tsx
+import { Radio } from '@design-system/toggles';
+
+export function PlanChoice() {
+  return (
+    <>
+      <Radio name="plan" value="month" defaultChecked aria-label="Ежемесячно" />
+      <Radio name="plan" value="year" aria-label="Ежегодно" />
+    </>
+  );
+}
+```
+
+### Размеры
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="SIZE.XS" gap="small">
+      <Radio name="sz-xs" value="a" size={SIZE.XS} defaultChecked aria-label="XS" />
+    </ExampleItem>
+    <ExampleItem label="SIZE.S" gap="small">
+      <Radio name="sz-s" value="a" size={SIZE.S} defaultChecked aria-label="S" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Загрузка и отключено
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="loading" gap="small">
+      <Radio name="ld" value="x" loading aria-label="Загрузка" />
+    </ExampleItem>
+    <ExampleItem label="disabled" gap="small">
+      <Radio name="dis" value="x" disabled aria-label="Недоступно" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Чекбокс (включён по умолчанию)
+
+<ExampleContainer>
+  <Checkbox defaultChecked aria-label="Согласие" />
+</ExampleContainer>
+
+```tsx
+import { Checkbox } from '@design-system/toggles';
+
+export function Example() {
+  return <Checkbox defaultChecked aria-label="Согласие с условиями" />;
+}
+```
+
+### Чекбокс в состоянии indeterminate
+
+<ExampleContainer>
+  <Checkbox indeterminateDefault aria-label="Выбрана часть строк" />
+</ExampleContainer>
+
+```tsx
+import { Checkbox } from '@design-system/toggles';
+
+export function PartialSelectionHeader() {
+  return <Checkbox indeterminateDefault aria-label="Частичный выбор в таблице" />;
+}
+```
+
+### Чекбокс: размеры
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="SIZE.XS" gap="small">
+      <Checkbox size={SIZE.XS} defaultChecked aria-label="Размер XS" />
+    </ExampleItem>
+    <ExampleItem label="SIZE.S" gap="small">
+      <Checkbox size={SIZE.S} defaultChecked aria-label="Размер S" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Чекбокс: загрузка и отключено
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="loading" gap="small">
+      <Checkbox loading aria-label="Загрузка" />
+    </ExampleItem>
+    <ExampleItem label="disabled" gap="small">
+      <Checkbox disabled aria-label="Недоступно" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Switch (вкл по умолчанию)
+
+<ExampleContainer>
+  <Switch defaultChecked aria-label="Уведомления включены" />
+</ExampleContainer>
+
+```tsx
+import { Switch } from '@design-system/toggles';
+
+export function Example() {
+  return <Switch defaultChecked aria-label="Получать уведомления" />;
+}
+```
+
+### Switch: размеры
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="SIZE.XS" gap="small">
+      <Switch size={SIZE.XS} defaultChecked aria-label="Размер XS" />
+    </ExampleItem>
+    <ExampleItem label="SIZE.S" gap="small">
+      <Switch size={SIZE.S} defaultChecked aria-label="Размер S" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Switch: загрузка и отключено
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="loading" gap="small">
+      <Switch loading aria-label="Загрузка" />
+    </ExampleItem>
+    <ExampleItem label="disabled" gap="small">
+      <Switch disabled defaultChecked aria-label="Недоступно" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Favourite (звезда и сердце)
+
+<ExampleContainer>
+  <ExampleRow gap="xlarge">
+    <ExampleItem label="Star" gap="small">
+      <Favourite icon={FAVOURITE_ICON.Star} defaultChecked aria-label="В избранном, звезда" />
+    </ExampleItem>
+    <ExampleItem label="Heart" gap="small">
+      <Favourite icon={FAVOURITE_ICON.Heart} aria-label="В избранном, сердце" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+```tsx
+import { Favourite, FAVOURITE_ICON } from '@design-system/toggles';
+
+export function BookmarkRow() {
+  return (
+    <>
+      <Favourite icon={FAVOURITE_ICON.Star} defaultChecked aria-label="Добавить в избранное (звезда)" />
+      <Favourite icon={FAVOURITE_ICON.Heart} aria-label="Добавить в избранное (сердце)" />
+    </>
+  );
+}
+```
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+### Playground
+
+<StorybookIframe storyId="components-toggles-radio--playground" showControls={true} height="520px" />
+
+### Visual Matrix
+
+Сетка визуальных состояний (размер, checked, disabled, loading).
+
+<StorybookIframe storyId="components-toggles-radio--visual-matrix" showControls={false} height="640px" />
+
+### Checkbox — Playground
+
+<StorybookIframe storyId="components-toggles-checkbox--playground" showControls={true} height="520px" />
+
+### Checkbox — Visual Matrix
+
+Сетка состояний чекбокса (включая **indeterminate** и **loading**).
+
+<StorybookIframe storyId="components-toggles-checkbox--visual-matrix" showControls={false} height="640px" />
+
+### Switch — Playground
+
+<StorybookIframe storyId="components-toggles-switch--playground" showControls={true} height="520px" />
+
+### Switch — Visual Matrix
+
+<StorybookIframe storyId="components-toggles-switch--visual-matrix" showControls={false} height="640px" />
+
+### Favourite — Playground
+
+<StorybookIframe storyId="components-toggles-favourite--playground" showControls={true} height="520px" />
+
+### Favourite — Visual Matrix
+
+Сетка состояний (размеры **xs** / **s**, иконки **star** / **heart**, checked, disabled, loading).
+
+<StorybookIframe storyId="components-toggles-favourite--visual-matrix" showControls={false} height="720px" />
+
+### Toggle Group — Playground
+
+Пример группы с **`useToggleGroup`** и кастомными кнопками (single / multiple).
+
+<StorybookIframe storyId="components-toggles-toggle-group--playground" showControls={true} height="520px" />
+
+## Usage
+
+### Контролируемый режим
+
+```tsx
+import { Radio } from '@design-system/toggles';
+import { useState } from 'react';
+
+export function Example() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <Radio
+      name="option"
+      value="a"
+      checked={checked}
+      onChange={setChecked}
+      aria-label="Согласие"
+    />
+  );
+}
+```
+
+### С `inputRef`
+
+```tsx
+import { Radio } from '@design-system/toggles';
+import { useRef, useEffect } from 'react';
+
+export function Example() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  return <Radio name="x" value="1" inputRef={inputRef} aria-label="Фокус при монтировании" />;
+}
+```
+
+### Checkbox: контролируемый режим и indeterminate
+
+```tsx
+import { Checkbox } from '@design-system/toggles';
+import { useState } from 'react';
+
+export function Example() {
+  const [checked, setChecked] = useState(false);
+  const [indeterminate, setIndeterminate] = useState(true);
+
+  return (
+    <Checkbox
+      checked={checked}
+      indeterminate={indeterminate}
+      onChange={(next) => {
+        setChecked(next);
+        setIndeterminate(false);
+      }}
+      aria-label="Выбрать все"
+    />
+  );
+}
+```
+
+### Favourite: контролируемый режим
+
+```tsx
+import { Favourite, FAVOURITE_ICON } from '@design-system/toggles';
+import { useState } from 'react';
+
+export function Example() {
+  const [favourite, setFavourite] = useState(false);
+
+  return (
+    <Favourite
+      icon={FAVOURITE_ICON.Heart}
+      checked={favourite}
+      onChange={setFavourite}
+      aria-label="В избранном"
+    />
+  );
+}
+```
+
+### Switch: контролируемый режим
+
+```tsx
+import { Switch } from '@design-system/toggles';
+import { useState } from 'react';
+
+export function Example() {
+  const [on, setOn] = useState(false);
+
+  return <Switch checked={on} onChange={setOn} aria-label="Функция включена" />;
+}
+```
+
+### ToggleGroup и useToggleGroup
+
+```tsx
+import { SELECTION_MODE, ToggleGroup, useToggleGroup } from '@design-system/toggles';
+
+function Item({ id, label }: { id: string; label: string }) {
+  const { isChecked, handleClick } = useToggleGroup({ value: id });
+
+  return (
+    <button type="button" aria-pressed={isChecked} onClick={handleClick}>
+      {label}
+    </button>
+  );
+}
+
+export function SegmentList() {
+  return (
+    <ToggleGroup selectionMode={SELECTION_MODE.Single} defaultValue="a">
+      <Item id="a" label="А" />
+      <Item id="b" label="Б" />
+    </ToggleGroup>
+  );
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### RadioProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| id | `string` | - | HTML-аттрибут id |
+| name | `string` | - | HTML-аттрибут name |
+| value | `string` | - | HTML-аттрибут value |
+| tabIndex | `number` | - | HTML-аттрибут tab-index |
+| autofocus | `boolean` | - | HTML-аттрибут autofocus |
+| checked | `boolean` | - | HTML-аттрибут checked |
+| defaultChecked | `boolean` | - | HTML-аттрибут checked по-умолчанию |
+| disabled | `boolean` | - | HTML-аттрибут disabled |
+| onChange | `(checked: boolean) => void` | - | Колбек смены значения |
+| onClick | `MouseEventHandler<HTMLInputElement>` | - | Колбек клика |
+| onBlur | `FocusEventHandler<HTMLInputElement>` | - | Колбек потери фокуса |
+| onFocus | `FocusEventHandler<HTMLInputElement>` | - | Колбек приобретения фокуса |
+| className | `string` | - | CSS-класс |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
+| inputRef | `RefObject<HTMLInputElement>` | - |  |
+| loading | `boolean` | - | Состояние загрузки |
+### CheckboxProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| id | `string` | - | HTML-аттрибут id |
+| name | `string` | - | HTML-аттрибут name |
+| value | `string` | - | HTML-аттрибут value |
+| tabIndex | `number` | - | HTML-аттрибут tab-index |
+| autofocus | `boolean` | - | HTML-аттрибут autofocus |
+| checked | `boolean` | - | HTML-аттрибут checked |
+| defaultChecked | `boolean` | - | HTML-аттрибут checked по-умолчанию |
+| disabled | `boolean` | - | HTML-аттрибут disabled |
+| onChange | `(checked: boolean) => void` | - | Колбек смены значения |
+| onClick | `MouseEventHandler<HTMLInputElement>` | - | Колбек клика |
+| onBlur | `FocusEventHandler<HTMLInputElement>` | - | Колбек потери фокуса |
+| onFocus | `FocusEventHandler<HTMLInputElement>` | - | Колбек приобретения фокуса |
+| className | `string` | - | CSS-класс |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
+| inputRef | `RefObject<HTMLInputElement>` | - |  |
+| loading | `boolean` | - | Состояние загрузки |
+| indeterminate | `boolean` | - | Состояние частичного выбора |
+| indeterminateDefault | `boolean` | - | Состояние частичного выбора по-умолчанию |
+### SwitchProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| id | `string` | - | HTML-аттрибут id |
+| name | `string` | - | HTML-аттрибут name |
+| value | `string` | - | HTML-аттрибут value |
+| tabIndex | `number` | - | HTML-аттрибут tab-index |
+| autofocus | `boolean` | - | HTML-аттрибут autofocus |
+| checked | `boolean` | - | HTML-аттрибут checked |
+| defaultChecked | `boolean` | - | HTML-аттрибут checked по-умолчанию |
+| disabled | `boolean` | - | HTML-аттрибут disabled |
+| onChange | `(checked: boolean) => void` | - | Колбек смены значения |
+| onClick | `MouseEventHandler<HTMLInputElement>` | - | Колбек клика |
+| onBlur | `FocusEventHandler<HTMLInputElement>` | - | Колбек потери фокуса |
+| onFocus | `FocusEventHandler<HTMLInputElement>` | - | Колбек приобретения фокуса |
+| className | `string` | - | CSS-класс |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
+| inputRef | `RefObject<HTMLInputElement>` | - |  |
+| loading | `boolean` | - | Состояние загрузки |
+### FavouriteProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| id | `string` | - | HTML-аттрибут id |
+| name | `string` | - | HTML-аттрибут name |
+| value | `string` | - | HTML-аттрибут value |
+| tabIndex | `number` | - | HTML-аттрибут tab-index |
+| autofocus | `boolean` | - | HTML-аттрибут autofocus |
+| checked | `boolean` | - | HTML-аттрибут checked |
+| defaultChecked | `boolean` | - | HTML-аттрибут checked по-умолчанию |
+| disabled | `boolean` | - | HTML-аттрибут disabled |
+| onChange | `(checked: boolean) => void` | - | Колбек смены значения |
+| onClick | `MouseEventHandler<HTMLInputElement>` | - | Колбек клика |
+| onBlur | `FocusEventHandler<HTMLInputElement>` | - | Колбек потери фокуса |
+| onFocus | `FocusEventHandler<HTMLInputElement>` | - | Колбек приобретения фокуса |
+| className | `string` | - | CSS-класс |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
+| inputRef | `RefObject<HTMLInputElement>` | - |  |
+| loading | `boolean` | - | Состояние загрузки |
+| icon | enum FavouriteIcon: `"star"`, `"heart"` | heart | Вариант иконки: звезда или сердце |
+| onKeyUp | `KeyboardEventHandler<HTMLSpanElement>` | - | Обработчик keyup |
+### ToggleGroupProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| defaultValue | `string \| string[]` | - | Начальное состояние |
+| value | `string \| string[]` | - | Controlled состояние |
+| onChange | `((value: string) => void) \| ((value: string[]) => void)` | - | Controlled обработчик измения состояния |
+| selectionMode | "single" \| "multiple" | single | Режим выбора |
+### useToggleGroupProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| value* | `string` | - |  |
+### ToggleGroupContextProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+Дополнительно наследуются пропы **`WithSupportProps`** (в т.ч. **`data-test-id`**).
+
+## Accessibility
+
+### Radio
+
+- Под капотом — нативный **`input type="radio"`** в фокусном порядке; корневая обёртка с **`role="radio"`** для кастомного UI.
+- Для одиночной радиокнопки без видимой подписи задайте **`aria-label`** или **`aria-labelledby`**.
+- Для группы вариантов предпочтительно оборачивать в **`<fieldset>`** с **`<legend>`** и связывать подписи через **`<label htmlFor={id}>`** и **`id`** на `Radio`.
+
+### Checkbox
+
+- Нативный **`input type="checkbox"`** остаётся в фокусном порядке; кликабельная область совпадает с визуальным контролом.
+- При **`loading`** нативный инпут временно отсутствует в DOM — фокус и отправка формы для этого состояния должны учитываться отдельно (например, блокировка сабмита до завершения загрузки).
+- Состояние **indeterminate** задаётся через DOM-свойство `indeterminate` на инпуте; озвучивание зависит от скринридера — при необходимости дополняйте **`aria-checked`** на уровне обёртки (паттерны WAI-ARIA для «mixed»).
+- Для чекбокса без текстовой подписи используйте **`aria-label`**, **`aria-labelledby`** или явный **`<label>`**.
+
+### Switch
+
+- Нативный **`input type="checkbox"`** и **`role="checkbox"`** на корне — для скринридеров это чекбокс, а не роль `switch`; при необходимости уточняйте смысл подписью (**`aria-label`**) или связкой с **`label`**.
+- При **`loading`** нативный инпут отсутствует в DOM — то же ограничение, что у `Checkbox` / `Favourite`.
+
+### Favourite
+
+- Семантика как у чекбокса: нативный **`input type="checkbox"`**, **`role="checkbox"`** на корне — клавиатура и скринридеры ведут себя ожидаемо при наличии **`aria-label`** / связки с **`label`**.
+- При **`loading`** нативный инпут не в DOM — учитывайте то же, что для `Checkbox`.
+- Вариант **`icon`** влияет только на визуал; для пользователей вспомогательных технологий опирайтесь на текстовое имя кнопки (**`aria-label`**) или видимую подпись, а не на форму иконки.
+- **`onKeyUp`** и прочие переданные пропы обрабатываются на **нативном инпуте**, а не на `span`-обёртке.
+
+### ToggleGroup
+
+- Дочерние элементы сами не получают фокус от контекста — обеспечьте **`aria-pressed`**, **`aria-selected`** или **`role`** / подписи в вашем UI в зависимости от паттерна (кнопки-сегменты, вкладки и т.д.).
+- В режиме **single** повторный выбор снимается (**`value`** может стать **`undefined`**) — заложите это в валидацию и отображение.
+
+## Best practices
+
+### Radio
+
+1. **Один `name` на группу** — иначе радиокнопки не будут взаимоисключающими.
+2. **Уникальные `value`** внутри группы — для корректной отправки форм и состояния.
+3. **Не дублировать `defaultChecked`** у нескольких элементов с одним `name` — поведение браузера непредсказуемо; для начального выбора оставьте один `defaultChecked` или управляйте **`checked`** сами.
+
+### Checkbox
+
+1. **`indeterminate`** используйте для «выбрано частично» (например, заголовок колонки в таблице), **`checked`** — для полного включения; при переключении пользователем обновляйте оба флага согласованно.
+2. **Не полагайтесь только на визуал «минуса»** — синхронизируйте `checked` и `indeterminate` в состоянии, чтобы нативный инпут и вспомогательные технологии совпадали.
+3. В группах с логикой «выбрать все» держите состояние родителя в одном месте и прокидывайте **`checked`** / **`indeterminate`** в заголовочный `Checkbox`.
+4. В **`loading`** не ждите значения из поля формы — инпут не смонтирован; для Storybook и ссылок с `args` в Playground объявляйте **`id`** и **`name`** в `args` сторис, иначе они не подставятся из URL.
+
+### Switch
+
+1. Используйте для настроек «да/нет», где не нужен **indeterminate**; для трёхсостоятельных списков — **`Checkbox`**.
+2. Учитывайте, что визуал — тумблер с галочкой, а роль остаётся **чекбоксом**; формулируйте **`aria-label`** как вкл/выкл или согласованный текст.
+3. Те же правила **`loading`** и форм, что у **`Checkbox`**.
+
+### Favourite
+
+1. Задавайте **`name`** / **`value`**, если компонент участвует в отправке формы или в группе переключателей.
+2. Выбирайте **`icon`** (звезда или сердце) в соответствии с продуктовой терминологией («избранное», «лайк» и т.д.) и согласуйте подпись **`aria-label`** с этим смыслом.
+3. В **`loading`** не рассчитывайте на значение нативного поля — инпут отсутствует в DOM, как у `Checkbox`.
+
+### ToggleGroup
+
+1. Стабильные строковые **`value`** для элементов списка — они и есть ключ состояния в контексте.
+2. Для **multiple** держите **`value`** как массив и нормализуйте его в родителе; для **single** допускайте **`undefined`** после снятия выбора.
+3. Не смешивайте **`ToggleGroup`** с нативной отправкой **`Radio`** по **`name`** без явной синхронизации состояния — это разные механизмы.
