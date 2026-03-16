@@ -93,6 +93,9 @@
     },
     {
       "path": "./popover/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tabs/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

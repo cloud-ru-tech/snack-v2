@@ -1,0 +1,23 @@
+.root {
+  display: block;
+}
+
+.rootVertical {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 0;
+
+  // TabBar (первый ребёнок) — колонка табов слева, ограничена по высоте для скролла
+  [role='tablist'] {
+    flex: 0 1 auto;
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  // TabContent и остальное — контент справа от табов
+  [role='tabpanel'] {
+    flex: 1;
+    min-width: 0;
+  }
+}

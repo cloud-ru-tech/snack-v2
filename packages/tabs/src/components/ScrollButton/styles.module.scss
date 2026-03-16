@@ -1,0 +1,41 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tabs.module' as tabs;
+
+.scrollButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &[data-size='l'] {
+    padding: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'control', 'forward', 'padding');
+  }
+
+  &[data-size='m'] {
+    padding: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'control', 'forward', 'padding');
+  }
+
+  &[data-direction='left'] {
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &[data-direction='right'] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &[data-direction='top'] {
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  &[data-direction='bottom'] {
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

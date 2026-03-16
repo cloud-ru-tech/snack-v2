@@ -1,0 +1,265 @@
+---
+title: Tabs
+description: Компонент вкладок с горизонтальной и вертикальной ориентацией, маркером выбранной вкладки, счётчиками и скроллом при переполнении. Стили по макету Figma.
+version: '0.1.0'
+---
+
+import { TabsBasicExample } from './ui/TabsBasicExample';
+import { TabsVerticalExample } from './ui/TabsVerticalExample';
+import { TabsWithCounterExample } from './ui/TabsWithCounterExample';
+import { ExampleContainer } from '#astro/components/mdx';
+
+# Tabs
+
+Компонент вкладок дизайн-системы. Строится по макету Figma (токены из `@sbercloud/figma-variables`). Поддерживает горизонтальное и вертикальное расположение, тип Primary/Secondery, маркер выбранной вкладки (before/after), счётчики на вкладках и кнопки прокрутки при переполнении.
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/tabs
+# or
+yarn add @design-system/tabs
+# or
+pnpm add @design-system/tabs
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+<Changelog packageName="tabs" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="tabs" />
+
+## Overview
+
+**Tabs** — составной компонент. Используется как контейнер `Tabs` с вложенными `Tabs.TabBar` (панель вкладок), `Tabs.Tab` (кнопки вкладок) и `Tabs.TabContent` (контент по значению выбранной вкладки).
+
+Компонент обеспечивает:
+
+- **Горизонтальные и вертикальные табы** — ориентация задаётся на `TabBar` (`orientation`: horizontal | vertical). При вертикальной ориентации панель табов слева, контент справа.
+- **Размер** — L (крупный заголовок) и M (мелкий, на уровне контента). Задаётся на `TabBar` через проп `size`.
+- **Маркер выбранной вкладки** — полоска/линия по макету; позиция `markerPosition`: before | after (сверху/слева или снизу/справа от панели).
+- **Счётчик на вкладке** — опциональный проп `counter` у `Tabs.Tab` с полем `label` (число) и опционально `appearance`, `color`.
+- **Скролл при переполнении** — при большом количестве вкладок появляются кнопки прокрутки (слева/справа или сверху/снизу), позиционируются абсолютно по краям области скролла.
+- **Управление** — контролируемый режим (`value` + `onChange`) или неконтролируемый (`defaultValue`).
+
+## Live examples
+
+### Basic usage (horizontal)
+
+Горизонтальные табы с контентом под панелью:
+
+<ExampleContainer>
+  <TabsBasicExample client:load />
+</ExampleContainer>
+
+### Vertical tabs
+
+Вертикальные табы: панель слева, контент справа. При переполнении по высоте появляются кнопки прокрутки.
+
+<ExampleContainer>
+  <TabsVerticalExample client:load />
+</ExampleContainer>
+
+### Tabs with counter
+
+Вкладки со счётчиками (например, количество уведомлений):
+
+<ExampleContainer>
+  <TabsWithCounterExample client:load />
+</ExampleContainer>
+
+## Storybook
+
+### Playground
+
+<StorybookIframe storyId="components-tabs--playground" showControls={true} height="400px" />
+
+### Visual Matrix
+
+Варианты по типу, ориентации и позиции маркера — story **Visual Matrix** в Storybook.
+
+<StorybookIframe storyId="components-tabs--visual-matrix" showControls={false} height="400px" />
+
+## Usage
+
+### Basic example (horizontal)
+
+```tsx
+import { Tabs } from '@design-system/tabs';
+
+export function Example() {
+  return (
+    <Tabs defaultValue="tab1">
+      <Tabs.TabBar>
+        <Tabs.Tab label="Вкладка 1" value="tab1" />
+        <Tabs.Tab label="Вкладка 2" value="tab2" />
+        <Tabs.Tab label="Вкладка 3" value="tab3" />
+      </Tabs.TabBar>
+      <Tabs.TabContent value="tab1">Контент 1</Tabs.TabContent>
+      <Tabs.TabContent value="tab2">Контент 2</Tabs.TabContent>
+      <Tabs.TabContent value="tab3">Контент 3</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### Vertical tabs
+
+```tsx
+import { Tabs, ORIENTATION } from '@design-system/tabs';
+
+export function Example() {
+  return (
+    <Tabs defaultValue="tab1">
+      <Tabs.TabBar orientation={ORIENTATION.Vertical}>
+        <Tabs.Tab label="Вкладка 1" value="tab1" />
+        <Tabs.Tab label="Вкладка 2" value="tab2" />
+      </Tabs.TabBar>
+      <Tabs.TabContent value="tab1">Контент 1</Tabs.TabContent>
+      <Tabs.TabContent value="tab2">Контент 2</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### Size M and marker position
+
+```tsx
+import { Tabs, SIZE, MARKER_POSITION } from '@design-system/tabs';
+
+export function Example() {
+  return (
+    <Tabs defaultValue="tab1">
+      <Tabs.TabBar size={SIZE.M} markerPosition={MARKER_POSITION.Before}>
+        <Tabs.Tab label="Вкладка 1" value="tab1" />
+        <Tabs.Tab label="Вкладка 2" value="tab2" />
+      </Tabs.TabBar>
+      <Tabs.TabContent value="tab1">Контент 1</Tabs.TabContent>
+      <Tabs.TabContent value="tab2">Контент 2</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### Tabs with counter and disabled
+
+```tsx
+import { Tabs } from '@design-system/tabs';
+
+export function Example() {
+  return (
+    <Tabs defaultValue="tab1">
+      <Tabs.TabBar>
+        <Tabs.Tab label="Все" value="tab1" counter={{ label: 12 }} />
+        <Tabs.Tab label="Активные" value="tab2" counter={{ label: 3 }} />
+        <Tabs.Tab label="Архив" value="tab3" disabled />
+      </Tabs.TabBar>
+      <Tabs.TabContent value="tab1">Список всех</Tabs.TabContent>
+      <Tabs.TabContent value="tab2">Активные</Tabs.TabContent>
+      <Tabs.TabContent value="tab3">Архив</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### Controlled mode
+
+```tsx
+import { Tabs } from '@design-system/tabs';
+import { useState } from 'react';
+
+export function Example() {
+  const [value, setValue] = useState('tab1');
+  return (
+    <Tabs value={value} onChange={setValue}>
+      <Tabs.TabBar>
+        <Tabs.Tab label="Вкладка 1" value="tab1" />
+        <Tabs.Tab label="Вкладка 2" value="tab2" />
+      </Tabs.TabBar>
+      <Tabs.TabContent value="tab1">Контент 1</Tabs.TabContent>
+      <Tabs.TabContent value="tab2">Контент 2</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### TabBar with after slot
+
+```tsx
+import { Tabs } from '@design-system/tabs';
+
+export function Example() {
+  return (
+    <Tabs defaultValue="tab1">
+      <Tabs.TabBar after={<button type="button">Действие</button>}>
+        <Tabs.Tab label="Вкладка 1" value="tab1" />
+        <Tabs.Tab label="Вкладка 2" value="tab2" />
+      </Tabs.TabBar>
+      <Tabs.TabContent value="tab1">Контент 1</Tabs.TabContent>
+      <Tabs.TabContent value="tab2">Контент 2</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+## Props
+
+### TabsProps
+
+| name | type | default | description |
+|------|------|---------|-------------|
+| value | `string` | - | Текущая выбранная вкладка (контролируемый режим) |
+| defaultValue | `string` | - | Выбранная вкладка по умолчанию (неконтролируемый режим) |
+| onChange | `(id: string) => void` | - | Колбек при смене вкладки |
+| children | `ReactNode` | - | Дочерние элементы: TabBar, TabContent |
+
+### TabBarProps
+
+| name | type | default | description |
+|------|------|---------|-------------|
+| children | `ReactElement<TabProps>[]` | - | Элементы Tabs.Tab |
+| size | `'l' \| 'm'` | `'l'` | Размер панели (L — крупный, M — мелкий) |
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | Ориентация панели табов |
+| markerPosition | `'before' \| 'after'` | `'after'` | Позиция маркера выбранной вкладки |
+| after | `ReactNode` | - | Дополнительный контент справа от табов (horizontal) или после панели (vertical) |
+| disableDivider | `boolean` | `false` | Скрыть разделитель под/рядом с панелью табов |
+| className | `string` | - | CSS-класс |
+
+### TabProps
+
+| name | type | default | description |
+|------|------|---------|-------------|
+| value* | `string` | - | Идентификатор вкладки |
+| label* | `string` | - | Текст вкладки |
+| disabled | `boolean` | `false` | Неактивная вкладка (фокус сохраняется для a11y) |
+| counter | `{ label: number; appearance?: ...; color?: ... }` | - | Счётчик на вкладке |
+| onClick | `(event) => void` | - | Колбек клика по вкладке |
+| className | `string` | - | CSS-класс |
+
+### TabContentProps
+
+| name | type | default | description |
+|------|------|---------|-------------|
+| value* | `string` | - | Идентификатор вкладки (контент показывается при совпадении с выбранной) |
+| children | `ReactNode` | - | Контент панели |
+| className | `string` | - | CSS-класс |
+
+## Accessibility
+
+- **Роли** — панель табов имеет `role="tablist"`, каждая вкладка `role="tab"`, контент — `role="tabpanel"`. Связь через `aria-controls`, `aria-labelledby`, `id` панели.
+- **Клавиатура** — стрелки влево/вверх и вправо/вниз переключают фокус между вкладками, Enter/Space выбирают вкладку. Отключённые вкладки остаются фокусируемыми с `aria-disabled="true"`, клик и активация по клавишам блокируются.
+- **Скролл** — кнопки прокрутки имеют `aria-label` (например, "Scroll left", "Scroll top") и не участвуют в таб-навигации (`tabIndex={-1}`).
+
+## Best practices
+
+1. **Структура** — всегда используйте состав: `Tabs` → `Tabs.TabBar` с `Tabs.Tab` внутри и один или несколько `Tabs.TabContent` с тем же `value`, что и у вкладок.
+2. **Ориентация** — горизонтальные табы для основного переключения разделов; вертикальные — для боковой навигации или когда заголовков много.
+3. **Счётчики** — используйте `counter` для числа элементов (уведомления, заявки). Не перегружайте панель большим количеством вкладок; при переполнении появятся кнопки скролла.
+4. **Контроль** — для синхронизации с URL или состоянием страницы используйте контролируемый режим (`value` + `onChange`).

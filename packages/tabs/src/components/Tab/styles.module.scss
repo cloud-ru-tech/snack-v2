@@ -1,0 +1,114 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tabs.module' as tabs;
+
+$sizes: 'm', 'l';
+
+// TODO: тут подключаем state-layer (но триггер должен быть на .tab)
+@mixin internal-has-state-layer-as-child() {
+  & .container > [data-state-layer] {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    &[data-state='regularBackground'] {
+      background: base.$sn-theme-color-material-stateLayer-regular-default-background;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-disabled], [data-loading]) {
+      & .container > [data-state-layer] {
+        &[data-state='regularBackground'] {
+          background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
+        }
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line order/order */
+  &[data-loading],
+  &:active:not([data-disabled], [data-loading]) {
+    & .container > [data-state-layer] {
+      &[data-state='regularBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
+      }
+    }
+  }
+}
+
+.tab {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 0;
+  border-width: 0;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: transparent;
+  outline: none;
+
+  @each $size in $sizes {
+    &[data-orientation='horizontal'][data-size='#{$size}'] {
+      @include base.composite-var(tabs.$tabs, 'anatomy', 'size', $size, 'tabsHorizontal', 'tabContainer');
+
+      .container {
+        @include base.composite-var(
+          tabs.$tabs,
+          'anatomy',
+          'size',
+          $size,
+          'tabsHorizontal',
+          'tabContainer',
+          'textWrapper'
+        );
+      }
+    }
+
+    &[data-orientation='vertical'][data-size='#{$size}'] {
+      @include base.composite-var(tabs.$tabs, 'anatomy', 'size', $size, 'tabsVertical', 'tabContainer');
+
+      .container {
+        @include base.composite-var(
+          tabs.$tabs,
+          'anatomy',
+          'size',
+          $size,
+          'tabsVertical',
+          'tabContainer',
+          'textWrapper'
+        );
+      }
+    }
+  }
+
+  &[data-selected='true'],
+  &:focus-visible,
+  &:hover {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+
+  @include internal-has-state-layer-as-child();
+
+  .container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:focus-visible .container {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+}

@@ -1,0 +1,23 @@
+.storyWrapper {
+  resize: both;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 600px;
+  height: 320px;
+  min-height: 0;
+  max-height: 100%;
+  margin: -24px;
+
+  /* Отступ, чтобы тень кнопок прокрутки табов не обрезалась */
+  padding: 24px;
+}
+
+/* Ограничение высоты для вертикальных табов в Visual Matrix */
+.verticalCellWrapper {
+  min-width: 200px;
+  height: 200px;
+}

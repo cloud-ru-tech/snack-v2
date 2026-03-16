@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@sbercloud/figma-variables':
-      specifier: 1.4.5-67b7e132.0
-      version: 1.4.5-67b7e132.0
+      specifier: 1.4.7
+      version: 1.4.7
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -62,7 +62,7 @@ importers:
         version: 1.47.2
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.5-67b7e132.0
+        version: 1.4.7
       '@snack-uikit/icons':
         specifier: 0.27.5
         version: 0.27.5
@@ -263,7 +263,7 @@ importers:
         version: 0.37.6(astro@5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2))
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.5-67b7e132.0
+        version: 1.4.7
       astro:
         specifier: 5.17.1
         version: 5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -649,6 +649,33 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
+
+  packages/tabs:
+    dependencies:
+      '@design-system/button':
+        specifier: 0.1.0
+        version: link:../button
+      '@design-system/counter':
+        specifier: 0.1.0
+        version: link:../counter
+      '@design-system/divider':
+        specifier: 0.1.0
+        version: link:../divider
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/typography':
+        specifier: 0.1.0
+        version: link:../typography
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+      react-indiana-drag-scroll:
+        specifier: 2.2.0
+        version: 2.2.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
   packages/tag:
     dependencies:
@@ -2718,8 +2745,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-variables@1.4.5-67b7e132.0':
-    resolution: {integrity: sha512-tCFIj9UYD76rEwfxbBnMpZNaJJDyt+uO6Id0PNF5WXzJIXNcJiR3OD6vShtlmRqgPRkbBaTB1Jjp3RBoKKeQmA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.5-67b7e132.0.tgz}
+  '@sbercloud/figma-variables@1.4.7':
+    resolution: {integrity: sha512-mGwswFHAvqmOiQbWnxOt5O7phrGq4DsVTGggp9IHf8mzBGUbuJi6q3d7l8tYOACNuaVO/mFm5dAaHWxTcuvnSw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.7.tgz}
 
   '@shikijs/core@3.21.0':
     resolution: {integrity: sha512-AXSQu/2n1UIQekY8euBJlvFYZIw0PHY63jUzGbrOma4wPxzznJXTXkri+QcHeBNaFxiiOljKxxJkVSoB3PjbyA==}
@@ -4490,6 +4517,9 @@ packages:
   dateformat@3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
 
+  debounce@1.2.1:
+    resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
+
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
     peerDependencies:
@@ -4698,6 +4728,9 @@ packages:
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
+
+  easy-bem@1.1.1:
+    resolution: {integrity: sha512-GJRqdiy2h+EXy6a8E6R+ubmqUM08BK0FWNq41k24fup6045biQ8NXxoXimiwegMQvFFV3t1emADdGNL1TlS61A==}
 
   ejs@2.7.4:
     resolution: {integrity: sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==}
@@ -7625,6 +7658,13 @@ packages:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
       react: ^19.2.4
+
+  react-indiana-drag-scroll@2.2.0:
+    resolution: {integrity: sha512-+W/3B2OQV0FrbdnsoIo4dww/xpH0MUQJz6ziQb7H+oBko3OCbXuzDFYnho6v6yhGrYDNWYPuFUewb89IONEl/A==}
+    engines: {node: '>=8', npm: '>=5'}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -11422,7 +11462,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-variables@1.4.5-67b7e132.0': {}
+  '@sbercloud/figma-variables@1.4.7': {}
 
   '@shikijs/core@3.21.0':
     dependencies:
@@ -13635,6 +13675,8 @@ snapshots:
 
   dateformat@3.0.3: {}
 
+  debounce@1.2.1: {}
+
   debug@3.2.7:
     dependencies:
       ms: 2.1.3
@@ -13809,6 +13851,8 @@ snapshots:
       gopd: 1.2.0
 
   eastasianwidth@0.2.0: {}
+
+  easy-bem@1.1.1: {}
 
   ejs@2.7.4: {}
 
@@ -17583,6 +17627,14 @@ snapshots:
     dependencies:
       react: 19.2.4
       scheduler: 0.27.0
+
+  react-indiana-drag-scroll@2.2.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      classnames: 2.5.1
+      debounce: 1.2.1
+      easy-bem: 1.1.1
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   react-is@16.13.1: {}
 

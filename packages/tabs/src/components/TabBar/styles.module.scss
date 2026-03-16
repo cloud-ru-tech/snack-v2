@@ -1,0 +1,205 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tabs.module' as tabs;
+
+$orientations: 'vertical', 'horizontal';
+$sizes: 'l', 'm';
+
+.tabBar {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+
+  &[data-orientation='vertical'] {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    min-height: 0;
+  }
+
+  &[data-orientation='horizontal'] {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+// Обёртка области скролла и кнопок: overflow visible, чтобы тень кнопок не обрезалась
+.tabBarScrollZone {
+  position: relative;
+
+  overflow: visible;
+  display: flex;
+
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+
+  &[data-orientation='horizontal'] {
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &[data-orientation='vertical'] {
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.tabBarMain {
+  position: relative;
+
+  display: flex;
+
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+
+  &[data-orientation='horizontal'] {
+    flex-direction: row;
+    align-items: center;
+
+    .scrollArea {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  &[data-orientation='vertical'] {
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+
+    .scrollArea {
+      flex: 1;
+      min-height: 0;
+    }
+  }
+}
+
+.horizontalScrollContainer {
+  overflow: scroll visible;
+  max-width: 100%;
+}
+
+.verticalScrollContainer {
+  overflow: visible scroll;
+  max-height: 100%;
+}
+
+.tabsRow {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+
+  width: fit-content;
+
+  white-space: nowrap;
+
+  &[data-size='l'] {
+    &[data-orientation='horizontal'] {
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsHorizontal', 'gap');
+    }
+
+    &[data-orientation='vertical'] {
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsVertical', 'gap');
+    }
+  }
+
+  &[data-size='m'] {
+    &[data-orientation='horizontal'] {
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsHorizontal', 'gap');
+    }
+
+    &[data-orientation='vertical'] {
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'gap');
+    }
+  }
+
+  &[data-orientation='vertical'] {
+    flex-direction: column;
+    width: fit-content;
+    min-height: min-content;
+  }
+
+  &[data-orientation='horizontal'] {
+    flex-direction: row;
+  }
+}
+
+.marker {
+  position: absolute;
+  background-color: base.$sn-theme-color-primary-accent;
+  transition:
+    left 0.1s ease,
+    width 0.1s ease,
+    top 0.1s ease,
+    height 0.1s ease;
+
+  &[data-orientation='horizontal'] {
+    bottom: 0;
+    height: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsHorizontal', 'selected', 'height');
+    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsHorizontal', 'selected', 'border-radius');
+  }
+
+  &[data-orientation='vertical'] {
+    right: 0;
+    width: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsVertical', 'selected', 'height');
+    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsVertical', 'selected', 'border-radius');
+  }
+
+  &[data-position='before'] {
+    top: 0;
+    left: 0;
+  }
+
+  &[data-position='after'] {
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.tabsRow[data-size='m'] .marker {
+  &[data-orientation='horizontal'] {
+    height: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsHorizontal', 'selected', 'height');
+    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsHorizontal', 'selected', 'border-radius');
+  }
+
+  &[data-orientation='vertical'] {
+    width: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'selected', 'height');
+    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'selected', 'border-radius');
+  }
+}
+
+.divider {
+  position: absolute;
+
+  &[data-position='before'] {
+    top: 0;
+    left: 0;
+  }
+
+  &[data-position='after'] {
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.tabBar[data-orientation='horizontal'] .divider {
+  width: 100%;
+}
+
+.tabBar[data-orientation='vertical'] .divider {
+  height: 100%;
+}
+
+.tabBarAfter {
+  &[data-orientation='vertical'] {
+    &[data-size='l'],
+    &[data-size='m'] {
+      min-height: auto;
+    }
+  }
+}

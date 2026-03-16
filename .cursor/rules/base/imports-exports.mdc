@@ -1,0 +1,71 @@
+---
+description: Импорты и экспорты — без import type, без отдельного export type, компоненты через export *.
+globs: "**/*.ts","**/*.tsx"
+alwaysApply: false
+---
+
+# Импорты и экспорты
+
+## Импорты типов
+
+Не используй ключевое слово `type` при импорте типов. Импортируй типы обычным импортом `import { ... }`.
+
+```ts
+// ❌ Плохо
+import type { Size, Orientation } from './types';
+import { type TabBarProps } from './TabBar';
+
+// ✅ Хорошо
+import { Size, Orientation } from './types';
+import { Tabs } from './components';
+import { TabBarProps, TabProps } from './TabBar';
+```
+
+Типы и значения из одного модуля — один импорт, без `import type` и без `type` в списке.
+
+## Экспорты
+
+Не выделяй экспорт типов отдельной строкой или отдельным блоком `export type`. Экспортируй значения и типы вместе через `export *` или общим списком.
+
+```ts
+// ❌ Плохо
+export { Tabs, TabBar } from './components';
+export type { TabsProps, TabBarProps } from './components';
+
+// ✅ Хорошо
+export * from './components';
+```
+
+```ts
+// ❌ Плохо
+export { SIZE, ORIENTATION } from './constants';
+export type { Size, Orientation } from './types';
+
+// ✅ Хорошо
+export * from './constants';
+export * from './types';
+```
+
+## Экспорт компонентов
+
+Для папки/барреля с компонентами используй реэкспорт через `export *` из каждого модуля.
+
+```ts
+// ✅ Хорошо — index компонентов
+export * from './Tabs';
+export * from './Tab';
+export * from './TabBar';
+export * from './TabContent';
+export * from './ScrollButton';
+```
+
+Корневой индекс пакета — реэкспорт через `export *` по секциям (constants, types, components и т.д.).
+
+```ts
+// ✅ Хорошо — корневой index пакета
+export * from './components';
+export * from './constants';
+export * from './context';
+export * from './types';
+export * from './utils';
+```

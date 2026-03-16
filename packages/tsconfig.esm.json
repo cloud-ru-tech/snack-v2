@@ -93,6 +93,9 @@
     },
     {
       "path": "./popover/tsconfig.esm.json"
+    },
+    {
+      "path": "./tabs/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {
