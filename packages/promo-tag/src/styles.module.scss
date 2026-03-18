@@ -14,6 +14,10 @@ $typography: (
   'm': base.$sn-regular-label-m,
 );
 
+.stateLayer {
+  visibility: initial;
+}
+
 .container {
   @each $size in $sizes {
     &[data-size='#{$size}'] {
@@ -33,7 +37,7 @@ $typography: (
 
   border-width: 0;
 
-  @include materials.has-state-layer-as-child();
+  @include materials.has-state-layer-as-child(#{stateLayer});
 
   &[data-clickable] {
     cursor: pointer;

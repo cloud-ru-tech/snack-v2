@@ -4,6 +4,11 @@
 $roles: 'regular', 'onAccent';
 $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'violet', 'pink', 'yellow', 'green';
 
+.content {
+  display: inline;
+  min-width: 0;
+}
+
 .link {
   cursor: pointer;
 
@@ -18,7 +23,7 @@ $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'v
   text-decoration: none;
   text-decoration-skip-ink: none;
 
-  @include m.has-content-with-text-opacity();
+  @include m.has-content-with-text-opacity(#{content});
 
   &[data-inside-text] {
     display: inline;
@@ -55,11 +60,6 @@ $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'v
       }
     }
   }
-}
-
-.content {
-  display: inline;
-  min-width: 0;
 }
 
 .opacityLayer {

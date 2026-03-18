@@ -156,6 +156,7 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
       if (isBrowser()) {
         const layer = document.createElement('div');
         layer.setAttribute('data-state-layer', '');
+        layer.classList.add(`${styles.stateLayer}`);
         layer.setAttribute('data-state', 'onColorBackground');
         handle.appendChild(layer);
       }

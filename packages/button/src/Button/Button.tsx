@@ -84,9 +84,9 @@ export function Button<T extends ElementType = 'button'>({
       {...spreadProps}
     >
       {view === 'outline' && <span data-border-layer aria-hidden />}
-      {view !== 'function' && <span data-state-layer aria-hidden data-state='regularBackground' />}
+      {view !== 'function' && <span className={styles.stateLayer} aria-hidden data-state='regularBackground' />}
 
-      <span className={styles.content} data-content-layer data-state='textOpacity'>
+      <span className={styles.content}>
         {variant === 'icon-only' ? (
           <>
             <span className={styles.icon} aria-hidden data-text-opacity>

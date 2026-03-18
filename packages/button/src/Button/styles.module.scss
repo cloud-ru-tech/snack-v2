@@ -44,6 +44,10 @@ $appearance-to-theme: (
   }
 }
 
+.stateLayer {
+  visibility: initial;
+}
+
 .root {
   cursor: pointer;
 
@@ -104,7 +108,7 @@ $appearance-to-theme: (
   }
 
   // тут подключаем state-layer
-  @include m.has-state-layer-as-child();
+  @include m.has-state-layer-as-child(#{stateLayer});
 }
 
 .icon {
@@ -292,7 +296,7 @@ $appearance-to-theme: (
 .root[data-view='function'] {
   background-color: transparent;
 
-  @include m.has-content-with-text-opacity();
+  @include m.has-content-with-text-opacity(#{content});
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {

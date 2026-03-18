@@ -36,7 +36,7 @@ export function PaginationNumberItem({
         data-activated={activated || undefined}
         href={href}
       >
-        <span data-state-layer aria-hidden data-state={stateLayer} />
+        <span className={styles.stateLayer} aria-hidden data-state={stateLayer} />
         <span className={styles.textWrapper}>{label}</span>
       </a>
     );
@@ -52,7 +52,7 @@ export function PaginationNumberItem({
       {...extractSupportProps(rest)}
       data-activated={activated || undefined}
     >
-      <span data-state-layer aria-hidden data-state={stateLayer} />
+      <span className={styles.stateLayer} aria-hidden data-state={stateLayer} />
       <span className={styles.textWrapper}>{label}</span>
     </button>
   );

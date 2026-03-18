@@ -52,7 +52,7 @@ export function Link<T extends ElementType = 'a'>({
       data-inside-text={insideText || undefined}
       data-underlined={underlined || undefined}
     >
-      <div className={styles.content} data-state='textOpacity' data-content-layer>
+      <div className={styles.content}>
         <span className={styles.opacityLayer} data-text-opacity>
           {insideText ? text : <TruncateString text={text} maxLines={1} variant={truncateVariant} />}
         </span>

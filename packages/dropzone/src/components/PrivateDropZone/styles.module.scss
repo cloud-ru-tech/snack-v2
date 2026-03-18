@@ -23,6 +23,10 @@ $sizes: 's', 'm', 'l';
   visibility: hidden;
 }
 
+.borderLayer {
+  visibility: initial;
+}
+
 .container {
   cursor: pointer;
 
@@ -87,7 +91,7 @@ $sizes: 's', 'm', 'l';
     }
   }
 
-  @include m.has-state-layer-as-child();
+  @include m.has-state-layer-as-child(#{borderLayer});
 
   > [data-state-layer] {
     border-style: dashed !important;

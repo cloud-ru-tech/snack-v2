@@ -9,6 +9,10 @@ $typography: (
   'm': base.$sn-regular-label-l,
 );
 
+.stateLayer {
+  visibility: initial;
+}
+
 .root {
   cursor: pointer;
 
@@ -67,7 +71,7 @@ $typography: (
     outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 
-  @include m.has-state-layer-as-child();
+  @include m.has-state-layer-as-child(#{stateLayer});
 }
 
 .textWrapper {
