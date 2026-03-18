@@ -33,7 +33,7 @@ const Template: StoryFn = () => (
             <div key={state} className={styles.squareWrapper} data-state={state} data-background>
               {state === STATE.TextOpacity ? (
                 <Square className={styles.opacityDemo}>
-                  <div className={styles.contentLayer} data-content-layer data-state={STATE.TextOpacity}>
+                  <div className={styles.contentLayer} data-state={STATE.TextOpacity}>
                     <div className={styles.pseudoContentLayer} data-text-opacity />
                   </div>
                 </Square>

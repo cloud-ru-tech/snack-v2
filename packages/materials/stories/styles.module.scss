@@ -46,12 +46,12 @@
 }
 
 .opacityDemo {
-  @include m.has-content-with-text-opacity();
-
   .contentLayer {
     width: 100%;
     height: 100%;
   }
+
+  @include m.has-content-with-text-opacity(#{contentLayer});
 
   .pseudoContentLayer {
     width: 100%;

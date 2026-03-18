@@ -39,8 +39,8 @@ export function SampleBlock({
     >
       <div data-acrylic-background />
       {variant === VARIANT.Outline && <div className={styles.borderLayer} />}
-      {state && <div data-state={state} data-state-layer />}
-      <div className={styles.content} data-state={state} data-content-layer>
+      {state && <div className={styles.stateLayer} data-state={state} />}
+      <div className={styles.contentLayer} data-state={state}>
         {children}
       </div>
     </div>

@@ -12,14 +12,15 @@ $states:
 $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
 /**
-  * Миксин для применения состояний ко всему элементу.
-  * Требует добавления в класс корневого компонента (чтобы ховер на всё содержимое компонента влиял на state layer).
-  * Требует создания слоя с атрибутом [data-state-layer] в качестве ребёнка компонента.
+  * State layer: default / hover / active для фона и бордера слоя.
+  *
+  * Миксин необходимо применить в класе корневого элемента, при взаимодействии с которым
+  * будут применяться стили к его ребёнку $stateLayerSelector.
   * Итерация невозможна по причине ручного маппинга названий свойств пропа и структуры в Figma Variables.
   * См. пример в Playground.stories.tsx и stories/components/SampleBlock
   */
-@mixin has-state-layer-as-child() {
-  & > [data-state-layer] {
+@mixin has-state-layer-as-child($stateLayerSelector) {
+  .#{$stateLayerSelector} {
     @include m.absolute-layer();
 
     // определяем общие стили для бордера
@@ -56,7 +57,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
   @media (hover: hover) {
     &:hover:not([data-disabled], [data-loading]) {
-      & > [data-state-layer] {
+      .#{$stateLayerSelector} {
         &[data-state='regularBackground'] {
           background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
         }
@@ -87,7 +88,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   /* stylelint-disable-next-line order/order */
   &[data-loading],
   &:active:not([data-disabled], [data-loading]) {
-    & > [data-state-layer] {
+    .#{$stateLayerSelector} {
       &[data-state='regularBackground'] {
         background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
       }
@@ -116,14 +117,13 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 }
 
 /**
-  * Миксин для применения состояний к содержимому компонента (текст, иконки).
-  * Требует добавления в класс корневого компонента (чтобы ховер на всё содержимое компонента влиял на контент).
-  * Требует создания слоя с атрибутом [data-content-layer] в качестве ребёнка компонента.
-  * Требует указания атрибута [data-text-opacity] тем детям компонента, которые являются текстом/иконками (можно гибко настраивать что должно менять цвет, а что нет).
+  * Миксин необходимо применить в класе корневого элемента, при взаимодействии с которым
+  * будут применяться стили к его ребёнку $contentLayerSelector.
+  * Влияние будет оказываться на элементы с атрибутом [data-text-opacity] у детей класса $contentLayerSelector.
   * См. пример в Playground.stories.tsx
   */
-@mixin has-content-with-text-opacity() {
-  & > [data-content-layer][data-state='textOpacity'] {
+@mixin has-content-with-text-opacity($contentLayerSelector) {
+  .#{$contentLayerSelector} {
     [data-text-opacity] {
       opacity: base.$sn-theme-color-material-stateLayer-text-default-opacity;
     }
@@ -131,7 +131,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
   @media (hover: hover) {
     &:hover:not([data-disabled], [data-loading]) {
-      & > [data-content-layer][data-state='textOpacity'] {
+      .#{$contentLayerSelector} {
         [data-text-opacity] {
           opacity: base.$sn-theme-color-material-stateLayer-text-hovered-opacity;
         }
@@ -142,7 +142,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   /* stylelint-disable-next-line order/order */
   &[data-loading],
   &:active:not([data-disabled], [data-loading]) {
-    & > [data-content-layer][data-state='textOpacity'] {
+    .#{$contentLayerSelector} {
       [data-text-opacity] {
         opacity: base.$sn-theme-color-material-stateLayer-text-pressed-opacity;
       }

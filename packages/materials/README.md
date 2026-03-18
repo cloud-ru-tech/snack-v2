@@ -33,7 +33,7 @@ pnpm add @design-system/materials
 
 ```tsx
 <button type="button" className={styles.button}>
-  <span data-state-layer data-state="regularBackground" />
+  <span className={styles.stateLayer} data-state="regularBackground" aria-hidden />
   <span className={styles.label}>Текст кнопки</span>
 </button>
 ```
@@ -42,7 +42,7 @@ pnpm add @design-system/materials
 
 ```tsx
 <div className={styles.button}>
-  <div data-content-layer data-state="textOpacity">
+  <div className={styles.contentLayer}>
     <span data-text-opacity>Click me</span>
     <Icon data-text-opacity />
   </div>
@@ -56,7 +56,7 @@ pnpm add @design-system/materials
 ## Best Practices
 
 1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
-2. **Один state layer на компонент** — у компонента может быть только один элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`); миксин применяется к корню, hover/active обрабатываются на корне.
+2. **Корень взаимодействия** — `has-state-layer-as-child` и `has-content-with-text-opacity` вешайте на класс того элемента, с которым пользователь взаимодействует; аргумент — класс целевого потомка в разметке. Несколько state-слоёв — разные классы и при необходимости несколько вызовов первого миксина.
 3. **Переменные дизайн-системы** — для acrylic используйте значения `data-acrylic-appearance` и `data-acrylic-level` из палитры дизайн-системы; пакет подставляет blur, opacity и цвета из `@sbercloud/figma-variables`.
 4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.
 5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.

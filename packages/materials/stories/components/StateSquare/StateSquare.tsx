@@ -9,7 +9,7 @@ type SquareProps = {
 export function StateSquare({ state }: SquareProps) {
   return (
     <Square className={styles.withStateLayer}>
-      <div data-state={state} data-state-layer />
+      <div className={styles.stateLayer} data-state={state} />
     </Square>
   );
 }

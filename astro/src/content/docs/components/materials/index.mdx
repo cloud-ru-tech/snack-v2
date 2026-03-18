@@ -100,15 +100,17 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 ### State layer — слой состояний
 
-Миксин `has-state-layer-as-child()` применяет стили к дочернему элементу с атрибутом `[data-state-layer]`. На корневой класс вешается hover/active, чтобы при наведении и нажатии менялся вид слоя. У слоя задаётся атрибут `data-state` (например, `regularBackground`, `regularBorder`, `activatedBackground`, `onColorBackground`, `onAccentBackground`).
+Миксин `has-state-layer-as-child($stateLayerSelector)` подключают в **классе корневого элемента**, с которым пользователь взаимодействует (hover, active и т.д.): в этот момент стили применяются к **потомку**, чей класс передан аргументом. В CSS Modules аргумент задают как `#{stateLayer}`, если в том же файле объявлен класс `.stateLayer`.
 
-**Важно:** у разрабатываемого компонента может быть применён только **один** state layer — один дочерний элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`).
+На элементе слоя указывают `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground`. Набор состояний из пропа нельзя сгенерировать автоматически — только ручной маппинг к структуре Figma Variables.
+
+Примеры: **Playground**, **SampleBlock**, **StateSquare** (`packages/materials/stories/…`).
 
 **Разметка (JSX):**
 
 ```tsx
 <button type="button" className={styles.button}>
-  <span data-state-layer data-state="regularBackground" />
+  <span className={styles.stateLayer} data-state="regularBackground" aria-hidden />
   <span className={styles.label}>Текст кнопки</span>
 </button>
 ```
@@ -120,7 +122,7 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 .button {
   position: relative;
-  @include m.has-state-layer-as-child();
+  @include m.has-state-layer-as-child(#{stateLayer});
 }
 
 .label {
@@ -131,13 +133,15 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 ### State layer — прозрачность текста (textOpacity)
 
-Миксин `has-content-with-text-opacity` меняет прозрачность текста и иконок при hover/active. В разметке нужен слой с `[data-content-layer][data-state='textOpacity']` и дочерние элементы с `[data-text-opacity]` (текст или иконки, которые должны менять прозрачность).
+Миксин `has-content-with-text-opacity($contentLayerSelector)` подключают в классе **корневого** элемента: при взаимодействии с ним меняется внешний вид **потомка** с классом из аргумента. На элементах **внутри** этого потомка, отмеченных `[data-text-opacity]`, задаётся opacity (default / hover / active).
+
+Пример: **Playground**, **SampleBlock** (`#{contentLayer}`).
 
 **Разметка (JSX):**
 
 ```tsx
 <div className={styles.button}>
-  <div data-content-layer data-state="textOpacity">
+  <div className={styles.contentLayer}>
     <span data-text-opacity>Click me</span>
     <Icon data-text-opacity />
   </div>
@@ -149,9 +153,9 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 ```scss
 @use '@design-system/materials' as m;
 
-.iconButton {
+.button {
   position: relative;
-  @include m.has-content-with-text-opacity();
+  @include m.has-content-with-text-opacity(#{contentLayer});
 }
 ```
 
@@ -171,23 +175,23 @@ import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
 ### State layer
 
-| миксин | разметка | описание |
-|--------|----------|----------|
-| `has-state-layer-as-child()` | Корень с классом + **один** дочерний элемент `[data-state-layer]` (например, `div[data-state-layer]`) с атрибутом `data-state` | Стилизует слой состояний (default, hover, active). У компонента допускается только один такой элемент. Значения `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground` |
-| `has-content-with-text-opacity()` | Корень + дочерний `[data-content-layer][data-state='textOpacity']` и внутри него элементы с `[data-text-opacity]` | Меняет прозрачность текста/иконок при hover и active |
+| миксин | параметры | разметка | описание |
+|--------|-----------|----------|----------|
+| `has-state-layer-as-child($stateLayerSelector)` | Имя класса целевого потомка в том же модуле (часто `#{stateLayer}`) | Корень (миксин здесь) + потомок с этим классом и `data-state` | При взаимодействии с корнем стили state layer уходят на потомка `$stateLayerSelector` |
+| `has-content-with-text-opacity($contentLayerSelector)` | Имя класса обёртки (часто `#{contentLayer}`) | Корень + потомок с этим классом; у его потомков — `[data-text-opacity]` | При взаимодействии с корнем opacity меняется у `[data-text-opacity]` внутри `$contentLayerSelector` |
 
 Переменные цветов и состояний берутся из `@sbercloud/figma-variables` (stateLayer подключает этот пакет внутри себя).
 
 ## Accessibility
 
-- Разметка с `data-acrylic-background` и `data-state-layer` не меняет семантику: используйте корректные теги и атрибуты (`button`, `aria-*`, `role`) на корневом элементе.
+- Разметка с `data-acrylic-background` и декоративными слоями state layer не меняет семантику: у визуальных слоёв по возможности задавайте `aria-hidden`; на корне используйте корректные теги и атрибуты (`button`, `aria-*`, `role`).
 - Слои состояний визуально не должны подменять индикацию фокуса: сохраняйте видимый focus outline для клавиатурной навигации.
 - Контент поверх акрилового фона должен сохранять достаточный контраст для читаемости.
 
 ## Best practices
 
 1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
-2. **Один state layer на компонент** — у компонента может быть только один элемент с атрибутом `data-state-layer` (например, `div[data-state-layer]`); миксин применяется к корню, hover/active обрабатываются на корне.
+2. **Корень взаимодействия** — `has-state-layer-as-child` и `has-content-with-text-opacity` вешайте на класс того элемента, с которым пользователь взаимодействует; аргумент — класс целевого потомка в разметке. Несколько state-слоёв — разные классы и при необходимости несколько вызовов первого миксина.
 3. **Переменные дизайн-системы** — для acrylic используйте значения `data-acrylic-appearance` и `data-acrylic-level` из палитры дизайн-системы; пакет подставляет blur, opacity и цвета из `@sbercloud/figma-variables`.
 4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.
 5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.
