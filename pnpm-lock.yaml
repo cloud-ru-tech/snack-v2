@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@sbercloud/figma-variables':
-      specifier: 1.4.8-63f7e661.0
-      version: 1.4.8-63f7e661.0
+      specifier: 1.4.9
+      version: 1.4.9
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -62,7 +62,7 @@ importers:
         version: 1.47.2
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.8-63f7e661.0
+        version: 1.4.9
       '@sbercloud/ft-config-ai-editor':
         specifier: 0.16.2-preview-4807f6e4.0
         version: 0.16.2-preview-4807f6e4.0
@@ -266,7 +266,7 @@ importers:
         version: 0.37.6(astro@5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2))
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.8-63f7e661.0
+        version: 1.4.9
       astro:
         specifier: 5.17.1
         version: 5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -670,6 +670,27 @@ importers:
       overlayscrollbars-react:
         specifier: 0.5.6
         version: 0.5.6(overlayscrollbars@2.14.0)(react@19.2.4)
+
+  packages/search:
+    dependencies:
+      '@design-system/divider':
+        specifier: 0.1.0
+        version: link:../divider
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/loader':
+        specifier: 0.1.0
+        version: link:../loader
+      '@design-system/search-private':
+        specifier: 0.1.0
+        version: link:../search-private
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
 
   packages/search-private:
     dependencies:
@@ -2835,8 +2856,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-variables@1.4.8-63f7e661.0':
-    resolution: {integrity: sha512-qRJqC9EnbZTueYFNLpZhpVv5r13OzeWtKKKeOB8pCRGkE1Q32sdfW5NEIYj5VN7SPvxe70sVQv7Lt0P3dHiqFw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.8-63f7e661.0.tgz}
+  '@sbercloud/figma-variables@1.4.9':
+    resolution: {integrity: sha512-uPUdiTH/lOnTKv7pz+FeaNCmRGVkxjJ6HTwlTmsaR6z/jEiHAuGryjrLo6nrktrBKCZuL6KkngDtd3kYnRHBCg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.9.tgz}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     resolution: {integrity: sha512-+FJgdnx8QEwKJexNK1JxwHwC04nh4QoMzuu3SrpwAypOmydVLwoHY9/dBHjuHTp7ZukrziPTcmq2ryAlgver6A==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/ft-config-ai-editor/-/@sbercloud/ft-config-ai-editor-0.16.2-preview-4807f6e4.0.tgz}
@@ -11594,7 +11615,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-variables@1.4.8-63f7e661.0': {}
+  '@sbercloud/figma-variables@1.4.9': {}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     dependencies:

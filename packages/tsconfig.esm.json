@@ -108,6 +108,9 @@
     },
     {
       "path": "./alert/tsconfig.esm.json"
+    },
+    {
+      "path": "./search/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

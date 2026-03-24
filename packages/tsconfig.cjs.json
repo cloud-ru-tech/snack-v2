@@ -108,6 +108,9 @@
     },
     {
       "path": "./alert/tsconfig.cjs.json"
+    },
+    {
+      "path": "./search/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

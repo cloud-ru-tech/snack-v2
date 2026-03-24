@@ -1,0 +1,166 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+@use '@design-system/materials' as m;
+
+$sizes: 's', 'm', 'l';
+
+.materialLayer {
+  @include m.with-material('acrylic');
+
+  width: 100%;
+  height: 100%;
+}
+
+.borderStateLayer {
+  width: 100%;
+  height: 100%;
+}
+
+.lineWrapper {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin borderRadius($size) {
+  $borderTopLeftRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-top-left-radius');
+  $borderTopRightRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-top-right-radius');
+  $borderBottomRightRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-bottom-right-radius');
+  $borderBottomLeftRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-bottom-left-radius');
+
+  border-radius: $borderTopLeftRadius $borderTopRightRadius $borderBottomRightRadius $borderBottomLeftRadius;
+}
+
+.focusLayer {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: field.$sn-field-effect-focusedFrame-opacity;
+  outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
+}
+
+.search {
+  align-self: stretch;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  input::placeholder {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}
+
+.elementWrapperAfter {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  @include m.has-state-layer-as-child(#{borderStateLayer});
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .lineWrapper {
+        display: none;
+        width: 0;
+        padding: base.simple-var(field.$field, 'anatomy', 'size', $size, 'elementWrapper', 'lineWrapper', 'padding');
+      }
+
+      .focusLayer {
+        @include borderRadius($size);
+      }
+
+      .borderStateLayer,
+      .materialLayer {
+        @include borderRadius($size);
+      }
+
+      .fieldContainer {
+        $paddingTop: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-top');
+        $paddingRight: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-right');
+        $paddingBottom: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-bottom');
+        $paddingLeft: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-left');
+
+        min-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'min-height');
+        padding: $paddingTop $paddingRight $paddingBottom $paddingLeft;
+      }
+
+      &[data-withbackground='true'] {
+        .backgroundWrapper {
+          @include borderRadius($size);
+
+          display: initial;
+        }
+
+        .lineWrapper {
+          &[data-outline='true'] {
+            display: initial;
+          }
+        }
+      }
+
+      &:not([data-loading="true"], [data-disabled="true"])[data-withbackground="true"] {
+        &[data-focusvisible="true"] {
+          & > .backgroundWrapper > .borderStateLayer {
+            border-color: base.$sn-theme-color-primary-accent;
+            border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
+          }
+
+          .focusLayer {
+            display: initial;
+          }
+        }
+
+        [data-acrylic-background] {
+          @include borderRadius($size);
+        }
+      }
+    }
+  }
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .materialLayer {
+      display: none;
+    }
+
+    input::placeholder {
+      visibility: hidden;
+    }
+  }
+
+  // TODO: fix state layers loading state, that varies from component to component in contrast with agreement
+  &[data-loading='true'] {
+    .borderStateLayer[data-state="regularBorder"] {
+      border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+    }
+  }
+}
+
+.fieldContainer {
+  position: relative;
+
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+}

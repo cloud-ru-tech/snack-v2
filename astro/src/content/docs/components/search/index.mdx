@@ -1,0 +1,231 @@
+---
+title: Search
+description: Поле поиска с акриловым фоном, опциональным слотом справа и поведением SearchPrivate
+version: "0.1.0"
+---
+
+import { Search, SIZE } from '@packages/search/src';
+import { ExampleContainer, ExampleRow, ExampleItem } from '#astro/components/mdx';
+import { SearchButtonFieldExample } from './ui/SearchButtonFieldExample';
+
+# Search
+
+Публичный компонент поля поиска для интерфейсов design system. Содержит **SearchPrivate** (иконка, ввод, очистка, загрузка, `onSubmit` по Enter) внутри оболочки с **акриловым фоном**, границей и слоем фокуса. Опционально справа от поля можно вывести **ButtonField** (действие + шеврон списка) с вертикальным разделителем.
+
+**Version:** `{frontmatter.version}`
+
+Поверх возможностей SearchPrivate компонент добавляет:
+
+- **Визуальная оболочка** — фон (`background`), реакция на hover и `:focus-visible` на уровне материала
+- **Слот справа** — `buttonField` с `action`, `onClick`, опциями `loading`, `disabled`, `withDropdownList`
+- **Разделитель** — `outline` между полем и слотом (по умолчанию включён, если задан `buttonField`)
+- **Согласованное отключение** — при `disabled` на Search дополнительно блокируется и postfix-кнопка, если передан собственный `buttonField.disabled`, он объединяется с состоянием поля
+
+Ссылка на макет: [Search (Figma)](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6313-48734&m=dev).
+
+## Installation
+
+```bash
+npm install @design-system/search
+# or
+yarn add @design-system/search
+# or
+pnpm add @design-system/search
+```
+
+Зависимости пакета включают `@design-system/search-private`, `@design-system/divider`, `@design-system/utils` и др.; React в пакете не объявляется — его обеспечивает приложение.
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName="search" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="search" />
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+## Overview
+
+**Search** — обёртка над **SearchPrivate** с корневым контейнером (`data-size`, `data-loading`, `data-disabled`, `data-withbackground`, `data-focusvisible`). `ref` пробрасывается на **нативный `<input>`** внутри SearchPrivate (как и у SearchPrivate).
+
+Поведение ввода, очистки, клавиатуры и `onSubmit` совпадает с компонентом **Search Private** (`@design-system/search-private`): Enter с непустым значением вызывает `onSubmit(value)`; навигация по постфиксу (кнопка очистки) учитывается внутри SearchPrivate.
+
+Пропсы поддержки разметки и тестов (`WithSupportProps`, в т.ч. `data-test-id`) передаются во внутренний контейнер SearchPrivate через `extractSupportProps`.
+
+## Live examples
+
+### Базовое использование
+
+<ExampleContainer>
+  <Search placeholder="Поиск" />
+</ExampleContainer>
+
+### Без подложки (background)
+
+<ExampleContainer>
+  <Search placeholder="Без фона" background={false} />
+</ExampleContainer>
+
+### Состояния загрузки и отключения
+
+<ExampleContainer>
+  <ExampleRow gap="large">
+    <ExampleItem label="Загрузка">
+      <Search placeholder="Загрузка…" loading />
+    </ExampleItem>
+    <ExampleItem label="Disabled">
+      <Search placeholder="Недоступно" disabled />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Размеры
+
+<ExampleContainer>
+  <ExampleRow gap="large">
+    <ExampleItem label={SIZE.S}>
+      <Search size={SIZE.S} placeholder="Размер s" />
+    </ExampleItem>
+    <ExampleItem label={SIZE.M}>
+      <Search size={SIZE.M} placeholder="Размер m" />
+    </ExampleItem>
+    <ExampleItem label={SIZE.L}>
+      <Search size={SIZE.L} placeholder="Размер l" />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+### Со слотом справа (buttonField)
+
+<ExampleContainer>
+  <SearchButtonFieldExample client:load />
+</ExampleContainer>
+
+## Storybook
+
+Компонент разбит на две стори: **Playground** (интерактивные контролы, в т.ч. постфикс через аргументы стори) и **Visual matrix** (сводная таблица по размерам: пустое поле и с текстом, regular и disabled, с `buttonField` и разделителем).
+
+### Playground
+
+<StorybookIframe storyId="components-search-playground--playground" showControls={true} height="600px" />
+
+### Visual matrix
+
+<StorybookIframe storyId="components-search-visualmatrix--visual-matrix" showControls={false} height="960px" />
+
+## Usage
+
+### Базовый пример (uncontrolled)
+
+```tsx
+import { Search } from '@design-system/search';
+
+export function Example() {
+  return <Search placeholder="Поиск" />;
+}
+```
+
+### Управляемое значение
+
+```tsx
+import { Search } from '@design-system/search';
+import { useState } from 'react';
+
+export function Example() {
+  const [value, setValue] = useState('');
+  return (
+    <Search
+      value={value}
+      onChange={setValue}
+      placeholder="Введите запрос"
+    />
+  );
+}
+```
+
+### Подтверждение поиска и слот справа
+
+```tsx
+import { PlaceholderSVG } from '@design-system/icons';
+import { Search, SIZE } from '@design-system/search';
+
+export function Example() {
+  return (
+    <Search
+      size={SIZE.M}
+      placeholder="Поиск"
+      onSubmit={(query) => {
+        // интеграция с поиском или навигацией (query)
+      }}
+      buttonField={{
+        size: SIZE.M,
+        action: <PlaceholderSVG size={24} />,
+        onClick: () => {},
+        withDropdownList: true,
+      }}
+    />
+  );
+}
+```
+
+### Без разделителя между полем и кнопкой
+
+```tsx
+import { Search } from '@design-system/search';
+
+export function Example() {
+  return (
+    <Search
+      outline={false}
+      buttonField={{
+        action: <span>⋯</span>,
+        onClick: () => {},
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### SearchProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| value | `string` | - | Значение input |
+| onChange | `(value: string, e?: ChangeEvent<HTMLInputElement>) => void` | - | Колбек смены значения |
+| placeholder | `string` | - | Значение плейсхолдера |
+| onFocus | `FocusEventHandler<HTMLInputElement>` | - | Колбек обработки получения фокуса |
+| onBlur | `FocusEventHandler<HTMLInputElement>` | - | Колбек обработки потери фокуса |
+| inputMode | enum InputMode: `"text"`, `"decimal"`, `"numeric"`, `"tel"`, `"search"`, `"email"`, `"url"`, `"none"` | - | Режим работы экранной клавиатуры |
+| className | `string` | - | CSS-класс |
+| disabled | `boolean` | - | Деактивирован ли компонент |
+| tabIndex | `number` | - |  |
+| size | enum Size: `"s"`, `"m"`, `"l"` | s | Размер |
+| loading | `boolean` | - | Состояние загрузки |
+| onSubmit | `(value: string) => void` | - | Колбек на подтверждение поиска по строке |
+| showClearButton | `boolean` | true | Отображение кнопки Очистки поля |
+| background | `boolean` | true | Наличие фона |
+| buttonField | `Omit<ButtonFieldProps, "variant">` | - | Дополнительный слот справа от поля |
+| outline | `boolean` | true | Наличие разделителя между input и buttonField |
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+## Accessibility
+
+- Фокус и ввод относятся к **нативному полю** (`type="text"`, по умолчанию `inputMode="search"` у SearchPrivate); `ref` ведёт на этот input.
+- Кнопка **очистки** и навигация с клавиатуры реализованы в SearchPrivate (в т.ч. переход к постфиксу и подтверждение по Enter при непустом значении).
+- При `disabled` поле и postfix-кнопка (если есть) недоступны для взаимодействия; визуально отражается через `data-disabled` на оболочке и внутреннем контейнере SearchPrivate.
+- Для автотестов и стабильных селекторов используйте проп **`data-test-id`** (и другие атрибуты из `WithSupportProps`), как описано в документации Search Private.
+
+## Best practices
+
+1. **Семантика поиска** — для мобильных клавиатур оставляйте `inputMode` в режиме поиска (значение по умолчанию в SearchPrivate), если сценарий именно строка запроса.
+2. **Слот справа** — передавайте в `buttonField.action` готовый узел (иконку фильтра, аватар и т.д.); `onClick` обязателен, даже если список открывается снаружи — свяжите его с вашим меню или стором.
+3. **Загрузка** — при `loading={true}` иконка поиска заменяется индикатором; не смешивайте с активным вводом без необходимости: лучше блокировать поле через `disabled`, если ввод недопустим.
+4. **Низкоуровневые сценарии** — если не нужны акрил, Divider и ButtonField, рассмотрите использование только **SearchPrivate** для более лёгкой вёрстки.
