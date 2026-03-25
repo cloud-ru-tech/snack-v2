@@ -1,0 +1,40 @@
+{
+  "name": "@design-system/breadcrumbs",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Breadcrumbs component for the design system",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@snack-uikit/list": "0.32.16",
+    "@design-system/typography":"0.1.0",
+    "@design-system/utils":"0.1.0",
+    "classnames": "2.5.1",
+    "lodash.debounce": "4.0.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

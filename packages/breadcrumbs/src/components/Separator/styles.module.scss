@@ -1,0 +1,20 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/breadcrumbs.module' as breadcrumbs;
+
+$sizes: 'xs', 's';
+
+.separator {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'size', $size, 'container', 'separator');
+    }
+  }
+}

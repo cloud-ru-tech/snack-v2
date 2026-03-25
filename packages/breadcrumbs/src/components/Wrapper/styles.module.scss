@@ -1,0 +1,37 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/breadcrumbs.module' as breadcrumbs;
+
+$sizes: 'xs', 's';
+
+.wrapper {
+  overflow: hidden;
+  padding-right: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  padding-left: base.$sn-primitive-strokeWeight-strokeSemiBold;
+
+  &[data-hidden='true'] {
+    pointer-events: none;
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+  }
+}
+
+.row {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  &[data-hidden='true'] {
+    display: inline-flex;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'size', $size, 'container');
+    }
+  }
+}

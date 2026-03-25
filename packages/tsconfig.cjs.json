@@ -99,6 +99,9 @@
     },
     {
       "path": "./toggles/tsconfig.cjs.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

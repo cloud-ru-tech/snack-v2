@@ -249,6 +249,7 @@ ${migrationContent}`;
 
           const watchPaths = [
             join(packagesPath, '*/docs/**/*.mdx'),
+            join(packagesPath, '*/docs/**/*.tsx'),
             join(packagesPath, '*/docs/**/*.md'),
             join(packagesPath, '*/CHANGELOG.md'),
             join(packagesPath, '*/MIGRATION.md'),

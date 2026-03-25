@@ -99,6 +99,9 @@
     },
     {
       "path": "./toggles/tsconfig.esm.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

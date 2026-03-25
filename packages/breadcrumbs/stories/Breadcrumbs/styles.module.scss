@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+/**
+ * Стили для stories компонента Breadcrumbs.
+ */
+
+.columnStack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.narrowFrame {
+  resize: horizontal;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  width: 100%;
+  width: calc(100% - 20px);
+  max-width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: base.$sn-boxShadow-elevation-level2;
+}
+
+.wideCell {
+  min-width: 360px;
+}
+
+.narrowCell {
+  max-width: 280px;
+}
+
+.crumbClickHolder {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

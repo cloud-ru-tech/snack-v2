@@ -1,0 +1,68 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/breadcrumbs.module' as breadcrumbs;
+
+$sizes: 'xs', 's';
+
+.wrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  list-style: none;
+
+  &[data-render-mode="ellipsis"] {
+    flex-shrink: 1;
+  }
+}
+
+.crumb, a.crumb {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-decoration: none;
+
+  background: none;
+
+  &[data-clickable] {
+    cursor: pointer;
+
+    &:focus-visible,
+    &:hover {
+      color: base.$sn-theme-color-available-version-textSecondary;
+    }
+  }
+
+  &[data-current='true'] {
+    color: base.$sn-theme-color-available-version-textSecondary;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: 0;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'size', $size, 'container', 'textWrapper');
+    }
+  }
+
+  .label {
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    width: fit-content;
+  }
+}

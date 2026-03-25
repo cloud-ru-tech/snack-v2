@@ -108,7 +108,9 @@ export default defineConfig({
       },
     },
     ssr: {
-      noExternal: ['nanoid', 'starlight-llms-txt', '@snack-uikit/utils'],
+      // @snack-uikit/* ESM builds use directory imports (`export * from './components'`).
+      // Node cannot resolve those when packages stay external — bundle them for SSR.
+      noExternal: ['nanoid', 'starlight-llms-txt', /^@snack-uikit\//],
     },
   },
   markdown: {
