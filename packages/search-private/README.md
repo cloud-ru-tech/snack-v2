@@ -31,18 +31,6 @@ import { SearchPrivate } from '@design-system/search-private';
 <SearchPrivate />
 ```
 
-### С подтверждением поиска (onSubmit)
-
-```tsx
-import { SearchPrivate } from '@design-system/search-private';
-
-<SearchPrivate
-  onSubmit={(value) => {
-    alert(`Поиск: ${value}`);
-  }}
-/>
-```
-
 ### Со состоянием загрузки
 
 ```tsx
@@ -111,8 +99,10 @@ export function Example() {
 |------|------|---------------|-------------|
 | size | enum Size: `"s"`, `"m"`, `"l"` | s | Размер |
 | loading | `boolean` | - | Состояние загрузки |
+| disabled | `boolean` | - | Деактивирован ли компонент |
 | onSubmit | `(value: string) => void` | - | Колбек на подтверждение поиска по строке |
 | className | `string` | - | CSS-класс |
+| showClearButton | `boolean` | true | Отображение кнопки Очистки поля |
 | tabIndex | `number` | - |  |
 | value | `string` | - | Значение input |
 | onChange | `(value: string, e?: ChangeEvent<HTMLInputElement>) => void` | - | Колбек смены значения |

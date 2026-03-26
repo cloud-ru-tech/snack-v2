@@ -56,16 +56,6 @@ Search Private — поле ввода для поиска в стиле design 
   <SearchPrivate />
 </ExampleContainer>
 
-### С подтверждением поиска (onSubmit)
-
-<ExampleContainer>
-  <SearchPrivate
-    onSubmit={(value) => {
-      alert(`Поиск: ${value}`);
-    }}
-  />
-</ExampleContainer>
-
 ### Со состоянием загрузки
 
 <ExampleContainer>
@@ -92,7 +82,7 @@ Search Private — поле ввода для поиска в стиле design 
 
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
 
-<StorybookIframe storyId="components-search-private--basic" showControls={true} height="600px" />
+<StorybookIframe storyId="components-searchprivate--playground" showControls={true} height="600px" />
 
 ## Usage
 
@@ -147,6 +137,7 @@ export function Example() {
 | loading | `boolean` | - | Состояние загрузки |
 | onSubmit | `(value: string) => void` | - | Колбек на подтверждение поиска по строке |
 | className | `string` | - | CSS-класс |
+| showClearButton | `boolean` | true | Отображение кнопки Очистки поля |
 | tabIndex | `number` | - |  |
 | value | `string` | - | Значение input |
 | onChange | `(value: string, e?: ChangeEvent<HTMLInputElement>) => void` | - | Колбек смены значения |

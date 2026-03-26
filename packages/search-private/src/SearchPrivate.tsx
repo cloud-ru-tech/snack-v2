@@ -6,7 +6,7 @@ import {
   useButtonNavigation,
   useClearButton,
 } from '@design-system/input-private';
-import { Sun } from '@design-system/loader';
+import { LOADER_SIZE, Sun } from '@design-system/loader';
 import { useLocale } from '@design-system/locale';
 import { extractSupportProps, useValueControl, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
@@ -16,6 +16,7 @@ import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useMemo, useRef } f
 import { PRIVATE_SEARCH_TEST_IDS, SIZE } from './constants';
 import styles from './styles.module.scss';
 import { Size } from './types';
+import { getIconSize } from './utils';
 
 export type SearchPrivateProps = WithSupportProps<
   {
@@ -23,10 +24,17 @@ export type SearchPrivateProps = WithSupportProps<
     size?: Size;
     /** Состояние загрузки */
     loading?: boolean;
+    /** Деактивирован ли компонент */
+    disabled?: boolean;
     /** Колбек на подтверждение поиска по строке */
     onSubmit?(value: string): void;
     /** CSS-класс */
     className?: string;
+    /**
+     * Отображение кнопки Очистки поля
+     * @default true
+     */
+    showClearButton?: boolean;
     tabIndex?: number;
   } & Pick<
     Partial<InputPrivateProps>,
@@ -34,12 +42,20 @@ export type SearchPrivateProps = WithSupportProps<
   >
 >;
 
+const LOADER_SIZE_MAP = {
+  [SIZE.S]: LOADER_SIZE.XS,
+  [SIZE.M]: LOADER_SIZE.S,
+  [SIZE.L]: LOADER_SIZE.S,
+};
+
 export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(function SearchPrivate(
   {
     size = SIZE.S,
     value: valueProp = '',
     onChange: onChangeProp,
+    showClearButton: showClearButtonProp = true,
     loading,
+    disabled,
     placeholder,
     onKeyDown,
     onFocus,
@@ -63,7 +79,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
 
   const { t } = useLocale('SearchPrivate');
 
-  const showClearButton = Boolean(value);
+  const showClearButton = Boolean(showClearButtonProp && value);
 
   const onClear = () => {
     onValueChange('');
@@ -76,6 +92,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
     showClearButton,
     size,
     onClear,
+    disabled: disabled || loading,
   });
 
   const { postfixButtons, inputTabIndex, onInputKeyDown } = useButtonNavigation({
@@ -106,16 +123,22 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
   );
 
   return (
-    <div className={cn(styles.container, className)} {...extractSupportProps(rest)} data-size={size}>
+    <div
+      className={cn(styles.container, className)}
+      {...extractSupportProps(rest)}
+      data-size={size}
+      data-disabled={disabled || undefined}
+    >
       <span className={styles.prefix}>
-        {loading ? (
-          <Sun data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSun} />
+        {!disabled && loading ? (
+          <Sun data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSun} size={LOADER_SIZE_MAP[size]} />
         ) : (
-          <SearchSVG data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSearch} />
+          <SearchSVG data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSearch} size={getIconSize(size)} />
         )}
       </span>
 
       <InputPrivate
+        className={styles.input}
         inputMode={inputMode}
         value={value}
         onChange={onValueChange}
@@ -125,6 +148,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
         tabIndex={tabIndex ?? inputTabIndex}
         ref={mergeRefs(ref, localRef)}
         placeholder={placeholder || t('placeholder')}
+        disabled={disabled || loading}
         type='text'
         data-test-id={PRIVATE_SEARCH_TEST_IDS.input}
       />

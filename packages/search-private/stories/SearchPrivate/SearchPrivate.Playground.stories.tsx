@@ -52,6 +52,7 @@ export const Playground: Story = {
   args: {
     size: SIZE.S,
     loading: false,
+    disabled: false,
     value: '',
     placeholder: undefined,
     inputMode: 'search',

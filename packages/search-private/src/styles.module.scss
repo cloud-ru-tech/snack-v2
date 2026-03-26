@@ -3,6 +3,13 @@
 
 $sizes: 's', 'm', 'l';
 
+.postfix {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
   display: flex;
   flex-grow: 1;
@@ -18,13 +25,21 @@ $sizes: 's', 'm', 'l';
 
         cursor: text;
       }
+
+      .postfix {
+        $squareSideLength: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'max-height');
+
+        max-width: $squareSideLength;
+        max-height: $squareSideLength;
+      }
+
+      &[data-disabled='true'] {
+        input {
+          cursor: not-allowed;
+        }
+      }
     }
   }
-}
-
-.postfix {
-  display: inline-flex;
-  flex-shrink: 0;
 }
 
 .prefix {
@@ -32,4 +47,6 @@ $sizes: 's', 'm', 'l';
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
 }

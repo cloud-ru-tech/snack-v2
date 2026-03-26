@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@sbercloud/figma-variables':
-      specifier: 1.4.8
-      version: 1.4.8
+      specifier: 1.4.8-63f7e661.0
+      version: 1.4.8-63f7e661.0
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -62,7 +62,7 @@ importers:
         version: 1.47.2
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.8
+        version: 1.4.8-63f7e661.0
       '@sbercloud/ft-config-ai-editor':
         specifier: 0.16.2-preview-4807f6e4.0
         version: 0.16.2-preview-4807f6e4.0
@@ -266,7 +266,7 @@ importers:
         version: 0.37.6(astro@5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2))
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.8
+        version: 1.4.8-63f7e661.0
       astro:
         specifier: 5.17.1
         version: 5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -2835,8 +2835,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-variables@1.4.8':
-    resolution: {integrity: sha512-Nsj9QRgj7QfuEWPdwaxpO8ND0+KeLJOO/Lap6ZAOUK6Tvi+DtD8gdjCQVovV0uX4pIMCG1svZPDTKXKw8zfpTA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.8.tgz}
+  '@sbercloud/figma-variables@1.4.8-63f7e661.0':
+    resolution: {integrity: sha512-qRJqC9EnbZTueYFNLpZhpVv5r13OzeWtKKKeOB8pCRGkE1Q32sdfW5NEIYj5VN7SPvxe70sVQv7Lt0P3dHiqFw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.8-63f7e661.0.tgz}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     resolution: {integrity: sha512-+FJgdnx8QEwKJexNK1JxwHwC04nh4QoMzuu3SrpwAypOmydVLwoHY9/dBHjuHTp7ZukrziPTcmq2ryAlgver6A==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/ft-config-ai-editor/-/@sbercloud/ft-config-ai-editor-0.16.2-preview-4807f6e4.0.tgz}
@@ -11594,7 +11594,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-variables@1.4.8': {}
+  '@sbercloud/figma-variables@1.4.8-63f7e661.0': {}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     dependencies:
