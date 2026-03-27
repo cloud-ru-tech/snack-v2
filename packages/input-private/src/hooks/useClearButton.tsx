@@ -13,6 +13,7 @@ type UseClearButtonProps = {
   onClear: MouseEventHandler<HTMLButtonElement>;
   onDown?: MouseEventHandler<HTMLButtonElement>;
   size: Size;
+  disabled?: boolean;
 };
 
 /**
@@ -25,6 +26,7 @@ export function useClearButton({
   onClear,
   onDown,
   size,
+  disabled,
 }: UseClearButtonProps): ButtonProps {
   const clearEventHandler = useEventHandler(onClear);
   const onDownEventHandler = useEventHandler(onDown ?? (() => {}));
@@ -49,6 +51,7 @@ export function useClearButton({
             type='button'
             view='function'
             appearance='neutral'
+            disabled={disabled}
             size={BUTTON_SIZE_MAP[size]}
             icon={<CrossCircleSVG />}
             onClick={handleClear}
@@ -60,6 +63,6 @@ export function useClearButton({
         );
       },
     }),
-    [clearButtonRef, clearEventHandler, onDownEventHandler, showClearButton, size],
+    [clearButtonRef, clearEventHandler, disabled, onDownEventHandler, showClearButton, size],
   );
 }
