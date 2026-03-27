@@ -70,7 +70,6 @@ function Example() {
     separator: '›',
     firstItemIconOnly: false,
     inactiveLastItem: false,
-    lastEmpty: false,
     storyUrl: false,
     storyIcon: false,
     storyOnClick: false,
@@ -97,10 +96,6 @@ function Example() {
     inactiveLastItem: {
       control: 'boolean',
       description: 'Strip href/onClick from the last item so it is not clickable',
-    },
-    lastEmpty: {
-      control: 'boolean',
-      description: 'Allow an empty last segment in the hidden chain (advanced)',
     },
     storyUrl: {
       name: '[story] url',

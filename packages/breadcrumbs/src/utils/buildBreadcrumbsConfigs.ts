@@ -71,7 +71,7 @@ const collapseAllRest = (lastElementRenderMode: ItemRenderMode, rest: InnerItem[
     return { ...element, renderMode: lastItem ? lastElementRenderMode : ITEM_RENDER_MODE.Collapsed };
   });
 
-export function buildBreadcrumbsConfigs(items: Item[], sizeMap: SizeMap, lastEmpty?: boolean): BreadcrumbsConfig[] {
+export function buildBreadcrumbsConfigs(items: Item[], sizeMap: SizeMap): BreadcrumbsConfig[] {
   if (!items.length) {
     return [];
   }
@@ -92,7 +92,7 @@ export function buildBreadcrumbsConfigs(items: Item[], sizeMap: SizeMap, lastEmp
 
   return chains.map(chain =>
     chain.reduce<BreadcrumbsConfig>(
-      (acc, item, index, array) => {
+      (acc, item, index) => {
         const { renderMode } = item;
 
         if (index && RENDER_MODE_WITH_WIDTH.includes(renderMode)) {
@@ -114,11 +114,6 @@ export function buildBreadcrumbsConfigs(items: Item[], sizeMap: SizeMap, lastEmp
         acc.weight += RENDER_MODE_WEIGHT[item.renderMode];
         acc.width += width;
         acc.chain.push({ element: ELEMENT_TYPE.Item, item, width });
-
-        if (index === array.length - 1 && lastEmpty) {
-          acc.width += sizeMap.separator;
-          acc.chain.push({ element: ELEMENT_TYPE.Separator, width: sizeMap.separator });
-        }
 
         return acc;
       },

@@ -35,12 +35,6 @@ export type BreadcrumbsProps = WithSupportProps<{
    * @default false
    */
   inactiveLastItem?: boolean;
-
-  /**
-   * Добавляет в расчёт цепочки разделитель после последнего пункта (хвостовой разделитель по макету).
-   * @default false
-   */
-  lastEmpty?: boolean;
 }>;
 
 /**
@@ -53,7 +47,6 @@ export const Breadcrumbs = memo(function Breadcrumbs({
   className,
   firstItemIconOnly = false,
   inactiveLastItem = false,
-  lastEmpty = false,
   ...rest
 }: BreadcrumbsProps) {
   const containerRef = useRef<HTMLUListElement>(null);
@@ -78,7 +71,6 @@ export const Breadcrumbs = memo(function Breadcrumbs({
         separator={separator}
         onConfigsBuilt={setConfigs}
         firstItemIconOnly={firstItemIconOnly}
-        lastEmpty={lastEmpty}
       />
       <Wrapper {...rest} ref={containerRef} hidden={false} size={size} separator={separator} className={className}>
         {currentConfig?.chain.map((block, index, array) => {

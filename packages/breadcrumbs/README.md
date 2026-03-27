@@ -99,25 +99,6 @@ export function FirstItemIconOnly() {
 }
 ```
 
-### Пустой разделитель после последнего шага
-
-```tsx
-import { Breadcrumbs } from '@design-system/breadcrumbs';
-
-
-export function LastEmpty() {
-  return (
-    <Breadcrumbs
-      lastEmpty
-      items={[
-        { id: '1', label: 'Раздел', href: '#' },
-        { id: '2', label: 'Текущая', href: '#' },
-      ]}
-    />
-  );
-}
-```
-
 
 ## Usage
 
@@ -134,7 +115,6 @@ export function LastEmpty() {
 | size | enum Size: `"xs"`, `"s"` | s | Размер |
 | firstItemIconOnly | `boolean` | false | Использовать иконку без лейбла в первом айтеме |
 | inactiveLastItem | `boolean` | false | Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick` |
-| lastEmpty | `boolean` | false | Добавляет в расчёт цепочки разделитель после последнего пункта (хвостовой разделитель по макету). |
 
 ## Best Practices
 
