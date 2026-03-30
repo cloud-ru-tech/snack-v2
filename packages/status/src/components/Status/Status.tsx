@@ -34,7 +34,7 @@ export type StatusProps = WithSupportProps<{
 export function Status({
   label,
   size = STATUS_SIZE.XS,
-  appearance: appearanceProp = APPEARANCE.Primary,
+  appearance: appearanceProp = APPEARANCE.Neutral,
   className,
   loading = false,
   hasBackground = false,

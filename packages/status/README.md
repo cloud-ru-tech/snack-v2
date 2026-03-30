@@ -36,8 +36,8 @@ import {
 ```tsx
 import { Status } from '@design-system/status';
 
-<Status label="Активен" size="xs" appearance="primary" />
-<Status label="Активен" size="s" appearance="primary" />
+<Status label="Активен" size="xs" appearance="neutral" />
+<Status label="Активен" size="s" appearance="neutral" />
 ```
 
 ### Appearance
@@ -55,8 +55,8 @@ import { APPEARANCE, Status } from '@design-system/status';
 ```tsx
 import { Status } from '@design-system/status';
 
-<Status label="Активен" size="s" appearance="primary" />
-<Status label="Активен" size="s" appearance="primary" hasBackground />
+<Status label="Активен" size="s" appearance="neutral" />
+<Status label="Активен" size="s" appearance="neutral" hasBackground />
 ```
 
 ### Sizes
@@ -65,7 +65,7 @@ import { Status } from '@design-system/status';
 import { StatusIndicator } from '@design-system/status';
 
 {Object.values(STATUS_INDICATOR_SIZE).map(size => (
-    <StatusIndicator size={size} appearance="primary" />
+    <StatusIndicator size={size} appearance="neutral" />
 ))}
 ```
 
@@ -88,7 +88,7 @@ import { APPEARANCE, StatusIndicator } from '@design-system/status';
 import { Status } from '@design-system/status';
 
 export function Example() {
-  return <Status label="Активен" size="s" appearance="primary" />;
+  return <Status label="Активен" size="s" appearance="neutral" />;
 }
 ```
 
@@ -98,7 +98,7 @@ export function Example() {
 import { Status } from '@design-system/status';
 
 export function Example() {
-  return <Status label="Загрузка..." size="s" appearance="primary" loading />;
+  return <Status label="Загрузка..." size="s" appearance="neutral" loading />;
 }
 ```
 
@@ -126,7 +126,7 @@ export function Example() {
 |------|------|---------------|-------------|
 | label* | `string` | - | Подпись к индикатору (точка с текстом). Если не передано — только точка |
 | size | enum StatusSize: `"xs"`, `"s"` | xs | Размер индикатора и подписи |
-| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | - | Внешний вид (цветовая схема) |
+| appearance | enum Appearance: `"neutral"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | - | Внешний вид (цветовая схема) |
 | className | `string` | - | CSS-класс |
 | hasBackground | `boolean` | - | Наличие фона |
 | loading | `boolean` | - | Состояние загрузки |
@@ -136,13 +136,13 @@ export function Example() {
 | name | type | default value | description |
 |------|------|---------------|-------------|
 | size | enum StatusIndicatorSize: `"xs"`, `"s"`, `"4xs"`, `"3xs"`, `"2xs"` | s | Размер |
-| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | primary | Внешний вид |
+| appearance | enum Appearance: `"neutral"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral | Внешний вид |
 | className | `string` | - | CSS-класс |
 
 ## Best Practices
 
 1. **Краткая подпись** — Используйте короткий текст в `label` (например, «Активен», «В работе»)
-2. **Подбирайте appearance** — primary/neutral для общего контекста; цветные варианты — для семантики (успех, предупреждение, ошибка)
+2. **Подбирайте appearance** — neutral для нейтрального контекста; цветные варианты — для семантики (успех, предупреждение, ошибка)
 3. **Размер по контексту** — XS для компактных мест (таблицы, карточки), S для основных экранов
 
 ---

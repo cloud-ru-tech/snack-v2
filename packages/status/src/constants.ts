@@ -13,7 +13,6 @@ export const STATUS_INDICATOR_SIZE = {
 
 export const APPEARANCE = {
   Neutral: 'neutral',
-  Primary: 'primary',
   Red: 'red',
   Orange: 'orange',
   Yellow: 'yellow',

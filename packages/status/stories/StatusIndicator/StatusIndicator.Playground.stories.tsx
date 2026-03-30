@@ -40,7 +40,7 @@ function Example() {
   return (
     <StatusIndicator
       size={STATUS_INDICATOR_SIZE.M}
-      appearance={APPEARANCE.Primary}
+      appearance={APPEARANCE.Neutral}
     />
   );
 }
@@ -51,7 +51,7 @@ function Example() {
   },
   args: {
     size: STATUS_INDICATOR_SIZE.S,
-    appearance: APPEARANCE.Primary,
+    appearance: APPEARANCE.Neutral,
   },
   argTypes: {
     size: {

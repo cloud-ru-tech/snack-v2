@@ -43,7 +43,7 @@ import { Status, STATUS_SIZE, APPEARANCE } from '@design-system/status';
 
 function Example() {
   return (
-    <Status size={STATUS_SIZE.S} appearance={APPEARANCE.Primary}>
+    <Status size={STATUS_SIZE.S} appearance={APPEARANCE.Neutral}>
       Активен
     </Status>
   );
@@ -56,7 +56,7 @@ function Example() {
   args: {
     label: 'Label text',
     size: STATUS_SIZE.S,
-    appearance: APPEARANCE.Primary,
+    appearance: APPEARANCE.Neutral,
     hasBackground: false,
     loading: false,
     showProgress: false,

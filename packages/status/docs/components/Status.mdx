@@ -23,10 +23,10 @@ import { APPEARANCE, Status, STATUS_SIZE } from '../../src';
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="center">
     <ExampleItem label="XS">
-      <Status label="Активен" size="xs" appearance="primary" />
+      <Status label="Активен" size="xs" appearance="neutral" />
     </ExampleItem>
     <ExampleItem label="S">
-      <Status label="Активен" size="s" appearance="primary" />
+      <Status label="Активен" size="s" appearance="neutral" />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -48,10 +48,10 @@ import { APPEARANCE, Status, STATUS_SIZE } from '../../src';
 <ExampleContainer>
   <ExampleRow gap="large" justifyContent="center">
     <ExampleItem label="Без фона">
-      <Status label="Активен" size="s" appearance="primary" />
+      <Status label="Активен" size="s" appearance="neutral" />
     </ExampleItem>
     <ExampleItem label="С фоном">
-      <Status label="Активен" size="s" appearance="primary" hasBackground />
+      <Status label="Активен" size="s" appearance="neutral" hasBackground />
     </ExampleItem>
   </ExampleRow>
 </ExampleContainer>
@@ -76,7 +76,7 @@ import { APPEARANCE, Status, STATUS_SIZE } from '../../src';
 import { Status } from '@design-system/status';
 
 export function Example() {
-  return <Status label="Активен" size="s" appearance="primary" />;
+  return <Status label="Активен" size="s" appearance="neutral" />;
 }
 ```
 
@@ -88,7 +88,7 @@ export function Example() {
 import { Status } from '@design-system/status';
 
 export function Example() {
-  return <Status label="Загрузка..." size="s" appearance="primary" loading />;
+  return <Status label="Загрузка..." size="s" appearance="neutral" loading />;
 }
 ```
 
@@ -118,7 +118,7 @@ export function Example() {
 |------|------|---------------|-------------|
 | label* | `string` | - | Подпись к индикатору (точка с текстом). Если не передано — только точка |
 | size | enum StatusSize: `"xs"`, `"s"` | xs | Размер индикатора и подписи |
-| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | - | Внешний вид (цветовая схема) |
+| appearance | enum Appearance: `"neutral"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | - | Внешний вид (цветовая схема) |
 | className | `string` | - | CSS-класс |
 | hasBackground | `boolean` | - | Наличие фона |
 | loading | `boolean` | - | Состояние загрузки |
@@ -135,5 +135,5 @@ export function Example() {
 ## Best practices
 
 1. **Краткая подпись** — Используйте короткий текст в `label` (например, «Активен», «В работе»)
-2. **Подбирайте appearance** — primary/neutral для общего контекста; цветные варианты — для семантики (успех, предупреждение, ошибка)
+2. **Подбирайте appearance** — neutral для нейтрального контекста; цветные варианты — для семантики (успех, предупреждение, ошибка)
 3. **Размер по контексту** — XS для компактных мест (таблицы, карточки), S для основных экранов

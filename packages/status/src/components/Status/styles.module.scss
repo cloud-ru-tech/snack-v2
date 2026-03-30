@@ -5,7 +5,7 @@
 @use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
 
 $sizes: 'xs', 's';
-$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+$appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
 
 .container {

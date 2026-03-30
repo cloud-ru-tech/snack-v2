@@ -15,7 +15,7 @@ export type StatusIndicatorProps = WithSupportProps<{
 
 export function StatusIndicator({
   size = STATUS_INDICATOR_SIZE.S,
-  appearance = APPEARANCE.Primary,
+  appearance = APPEARANCE.Neutral,
   className,
   ...rest
 }: StatusIndicatorProps) {
