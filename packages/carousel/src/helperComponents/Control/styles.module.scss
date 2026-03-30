@@ -1,0 +1,27 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/carousel.module' as carousel;
+
+.control {
+  top: 50%;
+
+  :global(.sn-mobile) & {
+    // TODO: refactoring after https://jira.cloud.ru/browse/FF-8182
+    display: none;
+  }
+
+  &[data-direction='prev'] {
+    @include base.composite-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlBack');
+
+    position: absolute;
+    left: 0;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  &[data-direction='next'] {
+    @include base.composite-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlForward');
+
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%) translateX(50%);
+  }
+}

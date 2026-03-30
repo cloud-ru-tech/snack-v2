@@ -102,6 +102,9 @@
     },
     {
       "path": "./breadcrumbs/tsconfig.esm.json"
+    },
+    {
+      "path": "./carousel/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

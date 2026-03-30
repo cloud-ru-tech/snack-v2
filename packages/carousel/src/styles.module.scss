@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/carousel.module' as carousel;
+
+.control {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.carousel {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  &[data-controls-visibility="always"],
+  &[data-controls-visibility="hover"]:hover {
+    & .control {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+}
+
+.pagination {
+  @include base.composite-var(carousel.$carousel, 'anatomy', 'sliderWrapper');
+
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.carouselBase {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+}

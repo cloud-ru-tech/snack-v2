@@ -102,6 +102,9 @@
     },
     {
       "path": "./breadcrumbs/tsconfig.cjs.json"
+    },
+    {
+      "path": "./carousel/tsconfig.cjs.json"
     }
   ],
   "compilerOptions": {

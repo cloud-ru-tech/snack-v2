@@ -1,0 +1,43 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.itemProvider {
+  --gap: #{base.$sn-primitive-dimension-16};
+
+  overflow-x: hidden;
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+
+  width: 100%;
+
+  &[data-swipe] {
+    cursor: grab;
+  }
+
+  &[data-swipe][data-pointers] {
+    cursor: grabbing;
+    user-select: none;
+
+    -webkit-user-drag: none;
+  }
+}
+
+.itemContainer {
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.itemTracker {
+  display: flex;
+  gap: var(--gap, base.$sn-primitive-dimension-16);
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.hiddenItem {
+  pointer-events: none;
+
+  * {
+    pointer-events: none;
+  }
+}
