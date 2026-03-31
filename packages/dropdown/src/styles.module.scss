@@ -13,6 +13,7 @@
 .root {
   @include base.composite-var(dropdown.$dropdown, 'anatomy', 'container');
 
+  position: relative;
   display: flex;
   flex-direction: column;
   // TODO: need check in figma

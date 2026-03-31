@@ -1,0 +1,24 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+
+.drawer {
+  box-sizing: border-box;
+}
+
+.safeAreaTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+  padding-top: base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'safeArea', 'padding-top');
+}
+
+.safeAreaBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+  padding-bottom: base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'safeArea', 'padding-bottom');
+}

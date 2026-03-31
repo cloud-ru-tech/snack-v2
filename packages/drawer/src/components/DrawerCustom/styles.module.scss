@@ -1,0 +1,140 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@design-system/materials' as m;
+
+$orientations: 'vertical', 'horizontal';
+$widthSizes: 's', 'm', 'l';
+
+/**
+  * Structure:
+  * <div class="drawerRoot">
+  *   <div data-content-wrapper="true" class="rc-drawer-content-wrapper">
+  *     <div class="drawer rc-drawer-content">
+  *       ...
+  *     </div>
+  *   </div>
+  */
+
+.drawerRoot {
+  z-index: initial !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.drawer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container');
+}
+
+.mask {
+  z-index: initial !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.badgeButtonClosed {
+  margin: base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-top') base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-right') base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-bottom') base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-left');
+}
+
+.badgeButtonClosedWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 0;
+  height: 0;
+}
+
+div[data-content-wrapper='true'] {
+  will-change: transform;
+
+  z-index: initial;
+
+  overflow: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include m.with-material('acrylic', #{drawer});
+
+  &[data-position='top'] {
+    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionTop');
+
+    .drawer {
+      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionTop', 'container');
+    }
+  }
+
+  &[data-position='bottom'] {
+    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionBottom');
+
+    .drawer {
+      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionBottom', 'container');
+    }
+  }
+
+  &[data-position='left'] {
+    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionLeft');
+
+    .drawer {
+      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
+    }
+  }
+
+  &[data-position='right'] {
+    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionRight');
+
+    .drawer {
+      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
+    }
+  }
+
+  &[data-position='left'],
+  &[data-position='right'] {
+    align-items: stretch;
+    height: 100%;
+
+    @each $width in $widthSizes {
+      &[data-width='#{$width}'] {
+        @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'width', 'container', $width);
+
+        width: min(100%, base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'width', 'container', $width, 'max-width'));
+      }
+    }
+  }
+
+  &[data-position='top'],
+  &[data-position='bottom'] {
+    width: 100%;
+    height: 100%;
+  }
+
+  &[data-position='top'][data-height-auto],
+  &[data-position='bottom'][data-height-auto] {
+    height: auto;
+    max-height: 100%;
+  }
+
+  &[data-position='top'][data-height-auto] {
+    inset: 0 0 auto;
+  }
+
+  &[data-position='bottom'][data-height-auto] {
+    inset: auto 0 0;
+  }
+
+  &[data-showblackout='true'] {
+    .mask {
+      background-color: base.$sn-theme-color-blackout;
+    }
+
+    .drawer {
+      box-shadow: base.$sn-boxShadow-elevation-level5;
+    }
+  }
+}

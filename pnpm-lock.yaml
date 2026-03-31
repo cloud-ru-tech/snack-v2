@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@sbercloud/figma-variables':
-      specifier: 1.4.9
-      version: 1.4.9
+      specifier: 2.0.1-a615e1d0.0
+      version: 2.0.1-a615e1d0.0
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -62,7 +62,7 @@ importers:
         version: 1.47.2
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.9
+        version: 2.0.1-a615e1d0.0
       '@sbercloud/ft-config-ai-editor':
         specifier: 0.16.2-preview-4807f6e4.0
         version: 0.16.2-preview-4807f6e4.0
@@ -266,7 +266,7 @@ importers:
         version: 0.37.6(astro@5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2))
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 1.4.9
+        version: 2.0.1-a615e1d0.0
       astro:
         specifier: 5.17.1
         version: 5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -412,6 +412,30 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
+
+  packages/drawer:
+    dependencies:
+      '@design-system/button':
+        specifier: 0.1.0
+        version: link:../button
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/scroll':
+        specifier: 0.1.0
+        version: link:../scroll
+      '@design-system/typography':
+        specifier: 0.1.0
+        version: link:../typography
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+      rc-drawer:
+        specifier: 6.4.1
+        version: 6.4.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
   packages/dropdown:
     dependencies:
@@ -2667,6 +2691,13 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
+  '@rc-component/portal@1.1.2':
+    resolution: {integrity: sha512-6f813C0IsasTZms08kfA8kPAGxbbkYToa8ALaiDIGGECU4i9hj8Plgbx0sNJDrey3EtHO30hmdaxtT0138xZcg==}
+    engines: {node: '>=8.x'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   '@resvg/resvg-js-android-arm-eabi@2.6.2':
     resolution: {integrity: sha512-FrJibrAk6v29eabIPgcTUMPXiEz8ssrAk7TXxsiZzww9UTQ1Z5KAbFJs+Z0Ez+VZTYgnE5IQJqBcoSiMebtPHA==}
     engines: {node: '>= 10'}
@@ -2880,8 +2911,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-variables@1.4.9':
-    resolution: {integrity: sha512-uPUdiTH/lOnTKv7pz+FeaNCmRGVkxjJ6HTwlTmsaR6z/jEiHAuGryjrLo6nrktrBKCZuL6KkngDtd3kYnRHBCg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-1.4.9.tgz}
+  '@sbercloud/figma-variables@2.0.1-a615e1d0.0':
+    resolution: {integrity: sha512-vCYtToDrME7jF4hlVMCDG2p6j7KSZgpDz/kUxx+eh0feHCePbwVLqb/sl4IEb6IwtjTqWOZ/wyffNG0C4cU7+g==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-2.0.1-a615e1d0.0.tgz}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     resolution: {integrity: sha512-+FJgdnx8QEwKJexNK1JxwHwC04nh4QoMzuu3SrpwAypOmydVLwoHY9/dBHjuHTp7ZukrziPTcmq2ryAlgver6A==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/ft-config-ai-editor/-/@sbercloud/ft-config-ai-editor-0.16.2-preview-4807f6e4.0.tgz}
@@ -7822,6 +7853,18 @@ packages:
   ramda@0.27.0:
     resolution: {integrity: sha512-pVzZdDpWwWqEVVLshWUHjNwuVP7SfcmPraYuqocJp1yo2U1R7P+5QAfDhdItkuoGqIBnBYrtPp7rEPqDn9HlZA==}
 
+  rc-drawer@6.4.1:
+    resolution: {integrity: sha512-QIbNMjiZy322o9uEpJHsSZ5rS/zuxqam3lYVPDzjztoqsoDzTNNxWN77QVpOfQ0UC9/87+qu25zocJ+O9bK2Tg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-motion@2.9.5:
+    resolution: {integrity: sha512-w+XTUrfh7ArbYEd2582uDrEhmBHwK1ZENJiSJVb7uRxdE7qJSYjbO2eksRXmndqyKqKoYPc9ClpPh5242mV1vA==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   rc-slider@11.1.9:
     resolution: {integrity: sha512-h8IknhzSh3FEM9u8ivkskh+Ef4Yo4JRIY2nj7MrH6GQmrwV6mcpJf5/4KgH5JaVI1H3E52yCdpOlVyGZIeph5A==}
     engines: {node: '>=8.x'}
@@ -11515,6 +11558,14 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@rc-component/portal@1.1.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+    dependencies:
+      '@babel/runtime': 7.28.6
+      classnames: 2.5.1
+      rc-util: 5.44.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
   '@resvg/resvg-js-android-arm-eabi@2.6.2':
     optional: true
 
@@ -11652,7 +11703,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-variables@1.4.9': {}
+  '@sbercloud/figma-variables@2.0.1-a615e1d0.0': {}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     dependencies:
@@ -17899,6 +17950,24 @@ snapshots:
   radix3@1.1.2: {}
 
   ramda@0.27.0: {}
+
+  rc-drawer@6.4.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@babel/runtime': 7.28.6
+      '@rc-component/portal': 1.1.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      classnames: 2.5.1
+      rc-motion: 2.9.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      rc-util: 5.44.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
+  rc-motion@2.9.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@babel/runtime': 7.28.6
+      classnames: 2.5.1
+      rc-util: 5.44.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   rc-slider@11.1.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:

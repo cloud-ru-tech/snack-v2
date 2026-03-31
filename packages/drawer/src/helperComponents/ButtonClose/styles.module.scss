@@ -1,0 +1,36 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@design-system/materials' as m;
+
+.stateLayer {
+  visibility: initial;
+}
+
+.root {
+  @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'buttonClosed');
+
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid transparent;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: transparent;
+  outline: 0;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}
