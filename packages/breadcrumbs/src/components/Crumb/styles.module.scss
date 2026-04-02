@@ -48,7 +48,7 @@ $sizes: 'xs', 's';
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'size', $size, 'container', 'textWrapper');
+      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'crumb', 'size', $size, 'container', 'textWrapper');
     }
   }
 
