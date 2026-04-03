@@ -10,11 +10,11 @@ import {
   ExampleRow,
 } from '#astro/components/mdx';
 import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-import { QuestionTooltip } from '../../src';
+import { QuestionTooltip, SIZE } from '../../src';
 
 # QuestionTooltip
 
-Тултип с триггером-иконкой «вопрос»: примеры, использование и API. Переиспользует компонент Tooltip, добавляя стандартный триггер в виде иконки 16px.
+Тултип с триггером-иконкой «вопрос»: примеры, использование и API. Переиспользует компонент Tooltip, добавляя стандартный триггер в виде иконки. Размер иконки задаётся пропом `size`: `xs` — 16px (по умолчанию), `s` — 24px.
 
 ## Live examples
 
@@ -34,6 +34,34 @@ import { QuestionTooltip } from '@design-system/tooltip';
 export function Example() {
   return (
     <QuestionTooltip tip="Подсказка при наведении на иконку" />
+  );
+}
+```
+
+### Размер иконки (`size`)
+
+`size` меняет размер иконки-триггера: **`xs`** — 16px (значение по умолчанию), **`s`** — 24px. В коде удобно использовать константы `SIZE.XS` и `SIZE.S`.
+
+<ExampleContainer>
+  <ExampleRow gap="large" justifyContent="flex-start">
+    <ExampleItem label="xs (16px)">
+      <QuestionTooltip tip="Иконка 16px" size={SIZE.XS} client:load />
+    </ExampleItem>
+    <ExampleItem label="s (24px)">
+      <QuestionTooltip tip="Иконка 24px" size={SIZE.S} client:load />
+    </ExampleItem>
+  </ExampleRow>
+</ExampleContainer>
+
+```tsx
+import { QuestionTooltip, SIZE } from '@design-system/tooltip';
+
+export function Example() {
+  return (
+    <>
+      <QuestionTooltip tip="Компактная иконка" size={SIZE.XS} />
+      <QuestionTooltip tip="Крупная иконка" size={SIZE.S} />
+    </>
   );
 }
 ```
@@ -165,6 +193,7 @@ export function Example() {
 | tooltipClassname | `string` | - | CSS-класс контейнера подсказки |
 | triggerLabel | `string` | Подсказка | Доступное имя для иконки-триггера |
 | tabIndex | `number` | - | Tab index для кнопки-триггера |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
 
 
 [//]: DOCUMENTATION_SECTION_END
@@ -172,7 +201,7 @@ export function Example() {
 ## Accessibility
 
 - Триггер — кнопка с `aria-label` (по умолчанию «Подсказка»), задаётся через `triggerLabel`. Иконка наследует цвет текста (`currentColor`).
-- По умолчанию `trigger="hoverAndFocusVisible"` — тултип доступен при наведении и при фокусе с клавиатуры.
+- По умолчанию `trigger={TRIGGER.Hover}` — тултип открывается по наведению; при необходимости комбинаций hover/focus задайте `trigger` явно (см. таблицу пропсов).
 - Для контента внутри тултипа используйте осмысленный текст; при длинном или интерактивном контенте рассмотрите Popover с открытием по клику.
 
 ## Best practices

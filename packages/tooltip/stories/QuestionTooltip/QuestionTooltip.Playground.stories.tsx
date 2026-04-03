@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import readme from '../../README.md?raw';
-import { PLACEMENT, QuestionTooltip, type QuestionTooltipProps, TRIGGER } from '../../src';
+import { PLACEMENT, QuestionTooltip, type QuestionTooltipProps, SIZE, TRIGGER } from '../../src';
 import styles from '../styles.module.scss';
 
 const meta: Meta<QuestionTooltipProps> = {
@@ -49,6 +49,7 @@ function Example() {
   },
   args: {
     tip: 'Текст подсказки',
+    size: SIZE.XS,
     placement: PLACEMENT.Top,
     trigger: TRIGGER.HoverAndFocusVisible,
     hoverDelayOpen: 0,
@@ -59,6 +60,11 @@ function Example() {
     tip: {
       control: 'text',
       description: 'Содержимое тултипа (текст или разметка)',
+    },
+    size: {
+      control: 'radio',
+      options: Object.values(SIZE),
+      description: 'Размер иконки',
     },
     placement: {
       control: 'select',

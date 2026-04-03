@@ -18,7 +18,9 @@ pnpm add @design-system/tooltip
 import {
   TRIGGER,
   PLACEMENT,
-  type Placement
+  type Placement,
+  SIZE,
+  type Size
 } from '@design-system/tooltip';
 ```
 
@@ -32,6 +34,21 @@ import { QuestionTooltip } from '@design-system/tooltip';
 export function Example() {
   return (
     <QuestionTooltip tip="Подсказка при наведении на иконку" />
+  );
+}
+```
+
+### Размер иконки (`size`)
+
+```tsx
+import { QuestionTooltip, SIZE } from '@design-system/tooltip';
+
+export function Example() {
+  return (
+    <>
+      <QuestionTooltip tip="Компактная иконка" size={SIZE.XS} />
+      <QuestionTooltip tip="Крупная иконка" size={SIZE.S} />
+    </>
   );
 }
 ```
@@ -197,6 +214,7 @@ export function Example() {
 | tooltipClassname | `string` | - | CSS-класс контейнера подсказки |
 | triggerLabel | `string` | Подсказка | Доступное имя для иконки-триггера |
 | tabIndex | `number` | - | Tab index для кнопки-триггера |
+| size | enum Size: `"xs"`, `"s"` | xs | Размер |
 
 ### TooltipProps
 | name | type | default value | description |
