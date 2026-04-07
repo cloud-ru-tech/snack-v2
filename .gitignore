@@ -61,3 +61,6 @@ test-results/
 
 # Cursor
 .history
+# AI EDITOR CONFIG START
+.history
+# AI EDITOR CONFIG END

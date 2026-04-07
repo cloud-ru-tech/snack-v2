@@ -1,0 +1,173 @@
+/**
+ * Стили повторяют слоистую структуру Figma:
+ * - Контейнер (relative)
+ * - Слой 1: фон / бордер (absolute, inset: 0)
+ * - Слой 2: state layer — hover/pressed (absolute, inset: 0), токены material-stateLayer
+ * - Слой 3: контент (relative, z-index: 1)
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as btn;
+@use '@design-system/materials' as m;
+
+$sizes: 's', 'm';
+
+$typography: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
+
+// --- Миксины: label/icon цвет ---
+@mixin label-icon-color($color) {
+  .label,
+  .loadingSpinner,
+  .icon {
+    color: $color;
+  }
+}
+
+// --- Миксин: disabled состояние (общий для всех view/appearance) ---
+@mixin disabled-state(
+  $bg-color: base.$sn-theme-color-neutral-decor,
+  $label-color: base.$sn-theme-color-neutral-accent
+) {
+  &:disabled,
+  &[data-disabled] {
+    box-shadow: none;
+
+    @include label-icon-color($label-color);
+
+    & > [data-state-layer][data-state='regularBackground'] {
+      background-color: $bg-color;
+    }
+  }
+}
+
+.stateLayer {
+  visibility: initial;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  font-family: inherit;
+  color: transparent;
+  text-decoration: none;
+
+  background: transparent;
+  outline: 0;
+  outline-offset: 0;
+
+  &[data-full-width] {
+    width: 100%;
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &[data-loading] {
+    cursor: progress;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  &[data-invert-focus-outline-color]:focus-visible {
+    outline-color: base.$sn-theme-color-available-onComplementary;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container');
+
+      .label {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'textWrapper');
+      }
+
+      [data-border-layer] {
+        border-width: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-width');
+      }
+
+      &[data-variant='icon-only'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly');
+      }
+    }
+  }
+
+  // тут подключаем state-layer
+  @include m.has-state-layer-as-child(#{stateLayer});
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors */
+.root[data-size='m'] {
+  .icon,
+  .label {
+    > svg {
+      max-width: base.$sn-adaptive-size-icon-s;
+      max-height: base.$sn-adaptive-size-icon-s;
+    }
+  }
+}
+
+.root[data-size='s'] {
+  .icon,
+  .label {
+    > svg {
+      max-width: base.$sn-adaptive-size-icon-xs;
+      max-height: base.$sn-adaptive-size-icon-xs;
+    }
+  }
+}
+
+.content {
+  z-index: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  border-radius: inherit;
+
+  color: inherit;
+}
+
+.label {
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      @include base.composite-var($typography, $size);
+    }
+  }
+
+  display: inline-flex;
+  align-items: center;
+}
+
+.root[data-view='onColor'] {
+  @include label-icon-color(base.$sn-theme-color-available-version-textSecondary);
+}
+
+.root[data-view='onAccent'] {
+  @include label-icon-color(base.$sn-theme-color-available-inversion-textMain);
+}

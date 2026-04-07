@@ -1,0 +1,41 @@
+{
+  "name": "@design-system/alert",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Alert component for the design system",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@design-system/materials": "0.1.0",
+    "@design-system/icons": "0.1.0",
+    "@design-system/loader": "0.1.0",
+    "@design-system/truncate-string": "1.0.0",
+    "@design-system/utils": "0.1.0",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

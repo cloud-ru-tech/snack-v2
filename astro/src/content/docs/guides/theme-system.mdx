@@ -2,8 +2,9 @@
 title: Система управления темой
 description: Как работает система тем в документации
 ---
-
 import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
+import { ExampleContainer, ExampleRow } from '#astro/components/mdx';
+import { Button } from '@packages/button/src';
 
 ## Обзор
 
@@ -34,7 +35,7 @@ import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
 
 Все настройки сохраняются в `localStorage` и восстанавливаются при перезагрузке страницы.
 
-### Синхронизация
+#### Синхронизация
 
 Тема автоматически синхронизируется:
 
@@ -43,6 +44,16 @@ import ThemeSwitcher from '../../../components/astro/ThemeSwitcher.astro';
 - При навигации (в SPA режиме)
 
 ## API
+
+Кнопка с заливкой (`view='filled'`) в трёх вариантах `appearance` — визуально реагирует на переключение темы в документации.
+
+<ExampleContainer>
+  <ExampleRow gap='medium'>
+    <Button label='Primary' view='filled' appearance='primary' />
+    <Button label='Neutral' view='filled' appearance='neutral' />
+    <Button label='Critical' view='filled' appearance='critical' />
+  </ExampleRow>
+</ExampleContainer>
 
 ### Глобальный менеджер
 
@@ -88,7 +99,11 @@ window.addEventListener('platformChange', (event: CustomEvent) => {
 
 ## Использование в компонентах
 
-### В Astro компонентах
+### **В Astro компонентах**
+
+
+
+
 
 ```astro
 ---
@@ -112,6 +127,8 @@ import ThemeSwitcher from '@/components/astro/ThemeSwitcher.astro';
   manager.setTheme('dark');
 </script>
 ```
+
+
 
 ## Встраивание Storybook
 

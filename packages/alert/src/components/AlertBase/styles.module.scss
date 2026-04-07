@@ -1,0 +1,294 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/alert.module' as alert;
+
+$theme-colors: 'neutral', 'primary', 'red', 'yellow', 'green', 'blue';
+$sizes: 's', 'm';
+
+$appearance-to-token: (
+  'primary': 'primary',
+  'error': 'red',
+  'warning': 'yellow',
+  'success': 'green',
+  'info': 'blue',
+);
+
+.root[data-variant='inline'] {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  @each $color in $theme-colors {
+    &[data-color='#{$color}'] {
+      background-color: base.simple-var(base.$sn-theme, 'color', $color, 'background');
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container');
+    }
+  }
+
+  &[data-collapsible] {
+    cursor: pointer;
+  }
+}
+
+.root[data-outline] {
+  outline-style: solid;
+  outline-width: base.$sn-primitive-strokeWeight-strokeThin;
+
+  @each $color in $theme-colors {
+    &[data-color='#{$color}'] {
+      outline-color: base.simple-var(base.$sn-theme, 'color', $color, 'decor');
+
+      &:focus-within,
+      &:hover {
+        outline-color: base.simple-var(base.$sn-theme, 'color', $color, 'decor');
+      }
+    }
+  }
+}
+
+.root[data-variant='top'] {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border-radius: inherit;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container');
+
+      border-radius: 0;
+    }
+  }
+}
+
+@each $appearance, $token in $appearance-to-token {
+  .root[data-variant='top'][data-appearance='#{$appearance}'] {
+    background-color: base.simple-var(base.$sn-theme, 'color', $token, 'accent');
+  }
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'gap');
+    }
+  }
+}
+
+.bodyInteractive {
+  cursor: pointer;
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'centeredWrapper');
+    }
+  }
+
+  &[data-size='m'] {
+    > svg {
+      max-width: base.$sn-adaptive-size-icon-s;
+      max-height: base.$sn-adaptive-size-icon-s;
+    }
+  }
+
+  &[data-size='s'] {
+    > svg {
+      max-width: base.$sn-adaptive-size-icon-xs;
+      max-height: base.$sn-adaptive-size-icon-xs;
+    }
+  }
+}
+
+.root[data-variant='inline'] .icon {
+  @each $color in $theme-colors {
+    &[data-color='#{$color}'] {
+      color: base.simple-var(base.$sn-theme, 'color', $color, 'accent');
+    }
+  }
+}
+
+@each $appearance, $token in $appearance-to-token {
+  .root[data-variant='top'][data-appearance='#{$appearance}'] .icon {
+    color: base.simple-var(base.$sn-theme, 'color', $token, 'onAccent');
+  }
+}
+
+.contentLayout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+  height: stretch;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'content', 'gap');
+    }
+  }
+}
+
+.title {
+  overflow-wrap: break-word;
+
+  &[data-size='s'] {
+    @include base.composite-var(base.$sn-regular-label-m);
+  }
+
+  &[data-size='m'] {
+    @include base.composite-var(base.$sn-regular-label-l);
+  }
+
+  &[data-collapsed] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.description {
+  overflow-wrap: break-word;
+
+  &[data-size='s'] {
+    @include base.composite-var(base.$sn-regular-body-s);
+  }
+
+  &[data-size='m'] {
+    @include base.composite-var(base.$sn-regular-body-m);
+  }
+
+  &[data-collapsed] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.textLayout {
+  overflow: hidden;
+
+  &[data-expanded] {
+    .title,
+    .description {
+      overflow: initial;
+      text-overflow: initial;
+      white-space: initial;
+    }
+  }
+}
+
+.root[data-variant='inline'] .title {
+  @each $color in $theme-colors {
+    &[data-color='#{$color}'] {
+      color: base.simple-var(base.$sn-theme, 'color', $color, 'text');
+    }
+  }
+}
+
+.root[data-variant='top'][data-appearance='neutral'] .title {
+  color: base.$sn-theme-color-invertNeutral-accent;
+}
+
+@each $appearance, $token in $appearance-to-token {
+  .root[data-variant='top'][data-appearance='#{$appearance}'] .title {
+    color: base.simple-var(base.$sn-theme, 'color', $token, 'onAccent');
+  }
+}
+
+.root[data-variant='inline'] .description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+@each $appearance, $token in $appearance-to-token {
+  .root[data-variant='top'][data-appearance='#{$appearance}'] .description {
+    color: base.simple-var(base.$sn-theme, 'color', $token, 'onAccent');
+  }
+}
+
+.root[data-variant='top'][data-appearance='neutral'] {
+  background-color: base.$sn-theme-color-invertNeutral-background;
+
+  .title,
+  .icon,
+  .description {
+    color: base.$sn-theme-color-available-inversion-textMain;
+  }
+}
+
+.textBlock {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'content', 'text');
+
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+.footer {
+  position: relative;
+
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  width: 100%;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'actionWrapper');
+
+      height: auto;
+    }
+  }
+}
+
+.bodyActions {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'actionWrapper');
+    }
+  }
+}
+
+.root[data-align='horizontal'] {
+  .body {
+    align-items: center;
+  }
+}

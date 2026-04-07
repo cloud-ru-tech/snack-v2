@@ -14,6 +14,11 @@ export type StoryTableProps = {
   rows: StoryTableRow[];
   /** Wrap each cell content in a flex column (e.g. for multiple items per cell) */
   cellContentAsColumn?: boolean;
+  /**
+   * Минимальная ширина таблицы в px (например, когда в двух колонках стоят широкие превью
+   * вроде Alert с `align="horizontal"` и `min-width` у компонента).
+   */
+  tableMinWidthPx?: number;
 };
 
 /**
@@ -26,6 +31,7 @@ export function StoryTable({
   columnHeaders,
   rows,
   cellContentAsColumn = false,
+  tableMinWidthPx,
 }: StoryTableProps) {
   const cellClassName = cellContentAsColumn ? `${styles.tableCell} ${styles.cellContentColumn}` : styles.tableCell;
 
@@ -36,7 +42,7 @@ export function StoryTable({
           {sectionTitle}
         </div>
       )}
-      <table className={styles.table}>
+      <table className={styles.table} style={tableMinWidthPx != null ? { minWidth: tableMinWidthPx } : undefined}>
         <thead className={styles.tableHeader}>
           <tr>
             <th className={`${styles.tableHeaderCell} ${styles.tableHeaderCellFirst}`}>{firstColumnHeader}</th>

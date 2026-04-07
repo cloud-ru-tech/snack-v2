@@ -1,12 +1,19 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .container {
+  /* Широкий контент в ячейках не должен раздвигать весь канвас Storybook */
+  overflow-x: auto;
+  max-width: 100%;
   margin-bottom: base.$sn-primitive-dimension-48;
 }
 
 .table {
+  /* Фиксированная схема: колонки делят ширину таблицы, а не растут под min-content контента */
+  table-layout: fixed;
   border-collapse: collapse;
+
   width: 100%;
+  max-width: 100%;
   margin-bottom: base.$sn-primitive-dimension-48;
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
 }
@@ -35,6 +42,12 @@
   border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
 }
 
+/* Ячейки с превью: иначе таблица не сожмётся ниже intrinsic-ширины дочерних блоков */
+.tableCell:not(.tableCellVariant) {
+  min-width: 0;
+  vertical-align: top;
+}
+
 .tableCellVariant {
   min-width: 120px;
 
@@ -53,4 +66,6 @@
   flex-direction: column;
   gap: 8px;
   align-items: center;
+
+  min-width: 0;
 }

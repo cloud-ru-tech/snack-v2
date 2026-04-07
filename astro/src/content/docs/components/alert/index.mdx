@@ -1,0 +1,43 @@
+---
+title: Alert
+description: Inline-алерт и верхний баннер (AlertTop) — сообщения, действия, сворачивание длинного текста.
+version: "0.1.0"
+---
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+# Alert
+
+Пакет содержит **Alert** (встраиваемое сообщение в контенте с опциональной обводкой) и **AlertTop** (полноширинный баннер под шапкой). Оба разделяют общую разметку и пропсы (кроме `outline`, только у `Alert`).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/alert
+# or
+yarn add @design-system/alert
+# or
+pnpm add @design-system/alert
+```
+
+## Changelog
+
+<Changelog packageName='alert' />
+
+<LlmLink component='alert' />
+
+## Overview
+
+- **Alert** — `variant="inline"`: фон и иконка по `appearance`, опционально `outline`, роль `alert`. Подходит для форм, карточек, модалок.
+- **AlertTop** — `variant="top"`: акцентный фон по `appearance`, типичное использование — полоса под хедером приложения.
+- Общие возможности: `title`, `description`, `actions` (primary / secondary), `onClose`, `align` (vertical | horizontal), `collapsible`, размеры `s` | `m`, константы `APPEARANCE`, `SIZE`, `ALIGN` для типизации.
+
+Figma (референс): [Snack-Ui-Kit — Alert](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3222-166&m=dev)
+
+## Components
+
+- **[Alert](./components/alert/)** — inline-алерт (примеры, Storybook, API)
+- **[AlertTop](./components/alerttop/)** — верхний баннер (примеры, Storybook, API)
