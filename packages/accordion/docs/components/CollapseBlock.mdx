@@ -1,0 +1,134 @@
+---
+title: CollapseBlock
+description: Секции аккордеона Primary, Secondary и Tertiary — заголовок, шеврон, раскрываемый контент и параметры обложки по макету.
+version: '0.1.0'
+---
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+import { ExampleContainer } from '#astro/components/mdx';
+import { ExamplePrimary, ExampleSecondary, ExampleTertiary } from './ui/Example';
+
+# CollapseBlock
+
+Секции **`Accordion.CollapseBlockPrimary`**, **`Accordion.CollapseBlockSecondary`** и **`Accordion.CollapseBlockTertiary`** — элементы с заголовком (`title`), опциональными слотами `afterTitle` и `subTitle`, кнопкой-шевроном и анимированной областью контента. Визуально отличаются уровнем типографики и отступами (Primary — крупнее, Tertiary — компактнее). Primary и Secondary поддерживают `view` и `appearance`; у Tertiary эти пропсы зафиксированы в типах и недоступны.
+
+Секции должны находиться внутри **`Accordion`**, чтобы работала связка с `ToggleGroup`.
+
+## Live examples
+
+### CollapseBlockPrimary
+
+<ExampleContainer>
+  <ExamplePrimary client:load />
+</ExampleContainer>
+
+### CollapseBlockSecondary
+
+<ExampleContainer>
+  <ExampleSecondary client:load />
+</ExampleContainer>
+
+### CollapseBlockTertiary
+
+<ExampleContainer>
+  <ExampleTertiary client:load />
+</ExampleContainer>
+
+## Storybook
+
+### CollapseBlockPrimary
+
+**Playground**
+
+<StorybookIframe storyId="components-accordion-collapseblockprimary--playground" showControls={true} height="520px" />
+
+**Visual Matrix**
+
+<StorybookIframe storyId="components-accordion-collapseblockprimary--visual-matrix" showControls={false} height="900px" />
+
+### CollapseBlockSecondary
+
+**Playground**
+
+<StorybookIframe storyId="components-accordion-collapseblocksecondary--playground" showControls={true} height="520px" />
+
+**Visual Matrix**
+
+<StorybookIframe storyId="components-accordion-collapseblocksecondary--visual-matrix" showControls={false} height="900px" />
+
+### CollapseBlockTertiary
+
+**Playground**
+
+<StorybookIframe storyId="components-accordion-collapseblocktertiary--playground" showControls={true} height="480px" />
+
+**Visual Matrix**
+
+<StorybookIframe storyId="components-accordion-collapseblocktertiary--visual-matrix" showControls={false} height="720px" />
+
+## Usage
+
+### Primary с видом обложки и шевроном
+
+Значения `view`, `appearance` и `chevron` совпадают с константами в `packages/accordion/src/constants` (`simple` | `outline` | `elevated`, палитра `appearance`, `before` | `after`).
+
+```tsx
+import { Accordion } from '@design-system/accordion';
+
+export function Example() {
+  return (
+    <Accordion>
+      <Accordion.CollapseBlockPrimary
+        id="section-1"
+        title="Документы"
+        view="outline"
+        appearance="neutral"
+        chevron="after"
+      >
+        Список документов
+      </Accordion.CollapseBlockPrimary>
+    </Accordion>
+  );
+}
+```
+
+### Tertiary (без view и appearance)
+
+```tsx
+import { Accordion } from '@design-system/accordion';
+
+export function Example() {
+  return (
+    <Accordion>
+      <Accordion.CollapseBlockTertiary id="sub-1" title="Пункт">
+        Текст
+      </Accordion.CollapseBlockTertiary>
+    </Accordion>
+  );
+}
+```
+
+## Props
+
+Общая основа — тип **`CollapseBlockProps`** (поле `component` задаётся внутри обёрток Primary / Secondary / Tertiary).
+
+| name | type | default | description |
+|------|------|---------|-------------|
+| id* | `string` | — | Уникальный идентификатор секции в группе `ToggleGroup`. |
+| title* | `string` | — | Текст заголовка (через типографику и `TruncateString`). |
+| afterTitle | `ReactNode` | — | Слот справа от заголовка в строке. |
+| subTitle | `ReactNode` | — | Подзаголовок под строкой заголовка. |
+| className | `string` | — | Дополнительный CSS-класс корня. |
+| view | `simple` \| `outline` \| `elevated` | `simple` | Вариант обложки. **Не используется** у `CollapseBlockTertiary`. |
+| chevron | `before` \| `after` | `after` | Положение шеврона относительно текста. |
+| appearance | см. константы `APPEARANCE` | `neutral` | Цветовая схема акрила. **Не используется** у `CollapseBlockTertiary`. |
+| keepMounted | `boolean` | `true` | Оставлять ли контент в DOM при сворачивании. |
+| children | `ReactNode` | — | Контент раскрываемой области. |
+
+Поддержка **`WithSupportProps`** (например, `data-test-id`) наследуется от `@design-system/utils`.
+
+## Best practices
+
+1. **Уровень** — Primary для верхнего уровня страницы, Secondary для вложенных блоков, Tertiary для плотных списков и подпунктов.
+2. **Подзаголовок** — используйте `subTitle` для вторичной информации, не дублируйте её в `title`.
+3. **`keepMounted`** — отключайте (`false`), если тяжёлый контент не должен оставаться в DOM в свёрнутом виде (учитывайте задержку анимации).

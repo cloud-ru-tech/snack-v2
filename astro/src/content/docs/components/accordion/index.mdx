@@ -1,0 +1,148 @@
+---
+title: Accordion
+description: Контейнер аккордеона с секциями CollapseBlock (Primary, Secondary, Tertiary), режимами single/multiple и интеграцией с ToggleGroup из @design-system/toggles.
+version: "0.1.0"
+---
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+import { ExampleContainer } from '#astro/components/mdx';
+import { AccordionBasicExample } from './components/ui/AccordionBasicExample';
+
+# Accordion
+
+Пакет `@design-system/accordion` предоставляет контейнер **`Accordion`**, который синхронизирует раскрытие дочерних секций **`Accordion.CollapseBlockPrimary`**, **`Accordion.CollapseBlockSecondary`** и **`Accordion.CollapseBlockTertiary`**. Состояние передаётся через `ToggleGroup` из `@design-system/toggles`. Секции оформлены по макету (акриловые уровни, типографика, шеврон).
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/accordion
+# or
+yarn add @design-system/accordion
+# or
+pnpm add @design-system/accordion
+```
+
+## Changelog
+
+<Changelog packageName="accordion" />
+
+<LlmLink component="accordion" />
+
+## Overview
+
+- **Режим выбора** — `selectionMode`: `single` (по умолчанию, открыта не больше одной секции) или `multiple` (несколько секций одновременно).
+- **Управление состоянием** — неконтролируемый режим (`expandedDefault`) и контролируемый (`expanded`, `onExpandedChange`). Тип значения зависит от режима: строка или массив строк.
+- **Вложенность** — внутри секции можно снова использовать `Accordion` для подуровней (как в Storybook Playground).
+- **Секции** — подробнее о визуальных уровнях и пропсах см. [CollapseBlock](./components/CollapseBlock.mdx).
+
+## Components
+
+- **[CollapseBlock](./components/CollapseBlock.mdx)** — секции Primary, Secondary и Tertiary: примеры, Storybook, API
+
+## Live examples
+
+### Базовый аккордеон (single)
+
+<ExampleContainer>
+  <AccordionBasicExample client:load />
+</ExampleContainer>
+
+```tsx
+import { Accordion } from '@design-system/accordion';
+
+export function Example() {
+  return (
+    <Accordion>
+      <Accordion.CollapseBlockPrimary id="doc-block-1" title="Первая секция">
+        Контент первой секции.
+      </Accordion.CollapseBlockPrimary>
+      <Accordion.CollapseBlockPrimary id="doc-block-2" title="Вторая секция">
+        Контент второй секции.
+      </Accordion.CollapseBlockPrimary>
+    </Accordion>
+  );
+}
+```
+
+## Storybook
+
+### Accordion — Playground
+
+<StorybookIframe storyId="components-accordion-accordion--playground" showControls={true} height="640px" />
+
+Дополнительно в Storybook доступны отдельные Playground и Visual Matrix для каждого варианта секции — см. [CollapseBlock](./components/CollapseBlock.mdx#storybook).
+
+## Usage
+
+### Несколько открытых секций (multiple)
+
+```tsx
+import { Accordion } from '@design-system/accordion';
+import { SELECTION_MODE } from '@design-system/toggles';
+
+export function Example() {
+  return (
+    <Accordion selectionMode={SELECTION_MODE.Multiple} expandedDefault={['a', 'b']}>
+      <Accordion.CollapseBlockSecondary id="a" title="Секция A">
+        Контент A
+      </Accordion.CollapseBlockSecondary>
+      <Accordion.CollapseBlockSecondary id="b" title="Секция B">
+        Контент B
+      </Accordion.CollapseBlockSecondary>
+    </Accordion>
+  );
+}
+```
+
+### Контролируемый режим
+
+```tsx
+import { Accordion } from '@design-system/accordion';
+import { useState } from 'react';
+
+export function Example() {
+  const [expanded, setExpanded] = useState<string | undefined>('item-1');
+
+  return (
+    <Accordion expanded={expanded} onExpandedChange={setExpanded}>
+      <Accordion.CollapseBlockPrimary id="item-1" title="Раздел 1">
+        Текст
+      </Accordion.CollapseBlockPrimary>
+      <Accordion.CollapseBlockPrimary id="item-2" title="Раздел 2">
+        Текст
+      </Accordion.CollapseBlockPrimary>
+    </Accordion>
+  );
+}
+```
+
+## Props
+
+### AccordionProps
+
+Тип объединяет варианты для режима `single` и `multiple` (второй задаётся через `selectionMode: SELECTION_MODE.Multiple` из `@design-system/toggles`).
+
+| name | type | description |
+|------|------|-------------|
+| selectionMode | `'single'` (по умолчанию) \| `'multiple'` | Режим: одна или несколько раскрытых секций. |
+| expandedDefault | `string` или `string[]` | Начальное значение в неконтролируемом режиме (в зависимости от `selectionMode`). |
+| expanded | `string` или `string[]` | Текущее значение в контролируемом режиме. |
+| onExpandedChange | `(value: string \| string[] \| undefined) => void` | Обработчик смены раскрытых секций. |
+| children | `ReactNode` | Дочерние элементы — секции CollapseBlock с уникальным `id`. |
+
+## Accessibility
+
+- Секции используют контекст группы переключателей из `@design-system/toggles`; кнопка раскрытия основана на `Button` с иконкой шеврона.
+- Область свёрнутого контента помечается `aria-hidden`, когда секция закрыта.
+- Задавайте осмысленные уникальные `id` для секций — они участвуют в логике группы.
+
+## Best practices
+
+1. **Уникальные `id`** — в пределах одного `Accordion` у каждой секции должен быть свой `id`, совпадающий с моделью `ToggleGroup`.
+2. **Уровень секции** — Primary для верхнего уровня, Secondary и Tertiary для вложенных или более компактных списков (см. [CollapseBlock](./components/CollapseBlock.mdx)).
+3. **Вложенные аккордеоны** — оборачивайте вложенный `Accordion` контентом родительской секции; следите за уникальностью `id` внутри каждой группы.
+4. **Режим** — `single` для классического FAQ; `multiple`, когда пользователю нужно сравнивать несколько раскрытых блоков.

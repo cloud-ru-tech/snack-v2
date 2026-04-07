@@ -1,0 +1,30 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.listM {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.listS {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.story {
+  resize: horizontal;
+
+  overflow: auto;
+  display: block;
+
+  width: 620px;
+  max-width: 100%;
+  padding: 1.5rem;
+}
+
+.paragraph {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  margin: 0;
+}

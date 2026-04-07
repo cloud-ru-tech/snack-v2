@@ -120,6 +120,9 @@
     },
     {
       "path": "./drawer/tsconfig.esm.json"
+    },
+    {
+      "path": "./accordion/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {
