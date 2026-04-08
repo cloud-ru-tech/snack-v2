@@ -1,0 +1,54 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/timeline.module' as tl;
+
+$appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
+.trackDot {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  &[data-variant='default'] {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-color: base.$sn-theme-color-neutral-decor;
+    border-style: solid;
+    border-width: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'border-width');
+    border-radius: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'border-radius');
+
+    background-color: transparent;
+
+    @each $appearance in $appearances {
+      &[data-appearance='#{$appearance}'] {
+        border-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+      }
+    }
+  }
+
+  &[data-variant='subEvent'] {
+    box-sizing: border-box;
+    width: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'subEvent', 'width');
+    height: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'subEvent', 'width');
+    border-radius: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'border-radius');
+
+    background-color: base.$sn-theme-color-neutral-decor;
+
+    @each $appearance in $appearances {
+      &[data-appearance='#{$appearance}'] {
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+      }
+    }
+  }
+}
+
+.trackDotContainer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  min-width: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'min-height');
+  min-height: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'min-height');
+}

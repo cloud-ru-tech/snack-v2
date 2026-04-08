@@ -1,0 +1,31 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/** Ограничение ширины превью таймлайна в доке */
+.timelineDemo {
+  max-width: calc(35 * #{base.$sn-primitive-dimension-16});
+}
+
+.trackDemo {
+  max-width: calc(28 * #{base.$sn-primitive-dimension-16});
+}
+
+.examplesBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.exampleSection {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.exampleLabel {
+  color: base.$sn-theme-color-neutral-text;
+}

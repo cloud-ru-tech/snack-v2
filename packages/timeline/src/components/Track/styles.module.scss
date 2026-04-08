@@ -1,0 +1,83 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/timeline.module' as tl;
+
+$positions: 'center', 'end';
+
+$dash-gap: base.$sn-primitive-dimension-2;
+$dash-segment: calc(#{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dimension-2});
+
+.trackLine {
+  width: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'trackLine', 'border-width');
+  height: 100%;
+  background: base.$sn-theme-color-neutral-decor;
+
+  &[data-style='dashed'] {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0 $dash-gap,
+      base.$sn-theme-color-neutral-decor 0 $dash-segment
+    );
+  }
+}
+
+.track {
+  @include base.composite-var(tl.$timeline, 'anatomy', 'size', 'container', 'track');
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &[data-dot-variant='default'] {
+    .trackLine {
+      &[data-style='dashed'] {
+        background-position-y: calc(#{base.$sn-primitive-dimension-0} - #{base.$sn-primitive-dimension-4});
+      }
+    }
+  }
+
+  &[data-dot-variant='subEvent'] {
+    .trackLine {
+      &[data-style='dashed'] {
+        background-position-y: calc(#{base.$sn-primitive-dimension-0} - #{base.$sn-primitive-dimension-2});
+      }
+    }
+  }
+
+  @each $position in $positions {
+    &[data-position='#{$position}'] {
+      .trackLinePre {
+        @include base.composite-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'topLine');
+
+        position: absolute;
+        top: 0;
+        min-height: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'topLine', 'height');
+      }
+    }
+
+    &[data-position='end'] {
+      padding-top: 0;
+
+      .trackLinePre {
+        transform: translateY(-100%);
+      }
+    }
+
+    &[data-position='start'] {
+      padding-bottom: 0;
+
+      .trackLinePre {
+        display: none;
+      }
+    }
+
+    &[data-position='center'] {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      .trackLinePre {
+        transform: translateY(-100%);
+      }
+    }
+  }
+}

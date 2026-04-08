@@ -111,6 +111,9 @@
     },
     {
       "path": "./search/tsconfig.esm.json"
+    },
+    {
+      "path": "./timeline/tsconfig.esm.json"
     }
   ],
   "compilerOptions": {

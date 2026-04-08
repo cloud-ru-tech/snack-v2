@@ -1,0 +1,18 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.timelineWrapper {
+  display: flex;
+  justify-content: space-around;
+
+  &[data-full-width] {
+    justify-content: initial;
+
+    .timeline {
+      width: 100%;
+    }
+  }
+}
