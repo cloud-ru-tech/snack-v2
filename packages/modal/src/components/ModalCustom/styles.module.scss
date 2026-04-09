@@ -1,0 +1,91 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
+@use '@design-system/materials' as m;
+
+$widthSizes: 's', 'm', 'l';
+
+.modal {
+  position: relative;
+
+  overflow-y: auto;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-height: min(100%, base.simple-var(modal.$modal, 'anatomy', 'container', 'height', 'max-height'));
+
+  outline: none;
+  box-shadow: base.$sn-boxShadow-elevation-level5;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container');
+
+  @each $width in $widthSizes {
+    &[data-width='#{$width}'] {
+      max-width: base.simple-var(modal.$modal, 'anatomy', 'container', 'width', $width, 'max-width');
+    }
+  }
+
+  &:not([data-height-auto]) {
+    height: 100%;
+  }
+}
+
+.root {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  @include m.with-material('acrylic', #{modal});
+
+  @include base.composite-var(modal.$modal, 'anatomy');
+}
+
+.blackout {
+  position: absolute;
+  inset: 0;
+  background-color: base.$sn-theme-color-blackout;
+}
+
+.root[data-overlay-blur='true'] .blackout {
+  backdrop-filter: blur(base.$sn-theme-effect-backgroundBlur);
+}
+
+.backgroundLayer {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  backdrop-filter: blur(base.$sn-acrylic-blurBackground1Level);
+}
+
+.backgroundFill {
+  position: absolute;
+  inset: 0;
+  opacity: base.$sn-acrylic-opacityBackground1Level;
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.closeButtonWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 0;
+  height: 0;
+}

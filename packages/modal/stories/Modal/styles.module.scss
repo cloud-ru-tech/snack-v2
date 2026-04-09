@@ -1,0 +1,24 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
+
+.image {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: stretch;
+  justify-content: center;
+
+  width: 100%;
+  height: 240px;
+
+  object-fit: cover;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'media');
+}
+
+.footerButtonGroup {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

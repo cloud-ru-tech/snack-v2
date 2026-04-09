@@ -1,5 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
 @use '@design-system/materials' as m;
 
 .stateLayer {
@@ -7,7 +7,7 @@
 }
 
 .root {
-  @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'buttonClosed');
+  @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'buttonClosed');
 
   cursor: pointer;
 

@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@sbercloud/figma-variables':
-      specifier: 2.1.1-4e19bbb2.0
-      version: 2.1.1-4e19bbb2.0
+      specifier: 2.1.2
+      version: 2.1.2
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -62,7 +62,7 @@ importers:
         version: 1.47.2
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 2.1.1-4e19bbb2.0
+        version: 2.1.2
       '@sbercloud/ft-config-ai-editor':
         specifier: 0.16.2-preview-4807f6e4.0
         version: 0.16.2-preview-4807f6e4.0
@@ -266,7 +266,7 @@ importers:
         version: 0.37.6(astro@5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2))
       '@sbercloud/figma-variables':
         specifier: 'catalog:'
-        version: 2.1.1-4e19bbb2.0
+        version: 2.1.2
       astro:
         specifier: 5.17.1
         version: 5.17.1(@types/node@25.2.1)(less@4.5.1)(rollup@4.53.3)(sass-embedded@1.96.0)(sass@1.96.0)(stylus@0.62.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -609,6 +609,42 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
+
+  packages/modal:
+    dependencies:
+      '@design-system/button':
+        specifier: 0.1.0
+        version: link:../button
+      '@design-system/icons':
+        specifier: 0.1.0
+        version: link:../icons
+      '@design-system/loader':
+        specifier: 0.1.0
+        version: link:../loader
+      '@design-system/portal-context':
+        specifier: 0.1.0
+        version: link:../portal-context
+      '@design-system/scroll':
+        specifier: 0.1.0
+        version: link:../scroll
+      '@design-system/truncate-string':
+        specifier: 1.0.0
+        version: link:../truncate-string
+      '@design-system/typography':
+        specifier: 0.1.0
+        version: link:../typography
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+      react-remove-scroll:
+        specifier: 2.7.2
+        version: 2.7.2(@types/react@19.2.7)(react@19.2.4)
+      tabbable:
+        specifier: 6.4.0
+        version: 6.4.0
 
   packages/pagination:
     dependencies:
@@ -2938,8 +2974,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-variables@2.1.1-4e19bbb2.0':
-    resolution: {integrity: sha512-TBcXCbO6BDST2PC0jex7/5rKxyC3yS0MrU/wy5I4gsxtcSDtUS35eMXBJsXf2fePYlmtrjslIK3RRkIBXbtP/Q==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-2.1.1-4e19bbb2.0.tgz}
+  '@sbercloud/figma-variables@2.1.2':
+    resolution: {integrity: sha512-4akj18mVIlX3HGGDuRRi26Q+zqC3DRb+W3xXi3dPKlP4ccv5p1G4maYlsJQSSu2eubbqBvAzWhzgf0vDYHheww==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-2.1.2.tgz}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     resolution: {integrity: sha512-+FJgdnx8QEwKJexNK1JxwHwC04nh4QoMzuu3SrpwAypOmydVLwoHY9/dBHjuHTp7ZukrziPTcmq2ryAlgver6A==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/ft-config-ai-editor/-/@sbercloud/ft-config-ai-editor-0.16.2-preview-4807f6e4.0.tgz}
@@ -4851,6 +4887,9 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
+  detect-node-es@1.1.0:
+    resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
+
   deterministic-object-hash@2.0.2:
     resolution: {integrity: sha512-KxektNH63SrbfUyDiwXqRb1rLwKt33AmMv+5Nhsw1kqZ13SJBRTgZHtGbE+hH3a1mVW1cz+4pqSWVPAtLVXTzQ==}
     engines: {node: '>=18'}
@@ -5550,6 +5589,10 @@ packages:
   get-intrinsic@1.3.0:
     resolution: {integrity: sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==}
     engines: {node: '>= 0.4'}
+
+  get-nonce@1.0.1:
+    resolution: {integrity: sha512-FJhYRoDaiatfEkUK8HKlicmu/3SGFD51q3itKDGoSTysQJBnfOcxU5GxnhE1E6soB76MbT0MBtnKJuXyAx+96Q==}
+    engines: {node: '>=6'}
 
   get-pkg-repo@4.2.1:
     resolution: {integrity: sha512-2+QbHjFRfGB74v/pYWjd5OhU3TDIC2Gv/YKUTk/tCvAz0pkn/Mz6P3uByuBimLOcPvN2jYdScl3xGFSrx0jEcA==}
@@ -7955,6 +7998,36 @@ packages:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
+  react-remove-scroll-bar@2.3.8:
+    resolution: {integrity: sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  react-remove-scroll@2.7.2:
+    resolution: {integrity: sha512-Iqb9NjCCTt6Hf+vOdNIZGdTiH1QSqr27H/Ek9sv/a97gfueI/5h1s3yRi1nngzMUaOOToin5dI1dXKdXiF+u0Q==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  react-style-singleton@2.2.3:
+    resolution: {integrity: sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   react-swipeable@7.0.2:
     resolution: {integrity: sha512-v1Qx1l+aC2fdxKa9aKJiaU/ZxmJ5o98RMoFwUqAAzVWUcxgfHFXDDruCKXhw6zIYXm6V64JiHgP9f6mlME5l8w==}
     peerDependencies:
@@ -9261,6 +9334,26 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  use-callback-ref@1.3.3:
+    resolution: {integrity: sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  use-sidecar@1.1.3:
+    resolution: {integrity: sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   use-sync-external-store@1.6.0:
     resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
@@ -11730,7 +11823,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-variables@2.1.1-4e19bbb2.0': {}
+  '@sbercloud/figma-variables@2.1.2': {}
 
   '@sbercloud/ft-config-ai-editor@0.16.2-preview-4807f6e4.0':
     dependencies:
@@ -14119,6 +14212,8 @@ snapshots:
   detect-libc@2.1.2:
     optional: true
 
+  detect-node-es@1.1.0: {}
+
   deterministic-object-hash@2.0.2:
     dependencies:
       base-64: 1.0.0
@@ -14982,6 +15077,8 @@ snapshots:
       has-symbols: 1.1.0
       hasown: 2.0.2
       math-intrinsics: 1.1.0
+
+  get-nonce@1.0.1: {}
 
   get-pkg-repo@4.2.1:
     dependencies:
@@ -18066,6 +18163,33 @@ snapshots:
 
   react-refresh@0.17.0: {}
 
+  react-remove-scroll-bar@2.3.8(@types/react@19.2.7)(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      react-style-singleton: 2.2.3(@types/react@19.2.7)(react@19.2.4)
+      tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.2.7
+
+  react-remove-scroll@2.7.2(@types/react@19.2.7)(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      react-remove-scroll-bar: 2.3.8(@types/react@19.2.7)(react@19.2.4)
+      react-style-singleton: 2.2.3(@types/react@19.2.7)(react@19.2.4)
+      tslib: 2.8.1
+      use-callback-ref: 1.3.3(@types/react@19.2.7)(react@19.2.4)
+      use-sidecar: 1.1.3(@types/react@19.2.7)(react@19.2.4)
+    optionalDependencies:
+      '@types/react': 19.2.7
+
+  react-style-singleton@2.2.3(@types/react@19.2.7)(react@19.2.4):
+    dependencies:
+      get-nonce: 1.0.1
+      react: 19.2.4
+      tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.2.7
+
   react-swipeable@7.0.2(react@19.2.4):
     dependencies:
       react: 19.2.4
@@ -19664,6 +19788,21 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  use-callback-ref@1.3.3(@types/react@19.2.7)(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.2.7
+
+  use-sidecar@1.1.3(@types/react@19.2.7)(react@19.2.4):
+    dependencies:
+      detect-node-es: 1.1.0
+      react: 19.2.4
+      tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.2.7
 
   use-sync-external-store@1.6.0(react@19.2.4):
     dependencies:

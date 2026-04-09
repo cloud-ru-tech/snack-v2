@@ -5,11 +5,14 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useEffect, useRef } from 'react';
 import { useArgs } from 'storybook/preview-api';
 
+import { usePreviewTheme } from '#storybook/components';
+
 import drawerReadme from '../../README.md?raw';
 import { Drawer, DrawerProps } from '../../src';
 import { POSITION, TEST_IDS, WIDTH } from '../../src/constants';
 import { BODY_TEXT, HEADLINE_TEXT, LONG_BODY_TEXT, SHORT_BODY_TEXT, SUBTITLE_TEXT, TOOLTIP_TEXT } from './constants';
-import slotMedia from './slotMedia.jpg';
+import darkMedia from './dark.png';
+import lightMedia from './light.png';
 import styles from './styles.module.scss';
 
 const meta: Meta<DrawerProps> = {
@@ -100,7 +103,8 @@ const Template: StoryFn<StoryProps> = props => {
   const [, updateArgs] = useArgs<StoryProps>();
   const portalRoot = usePortalContext();
   const prevLongBodyContent = useRef<boolean | null>(null);
-
+  const previewTheme = usePreviewTheme();
+  const mediaSrc = previewTheme === 'dark' ? darkMedia : lightMedia;
   const longBody = coerceStoryBooleanArg(longBodyContent, false);
 
   useEffect(() => {
@@ -170,7 +174,7 @@ const Template: StoryFn<StoryProps> = props => {
             <div
               className={styles.image}
               data-test-id={TEST_IDS.image}
-              style={{ background: `url(${slotMedia}) lightgray 50% / cover no-repeat` }}
+              style={{ background: `url(${mediaSrc}) lightgray 50% / cover no-repeat` }}
             />
           ) : undefined
         }
@@ -236,7 +240,10 @@ export const Playground: Story = {
       control: 'boolean',
       description: 'Только для position top/bottom; при left/right игнорируется',
     },
-    showMedia: { control: 'boolean' },
+    showMedia: {
+      name: '[Stories]: Show media',
+      control: 'boolean',
+    },
 
     /** <Header> */
     showHeader: {

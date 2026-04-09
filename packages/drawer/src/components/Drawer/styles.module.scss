@@ -1,5 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
 
 .drawer {
   box-sizing: border-box;
@@ -11,7 +11,7 @@
   align-items: flex-start;
   align-self: stretch;
 
-  padding-top: base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'safeArea', 'padding-top');
+  padding-top: base.simple-var(drawer.$drawer, 'anatomy', 'container', 'safeArea', 'padding-top');
 }
 
 .safeAreaBottom {
@@ -20,5 +20,5 @@
   align-items: flex-start;
   align-self: stretch;
 
-  padding-bottom: base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'safeArea', 'padding-bottom');
+  padding-bottom: base.simple-var(drawer.$drawer, 'anatomy', 'container', 'safeArea', 'padding-bottom');
 }

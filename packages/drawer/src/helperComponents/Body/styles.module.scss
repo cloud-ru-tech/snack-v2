@@ -1,8 +1,8 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
 
 .body {
-  @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'bodyWrapper');
+  @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'bodyWrapper');
 
   display: flex;
   flex: 1 0 0;

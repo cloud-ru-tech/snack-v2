@@ -1,5 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
 
 .footer {
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
   align-self: stretch;
 
-  @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'footer');
+  @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'footer');
 }
 
 .contentWrapper {

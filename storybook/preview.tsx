@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import { Sprite, SpriteSVG } from '@snack-uikit/icons';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
-import { StoryWrapper } from './components';
+import { PreviewThemeProvider, StoryWrapper } from './components';
 
 const preview: Preview = {
   initialGlobals: INITIAL_GLOBALS,
@@ -25,7 +25,9 @@ const preview: Preview = {
         <PortalContextProvider root={storyWrapperRef}>
           <StoryWrapper ref={storyWrapperRef} theme={theme} brand={brand} platform={platform} language={language}>
             <Sprite content={SpriteSVG as unknown as string} />
-            <Story />
+            <PreviewThemeProvider value={theme}>
+              <Story />
+            </PreviewThemeProvider>
           </StoryWrapper>
         </PortalContextProvider>
       );

@@ -1,0 +1,83 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  justify-content: center;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'header');
+}
+
+.image {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: stretch;
+  justify-content: center;
+
+  width: 100%;
+
+  object-fit: cover;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'media');
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'header', 'headline');
+
+  &:not([data-withbackbutton]) {
+    gap: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.headlineWrapper {
+  overflow: hidden;
+  display: flex;
+  flex: 1 0 0;
+  gap: base.simple-var(modal.$modal, 'anatomy', 'container', 'header', 'headline', 'headlineWrapper', 'gap');
+  align-items: center;
+
+  min-width: 0;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'header', 'headline', 'headlineWrapper');
+
+  &[data-withbackbutton] {
+    padding-left: 0;
+  }
+}
+
+.slotAfterHeadline {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.subtitleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'header', 'subHeadlineWrapper');
+}
+
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.subtitle {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

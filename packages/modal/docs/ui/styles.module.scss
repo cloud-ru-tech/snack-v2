@@ -1,0 +1,18 @@
+.image {
+  display: block;
+  flex-shrink: 0;
+  align-self: stretch;
+
+  box-sizing: border-box;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-height: 14rem;
+
+  object-fit: cover;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

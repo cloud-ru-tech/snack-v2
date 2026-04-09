@@ -1,0 +1,299 @@
+---
+title: Modal
+description: Центрированное модальное окно поверх страницы. Готовая разметка шапки, тела со скроллом и футера; низкоуровневая сборка — через ModalCustom и субкомпоненты Header, Body, Footer.
+version: "0.1.0"
+---
+
+import { ModalBasicExample } from './ui/ModalBasicExample';
+import { ExampleContainer } from '#astro/components/mdx';
+
+# Modal
+
+Модальное окно для подтверждений, форм и важных сообщений. Компонент **Modal** собирает шапку (изображение, заголовок, подзаголовок, кнопка «назад», слот рядом с заголовком), прокручиваемое тело и опциональный футер. Полный контроль над разметкой — через **ModalCustom** и `ModalCustom.Header` / `Body` / `Footer`.
+
+Figma: [DialogWindow](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2359-3484&m=dev)
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/modal
+# or
+yarn add @design-system/modal
+# or
+pnpm add @design-system/modal
+```
+
+## Changelog
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+
+<Changelog packageName="modal" />
+
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+<LlmLink component="modal" />
+
+## Overview
+
+**Modal** строится поверх **ModalCustom**: окно рендерится через `createPortal` (по умолчанию в `document.body` или в узел из `PortalContextProvider` пакета `@design-system/portal-context`). Пока `open={false}`, в DOM ничего не монтируется.
+
+Компонент обеспечивает:
+
+- **Режимы закрытия (`mode`)** — `regular`: клик по затемнению, **Escape** и кнопка закрытия; `aggressive`: только кнопка (подложка с размытием по макету Figma); `forced`: без кнопки закрытия и без закрытия по подложке/Escape (критичные сценарии).
+- **Размеры** — пресеты `'s' | 'm' | 'l'` (`SIZE` в пакете), высота по контенту или ограничение по контейнеру через `heightAuto`.
+- **Состояние загрузки** — при `loading` в теле показывается спиннер или произвольный `loadingState`, футер скрывается.
+- **Интеграция с историей** — опционально `closeOnPopstate` (через `useModalOpenState` из `@design-system/utils`, как у других оверлеев дизайн-системы).
+- **Ловушка фокуса** — при открытии фокус ставится на **контейнер диалога** (`tabIndex={-1}`), без автофокуса на кнопки (удобно при открытии мышью); первый **Tab** ведёт к первому tabbable внутри окна, **Shift+Tab** с контейнера — к последнему. **Tab** / **Shift+Tab** дальше циклически ходят только по элементам окна; после закрытия фокус возвращается на элемент, который был активен до открытия.
+- **Блокировка скролла страницы** — пока окно открыто, прокрутка документа под оверлеем отключена (библиотека `react-remove-scroll`, как в Radix Dialog): колесо мыши и тач не сдвигают фон, полоса прокрутки учитывается без сдвига вёрстки; прокрутка **внутри** тела модалки (`Body` / `Scroll`) сохраняется.
+
+### Фокус и несколько модалок
+
+Если одновременно открыты две и более модалки, каждая монтируется отдельным порталом (обычно соседние узлы у контейнера портала): **Tab** обрабатывает только та модалка, в DOM-дереве которой сейчас находится фокус. 
+
+`react-remove-scroll` корректно обрабатывает вложенные экземпляры: скролл документа остаётся заблокированным, пока открыта хотя бы одна модалка.
+
+## Live examples
+
+### Базовое использование
+
+Окно с изображением в шапке, заголовком, подзаголовком, текстом в теле и кнопками в футере. Состояние `open` / `onClose` задаётся снаружи (контролируемый компонент).
+
+<ExampleContainer>
+  <ModalBasicExample client:load />
+</ExampleContainer>
+
+Ниже — тот же сценарий в коде: кнопка открытия, контролируемые `open` / `onClose`, шапка с изображением и футер с `ButtonGroup`.
+
+```tsx
+import { Button, ButtonGroup } from '@design-system/button';
+import { Modal } from '@design-system/modal';
+import { useState } from 'react';
+
+export function Example() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <>
+      <Button appearance='primary' label='Открыть модальное окно' view='filled' onClick={() => setOpen(true)} />
+      <Modal
+        open={open}
+        onClose={close}
+        title='Заголовок'
+        subtitle='Краткое описание действия или контекста'
+        media={
+          <img
+            alt='Иллюстрация в шапке'
+            className={styles.image}
+            src={imageSrc(exampleHeaderImage as string | { src: string })}
+          />
+        }
+        content={<p>Основной контент: форма, предупреждение или поясняющий текст.</p>}
+        footer={
+          <ButtonGroup
+            primaryAction={{ label: 'Продолжить', view: 'filled', onClick: close }}
+            secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
+          />
+        }
+      />
+    </>
+  );
+}
+```
+
+## Storybook
+
+import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+
+### Playground
+
+Интерактивные контролы: размер, режим, изображение в шапке, длинный контент, футер с кнопками, loading.
+
+<StorybookIframe storyId="components-modal--playground" showControls={true} height="640px" />
+
+## Usage
+
+### Базовый пример
+
+```tsx
+import { Modal } from '@design-system/modal';
+import { useState } from 'react';
+
+export function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button type='button' onClick={() => setOpen(true)}>
+        Открыть
+      </button>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Заголовок'
+        content={<p>Контент</p>}
+      />
+    </>
+  );
+}
+```
+
+### С футером и кнопкой «назад»
+
+Передайте `footer` с действиями (например, группу кнопок из `@design-system/button`). Кнопка «назад» в шапке появляется, если задан `onBackButtonClick`.
+
+```tsx
+import { Modal } from '@design-system/modal';
+import { useState } from 'react';
+
+export function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button type='button' onClick={() => setOpen(true)}>
+        Открыть
+      </button>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Редактирование'
+        onBackButtonClick={() => setOpen(false)}
+        content={<form>{/* поля */}</form>}
+        footer={<div className='actions'>{/* подтверждение / отмена */}</div>}
+      />
+    </>
+  );
+}
+```
+
+### Режимы `regular`, `aggressive`, `forced`
+
+Используйте константы `MODE` из пакета для единообразия с типами.
+
+```tsx
+import { Modal, MODE } from '@design-system/modal';
+import { useState } from 'react';
+
+export function ForcedNotice() {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <Modal
+      mode={MODE.Forced}
+      open={open}
+      title='Требуется действие'
+      content={<p>Закрытие только после выполнения сценария в контенте.</p>}
+      onClose={() => setOpen(false)}
+    />
+  );
+}
+```
+
+### Состояние загрузки
+
+```tsx
+import { Modal } from '@design-system/modal';
+
+<Modal
+  open={isOpen}
+  onClose={handleClose}
+  title='Сохранение'
+  loading={isSaving}
+  loadingState={<p>Кастомный текст вместо спиннера</p>}
+  content={<p>Обычный контент, когда не loading</p>}
+  footer={!isSaving ? <button type='button'>Сохранить</button> : undefined}
+/>
+```
+
+### ModalCustom
+
+Когда нужна своя композиция без пресетного **Modal**:
+
+```tsx
+import { ModalCustom } from '@design-system/modal';
+import { useState } from 'react';
+
+export function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button type='button' onClick={() => setOpen(true)}>
+        Открыть
+      </button>
+      <ModalCustom open={open} onClose={() => setOpen(false)} size='m'>
+        <ModalCustom.Header title='Заголовок' />
+        <ModalCustom.Body content={<div>Произвольный контент</div>} />
+        <ModalCustom.Footer>Область действий</ModalCustom.Footer>
+      </ModalCustom>
+    </>
+  );
+}
+```
+
+### Портал и история браузера
+
+Чтобы монтировать окно в заданный DOM-узел, передайте `container` (`HTMLElement` или CSS-селектор). Для вложенных порталов удобнее обернуть приложение в `PortalContextProvider` из `@design-system/portal-context` и не указывать `container`. Закрытие при навигации по истории — через `closeOnPopstate`.
+
+## Props
+
+[//]: DOCUMENTATION_SECTION_START
+[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
+### ModalProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| onClose* | `() => void` | - | Колбэк закрытия |
+| content* | `ReactNode` | - | Основной контент |
+| onBackButtonClick | `() => void` | - | Действие при клике по кнопке «назад». Отсутствие скрывает кнопку |
+| title | `string` | - | Заголовок |
+| slotAfterHeadline | `ReactNode` | - | Слот после заголовка |
+| subtitle | `ReactNode` | - | Подзаголовок |
+| truncate | `{ title?: number; subtitle?: number; }` | title: 1; subtitle (string): 2 | Максимальное число строк перед обрезкой (`TruncateString`). Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
+| open | `boolean` | - | Управление состоянием показан/не показан |
+| mode | enum ModalMode: `"regular"`, `"aggressive"`, `"forced"` | regular | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. blur подложки — только у Aggressive и Forced. |
+| rootClassName | `string` | - | CSS-класс корневого слоя портала |
+| width | enum ModalWidth: `"s"`, `"m"`, `"l"` | s | Размер окна |
+| heightAuto | `boolean` | true | Растягивать по высоте в пределах контейнера |
+| container | `ModalContainer` | - | Явный DOM-контейнер для `createPortal`. Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
+| closeOnPopstate | `boolean` | - | Закрытие при навигации по истории |
+| media | `ReactNode` | - | Медиа-контент |
+| footer | `ReactNode` | - | Контент футера |
+| className | `string` | - | CSS-класс для окна |
+| loading | `boolean` | - | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
+| loadingState | `ReactNode` | - | Контент тела вместо спиннера при `loading` |
+### ModalCustomProps
+| name | type | default value | description |
+|------|------|---------------|-------------|
+| children* | `ReactNode` | - | Содержимое окна (композиция Header/Body/Footer) |
+| onClose* | `() => void` | - | Колбэк закрытия |
+| open | `boolean` | - | Управление состоянием показан/не показан |
+| mode | enum ModalMode: `"regular"`, `"aggressive"`, `"forced"` | regular | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. blur подложки — только у Aggressive и Forced. |
+| className | `string` | - | CSS-класс окна |
+| rootClassName | `string` | - | CSS-класс корневого слоя портала |
+| width | enum ModalWidth: `"s"`, `"m"`, `"l"` | s | Размер окна |
+| heightAuto | `boolean` | true | Растягивать по высоте в пределах контейнера |
+| container | `ModalContainer` | - | Явный DOM-контейнер для `createPortal`. Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
+| closeOnPopstate | `boolean` | - | Закрытие при навигации по истории |
+
+
+[//]: DOCUMENTATION_SECTION_END
+
+## Accessibility
+
+- Окно имеет `role="dialog"` и `aria-modal="true"`. При наличии `title` на **Modal** прокидывается `aria-labelledby`, связанный с заголовком в шапке. У корневого контейнера диалога задан `tabIndex={-1}`: при открытии фокус переносится на контейнер (без автофокуса на кнопки), первый **Tab** ведёт к первому tabbable; если tabbable нет, фокус остаётся на контейнере.
+- Кнопка закрытия имеет `aria-label="close modal"`.
+- В режиме **regular** закрытие по **Escape** и клику по затемнению; в **aggressive** / **forced** поведение согласовано с пропом `mode` (см. реализацию ModalCustom).
+- Для **ModalCustom** без видимого заголовка задайте доступное имя вручную (например `aria-label` или `aria-labelledby` через пропы поддержки HTML-атрибутов).
+- Изображение в шапке использует `role="img"` и `aria-label` из `image.alt`.
+- **Клавиатура:** ловушка фокуса не даёт уйти с **Tab** за пределы открытого диалога; затемнение визуально отделяет контент страницы, блокировка скролла документа дополнительно снижает риск случайного взаимодействия с фоном (в том числе тач-устройства).
+
+## Best practices
+
+1. **Держите `open` и `onClose` снаружи** — единый источник правды (URL, store, родитель) предотвращает «залипание» окна и рассинхрон с анимациями.
+2. **Режим `forced` — осознанно** — без кнопки закрытия и без Escape пользователь должен явно завершить сценарий в контенте; не злоупотребляйте для обычных диалогов.
+3. **`closeOnPopstate`** — включайте, если модалка должна закрываться при навигации «назад», в одном стиле с Drawer и другими оверлеями.
+4. **Футер для главных действий** — подтверждение и отмена удобно держать в `footer`, чтобы они не уезжали при прокрутке длинного тела.
+5. **Тесты** — для стабильных селекторов можно использовать `TEST_IDS` из пакета.

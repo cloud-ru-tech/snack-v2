@@ -1,5 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawerWindow.module' as drawerWindow;
+@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
 @use '@design-system/materials' as m;
 
 $orientations: 'vertical', 'horizontal';
@@ -25,7 +25,7 @@ $widthSizes: 's', 'm', 'l';
   flex-direction: column;
   box-sizing: border-box;
 
-  @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container');
+  @include base.composite-var(drawer.$drawer, 'anatomy', 'container');
 }
 
 .mask {
@@ -33,7 +33,7 @@ $widthSizes: 's', 'm', 'l';
 }
 
 .badgeButtonClosed {
-  margin: base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-top') base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-right') base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-bottom') base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'badgeButtonClosed', 'padding-left');
+  margin: base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-top') base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-right') base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-bottom') base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-left');
 }
 
 .badgeButtonClosedWrapper {
@@ -63,34 +63,34 @@ div[data-content-wrapper='true'] {
   @include m.with-material('acrylic', #{drawer});
 
   &[data-position='top'] {
-    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionTop');
+    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop');
 
     .drawer {
-      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionTop', 'container');
+      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop', 'container');
     }
   }
 
   &[data-position='bottom'] {
-    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionBottom');
+    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom');
 
     .drawer {
-      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'horizontal', 'positionBottom', 'container');
+      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom', 'container');
     }
   }
 
   &[data-position='left'] {
-    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionLeft');
+    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft');
 
     .drawer {
-      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
+      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
     }
   }
 
   &[data-position='right'] {
-    @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionRight');
+    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight');
 
     .drawer {
-      @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
+      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
     }
   }
 
@@ -101,9 +101,9 @@ div[data-content-wrapper='true'] {
 
     @each $width in $widthSizes {
       &[data-width='#{$width}'] {
-        @include base.composite-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'width', 'container', $width);
+        @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'width', 'container', $width);
 
-        width: min(100%, base.simple-var(drawerWindow.$drawerWindow, 'anatomy', 'container', 'vertical', 'width', 'container', $width, 'max-width'));
+        width: min(100%, base.simple-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'width', 'container', $width, 'max-width'));
       }
     }
   }
