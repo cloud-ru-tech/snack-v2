@@ -1,16 +1,18 @@
 import { Tooltip } from '@design-system/tooltip';
+import { WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import type { ReactNode } from 'react';
 
 import { Button } from '../Button';
 import { SIZE } from '../Button/constants';
-import type { BaseButtonProps } from '../Button/types';
+import type { ButtonProps } from '../Button/types';
 import styles from './styles.module.scss';
 
-/** Пропсы действия — все пропсы Button (кроме size, задаётся на уровне группы) */
-type ActionProps = Omit<BaseButtonProps, 'size'> & {
-  tooltip?: { tip: ReactNode };
-};
+/** Пропсы действия — как у `Button` с `as` по умолчанию (нативная кнопка), без `size` (задаётся группой) */
+type ActionProps = Omit<ButtonProps<'button'>, 'size'> &
+  WithSupportProps<{
+    tooltip?: { tip: ReactNode };
+  }>;
 
 export type ButtonGroupProps = {
   /** Основное действие (filled) */
