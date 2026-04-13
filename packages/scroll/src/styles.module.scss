@@ -92,42 +92,6 @@ $scrollbar-slider-active-zone: 12px;
     }
   }
 
-  /* ——— Handle: база + позиция по ориентации. State-layer инжектируется в Scroll.tsx. ——— */
-  @each $orientation in $orientations {
-    .#{$theme-name} > .os-scrollbar-#{$orientation} > .os-scrollbar-track > .os-scrollbar-handle {
-      pointer-events: initial;
-      position: relative;
-      border: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-invertNeutral-decorTransparent;
-      background: base.$sn-theme-color-neutral-decorTransparent;
-
-      [data-state-layer] {
-        transition: background 0.15s;
-      }
-
-      @include m.has-state-layer-as-child(#{stateLayer});
-
-      @if $orientation == 'vertical' {
-        left: 50%;
-        translate: -50% 0;
-
-        &::before {
-          right: -$scrollbar-slider-active-zone;
-          left: -$scrollbar-slider-active-zone;
-        }
-      }
-
-      @else {
-        top: 50%;
-        translate: 0 -50%;
-
-        &::before {
-          top: -$scrollbar-slider-active-zone;
-          bottom: -$scrollbar-slider-active-zone;
-        }
-      }
-    }
-  }
-
   // TODO: кажется, это не используется, и у нас применяется нативный ресайз
 
   /* ——— Corner (resize grip) ——— */
@@ -155,4 +119,43 @@ $scrollbar-slider-active-zone: 12px;
   .#{$theme-name}.os-host-resize-disabled > .os-scrollbar-corner {
    display: none;
   } */
+}
+
+/*
+ * Handle + state layer: нельзя держать внутри `:global { }` — иначе класс из `#{stateLayer}`
+ * станет глобальным и не совпадёт с хэшем из JS. Родитель — только :global(цепочка).
+ */
+@each $orientation in $orientations {
+  :global(.#{$theme-name} > .os-scrollbar-#{$orientation} > .os-scrollbar-track > .os-scrollbar-handle) {
+    pointer-events: initial;
+    position: relative;
+    border: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-invertNeutral-decorTransparent;
+    background: base.$sn-theme-color-neutral-decorTransparent;
+
+    .#{stateLayer} {
+      transition: background 0.15s;
+    }
+
+    @include m.has-state-layer-as-child(#{stateLayer});
+
+    @if $orientation == 'vertical' {
+      left: 50%;
+      translate: -50% 0;
+
+      &::before {
+        right: -$scrollbar-slider-active-zone;
+        left: -$scrollbar-slider-active-zone;
+      }
+    }
+
+    @else {
+      top: 50%;
+      translate: 0 -50%;
+
+      &::before {
+        top: -$scrollbar-slider-active-zone;
+        bottom: -$scrollbar-slider-active-zone;
+      }
+    }
+  }
 }

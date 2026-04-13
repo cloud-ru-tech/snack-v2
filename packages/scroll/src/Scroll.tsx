@@ -149,14 +149,14 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
     }
 
     host.querySelectorAll('.os-scrollbar-handle').forEach((handle: Element) => {
-      if (handle.querySelector('[data-state-layer]')) {
+      const stateLayerClass = styles.stateLayer;
+      if (handle.querySelector(`.${CSS.escape(stateLayerClass)}`)) {
         return;
       }
 
       if (isBrowser()) {
         const layer = document.createElement('div');
-        layer.setAttribute('data-state-layer', '');
-        layer.classList.add(`${styles.stateLayer}`);
+        layer.classList.add(stateLayerClass);
         layer.setAttribute('data-state', 'onColorBackground');
         handle.appendChild(layer);
       }
