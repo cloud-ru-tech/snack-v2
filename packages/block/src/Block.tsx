@@ -58,7 +58,7 @@ export function Block({ children, variant = VARIANT.Simple, size = SIZE.L, class
       data-acrylic-level='1Level'
       {...rest}
     >
-      <div data-acrylic-background />
+      <div className={styles.acrylic} />
       {variant === VARIANT.Outline && <div className={styles.borderLayer} />}
       <div className={styles.content}>{children}</div>
     </div>

@@ -6,7 +6,15 @@ $variants: 'simple', 'outline', 'shadow', 'transparent';
 $sizes: 's', 'm', 'l';
 $priorities: 'primary', 'secondary', 'tertiary';
 
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
 .block {
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -38,7 +46,7 @@ $priorities: 'primary', 'secondary', 'tertiary';
     display: none;
   }
 
-  @include m.with-material('acrylic');
+  @include m.with-material('acrylic', #{acrylic});
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {

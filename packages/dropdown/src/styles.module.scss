@@ -3,6 +3,13 @@
 @use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
 @use '@design-system/materials' as m;
 
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
 .root {
   @include base.composite-var(dropdown.$dropdown, 'anatomy', 'container');
 
@@ -11,7 +18,7 @@
   // TODO: need check in figma
   box-shadow: base.$sn-boxShadow-elevation-level2;
 
-  @include m.with-material('acrylic');
+  @include m.with-material('acrylic', #{acrylic});
 }
 
 .defaultTriggerClassName {

@@ -27,6 +27,13 @@ $sizes: 's', 'm', 'l';
   visibility: initial;
 }
 
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
 .container {
   cursor: pointer;
 
@@ -53,7 +60,7 @@ $sizes: 's', 'm', 'l';
   outline: 0;
   outline-offset: 0;
 
-  @include m.with-material('acrylic');
+  @include m.with-material('acrylic', #{acrylic});
 
   .content {
     @include base.composite-var(base.$sn-thin-label-s);

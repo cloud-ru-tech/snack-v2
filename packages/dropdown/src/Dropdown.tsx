@@ -153,7 +153,7 @@ export function Dropdown({
           data-acrylic-appearance='neutral'
           data-acrylic-level='1Level'
         >
-          <div data-acrylic-background />
+          <div className={styles.acrylic} />
           <div className={styles.dropdownContent}>
             <DropdownContent state={state}>{content}</DropdownContent>
           </div>

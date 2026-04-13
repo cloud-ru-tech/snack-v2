@@ -66,7 +66,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
           data-acrylic-appearance='neutral'
           data-acrylic-level={!loading && (hover || focusVisible) ? '2Level' : '1Level'}
         >
-          <div data-acrylic-background />
+          <div className={styles.acrylic} />
         </div>
         <div className={styles.borderStateLayer} data-state='regularBorder' />
         <div className={styles.focusLayer} />

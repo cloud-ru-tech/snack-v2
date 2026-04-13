@@ -4,11 +4,19 @@
 
 $sizes: 's', 'm', 'l';
 
-.materialLayer {
-  @include m.with-material('acrylic');
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
 
+.materialLayer {
+  position: relative;
   width: 100%;
   height: 100%;
+
+  @include m.with-material('acrylic', #{acrylic});
 }
 
 .borderStateLayer {
@@ -128,7 +136,7 @@ $sizes: 's', 'm', 'l';
           }
         }
 
-        [data-acrylic-background] {
+        .acrylic {
           @include borderRadius($size);
         }
       }
