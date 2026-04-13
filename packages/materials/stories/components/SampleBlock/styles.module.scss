@@ -14,8 +14,16 @@ $priorities: 'primary', 'secondary', 'tertiary';
   visibility: initial;
 }
 
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
 // NOTE: CSS does not know anything about states, except mixins
 .block {
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -53,7 +61,7 @@ $priorities: 'primary', 'secondary', 'tertiary';
     }
   }
 
-  @include m.with-material('acrylic');
+  @include m.with-material('acrylic', #{acrylic});
 
   // We need to place it here to handle hover/active states for block (not for its child "div.content")
   // Otherwise if we hover over div.content no state will be applied to block

@@ -11,7 +11,7 @@ export function MaterialSquare({ appearance, level }: SquareProps) {
   return (
     <Square className={styles.withAcrylic} data-acrylic-appearance={appearance} data-acrylic-level={level}>
       {/*<div data-acrylic-effect />*/}
-      <div data-acrylic-background />
+      <div className={styles.acrylic} />
     </Square>
   );
 }

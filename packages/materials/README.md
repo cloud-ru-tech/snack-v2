@@ -24,7 +24,7 @@ pnpm add @design-system/materials
 
 ```tsx
 <div className={styles.card} data-acrylic-appearance="neutral" data-acrylic-level="1Level">
-  <div data-acrylic-background />
+  <div className={styles.acrylic} />
   <div className={styles.content}>{children}</div>
 </div>
 ```
@@ -55,7 +55,7 @@ pnpm add @design-system/materials
 
 ## Best Practices
 
-1. **Один фоновый слой** — в одном блоке один дочерний элемент с `data-acrylic-background`; контент размещайте в соседних дочерних элементах с вышележащим z-index.
+1. **Один фоновый слой** — в одном блоке один дочерний элемент с классом, переданным в `with-material('acrylic', #{…})` как фон; контент размещайте в соседних дочерних элементах с вышележащим z-index. Для декоративного фона/эффекта явно задавайте заполнение корня и `pointer-events: none` на классах слоёв — пакет этого не делает. Если слои абсолютные, на корне с `with-material` обычно нужен свой `position: relative` (пакет его не добавляет).
 2. **Корень взаимодействия** — `has-state-layer-as-child` и `has-content-with-text-opacity` вешайте на класс того элемента, с которым пользователь взаимодействует; аргумент — класс целевого потомка в разметке. Несколько state-слоёв — разные классы и при необходимости несколько вызовов первого миксина.
 3. **Переменные дизайн-системы** — для acrylic используйте значения `data-acrylic-appearance` и `data-acrylic-level` из палитры дизайн-системы; пакет подставляет blur, opacity и цвета из `@sbercloud/figma-variables`.
 4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.

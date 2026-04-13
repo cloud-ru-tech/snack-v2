@@ -9,12 +9,11 @@ $materials: 'acrylic';
 /**
   * Корневой миксин для применения материала к элементу.
   * $material — название материала из $materials (например 'acrylic').
-  * $props... — зарезервировано для будущих параметров конкретного материала.
-  * Требует разметки в соответствии с выбранным материалом (для acrylic — корень с data-acrylic-appearance, data-acrylic-level и дочерний [data-acrylic-background]).
+  * $props... — для каждого материала свой набор аргументов, пробрасывается во внутренний миксин.
   * См. пример в stories/components/SampleBlock, MaterialSquare и docs/index.mdx.
   */
 @mixin with-material($material, $props...) {
   @if ($material == 'acrylic') {
-    @include acrylic.with-acrylic-material();
+    @include acrylic.with-acrylic-material($props...);
   }
 }

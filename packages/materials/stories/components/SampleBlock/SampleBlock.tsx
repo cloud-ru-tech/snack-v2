@@ -37,7 +37,7 @@ export function SampleBlock({
       data-acrylic-level='1Level'
       {...extractSupportProps(rest)}
     >
-      <div data-acrylic-background />
+      <div className={styles.acrylic} />
       {variant === VARIANT.Outline && <div className={styles.borderLayer} />}
       {state && <div className={styles.stateLayer} data-state={state} />}
       <div className={styles.contentLayer} data-state={state}>

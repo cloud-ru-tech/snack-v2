@@ -1,5 +1,14 @@
 @use '../../../index' as m;
 
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
 .withAcrylic {
-  @include m.with-material('acrylic');
+  position: relative;
+
+  @include m.with-material('acrylic', #{acrylic});
 }

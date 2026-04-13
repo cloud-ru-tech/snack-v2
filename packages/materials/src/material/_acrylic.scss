@@ -11,12 +11,12 @@ $levels: 'default', '1Level', '2Level';
 /**
   * Миксин акрилового материала (эффект «матового стекла»: backdrop blur + полупрозрачный слой).
   * Требует на корневом элементе атрибутов data-acrylic-appearance (из $appearances) и data-acrylic-level (из $levels).
-  * Требует дочернего элемента с атрибутом [data-acrylic-background]; опционально [data-acrylic-effect] для color-dodge слоя.
+  * Не задаёт position: relative на корне — при необходимости контекста для абсолютных дочерних слоёв выставляет потребитель на том же элементе.
+  * $bgLayerSelector — имя класса дочернего фонового слоя (правило вида $bgLayerSelector под корнём с материалом; в CSS Modules — #{acrylic} для класса .acrylic).
+  * $effectLayerSelector — имя класса дочернего слоя color-dodge; по умолчанию null — стили эффекта не генерируются.
   * См. пример в stories/components/SampleBlock, MaterialSquare и docs/index.mdx.
   */
-@mixin with-acrylic-material() {
-  position: relative;
-
+@mixin with-acrylic-material($bgLayerSelector, $effectLayerSelector: null) {
   @each $appearance in $appearances {
     &[data-acrylic-appearance='#{$appearance}'] {
       @each $level in $levels {
@@ -27,6 +27,8 @@ $levels: 'default', '1Level', '2Level';
               base.$sn-acrylic-colorEffect,
               base.$sn-acrylic-opacityBackground,
               base.simple-var(base.$sn-theme, 'color', $appearance, 'background'),
+              $bgLayerSelector,
+              $effectLayerSelector,
             );
           }
 
@@ -36,6 +38,8 @@ $levels: 'default', '1Level', '2Level';
               base.simple-var(base.$sn-acrylic, 'colorEffect#{$level}'),
               base.simple-var(base.$sn-acrylic, 'opacityBackground#{$level}'),
               base.simple-var(base.$sn-theme, 'color', $appearance, 'background#{$level}'),
+              $bgLayerSelector,
+              $effectLayerSelector,
             );
           }
         }

@@ -1,20 +1,17 @@
-@use '../../utils/mixins' as m;
-
 /**
   * Миксин для полупрозрачного фонового слоя акрила (работает вместе с backdrop blur на корне).
-  * Требует дочернего элемента с атрибутом [data-acrylic-background].
+  * $layerSelector — имя класса дочернего элемента, который получает opacity и background (вложенное правило по шаблону «точка + имя класса» под корнём с материалом).
+  * Не подключает absolute-layer и не выставляет pointer-events — только opacity и background; позиционирование задаёт потребитель на том же классе.
   * $primaryBgOpacity — непрозрачность слоя, число 0–1 (пример: 0.8).
   * $primaryBgColor — цвет фона (например из Figma Variables по appearance/level).
   * См. пример разметки в stories/components/SampleBlock, MaterialSquare и docs/index.mdx.
   */
 @mixin has-acrylic-background-layer-as-child(
+  $layerSelector,
   $primaryBgOpacity,
   $primaryBgColor,
 ) {
-  & > [data-acrylic-background] {
-    @include m.absolute-layer();
-
-    pointer-events: none;
+  .#{$layerSelector} {
     opacity: $primaryBgOpacity;
     background: $primaryBgColor;
   }
