@@ -223,6 +223,16 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
     /* stylelint-disable-next-line declaration-no-important */
     cursor: not-allowed !important;
   }
+
+  .rc-slider-handle {
+    &:hover,
+    &:active,
+    &:focus-visible {
+      &::before {
+        background: transparent !important;
+      }
+    }
+  }
 }
 
 .#{$theme-class}.rc-slider.withMarks {
