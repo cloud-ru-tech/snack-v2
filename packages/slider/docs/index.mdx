@@ -1,0 +1,41 @@
+---
+title: Slider
+description: 'Горизонтальный слайдер значения или диапазона с опциональной шкалой.'
+version: '0.1.0'
+---
+
+import Changelog from '#astro/components/astro/Changelog.astro';
+import LlmLink from '#astro/components/astro/LlmLink.astro';
+
+# Slider
+
+Пакет содержит компонент **Slider** на базе `rc-slider`: одиночное значение или диапазон, подписи шкалы (`marks`), опциональный тултип на ручке. Стили темы — класс `dsThemeSlider` на корне компонента.
+
+**Version:** `{frontmatter.version}`
+
+## Installation
+
+```bash
+npm install @design-system/slider
+# or
+yarn add @design-system/slider
+# or
+pnpm add @design-system/slider
+```
+
+## Changelog
+
+<Changelog packageName='slider' />
+
+<LlmLink component='slider' />
+
+## Overview
+
+- **Slider** — обёртка над `rc-slider` с теми же пропами (кроме вертикального режима и инлайн-стилей трека/ручки), плюс `handleTip`, `tipFormatter` и **`marksEqualSpacing`** для равномерного распределения подписей при нелинейных значениях меток.
+- Стили темы: класс `dsThemeSlider` на корне.
+
+Figma (референс): [Snack-Ui-Kit — Slider](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3461-243&m=dev)
+
+## Components
+
+- **[Slider](./components/slider/)** — ползунок (примеры, Storybook, API)

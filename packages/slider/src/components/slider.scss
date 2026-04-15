@@ -1,0 +1,251 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/slider.module' as sl;
+
+$theme-class: 'dsThemeSlider';
+
+$handle-size: sl.$sn-slider-anatomy-size-handle-container-square;
+$track-line-height: sl.$sn-slider-anatomy-size-container-trackLine-maxHeight;
+$scale-step-height: sl.$sn-slider-anatomy-size-scaleStep-maxHeight;
+$scale-gap: sl.$sn-slider-anatomy-size-container-gap;
+
+$height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + base.$sn-regular-body-s-lineHeight);
+
+.#{$theme-class}.rc-slider {
+  touch-action: none;
+
+  position: relative;
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  z-index: 0 !important;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: $track-line-height;
+  padding: 0;
+}
+
+.#{$theme-class}.rc-slider * {
+  box-sizing: border-box;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-rail {
+  @include base.composite-var(sl.$slider, 'anatomy', 'size', 'container', 'trackLine');
+
+  position: absolute;
+  width: 100%;
+  height: $track-line-height;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-track,
+.#{$theme-class}.rc-slider .rc-slider-tracks {
+  @include base.composite-var(sl.$slider, 'anatomy', 'size', 'container', 'trackLine');
+
+  position: absolute;
+  display: block;
+  height: $track-line-height;
+  background-color: base.$sn-theme-color-primary-accent;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-track-draggable {
+  box-sizing: content-box;
+  background-clip: content-box;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-handle {
+  @include base.composite-var(sl.$slider, 'anatomy', 'size', 'handle');
+
+  touch-action: pan-x;
+  cursor: grab;
+
+  position: absolute;
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  z-index: 0 !important;
+
+  width: $handle-size;
+  height: $handle-size;
+  margin-top: calc(0px - ($handle-size - $track-line-height) / 2);
+  border: sl.$sn-slider-anatomy-size-handle-borderWidth solid base.$sn-theme-color-neutral-background1Level;
+
+  opacity: 1;
+  background-color: base.$sn-theme-color-primary-accent;
+  box-shadow: none;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 200%;
+    height: 100%;
+  }
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    background: transparent;
+  }
+
+  &:hover {
+    &::before {
+      background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+
+    &::before {
+      background: transparent;
+    }
+  }
+
+  &:active {
+    cursor: grabbing;
+
+    &::before {
+      background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
+    }
+  }
+}
+
+.#{$theme-class}.rc-slider .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: base.$sn-theme-color-neutral-background1Level;
+
+  background-color: base.$sn-theme-color-primary-text;
+  outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+  outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  box-shadow: none;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-mark {
+  position: absolute;
+  top: calc($track-line-height + $scale-gap + $scale-step-height);
+  left: 0;
+
+  container-type: inline-size;
+
+  width: 100%;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-mark-text {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  cursor: pointer;
+
+  position: absolute;
+
+  display: inline-block;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-align: center;
+  vertical-align: middle;
+
+  &::before {
+    @include base.composite-var(sl.$slider, 'anatomy', 'size', 'scaleStep');
+
+    content: '';
+
+    position: absolute;
+    top: calc(0px - (#{$scale-step-height}));
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: sl.$sn-slider-anatomy-size-scaleStep-maxHeight;
+
+    background-color: base.$sn-theme-color-neutral-decor;
+  }
+}
+
+.#{$theme-class}.rc-slider .rc-slider-mark-text:nth-child(1) {
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: none !important;
+
+  &::before {
+    left: 0;
+    transform: none;
+  }
+}
+
+.#{$theme-class}.rc-slider .rc-slider-mark-text:last-child {
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: translateX(-100%) !important;
+
+  &::before {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+}
+
+.#{$theme-class}.rc-slider .rc-slider-mark-text-active {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-step {
+  position: absolute;
+  width: 100%;
+  height: $track-line-height;
+  background: transparent;
+}
+
+.#{$theme-class}.rc-slider .rc-slider-dot {
+  display: none;
+}
+
+.#{$theme-class}.rc-slider.rc-slider-disabled {
+  background-color: transparent;
+
+  .rc-slider-track,
+  .rc-slider-handle {
+    background-color: base.$sn-theme-color-neutral-decor;
+  }
+
+  .rc-slider-mark-text {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  .rc-slider-mark-text,
+  .rc-slider-dot,
+  .rc-slider-track,
+  .rc-slider-handle {
+    /* stylelint-disable-next-line declaration-no-important */
+    cursor: not-allowed !important;
+  }
+}
+
+.#{$theme-class}.rc-slider.withMarks {
+  height: $height-with-marks;
+}
+
+.#{$theme-class}.rc-slider.reverse .rc-slider-mark-text:nth-child(1) {
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: none !important;
+
+  &::before {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+}
+
+.#{$theme-class}.rc-slider.reverse .rc-slider-mark-text:last-child {
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: translateX(100%) !important;
+
+  &::before {
+    left: 0;
+    transform: none;
+  }
+}

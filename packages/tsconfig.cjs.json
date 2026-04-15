@@ -113,6 +113,9 @@
       "path": "./search/tsconfig.cjs.json"
     },
     {
+      "path": "./slider/tsconfig.cjs.json"
+    },
+    {
       "path": "./timeline/tsconfig.cjs.json"
     }
   ],

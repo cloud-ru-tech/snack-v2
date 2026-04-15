@@ -113,6 +113,9 @@
       "path": "./search/tsconfig.esm.json"
     },
     {
+      "path": "./slider/tsconfig.esm.json"
+    },
+    {
       "path": "./timeline/tsconfig.esm.json"
     }
   ],

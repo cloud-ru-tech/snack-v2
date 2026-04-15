@@ -725,6 +725,21 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
 
+  packages/slider:
+    dependencies:
+      '@design-system/tooltip':
+        specifier: 0.1.0
+        version: link:../tooltip
+      '@design-system/utils':
+        specifier: 0.1.0
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      rc-slider:
+        specifier: 11.1.9
+        version: 11.1.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+
   packages/status:
     dependencies:
       '@design-system/loader':
@@ -7806,6 +7821,19 @@ packages:
 
   ramda@0.27.0:
     resolution: {integrity: sha512-pVzZdDpWwWqEVVLshWUHjNwuVP7SfcmPraYuqocJp1yo2U1R7P+5QAfDhdItkuoGqIBnBYrtPp7rEPqDn9HlZA==}
+
+  rc-slider@11.1.9:
+    resolution: {integrity: sha512-h8IknhzSh3FEM9u8ivkskh+Ef4Yo4JRIY2nj7MrH6GQmrwV6mcpJf5/4KgH5JaVI1H3E52yCdpOlVyGZIeph5A==}
+    engines: {node: '>=8.x'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-util@5.44.4:
+    resolution: {integrity: sha512-resueRJzmHG9Q6rI/DfK6Kdv9/Lfls05vzMs1Sk3M2P+3cJa+MakaZyWY8IPfehVuhPJFKrIY1IK4GqbiaiY5w==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
 
   react-docgen-typescript@2.2.2:
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
@@ -15424,7 +15452,7 @@ snapshots:
 
   i18next@23.16.8:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
 
   iconv-lite@0.6.3:
     dependencies:
@@ -17871,6 +17899,21 @@ snapshots:
   radix3@1.1.2: {}
 
   ramda@0.27.0: {}
+
+  rc-slider@11.1.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@babel/runtime': 7.28.6
+      classnames: 2.5.1
+      rc-util: 5.44.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
+  rc-util@5.44.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@babel/runtime': 7.28.6
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+      react-is: 18.3.1
 
   react-docgen-typescript@2.2.2(typescript@5.9.3):
     dependencies:

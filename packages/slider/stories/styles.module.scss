@@ -1,0 +1,47 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.sliderWrap {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 320px;
+  padding: base.$sn-primitive-dimension-16;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.equalSpacingState {
+  margin: base.$sn-primitive-dimension-12 0 0;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.equalSpacingState code {
+  font-size: inherit;
+}
+
+.matrixSection {
+  padding: base.$sn-primitive-dimension-32 0;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.matrixCell {
+  padding: base.$sn-primitive-dimension-8;
+}
+
+.matrixSlider {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 260px;
+  max-width: 320px;
+}
