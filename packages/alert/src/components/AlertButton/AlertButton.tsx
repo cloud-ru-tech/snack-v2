@@ -1,4 +1,5 @@
 import { Sun } from '@design-system/loader';
+import { getThemeClassnames } from '@design-system/utils';
 import cn from 'classnames';
 import { type ComponentPropsWithoutRef, type ElementType, type MouseEvent, type ReactElement } from 'react';
 
@@ -60,13 +61,7 @@ export function AlertButton<T extends ElementType = 'button'>({
   return (
     <Component
       ref={innerRef}
-      className={cn(
-        // TODO: криво работает применение модификаторов через classnames
-        'sn-desktop',
-        'sn-components',
-        styles.root,
-        className,
-      )}
+      className={cn(styles.root, className, getThemeClassnames({ platform: 'desktop' }))}
       data-size={size}
       data-view={variantProp}
       data-variant={variant}

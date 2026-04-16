@@ -29,7 +29,8 @@
   "scripts": {},
   "dependencies": {
     "react-swipeable": "7.0.2",
-    "uncontrollable": "8.0.4"
+    "uncontrollable": "8.0.4",
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 import { ChevronDownSpriteSVG, ChevronUpSpriteSVG, CrossSpriteSVG } from '@design-system/icons';
 import { TruncateString } from '@design-system/truncate-string';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, getThemeClassnames, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import type { MouseEvent, ReactElement, ReactNode } from 'react';
 
@@ -208,7 +208,7 @@ export function AlertBase(props: AlertBaseProps) {
       <div className={cn(styles.body, { [styles.bodyInteractive]: collapsible && canExpand })} data-size={size}>
         {icon && (
           <div
-            className={cn('sn-desktop', styles.icon)}
+            className={cn(getThemeClassnames({ platform: 'desktop' }), styles.icon)}
             data-size={size}
             data-test-id={`${testIdPrefix}__icon`}
             {...inlineColorProps}

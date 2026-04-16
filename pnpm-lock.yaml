@@ -899,6 +899,9 @@ importers:
 
   packages/utils:
     dependencies:
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
       react-swipeable:
         specifier: 7.0.2
         version: 7.0.2(react@19.2.4)

@@ -1,4 +1,5 @@
 import { LocaleProvider } from '@design-system/locale';
+import { getThemeClassnames } from '@design-system/utils';
 import cn from 'classnames';
 import { forwardRef, ReactNode } from 'react';
 
@@ -19,26 +20,15 @@ type StoryWrapperProps = {
  * Тема, бренд и платформа задаются через аддон "Тема / Бренд / Платформа" в панели Storybook.
  */
 export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
-  ({ children, theme, brand, platform, language }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        styles.wrapper,
-        'sb-story-wrapper',
-        'sn-base-styles',
-        'sn-primitive',
-        'sn-base-styles',
-        'sn-figmaStyles',
-        'sn-components',
-        `sn-${platform}`,
-        `sn-${theme}`,
-        `sn-${brand}`,
-        `sn-no`, // Acrylic, temporarily disabled (acrylic === 'enabled' ? 'sn-yes' : 'sn-no')
-      )}
-    >
-      <LocaleProvider lang={language}>
-        <div className={cn(styles.content)}>{children}</div>
-      </LocaleProvider>
-    </div>
-  ),
+  ({ children, theme, brand, platform, language }, ref) => {
+    const themeClassnames = getThemeClassnames({ theme, brand, platform });
+
+    return (
+      <div ref={ref} className={cn(styles.wrapper, 'sb-story-wrapper', themeClassnames)}>
+        <LocaleProvider lang={language}>
+          <div className={cn(styles.content)}>{children}</div>
+        </LocaleProvider>
+      </div>
+    );
+  },
 );

@@ -1,4 +1,4 @@
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, getThemeClassnames, WithSupportProps } from '@design-system/utils';
 import cn from 'classnames';
 import { type HTMLAttributes, useEffect, useState } from 'react';
 
@@ -82,7 +82,9 @@ export function Avatar({
         <img className={styles.image} src={src} onError={() => setImageError(true)} alt='' aria-hidden='true' />
       ) : (
         <>
-          <div className={cn('sn-desktop', styles.abbreviation)}>{getAbbreviation(name, numberOfSymbols)}</div>
+          <div className={cn(styles.abbreviation, getThemeClassnames({ platform: 'desktop' }))}>
+            {getAbbreviation(name, numberOfSymbols)}
+          </div>
           <div className={styles.border} />
         </>
       )}
