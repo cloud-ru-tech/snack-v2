@@ -59,7 +59,7 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
 
   position: absolute;
   /* stylelint-disable-next-line declaration-property-value-allowed-list */
-  z-index: 0 !important;
+  z-index: 1 !important;
 
   width: $handle-size;
   height: $handle-size;
@@ -145,6 +145,8 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
   cursor: pointer;
 
   position: absolute;
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  z-index: 0 !important;
 
   display: inline-block;
 
