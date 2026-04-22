@@ -1,0 +1,82 @@
+---
+title: InfoRow
+package: '@ds/uikit-product-info-row'
+description: Одна строка «метка — значение» по макету Figma infoRow — одна или две колонки значений, разделители, подсказка, действия, скелетон.
+order: 1
+---
+
+import { InfoRowDemo } from '../demos/InfoRowDemo'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_INFO_ROW } from '~docs/lib/figma'
+import infoRowDoc from './props.json'
+import DataListSrc from '../demos/examples/DataListExample.tsx?raw'
+import { DataListExample } from '../demos/examples/DataListExample'
+
+# InfoRow
+
+Компонент **infoRow** в [Figma](https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-?node-id=3040-21176): одна визуальная строка. При **`column="1"`** — одна пара «метка (+ QuestionTooltip) — значение»; при **`column="2"`** — две пары в ряд: **`label`** / **`content`** слева, **`secondaryLabel`** / **`secondaryContent`** справа. Ось **`maxWidth`** — как в макете. Для второй половины — **`secondaryRowActions`**.
+
+Для **нескольких строк по данным** отдельного компонента нет: используйте **`useGetContent`** и тип **`InfoRowFieldItem`** (см. пример ниже).
+
+## Режимы
+
+Текст **обеих** меток (`label` и `secondaryLabel`) — класс **`.label`**, композит **`thin-label-l`** ([Figma](https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-?node-id=3540-18656&m=dev)): **InfoRow** (compact) — только композит; **MobileInfoRow** (comfort, `sn-comfort`) — после композита **фиксируются** `font-size` / `line-height` примитивами **14px** / **20px**, потому что в comfort density поднимает `roleLabel-fontSizeL` до **16px**.
+
+Значение (**`content`** / **`secondaryContent`**) — класс **`.content`**, **`regular-body-m`**: на **MobileInfoRow** для тех же причин после композита зафиксированы **14px** / **20px** (`roleBody-fontSizeM` в comfort иначе даёт **16px**).
+
+В **`column="1"`** слева — метка (`TruncateString`, опционально `QuestionTooltip`), справа — значение (скелетон при `loading`) и до **двух** кнопок **`rowActions`**: внутри всегда `@ds/button` с **`view="tonal"`** и **`appearance="neutral"`** (в Figma — `buttonTonalNeutral`), размер **`m`**. Контейнер **`rowActions`** (и в **InfoRow**, и в **MobileInfoRow**) обёрнут в **`getThemeClassnames({ density: 'compact' })`**, чтобы анатомия кнопки не менялась на страницах с **`sn-comfort`**. На макете экшены часто **icon-only** (например `icon={<PlaceholderSVG />}` из `@ds/icons` + обязательный **`aria-label`**). В **`column="2"`** две пары «метка — значение — действия» в одной строке; в макете **по одному** экшену на колонку значений — **`rowActions`** и **`secondaryRowActions`** с одним элементом `first`. Разделители — `@ds/divider` (thin).
+
+Утилита **`withTip`** оборачивает кнопку в `Tooltip` по `tip` в `rowActions`.
+
+Опционально для вайрфреймов: **`rowActionsSlot`** / **`secondaryRowActionsSlot`** и декоративный **`InfoRowActionPlaceholder`**. Если слот задан, **`rowActions`** / **`secondaryRowActions`** не рендерятся.
+
+## Демо
+
+<InfoRowDemo client:load />
+
+## Несколько строк по данным
+
+<Example title='Список полей' description='Несколько строк: useGetContent и map по массиву полей' code={DataListSrc}>
+  <DataListExample client:load />
+</Example>
+
+## Когда использовать
+
+- Сводка атрибутов в карточке или панели.
+- Пары полей без полноценной таблицы; при необходимости две колонки значений в одной строке — `column="2"`.
+
+## Для дизайнеров
+
+### Figma
+
+<FigmaEmbed node={FIGMA_INFO_ROW} client:load />
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/uikit-product-info-row
+```
+
+```ts
+import { InfoRow, useGetContent, NO_DATA_PLACEHOLDER } from '@ds/uikit-product-info-row'
+import '@ds/uikit-product-info-row/style.css'
+```
+
+### Props
+
+<PropsTable data={infoRowDoc.InfoRow} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-uikitproductinforow-inforow--playground' height={420} client:load />
+
+## Доступность
+
+- Разделители: `role="separator"`.
+- Кнопки: поведение `@ds/button`.
+- `QuestionTooltip`: кнопка-триггер с `aria-label`.

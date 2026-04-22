@@ -369,6 +369,9 @@ importers:
       '@ds/typography':
         specifier: workspace:*
         version: link:../../packages/typography
+      '@ds/uikit-product-info-row':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-info-row
       '@ds/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -1111,6 +1114,36 @@ importers:
     dependencies:
       classnames:
         specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-info-row:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/divider':
+        specifier: workspace:*
+        version: link:../divider
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/popover-private':
+        specifier: workspace:*
+        version: link:../popover-private
+      '@ds/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
         version: 2.5.1
 
   packages/utils:

@@ -87,6 +87,7 @@ const config: StorybookConfig = {
         '@ds/modal': join(root, 'packages/modal/src/index.ts'),
         '@ds/drawer': join(root, 'packages/drawer/src/index.ts'),
         '@ds/accordion': join(root, 'packages/accordion/src/index.ts'),
+        '@ds/uikit-product-info-row': join(root, 'packages/uikit-product-info-row/src/index.ts'),
         // </add-package:aliases>
         '#storybook/components': join(__dirname, 'components/index.ts'),
         '#storybook/hooks/useDraggable': join(__dirname, 'hooks/useDraggable.ts'),

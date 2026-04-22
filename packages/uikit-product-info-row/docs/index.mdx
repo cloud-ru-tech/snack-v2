@@ -1,0 +1,46 @@
+---
+title: UikitProductInfoRow
+package: '@ds/uikit-product-info-row'
+description: Строки «метка — значение» по макету Figma infoRow — компонент InfoRow и группа InfoGroup по данным.
+order: 0
+---
+
+# Product info row
+
+Пакет `@ds/uikit-product-info-row` — строки сводки по макету [Figma `infoRow`](https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-?node-id=3040-21176): одна или две колонки значений, токены `@sbercloud/figma-variables`, интеграция с `@ds/button`, `@ds/divider`, `@ds/tooltip`, `@ds/skeleton`, `@ds/truncate-string`.
+
+## Состав пакета
+
+- [**InfoRow**](/components/uikit-product-info-row/InfoRow) — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок.
+- [**InfoGroup**](/components/uikit-product-info-row/InfoGroup) — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`).
+- **MobileInfoRow** / **MobileInfoGroup** — вертикальная строка и список (comfort-раскладка); на корне включается **density `comfort`** (`getThemeClassnames`); разделители и отступы от **`position`** (`first` / `inner` / `last`).
+- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **compact** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **comfort** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'compact'` \| `'comfort'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-info-row
+```
+
+```ts
+import {
+  AdaptiveInfoGroup,
+  AdaptiveInfoRow,
+  InfoGroup,
+  InfoRow,
+  LAYOUT_TYPE,
+  NO_DATA_PLACEHOLDER,
+  useGetContent,
+} from '@ds/uikit-product-info-row'
+import '@ds/uikit-product-info-row/style.css'
+```
+
+## Когда какой использовать
+
+| Задача | Компонент |
+|--------|-----------|
+| Одна строка полей или две пары «метка — значение» в одной строке | `InfoRow` |
+| Табличный список полей по одному объекту данных | `InfoGroup` |
+| Несколько однотипных строк без `InfoGroup` | `InfoRow` + `useGetContent` + `InfoRowFieldItem[]` |
+| Узкий экран / comfort-раскладка той же матрицы Figma | `MobileInfoRow` или `AdaptiveInfoRow` с `layoutType={LAYOUT_TYPE.Comfort}` |
+| Список полей с переключением compact / comfort | `AdaptiveInfoGroup` |

@@ -1,0 +1,80 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-6;
+  width: 100%;
+
+  &[data-position='inner'] {
+    padding: base.$sn-primitive-dimension-16 0;
+  }
+
+  &[data-position='first'] {
+    padding-bottom: base.$sn-primitive-dimension-16;
+  }
+
+  &[data-position='last'] {
+    padding-top: base.$sn-primitive-dimension-16;
+  }
+}
+
+.labelLayout {
+  position: relative;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-6;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: 100%;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.label {
+  @include base.composite-var(base.$sn-thin-label-l);
+
+  font-size: var(--sn-primitive-font-fontSize-14, 14px);
+  line-height: var(--sn-primitive-font-lineHeight-by14, 20px);
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.contentLayout {
+  position: relative;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.content {
+  position: relative;
+
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  min-width: 0;
+  height: 100%;
+
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  font-size: var(--sn-primitive-font-fontSize-14, 14px);
+  line-height: var(--sn-primitive-font-lineHeight-by14, 20px);
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: anywhere;
+}
+
+.rowActions {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}

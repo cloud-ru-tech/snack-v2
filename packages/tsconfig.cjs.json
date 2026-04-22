@@ -147,6 +147,9 @@
     },
     {
       "path": "./accordion/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-info-row/tsconfig.cjs.json"
     }
   ]
 }

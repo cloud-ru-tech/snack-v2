@@ -78,6 +78,12 @@ export const FIGMA_PRODUCT_AVATAR_DETAIL: FigmaNodeRef = {
   nodeId: '2157:3642',
 };
 
+export const FIGMA_INFO_ROW: FigmaNodeRef = {
+  fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
+  fileName: 'Product-UI-Kit--variables-',
+  nodeId: '3040-21176',
+};
+
 export function figmaEmbedUrl({ fileKey, fileName, nodeId }: FigmaNodeRef): string {
   const params = new URLSearchParams({
     'node-id': nodeId,

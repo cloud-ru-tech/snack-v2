@@ -1,0 +1,189 @@
+{
+  "InfoRow": {
+    "displayName": "InfoRow",
+    "description": "Одна строка «метка — значение» по макету Figma infoRow: одна или две колонки значений, разделители, подсказка у метки, действия, скелетон при загрузке.",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для тестов (WithSupportProps)"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст метки: при column=\"1\" — слева от значения; при column=\"2\" — у первой пары «метка — значение». Типографика — thin-label-l; в MobileInfoRow (comfort) размер/интерлиньяж зафиксированы примитивами 14px/20px (см. Figma 3540-18656)"
+      },
+      "labelTruncate": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Максимум строк метки (TruncateString / maxLines)"
+      },
+      "labelTooltip": {
+        "type": "string | QuestionTooltipProps",
+        "required": false,
+        "description": "Подсказка у метки: строка (текст tip) или частичные пропсы QuestionTooltip (tip, trigger, placement и т.д.)"
+      },
+      "secondaryLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Текст второй метки при column=\"2\" (правая половина строки); типографика как у `label` — thin-label-l"
+      },
+      "secondaryLabelTruncate": {
+        "type": "number",
+        "required": false,
+        "description": "Макс. строк второй метки; по умолчанию как labelTruncate"
+      },
+      "secondaryLabelTooltip": {
+        "type": "string | QuestionTooltipProps",
+        "required": false,
+        "description": "Подсказка у второй метки (только при column=\"2\")"
+      },
+      "topDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показать разделитель над строкой"
+      },
+      "bottomDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показать разделитель под строкой"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Класс корневой обёртки"
+      },
+      "labelClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Класс блока первой метки"
+      },
+      "secondaryLabelClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Класс блока второй метки при column=\"2\""
+      },
+      "rowClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Класс внутренней строки (между разделителями)"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Первая колонка значений (при column=1 — единственная; при column=2 — левая). Типографика .content — regular-body-m; в MobileInfoRow размер/интерлиньяж 14px/20px как в compact"
+      },
+      "secondaryContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вторая колонка значений (только при column=\"2\"); типографика значения как у content"
+      },
+      "rowActionsSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомная область действий у первой колонки (макет / произвольный контент). Если задано, `rowActions` не рендерится"
+      },
+      "rowActions": {
+        "type": "{ first: RowActionButton; second?: RowActionButton }",
+        "required": false,
+        "description": "До двух кнопок у первой колонки (@ds/button tonal neutral, size m; контейнер в getThemeClassnames density compact). В макете Figma при `column=\"2\"` обычно одна кнопка (`first`). RowActionButton: пропсы Button без size/appearance/view, опционально tip. Игнорируется, если задан `rowActionsSlot`"
+      },
+      "secondaryRowActionsSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомные действия у второй колонки (при column=\"2\"). Если задано, `secondaryRowActions` не рендерится"
+      },
+      "secondaryRowActions": {
+        "type": "{ first: RowActionButton; second?: RowActionButton }",
+        "required": false,
+        "description": "До двух кнопок у второй колонки (при column=\"2\"); в макете Figma обычно одна (`first`). Игнорируется, если задан `secondaryRowActionsSlot`"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки: скелетон вместо контента колонок"
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": ["fixed", "full"],
+        "defaultValue": "fixed",
+        "description": "Ширина строки (data-width на корне)"
+      },
+      "labelWidth": {
+        "type": "enum",
+        "required": false,
+        "values": ["fixed", "auto"],
+        "description": "Режим ширины колонки метки для обеих меток при column=\"2\" (data-label-width)"
+      },
+      "column": {
+        "type": "enum",
+        "required": false,
+        "values": ["1", "2"],
+        "defaultValue": "1",
+        "description": "Ось Figma: одна или две колонки значений в строке"
+      },
+      "maxWidth": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Ось Figma maxWidth для строки"
+      }
+    }
+  },
+  "InfoGroup": {
+    "displayName": "InfoGroup",
+    "description": "Группа строк InfoRow по объекту `data` и массиву `items` (accessorKey или render на поле).",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для тестов (WithSupportProps)"
+      },
+      "data": {
+        "type": "Record<string, unknown>",
+        "required": false,
+        "description": "Объект данных; при отсутствии или пустых значениях показывается плейсхолдер «—»"
+      },
+      "items": {
+        "type": "InfoGroupItem[]",
+        "required": true,
+        "description": "Схема полей: у каждого элемента `label` и либо `accessorKey`, либо `render`; плюс опциональные пропы строки InfoRow (без `content` — он вычисляется)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Класс корневой обёртки группы"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Скелетон контента во всех вложенных InfoRow"
+      },
+      "columns": {
+        "type": "enum",
+        "required": false,
+        "values": ["single", "double"],
+        "defaultValue": "single",
+        "description": "Раскладка: одна колонка строк или сетка из двух (data-columns)"
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": ["fixed", "full"],
+        "defaultValue": "fixed",
+        "description": "Ширина группы (data-width на корне и строках)"
+      },
+      "formatBoolean": {
+        "type": "(value: boolean) => string",
+        "required": false,
+        "description": "Формат булевых значений при выводе по `accessorKey` (по умолчанию «Да» / «Нет»)"
+      }
+    }
+  }
+}

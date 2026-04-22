@@ -1,0 +1,49 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Double layout max width ≈ legacy 900px via density tokens.
+$wrapper-max: calc(18 * #{base.$sn-primitive-dimension-48} + #{base.$sn-primitive-dimension-36});
+$double-gap: base.$sn-primitive-dimension-48;
+$label-double-min: base.$sn-primitive-dimension-100;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &[data-columns='double'] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: $double-gap;
+    max-width: $wrapper-max;
+  }
+
+  &[data-width='full'] {
+    max-width: 100%;
+  }
+}
+
+.infoRowWrapper {
+  &[data-width='fixed'] {
+    width: 100%;
+  }
+
+  &[data-width='full'] {
+    max-width: 100%;
+  }
+}
+
+.infoRowLabelDoubleFixed.infoRowLabelDoubleFixed {
+  flex-shrink: 0;
+  width: $label-double-min;
+}
+
+.infoRowLabelDoubleFull.infoRowLabelDoubleFull {
+  flex-grow: 0.3;
+  flex-shrink: 0;
+  width: $label-double-min;
+}
+
+.contentDouble {
+  box-sizing: border-box;
+  height: 100%;
+}

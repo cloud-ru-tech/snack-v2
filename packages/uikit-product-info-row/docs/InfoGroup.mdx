@@ -1,0 +1,28 @@
+---
+title: InfoGroup
+package: '@ds/uikit-product-info-row'
+description: Группа строк InfoRow по данным и схеме полей.
+order: 2
+---
+
+import { InfoGroupDemo } from '../demos/InfoGroupDemo'
+import { PropsTable } from '~docs/components/PropsTable'
+import doc from './props.json'
+
+# InfoGroup
+
+`InfoGroup` принимает объект `data` и массив `items`. Каждый элемент либо указывает `accessorKey` для чтения поля из `data`, либо задаёт `render` для кастомного вывода.
+
+## Демо
+
+<InfoGroupDemo client:load />
+
+## Поведение
+
+- При отсутствии `data` или значения показывается плейсхолдер `—`.
+- Булевы по `accessorKey` форматируются через `formatBoolean` (по умолчанию «Да» / «Нет»).
+- `columns: 'double'` включает сетку из двух колонок строк (как в legacy).
+
+## Props
+
+<PropsTable data={doc.InfoGroup} />
