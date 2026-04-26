@@ -22,7 +22,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "classnames": "2.5.1"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

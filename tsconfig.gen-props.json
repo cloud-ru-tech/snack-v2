@@ -1,5 +1,5 @@
 {
-  "extends": "./tooling/tsconfig/react-lib.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true
   },

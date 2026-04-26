@@ -246,6 +246,16 @@
         "required": false,
         "defaultValue": "0",
         "description": "Tab index для кнопки-триггера"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
       }
     },
     "description": "QuestionTooltip — тултип с триггером-иконкой «вопрос».\nПереиспользует компонент Tooltip, добавляя стандартный триггер в виде иконки."

@@ -42,8 +42,9 @@ apps/
   docs/            # Astro (docs-site; @ds/* из packages/ — astro.config.mjs)
 playwright/        # Общий туллинг Playwright: fixtures, utils, browser matrix
 playwright.config.ts  # Корневой конфиг: сканирует packages/*/__tests__/*.spec.ts
-tooling/
-  tsconfig/        # Базовые tsconfig-шаблоны: base, ds-package-esm, ds-package-cjs, react-lib
+tsconfig.base.json    # Единый источник общих compilerOptions для всего репо
+tsconfig.json         # Typecheck-профиль (noEmit, paths, include)
+packages/tsconfig.esm.json / tsconfig.cjs.json  # Оркестраторы сборки пакетов (project references)
 scripts/
   add-package/     # Scaffold/wire новых пакетов
 tests/             # Docs-only Playwright (тесты apps/docs)
@@ -59,8 +60,8 @@ packages/<pkg>/
 ├── docs/          # index.mdx + props.json
 ├── package.json
 ├── tsconfig.json          # aggregator references
-├── tsconfig.esm.json      # extends ../../tooling/tsconfig/ds-package-esm.json
-└── tsconfig.cjs.json      # extends ../../tooling/tsconfig/ds-package-cjs.json
+├── tsconfig.esm.json      # extends ../tsconfig.esm.json
+└── tsconfig.cjs.json      # extends ../tsconfig.cjs.json
 ```
 
 ## Правила
@@ -137,11 +138,12 @@ Docs:
 
 При добавлении/регистрации пакета правятся следующие файлы (автоматизируется через `scripts/add-package/wire.mts`):
 
-1. `tsconfig.json` (root) — `references`
-2. `packages/tsconfig.esm.json` — `references`
-3. `packages/tsconfig.cjs.json` — `references`
-4. `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`
-5. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`
+1. `packages/tsconfig.esm.json` — `references`
+2. `packages/tsconfig.cjs.json` — `references`
+3. `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`
+4. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`
+
+(Корневой `tsconfig.json` — noEmit-профиль, пакеты не перечисляет; typecheck идёт через `include`.)
 
 (`apps/docs` подхватывает `@ds/*` из `packages/*/package.json` + `src/index.ts` — см. `dsWorkspaceSourceAliases` в `astro.config.mjs`, править вручную не нужно.)
 

@@ -7,7 +7,7 @@ import styles from './Canvas.module.scss';
 
 // ─── Control types ────────────────────────────────────────────────────────────
 
-export type SelectControl = { type: 'select'; options: string[] };
+export type SelectControl = { type: 'select' | 'radio'; options: string[] };
 export type BooleanControl = { type: 'boolean' };
 export type TextControl = { type: 'text' };
 export type NumberControl = { type: 'number' };
@@ -67,7 +67,9 @@ function deriveDefaults(doc: ComponentDoc): Record<string, unknown> {
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 export type CanvasProps<P extends Record<string, unknown> = Record<string, unknown>> = {
-  component: ComponentType<P>;
+  // Docs-level shim: accept any component shape. Real prop-shape is described by componentDoc/controls at runtime.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: ComponentType<any>;
   /** Display name used in the generated JSX snippet. Defaults to component.displayName or component.name. */
   componentName?: string;
   defaultProps?: Partial<P>;
@@ -246,10 +248,10 @@ export function Canvas<P extends Record<string, unknown>>({
                   <code className={styles.propName}>{key}</code>
                 </div>
                 <div className={`${styles.cell} ${styles.typeCell}`} role='cell'>
-                  {def.type === 'select' ? def.options.join(' | ') : def.type}
+                  {def.type === 'select' || def.type === 'radio' ? def.options.join(' | ') : def.type}
                 </div>
                 <div className={`${styles.cell} ${styles.valueCell}`} role='cell'>
-                  {def.type === 'select' && (
+                  {(def.type === 'select' || def.type === 'radio') && (
                     <select
                       className={styles.select}
                       value={String(props[key] ?? def.options[0])}

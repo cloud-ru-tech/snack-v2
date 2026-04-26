@@ -13,8 +13,14 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/button": "workspace:*",
     "@ds/icons": "workspace:*",
@@ -22,10 +28,12 @@
     "@ds/loader": "workspace:*",
     "@ds/popover-private": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1"
+    "classnames": "catalog:"
   },
   "peerDependencies": {
-    "@ds/locale": "*"
+    "@ds/locale": "workspace:*"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

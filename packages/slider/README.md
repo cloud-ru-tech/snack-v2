@@ -122,3 +122,4 @@ export function Example() {
 | `handleTip` | `boolean` | — | Показывать значение в тултипе на ручке |
 | `tipFormatter` | `((value: string | number) => ReactNode)` | — | Форматирование подсказки; по умолчанию — сырое значение |
 | `marksEqualSpacing` | `boolean` | — | Включение равномерного распределения при нелинейных значениях меток. |
+| `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |

@@ -20,6 +20,11 @@
         "type": "boolean",
         "required": false,
         "description": "Включение равномерного распределения при нелинейных значениях меток."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для e2e/tests"
       }
     }
   }

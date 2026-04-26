@@ -19,7 +19,6 @@ const meta: Meta<PopoverProps> = {
   args: {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.Click,
-    hasArrow: true,
     outsideClick: true,
     closeOnEscapeKey: true,
     widthStrategy: POPOVER_WIDTH_STRATEGY.Auto,
@@ -35,10 +34,6 @@ const meta: Meta<PopoverProps> = {
       control: 'radio',
       options: Object.values(TRIGGER),
       description: 'Тип триггера для открытия',
-    },
-    hasArrow: {
-      control: 'boolean',
-      description: 'Отображать стрелку',
     },
     outsideClick: {
       control: 'boolean',

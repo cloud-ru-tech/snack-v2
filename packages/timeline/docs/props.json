@@ -94,6 +94,11 @@
         "type": "boolean",
         "required": false,
         "description": "Перемешать положение контента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для e2e/tests"
       }
     }
   },

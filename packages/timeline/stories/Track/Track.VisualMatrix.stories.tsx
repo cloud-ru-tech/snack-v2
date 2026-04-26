@@ -1,4 +1,4 @@
-import { Track, type TrackProps } from '@ds/timeline';
+import { ROLE, STYLE, Track, type TrackProps, VARIANT } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -44,9 +44,9 @@ function MatrixCellTrack(partial: Partial<TrackProps>) {
   );
 }
 
-const roles = Object.values(Track.roles) as Role[];
-const lineStyles = Object.values(Track.lineStyles) as LineStyle[];
-const dotVariants = Object.values(Track.dotVariants) as DotVariant[];
+const roles = Object.values(ROLE) as Role[];
+const lineStyles = Object.values(STYLE) as LineStyle[];
+const dotVariants = Object.values(VARIANT) as DotVariant[];
 
 const lineColumnLabels = lineStyles.map(s => (s === 'solid' ? 'Solid' : 'Dashed'));
 
@@ -80,7 +80,6 @@ export const VisualMatrix: Story = {
               />
             )),
           }))}
-          tableMinWidthPx={500}
         />
       </section>
 
@@ -101,7 +100,6 @@ export const VisualMatrix: Story = {
               />
             )),
           }))}
-          tableMinWidthPx={500}
         />
       </section>
 
@@ -115,14 +113,13 @@ export const VisualMatrix: Story = {
             cells: lineStyles.map(lineStyle => (
               <MatrixCellTrack
                 key={`${appearance}-${lineStyle}`}
-                role={Track.roles.Center}
+                role={ROLE.Center}
                 lineStyle={lineStyle}
                 dotVariant='default'
                 dotAppearance={appearance}
               />
             )),
           }))}
-          tableMinWidthPx={500}
         />
       </section>
 
@@ -136,14 +133,13 @@ export const VisualMatrix: Story = {
             cells: dotVariants.map(dotVariant => (
               <MatrixCellTrack
                 key={`${appearance}-${dotVariant}`}
-                role={Track.roles.Center}
+                role={ROLE.Center}
                 lineStyle='dashed'
                 dotVariant={dotVariant}
                 dotAppearance={appearance}
               />
             )),
           }))}
-          tableMinWidthPx={500}
         />
       </section>
     </>

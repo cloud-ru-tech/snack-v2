@@ -6,5 +6,8 @@
     "./scss": "./src/fonts.scss",
     "./css": "./src/fonts.css"
   },
-  "files": ["src", "fonts"]
+  "files": [
+    "src",
+    "fonts"
+  ]
 }

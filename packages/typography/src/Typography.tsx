@@ -18,6 +18,8 @@ export type TypographyProps = {
   as?: ElementType;
   /** CSS-класс */
   className?: string;
+  /** Стабильный идентификатор для e2e/tests */
+  'data-test-id'?: string;
 } & HTMLAttributes<HTMLElement>;
 
 /**

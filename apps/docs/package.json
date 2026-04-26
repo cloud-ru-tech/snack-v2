@@ -11,22 +11,21 @@
     "clean": "rm -rf dist .astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.2.4",
-    "@astrojs/react": "^4.2.1",
-    "astro": "^5.7.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "sass": "^1.86.3",
+    "@astrojs/mdx": "5.0.4",
+    "@astrojs/react": "5.0.4",
+    "astro": "6.1.9",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "sass": "catalog:",
     "shiki": "3.23.0"
   },
   "devDependencies": {
     "@ds/fonts": "workspace:*",
-    "@ds/tsconfig": "workspace:*",
-    "@types/react": "^18.3.20",
-    "@types/react-dom": "^18.3.5",
-    "astro-pagefind": "^1.8.6",
-    "pagefind": "^1.5.2",
-    "typescript": "^5.8.3",
-    "unist-util-visit": "^5.1.0"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "astro-pagefind": "1.8.6",
+    "pagefind": "1.5.2",
+    "typescript": "catalog:",
+    "unist-util-visit": "5.1.0"
   }
 }

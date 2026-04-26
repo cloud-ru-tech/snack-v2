@@ -13,17 +13,25 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/button": "workspace:*",
     "@ds/icons": "workspace:*",
     "@ds/pagination": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
-    "lodash.debounce": "4.0.8",
-    "merge-refs": "2.0.0",
-    "uncontrollable": "9.0.0"
+    "classnames": "catalog:",
+    "lodash.debounce": "catalog:",
+    "merge-refs": "catalog:",
+    "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

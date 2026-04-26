@@ -39,6 +39,8 @@ export type SliderProps = Omit<
   tipFormatter?(value: string | number): ReactNode;
   /** Включение равномерного распределения при нелинейных значениях меток. */
   marksEqualSpacing?: boolean;
+  /** Стабильный идентификатор для e2e/tests */
+  'data-test-id'?: string;
 };
 
 export function Slider({

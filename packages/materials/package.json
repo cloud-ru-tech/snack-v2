@@ -8,7 +8,15 @@
       "sass": "./index.scss"
     }
   },
-  "files": ["index.scss", "src", "README.md"],
-  "sideEffects": ["**/*.scss"],
-  "publishConfig": { "access": "public" }
+  "files": [
+    "index.scss",
+    "src",
+    "README.md"
+  ],
+  "sideEffects": [
+    "**/*.scss"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

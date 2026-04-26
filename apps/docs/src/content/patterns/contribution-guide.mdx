@@ -27,7 +27,10 @@ design-system/
 ├── playwright/                    # Корневые fixtures, constants, utils
 ├── playwright.config.ts           # Сканирует packages/**/__test__/**/*.spec.ts
 ├── tests/docs/                    # Docs-only Playwright suite
-├── tooling/tsconfig/              # Базовые tsconfig шаблоны
+├── tsconfig.base.json             # Единый источник общих compilerOptions
+├── tsconfig.json                  # Typecheck-профиль (noEmit)
+├── packages/tsconfig.esm.json     # Оркестратор ESM-сборки (project references)
+├── packages/tsconfig.cjs.json     # Оркестратор CJS-сборки
 ├── scripts/
 │   ├── add-package.mts            # Скаффолд нового пакета (scaffold + wire)
 │   ├── add-package/               # scaffold.mts, wire.mts
@@ -101,6 +104,7 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
 ### Зависимости пакета
 
 - Только **строгие версии** (`"classnames": "2.5.1"`, не `^2.5.1`).
+- Повторяющиеся внешние зависимости (`react`, `react-dom`, `@types/react*`, `classnames`, `sass`, `typescript`, `lodash.debounce`, `merge-refs`, `uncontrollable`) подключаются через **`catalog:`** — версия живёт в `pnpm-workspace.yaml::catalog`.
 - В пакете **нет** `react` / `react-dom` / `@types/react*` — ни в одном блоке. Корень workspace'а поставляет React для сборки и тестов.
 - Внутренние зависимости — `workspace:*`.
 
@@ -239,7 +243,7 @@ pnpm add-package
 Скрипт (`scripts/add-package.mts` → `scripts/add-package/scaffold.mts` + `wire.mts`):
 
 1. создаёт `packages/<name>/` со всеми обязательными файлами;
-2. регистрирует ссылки в `tsconfig.json`, `packages/tsconfig.esm.json`, `packages/tsconfig.cjs.json`;
+2. регистрирует ссылки в `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json`;
 3. добавляет alias в `apps/storybook/.storybook/main.ts` (между маркерами `<add-package:aliases>`); для `apps/docs` алиасы `@ds/*` собираются из `packages/` автоматически (`astro.config.mjs`);
 4. добавляет `"@ds/<name>": "workspace:*"` в `apps/storybook/package.json`.
 

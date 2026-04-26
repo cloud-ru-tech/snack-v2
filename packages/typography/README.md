@@ -99,3 +99,4 @@ export function Example() {
 | `weight` | `"regular"` \| `"thin"` \| `"mono"` | `WEIGHT.regular` | Начертание шрифта |
 | `as` | `ElementType` | — | HTML тег для рендеринга |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |

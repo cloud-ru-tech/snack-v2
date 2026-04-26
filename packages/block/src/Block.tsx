@@ -12,6 +12,8 @@ export type BlockProps = {
   variant?: Variant;
   /** Размер */
   size?: Size;
+  /** Стабильный идентификатор для e2e/tests */
+  'data-test-id'?: string;
 } & Omit<HTMLProps<HTMLDivElement>, 'size'>;
 
 /**

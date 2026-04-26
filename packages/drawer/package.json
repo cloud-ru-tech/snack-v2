@@ -13,16 +13,24 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@ds/button": "workspace:*",
     "@ds/icons": "workspace:*",
     "@ds/scroll": "workspace:*",
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
+    "classnames": "catalog:",
     "rc-drawer": "6.4.1"
   }
 }

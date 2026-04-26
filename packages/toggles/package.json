@@ -13,16 +13,24 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/icons": "workspace:*",
     "@ds/loader": "workspace:*",
     "@ds/materials": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
-    "merge-refs": "1.3.0",
-    "uncontrollable": "8.0.4"
+    "classnames": "catalog:",
+    "merge-refs": "catalog:",
+    "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

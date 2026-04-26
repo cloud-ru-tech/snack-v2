@@ -1,31 +1,33 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "types": ["node", "vitest/globals", "dom-close-watcher"],
+    "paths": {
+      "#storybook/components": ["apps/storybook/.storybook/components"],
+      "#storybook/components/*": ["apps/storybook/.storybook/components/*"],
+      "#storybook/hooks": ["apps/storybook/.storybook/hooks"],
+      "#storybook/hooks/*": ["apps/storybook/.storybook/hooks/*"],
+      "@ds/*": ["./packages/*/src"],
+      "@ds/materials": ["/packages/materials"],
+      "~docs/*": ["apps/docs/src/*"]
+    }
   },
-  "include": [
-    "packages",
-    "apps",
-    "scripts",
-    "storybook",
-    "types"
-  ],
+  "include": ["packages", "apps", "apps/docs/.astro/types.d.ts", "apps/docs/.astro/content.d.ts", "scripts", "storybook", "types"],
   "exclude": [
     "node_modules",
     "dist",
     "build",
     "scripts/**/*.js",
     "scripts/**/*.d.ts",
+    "scripts/templates/**",
     "astro/**",
     "storybook/**/*.js",
     "storybook/**/*.d.ts",
     "packages/*/docs/**/*.mdx",
     "packages/*/__tests__/**",
     "packages/*/__test__/**"
-  ],
-  "references": [
-    {
-      "path": "./packages/accordion"
-    }
   ]
 }

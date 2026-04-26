@@ -27,6 +27,8 @@ export type TrackItemProps = {
   showLines?: boolean;
   /** Перемешать положение контента */
   alternateMode?: boolean;
+  /** Стабильный идентификатор для e2e/tests */
+  'data-test-id'?: string;
 };
 
 export function TrackItem({

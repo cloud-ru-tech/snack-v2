@@ -29,6 +29,8 @@ export type CommonTagProps = {
   appearance?: Appearance;
   className?: string;
   tabIndex?: number;
+  /** Обработчик удаления тега. Если задан — отображается крестик-remove */
+  onDelete?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export type TagBaseProps = WithSupportProps<{

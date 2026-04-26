@@ -32,6 +32,6 @@
     "@ds/truncate-string": "workspace:*",
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1"
+    "classnames": "catalog:"
   }
 }

@@ -18,7 +18,8 @@ export const WithImage: Story = {
   args: {
     name: 'Jane Roe',
     size: SIZE.L,
-    src: portrait,
+    // svg import resolves to url string at runtime (Vite/Astro)
+    src: portrait as unknown as string,
     'data-test-id': AVATAR_TEST_ID,
   },
 };

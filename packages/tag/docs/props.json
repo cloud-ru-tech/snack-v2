@@ -205,6 +205,11 @@
         "type": "number",
         "required": false
       },
+      "onDelete": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
+      },
       "as": {
         "type": "ElementType",
         "required": false,
@@ -221,7 +226,8 @@
       },
       "onDelete": {
         "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
       },
       "label": {
         "type": "string",
@@ -272,7 +278,8 @@
       },
       "onDelete": {
         "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
       },
       "label": {
         "type": "string",
@@ -329,7 +336,8 @@
       },
       "onDelete": {
         "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
       },
       "label": {
         "type": "string",

@@ -40,7 +40,6 @@ function OpenCloseTestRender({ onOpen, onClose }: TestArgs) {
 
 const meta: Meta<TestArgs> = {
   title: 'Components/Drawer/Drawer',
-  component: Drawer,
   parameters: { layout: 'centered' },
 };
 export default meta;

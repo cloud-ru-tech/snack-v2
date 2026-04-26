@@ -20,8 +20,8 @@ design-system/
 ├── apps/
 │   ├── docs/               # Документационный портал (Astro)
 │   │   └── src/
+│   │       ├── content.config.ts    # Astro content collections
 │   │       ├── content/
-│   │       │   ├── config.ts        # Astro content collections
 │   │       │   └── patterns/        # MDX-паттерны не привязанные к пакетам
 │   │       ├── components/
 │   │       │   └── Canvas.tsx       # Интерактивное превью с контролами
@@ -41,11 +41,10 @@ design-system/
 │   ├── helpers/storybook.ts
 │   └── playwright.config.ts
 │
-├── tooling/
-│   └── tsconfig/           # Shared TypeScript конфиги
-│
+├── tsconfig.base.json      # Единый источник общих compilerOptions
+├── tsconfig.json           # Typecheck-профиль (noEmit)
 ├── lerna.json              # Lerna: версионирование и публикация
-└── pnpm-workspace.yaml     # pnpm workspaces
+└── pnpm-workspace.yaml     # pnpm workspaces + catalog для общих внешних deps
 ```
 
 ## Сборка пакетов компонентов
@@ -107,7 +106,7 @@ pnpm release
 
 1. Запустить `pnpm add-package` или скопировать `packages/button/` → `packages/my-component/`
 2. Переименовать `name` в `package.json` → `@ds/my-component`
-3. Добавить пакет в `tsconfig.json`, `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (скрипт `add-package` делает это автоматически)
+3. Добавить пакет в `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (скрипт `add-package` делает это автоматически)
 4. Описать сторис в `stories/MyComponent.stories.tsx`
 5. Написать демо в `demos/MyComponentDemo.tsx`
 6. Задокументировать в `docs/overview.mdx` — страница появится в портале автоматически

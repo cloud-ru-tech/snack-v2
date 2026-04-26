@@ -84,7 +84,6 @@ export const VisualMatrix: Story = {
               ],
             },
           ]}
-          tableMinWidthPx={420}
         />
       </section>
 
@@ -119,7 +118,6 @@ export const VisualMatrix: Story = {
               ],
             },
           ]}
-          tableMinWidthPx={420}
         />
       </section>
     </>

@@ -187,6 +187,7 @@ Pop-up-подсказка над произвольным триггером. П
 | `tooltipClassname` | `string` | — | CSS-класс контейнера подсказки |
 | `triggerLabel` | `string` | `Подсказка` | Доступное имя для иконки-триггера |
 | `tabIndex` | `number` | `0` | Tab index для кнопки-триггера |
+| `size` | `"xs"` \| `"s"` | `xs` | Размер |
 
 ## Storybook
 

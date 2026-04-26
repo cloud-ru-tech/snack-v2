@@ -15,7 +15,11 @@
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist", "src", "svgs"],
+  "files": [
+    "dist",
+    "src",
+    "svgs"
+  ],
   "sideEffects": false,
   "scripts": {
     "create-sprite": "pnpm exec ts-node scripts/createSprite.ts",
@@ -27,5 +31,7 @@
     "post-process-icons": "pnpm exec ts-node scripts/postProcessIconFallback.ts",
     "copy:sprite-svg": "node scripts/copySpriteSvgToDist.cjs"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

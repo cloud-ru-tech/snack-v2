@@ -1,5 +1,6 @@
 import { Link } from '@ds/link';
 import { Meta, StoryObj } from '@storybook/react';
+import { MouseEventHandler } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
@@ -19,7 +20,13 @@ export const Polymorphic: Story = {
   render: args => (
     <div className={styles.row}>
       <Link text='Anchor' href='#' data-test-id='link-anchor' />
-      <Link as='button' type='button' text='Button' onClick={args.onClick} data-test-id='link-button' />
+      <Link
+        as='button'
+        type='button'
+        text='Button'
+        onClick={args.onClick as unknown as MouseEventHandler<HTMLButtonElement>}
+        data-test-id='link-button'
+      />
       <Link as='a' text='External' href='https://example.com' target='_blank' data-test-id='link-external' />
     </div>
   ),

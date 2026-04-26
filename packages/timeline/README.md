@@ -183,6 +183,7 @@ function CustomTimeline({ events }) {
 | `dotAppearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — | Семантический цвет маркера |
 | `showLines` | `boolean` | — | Показывать вертикальные сегменты |
 | `alternateMode` | `boolean` | — | Перемешать положение контента |
+| `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 
 ## Storybook
 

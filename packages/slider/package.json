@@ -13,13 +13,22 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css", "**/*.scss"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css",
+    "**/*.scss"
+  ],
   "dependencies": {
     "@ds/tooltip": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
+    "classnames": "catalog:",
     "rc-slider": "11.1.9"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

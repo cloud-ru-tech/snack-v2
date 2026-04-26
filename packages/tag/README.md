@@ -129,7 +129,7 @@ import '@ds/tag/style.css'
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `data-test-id` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — |  |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
 | `label` | `string` | — |  |
 | `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
 | `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — |  |
@@ -209,7 +209,7 @@ export function Example() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `data-test-id` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — |  |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
 | `label` | `string` | — |  |
 | `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
 | `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — |  |
@@ -232,7 +232,7 @@ export function Example() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `data-test-id` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — |  |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
 | `label` | `string` | — |  |
 | `size` | `"xs"` \| `"s"` \| `"m"` | `xs` |  |
 | `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` |  |
@@ -259,6 +259,7 @@ export function Example() {
 | `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` |  |
 | `className` | `string` | — |  |
 | `tabIndex` | `number` | — |  |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
 | `as` | `ElementType` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
 
 ## TagList

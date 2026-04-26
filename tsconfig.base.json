@@ -11,33 +11,6 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["node", "vitest/globals", "@types/dom-close-watcher"],
-    "baseUrl": ".",
-    "paths": {
-      "#storybook/components": ["apps/storybook/.storybook/components"],
-      "#storybook/components/*": ["apps/storybook/.storybook/components/*"],
-      "#storybook/hooks": ["apps/storybook/.storybook/hooks"],
-      "#storybook/hooks/*": ["apps/storybook/.storybook/hooks/*"],
-      "@ds/*": ["./packages/*/src"],
-      "@ds/materials": ["/packages/materials"]
-    }
-  },
-  "include": ["packages", "apps", "scripts", "storybook", "types"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    "scripts/**/*.js",
-    "scripts/**/*.d.ts",
-    "astro/**/*.js",
-    "astro/**/*.d.ts",
-    "storybook/**/*.js",
-    "storybook/**/*.d.ts",
-    "packages/*/docs/**/*.js",
-    "packages/*/docs/**/*.d.ts",
-    "packages/*/stories/**/*.js",
-    "packages/*/stories/**/*.d.ts"
-  ]
+    "jsx": "react-jsx"
+  }
 }

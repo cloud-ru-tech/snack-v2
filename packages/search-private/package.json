@@ -13,18 +13,26 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/icons": "workspace:*",
     "@ds/input-private": "workspace:*",
     "@ds/loader": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
-    "merge-refs": "1.3.0"
+    "classnames": "catalog:",
+    "merge-refs": "catalog:"
   },
   "peerDependencies": {
-    "@ds/locale": "*"
+    "@ds/locale": "workspace:*"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

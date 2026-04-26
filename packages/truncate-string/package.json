@@ -13,16 +13,24 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/tooltip": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
+    "classnames": "catalog:",
     "lodash.throttle": "4.1.1"
   },
   "devDependencies": {
     "@types/lodash.throttle": "4.1.8"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

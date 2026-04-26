@@ -1,10 +1,18 @@
 {
-  "extends": "../../tooling/tsconfig/ds-package-esm.json",
+  "extends": "../tsconfig.esm.json",
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist/esm"
   },
-  "include": ["./src", "../../types"],
-  "exclude": ["dist", "stories", "docs", "demos", "node_modules"],
-  "references": [{ "path": "../utils/tsconfig.esm.json" }]
+  "include": [
+    "./src",
+    "../../types"
+  ],
+  "exclude": [
+    "./dist",
+    "./stories",
+    "./__tests__",
+    "./__test__",
+    "./docs"
+  ]
 }

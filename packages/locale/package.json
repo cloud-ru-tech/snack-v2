@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "@types/lodash.merge": "4.6.9",
-    "classnames": "2.5.1",
+    "classnames": "catalog:",
     "lodash.merge": "4.6.2"
   },
   "publishConfig": {

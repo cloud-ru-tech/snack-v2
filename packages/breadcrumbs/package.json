@@ -13,14 +13,22 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
     "@snack-uikit/list": "0.32.16",
-    "classnames": "2.5.1",
-    "lodash.debounce": "4.0.8"
+    "classnames": "catalog:",
+    "lodash.debounce": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -55,23 +55,22 @@
     "@ds/truncate-string": "workspace:*",
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1"
+    "classnames": "catalog:"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.2",
-    "@ds/tsconfig": "workspace:*",
     "@storybook/addon-a11y": "10.3.5",
     "@storybook/react": "10.3.5",
     "@storybook/react-vite": "10.3.5",
     "@storybook/test-runner": "0.24.3",
-    "@types/react": "18.3.28",
-    "@types/react-dom": "18.3.7",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "concurrently": "9.2.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "sass": "1.99.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "sass": "catalog:",
     "storybook": "10.3.5",
-    "typescript": "5.8.3",
+    "typescript": "catalog:",
     "wait-on": "9.0.5"
   }
 }

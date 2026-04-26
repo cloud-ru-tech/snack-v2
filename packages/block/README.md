@@ -98,3 +98,4 @@ export function Example() {
 | `children` | `ReactNode` | — | Содержимое |
 | `variant` | `"simple"` \| `"outline"` \| `"shadow"` \| `"transparent"` | `simple` | Вариант |
 | `size` | `"s"` \| `"m"` \| `"l"` | `l` | Размер |
+| `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |

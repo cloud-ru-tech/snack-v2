@@ -1,155 +1,8 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./utils/tsconfig.esm.json"
-    },
-    {
-      "path": "./icons/tsconfig.esm.json"
-    },
-    {
-      "path": "./avatar/tsconfig.esm.json"
-    },
-    {
-      "path": "./counter/tsconfig.esm.json"
-    },
-    {
-      "path": "./loader/tsconfig.esm.json"
-    },
-    {
-      "path": "./button/tsconfig.esm.json"
-    },
-    {
-      "path": "./divider/tsconfig.esm.json"
-    },
-    {
-      "path": "./block/tsconfig.esm.json"
-    },
-    {
-      "path": "./hot-spot/tsconfig.esm.json"
-    },
-    {
-      "path": "./icon-predefined/tsconfig.esm.json"
-    },
-    {
-      "path": "./portal-context/tsconfig.esm.json"
-    },
-    {
-      "path": "./scroll/tsconfig.esm.json"
-    },
-    {
-      "path": "./skeleton/tsconfig.esm.json"
-    },
-    {
-      "path": "./popover-private/tsconfig.esm.json"
-    },
-    {
-      "path": "./progress-bar/tsconfig.esm.json"
-    },
-    {
-      "path": "./timeline/tsconfig.esm.json"
-    },
-    {
-      "path": "./dropzone/tsconfig.esm.json"
-    },
-    {
-      "path": "./typography/tsconfig.esm.json"
-    },
-    {
-      "path": "./locale/tsconfig.esm.json"
-    },
-    {
-      "path": "./breadcrumbs/tsconfig.esm.json"
-    },
-    {
-      "path": "./info-block/tsconfig.esm.json"
-    },
-    {
-      "path": "./popover/tsconfig.esm.json"
-    },
-    {
-      "path": "./promo-tag/tsconfig.esm.json"
-    },
-    {
-      "path": "./rating/tsconfig.esm.json"
-    },
-    {
-      "path": "./status/tsconfig.esm.json"
-    },
-    {
-      "path": "./toggles/tsconfig.esm.json"
-    },
-    {
-      "path": "./stepper/tsconfig.esm.json"
-    },
-    {
-      "path": "./tooltip/tsconfig.esm.json"
-    },
-    {
-      "path": "./input-private/tsconfig.esm.json"
-    },
-    {
-      "path": "./pagination/tsconfig.esm.json"
-    },
-    {
-      "path": "./tabs/tsconfig.esm.json"
-    },
-    {
-      "path": "./dropdown/tsconfig.esm.json"
-    },
-    {
-      "path": "./truncate-string/tsconfig.esm.json"
-    },
-    {
-      "path": "./search-private/tsconfig.esm.json"
-    },
-    {
-      "path": "./slider/tsconfig.esm.json"
-    },
-    {
-      "path": "./carousel/tsconfig.esm.json"
-    },
-    {
-      "path": "./link/tsconfig.esm.json"
-    },
-    {
-      "path": "./alert/tsconfig.esm.json"
-    },
-    {
-      "path": "./tag/tsconfig.esm.json"
-    },
-    {
-      "path": "./search/tsconfig.esm.json"
-    },
-    {
-      "path": "./modal/tsconfig.esm.json"
-    },
-    {
-      "path": "./drawer/tsconfig.esm.json"
-    },
-    {
-      "path": "./accordion/tsconfig.esm.json"
-    }
-  ],
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es6",
-    "lib": [
-      "es2017",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "module": "es6",
-    "strict": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
     "composite": true,
+    "declaration": true,
     "plugins": [
       {
         "transform": "../../scripts/scss-extension-transformer.ts"
@@ -161,5 +14,51 @@
         }
       }
     ]
-  }
+  },
+  "files": [],
+  "references": [
+    { "path": "./utils/tsconfig.esm.json" },
+    { "path": "./icons/tsconfig.esm.json" },
+    { "path": "./avatar/tsconfig.esm.json" },
+    { "path": "./counter/tsconfig.esm.json" },
+    { "path": "./loader/tsconfig.esm.json" },
+    { "path": "./button/tsconfig.esm.json" },
+    { "path": "./divider/tsconfig.esm.json" },
+    { "path": "./block/tsconfig.esm.json" },
+    { "path": "./hot-spot/tsconfig.esm.json" },
+    { "path": "./icon-predefined/tsconfig.esm.json" },
+    { "path": "./portal-context/tsconfig.esm.json" },
+    { "path": "./scroll/tsconfig.esm.json" },
+    { "path": "./skeleton/tsconfig.esm.json" },
+    { "path": "./popover-private/tsconfig.esm.json" },
+    { "path": "./progress-bar/tsconfig.esm.json" },
+    { "path": "./timeline/tsconfig.esm.json" },
+    { "path": "./dropzone/tsconfig.esm.json" },
+    { "path": "./typography/tsconfig.esm.json" },
+    { "path": "./locale/tsconfig.esm.json" },
+    { "path": "./breadcrumbs/tsconfig.esm.json" },
+    { "path": "./info-block/tsconfig.esm.json" },
+    { "path": "./popover/tsconfig.esm.json" },
+    { "path": "./promo-tag/tsconfig.esm.json" },
+    { "path": "./rating/tsconfig.esm.json" },
+    { "path": "./status/tsconfig.esm.json" },
+    { "path": "./toggles/tsconfig.esm.json" },
+    { "path": "./stepper/tsconfig.esm.json" },
+    { "path": "./tooltip/tsconfig.esm.json" },
+    { "path": "./input-private/tsconfig.esm.json" },
+    { "path": "./pagination/tsconfig.esm.json" },
+    { "path": "./tabs/tsconfig.esm.json" },
+    { "path": "./dropdown/tsconfig.esm.json" },
+    { "path": "./truncate-string/tsconfig.esm.json" },
+    { "path": "./search-private/tsconfig.esm.json" },
+    { "path": "./slider/tsconfig.esm.json" },
+    { "path": "./carousel/tsconfig.esm.json" },
+    { "path": "./link/tsconfig.esm.json" },
+    { "path": "./alert/tsconfig.esm.json" },
+    { "path": "./tag/tsconfig.esm.json" },
+    { "path": "./search/tsconfig.esm.json" },
+    { "path": "./modal/tsconfig.esm.json" },
+    { "path": "./drawer/tsconfig.esm.json" },
+    { "path": "./accordion/tsconfig.esm.json" }
+  ]
 }

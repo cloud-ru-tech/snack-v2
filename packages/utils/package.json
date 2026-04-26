@@ -13,12 +13,17 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "sideEffects": false,
   "dependencies": {
-    "classnames": "2.5.1",
+    "classnames": "catalog:",
     "react-swipeable": "7.0.2",
-    "uncontrollable": "8.0.4"
+    "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

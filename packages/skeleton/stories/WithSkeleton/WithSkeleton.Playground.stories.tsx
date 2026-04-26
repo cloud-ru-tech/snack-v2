@@ -12,7 +12,6 @@ type PlaygroundArgs = {
 
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Skeleton/WithSkeleton',
-  component: WithSkeleton,
   parameters: { layout: 'centered' },
   args: {
     loading: true,

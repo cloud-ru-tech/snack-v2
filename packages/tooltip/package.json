@@ -13,14 +13,22 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/icons": "workspace:*",
     "@ds/popover-private": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1",
-    "uncontrollable": "9.0.0"
+    "classnames": "catalog:",
+    "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }
