@@ -1,6 +1,7 @@
 {
   "Rating": {
     "displayName": "Rating",
+    "propsTypeName": "RatingProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -14,7 +15,10 @@
           "s"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -30,7 +34,10 @@
           "pink"
         ],
         "defaultValue": "yellow",
-        "description": "Внешний вид (цветовая схема)"
+        "description": "Внешний вид (цветовая схема)",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "count": {
         "type": "number",
@@ -70,7 +77,10 @@
       "onChange": {
         "type": "((value: number) => void)",
         "required": false,
-        "description": "Колбек, вызываемый на смену состояния"
+        "description": "Колбек, вызываемый на смену состояния",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "className": {
         "type": "string",
@@ -78,10 +88,35 @@
         "description": "CSS-класс"
       }
     },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      }
+    },
     "description": "Компонент Rating"
   },
   "RatingStar": {
     "displayName": "RatingStar",
+    "propsTypeName": null,
     "props": {
       "value": {
         "type": "enum",
@@ -152,6 +187,7 @@
         "description": "Действие при клике части звезды мышью"
       }
     },
+    "relatedTypes": {},
     "description": "Компонент RatingStar"
   }
 }

@@ -5,7 +5,7 @@ import dropdownDoc from '../docs/props.json';
 
 import { Canvas } from '~docs/components/Canvas';
 
-type PreviewProps = Pick<DropdownProps, 'trigger' | 'placement'>;
+type PreviewProps = Pick<DropdownProps, 'trigger' | 'placement' | 'open'>;
 
 function DropdownPreview(props: PreviewProps) {
   return (
@@ -24,6 +24,7 @@ export function DropdownDemo() {
       defaultProps={{
         trigger: 'click',
         placement: 'bottom-start',
+        open: true,
       }}
       controls={{
         trigger: { type: 'select', options: ['click', 'hover', 'focus'] },
@@ -31,12 +32,12 @@ export function DropdownDemo() {
           type: 'select',
           options: ['top-start', 'top', 'top-end', 'bottom-start', 'bottom', 'bottom-end'],
         },
+        open: { type: 'boolean' },
       }}
       excludeProps={[
         'content',
         'children',
         'state',
-        'open',
         'onOpenChange',
         'triggerRef',
         'className',

@@ -1,17 +1,30 @@
-import { TruncateString } from '@ds/truncate-string';
+import { TruncateString, TruncateStringProps } from '@ds/truncate-string';
 
 import truncateStringDoc from '../docs/props.json';
 
 import { Canvas } from '~docs/components/Canvas';
 
+/**
+ * Tooltip появляется только когда текст реально не помещается.
+ * Оборачиваем TruncateString в узкий контейнер фиксированной ширины,
+ * чтобы дефолтный текст всегда был truncated и hideTooltip имел эффект.
+ */
+function TruncateStringAdapter(props: TruncateStringProps) {
+  return (
+    <div style={{ width: 220, border: '1px dashed var(--sn-foreground-primary, #ccc)', padding: 8, borderRadius: 4 }}>
+      <TruncateString {...props} />
+    </div>
+  );
+}
+
 export function TruncateStringDemo() {
   return (
     <Canvas
-      component={TruncateString}
+      component={TruncateStringAdapter}
       componentName='TruncateString'
       componentDoc={truncateStringDoc.TruncateString}
       defaultProps={{
-        text: 'Очень длинный текст, который не помещается в контейнер',
+        text: 'Очень длинный текст, который точно не поместится в узкий контейнер превью',
         variant: 'end',
         maxLines: 1,
         hideTooltip: false,

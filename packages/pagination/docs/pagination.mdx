@@ -5,8 +5,15 @@ description: Постраничная навигация с нумерацией
 order: 1
 ---
 
-import { Pagination } from '@ds/pagination'
 import { PaginationDemo } from '../demos/PaginationDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { SizeM } from '../demos/examples/SizeM'
+import SizeMSrc from '../demos/examples/SizeM.tsx?raw'
+import { LongRange } from '../demos/examples/LongRange'
+import LongRangeSrc from '../demos/examples/LongRange.tsx?raw'
+import { AsLinks } from '../demos/examples/AsLinks'
+import AsLinksSrc from '../demos/examples/AsLinks.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -17,105 +24,55 @@ import paginationDoc from './props.json'
 Классическая постраничная навигация. Рендерит `<nav aria-label="Pagination">` с кнопками «предыдущая», нумерацией страниц и «следующая». Длинные диапазоны сворачиваются через `...`-элементы, клик по которым прыгает в середину скрытого отрезка.
 
 ## Демо
-
-<PaginationDemo client:load />
+<PaginationDemo client:visible />
 
 ## Когда использовать
-
 - Списки, таблицы, ленты с количеством страниц 5+.
 - Результаты поиска, архивы, блоги.
 - Когда пользователю нужен прямой переход на конкретную страницу.
 
 Когда **не** нужен `Pagination`: для 2–3 элементов используйте `PaginationSlider` — он плотнее и понятнее визуально.
 
-## Для дизайнеров
+## Анатомия
 
 ### Size
-
-| Size | Высота кнопки | Применение |
-|------|---------------|------------|
-| `s` | 24px | Таблицы, компактные списки — по умолчанию |
-| `m` | 32px | Лендинги, широкие hero-блоки |
+Два размера: `s` — дефолт для таблиц и списков, `m` — для более воздушных страниц.
 
 ### Variant
+`button` — элементы-кнопки (статус текущей страницы по фону, side-effect navigation), `link` — элементы-ссылки (работают с роутером, поддерживают middle-click/open-in-new-tab).
 
-| Variant | Рендер | Когда |
-|---------|--------|-------|
-| `button` | `<button>` | SPA-навигация с `onChange` |
-| `link` | `<a href>` | SEO-friendly страницы + `hrefFormatter` |
-
-### Truncation
-
-`maxLength` задаёт максимальное количество элементов (кнопок страниц + break'ов) между стрелками. При превышении сохраняется первая, последняя и окно вокруг текущей страницы — пропуски рисуются кликабельными `...`-элементами.
-
-### Do / Don't
-
-- ✅ Один `<nav>` пагинации на список. Не дублируйте сверху и снизу, если список короткий.
-- ❌ Пагинация на 3–4 страницы — лучше покажите все в одном ряду без свёртки.
-- ✅ `variant='link'` + `hrefFormatter` для результатов поиска, архивов — чтобы работал «Открыть в новой вкладке» и индексация.
-- ❌ `variant='link'` без `hrefFormatter` — ссылки будут без `href`.
-- ✅ `size='s'` в плотных таблицах — не занимает лишнюю высоту строки.
-- ❌ Смешивать `s` и `m` внутри одной страницы.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/pagination
 ```
 
 ```ts
 import { Pagination } from '@ds/pagination'
-import '@ds/pagination/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Базовый сценарий'>
-  <Pagination total={10} page={3} onChange={(page) => console.log(page)} />
+## Примеры использования
+<Example title='Базовый сценарий' code={BasicSrc}>
+  <Basic client:visible />
 </Example>
 
-<Example title='Размер m'>
-  <Pagination total={10} page={3} size='m' onChange={(page) => console.log(page)} />
+<Example title='Размер m' code={SizeMSrc}>
+  <SizeM client:visible />
 </Example>
 
-<Example title='Длинный диапазон — свёртка в середине'>
-  <Pagination total={42} page={12} maxLength={7} onChange={(page) => console.log(page)} />
+<Example title='Длинный диапазон — свёртка в середине' code={LongRangeSrc}>
+  <LongRange client:visible />
 </Example>
 
 <Example
   title='Как ссылки'
   description="variant='link' + hrefFormatter — каждая страница получает href"
+  code={AsLinksSrc}
 >
-  <Pagination
-    total={8}
-    page={2}
-    variant='link'
-    hrefFormatter={(page) => `?page=${page}`}
-    onChange={(page) => console.log(page)}
-  />
+  <AsLinks client:visible />
 </Example>
 
-### States
-
-- **Первая страница** — стрелка «назад» получает `disabled`.
-- **Последняя страница** — стрелка «вперёд» получает `disabled`.
-- **Текущая страница** — `aria-current='page'` + визуально выделенная кнопка.
-- **Break (`...`)** — кликабельная, переходит в середину скрытого диапазона и передаёт фокус на новую страницу.
-
-### Props
-
+## Props
 <PropsTable data={paginationDoc.Pagination} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-pagination-pagination--playground' height={360} client:load />
-
-## Доступность
-
-- Корневой контейнер — `<nav aria-label='Pagination'>` (landmark для быстрого перехода).
-- Текущая страница — `aria-current='page'`.
-- Нативные `<button>` и `<a>` — Enter / Space и ссылочное поведение из коробки.
-- После клика по break (`...`) фокус переводится на страницу, в которую пользователя прыгнули, чтобы не терять контекст клавиатурной навигации.
-- Иконки стрелок снабжены `aria-label='Previous page'` / `'Next page'`.
+## Storybook
+<StorybookEmbed storyId='components-pagination-pagination--playground' height={360} />

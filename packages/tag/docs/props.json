@@ -1,6 +1,7 @@
 {
   "TagRowTruncated": {
     "displayName": "TagRowTruncated",
+    "propsTypeName": null,
     "props": {
       "items": {
         "type": "TagRowItemInner[]",
@@ -31,10 +32,12 @@
         "type": "((item: string) => void)",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TagRowSimple": {
     "displayName": "TagRowSimple",
+    "propsTypeName": null,
     "props": {
       "items": {
         "type": "TagRowItemInner[]",
@@ -61,10 +64,12 @@
         "type": "string",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TagMore": {
     "displayName": "TagMore",
+    "propsTypeName": null,
     "props": {
       "items": {
         "type": "TagRowItemInner[]",
@@ -93,10 +98,12 @@
         "type": "((item: string) => void)",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TagList": {
     "displayName": "TagList",
+    "propsTypeName": null,
     "props": {
       "items": {
         "type": "TagRowItemInner[]",
@@ -120,10 +127,12 @@
         "type": "SetTagRef",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TagRow": {
     "displayName": "TagRow",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -158,10 +167,12 @@
         "type": "((item: string) => void)",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TagLink": {
     "displayName": "TagLink",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -215,10 +226,12 @@
         "required": false,
         "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TagBase": {
     "displayName": "TagBase",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -267,10 +280,12 @@
         "type": "number",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "isTagLinkProps": {
     "displayName": "isTagLinkProps",
+    "propsTypeName": "TagProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -292,6 +307,9 @@
           "xs",
           "s",
           "m"
+        ],
+        "typeRefs": [
+          "Size"
         ]
       },
       "appearance": {
@@ -307,6 +325,9 @@
           "blue",
           "violet",
           "pink"
+        ],
+        "typeRefs": [
+          "Appearance"
         ]
       },
       "className": {
@@ -325,10 +346,37 @@
         ],
         "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
       }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "xs"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      }
     }
   },
   "Tag": {
     "displayName": "Tag",
+    "propsTypeName": "TagProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -350,6 +398,9 @@
           "xs",
           "s",
           "m"
+        ],
+        "typeRefs": [
+          "Size"
         ]
       },
       "appearance": {
@@ -365,6 +416,9 @@
           "blue",
           "violet",
           "pink"
+        ],
+        "typeRefs": [
+          "Appearance"
         ]
       },
       "className": {
@@ -382,6 +436,32 @@
           "a"
         ],
         "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "xs"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
       }
     }
   }

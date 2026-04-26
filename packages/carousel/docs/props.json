@@ -1,6 +1,7 @@
 {
   "Carousel": {
     "displayName": "Carousel",
+    "propsTypeName": "CarouselProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -88,12 +89,26 @@
           "always"
         ],
         "defaultValue": "hover",
-        "description": "Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда"
+        "description": "Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда",
+        "typeRefs": [
+          "ControlsVisibility"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ControlsVisibility": {
+        "kind": "union",
+        "values": [
+          "hover",
+          "always"
+        ],
+        "own": true
       }
     }
   },
   "ItemProvider": {
     "displayName": "ItemProvider",
+    "propsTypeName": null,
     "props": {
       "showItems": {
         "type": "number",
@@ -127,10 +142,12 @@
         "type": "string",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Control": {
     "displayName": "Control",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -152,6 +169,7 @@
         "type": "string",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   }
 }

@@ -1,6 +1,7 @@
 {
   "ToggleGroup": {
     "displayName": "ToggleGroup",
+    "propsTypeName": "ToggleGroupProps",
     "props": {
       "defaultValue": {
         "type": "string | string[]",
@@ -15,7 +16,10 @@
       "onChange": {
         "type": "((value: string) => void) | ((value: string[]) => void) | undefined",
         "required": false,
-        "description": "Controlled обработчик измения состояния"
+        "description": "Controlled обработчик измения состояния",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "selectionMode": {
         "type": "enum",
@@ -27,10 +31,12 @@
         "defaultValue": "single",
         "description": "Режим выбора"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Switch": {
     "displayName": "Switch",
+    "propsTypeName": "SwitchProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -110,7 +116,10 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "inputRef": {
         "type": "RefObject<HTMLInputElement>",
@@ -121,11 +130,22 @@
         "required": false,
         "defaultValue": "false",
         "description": "Состояние загрузки"
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
       }
     }
   },
   "Radio": {
     "displayName": "Radio",
+    "propsTypeName": "RadioProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -205,7 +225,10 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "inputRef": {
         "type": "RefObject<HTMLInputElement>",
@@ -217,10 +240,21 @@
         "defaultValue": "false",
         "description": "Состояние загрузки"
       }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
     }
   },
   "Favourite": {
     "displayName": "Favourite",
+    "propsTypeName": "FavouriteProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -300,7 +334,10 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "inputRef": {
         "type": "RefObject<HTMLInputElement>",
@@ -320,17 +357,39 @@
           "heart"
         ],
         "defaultValue": "heart",
-        "description": "Вариант иконки: звезда или сердце"
+        "description": "Вариант иконки: звезда или сердце",
+        "typeRefs": [
+          "FavouriteIcon"
+        ]
       },
       "onKeyUp": {
         "type": "KeyboardEventHandler<HTMLSpanElement>",
         "required": false,
         "description": "Обработчик keyup"
       }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      },
+      "FavouriteIcon": {
+        "kind": "union",
+        "values": [
+          "star",
+          "heart"
+        ],
+        "own": true
+      }
     }
   },
   "Checkbox": {
     "displayName": "Checkbox",
+    "propsTypeName": "CheckboxProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -410,7 +469,10 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "inputRef": {
         "type": "RefObject<HTMLInputElement>",
@@ -431,6 +493,16 @@
         "type": "boolean",
         "required": false,
         "description": "Состояние частичного выбора по-умолчанию"
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
       }
     }
   }

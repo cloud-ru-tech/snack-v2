@@ -1,13 +1,23 @@
-import { Search } from '@ds/search';
+import { Search, SearchProps } from '@ds/search';
+import { useState } from 'react';
 
 import searchDoc from '../docs/props.json';
 
 import { Canvas } from '~docs/components/Canvas';
 
+/**
+ * Search — controlled-компонент. Без локального state value никогда не меняется
+ * и набор в превью не работает. Оборачиваем в state-адаптер.
+ */
+function SearchAdapter(props: SearchProps) {
+  const [value, setValue] = useState('');
+  return <Search {...props} value={value} onChange={setValue} />;
+}
+
 export function SearchDemo() {
   return (
     <Canvas
-      component={Search}
+      component={SearchAdapter}
       componentName='Search'
       componentDoc={searchDoc.Search}
       defaultProps={{

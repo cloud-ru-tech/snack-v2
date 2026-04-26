@@ -1,6 +1,7 @@
 {
   "DrawerHeader": {
     "displayName": "DrawerHeader",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -32,10 +33,12 @@
         "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
       }
     },
+    "relatedTypes": {},
     "description": "Вспомогательный компонент для добавления \"шапки\" в DrawerCustom"
   },
   "DrawerFooter": {
     "displayName": "DrawerFooter",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -47,10 +50,12 @@
         "description": "CSS-класс"
       }
     },
+    "relatedTypes": {},
     "description": "Вспомогательный компонент для добавления \"футера\" в DrawerCustom"
   },
   "ButtonClose": {
     "displayName": "ButtonClose",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -66,10 +71,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "DrawerBody": {
     "displayName": "DrawerBody",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -86,19 +93,23 @@
         "description": "CSS-класс"
       }
     },
+    "relatedTypes": {},
     "description": "Вспомогательный компонент для добавления \"тела\" в DrawerCustom"
   },
   "DrawerCustomLayoutProvider": {
     "displayName": "DrawerCustomLayoutProvider",
+    "propsTypeName": null,
     "props": {
       "value": {
         "type": "DrawerCustomLayoutContextValue",
         "required": true
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "DrawerCustom": {
     "displayName": "DrawerCustom",
+    "propsTypeName": "DrawerCustomProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -112,7 +123,10 @@
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия"
+        "description": "Колбэк закрытия",
+        "typeRefs": [
+          "onClose"
+        ]
       },
       "showBlackout": {
         "type": "boolean",
@@ -129,13 +143,19 @@
           "top",
           "bottom"
         ],
-        "description": "Расположение"
+        "description": "Расположение",
+        "typeRefs": [
+          "Position"
+        ]
       },
       "width": {
         "type": "string | number",
         "required": false,
         "defaultValue": "'s'",
-        "description": "Ширина (только при position: \"left\" | \"right\")"
+        "description": "Ширина (только при position: \"left\" | \"right\")",
+        "typeRefs": [
+          "Width"
+        ]
       },
       "heightAuto": {
         "type": "boolean",
@@ -166,7 +186,10 @@
       "nestedDrawer": {
         "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>>",
         "required": false,
-        "description": "Вложенный Drawer"
+        "description": "Вложенный Drawer",
+        "typeRefs": [
+          "DrawerCustomProps"
+        ]
       },
       "closeOnPopstate": {
         "type": "boolean",
@@ -178,10 +201,129 @@
         "required": false,
         "description": "Футер"
       }
+    },
+    "relatedTypes": {
+      "Position": {
+        "kind": "union",
+        "values": [
+          "left",
+          "right",
+          "top",
+          "bottom"
+        ],
+        "own": true
+      },
+      "Width": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "DrawerCustomProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "open": {
+            "type": "boolean",
+            "required": true,
+            "description": "Управление состоянием показан/не показан."
+          },
+          "onClose": {
+            "type": "() => void",
+            "required": true,
+            "description": "Колбэк закрытия",
+            "typeRefs": [
+              "onClose"
+            ]
+          },
+          "showBlackout": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение темной подложки"
+          },
+          "position": {
+            "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
+            "required": true,
+            "values": [
+              "left",
+              "right",
+              "top",
+              "bottom"
+            ],
+            "description": "Расположение",
+            "typeRefs": [
+              "Position"
+            ]
+          },
+          "width": {
+            "type": "string | number | undefined",
+            "required": false,
+            "description": "Ширина (только при position: \"left\" | \"right\")",
+            "typeRefs": [
+              "Width"
+            ]
+          },
+          "heightAuto": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс для элемента с контентом"
+          },
+          "rootClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс для корневого элемента"
+          },
+          "push": {
+            "type": "boolean | PushConfig | undefined",
+            "required": false,
+            "description": "Смещение при открытии \"вложенного\" компонента"
+          },
+          "container": {
+            "type": "string | HTMLElement | undefined",
+            "required": false,
+            "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+          },
+          "nestedDrawer": {
+            "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> | undefined",
+            "required": false,
+            "description": "Вложенный Drawer",
+            "typeRefs": [
+              "DrawerCustomProps"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать дровер при перемещении по истории браузера"
+          },
+          "footer": {
+            "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
+            "required": false,
+            "description": "Футер"
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      }
     }
   },
   "DrawerCustom.Header": {
     "displayName": "DrawerCustom.Header",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -212,10 +354,12 @@
         "required": false,
         "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "DrawerCustom.Body": {
     "displayName": "DrawerCustom.Body",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -231,10 +375,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "DrawerCustom.Footer": {
     "displayName": "DrawerCustom.Footer",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -245,10 +391,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Drawer": {
     "displayName": "Drawer",
+    "propsTypeName": "DrawerProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -262,7 +410,10 @@
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия"
+        "description": "Колбэк закрытия",
+        "typeRefs": [
+          "onClose"
+        ]
       },
       "showBlackout": {
         "type": "boolean",
@@ -279,13 +430,19 @@
           "top",
           "bottom"
         ],
-        "description": "Расположение"
+        "description": "Расположение",
+        "typeRefs": [
+          "Position"
+        ]
       },
       "width": {
         "type": "string | number",
         "required": false,
         "defaultValue": "'s'",
-        "description": "Ширина (только при position: \"left\" | \"right\")"
+        "description": "Ширина (только при position: \"left\" | \"right\")",
+        "typeRefs": [
+          "Width"
+        ]
       },
       "heightAuto": {
         "type": "boolean",
@@ -316,7 +473,10 @@
       "nestedDrawer": {
         "type": "(ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> & ReactElement<DrawerProps, string | JSXElementConstructor<...>>)",
         "required": false,
-        "description": "Вложенный Drawer"
+        "description": "Вложенный Drawer",
+        "typeRefs": [
+          "DrawerCustomProps"
+        ]
       },
       "closeOnPopstate": {
         "type": "boolean",
@@ -346,7 +506,10 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку",
+        "typeRefs": [
+          "onBackButtonClick"
+        ]
       },
       "content": {
         "type": "ReactNode",
@@ -357,6 +520,124 @@
         "type": "ReactNode",
         "required": false,
         "description": "Медиа-контент"
+      }
+    },
+    "relatedTypes": {
+      "Position": {
+        "kind": "union",
+        "values": [
+          "left",
+          "right",
+          "top",
+          "bottom"
+        ],
+        "own": true
+      },
+      "Width": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "DrawerCustomProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "open": {
+            "type": "boolean",
+            "required": true,
+            "description": "Управление состоянием показан/не показан."
+          },
+          "onClose": {
+            "type": "() => void",
+            "required": true,
+            "description": "Колбэк закрытия",
+            "typeRefs": [
+              "onClose"
+            ]
+          },
+          "showBlackout": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение темной подложки"
+          },
+          "position": {
+            "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
+            "required": true,
+            "values": [
+              "left",
+              "right",
+              "top",
+              "bottom"
+            ],
+            "description": "Расположение",
+            "typeRefs": [
+              "Position"
+            ]
+          },
+          "width": {
+            "type": "string | number | undefined",
+            "required": false,
+            "description": "Ширина (только при position: \"left\" | \"right\")",
+            "typeRefs": [
+              "Width"
+            ]
+          },
+          "heightAuto": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс для элемента с контентом"
+          },
+          "rootClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс для корневого элемента"
+          },
+          "push": {
+            "type": "boolean | PushConfig | undefined",
+            "required": false,
+            "description": "Смещение при открытии \"вложенного\" компонента"
+          },
+          "container": {
+            "type": "string | HTMLElement | undefined",
+            "required": false,
+            "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+          },
+          "nestedDrawer": {
+            "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> | undefined",
+            "required": false,
+            "description": "Вложенный Drawer",
+            "typeRefs": [
+              "DrawerCustomProps"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать дровер при перемещении по истории браузера"
+          },
+          "footer": {
+            "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
+            "required": false,
+            "description": "Футер"
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          }
+        },
+        "own": true
       }
     },
     "description": "Drawer компонент"

@@ -1,10 +1,15 @@
 {
   "createLocaleContext": {
     "displayName": "createLocaleContext",
+    "propsTypeName": "ContextOptions",
     "props": {
       "extendedDictionary": {
         "type": "ExtendedDictionary<D>",
-        "required": false
+        "required": false,
+        "typeRefs": [
+          "ExtendedDictionary",
+          "D"
+        ]
       },
       "defaultLanguage": {
         "type": "enum",
@@ -13,12 +18,40 @@
           "en-GB",
           "ru-RU"
         ],
-        "defaultValue": "en-GB"
+        "defaultValue": "en-GB",
+        "typeRefs": [
+          "LocaleLang"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ExtendedDictionary": {
+        "kind": "interface",
+        "props": {
+          "en-GB": {
+            "type": "any",
+            "required": true
+          },
+          "ru-RU": {
+            "type": "any",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "LocaleLang": {
+        "kind": "union",
+        "values": [
+          "en-GB",
+          "ru-RU"
+        ],
+        "own": true
       }
     }
   },
   "LocaleProvider": {
     "displayName": "LocaleProvider",
+    "propsTypeName": null,
     "props": {
       "lang": {
         "type": "string",
@@ -36,10 +69,13 @@
         "type": "PartialObjectDeep<Record<\"en-GB\" | \"ru-RU\", LocaleDictionary<Dictionary>>>",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "useLocale": {
     "displayName": "useLocale",
-    "props": {}
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
   }
 }

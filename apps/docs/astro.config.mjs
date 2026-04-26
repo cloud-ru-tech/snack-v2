@@ -7,7 +7,10 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { remarkExampleCode } from './src/plugins/remark-example-code.mjs';
+import { remarkExampleHeadings } from './src/plugins/remark-example-headings.mjs';
 import { remarkInternalBaseUrl } from './src/plugins/remark-internal-base-url.mjs';
+import { remarkPropsTableHeadings } from './src/plugins/remark-props-table-headings.mjs';
+import { remarkSectionOrder } from './src/plugins/remark-section-order.mjs';
 
 const dir = fileURLToPath(new URL('.', import.meta.url));
 const root = resolve(dir, '../..');
@@ -36,9 +39,16 @@ export default defineConfig({
   integrations: [
     react(),
     mdx({
-      remarkPlugins: [remarkExampleCode, remarkInternalBaseUrl],
+      remarkPlugins: [
+        remarkExampleCode,
+        remarkInternalBaseUrl,
+        remarkExampleHeadings,
+        remarkPropsTableHeadings,
+        remarkSectionOrder,
+      ],
     }),
-    pagefind(),
+    // Pagefind index is expensive (~2-4s). Skip it for local fast builds via SKIP_PAGEFIND=1.
+    ...(process.env.SKIP_PAGEFIND ? [] : [pagefind()]),
   ],
   vite: {
     // @snack-uikit/list ESM entry re-exports `./components` (directory); Node SSR
@@ -82,6 +92,12 @@ export default defineConfig({
           loadPaths: [resolve(root, 'node_modules')],
         },
       },
+    },
+    build: {
+      // Disable CSS code-splitting so every module's CSS ends up in a single
+      // stylesheet per-entry; fixes CSS-modules from @ds/* packages vanishing
+      // from React island chunks due to aggressive Rollup tree-shaking.
+      cssCodeSplit: false,
     },
   },
 });

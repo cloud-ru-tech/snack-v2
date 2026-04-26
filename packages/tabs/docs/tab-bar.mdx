@@ -23,6 +23,23 @@ import tabsDoc from './props.json'
 - `markerPosition` — позиция активного маркера (`before` / `after`).
 - `after` — слот справа от табов для дополнительных действий.
 
+## Когда использовать
+
+- Внутри `Tabs` как единственный контейнер списка кнопок-табов.
+- Если нужно разместить дополнительные действия справа от табов (через слот `after`).
+
+## Установка
+
+```bash
+pnpm add @ds/tabs
+```
+
+```ts
+import { Tabs } from '@ds/tabs'
+
+<Tabs.Bar />
+```
+
 ## Примеры использования
 
 <Example title='Size L — верхнеуровневый' code={SizeLSrc}>
@@ -39,4 +56,15 @@ import tabsDoc from './props.json'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-tabs--sizes' height={240} client:only="react" />
+<StorybookEmbed storyId='components-tabs--sizes' height={240} />
+
+## Анатомия
+
+### Orientation
+`horizontal` — бар в строку, `vertical` — колонкой.
+
+### Size
+`m` — дефолт, `l` — для крупных лейаутов.
+
+### Marker position
+Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.

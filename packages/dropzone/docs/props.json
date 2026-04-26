@@ -1,6 +1,7 @@
 {
   "PrivateDropZone": {
     "displayName": "PrivateDropZone",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -57,10 +58,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "HiddenDropZone": {
     "displayName": "HiddenDropZone",
+    "propsTypeName": "HiddenDropZoneProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -69,7 +72,10 @@
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек загрузки файла",
+        "typeRefs": [
+          "onFilesUpload"
+        ]
       },
       "disabled": {
         "type": "boolean",
@@ -84,7 +90,10 @@
           "multiple"
         ],
         "defaultValue": "multiple",
-        "description": "Режим загрузки"
+        "description": "Режим загрузки",
+        "typeRefs": [
+          "UploadMode"
+        ]
       },
       "accept": {
         "type": "string",
@@ -100,7 +109,10 @@
           "l"
         ],
         "defaultValue": "m",
-        "description": "Размер компонента"
+        "description": "Размер компонента",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "className": {
         "type": "string",
@@ -118,10 +130,30 @@
         "description": "Дочерний контент, поверх которого отображается dropzone при drag"
       }
     },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "UploadMode": {
+        "kind": "union",
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "own": true
+      }
+    },
     "description": "Компонент — скрытая дропзона, накрывающая произвольный контент (формы, карточки)"
   },
   "FileUpload": {
     "displayName": "FileUpload",
+    "propsTypeName": "FileUploadProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -130,7 +162,10 @@
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек загрузки файла",
+        "typeRefs": [
+          "onFilesUpload"
+        ]
       },
       "mode": {
         "type": "enum",
@@ -140,17 +175,31 @@
           "multiple"
         ],
         "defaultValue": "multiple",
-        "description": "Режим"
+        "description": "Режим",
+        "typeRefs": [
+          "UploadMode"
+        ]
       },
       "accept": {
         "type": "string",
         "required": false,
         "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
       }
+    },
+    "relatedTypes": {
+      "UploadMode": {
+        "kind": "union",
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "own": true
+      }
     }
   },
   "Dropzone": {
     "displayName": "Dropzone",
+    "propsTypeName": "DropzoneProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -159,7 +208,10 @@
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек загрузки файла",
+        "typeRefs": [
+          "onFilesUpload"
+        ]
       },
       "children": {
         "type": "ReactNode",
@@ -180,7 +232,10 @@
           "multiple"
         ],
         "defaultValue": "multiple",
-        "description": "Режим загрузки"
+        "description": "Режим загрузки",
+        "typeRefs": [
+          "UploadMode"
+        ]
       },
       "accept": {
         "type": "string",
@@ -196,12 +251,34 @@
           "l"
         ],
         "defaultValue": "m",
-        "description": "Размер компонента"
+        "description": "Размер компонента",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
+      }
+    },
+    "relatedTypes": {
+      "UploadMode": {
+        "kind": "union",
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
       }
     },
     "description": "Компонент — видимая зона для drag-n-drop загрузки файлов"

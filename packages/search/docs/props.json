@@ -1,6 +1,7 @@
 {
   "ButtonField": {
     "displayName": "ButtonField",
+    "propsTypeName": null,
     "props": {
       "variant": {
         "type": "enum",
@@ -50,10 +51,12 @@
         "required": true,
         "description": "Действие при клике"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Search": {
     "displayName": "Search",
+    "propsTypeName": "SearchProps",
     "props": {
       "value": {
         "type": "string",
@@ -63,7 +66,10 @@
       "onChange": {
         "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
         "required": false,
-        "description": "Колбек смены значения"
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "placeholder": {
         "type": "string",
@@ -93,7 +99,10 @@
           "url",
           "none"
         ],
-        "description": "Режим работы экранной клавиатуры"
+        "description": "Режим работы экранной клавиатуры",
+        "typeRefs": [
+          "InputMode"
+        ]
       },
       "data-test-id": {
         "type": "string",
@@ -122,7 +131,10 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "loading": {
         "type": "boolean",
@@ -132,7 +144,10 @@
       "onSubmit": {
         "type": "((value: string) => void)",
         "required": false,
-        "description": "Колбек на подтверждение поиска по строке"
+        "description": "Колбек на подтверждение поиска по строке",
+        "typeRefs": [
+          "onSubmit"
+        ]
       },
       "showClearButton": {
         "type": "boolean",
@@ -149,13 +164,108 @@
       "buttonField": {
         "type": "Omit<ButtonFieldProps, \"variant\">",
         "required": false,
-        "description": "Дополнительный слот справа от поля"
+        "description": "Дополнительный слот справа от поля",
+        "typeRefs": [
+          "ButtonFieldProps"
+        ]
       },
       "outline": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
         "description": "Наличие разделителя между input и buttonField"
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "InputMode": {
+        "kind": "union",
+        "values": [
+          "search",
+          "text",
+          "none",
+          "decimal",
+          "numeric",
+          "tel",
+          "email",
+          "url"
+        ],
+        "own": false
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "before",
+          "after"
+        ],
+        "own": true
+      },
+      "ButtonFieldProps": {
+        "kind": "interface",
+        "props": {
+          "variant": {
+            "type": "\"before\" | \"after\"",
+            "required": true,
+            "values": [
+              "before",
+              "after"
+            ],
+            "description": "Вариант (положение) кнопки",
+            "typeRefs": [
+              "Variant"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "m",
+              "l"
+            ],
+            "description": "Размер кнопки",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Деактивирован ли компонент"
+          },
+          "action": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Слот для кнопки/иконки/аватара"
+          },
+          "withDropdownList": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение шеврона"
+          },
+          "onClick": {
+            "type": "() => void",
+            "required": true,
+            "description": "Действие при клике",
+            "typeRefs": [
+              "onClick"
+            ]
+          }
+        },
+        "own": true
       }
     }
   }

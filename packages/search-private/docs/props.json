@@ -1,6 +1,7 @@
 {
   "SearchPrivate": {
     "displayName": "SearchPrivate",
+    "propsTypeName": "SearchPrivateProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -15,7 +16,10 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "loading": {
         "type": "boolean",
@@ -30,7 +34,10 @@
       "onSubmit": {
         "type": "((value: string) => void)",
         "required": false,
-        "description": "Колбек на подтверждение поиска по строке"
+        "description": "Колбек на подтверждение поиска по строке",
+        "typeRefs": [
+          "onSubmit"
+        ]
       },
       "className": {
         "type": "string",
@@ -56,7 +63,10 @@
       "onChange": {
         "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
         "required": false,
-        "description": "Колбек смены значения"
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "placeholder": {
         "type": "string",
@@ -92,7 +102,35 @@
           "none"
         ],
         "defaultValue": "search",
-        "description": "Режим работы экранной клавиатуры"
+        "description": "Режим работы экранной клавиатуры",
+        "typeRefs": [
+          "InputMode"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "InputMode": {
+        "kind": "union",
+        "values": [
+          "search",
+          "text",
+          "none",
+          "decimal",
+          "numeric",
+          "tel",
+          "email",
+          "url"
+        ],
+        "own": false
       }
     }
   }

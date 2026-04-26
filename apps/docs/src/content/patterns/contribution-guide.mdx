@@ -121,13 +121,12 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./style.css": "./dist/esm/style.css"
+    }
   }
 }
 ```
 
-`source` читают Storybook и docs в dev-режиме. Потребитель импортирует CSS явно: `import '@ds/button/style.css'`.
+`source` читают Storybook и docs в dev-режиме. CSS живёт как side-effect в самих JS-бандлах (SCSS-модули) — потребителю отдельным импортом подключать ничего не нужно.
 
 ## Как работают стили
 
@@ -222,7 +221,7 @@ import { FigmaEmbed } from '~docs/components/FigmaEmbed'
 import { FIGMA_BUTTON } from '~docs/lib/figma'
 import buttonDoc from './props.json'
 
-<ButtonDemo client:load />
+<ButtonDemo client:visible />
 <StorybookEmbed storyId='components-button-button--playground' />
 <FigmaEmbed node={FIGMA_BUTTON} />
 <PropsTable data={buttonDoc.Button} />
@@ -364,7 +363,7 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 ### Плагин для просмотра пропсов
 
 В Figma удобно смотреть API компонентов через плагин:
-<br />[Figma community plugin](https://www.figma.com/community/plugin/1600446810191317919)
+<br /><a href='https://www.figma.com/community/plugin/1600446810191317919' target='_blank' rel='noopener noreferrer'>Figma community plugin</a>
 
 Плагин показывает variant axes выбранного компонента в виде таблицы пропсов — это быстрый способ сверить Figma-оси с `constants.ts` и с `argTypes` Playground'а.
 

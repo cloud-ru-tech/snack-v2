@@ -24,80 +24,46 @@ import togglesDoc from './props.json'
 Переключатель on/off для бинарных настроек с моментальным применением. В отличие от `Checkbox`, Switch меняет состояние сразу — без кнопки «Сохранить».
 
 ## Демо
-
-<SwitchDemo client:load />
+<SwitchDemo client:visible />
 
 ## Когда использовать
-
 - Для бинарных настроек пользователя, применяемых немедленно (уведомления, тёмная тема).
 - В ситуациях, где не нужен пакетный apply/cancel.
 
 Когда **не** нужен Switch: если изменение требует подтверждения — используйте [`Checkbox`](/components/toggles/checkbox) с кнопкой submit.
 
-## Для дизайнеров
+## Figma
+<FigmaEmbed node={FIGMA_SWITCH} height={480} title='Switch в Figma (Snack UI Kit)' />
 
-### Size
-
-| Size | Размеры (W×H) | Применение |
-|------|--------------|-----------|
-| `xs` | 24×16 | Плотные списки настроек |
-| `s`  | 36×24 | Формы, settings |
-
-### Do / Don't
-
-- ✅ Моментальное применение с визуальной индикацией success.
-- ❌ Switch с кнопкой «Сохранить» — противоречит семантике.
-- ✅ Лейбл описывает состояние «включено» (например, «Уведомления»).
-- ❌ Глагол в лейбле («Включить уведомления») — пользователь не знает, текущее состояние on или off.
-
-### Figma
-
-<FigmaEmbed node={FIGMA_SWITCH} height={480} title='Switch в Figma (Snack UI Kit)' client:load />
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/toggles
 ```
 
 ```ts
 import { Switch } from '@ds/toggles'
-import '@ds/toggles/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example title='1. Базовый Switch' code={SwitchBasicSrc}>
-  <SwitchBasic client:load />
+  <SwitchBasic client:visible />
 </Example>
 
 <Example title='2. Два размера' code={SwitchSizesSrc}>
-  <SwitchSizes client:load />
+  <SwitchSizes client:visible />
 </Example>
 
 <Example title='3. Все состояния' code={SwitchStatesSrc}>
-  <SwitchStates client:load />
+  <SwitchStates client:visible />
 </Example>
 
-### States
-
-- **`checked` / `defaultChecked`** — controlled и uncontrolled.
-- **`disabled`** — `data-disabled="true"` + native `disabled`.
-- **`loading`** — native input скрывается, рендерится спиннер. Используйте для асинхронных настроек.
-
-### Props
-
+## Props
 <PropsTable data={togglesDoc.Switch} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-toggles-switch--playground' height={360} />
 
-<StorybookEmbed storyId='components-toggles-switch--playground' height={360} client:load />
+## Анатомия
 
-## Доступность
-
-- Native `<input type="checkbox">` внутри — Space переключает из коробки.
-- Формально `role="checkbox"` — скринридер озвучит как «checkbox checked/unchecked». Это ок для on/off семантики.
-- `data-focusvisible` для focus-ring только при клавиатурной навигации.
-- Связывайте с видимым `<label>`; в списках настроек используйте заголовок + описание.
+### Size
+`xs` — для плотных настроек и таблиц, `s` — дефолт в формах и карточках.

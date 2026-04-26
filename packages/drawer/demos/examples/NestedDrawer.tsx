@@ -1,8 +1,10 @@
 import { Button } from '@ds/button';
 import { Drawer } from '@ds/drawer';
-import { useState } from 'react';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
 export function NestedDrawer() {
+  const hostRef = useRef<HTMLDivElement>(null);
   const [outerOpen, setOuterOpen] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
 
@@ -12,31 +14,36 @@ export function NestedDrawer() {
   };
 
   return (
-    <>
-      <Button label='Открыть родительский' appearance='primary' view='filled' onClick={() => setOuterOpen(true)} />
-      <Drawer
-        open={outerOpen}
-        position='right'
-        width='m'
-        onClose={closeAll}
-        title='Родительский Drawer'
-        subtitle='При открытии вложенного — родитель сдвигается влево.'
-        content={
-          <Button label='Открыть вложенный' appearance='primary' view='outline' onClick={() => setInnerOpen(true)} />
-        }
-        nestedDrawer={
-          <Drawer
-            open={innerOpen}
-            position='right'
-            width='s'
-            onClose={() => setInnerOpen(false)}
-            title='Вложенный Drawer'
-            subtitle='Кнопка «назад» возвращает к родителю'
-            onBackButtonClick={() => setInnerOpen(false)}
-            content='Вложенный Drawer рендерится через проп nestedDrawer родителя.'
-          />
-        }
-      />
-    </>
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть родительский' appearance='primary' view='filled' onClick={() => setOuterOpen(true)} />
+        <Drawer
+          open={outerOpen}
+          position='right'
+          width='m'
+          onClose={closeAll}
+          title='Родительский Drawer'
+          subtitle='При открытии вложенного — родитель сдвигается влево.'
+          content={
+            <Button label='Открыть вложенный' appearance='primary' view='outline' onClick={() => setInnerOpen(true)} />
+          }
+          nestedDrawer={
+            <Drawer
+              open={innerOpen}
+              position='right'
+              width='s'
+              onClose={() => setInnerOpen(false)}
+              title='Вложенный Drawer'
+              subtitle='Кнопка «назад» возвращает к родителю'
+              onBackButtonClick={() => setInnerOpen(false)}
+              content='Вложенный Drawer рендерится через проп nestedDrawer родителя.'
+            />
+          }
+        />
+      </div>
+    </PortalContextProvider>
   );
 }

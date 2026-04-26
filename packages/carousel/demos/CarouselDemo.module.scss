@@ -3,6 +3,7 @@
 .root {
   width: 560px;
   max-width: 100%;
+  padding-bottom: 32px;
 }
 
 .slide {
@@ -10,7 +11,7 @@
   align-items: center;
   justify-content: center;
 
-  height: 200px;
+  height: 160px;
   border-radius: base.$sn-primitive-dimension-8;
 
   font-size: 24px;

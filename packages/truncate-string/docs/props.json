@@ -1,6 +1,7 @@
 {
   "TruncateString": {
     "displayName": "TruncateString",
+    "propsTypeName": "TruncateStringProps",
     "props": {
       "variant": {
         "type": "enum",
@@ -52,7 +53,10 @@
           "bottom-start",
           "bottom-end"
         ],
-        "description": "Положение тултипа относительно обрезанного текста."
+        "description": "Положение тултипа относительно обрезанного текста.",
+        "typeRefs": [
+          "TooltipProps"
+        ]
       },
       "text": {
         "type": "string",
@@ -71,12 +75,178 @@
           "hoverAndFocus",
           "clickAndFocusVisible"
         ],
-        "description": "Условие отображения тултипа"
+        "description": "Условие отображения тултипа",
+        "typeRefs": [
+          "TooltipProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          }
+        },
+        "own": false
       }
     }
   },
   "TruncateStringMiddle": {
     "displayName": "TruncateStringMiddle",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -132,10 +302,12 @@
         ],
         "defaultValue": "hoverAndFocusVisible"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "TruncateStringEnd": {
     "displayName": "TruncateStringEnd",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -201,6 +373,7 @@
         "defaultValue": "hoverAndFocusVisible",
         "description": "Условие отображения тултипа"
       }
-    }
+    },
+    "relatedTypes": {}
   }
 }

@@ -50,14 +50,21 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='Outline × Appearance (size=m)'
-        firstColumnHeader='Outline'
-        columnHeaders={keyAppearances.map(a => a)}
-        rows={[false, true].map(outline => ({
-          variantLabel: outline ? 'outline' : 'filled',
-          cells: keyAppearances.map(appearance => (
-            <div key={appearance} className={styles.container}>
-              <Alert appearance={appearance} outline={outline} title={`${appearance}`} description='Описание' />
+        sectionTitle='Appearance × Outline (size=m)'
+        firstColumnHeader='Appearance'
+        columnHeaders={['outline/false', 'outline/true']}
+        rows={keyAppearances.map(appearance => ({
+          variantLabel: appearance,
+          cells: [false, true].map(outline => (
+            <div key={String(outline)} className={styles.container}>
+              <Alert
+                appearance={appearance}
+                outline={outline}
+                size='m'
+                align={ALIGN.Horizontal}
+                title={`Alert ${appearance}`}
+                description='Краткое описание'
+              />
             </div>
           )),
         }))}

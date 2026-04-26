@@ -4,81 +4,53 @@
 
 Пульсирующая точка-индикатор, которая привязывается к целевому UI-элементу. Используется для привлечения внимания к новой функции, непрочитанному статусу или обучающему шагу онбординга.
 
-## Когда использовать
+## Демо
+<HotSpotDemo client:visible />
 
+## Когда использовать
 - Подсветка новой функции в меню или тулбаре.
 - Индикатор непрочитанного статуса рядом с пунктом навигации.
 - Шаг обучающего онбординга — точка указывает на следующее действие.
 
 Когда **не** нужен `HotSpot`: для количественных бейджей используйте `Counter`; для постоянных статусов — `Tag`.
 
-### Appearance — цвет точки
+### Appearance
+Цветовая семантика точки: `primary` — нейтральный акцент бренда; `red` — ошибка/важное уведомление; `orange`, `yellow` — предупреждение; `green` — успех/онлайн; `blue`, `violet`, `pink` — декоративные категории.
 
-Восемь вариантов: `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`. `primary` — по умолчанию. Остальные — для семантических статусов или цветового кодирования по категориям.
+### Placement
+Позиция точки относительно родителя: `left|center|right` × `top|bottom` плюс чистый `left`/`right`/`center` (по вертикали центрируются).
 
-### Placement — позиция относительно target
-
-Девять позиций: `left`, `left-top`, `left-bottom`, `right`, `right-top`, `right-bottom`, `center`, `center-top`, `center-bottom`. Смещения по осям (`offsetX`, `offsetY`) позволяют тонкую подстройку.
-
-### Pulse — анимация
-
-Анимация пульсации по умолчанию включена. `duration` задаёт период (CSS-значение — `'2s'`, `'500ms'`). Для пользователей с `prefers-reduced-motion` отключайте `pulse` вручную.
-
-### Do / Don't
-
-- ✅ Один HotSpot на экран — внимание не должно дробиться.
-- ❌ HotSpot на каждом элементе — превращает экран в рябь.
-- ✅ Убирайте HotSpot после взаимодействия с целевым элементом.
-- ❌ Постоянный HotSpot на давно известной функции.
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/hot-spot
 ```
 
 ```ts
 import { HotSpot, APPEARANCE, PLACEMENT } from '@ds/hot-spot'
-import '@ds/hot-spot/style.css'
 ```
 
-### Примеры использования
-
-<Example title='HotSpot на кнопке'>
-  <HotSpot placement='right-top'>
-    <Button label='Уведомления' view='outline' />
-  </HotSpot>
+## Примеры использования
+<Example title='HotSpot на кнопке' code={OnButtonSrc}>
+  <OnButton client:visible />
 </Example>
 
-<Example title='Без анимации пульсации'>
-  <HotSpot placement='right' pulse={false}>
-    <Button label='Settings' view='outline' />
-  </HotSpot>
+<Example title='Без анимации пульсации' code={NoPulseSrc}>
+  <NoPulse client:visible />
 </Example>
 
-<Example title='Красный акцент'>
-  <HotSpot appearance='red' placement='right-top'>
-    <Button label='Ошибки' view='outline' />
-  </HotSpot>
+<Example title='Красный акцент' code={RedAccentSrc}>
+  <RedAccent client:visible />
 </Example>
 
-<Example title='Standalone dot (без children)'>
-  <HotSpot appearance='green' />
+<Example title='Standalone dot (без children)' code={StandaloneSrc}>
+  <Standalone client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={hotSpotDoc.HotSpot} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-hotspot--playground' height={360} client:load />
-
-## Доступность
-
-- HotSpot — чисто визуальный индикатор, не несёт ARIA-семантики.
-- Не используйте его как единственный носитель информации — дублируйте статус текстом рядом (например, «Новое»).
-- Для `prefers-reduced-motion` отключайте `pulse` программно.
+## Storybook
+<StorybookEmbed storyId='components-hotspot--playground' height={360} />
 
 ## HotSpot
 

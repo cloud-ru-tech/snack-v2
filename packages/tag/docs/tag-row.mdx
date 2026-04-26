@@ -20,7 +20,7 @@ import tagDoc from './props.json'
 
 ## Демо
 
-<TagRowDemo client:load />
+<TagRowDemo client:visible />
 
 ## Когда использовать
 
@@ -28,26 +28,38 @@ import tagDoc from './props.json'
 - Для выбранных фильтров, которые занимают больше одной строки.
 - Везде, где количество меток может превышать доступную ширину.
 
-## Props
+## Установка
 
-<PropsTable data={tagDoc.TagRow} />
+```bash
+pnpm add @ds/tag
+```
 
-## Пример
+```ts
+import { TagRow } from '@ds/tag'
+```
+
+## Примеры использования
 
 <Example
   title='Ограничение по строкам'
   description='rowLimit=1 прячет метки в кнопку +N ещё'
   code={RowTruncatedSrc}
 >
-  <RowTruncated client:load />
+  <RowTruncated client:visible />
 </Example>
+
+## Props
+
+<PropsTable data={tagDoc.TagRow} />
 
 ## Storybook
 
-<StorybookEmbed storyId='components-tag-tagrow--playground' height={320} client:load />
+<StorybookEmbed storyId='components-tag-tagrow--playground' height={320} />
 
-## Доступность
+## Анатомия
 
-- Кнопка «+N ещё» — нативный `<button>`, работает с клавиатурой.
-- При раскрытии скрытые метки появляются в документе и становятся доступны screen-reader'у.
-- Порядок меток в DOM соответствует порядку массива `items` — переходы по Tab предсказуемы.
+### Size
+Применяется ко всем тегам в ряду: `xs`, `s`, `m`. Наследуется вложенными `Tag`.
+
+### Appearance
+Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.

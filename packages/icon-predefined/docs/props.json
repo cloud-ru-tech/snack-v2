@@ -1,6 +1,7 @@
 {
   "IconPredefined": {
     "displayName": "IconPredefined",
+    "propsTypeName": "IconPredefinedProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -26,7 +27,10 @@
           "pink"
         ],
         "defaultValue": "primary",
-        "description": "Внешний вид"
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "decor": {
         "type": "boolean",
@@ -48,7 +52,10 @@
           "5xl"
         ],
         "defaultValue": "m",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "shape": {
         "type": "enum",
@@ -59,6 +66,32 @@
         ],
         "defaultValue": "round",
         "description": "Форма: круглая или квадратная"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "l",
+          "5xl"
+        ],
+        "own": true
       }
     },
     "description": "Icon Predefined — оборачивает SVG-иконки и применяет предустановленное стилевое оформление.\nЗадаёт цвет через appearance, размер через size и форму контейнера через shape."

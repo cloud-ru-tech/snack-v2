@@ -1,10 +1,20 @@
 @import url('@sbercloud/figma-variables/build/css/tokens.css');
 @import url('@ds/fonts/css');
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Cascade layers:
+   - `reset`      — the universal margin/padding/box-sizing reset. Lowest tier.
+   - `docs-prose` — MDX typography rules, must win over the reset so `<li>`,
+                    `<p>`, `<ul>` get proper spacing in plain MDX content.
+   Descendant-element prose rules also opt out of `<astro-island>` subtrees so
+   they never leak into DS component internals that rely on reset+inheritance. */
+@layer reset, docs-prose;
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 html {
@@ -24,62 +34,65 @@ body {
   line-height: 1.5;
 }
 
-a {
-  color: var(--sn-theme-color-primary-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-}
-
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
 }
 
-code {
-  padding: 2px 6px;
-  border: 1px solid var(--sn-theme-color-neutral-decor);
-  border-radius: var(--sn-primitive-dimension-4);
+@layer docs-prose {
+  a:not(astro-island *) {
+    color: var(--sn-theme-color-primary-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
 
-  font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
-  font-size: 0.875em;
+  code:not(astro-island *) {
+    padding: 2px 6px;
+    border: 1px solid var(--sn-theme-color-neutral-decor);
+    border-radius: var(--sn-primitive-dimension-4);
 
-  background: var(--sn-theme-color-neutral-background1Level);
-}
+    font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
+    font-size: 0.875em;
 
-pre {
-  overflow-x: auto;
+    background: var(--sn-theme-color-neutral-background1Level);
+  }
 
-  padding: 10px 12px;
-  border: 1px solid var(--sn-theme-color-neutral-decor);
-  border-radius: var(--sn-primitive-dimension-8);
+  pre:not(astro-island *) {
+    overflow-x: auto;
 
-  font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
-  font-size: 13px;
-  line-height: 1.5;
+    padding: 10px 12px;
+    border: 1px solid var(--sn-theme-color-neutral-decor);
+    border-radius: var(--sn-primitive-dimension-8);
 
-  background: var(--sn-theme-color-neutral-background1Level);
-}
+    font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
+    font-size: 13px;
+    line-height: 1.5;
 
-pre code {
-  padding: 0;
-  border: none;
+    background: var(--sn-theme-color-neutral-background1Level);
+  }
 
-  font-family: inherit;
-  font-size: inherit;
+  pre:not(astro-island *) code {
+    padding: 0;
+    border: none;
 
-  background: none;
-}
+    font-family: inherit;
+    font-size: inherit;
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+    background: none;
+  }
 
-th, td {
-  padding: 8px 12px;
-  border: 1px solid var(--sn-theme-color-neutral-decor);
-  text-align: left;
-}
+  table:not(astro-island *) {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-th {
-  background: var(--sn-theme-color-neutral-background1Level);
+  th:not(astro-island *),
+  td:not(astro-island *) {
+    padding: 8px 12px;
+    border: 1px solid var(--sn-theme-color-neutral-decor);
+    text-align: left;
+  }
+
+  th:not(astro-island *) {
+    background: var(--sn-theme-color-neutral-background1Level);
+  }
 }

@@ -1,6 +1,7 @@
 {
   "Block": {
     "displayName": "Block",
+    "propsTypeName": "BlockProps",
     "props": {
       "children": {
         "type": "ReactNode",
@@ -17,7 +18,10 @@
           "transparent"
         ],
         "defaultValue": "simple",
-        "description": "Вариант"
+        "description": "Вариант",
+        "typeRefs": [
+          "Variant"
+        ]
       },
       "size": {
         "type": "enum",
@@ -28,12 +32,36 @@
           "l"
         ],
         "defaultValue": "l",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "data-test-id": {
         "type": "string",
         "required": false,
         "description": "Стабильный идентификатор для e2e/tests"
+      }
+    },
+    "relatedTypes": {
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "outline",
+          "simple",
+          "shadow",
+          "transparent"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
       }
     },
     "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Различные варианты отображения: simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children"

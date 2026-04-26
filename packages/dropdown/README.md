@@ -4,109 +4,50 @@
 
 Выпадающий блок над триггером: произвольный контент (меню, фильтры, справочная информация) + встроенные состояния `loading / not-found / no-data / data-error` через `state`. Поверх `PopoverPrivate` — те же пропсы позиционирования, плюс готовая визуальная обработка асинхронных случаев.
 
-## Когда использовать
+## Демо
+<DropdownDemo client:visible />
 
+## Когда использовать
 - Меню действий над кнопкой (экспорт, фильтры, настройки).
 - Асинхронные подсказки и suggestions — встроенный `state` скрывает ручное ветвление UI.
 - Композитные виджеты: селекторы, комбобоксы, авторасшифровки.
 
 Когда **не** нужен `Dropdown`: для одиночного подсказывающего текста используйте `Tooltip`, для модального выбора — `Modal` или `Popover`.
 
-### Trigger
+### State
+Встроенные состояния контента, позволяющие не ветвить UI вручную: `loading` — идёт запрос (скелетон/спиннер), `no-data` — у источника пусто (первая загрузка), `not-found` — пользователь ввёл фильтр и ничего не нашлось, `data-error` — запрос упал (с опцией повтора).
 
-| Trigger | Когда |
-|---------|-------|
-| `click` | Меню действий, фильтры — явное намерение открыть |
-| `hover` | Подсказки и preview — снять трение |
-| `focus` | Инлайн-подсказки внутри форм |
-
-### Placement
-
-8 позиций: `top/bottom` с суффиксами `-start/-end` и `left/right`. По умолчанию — `bottom-start`. При нехватке места Dropdown автоматически пробует fallback-позиции.
-
-### Встроенные состояния
-
-| State | Визуал | Когда |
-|-------|--------|-------|
-| `loading` | Spinner по центру | Асинхронная подгрузка списка |
-| `not-found` | InfoBlock с описанием + action | Поиск ничего не нашёл |
-| `no-data` | InfoBlock с иконкой + action | Пустой датасет, предложить создать |
-| `data-error` | InfoBlock c иконкой + retry | Ошибка загрузки, предложить повторить |
-
-### Do / Don't
-
-- ✅ Используйте `state` вместо ручной композиции `Spinner`/`EmptyState`.
-- ❌ Делать свой loading и `state={{ type: 'loading' }}` одновременно — выберите одно.
-- ✅ Контент в Dropdown должен быть короче одного экрана — для длинных форм берите `Modal`.
-- ❌ Вкладывать Dropdown в Dropdown — пользователь теряет контекст, лучше показать второй уровень в том же контейнере.
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/dropdown
 ```
 
 ```ts
 import { Dropdown, STATE } from '@ds/dropdown'
-import '@ds/dropdown/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Базовый Dropdown'>
-  <Dropdown content={<div style={{ padding: 12 }}>Контент меню</div>}>
-    <Button label='Открыть' />
-  </Dropdown>
+## Примеры использования
+<Example title='Базовый Dropdown' code={BasicSrc}>
+  <Basic client:visible />
 </Example>
 
-<Example title='Открытое меню для визуальной сверки' description='Управляемый режим — open'>
-  <Dropdown open content={<div style={{ padding: 12 }}>Видимое содержимое</div>}>
-    <Button label='Триггер' />
-  </Dropdown>
+<Example title='Открытое меню для визуальной сверки' description='Управляемый режим — open' code={OpenForReviewSrc}>
+  <OpenForReview client:visible />
 </Example>
 
-<Example title='Состояние loading'>
-  <Dropdown open state={{ type: STATE.Loading }} content={null}>
-    <Button label='Загрузка' />
-  </Dropdown>
+<Example title='Состояние loading' code={LoadingSrc}>
+  <Loading client:visible />
 </Example>
 
-<Example title='Состояние not-found с действием'>
-  <Dropdown
-    open
-    state={{
-      type: STATE.NotFound,
-      description: 'Ничего не нашли',
-      actionLabel: 'Сбросить фильтры',
-      onActionClick: () => {},
-    }}
-    content={null}
-  >
-    <Button label='Поиск' />
-  </Dropdown>
+<Example title='Состояние not-found с действием' code={NotFoundSrc}>
+  <NotFound client:visible />
 </Example>
 
-### States
-
-- **`loading`** — контент заменяется `Spinner`'ом; реальный `content` игнорируется.
-- **`not-found` / `no-data` / `data-error`** — контент заменяется `InfoBlock`'ом; `actionLabel` + `onActionClick` рендерят повторный запрос / сброс.
-- **Без `state`** — рендерится `content` как есть.
-
-### Props
-
+## Props
 <PropsTable data={dropdownDoc.Dropdown} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-dropdown--playground' height={360} client:load />
-
-## Доступность
-
-- Триггер — любой интерактивный элемент (`Button`, `<a>`); клавиатура работает из коробки.
-- Открытие по клавиатуре — Enter / Space на триггере, закрытие — Escape (по умолчанию `closeOnEscapeKey`).
-- Фокус возвращается на триггер при закрытии.
-- Для меню-списков рекомендуем внутри `content` ставить `role='menu'` с `role='menuitem'` на элементах — Dropdown сам не навязывает эти роли, чтобы не мешать произвольному контенту.
-- `trigger='hover'` дублируется фокусом — открытие работает и для клавиатурных пользователей.
+## Storybook
+<StorybookEmbed storyId='components-dropdown--playground' height={360} />
 
 ## Dropdown
 

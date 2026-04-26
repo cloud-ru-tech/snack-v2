@@ -1,94 +1,18 @@
 ---
 title: Drawer
 package: '@ds/drawer'
-description: Боковая/нижняя панель поверх страницы с пресетной шапкой, телом и футером; низкоуровневая сборка — через DrawerCustom.
+description: Пакет выезжающих панелей — компоненты Drawer и DrawerCustom с едиными токенами позиции и ширины.
 order: 0
 ---
 
-import { DrawerDemo } from '../demos/DrawerDemo'
-import { Basic } from '../demos/examples/Basic'
-import BasicSrc from '../demos/examples/Basic.tsx?raw'
-import { WithFooter } from '../demos/examples/WithFooter'
-import WithFooterSrc from '../demos/examples/WithFooter.tsx?raw'
-import { WithMedia } from '../demos/examples/WithMedia'
-import WithMediaSrc from '../demos/examples/WithMedia.tsx?raw'
-import { HeightAuto } from '../demos/examples/HeightAuto'
-import HeightAutoSrc from '../demos/examples/HeightAuto.tsx?raw'
-import { NestedDrawer } from '../demos/examples/NestedDrawer'
-import NestedDrawerSrc from '../demos/examples/NestedDrawer.tsx?raw'
-import { CustomComposition } from '../demos/examples/CustomComposition'
-import CustomCompositionSrc from '../demos/examples/CustomComposition.tsx?raw'
-import { Example } from '~docs/components/Example'
-import { PropsTable } from '~docs/components/PropsTable'
-import { StorybookEmbed } from '~docs/components/StorybookEmbed'
-import { FigmaEmbed } from '~docs/components/FigmaEmbed'
-import { FIGMA_DRAWER } from '~docs/lib/figma'
-import drawerDoc from './props.json'
-
 # Drawer
 
-Панель, выезжающая со стороны экрана — для дополнительного контекста, фильтров, форм и пошаговых сценариев. `Drawer` собирает шапку (медиа, заголовок, подзаголовок, back-button, слот после заголовка), прокручиваемое тело и опциональный футер. Полный контроль над разметкой — через `DrawerCustom` и его субкомпоненты `DrawerCustom.Header`, `.Body`, `.Footer`.
+Пакет `@ds/drawer` предоставляет два компонента для боковых/нижних панелей: готовую сборку `Drawer` с пресетной шапкой, телом и футером и низкоуровневый `DrawerCustom` для ручной композиции.
 
-## Демо
+- [**Drawer**](/components/drawer/drawer) — готовая панель с шапкой, прокручиваемым телом и опциональным футером. Покрывает 90% сценариев.
+- [**DrawerCustom**](/components/drawer/drawer-custom) — низкоуровневая версия без предопределённой структуры: собирайте из `DrawerCustom.Header`, `.Body`, `.Footer` или собственной разметки.
 
-<DrawerDemo client:load />
-
-## Когда использовать
-
-- Форма, фильтры или детали, которые не помещаются в основной поток и требуют отдельного контекста.
-- Пошаговый сценарий с кнопкой «назад» в шапке — возвращение между экранами без потери контекста.
-- Нижний лист (bottom sheet) для компактных действий и подтверждений на мобильных устройствах.
-- Стек из двух-трёх связанных панелей через `nestedDrawer`.
-
-Когда **не** нужен: критическое подтверждение, блокирующее остальной интерфейс (берите `Modal`), всплывающий поповер рядом с элементом (`Popover`), тост-уведомление (не блокирует UI).
-
-## Для дизайнеров
-
-### Расположение (`position`)
-
-| Position | Когда |
-|----------|-------|
-| `right` | Дефолтная правая боковая панель — фильтры, детали, формы |
-| `left` | Навигация, древовидные списки на десктопе |
-| `bottom` | Bottom sheet на мобильных устройствах (с `heightAuto`) |
-| `top` | Уведомления и баннеры, занимающие верхнюю область |
-
-### Размер (`width`)
-
-Предустановленные пресеты доступны только для `position: 'left' | 'right'`.
-
-| Width | Когда |
-|-------|-------|
-| `s` | Подтверждения, короткие формы — один-два поля |
-| `m` | Формы средней плотности, карточки с медиа |
-| `l` | Сложные формы, двухколоночные макеты |
-
-Для нестандартной ширины можно передать число (`width={480}`) или строку с единицами (`width='40rem'`).
-
-### Высота по контенту (`heightAuto`)
-
-Работает только при `position: 'top' | 'bottom'` — высота панели рассчитывается по содержимому, с максимумом в высоту контейнера. Подходит для bottom sheet'ов и верхних баннеров.
-
-### Do / Don't
-
-- ✅ Один `primary`-акцент в футере — основное действие.
-- ❌ Два `primary`-акцента в футере.
-- ✅ `position='bottom'` + `heightAuto` — для мобильных листов.
-- ❌ `position='left' | 'right'` + `heightAuto` — проп игнорируется, создаёт ложные ожидания.
-- ✅ Медиа в `media` — когда оно несёт смысл сценария (онбординг, пустое состояние).
-- ❌ Декоративная иллюстрация в панели ради украшения.
-- ✅ Кнопка «назад» (`onBackButtonClick`) — для многошаговых сценариев внутри одного Drawer.
-- ❌ Кнопка «назад» там, где шага только один.
-- ✅ Вложенный `nestedDrawer` — для связанных контекстов (список → детали).
-- ❌ Трёх-уровневый стек вложенных Drawer: пользователь теряется в глубине.
-
-### Figma
-
-<FigmaEmbed node={FIGMA_DRAWER} title='Drawer — Snack Ui Kit variables' />
-
-## Для разработчиков
-
-### Установка
+## Установка
 
 ```bash
 pnpm add @ds/drawer
@@ -98,61 +22,7 @@ pnpm add @ds/drawer
 import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 ```
 
-### Примеры использования
+## Смотри также
 
-<Example title='Базовое использование' description='Контролируемое open/onClose, footer из `ButtonGroup`.' code={BasicSrc}>
-  <Basic client:load />
-</Example>
-
-<Example title='Критическое действие' description='Critical primary, neutral outline secondary.' code={WithFooterSrc}>
-  <WithFooter client:load />
-</Example>
-
-<Example title='С медиа-слотом' description='`media` рендерится над шапкой на всю ширину панели.' code={WithMediaSrc}>
-  <WithMedia client:load />
-</Example>
-
-<Example title='Bottom sheet' description='`position="bottom"` + `heightAuto` — высота по контенту.' code={HeightAutoSrc}>
-  <HeightAuto client:load />
-</Example>
-
-<Example title='Вложенный Drawer' description='Родитель сдвигается влево при открытии дочернего.' code={NestedDrawerSrc}>
-  <NestedDrawer client:load />
-</Example>
-
-<Example title='DrawerCustom — ручная композиция' description='Произвольная разметка: Header + Body + Footer.' code={CustomCompositionSrc}>
-  <CustomComposition client:load />
-</Example>
-
-### Портал и контейнер
-
-Панель рендерится через портал `rc-drawer` в `document.body`. Переопределяется пропсом `container` (HTMLElement или CSS-селектор) — удобно при встраивании Drawer в ограниченную область (превью в дизайн-системе, storybook-матрицы).
-
-### Закрытие
-
-- Клик по затемнению (`showBlackout=true` — по умолчанию).
-- Клавиша `Escape` (`showBlackout=true`).
-- Кнопка закрытия в правом верхнем углу.
-- `closeOnPopstate` (по умолчанию через `useModalOpenState`) — автоматическое закрытие при history navigation.
-
-### Props
-
-#### Drawer
-
-<PropsTable data={drawerDoc.Drawer} />
-
-#### DrawerCustom
-
-Продвинутая сборка — см. [отдельную страницу](./drawer-custom).
-
-### Storybook
-
-<StorybookEmbed storyId='components-drawer-drawer--playground' height={480} client:load />
-
-## Доступность
-
-- Кнопка закрытия имеет `aria-label="close drawer"`.
-- `keyboard=true` (при `showBlackout=true`) — закрытие по `Escape`.
-- После закрытия фокус возвращается на элемент, с которого было открытие.
-- Для `DrawerCustom` без видимого заголовка задайте доступное имя вручную: `aria-label` или `aria-labelledby`.
-- Следите за видимым контрастом шапки — на медиа-изображении может потребоваться оверлей.
+- [Modal](/components/modal) — центрированное модальное окно для блокирующих подтверждений.
+- [Popover](/components/popover) — всплывающий слой рядом с триггером.

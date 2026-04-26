@@ -1,13 +1,35 @@
-import { Divider } from '@ds/divider';
+import { Divider, DividerProps } from '@ds/divider';
 
 import dividerDoc from '../docs/props.json';
 
 import { Canvas } from '~docs/components/Canvas';
 
+/**
+ * В Canvas превью flex-контейнер автоматически не даёт высоту вертикальному Divider.
+ * Оборачиваем в фиксированный wrapper, чтобы обе ориентации были видны.
+ */
+function DividerAdapter(props: DividerProps) {
+  const isVertical = props.orientation === 'vertical';
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: isVertical ? 40 : 240,
+        height: isVertical ? 40 : 'auto',
+      }}
+    >
+      <Divider {...props} />
+    </div>
+  );
+}
+
 export function DividerDemo() {
   return (
     <Canvas
-      component={Divider}
+      component={DividerAdapter}
+      componentName='Divider'
       componentDoc={dividerDoc.Divider}
       defaultProps={{
         variant: 'regular',

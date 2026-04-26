@@ -12,7 +12,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 Распарси:
 - **`<pkg-name>`** (обязательно) — целевое имя пакета в `packages/`, будет опубликован как `@ds/<pkg-name>`.
 - **Figma URL(ы)** — любые `figma.com/design/...` ссылки. Извлеки `fileKey` и все `node-id` (преобразуй `A-B` → `A:B`).
-- **Референсные пакеты** — уже мигрированные `@ds/*`-пакеты, на которые стоит ориентироваться (структура, API, стили). Обычно после флага `--ref` или через «похож на X».
+- **Референсные пакеты (`--ref <pkg>`)** — npm-пакеты старой ДС (`@snack-uikit/*`, `@cloud-ru/uikit-product-mobile-*` и т.п.), которые надо найти в `node_modules` или скачать через `npm pack` и проанализировать как legacy-источник (см. шаг 2 research). Можно передать несколько флагов.
 - **Комментарий** — произвольные заметки про доп. функциональность, scope, ограничения. Обычно после `--note` или в конце строки.
 
 Если чего-то критичного не хватает (имя пакета отсутствует, Figma не дана и legacy-источник неясен) — спроси у пользователя одним сообщением, не начинай работу.
@@ -31,10 +31,11 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
    - Проверь имена слоёв на `stateLayer/...`, `material/acrylic/...`, `focusedFrame/...` — это триггеры для `@ds/materials`-миксинов и `:focus-visible` (см. `.claude/rules/figma-to-code.md` и `packages/materials/docs/index.mdx`). Список найденных материальных слоёв → в план.
    - Зафиксируй `fileKey` / `nodeId` как константы `FIGMA_<NAME>` для `apps/docs/src/lib/figma.ts`.
 
-2. **Legacy-источник.** Найди старую реализацию:
-   - Проверь соседний репозиторий `storybook/packages/<pkg-name>/` (скаффолд-утилита — `scripts/migrate-package.mts`).
-   - Если нет — `npm pack @snack-uikit/<pkg-name>` и/или `@cloud-ru/uikit-product-mobile-<pkg-name>` во временную папку, распакуй `src/`. Путь к распакованному коду включи в секцию «Legacy источники» плана.
-   - Прочитай `src/` legacy: **только функциональный слой** — коллбэки, хуки, таймеры, slots, truncate/clipboard/async-логика, structural composition. Визуальные константы (SIZES map, цвета, spacing-константы) **не** подтягивай в план как факт — они часто пришли из другой Figma и могут расходиться с текущей.
+2. **Legacy-источник.** Источники задаются пользователем через флаги `--ref <pkg>` (один или несколько npm-пакетов старой ДС — `@snack-uikit/*`, `@cloud-ru/uikit-product-mobile-*` и т.п.). Для каждого `--ref`:
+   - Сначала найди пакет в `node_modules` этого монорепо (может уже быть установлен как транзитивная зависимость): `find node_modules -maxdepth 4 -type d -name '<pkg>'` либо `pnpm why <pkg>`. Если нашёлся — бери `src/` (если опубликован) или разобранные `dist/*.js` + `.d.ts` оттуда.
+   - Если в `node_modules` нет — скачай во временную папку: `mkdir -p .claude/tmp/<pkg> && cd .claude/tmp/<pkg> && npm pack <pkg> && tar -xzf *.tgz`. Если опубликован `src/` в tarball'е — читай его; иначе работай с `dist/` + `.d.ts`.
+   - Путь(и) к найденному/распакованному коду зафиксируй в секции «Legacy источники» плана (абсолютные или относительно корня репо).
+   - Прочитай код: **только функциональный слой** — коллбэки, хуки, таймеры, slots, truncate/clipboard/async-логика, structural composition, публичные типы из `.d.ts`. Визуальные константы (SIZES map, цвета, spacing-константы) **не** подтягивай в план как факт — они часто пришли из другой Figma и могут расходиться с текущей.
 
 3. **Reconcile Figma ↔ legacy** (обязательный шаг):
    - Для каждой оси из Figma metadata — есть ли она в API легаси? Для каждого prop из легаси — есть ли соответствующая ось в Figma metadata?
@@ -61,7 +62,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 6. **Stories** — дерево `stories/<Name>/` (кол-во файлов по tier'у, обязательно Playground + VisualMatrix + *Test).
 7. **Тесты** — список spec-файлов в `__test__/<ComponentName>/` по `.claude/rules/e2e-testing-standard.md` (блоки по tier'у).
 8. **Docs** — `docs/*.mdx` + `demos/` + `demos/examples/` + `FIGMA_<NAME>` константы для `apps/docs/src/lib/figma.ts`.
-9. **Wire-точки** — чеклист (tsconfig references, storybook/docs aliases, package.json deps со строгими версиями, без `react`/`react-dom`).
+9. **Wire-точки** — чеклист (tsconfig references, storybook/docs aliases, package.json deps).
 10. **Фазы** — пронумерованные Phase 1…N. **Явно разделяй логику и стили**:
     - _Логика_ — порт из референса 1:1, меняются только импорты (`@snack-uikit/*` / `@cloud-ru/*` → `@ds/*`) и (если нужно) замена сторонних утилит на внутренние аналоги из «Маппинга зависимостей». Без «улучшений» и рефакторингов сверх паритета.
     - _Стили_ — **не писать числа/hex вручную**. Для каждого структурного элемента берётся CSS из Figma (`get_design_context` или `get_variable_defs`) и прогоняется через `npx @sbercloud/figma-selected-block --css-file <path> --component <hint> --format scss` (см. `.claude/skills/figma-selected-block.md`). Output вставляется в `styles.module.scss`. Hardcoded `px`/`rem`/hex допустимы только если токена для значения реально нет в `@sbercloud/figma-variables` — и сопровождаются комментарием с обоснованием.

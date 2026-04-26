@@ -13,6 +13,7 @@ export function PopoverDemo() {
       defaultProps={{
         placement: 'top',
         trigger: 'click',
+        open: true,
         content: 'Popover content',
         children: <button type='button'>Open popover</button>,
       }}
@@ -22,6 +23,7 @@ export function PopoverDemo() {
           options: ['top', 'bottom', 'left', 'right', 'top-start', 'top-end', 'bottom-start', 'bottom-end'],
         },
         trigger: { type: 'radio', options: ['click', 'hover'] },
+        open: { type: 'boolean' },
         content: { type: 'text' },
       }}
       excludeProps={['className', 'triggerClassName', 'children']}

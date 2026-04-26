@@ -89,3 +89,8 @@ packages/icons/svgs-fixed/
 !packages/icons/src/sprite/**
 
 playwright/test-results
+
+.playwright-mcp
+
+.claude/plan
+tmp

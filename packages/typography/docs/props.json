@@ -1,6 +1,7 @@
 {
   "Typography": {
     "displayName": "Typography",
+    "propsTypeName": "TypographyProps",
     "props": {
       "children": {
         "type": "ReactNode",
@@ -18,7 +19,10 @@
           "body"
         ],
         "defaultValue": "VARIANT.body",
-        "description": "Вариант типографики"
+        "description": "Вариант типографики",
+        "typeRefs": [
+          "TypographyVariant"
+        ]
       },
       "size": {
         "type": "enum",
@@ -29,7 +33,10 @@
           "l"
         ],
         "defaultValue": "SIZE.m",
-        "description": "Размер типографики"
+        "description": "Размер типографики",
+        "typeRefs": [
+          "TypographySize"
+        ]
       },
       "weight": {
         "type": "enum",
@@ -40,7 +47,10 @@
           "mono"
         ],
         "defaultValue": "WEIGHT.regular",
-        "description": "Начертание шрифта"
+        "description": "Начертание шрифта",
+        "typeRefs": [
+          "TypographyWeight"
+        ]
       },
       "as": {
         "type": "ElementType",
@@ -56,6 +66,37 @@
         "type": "string",
         "required": false,
         "description": "Стабильный идентификатор для e2e/tests"
+      }
+    },
+    "relatedTypes": {
+      "TypographyVariant": {
+        "kind": "union",
+        "values": [
+          "display",
+          "headline",
+          "title",
+          "label",
+          "body"
+        ],
+        "own": true
+      },
+      "TypographySize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "TypographyWeight": {
+        "kind": "union",
+        "values": [
+          "regular",
+          "thin",
+          "mono"
+        ],
+        "own": true
       }
     },
     "description": "Typography компонент\n\nКомпонент типографики, использующий стили из"

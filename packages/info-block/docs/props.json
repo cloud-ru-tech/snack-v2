@@ -1,6 +1,7 @@
 {
   "InfoBlock": {
     "displayName": "InfoBlock",
+    "propsTypeName": "InfoBlockProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -19,7 +20,10 @@
       "icon": {
         "type": "IconPredefinedProps",
         "required": false,
-        "description": "Иконка"
+        "description": "Иконка",
+        "typeRefs": [
+          "IconPredefinedProps"
+        ]
       },
       "size": {
         "type": "enum",
@@ -30,7 +34,10 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "align": {
         "type": "enum",
@@ -40,7 +47,10 @@
           "horizontal"
         ],
         "defaultValue": "vertical",
-        "description": "Расположение элементов"
+        "description": "Расположение элементов",
+        "typeRefs": [
+          "Align"
+        ]
       },
       "footer": {
         "type": "ReactNode",
@@ -51,6 +61,100 @@
         "type": "string",
         "required": false,
         "description": "Дополнительный класс"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "critical"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "neutral",
+              "primary",
+              "red",
+              "orange",
+              "yellow",
+              "green",
+              "blue",
+              "violet",
+              "pink"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "l",
+              "5xl"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          }
+        },
+        "own": false
+      },
+      "Align": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
       }
     }
   }

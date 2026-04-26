@@ -6,6 +6,13 @@ order: 2
 ---
 
 import { AvatarDemo } from '../demos/AvatarDemo'
+import { Initials } from '../demos/examples/Initials'
+import InitialsSrc from '../demos/examples/Initials.tsx?raw'
+import { WithImage } from '../demos/examples/WithImage'
+import WithImageSrc from '../demos/examples/WithImage.tsx?raw'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
 import avatarDoc from './props.json'
@@ -15,66 +22,53 @@ import avatarDoc from './props.json'
 Компонент для отображения аватара: изображение по URL с fallback на инициалы из имени, несколько размеров и форм (круг / квадрат), палитра фонов.
 
 ## Демо
-
-<AvatarDemo client:load />
+<AvatarDemo client:visible />
 
 ## Когда использовать
-
 - Идентификатор пользователя в хедере, меню, списке участников.
 - Автор комментария, сообщения, коммита.
 - Плейсхолдер для отсутствующего фото — инициалы из имени.
 
 Когда **не** нужен `Avatar`: если требуется декоративная иконка или логотип бренда — используйте обычный `<img>` или иконку.
 
-## Для дизайнеров
+## Анатомия
 
-### Shape — форма
+### Size
+Размерный ряд аватара: `xs`/`s` — для плотных списков и тулбаров, `m` — дефолт в рядах, `l` — карточки пользователей, `3xl`/`6xl`/`10xl` — крупные профили и пустые состояния.
 
-| Shape | Когда использовать |
-|-------|--------------------|
-| `round` | Пользовательский профиль — общепринятое оформление |
-| `square` | Организации, команды, сущности не-людей |
+### Shape
+Форма контейнера: `round` — круглый (по умолчанию для людей), `square` — со скруглёнными углами (команды, организации, боты).
 
-### Size — размер
+### Appearance
+Цвет фона под инициалами. Помимо нейтральных `neutral`/`primary` есть декоративные `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink` — используются для стабильной окраски по id пользователя, не несут семантики.
 
-Семь размеров: `xs`, `s`, `m`, `l`, `3xl`, `6xl`, `10xl`. Малые (`xs–m`) — в списках и инлайне; крупные (`3xl+`) — на странице профиля или пустом состоянии.
-
-### Appearance — цветовая схема
-
-Девять вариантов фона для инициалов: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`. Назначайте детерминированно (хэш от user id) — один и тот же пользователь должен всегда видеть себя в одном цвете.
-
-### Do / Don't
-
-- ✅ Один цвет на пользователя — стабильно между сессиями.
-- ❌ Случайный цвет при каждом рендере.
-- ✅ `alt` у `<Avatar src=...>` прокидывается как `aria-hidden` — имя рядом в DOM.
-- ❌ `src` без `name` — при ошибке загрузки fallback покажет пустой кружок.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/avatar
 ```
 
 ```ts
 import { Avatar, APPEARANCE, SHAPE, SIZE } from '@ds/avatar'
-import '@ds/avatar/style.css'
 ```
 
-### Props
+## Примеры использования
 
+<Example title='Инициалы из имени' description='Fallback на две первые буквы имени.' code={InitialsSrc}>
+  <Initials client:visible />
+</Example>
+
+<Example title='С изображением' description='`src` + `name` для alt-текста и fallback.' code={WithImageSrc}>
+  <WithImage client:visible />
+</Example>
+
+<Example title='Разные размеры' description='Размерный ряд от `xs` до `10xl`.' code={SizesSrc}>
+  <Sizes client:visible />
+</Example>
+
+## Props
 <PropsTable data={avatarDoc.Avatar} />
 
 Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`, а также стандартные атрибуты контейнера `HTMLDivElement`.
 
-### Storybook
-
-<StorybookEmbed storyId='components-avatar--playground' height={360} client:load />
-
-## Доступность
-
-- Компонент рендерится как `<div>` — если аватар является ссылкой, оборачивайте его во внешний `<a>` / `<button>`.
-- Инициалы и картинка помечены `aria-hidden='true'`, потому что имя пользователя должно присутствовать рядом как видимый текст.
-- Выбирайте контрастные сочетания `appearance` × фон страницы — инициалы должны читаться.
+## Storybook
+<StorybookEmbed storyId='components-avatar--playground' height={360} />

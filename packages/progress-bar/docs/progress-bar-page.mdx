@@ -19,71 +19,35 @@ import progressBarDoc from './props.json'
 Тонкая полоска-индикатор в верхней части страницы. Похожа на классический nprogress — не знает настоящего процента, но создаёт ощущение движения для пользователя во время навигации или длительной загрузки.
 
 ## Демо
-
-<ProgressBarPageDemo client:load />
+<ProgressBarPageDemo client:visible />
 
 ## Когда использовать
-
 - Индикация навигации между страницами (роутинг SPA).
 - Длительная загрузка данных без детерминированного прогресса.
 - Глобальный busy-индикатор уровня layout'а.
 
 Когда **не** нужен `ProgressBarPage`: если известен реальный процент — используйте детерминированный [`ProgressBar`](/components/progress-bar/progress-bar). Не показывайте `ProgressBarPage` для быстрых операций (< 200 мс) — это отвлекает.
 
-## Для дизайнеров
-
-### Поведение
-
-- После включения (`inProgress=true`) индикатор плавно растёт от `minimum` к 100%.
-- После выключения (`inProgress=false`) — доезжает до 100% и исчезает.
-- `animationDuration` задаёт скорость анимации, `incrementDuration` — интервал между автошагами прироста.
-
-### Do / Don't
-
-- ✅ Располагайте один `ProgressBarPage` в корневом layout'е.
-- ❌ Не дублируйте внутри страниц — получится несколько полос сразу.
-- ✅ Включайте на старте роутинга, выключайте после готовности данных.
-- ❌ Не показывайте ради операций < 200 мс — вспышка раздражает.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/progress-bar
 ```
 
 ```ts
 import { ProgressBarPage } from '@ds/progress-bar'
-import '@ds/progress-bar/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example
   title='Переключение inProgress'
   description='Живой сценарий — запустите и остановите загрузку'
   code={PageToggleSrc}
 >
-  <PageToggle client:load />
+  <PageToggle client:visible />
 </Example>
 
-### States
-
-- `inProgress=false` — компонент скрыт (после анимации завершения).
-- `inProgress=true` — индикатор виден и автоматически растёт.
-- `minimum` задаёт стартовое значение прогресса (от 0 до 1) — чтобы полоса не начиналась с нуля.
-
-### Props
-
+## Props
 <PropsTable data={progressBarDoc.ProgressBarPage} />
 
-### Storybook
-
+## Storybook
 <StorybookEmbed storyId='components-progressbar-progressbarpage--playground' height={360} />
-
-## Доступность
-
-- Как и другие компоненты пакета, `ProgressBarPage` рендерит `role="progressbar"`.
-- Для неопределённой загрузки скринридеры получают монотонно растущее значение `aria-valuenow` — это соответствует semantic'е «операция идёт».
-- Добавляйте live-region с описанием операции («Загрузка страницы…»), если индикатор — единственный признак изменения состояния.

@@ -9,10 +9,8 @@ order: 0
 
 Пакет `@ds/button` предоставляет два компонента для действий и навигации: одиночную кнопку `Button` и контейнер связанных действий `ButtonGroup`. Оба компонента используют общие токены — размеры `s/m/l`, appearance `primary/neutral/critical` и view `filled/outline/tonal/simple/elevated/function` — и пересекаются по типам пропсов.
 
-## Состав пакета
-
-- [**Button**](/components/button/button) — полиморфная кнопка: рендерится как `<button>`, `<a>` или произвольный компонент через `as`. Поддерживает icon, counter, loading, disabled.
-- [**ButtonGroup**](/components/button/button-group) — layout-контейнер для связанных действий: primary / secondary / tertiary. Задаёт единый размер и управляет раскладкой (vertical, centered, break, filled).
+- [**Button**](/components/button/button) — одиночная кнопка для действий и навигации с полным набором view/appearance/size и полиморфизмом через `as`.
+- [**ButtonGroup**](/components/button/button-group) — контейнер связанных действий с едиными токенами и согласованным layout'ом по горизонтали и вертикали.
 
 ## Установка
 
@@ -22,24 +20,7 @@ pnpm add @ds/button
 
 ```ts
 import { Button, ButtonGroup } from '@ds/button'
-import '@ds/button/style.css'
 ```
-
-## Когда какой использовать
-
-| Задача | Компонент |
-|--------|-----------|
-| Одиночное действие или ссылка-кнопка | `Button` |
-| Футер формы / диалога с 2–3 действиями | `ButtonGroup` |
-| Toolbar с независимыми действиями разного уровня | `Button` ×N напрямую |
-| Wizard-футер «Назад / Продолжить» с распоркой | `ButtonGroup` c `break` |
-
-## Общие принципы
-
-- **Один `primary` на группу или экран.** В форме — один `filled primary`. В `ButtonGroup` порядок визуально подсказывает иерархию: primary справа (или сверху в vertical).
-- **Единый размер внутри одной группы.** Микс `size=m` и `size=l` рядом — признак неправильной декомпозиции.
-- **Цвет — не единственный носитель смысла.** `critical`-действия дублируйте текстом («Удалить», «Отозвать») и подтверждающим диалогом.
-- **Клавиатура и скринридеры из коробки.** Компоненты рендерятся нативным `<button>` — Enter / Space и focus работают без доработки.
 
 ## Figma
 

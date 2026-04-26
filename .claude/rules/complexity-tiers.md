@@ -8,7 +8,7 @@
 |------|----------|---------|---------|-----------|--------------|------|
 | **XS** | 0–1 интерактивных состояния, 1–2 props axes, без композиции | `avatar`, `counter`, `loader/Sun` | Playground + VisualMatrix (2 файла) | rendering + a11y | 1 matrix | 1 `index.mdx` |
 | **S**  | до 3 props axes, 1 интеракция, без полиморфизма | `badge`, `chip`, `tag` | Playground + VisualMatrix (+ 0–1 оправданный) | + states (в rendering) | 1 + 2 (hover/focus) = 3 | 1 `index.mdx` |
-| **M**  | полиморфизм (`as`), 3–5 осей, loading/disabled, иконки, слоты | **`button`** | Playground + VisualMatrix + (Polymorphic? + ClickTest/KeyboardTest?) = 2–5 | + interaction + keyboard + polymorphism | 3 + 1 (pressed) = 4 | 1 `index.mdx` |
+| **M**  | полиморфизм (`as`), 3–5 осей, loading/disabled, иконки, слоты | `button` | Playground + VisualMatrix + (Polymorphic? + ClickTest/KeyboardTest?) = 2–5 | + interaction + keyboard + polymorphism | 3 + 1 (pressed) = 4 | 1 `index.mdx` |
 | **L**  | составной (субкомпоненты), shared context, keyboard nav | `tabs`, `tooltip`, `popover` | Playground + VisualMatrix на корень + те же для ключевых субкомпонентов; опц. `Composition` = 4–10 | + keyboard nav, focus trap, ARIA-roles | 4 + 1–2 (open/closed/placement) ≈ 5–6 | `index.mdx` + `<sub>.mdx` |
 | **XL** | stateful (sort/filter/select/paginate), виртуализация, drag-drop | `table`, `select`, `combobox`, `datepicker` | Playground + VisualMatrix + scenario-файлы (`SortableByName`, `FilteredByCategory`, `PaginatedPage2`) | scenario-driven (возможно несколько spec'ов) + MSW | Matrix + before/after каждой ключевой интеракции | `index.mdx` + `<sub>.mdx` + patterns |
 

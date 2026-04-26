@@ -20,19 +20,5 @@ pnpm add @ds/pagination
 
 ```ts
 import { Pagination, PaginationSlider } from '@ds/pagination'
-import '@ds/pagination/style.css'
 ```
 
-## Когда какой использовать
-
-| Задача | Компонент |
-|--------|-----------|
-| Список из 10+ страниц, нужны переходы «первая / предыдущая / следующая» | `Pagination` |
-| Переключение между 3–8 однотипными элементами (карточки, шаги) | `PaginationSlider` |
-| SEO-friendly навигация с href для каждой страницы | `Pagination` с `variant='link'` + `hrefFormatter` |
-
-## Общие принципы
-
-- **Текущая страница помечается `aria-current='page'`** — скринридер проговаривает «current page».
-- **Навигация — `<nav>` c `aria-label`** — для быстрой навигации landmark'ами.
-- **Размер связан с контекстом.** `Pagination` `size='s'` — в таблицах и компактных списках, `size='m'` — в лендингах. `PaginationSlider` `size='xs'` — внутри карточек, `size='s'` — в hero.

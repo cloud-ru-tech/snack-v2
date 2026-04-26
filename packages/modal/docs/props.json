@@ -1,6 +1,7 @@
 {
   "Header": {
     "displayName": "Header",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -42,10 +43,12 @@
         "required": false,
         "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Footer": {
     "displayName": "Footer",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -56,10 +59,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "ButtonClose": {
     "displayName": "ButtonClose",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -75,10 +80,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Body": {
     "displayName": "Body",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -94,10 +101,12 @@
         "required": false,
         "description": "CSS-класс для обёртки body"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "ModalCustom": {
     "displayName": "ModalCustom",
+    "propsTypeName": "ModalCustomProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -112,7 +121,10 @@
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия"
+        "description": "Колбэк закрытия",
+        "typeRefs": [
+          "onClose"
+        ]
       },
       "mode": {
         "type": "enum",
@@ -123,7 +135,10 @@
           "forced"
         ],
         "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced."
+        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "typeRefs": [
+          "ModalMode"
+        ]
       },
       "children": {
         "type": "ReactNode",
@@ -149,7 +164,10 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер окна"
+        "description": "Размер окна",
+        "typeRefs": [
+          "ModalWidth"
+        ]
       },
       "heightAuto": {
         "type": "boolean",
@@ -160,17 +178,46 @@
       "container": {
         "type": "ModalContainer",
         "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`."
+        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
       },
       "closeOnPopstate": {
         "type": "boolean",
         "required": false,
         "description": "Закрытие при навигации по истории"
       }
+    },
+    "relatedTypes": {
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "regular",
+          "aggressive",
+          "forced"
+        ],
+        "own": true
+      },
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": true
+      }
     }
   },
   "ModalCustom.Header": {
     "displayName": "ModalCustom.Header",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -212,10 +259,12 @@
         "required": false,
         "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "ModalCustom.Body": {
     "displayName": "ModalCustom.Body",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -231,10 +280,12 @@
         "required": false,
         "description": "CSS-класс для обёртки body"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "ModalCustom.Footer": {
     "displayName": "ModalCustom.Footer",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -245,10 +296,12 @@
         "required": false,
         "description": "CSS-класс"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Modal": {
     "displayName": "Modal",
+    "propsTypeName": "ModalProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -278,7 +331,10 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
+        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку",
+        "typeRefs": [
+          "onBackButtonClick"
+        ]
       },
       "content": {
         "type": "ReactNode",
@@ -294,7 +350,10 @@
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия"
+        "description": "Колбэк закрытия",
+        "typeRefs": [
+          "onClose"
+        ]
       },
       "mode": {
         "type": "enum",
@@ -305,7 +364,10 @@
           "forced"
         ],
         "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced."
+        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "typeRefs": [
+          "ModalMode"
+        ]
       },
       "rootClassName": {
         "type": "string",
@@ -321,7 +383,10 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер окна"
+        "description": "Размер окна",
+        "typeRefs": [
+          "ModalWidth"
+        ]
       },
       "heightAuto": {
         "type": "boolean",
@@ -332,7 +397,10 @@
       "container": {
         "type": "ModalContainer",
         "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`."
+        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
       },
       "closeOnPopstate": {
         "type": "boolean",
@@ -364,6 +432,31 @@
         "type": "ReactNode",
         "required": false,
         "description": "Контент тела вместо спиннера при `loading`"
+      }
+    },
+    "relatedTypes": {
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "regular",
+          "aggressive",
+          "forced"
+        ],
+        "own": true
+      },
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": true
       }
     },
     "description": "Модальное окно с пресетной разметкой (шапка, тело, футер) поверх ModalCustom."

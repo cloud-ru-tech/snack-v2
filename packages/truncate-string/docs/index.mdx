@@ -5,8 +5,13 @@ description: Обрезает длинный текст и показывает 
 order: 1
 ---
 
-import { TruncateString } from '@ds/truncate-string'
 import { TruncateStringDemo } from '../demos/TruncateStringDemo'
+import { TruncateEnd } from '../demos/examples/TruncateEnd'
+import TruncateEndSrc from '../demos/examples/TruncateEnd.tsx?raw'
+import { TruncateMiddle } from '../demos/examples/TruncateMiddle'
+import TruncateMiddleSrc from '../demos/examples/TruncateMiddle.tsx?raw'
+import { TruncateMultiline } from '../demos/examples/TruncateMultiline'
+import TruncateMultilineSrc from '../demos/examples/TruncateMultiline.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -17,104 +22,44 @@ import truncateStringDoc from './props.json'
 Обрезает длинный текст в ограниченной по ширине области и раскрывает полный вариант в тултипе при наведении. Два варианта обрезания — с конца (`end`) и посередине (`middle`) — решают разные задачи: читаемый заголовок и распознаваемое имя файла соответственно.
 
 ## Демо
-
-<TruncateStringDemo client:load />
+<TruncateStringDemo client:visible />
 
 ## Когда использовать
-
 - В списках, таблицах и карточках, где ширина ячейки зафиксирована.
 - Для имён файлов, идентификаторов и коммитов — чтобы сохранить начало и конец строки (`middle`).
 - Для заголовков и описаний, длина которых непредсказуема.
 
 Когда **не** нужен: если контейнер может расти по содержимому (например, body статьи) — проще обернуть текст в абзац без обрезания.
 
-## Для дизайнеров
-
-### Variant — как обрезать
-
-| Variant | Где применять |
-|---------|---------------|
-| `end` | Заголовки, описания, произвольный текст — чтение идёт слева направо |
-| `middle` | Имена файлов, email-адреса, UUID — важен и префикс, и суффикс |
-
-<Example title='Два варианта обрезания в узком контейнере'>
-  <div style={{ width: 220, display: 'grid', gap: 12 }}>
-    <TruncateString variant='end' text='Заголовок длинной задачи, который не поместится' maxLines={1} />
-    <TruncateString variant='middle' text='very-long-file-name-abc123.zip' />
-  </div>
-</Example>
-
-### maxLines — сколько строк сохранять
-
-Для `variant='end'` можно задать `maxLines` — максимальное количество строк перед обрезанием. Подходит для описаний в карточках.
-
-<Example title='maxLines=2 для описания'>
-  <div style={{ width: 260 }}>
-    <TruncateString
-      variant='end'
-      maxLines={2}
-      text='Описание задачи, которое занимает пару строк, но целиком не помещается в карточку списка.'
-    />
-  </div>
-</Example>
-
-### Do / Don't
-
-- ✅ Используйте `middle` для имён файлов и идентификаторов — видны и начало, и расширение.
-- ❌ Не используйте `middle` для произвольного текста — читатель теряет середину предложения.
-- ✅ Задавайте фиксированную ширину родителю — компонент опирается на CSS-обрезание.
-- ❌ Не ставьте `TruncateString` в контейнер без ограничения ширины — обрезание не сработает.
-- ✅ Оставляйте тултип включённым для доступа к полному тексту с клавиатуры.
-- ❌ Не скрывайте тултип (`hideTooltip`) без альтернативного способа прочитать полный текст.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/truncate-string
 ```
 
 ```ts
 import { TruncateString } from '@ds/truncate-string'
-import '@ds/truncate-string/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Обрезание с конца'>
-  <div style={{ width: 220 }}>
-    <TruncateString variant='end' text='Очень длинный заголовок, который не помещается' maxLines={1} />
-  </div>
+## Примеры использования
+<Example title='Обрезание с конца' code={TruncateEndSrc}>
+  <TruncateEnd client:visible />
 </Example>
 
-<Example title='Обрезание посередине — имя файла'>
-  <div style={{ width: 220 }}>
-    <TruncateString variant='middle' text='2024-quarterly-report-final-v3.pdf' />
-  </div>
+<Example title='Обрезание посередине — имя файла' code={TruncateMiddleSrc}>
+  <TruncateMiddle client:visible />
 </Example>
 
-<Example title='Многострочное описание'>
-  <div style={{ width: 260 }}>
-    <TruncateString
-      variant='end'
-      maxLines={3}
-      text='Длинное описание, которое укладывается в три строки, а затем обрезается с троеточием в конце.'
-    />
-  </div>
+<Example title='Многострочное описание' code={TruncateMultilineSrc}>
+  <TruncateMultiline client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={truncateStringDoc.TruncateString} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-truncatestring--playground' height={360} />
 
-<StorybookEmbed storyId='components-truncatestring--playground' height={360} client:load />
+## Анатомия
 
-## Доступность
-
-- Тултип открывается по hover и focus — полный текст доступен с клавиатуры.
-- `trigger='hoverAndFocusVisible'` по умолчанию: focus-ring не показывается на кликах мышью, но фокус с Tab раскрывает тултип.
-- Тултип содержит полный текст — скринридер прочитает его при активации.
-- `hideTooltip` оставляет только визуальное обрезание — использовать только когда полный текст дублируется рядом (например, в `title`-атрибуте родителя).
+### Variant
+Где обрезается строка: `end` — троеточие в конце (стандартный CSS `ellipsis`), `middle` — обрезка посередине (для путей, email, ID — чтобы видеть начало и конец).

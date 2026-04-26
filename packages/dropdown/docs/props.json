@@ -1,6 +1,7 @@
 {
   "Dropdown": {
     "displayName": "Dropdown",
+    "propsTypeName": "DropdownProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -14,7 +15,13 @@
       "state": {
         "type": "DropdownState",
         "required": false,
-        "description": "Состояние"
+        "description": "Состояние",
+        "typeRefs": [
+          "ActionButtonProps",
+          "BlockProps",
+          "BlockPropsWithIcon",
+          "DropdownState"
+        ]
       },
       "className": {
         "type": "string",
@@ -55,7 +62,10 @@
           "eq"
         ],
         "defaultValue": "gte",
-        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
+        "typeRefs": [
+          "PopoverWidthStrategy"
+        ]
       },
       "offset": {
         "type": "number",
@@ -83,12 +93,18 @@
       "outsideClick": {
         "type": "boolean | OutsideClickHandler",
         "required": false,
-        "description": "Закрывать ли при клике вне поповера"
+        "description": "Закрывать ли при клике вне поповера",
+        "typeRefs": [
+          "OutsideClickHandler"
+        ]
       },
       "fallbackPlacements": {
         "type": "Placement[]",
         "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "disableSpanWrapper": {
         "type": "boolean",
@@ -113,7 +129,10 @@
           "clickAndFocusVisible"
         ],
         "defaultValue": "click",
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
       },
       "placement": {
         "type": "enum",
@@ -133,7 +152,177 @@
           "bottom-end"
         ],
         "defaultValue": "bottom-start",
-        "description": "Положение поповера относительно своего триггера (children)."
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ActionButtonProps": {
+        "kind": "interface",
+        "props": {
+          "actionLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Лейбл кнопки-действия"
+          },
+          "onActionClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Действие при клике по кнопке",
+            "typeRefs": [
+              "onActionClick"
+            ]
+          }
+        },
+        "own": true
+      },
+      "BlockProps": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок"
+          }
+        },
+        "own": true
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "neutral",
+              "primary",
+              "red",
+              "orange",
+              "yellow",
+              "green",
+              "blue",
+              "violet",
+              "pink"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "l",
+              "5xl"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          }
+        },
+        "own": false
+      },
+      "BlockPropsWithIcon": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок"
+          },
+          "icon": {
+            "type": "IconPredefinedProps | undefined",
+            "required": false,
+            "description": "Иконка",
+            "typeRefs": [
+              "IconPredefinedProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "DropdownState": {
+        "kind": "alias",
+        "type": "{ type: STATE.Loading; } | ({ type: STATE.NotFound; } & ActionButtonProps & BlockProps) | ({ type: STATE.NoData; } & ActionButtonProps & BlockPropsWithIcon) | ({ type: STATE.DataError; } & ActionButtonProps & BlockPropsWithIcon)",
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": false
+      },
+      "OutsideClickHandler": {
+        "kind": "alias",
+        "type": "(event: MouseEvent) => boolean",
+        "own": false
+      },
+      "PopoverWidthStrategy": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "gte",
+          "eq"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
       }
     },
     "description": "Dropdown компонент"

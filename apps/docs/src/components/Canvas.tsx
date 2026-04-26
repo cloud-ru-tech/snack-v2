@@ -22,12 +22,26 @@ export type PropDef = {
   defaultValue?: string;
   description?: string;
   required: boolean;
+  /** Names of related types referenced in this prop's rendered `type` string. */
+  typeRefs?: string[];
+};
+
+export type RelatedType = {
+  kind: string;
+  values?: string[];
+  type?: string;
+  props?: Record<string, PropDef>;
+  own?: boolean;
 };
 
 export type ComponentDoc = {
   displayName: string;
   description?: string;
+  /** Full TS identifier of the component's props type (e.g. `ButtonProps`). */
+  propsTypeName?: string | null;
   props: Record<string, PropDef>;
+  /** Supporting types referenced from `props` (unions, aliases, interfaces). */
+  relatedTypes?: Record<string, RelatedType>;
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -38,6 +52,10 @@ function deriveControl(prop: PropDef): ControlDef | null {
   if (t === 'boolean') return { type: 'boolean' };
   if (t === 'number') return { type: 'number' };
   if (t === 'string' || t.includes('reactnode') || t === 'react.reactnode') {
+    return { type: 'text' };
+  }
+  // string | number unions (e.g. CSSProperties['width']) — fall back to text input.
+  if (t.includes('string') && t.includes('number')) {
     return { type: 'text' };
   }
   return null;
@@ -52,16 +70,45 @@ function stripQuotes(value: string): string {
   return value;
 }
 
-function deriveDefaults(doc: ComponentDoc): Record<string, unknown> {
+function deriveDefaults(doc: ComponentDoc, excludeProps: string[] = []): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const [name, prop] of Object.entries(doc.props)) {
+    if (excludeProps.includes(name)) continue;
     if (prop.defaultValue === undefined) continue;
+    // Skip sentinel "null"/"undefined" strings from docgen — they render literally otherwise.
+    if (prop.defaultValue === 'null' || prop.defaultValue === 'undefined') continue;
     const ctl = deriveControl(prop);
     if (ctl?.type === 'boolean') out[name] = prop.defaultValue === 'true';
     else if (ctl?.type === 'number') out[name] = Number(prop.defaultValue);
     else out[name] = stripQuotes(prop.defaultValue);
   }
   return out;
+}
+
+function resolveComponentName(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: any,
+  explicit: string | undefined,
+  doc: ComponentDoc | undefined,
+): string {
+  if (explicit) return explicit;
+  if (doc?.displayName) return doc.displayName;
+  if (!component) return 'Component';
+  // Plain function/class component
+  if (typeof component.displayName === 'string' && component.displayName) return component.displayName;
+  // memo(Component)
+  if (component.type) {
+    if (typeof component.type.displayName === 'string' && component.type.displayName) return component.type.displayName;
+    if (typeof component.type.name === 'string' && component.type.name) return component.type.name;
+  }
+  // forwardRef(render)
+  if (component.render) {
+    if (typeof component.render.displayName === 'string' && component.render.displayName)
+      return component.render.displayName;
+    if (typeof component.render.name === 'string' && component.render.name) return component.render.name;
+  }
+  if (typeof component.name === 'string' && component.name) return component.name;
+  return 'Component';
 }
 
 // ─── Props ────────────────────────────────────────────────────────────────────
@@ -135,8 +182,8 @@ export function Canvas<P extends Record<string, unknown>>({
   }, [componentDoc, controls, excludeProps]);
 
   const autoDefaults = useMemo<Record<string, unknown>>(
-    () => (componentDoc ? deriveDefaults(componentDoc) : {}),
-    [componentDoc],
+    () => (componentDoc ? deriveDefaults(componentDoc, excludeProps) : {}),
+    [componentDoc, excludeProps],
   );
 
   const initialProps = { ...autoDefaults, ...defaultProps };
@@ -152,11 +199,7 @@ export function Canvas<P extends Record<string, unknown>>({
 
   const hasControls = Object.keys(mergedControls).length > 0;
 
-  const resolvedName =
-    componentName ??
-    (Component as { displayName?: string; name?: string }).displayName ??
-    (Component as { name?: string }).name ??
-    'Component';
+  const resolvedName = resolveComponentName(Component, componentName, componentDoc);
   const codeSnippet = generateJSX(resolvedName, props);
 
   const [highlighted, setHighlighted] = useState<string | null>(null);

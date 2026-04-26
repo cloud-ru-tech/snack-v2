@@ -1,6 +1,7 @@
 {
   "HotSpot": {
     "displayName": "HotSpot",
+    "propsTypeName": "HotSpotProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -20,7 +21,10 @@
           "pink"
         ],
         "defaultValue": "primary",
-        "description": "Внешний вид"
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "pulse": {
         "type": "boolean",
@@ -49,12 +53,18 @@
           "center-bottom"
         ],
         "defaultValue": "right-top",
-        "description": "Положение относительно children."
+        "description": "Положение относительно children.",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "dotRender": {
         "type": "((dot: ReactNode) => ReactNode)",
         "required": false,
-        "description": "Рендер функция для dot"
+        "description": "Рендер функция для dot",
+        "typeRefs": [
+          "dotRender"
+        ]
       },
       "children": {
         "type": "ReactNode",
@@ -86,6 +96,37 @@
       "wrapperClassName": {
         "type": "string",
         "required": false
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "center",
+          "left",
+          "right",
+          "left-top",
+          "left-bottom",
+          "right-top",
+          "right-bottom",
+          "center-top",
+          "center-bottom"
+        ],
+        "own": true
       }
     }
   }

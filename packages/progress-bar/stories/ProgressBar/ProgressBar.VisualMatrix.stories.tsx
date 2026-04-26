@@ -3,6 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
+import styles from './stories.module.scss';
+
 const meta: Meta<typeof ProgressBar> = {
   title: 'Components/ProgressBar/ProgressBar',
   component: ProgressBar,
@@ -23,7 +25,11 @@ export const VisualMatrix: Story = {
       columnHeaders={keySizes.map(s => s.toUpperCase())}
       rows={keyAppearances.map(appearance => ({
         variantLabel: appearance,
-        cells: keySizes.map(size => <ProgressBar key={size} progress={60} size={size} appearance={appearance} />),
+        cells: keySizes.map(size => (
+          <div key={size} className={styles.bar}>
+            <ProgressBar progress={60} size={size} appearance={appearance} />
+          </div>
+        )),
       }))}
     />
   ),

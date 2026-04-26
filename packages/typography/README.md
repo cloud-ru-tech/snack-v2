@@ -4,80 +4,55 @@
 
 `Typography` — единая точка входа для любого текстового стиля. Комбинация `variant` × `size` × `weight` покрывает всю типографическую шкалу дизайн-системы; тег (`h1`/`h2`/`p`/`label`) выбирается автоматически и переопределяется через `as`.
 
-## Когда использовать
+## Демо
+<TypographyDemo client:visible />
 
+## Когда использовать
 - Любой текст в интерфейсе — заголовки, параграфы, подписи, метки.
 - Вместо точечных CSS-классов на `font-size`/`font-weight`.
 
 Когда **не** нужен `Typography`: для чистых UI-примитивов, где текст входит в состав компонента (например, `Button` label), — используйте встроенные пропсы компонента.
 
-### Variant — смысловая роль текста
-
-| Variant | Типичное применение | Тег по умолчанию |
-|---------|---------------------|------------------|
-| `display` | Главный экранный акцент — лендинги, hero | `h1` |
-| `headline` | Заголовок раздела страницы | `h1` |
-| `title` | Заголовок карточки / блока | `h2` |
-| `label` | Метки форм, значений | `label` |
-| `body` | Основной текст, параграфы | `p` |
-
-### Size — размер
-
-`s` / `m` / `l` — применяется ко всем вариантам. Выбирается в контексте: `display l` для hero, `body m` для параграфов, `label s` для подписей.
-
-### Weight — начертание
-
-`regular` (по умолчанию) / `thin` / `mono`. `mono` — моноширинный для кода и табличных данных.
-
-### Do / Don't
-
-- ✅ Один `headline` на секцию.
-- ❌ Два `display` на одном экране — теряется иерархия.
-- ✅ Используйте `as` только если автотег не подходит семантически.
-- ❌ `as='div'` на заголовке — скринридеры пропустят его.
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/typography
 ```
 
 ```ts
 import { Typography, VARIANT, SIZE, WEIGHT } from '@ds/typography'
-import '@ds/typography/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Базовое использование'>
-  <Typography>Обычный body-текст по умолчанию</Typography>
+## Примеры использования
+<Example title='Базовое использование' code={TypographyBasicSrc}>
+  <TypographyBasic client:visible />
 </Example>
 
-<Example title='Заголовок раздела'>
-  <Typography variant='headline' size='l'>Заголовок страницы</Typography>
+<Example title='Заголовок раздела' code={TypographyHeadlineSrc}>
+  <TypographyHeadline client:visible />
 </Example>
 
-<Example title='Моноширинный'>
-  <Typography variant='body' weight='mono'>const answer = 42</Typography>
+<Example title='Моноширинный' code={TypographyMonoSrc}>
+  <TypographyMono client:visible />
 </Example>
 
-<Example title='Кастомный тег (полиморфизм)'>
-  <Typography as='span' variant='body'>Body внутри inline-потока</Typography>
+<Example title='Кастомный тег (полиморфизм)' code={TypographyPolymorphicSrc}>
+  <TypographyPolymorphic client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={typographyDoc.Typography} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-typography--playground' height={300} />
 
-<StorybookEmbed storyId='components-typography--playground' height={300} client:load />
+### Variant
+Типографическая роль: `display` — крупные промо-заголовки, `headline` — заголовки секций, `title` — заголовки подсекций и карточек, `label` — подписи и бэйджи, `body` — основной текст.
 
-## Доступность
+### Size
+Ступень размера внутри варианта: `s`, `m`, `l`. Конкретные px задаются токенами `@sbercloud/figma-variables`.
 
-- Автовыбор тега сохраняет правильную семантику: `display`/`headline` → `<h1>`, `title` → `<h2>`, `label` → `<label>`, `body` → `<p>`.
-- Переопределяйте `as` только при обоснованной семантике — не ломайте иерархию заголовков на странице.
-- Контраст текста на подложке — ответственность контейнера: компонент не задаёт цвет фона.
+### Weight
+Начертание: `regular` — дефолт, `thin` — облегчённое (display/headline), `mono` — моноширинное (коды, значения, ID).
 
 ## Typography
 

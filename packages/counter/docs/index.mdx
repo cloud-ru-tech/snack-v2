@@ -5,8 +5,15 @@ description: Компактный счётчик для отображения �
 order: 2
 ---
 
-import { Counter } from '@ds/counter'
 import { CounterDemo } from '../demos/CounterDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { PlusThreshold } from '../demos/examples/PlusThreshold'
+import PlusThresholdSrc from '../demos/examples/PlusThreshold.tsx?raw'
+import { ThousandsK } from '../demos/examples/ThousandsK'
+import ThousandsKSrc from '../demos/examples/ThousandsK.tsx?raw'
+import { Critical } from '../demos/examples/Critical'
+import CriticalSrc from '../demos/examples/Critical.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -17,87 +24,57 @@ import counterDoc from './props.json'
 Счётчик — компактный компонент для отображения числовых значений внутри другой UI-поверхности: кнопок, тегов, пунктов меню, навигации.
 
 ## Демо
-
-<CounterDemo client:load />
+<CounterDemo client:visible />
 
 ## Когда использовать
-
 - Количество непрочитанных уведомлений у иконки колокольчика.
 - Количество элементов в корзине или списке.
 - Бейдж на табе / пункте меню.
 
 Когда **не** нужен `Counter`: для крупных числовых метрик используйте `Typography`, для статусов — `Tag`.
 
-## Для дизайнеров
+## Анатомия
 
-### Variant — формат значения
+### Appearance
+Семантическая роль счётчика: `primary` — акцентный (непрочитанные, новые), `neutral` — нейтральный, `critical` — для подсветки ошибок или срочных элементов.
 
-| Variant | Поведение |
-|---------|-----------|
-| `count` | Обычное число без форматирования |
-| `count-plus` | При превышении `plusLimit` показывает `N+` (например, `10+`) |
-| `count-k` | Свыше 1000 — сокращённая форма `NK` (например, `2K`) |
+### Variant
+Формат отображения числа: `count` — число как есть, `count-plus` — сокращение с плюсом после лимита (`10+`, `99+`), `count-k` — сокращение в тысячах (`1K`, `12K`).
 
-### Appearance — семантическая роль
+### Size
+Размер бейджа: `xs` — на иконках/мелких элементах, `s` — дефолт в табах и пунктах меню.
 
-| Appearance | Когда использовать |
-|------------|--------------------|
-| `primary` | Основной акцент — непрочитанное, новое |
-| `neutral` | Нейтральный счётчик без срочности |
-| `critical` | Требует внимания: ошибки, просроченное |
+### Color
+Цветовая роль: `accent` — основной токен appearance, `decor` — декоративный вариант для визуально более мягкого бейджа.
 
-### Size и Color
-
-`size`: `xs` / `s` — согласуется с размером родительского контейнера. `color`: `accent` / `decor` — акцентный или декоративный токен темы.
-
-### Do / Don't
-
-- ✅ `count-plus` для потенциально больших значений — не допускайте `9999` на бейдже.
-- ❌ `count` на неограниченном диапазоне — поломает раскладку.
-- ✅ `critical` только для действительно срочных состояний.
-- ❌ `critical` как декоративный акцент.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/counter
 ```
 
 ```ts
 import { Counter, APPEARANCE, VARIANT, SIZE } from '@ds/counter'
-import '@ds/counter/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Обычное число'>
-  <Counter value={9} />
+## Примеры использования
+<Example title='Обычное число' code={BasicSrc}>
+  <Basic client:visible />
 </Example>
 
-<Example title='С порогом 10+'>
-  <Counter value={42} variant='count-plus' plusLimit={10} />
+<Example title='С порогом 10+' code={PlusThresholdSrc}>
+  <PlusThreshold client:visible />
 </Example>
 
-<Example title='Тысячи как K'>
-  <Counter value={2500} variant='count-k' />
+<Example title='Тысячи как K' code={ThousandsKSrc}>
+  <ThousandsK client:visible />
 </Example>
 
-<Example title='Critical состояние'>
-  <Counter value={3} appearance='critical' />
+<Example title='Critical состояние' code={CriticalSrc}>
+  <Critical client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={counterDoc.Counter} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-counter--playground' height={360} client:load />
-
-## Доступность
-
-- Counter — визуальный счётчик, семантики роли не несёт. Рендерится как `<div>`.
-- Для скринридеров предоставляйте дублирующий текст в контейнере («3 непрочитанных уведомления»).
-- Не полагайтесь на один цвет как носитель смысла — пара appearance × variant должна оставаться читаемой в монохромном режиме.
+## Storybook
+<StorybookEmbed storyId='components-counter--playground' height={360} />

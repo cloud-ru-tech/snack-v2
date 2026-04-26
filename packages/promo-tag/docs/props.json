@@ -1,6 +1,7 @@
 {
   "PromoTag": {
     "displayName": "PromoTag",
+    "propsTypeName": "PromoTagProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -26,7 +27,10 @@
           "pink"
         ],
         "defaultValue": "primary",
-        "description": "Внешний вид"
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "role": {
         "type": "enum",
@@ -36,7 +40,10 @@
           "decor"
         ],
         "defaultValue": "accent",
-        "description": "Роль промо-тега"
+        "description": "Роль промо-тега",
+        "typeRefs": [
+          "RoleAppearance"
+        ]
       },
       "className": {
         "type": "string",
@@ -46,7 +53,10 @@
       "onClick": {
         "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
-        "description": "Колбэк для обработки клика на тег"
+        "description": "Колбэк для обработки клика на тег",
+        "typeRefs": [
+          "onClick"
+        ]
       },
       "beforeContent": {
         "type": "ReactNode",
@@ -69,7 +79,44 @@
           "m"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "xs"
+        ],
+        "own": true
       }
     },
     "description": "Компонент Promo Tag"

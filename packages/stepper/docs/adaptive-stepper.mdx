@@ -16,10 +16,10 @@ import stepperDoc from './props.json'
 
 Адаптивная обёртка, которая по пропу `layoutType` отрисовывает либо `Stepper`, либо `MobileStepper`. Удобна, когда решение о layout'е принимается выше по дереву — например, через media-query-хук или feature-flag.
 
-## Пример
+## Примеры использования
 
 <Example title='Переключение layout' description='Toggle между desktop и mobile' code={AdaptiveFlowSrc}>
-  <AdaptiveFlow client:load />
+  <AdaptiveFlow client:visible />
 </Example>
 
 ## Когда использовать
@@ -29,6 +29,16 @@ import stepperDoc from './props.json'
 
 Если адаптив не нужен — используйте [`Stepper`](/components/stepper/stepper) или [`MobileStepper`](/components/stepper/mobile-stepper) напрямую.
 
+## Установка
+
+```bash
+pnpm add @ds/stepper
+```
+
+```ts
+import { AdaptiveStepper } from '@ds/stepper'
+```
+
 ## Props
 
 <PropsTable data={stepperDoc.AdaptiveStepper} />
@@ -36,3 +46,8 @@ import stepperDoc from './props.json'
 ## Storybook
 
 <StorybookEmbed storyId='components-stepper--adaptive' />
+
+## Анатомия
+
+### Step state
+Состояние шага: `completed`, `current`, `loading`, `waiting`, `rejected`. Раскладка (desktop/mobile) выбирается автоматически по ширине контейнера.

@@ -24,41 +24,19 @@ import togglesDoc from './props.json'
 Контейнер для группы связанных toggle'ов (чипы, опции, сегментированный контрол) с общим режимом выбора. Предоставляет React Context — потомки читают текущий выбор через `useToggleGroup`.
 
 ## Демо
-
-<ToggleGroupDemo client:load />
+<ToggleGroupDemo client:visible />
 
 ## Когда использовать
-
 - Сегментированный контрол (выбор размера, периода, типа).
 - Чипы-фильтры с `selectionMode='multiple'`.
 - Любые связанные опции, где нужен shared state + unified controlled API.
 
 Когда **не** нужен ToggleGroup: одна опция — [`Switch`](/components/toggles/switch) или [`Checkbox`](/components/toggles/checkbox); взаимоисключающий выбор с нативной семантикой radio — группа [`Radio`](/components/toggles/radio) c общим `name`.
 
-## Для дизайнеров
+## Figma
+<FigmaEmbed node={FIGMA_TOGGLES} height={480} title='Toggle components в Figma' />
 
-### selectionMode
-
-| Mode | Поведение |
-|------|-----------|
-| `single` | Один элемент выбран; клик по выбранному — deselect |
-| `multiple` | Любая подмножество выбрано |
-
-### Do / Don't
-
-- ✅ 2–5 связанных опций в ряд.
-- ❌ Больше 7 — используйте `Select` или `Combobox`.
-- ✅ `single` по умолчанию.
-- ❌ Менять `selectionMode` в рантайме — состояние сбрасывается.
-
-### Figma
-
-<FigmaEmbed node={FIGMA_TOGGLES} height={480} title='Toggle components в Figma' client:load />
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/toggles
 ```
@@ -67,34 +45,32 @@ pnpm add @ds/toggles
 import { ToggleGroup, useToggleGroup } from '@ds/toggles'
 ```
 
-### Как это работает
-
-Потомки читают выбор и обработчик через `useToggleGroup({ value })` — хук возвращает `isChecked` и `handleClick` для конкретного элемента.
-
-### Примеры использования
-
+## Примеры использования
 <Example title='1. Single selection (сегментированный контрол)' code={ToggleGroupSingleSrc}>
-  <ToggleGroupSingle client:load />
+  <ToggleGroupSingle client:visible />
 </Example>
 
 <Example title='2. Multiple selection (чипы-фильтры)' code={ToggleGroupMultipleSrc}>
-  <ToggleGroupMultiple client:load />
+  <ToggleGroupMultiple client:visible />
 </Example>
 
 <Example title='3. Controlled + отображение значения' code={ToggleGroupControlledSrc}>
-  <ToggleGroupControlled client:load />
+  <ToggleGroupControlled client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={togglesDoc.ToggleGroup} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-toggles-toggle-group--playground' height={360} />
 
-<StorybookEmbed storyId='components-toggles-toggle-group--playground' height={360} client:load />
+## Анатомия
 
-## Доступность
+### Mode
+Тип дочерних контролов: `checkbox` — мультивыбор/независимые, `radio` — одиночный выбор.
 
-- ToggleGroup — контейнер без собственной семантики. Ответственность за `role` и ARIA несёт потомок (кнопка-чип, сегментированный контрол).
-- Для сегментированного контрола рекомендуется `role="radiogroup"` на обёртке и `aria-pressed` на элементах.
-- Поддержку клавиатуры для навигации между элементами реализует потомок (Arrow keys).
+### Size
+Размер вложенных тогглов: `xs` — плотный, `s` — дефолт.
+
+### Selection mode
+Правила выбора: `single` — ровно один элемент (как radio-group), `multiple` — любое подмножество (как checkbox-group).

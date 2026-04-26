@@ -23,62 +23,39 @@ import dropzoneDoc from './props.json'
 Видимая зона для загрузки файлов — перетаскиванием или кликом. Подходит, когда загрузка файлов является самостоятельным действием на странице (галерея, форма с вложениями, мастер импорта).
 
 ## Демо
-
-<DropzoneDemo client:load />
+<DropzoneDemo client:visible />
 
 ## Когда использовать
-
 - Когда загрузка файлов — отдельная область UI, которую пользователь сразу видит.
 - Когда нужно подсказать контекст через контент слота (иконка, подпись, список форматов).
 - Когда требуется поддержать сразу и drag-n-drop, и клик по зоне.
 
 Когда **не** подходит: если загрузка — вспомогательное действие в форме, используйте [FileUpload](/components/dropzone/file-upload) с обычной кнопкой.
 
-## Для дизайнеров
+## Анатомия
 
-### Size — размер зоны
+### Size
+Три размера: `s` для плотных форм, `m` — дефолт, `l` — для крупных страниц загрузки.
 
-| Size | Когда использовать |
-|------|---------------------|
-| `s` | Компактные формы, inline-загрузка, узкие сайдбары |
-| `m` | Значение по умолчанию — большинство сценариев |
-| `l` | Отдельная страница загрузки, мастер импорта |
+### Upload mode
+`single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
-### Mode — режим загрузки
-
-| Mode | Поведение |
-|------|-----------|
-| `single` | Один файл за раз, новая загрузка заменяет предыдущую |
-| `multiple` | Несколько файлов за одну операцию |
-
-### Do / Don't
-
-- ✅ Дублируйте drag-n-drop кнопкой-триггером для клавиатурного сценария.
-- ❌ Не используйте `Dropzone` как единственный способ загрузить файл — drag недоступен с клавиатуры.
-- ✅ Ограничивайте типы через `accept`, чтобы пользователь не выбирал неподходящее.
-- ❌ Не прячьте компонент за скроллом — зона должна быть видна при drag-over.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/dropzone
 ```
 
 ```ts
 import { Dropzone } from '@ds/dropzone'
-import '@ds/dropzone/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example
   title='Базовая зона'
   description='Multiple-режим, размер M'
   code={DropzoneBasicSrc}
 >
-  <DropzoneBasic client:load />
+  <DropzoneBasic client:visible />
 </Example>
 
 <Example
@@ -86,7 +63,7 @@ import '@ds/dropzone/style.css'
   description='Режим single и фильтр accept'
   code={DropzoneSingleImageSrc}
 >
-  <DropzoneSingleImage client:load />
+  <DropzoneSingleImage client:visible />
 </Example>
 
 <Example
@@ -94,19 +71,11 @@ import '@ds/dropzone/style.css'
   description='Состояние заблокированной загрузки'
   code={DropzoneDisabledSrc}
 >
-  <DropzoneDisabled client:load />
+  <DropzoneDisabled client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={dropzoneDoc.Dropzone} />
 
-### Storybook
-
+## Storybook
 <StorybookEmbed storyId='components-dropzone-dropzone--playground' height={420} />
-
-## Доступность
-
-- Зона получает события `drag`/`drop` через обработчики DOM — для клавиатурной загрузки используйте рядом `FileUpload` с `<Button>`-триггером.
-- В `disabled` события drag-n-drop отключаются; визуальное состояние должно дублироваться текстом.
-- Текст внутри зоны должен сохранять контраст ≥ 4.5:1 на фоне state layer при drag-over.

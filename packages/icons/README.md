@@ -2,7 +2,9 @@
 
 `@ds/icons` — Наборы интерфейсных иконок React и компонент Sprite для SVG-спрайтов.
 
-Пакет экспортирует сгенерированные компоненты `*SVG` / `*SpriteSVG` и вспомогательный [`Sprite`](./props.json) для подключения спрайтов. Цвет наследуется через `currentColor`.
+Пакет экспортирует сгенерированные компоненты `*SVG` / `*SpriteSVG` и вспомогательный [`Sprite`](#sprite) для подключения спрайтов. Цвет наследуется через `currentColor`.
+
+<IconsDemo client:visible />
 
 ## Установка
 
@@ -17,6 +19,31 @@ import { SearchSVG, Sprite, SpriteSnackIconsSVG } from '@ds/icons'
 Для режима **sprite** сначала отрендерьте скрытый блок со спрайтом, затем используйте иконки с `<use href="#id">` внутри.
 
 ## Sprite
+
+Два режима использования иконок:
+
+- **Инлайн** — `import { SearchSVG } from '@ds/icons'` и рендерить `<SearchSVG />`. SVG попадает в DOM каждый раз. Удобно, если иконок на странице мало.
+- **Sprite** — спрайт подключается один раз в корне приложения, а компоненты `*SpriteSVG` ссылаются на `<symbol>` через `<use>`. Выгоднее на страницах с большим количеством повторяющихся иконок.
+
+```tsx
+import { Sprite, SpriteSnackIconsSVG, SearchSpriteSVG } from '@ds/icons'
+
+export function App() {
+  return (
+    <>
+      {/* Подключаем спрайт один раз в корне приложения */}
+      <Sprite content={SpriteSnackIconsSVG} />
+
+      {/* Дальше используем лёгкие *SpriteSVG — они рендерят <use href='#...'> */}
+      <SearchSpriteSVG size={24} />
+    </>
+  )
+}
+```
+
+Доступные спрайты: `SpriteSnackIconsSVG` (он же `SpriteSVG`), `SpriteWebIconsSVG`, `SpriteProductIconsSVG` — подключайте только те наборы, иконки из которых реально используются.
+
+## Props
 
 <PropsTable data={iconsDoc.Sprite} />
 

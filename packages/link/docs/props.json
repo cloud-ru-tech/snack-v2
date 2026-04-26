@@ -1,6 +1,7 @@
 {
   "Link": {
     "displayName": "Link",
+    "propsTypeName": "LinkProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -20,7 +21,10 @@
           "onAccent"
         ],
         "defaultValue": "regular",
-        "description": "Роль"
+        "description": "Роль",
+        "typeRefs": [
+          "Role"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -38,7 +42,10 @@
           "pink"
         ],
         "defaultValue": "primary",
-        "description": "Стилизует ссылку для размещения на цветном фоне"
+        "description": "Стилизует ссылку для размещения на цветном фоне",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "insideText": {
         "type": "boolean",
@@ -53,7 +60,10 @@
           "end",
           "middle"
         ],
-        "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине"
+        "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине",
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
       },
       "underlined": {
         "type": "boolean",
@@ -65,7 +75,41 @@
         "type": "ComponentType | ElementType",
         "required": false,
         "defaultValue": "'a'",
-        "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`"
+        "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`",
+        "typeRefs": [
+          "T"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Role": {
+        "kind": "union",
+        "values": [
+          "regular",
+          "onAccent"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink",
+          "invertNeutral"
+        ],
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
       }
     },
     "description": "Link компонент"

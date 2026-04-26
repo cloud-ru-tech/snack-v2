@@ -34,49 +34,43 @@
    import <name>Doc from './props.json'
    ```
 
-3. **Role-based каркас (для tier M+)**:
-   - `# <Name>` + lead-параграф.
-   - `## Демо` + `<<Name>Demo client:load />` — интерактивный Canvas.
-   - `## Когда использовать` — плюсы/минусы, когда **не** нужен.
-   - `## Для дизайнеров` (H2)
-     - `### Appearance` / `### View` / `### Size` — таблицы + `<Example>` под каждой.
-     - `### Do / Don't` — минимум 4 пары ✅/❌.
-     - `### Figma` — `<FigmaEmbed node={FIGMA_<NAME>} />`.
-     - `### Смотри также` — ссылки на `/patterns/*`.
-   - `## Для разработчиков` (H2)
-     - `### Установка` — pnpm add + import.
-     - `### Примеры использования` — **минимум 3** `<Example>` блока (см. ниже).
-     - `### Живой сценарий` (опционально) — `<<Name>FormScenario client:load />` + код.
-     - `### Полиморфизм` / `### States` / `### Иконки и counter` — по tier'у.
-     - `### Props` — `<PropsTable data={<name>Doc.<Name>} />`.
-     - `### Storybook` — `<StorybookEmbed storyId='components-<name>--playground' />`.
-   - `## Доступность` — ARIA, клавиатура, focus, контраст.
+3. **Плоский каркас H2**:
 
-   Тier XS/S могут иметь плоскую структуру без H2 «Для дизайнеров/разработчиков». Tier M+ — всегда role-based.
+   Структура — плоский список H2. Порядок задаёт `apps/docs/src/config/docSections.mjs` (см. [docs-structure.md](../rules/docs-structure.md)); в MDX секции можно писать в любом порядке, плагин `remarkSectionOrder` их рассортирует (матчинг по тексту заголовка).
+
+   Типовой набор H2 для tier M+:
+
+   - `# <Name>` + lead-параграф.
+   - `## Демо` — `<<Name>Demo client:visible />`.
+   - `## Когда использовать` — плюсы/минусы, когда **не** нужен.
+   - `## Анатомия` — H3 на каждую визуальную ось из `constants.ts` (`### Appearance`, `### View`, `### Size`, `### Variant`, …): короткая семантика + таблица значений + опционально inline `<Example>` с вариантами.
+   - `## Установка` — `pnpm add` + импорт.
+   - `## Примеры использования` — **минимум 3** `<Example>` блока.
+   - `## Props` — `<PropsTable data={<name>Doc.<Name>} />`.
+   - `## Storybook` — `<StorybookEmbed storyId='components-<name>--playground' />` (без `client:*`).
+   - `## Figma` — `<FigmaEmbed node={FIGMA_<NAME>} />`.
+   - `## Смотри также` — опционально, ссылки на `/patterns/*`.
+
+   Локальные кастомные H2 (напр. `## Selection mode`) — произвольный текст, не совпадающий с каноном, остаётся на месте.
+
+   **Hydration-директивы**: сайт — SPA (`<ClientRouter />`), каждый `client:*` = ре-гидрация на каждом переходе. Для интерактивных демок (`<*Demo />`, `<*Scenario />`, примеры в `<Example>`) используй **`client:visible`**. Для `<StorybookEmbed>` / `<FigmaEmbed>` / `<PropsTable>` — **без директив** (они SSR-ятся). `client:load` в MDX не применяется.
+
+   Tier XS/S — допустим минимум из `demo` + `when` + `examples` + `props` + `storybook`.
 
 4. **Example блоки** — минимум 3, типичный набор 5–6.
 
-   Для примеров с **иконками или React-JSX в пропсах** — вынести в `demos/examples/<Name>.tsx` и импортировать компонент + `?raw`-источник:
+   **Содержимое каждого `<Example>` — в отдельном файле** `packages/<pkg>/demos/examples/<Name>.tsx` (один named PascalCase-экспорт, импорт из `@ds/<pkg>`). Инлайн-JSX внутри `<Example>` запрещён: Astro+MDX не гидрирует React-детей `<Example>`, интерактив молча перестаёт работать. Несколько корневых элементов оборачивай в `<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>` — это единственный допустимый инлайн-`style` в demo-файлах.
 
    ```mdx
    import { Destructive } from '../demos/examples/Destructive'
    import DestructiveSrc from '../demos/examples/Destructive.tsx?raw'
 
    <Example title='Деструктив' code={DestructiveSrc}>
-     <Destructive client:load />
+     <Destructive client:visible />
    </Example>
    ```
 
-   Для **простых** примеров (без JSX-в-props) — инлайн с auto-extract от remark-плагина:
-
-   ```mdx
-   <Example title='Размеры'>
-     <Button size='s' label='Small' />
-     <Button size='m' label='Medium' />
-   </Example>
-   ```
-
-   Покрытие: главное+вторичное, деструктив (critical), icon-only (toolbar), polymorphism (`as="a"`), loading, counter/badge.
+   Покрытие — по осям API компонента: по одному примеру на ключевую ось, icon-slots, polymorphism (`as`), состояния (loading/disabled).
 
 5. **Живой сценарий** (tier M+, опционально):
 
@@ -91,7 +85,7 @@
    }
    ```
 
-   Вставляем в MDX через `client:load`.
+   Вставляем в MDX через `client:visible`.
 
 6. **Demo** — `demos/<Name>Demo.tsx`:
    ```tsx

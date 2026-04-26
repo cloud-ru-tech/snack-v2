@@ -1,223 +1,204 @@
 # Skill: component-validation-loop
 
-**Триггеры:** «сверь реализацию», «проверь готовность компонента», «запусти цикл валидации», после фазы имплементации любого пакета `packages/*`, при портировании legacy → `@ds/*`.
+**Триггеры:** «проверь готовность компонента», «запусти цикл валидации», «сверь реализацию», после фазы имплементации любого пакета `packages/*`, финал миграции из `/migrate-to-v2`.
 
-Итеративный цикл проверки готовности компонентного пакета: **Figma parity → runtime рендер → docs/demos → wire-up**. Агент сам проходит все стадии, фиксит расхождения и повторяет, пока не достигнет success criteria.
+Сквозной итеративный цикл сверки готовности компонентного пакета. Не переписывает артефакты — **делегирует** в профильные скилы и правила, сам отвечает только за **порядок проходов, чек-листы соответствия, реестр расхождений и остановки**.
 
-Скилл дополняет (не заменяет):
-- [figma-component-import](./figma-component-import.md) — первичный импорт узлов
-- [component-tier-audit](./component-tier-audit.md) — эталонность артефактов
-- [component-story-set](./component-story-set.md) — набор stories + baselines visual regression (финальный шаг)
+## Границы скилла
 
-## Вход
+Скилл **не генерирует** stories/tests/docs/scss с нуля. Для этого есть:
+- [new-component-package](./new-component-package.md) — создать пакет.
+- [figma-component-import](./figma-component-import.md) — карта Figma axes → `constants.ts`/`types.ts`.
+- [figma-to-code](./figma-to-code.md) — декодинг слоёв (`stateLayer/`, `focusedFrame/`, `material/`) в DOM+SCSS.
+- [figma-selected-block](./figma-selected-block.md) — SCSS выделенного слоя с токенами (CSS-in / REST-in).
+- [component-story-set](./component-story-set.md) — Playground + VisualMatrix, финальным шагом снимает visual baselines.
+- [component-e2e-tests](./component-e2e-tests.md) — Playwright specs по tier'у.
+- [component-docs](./component-docs.md) — `docs/index.mdx` + `demos/`.
+- [component-tier-audit](./component-tier-audit.md) — сверка с эталоном по tier'у.
 
-- Путь к пакету `packages/<pkg>`.
-- Список Figma nodeId (master + state + example + mobile).
-- URL Storybook (по умолчанию `http://localhost:6006`) и docs (`http://localhost:4321/components/<pkg>`).
+Если на любой стадии находится пробел — **вызывать соответствующий скилл**, а не фиксить руками прямо здесь.
 
-## Полный цикл (5 стадий)
+## Ввод
 
-### Стадия 1 — Research & scope validation
+- Путь к пакету `packages/<pkg>` и его tier (XS/S/M/L/XL — см. [complexity-tiers.md](../rules/complexity-tiers.md)).
+- План миграции `.claude/plan/<pkg>.md` (если пакет пришёл из `/migrate-to-v2`) — берётся как источник истины по scope и decisions.
+- Figma nodeId'ы (master + ключевые variants + mobile, если есть) и константа `FIGMA_<PKG>` в `apps/docs/src/lib/figma.ts`.
+- (опционально) путь к legacy-источнику из `.claude/plan/<pkg>.md` секция «Legacy источники».
 
-**Цель:** убедиться, что скоуп плана соответствует реальности Figma + legacy.
+## 5 стадий
 
-1. `mcp__figma-remote-mcp__get_metadata` по КАЖДОМУ предоставленному узлу.
-2. Если узлы уточняют/меняют scope плана (напр. «два компонента» → «один с render-props»), ОСТАНОВИТЬСЯ, обновить `.claude/plan/<pkg>.md`, сообщить пользователю, ждать подтверждения.
-3. Если есть legacy npm — `npm pack` + tar → прочитать `src/` + `types.ts` + `constants.ts`. Выписать публичный API.
-4. Составить **API diff** legacy vs наш план — drop-in или breaking.
+### Стадия 1 — Scope & decisions validation
 
-**Выход стадии:** подтверждённый scope + финализированный план.
+**Цель:** убедиться, что реализация не разошлась с «Зафиксированными решениями» плана и с текущим состоянием Figma.
+
+1. Прочитать `.claude/plan/<pkg>.md` (если есть) — разделы «Зафиксированные решения», «Scope и публичное API», «Маппинг зависимостей».
+2. Прочитать `packages/<pkg>/src/index.ts` + `constants.ts` + `types.ts` — сверить с планом (оси, публичные компоненты/хуки/типы).
+3. `mcp__figma-remote-mcp__get_metadata` по мастер-ноде → сверить variant-оси с `constants.ts`.
+4. **Любое расхождение scope ↔ код ↔ Figma — блокирующий вопрос пользователю**, а не авто-решение (та же норма, что в `/migrate-to-v2` п. «Reconcile Figma ↔ legacy»). Если план молчит о нужной оси — остановиться, обновить план, дождаться подтверждения.
+
+**Выход:** подтверждённый актуальный scope. Если плана нет — вынуть API-skeleton прямо из кода и пометить, что валидация идёт без плана.
 
 ### Стадия 2 — Figma parity (слои, токены, состояния)
 
-Для каждого Figma nodeId (master + state-master + variants + example):
+Применяется для каждого ключевого Figma nodeId (master + state-master + mobile + ключевые variants).
 
-1. `mcp__figma-remote-mcp__get_metadata` — собрать DOM-структуру (`children frame names`), служебные слои (`stateLayer/`, `focusedFrame/`, `material/`), variants + оси, размеры.
-2. При необходимости — `get_variable_defs` и `get_design_context` (требуют выделения в Figma Desktop) для токенов и референсного кода.
+Источники правил:
+- [figma-to-code](./figma-to-code.md) — словарь «слой → DOM → SCSS».
+- [figma-integration.md](../rules/figma-integration.md) — карта `Figma variant → React prop`, `FIGMA_<NAME>`.
+- [figma-to-code.md (rule)](../rules/figma-to-code.md) — чеклист перед коммитом.
+- `packages/materials/docs/index.mdx` — миксины `has-state-layer-as-child`, `with-material`.
 
-**Чек-лист соответствия Figma ↔ код** (покрывает бывший скилл `figma-verify-after-stories`):
+**Чек-лист соответствия Figma ↔ код:**
 
-- [ ] **stateLayer/\<group\>/\<role\>** → `<span className={styles.stateLayer} data-state='<group><Role>' aria-hidden />` + `@use '@ds/materials' as m; @include m.has-state-layer-as-child(stateLayer);` в SCSS корня.
-  Допустимые `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground` (строго camelCase из этого списка).
-- [ ] **focusedFrame/...** (hidden=true в Figma) → `:focus-visible { outline: 2px solid base.$sn-theme-color-primary-accent; outline-offset: 2px; }`. **НИКОГДА** не DOM-нода.
-- [ ] **material/\<appearance\>\<Level\>** → `<span className={styles.acrylic} data-acrylic-appearance='...' data-acrylic-level='...' aria-hidden />` + `m.with-material('acrylic', #{acrylic})`.
-- [ ] **Интерактивный корень** со state-layer / material имеет `position: relative` в SCSS; `.stateLayer` / `.acrylic` имеют `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`.
-- [ ] **Цвета** из узла — токены `base.$sn-theme-color-*` / `base.simple-var(...)` / `base.composite-var(...)`, не hex/rgba.
-- [ ] **Размеры** из Figma (фиксированные height/width) — в SCSS. Parity ловится визуально (VisualMatrix baseline), отдельный `dimensions.spec.ts` не заводим.
-- [ ] **Variants** узла → каждый присутствует в `constants.ts` (`as const`) + типы в `types.ts` (`ValueOf`).
-- [ ] **Variants** покрыты в `VisualMatrix.stories.tsx` как строки/колонки `StoryTable`.
-- [ ] **Figma typos** (например `iconAfrer`) — в `constants.ts` каноническое имя + комментарий `// Figma variant: <typo>`.
-- [ ] **Visual сверка (screenshot vs Figma)**:
-  1. `mcp__figma-remote-mcp__get_screenshot` на nodeId → PNG.
-  2. Снять скриншот соответствующей story (Playwright / devtools).
-  3. Классифицировать расхождения: критические (отсутствующий слой, неверный токен, неверный размер) / средние (spacing, typography) / низкие (тени, радиусы, анимации).
+- [ ] `stateLayer/<group>/<role>` → `<span className={styles.stateLayer} data-state='<group><Role>' aria-hidden />` + `@use '@design-system/materials' as m; @include m.has-state-layer-as-child(stateLayer);` на SCSS-корне.
+      Допустимые `data-state` (camelCase, строго из списка): `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground`.
+- [ ] `focusedFrame/...` (hidden=true в Figma) → **не** DOM, только `&:focus-visible { outline: ...; outline-offset: ...; }` на интерактивном корне.
+- [ ] `material/<appearance><Level>` → `<span className={styles.acrylic} data-acrylic-appearance='...' data-acrylic-level='...' aria-hidden />` + `@include m.with-material('acrylic', #{acrylic});`.
+- [ ] Интерактивный корень, использующий `has-state-layer-as-child` / `with-material`, имеет `position: relative`; дочерние `.stateLayer` / `.acrylic` — `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`.
+- [ ] Все цвета/spacing/radius/typography из SCSS — через `base.$sn-*` либо `@include base.composite-var(...)`. Захардкоженных `px`/`rem`/`#hex`/`rgba()` нет (или каждая — с пояснением в комментарии). При сомнении по конкретному слою — прогнать [figma-selected-block](./figma-selected-block.md).
+- [ ] Все variant-оси узла → есть в `constants.ts` (`as const`) + тип в `types.ts` (`ValueOf<typeof …>`). См. [component-api-surface.md](../rules/component-api-surface.md).
+- [ ] Все оси покрыты в `VisualMatrix.stories.tsx` как строки/колонки `StoryTable`. См. [stories-standard.md](../rules/stories-standard.md).
+- [ ] Figma-typos (`iconAfrer`, …) → каноническое имя в `constants.ts` + сноска `// Figma variant: <typo>`.
+- [ ] `FIGMA_<PKG>` + нужные суб-константы добавлены в `apps/docs/src/lib/figma.ts`.
 
-Если критических расхождений >3 — остановиться на этой стадии, править SCSS, повторять.
+Если критических расхождений >3 — остановиться, отправить в [figma-component-import](./figma-component-import.md) или [figma-to-code](./figma-to-code.md), повторить стадию.
 
-### Стадия 3 — Runtime сверка (screenshot vs Figma)
+### Стадия 3 — Runtime screenshot сверка
 
-**Обязательная итерация**, часто вскрывает инверсию цветов / позиционирование.
+Ловит то, что не видно статическим анализом: инверсию цветов, сдвиги, mobile/desktop scale.
 
-Для каждого story ключевого состояния (`BasicFlow`, `WithValidator`, `Mobile`, `VisualMatrix`):
+Для каждого ключевого состояния (Playground + VisualMatrix + сценарные stories + mobile):
 
-1. Снять скриншот Figma (`mcp__figma-remote-mcp__get_screenshot` или попросить пользователя).
-2. Снять скриншот story (Playwright, Chrome DevTools, или попросить пользователя).
-3. **Попиксельная сверка** — конкретно проверить:
+1. `mcp__figma-remote-mcp__get_screenshot` на nodeId → референс PNG.
+2. Снять скриншот story (Playwright fixture `page.locator('#storybook-root').screenshot()` или MCP playwright).
+3. Сверка по 4 классам расхождений:
 
-| Чек | Типичная ошибка | Фикс |
-|-----|-----------------|------|
-| Цвета состояний не инвертированы | `current` — светлый, `completed` — тёмный (должно быть наоборот) | Swap `primary-accent` ↔ `primary-decor`. Current = solid dark, Completed = light + indicator icon |
-| Индикатор (дот/иконка) отцентрован | `position: absolute` без координат → прилипает к краю | `top: 50%; left: 50%; transform: translate(-50%, -50%)` |
-| Round/square/pill shape совпадает | Пропущен `border-radius` | Сверить с размерами в Figma |
-| Текст/иконка читается на фоне | Чёрный текст на тёмном фоне | Использовать `neutral-onAccent` / `primary-onAccent` (белый на аксенте) |
-| Размеры токенов совпадают | Bar 2px вместо 4px, circle 16 вместо 24 | Измерить в Figma, зафиксировать в SCSS |
-| Mobile → правильный platform токен-scale | Стили выглядят «как desktop» на mobile | Wrap контейнер: `className={cn(getThemeClassnames({ platform: 'mobile' }), styles.root, className)}` |
+| Класс | Типичный кейс | Фикс |
+|-------|---------------|------|
+| Цветовая роль инвертирована | «current» светлый, «completed» тёмный, хотя должно быть наоборот | Swap `primary-accent` ↔ `primary-decor`; текст на accent → `neutral-onAccent`. |
+| Позиционирование индикатора | `.status` прилип к левому краю | `top: 50%; left: 50%; transform: translate(-50%, -50%)`. |
+| Размер/радиус | Bar 2px вместо 4px | Перемерить в Figma, зафиксировать через токен (`figma-selected-block`). |
+| Mobile-scale | Mobile-компонент рендерится desktop-токенами | На корне `className={cn(getThemeClassnames({ platform: 'mobile' }), styles.root, className)}`. |
 
-4. Если расхождения — править SCSS, повторять с шага 1, пока не совпадёт.
+Все расхождения → реестр с severity (critical / medium / low). **Critical блокирует Стадию 5.** Итерация с правками SCSS, пока screenshot не совпадёт (±low расхождения допустимы).
 
-**Цветовая модель `@sbercloud/figma-variables` (часто используется):**
+Полный набор visual-снимков покрывается [component-story-set](./component-story-set.md) → `pnpm test:e2e:update-snapshots`; не снимать baselines вручную. Формат визуальных спеков — [visual-regression-standard.md](../rules/visual-regression-standard.md).
 
-```scss
-// Сплошной насыщенный (bg для «active» / «completed CTA»)
-base.$sn-theme-color-primary-accent         // тёмно-зелёный
-base.$sn-theme-color-red-accent             // тёмно-красный
+### Стадия 4 — Stories / Tests / Docs runtime
 
-// Светлый «decor» (bg для «completed» индикаторов, мягкая подложка)
-base.$sn-theme-color-primary-decor          // светло-зелёный
-base.$sn-theme-color-red-decor              // светло-красный
+Полнота артефактов — через [component-tier-audit](./component-tier-audit.md). Он возвращает diff относительно tier-эталона. Всё, что скилл-аудит помечает как missing → ставим задачу соответствующему скилу:
 
-// Текст / иконка НА accent (белый на тёмном)
-base.$sn-theme-color-neutral-onAccent       // белый
-base.$sn-theme-color-primary-onAccent       // off-white
+- Stories diff → [component-story-set](./component-story-set.md).
+- E2E diff → [component-e2e-tests](./component-e2e-tests.md).
+- MDX/demos diff → [component-docs](./component-docs.md).
 
-// Нейтральные (waiting, disabled)
-base.$sn-theme-color-neutral-decor          // серый бордер/трек
-base.$sn-theme-color-neutral-accent         // серый текст
-base.$sn-theme-color-neutral-text           // основной текст
-base.$sn-theme-color-neutral-background1Level  // фон
-```
+**Runtime-проверки docs** (частые ошибки, которые tier-audit не ловит):
 
-### Стадия 4 — Docs & demos runtime
+- [ ] `<PropsTable data={pkgDoc.<ComponentName>} />` — prop называется `data`, не `componentDoc`.
+- [ ] `<StorybookEmbed storyId='components-<pkg>--<story>' />` — prop `storyId`, не `id`; story id совпадает с актуальным `title` stories ([stories-standard.md](../rules/stories-standard.md) раздел «Title — nesting по пакету»).
+- [ ] `<FigmaEmbed node={FIGMA_<PKG>} />` работает (константа существует, `loading='lazy'` на iframe — по умолчанию).
+- [ ] Каждый `<Example>` с React-пропсами, содержащими JSX (иконки, children-как-элементы), вынесен в `demos/examples/<Name>.tsx` и подключён через `import <Name>Src from '../demos/examples/<Name>.tsx?raw'` — иначе Astro MDX скомпилит JSX-проп в `astro:jsx` и React-компонент упадёт (см. [docs-structure.md](../rules/docs-structure.md)).
+- [ ] Для render-prop компонентов demo не использует `<Canvas component={...} />` — обёртывает живой сценарий (`return <BasicFlow />`).
+- [ ] `docs/props.json` свежий: `pnpm gen:props`.
+- [ ] Открыть `http://localhost:4321/components/<pkg>` → чисто в консоли браузера и stderr Astro. Ошибка `Cannot read properties of undefined (reading 'props')` = неверный prop name в MDX.
 
-**Цель:** Astro docs-сервер должен отрисовывать страницу без ошибок.
+**Runtime-проверки stories/tests:**
 
-Проверки:
-
-- [ ] `<PropsTable data={pkgDoc.ComponentName} />` — prop `data`, НЕ `componentDoc` (типичная ошибка scaffold'а).
-- [ ] `<StorybookEmbed storyId='components-<pkg>--<story>' />` — prop `storyId`, НЕ `id`.
-- [ ] `<FigmaEmbed node={FIGMA_<PKG>} />` — константа добавлена в `apps/docs/src/lib/figma.ts`.
-- [ ] Каждая `<Example>` имеет валидный `code={...Src}` с `?raw` импортом.
-- [ ] `<ComponentDemo client:load />` рендерится. Для **render-prop** компонентов (которые не драйвятся Canvas playground) — демо-компонент должен оборачивать живой пример, а не `<Canvas component={...} />`:
-
-    ```tsx
-    // BAD — Canvas не знает, что прокинуть в render-prop
-    <Canvas component={Stepper} componentName='Stepper' ... />
-
-    // GOOD — живой сценарий
-    export function StepperDemo() {
-      return <BasicFlow />
-    }
-    ```
-
-- [ ] Секция `## Демо` присутствует первой H2-секцией с `<ComponentDemo client:load />`.
-- [ ] `docs/props.json` актуальный: запустить `pnpm gen:props`.
-- [ ] Открыть `http://localhost:4321/components/<pkg>` → проверить консоль браузера и stderr Astro. Любая ошибка `Cannot read properties of undefined (reading 'props')` = неверный prop name в MDX.
+- [ ] `pnpm test:stories --project=chromium 2>&1 | tail -20` — зелёный (play-функции).
+- [ ] `pnpm test:e2e --project=chrome 2>&1 | tail -20` — зелёный.
+- [ ] Visual baselines отсмотрены глазами (не blank, не с артефактами) — см. [visual-regression-standard.md](../rules/visual-regression-standard.md).
 
 ### Стадия 5 — Wire-up & build
 
-Финальная проверка.
+Финальная сверка wire-точек и сборки. Точки перечислены в [reference-package-anatomy.md](../rules/reference-package-anatomy.md):
 
-- [ ] `tsconfig.json` (root) + `packages/tsconfig.esm.json` + `packages/tsconfig.cjs.json` — references на пакет.
+- [ ] `packages/tsconfig.esm.json` + `packages/tsconfig.cjs.json` — `references` на пакет.
 - [ ] `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`.
-- [ ] `apps/docs` — при наличии `packages/<pkg>/src/index.ts` алиас `@ds/<pkg>` подставится из `astro.config.mjs` автоматически.
 - [ ] `apps/storybook/package.json` — dep `"@ds/<pkg>": "workspace:*"`.
-- [ ] `apps/docs/src/lib/figma.ts` — `FIGMA_<PKG>` + subcomponent-константы (`FIGMA_<PKG>_STEP`, `FIGMA_<PKG>_EXAMPLE` и т.п.).
-- [ ] `packages/<pkg>/package.json` — deps строгие версии, без `^`/`~`, без `react`/`@types/react`, все `@ds/*` через `workspace:*`. Обязательно: `@ds/materials` если использован state-layer.
+- [ ] `apps/docs/src/lib/figma.ts` — `FIGMA_<PKG>` (+ суб-константы для субкомпонентов).
+- [ ] `packages/<pkg>/package.json` — строгие версии, без `react` / `react-dom` / `@types/react*`, повторяемые deps — через `catalog:` (см. [packages-deps.md](../rules/packages-deps.md)). `@design-system/materials` — добавлена, если используется state-layer / material / focused.
+- [ ] Корневой `tsconfig.json` — noEmit-профиль, пакеты не перечисляет; typecheck идёт через `include`.
 
 Команды:
 
 ```bash
 pnpm install
-pnpm typecheck 2>&1 | grep -E "<pkg>|error"
-pnpm lint --fix packages/<pkg>
-pnpm stylelint --fix "packages/<pkg>/**/*.scss"
+pnpm typecheck                  2>&1 | tail -20
+pnpm lint --fix                 packages/<pkg>
+pnpm stylelint --fix            "packages/<pkg>/**/*.scss"
 pnpm gen:props
 pnpm gen:readme
-pnpm build:packages 2>&1 | grep -E "<pkg>|error"
-pnpm test:stories --project=chromium 2>&1 | tail -20
-pnpm test:e2e --project=chrome 2>&1 | tail -20
+pnpm build:packages             2>&1 | tail -20
+pnpm test:stories               2>&1 | tail -20
+pnpm test:e2e:chrome            2>&1 | tail -20
 ```
 
-Все шаги должны быть зелёные. При ошибках — ремонтировать и повторять с релевантной стадии.
+## Success criteria
 
-## Критерии успеха (все должны быть ✅)
+Все пункты должны быть ✅:
 
-- [ ] Scope плана подтверждён по Figma + legacy
-- [ ] Все `stateLayer/` узлы из Figma имеют DOM-слой + SCSS-миксин
-- [ ] `focusedFrame/` реализован через `:focus-visible`, не DOM
-- [ ] Все variants покрыты в constants + VisualMatrix + stories
-- [ ] Screenshot story ≈ screenshot Figma (±2 критических расхождения max)
-- [ ] Цвета состояний совпадают (не инвертированы)
-- [ ] Индикаторы/оверлеи отцентрованы
-- [ ] Mobile-компонент использует `getThemeClassnames({ platform: 'mobile' })`
-- [ ] `http://localhost:4321/components/<pkg>` открывается без ошибок
-- [ ] Storybook embed показывает реальную story (не "Couldn't find story matching 'undefined'")
-- [ ] PropsTable рендерит таблицу (не краш «reading 'props'»)
-- [ ] Build packages green
-- [ ] Typecheck green
-- [ ] Wire-up во все 4 точки (tsconfig × 3, storybook, docs, figma.ts) выполнен
+- [ ] Scope кода совпадает с `.claude/plan/<pkg>.md` → «Зафиксированные решения»; несоответствий не осталось.
+- [ ] Каждый Figma-слой `stateLayer/` / `material/` реализован через миксин `@design-system/materials`; `focusedFrame/` — через `:focus-visible`, не DOM.
+- [ ] Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `@include base.composite-var(...)` (исключения задокументированы комментариями).
+- [ ] Оси React API ↔ Figma variant metadata взаимно-однозначны.
+- [ ] Screenshot story ≈ screenshot Figma (0 critical, ≤2 medium).
+- [ ] Mobile-компонент (если есть) использует `getThemeClassnames({ platform: 'mobile' })`.
+- [ ] `component-tier-audit` diff пуст (или оставшиеся пункты задокументированы).
+- [ ] `/components/<pkg>` открывается в docs без ошибок; Storybook embed и Figma embed работают.
+- [ ] `pnpm typecheck` / `lint` / `stylelint` / `build:packages` / `test:stories` / `test:e2e:chrome` зелёные.
+- [ ] Все 4 wire-точки (tsconfig esm/cjs, storybook main, storybook package.json, docs figma.ts) обновлены.
 
-## Типовые ошибки — реестр (из опыта `@ds/stepper` v1)
+## Реестр типовых ошибок
 
-| # | Ошибка | Где | Фикс |
-|---|--------|-----|------|
-| 1 | Scope mismatch: план говорит «numeric + wizard», Figma/legacy — только wizard | `.claude/plan/<pkg>.md` | Стадия 1. Обновить план, подтвердить с пользователем. |
-| 2 | Пропущен `stateLayer` на интерактивном корне | `helperComponents/*/[Component].tsx` + `styles.module.scss` | Стадия 2. `<span .stateLayer data-state='regularBorder|regularBackground' aria-hidden />` + `m.has-state-layer-as-child(stateLayer)`. |
-| 3 | Колоритные роли инвертированы (current светлый, completed тёмный) | `styles.module.scss` | Стадия 3. current = solid accent, completed = decor + indicator icon. |
-| 4 | `.status` индикатор прилипает к левому краю | `styles.module.scss` | Стадия 3. `top: 50%; left: 50%; transform: translate(-50%, -50%)`. |
-| 5 | Mobile-компонент рендерится desktop-токенами | `components/Mobile<Component>/<Component>.tsx` | Стадия 3. `className={cn(getThemeClassnames({ platform: 'mobile' }), styles.root, className)}`. |
-| 6 | `<PropsTable componentDoc={...} />` | `docs/*.mdx` | Стадия 4. `data={...}`. |
-| 7 | `<StorybookEmbed id='...' />` | `docs/*.mdx` | Стадия 4. `storyId='...'`. |
-| 8 | `<Canvas component={RenderPropComponent} />` крашится | `demos/<Component>Demo.tsx` | Стадия 4. Обернуть рабочий пример: `return <BasicFlow />`. |
-| 9 | Пропущен импорт `@ds/materials` в dependency после добавления state-layer | `packages/<pkg>/package.json` | Стадия 5. Добавить `"@ds/materials": "workspace:*"`. |
-| 10 | `focusedFrame/` отрисован как `<div className={styles.focusFrame}>` | `[Component].tsx` | Стадия 2. Удалить DOM, `&:focus-visible { outline: ... }` в SCSS. |
+| # | Симптом | Стадия | Фикс |
+|---|---------|--------|------|
+| 1 | Scope plan ↔ код разошлись (новая ось в Figma, legacy prop выкинут молча) | 1 | Вернуться к `/migrate-to-v2` reconcile, обновить план, спросить пользователя. |
+| 2 | Пропущен `stateLayer` на интерактивном корне | 2 | `<span .stateLayer data-state='…' aria-hidden />` + `m.has-state-layer-as-child(stateLayer)`. |
+| 3 | `focusedFrame/` отрисован как `<div className={styles.focusFrame}>` | 2 | Удалить DOM, `&:focus-visible { outline: … }` в SCSS. |
+| 4 | Захардкоженные `#hex` / `12px` в SCSS | 2 | `base.$sn-…` / `composite-var(...)` через [figma-selected-block](./figma-selected-block.md). |
+| 5 | Цветовые роли инвертированы (current светлый, completed тёмный) | 3 | current = solid accent, completed = decor + indicator icon. |
+| 6 | `.status` индикатор прилип к краю | 3 | `top: 50%; left: 50%; transform: translate(-50%, -50%)`. |
+| 7 | Mobile-компонент рендерится desktop-токенами | 3 | `cn(getThemeClassnames({ platform: 'mobile' }), styles.root, className)` на корне. |
+| 8 | `<PropsTable componentDoc={...} />` | 4 | `data={pkgDoc.<Name>}`. |
+| 9 | `<StorybookEmbed id='...' />` | 4 | `storyId='...'`. |
+| 10 | `<Canvas component={RenderPropComponent} />` крашится | 4 | Обернуть живой пример: `return <BasicFlow />`. |
+| 11 | Пропущен `@design-system/materials` в deps после добавления state-layer | 5 | Добавить `"@design-system/materials": "workspace:*"`. |
+| 12 | Запрещённые axis-per-file stories (`Sizes`, `Appearances`, …) | 4 | Удалить, оси живут в `StoryTable` VisualMatrix ([stories-standard.md](../rules/stories-standard.md)). |
+| 13 | Отдельный `<pkg>.url-args.spec.ts` / `.states.spec.ts` / `.dimensions.spec.ts` | 4 | Объединить в describe-блоки `rendering.spec.ts` ([e2e-testing-standard.md](../rules/e2e-testing-standard.md)). |
+| 14 | Story id в `__test__/<Name>/helpers.ts` не соответствует nesting'у title'а multi-component пакета | 4 | Обновить ids на `components-<pkg>-<component>--<story>`. |
 
 ## Итеративный характер
 
-Скилл не линеен. При расхождении **возвращаться** к предыдущей стадии:
+Цикл нелинейный. При расхождении — **возврат** к предыдущей стадии:
 
-- Stage 3 screenshot ≠ Figma → вернуться к Stage 2 (слои) или SCSS правкам.
-- Stage 4 docs crash → фикс MDX, повторить Stage 4.
-- Stage 5 build fail → починить, повторить Stage 5 и затронутые.
+- Stage 3 screenshot ≠ Figma → возвращаемся к Stage 2 (слои/токены) или SCSS-правкам.
+- Stage 4 docs crash → фикс MDX, повторяем Stage 4.
+- Stage 5 build fail → чиним, повторяем Stage 5 и затронутые.
 
-Максимум 3 полных цикла. Если после 3 — компонент всё ещё не сходится, эскалировать пользователю со списком оставшихся расхождений.
+Максимум 3 полных прохода. Если после 3 компонент не сходится — эскалировать пользователю со списком оставшихся расхождений из реестра.
 
 ## Выход
 
-- Зелёный build + typecheck.
-- Скриншоты story ≈ Figma.
+- Зелёный typecheck + build + тесты.
+- Нулевой critical-diff screenshot story vs Figma.
 - Рабочая docs-страница.
-- Commit: `feat(<pkg>): validation loop pass — <summary>`.
-- (опционально) `packages/<pkg>/docs/figma-parity.md` для сложных компонентов.
+- Commit через `/make-commit` (см. `.claude/commands/make-commit.md`) — сообщение из conventional-commits формата по staged diff.
 
-## Связанные правила
+## Связанные правила и скилы
 
-- `.claude/rules/figma-to-code.md`
-- `.claude/rules/figma-integration.md`
-- `.claude/rules/docs-structure.md`
-- `.claude/rules/visual-regression-standard.md`
-- `.claude/rules/component-api-surface.md`
-- `.claude/rules/reference-package-anatomy.md`
-
-## Эталон применения
-
-`@ds/stepper` v1 — цикл валидации выявил:
-1. Scope: план «numeric + wizard» → реально «wizard only, render-prop» (stage 1)
-2. Узлы `7596:24975` и `19813:66441` имеют `stateLayer` — был пропущен (stage 2)
-3. Цвета `current` / `completed` инвертированы vs Figma в MobileStep и DesktopStep (stage 3)
-4. `.status` dot не отцентрован в MobileStep (stage 3)
-5. MobileStepper не имел `getThemeClassnames({ platform: 'mobile' })` (stage 3)
-6. `<PropsTable componentDoc={...} />` и `<StorybookEmbed id={...} />` — неверные prop names (stage 4)
-7. `<Canvas component={Stepper} />` крашил — render-prop несовместим с playground (stage 4)
-
-Все 7 пунктов зафиксированы в реестре выше.
+- [complexity-tiers.md](../rules/complexity-tiers.md)
+- [reference-package-anatomy.md](../rules/reference-package-anatomy.md)
+- [package-src-structure.md](../rules/package-src-structure.md)
+- [component-api-surface.md](../rules/component-api-surface.md)
+- [stories-standard.md](../rules/stories-standard.md)
+- [e2e-testing-standard.md](../rules/e2e-testing-standard.md)
+- [visual-regression-standard.md](../rules/visual-regression-standard.md)
+- [docs-structure.md](../rules/docs-structure.md)
+- [figma-integration.md](../rules/figma-integration.md)
+- [figma-to-code.md](../rules/figma-to-code.md)
+- [packages-deps.md](../rules/packages-deps.md)
+- [imports-exports.md](../rules/imports-exports.md)
+- [react-types.md](../rules/react-types.md)
+- [dont-do-that.md](../rules/dont-do-that.md)
+- Skills: [new-component-package](./new-component-package.md), [figma-component-import](./figma-component-import.md), [figma-to-code](./figma-to-code.md), [figma-selected-block](./figma-selected-block.md), [component-tier-audit](./component-tier-audit.md), [component-story-set](./component-story-set.md), [component-e2e-tests](./component-e2e-tests.md), [component-docs](./component-docs.md)
+- Команды: `/migrate-to-v2`, `/add-stories`, `/add-tests`, `/add-docs`, `/make-commit`

@@ -23,42 +23,40 @@ export const VisualMatrix: Story = {
     <div className={styles.matrix}>
       <StoryTable
         sectionTitle='Placement'
-        firstColumnHeader='Placement'
-        columnHeaders={['Dropdown']}
-        rows={(['bottom-start', 'bottom', 'bottom-end'] as const).map(placement => ({
-          variantLabel: placement,
-          cells: [
-            <Dropdown key={placement} open placement={placement} content={<SimpleContent />}>
-              <Button label={placement} />
-            </Dropdown>,
-          ],
-        }))}
+        firstColumnHeader='Opened'
+        columnHeaders={['bottom-start', 'bottom', 'bottom-end']}
+        rows={[
+          {
+            variantLabel: 'open',
+            cells: (['bottom-start', 'bottom', 'bottom-end'] as const).map(placement => (
+              <div key={placement} className={styles.cell}>
+                <Dropdown open placement={placement} content={<SimpleContent />}>
+                  <Button label={placement} />
+                </Dropdown>
+              </div>
+            )),
+          },
+        ]}
       />
 
       <StoryTable
         sectionTitle='States'
-        firstColumnHeader='State'
-        columnHeaders={['Dropdown']}
+        firstColumnHeader='Opened'
+        columnHeaders={['loading', 'not-found']}
         rows={[
           {
-            variantLabel: 'loading',
+            variantLabel: 'open',
             cells: [
-              <Dropdown key='loading' open state={{ type: STATE.Loading }} content={null}>
-                <Button label='loading' />
-              </Dropdown>,
-            ],
-          },
-          {
-            variantLabel: 'not-found',
-            cells: [
-              <Dropdown
-                key='not-found'
-                open
-                state={{ type: STATE.NotFound, description: 'Ничего не найдено' }}
-                content={null}
-              >
-                <Button label='not-found' />
-              </Dropdown>,
+              <div key='loading' className={styles.cell}>
+                <Dropdown open state={{ type: STATE.Loading }} content={null}>
+                  <Button label='loading' />
+                </Dropdown>
+              </div>,
+              <div key='not-found' className={styles.cell}>
+                <Dropdown open state={{ type: STATE.NotFound, description: 'Ничего не найдено' }} content={null}>
+                  <Button label='not-found' />
+                </Dropdown>
+              </div>,
             ],
           },
         ]}

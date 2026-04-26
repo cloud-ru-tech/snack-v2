@@ -4,8 +4,10 @@
 
 Плавающий контейнер со стрелкой-указателем, открывающийся рядом с элементом-триггером. Используется для дополнительных действий, форм, подсказок и вложенных меню. Позиционирование — через `@ds/popover-private` (Floating UI), со стрелкой и auto-flip при нехватке места.
 
-## Когда использовать
+## Демо
+<PopoverDemo client:visible />
 
+## Когда использовать
 - Выпадающий блок действий над таблицей или карточкой.
 - Inline-форма («Переименовать», «Добавить метку»).
 - Контекстная подсказка, которой мало пространства Tooltip'а.
@@ -13,69 +15,44 @@
 Когда **не** нужен: модальный диалог (берите Modal), статичная подсказка с коротким текстом (берите Tooltip), выпадающее меню выбора (берите Select/DropdownMenu).
 
 ### Placement
-
-| Placement | Сценарий |
-|-----------|----------|
-| `top` / `bottom` | По умолчанию — поповер над или под триггером |
-| `left` / `right` | В боковых панелях, когда есть свободное пространство по горизонтали |
-| `top-start`, `bottom-end` и т.п. | Выравнивание по краю триггера — для меню действий |
-
-Компонент автоматически «переворачивается» (flip), если в выбранной стороне нет места.
+12 вариантов — базовая сторона (`top|right|bottom|left`) × выравнивание (`-start` по началу триггера, `-end` по концу, без суффикса — по центру). При нехватке места автоматически подменяется fallback из `DEFAULT_FALLBACK_PLACEMENTS`.
 
 ### Trigger
+Источник открытия: `click` (дефолт), `hover`, `focus` / `focusVisible`, композиты `hoverAndFocus`, `hoverAndFocusVisible`, `clickAndFocusVisible` — для контролов, открываемых и мышью, и с клавиатуры.
 
-| Trigger | Поведение |
-|---------|-----------|
-| `click` | Открытие по клику, закрытие по клику вне или Escape (по умолчанию) |
-| `hover` | Открытие по наведению — для информационных карточек |
+### Popover width strategy
+Ширина поповера относительно триггера: `auto` — по контенту; `gte` — не меньше триггера; `eq` — ровно как триггер.
 
-### Do / Don't
+### Popover height strategy
+Высота поповера относительно доступного пространства: `auto` — по контенту; `lte` — не больше доступного; `eq` — точно по доступному.
 
-- ✅ Клик как триггер для действий и форм — пользователь контролирует открытие.
-- ❌ Hover-триггер для форм и меню — легко случайно открыть/закрыть.
-- ✅ Стрелка включена (`hasArrow=true` по умолчанию) — визуальная связь с триггером.
-- ❌ Дублирование информации между триггером и поповером.
-- ✅ Закрытие по Escape и клику вне — поведение по умолчанию, не отключайте без причины.
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/popover
 ```
 
 ```ts
 import { Popover, PLACEMENT, TRIGGER } from '@ds/popover'
-import '@ds/popover/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example title='Базовый Popover' description='Клик-триггер, placement=top.' code={BasicSrc}>
-  <Basic client:load />
+  <Basic client:visible />
 </Example>
 
 <Example title='Триггер по наведению' description='trigger="hover" — подходит для информационных карточек.' code={HoverTriggerSrc}>
-  <HoverTrigger client:load />
+  <HoverTrigger client:visible />
 </Example>
 
 <Example title='Placement bottom-end' description='Выравнивание поповера по правому краю триггера.' code={PlacementSrc}>
-  <Placement client:load />
+  <Placement client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={popoverDoc.Popover} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-popover--playground' height={480} client:load />
-
-## Доступность
-
-- Триггер и содержимое поповера — обычные DOM-узлы: реализуйте `aria-haspopup`, `aria-expanded` на триггере самостоятельно, если компонент используется как меню.
-- Закрытие по Escape и клик-outside включено по умолчанию (`closeOnEscapeKey`, `outsideClick`).
-- Фокус после открытия остаётся на триггере — вложенные интерактивные элементы достигаются Tab'ом.
-- Стрелка (`hasArrow`) помечена `aria-hidden` — не озвучивается скринридерами.
+## Storybook
+<StorybookEmbed storyId='components-popover--playground' height={480} />
 
 ## Popover
 

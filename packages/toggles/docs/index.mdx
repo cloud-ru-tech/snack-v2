@@ -9,14 +9,6 @@ order: 0
 
 Пакет `@ds/toggles` объединяет пять компонентов для бинарных и мультиполярных состояний. Все компоненты разделяют единое API (`size`, `checked/defaultChecked`, `disabled`, `loading`, `onChange`) и два размера (`xs`, `s`).
 
-## Состав пакета
-
-- [**Checkbox**](/components/toggles/checkbox) — множественный выбор, поддерживает indeterminate.
-- [**Radio**](/components/toggles/radio) — взаимоисключающий выбор в группе общего `name`.
-- [**Switch**](/components/toggles/switch) — on/off с моментальным применением.
-- [**Favourite**](/components/toggles/favourite) — toggle «избранное» (звезда или сердце).
-- [**ToggleGroup**](/components/toggles/toggle-group) — контейнер с shared context для групп связанных toggle'ов.
-
 ## Установка
 
 ```bash
@@ -25,21 +17,4 @@ pnpm add @ds/toggles
 
 ```ts
 import { Checkbox, Radio, Switch, Favourite, ToggleGroup } from '@ds/toggles'
-import '@ds/toggles/style.css'
 ```
-
-## Когда какой использовать
-
-| Задача | Компонент |
-|--------|-----------|
-| Согласие, чек-лист, множественный фильтр | `Checkbox` |
-| Выбор одного из 2–5 взаимоисключающих вариантов | `Radio` |
-| On/off настройка с моментальным применением | `Switch` |
-| Добавление в избранное / лайк | `Favourite` |
-| Сегментированный контрол, чипы-фильтры | `ToggleGroup` + custom item |
-
-## Общие принципы
-
-- **Два размера во всех компонентах** — `xs` (плотная компоновка) и `s` (формы, настройки).
-- **Мгновенная визуальная обратная связь.** `loading` применяйте только к реально асинхронным операциям.
-- **Семантика важнее внешнего вида.** Switch для on/off, Radio для one-of-many, Checkbox для many-of-many — не меняйте компонент ради визуала.

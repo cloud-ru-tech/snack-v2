@@ -1,6 +1,7 @@
 import { Button, ButtonGroup } from '@ds/button';
 import { Drawer, DrawerProps } from '@ds/drawer';
-import { useState } from 'react';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
 import drawerDoc from '../docs/props.json';
 
@@ -12,24 +13,27 @@ type DemoProps = Pick<
 >;
 
 function DrawerPreview(props: DemoProps) {
+  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <div>
-      <Button label='Открыть Drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-      <Drawer
-        {...props}
-        open={open}
-        onClose={close}
-        footer={
-          <ButtonGroup
-            primaryAction={{ label: 'Подтвердить', view: 'filled', onClick: close }}
-            secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
-          />
-        }
-      />
-    </div>
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <Button label='Открыть Drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <Drawer
+          {...props}
+          open={open}
+          onClose={close}
+          footer={
+            <ButtonGroup
+              primaryAction={{ label: 'Подтвердить', view: 'filled', onClick: close }}
+              secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
+            />
+          }
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 

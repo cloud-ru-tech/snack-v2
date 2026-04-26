@@ -13,39 +13,24 @@ import timelineDoc from './props.json'
 
 Одна строка ленты событий. Используйте напрямую, если нужна кастомная раскладка — например, встраивание событий в таблицу или сетку с собственной логикой группировки. Для типового сценария «массив → вертикальная лента» возьмите `Timeline`.
 
-## Props — `role`
+## Когда использовать
 
-Обязательный проп, определяет, какие линии рисуются вокруг маркера:
+- Своя раскладка, где `Timeline` не подходит (встраивание в таблицу, grid, виртуализированный список).
+- Нужен контроль над отдельным элементом: состояние маркера, положение контента, пропуск соединительной линии.
 
-| Role | Линии |
-|------|-------|
-| `start` | Только линия вниз — первый элемент ленты |
-| `center` | Линии сверху и снизу — промежуточный элемент |
-| `end` | Только линия сверху — последний элемент |
+## Установка
 
-При использовании через `Timeline` роль вычисляется автоматически по индексу.
-
-## Пример кастомной ленты
-
-```tsx
-import { TrackItem } from '@ds/timeline'
-
-function CustomTimeline({ events }) {
-  return (
-    <div>
-      {events.map((event, i) => (
-        <TrackItem
-          key={event.id}
-          role={i === 0 ? 'start' : i === events.length - 1 ? 'end' : 'center'}
-          content={<EventCard event={event} />}
-          opposite={event.timestamp}
-          dotAppearance={event.type === 'error' ? 'red' : 'neutral'}
-        />
-      ))}
-    </div>
-  )
-}
+```bash
+pnpm add @ds/timeline
 ```
+
+```ts
+import { TrackItem } from '@ds/timeline'
+```
+
+## Примеры использования
+
+Смотрите примеры в [Timeline](/components/timeline/timeline) — `TrackItem` используется как внутренний строительный блок.
 
 ## Props
 
@@ -53,10 +38,9 @@ function CustomTimeline({ events }) {
 
 ## Storybook
 
-<StorybookEmbed storyId='components-timeline-track--playground' height={360} client:load />
+<StorybookEmbed storyId='components-timeline-track--playground' height={360} />
 
-## Доступность
+## Анатомия
 
-- Те же принципы, что у `Timeline`: оборачивайте список во внешний `<ol>`/`<ul>` с `aria-label` для скринридеров.
-- `opposite`-колонка читается после `content` в DOM-порядке — учитывайте это при чтении с клавиатуры.
-- Цвет маркера дублируйте текстом внутри `content`.
+### Position
+Сторона, с которой рендерится контент относительно трека: `left` — слева, `right` — справа. Используется в двухколоночных таймлайнах.

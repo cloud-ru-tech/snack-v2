@@ -1,5 +1,5 @@
 ---
-description: Сгенерить `docs/index.mdx` + demos для пакета `packages/<pkg>` (role-based структура)
+description: Сгенерировать `docs/index.mdx` + demos для пакета `packages/<pkg>` (плоская структура H2, порядок из docSections.mjs)
 argument-hint: <pkg-name-or-path>
 ---
 
@@ -27,21 +27,19 @@ argument-hint: <pkg-name-or-path>
 
 1. **Frontmatter**: `title`, `package`, `description` (одно предложение — генератор README читает), `order`.
 2. **Импорты**: `<Name>`, `<Name>Demo`, `Example`, `PropsTable`, `StorybookEmbed`, `FigmaEmbed`, `FIGMA_<NAME>`, `<name>Doc` из `./props.json`.
-3. **Role-based каркас (tier M+)**: `## Демо`, `## Когда использовать`, `## Для дизайнеров` (Appearance/View/Size + Do/Don't + Figma + Смотри также), `## Для разработчиков` (Установка / Примеры / Живой сценарий? / Полиморфизм? / States / Иконки+counter? / Props / Storybook), `## Доступность`. TOC — 4–5 H2.
-4. **Примеры** (`<Example>`): минимум 3, типично 5–6.
-   - Примеры с иконками / JSX-в-props — **обязательно** в `demos/examples/<Name>.tsx` + `?raw`-источник (MDX+Astro несовместим с inline JSX-props для React-компонентов).
-   - Простые примеры (`<Button size='s' label='...' />`) — инлайн в `<Example>`.
+3. **Плоский каркас H2** (tier M+): `## Демо`, `## Когда использовать`, `## Анатомия` (с H3 на каждую визуальную ось из `constants.ts`: `### Appearance`, `### View`, `### Size`, `### Variant`, …), `## Установка`, `## Примеры использования`, `## Props`, `## Storybook`, `## Figma`, `## Смотри также` (опц.). Порядок канонических в MDX не важен — `apps/docs/src/config/docSections.mjs` задаёт порядок.
+4. **Примеры** (`<Example>`): минимум 3, типично 5–6. Содержимое **каждого** `<Example>` — в отдельном файле `demos/examples/<Name>.tsx` + `?raw`-источник, рендер через `client:visible`. Инлайн-JSX внутри `<Example>` запрещён (Astro+MDX не гидрирует React-детей — интерактив ломается). Несколько корневых элементов — в `<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>`.
 5. **Demo** — `demos/<Name>Demo.tsx` с `<Canvas>` из `~docs/components/Canvas`, `componentDoc` из `../docs/props.json`.
-6. **Do/Don't** — минимум 4 пары ✅/❌ (попадают в автогенерируемый README).
-7. **L/XL**: корневой `docs/index.mdx` + отдельный `docs/<sub>.mdx` на каждый публичный субкомпонент; для XL — `apps/docs/src/content/patterns/<name>-patterns.mdx`.
+6. **L/XL**: корневой `docs/index.mdx` + отдельный `docs/<sub>.mdx` на каждый публичный субкомпонент; для XL — `apps/docs/src/content/patterns/<name>-patterns.mdx`.
 
 ## Запреты
 
 - Не писать `README.md` руками — генерируется `pnpm gen:readme`.
 - Не использовать `parameters.docs.description.*` / `autodocs` — описания живут в MDX, не в story.
-- Не менять порядок секций role-based каркаса.
+- Не возвращать ролевые H2 (`## Для дизайнеров` / `## Для разработчиков`) — структура плоская. Порядок секций задаётся `apps/docs/src/config/docSections.mjs`, не MDX.
 - Не встраивать пустой `<FigmaEmbed>` без `FIGMA_<NAME>` — временно закомментировать или убрать секцию.
-- Не писать интерактивный компонент без `client:load` (иначе Astro отрендерит статикой).
+- Не писать интерактивный компонент без `client:visible` (иначе Astro отрендерит статикой).
+- Не использовать `client:load` в MDX — сайт SPA, каждая директива = ре-гидрация на навигации. Интерактив → `client:visible`, `<StorybookEmbed>` / `<FigmaEmbed>` / `<PropsTable>` → без директивы.
 
 ## Правила (обязательное чтение)
 

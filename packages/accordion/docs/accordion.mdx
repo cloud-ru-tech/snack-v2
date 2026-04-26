@@ -22,59 +22,38 @@ import accordionDoc from './props.json'
 Контейнер, который группирует `CollapseBlock*` в одну логическую группу и управляет их раскрытием. Под капотом — `ToggleGroup` из `@ds/toggles`, поэтому семантика раскрытия идентична группе переключателей.
 
 ## Демо
-
-<AccordionDemo client:load />
+<AccordionDemo client:visible />
 
 ## Когда использовать
-
 - Для группы раскрываемых блоков, где открытие/закрытие должно быть согласовано (один из, несколько из).
 - Для двух- и трёхуровневой иерархии — вкладывайте `Accordion` внутрь блока, меняя уровень `CollapseBlock*`.
 
 Когда **не** нужен: один изолированный раскрывающийся блок без группы — в этом случае достаточно самого `CollapseBlock*` без обёртки.
 
-## Для дизайнеров
+## Figma
+<FigmaEmbed node={FIGMA_ACCORDION} height={480} title='Accordion в Figma (Snack UI Kit)' />
+
+## Анатомия
 
 ### Selection mode
+Режим раскрытия дочерних блоков: `single` — одновременно открыт максимум один блок (как radio-группа), `multiple` — можно открыть любое количество независимо.
 
-| Mode | Когда использовать |
-|------|--------------------|
-| `single` | FAQ, длинные формы с логическими секциями — одновременно открыт один блок |
-| `multiple` | Настройки/фильтры — пользователь хочет видеть несколько разделов параллельно |
-
-### Do / Don't
-
-- ✅ `single` для FAQ — помогает фокусироваться.
-- ❌ `multiple` для FAQ — пользователь забывает, что уже открыл.
-- ✅ Одинаковый `selectionMode` на всех вложенных `Accordion` внутри одного раздела.
-- ❌ Смешивать `single` снаружи и `multiple` внутри без причины — сбивает ожидания.
-- ✅ Controlled режим, если состояние должно жить в URL или глобальном сторе.
-- ❌ Controlled режим без реальной потребности — сложнее поддерживать, проще сломать.
-
-### Figma
-
-<FigmaEmbed node={FIGMA_ACCORDION} height={480} title='Accordion в Figma (Snack UI Kit)' client:load />
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/accordion
 ```
 
 ```ts
 import { Accordion } from '@ds/accordion'
-import '@ds/accordion/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example
   title='1. Uncontrolled с начальным состоянием'
   description="expandedDefault задаёт первоначально открытый блок; дальше компонент управляет раскрытием сам."
   code={BasicAccordionSrc}
 >
-  <BasicAccordion client:load />
+  <BasicAccordion client:visible />
 </Example>
 
 <Example
@@ -82,29 +61,11 @@ import '@ds/accordion/style.css'
   description='expanded + onExpandedChange в режиме multiple — значение массив id.'
   code={MultipleModeSrc}
 >
-  <MultipleMode client:load />
+  <MultipleMode client:visible />
 </Example>
 
-### Вложенность
-
-Каждый уровень иерархии — собственный `Accordion` со своим `selectionMode`. Вложенный `Accordion` не наследует состояние родителя. Полный пример трёх уровней — на странице [CollapseBlock](/components/accordion/collapse-block).
-
-### Controlled vs uncontrolled
-
-- **Uncontrolled** *(по умолчанию)*. Передавайте `expandedDefault`. Подходит для FAQ, длинных форм, страниц настроек — большинство кейсов.
-- **Controlled**. Передавайте `expanded` + `onExpandedChange`. Нужен, когда состояние должно жить в URL / query / внешнем сторе или требуется программно менять раскрытие.
-- В `single` значение — `string | undefined`, в `multiple` — `string[]`. Тип `expanded` и `onExpandedChange` расходится в зависимости от `selectionMode` — TypeScript подсказывает правильную форму.
-
-### Props
-
+## Props
 <PropsTable data={accordionDoc.Accordion} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-accordion-accordion--playground' height={480} client:load />
-
-## Доступность
-
-- Клик по заголовку блока раскрывает/сворачивает контент.
-- Скрытая часть контента рендерится только при первом открытии (`keepMounted=false` по умолчанию) — ассистивные технологии не читают невидимое.
-- Цвет не единственный носитель смысла: состояние раскрытия сигнализируется шевроном (вверх/вниз) и `data-expanded` на корневом элементе.
+## Storybook
+<StorybookEmbed storyId='components-accordion-accordion--playground' height={480} />

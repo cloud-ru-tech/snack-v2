@@ -78,12 +78,46 @@ function isGroupActive(item: NavItem) {
 </nav>
 
 <script>
+  import { navigate } from 'astro:transitions/client'
+
   function initSidebar() {
-    // Navigating via the package-header link should not toggle the <details>.
+    // Clicking the package-header link inside <summary> would both toggle the
+    // <details> and navigate. We want navigation without toggling. preventDefault
+    // cancels both the anchor default and the summary-toggle default, so instead
+    // we stopPropagation (to skip the toggle) and drive the SPA nav ourselves.
     document.querySelectorAll<HTMLAnchorElement>('[data-pkg-link]').forEach((link) => {
+      if ((link as HTMLAnchorElement & { __spaBound?: boolean }).__spaBound) return
+      ;(link as HTMLAnchorElement & { __spaBound?: boolean }).__spaBound = true
       link.addEventListener('click', (e) => {
+        if (e.defaultPrevented) return
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+        e.preventDefault()
         e.stopPropagation()
+        navigate(link.href)
       })
+    })
+
+    // The sidebar is transition:persist, so SSR'd active classes from the first
+    // render stay in DOM forever. Recompute active state on every SPA swap.
+    const normalize = (p: string) => {
+      const t = p.replace(/\/+$/, '')
+      return t === '' ? '/' : t
+    }
+    const current = normalize(location.pathname)
+    document.querySelectorAll<HTMLAnchorElement>('.nav a.link').forEach((link) => {
+      const href = normalize(new URL(link.href).pathname)
+      const isActive = href === current
+      link.classList.toggle('link--active', isActive)
+      if (isActive) link.setAttribute('aria-current', 'page')
+      else link.removeAttribute('aria-current')
+    })
+    // Propagate to the package <details>: a group is "active" if its own link or
+    // any child link matches. Open groups containing the active page.
+    document.querySelectorAll<HTMLDetailsElement>('.nav .pkg-details').forEach((d) => {
+      const hasActive = !!d.querySelector('a.link--active')
+      const pkgLink = d.querySelector<HTMLAnchorElement>('[data-pkg-link]')
+      if (pkgLink) pkgLink.classList.toggle('link--active', hasActive)
+      if (hasActive) d.open = true
     })
 
     // Scroll the sidebar so the active link sits in the upper part of the viewport.
@@ -106,4 +140,5 @@ function isGroupActive(item: NavItem) {
   }
 
   initSidebar()
+  document.addEventListener('astro:page-load', initSidebar)
 </script>

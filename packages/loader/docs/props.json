@@ -1,6 +1,7 @@
 {
   "Sun": {
     "displayName": "Sun",
+    "propsTypeName": "SunProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -16,7 +17,10 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "SunSize"
+        ]
       },
       "className": {
         "type": "string",
@@ -24,10 +28,23 @@
         "description": "CSS-класс"
       }
     },
+    "relatedTypes": {
+      "SunSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l",
+          "xs"
+        ],
+        "own": true
+      }
+    },
     "description": "Компонент спиннер"
   },
   "Spinner": {
     "displayName": "Spinner",
+    "propsTypeName": "SpinnerProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -44,12 +61,28 @@
           "l"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "LoaderSize"
+        ]
       },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
+      }
+    },
+    "relatedTypes": {
+      "LoaderSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l",
+          "xs",
+          "2xs"
+        ],
+        "own": true
       }
     },
     "description": "Компонент спиннер"

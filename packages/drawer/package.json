@@ -27,6 +27,7 @@
   "dependencies": {
     "@ds/button": "workspace:*",
     "@ds/icons": "workspace:*",
+    "@ds/portal-context": "workspace:*",
     "@ds/scroll": "workspace:*",
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",

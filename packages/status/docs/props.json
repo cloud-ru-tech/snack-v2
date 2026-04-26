@@ -1,6 +1,7 @@
 {
   "StatusIndicator": {
     "displayName": "StatusIndicator",
+    "propsTypeName": "StatusIndicatorProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -17,7 +18,10 @@
           "s"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "StatusIndicatorSize"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -33,16 +37,47 @@
           "pink"
         ],
         "defaultValue": "neutral",
-        "description": "Внешний вид"
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "className": {
         "type": "string",
         "required": false
       }
+    },
+    "relatedTypes": {
+      "StatusIndicatorSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs",
+          "4xs",
+          "3xs",
+          "2xs"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      }
     }
   },
   "Status": {
     "displayName": "Status",
+    "propsTypeName": "StatusProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -61,7 +96,10 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер индикатора и подписи"
+        "description": "Размер индикатора и подписи",
+        "typeRefs": [
+          "StatusSize"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -77,7 +115,10 @@
           "pink"
         ],
         "defaultValue": "neutral",
-        "description": "Внешний вид (цветовая схема)"
+        "description": "Внешний вид (цветовая схема)",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "className": {
         "type": "string",
@@ -100,6 +141,30 @@
         "type": "number",
         "required": false,
         "description": "Прогресс загрузки (от 0 до 100)"
+      }
+    },
+    "relatedTypes": {
+      "StatusSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
       }
     }
   }

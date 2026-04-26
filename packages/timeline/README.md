@@ -4,33 +4,8 @@
 
 Пакет `@ds/timeline` предоставляет компоненты для построения вертикальной ленты событий: хронологии заявки, этапов процесса, истории изменений.
 
-## Состав пакета
-
-- ****Timeline**** — высокоуровневая обёртка: получает массив `items` и сама строит цепочку `TrackItem`'ов с корректными ролями (start / center / end).
-- **TrackItem** — одна строка ленты: маркер, соединительные линии, контент и опциональная противоположная колонка. Доступен как публичный компонент для кастомной раскладки.
-- **Track** — только маркер + линии (без контента). Для случаев, когда контент строится полностью вручную.
-
-## Установка
-
-```bash
-pnpm add @ds/timeline
-```
-
-```ts
-import { Timeline } from '@ds/timeline'
-import '@ds/timeline/style.css'
-```
-
-## Когда какой использовать
-
-| Задача 
-
-## Общие принципы
-
-- **Порядок от старого к новому сверху вниз.** Последний элемент — текущее / завершённое событие.
-- **Цвет маркера — семантика события.** `green` — успех, `red` — ошибка, `neutral` — нейтральные шаги.
-- **`opposite` — для временных меток.** Даты/время кладите в `opposite`, а не в `content`.
-- **`alternate` — для «zig-zag» раскладки.** Уместно при достаточной ширине.
+- ****Timeline**** — контейнер ленты, задаёт общий layout и направление.
+- ****TrackItem**** — отдельное событие с маркером, соединительной линией и контентом.
 
 ## Timeline
 
@@ -39,76 +14,38 @@ import '@ds/timeline/style.css'
 Высокоуровневая обёртка над `TrackItem`. Принимает массив `items`, автоматически проставляет роль первому/последнему (start / end) и промежуточным (center), рендерит соединительные линии и опциональный `opposite`-контент.
 
 ## Демо
+<TimelineDemo client:visible />
 
 ## Когда использовать
-
 - История заявки / запроса: события + timestamp.
 - Этапы процесса (онбординг, оформление заказа).
 - Changelog на странице документа.
 
 Когда **не** нужен: горизонтальный stepper с нумерацией — берите `Stepper`. Список без хронологии — обычный `<ul>` или компонент-список.
 
-## Для дизайнеров
-
-### contentPosition
-
-| Position | Эффект |
-|----------|--------|
-| `right` | Маркеры слева, контент справа (по умолчанию) |
-| `left` | Маркеры справа, контент слева — для RTL или зеркальных макетов |
-
-### alternate
-
-При `alternate=true` контент элементов по очереди располагается слева и справа от центральной линии маркеров. Требует `fullWidth=true` или достаточной ширины родителя, иначе элементы не влезают.
-
-### opposite
-
-Противоположная колонка для timestamp, автора события или другой метаданных. Не дублируйте сюда информацию из `content`.
-
-### Маркер (dot)
-
-- `dotVariant='default'` — полноценный маркер события.
-- `dotVariant='subEvent'` — уменьшенный маркер для подсобытий (например, промежуточный автокомментарий).
-- `dotAppearance` — цветовая семантика: `green` / `red` / `yellow` / `neutral` / и т.д.
-
-### Do / Don't
-
-- ✅ Упорядочивать события от старого (сверху) к новому (снизу).
-- ❌ Обратный порядок без явной пометки — путает пользователя.
-- ✅ `opposite` для timestamp, `content` для описания.
-- ❌ Мешанина: timestamp внутри `content`.
-- ✅ `alternate` — только при `fullWidth` и комфортной ширине.
-- ❌ `alternate` в узком сайдбаре — контент ломается.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/timeline
 ```
 
 ```ts
 import { Timeline } from '@ds/timeline'
-import '@ds/timeline/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example title='Базовый таймлайн' description='Массив items, контент справа.' code={BasicSrc}>
-  <Basic client:load />
+  <Basic client:visible />
 </Example>
 
 <Example title='С opposite-колонкой' description='Timestamp в opposite, описание в content.' code={WithOppositeSrc}>
-  <WithOpposite client:load />
+  <WithOpposite client:visible />
 </Example>
 
 <Example title='Alternate' description='Zig-zag раскладка — контент попеременно слева и справа.' code={AlternateSrc}>
-  <Alternate client:load />
+  <Alternate client:visible />
 </Example>
 
-### Props
-
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `data-test-id` | `string` | — |  |
@@ -118,16 +55,13 @@ import '@ds/timeline/style.css'
 | `fullWidth` | `boolean` | — | Сделать таймлайн во всю ширину |
 | `className` | `string` | — | CSS-класс для элемента с контентом |
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-timeline-timeline--playground' height={480} />
 
-<StorybookEmbed storyId='components-timeline-timeline--playground' height={480} client:load />
+## Анатомия
 
-## Доступность
-
-- Компонент использует семантические `<div>` — при необходимости оберните во внешний `<ol>` / `<ul>` с `aria-label`, чтобы screen reader озвучил «Список из N событий».
-- Порядок событий в DOM соответствует визуальному — screen reader прочитает их в том же порядке.
-- Цвет маркера (`dotAppearance`) не является единственным носителем смысла — дублируйте семантику текстом в `content` («Ошибка», «Успешно»).
-- Интерактивные элементы внутри `content` (ссылки, кнопки) доступны с клавиатуры как обычно.
+### Width
+`auto` — ширина по содержимому, `full` — растягивается по контейнеру (для дашбордов и полноэкранных лент).
 
 ## TrackItem
 
@@ -135,39 +69,24 @@ import '@ds/timeline/style.css'
 
 Одна строка ленты событий. Используйте напрямую, если нужна кастомная раскладка — например, встраивание событий в таблицу или сетку с собственной логикой группировки. Для типового сценария «массив → вертикальная лента» возьмите `Timeline`.
 
-## Props — `role`
+## Когда использовать
 
-Обязательный проп, определяет, какие линии рисуются вокруг маркера:
+- Своя раскладка, где `Timeline` не подходит (встраивание в таблицу, grid, виртуализированный список).
+- Нужен контроль над отдельным элементом: состояние маркера, положение контента, пропуск соединительной линии.
 
-| Role | Линии |
-|------|-------|
-| `start` | Только линия вниз — первый элемент ленты |
-| `center` | Линии сверху и снизу — промежуточный элемент |
-| `end` | Только линия сверху — последний элемент |
+## Установка
 
-При использовании через `Timeline` роль вычисляется автоматически по индексу.
-
-## Пример кастомной ленты
-
-```tsx
-import { TrackItem } from '@ds/timeline'
-
-function CustomTimeline({ events }) {
-  return (
-    <div>
-      {events.map((event, i) => (
-        <TrackItem
-          key={event.id}
-          role={i === 0 ? 'start' : i === events.length - 1 ? 'end' : 'center'}
-          content={<EventCard event={event} />}
-          opposite={event.timestamp}
-          dotAppearance={event.type === 'error' ? 'red' : 'neutral'}
-        />
-      ))}
-    </div>
-  )
-}
+```bash
+pnpm add @ds/timeline
 ```
+
+```ts
+import { TrackItem } from '@ds/timeline'
+```
+
+## Примеры использования
+
+Смотрите примеры в [Timeline](/components/timeline/timeline) — `TrackItem` используется как внутренний строительный блок.
 
 ## Props
 
@@ -187,13 +106,12 @@ function CustomTimeline({ events }) {
 
 ## Storybook
 
-<StorybookEmbed storyId='components-timeline-track--playground' height={360} client:load />
+<StorybookEmbed storyId='components-timeline-track--playground' height={360} />
 
-## Доступность
+## Анатомия
 
-- Те же принципы, что у `Timeline`: оборачивайте список во внешний `<ol>`/`<ul>` с `aria-label` для скринридеров.
-- `opposite`-колонка читается после `content` в DOM-порядке — учитывайте это при чтении с клавиатуры.
-- Цвет маркера дублируйте текстом внутри `content`.
+### Position
+Сторона, с которой рендерится контент относительно трека: `left` — слева, `right` — справа. Используется в двухколоночных таймлайнах.
 
 ## Track
 

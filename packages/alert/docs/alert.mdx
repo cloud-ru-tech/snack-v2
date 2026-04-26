@@ -5,7 +5,6 @@ description: Inline-уведомление внутри контента — ш�
 order: 1
 ---
 
-import { Alert } from '@ds/alert'
 import { AlertDemo } from '../demos/AlertDemo'
 import { Info } from '../demos/examples/Info'
 import InfoSrc from '../demos/examples/Info.tsx?raw'
@@ -25,71 +24,46 @@ import alertDoc from './props.json'
 Inline-уведомление, которое живёт в контенте — в форме, в карточке, в списке. Шесть appearance задают семантику, две оси (`size`, `align`) — форму, а пропсы `actions`, `onClose`, `collapsible` — поведение.
 
 ## Демо
-
-<AlertDemo client:load />
+<AlertDemo client:visible />
 
 ## Когда использовать
-
 - Для подтверждения результата действия (success / error).
 - Для предупреждения перед необратимой операцией (warning).
 - Для информационного контекста внутри формы (info).
 
 Когда **не** нужен: для коротких эфемерных сообщений («Скопировано», «Сохранено») используйте toast — `Alert` остаётся видимым, пока его не закрыть.
 
-## Для дизайнеров
+## Анатомия
 
-### Appearance — семантика
+### Appearance
+Семантическая роль сообщения: `neutral`/`primary` — нейтральная/информативная подача, `info` — информ-акцент, `success` — успешное завершение, `warning` — предупреждение о потенциальной проблеме, `error` — ошибка или блокирующее состояние.
 
-| Appearance | Когда |
-|-----------|-------|
-| `neutral` | Информационный блок без цветовой нагрузки |
-| `primary` | Акцентное сообщение, обычно в онбординге |
-| `info` | Справочная информация |
-| `success` | Успешное завершение операции |
-| `warning` | Предупреждение перед действием |
-| `error` | Ошибка, которая блокирует дальнейший флоу |
+### Align
+Выравнивание заголовка и контента: `horizontal` — заголовок и текст в одну строку, `vertical` — заголовок над текстом (для длинного контента и экшенов).
 
-### Size и Align
+### Size
+Компактность inline-алерта: `s` — для плотных поверхностей и табличных строк, `m` — дефолт.
 
-- `size='s'` — компактные блоки в узких контейнерах.
-- `size='m'` — по умолчанию, для основного контента.
-- `align='horizontal'` — иконка, текст и actions в одной строке.
-- `align='vertical'` — actions ниже текста, для длинных описаний.
-
-### Do / Don't
-
-- ✅ Один `Alert` на задачу — не мешайте `success` и `error` для одной операции.
-- ❌ `error` без причины ошибки — пользователь не понимает, что исправить.
-- ✅ `actions` обязательно с понятными глаголами: «Продолжить», «Отмена».
-- ❌ `actions` с текстом «Да / Нет» — не даёт контекста.
-- ✅ `onClose` если пользователь может отложить сообщение.
-- ❌ `onClose` для критических ошибок, которые блокируют работу.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/alert
 ```
 
 ```ts
 import { Alert } from '@ds/alert'
-import '@ds/alert/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example title='1. Информационный алерт' code={InfoSrc}>
-  <Info client:load />
+  <Info client:visible />
 </Example>
 
 <Example title='2. Ошибка с close-кнопкой' code={ErrorSrc}>
-  <Error client:load />
+  <Error client:visible />
 </Example>
 
 <Example title='3. Алерт с действиями' code={WithActionsSrc}>
-  <WithActions client:load />
+  <WithActions client:visible />
 </Example>
 
 <Example
@@ -97,27 +71,11 @@ import '@ds/alert/style.css'
   description='Длинное описание скрыто до клика по заголовку'
   code={CollapsibleSrc}
 >
-  <Collapsible client:load />
+  <Collapsible client:visible />
 </Example>
 
-### States и behaviour
-
-- **`collapsible`** — первый клик по заголовку раскрывает описание, повторный — сворачивает.
-- **`onClose`** — показывает кнопку ✕. Закрытие — обязанность потребителя (удалить из state).
-- **`actions`** — `primary` / `secondary`. Рендерятся справа в `horizontal`, ниже — в `vertical`.
-- **`truncate.title`** — ограничение количества строк заголовка (по умолчанию 1).
-
-### Props
-
+## Props
 <PropsTable data={alertDoc.Alert} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-alert-alert--playground' height={400} client:load />
-
-## Доступность
-
-- Корневой элемент — `role='alert'`: скринридеры произносят содержимое при появлении.
-- Кнопка ✕ — нативный `<button>`, работает с клавиатурой.
-- Цвет дублируется иконкой: `success` — галочка, `error` — крест, `warning` — треугольник.
-- Не используйте `Alert` для эфемерных уведомлений — `role='alert'` прерывает скринридер.
+## Storybook
+<StorybookEmbed storyId='components-alert-alert--playground' height={400} />

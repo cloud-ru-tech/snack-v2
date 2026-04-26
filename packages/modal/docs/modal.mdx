@@ -1,0 +1,75 @@
+---
+title: Modal
+package: '@ds/modal'
+description: Центрированное модальное окно с пресетной шапкой, телом и футером.
+order: 1
+---
+
+import { ModalDemo } from '../demos/ModalDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithFooter } from '../demos/examples/WithFooter'
+import WithFooterSrc from '../demos/examples/WithFooter.tsx?raw'
+import { Loading } from '../demos/examples/Loading'
+import LoadingSrc from '../demos/examples/Loading.tsx?raw'
+import { Forced } from '../demos/examples/Forced'
+import ForcedSrc from '../demos/examples/Forced.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import modalDoc from './props.json'
+
+# Modal
+
+Модальное окно для подтверждений, форм и важных сообщений. `Modal` собирает шапку (медиа, заголовок, подзаголовок, back-button, слот после заголовка), прокручиваемое тело и опциональный футер. Для ручной композиции — [`ModalCustom`](./modal-custom).
+
+## Демо
+<ModalDemo client:visible />
+
+## Когда использовать
+- Критическое подтверждение, блокирующее остальной интерфейс (удалить, отправить, выйти).
+- Короткая форма, которая прерывает основной поток и требует завершения.
+- Важное сообщение или онбординг, которое нужно явно закрыть.
+
+Когда **не** нужен: всплывающий поповер рядом с элементом (берите `Popover`), боковая панель или drawer для сложных форм, тост-уведомления (не блокируют UI).
+
+## Анатомия
+
+### Width
+Три ширины: `s` — короткие подтверждения, `m` — дефолт для форм и сообщений, `l` — сложные формы и контент-окна.
+
+### Mode
+`regular` — обычный диалог, закрывается overlay/Esc/крестиком; `aggressive` — требует явного действия, overlay-click заблокирован; `forced` — полностью блокирующий, без способов закрыть кроме явной кнопки действия (критичные подтверждения).
+
+## Установка
+```bash
+pnpm add @ds/modal
+```
+
+```ts
+import { Modal, MODE, WIDTH } from '@ds/modal'
+```
+
+## Примеры использования
+<Example title='Базовое использование' description='Контролируемое open/onClose, footer из `ButtonGroup`.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='С критичным действием' description='Critical primary, neutral outline secondary.' code={WithFooterSrc}>
+  <WithFooter client:visible />
+</Example>
+
+<Example title='Состояние загрузки' description='`loading` прячет футер и показывает спиннер в теле.' code={LoadingSrc}>
+  <Loading client:visible />
+</Example>
+
+<Example title='Forced — без кнопки закрытия' description='Закрытие только через действие в футере.' code={ForcedSrc}>
+  <Forced client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={modalDoc.Modal} />
+
+## Storybook
+<StorybookEmbed storyId='components-modal-modal--playground' height={480} />

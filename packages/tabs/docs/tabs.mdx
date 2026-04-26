@@ -19,6 +19,21 @@ import tabsDoc from './props.json'
 - **Неконтролируемый** — `defaultValue`, переключение через UI.
 - **Контролируемый** — `value` + `onChange`, чаще всего синхронизируется с URL.
 
+## Когда использовать
+
+- Нужен compound API с независимым положением `TabBar` и `TabContent` в разметке.
+- Состояние активного таба должно синхронизироваться с внешними источниками (URL, стор).
+
+## Установка
+
+```bash
+pnpm add @ds/tabs
+```
+
+```ts
+import { Tabs } from '@ds/tabs'
+```
+
 ## Примеры использования
 
 <Example title='Неконтролируемый режим' code={UncontrolledSrc}>
@@ -31,4 +46,12 @@ import tabsDoc from './props.json'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-tabs--playground' height={360} client:only="react" />
+<StorybookEmbed storyId='components-tabs--playground' height={360} />
+
+## Анатомия
+
+### Orientation
+`horizontal` — табы в строку (дефолт), `vertical` — колонкой (для боковых навигаций).
+
+### Size
+`m` — дефолт, `l` — для крупных лейаутов и посадочных страниц.

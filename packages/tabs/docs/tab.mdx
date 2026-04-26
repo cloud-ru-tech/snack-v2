@@ -11,11 +11,29 @@ import { Disabled } from '../demos/examples/Disabled'
 import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
 import tabsDoc from './props.json'
 
 # Tab
 
 Одна вкладка внутри `TabBar`. Идентифицируется по `value` — это же значение используется в `TabContent` для сопоставления. Поддерживает `counter` (встроенный `Counter`) и `disabled`.
+
+## Когда использовать
+
+- Внутри `TabBar` для каждой доступной вкладки.
+- Когда нужно показать счётчик (число уведомлений/записей) рядом с названием таба.
+
+## Установка
+
+```bash
+pnpm add @ds/tabs
+```
+
+```ts
+import { Tabs } from '@ds/tabs'
+
+<Tabs.Tab value='overview' label='Overview' />
+```
 
 ## Примеры использования
 
@@ -30,3 +48,15 @@ import tabsDoc from './props.json'
 ## Props
 
 <PropsTable data={tabsDoc.Tab} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tabs--playground' height={240} />
+
+## Анатомия
+
+### Size
+Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
+
+### Marker position
+Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.

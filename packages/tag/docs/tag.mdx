@@ -23,74 +23,31 @@ import tagDoc from './props.json'
 Компактная метка. По умолчанию `<span>`; становится `<a>` при `href`; показывает кнопку удаления при `onDelete`.
 
 ## Демо
-
-<TagDemo client:load />
+<TagDemo client:visible />
 
 ## Когда использовать
-
 - Для категорий и тегов записи (Frontend, Backend, Design).
 - Для статусов (Активный, Ошибка, Ожидание).
 - Для выбранных фильтров в search/filter UI — со свойством `onDelete`.
 
 Когда **не** нужен: для interactive chip с чекбокс-семантикой — используйте отдельный компонент ChipGroup, если он есть в вашем наборе.
 
-## Для дизайнеров
-
-### Appearance — семантическая роль
-
-| Appearance | Когда использовать |
-|-----------|---------------------|
-| `neutral` | Нейтральные метки — таблицы, плотные списки |
-| `primary` | Акцентные — выделить категорию |
-| `red` | Ошибка, блокировка |
-| `orange` | Предупреждение, в процессе |
-| `yellow` | Требует внимания |
-| `green` | Успех, активный |
-| `blue` | Информация |
-| `violet` / `pink` | Дополнительные домены |
-
-<Example title='Базовая метка' code={BasicSrc}>
-  <Basic client:load />
-</Example>
-
-### Size — три размера
-
-| Size | Применение |
-|------|------------|
-| `xs` | Таблицы, плотные списки |
-| `s` | Карточки, sidebar-фильтры |
-| `m` | Самостоятельные блоки, hero-секции |
-
-### Do / Don't
-
-- ✅ Один `appearance` на класс явлений — например, все критические ошибки `red`.
-- ❌ Раскрашивать метки ради разнообразия — пользователь ищет семантику.
-- ✅ `onDelete` в выбранных фильтрах — понятный паттерн dismissible-chips.
-- ❌ `onDelete` в read-only списке категорий — удалять нечего.
-- ✅ `href` для ссылок на страницу фильтра или тега.
-- ❌ `href` в форме выбора — пользователь ждёт toggle, а не переход.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/tag
 ```
 
 ```ts
 import { Tag } from '@ds/tag'
-import '@ds/tag/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example
   title='1. Базовый тег'
   description='Простая метка с appearance'
   code={BasicSrc}
 >
-  <Basic client:load />
+  <Basic client:visible />
 </Example>
 
 <Example
@@ -98,7 +55,7 @@ import '@ds/tag/style.css'
   description='onDelete показывает кнопку ✕'
   code={RemovableSrc}
 >
-  <Removable client:load />
+  <Removable client:visible />
 </Example>
 
 <Example
@@ -106,26 +63,19 @@ import '@ds/tag/style.css'
   description="href превращает <span> в <a>; target='_blank' → rel='noopener noreferrer' автоматически"
   code={AsLinkSrc}
 >
-  <AsLink client:load />
+  <AsLink client:visible />
 </Example>
 
-### Полиморфизм
-
-- Без `href` / `as` — рендер `<span>`.
-- С `href` — рендер `<a href>`. `target='_blank'` автоматически ставит `rel='noopener noreferrer'`.
-- С `as={Component}` — рендер произвольного компонента-роутера.
-
-### Props
-
+## Props
 <PropsTable data={tagDoc.Tag} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-tag-tag--playground' height={320} />
 
-<StorybookEmbed storyId='components-tag-tag--playground' height={320} client:load />
+## Анатомия
 
-## Доступность
+### Size
+`xs` — для плотных списков и инлайн-меток, `s` — дефолт, `m` — для заголовков и акцентных блоков.
 
-- При `onDelete` рендерится нативный `<button type='button'>` — Enter / Space работают с клавиатуры.
-- При `href` рендерится нативный `<a>` — Enter активирует переход.
-- Цвет не единственный носитель семантики — дублируйте смысл текстом метки.
-- Для удаляемых меток добавляйте визуально распознаваемую иконку ✕ — она встроена в компонент.
+### Appearance
+Семантический/декоративный цвет: `neutral` — нейтральный, `primary` — акцент, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `green` — успех, `blue` — инфо, `violet`/`pink` — декоративные.

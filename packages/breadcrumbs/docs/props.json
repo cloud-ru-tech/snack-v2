@@ -1,11 +1,14 @@
 {
   "useBreadcrumbsLayout": {
     "displayName": "useBreadcrumbsLayout",
+    "propsTypeName": null,
     "props": {},
+    "relatedTypes": {},
     "description": "Расчет способа отображения breadcrumbs работает следующим образом:\nКаждый item может быть отображен в одном из режимов:\n   full - целиком\n   shortLabel - с использованием укороченного лейбла\n   ellipsis - cо скруглением текста в ...\n   collapse - спрятан в специальный узел \"...\" с тултипом.\n Для того чтоб эффективно распределить свободное по ширине пространство между айтемами в компоненте создается скрытый контейнер (HiddenChain),\n в котором рендерятся все айтемы во всех возможных способах отображения. Замеряется размер каждого из айтемов и записывается в sizeMap.\n Далее перебираются все возможные варианты отображения всей цепочки - конфиги (buildBreadcrumbsConfigs). У такого конфига есть два атрибута:\n   width - суммарная ширина\n   weight - вес, отображает общее количество сокращений, примененных к цепочке (например, отображение в режиме full - 0, сокращение shortLabel - +1, а ellipsis - +100 и тд)\n Для того чтоб отобразить breadcrumbs, нужно подобрать конфиг, максимальный по ширине, влезающий в контейнер, но с минимальным весом (наименьшим количеством сокращений)."
   },
   "Wrapper": {
     "displayName": "Wrapper",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -31,19 +34,23 @@
         "type": "string",
         "required": true
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "useItemModesRender": {
     "displayName": "useItemModesRender",
+    "propsTypeName": null,
     "props": {
       "firstItemIconOnly": {
         "type": "boolean",
         "required": true
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "HiddenChain": {
     "displayName": "HiddenChain",
+    "propsTypeName": null,
     "props": {
       "separator": {
         "type": "string",
@@ -69,10 +76,12 @@
         "type": "boolean",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "CrumbsTypography": {
     "displayName": "CrumbsTypography",
+    "propsTypeName": null,
     "props": {
       "size": {
         "type": "enum",
@@ -86,10 +95,12 @@
         "type": "string",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Crumb": {
     "displayName": "Crumb",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -125,10 +136,12 @@
         "type": "boolean",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Collapse": {
     "displayName": "Collapse",
+    "propsTypeName": null,
     "props": {
       "className": {
         "type": "string",
@@ -138,10 +151,12 @@
         "type": "BreadcrumbsConfigChain",
         "required": true
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Breadcrumbs": {
     "displayName": "Breadcrumbs",
+    "propsTypeName": "BreadcrumbsProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -150,7 +165,10 @@
       "items": {
         "type": "Item[]",
         "required": true,
-        "description": "Массив айтемов"
+        "description": "Массив айтемов",
+        "typeRefs": [
+          "Item"
+        ]
       },
       "className": {
         "type": "string",
@@ -171,7 +189,10 @@
           "s"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "firstItemIconOnly": {
         "type": "boolean",
@@ -184,6 +205,46 @@
         "required": false,
         "defaultValue": "false",
         "description": "Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick`"
+      }
+    },
+    "relatedTypes": {
+      "Item": {
+        "kind": "interface",
+        "props": {
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "icon": {
+            "type": "JSXElementConstructor<{ size: number; }> | undefined",
+            "required": false
+          },
+          "href": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "shortLabel": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement> | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
       }
     },
     "description": "Компонент хлебных крошек"

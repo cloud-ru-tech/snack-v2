@@ -10,7 +10,7 @@
 pnpm add @ds/utils
 ```
 
-## useThemeConfig
+### useThemeConfig
 
 Возвращает текущую тему, CSS-класс из `themeMap` и функцию переключения `changeTheme`.
 
@@ -31,7 +31,7 @@ function Example() {
 }
 ```
 
-## ThemeProvider и useThemeContext
+### ThemeProvider и useThemeContext
 
 **ThemeProvider** — провайдер темы по `themeMap` и `defaultTheme`. **useThemeContext** — доступ к текущей теме и `changeTheme` из контекста.
 
@@ -54,7 +54,7 @@ function App() {
 }
 ```
 
-## useValueControl
+### useValueControl
 
 Поддержка controlled/uncontrolled: один интерфейс для `value`/`defaultValue` и `onChange`.
 
@@ -71,7 +71,7 @@ function Toggle({ value, defaultValue, onChange }) {
 }
 ```
 
-## useDebounce
+### useDebounce
 
 Возвращает стабильный коллбек, который вызывается с задержкой после последнего вызова.
 
@@ -86,7 +86,7 @@ function Search() {
 }
 ```
 
-## useEventHandler
+### useEventHandler
 
 Возвращает обработчик с неизменной ссылкой: внутри всегда вызывается актуальная функция, без лишних ре-рендеров дочерних компонентов.
 
@@ -103,7 +103,7 @@ function List({ items, onItemClick }) {
 }
 ```
 
-## useLayoutEffect (SSR-безопасный)
+### useLayoutEffect (SSR-безопасный)
 
 Из пакета экспортируется `useLayoutEffect`: в браузере это обычный useLayoutEffect, в SSR — useEffect.
 
@@ -120,7 +120,7 @@ function Measure() {
 }
 ```
 
-## useDynamicList
+### useDynamicList
 
 Делит список на видимые и скрытые элементы по ширине контейнера.
 
@@ -146,7 +146,7 @@ function Tabs({ items }) {
 }
 ```
 
-## useSwipeable
+### useSwipeable
 
 Обработка свайпов (на базе react-swipeable).
 
@@ -163,7 +163,7 @@ function SwipeCard() {
 }
 ```
 
-## useModalOpenState
+### useModalOpenState
 
 Подключает к модалке закрытие по кнопке «Назад» (popstate) и по CloseWatcher.
 
@@ -179,7 +179,7 @@ function Modal({ open, onClose }) {
 }
 ```
 
-## usePopstateSubscription
+### usePopstateSubscription
 
 Подписка на событие `popstate`.
 
@@ -194,7 +194,7 @@ function SyncWithHistory() {
 }
 ```
 
-## useDataPersist
+### useDataPersist
 
 Чтение и запись состояния в localStorage и в query-параметрах URL.
 
@@ -216,7 +216,7 @@ function FilterState() {
 }
 ```
 
-## excludeSupportProps, extractSupportProps, extractDataTestProps
+### excludeSupportProps, extractSupportProps, extractDataTestProps
 
 ```tsx
 import { excludeSupportProps, extractSupportProps, extractDataTestProps } from '@ds/utils';
@@ -233,7 +233,7 @@ const supportProps = extractSupportProps(props);
 const dataTestProps = extractDataTestProps(props);
 ```
 
-## isBrowser
+### isBrowser
 
 ```tsx
 import { isBrowser } from '@ds/utils';
@@ -243,7 +243,7 @@ if (isBrowser()) {
 }
 ```
 
-## Типы: ValueOf, WithSupportProps
+### Типы: ValueOf, WithSupportProps
 
 ```tsx
 import type { ValueOf, WithSupportProps } from '@ds/utils';
@@ -260,13 +260,6 @@ type ButtonProps = WithSupportProps<{
 ## Storybook
 
 Интерактивные примеры: **Utils / Theme Config** в локальном Storybook (`pnpm dev:storybook`).
-
-## Практики
-
-1. **useIsomorphicLayoutEffect** вместо useLayoutEffect для SSR.
-2. **excludeSupportProps** — перед передачей пропов в DOM; **extractSupportProps** — для обёртки (data-test-id, aria-*).
-3. **useValueControl** — для компонентов с controlled/uncontrolled режимом.
-4. **useModalOpenState** — закрытие по истории (popstate) и CloseWatcher.
 
 ## ThemeProvider
 

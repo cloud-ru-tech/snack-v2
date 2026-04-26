@@ -6,6 +6,8 @@ order: 2
 ---
 
 import { StatusIndicatorDemo } from '../demos/StatusIndicatorDemo'
+import { BasicIndicator } from '../demos/examples/BasicIndicator'
+import BasicIndicatorSrc from '../demos/examples/BasicIndicator.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -16,70 +18,39 @@ import statusDoc from './props.json'
 Минимальный маркер-точка без подписи. Пять размеров (`4xs` → `s`) и восемь цветовых схем. Используется, когда пространства для текста нет — колонка таблицы, badge на иконке, inline-маркер в списке.
 
 ## Демо
-
-<StatusIndicatorDemo client:load />
+<StatusIndicatorDemo client:visible />
 
 ## Когда использовать
-
 - Колонка «Статус» в плотной таблице — только цветная точка.
 - Badge-индикатор на аватаре или иконке (онлайн, новое событие).
 - Inline-маркер перед текстом в самописных лейаутах.
 
 Когда **не** нужен: если пользователю нужно прочитать статус — берите `Status` с подписью. Цвет без текста недоступен дальтоникам и скринридерам.
 
-## Для дизайнеров
-
-### Size
-
-| Size | Применение |
-|------|------------|
-| `4xs` / `3xs` | Badge на иконке, очень плотные сетки |
-| `2xs` | Колонка таблицы |
-| `xs` | Значение по умолчанию для inline-маркера |
-| `s` | Отдельно стоящий индикатор в карточке |
-
-### Appearance
-
-Та же семантика, что и у `Status`: `green` — успех, `red` — ошибка, `orange`/`yellow` — внимание, `neutral` — нейтральное/отключено, `blue`/`violet`/`pink` — информационные.
-
-### Do / Don't
-
-- ✅ Рядом с текстовой колонкой, поясняющей статус.
-- ❌ В одиночку, без подписи, в важном месте (список, карточка).
-- ✅ Badge на иконке с `aria-label` на самой иконке.
-- ❌ Украшение без смысла — используйте `PromoTag` или иконку.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/status
 ```
 
 ```ts
 import { StatusIndicator } from '@ds/status'
-import '@ds/status/style.css'
 ```
 
-### Пример
+## Примеры использования
+<Example title='Базовый индикатор' code={BasicIndicatorSrc}>
+  <BasicIndicator client:visible />
+</Example>
 
-```tsx
-import { StatusIndicator } from '@ds/status'
-
-<StatusIndicator size='xs' appearance='green' />
-```
-
-### Props
-
+## Props
 <PropsTable data={statusDoc.StatusIndicator} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-status-statusindicator--playground' height={200} />
 
-<StorybookEmbed storyId='components-status-statusindicator--playground' height={200} client:load />
+## Анатомия
 
-## Доступность
+### Size
+Набор размеров от `4xs` (точка в плотных списках) до `s` (в заголовках): `4xs`, `3xs`, `2xs`, `xs`, `s`.
 
-- Это чисто визуальный индикатор — у него нет текста и нет `role`. Скринридер его не озвучит.
-- Обязательно дополняйте `StatusIndicator` текстовой подписью рядом или `aria-label` на родительском элементе.
-- Если требуется автономный статус для скринридера — используйте `Status`.
+### Appearance
+Семантический цвет индикатора: `neutral`, `green` (успех), `red` (ошибка), `orange`/`yellow` (предупреждение), `blue` (инфо), `violet`/`pink` (декоративные).

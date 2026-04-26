@@ -1,0 +1,51 @@
+---
+title: ModalCustom
+package: '@ds/modal'
+description: Низкоуровневая сборка Modal — полный контроль над разметкой через Header / Body / Footer субкомпоненты.
+order: 2
+---
+
+import { CustomComposition } from '../demos/examples/CustomComposition'
+import CustomCompositionSrc from '../demos/examples/CustomComposition.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import modalDoc from './props.json'
+
+# ModalCustom
+
+`ModalCustom` — низкоуровневая версия `Modal`, которая не диктует структуру содержимого. Вы сами компонуете шапку, тело и футер из субкомпонентов `ModalCustom.Header`, `.Body`, `.Footer` или собственной разметки.
+
+Используйте `ModalCustom`, когда стандартной шапки из `Modal` недостаточно — например, нужна своя раскладка заголовка с несколькими действиями, кастомный футер с группами кнопок или нестандартный порядок секций.
+
+## Когда использовать
+
+- Стандартная шапка / футер из `Modal` не подходят — нужна своя разметка.
+- Сложная раскладка нескольких секций внутри одного окна.
+- Кастомные слоты (например, фиксированный поиск между шапкой и телом).
+
+Во всех остальных случаях предпочтительнее `Modal` — он дешевле в поддержке и даёт консистентные отступы.
+
+## Установка
+
+```bash
+pnpm add @ds/modal
+```
+
+```ts
+import { ModalCustom } from '@ds/modal'
+```
+
+## Примеры использования
+
+<Example title='Ручная композиция' description='Header + Body + Footer собираются вручную.' code={CustomCompositionSrc}>
+  <CustomComposition client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={modalDoc.ModalCustom} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-modal-modalcustom--playground' height={480} />

@@ -1,6 +1,38 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '../styles/layout' as l;
 
+.root {
+  display: block;
+  width: 100%;
+}
+
+.header {
+  display: inline-flex;
+  gap: base.$sn-adaptive-spacing-interval-s;
+  align-items: baseline;
+  margin-bottom: base.$sn-adaptive-spacing-interval-m;
+}
+
+.headerLabel {
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.headerType {
+  padding: base.$sn-adaptive-spacing-interval-xs base.$sn-adaptive-spacing-interval-s;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-violet-accent;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
 .wrap {
   overflow-x: auto;
   display: block;
@@ -54,14 +86,14 @@
 }
 
 .type {
-  overflow: hidden;
   display: block;
 
   max-width: l.$docs-props-type-max-width;
 
   color: base.$sn-theme-color-violet-accent;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: normal;
 
   @include base.composite-var(base.$sn-mono-body-s);
 }
@@ -94,4 +126,143 @@
   color: base.$sn-theme-color-neutral-text;
 
   @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.typeRef {
+  cursor: pointer;
+
+  color: base.$sn-theme-color-violet-accent;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+
+  &:hover {
+    text-decoration-style: solid;
+  }
+}
+
+.externalGroup {
+  margin-top: base.$sn-adaptive-spacing-interval-xl;
+  padding-top: base.$sn-adaptive-spacing-interval-l;
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+.externalHeading {
+  margin: 0 0 base.$sn-adaptive-spacing-interval-m;
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-headline-s);
+}
+
+.relatedGroup {
+  margin-top: base.$sn-adaptive-spacing-interval-xl;
+  padding-left: base.$sn-adaptive-spacing-interval-l;
+  border-left: 2px solid base.$sn-theme-color-neutral-decor;
+}
+
+.relatedGroupHeading {
+  margin: 0 0 base.$sn-adaptive-spacing-interval-m;
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.relatedSummary {
+  cursor: pointer;
+
+  margin-bottom: base.$sn-adaptive-spacing-interval-m;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.relatedCount {
+  margin-left: base.$sn-adaptive-spacing-interval-xs;
+  color: base.$sn-theme-color-neutral-text;
+  opacity: 0.7;
+}
+
+.relatedList {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-adaptive-spacing-interval-l;
+}
+
+.related {
+  scroll-margin-top: base.$sn-adaptive-spacing-interval-xl;
+}
+
+.relatedHeading {
+  display: inline-flex;
+  gap: base.$sn-adaptive-spacing-interval-s;
+  align-items: baseline;
+  margin: 0 0 base.$sn-adaptive-spacing-interval-s;
+
+  code {
+    color: base.$sn-theme-color-violet-accent;
+
+    @include base.composite-var(base.$sn-mono-body-m);
+  }
+}
+
+.relatedKind {
+  padding: 0 base.$sn-adaptive-spacing-interval-xs;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.unionLine {
+  overflow-x: auto;
+  margin: 0;
+  padding: base.$sn-adaptive-spacing-interval-s 0;
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.unionValues {
+  margin: 0;
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.unionValue {
+  color: base.$sn-theme-color-violet-accent;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.unionSep {
+  color: base.$sn-theme-color-neutral-text;
+  opacity: 0.6;
+}
+
+.aliasPre {
+  overflow-x: auto;
+
+  margin: 0;
+  padding: base.$sn-adaptive-spacing-interval-m;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  code {
+    color: base.$sn-theme-color-neutral-text;
+
+    @include base.composite-var(base.$sn-mono-body-s);
+  }
 }

@@ -1,16 +1,19 @@
 {
   "SkeletonContextProvider": {
     "displayName": "SkeletonContextProvider",
+    "propsTypeName": null,
     "props": {
       "loading": {
         "type": "boolean",
         "required": true,
         "description": "Флаг состояния загрузки. Если значение true, будут отрисованы блоки скелетона."
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "WithSkeleton": {
     "displayName": "WithSkeleton",
+    "propsTypeName": "WithSkeletonProps",
     "props": {
       "skeleton": {
         "type": "ReactNode",
@@ -22,10 +25,12 @@
         "required": false,
         "description": "Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children."
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "SkeletonText": {
     "displayName": "SkeletonText",
+    "propsTypeName": "SkeletonTextProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -72,7 +77,10 @@
           "body"
         ],
         "defaultValue": "body",
-        "description": "Роль типографики (размер по anatomy)"
+        "description": "Роль типографики (размер по anatomy)",
+        "typeRefs": [
+          "Variant"
+        ]
       },
       "size": {
         "type": "enum",
@@ -83,7 +91,10 @@
           "s"
         ],
         "defaultValue": "m",
-        "description": "Масштаб: s, m, l"
+        "description": "Масштаб: s, m, l",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "align": {
         "type": "enum",
@@ -93,12 +104,46 @@
           "right"
         ],
         "defaultValue": "left",
-        "description": "Выравнивание: left, right"
+        "description": "Выравнивание: left, right",
+        "typeRefs": [
+          "Align"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "display",
+          "headline",
+          "title",
+          "label",
+          "body"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      },
+      "Align": {
+        "kind": "union",
+        "values": [
+          "left",
+          "right"
+        ],
+        "own": true
       }
     }
   },
   "Skeleton": {
     "displayName": "Skeleton",
+    "propsTypeName": "SkeletonProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -128,6 +173,7 @@
         "type": "string",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   }
 }

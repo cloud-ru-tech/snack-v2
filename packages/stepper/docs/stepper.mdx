@@ -18,19 +18,30 @@ import stepperDoc from './props.json'
 
 Десктопный степпер — горизонтальный список шагов с номером, заголовком и (опционально) описанием. Управляется через render-prop, поддерживает controlled и uncontrolled режимы.
 
-## Примеры
+## Когда использовать
+
+- Многошаговые desktop-формы, где пользователю важно видеть описание каждого шага.
+- Процессы с валидацией между шагами (submit → backend check → next).
+
+## Установка
+
+```bash
+pnpm add @ds/stepper
+```
+
+```ts
+import { Stepper } from '@ds/stepper'
+```
+
+## Примеры использования
 
 <Example title='Базовый flow' description='Три шага с Next/Prev' code={BasicFlowSrc}>
-  <BasicFlow client:load />
+  <BasicFlow client:visible />
 </Example>
 
 <Example title='С валидатором' description='Первая попытка реджектится, вторая проходит' code={WithValidatorSrc}>
-  <WithValidator client:load />
+  <WithValidator client:visible />
 </Example>
-
-## Валидатор
-
-`validator(prevIndex, newIndex) => Promise<boolean>`. Пока промис резолвится — шаг в `loading`. При `false` — `rejected`; `resetValidation()` возвращает шаг в `current`. Валидатор вызывается перед каждой попыткой `goNext` / `goPrev`.
 
 ## Props
 
@@ -39,3 +50,11 @@ import stepperDoc from './props.json'
 ## Storybook
 
 <StorybookEmbed storyId='components-stepper--basicflow' />
+
+## Анатомия
+
+### Step state
+Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
+
+### Layout type
+Раскладка: `desktop` — горизонтальная с подписями, `mobile` — компактная вертикальная.

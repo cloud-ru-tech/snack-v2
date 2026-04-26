@@ -4,92 +4,54 @@
 
 Поисковое поле дизайн-системы: `<input type='search'>` с иконкой, опциональной кнопкой очистки, состоянием `loading` и слотом `buttonField` справа для дополнительной кнопки-действия («Найти», «Фильтр»).
 
-## Когда использовать
+## Демо
+<SearchDemo client:visible />
 
+## Когда использовать
 - Основной поиск по списку / каталогу / таблице.
 - Header-поиск с моментальной отдачей (live search).
 - Форма поиска с явной кнопкой «Найти» (`buttonField`).
 
 Когда **не** подходит: для выбора из фиксированного списка используйте `Combobox`, для фильтра с префиксом — `Input` + `Chip`.
 
-### Size
-
-| Size | Высота | Применение |
-|------|--------|------------|
-| `s` | 24px | Таблицы, компактные сетки |
-| `m` | 32px | Значение по умолчанию — формы, header |
-| `l` | 40px | Hero, лендинг, глобальный поиск |
-
-### Background и Outline
-
-- `background=true` *(по умолчанию)* — серый фон, выделяет поле на светлой подложке.
-- `background=false` — прозрачный фон, для контрастных подложек и header'а.
-- `outline=true` *(по умолчанию)* — разделитель между полем и `buttonField`.
-- `outline=false` — визуально слитный блок.
-
-### Do / Don't
-
-- ✅ Один primary-поиск на экран. Header-поиск + list-поиск рядом — пользователь путается.
-- ❌ Маленький `s`-поиск в hero — теряется в масштабе.
-- ✅ `loading` сразу после отправки — не оставляйте без сигнала.
-- ❌ `disabled` вместо пустого состояния — покажите список «нет данных» отдельно.
-- ✅ `buttonField` для операций, которые пользователь запускает явно («Найти», «Сбросить»).
-- ❌ Ставить `buttonField` для дефолтного search — поиск должен реагировать на Enter.
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/search
 ```
 
 ```ts
 import { Search } from '@ds/search'
-import '@ds/search/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Базовое поле'>
-  <Search placeholder='Поиск' />
+## Примеры использования
+<Example title='Базовое поле' code={BasicSrc}>
+  <Basic client:visible />
 </Example>
 
-<Example title='Размер l для hero'>
-  <Search size='l' placeholder='Поиск по каталогу' />
+<Example title='Размер l для hero' code={SizeLSrc}>
+  <SizeL client:visible />
 </Example>
 
-<Example title='Loading'>
-  <Search placeholder='Поиск' loading />
+<Example title='Loading' code={LoadingSrc}>
+  <Loading client:visible />
 </Example>
 
-<Example title='Disabled'>
-  <Search placeholder='Поиск' disabled />
+<Example title='Disabled' code={DisabledSrc}>
+  <Disabled client:visible />
 </Example>
 
-<Example title='Без фона'>
-  <Search placeholder='Прозрачный фон' background={false} />
+<Example title='Без фона' code={TransparentBackgroundSrc}>
+  <TransparentBackground client:visible />
 </Example>
 
-### States
-
-- **`loading`** — иконка поиска заменяется спиннером, поле остаётся доступным для ввода.
-- **`disabled`** — поле неактивно, тап / фокус игнорируются.
-- **С buttonField** — кнопка справа от поля, разделена линией при `outline=true`.
-
-### Props
-
+## Props
 <PropsTable data={searchDoc.Search} />
 
-### Storybook
+## Storybook
+<StorybookEmbed storyId='components-search--playground' height={240} />
 
-<StorybookEmbed storyId='components-search--playground' height={240} client:load />
-
-## Доступность
-
-- Корень — `<input type='search'>` с ролью `searchbox`; скринридер проговаривает «search» и плейсхолдер.
-- Native Enter — отправляет форму; обработчик `onSubmit` получает текущее значение.
-- Кнопка очистки появляется при непустом значении, снабжена `aria-label='Clear'`.
-- `loading` не блокирует ввод — пользователь может продолжить печатать; дублируйте состояние `aria-busy` на окружении при необходимости.
-- `disabled` → `aria-disabled='true'` и выключен `tab order`.
+### Size
+Высота поля: `s` — компактный (списки, тулбары), `m` — дефолт, `l` — для крупных форм и посадочных страниц.
 
 ## ButtonField
 

@@ -20,7 +20,7 @@ import tooltipDoc from './props.json'
 
 ## Демо
 
-<QuestionTooltipDemo client:load />
+<QuestionTooltipDemo client:visible />
 
 ## Когда использовать
 
@@ -28,33 +28,35 @@ import tooltipDoc from './props.json'
 - Рядом с термином или аббревиатурой в тексте и таблицах.
 - В онбординговых состояниях — пояснение новой фичи.
 
-## Пример
+## Установка
+
+```bash
+pnpm add @ds/tooltip
+```
+
+```ts
+import { QuestionTooltip } from '@ds/tooltip'
+```
+
+## Примеры использования
 
 <Example
   title='Подсказка к полю формы'
   description='aria-label триггера задаётся через triggerLabel'
   code={QuestionSrc}
 >
-  <Question client:load />
+  <Question client:visible />
 </Example>
 
 ## Props
-
-`QuestionTooltip` наследует все props `Tooltip` и добавляет несколько своих:
-
-- `triggerLabel` — доступное имя триггера-иконки (по умолчанию «Подсказка»).
-- `tooltipClassname` — класс на контейнер подсказки.
-- `tabIndex` — tabindex на triggerButton (по умолчанию 0).
 
 <PropsTable data={tooltipDoc.QuestionTooltip} />
 
 ## Storybook
 
-<StorybookEmbed storyId='components-tooltip-question-tooltip--playground' height={320} client:load />
+<StorybookEmbed storyId='components-tooltip-questiontooltip--playground' height={320} />
 
-## Доступность
+## Анатомия
 
-- Триггер — нативный `<button type='button'>` с обязательным `aria-label`.
-- По умолчанию `trigger='hover'` — для form-tooltip'ов, чтобы подсказка не появлялась при Tab через форму. Переключите на `hoverAndFocusVisible`, если хотите focus-доступность.
-- `aria-label` по умолчанию — «Подсказка»; для нестандартных сценариев передавайте `triggerLabel`.
-- Иконка «?» декоративна; смысл доступности несёт именно `aria-label` и содержимое `tip`.
+### Size
+Размер триггера-иконки и тултипа: `xs` — для плотных форм, `s` — дефолт рядом с заголовками секций.

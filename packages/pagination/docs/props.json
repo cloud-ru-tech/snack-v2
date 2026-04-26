@@ -1,6 +1,7 @@
 {
   "PaginationSliderItem": {
     "displayName": "PaginationSliderItem",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -26,10 +27,12 @@
         "type": "Ref<HTMLButtonElement>",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "PaginationSlider": {
     "displayName": "PaginationSlider",
+    "propsTypeName": "PaginationSliderProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -48,7 +51,10 @@
       "onChange": {
         "type": "(page: number) => void",
         "required": true,
-        "description": "Колбек смены значения"
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "className": {
         "type": "string",
@@ -63,12 +69,26 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "PaginationSliderSize"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "PaginationSliderSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
       }
     }
   },
   "PaginationNumberItem": {
     "displayName": "PaginationNumberItem",
+    "propsTypeName": null,
     "props": {
       "data-test-id": {
         "type": "string",
@@ -94,10 +114,12 @@
         "type": "Ref<HTMLButtonElement | HTMLAnchorElement>",
         "required": false
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Pagination": {
     "displayName": "Pagination",
+    "propsTypeName": "PaginationProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -121,7 +143,10 @@
           "button"
         ],
         "defaultValue": "button",
-        "description": "Варианты тега кнопок: <a/> или <button/>"
+        "description": "Варианты тега кнопок: <a/> или <button/>",
+        "typeRefs": [
+          "Variant"
+        ]
       },
       "maxLength": {
         "type": "number",
@@ -132,12 +157,18 @@
       "onChange": {
         "type": "(page: number, event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent> | undefined) => void",
         "required": true,
-        "description": "Колбэк смены значения"
+        "description": "Колбэк смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "hrefFormatter": {
         "type": "((page: number) => string)",
         "required": false,
-        "description": "Колбэк форматирования ссылки"
+        "description": "Колбэк форматирования ссылки",
+        "typeRefs": [
+          "hrefFormatter"
+        ]
       },
       "className": {
         "type": "string",
@@ -152,7 +183,28 @@
           "m"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "PaginationSize"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "button",
+          "link"
+        ],
+        "own": true
+      },
+      "PaginationSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m"
+        ],
+        "own": true
       }
     }
   }

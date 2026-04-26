@@ -5,8 +5,11 @@ description: Компактная точечная навигация для к�
 order: 2
 ---
 
-import { PaginationSlider } from '@ds/pagination'
 import { PaginationSliderDemo } from '../demos/PaginationSliderDemo'
+import { SliderBasic } from '../demos/examples/SliderBasic'
+import SliderBasicSrc from '../demos/examples/SliderBasic.tsx?raw'
+import { SliderSizeS } from '../demos/examples/SliderSizeS'
+import SliderSizeSSrc from '../demos/examples/SliderSizeS.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -17,66 +20,40 @@ import paginationDoc from './props.json'
 Компактный индикатор страницы в виде ряда точек/полосок. Подходит для 3–8 однотипных элементов: шаги onboarding, карусели изображений, переключение табличных представлений.
 
 ## Демо
-
-<PaginationSliderDemo client:load />
+<PaginationSliderDemo client:visible />
 
 ## Когда использовать
-
 - Onboarding / wizard с 3–5 шагами.
 - Карусель изображений.
 - Навигация между карточками одного уровня.
 
 Когда **не** подходит: если страниц больше 8 или пользователь должен прыгать на конкретную страницу — используйте `Pagination`.
 
-## Для дизайнеров
+## Анатомия
 
 ### Size
+`xs` — компактные карусели и плотные onboarding-шаги; `s` — дефолт для карточек и больших слайдеров.
 
-| Size | Применение |
-|------|------------|
-| `xs` | Внутри карточек, плотных блоков — по умолчанию |
-| `s` | Hero, full-width onboarding |
-
-### Do / Don't
-
-- ✅ 3–8 элементов — оптимальный диапазон.
-- ❌ 15+ элементов — визуальный шум, перейдите на `Pagination`.
-- ✅ Сопровождайте изменение страницы анимацией связанного контента — слайдер без контекста бесполезен.
-- ❌ Использовать без `aria-label` на контейнере содержимого — скринридер не поймёт, на что именно он переключает.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/pagination
 ```
 
 ```ts
 import { PaginationSlider } from '@ds/pagination'
-import '@ds/pagination/style.css'
 ```
 
-### Примеры использования
-
-<Example title='Базовый сценарий'>
-  <PaginationSlider total={5} page={2} onChange={(page) => console.log(page)} />
+## Примеры использования
+<Example title='Базовый сценарий' code={SliderBasicSrc}>
+  <SliderBasic client:visible />
 </Example>
 
-<Example title='Размер s'>
-  <PaginationSlider total={5} page={2} size='s' onChange={(page) => console.log(page)} />
+<Example title='Размер s' code={SliderSizeSSrc}>
+  <SliderSizeS client:visible />
 </Example>
 
-### Props
-
+## Props
 <PropsTable data={paginationDoc.PaginationSlider} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-pagination-paginationslider--playground' height={240} client:load />
-
-## Доступность
-
-- Корневой контейнер — `<nav aria-label='Pagination slider'>`.
-- Каждая точка — нативный `<button>`, Enter / Space активируют переключение.
-- Активный элемент визуально выделен; для полного a11y сопровождайте его сменой `aria-current` на связанной секции контента.
+## Storybook
+<StorybookEmbed storyId='components-pagination-paginationslider--playground' height={240} />

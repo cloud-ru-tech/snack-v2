@@ -16,6 +16,20 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const { Content, headings } = await render(entry)
 
+type TocNode = { slug: string; text: string; children: TocNode[] }
+const tocTree: TocNode[] = []
+for (const h of headings) {
+  if (h.depth === 2) {
+    tocTree.push({ slug: h.slug, text: h.text, children: [] })
+  } else if (h.depth === 3 && tocTree.length > 0) {
+    tocTree[tocTree.length - 1].children.push({
+      slug: h.slug,
+      text: h.text,
+      children: [],
+    })
+  }
+}
+
 const pages = await flatPages()
 const currentHref = withBase(`/patterns/${entry.id}`)
 const currentIndex = pages.findIndex((p) => p.href === currentHref)
@@ -38,17 +52,24 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
         <Content />
       </article>
 
-      {headings.length > 0 && (
+      {tocTree.length > 0 && (
         <aside class="toc" aria-label="На странице">
           <p class="toc-label">На странице</p>
           <ul class="toc-list">
-            {headings
-              .filter((h) => h.depth === 2)
-              .map((h) => (
-                <li>
-                  <a href={`#${h.slug}`} class="toc-link">{h.text}</a>
-                </li>
-              ))}
+            {tocTree.map((h) => (
+              <li>
+                <a href={`#${h.slug}`} class="toc-link">{h.text}</a>
+                {h.children.length > 0 && (
+                  <ul class="toc-sublist">
+                    {h.children.map((c) => (
+                      <li>
+                        <a href={`#${c.slug}`} class="toc-link toc-link--sub">{c.text}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
           </ul>
         </aside>
       )}
@@ -74,13 +95,18 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
 </DocsLayout>
 
 <script>
-  const headings = document.querySelectorAll<HTMLElement>('.doc h2[id]')
-  const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc-link')
+  let currentObserver: IntersectionObserver | null = null
 
-  if (headings.length && tocLinks.length) {
+  function initToc() {
+    currentObserver?.disconnect()
+    currentObserver = null
+
+    const headings = document.querySelectorAll<HTMLElement>('.doc h2[id], .doc h3[id]')
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc-link')
+    if (!headings.length || !tocLinks.length) return
+
     let activeId = ''
-
-    function setActive(id: string) {
+    const setActive = (id: string) => {
       if (id === activeId) return
       activeId = id
       tocLinks.forEach((link) => {
@@ -88,7 +114,7 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
       })
     }
 
-    const observer = new IntersectionObserver(
+    currentObserver = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
@@ -97,7 +123,9 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
       },
       { rootMargin: '-56px 0px -60% 0px', threshold: 0 }
     )
-
-    headings.forEach((h) => observer.observe(h))
+    headings.forEach((h) => currentObserver!.observe(h))
   }
+
+  initToc()
+  document.addEventListener('astro:page-load', initToc)
 </script>

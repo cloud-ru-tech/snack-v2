@@ -6,6 +6,8 @@ import { GithubLink } from '../components/layout/GithubLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { SpriteHost } from '../components/layout/SpriteHost'
+import { NavProgress } from '../components/layout/NavProgress'
+import { ClientRouter } from 'astro:transitions'
 import '../styles/global.css'
 import '../styles/docs-layout.scss'
 
@@ -25,11 +27,13 @@ const base = import.meta.env.BASE_URL
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description ?? 'Design System documentation'} />
     <title>{title} — Design System</title>
+    <ClientRouter />
   </head>
   <body>
-    <SpriteHost />
+    <SpriteHost transition:persist />
+    <NavProgress client:load transition:persist />
     <!-- Top header -->
-    <header class="header">
+    <header class="header" transition:persist>
       <div class="header-inner">
         <!-- Mobile: hamburger toggle -->
         <div class="nav-toggle-slot">
@@ -57,7 +61,7 @@ const base = import.meta.env.BASE_URL
 
     <!-- Main layout -->
     <div class="layout">
-      <aside class="sidebar-wrap" id="sidebar">
+      <aside class="sidebar-wrap" id="sidebar" transition:persist>
         <Sidebar />
       </aside>
       <main class="content" id="main-content" data-pagefind-body>
@@ -67,13 +71,18 @@ const base = import.meta.env.BASE_URL
 
     <script is:inline>
       // Apply initial theme synchronously to avoid FOUC. React ThemeToggle handles clicks.
+      // Also re-apply after each ClientRouter swap: the incoming <html> is SSR'd with
+      // the light class, so without this the theme flips to light on every navigation.
       (function () {
-        const stored = localStorage.getItem('ds-theme')
-        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        const theme = stored ?? system
-        const isDark = theme === 'dark'
-        document.documentElement.classList.toggle('sn-dark', isDark)
-        document.documentElement.classList.toggle('sn-light', !isDark)
+        function apply() {
+          const stored = localStorage.getItem('ds-theme')
+          const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          const isDark = (stored ?? system) === 'dark'
+          document.documentElement.classList.toggle('sn-dark', isDark)
+          document.documentElement.classList.toggle('sn-light', !isDark)
+        }
+        apply()
+        document.addEventListener('astro:after-swap', apply)
       })()
     </script>
 

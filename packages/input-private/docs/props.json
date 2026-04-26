@@ -1,6 +1,7 @@
 {
   "useClearButton": {
     "displayName": "useClearButton",
+    "propsTypeName": "UseClearButtonProps",
     "props": {
       "clearButtonRef": {
         "type": "RefObject<HTMLButtonElement | null>",
@@ -25,6 +26,9 @@
           "s",
           "m",
           "l"
+        ],
+        "typeRefs": [
+          "Size"
         ]
       },
       "disabled": {
@@ -32,28 +36,56 @@
         "required": false
       }
     },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "own": true
+      }
+    },
     "description": "Позволяет использовать кнопку сброса значения"
   },
   "useButtonNavigation": {
     "displayName": "useButtonNavigation",
+    "propsTypeName": "UseButtonNavigationProps",
     "props": {
       "setInputFocus": {
         "type": "(() => void)",
         "required": false,
-        "defaultValue": "() => inputRef.current?.focus()"
+        "defaultValue": "() => inputRef.current?.focus()",
+        "typeRefs": [
+          "setInputFocus"
+        ]
       },
       "inputRef": {
         "type": "RefObject<T | null>",
-        "required": true
+        "required": true,
+        "typeRefs": [
+          "T"
+        ]
       },
       "postfixButtons": {
         "type": "ButtonProps[]",
-        "required": true
+        "required": true,
+        "typeRefs": [
+          "InactiveItem",
+          "ActiveItem",
+          "ButtonProps"
+        ]
       },
       "prefixButtons": {
         "type": "ButtonProps[]",
         "required": false,
-        "defaultValue": "[]"
+        "defaultValue": "[]",
+        "typeRefs": [
+          "InactiveItem",
+          "ActiveItem",
+          "ButtonProps"
+        ]
       },
       "onButtonKeyDown": {
         "type": "KeyboardEventHandler<HTMLButtonElement>",
@@ -69,10 +101,80 @@
         "required": true
       }
     },
+    "relatedTypes": {
+      "InactiveItem": {
+        "kind": "interface",
+        "props": {
+          "active": {
+            "type": "false",
+            "required": true
+          },
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "render": {
+            "type": "(props: RenderInactiveButtonProps) => ReactElement",
+            "required": true,
+            "typeRefs": [
+              "render"
+            ]
+          },
+          "show": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "ButtonRef": {
+        "kind": "alias",
+        "type": "RefObject<HTMLButtonElement | null>",
+        "own": true
+      },
+      "ActiveItem": {
+        "kind": "interface",
+        "props": {
+          "active": {
+            "type": "true",
+            "required": true
+          },
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "ref": {
+            "type": "RefObject<HTMLButtonElement | null>",
+            "required": true,
+            "typeRefs": [
+              "ButtonRef"
+            ]
+          },
+          "show": {
+            "type": "boolean",
+            "required": true
+          },
+          "render": {
+            "type": "(props: RenderActiveButtonProps) => ReactElement",
+            "required": true,
+            "typeRefs": [
+              "render"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ButtonProps": {
+        "kind": "alias",
+        "type": "InactiveItem | ActiveItem",
+        "own": true
+      }
+    },
     "description": "Позволяет использовать клавиатуру для навигации по элементам управления"
   },
   "InputPrivate": {
     "displayName": "InputPrivate",
+    "propsTypeName": "InputPrivateProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -92,7 +194,10 @@
       "onChange": {
         "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
         "required": false,
-        "description": "Колбек смены значения"
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
       },
       "id": {
         "type": "string",
@@ -127,7 +232,10 @@
           "url"
         ],
         "defaultValue": "text",
-        "description": "Тип инпута"
+        "description": "Тип инпута",
+        "typeRefs": [
+          "Type"
+        ]
       },
       "inputMode": {
         "type": "enum",
@@ -143,7 +251,10 @@
           "none"
         ],
         "defaultValue": "text",
-        "description": "Режим работы экранной клавиатуры"
+        "description": "Режим работы экранной клавиатуры",
+        "typeRefs": [
+          "InputMode"
+        ]
       },
       "disabled": {
         "type": "boolean",
@@ -229,6 +340,34 @@
         "type": "MouseEventHandler<HTMLInputElement>",
         "required": false,
         "description": "Колбек обработки нажатия кнопки мыши"
+      }
+    },
+    "relatedTypes": {
+      "Type": {
+        "kind": "union",
+        "values": [
+          "number",
+          "text",
+          "tel",
+          "email",
+          "url",
+          "password"
+        ],
+        "own": true
+      },
+      "InputMode": {
+        "kind": "union",
+        "values": [
+          "search",
+          "text",
+          "none",
+          "decimal",
+          "numeric",
+          "tel",
+          "email",
+          "url"
+        ],
+        "own": true
       }
     },
     "description": "Input Private компонент"

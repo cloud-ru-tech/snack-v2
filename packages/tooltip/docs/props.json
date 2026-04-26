@@ -1,6 +1,7 @@
 {
   "Tooltip": {
     "displayName": "Tooltip",
+    "propsTypeName": "TooltipProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -67,7 +68,10 @@
       "fallbackPlacements": {
         "type": "Placement[]",
         "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "closeOnPopstate": {
         "type": "boolean",
@@ -87,7 +91,10 @@
           "clickAndFocusVisible"
         ],
         "defaultValue": "TRIGGER.HoverAndFocusVisible",
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
       },
       "placement": {
         "type": "enum",
@@ -107,18 +114,63 @@
           "bottom-end"
         ],
         "defaultValue": "PLACEMENT.Top",
-        "description": "Положение поповера относительно своего триггера (children)."
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "children": {
         "type": "ReactNode | ChildrenFunction",
         "required": false,
-        "description": "Триггер поповера (подробнее читайте ниже)"
+        "description": "Триггер поповера (подробнее читайте ниже)",
+        "typeRefs": [
+          "ChildrenFunction"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
       }
     },
     "description": "Tooltip — всплывающая подсказка при наведении.\nСтили и анатомия (отступы, скругления, макс. ширина) из"
   },
   "QuestionTooltip": {
     "displayName": "QuestionTooltip",
+    "propsTypeName": "QuestionTooltipProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -183,7 +235,10 @@
       "fallbackPlacements": {
         "type": "Placement[]",
         "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "closeOnPopstate": {
         "type": "boolean",
@@ -203,7 +258,10 @@
           "clickAndFocusVisible"
         ],
         "defaultValue": "TRIGGER.Hover",
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
       },
       "placement": {
         "type": "enum",
@@ -223,12 +281,18 @@
           "bottom-end"
         ],
         "defaultValue": "top",
-        "description": "Положение поповера относительно своего триггера (children)."
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "children": {
         "type": "ReactNode | ChildrenFunction",
         "required": false,
-        "description": "Триггер поповера (подробнее читайте ниже)"
+        "description": "Триггер поповера (подробнее читайте ниже)",
+        "typeRefs": [
+          "ChildrenFunction"
+        ]
       },
       "tooltipClassname": {
         "type": "string",
@@ -255,7 +319,56 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
       }
     },
     "description": "QuestionTooltip — тултип с триггером-иконкой «вопрос».\nПереиспользует компонент Tooltip, добавляя стандартный триггер в виде иконки."

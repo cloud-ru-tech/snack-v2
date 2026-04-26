@@ -12,6 +12,8 @@ import { Horizontal } from '../demos/examples/Horizontal'
 import HorizontalSrc from '../demos/examples/Horizontal.tsx?raw'
 import { Sizes } from '../demos/examples/Sizes'
 import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { WithIcon } from '../demos/examples/WithIcon'
+import WithIconSrc from '../demos/examples/WithIcon.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -22,11 +24,9 @@ import infoBlockDoc from './props.json'
 Типовой блок информации: заголовок, описание, опциональные иконка и футер с действиями. Используется в пустых состояниях, онбординге, подсказках и хедерах разделов.
 
 ## Демо
-
-<InfoBlockDemo client:load />
+<InfoBlockDemo client:visible />
 
 ## Когда использовать
-
 - Пустое состояние списка/таблицы («Нет данных», «Ничего не найдено»).
 - Подсказка внутри формы или карточки.
 - Заголовок раздела с подзаголовком и кнопками действия.
@@ -34,49 +34,26 @@ import infoBlockDoc from './props.json'
 
 Когда **не** нужен: если нужен только заголовок без описания — возьмите `Typography`. Если нужна полноценная карточка с рамкой — возьмите компонент-карточку.
 
-## Для дизайнеров
+## Анатомия
 
 ### Size
-
-| Size | Применение |
-|------|------------|
-| `s` | Встроенная подсказка, строка в списке |
-| `m` | Значение по умолчанию — карточки, формы |
-| `l` | Пустое состояние на весь экран, онбординг |
+Три размера: `s` — для плотных мест (карточки, тосты), `m` — дефолт, `l` — для крупных empty-states и лендинг-секций.
 
 ### Align
+`vertical` — иконка сверху, текст под ней (центрированные empty-states); `horizontal` — иконка слева, текст справа (строки списков, инлайн-подсказки).
 
-| Align | Эффект |
-|-------|--------|
-| `vertical` | Иконка сверху, текст снизу — вертикальная колонка |
-| `horizontal` | Иконка слева, текст справа — строка |
-
-### Do / Don't
-
-- ✅ Один короткий заголовок + 1–2 строки описания.
-- ❌ Простыня текста в `description` — уносите в отдельную страницу.
-- ✅ `footer` — максимум два действия (primary + secondary).
-- ❌ Три и больше кнопок в футере — пересматривайте иерархию.
-- ✅ Иконка поддерживает заголовок смыслово (предупреждение, успех, пустое состояние).
-- ❌ Декоративная иконка без связи с содержанием.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/info-block
 ```
 
 ```ts
 import { InfoBlock } from '@ds/info-block'
-import '@ds/info-block/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example title='Базовый блок' description='Заголовок и описание без иконки.' code={BasicSrc}>
-  <Basic client:load />
+  <Basic client:visible />
 </Example>
 
 <Example
@@ -84,24 +61,19 @@ import '@ds/info-block/style.css'
   description='Иконка и текст рядом, а не друг под другом.'
   code={HorizontalSrc}
 >
-  <Horizontal client:load />
+  <Horizontal client:visible />
 </Example>
 
 <Example title='Три размера' code={SizesSrc}>
-  <Sizes client:load />
+  <Sizes client:visible />
 </Example>
 
-### Props
+<Example title='С иконкой' description='Иконка через проп icon (IconPredefinedProps).' code={WithIconSrc}>
+  <WithIcon client:visible />
+</Example>
 
+## Props
 <PropsTable data={infoBlockDoc.InfoBlock} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-infoblock--playground' height={360} client:load />
-
-## Доступность
-
-- Заголовок и описание — простой текст в отдельных `<div>`; выравнивание визуальное.
-- Иконка, если декоративная, не помечена `role`/`aria-label` — её скринридер не объявит.
-- Фокус внутри `footer` ведёт себя как обычно для вложенных кнопок.
-- Цветовые акценты иконки не являются единственным носителем смысла — дублируйте состоянием в тексте.
+## Storybook
+<StorybookEmbed storyId='components-infoblock--playground' height={360} />

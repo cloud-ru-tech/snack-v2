@@ -26,75 +26,40 @@ import buttonDoc from './props.json'
 Группирует связанные действия формы или диалога: основное (`primary`), вторичное (`secondary`) и третичное (`tertiary`). Задаёт единый размер, расстояние между кнопками и отвечает за порядок, выравнивание и перенос при нехватке места.
 
 ## Демо
-
-<ButtonGroupDemo client:load />
+<ButtonGroupDemo client:visible />
 
 ## Когда использовать
-
 - В футере формы или диалога: «Сохранить / Отмена», «Продолжить / Назад».
 - Для toolbar-действий одного уровня, которые нужно визуально связать.
 - Когда нужно одинаково растянуть все кнопки на ширину контейнера (`filled`).
 
 Когда **не** подходит: если действий больше трёх — используйте меню или split-button. Если действия разного приоритета и логики (напр. «Удалить» + «Настройки») — оставляйте их как независимые `Button`.
 
-## Для дизайнеров
-
-### Порядок действий
-
-Внутри группы порядок фиксированный: `tertiary → secondary → primary` слева направо. При `vertical` раскладка использует `flex-direction: column-reverse` — primary оказывается сверху, tertiary снизу.
-
-| Слот | Роль | Типичный `view` |
-|------|------|-----------------|
-| `primaryAction` | Главное действие — подтверждение, submit | `filled` |
-| `secondaryAction` | Альтернатива / отмена | `outline` |
-| `tertiaryAction` | Вспомогательное — помощь, ссылки | `simple` |
-
-### Модификаторы
-
-| Проп | Эффект |
-|------|--------|
-| `vertical` | Вертикальный стек (column-reverse: primary сверху). Также включает `filled`-поведение для растягивания. |
-| `centered` | Группа центрируется по горизонтали в своём контейнере. |
-| `break` | `justify-content: space-between` — tertiary прижат слева, primary справа. |
-| `filled` | Кнопки растягиваются, занимая равную долю ширины контейнера. |
-
-### Do / Don't
-
-- ✅ Один `primary` на группу — как и в одиночном `Button`.
-- ❌ Два `filled`-`primary` в одной группе — нарушение иерархии.
-- ✅ На мобильных — `vertical` c растягиванием на всю ширину (включается автоматически).
-- ❌ Горизонтальная группа на узком экране без `break` или `vertical` — кнопки схлопываются.
-- ✅ `break` для wizard-футера: «Назад» слева, «Продолжить» справа.
-- ❌ `break` без третьего действия — он теряет смысл (двум кнопкам достаточно обычного gap).
-- ✅ Единый `size` на всю группу — задаётся пропом `size`, не на каждой кнопке.
-- ❌ Смешивать размеры внутри одной группы через `size` на `primaryAction` — пропы слота не позволяют задать `size`, и это осознанно.
-
-### Смотри также
-
+## Смотри также
 - [Button](/components/button/button) — сам элемент действия.
 - [Паттерны форм](/patterns/form-patterns) — футеры с ButtonGroup.
 
-## Для разработчиков
+## Анатомия
 
-### Установка
+### Size
+Единый размер всех кнопок в группе — задаётся на корне: `s` — для плотных поверхностей, `m` — дефолт, `l` — для крупных форм. Отдельные кнопки не могут переопределить размер.
 
+## Установка
 ```bash
 pnpm add @ds/button
 ```
 
 ```ts
 import { ButtonGroup } from '@ds/button'
-import '@ds/button/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example
   title='1. Пара главное + вторичное'
   description='Типичный футер формы'
   code={ButtonGroupPrimarySecondarySrc}
 >
-  <ButtonGroupPrimarySecondary client:load />
+  <ButtonGroupPrimarySecondary client:visible />
 </Example>
 
 <Example
@@ -102,7 +67,7 @@ import '@ds/button/style.css'
   description='tertiary / secondary / primary — порядок слева направо зафиксирован'
   code={ButtonGroupThreeActionsSrc}
 >
-  <ButtonGroupThreeActions client:load />
+  <ButtonGroupThreeActions client:visible />
 </Example>
 
 <Example
@@ -110,7 +75,7 @@ import '@ds/button/style.css'
   description='primary снизу — ближе к большому пальцу на мобильных'
   code={ButtonGroupVerticalSrc}
 >
-  <ButtonGroupVertical client:load />
+  <ButtonGroupVertical client:visible />
 </Example>
 
 <Example
@@ -118,7 +83,7 @@ import '@ds/button/style.css'
   description='Кнопки растягиваются на всю ширину контейнера'
   code={ButtonGroupFilledSrc}
 >
-  <ButtonGroupFilled client:load />
+  <ButtonGroupFilled client:visible />
 </Example>
 
 <Example
@@ -126,58 +91,11 @@ import '@ds/button/style.css'
   description='tertiary слева, primary справа — wizard-футер'
   code={ButtonGroupBreakSrc}
 >
-  <ButtonGroupBreak client:load />
+  <ButtonGroupBreak client:visible />
 </Example>
 
-### Слоты и пропсы кнопок
-
-Каждый слот (`primaryAction`, `secondaryAction`, `tertiaryAction`) принимает все пропсы `Button`, **кроме `size`** — размер задаётся на уровне группы. Это гарантирует единый масштаб внутри футера.
-
-```tsx
-<ButtonGroup
-  size='l'
-  primaryAction={{
-    label: 'Сохранить',
-    appearance: 'primary',
-    view: 'filled',
-    icon: <CheckSVG />,
-    loading: isSubmitting,
-  }}
-  secondaryAction={{
-    label: 'Отмена',
-    appearance: 'neutral',
-    view: 'outline',
-    onClick: onCancel,
-  }}
-/>
-```
-
-### Тестирование
-
-`ButtonGroup` пробрасывает support-пропсы (`data-test-id`, `aria-*`) на корневой контейнер. Каждый слот (`primaryAction`, `secondaryAction`, `tertiaryAction`) тоже принимает `data-test-id`, что позволяет адресовать конкретные кнопки из E2E-тестов.
-
-```tsx
-<ButtonGroup
-  data-test-id='footer-actions'
-  primaryAction={{ label: 'Save', 'data-test-id': 'footer-save' }}
-  secondaryAction={{ label: 'Cancel', 'data-test-id': 'footer-cancel' }}
-/>
-```
-
-### Известные ограничения
-
-- `tooltip` на отдельном действии пока не поддерживается — оборачивайте `Button` в `Tooltip` вручную, когда пакет `@ds/tooltip` появится в репозитории.
-
-### Props
-
+## Props
 <PropsTable data={buttonDoc.ButtonGroup} />
 
-### Storybook
-
-<StorybookEmbed storyId='components-button-buttongroup--playground' height={360} client:load />
-
-## Доступность
-
-- `ButtonGroup` — чистый layout-контейнер, семантика и клавиатура наследуются от вложенных `Button`.
-- Tab-порядок идёт в порядке DOM: `tertiary → secondary → primary`. При `vertical` визуальный порядок меняется на обратный через `flex-direction: column-reverse`, DOM-порядок сохраняется — скринридер и Tab обходят кнопки от tertiary к primary.
-- Цвет — не единственный носитель смысла: роль действия дублируется текстом лейбла и порядком слотов.
+## Storybook
+<StorybookEmbed storyId='components-button-buttongroup--playground' height={360} />

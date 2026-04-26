@@ -9,11 +9,29 @@ import { WithContent } from '../demos/examples/WithContent'
 import WithContentSrc from '../demos/examples/WithContent.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
 import tabsDoc from './props.json'
 
 # TabContent
 
 Контейнер контента. Рендерится только при совпадении `value` с активным табом. Формирует `<div role='tabpanel'>` и связывается с кнопкой таба через `aria-labelledby`.
+
+## Когда использовать
+
+- Для каждой вкладки, у которой есть видимый контент.
+- Когда нужен корректный `aria-labelledby`/`role='tabpanel'` из коробки.
+
+## Установка
+
+```bash
+pnpm add @ds/tabs
+```
+
+```ts
+import { Tabs } from '@ds/tabs'
+
+<Tabs.Content value='overview'>…</Tabs.Content>
+```
 
 ## Примеры использования
 
@@ -21,11 +39,10 @@ import tabsDoc from './props.json'
   <WithContent client:only="react" />
 </Example>
 
-## Доступность
-
-- Каждый `TabContent` — `<div role='tabpanel'>` с `aria-labelledby={value}`.
-- Неактивные панели не рендерятся в DOM — скринридер не попадает на скрытый контент.
-
 ## Props
 
 <PropsTable data={tabsDoc.TabContent} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tabs--playground' height={240} />

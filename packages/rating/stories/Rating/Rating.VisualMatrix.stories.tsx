@@ -27,7 +27,7 @@ const Template: StoryFn<StoryProps> = ({ appearance }) => (
     firstColumnHeader='Value'
     columnHeaders={sizes.map(s => s.toUpperCase())}
     rows={values.map(value => ({
-      variantLabel: 'Value',
+      variantLabel: value,
       cells: sizes.map(size => <RatingStar key={size} size={size} value={value} appearance={appearance} />),
     }))}
   />

@@ -1,6 +1,7 @@
 {
   "Popover": {
     "displayName": "Popover",
+    "propsTypeName": "PopoverProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -19,7 +20,10 @@
       "outsideClick": {
         "type": "boolean | OutsideClickHandler",
         "required": false,
-        "description": "Закрывать ли при клике вне поповера"
+        "description": "Закрывать ли при клике вне поповера",
+        "typeRefs": [
+          "OutsideClickHandler"
+        ]
       },
       "placement": {
         "type": "enum",
@@ -39,7 +43,10 @@
           "bottom-end"
         ],
         "defaultValue": "PLACEMENT.Top",
-        "description": "Положение поповера относительно своего триггера (children)."
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "className": {
         "type": "string",
@@ -69,7 +76,10 @@
           "clickAndFocusVisible"
         ],
         "defaultValue": "TRIGGER.Click",
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
       },
       "hoverDelayOpen": {
         "type": "number",
@@ -90,7 +100,10 @@
           "eq"
         ],
         "defaultValue": "auto",
-        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
+        "typeRefs": [
+          "PopoverWidthStrategy"
+        ]
       },
       "heightStrategy": {
         "type": "enum",
@@ -101,7 +114,10 @@
           "lte"
         ],
         "defaultValue": "auto",
-        "description": "Стратегия управления высотой контейнера поповера\n<br/> - `auto` - соответствует высоте контента,\n<br/> - `lte` - Less Than or Equal, равен высоте таргета или меньше ее, если контент в поповере меньше,\n<br/> - `eq` - Equal, строго равен высоте таргета."
+        "description": "Стратегия управления высотой контейнера поповера\n<br/> - `auto` - соответствует высоте контента,\n<br/> - `lte` - Less Than or Equal, равен высоте таргета или меньше ее, если контент в поповере меньше,\n<br/> - `eq` - Equal, строго равен высоте таргета.",
+        "typeRefs": [
+          "PopoverHeightStrategy"
+        ]
       },
       "closeOnEscapeKey": {
         "type": "boolean",
@@ -118,7 +134,10 @@
       "fallbackPlacements": {
         "type": "Placement[]",
         "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "disableSpanWrapper": {
         "type": "boolean",
@@ -138,12 +157,76 @@
       "children": {
         "type": "ReactNode | ChildrenFunction",
         "required": false,
-        "description": "Триггер поповера (подробнее читайте ниже)"
+        "description": "Триггер поповера (подробнее читайте ниже)",
+        "typeRefs": [
+          "ChildrenFunction"
+        ]
       },
       "content": {
         "type": "ReactNode",
         "required": true,
         "description": "Контент поповера (отображается внутри контейнера по макету)"
+      }
+    },
+    "relatedTypes": {
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "OutsideClickHandler": {
+        "kind": "alias",
+        "type": "(event: MouseEvent) => boolean",
+        "own": false
+      },
+      "PopoverWidthStrategy": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "gte",
+          "eq"
+        ],
+        "own": false
+      },
+      "PopoverHeightStrategy": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "eq",
+          "lte"
+        ],
+        "own": false
       }
     }
   }

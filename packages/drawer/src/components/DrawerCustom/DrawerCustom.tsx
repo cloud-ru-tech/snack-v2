@@ -1,5 +1,6 @@
 import 'rc-drawer/assets/index.css';
 
+import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, useModalOpenState } from '@ds/utils';
 import cn from 'classnames';
 import RcDrawerImport, { type DrawerProps as RcDrawerBaseProps } from 'rc-drawer';
@@ -74,6 +75,13 @@ export function DrawerCustom(props: DrawerCustomProps) {
 
   useModalOpenState(open, onClose, { closeOnPopstate });
 
+  // Fallback: if no explicit container, route the portal through PortalContextProvider
+  // (matches Modal behaviour). This lets callers scope the drawer to a local element and
+  // avoids the body-level scroll lock that rc-drawer applies when rendering into document.body.
+  const portalContextRef = usePortalContext();
+  const resolvedContainer =
+    container ?? (portalContextRef.current ? () => portalContextRef.current as HTMLElement : undefined);
+
   return (
     <DrawerCustomLayoutProvider value={{ heightAutoVertical }}>
       <RcDrawer
@@ -85,7 +93,7 @@ export function DrawerCustom(props: DrawerCustomProps) {
         open={open}
         onClose={onClose}
         push={push}
-        getContainer={container}
+        getContainer={resolvedContainer}
         placement={position}
         destroyOnClose
         className={cn(styles.drawer, className)}

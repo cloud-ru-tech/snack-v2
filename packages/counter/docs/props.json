@@ -1,6 +1,7 @@
 {
   "formatValue": {
     "displayName": "formatValue",
+    "propsTypeName": null,
     "props": {
       "value": {
         "type": "number",
@@ -19,10 +20,12 @@
         "type": "number",
         "required": true
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "Counter": {
     "displayName": "Counter",
+    "propsTypeName": "CounterProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -42,7 +45,10 @@
           "critical"
         ],
         "defaultValue": "primary",
-        "description": "Внешний вид"
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "variant": {
         "type": "enum",
@@ -53,7 +59,10 @@
           "count-k"
         ],
         "defaultValue": "count",
-        "description": "Вариант форматирования"
+        "description": "Вариант форматирования",
+        "typeRefs": [
+          "Variant"
+        ]
       },
       "size": {
         "type": "enum",
@@ -63,7 +72,10 @@
           "s"
         ],
         "defaultValue": "xs",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "plusLimit": {
         "type": "number",
@@ -84,7 +96,46 @@
           "decor"
         ],
         "defaultValue": "accent",
-        "description": "Семантический цвет"
+        "description": "Семантический цвет",
+        "typeRefs": [
+          "Color"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "critical"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "count",
+          "count-plus",
+          "count-k"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      },
+      "Color": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": true
       }
     }
   }

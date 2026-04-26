@@ -5,8 +5,9 @@ description: Системный баннер по верхней кромке п
 order: 2
 ---
 
-import { AlertTop } from '@ds/alert'
 import { AlertTopDemo } from '../demos/AlertTopDemo'
+import { SystemNotice } from '../demos/examples/SystemNotice'
+import SystemNoticeSrc from '../demos/examples/SystemNotice.tsx?raw'
 import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
 import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -18,7 +19,7 @@ import alertDoc from './props.json'
 
 ## Демо
 
-<AlertTopDemo client:load />
+<AlertTopDemo client:visible />
 
 ## Когда использовать
 
@@ -28,27 +29,37 @@ import alertDoc from './props.json'
 
 Когда **не** нужен: для сообщений, которые касаются конкретной страницы или формы — используйте `Alert`.
 
+## Анатомия
+
+### Appearance
+Семантическая роль топ-баннера: `neutral`/`primary` — нейтрально-информативная подача, `info` — информ-акцент, `success` — успех (редко в топ-баннере), `warning` — предупреждение (maintenance), `error` — критическое ограничение/инцидент.
+
+### Align
+Выравнивание заголовка и описания: `horizontal` — в одну строку (короткий анонс), `vertical` — заголовок над текстом (длинное описание + действие).
+
+### Size
+Плотность баннера: `s` — компактный, `m` — дефолт.
+
+## Установка
+
+```bash
+pnpm add @ds/alert
+```
+
+```ts
+import { AlertTop } from '@ds/alert'
+```
+
+## Примеры использования
+
+<Example title='Системное уведомление' code={SystemNoticeSrc}>
+  <SystemNotice client:visible />
+</Example>
+
 ## Props
 
 <PropsTable data={alertDoc.AlertTop} />
 
-## Пример
-
-<Example title='Системное уведомление'>
-  <AlertTop
-    appearance='info'
-    title='Плановые работы'
-    description='Сегодня с 22:00 до 23:00 возможны кратковременные перебои.'
-  />
-</Example>
-
 ## Storybook
 
-<StorybookEmbed storyId='components-alert-alerttop--playground' height={200} client:load />
-
-## Доступность
-
-- `role='alert'` — содержимое зачитывается скринридером при появлении.
-- Контраст цветной подложки и текста соответствует WCAG AA; не переопределяйте цвета.
-- Кнопки (actions, close) — нативные, работают с клавиатуры.
-- `AlertTop` не должен блокировать интерактивные элементы под ним: резервируйте под него вертикальное пространство в layout.
+<StorybookEmbed storyId='components-alert-alerttop--playground' height={200} />

@@ -48,10 +48,23 @@
 // ─── TOC ─────────────────────────────────────────────────────────────────────
 
 .toc {
+  scroll-behavior: smooth;
+
+  // thinner scrollbar — TOC should not compete with page scroll visually
+  scrollbar-width: thin;
+
   position: sticky;
   top: calc(#{l.$docs-header-height} + #{base.$sn-adaptive-spacing-interval-l});
+
+  overflow-y: auto;
+
+  max-height: calc(100vh - #{l.$docs-header-height} - #{base.$sn-adaptive-spacing-interval-l} * 2);
   padding-left: 0;
   border-left: 1px solid base.$sn-theme-color-neutral-decor;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 }
 
 .toc-label {
@@ -93,6 +106,50 @@
 .toc-link--active {
   border-left-color: base.$sn-theme-color-primary-accent !important;
   color: base.$sn-theme-color-primary-accent !important;
+}
+
+.toc-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+
+  margin-left: base.$sn-primitive-dimension-12;
+
+  list-style: none;
+}
+
+.toc-link--sub {
+  padding-top: base.$sn-primitive-dimension-2;
+  padding-bottom: base.$sn-primitive-dimension-2;
+  color: base.$sn-theme-color-neutral-text;
+  opacity: 0.75;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.toc-sublist--deep {
+  margin-left: base.$sn-primitive-dimension-12;
+}
+
+.toc-link--deep {
+  opacity: 0.6;
+}
+
+// Anchor-only headings injected by remark-example-headings: present in the
+// DOM for the TOC + scroll target, but visually hidden so the real title in
+// the Example's own figcaption remains the visible one.
+.doc .anchor-heading {
+  overflow: hidden;
+  display: block;
+
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(50%);
 }
 
 // ─── Page navigation ─────────────────────────────────────────────────────────
@@ -170,12 +227,16 @@
   .doc {
     padding: base.$sn-adaptive-spacing-interval-l base.$sn-adaptive-spacing-interval-l base.$sn-primitive-dimension-48;
   }
+}
 
-  .doc h1 {
-    @include base.composite-var(base.$sn-regular-headline-m);
-  }
+@layer docs-prose {
+  @media (max-width: l.$docs-bp-small-mobile) {
+    .doc h1 {
+      @include base.composite-var(base.$sn-regular-headline-m);
+    }
 
-  .doc h1 + p {
-    @include base.composite-var(base.$sn-regular-body-m);
+    .doc h1 + p {
+      @include base.composite-var(base.$sn-regular-body-m);
+    }
   }
 }

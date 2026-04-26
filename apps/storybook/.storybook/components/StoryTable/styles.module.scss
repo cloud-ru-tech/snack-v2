@@ -17,13 +17,19 @@
 
 .table {
   border-collapse: collapse;
+
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid
+    base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+
   font-size: base.$sn-primitive-font-fontSize-12;
   color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .th {
   padding: base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-m;
-  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid
+  border: base.$sn-primitive-strokeWeight-strokeThin solid
     base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
 
   font-size: base.$sn-primitive-font-fontSize-11;
@@ -31,6 +37,8 @@
   color: base.$sn-theme-color-neutral-text;
   text-align: center;
   text-transform: uppercase;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
 }
 
 .thFirst {
@@ -40,7 +48,7 @@
 
 .td {
   padding: base.$sn-adaptive-spacing-interval-m;
-  border-bottom: base.$sn-primitive-strokeWeight-strokeThin solid
+  border: base.$sn-primitive-strokeWeight-strokeThin solid
     base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
   vertical-align: middle;
 }
@@ -51,6 +59,8 @@
   color: base.$sn-theme-color-neutral-text;
   text-align: left;
   white-space: nowrap;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
 }
 
 .cellInner {

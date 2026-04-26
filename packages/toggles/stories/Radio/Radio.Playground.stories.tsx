@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
@@ -36,14 +36,15 @@ const meta: Meta<typeof Radio> = {
 export default meta;
 type Story = StoryObj<typeof Radio>;
 
-function PlaygroundRender(args: RadioProps) {
+const Template: StoryFn<RadioProps> = args => {
   const [{ checked }, updateArgs] = useArgs<RadioProps>();
+
   return <Radio {...args} checked={checked} onChange={next => updateArgs({ checked: next })} />;
-}
+};
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => <PlaygroundRender {...args} />,
+  render: Template,
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId('radio')).toBeVisible();
   },

@@ -1,13 +1,32 @@
-import { Skeleton } from '@ds/skeleton';
+import { Skeleton, SkeletonProps } from '@ds/skeleton';
 
 import skeletonDoc from '../docs/props.json';
 
 import { Canvas } from '~docs/components/Canvas';
 
+/**
+ * Canvas text controls всегда возвращают строку. Skeleton применяет
+ * width/height/borderRadius как inline-CSS — поэтому "240" должен стать 240px.
+ * Пропускаем через адаптер: чистые числа → number, иначе оставляем строку как CSS-value.
+ */
+function toCssSize(value: SkeletonProps['width']): SkeletonProps['width'] {
+  if (typeof value !== 'string') return value;
+  const trimmed = value.trim();
+  if (trimmed === '') return undefined;
+  if (/^-?\d+(\.\d+)?$/.test(trimmed)) return Number(trimmed);
+  return trimmed;
+}
+
+function SkeletonAdapter({ width, height, borderRadius, ...rest }: SkeletonProps) {
+  return (
+    <Skeleton {...rest} width={toCssSize(width)} height={toCssSize(height)} borderRadius={toCssSize(borderRadius)} />
+  );
+}
+
 export function SkeletonDemo() {
   return (
     <Canvas
-      component={Skeleton}
+      component={SkeletonAdapter}
       componentName='Skeleton'
       componentDoc={skeletonDoc.Skeleton}
       defaultProps={{

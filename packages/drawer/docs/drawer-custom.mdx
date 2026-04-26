@@ -26,31 +26,29 @@ import drawerDoc from './props.json'
 
 Во всех остальных случаях предпочтительнее `Drawer` — он дешевле в поддержке и даёт консистентные отступы.
 
-## Пример
+## Установка
+
+```bash
+pnpm add @ds/drawer
+```
+
+```ts
+import { DrawerCustom } from '@ds/drawer'
+```
+
+## Анатомия
+
+### Position
+Сторона, с которой выезжает панель: `right` — стандартный side-panel (по умолчанию), `left` — для навигации и фильтров, `top`/`bottom` — для уведомлений и bottom-sheets на мобильных.
+
+### Width
+Предустановленная ширина панели для `position: left | right`: `s` — для узких форм и фильтров, `m` — дефолт, `l` — для сложных форм и просмотрщиков. Также принимает число или строку CSS для точного контроля.
+
+## Примеры использования
 
 <Example title='Ручная композиция' description='Header + Body + Footer собираются вручную.' code={CustomCompositionSrc}>
-  <CustomComposition client:load />
+  <CustomComposition client:visible />
 </Example>
-
-## Субкомпоненты
-
-### DrawerCustom.Header
-
-Шапка с заголовком, подзаголовком, кнопкой «назад» и слотом после заголовка.
-
-<PropsTable data={drawerDoc['DrawerCustom.Header']} />
-
-### DrawerCustom.Body
-
-Прокручиваемое тело панели (использует `@ds/scroll`).
-
-<PropsTable data={drawerDoc['DrawerCustom.Body']} />
-
-### DrawerCustom.Footer
-
-Фиксированный футер для групп кнопок и основных действий.
-
-<PropsTable data={drawerDoc['DrawerCustom.Footer']} />
 
 ## Props
 
@@ -58,4 +56,4 @@ import drawerDoc from './props.json'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-drawer-drawercustom--playground' height={480} client:load />
+<StorybookEmbed storyId='components-drawer-drawercustom--playground' height={480} />

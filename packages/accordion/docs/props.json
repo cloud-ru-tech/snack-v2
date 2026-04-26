@@ -1,6 +1,7 @@
 {
   "Accordion": {
     "displayName": "Accordion",
+    "propsTypeName": "AccordionProps",
     "props": {
       "expandedDefault": {
         "type": "string | string[]",
@@ -15,7 +16,10 @@
       "onExpandedChange": {
         "type": "((value: string) => void) | ((value: string[]) => void) | undefined",
         "required": false,
-        "description": "Controlled обработчик измения состояния"
+        "description": "Controlled обработчик измения состояния",
+        "typeRefs": [
+          "onExpandedChange"
+        ]
       },
       "selectionMode": {
         "type": "enum",
@@ -26,10 +30,12 @@
         ],
         "description": "Режим работы аккордиона"
       }
-    }
+    },
+    "relatedTypes": {}
   },
   "CollapseBlock": {
     "displayName": "CollapseBlock",
+    "propsTypeName": "CollapseBlockProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -69,7 +75,10 @@
           "elevated"
         ],
         "defaultValue": "simple",
-        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)"
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
+        "typeRefs": [
+          "View"
+        ]
       },
       "chevron": {
         "type": "enum",
@@ -79,7 +88,10 @@
           "after"
         ],
         "defaultValue": "after",
-        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -93,7 +105,10 @@
           "blue"
         ],
         "defaultValue": "neutral",
-        "description": "Цветовая схема акрила"
+        "description": "Цветовая схема акрила",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "component": {
         "type": "enum",
@@ -103,7 +118,10 @@
           "accordionSecondary",
           "accordionTertiary"
         ],
-        "description": "Уровень аккордеона: размер типографики и отступы"
+        "description": "Уровень аккордеона: размер типографики и отступы",
+        "typeRefs": [
+          "Component"
+        ]
       },
       "keepMounted": {
         "type": "boolean",
@@ -112,10 +130,51 @@
         "description": "Оставлять ли контент в DOM при сворачивании"
       }
     },
+    "relatedTypes": {
+      "View": {
+        "kind": "union",
+        "values": [
+          "outline",
+          "simple",
+          "elevated"
+        ],
+        "own": true
+      },
+      "Chevron": {
+        "kind": "union",
+        "values": [
+          "before",
+          "after"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "yellow",
+          "green",
+          "blue"
+        ],
+        "own": true
+      },
+      "Component": {
+        "kind": "union",
+        "values": [
+          "accordionPrimary",
+          "accordionSecondary",
+          "accordionTertiary"
+        ],
+        "own": true
+      }
+    },
     "description": "Элемент аккордеона: заголовок, шеврон и раскрываемая область с контентом."
   },
   "CollapseBlockPrimary": {
     "displayName": "CollapseBlockPrimary",
+    "propsTypeName": "CollapseBlockPropsWithoutComponent",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -154,7 +213,10 @@
           "outline",
           "elevated"
         ],
-        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)"
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
+        "typeRefs": [
+          "View"
+        ]
       },
       "chevron": {
         "type": "enum",
@@ -163,7 +225,10 @@
           "before",
           "after"
         ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -176,17 +241,52 @@
           "green",
           "blue"
         ],
-        "description": "Цветовая схема акрила"
+        "description": "Цветовая схема акрила",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "keepMounted": {
         "type": "boolean",
         "required": false,
         "description": "Оставлять ли контент в DOM при сворачивании"
+      }
+    },
+    "relatedTypes": {
+      "View": {
+        "kind": "union",
+        "values": [
+          "outline",
+          "simple",
+          "elevated"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "yellow",
+          "green",
+          "blue"
+        ],
+        "own": true
+      },
+      "Chevron": {
+        "kind": "union",
+        "values": [
+          "before",
+          "after"
+        ],
+        "own": true
       }
     }
   },
   "CollapseBlockSecondary": {
     "displayName": "CollapseBlockSecondary",
+    "propsTypeName": "CollapseBlockPropsWithoutComponent",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -225,7 +325,10 @@
           "outline",
           "elevated"
         ],
-        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)"
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
+        "typeRefs": [
+          "View"
+        ]
       },
       "chevron": {
         "type": "enum",
@@ -234,7 +337,10 @@
           "before",
           "after"
         ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
       },
       "appearance": {
         "type": "enum",
@@ -247,17 +353,52 @@
           "green",
           "blue"
         ],
-        "description": "Цветовая схема акрила"
+        "description": "Цветовая схема акрила",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "keepMounted": {
         "type": "boolean",
         "required": false,
         "description": "Оставлять ли контент в DOM при сворачивании"
       }
+    },
+    "relatedTypes": {
+      "View": {
+        "kind": "union",
+        "values": [
+          "outline",
+          "simple",
+          "elevated"
+        ],
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "yellow",
+          "green",
+          "blue"
+        ],
+        "own": true
+      },
+      "Chevron": {
+        "kind": "union",
+        "values": [
+          "before",
+          "after"
+        ],
+        "own": true
+      }
     }
   },
   "CollapseBlockTertiary": {
     "displayName": "CollapseBlockTertiary",
+    "propsTypeName": "CollapseBlockTertiaryProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -295,12 +436,25 @@
           "before",
           "after"
         ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
       },
       "keepMounted": {
         "type": "boolean",
         "required": false,
         "description": "Оставлять ли контент в DOM при сворачивании"
+      }
+    },
+    "relatedTypes": {
+      "Chevron": {
+        "kind": "union",
+        "values": [
+          "before",
+          "after"
+        ],
+        "own": true
       }
     }
   }

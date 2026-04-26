@@ -1,0 +1,79 @@
+---
+title: Drawer
+package: '@ds/drawer'
+description: Панель, выезжающая со стороны экрана — пресетная шапка, прокручиваемое тело и опциональный футер.
+order: 1
+---
+
+import { DrawerDemo } from '../demos/DrawerDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithFooter } from '../demos/examples/WithFooter'
+import WithFooterSrc from '../demos/examples/WithFooter.tsx?raw'
+import { WithMedia } from '../demos/examples/WithMedia'
+import WithMediaSrc from '../demos/examples/WithMedia.tsx?raw'
+import { HeightAuto } from '../demos/examples/HeightAuto'
+import HeightAutoSrc from '../demos/examples/HeightAuto.tsx?raw'
+import { NestedDrawer } from '../demos/examples/NestedDrawer'
+import NestedDrawerSrc from '../demos/examples/NestedDrawer.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_DRAWER } from '~docs/lib/figma'
+import drawerDoc from './props.json'
+
+# Drawer
+
+Панель, выезжающая со стороны экрана — для дополнительного контекста, фильтров, форм и пошаговых сценариев. `Drawer` собирает шапку (медиа, заголовок, подзаголовок, back-button, слот после заголовка), прокручиваемое тело и опциональный футер. Для ручной композиции используйте [`DrawerCustom`](./drawer-custom).
+
+## Демо
+<DrawerDemo client:visible />
+
+## Когда использовать
+- Форма, фильтры или детали, которые не помещаются в основной поток и требуют отдельного контекста.
+- Пошаговый сценарий с кнопкой «назад» в шапке — возвращение между экранами без потери контекста.
+- Нижний лист (bottom sheet) для компактных действий и подтверждений на мобильных устройствах.
+- Стек из двух-трёх связанных панелей через `nestedDrawer`.
+
+Когда **не** нужен: критическое подтверждение, блокирующее остальной интерфейс (берите `Modal`), всплывающий поповер рядом с элементом (`Popover`), тост-уведомление (не блокирует UI).
+
+## Figma
+<FigmaEmbed node={FIGMA_DRAWER} title='Drawer — Snack Ui Kit variables' />
+
+## Установка
+```bash
+pnpm add @ds/drawer
+```
+
+```ts
+import { Drawer, POSITION, WIDTH } from '@ds/drawer'
+```
+
+## Примеры использования
+<Example title='Базовое использование' description='Контролируемое open/onClose, footer из `ButtonGroup`.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Критическое действие' description='Critical primary, neutral outline secondary.' code={WithFooterSrc}>
+  <WithFooter client:visible />
+</Example>
+
+<Example title='С медиа-слотом' description='`media` рендерится над шапкой на всю ширину панели.' code={WithMediaSrc}>
+  <WithMedia client:visible />
+</Example>
+
+<Example title='Bottom sheet' description='`position="bottom"` + `heightAuto` — высота по контенту.' code={HeightAutoSrc}>
+  <HeightAuto client:visible />
+</Example>
+
+<Example title='Вложенный Drawer' description='Родитель сдвигается влево при открытии дочернего.' code={NestedDrawerSrc}>
+  <NestedDrawer client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={drawerDoc.Drawer} />
+
+## Storybook
+<StorybookEmbed storyId='components-drawer-drawer--playground' height={480} />

@@ -1,0 +1,11 @@
+@use '../../styles/layout' as l;
+
+.root {
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 1000;
+  top: l.$docs-header-height;
+  right: 0;
+  left: 0;
+}

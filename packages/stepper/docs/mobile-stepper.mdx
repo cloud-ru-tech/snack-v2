@@ -16,10 +16,10 @@ import stepperDoc from './props.json'
 
 Мобильный вариант степпера. Занимает меньше по высоте: вместо ряда карточек — прогресс-трек и заголовок активного шага. API идентично `Stepper`, поэтому render-prop и валидатор работают так же.
 
-## Пример
+## Примеры использования
 
 <Example title='Мобильный flow' description='Три шага с заголовками и описаниями' code={MobileFlowSrc}>
-  <MobileFlow client:load />
+  <MobileFlow client:visible />
 </Example>
 
 ## Когда использовать
@@ -30,6 +30,16 @@ import stepperDoc from './props.json'
 
 Для автоматического переключения между desktop и mobile используйте [`AdaptiveStepper`](/components/stepper/adaptive-stepper).
 
+## Установка
+
+```bash
+pnpm add @ds/stepper
+```
+
+```ts
+import { MobileStepper } from '@ds/stepper'
+```
+
 ## Props
 
 <PropsTable data={stepperDoc.MobileStepper} />
@@ -37,3 +47,8 @@ import stepperDoc from './props.json'
 ## Storybook
 
 <StorybookEmbed storyId='components-stepper--mobile' />
+
+## Анатомия
+
+### Step state
+Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.

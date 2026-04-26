@@ -9,10 +9,8 @@ order: 0
 
 Пакет `@ds/accordion` даёт контейнер `Accordion` и три уровня раскрываемых блоков `CollapseBlockPrimary` / `CollapseBlockSecondary` / `CollapseBlockTertiary`. Контейнер отвечает за режим выбора (`single` / `multiple`) и controlled/uncontrolled состояние, блоки — за внешний вид и иерархию на странице.
 
-## Состав пакета
-
-- [**Accordion**](/components/accordion/accordion) — контейнер-группа. Управляет раскрытием (controlled `expanded` или uncontrolled `expandedDefault`) и режимом `single` / `multiple`. Не имеет собственного визуала.
-- [**CollapseBlock**](/components/accordion/collapse-block) — семейство раскрываемых блоков: `Primary` (l), `Secondary` (m), `Tertiary` (s). Общие пропсы `title`, `subTitle`, `afterTitle`, `view`, `appearance`, `chevron`.
+- [**Accordion**](/components/accordion/accordion) — контейнер раскрываемых блоков с режимами `single` / `multiple` и controlled/uncontrolled API.
+- [**CollapseBlock**](/components/accordion/collapse-block) — раскрываемые блоки трёх уровней: `Primary`, `Secondary`, `Tertiary` — для иерархии разделов на странице.
 
 ## Установка
 
@@ -22,7 +20,6 @@ pnpm add @ds/accordion
 
 ```ts
 import { Accordion } from '@ds/accordion'
-import '@ds/accordion/style.css'
 ```
 
 ## Когда использовать
@@ -35,13 +32,6 @@ import '@ds/accordion/style.css'
 | Разрешить одновременно несколько открытых блоков | `selectionMode='multiple'` |
 
 Когда **не** нужен аккордеон: короткие списки (≤ 3 пунктов), критичный контент, который пользователь не должен пропустить, и навигация — для неё используйте `Tabs`.
-
-## Общие принципы
-
-- **Один уровень = одна роль.** `Primary` — верхнеуровневые разделы, `Secondary` — подразделы внутри раздела, `Tertiary` — плоские детали без вложенности. Не смешивайте уровни в пределах одной группы.
-- **Контролируемость — осознанный выбор.** Для FAQ и длинных форм достаточно `expandedDefault`. Controlled режим (`expanded` + `onExpandedChange`) нужен, только если состояние синхронизируется с URL / query / внешним стором.
-- **Шеврон справа — дефолт.** Левый шеврон (`chevron='before'`) уместен в плотных сетках, где справа стоит `afterTitle`.
-- **Анимация фиксирована.** Длительность раскрытия — `ANIMATION_DURATION = 300ms`. Не переопределяйте её CSS-переменной снаружи без согласования.
 
 ## Figma
 

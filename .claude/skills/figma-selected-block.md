@@ -84,7 +84,7 @@ flex-direction: row;
 
 **CSS-in** для label-слоя схлопнул 5 typography-переменных в один `@include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm')` + оставил `color: base.$sn-theme-color-primary-onaccent`.
 
-Практика: REST даёт скелет с anatomy-мистерами, CSS-in добирает цвета/state-layer/типографику с конкретной ноды через MCP.
+Практика: REST даёт скелет с anatomy, CSS-in добирает цвета/state-layer/типографику с конкретной ноды через MCP.
 
 ## Частые ошибки
 

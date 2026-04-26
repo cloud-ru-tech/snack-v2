@@ -5,8 +5,9 @@ description: Круговой детерминированный индикат�
 order: 2
 ---
 
-import { ProgressBarCircle } from '@ds/progress-bar'
 import { ProgressBarCircleDemo } from '../demos/ProgressBarCircleDemo'
+import { CircleStatic } from '../demos/examples/CircleStatic'
+import CircleStaticSrc from '../demos/examples/CircleStatic.tsx?raw'
 import { CircleAppearances } from '../demos/examples/CircleAppearances'
 import CircleAppearancesSrc from '../demos/examples/CircleAppearances.tsx?raw'
 import { Example } from '~docs/components/Example'
@@ -19,83 +20,50 @@ import progressBarDoc from './props.json'
 Круговой детерминированный индикатор. Занимает минимум места и хорошо читается в плотных интерфейсах — рядом с аватаром при upload, в ячейке таблицы, в карточке файла.
 
 ## Демо
-
-<ProgressBarCircleDemo client:load />
+<ProgressBarCircleDemo client:visible />
 
 ## Когда использовать
-
 - Индикатор загрузки рядом с аватаром или миниатюрой.
 - Прогресс в ячейках таблицы или в списке файлов.
 - Там, где линейный индикатор слишком широкий.
 
 Когда **не** нужен `ProgressBarCircle`: если есть горизонтальное место и вы хотите показать явный процент рядом — возьмите линейный [`ProgressBar`](/components/progress-bar/progress-bar).
 
-## Для дизайнеров
+## Анатомия
 
-### Appearance — семантика цвета
+### Size
+`xs` — дефолт, для ячеек таблиц и плотных списков; `s` — для карточек и более заметных мест.
 
-Набор `appearance` совпадает с [`ProgressBar`](/components/progress-bar/progress-bar#appearance--семантика-цвета).
+### Appearance
+Семантика цвета заполненной дуги: `primary` — бренд/нейтральный; `red` — ошибка/превышение лимита; `orange`/`yellow` — предупреждение; `green` — успех; `blue`, `violet`, `pink` — декоративные категории.
 
-<Example
-  title='Три appearance'
-  description='Primary, успех и ошибка'
-  code={CircleAppearancesSrc}
->
-  <CircleAppearances client:load />
-</Example>
-
-### Size — плотность
-
-| Size | Диаметр | Сценарий |
-|------|---------|----------|
-| `xs` | 16px | Внутри ячеек таблицы, рядом с меткой |
-| `s` | 24px | На карточках файлов, на аватарах |
-
-### Do / Don't
-
-- ✅ Используйте, когда места для линейного индикатора нет.
-- ❌ Не используйте как spinner — `ProgressBarCircle` всегда детерминированный.
-- ✅ Помещайте индикатор рядом с объектом, к которому он относится (файл, аватар).
-- ❌ Не ставьте круговой индикатор в широкий горизонтальный контейнер — возьмите `ProgressBar`.
-
-## Для разработчиков
-
-### Установка
-
+## Установка
 ```bash
 pnpm add @ds/progress-bar
 ```
 
 ```ts
 import { ProgressBarCircle } from '@ds/progress-bar'
-import '@ds/progress-bar/style.css'
 ```
 
-### Примеры использования
-
+## Примеры использования
 <Example
   title='Значение 75%'
-  code={`import { ProgressBarCircle } from '@ds/progress-bar'\n\nexport function Example() {\n  return <ProgressBarCircle progress={75} />\n}`}
+  code={CircleStaticSrc}
 >
-  <ProgressBarCircle progress={75} />
+  <CircleStatic client:visible />
 </Example>
 
-### States
+<Example
+  title='Три appearance'
+  description='Primary, успех и ошибка'
+  code={CircleAppearancesSrc}
+>
+  <CircleAppearances client:visible />
+</Example>
 
-- **0%** — кольцо видно полностью как фон, заполнения нет.
-- **100%** — кольцо полностью заполнено цветом `appearance`.
-- Значения вне диапазона clamp'ятся до `[0, 100]`.
-
-### Props
-
+## Props
 <PropsTable data={progressBarDoc.ProgressBarCircle} />
 
-### Storybook
-
+## Storybook
 <StorybookEmbed storyId='components-progressbar-progressbarcircle--playground' height={360} />
-
-## Доступность
-
-- `role="progressbar"` + `aria-valuenow/min/max` — идентично линейному `ProgressBar`.
-- Цвет не единственный носитель статуса — дублируйте текстом рядом или `aria-label`.
-- Компонент визуально мелкий — следите за контрастом токенов: `appearance="yellow"` на светлом фоне требует проверки.

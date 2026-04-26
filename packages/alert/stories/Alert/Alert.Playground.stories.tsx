@@ -11,11 +11,11 @@ const meta: Meta<typeof Alert> = {
   args: {
     title: 'Alert title',
     description: 'Alert description text',
-    appearance: APPEARANCE.Neutral,
+    appearance: APPEARANCE.Info,
     size: SIZE.M,
     align: ALIGN.Horizontal,
     icon: true,
-    outline: false,
+    outline: true,
     collapsible: false,
     'data-test-id': ALERT_TEST_ID,
   },

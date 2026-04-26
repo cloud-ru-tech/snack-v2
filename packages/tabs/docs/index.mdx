@@ -5,22 +5,21 @@ description: Пакет табов — compound-компонент Tabs c суб
 order: 0
 ---
 
-import { TabsDemo } from '../demos/TabsDemo'
-
 # Tabs
 
 Пакет `@ds/tabs` — compound-компонент для переключения между разделами одного уровня. Родитель `Tabs` владеет состоянием; `TabBar`, `Tab`, `TabContent` читают его из контекста.
 
-## Демо
+- [**Tabs**](/components/tabs/tabs) — корневой компонент, хранит активную вкладку и раздаёт её через контекст.
+- [**TabBar**](/components/tabs/tab-bar) — контейнер для списка табов, управляет скроллингом и индикатором.
+- [**Tab**](/components/tabs/tab) — отдельная кнопка-вкладка.
+- [**TabContent**](/components/tabs/tab-content) — панель с содержимым активной вкладки.
 
-<TabsDemo client:only="react" />
+## Когда использовать
 
-## Состав пакета
+- 2–7 связанных разделов одного уровня иерархии.
+- Переключение между представлениями одного объекта (обзор / настройки / история).
 
-- [**Tabs**](/components/tabs/tabs) — корневой контейнер с состоянием выбранного таба.
-- [**TabBar**](/components/tabs/tab-bar) — панель переключателей; задаёт размер, ориентацию и позицию маркера.
-- [**Tab**](/components/tabs/tab) — одна вкладка внутри TabBar; поддерживает label и counter.
-- [**TabContent**](/components/tabs/tab-content) — контейнер контента, рендерится только для активного value.
+Когда **не** подходит: для иерархической навигации используйте `Sidebar`, для шагов процесса — `Stepper`, для фильтров — `Chip`/`Select`.
 
 ## Установка
 
@@ -30,31 +29,4 @@ pnpm add @ds/tabs
 
 ```ts
 import { Tabs } from '@ds/tabs'
-import '@ds/tabs/style.css'
 ```
-
-## Минимальный сценарий
-
-```tsx
-<Tabs defaultValue='overview'>
-  <Tabs.TabBar>
-    <Tabs.Tab value='overview' label='Overview' />
-    <Tabs.Tab value='settings' label='Settings' />
-  </Tabs.TabBar>
-  <Tabs.TabContent value='overview'>Overview</Tabs.TabContent>
-  <Tabs.TabContent value='settings'>Settings</Tabs.TabContent>
-</Tabs>
-```
-
-## Когда использовать
-
-- 2–7 связанных разделов одного уровня иерархии.
-- Переключение между представлениями одного объекта (обзор / настройки / история).
-
-Когда **не** подходит: для иерархической навигации используйте `Sidebar`, для шагов процесса — `Stepper`, для фильтров — `Chip`/`Select`.
-
-## Общие принципы
-
-- **Один primary Tabs на экран.** Не делайте «табы в табах» — это сигнал переделать иерархию.
-- **Горизонтальный TabBar** — основной паттерн. Вертикальный — для settings-подобных экранов.
-- **Counter — для содержательного сигнала** (непрочитанные, черновики), а не ради украшения.

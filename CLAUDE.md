@@ -106,7 +106,7 @@ packages/<pkg>/
 - `/up-cloud-deps` — обновить пакеты скоупов `@snack-uikit/*` / `@cloud-ru/*`
 - `/add-stories <pkg>` — сгенерить Playground + VisualMatrix (+ оправданные доп. stories) в `packages/<pkg>/stories/<Name>/`
 - `/add-tests <pkg>` — сгенерить набор Playwright E2E specs в `packages/<pkg>/__test__/<Name>/` по tier'у
-- `/add-docs <pkg>` — сгенерить `docs/index.mdx` + demos для `packages/<pkg>`
+- `/add-docs <pkg>` — Сгенерировать `docs/index.mdx` + demos для `packages/<pkg>`
 
 ## Stories / Docs конвенции
 

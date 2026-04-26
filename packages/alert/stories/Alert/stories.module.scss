@@ -1,8 +1,9 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .container {
-  width: 480px;
-  max-width: 100%;
+  width: 100%;
+  min-width: 240px;
+  max-width: 480px;
 }
 
 .wide {

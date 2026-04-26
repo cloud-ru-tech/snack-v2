@@ -1,6 +1,7 @@
 {
   "Avatar": {
     "displayName": "Avatar",
+    "propsTypeName": "AvatarProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -31,7 +32,10 @@
           "pink"
         ],
         "defaultValue": "neutral",
-        "description": "Внешний вид (цвет)"
+        "description": "Внешний вид (цвет)",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "size": {
         "type": "enum",
@@ -46,7 +50,10 @@
           "10xl"
         ],
         "defaultValue": "s",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "shape": {
         "type": "enum",
@@ -56,7 +63,10 @@
           "square"
         ],
         "defaultValue": "round",
-        "description": "Форма: круглая или квадратная"
+        "description": "Форма: круглая или квадратная",
+        "typeRefs": [
+          "Shape"
+        ]
       },
       "showTwoSymbols": {
         "type": "boolean",
@@ -68,6 +78,44 @@
         "type": "string",
         "required": false,
         "description": "CSS-класс"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "m",
+          "l",
+          "xs",
+          "3xl",
+          "6xl",
+          "10xl"
+        ],
+        "own": true
+      },
+      "Shape": {
+        "kind": "union",
+        "values": [
+          "round",
+          "square"
+        ],
+        "own": true
       }
     },
     "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (round) или квадратная (square)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink"

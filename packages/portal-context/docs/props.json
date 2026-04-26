@@ -1,11 +1,16 @@
 {
   "PortalContextProvider": {
     "displayName": "PortalContextProvider",
+    "propsTypeName": "PortalContextProviderProps",
     "props": {
       "root": {
         "type": "RefObject<HTMLElement | null>",
-        "required": false
+        "required": false,
+        "typeRefs": [
+          "T"
+        ]
       }
-    }
+    },
+    "relatedTypes": {}
   }
 }
