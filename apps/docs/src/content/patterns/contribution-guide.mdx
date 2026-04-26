@@ -127,10 +127,10 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
 
 ## Как работают стили
 
-`styles.module.scss` + токены `@cloud-ru/figma-variables`:
+`styles.module.scss` + токены `@sbercloud/figma-variables`:
 
 ```scss
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .button {
   background: base.$sn-theme-color-primary-accent;
@@ -240,7 +240,7 @@ pnpm add-package
 
 1. создаёт `packages/<name>/` со всеми обязательными файлами;
 2. регистрирует ссылки в `tsconfig.json`, `packages/tsconfig.esm.json`, `packages/tsconfig.cjs.json`;
-3. добавляет alias в `apps/storybook/.storybook/main.ts` и `apps/docs/astro.config.mjs` (между маркерами `<add-package:aliases>`);
+3. добавляет alias в `apps/storybook/.storybook/main.ts` (между маркерами `<add-package:aliases>`); для `apps/docs` алиасы `@ds/*` собираются из `packages/` автоматически (`astro.config.mjs`);
 4. добавляет `"@ds/<name>": "workspace:*"` в `apps/storybook/package.json`.
 
 Дальше:
@@ -419,26 +419,81 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 | `/make-commit` | Conventional-commit из staged diff |
 | `/up-cloud-deps` | Обновить `@snack-uikit/*` / `@cloud-ru/*` до актуальных версий |
 | `/migrate-to-v2` | План миграции компонента в `.claude/plan/<pkg>.md` |
+| `/add-stories <pkg>` | Playground + VisualMatrix (+ оправданные доп. stories) в `packages/<pkg>/stories/<Name>/` |
+| `/add-tests <pkg>` | Набор Playwright E2E specs в `packages/<pkg>/__test__/<Name>/` по tier'у |
+| `/add-docs <pkg>` | `docs/index.mdx` + demos для `packages/<pkg>` (role-based структура) |
+
+Все три команды-обёртки `/add-*` принимают имя пакета или путь:
+
+```bash
+# имя пакета
+/add-stories button
+/add-tests   button
+/add-docs    button
+
+# или путь
+/add-stories packages/button
+/add-tests   packages/button
+/add-docs    packages/button
+```
+
+Без аргумента команда остановится и попросит указать пакет. Если пакета нет — предложит `pnpm add-package`. Все три не трогают `src/` и ничего не коммитят.
+
+После `/add-stories` — снять visual baselines:
+
+```bash
+pnpm dev:storybook              # в отдельном терминале
+pnpm test:e2e:update-snapshots  # chrome-only, PNG в packages/<pkg>/__test__/<Name>/__snapshots__/
+```
+
+После `/add-docs` — обновить генерируемые артефакты и посмотреть страницу:
+
+```bash
+pnpm gen:props && pnpm gen:readme
+pnpm dev:docs                   # открыть /components/<pkg>
+```
+
+После `/add-tests` — прогнать локально:
+
+```bash
+pnpm test:e2e:chrome                                       # быстрый smoke
+pnpm test:e2e --project=chrome packages/<pkg>/__test__     # только этот пакет
+```
 
 ### Типовой флоу: новый компонент из Figma
 
 1. `/migrate-to-v2 <pkg> <figma-url>` — план в `.claude/plan/<pkg>.md`.
 2. Skill `new-component-package` — скаффолд через `pnpm add-package`.
 3. Skill `figma-component-import` / `figma-to-code` — разметка + токены.
-4. Skill `component-story-set` — Playground + VisualMatrix + baselines.
-5. Skill `component-e2e-tests` — spec-файлы по tier'у.
-6. Skill `component-docs` — `docs/index.mdx`, `demos/`, `FIGMA_<NAME>`.
+4. `/add-stories <pkg>` — Playground + VisualMatrix (+ baselines вручную после).
+5. `/add-tests <pkg>` — spec-файлы по tier'у.
+6. `/add-docs <pkg>` — `docs/index.mdx`, `demos/`, `FIGMA_<NAME>`.
 7. Skill `component-validation-loop` — пройти цикл до зелёного.
 8. `/make-commit`.
 
+Пример вызова end-to-end из Claude Code:
+
+```bash
+/migrate-to-v2 accordion https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/...?node-id=2507-25203
+pnpm add-package                # скаффолд по плану
+/add-stories accordion
+pnpm dev:storybook              # в отдельном терминале
+pnpm test:e2e:update-snapshots  # baselines
+/add-tests accordion
+pnpm test:e2e:chrome
+/add-docs accordion
+pnpm gen:props && pnpm gen:readme
+/make-commit
+```
+
 ## Дизайн-токены
 
-Визуальные константы — пакет `@cloud-ru/figma-variables`, установлен в монорепо.
+Визуальные константы — пакет `@sbercloud/figma-variables`, установлен в монорепо.
 
 **В SCSS компонентов:**
 
 ```scss
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .button {
   color: base.$sn-theme-color-primary-accent;
@@ -449,5 +504,5 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 **В точке входа приложения** — CSS-переменные:
 
 ```css
-@import '@cloud-ru/figma-variables/build/css/tokens.css';
+@import '@sbercloud/figma-variables/build/css/tokens.css';
 ```

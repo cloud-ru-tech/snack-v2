@@ -18,15 +18,9 @@ export type StoryTableProps = {
 
 /**
  * Таблица для Visual Matrix stories: единые границы, типографика и отступы
- * на design tokens из `@cloud-ru/figma-variables`.
+ * на design tokens из `@sbercloud/figma-variables`.
  */
-export function StoryTable({
-  sectionTitle,
-  firstColumnHeader,
-  columnHeaders,
-  rows,
-  className,
-}: StoryTableProps) {
+export function StoryTable({ sectionTitle, firstColumnHeader, columnHeaders, rows, className }: StoryTableProps) {
   return (
     <section className={cn(styles.section, className)}>
       {sectionTitle ? <h4 className={styles.title}>{sectionTitle}</h4> : null}

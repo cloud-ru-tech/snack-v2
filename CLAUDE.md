@@ -4,7 +4,7 @@
 
 ## Проект
 
-Монорепо дизайн-системы `@ds/*` — React-компоненты, Storybook 8 для интерактивной документации и Astro-сайт для публичных docs. pnpm workspaces, TypeScript 5.8, React 18, SCSS Modules, Figma-переменные через `@cloud-ru/figma-variables`.
+Монорепо дизайн-системы `@ds/*` — React-компоненты, Storybook 8 для интерактивной документации и Astro-сайт для публичных docs. pnpm workspaces, TypeScript 5.8, React 18, SCSS Modules, Figma-переменные через `@sbercloud/figma-variables`.
 
 Исторически пакеты мигрируют из соседнего репо `storybook/` (`@design-system/*`). Для генерации плана миграции конкретного пакета — слэш-команда `/migrate-to-v2`.
 
@@ -39,7 +39,7 @@ packages/          # Компонентные пакеты @ds/*
     __snapshots__/ # Baselines визуальной регрессии (chrome-only)
 apps/
   storybook/       # Storybook 8 (stories + alias @ds/* в main.ts)
-  docs/            # Astro + Starlight (docs-site + alias @ds/* в astro.config.mjs)
+  docs/            # Astro (docs-site; @ds/* из packages/ — astro.config.mjs)
 playwright/        # Общий туллинг Playwright: fixtures, utils, browser matrix
 playwright.config.ts  # Корневой конфиг: сканирует packages/*/__tests__/*.spec.ts
 tooling/
@@ -103,6 +103,9 @@ packages/<pkg>/
 
 - `/make-commit` — создать conventional-commit из staged diff
 - `/up-cloud-deps` — обновить пакеты скоупов `@snack-uikit/*` / `@cloud-ru/*`
+- `/add-stories <pkg>` — сгенерить Playground + VisualMatrix (+ оправданные доп. stories) в `packages/<pkg>/stories/<Name>/`
+- `/add-tests <pkg>` — сгенерить набор Playwright E2E specs в `packages/<pkg>/__test__/<Name>/` по tier'у
+- `/add-docs <pkg>` — сгенерить `docs/index.mdx` + demos для `packages/<pkg>`
 
 ## Stories / Docs конвенции
 
@@ -138,8 +141,9 @@ Docs:
 2. `packages/tsconfig.esm.json` — `references`
 3. `packages/tsconfig.cjs.json` — `references`
 4. `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`
-5. `apps/docs/astro.config.mjs` — alias между маркерами `<add-package:aliases>`
-6. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`
+5. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`
+
+(`apps/docs` подхватывает `@ds/*` из `packages/*/package.json` + `src/index.ts` — см. `dsWorkspaceSourceAliases` в `astro.config.mjs`, править вручную не нужно.)
 
 ## MCP-серверы
 

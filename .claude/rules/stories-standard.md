@@ -117,27 +117,56 @@ packages/<pkg>/stories/
 
 **Naming convention**: kebab-case имени компонента. Составные id для слотов: `<component>-<slot>` (`button-group-primary`, `drawer-close-button`). Для вложенных натив-input'ов (Checkbox/Radio/Switch) — базовый id на корень + суффикс `-native-input` на `<input>` (уже зафиксирован в `NATIVE_INPUT_SUFFIX`).
 
-**DRY — повторяющиеся id выносить в константы**. Если один и тот же `data-test-id` используется в 2+ файлах stories одного компонента (или в 2+ экспортах одного файла), вынеси его в `packages/<pkg>/stories/<ComponentName>/testIds.ts`:
+**Хардкод id внутри компонента — только через экспортируемую константу `TEST_IDS`**. Если реализация компонента ставит `data-test-id` на внутренние слоты (вложенные кнопки, icons, описания, тултипы — всё, что не получает id от потребителя через spread `...rest`), эти строки **обязаны** жить в публичной константе `TEST_IDS` в `packages/<pkg>/src/constants.ts` и реэкспортироваться через `src/index.ts`. Инлайн-литералы `data-test-id='foo__bar'` внутри `.tsx` запрещены.
 
 ```ts
-// packages/button/stories/Button/testIds.ts
-export const BUTTON_TEST_ID = 'button'
-export const BUTTON_LINK_TEST_ID = 'button-link'
+// packages/<pkg>/src/constants.ts
+export const TEST_IDS = {
+  root: 'switch-row',                 // для справки / дефолтных args
+  switch: 'switch-row__switch',
+  title: 'switch-row__title',
+  titleTooltip: 'switch-row__title-tooltip',
+  description: 'switch-row__description',
+  toggleTooltip: 'switch-row__toggle-tooltip',
+} as const
+```
+
+```tsx
+// packages/<pkg>/src/components/SwitchRow/SwitchRow.tsx
+import { TEST_IDS } from '../../constants'
+
+<Switch data-test-id={TEST_IDS.switch} ... />
+```
+
+Почему так:
+
+- Потребитель из app-слоя пишет e2e/integration-тесты против слотов компонента, не зная его внутренней разметки. Константа в публичном API даёт ему стабильный селектор и защиту от переименований.
+- Stories и `__test__/<Component>/helpers.ts` берут те же строки из одного источника. Рассинхрон между компонентом и тестами физически невозможен.
+- Видно из публичного API, какие слоты вообще существуют — это документация.
+
+**DRY — повторяющиеся id в stories выносить в `testIds.ts`**. Stories-level id (те, которые ставит story, а не сам компонент), используемые в 2+ файлах stories одного компонента или в 2+ экспортах одного файла, выносятся в `packages/<pkg>/stories/<ComponentName>/testIds.ts`. Если stories-level id совпадает с `TEST_IDS.root` из пакета — реэкспортируй из пакета, не дублируй строку:
+
+```ts
+// packages/<pkg>/stories/<ComponentName>/testIds.ts
+import { TEST_IDS } from '@ds/<pkg>'
+
+export const SWITCH_ROW_TEST_ID = TEST_IDS.root
+export const SWITCH_ROW_SWITCH_TEST_ID = TEST_IDS.switch
 ```
 
 ```ts
-// packages/button/stories/Button/Button.Playground.stories.tsx
-import { BUTTON_TEST_ID } from './testIds'
+// packages/<pkg>/stories/<Name>/<Name>.Playground.stories.tsx
+import { SWITCH_ROW_TEST_ID } from './testIds'
 
-args: { label: 'Button', 'data-test-id': BUTTON_TEST_ID }
+args: { 'data-test-id': SWITCH_ROW_TEST_ID }
 ```
 
 Соглашения для `testIds.ts`:
 
 - Константы `SCREAMING_SNAKE_CASE`, суффикс `_TEST_ID`.
 - Одни и те же имена констант используются и в stories, и в play-функциях (`getByTestId(BUTTON_TEST_ID)`).
-- E2E `__test__/<Component>/helpers.ts` может импортировать эти же константы через `../../../stories/<Component>/testIds` — тогда id гарантированно совпадают между stories и Playwright-селекторами.
-- Id, который используется в **одной** story (и нигде больше) — можно оставить инлайн. Переносим только действительно повторяющиеся.
+- E2E `__test__/<Component>/helpers.ts` импортирует **`TEST_IDS` напрямую из исходников пакета** — `from '../../src/constants'`, не из entry `@ds/<pkg>`. Entry тянет CSS-модули, которые ломают ts-node / playwright-compile в e2e-процессе. Stories грузятся через storybook-бандлер, поэтому импорт entry `@ds/<pkg>` там ок.
+- Id, который используется в **одной** story (и нигде больше) и не присутствует в `TEST_IDS` пакета — можно оставить инлайн. Переносим только повторяющиеся.
 
 **Требования к компоненту**: корневой элемент должен проксировать `data-test-id` из пропсов (обычно через spread `...rest`). Если компонент не поддерживает — это bug компонента, а не story.
 
@@ -288,7 +317,7 @@ export const ClickTest: Story = {
 
 В stories **нельзя** использовать проп `style={{ ... }}` — ни на wrapper'ах, ни на компонентах, ни на demo-разметке. Причины:
 
-- Inline-стили обходят дизайн-токены (`@cloud-ru/figma-variables`) и дают визуальный шум в visual regression.
+- Inline-стили обходят дизайн-токены (`@sbercloud/figma-variables`) и дают визуальный шум в visual regression.
 - В PR-ревью теряется контроль над spacing/layout: story «подкручивается» в нотации, которую нельзя переиспользовать.
 - Любой лейаут stories должен быть выразим через `StoryTable` либо через класс из `styles.module.scss` рядом со story.
 
@@ -346,7 +375,8 @@ import styles from './Button.VisualMatrix.module.scss'
 
 - [ ] Есть `Playground` (все пропсы через `argTypes`) и `VisualMatrix` (все оси в `StoryTable`)
 - [ ] В `args` Playground и use-case stories есть `data-test-id` (kebab-case от ComponentName; для слотов — `<component>-<slot>`)
-- [ ] Повторяющиеся в 2+ файлах id вынесены в `stories/<ComponentName>/testIds.ts`, инлайн-строки только для уникальных
+- [ ] Все `data-test-id`, которые компонент ставит сам себе на внутренние слоты, — в `src/constants.ts::TEST_IDS` (реэкспорт через `src/index.ts`); инлайн-строк `data-test-id='...'` в `.tsx` нет
+- [ ] Повторяющиеся в 2+ файлах id вынесены в `stories/<ComponentName>/testIds.ts`, инлайн-строки только для уникальных; stories-level id реэкспортируют `TEST_IDS` пакета, не дублируют строку
 - [ ] Play-функции используют только `getByTestId`, нет `getByRole`/`getByText`/`getByLabelText`
 - [ ] Доп. файлы оправданы правилом выше, имя не из списка «Запрещённые»
 - [ ] Каждый файл имеет собственный `export default meta`

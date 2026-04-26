@@ -1,0 +1,307 @@
+{
+  "Accordion": {
+    "displayName": "Accordion",
+    "props": {
+      "expandedDefault": {
+        "type": "string | string[]",
+        "required": false,
+        "description": "Начальное состояние"
+      },
+      "expanded": {
+        "type": "string | string[]",
+        "required": false,
+        "description": "Controlled состояние"
+      },
+      "onExpandedChange": {
+        "type": "((value: string) => void) | ((value: string[]) => void) | undefined",
+        "required": false,
+        "description": "Controlled обработчик измения состояния"
+      },
+      "selectionMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "description": "Режим работы аккордиона"
+      }
+    }
+  },
+  "CollapseBlock": {
+    "displayName": "CollapseBlock",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор блока в группе переключателей"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
+      },
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "subTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под строкой заголовка"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "simple",
+          "outline",
+          "elevated"
+        ],
+        "defaultValue": "simple",
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)"
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "defaultValue": "after",
+        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "yellow",
+          "green",
+          "blue"
+        ],
+        "defaultValue": "neutral",
+        "description": "Цветовая схема акрила"
+      },
+      "component": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "accordionPrimary",
+          "accordionSecondary",
+          "accordionTertiary"
+        ],
+        "description": "Уровень аккордеона: размер типографики и отступы"
+      },
+      "keepMounted": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Оставлять ли контент в DOM при сворачивании"
+      }
+    },
+    "description": "Элемент аккордеона: заголовок, шеврон и раскрываемая область с контентом."
+  },
+  "CollapseBlockPrimary": {
+    "displayName": "CollapseBlockPrimary",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор блока в группе переключателей"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
+      },
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "subTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под строкой заголовка"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "simple",
+          "outline",
+          "elevated"
+        ],
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)"
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "yellow",
+          "green",
+          "blue"
+        ],
+        "description": "Цветовая схема акрила"
+      },
+      "keepMounted": {
+        "type": "boolean",
+        "required": false,
+        "description": "Оставлять ли контент в DOM при сворачивании"
+      }
+    }
+  },
+  "CollapseBlockSecondary": {
+    "displayName": "CollapseBlockSecondary",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор блока в группе переключателей"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
+      },
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "subTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под строкой заголовка"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "simple",
+          "outline",
+          "elevated"
+        ],
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)"
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "yellow",
+          "green",
+          "blue"
+        ],
+        "description": "Цветовая схема акрила"
+      },
+      "keepMounted": {
+        "type": "boolean",
+        "required": false,
+        "description": "Оставлять ли контент в DOM при сворачивании"
+      }
+    }
+  },
+  "CollapseBlockTertiary": {
+    "displayName": "CollapseBlockTertiary",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор блока в группе переключателей"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
+      },
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "subTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под строкой заголовка"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "description": "Расположение шеврона относительно текста (`before` | `after`)"
+      },
+      "keepMounted": {
+        "type": "boolean",
+        "required": false,
+        "description": "Оставлять ли контент в DOM при сворачивании"
+      }
+    }
+  }
+}

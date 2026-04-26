@@ -6,9 +6,27 @@ import type { StorybookConfig } from '@storybook/react-vite';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..', '..', '..');
 
+/**
+ * Ensure __REACT__ / __REACT_DOM__ are set before manager addon chunks run.
+ * Addon chunks may execute before globals-runtime.js in some load orders; this avoids "React is not defined".
+ */
+const MANAGER_REACT_POLYFILL = `
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+(function(){ if (typeof globalThis.__REACT__ !== 'undefined') return;
+  globalThis.__REACT__ = globalThis.React;
+  globalThis.__REACT_DOM__ = globalThis.ReactDOM;
+  var r = globalThis.ReactDOM;
+  globalThis.__REACT_DOM_CLIENT__ = r && { createRoot: r.createRoot, hydrateRoot: r.hydrateRoot };
+})();
+</script>
+`;
+
 const config: StorybookConfig = {
   stories: [join(root, 'packages/*/stories/**/*.stories.@(ts|tsx)')],
-  addons: ['@storybook/addon-a11y'],
+  managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
+  addons: ['@storybook/addon-a11y', join(__dirname, 'addons/theme-controls/preset.ts')],
   framework: {
     name: '@storybook/react-vite',
     options: {},
@@ -68,6 +86,7 @@ const config: StorybookConfig = {
         '@ds/search': join(root, 'packages/search/src/index.ts'),
         '@ds/modal': join(root, 'packages/modal/src/index.ts'),
         '@ds/drawer': join(root, 'packages/drawer/src/index.ts'),
+        '@ds/accordion': join(root, 'packages/accordion/src/index.ts'),
         // </add-package:aliases>
         '#storybook/components': join(__dirname, 'components/index.ts'),
         '#storybook/hooks/useDraggable': join(__dirname, 'hooks/useDraggable.ts'),

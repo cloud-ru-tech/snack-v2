@@ -41,7 +41,7 @@ function getDefaultTag(variant: TypographyVariant): ElementType {
 /**
  * Typography компонент
  *
- * Компонент типографики, использующий стили из @cloud-ru/figma-variables.
+ * Компонент типографики, использующий стили из @sbercloud/figma-variables.
  * Поддерживает различные варианты (display, headline, title, label, body),
  * размеры (s, m, l) и начертания (regular, thin, mono).
  *

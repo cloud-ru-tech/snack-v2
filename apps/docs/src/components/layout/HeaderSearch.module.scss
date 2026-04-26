@@ -1,0 +1,144 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+  flex-shrink: 1;
+  width: clamp(200px, 28vw, 360px);
+  margin-left: auto;
+}
+
+.kbd {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: base.$sn-primitive-dimension-8;
+  transform: translateY(-50%);
+
+  padding: 1px 6px;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  font-family: inherit;
+  color: base.$sn-theme-color-neutral-accent;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.drawer {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + #{base.$sn-primitive-dimension-8});
+  right: 0;
+  left: 0;
+
+  overflow-y: auto;
+
+  max-height: min(70vh, 560px);
+  padding: base.$sn-primitive-dimension-4;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: 0 12px 32px
+    color-mix(in srgb, base.$sn-theme-color-neutral-background 40%, transparent);
+}
+
+.empty {
+  padding: base.$sn-primitive-dimension-12;
+  color: base.$sn-theme-color-neutral-accent;
+  text-align: center;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+
+  transition: background 120ms ease;
+
+  &:hover {
+    background: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  & + & {
+    margin-top: base.$sn-primitive-dimension-4;
+  }
+}
+
+.resultTitle {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-label-l);
+}
+
+.resultExcerpt {
+  color: base.$sn-theme-color-neutral-accent;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  :global(mark) {
+    padding: 0 2px;
+    border-radius: 2px;
+
+    font-weight: inherit;
+    color: inherit;
+
+    background: color-mix(in srgb, base.$sn-theme-color-primary-accent 22%, transparent);
+  }
+}
+
+.subResult {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  margin-top: base.$sn-primitive-dimension-4;
+  margin-left: base.$sn-primitive-dimension-4;
+  padding: base.$sn-primitive-dimension-4 0 base.$sn-primitive-dimension-4
+    base.$sn-primitive-dimension-12;
+  border-left: 1px solid base.$sn-theme-color-neutral-decor;
+
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .subTitle {
+    color: base.$sn-theme-color-primary-accent;
+  }
+}
+
+.subTitle {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+}
+
+.subExcerpt {
+  color: base.$sn-theme-color-neutral-accent;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+@media (width <= 640px) {
+  .root {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    max-width: 260px;
+  }
+
+  .kbd {
+    display: none;
+  }
+}

@@ -1,0 +1,184 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/accordion.module' as accordion;
+@use '@ds/materials' as m;
+
+$components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.stateLayer {
+  visibility: initial;
+}
+
+.wrapper {
+  @each $component in $components {
+    &[data-component='#{$component}'] {
+      @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container');
+    }
+  }
+
+  position: relative;
+  display: block;
+  flex-direction: column;
+  align-self: stretch;
+
+  &[data-component='accordionPrimary'],
+  &[data-component='accordionSecondary'] {
+    @include m.with-material('acrylic', #{acrylic});
+
+    &[data-view='elevated'] {
+      box-shadow: base.$sn-boxShadow-elevation-level2;
+    }
+
+    &[data-view='simple'],
+    &[data-view='elevated'] {
+      &:hover,
+      &:focus-within {
+        box-shadow: base.$sn-boxShadow-elevation-level3;
+      }
+    }
+
+    &[data-view='outline'] {
+      @include m.has-state-layer-as-child(#{stateLayer});
+    }
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.titleContent {
+  @each $component in $components {
+    [data-component='#{$component}'] & {
+      @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'titleContent');
+
+      padding-bottom: 0;
+
+      &[data-completely-close] {
+        padding-bottom: base.simple-var(
+          accordion.$accordion,
+          'anatomy',
+          $component,
+          'container',
+          'titleContent',
+          'padding-bottom'
+        );
+      }
+    }
+  }
+
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  &[data-chevron='before'] {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+}
+
+.afterTitle {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+}
+
+.chevronWrapper {
+  @each $component in $components {
+    [data-component='#{$component}'] & {
+      @include base.composite-var(
+        accordion.$accordion,
+        'anatomy',
+        $component,
+        'container',
+        'titleContent',
+        'chevronWrapper'
+      );
+    }
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+
+  @each $component in $components {
+    [data-component='#{$component}'] & {
+      @include base.composite-var(
+        accordion.$accordion,
+        'anatomy',
+        $component,
+        'container',
+        'titleContent',
+        'titleWrapper',
+        'titleLine'
+      );
+    }
+  }
+}
+
+.collapse {
+  position: relative;
+
+  display: grid;
+  grid-template-rows: 0fr;
+
+  box-sizing: border-box;
+
+  transition: grid-template-rows var(--sn-collapse-block-animation-duration, 300ms) ease-out;
+
+  &[data-expanded] {
+    grid-template-rows: 1fr;
+  }
+}
+
+.container {
+  @each $component in $components {
+    [data-component='#{$component}'] & {
+      // @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container');
+      @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'bodyContent');
+
+      padding-bottom: 0;
+
+      &.containerCompletelyOpen[data-expanded] {
+        padding-bottom: base.simple-var(
+          accordion.$accordion,
+          'anatomy',
+          $component,
+          'container',
+          'bodyContent',
+          'padding-bottom'
+        );
+      }
+    }
+  }
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 0;
+
+  transition: padding-bottom var(--sn-collapse-block-animation-duration, 300ms) ease-out;
+
+  &.containerCompletelyOpen {
+    overflow: visible;
+  }
+}

@@ -88,14 +88,14 @@ import '@ds/skeleton/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-skeleton--playground' height={360} client:load />
+<StorybookEmbed storyId='components-skeleton-skeleton--playground' height={360} client:load />
 
 ## Доступность
 
 - Блоки скелетона не несут смысловой нагрузки для скринридеров: это визуальная пауза, а не контент.
 - Для секций, содержащих скелетоны, рекомендуется проставить `aria-busy="true"` на контейнере — скринридер корректно сообщит о загрузке.
 - Анимация скелетона уважает `prefers-reduced-motion: reduce` — при соответствующей системной настройке мерцание отключается.
-- Контраст фонового оттенка скелетона соответствует токенам `@cloud-ru/figma-variables` и проходит требования WCAG AA для нетекстового контента.
+- Контраст фонового оттенка скелетона соответствует токенам `@sbercloud/figma-variables` и проходит требования WCAG AA для нетекстового контента.
 
 ## Skeleton
 

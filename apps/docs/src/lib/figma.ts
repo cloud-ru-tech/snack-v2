@@ -60,6 +60,12 @@ export const FIGMA_FAVOURITE: FigmaNodeRef = {
   nodeId: '2834-25294',
 };
 
+export const FIGMA_ACCORDION: FigmaNodeRef = {
+  fileKey: 'aNPU3MHwRJiEwbk5F82zux',
+  fileName: 'Snack-Ui-Kit-variables',
+  nodeId: '6764-5128',
+};
+
 export const FIGMA_DRAWER: FigmaNodeRef = {
   fileKey: 'aNPU3MHwRJiEwbk5F82zux',
   fileName: 'Snack-Ui-Kit-variables',

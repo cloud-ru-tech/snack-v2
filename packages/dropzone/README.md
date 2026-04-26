@@ -127,7 +127,7 @@ import '@ds/dropzone/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-dropzone--playground' height={420} />
+<StorybookEmbed storyId='components-dropzone-dropzone--playground' height={420} />
 
 ## Доступность
 

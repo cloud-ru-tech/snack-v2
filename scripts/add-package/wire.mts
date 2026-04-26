@@ -90,29 +90,6 @@ export function wireStorybookAlias(pkgName: string, dryRun = false): void {
   writeFileSync(mainPath, content, 'utf8')
 }
 
-export function wireDocsAlias(pkgName: string, dryRun = false): void {
-  const configPath = join(ROOT, 'apps', 'docs', 'astro.config.mjs')
-  let content = readFileSync(configPath, 'utf8')
-
-  const alias = `'@ds/${pkgName}': resolve(root, 'packages/${pkgName}/src/index.ts'),`
-  if (content.includes(alias)) return
-
-  const marker = '// </add-package:aliases>'
-  if (!content.includes(marker)) {
-    throw new Error(
-      `Anchor comment "${marker}" not found in apps/docs/astro.config.mjs`,
-    )
-  }
-
-  content = content.replace(marker, `        ${alias}\n        ${marker}`)
-
-  if (dryRun) {
-    console.log(`  [dry-run] astro.config.mjs: add alias "@ds/${pkgName}"`)
-    return
-  }
-  writeFileSync(configPath, content, 'utf8')
-}
-
 export function wireStorybookDep(pkgName: string, dryRun = false): void {
   const pkgPath = join(ROOT, 'apps', 'storybook', 'package.json')
   const pkg = readJson(pkgPath)

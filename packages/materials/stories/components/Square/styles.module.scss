@@ -1,0 +1,9 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.square {
+  $squareSide: base.$sn-primitive-dimension-48;
+
+  position: relative;
+  width: $squareSide;
+  height: $squareSide;
+}

@@ -136,7 +136,7 @@ import '@ds/progress-bar/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-progressbar--playground' height={360} />
+<StorybookEmbed storyId='components-progressbar-progressbar--playground' height={360} />
 
 ## Доступность
 

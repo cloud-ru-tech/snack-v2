@@ -2,7 +2,7 @@ import { join } from 'path'
 import { fileURLToPath } from 'url'
 import { collectOptions } from './add-package/prompts.mts'
 import { scaffold } from './add-package/scaffold.mts'
-import { wireTsconfig, wireStorybookAlias, wireDocsAlias, wireStorybookDep } from './add-package/wire.mts'
+import { wireTsconfig, wireStorybookAlias, wireStorybookDep } from './add-package/wire.mts'
 import { toKebab } from './add-package/validate.mts'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -31,7 +31,6 @@ console.log('\nПрописываю пакет в конфигах моноре�
 
 wireTsconfig(options.pkgName, dryRun)
 wireStorybookAlias(options.pkgName, dryRun)
-wireDocsAlias(options.pkgName, dryRun)
 wireStorybookDep(options.pkgName, dryRun)
 
 if (!dryRun) {
@@ -39,8 +38,9 @@ if (!dryRun) {
   ✓  packages/${options.pkgName}/       создан
   ✓  tsconfig.json               обновлён
   ✓  apps/storybook/.storybook/main.ts  обновлён
-  ✓  apps/docs/astro.config.mjs  обновлён
   ✓  apps/storybook/package.json обновлён${e2eSpecPath ? `\n  ✓  packages/${options.pkgName}/__tests__/${componentKebab}.rendering.spec.ts  создан` : ''}
+
+  (алиасы @ds/* для apps/docs берутся из packages/*/package.json + src/index.ts — см. astro.config.mjs)
 
   Следующие шаги:
 

@@ -68,7 +68,7 @@ Docs-тесты живут отдельно в `tests/docs/` (их запуск�
 1. Корневой `tsconfig.json` — `references`.
 2. `packages/tsconfig.esm.json` / `packages/tsconfig.cjs.json` — `references`.
 3. `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`.
-4. `apps/docs/astro.config.mjs` — alias между маркерами `<add-package:aliases>`.
+4. `apps/docs/astro.config.mjs` — `@ds/*` на исходники пакетов подхватываются автоматически (`dsWorkspaceSourceAliases`).
 5. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`.
 
 ## Чек-лист перед PR

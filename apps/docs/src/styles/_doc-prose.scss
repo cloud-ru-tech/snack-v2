@@ -1,4 +1,4 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 // Shared prose styles for MDX rendered via <article class="doc">.
 // Consumers @use this partial to emit the rules.

@@ -1,4 +1,4 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .section {
   display: flex;
@@ -17,21 +17,20 @@
 
 .table {
   border-collapse: collapse;
-
   font-size: base.$sn-primitive-font-fontSize-12;
   color: base.$sn-theme-color-neutral-text;
 }
 
 .th {
   padding: base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-m;
+  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid
+    base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
 
   font-size: base.$sn-primitive-font-fontSize-11;
   font-weight: 600;
+  color: base.$sn-theme-color-neutral-text;
   text-align: center;
   text-transform: uppercase;
-  color: base.$sn-theme-color-neutral-text;
-  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid
-    base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
 }
 
 .thFirst {
@@ -41,23 +40,22 @@
 
 .td {
   padding: base.$sn-adaptive-spacing-interval-m;
-
-  vertical-align: middle;
   border-bottom: base.$sn-primitive-strokeWeight-strokeThin solid
     base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  vertical-align: middle;
 }
 
 .tdLabel {
   font-size: base.$sn-primitive-font-fontSize-12;
   font-weight: 500;
+  color: base.$sn-theme-color-neutral-text;
   text-align: left;
   white-space: nowrap;
-  color: base.$sn-theme-color-neutral-text;
 }
 
 .cellInner {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: base.$sn-primitive-dimension-32;
 }

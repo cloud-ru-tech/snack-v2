@@ -5,8 +5,8 @@
  * - Слой 2: state layer — hover/pressed (absolute, inset: 0), токены material-stateLayer
  * - Слой 3: контент (relative, z-index: 1)
  */
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
-@use '@cloud-ru/figma-variables/build/scss/components/button.module' as btn;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as btn;
 @use '@ds/materials' as m;
 
 $sizes: 's', 'm', 'l';

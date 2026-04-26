@@ -75,7 +75,7 @@
 
 4. Если расхождения — править SCSS, повторять с шага 1, пока не совпадёт.
 
-**Цветовая модель `@cloud-ru/figma-variables` (часто используется):**
+**Цветовая модель `@sbercloud/figma-variables` (часто используется):**
 
 ```scss
 // Сплошной насыщенный (bg для «active» / «completed CTA»)
@@ -129,7 +129,7 @@ base.$sn-theme-color-neutral-background1Level  // фон
 
 - [ ] `tsconfig.json` (root) + `packages/tsconfig.esm.json` + `packages/tsconfig.cjs.json` — references на пакет.
 - [ ] `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`.
-- [ ] `apps/docs/astro.config.mjs` — тот же alias.
+- [ ] `apps/docs` — при наличии `packages/<pkg>/src/index.ts` алиас `@ds/<pkg>` подставится из `astro.config.mjs` автоматически.
 - [ ] `apps/storybook/package.json` — dep `"@ds/<pkg>": "workspace:*"`.
 - [ ] `apps/docs/src/lib/figma.ts` — `FIGMA_<PKG>` + subcomponent-константы (`FIGMA_<PKG>_STEP`, `FIGMA_<PKG>_EXAMPLE` и т.п.).
 - [ ] `packages/<pkg>/package.json` — deps строгие версии, без `^`/`~`, без `react`/`@types/react`, все `@ds/*` через `workspace:*`. Обязательно: `@ds/materials` если использован state-layer.

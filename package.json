@@ -12,6 +12,7 @@
     "gen:props": "tsx scripts/gen-props.mts",
     "gen:readme": "tsx scripts/gen-readme.mts",
     "gen": "pnpm gen:props && pnpm gen:readme",
+    "build": "pnpm run build:packages && pnpm run gen && pnpm run build:storybook && pnpm run build:docs",
     "build:all": "pnpm run build:packages && pnpm run gen && pnpm run build:storybook && pnpm run build:docs",
     "build:packages": "pnpm run clean:dist && pnpm run build:ts && pnpm run copy:icons-sprite-svg && pnpm run build:cjs-package-meta && pnpm run build:css && pnpm run build:cjs-css-modules",
     "copy:icons-sprite-svg": "pnpm --filter @ds/icons run copy:sprite-svg",
@@ -72,7 +73,7 @@
     "typescript": "^5.8.3",
     "vitest": "4.1.4",
     "typescript-plugin-css-modules": "^5.2.0",
-    "@cloud-ru/figma-variables": "npm:@sbercloud/figma-variables@2.1.2",
+    "@sbercloud/figma-variables": "2.1.2",
     "@cloud-ru/eslint-config": "3.1.1",
     "@cloud-ru/eslint-plugin-ssr-safe-react": "0.6.1",
     "@cloud-ru/ft-config-husky": "1.2.2",
@@ -91,7 +92,9 @@
     "svg-sprite": "2.0.4",
     "svgo": "4.0.0",
     "qs": "6.15.1",
-    "@snack-uikit/locale": "0.15.5"
+    "@snack-uikit/locale": "0.15.5",
+    "@snack-uikit/toaster": "0.11.27",
+    "@sbercloud/figma-selected-block": "file:sbercloud-figma-selected-block-1.0.0.tgz"
   },
   "pnpm": {
     "overrides": {

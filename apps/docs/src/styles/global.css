@@ -1,4 +1,4 @@
-@import url('@cloud-ru/figma-variables/build/css/tokens.css');
+@import url('@sbercloud/figma-variables/build/css/tokens.css');
 @import url('@ds/fonts/css');
 
 *, *::before, *::after {

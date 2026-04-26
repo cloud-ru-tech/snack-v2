@@ -103,7 +103,7 @@ import '@ds/button/style.css'
 | `m` | 32px | Значение по умолчанию — формы, диалоги, карточки |
 | `l` | 40px | Hero, онбординг, CTA на лендинге |
 
-Размеры зафиксированы в Figma и совпадают с токенами `@cloud-ru/figma-variables`.
+Размеры зафиксированы в Figma и совпадают с токенами `@sbercloud/figma-variables`.
 
 <Example title='Три размера в ряд' code={SizesSrc}>
   <Sizes client:load />
@@ -272,7 +272,7 @@ Ref на DOM-элемент пробрасывается через `innerRef`, 
 
 ### Storybook
 
-<StorybookEmbed storyId='components-button--playground' height={360} client:load />
+<StorybookEmbed storyId='components-button-button--playground' height={360} client:load />
 
 ## Доступность
 
@@ -446,7 +446,7 @@ import '@ds/button/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-button-group--playground' height={360} client:load />
+<StorybookEmbed storyId='components-button-buttongroup--playground' height={360} client:load />
 
 ## Доступность
 

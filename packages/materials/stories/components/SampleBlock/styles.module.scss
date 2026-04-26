@@ -1,0 +1,72 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/block.module' as block;
+@use '../../../index' as m;
+
+$variants: 'simple', 'outline', 'shadow', 'transparent';
+$sizes: 's', 'm', 'l';
+$priorities: 'primary', 'secondary', 'tertiary';
+
+.contentLayer {
+  position: relative;
+}
+
+.stateLayer {
+  visibility: initial;
+}
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+// NOTE: CSS does not know anything about states, except mixins
+.block {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &[data-variant='outline'] {
+    .borderLayer {
+      position: absolute;
+      inset: 0;
+      border: block.$sn-block-anatomy-s-borderWidth solid base.$sn-theme-color-available-borderColor;
+      border-radius: inherit;
+    }
+  }
+
+  &[data-variant='shadow'] {
+    &[data-size='l'] {
+      box-shadow: base.$sn-boxShadow-elevation-level2;
+    }
+
+    &[data-size='m'],
+    &[data-size='s'] {
+      box-shadow: base.$sn-boxShadow-elevation-level1;
+    }
+  }
+
+  &[data-variant='transparent'] {
+    background: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  &[data-variant='transparent'] > [data-acrylic-background] {
+    display: none;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(block.$block, 'anatomy', $size);
+    }
+  }
+
+  @include m.with-material('acrylic', #{acrylic});
+
+  // We need to place it here to handle hover/active states for block (not for its child "div.content")
+  // Otherwise if we hover over div.content no state will be applied to block
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  // We need to place it here to handle hover/active states for block (not for its child "div.content")
+  @include m.has-content-with-text-opacity(#{contentLayer});
+}

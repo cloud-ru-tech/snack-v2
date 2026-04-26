@@ -1,5 +1,5 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
-@use '@cloud-ru/figma-variables/build/scss/components/modal.module' as modal;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
 @use '@ds/materials' as m;
 
 $widthSizes: 's', 'm', 'l';

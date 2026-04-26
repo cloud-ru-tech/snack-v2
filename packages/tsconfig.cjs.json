@@ -82,25 +82,63 @@
     {
       "path": "./stepper/tsconfig.cjs.json"
     },
-    { "path": "./tooltip/tsconfig.cjs.json" },
-    { "path": "./input-private/tsconfig.cjs.json" },
-    { "path": "./pagination/tsconfig.cjs.json" },
-    { "path": "./tabs/tsconfig.cjs.json" },
-    { "path": "./dropdown/tsconfig.cjs.json" },
-    { "path": "./truncate-string/tsconfig.cjs.json" },
-    { "path": "./search-private/tsconfig.cjs.json" },
-    { "path": "./slider/tsconfig.cjs.json" },
-    { "path": "./carousel/tsconfig.cjs.json" },
-    { "path": "./link/tsconfig.cjs.json" },
-    { "path": "./alert/tsconfig.cjs.json" },
-    { "path": "./tag/tsconfig.cjs.json" },
-    { "path": "./search/tsconfig.cjs.json" },
-    { "path": "./modal/tsconfig.cjs.json" },
-    { "path": "./drawer/tsconfig.cjs.json" }
+    {
+      "path": "./tooltip/tsconfig.cjs.json"
+    },
+    {
+      "path": "./input-private/tsconfig.cjs.json"
+    },
+    {
+      "path": "./pagination/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tabs/tsconfig.cjs.json"
+    },
+    {
+      "path": "./dropdown/tsconfig.cjs.json"
+    },
+    {
+      "path": "./truncate-string/tsconfig.cjs.json"
+    },
+    {
+      "path": "./search-private/tsconfig.cjs.json"
+    },
+    {
+      "path": "./slider/tsconfig.cjs.json"
+    },
+    {
+      "path": "./carousel/tsconfig.cjs.json"
+    },
+    {
+      "path": "./link/tsconfig.cjs.json"
+    },
+    {
+      "path": "./alert/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tag/tsconfig.cjs.json"
+    },
+    {
+      "path": "./search/tsconfig.cjs.json"
+    },
+    {
+      "path": "./modal/tsconfig.cjs.json"
+    },
+    {
+      "path": "./drawer/tsconfig.cjs.json"
+    },
+    {
+      "path": "./accordion/tsconfig.cjs.json"
+    }
   ],
   "compilerOptions": {
     "target": "es6",
-    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "CommonJS",
     "strict": true,
     "jsx": "react-jsx",

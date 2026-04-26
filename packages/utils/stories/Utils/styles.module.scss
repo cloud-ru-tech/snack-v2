@@ -1,6 +1,6 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-// ── Local constants — no @cloud-ru/figma-variables equivalent yet ────────────
+// ── Local constants — no @sbercloud/figma-variables equivalent yet ────────────
 // TODO: replace with figma-variables tokens once spacing mapping confirmed
 $_space-4: 1rem;
 

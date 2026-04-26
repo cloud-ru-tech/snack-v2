@@ -31,7 +31,7 @@ export const DEFAULT_FALLBACK_PLACEMENTS = [PLACEMENT.Top, PLACEMENT.Right, PLAC
 
 /**
  * Tooltip — всплывающая подсказка при наведении.
- * Стили и анатомия (отступы, скругления, макс. ширина) из @cloud-ru/figma-variables.
+ * Стили и анатомия (отступы, скругления, макс. ширина) из @sbercloud/figma-variables.
  * DOM повторяет структуру из Figma: корневой контейнер и слои (фон, контейнер контента, указатель) с position: absolute.
  */
 export function Tooltip({

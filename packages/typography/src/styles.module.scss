@@ -1,4 +1,4 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 $weights: 'regular', 'thin', 'mono';
 $variants: 'display', 'headline', 'title', 'label', 'body';
@@ -19,6 +19,10 @@ $sizes: 's', 'm', 'l';
           @each $size in $sizes {
             &[data-size='#{$size}'] {
               @include base.composite-var(base.$base-styles, 'sn', $weight, $variant, $size);
+
+              margin: 0;
+              padding: 0;
+              border: none;
             }
           }
         }

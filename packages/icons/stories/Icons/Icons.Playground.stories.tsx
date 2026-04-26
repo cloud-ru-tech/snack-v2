@@ -1,3 +1,6 @@
+import { ModalCustom } from '@ds/modal';
+import { Search } from '@ds/search';
+import { Typography } from '@ds/typography';
 import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentType, type ReactElement, useEffect, useMemo, useState } from 'react';
 
@@ -24,32 +27,34 @@ function IconModal({ data, onClose }: { data: IconModalData; onClose: () => void
   const reactSpriteImport = `import { ${data.baseName}SpriteSVG } from '@ds/icons';`;
 
   return (
-    <div className={styles.modalOverlay}>
-      <button type='button' aria-label='Закрыть' className={styles.modalBackdrop} onClick={onClose} />
-      <div className={styles.modalPanel} role='dialog' aria-modal aria-labelledby='icons-modal-title'>
-        <div className={styles.modalHeader}>
-          <h2 id='icons-modal-title' className={styles.modalTitle}>
-            {data.baseName}
-          </h2>
-          <button type='button' className={styles.closeButton} onClick={onClose} aria-label='Закрыть'>
-            ×
-          </button>
-        </div>
-        <div className={styles.modalContent}>
-          <div className={styles.modalIconPreviewMinimal}>
-            <data.Component size={48} />
-          </div>
-          <div className={styles.modalCodeBlock}>
-            <p className={styles.modalCodeLabel}>Standalone</p>
-            <code>{reactImport}</code>
-          </div>
-          <div className={styles.modalCodeBlock}>
-            <p className={styles.modalCodeLabel}>Sprite</p>
-            <code>{reactSpriteImport}</code>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      {/* TODO: Заменить модалку */}
+      <ModalCustom open onClose={onClose}>
+        <ModalCustom.Header title={data.baseName} />
+        <ModalCustom.Body
+          content={
+            <div className={styles.modalContent}>
+              <div className={styles.modalIconPreviewMinimal}>
+                <data.Component size={48} />
+              </div>
+              <div className={styles.modalCodeBlock}>
+                <Typography variant='body' size='s' weight='regular' className={styles.modalCodeLabel}>
+                  Standalone
+                </Typography>
+                <code>{reactImport}</code>
+              </div>
+              <div className={styles.modalCodeBlock}>
+                <Typography variant='body' size='s' weight='regular' className={styles.modalCodeLabel}>
+                  Sprite
+                </Typography>
+                <code>{reactSpriteImport}</code>
+              </div>
+              <div />
+            </div>
+          }
+        />
+      </ModalCustom>
+    </>
   );
 }
 
@@ -64,6 +69,7 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
     () =>
       icons.filter(icon => {
         if (!searchToken) return true;
+
         const token = toSearchToken([icon.baseName].join(' '));
         return token.includes(searchToken);
       }),
@@ -79,7 +85,15 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
   ];
 
   const handleIconClick = (name: string, baseName: string, Component: ComponentType<{ size?: number }>): void => {
-    setSelectedIcon({ name, baseName, Component });
+    setSelectedIcon({
+      name,
+      baseName,
+      Component,
+    });
+  };
+
+  const handleCloseModal = (): void => {
+    setSelectedIcon(null);
   };
 
   useEffect(() => {
@@ -87,10 +101,12 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
       setIsSpriteReady(true);
       return;
     }
+
     setIsSpriteReady(false);
     const timerId = window.setTimeout(() => {
       setIsSpriteReady(true);
     }, 0);
+
     return () => {
       window.clearTimeout(timerId);
     };
@@ -101,14 +117,20 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
   if (variant === 'sprite' && !isSpriteReady) {
     content = (
       <section className={styles.emptyState}>
-        <p className={styles.mutedText}>Подготавливаем спрайты...</p>
+        <Typography variant='body' size='s' weight='regular' className={styles.mutedText}>
+          Подготавливаем спрайты...
+        </Typography>
       </section>
     );
   } else if (filteredIcons.length === 0) {
     content = (
       <section className={styles.emptyState}>
-        <p className={styles.emptyTitle}>Ничего не найдено</p>
-        <p className={styles.mutedText}>Проверьте строку поиска.</p>
+        <Typography variant='title' size='m' weight='regular'>
+          Ничего не найдено
+        </Typography>
+        <Typography variant='body' size='s' weight='regular' className={styles.mutedText}>
+          Проверьте строку поиска.
+        </Typography>
       </section>
     );
   } else {
@@ -117,12 +139,17 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
         {orderedSections.map(sectionName => (
           <section key={sectionName} className={styles.sectionMinimal}>
             <div className={styles.sectionHeaderMinimal}>
-              <p className={styles.sectionTitleMinimal}>{sectionName}</p>
-              <p className={styles.sectionCountMinimal}>{groupedIcons[sectionName].length} иконок</p>
+              <Typography variant='body' size='s' weight='regular' className={styles.sectionTitleMinimal}>
+                {sectionName}
+              </Typography>
+              <Typography variant='body' size='s' weight='regular' className={styles.sectionCountMinimal}>
+                {groupedIcons[sectionName].length} иконок
+              </Typography>
             </div>
 
             <div className={styles.iconGridMinimal} data-test-id={`icons-row-${sectionName}`}>
               {groupedIcons[sectionName].map(({ name, baseName, Component }) => (
+                // TODO: Заменить кнопку
                 <button
                   key={name}
                   type='button'
@@ -153,34 +180,37 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
       ) : null}
 
       <section className={styles.minimalHeader}>
-        <h2 className={styles.title}>Interface Icons</h2>
-        <label className={styles.mutedText} htmlFor='icons-search-input'>
-          Фильтр по названию
-        </label>
-        <input
-          id='icons-search-input'
-          type='search'
-          className={styles.searchInput}
+        <Typography variant='title' size='l' weight='regular'>
+          Interface Icons
+        </Typography>
+
+        {/* TODO: Заменить поиск */}
+        <Search
           data-test-id='icons-search-input'
           value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder='Например Search'
-          autoComplete='off'
+          onChange={setSearch}
+          placeholder='Фильтровать по названию'
+          size='m'
+          outline
         />
       </section>
 
       {content}
 
-      {selectedIcon ? <IconModal data={selectedIcon} onClose={() => setSelectedIcon(null)} /> : null}
+      {selectedIcon && <IconModal data={selectedIcon} onClose={handleCloseModal} />}
     </div>
   );
 }
 
 const meta: Meta<StoryProps> = {
-  title: 'Components/Icons',
+  title: 'Icons/Interfaces Visual Matrix',
   parameters: {
     readme: { content: readme },
     packageName: componentPackage.name,
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/WGeuaJKutP2gAFPThLAexW/Interfaces-icons--variables-?node-id=3-102&m=dev',
+    },
   },
   args: {
     variant: 'sprite',
@@ -203,7 +233,7 @@ const meta: Meta<StoryProps> = {
 export default meta;
 type Story = StoryObj<StoryProps>;
 
-export const Catalog: Story = {
+export const InterfacesVisualMatrix: Story = {
   tags: ['dev', 'test'],
   render: args => <IconsCatalog {...args} />,
 };

@@ -114,7 +114,7 @@ Pop-up-подсказка над произвольным триггером. П
 
 ## Storybook
 
-<StorybookEmbed storyId='components-tooltip--playground' height={320} client:load />
+<StorybookEmbed storyId='components-tooltip-tooltip--playground' height={320} client:load />
 
 ## Доступность
 

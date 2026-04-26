@@ -4,6 +4,7 @@ import { ThemeToggle } from '../components/layout/ThemeToggle'
 import { MobileNavToggle } from '../components/layout/MobileNavToggle'
 import { GithubLink } from '../components/layout/GithubLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
+import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { SpriteHost } from '../components/layout/SpriteHost'
 import '../styles/global.css'
 import '../styles/docs-layout.scss'
@@ -24,7 +25,6 @@ const base = import.meta.env.BASE_URL
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description ?? 'Design System documentation'} />
     <title>{title} — Design System</title>
-    <link rel="stylesheet" href={`${base}pagefind/pagefind-ui.css`} />
   </head>
   <body>
     <SpriteHost />
@@ -43,9 +43,7 @@ const base = import.meta.env.BASE_URL
 
         <HeaderNav client:load />
 
-        <div class="header-search" id="search">
-          <kbd class="header-search-kbd" aria-hidden="true">⌘K</kbd>
-        </div>
+        <HeaderSearch client:load />
 
         <div class="header-end">
           <ThemeToggle client:load />
@@ -79,37 +77,5 @@ const base = import.meta.env.BASE_URL
       })()
     </script>
 
-    <script>
-      // ⌘K / Ctrl+K focuses the Pagefind search input
-      document.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-          e.preventDefault()
-          const input = document.querySelector<HTMLInputElement>(
-            '#search .pagefind-ui__search-input'
-          )
-          input?.focus()
-        }
-      })
-    </script>
-
-    <!--
-      Pagefind UI is an IIFE bundle that sets window.PagefindUI. Load it as a
-      regular <script> and initialise after DOM is ready. In `astro dev` the
-      astro-pagefind middleware serves /pagefind/* from ./dist — so run
-      `astro build` at least once before `astro dev` to get search in dev.
-    -->
-    <script is:inline src={`${base}pagefind/pagefind-ui.js`} defer></script>
-    <script is:inline>
-      window.addEventListener('DOMContentLoaded', () => {
-        if (typeof window.PagefindUI !== 'function') return
-        new window.PagefindUI({
-          element: '#search',
-          showImages: false,
-          showSubResults: true,
-          resetStyles: false,
-          placeholder: 'Поиск по документации…',
-        })
-      })
-    </script>
   </body>
 </html>

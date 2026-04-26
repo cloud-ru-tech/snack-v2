@@ -139,7 +139,7 @@ import '@ds/tag/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-tag--playground' height={320} client:load />
+<StorybookEmbed storyId='components-tag-tag--playground' height={320} client:load />
 
 ## Доступность
 
@@ -186,7 +186,7 @@ import '@ds/tag/style.css'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-tag--tagrow' height={320} client:load />
+<StorybookEmbed storyId='components-tag-tagrow--playground' height={320} client:load />
 
 ## Доступность
 

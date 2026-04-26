@@ -34,6 +34,26 @@ export type Size = ValueOf<typeof SIZE>
 - Тип — `PascalCase`, без `Enum`-суффикса.
 - **Не** используй TypeScript `enum` — см. [dont-do-that.md](./dont-do-that.md) и [react-types.md](./react-types.md).
 
+## `TEST_IDS` — публичные data-test-id внутренних слотов
+
+Если компонент сам ставит `data-test-id` на какие-либо вложенные слоты (ненативные, которых потребитель не может адресовать через spread `...rest`) — эти строки **обязаны** публиковаться через константу `TEST_IDS` в `constants.ts`:
+
+```ts
+export const TEST_IDS = {
+  root: 'switch-row',
+  switch: 'switch-row__switch',
+  title: 'switch-row__title',
+  titleTooltip: 'switch-row__title-tooltip',
+  description: 'switch-row__description',
+  toggleTooltip: 'switch-row__toggle-tooltip',
+} as const
+```
+
+- Ключ — `camelCase` имени слота. Значение — kebab-case, схема `<component>[__<slot>]`.
+- Компонент использует эти константы внутри реализации (`data-test-id={TEST_IDS.switch}`), инлайн-строк быть не должно.
+- Реэкспортируется из `src/index.ts` через `export * from './constants'` — попадает в публичный API пакета.
+- Stories и `__test__/<Component>/helpers.ts` берут id из этой же константы, не пересоздают строки. Подробности — в [stories-standard.md](./stories-standard.md) раздел «data-test-id — обязательный атрибут…».
+
 ## Пропсы
 
 Через `type` (не `interface`, если нет реальной необходимости в extension):

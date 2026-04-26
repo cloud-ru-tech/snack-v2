@@ -17,22 +17,37 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 
 Если чего-то критичного не хватает (имя пакета отсутствует, Figma не дана и legacy-источник неясен) — спроси у пользователя одним сообщением, не начинай работу.
 
+**Второй обязательный чекпойнт** — после research-фазы, если Figma-метадата расходится с API легаси (подробности в разделе «Reconcile Figma ↔ legacy» ниже), нужно остановиться и явно спросить пользователя, как разрешать каждое расхождение. Не принимай таких решений самостоятельно — даже «очевидных».
+
 ## Обязательный research перед написанием плана
 
-1. **Legacy-источник.** Найди старую реализацию:
+**Принцип:** Figma — ground truth для визуального API и осей варьирования. Референс-пакет — ground truth для функционального поведения (таймеры, коллбэки, slots, side-effects). План = пересечение. Не принимай за чистую монету ни то ни другое, не сверив одно с другим. Любая ось/токен, упомянутый только в референсе и отсутствующий в Figma (или наоборот), — это явное **design decision**, которое должно попасть в «Зафиксированные решения» до единой строки кода.
+
+1. **Figma первым делом** (до чтения легаси-исходников, чтобы не ангажироваться API легаси-библиотеки):
+   - `mcp__figma-remote-mcp__get_metadata` на корневую ноду → полный список variant-осей (`state`, `size`, `appearance`, `view`, …) и их значений. Это исчерпывающий список визуальных пропов, которые ДОЛЖНЫ быть в API. Сохрани сырой output в план.
+   - `mcp__figma-remote-mcp__get_variable_defs` на 1–2 ключевых variant'ах (default + самый сложный) → таблица используемых токенов (`sn/theme/color/…`, `sn/density/typography/…`, `sn/primitive/dimension/…`, `sn/button/anatomy/…`). Это черновик будущего SCSS.
+   - `mcp__figma-remote-mcp__get_design_context` (если нужна точная структура DOM) — даёт raw CSS каждого вложенного слоя; пригодится на имплементации.
+   - Составь таблицу `Figma variant → React prop` (колонки: Figma axis, значения, prop, default, data-attribute).
+   - Проверь имена слоёв на `stateLayer/...`, `material/acrylic/...`, `focusedFrame/...` — это триггеры для `@ds/materials`-миксинов и `:focus-visible` (см. `.claude/rules/figma-to-code.md` и `packages/materials/docs/index.mdx`). Список найденных материальных слоёв → в план.
+   - Зафиксируй `fileKey` / `nodeId` как константы `FIGMA_<NAME>` для `apps/docs/src/lib/figma.ts`.
+
+2. **Legacy-источник.** Найди старую реализацию:
    - Проверь соседний репозиторий `storybook/packages/<pkg-name>/` (скаффолд-утилита — `scripts/migrate-package.mts`).
    - Если нет — `npm pack @snack-uikit/<pkg-name>` и/или `@cloud-ru/uikit-product-mobile-<pkg-name>` во временную папку, распакуй `src/`. Путь к распакованному коду включи в секцию «Legacy источники» плана.
-   - Прочитай `src/` legacy: публичный API, типы, константы, хуки, subcomponents.
+   - Прочитай `src/` legacy: **только функциональный слой** — коллбэки, хуки, таймеры, slots, truncate/clipboard/async-логика, structural composition. Визуальные константы (SIZES map, цвета, spacing-константы) **не** подтягивай в план как факт — они часто пришли из другой Figma и могут расходиться с текущей.
 
-2. **Figma.** Для каждого полученного `nodeId`:
-   - `mcp__figma-remote-mcp__get_metadata` — структура слоёв, variant axes.
-   - Составь таблицу `Figma variant → StepState/Prop` (см. пример Stepper — «Figma Step variant → StepState»).
-   - Запомни значения `fileKey` / `nodeId` для секции `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts`.
+3. **Reconcile Figma ↔ legacy** (обязательный шаг):
+   - Для каждой оси из Figma metadata — есть ли она в API легаси? Для каждого prop из легаси — есть ли соответствующая ось в Figma metadata?
+   - **Любое расхождение — это блокирующий вопрос пользователю, а не авто-решение агента.** Не выкидывай prop из API и не добавляй новые оси молча. Собери все расхождения в один список и **явно спроси пользователя** одним сообщением:
+     - `prop X есть в легаси (@<scope>/<pkg>@<ver>), но в Figma ноде <nodeId> такой оси нет — выкинуть, оставить legacy-extension с пометкой «не из Figma», или это означает, что я смотрю не ту Figma-ноду?`
+     - `ось Y есть в Figma, но в легаси её нет — добавить новый prop в API или скипнуть эту ось в первой итерации?`
+     - `цвет/spacing Z в легаси расходится с токеном Figma — идём за Figma или сохраняем легаси-значение?`
+   - Решения пользователя фиксируются в «Зафиксированные решения» с пометкой кто принял решение и обоснованием. Без ответа на эти вопросы — план не финализируется.
 
-3. **Референсные пакеты.** Для каждого `--ref <pkg>`:
-   - Прочитай `packages/<pkg>/src/index.ts`, `stories/`, `docs/index.mdx` — отметь повторяемые паттерны (структура, naming, composition).
+4. **Референсные пакеты.** Для каждого `--ref <pkg>`:
+   - Прочитай `packages/<pkg>/src/index.ts`, `stories/`, `docs/index.mdx` — отметь повторяемые паттерны (структура, naming, composition, использование `@ds/materials`-миксинов).
 
-4. **Tier.** Определи по `.claude/rules/complexity-tiers.md` (XS/S/M/L/XL) — от tier'а зависит объём stories/tests/docs.
+5. **Tier.** Определи по `.claude/rules/complexity-tiers.md` (XS/S/M/L/XL) — от tier'а зависит объём stories/tests/docs.
 
 ## Структура плана (обязательные секции)
 
@@ -47,18 +62,34 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 7. **Тесты** — список spec-файлов в `__test__/<ComponentName>/` по `.claude/rules/e2e-testing-standard.md` (блоки по tier'у).
 8. **Docs** — `docs/*.mdx` + `demos/` + `demos/examples/` + `FIGMA_<NAME>` константы для `apps/docs/src/lib/figma.ts`.
 9. **Wire-точки** — чеклист (tsconfig references, storybook/docs aliases, package.json deps со строгими версиями, без `react`/`react-dom`).
-10. **Фазы** — пронумерованные Phase 1…N (Research → Core → Subcomponents → Stories → Tests → Docs → Verification).
-11. **Риски** — точки с неочевидными проблемами (отсутствующие зависимости, async edge-cases, token naming, visual flakiness).
-12. **Success criteria** — чеклист `[ ]` (typecheck/lint/build/test/docs/tier audit).
-13. **Связанные правила** — ссылки на релевантные `.claude/rules/*.md`.
-14. **Legacy источники** — пути к распакованному коду / ссылки в соседнем репо, чтобы агент-имплементатор знал, откуда портировать.
+10. **Фазы** — пронумерованные Phase 1…N. **Явно разделяй логику и стили**:
+    - _Логика_ — порт из референса 1:1, меняются только импорты (`@snack-uikit/*` / `@cloud-ru/*` → `@ds/*`) и (если нужно) замена сторонних утилит на внутренние аналоги из «Маппинга зависимостей». Без «улучшений» и рефакторингов сверх паритета.
+    - _Стили_ — **не писать числа/hex вручную**. Для каждого структурного элемента берётся CSS из Figma (`get_design_context` или `get_variable_defs`) и прогоняется через `npx @sbercloud/figma-selected-block --css-file <path> --component <hint> --format scss` (см. `.claude/skills/figma-selected-block.md`). Output вставляется в `styles.module.scss`. Hardcoded `px`/`rem`/hex допустимы только если токена для значения реально нет в `@sbercloud/figma-variables` — и сопровождаются комментарием с обоснованием.
+    - Для `hover`/`pressed`/`focus`: если в Figma metadata есть слой `stateLayer/...` → использовать `@ds/materials::has-state-layer-as-child` (см. `packages/materials/docs/index.mdx`). Если `material/acrylic/...` → `with-material('acrylic', …)`. Если `focusedFrame/...` → `:focus-visible { outline: … }` (это **не** DOM-нода). Raw `:hover { color: … }` допустим только для состояний, которых нет в Figma как отдельный слой.
+    - Рекомендуемый порядок: Research → Scaffold → Functional port (логика из референса, стили-заглушка) → Figma-truth styles (прогон CLI по каждому слою) → Stories → Tests → Docs → Verification.
+11. **Риски** — точки с неочевидными проблемами:
+    - Ось в легаси, которой нет в Figma (или наоборот) — явно перечислить, указать решение.
+    - Цвета/spacing/typography в легаси, расходящиеся с Figma-токенами — список «что именно будет пересмотрено».
+    - Отсутствующие зависимости, async edge-cases, visual-regression flakiness, отсутствие `FIGMA_TOKEN` (→ CSS-in режим CLI вместо `--url`).
+12. **Success criteria** — чеклист `[ ]`:
+    - `typecheck` / `lint` / `stylelint` / `build:packages` зелёные.
+    - `test:stories`, `test:e2e:chrome` зелёные, visual baselines ручно-отсмотрены.
+    - `gen:props` и `gen:readme` прогнаны, props.json непустой.
+    - **Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `base.composite-var(...)`.** Захардкоженных `px`/`rem`/`#hex`/`rgba()` нет (кроме явно обоснованных в комментарии).
+    - Каждый Figma-слой `stateLayer/...` / `material/...` реализован через соответствующий миксин `@ds/materials`, а не через raw CSS.
+    - Оси React API ↔ Figma variant metadata взаимно-однозначны (или расхождения задокументированы в «Зафиксированных решениях»).
+    - Figma-embed в `docs/index.mdx` работает (константа `FIGMA_<NAME>` добавлена в `apps/docs/src/lib/figma.ts`).
+13. **Связанные правила** — ссылки на релевантные `.claude/rules/*.md` и `.claude/skills/*.md`. Обязательно: `figma-integration.md`, `figma-to-code.md`, `.claude/skills/figma-selected-block.md`, `packages/materials/docs/index.mdx`.
+14. **Legacy источники** — пути к распакованному коду / ссылки в соседнем репо, чтобы агент-имплементатор знал, откуда портировать **только логику** (не копировать константы цветов/размеров 1:1).
 
 ## Конвенции
 
 - Версии зависимостей — строгие (см. `.claude/rules/packages-deps.md`).
 - Никаких `react`/`react-dom` в `packages/*/package.json`.
 - Маппинг зависимостей legacy → наши — **обязательная таблица** (`@snack-uikit/icons` → `@ds/icons`, `@snack-uikit/utils::ValueOf` → `@ds/utils::ValueOf`, и т.д.).
-- Figma-переменные — через `@cloud-ru/figma-variables`, не `@snack-uikit/figma-tokens`.
+- Figma-переменные — через `@sbercloud/figma-variables`, не `@snack-uikit/figma-tokens`. Значения берём через CLI `@sbercloud/figma-selected-block`, а не на глаз.
+- Material/state-layer/acrylic — через миксины `@ds/materials` (см. `packages/materials/docs/index.mdx`), а не через raw CSS.
+- Логика из референса, визуал из Figma. Это **не** взаимозаменяемые источники истины.
 - Если в Figma есть опечатки в variant-именах — зафиксируй их в «Рисках» и реши в плане (корректное имя в API + комментарий-сноска в `constants.ts`).
 
 ## Итог

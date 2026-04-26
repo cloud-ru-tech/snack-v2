@@ -114,7 +114,7 @@ import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-drawer--playground' height={480} client:load />
+<StorybookEmbed storyId='components-drawer-drawer--playground' height={480} client:load />
 
 ## Доступность
 
@@ -236,7 +236,7 @@ import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-drawercustom--playground' height={480} client:load />
+<StorybookEmbed storyId='components-drawer-drawercustom--playground' height={480} client:load />
 
 ## ButtonClose
 

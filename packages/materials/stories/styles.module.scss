@@ -1,0 +1,112 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../index' as m;
+
+// Common
+.externalWrapper {
+  position: relative;
+
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 450px;
+  padding: 0 base.$sn-primitive-dimension-32;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  &[data-show-background] {
+    background-image: url('assets/sample-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-32;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 base.$sn-primitive-dimension-32;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+// StateLayers.VisualMatrix.stories.tsx
+.sampleTextWrapper {
+  justify-content: start; //end;
+  width: 100%;
+}
+
+.opacityDemo {
+  .contentLayer {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include m.has-content-with-text-opacity(#{contentLayer});
+
+  .pseudoContentLayer {
+    width: 100%;
+    height: 100%;
+    background: #000;
+  }
+}
+
+.squareWrapper {
+  padding: base.$sn-primitive-dimension-40;
+
+  &[data-state='regularBackground'],
+  &[data-state='regularBorder'],
+  &[data-state='activatedBorder'],
+  &[data-state='textOpacity'] {
+    background-color: base.$sn-theme-color-neutral-background;
+  }
+
+  &[data-state='activatedBackground'] {
+    background-color: base.$sn-theme-color-neutral-background1Level;
+  }
+
+  &[data-state='onColorBackground'] {
+    background-color: base.$sn-theme-color-primary-background;
+  }
+
+  &[data-state='onAccentBackground'] {
+    background-color: base.$sn-theme-color-primary-accent;
+  }
+}
+
+
+// Playground.stories.tsx
+.withResize {
+  resize: both;
+}
+
+.draggable {
+  cursor: move;
+  position: absolute;
+}
+
+.sampleContent {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.sampleText {
+  @include base.composite-var(base.$sn-thin-label-s);
+
+  // Despite any basic font color settings here in case of textOpacity state this prop will be overridden
+  color: base.$sn-brand-color-text-version-main;
+}
+
+.sampleIcon {
+  fill: base.$sn-brand-color-text-version-main;
+}

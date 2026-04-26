@@ -1,0 +1,31 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 560px;
+}
+
+.toggle {
+  cursor: pointer;
+  user-select: none;
+
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.paragraph {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  margin: 0;
+}

@@ -118,7 +118,7 @@ import '@ds/status/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-status--playground' height={240} client:load />
+<StorybookEmbed storyId='components-status-status--playground' height={240} client:load />
 
 ## Доступность
 

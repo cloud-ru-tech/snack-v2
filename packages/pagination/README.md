@@ -136,7 +136,7 @@ import '@ds/pagination/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-pagination--playground' height={360} client:load />
+<StorybookEmbed storyId='components-pagination-pagination--playground' height={360} client:load />
 
 ## Доступность
 

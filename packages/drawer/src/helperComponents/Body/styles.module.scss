@@ -1,5 +1,5 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
-@use '@cloud-ru/figma-variables/build/scss/components/drawer.module' as drawer;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
 
 .body {
   @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'bodyWrapper');

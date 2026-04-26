@@ -1,0 +1,167 @@
+---
+title: CollapseBlock
+package: '@ds/accordion'
+description: Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / appearance / chevron.
+order: 2
+---
+
+import { CollapseBlockDemo } from '../demos/CollapseBlockDemo'
+import { NestedLevels } from '../demos/examples/NestedLevels'
+import NestedLevelsSrc from '../demos/examples/NestedLevels.tsx?raw'
+import { AfterTitle } from '../demos/examples/AfterTitle'
+import AfterTitleSrc from '../demos/examples/AfterTitle.tsx?raw'
+import { ChevronBefore } from '../demos/examples/ChevronBefore'
+import ChevronBeforeSrc from '../demos/examples/ChevronBefore.tsx?raw'
+import { Appearances } from '../demos/examples/Appearances'
+import AppearancesSrc from '../demos/examples/Appearances.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_ACCORDION } from '~docs/lib/figma'
+import accordionDoc from './props.json'
+
+# CollapseBlock
+
+Три семантических уровня раскрываемого блока: `CollapseBlockPrimary`, `CollapseBlockSecondary`, `CollapseBlockTertiary`. Уровень задаёт размер типографики заголовка и плотность отступов; все три компонента используют одно и то же API — меняется только роль в иерархии.
+
+## Демо
+
+<CollapseBlockDemo client:load />
+
+## Когда использовать
+
+- **`Primary`** (title size `l`) — верхнеуровневые разделы страницы или секции формы.
+- **`Secondary`** (title size `m`) — подразделы внутри `Primary`. Типовой `view='outline'`.
+- **`Tertiary`** (title size `s`) — плоские детали без дальнейшей вложенности. Без `view` / `appearance` — только заголовок и контент.
+
+## Для дизайнеров
+
+### Уровень — роль в иерархии
+
+| Уровень | Title size | Где жить |
+|---------|------------|----------|
+| `Primary` | `l` | Верхний уровень — разделы страницы или крупные секции формы |
+| `Secondary` | `m` | Подразделы внутри `Primary`; обычно `view='outline'` |
+| `Tertiary` | `s` | Детали третьего уровня; без `view` / `appearance` |
+
+### View — оформление обложки
+
+| View | Типичный сценарий |
+|------|-------------------|
+| `simple` | Без границы и фона — плотная сетка, списки внутри карточек |
+| `outline` | На контрастном фоне, внутри другого раздела — `Secondary` по умолчанию |
+| `elevated` | Плавающая обложка с тенью — отдельно стоящий раздел |
+
+`CollapseBlockTertiary` намеренно не принимает `view`: третий уровень всегда плоский.
+
+### Appearance — цветовая схема акрила
+
+`neutral` (по умолчанию), `primary`, `red`, `yellow`, `green`, `blue`. Применяется к акрилу/фону обложки. `CollapseBlockTertiary` не принимает `appearance`.
+
+<Example
+  title='Цветовые схемы'
+  description='Neutral — дефолт. Primary — акцент. Цветные варианты — для статусных разделов.'
+  code={AppearancesSrc}
+>
+  <Appearances client:load />
+</Example>
+
+### Chevron — позиция
+
+| Chevron | Когда использовать |
+|---------|---------------------|
+| `after` *(по умолчанию)* | Ожидаемое положение; хорошо читается при коротком `title` |
+| `before` | Плотные сетки, где справа стоит `afterTitle` (бейдж, сумма, статус) |
+
+<Example
+  title='Левый шеврон + afterTitle справа'
+  description='Читается как «строка итогов»: название слева, значение справа, шеврон возле названия.'
+  code={ChevronBeforeSrc}
+>
+  <ChevronBefore client:load />
+</Example>
+
+### Слоты заголовка
+
+- `title` — основной заголовок, обрезается с многоточием через `TruncateString`.
+- `subTitle` — строка под заголовком. Для подписей, описаний, метаданных.
+- `afterTitle` — контент справа от заголовка: счётчик, бейдж, сумма, статус. Не кликабелен сам по себе — всё взаимодействие на корневом блоке.
+
+<Example
+  title='afterTitle — счётчик'
+  description='Counter в правом слоте заголовка. Не кликабельный — клик по строке раскрывает блок.'
+  code={AfterTitleSrc}
+>
+  <AfterTitle client:load />
+</Example>
+
+### Do / Don't
+
+- ✅ `Primary` → `Secondary` → `Tertiary` внутри одной иерархии.
+- ❌ `Tertiary` внутри `Tertiary` — плоский уровень не предполагает вложенности.
+- ✅ `Secondary` с `view='outline'` внутри `Primary` — привычная визуальная вложенность.
+- ❌ `elevated` внутри `elevated` — карточка в карточке, визуальный шум.
+- ✅ `afterTitle` для бейджа/счётчика/суммы.
+- ❌ Кликабельные кнопки в `afterTitle` — клик по заголовку раскрывает блок, дочерние клики конфликтуют.
+
+### Figma
+
+<FigmaEmbed node={FIGMA_ACCORDION} height={480} title='CollapseBlock в Figma (Snack UI Kit)' client:load />
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/accordion
+```
+
+```ts
+import { Accordion } from '@ds/accordion'
+import '@ds/accordion/style.css'
+
+// Каждый уровень доступен статическим полем контейнера:
+Accordion.CollapseBlockPrimary
+Accordion.CollapseBlockSecondary
+Accordion.CollapseBlockTertiary
+```
+
+### Трёхуровневая иерархия
+
+<Example
+  title='Primary → Secondary → Tertiary'
+  description='Каждый уровень — собственный Accordion. Вложенный не наследует состояние родителя.'
+  code={NestedLevelsSrc}
+>
+  <NestedLevels client:load />
+</Example>
+
+### `keepMounted` — держать контент в DOM
+
+Полезно, когда внутренние компоненты должны сохранять состояние при сворачивании (формы с не отправленными значениями, табы с лениво инициализированной логикой).
+
+```tsx
+<Accordion.CollapseBlockPrimary id='form' title='Форма' keepMounted>
+  <LongForm />
+</Accordion.CollapseBlockPrimary>
+```
+
+### Общие пропсы
+
+Все три компонента принимают общее подмножество: `id` (обязателен — уникальный ключ в группе), `title`, `subTitle`, `afterTitle`, `chevron`, `keepMounted`, `className`, `children`. `Primary` и `Secondary` дополнительно принимают `view` и `appearance`. `Tertiary` — без `view` / `appearance`.
+
+### Props
+
+<PropsTable data={accordionDoc.CollapseBlock} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-accordion-collapseblockprimary--playground' height={480} client:load />
+
+## Доступность
+
+- Интерактивная область — заголовок блока; клик раскрывает/сворачивает контент.
+- Скрытая часть контента не рендерится по умолчанию (`keepMounted=false`) — ассистивные технологии не читают невидимое.
+- Состояние раскрытия дублируется: шеврон (вверх/вниз), `data-expanded` на корневом элементе, `aria-hidden` на контейнере контента.
+- Цвет `appearance` не несёт самостоятельного смысла — используйте его как акцент, а не как единственный сигнал состояния.

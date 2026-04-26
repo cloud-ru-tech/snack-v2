@@ -120,7 +120,7 @@ import '@ds/timeline/style.css'
 
 ### Storybook
 
-<StorybookEmbed storyId='components-timeline--playground' height={480} client:load />
+<StorybookEmbed storyId='components-timeline-timeline--playground' height={480} client:load />
 
 ## Доступность
 

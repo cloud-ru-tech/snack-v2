@@ -1,5 +1,5 @@
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
-@use '@cloud-ru/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
 
 $sizes: 'm', 'l', '5xl';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';

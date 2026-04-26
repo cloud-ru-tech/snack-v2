@@ -1,0 +1,9 @@
+@use '../../../index' as m;
+
+.stateLayer {
+  visibility: initial;
+}
+
+.withStateLayer {
+  @include m.has-state-layer-as-child(#{stateLayer});
+}

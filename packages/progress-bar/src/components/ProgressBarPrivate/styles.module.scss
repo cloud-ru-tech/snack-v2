@@ -1,8 +1,8 @@
 /* Базовые функции и миксины из пакета */
-@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 /* Структуры компонентов (локальные) */
-@use '@cloud-ru/figma-variables/build/scss/components/progressBar.module' as component;
+@use '@sbercloud/figma-variables/build/scss/components/progressBar.module' as component;
 
 $sizes: 'xs', 's';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';

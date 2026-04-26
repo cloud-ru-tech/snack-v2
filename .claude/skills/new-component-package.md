@@ -17,7 +17,7 @@
    ```bash
    pnpm add-package
    ```
-   Ответить на prompts (name, componentName). Скрипт создаёт `packages/<name>/src/<Name>/*`, обновляет wire-точки (`tsconfig`, `storybook/main.ts`, `astro.config.mjs`).
+   Ответить на prompts (name, componentName). Скрипт создаёт `packages/<name>/src/<Name>/*`, обновляет wire-точки (`tsconfig`, `storybook/main.ts`; для docs — `astro.config.mjs`, алиасы `@ds/*` из `packages/`).
 
 2. **Подгонка `src/`** — если tier M+, заменить flat-структуру на nested `components/<Name>/`. См. [package-src-structure.md](../rules/package-src-structure.md).
 

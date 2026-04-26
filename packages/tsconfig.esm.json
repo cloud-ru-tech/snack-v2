@@ -82,25 +82,63 @@
     {
       "path": "./stepper/tsconfig.esm.json"
     },
-    { "path": "./tooltip/tsconfig.esm.json" },
-    { "path": "./input-private/tsconfig.esm.json" },
-    { "path": "./pagination/tsconfig.esm.json" },
-    { "path": "./tabs/tsconfig.esm.json" },
-    { "path": "./dropdown/tsconfig.esm.json" },
-    { "path": "./truncate-string/tsconfig.esm.json" },
-    { "path": "./search-private/tsconfig.esm.json" },
-    { "path": "./slider/tsconfig.esm.json" },
-    { "path": "./carousel/tsconfig.esm.json" },
-    { "path": "./link/tsconfig.esm.json" },
-    { "path": "./alert/tsconfig.esm.json" },
-    { "path": "./tag/tsconfig.esm.json" },
-    { "path": "./search/tsconfig.esm.json" },
-    { "path": "./modal/tsconfig.esm.json" },
-    { "path": "./drawer/tsconfig.esm.json" }
+    {
+      "path": "./tooltip/tsconfig.esm.json"
+    },
+    {
+      "path": "./input-private/tsconfig.esm.json"
+    },
+    {
+      "path": "./pagination/tsconfig.esm.json"
+    },
+    {
+      "path": "./tabs/tsconfig.esm.json"
+    },
+    {
+      "path": "./dropdown/tsconfig.esm.json"
+    },
+    {
+      "path": "./truncate-string/tsconfig.esm.json"
+    },
+    {
+      "path": "./search-private/tsconfig.esm.json"
+    },
+    {
+      "path": "./slider/tsconfig.esm.json"
+    },
+    {
+      "path": "./carousel/tsconfig.esm.json"
+    },
+    {
+      "path": "./link/tsconfig.esm.json"
+    },
+    {
+      "path": "./alert/tsconfig.esm.json"
+    },
+    {
+      "path": "./tag/tsconfig.esm.json"
+    },
+    {
+      "path": "./search/tsconfig.esm.json"
+    },
+    {
+      "path": "./modal/tsconfig.esm.json"
+    },
+    {
+      "path": "./drawer/tsconfig.esm.json"
+    },
+    {
+      "path": "./accordion/tsconfig.esm.json"
+    }
   ],
   "compilerOptions": {
     "target": "es6",
-    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "es6",
     "strict": true,
     "jsx": "react-jsx",
