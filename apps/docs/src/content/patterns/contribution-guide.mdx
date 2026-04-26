@@ -48,7 +48,7 @@ design-system/
 ## Быстрый старт
 
 ```bash
-pnpm install
+pnpm deps
 npx playwright install               # один раз, для E2E
 
 pnpm dev:storybook                   # localhost:6006
@@ -83,7 +83,6 @@ packages/<pkg>/
 │       ├── interaction.spec.ts
 │       ├── keyboard.spec.ts
 │       ├── polymorphism.spec.ts              # если есть `as`
-│       ├── a11y.spec.ts
 │       ├── visual.spec.ts
 │       └── __snapshots__/                    # baseline PNG (chrome-only)
 ├── demos/
@@ -249,13 +248,13 @@ pnpm add-package
 Дальше:
 
 ```bash
-pnpm install
+pnpm deps
 pnpm gen                 # props.json + README.md
 pnpm dev:storybook
 pnpm dev:docs
 ```
 
-Флаг `--dry-run` показывает, что будет создано, без записи.
+Флаг `--dry-run` сообщит что будет создано без настоящей генерации файлов.
 
 ## Тестирование
 
@@ -286,14 +285,16 @@ test('renders', async ({ page, gotoStory }) => {
 Параметрика — через `gotoStory(id, args)`, без заведения отдельных stories «под комбинацию».
 
 Набор спеков на компонент (max 5 + visual):
-`rendering.spec.ts`, `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts`, `a11y.spec.ts`, `visual.spec.ts`. Выбор набора — по tier'у ([`.claude/rules/complexity-tiers.md`](https://github.com/)).
+`rendering.spec.ts`, `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts`, `visual.spec.ts`. Выбор набора — по tier'у ([`.claude/rules/complexity-tiers.md`](https://github.com/)).
 
 ```bash
-pnpm test:e2e                      # все проекты
-pnpm test:e2e:chrome               # только chrome (включая visual)
+pnpm test:e2e                            # все проекты — финальная сверка перед PR
+pnpm test:e2e:chrome                     # только chrome (включая visual)
+pnpm test:e2e:chrome packages/<pkg>      # один пакет (дефолт во время разработки)
 pnpm test:e2e:ui
-pnpm test:e2e:update-snapshots     # регенерация baselines (chrome-only)
-pnpm test:e2e:docs                 # отдельный suite для apps/docs
+pnpm test:e2e:update-snapshots           # регенерация baselines (chrome-only)
+pnpm test:e2e:update-snapshots packages/<pkg>  # baselines одного пакета
+pnpm test:e2e:docs                       # отдельный suite для apps/docs
 ```
 
 ### 3. Визуальная регрессия
@@ -315,14 +316,62 @@ pnpm gen              # оба
 Публикуем только `packages/*` (приложения `private: true`).
 
 ```bash
-pnpm build:packages                # ESM + CJS + CSS
+pnpm build:packages                # ESM + CJS + CSS (полная сборка всех пакетов)
+pnpm build:pkg <pkg>               # инкрементальная сборка одного пакета — для итераций
 pnpm version:packages              # lerna version, independent
 pnpm release                       # lerna publish from-package
 ```
 
+## Сценарии разработки
+
+Три типовых сценария, в которых разработчик заходит в этот репо. Каждый — короткий рецепт: где брать дизайн, какой командой генерировать план, какой префикс пакета использовать, что проверить руками, куда нести PR. Общий Claude-Code-флоу описан в [`## Миграция компонентов из старой дизайн-системы`](#миграция-компонентов-из-старой-дизайн-системы) и [`## Claude Code инструментарий`](#claude-code-инструментарий) — здесь только различия по сценариям.
+
+**Базовая установка для миграций:** публичное API нового пакета `@ds/*` стараемся оставлять **совместимым** со старым (`@snack-uikit/<pkg>` или `@cloud-ru/uikit-product-<pkg>`). Все осознанные расхождения фиксируем в `.claude/plan/<pkg>.md` и в описании PR.
+
+**Ручные проверки, общие для всех сценариев** (то, что автотесты не ловят):
+
+- hover / focus-visible / pressed эффекты в браузере (Storybook + dev:docs);
+- согласованность пропсов с legacy-источником и, если был, с мобильной версией;
+- визуальное соответствие Figma (через VisualMatrix baseline + ручной diff).
+
+**PR и поддержка** — общие для всех сценариев:
+
+- PR на ревью — канал [front-review](https://mm.sbercloud.tech/default/channels/front-review), тегать `@ff` и `@dd_design`.
+- Вопросы по ходу разработки — канал [ff-support](https://mm.sbercloud.tech/default/channels/ff-support).
+
+### Сценарий 1. Миграция из `@snack-uikit/*`
+
+- **Источник дизайна:** [Snack Ui Kit variables](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3553-18435&p=f&m=dev) (`fileKey: aNPU3MHwRJiEwbk5F82zux`).
+- **Префикс пакета:** имя оригинального компонента без скоупа — `button`, `accordion`, `tabs`, `tooltip` и т.п.
+- **Шаги:**
+  1. Изучить макет в Figma и оригинальную реализацию в legacy-репо `storybook/` либо в npm `@snack-uikit/<pkg>`. Если у компонента была отдельная мобильная версия (`@snack-uikit/<pkg>-mobile` или mobile-обёртка) — её тоже на стол.
+  2. `pnpm add-package` — скаффолд пакета. Делается **до** генерации плана, чтобы план опирался на реальную раскладку.
+  3. `/migrate-to-v2 <pkg> <figma-url> [--ref <legacy-pkg>] [--mobile <mobile-pkg>] [--note "..."]` — план в `.claude/plan/<pkg>.md`. В `--note` обязательно указать ссылку на Figma, на legacy-источник и на мобильную реализацию (если была).
+  4. `/add-stories <pkg>`, дальше снять baselines: `pnpm dev:storybook` + `pnpm test:e2e:update-snapshots packages/<pkg>`.
+  5. `/add-tests <pkg>`, `/add-docs <pkg>`, `pnpm gen:props && pnpm gen:readme`.
+  6. Прогнать ручные проверки из общего списка выше.
+  7. `/make-commit` → PR в `front-review`.
+
+### Сценарий 2. Миграция из `@cloud-ru/uikit-product-*`
+
+- **Источник дизайна:** [Product UI Kit variables](https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-?node-id=2924-49&p=f&m=dev).
+- **Префикс пакета:** **обязательно** `uikit-product-*` (например, `uikit-product-table`, `uikit-product-filter-bar`). Это разводит пакеты Product-кита и Snack-кита по разным неймспейсам.
+- **API-совместимость:** держим совместимость с `@cloud-ru/uikit-product-<name>`.
+- **Шаги:** идентичны Сценарию 1 — `pnpm add-package` → `/migrate-to-v2 <pkg> <figma-url> [--ref @cloud-ru/uikit-product-<pkg>] [--note "..."]` → `/add-stories|tests|docs` → `pnpm gen` → ручные проверки → `/make-commit` → PR.
+
+### Сценарий 3. Новый компонент / пакет с нуля
+
+- **Когда:** legacy-источника нет, есть только Figma-узел (или серия узлов).
+- **Префикс пакета:** `uikit-product-*`.
+- **Шаги:**
+  1. `pnpm add-package` — скаффолд.
+  2. `/create-from-figma <pkg> <figma-url> [<figma-url> ...] [--note "..."]` — команда строит черновик публичного API (`constants.ts` / `types.ts` / слоты / коллбэки) из variant-осей Figma и **обязательно показывает API на подтверждение** до финализации плана.
+  3. Дальше — `/add-stories`, `/add-tests`, `/add-docs`, `pnpm gen:props && pnpm gen:readme`.
+  4. Ручные проверки → `/make-commit` → PR.
+
 ## Миграция компонентов из старой дизайн-системы
 
-Пакеты портируются из соседнего репо `storybook/` (`@design-system/*` → `@ds/*`) и из legacy-скоупов `@snack-uikit/*` / `@cloud-ru/*`.
+Пакеты портируются из соседнего репо `storybook/` (`@design-system/*` → `@ds/*`) и из legacy-скоупов `@snack-uikit/*` / `@cloud-ru/*`. Конкретные рецепты под каждый источник — выше, в [`## Сценарии разработки`](#сценарии-разработки). Ниже — общий Claude-Code-флоу, на который опираются оба миграционных сценария.
 
 Флоу через Claude Code:
 
@@ -333,6 +382,14 @@ pnpm release                       # lerna publish from-package
    ```
 
    План сохраняется в `.claude/plan/<pkg>.md`. Команда учитывает Figma-узел, текущие правила DS и эталон (`--ref button`).
+
+   Если **legacy-источника нет** (компонент проектируется с нуля по Figma) — используй `/create-from-figma`:
+
+   ```
+   /create-from-figma <pkg> <figma-url> [<figma-url> ...] [--note "..."]
+   ```
+
+   Команда строит черновик публичного API (constants/types/slots/коллбэки) из variant-осей Figma и **обязательно** показывает его на подтверждение пользователю до финализации плана.
 
 2. **Скаффолд** — скилл `new-component-package` (`pnpm add-package` + tier-специфичные артефакты).
 3. **Доработка** — скиллы `figma-component-import`, `component-story-set`, `component-e2e-tests`, `component-docs`.
@@ -421,7 +478,8 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 |---------|------------|
 | `/make-commit` | Conventional-commit из staged diff |
 | `/up-cloud-deps` | Обновить `@snack-uikit/*` / `@cloud-ru/*` до актуальных версий |
-| `/migrate-to-v2` | План миграции компонента в `.claude/plan/<pkg>.md` |
+| `/migrate-to-v2` | План миграции компонента (есть legacy-источник `--ref`) в `.claude/plan/<pkg>.md` |
+| `/create-from-figma` | План нового пакета из одной только Figma-ноды (API проектируется по variant-осям) в `.claude/plan/<pkg>.md` |
 | `/add-stories <pkg>` | Playground + VisualMatrix (+ оправданные доп. stories) в `packages/<pkg>/stories/<Name>/` |
 | `/add-tests <pkg>` | Набор Playwright E2E specs в `packages/<pkg>/__test__/<Name>/` по tier'у |
 | `/add-docs <pkg>` | `docs/index.mdx` + demos для `packages/<pkg>` (role-based структура) |
@@ -459,9 +517,12 @@ pnpm dev:docs                   # открыть /components/<pkg>
 После `/add-tests` — прогнать локально:
 
 ```bash
-pnpm test:e2e:chrome                                       # быстрый smoke
-pnpm test:e2e --project=chrome packages/<pkg>/__test__     # только этот пакет
+pnpm test:e2e:chrome packages/<pkg>                                       # только этот пакет (быстрее всего)
+pnpm test:e2e:chrome packages/<pkg>/__test__/<Component>/rendering.spec.ts # один spec
+pnpm test:e2e:chrome -g "props propagation"                               # по grep'у имени теста
 ```
+
+Селективные команды для итераций (lint/build:pkg/typecheck/тесты по одному пакету) — см. [`.claude/rules/fast-build-commands.md`](https://github.com/).
 
 ### Типовой флоу: новый компонент из Figma
 
@@ -491,7 +552,7 @@ pnpm gen:props && pnpm gen:readme
 
 ## Дизайн-токены
 
-Визуальные константы — пакет `@sbercloud/figma-variables`, установлен в монорепо.
+Визуальные константы-переменные — пакет `@sbercloud/figma-variables` (установлен в монорепо).
 
 **В SCSS компонентов:**
 
@@ -509,3 +570,16 @@ pnpm gen:props && pnpm gen:readme
 ```css
 @import '@sbercloud/figma-variables/build/css/tokens.css';
 ```
+
+## Связанные ресурсы
+
+| Ресурс | URL |
+|--------|-----|
+| Стенд документации (snack-v2) | https://frontend.cp.sbercloud.tech/snack-v2/ |
+| Стенд Storybook | https://frontend.cp.sbercloud.tech/snack-v2/storybook/ |
+| Snack Ui Kit — Figma | https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables |
+| Product UI Kit — Figma | https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables- |
+| Репозиторий токенов (`@sbercloud/figma-variables`) | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook |
+| Figma-плагин и CLI tokens-helper | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/figma-helper-plugin |
+| PR на ревью (тегать `@ff`, `@dd_design`) | https://mm.sbercloud.tech/default/channels/front-review |
+| Поддержка по ходу разработки | https://mm.sbercloud.tech/default/channels/ff-support |

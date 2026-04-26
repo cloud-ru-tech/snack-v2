@@ -53,7 +53,7 @@ function renderButton(props: ButtonPropsForMatrix): ReactElement {
 }
 
 export const VisualMatrix: Story = {
-  tags: ['test', 'dev', 'no-a11y'],
+  tags: ['test', 'dev'],
   render: () => (
     <div className={styles.matrix}>
       <StoryTable

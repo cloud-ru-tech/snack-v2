@@ -103,7 +103,7 @@ export function AlertBase(props: AlertBaseProps) {
     actions,
     size = 'm',
     collapsible = false,
-    align = ALIGN.Horizontal,
+    align = ALIGN.Vertical,
     ...rest
   } = props;
 
@@ -212,7 +212,7 @@ export function AlertBase(props: AlertBaseProps) {
       <div className={cn(styles.body, { [styles.bodyInteractive]: collapsible && canExpand })} data-size={size}>
         {icon && (
           <div
-            className={cn('sn-desktop', styles.icon)}
+            className={cn('sn-compact', styles.icon)}
             data-size={size}
             data-test-id={`${testIdPrefix}__icon`}
             {...inlineColorProps}

@@ -46,16 +46,16 @@ $shapeMap: (
 }
 
 .decor[data-size='m'] svg.icon {
-  width: base.$sn-adaptive-size-icon-xs !important;
-  height: base.$sn-adaptive-size-icon-xs !important;
+  width: base.$sn-density-size-icon-xs !important;
+  height: base.$sn-density-size-icon-xs !important;
 }
 
 .decor[data-size='xl'] svg.icon {
-  width: base.$sn-adaptive-size-icon-s !important;
-  height: base.$sn-adaptive-size-icon-s !important;
+  width: base.$sn-density-size-icon-s !important;
+  height: base.$sn-density-size-icon-s !important;
 }
 
 .decor[data-size='5xl'] svg.icon {
-  width: base.$sn-adaptive-size-icon-l !important;
-  height: base.$sn-adaptive-size-icon-l !important;
+  width: base.$sn-density-size-icon-l !important;
+  height: base.$sn-density-size-icon-l !important;
 }

@@ -75,11 +75,26 @@ order: <число, порядок в сайдбаре>
 
 Минимум — H3 на каждую ось из `constants.ts`. Если ось одна (`size`) — блок может быть коротким, но всё равно существует.
 
-Tier XS/S: обычно достаточно `demo` + `when` + `examples` + `props` + `storybook` + `a11y`. Tier M+: добавляются `do-dont`, `figma`, `states`, остальное по api.
+Tier XS/S: обычно достаточно `demo` + `when` + `examples` + `props` + `storybook`. Tier M+: добавляются `do-dont`, `figma`, `states`, остальное по api.
+
+## `## Демо` — только для презентационных компонентов
+
+Секция `## Демо` с интерактивным `<Canvas>`-плейграундом (`demos/<Name>Demo.tsx` поверх `~docs/components/Canvas`) уместна **только** для props-driven компонентов без центральных колбеков и состояния. Условия — все одновременно:
+
+- API сводится к сериализуемым пропсам (`size`, `appearance`, `view`, `disabled`, `label`, …) — Canvas умеет крутить ровно их.
+- Колбеков нет либо они не определяют смысл компонента (`onClick` у `Button` ОК, потому что нажатие очевидно; `onChange` у `Slider` — не ОК, без живого сценария ползунок «не двигается»).
+- Нет внутреннего состояния, которое нужно показать (open/close у Modal/Drawer/Popover/Dropdown, current page у Pagination, controlled value у Search/Toggles/Tabs).
+
+Если эти условия не выполняются — **секцию `## Демо` не заводи вообще** и не создавай `demos/<Name>Demo.tsx`. Живая демонстрация поведения уезжает в `## Примеры использования` через `<Example>` + файлы `demos/examples/<Name>.tsx`. Canvas в таких пакетах либо рендерил статику (дублируя VisualMatrix), либо требовал state-адаптера, который ни о чём пользователю не говорит.
+
+Каноничный список «Canvas остаётся / убирается»:
+
+- **Canvas остаётся**: `avatar`, `block`, `counter`, `divider`, `skeleton`, `loader`, `status`, `tag`, `promo-tag`, `truncate-string`, `typography`, `progress-bar`, `info-block`, `breadcrumbs`, `timeline`, `button`, `link`, `icons`, `alert`, `hot-spot`.
+- **Canvas НЕ заводим**: `accordion`, `carousel`, `drawer`, `modal`, `popover`, `dropdown`, `pagination`, `rating`, `slider`, `search`, `stepper`, `tabs`, `toggles` (всё семейство), `dropzone`. У них `## Демо` отсутствует, всю интерактивность несёт `## Примеры использования`.
 
 ## Компоненты-обёртки
 
-Импорты:
+Импорты (когда Canvas-демо уместно — иначе строки `import { <Name>Demo } …` и блок `## Демо` опускаем):
 
 ```mdx
 import { <Name> } from '@ds/<pkg>'
@@ -123,6 +138,7 @@ import DestructiveSrc from '../demos/examples/Destructive.tsx?raw'
 - Несколько корневых элементов оборачиваются в `<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>` — единственное допустимое место для инлайн-`style` в demo-файлах (gap-обёртка самого примера).
 - Один корневой элемент — без обёртки.
 - Файл целиком показывается в docs через `?raw`, вместе с `import`-строками. Читатель копирует и запускает.
+- **Пример обязан быть живым.** Если у компонента есть `onChange` / `onClick` / `onPageChange` / `onFilesUpload` и т.п., который определяет смысл — пиши либо uncontrolled (`defaultValue`, `defaultChecked`), либо controlled с локальным `useState`. **`onChange={() => {}}` (no-op-колбек) запрещён** — это «мёртвый» пример, который скрывает поведение и хуже Canvas-а.
 
 Минимум **3** `<Example>` блока на пакет, типичный набор — 5–6: один на ключевую ось, один на icon-slots, один на polymorphism, один на состояния.
 
@@ -201,6 +217,8 @@ packages/<pkg>/demos/examples/
 - Использовать `## API` вместо `## Props` — сырой список пропсов идёт в автогенерированную `<PropsTable>` из `props.json`.
 - Писать текст без `client:visible` у интерактивных компонентов — иначе Astro рендерит их статикой.
 - Писать инлайн-JSX внутри `<Example>...</Example>`. Любое содержимое `<Example>` — отдельный файл `demos/examples/<Name>.tsx` + `?raw` + `client:visible`.
+- Заводить `## Демо` с Canvas-плейграундом (`<*Demo client:visible />`) у компонентов с центральными колбеками или состоянием (Modal, Drawer, Popover, Dropdown, Pagination, Search, Slider, Rating, Tabs, Toggles, Dropzone, …). У них `## Демо` отсутствует, живое поведение демонстрируется в `## Примеры использования`.
+- Писать «мёртвые» примеры с `onChange={() => {}}` / `onClick={() => {}}` no-op-колбеком, когда колбек определяет поведение. Используй uncontrolled (`defaultValue`) либо `useState` controlled.
 - Добавлять `README.md` руками. Используй `pnpm gen:readme`.
 
 ## Связанные правила

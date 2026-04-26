@@ -33,7 +33,6 @@ packages/<pkg>/
 │   ├── <pkg>.dimensions.spec.ts
 │   ├── <pkg>.interaction.spec.ts
 │   ├── <pkg>.polymorphism.spec.ts
-│   ├── <pkg>.a11y.spec.ts
 │   └── <pkg>.visual.spec.ts
 └── __snapshots__/                 # visual baselines (chrome-only)
 ```

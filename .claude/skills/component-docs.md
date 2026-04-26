@@ -22,10 +22,10 @@
    ---
    ```
 
-2. **Импорты**:
+2. **Импорты** (строка `import { <Name>Demo } …` — только если решено заводить Canvas-плейграунд, см. шаг 6):
    ```mdx
    import { <Name> } from '@ds/<pkg>'
-   import { <Name>Demo } from '../demos/<Name>Demo'
+   import { <Name>Demo } from '../demos/<Name>Demo'  // только для презентационных компонентов
    import { Example } from '~docs/components/Example'
    import { PropsTable } from '~docs/components/PropsTable'
    import { StorybookEmbed } from '~docs/components/StorybookEmbed'
@@ -41,7 +41,7 @@
    Типовой набор H2 для tier M+:
 
    - `# <Name>` + lead-параграф.
-   - `## Демо` — `<<Name>Demo client:visible />`.
+   - `## Демо` — `<<Name>Demo client:visible />`. **Заводим только для презентационных props-driven компонентов** (см. шаг 6). Если у компонента есть центральные колбеки (`onChange`, `onClick`-flow, `onFilesUpload`, …) или внутреннее состояние (`open`, current page/tab/value) — секцию `## Демо` **пропускаем целиком** и не создаём `demos/<Name>Demo.tsx`. Живое поведение в этом случае несёт `## Примеры использования`.
    - `## Когда использовать` — плюсы/минусы, когда **не** нужен.
    - `## Анатомия` — H3 на каждую визуальную ось из `constants.ts` (`### Appearance`, `### View`, `### Size`, `### Variant`, …): короткая семантика + таблица значений + опционально inline `<Example>` с вариантами.
    - `## Установка` — `pnpm add` + импорт.
@@ -72,6 +72,8 @@
 
    Покрытие — по осям API компонента: по одному примеру на ключевую ось, icon-slots, polymorphism (`as`), состояния (loading/disabled).
 
+   **Примеры обязаны быть живыми.** Если у компонента есть колбек, определяющий поведение (`onChange`, `onClick`-flow, `onFilesUpload`, …) — пиши uncontrolled (`defaultValue`/`defaultChecked`) либо controlled с локальным `useState`. **`onChange={() => {}}` (no-op) запрещён** — это «мёртвый» пример, скрывающий поведение.
+
 5. **Живой сценарий** (tier M+, опционально):
 
    ```tsx
@@ -87,7 +89,8 @@
 
    Вставляем в MDX через `client:visible`.
 
-6. **Demo** — `demos/<Name>Demo.tsx`:
+6. **Demo** — `demos/<Name>Demo.tsx` (Canvas-плейграунд) — **только для презентационных props-driven компонентов** (`avatar`, `block`, `counter`, `divider`, `skeleton`, `loader`, `status`, `tag`, `promo-tag`, `truncate-string`, `typography`, `progress-bar`, `info-block`, `breadcrumbs`, `timeline`, `button`, `link`, `icons`, `alert`, `hot-spot`). У интерактивных компонентов с центральными колбеками или состоянием (Modal/Drawer/Popover/Dropdown/Pagination/Search/Slider/Rating/Tabs/Toggles/Dropzone/…) — **не создавай**. Их `## Демо` в MDX отсутствует.
+
    ```tsx
    import { <Name> } from '@ds/<pkg>'
    import <pkg>Doc from '../docs/props.json'

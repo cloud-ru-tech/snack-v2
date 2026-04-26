@@ -1,5 +1,7 @@
 import { PaginationSlider } from '@ds/pagination';
+import { useState } from 'react';
 
 export function SliderBasic() {
-  return <PaginationSlider total={5} page={2} onChange={() => {}} />;
+  const [page, setPage] = useState(2);
+  return <PaginationSlider total={5} page={page} onChange={setPage} />;
 }

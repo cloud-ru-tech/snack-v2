@@ -118,7 +118,7 @@ export function CollapseBlock({
             </div>
           )}
         </div>
-        <div className={cn(styles.chevronWrapper, getThemeClassnames({ platform: 'desktop' }))}>
+        <div className={cn(styles.chevronWrapper, getThemeClassnames({ density: 'compact' }))}>
           <Button
             view='function'
             size='m'

@@ -5,7 +5,6 @@ description: Контейнер-группа раскрываемых блоко
 order: 1
 ---
 
-import { AccordionDemo } from '../demos/AccordionDemo'
 import { BasicAccordion } from '../demos/examples/BasicAccordion'
 import BasicAccordionSrc from '../demos/examples/BasicAccordion.tsx?raw'
 import { MultipleMode } from '../demos/examples/MultipleMode'
@@ -20,9 +19,6 @@ import accordionDoc from './props.json'
 # Accordion
 
 Контейнер, который группирует `CollapseBlock*` в одну логическую группу и управляет их раскрытием. Под капотом — `ToggleGroup` из `@ds/toggles`, поэтому семантика раскрытия идентична группе переключателей.
-
-## Демо
-<AccordionDemo client:visible />
 
 ## Когда использовать
 - Для группы раскрываемых блоков, где открытие/закрытие должно быть согласовано (один из, несколько из).

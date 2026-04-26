@@ -17,7 +17,7 @@ description: Обновить зависимости скоупов @snack-uikit
 4. Запусти:
 
    ```bash
-   pnpm install
+   pnpm deps
    ```
 
 5. Изучи документацию обновлённых пакетов. Если в новых версиях есть BREAKING CHANGES — найди места использования в коде и внеси необходимые правки.
@@ -27,10 +27,10 @@ description: Обновить зависимости скоупов @snack-uikit
    ```bash
    pnpm lint
    pnpm typecheck
-   pnpm build
+   pnpm build:packages
    ```
 
-   (`pnpm build` = `pnpm build:packages` + сборка docs/storybook. Если обновление затрагивает только пакеты, достаточно `pnpm build:packages`.)
+   `pnpm build:packages` достаточно — этот апдейт затрагивает рантайм-код пакетов, не Storybook/docs. Полный `pnpm build` (включает Storybook static + docs build, минуты) запускай только если апдейт реально ломает их сборку. Для одной-двух точечных перепроверок — `pnpm build:pkg <pkg>` (см. [fast-build-commands.md](../rules/fast-build-commands.md)).
 
 7. Если все проверки зелёные — апдейт считается успешным.
 

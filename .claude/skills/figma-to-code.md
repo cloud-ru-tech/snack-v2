@@ -52,7 +52,7 @@ DOM-структура компонента практически повтор�
 - [ ] Нет `React.FC` / `React.ReactNode` / `any` / `@ts-ignore`; типы импортируются напрямую из `'react'`
 - [ ] В `packages/<pkg>/package.json` нет `react`/`react-dom`, все версии точные (без `^`/`~`)
 - [ ] В meta story указан `parameters.design = { type: 'figma', url: '...' }`
-- [ ] `pnpm lint` и `pnpm stylelint` проходят
+- [ ] `pnpm exec eslint packages/<pkg>` и `pnpm exec stylelint "packages/<pkg>/**/*.scss"` проходят (селективные команды — см. [fast-build-commands.md](../rules/fast-build-commands.md))
 
 ## Когда идти в канон
 

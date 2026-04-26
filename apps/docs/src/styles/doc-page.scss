@@ -14,14 +14,18 @@
 
 .breadcrumb {
   display: flex;
-  gap: base.$sn-adaptive-spacing-interval-m;
+  gap: base.$sn-density-spacing-interval-m;
   align-items: center;
 
-  padding: base.$sn-adaptive-spacing-interval-l base.$sn-primitive-dimension-48 0;
+  padding: base.$sn-density-spacing-interval-l base.$sn-primitive-dimension-48 0;
 
   color: base.$sn-theme-color-neutral-text;
 
   @include base.composite-var(base.$sn-regular-body-s);
+
+  @media (max-width: l.$docs-bp-small-mobile) {
+    padding: base.$sn-density-spacing-interval-l base.$sn-density-spacing-interval-l 0;
+  }
 }
 
 .breadcrumb a {
@@ -54,11 +58,11 @@
   scrollbar-width: thin;
 
   position: sticky;
-  top: calc(#{l.$docs-header-height} + #{base.$sn-adaptive-spacing-interval-l});
+  top: calc(#{l.$docs-header-height} + #{base.$sn-density-spacing-interval-l});
 
   overflow-y: auto;
 
-  max-height: calc(100vh - #{l.$docs-header-height} - #{base.$sn-adaptive-spacing-interval-l} * 2);
+  max-height: calc(100vh - #{l.$docs-header-height} - #{base.$sn-density-spacing-interval-l} * 2);
   padding-left: 0;
   border-left: 1px solid base.$sn-theme-color-neutral-decor;
 
@@ -87,7 +91,7 @@
 .toc-link {
   display: block;
 
-  padding: base.$sn-adaptive-spacing-interval-s base.$sn-primitive-dimension-12;
+  padding: base.$sn-density-spacing-interval-s base.$sn-primitive-dimension-12;
   border-left: 2px solid transparent;
 
   color: base.$sn-theme-color-neutral-text;
@@ -157,20 +161,20 @@
 .page-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: base.$sn-adaptive-spacing-interval-l;
+  gap: base.$sn-density-spacing-interval-l;
 
-  margin-top: base.$sn-adaptive-spacing-interval-xl;
-  padding: base.$sn-adaptive-spacing-interval-xl;
-  padding-right: calc(base.$sn-adaptive-spacing-interval-xl + l.$docs-toc-width );
+  margin-top: base.$sn-density-spacing-interval-xl;
+  padding: base.$sn-density-spacing-interval-xl;
+  padding-right: calc(base.$sn-density-spacing-interval-xl + l.$docs-toc-width );
   border-top: 1px solid base.$sn-theme-color-neutral-decor;
 }
 
 .page-nav-link {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-adaptive-spacing-interval-s;
+  gap: base.$sn-density-spacing-interval-s;
 
-  padding: base.$sn-adaptive-spacing-interval-l;
+  padding: base.$sn-density-spacing-interval-l;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-8;
 
@@ -217,7 +221,7 @@
   }
 
   .page-nav {
-    padding-right: base.$sn-adaptive-spacing-interval-l;
+    padding-right: base.$sn-density-spacing-interval-l;
   }
 }
 
@@ -225,7 +229,7 @@
 
 @media (max-width: l.$docs-bp-small-mobile) {
   .doc {
-    padding: base.$sn-adaptive-spacing-interval-l base.$sn-adaptive-spacing-interval-l base.$sn-primitive-dimension-48;
+    padding: base.$sn-density-spacing-interval-l base.$sn-density-spacing-interval-l base.$sn-primitive-dimension-48;
   }
 }
 

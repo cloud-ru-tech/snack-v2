@@ -1,5 +1,7 @@
 import { Search } from '@ds/search';
+import { useState } from 'react';
 
 export function Basic() {
-  return <Search placeholder='Поиск' />;
+  const [value, setValue] = useState('');
+  return <Search placeholder='Поиск' value={value} onChange={setValue} />;
 }

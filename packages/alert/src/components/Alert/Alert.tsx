@@ -1,5 +1,6 @@
 import { WithSupportProps } from '@ds/utils';
 
+import { ALIGN } from '../../constants';
 import { AlertBase, AlertSharedFieldProps } from '../AlertBase';
 
 export type AlertProps = WithSupportProps<
@@ -9,6 +10,6 @@ export type AlertProps = WithSupportProps<
   }
 >;
 
-export function Alert({ outline, ...props }: AlertProps) {
-  return <AlertBase {...props} outline={outline} variant='inline' />;
+export function Alert({ outline, align: alignProp = ALIGN.Vertical, ...props }: AlertProps) {
+  return <AlertBase {...props} align={alignProp} outline={outline} variant='inline' />;
 }

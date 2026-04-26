@@ -5,7 +5,6 @@ description: Выпадающий блок с произвольным конт�
 order: 0
 ---
 
-import { DropdownDemo } from '../demos/DropdownDemo'
 import { Basic } from '../demos/examples/Basic'
 import BasicSrc from '../demos/examples/Basic.tsx?raw'
 import { OpenForReview } from '../demos/examples/OpenForReview'
@@ -22,9 +21,6 @@ import dropdownDoc from './props.json'
 # Dropdown
 
 Выпадающий блок над триггером: произвольный контент (меню, фильтры, справочная информация) + встроенные состояния `loading / not-found / no-data / data-error` через `state`. Поверх `PopoverPrivate` — те же пропсы позиционирования, плюс готовая визуальная обработка асинхронных случаев.
-
-## Демо
-<DropdownDemo client:visible />
 
 ## Когда использовать
 - Меню действий над кнопкой (экспорт, фильтры, настройки).

@@ -1,14 +1,14 @@
 import cn from 'classnames';
 import { forwardRef, ReactNode } from 'react';
 
-import type { Acrylic, Brand, Language, Platform, Theme } from '../types';
+import type { Acrylic, Brand, Density, Language, Theme } from '../types';
 import styles from './styles.module.scss';
 
 type StoryWrapperProps = {
   children: ReactNode;
   theme: Theme;
   brand: Brand;
-  platform: Platform;
+  density: Density;
   language: Language;
   acrylic: Acrylic;
 };
@@ -19,7 +19,7 @@ type StoryWrapperProps = {
  * Тема, бренд и платформа задаются через аддон "Тема / Бренд / Платформа" в панели Storybook.
  */
 export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
-  ({ children, theme, brand, platform, acrylic }, ref) => (
+  ({ children, theme, brand, density, acrylic }, ref) => (
     <div
       ref={ref}
       className={cn(
@@ -30,7 +30,7 @@ export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
         'sn-base-styles',
         'sn-figmaStyles',
         'sn-components',
-        `sn-${platform}`,
+        `sn-${density}`,
         `sn-${theme}`,
         `sn-${brand}`,
         acrylic === 'enabled' ? 'sn-yes' : 'sn-no',

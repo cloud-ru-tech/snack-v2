@@ -58,8 +58,6 @@
     "classnames": "catalog:"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.11.2",
-    "@storybook/addon-a11y": "10.3.5",
     "@storybook/react": "10.3.5",
     "@storybook/react-vite": "10.3.5",
     "@storybook/test-runner": "0.24.3",

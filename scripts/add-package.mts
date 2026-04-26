@@ -44,7 +44,7 @@ if (!dryRun) {
 
   Следующие шаги:
 
-    1. pnpm install
+    1. pnpm deps
     2. pnpm gen
     3. pnpm dev:storybook    # localhost:6006
     4. pnpm dev:docs         # localhost:4321

@@ -6,7 +6,7 @@
 
 .root {
   overflow: hidden;
-  margin-bottom: base.$sn-adaptive-spacing-interval-xl;
+  margin-bottom: base.$sn-density-spacing-interval-xl;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-8;
 }
@@ -42,7 +42,7 @@
 .divider {
   width: 1px;
   height: base.$sn-primitive-dimension-16;
-  margin: 0 base.$sn-adaptive-spacing-interval-s;
+  margin: 0 base.$sn-density-spacing-interval-s;
   background: base.$sn-theme-color-neutral-decor;
 }
 
@@ -55,15 +55,15 @@
   justify-content: center;
 
   min-height: l.$docs-preview-min-height;
-  padding: base.$sn-primitive-dimension-48 base.$sn-adaptive-spacing-interval-2xl;
+  padding: base.$sn-primitive-dimension-48 base.$sn-density-spacing-interval-2xl;
 
   transition: background m.$docs-duration-normal;
 }
 
 .previewToggleBtn {
   position: absolute;
-  right: base.$sn-adaptive-spacing-interval-m;
-  bottom: base.$sn-adaptive-spacing-interval-m;
+  right: base.$sn-density-spacing-interval-m;
+  bottom: base.$sn-density-spacing-interval-m;
 
   @media (max-width: l.$docs-bp-small-mobile) {
     display: none;
@@ -114,7 +114,7 @@
 
 .cell,
 .headCell {
-  padding: base.$sn-adaptive-spacing-interval-m base.$sn-adaptive-spacing-interval-l;
+  padding: base.$sn-density-spacing-interval-xs base.$sn-density-spacing-interval-s;
   border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
   color: base.$sn-theme-color-neutral-text;
   background: base.$sn-theme-color-neutral-background;
@@ -162,7 +162,7 @@
   cursor: pointer;
 
   min-width: l.$docs-canvas-select-min-width;
-  padding: base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-xl base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-m;
+  padding: base.$sn-density-spacing-interval-s base.$sn-density-spacing-interval-xl base.$sn-density-spacing-interval-s base.$sn-density-spacing-interval-m;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-4;
 
@@ -251,7 +251,7 @@
   justify-content: space-between;
 
   height: base.$sn-primitive-dimension-36;
-  padding: 0 base.$sn-adaptive-spacing-interval-l;
+  padding: 0 base.$sn-density-spacing-interval-l;
   border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
 
   background: base.$sn-theme-color-neutral-background1Level;
@@ -271,7 +271,7 @@
   overflow-x: auto;
 
   margin: 0;
-  padding: base.$sn-adaptive-spacing-interval-l;
+  padding: base.$sn-density-spacing-interval-l;
   border: none;
   border-radius: 0;
 
@@ -303,7 +303,7 @@
   :global(pre.shiki) {
     overflow-x: auto;
     margin: 0;
-    padding: base.$sn-adaptive-spacing-interval-l;
+    padding: base.$sn-density-spacing-interval-l;
     background: base.$sn-theme-color-neutral-background !important;
 
     @include base.composite-var(base.$sn-mono-body-s);
@@ -319,7 +319,7 @@
 
 .input {
   width: 100%;
-  padding: base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-m;
+  padding: base.$sn-density-spacing-interval-s base.$sn-density-spacing-interval-m;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-4;
 

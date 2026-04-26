@@ -11,7 +11,7 @@ html, body {
 
 .header {
   position: sticky;
-  z-index: 0;
+  z-index: l.$docs-z-header;
   top: 0;
 
   height: l.$docs-header-height;
@@ -23,13 +23,13 @@ html, body {
 
 .header-inner {
   display: flex;
-  gap: base.$sn-adaptive-spacing-interval-l;
+  gap: base.$sn-density-spacing-interval-l;
   align-items: center;
 
   max-width: l.$docs-header-max-width;
   height: 100%;
   margin: 0 auto;
-  padding: 0 base.$sn-adaptive-spacing-interval-l;
+  padding: 0 base.$sn-density-spacing-interval-l;
 }
 
 .nav-toggle-slot {
@@ -41,7 +41,7 @@ html, body {
 .header-logo {
   display: flex;
   flex-shrink: 0;
-  gap: base.$sn-adaptive-spacing-interval-m;
+  gap: base.$sn-density-spacing-interval-m;
   align-items: center;
 
   color: base.$sn-theme-color-neutral-text;
@@ -69,14 +69,20 @@ html, body {
   @include base.composite-var(base.$sn-regular-label-l);
 }
 
+@media (max-width: l.$docs-bp-small-mobile) {
+  .header-logo-name {
+    display: none;
+  }
+}
+
 .header-nav {
   display: flex;
-  gap: base.$sn-adaptive-spacing-interval-s;
+  gap: base.$sn-density-spacing-interval-s;
   align-items: center;
 }
 
 .header-link {
-  padding: base.$sn-adaptive-spacing-interval-s base.$sn-primitive-dimension-12;
+  padding: base.$sn-density-spacing-interval-s base.$sn-primitive-dimension-12;
   border-radius: base.$sn-primitive-dimension-4;
 
   color: base.$sn-theme-color-neutral-text;
@@ -94,7 +100,7 @@ html, body {
 
 .header-end {
   display: flex;
-  gap: base.$sn-adaptive-spacing-interval-m;
+  gap: base.$sn-density-spacing-interval-m;
   align-items: center;
 }
 
@@ -109,8 +115,8 @@ html, body {
   align-items: center;
   justify-content: center;
 
-  width: base.$sn-adaptive-size-icon-m;
-  height: base.$sn-adaptive-size-icon-m;
+  width: base.$sn-density-size-icon-m;
+  height: base.$sn-density-size-icon-m;
   border: none;
   border-radius: base.$sn-primitive-dimension-4;
 
@@ -140,7 +146,6 @@ html, body {
 // Same max-width as .header-inner so sidebar, content and header align on wide screens.
 .layout {
   position: relative;
-  z-index: -1;
 
   display: flex;
 
@@ -177,18 +182,18 @@ html, body {
 .nav-overlay {
   position: fixed;
   z-index: l.$docs-z-overlay;
-  inset: 0;
+  inset: l.$docs-header-height 0 0 0;
 
   display: none;
 
   opacity: 0;
-  background: base.$sn-theme-color-neutral-background;
+  background: rgb(0 0 0 / 50%);
 
   transition: opacity m.$docs-duration-normal;
 }
 
 .nav-overlay.overlay--visible {
-  opacity: 0.4;
+  opacity: 1;
 }
 
 // ─── Mobile breakpoint ───────────────────────────────────────────────────────
@@ -202,15 +207,24 @@ html, body {
     display: none;
   }
 
+  .header-inner {
+    gap: base.$sn-density-spacing-interval-s;
+    padding: 0 base.$sn-density-spacing-interval-m;
+  }
+
+  .header-end {
+    gap: base.$sn-density-spacing-interval-s;
+  }
+
   .sidebar-wrap {
     position: fixed;
     z-index: l.$docs-z-sidebar-mobile;
-    top: 0;
+    top: l.$docs-header-height;
     left: 0;
     transform: translateX(-100%);
 
     width: l.$docs-sidebar-width-mobile;
-    height: 100dvh;
+    height: calc(100dvh - #{l.$docs-header-height});
 
     transition: transform m.$docs-duration-normal m.$docs-ease-out;
   }

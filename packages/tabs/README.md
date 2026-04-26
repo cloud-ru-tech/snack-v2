@@ -76,6 +76,63 @@ import { Tabs } from '@ds/tabs'
 ### Size
 `m` — дефолт, `l` — для крупных лейаутов и посадочных страниц.
 
+## Tab
+
+Отдельная вкладка в TabBar — поддерживает label, counter и disabled.
+
+Одна вкладка внутри `TabBar`. Идентифицируется по `value` — это же значение используется в `TabContent` для сопоставления. Поддерживает `counter` (встроенный `Counter`) и `disabled`.
+
+## Когда использовать
+
+- Внутри `TabBar` для каждой доступной вкладки.
+- Когда нужно показать счётчик (число уведомлений/записей) рядом с названием таба.
+
+## Установка
+
+```bash
+pnpm add @ds/tabs
+```
+
+```ts
+import { Tabs } from '@ds/tabs'
+
+<Tabs.Tab value='overview' label='Overview' />
+```
+
+## Примеры использования
+
+<Example title='Tab с counter' code={WithCounterSrc}>
+  <WithCounter client:only="react" />
+</Example>
+
+<Example title='Отключённый таб' code={DisabledSrc}>
+  <Disabled client:only="react" />
+</Example>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `value` | `string` | — | Value вкладки |
+| `label` | `string` | — | Заголовок вкладки |
+| `disabled` | `boolean` | `false` | Деактивирована ли вкладка |
+| `className` | `string` | — | CSS-класс |
+| `counter` | `{ label: number; appearance?: Appearance; color?: Color; } | undefined` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
+
+## Storybook
+
+<StorybookEmbed storyId='components-tabs--playground' height={240} />
+
+## Анатомия
+
+### Size
+Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
+
+### Marker position
+Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.
+
 ## TabBar
 
 Панель табов — задаёт размер, ориентацию, позицию маркера и слот справа (after) для дополнительных действий.
@@ -141,63 +198,6 @@ import { Tabs } from '@ds/tabs'
 
 ### Marker position
 Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.
-
-## Tab
-
-Отдельная вкладка в TabBar — поддерживает label, counter и disabled.
-
-Одна вкладка внутри `TabBar`. Идентифицируется по `value` — это же значение используется в `TabContent` для сопоставления. Поддерживает `counter` (встроенный `Counter`) и `disabled`.
-
-## Когда использовать
-
-- Внутри `TabBar` для каждой доступной вкладки.
-- Когда нужно показать счётчик (число уведомлений/записей) рядом с названием таба.
-
-## Установка
-
-```bash
-pnpm add @ds/tabs
-```
-
-```ts
-import { Tabs } from '@ds/tabs'
-
-<Tabs.Tab value='overview' label='Overview' />
-```
-
-## Примеры использования
-
-<Example title='Tab с counter' code={WithCounterSrc}>
-  <WithCounter client:only="react" />
-</Example>
-
-<Example title='Отключённый таб' code={DisabledSrc}>
-  <Disabled client:only="react" />
-</Example>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `value` | `string` | — | Value вкладки |
-| `label` | `string` | — | Заголовок вкладки |
-| `disabled` | `boolean` | `false` | Деактивирована ли вкладка |
-| `className` | `string` | — | CSS-класс |
-| `counter` | `{ label: number; appearance?: Appearance; color?: Color; } | undefined` | — | Счетчик, отображающийся внутри кнопки переключения |
-| `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
-
-## Storybook
-
-<StorybookEmbed storyId='components-tabs--playground' height={240} />
-
-## Анатомия
-
-### Size
-Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
-
-### Marker position
-Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.
 
 ## TabContent
 

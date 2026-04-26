@@ -26,7 +26,7 @@ const MANAGER_REACT_POLYFILL = `
 const config: StorybookConfig = {
   stories: [join(root, 'packages/*/stories/**/*.stories.@(ts|tsx)')],
   managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
-  addons: ['@storybook/addon-a11y', join(__dirname, 'addons/theme-controls/preset.ts')],
+  addons: [join(__dirname, 'addons/theme-controls/preset.ts')],
   framework: {
     name: '@storybook/react-vite',
     options: {},

@@ -5,7 +5,6 @@ description: Центрированное модальное окно с пре�
 order: 1
 ---
 
-import { ModalDemo } from '../demos/ModalDemo'
 import { Basic } from '../demos/examples/Basic'
 import BasicSrc from '../demos/examples/Basic.tsx?raw'
 import { WithFooter } from '../demos/examples/WithFooter'
@@ -22,9 +21,6 @@ import modalDoc from './props.json'
 # Modal
 
 Модальное окно для подтверждений, форм и важных сообщений. `Modal` собирает шапку (медиа, заголовок, подзаголовок, back-button, слот после заголовка), прокручиваемое тело и опциональный футер. Для ручной композиции — [`ModalCustom`](./modal-custom).
-
-## Демо
-<ModalDemo client:visible />
 
 ## Когда использовать
 - Критическое подтверждение, блокирующее остальной интерфейс (удалить, отправить, выйти).

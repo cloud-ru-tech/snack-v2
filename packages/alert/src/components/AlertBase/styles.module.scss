@@ -108,15 +108,15 @@ $appearance-to-token: (
 
   &[data-size='m'] {
     > svg {
-      max-width: base.$sn-adaptive-size-icon-s;
-      max-height: base.$sn-adaptive-size-icon-s;
+      max-width: base.$sn-density-size-icon-s;
+      max-height: base.$sn-density-size-icon-s;
     }
   }
 
   &[data-size='s'] {
     > svg {
-      max-width: base.$sn-adaptive-size-icon-xs;
-      max-height: base.$sn-adaptive-size-icon-xs;
+      max-width: base.$sn-density-size-icon-xs;
+      max-height: base.$sn-density-size-icon-xs;
     }
   }
 }

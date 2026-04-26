@@ -8,11 +8,11 @@ import {
   Brand,
   BRAND_OPTIONS,
   CHANNEL_SYNC_EVENT,
+  Density,
+  DENSITY_OPTIONS,
   GLOBAL_KEYS,
   Language,
   LANGUAGE_OPTIONS,
-  Platform,
-  PLATFORM_OPTIONS,
   Theme,
   THEME_OPTIONS,
 } from '../constants';
@@ -53,8 +53,8 @@ function BrandIcon({ brand }: { brand: Brand }) {
   return <BrandColorDot color={BRAND_COLOR[brand]} />;
 }
 
-function PlatformIcon({ platform }: { platform: Platform }) {
-  return <SvgIcon d={platform === 'mobile' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
+function PlatformIcon({ density }: { density: Density }) {
+  return <SvgIcon d={density === 'comfort' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
 }
 
 function LanguageIcon({ language }: { language: Language }) {
@@ -72,8 +72,8 @@ const brandOptionsWithIcons: SelectOption[] = [
 ];
 
 const platformOptionsWithIcons: SelectOption[] = [
-  { value: 'desktop', title: PLATFORM_OPTIONS[0].label, icon: <SvgIcon d={LAPTOP_PATH} /> },
-  { value: 'mobile', title: PLATFORM_OPTIONS[1].label, icon: <SvgIcon d={MOBILE_PHONE_PATH} /> },
+  { value: 'compact', title: DENSITY_OPTIONS[0].label, icon: <SvgIcon d={LAPTOP_PATH} /> },
+  { value: 'comfort', title: DENSITY_OPTIONS[1].label, icon: <SvgIcon d={MOBILE_PHONE_PATH} /> },
 ];
 
 const languageOptionsWithIcons: SelectOption[] = [
@@ -91,7 +91,7 @@ const wrapperStyle: CSSProperties = {
 type ControlsPayload = {
   theme?: Theme;
   brand?: Brand;
-  platform?: Platform;
+  density?: Density;
   language?: Language;
 };
 
@@ -103,15 +103,12 @@ export function ThemeControlsToolbar() {
 
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
   const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
-  const platform = (globals[GLOBAL_KEYS.PLATFORM] as Platform) ?? 'desktop';
+  const density = (globals[GLOBAL_KEYS.DENSITY] as Density) ?? 'desktop';
   const language = (globals[GLOBAL_KEYS.LANGUAGE] as Language) ?? 'en-GB';
 
   const setTheme = useCallback((value: Theme) => updateGlobals({ [GLOBAL_KEYS.THEME]: value }), [updateGlobals]);
   const setBrand = useCallback((value: Brand) => updateGlobals({ [GLOBAL_KEYS.BRAND]: value }), [updateGlobals]);
-  const setPlatform = useCallback(
-    (value: Platform) => updateGlobals({ [GLOBAL_KEYS.PLATFORM]: value }),
-    [updateGlobals],
-  );
+  const setDensity = useCallback((value: Density) => updateGlobals({ [GLOBAL_KEYS.DENSITY]: value }), [updateGlobals]);
   const setLanguage = useCallback(
     (language: Language) => updateGlobals({ [GLOBAL_KEYS.LANGUAGE]: language }),
     [updateGlobals],
@@ -123,7 +120,7 @@ export function ThemeControlsToolbar() {
       const next: Record<string, string> = {};
       if (payload.theme) next[GLOBAL_KEYS.THEME] = payload.theme;
       if (payload.brand) next[GLOBAL_KEYS.BRAND] = payload.brand;
-      if (payload.platform) next[GLOBAL_KEYS.PLATFORM] = payload.platform;
+      if (payload.density) next[GLOBAL_KEYS.DENSITY] = payload.density;
       if (payload.language) next[GLOBAL_KEYS.LANGUAGE] = payload.language;
       if (Object.keys(next).length) updateGlobals(next);
     };
@@ -154,12 +151,12 @@ export function ThemeControlsToolbar() {
         padding='small'
       />
       <Select
-        key={`platform-${platform}`}
+        key={`platform-${density}`}
         ariaLabel='Платформа'
-        icon={<PlatformIcon platform={platform} />}
+        icon={<PlatformIcon density={density} />}
         options={platformOptionsWithIcons}
-        defaultOptions={platform}
-        onSelect={v => setPlatform(String(v) as Platform)}
+        defaultOptions={density}
+        onSelect={v => setDensity(String(v) as Density)}
         size='small'
         padding='small'
       />

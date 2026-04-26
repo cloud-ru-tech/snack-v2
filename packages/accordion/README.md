@@ -38,9 +38,6 @@ import { Accordion } from '@ds/accordion'
 
 Контейнер, который группирует `CollapseBlock*` в одну логическую группу и управляет их раскрытием. Под капотом — `ToggleGroup` из `@ds/toggles`, поэтому семантика раскрытия идентична группе переключателей.
 
-## Демо
-<AccordionDemo client:visible />
-
 ## Когда использовать
 - Для группы раскрываемых блоков, где открытие/закрытие должно быть согласовано (один из, несколько из).
 - Для двух- и трёхуровневой иерархии — вкладывайте `Accordion` внутрь блока, меняя уровень `CollapseBlock*`.
@@ -97,9 +94,6 @@ import { Accordion } from '@ds/accordion'
 Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / appearance / chevron.
 
 Три семантических уровня раскрываемого блока: `CollapseBlockPrimary`, `CollapseBlockSecondary`, `CollapseBlockTertiary`. Уровень задаёт размер типографики заголовка и плотность отступов; все три компонента используют одно и то же API — меняется только роль в иерархии.
-
-## Демо
-<CollapseBlockDemo client:visible />
 
 ## Когда использовать
 - **`Primary`** (title size `l`) — верхнеуровневые разделы страницы или секции формы.

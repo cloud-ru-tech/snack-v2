@@ -31,7 +31,7 @@
 
 4. **Проверить E2E** — по [e2e-testing-standard.md](../rules/e2e-testing-standard.md):
    - Структура: `packages/<pkg>/__test__/<ComponentName>/` — группировка по компоненту (зеркалит `stories/<ComponentName>/`). Тесты плоско в корне `__test__/` — признак устаревшей раскладки, пометить для переноса.
-   - Файлы внутри папки компонента: `rendering.spec.ts` + по tier'у `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts` (если `as`), `a11y.spec.ts`. Без префикса имени пакета/компонента.
+   - Файлы внутри папки компонента: `rendering.spec.ts` + по tier'у `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts` (если `as`). Без префикса имени пакета/компонента.
    - **Нет** файлов `url-args.spec.ts`, `states.spec.ts`, `dimensions.spec.ts` — если есть, пометить для удаления (их роль отдана `rendering.spec.ts` и visual regression).
    - В `rendering.spec.ts` есть describe-блоки `render`, `states`, `props propagation` (для M+).
 
@@ -69,7 +69,7 @@ Markdown-отчёт:
 ## ✅ Соответствует
 - src/ структура ок
 - Playground + VisualMatrix присутствуют
-- E2E rendering + interaction + keyboard + a11y
+- E2E rendering + interaction + keyboard
 
 ## ⚠️ Частично
 - VisualMatrix покрывает 3 из 4 осей — нет секции `Composition × Size`

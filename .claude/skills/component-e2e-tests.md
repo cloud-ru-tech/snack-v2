@@ -6,7 +6,7 @@
 
 ## Границы скилла
 
-- E2E проверяет то, что **не покрыто** VisualMatrix screenshot-ом: рендер, прокидку `data-*`, интеракции, клавиатуру, ARIA, a11y.
+- E2E проверяет то, что **не покрыто** VisualMatrix screenshot-ом: рендер, прокидку `data-*`, интеракции, клавиатуру, ARIA.
 - Отдельные spec'и `<pkg>.url-args.spec.ts`, `<pkg>.states.spec.ts`, `<pkg>.dimensions.spec.ts` **не создаются** — их роль отдана describe-блокам внутри `rendering.spec.ts` и visual regression.
 - Visual snapshots делает [component-story-set](./component-story-set.md) (финальный шаг), не этот скилл.
 
@@ -19,15 +19,15 @@
 
 1. **Определить набор spec-файлов по tier'у** (max 5 + visual):
 
-   | Tier | rendering | interaction | keyboard | polymorphism | a11y |
-   |------|-----------|-------------|----------|--------------|------|
-   | XS   | ✅        | —           | —        | —            | ✅   |
-   | S    | ✅ (+ states) | —      | —        | —            | ✅   |
-   | M    | ✅ (+ states + props propagation) | ✅ | ✅ | если `as` | ✅ |
-   | L    | ✅ (+ ARIA-state) | ✅ (+ focus-trap) | ✅ (+ Arrow/Home/End) | если `as` | ✅ |
-   | XL   | ✅ или scenario-spec'и | ✅ per-scenario | ✅ | если `as` | ✅ |
+   | Tier | rendering | interaction | keyboard | polymorphism |
+   |------|-----------|-------------|----------|--------------|
+   | XS   | ✅        | —           | —        | —            |
+   | S    | ✅ (+ states) | —      | —        | —            |
+   | M    | ✅ (+ states + props propagation) | ✅ | ✅ | если `as` |
+   | L    | ✅ (+ ARIA-state) | ✅ (+ focus-trap) | ✅ (+ Arrow/Home/End) | если `as` |
+   | XL   | ✅ или scenario-spec'и | ✅ per-scenario | ✅ | если `as` |
 
-2. **Создать `packages/<pkg>/__test__/<ComponentName>/helpers.ts`** — вытянуть story ids, ключевые комбинации пропсов, список a11y-стор в переиспользуемые константы. `<COMPONENT>_KEY_COMBOS` — **ключевая выборка** по 1 представителю на каждое значение каждой оси, не декартово произведение. Каждый компонент пакета имеет свои `helpers.ts` в своей папке.
+2. **Создать `packages/<pkg>/__test__/<ComponentName>/helpers.ts`** — вытянуть story ids, ключевые комбинации пропсов в переиспользуемые константы. `<COMPONENT>_KEY_COMBOS` — **ключевая выборка** по 1 представителю на каждое значение каждой оси, не декартово произведение. Каждый компонент пакета имеет свои `helpers.ts` в своей папке.
 
 3. **Создать `rendering.spec.ts`** (без префикса имени пакета — префикс в папке) с 3 describe-блоками:
 
@@ -60,13 +60,13 @@
    - `as='a'` + `href` → `<a>` c корректным `rel="noopener"` для `target="_blank"`.
    - `as='a'` + `disabled` → `aria-disabled="true"` (нативный `disabled` на `<a>` не работает).
 
-7. **Создать `a11y.spec.ts`** — `AxeBuilder` по 3–5 ключевым stories (Playground, VisualMatrix, disabled state).
-
-8. **Запуск** (из корня монорепо):
+7. **Запуск** (из корня монорепо — селективные варианты в [fast-build-commands.md](../rules/fast-build-commands.md)):
    ```bash
-   pnpm test:e2e              # все проекты
-   pnpm test:e2e:chrome       # только chrome
-   pnpm test:e2e:ui           # UI-режим
+   pnpm test:e2e:chrome packages/<pkg>                                       # только chrome, только нужный пакет — дефолт во время разработки
+   pnpm test:e2e:chrome packages/<pkg>/__test__/<Component>/rendering.spec.ts # один spec
+   pnpm test:e2e:chrome -g "props propagation"                               # по grep
+   pnpm test:e2e:ui                                                           # UI-режим для отладки
+   pnpm test:e2e                                                              # все проекты — только финальная сверка перед PR
    ```
 
 ## Паттерны
@@ -102,7 +102,7 @@ test('loading', async ({ page, gotoStory }) => {
 - Не пиши `boundingBox` ± 1px против фиксированных Figma-высот отдельным тестом. Высота ловится diff-ом VisualMatrix baseline.
 - Не дублируй stories ради URL-args — параметризуй через `gotoStory(id, args)`.
 - Не используй фиксированные `page.waitForTimeout(N)` — `expect.poll` или auto-wait.
-- Не клик по disabled без `force: true`.
+-Не создавай клик по disabled без `force: true`.
 
 ## Что **не** делает
 

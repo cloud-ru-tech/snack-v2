@@ -130,14 +130,25 @@
   @include base.composite-var(base.$sn-regular-label-s);
 }
 
-@media (width <= 640px) {
+@media (width <= 768px) {
   .root {
     flex: 1;
     width: auto;
     min-width: 0;
-    max-width: 260px;
+    max-width: none;
   }
 
+  .drawer {
+    position: fixed;
+    top: calc(52px + #{base.$sn-primitive-dimension-4});
+    right: base.$sn-primitive-dimension-8;
+    left: base.$sn-primitive-dimension-8;
+
+    max-height: calc(100dvh - 52px - #{base.$sn-primitive-dimension-12});
+  }
+}
+
+@media (width <= 640px) {
   .kbd {
     display: none;
   }

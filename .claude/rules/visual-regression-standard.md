@@ -54,13 +54,6 @@ await expect(page.locator('#storybook-root')).toHaveScreenshot('visual-matrix.pn
 | L    | + 1–2 placement/open-closed сценария на ключевом субкомпоненте | 4 + (1–2) ≈ 5–6 |
 | XL   | Сценарно: before/after каждой ключевой интеракции (sort, filter, paginate, select). VisualMatrix остаётся. | 1 + N*2 |
 
-Правила, которые уходят:
-
-- ❌ **Static per use-case** — если кейс лежит в VisualMatrix, отдельного снимка ему не нужно.
-- ❌ **Per-view hover** — достаточно одного `hover` на Playground. View × hover покрывается глазами при review VisualMatrix diff-а (если он есть).
-- ❌ **Dimensions-снимок** — высоты и ширины проверяются visual diff-ом VisualMatrix, а не отдельным тестом.
-- ❌ **Responsive-снимки** (375/768/1440) — атомарные компоненты не реагируют на viewport. Responsive-поведение (mobile/desktop темы, container queries) покрывается отдельными stories с явным platform/size-пропом, которые сами попадают в VisualMatrix. Брать скриншоты одного компонента на трёх viewport'ах ради диффа, которого нет по природе — мёртвый тест, замедляющий прогон.
-
 ## Структура теста
 
 ```ts

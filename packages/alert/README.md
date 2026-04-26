@@ -89,7 +89,7 @@ import { Alert } from '@ds/alert'
 | `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
 При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `align` | `"horizontal"` \| `"vertical"` | — | Выравнивание контента |
+| `align` | `"vertical"` \| `"horizontal"` | `vertical` | Выравнивание контента |
 | `outline` | `boolean` | — | Внешний бордер |
 
 ## Storybook
@@ -156,7 +156,7 @@ import { AlertTop } from '@ds/alert'
 | `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
 При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `align` | `"horizontal"` \| `"vertical"` | — | Выравнивание контента |
+| `align` | `"vertical"` \| `"horizontal"` | `vertical` | Выравнивание контента |
 
 ## Storybook
 
@@ -188,7 +188,7 @@ export function Example() {
 | `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
 При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `align` | `"horizontal"` \| `"vertical"` | — | Выравнивание контента |
+| `align` | `"vertical"` \| `"horizontal"` | — | Выравнивание контента |
 | `variant` | `"inline"` \| `"top"` | — |  |
 | `outline` | `boolean` | — |  |
 

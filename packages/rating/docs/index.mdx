@@ -5,7 +5,6 @@ description: Звёздный рейтинг — интерактивный вв
 order: 0
 ---
 
-import { RatingDemo } from '../demos/RatingDemo'
 import { Basic } from '../demos/examples/Basic'
 import BasicSrc from '../demos/examples/Basic.tsx?raw'
 import { Readonly } from '../demos/examples/Readonly'
@@ -20,9 +19,6 @@ import ratingDoc from './props.json'
 # Rating
 
 Компонент звёздного рейтинга. Поддерживает интерактивный ввод оценки, режим «только для чтения», половинные звёзды (`allowHalf`) и сброс значения по повторному клику (`allowClear`). Поведение по умолчанию — неконтролируемое с `defaultValue`; для контролируемого использования передайте `value` + `onChange`.
-
-## Демо
-<RatingDemo client:visible />
 
 ## Когда использовать
 - Оценка сущности пользователем: отзыв о товаре, качестве услуги, контента.

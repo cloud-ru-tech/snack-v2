@@ -5,6 +5,10 @@
 .home {
   max-width: l.$docs-content-max-narrow;
   padding: base.$sn-primitive-dimension-48 base.$sn-primitive-dimension-48;
+
+  @media (max-width: l.$docs-bp-small-mobile) {
+    padding: base.$sn-density-spacing-interval-xl base.$sn-density-spacing-interval-l;
+  }
 }
 
 .hero {
@@ -31,7 +35,7 @@
 .home h2 {
   @include base.composite-var(base.$sn-regular-title-l);
 
-  margin-bottom: base.$sn-adaptive-spacing-interval-l;
+  margin-bottom: base.$sn-density-spacing-interval-l;
 }
 
 .card-grid {
@@ -44,9 +48,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-adaptive-spacing-interval-s;
+  gap: base.$sn-density-spacing-interval-s;
 
-  padding: base.$sn-adaptive-spacing-interval-l;
+  padding: base.$sn-density-spacing-interval-l;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-8;
 

@@ -28,7 +28,7 @@ argument-hint: <pkg-name-or-path>
 
 1. **Раскладка** — строго `packages/<pkg>/__test__/<ComponentName>/`. Snapshot baselines — в `__test__/<ComponentName>/__snapshots__/` рядом со спеком.
 2. **Файлы по tier'у** (max 5 + visual):
-   - XS: `rendering.spec.ts` + `a11y.spec.ts` + `visual.spec.ts`.
+   - XS: `rendering.spec.ts` + `visual.spec.ts`.
    - S: + describe `states` в `rendering.spec.ts`.
    - M: + `interaction.spec.ts` + `keyboard.spec.ts` + (`polymorphism.spec.ts` если есть `as`).
    - L: + focus-trap в `interaction.spec.ts`, Arrow/Home/End в `keyboard.spec.ts`, ARIA-state в `rendering.spec.ts`.

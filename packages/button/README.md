@@ -157,7 +157,7 @@ import { Button } from '@ds/button'
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `fullWidth` | `boolean` | `false` | На всю ширину |
 | `className` | `string` | — | Дополнительный класс |
-| `view` | `"function"` \| `"filled"` \| `"outline"` \| `"simple"` \| `"tonal"` \| `"elevated"` | `elevated` | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
+| `view` | `"function"` \| `"filled"` \| `"outline"` \| `"simple"` \| `"tonal"` \| `"elevated"` | `filled` | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 | `counter` | `Omit<CounterProps, "size" | "appearance">` | — | Пропсы для counter |
 | `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom) |
 | `innerRef` | `any` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.

@@ -27,22 +27,23 @@
 
 4. **Stories + baselines** — skill [component-story-set](./component-story-set.md). Финальным шагом генерит visual baselines (`pnpm test:e2e:update-snapshots`) — отдельно скилл visual-regression не запускается.
 
-5. **E2E** — skill [component-e2e-tests](./component-e2e-tests.md). Набор spec-файлов: `rendering.spec.ts` + по tier'у `interaction`, `keyboard`, `polymorphism`, `a11y`.
+5. **E2E** — skill [component-e2e-tests](./component-e2e-tests.md). Набор spec-файлов: `rendering.spec.ts` + по tier'у `interaction`, `keyboard`, `polymorphism`.
 
 6. **Docs** — skill [component-docs](./component-docs.md).
 
-7. **Генерация артефактов**
+7. **Генерация артефактов** (селективно — см. [fast-build-commands.md](../rules/fast-build-commands.md))
    ```bash
-   pnpm gen        # props + README
+   pnpm gen                                             # props + README
+   pnpm build:pkg <pkg>                                  # быстрый incremental build одного пакета
    pnpm typecheck
-   pnpm lint
-   pnpm stylelint
+   pnpm exec eslint --fix packages/<pkg>
+   pnpm exec stylelint --fix "packages/<pkg>/**/*.scss"
    ```
 
 8. **Верификация**
    - Открыть `pnpm dev:storybook`, пройти все новые stories.
    - Открыть `pnpm dev:docs`, убедиться, что страница пакета рендерится и Storybook/Figma embed работает.
-   - Запустить `pnpm test:stories` и `pnpm test:e2e` для нового пакета.
+   - Запустить `pnpm test:stories` и `pnpm test:e2e:chrome packages/<pkg>` для нового пакета.
 
 9. **Аудит и валидация**
    - [component-tier-audit](./component-tier-audit.md) — проверить соответствие эталону (нет запрещённых stories/specs).

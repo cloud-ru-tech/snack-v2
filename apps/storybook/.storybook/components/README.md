@@ -6,7 +6,7 @@
 
 ```
 components/
-├── types.ts                    # Общие типы (Theme, Brand, Platform)
+├── types.ts                    # Общие типы (Theme, Brand, Density)
 ├── StoryWrapper/
 │   ├── StoryWrapper.tsx       # Основная обертка для stories
 │   ├── styles.module.scss     # Стили компонента
@@ -29,26 +29,26 @@ components/
 #### Spacing (отступы и промежутки)
 
 ```scss
-base.$sn-adaptive-spacing-interval-xs    // 2px
-base.$sn-adaptive-spacing-interval-s     // 4px
-base.$sn-adaptive-spacing-interval-m     // 8px
-base.$sn-adaptive-spacing-interval-l     // 16px
+base.$sn-density-spacing-interval-xs    // 2px
+base.$sn-density-spacing-interval-s     // 4px
+base.$sn-density-spacing-interval-m     // 8px
+base.$sn-density-spacing-interval-l     // 16px
 
-base.$sn-adaptive-spacing-control-container-vertical-s     // 4px
-base.$sn-adaptive-spacing-control-container-horizontal-s   // 8px
-base.$sn-adaptive-spacing-control-container-vertical-m     // 6px
-base.$sn-adaptive-spacing-control-container-horizontal-m   // 12px
+base.$sn-density-spacing-control-container-vertical-s     // 4px
+base.$sn-density-spacing-control-container-horizontal-s   // 8px
+base.$sn-density-spacing-control-container-vertical-m     // 6px
+base.$sn-density-spacing-control-container-horizontal-m   // 12px
 ```
 
 #### Border Radius (скругление углов)
 
 ```scss
-base.$sn-adaptive-radius-3xs   // 2px
-base.$sn-adaptive-radius-2xs   // 4px
-base.$sn-adaptive-radius-xs    // 6px (desktop) / 8px (mobile)
-base.$sn-adaptive-radius-s     // 8px (desktop) / 16px (mobile)
-base.$sn-adaptive-radius-m     // 12px (desktop) / 20px (mobile)
-base.$sn-adaptive-radius-l     // 16px (desktop) / 24px (mobile)
+base.$sn-density-radius-3xs   // 2px
+base.$sn-density-radius-2xs   // 4px
+base.$sn-density-radius-xs    // 6px (desktop) / 8px (mobile)
+base.$sn-density-radius-s     // 8px (desktop) / 16px (mobile)
+base.$sn-density-radius-m     // 12px (desktop) / 20px (mobile)
+base.$sn-density-radius-l     // 16px (desktop) / 24px (mobile)
 ```
 
 #### Font (шрифты)
@@ -103,8 +103,8 @@ base.$sn-theme-color-material-state-layer-activated-default-border-color
 4. **НЕ используй явные px/rem значения** - всегда используй переменные
    - Для border-width: `base.$sn-primitive-stroke-weight-stroke-*`
    - Для размеров: `base.$sn-primitive-dimension-*`
-   - Для отступов: `base.$sn-adaptive-spacing-*`
-5. **Используй адаптивные переменные** - `base.$sn-adaptive-*` автоматически меняются в зависимости от платформы
+   - Для отступов: `base.$sn-density-spacing-*`
+5. **Используй адаптивные переменные** - `base.$sn-density-*` автоматически меняются в зависимости от платформы
 6. **Группируй стили логически** - базовые стили, состояния (:hover, :focus)
 
 ## Пример создания нового компонента
@@ -124,8 +124,8 @@ export const MyComponent: React.FC = () => {
 @use '@cloud-rufigma-variables/build/scss/styles/styles.module' as base;
 
 .container {
-  padding: base.$sn-adaptive-spacing-interval-m;
-  border-radius: base.$sn-adaptive-radius-xs;
+  padding: base.$sn-density-spacing-interval-m;
+  border-radius: base.$sn-density-radius-xs;
   border: base.$sn-primitive-stroke-weight-stroke-regular solid
     base.$sn-theme-color-material-state-layer-regular-default-border-color;
   background-color: base.$sn-theme-color-neutral-background;

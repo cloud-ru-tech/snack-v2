@@ -10,7 +10,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-adaptive-spacing-interval-m;
+  gap: base.$sn-density-spacing-interval-m;
   max-width: 360px;
 }
 
@@ -50,7 +50,7 @@
 
 .actions {
   display: flex;
-  gap: base.$sn-adaptive-spacing-interval-s;
+  gap: base.$sn-density-spacing-interval-s;
 }
 
 .success {

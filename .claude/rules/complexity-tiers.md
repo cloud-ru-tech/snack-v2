@@ -6,7 +6,7 @@
 
 | Tier | Критерии | Примеры | Stories | E2E specs | Visual snaps | Docs |
 |------|----------|---------|---------|-----------|--------------|------|
-| **XS** | 0–1 интерактивных состояния, 1–2 props axes, без композиции | `avatar`, `counter`, `loader/Sun` | Playground + VisualMatrix (2 файла) | rendering + a11y | 1 matrix | 1 `index.mdx` |
+| **XS** | 0–1 интерактивных состояния, 1–2 props axes, без композиции | `avatar`, `counter`, `loader/Sun` | Playground + VisualMatrix (2 файла) | rendering | 1 matrix | 1 `index.mdx` |
 | **S**  | до 3 props axes, 1 интеракция, без полиморфизма | `badge`, `chip`, `tag` | Playground + VisualMatrix (+ 0–1 оправданный) | + states (в rendering) | 1 + 2 (hover/focus) = 3 | 1 `index.mdx` |
 | **M**  | полиморфизм (`as`), 3–5 осей, loading/disabled, иконки, слоты | `button` | Playground + VisualMatrix + (Polymorphic? + ClickTest/KeyboardTest?) = 2–5 | + interaction + keyboard + polymorphism | 3 + 1 (pressed) = 4 | 1 `index.mdx` |
 | **L**  | составной (субкомпоненты), shared context, keyboard nav | `tabs`, `tooltip`, `popover` | Playground + VisualMatrix на корень + те же для ключевых субкомпонентов; опц. `Composition` = 4–10 | + keyboard nav, focus trap, ARIA-roles | 4 + 1–2 (open/closed/placement) ≈ 5–6 | `index.mdx` + `<sub>.mdx` |
@@ -28,18 +28,18 @@
 
 ### XS (Avatar-like)
 - stories: **Playground + VisualMatrix** (2 файла).
-- E2E: `rendering.spec.ts` (render), `a11y.spec.ts`.
+- E2E: `rendering.spec.ts` (render).
 - visual: 1 matrix.
 - docs: 1 MDX + demo + Storybook/Figma embed.
 
 ### S (Badge-like)
 - stories: **Playground + VisualMatrix** (+0–1 оправданный, напр. `Polymorphic`).
-- E2E: `rendering.spec.ts` с describe-блоком states (disabled/loading/empty), `a11y.spec.ts`.
+- E2E: `rendering.spec.ts` с describe-блоком states (disabled/loading/empty).
 - visual: + hover + focus (итого 6 снимков).
 
 ### M (Button-like)
 - stories: **Playground + VisualMatrix + ClickTest/KeyboardTest + Polymorphic** (если `as`).
-- E2E: `rendering.spec.ts` (+ props propagation), `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts` (если `as`), `a11y.spec.ts`.
+- E2E: `rendering.spec.ts` (+ props propagation), `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts` (если `as`).
 - visual: + pressed (итого 7 снимков).
 - docs: Do/Don't table обязательна.
 

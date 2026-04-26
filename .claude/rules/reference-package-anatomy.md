@@ -27,7 +27,6 @@ packages/<pkg>/
 │       ├── interaction.spec.ts       # tier M+
 │       ├── keyboard.spec.ts          # tier M+
 │       ├── polymorphism.spec.ts      # только если есть `as`
-│       ├── a11y.spec.ts
 │       ├── visual.spec.ts
 │       └── __snapshots__/            # baseline PNG'и (chrome-only) рядом со спеками
 ├── demos/
@@ -74,13 +73,13 @@ Docs-тесты живут отдельно в `tests/docs/` (их запуск�
 ## Чек-лист перед PR
 
 - [ ] `pnpm typecheck` зелёный
-- [ ] `pnpm lint` / `pnpm stylelint` чистые
-- [ ] `pnpm build:packages` зелёный
+- [ ] `pnpm exec eslint packages/<pkg>` / `pnpm exec stylelint "packages/<pkg>/**/*.scss"` чистые (полные `pnpm lint` / `pnpm stylelint` — перед PR)
+- [ ] `pnpm build:pkg <pkg>` зелёный (полный `pnpm build:packages` — только если правки затронули shared-пакеты/wire-точки; см. [fast-build-commands.md](./fast-build-commands.md))
 - [ ] `docs/props.json` непустой — `pnpm gen:props`
 - [ ] `README.md` актуален — `pnpm gen:readme`
 - [ ] Storybook отрисовывает все новые stories без ошибок в консоли
 - [ ] `pnpm test:stories` зелёный (play-функции)
-- [ ] `pnpm test:e2e` зелёный для нового пакета
+- [ ] `pnpm test:e2e:chrome packages/<pkg>` зелёный (полный `pnpm test:e2e` по всем проектам — финальная сверка перед PR)
 - [ ] Visual baselines осмысленные (ручной review diff перед коммитом)
 - [ ] REFERENCE.md пакета не нужен — его заменяет это правило + [complexity-tiers.md](./complexity-tiers.md)
 

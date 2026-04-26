@@ -1,28 +1,28 @@
-import cn from 'classnames'
+import cn from 'classnames';
 
 type ThemeClassnames = {
-  theme?: 'light' | 'dark'
-  brand?: 'brandA' | 'brandB'
-  platform?: 'desktop' | 'mobile'
-}
+  theme?: 'light' | 'dark';
+  brand?: 'brandA' | 'brandB';
+  density?: 'comfort' | 'compact';
+};
 
 const DEFAULT_THEME_CLASSNAMES: Required<ThemeClassnames> = {
   brand: 'brandA',
-  platform: 'desktop',
+  density: 'comfort',
   theme: 'light',
-}
+};
 
 export function getThemeClassnames(props: ThemeClassnames = {}): string {
-  const { platform, theme, brand } = { ...DEFAULT_THEME_CLASSNAMES, ...props }
+  const { density, theme, brand } = { ...DEFAULT_THEME_CLASSNAMES, ...props };
 
   return cn(
     'sn-primitive',
     'sn-base-styles',
     'sn-figmaStyles',
     'sn-components',
-    `sn-${platform}`,
+    `sn-${density}`,
     `sn-${theme}`,
     `sn-${brand}`,
     'sn-no',
-  )
+  );
 }

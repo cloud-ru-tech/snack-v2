@@ -3,7 +3,7 @@
 .root {
   overflow: hidden;
 
-  margin: 0 0 base.$sn-adaptive-spacing-interval-xl;
+  margin: 0 0 base.$sn-density-spacing-interval-xl;
   border: 1px solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-8;
 
@@ -36,7 +36,7 @@
 .preview {
   // display: flex;
   // flex-wrap: wrap;
-  gap: base.$sn-adaptive-spacing-interval-m;
+  gap: base.$sn-density-spacing-interval-m;
   align-items: center;
   justify-content: flex-start;
 

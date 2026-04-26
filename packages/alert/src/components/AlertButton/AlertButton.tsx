@@ -1,10 +1,11 @@
 import { Sun } from '@ds/loader';
+import { getThemeClassnames } from '@ds/utils';
 import cn from 'classnames';
-import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
+import { type ComponentPropsWithoutRef, type ElementType, type MouseEvent, type ReactElement } from 'react';
 
 import { ICON_POSITION, VARIANT } from './constants';
 import styles from './styles.module.scss';
-import { AlertButtonProps } from './types';
+import { type AlertButtonProps } from './types';
 import { getVariant } from './utils';
 
 const TARGET_BLANK = '_blank';
@@ -60,13 +61,7 @@ export function AlertButton<T extends ElementType = 'button'>({
   return (
     <Component
       ref={innerRef}
-      className={cn(
-        // TODO: криво работает применение модификаторов через classnames
-        'sn-desktop',
-        'sn-components',
-        styles.root,
-        className,
-      )}
+      className={cn(styles.root, className, getThemeClassnames({ density: 'compact' }))}
       data-size={size}
       data-view={variantProp}
       data-variant={variant}

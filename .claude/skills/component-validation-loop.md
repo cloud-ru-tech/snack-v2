@@ -78,7 +78,7 @@
 | Цветовая роль инвертирована | «current» светлый, «completed» тёмный, хотя должно быть наоборот | Swap `primary-accent` ↔ `primary-decor`; текст на accent → `neutral-onAccent`. |
 | Позиционирование индикатора | `.status` прилип к левому краю | `top: 50%; left: 50%; transform: translate(-50%, -50%)`. |
 | Размер/радиус | Bar 2px вместо 4px | Перемерить в Figma, зафиксировать через токен (`figma-selected-block`). |
-| Mobile-scale | Mobile-компонент рендерится desktop-токенами | На корне `className={cn(getThemeClassnames({ platform: 'mobile' }), styles.root, className)}`. |
+| Mobile-scale | Mobile-компонент рендерится desktop-токенами | На корне `className={cn(getThemeClassnames({ density: 'comfort' }), styles.root, className)}`. |
 
 Все расхождения → реестр с severity (critical / medium / low). **Critical блокирует Стадию 5.** Итерация с правками SCSS, пока screenshot не совпадёт (±low расхождения допустимы).
 
@@ -104,8 +104,8 @@
 
 **Runtime-проверки stories/tests:**
 
-- [ ] `pnpm test:stories --project=chromium 2>&1 | tail -20` — зелёный (play-функции).
-- [ ] `pnpm test:e2e --project=chrome 2>&1 | tail -20` — зелёный.
+- [ ] `pnpm test:stories 2>&1 | tail -20` — зелёный (play-функции; поднимает Storybook, запускать в конце фазы).
+- [ ] `pnpm test:e2e:chrome packages/<pkg> 2>&1 | tail -20` — зелёный (только нужный пакет).
 - [ ] Visual baselines отсмотрены глазами (не blank, не с артефактами) — см. [visual-regression-standard.md](../rules/visual-regression-standard.md).
 
 ### Стадия 5 — Wire-up & build
@@ -119,19 +119,21 @@
 - [ ] `packages/<pkg>/package.json` — строгие версии, без `react` / `react-dom` / `@types/react*`, повторяемые deps — через `catalog:` (см. [packages-deps.md](../rules/packages-deps.md)). `@design-system/materials` — добавлена, если используется state-layer / material / focused.
 - [ ] Корневой `tsconfig.json` — noEmit-профиль, пакеты не перечисляет; typecheck идёт через `include`.
 
-Команды:
+Команды (селективные по умолчанию — см. [fast-build-commands.md](../rules/fast-build-commands.md)):
 
 ```bash
-pnpm install
-pnpm typecheck                  2>&1 | tail -20
-pnpm lint --fix                 packages/<pkg>
-pnpm stylelint --fix            "packages/<pkg>/**/*.scss"
+pnpm deps
+pnpm exec eslint --fix packages/<pkg>                2>&1 | tail -20
+pnpm exec stylelint --fix "packages/<pkg>/**/*.scss" 2>&1 | tail -20
 pnpm gen:props
 pnpm gen:readme
-pnpm build:packages             2>&1 | tail -20
-pnpm test:stories               2>&1 | tail -20
-pnpm test:e2e:chrome            2>&1 | tail -20
+pnpm build:pkg <pkg>                            2>&1 | tail -20   # быстрый incremental build одного пакета
+pnpm typecheck                                  2>&1 | tail -20   # инкрементальный по .tsbuildinfo
+pnpm test:e2e:chrome packages/<pkg>             2>&1 | tail -20
 ```
+
+`pnpm test:stories` запускай в конце фазы stories, не на каждой итерации (поднимает Storybook).
+Полный `pnpm build:packages` — только если правки задели shared-пакет (`@ds/utils`, `@design-system/materials` и т.п.) или wire-точки.
 
 ## Success criteria
 
@@ -142,10 +144,10 @@ pnpm test:e2e:chrome            2>&1 | tail -20
 - [ ] Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `@include base.composite-var(...)` (исключения задокументированы комментариями).
 - [ ] Оси React API ↔ Figma variant metadata взаимно-однозначны.
 - [ ] Screenshot story ≈ screenshot Figma (0 critical, ≤2 medium).
-- [ ] Mobile-компонент (если есть) использует `getThemeClassnames({ platform: 'mobile' })`.
+- [ ] Mobile-компонент (если есть) использует `getThemeClassnames({ density: 'comfort' })`.
 - [ ] `component-tier-audit` diff пуст (или оставшиеся пункты задокументированы).
 - [ ] `/components/<pkg>` открывается в docs без ошибок; Storybook embed и Figma embed работают.
-- [ ] `pnpm typecheck` / `lint` / `stylelint` / `build:packages` / `test:stories` / `test:e2e:chrome` зелёные.
+- [ ] `pnpm typecheck` / `pnpm exec eslint packages/<pkg>` / `pnpm exec stylelint "packages/<pkg>/**/*.scss"` / `pnpm build:pkg <pkg>` / `pnpm test:stories` / `pnpm test:e2e:chrome packages/<pkg>` зелёные. Полный `build:packages` — только перед коммитом, если правки задели shared-пакеты или wire-точки.
 - [ ] Все 4 wire-точки (tsconfig esm/cjs, storybook main, storybook package.json, docs figma.ts) обновлены.
 
 ## Реестр типовых ошибок
@@ -158,7 +160,7 @@ pnpm test:e2e:chrome            2>&1 | tail -20
 | 4 | Захардкоженные `#hex` / `12px` в SCSS | 2 | `base.$sn-…` / `composite-var(...)` через [figma-selected-block](./figma-selected-block.md). |
 | 5 | Цветовые роли инвертированы (current светлый, completed тёмный) | 3 | current = solid accent, completed = decor + indicator icon. |
 | 6 | `.status` индикатор прилип к краю | 3 | `top: 50%; left: 50%; transform: translate(-50%, -50%)`. |
-| 7 | Mobile-компонент рендерится desktop-токенами | 3 | `cn(getThemeClassnames({ platform: 'mobile' }), styles.root, className)` на корне. |
+| 7 | Mobile-компонент рендерится desktop-токенами | 3 | `cn(getThemeClassnames({ density: 'comfort' }), styles.root, className)` на корне. |
 | 8 | `<PropsTable componentDoc={...} />` | 4 | `data={pkgDoc.<Name>}`. |
 | 9 | `<StorybookEmbed id='...' />` | 4 | `storyId='...'`. |
 | 10 | `<Canvas component={RenderPropComponent} />` крашится | 4 | Обернуть живой пример: `return <BasicFlow />`. |

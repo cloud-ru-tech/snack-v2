@@ -54,7 +54,7 @@ export function MobileStepper({
   const currentStep = stepsView[currentStepIndex];
 
   const stepper = (
-    <div className={cn(getThemeClassnames({ platform: 'mobile' }), styles.stepper, className)} data-test-id={testId}>
+    <div className={cn(getThemeClassnames({ density: 'comfort' }), styles.stepper, className)} data-test-id={testId}>
       <div className={styles.steps} style={{ gridTemplateColumns: `repeat(${stepsView.length}, 1fr)` }}>
         {stepsView.map((step, index) => (
           <MobileStep key={step.title + index} step={step} data-test-id={testId} />

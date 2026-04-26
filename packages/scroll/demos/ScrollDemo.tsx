@@ -1,9 +1,15 @@
 import { Scroll } from '@ds/scroll';
 
-import scrollDoc from '../docs/props.json';
-
-import { Canvas } from '~docs/components/Canvas';
-
 export function ScrollDemo() {
-  return <Canvas component={Scroll} componentDoc={scrollDoc.Scroll} defaultProps={{}} controls={{}} />;
+  return (
+    <div style={{ height: 220, width: '100%', maxWidth: 420 }}>
+      <Scroll size='m' barHideStrategy='never'>
+        <div style={{ padding: 12, display: 'grid', gap: 8 }}>
+          {Array.from({ length: 25 }, (_, i) => (
+            <div key={i}>Элемент списка {i + 1}</div>
+          ))}
+        </div>
+      </Scroll>
+    </div>
+  );
 }

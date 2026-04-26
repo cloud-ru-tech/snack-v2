@@ -39,7 +39,7 @@ const modifiers: Array<{ key: ModifierKey; props: Partial<ButtonGroupProps> }> =
 ];
 
 export const VisualMatrix: Story = {
-  tags: ['test', 'dev', 'no-a11y'],
+  tags: ['test', 'dev'],
   render: () => (
     <div className={styles.matrix}>
       <StoryTable

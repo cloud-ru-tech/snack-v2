@@ -470,7 +470,7 @@
           "tonal",
           "elevated"
         ],
-        "defaultValue": "elevated",
+        "defaultValue": "filled",
         "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
         "typeRefs": [
           "View"

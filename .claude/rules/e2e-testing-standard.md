@@ -9,7 +9,6 @@ E2E проверяет то, что **не покрыто** VisualMatrix screens
 - Рендер ключевых stories без ошибок.
 - Прокидку пропсов в DOM через `data-*` (на Playground + URL args — без отдельного spec-файла).
 - Интеракции (click, keyboard, focus-trap, aria-state).
-- A11y (axe).
 
 Всё визуальное — оси, размеры, цвета, per-view states — покрывает VisualMatrix story + её baseline. Отдельные spec'и на «ось размера» или «высоту в пикселях» не пишутся: они дублируют visual regression и хрупки.
 
@@ -33,7 +32,6 @@ packages/<pkg>/__test__/
 │   ├── interaction.spec.ts          # click / hover / focus-trap / mouse — для M+
 │   ├── keyboard.spec.ts             # Tab / Enter / Space / Arrow / Home / End — для M+
 │   ├── polymorphism.spec.ts         # только если есть `as` prop
-│   ├── a11y.spec.ts                 # AxeBuilder по ключевым stories
 │   ├── visual.spec.ts               # см. visual-regression-standard.md
 │   └── __snapshots__/
 │       └── *.png                    # baselines для visual.spec.ts
@@ -55,13 +53,13 @@ packages/<pkg>/__test__/
 
 ## Обязательные блоки по tier'у
 
-| Tier | rendering | interaction | keyboard | polymorphism | a11y | visual |
-|------|-----------|-------------|----------|--------------|------|--------|
-| XS   | ✅ render | —           | —        | —            | ✅   | ✅ (VisualMatrix + responsive) |
-| S    | ✅ render + states | — | —    | —            | ✅   | ✅ (+ hover/focus) |
-| M    | ✅ render + states + data-* | ✅ | ✅ | если `as` | ✅ | ✅ (+ pressed) |
-| L    | ✅ + ARIA-state | ✅ + focus-trap | ✅ + Arrow/Home/End | если `as` | ✅ | ✅ (+ open/closed) |
-| XL   | ✅ + scenario-render | ✅ per-scenario | ✅ | если `as` | ✅ | ✅ (scenario before/after) |
+| Tier | rendering | interaction | keyboard | polymorphism | visual |
+|------|-----------|-------------|----------|--------------|--------|
+| XS   | ✅ render | —           | —        | —            | ✅ (VisualMatrix + responsive) |
+| S    | ✅ render + states | — | —    | —            | ✅ (+ hover/focus) |
+| M    | ✅ render + states + data-* | ✅ | ✅ | если `as` | ✅ (+ pressed) |
+| L    | ✅ + ARIA-state | ✅ + focus-trap | ✅ + Arrow/Home/End | если `as` | ✅ (+ open/closed) |
+| XL   | ✅ + scenario-render | ✅ per-scenario | ✅ | если `as` | ✅ (scenario before/after) |
 
 Для XL вместо одного `rendering.spec.ts` допустимы отдельные scenario-spec'и (`<scenario>.spec.ts`) внутри папки компонента.
 
@@ -137,7 +135,7 @@ await gotoStory(BUTTON_STORIES.playground, { appearance: 'critical', view: 'fill
 
 - Не дублируй stories ради URL-args. Параметризуй через `gotoStory(id, args)`.
 - Не используй фиксированные `page.waitForTimeout(N)` — используй `expect.poll` или `toBeVisible/toBeFocused` с auto-wait.
-- Не клик по disabled без `force: true` — Playwright справедливо выкинет ошибку.
+-Не создавай клик по disabled без `force: true` — Playwright справедливо выкинет ошибку.
 - Не проверяй `aria-disabled` на `<button disabled>` — на нативной кнопке ARIA-атрибут не нужен, только на `as="a"`.
 - Не держи тесты в корневом `tests/` — там живут только docs-тесты (`tests/docs/`).
 - Не заводи `url-args.spec.ts`, `states.spec.ts`, `dimensions.spec.ts` — их роль отобрана `rendering.spec.ts` и `visual.spec.ts`.

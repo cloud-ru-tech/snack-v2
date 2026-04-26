@@ -8,8 +8,8 @@ $sizes:  'xs', 's', 'm', 'l';
 
   @each $size in $sizes {
     &[data-size="#{$size}"] {
-      width: base.simple-var(base.$sn-adaptive, 'size', 'icon', $size);
-      height: base.simple-var(base.$sn-adaptive, 'size', 'icon', $size);
+      width: base.simple-var(base.$sn-density, 'size', 'icon', $size);
+      height: base.simple-var(base.$sn-density, 'size', 'icon', $size);
     }
   }
 

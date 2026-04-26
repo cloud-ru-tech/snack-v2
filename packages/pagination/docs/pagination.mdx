@@ -5,7 +5,6 @@ description: Постраничная навигация с нумерацией
 order: 1
 ---
 
-import { PaginationDemo } from '../demos/PaginationDemo'
 import { Basic } from '../demos/examples/Basic'
 import BasicSrc from '../demos/examples/Basic.tsx?raw'
 import { SizeM } from '../demos/examples/SizeM'
@@ -22,9 +21,6 @@ import paginationDoc from './props.json'
 # Pagination
 
 Классическая постраничная навигация. Рендерит `<nav aria-label="Pagination">` с кнопками «предыдущая», нумерацией страниц и «следующая». Длинные диапазоны сворачиваются через `...`-элементы, клик по которым прыгает в середину скрытого отрезка.
-
-## Демо
-<PaginationDemo client:visible />
 
 ## Когда использовать
 - Списки, таблицы, ленты с количеством страниц 5+.

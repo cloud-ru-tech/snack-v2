@@ -49,9 +49,7 @@ design-system/
 
 ## Сборка пакетов компонентов
 
-Подробности — в [BUILD.md](./BUILD.md).
-
-1. **`tspc -b`** по `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (после `pnpm install` применяется **ts-patch** для transformers и типов CSS modules).
+1. **`tspc -b`** по `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (после `pnpm deps` применяется **ts-patch** для transformers и типов CSS modules).
 2. **Маркер CommonJS** — `dist/cjs/package.json` с `"type": "commonjs"` (скрипт `build:cjs-package-meta`).
 3. **`pnpm build:css`** — компиляция SCSS в `dist/esm` и `dist/cjs`, копирование ассетов, агрегат **`style.css`** в каждой сборке.
 4. **`pnpm build:cjs-css-modules`** — постобработка CJS через `babel-plugin-react-css-modules`.
@@ -60,7 +58,7 @@ design-system/
 
 ```bash
 # Установить зависимости
-pnpm install
+pnpm deps
 
 # Установить браузеры для e2e-тестов (один раз)
 pnpm --filter @ds/tests exec playwright install
@@ -72,9 +70,11 @@ pnpm --filter @ds/tests exec playwright install
 |---------|------------|
 | `pnpm dev:storybook` | Запускает Storybook на `localhost:6006` |
 | `pnpm dev:docs` | Запускает документационный портал на `localhost:4321` |
-| `pnpm dev` | Watch-сборка `button` и `avatar` (`tspc -b --watch` для ESM и CJS) |
+| `pnpm dev` | Параллельный запуск Storybook (`localhost:6006`) и docs (`localhost:4321`) |
 | `pnpm build` | Собирает пакеты, затем Storybook и docs |
 | `pnpm build:packages` | Только пакеты: TS (ESM+CJS) + CSS + CJS css-modules |
+| `pnpm build:pkg <pkg>[,<pkg2>]` | Селективная инкрементальная сборка одного пакета (`scripts/build-pkg.mts`) — на порядки быстрее `build:packages` при работе над одним компонентом |
+| `pnpm build:fast` | `build:packages` + `build:docs:fast` (без Storybook static) |
 | `pnpm gen:props` | Генерирует `docs/props.json` для каждого пакета из TypeScript-типов |
 | `pnpm gen:readme` | Генерирует `README.md` для каждого пакета из docs/overview.mdx + props.json |
 | `pnpm gen` | Запускает `gen:props` + `gen:readme` (полная регенерация) |
@@ -84,9 +84,12 @@ pnpm --filter @ds/tests exec playwright install
 | Команда | Что делает |
 |---------|------------|
 | `pnpm test:stories` | Запускает play-функции сторис через `@storybook/test-runner` |
-| `pnpm test:e2e` | Playwright: компоненты + доки + визуальная регрессия |
+| `pnpm test:e2e` | Playwright по всем проектам (chrome+firefox+safari+mobile) |
+| `pnpm test:e2e:chrome` | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>` |
 | `pnpm test:e2e:ui` | Playwright в интерактивном UI-режиме |
-| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты |
+| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only) |
+
+Селективные команды для итеративной работы над одним пакетом — см. [`.claude/rules/fast-build-commands.md`](./.claude/rules/fast-build-commands.md).
 
 ## Публикация пакетов
 
@@ -122,4 +125,3 @@ pnpm release
 | Документальный портал | Astro + MDX |
 | Среда разработки компонентов | Storybook 8 |
 | E2E-тесты | Playwright |
-| A11y-тесты | axe-core/playwright |

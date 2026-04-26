@@ -55,7 +55,7 @@
 2. **normalizeSvgColors** (после записи файла в svgs-fixed):
    - **Цвета:** любой `fill="..."` и `stroke="..."` (в т.ч. в одинарных кавычках), кроме `none` / `currentColor` / `inherit`, заменяются на `fill="currentColor"` и `stroke="currentColor"`.
    - **stroke-width:**
-     - `stroke-width="1.5"` и `stroke-width="1.5px"` (с любыми пробелами) → `stroke-width="var(--sn-adaptive-size-icon-strokeWeight-s)"`.
+     - `stroke-width="1.5"` и `stroke-width="1.5px"` (с любыми пробелами) → `stroke-width="var(--sn-density-size-icon-strokeWeight-s)"`.
      - Уже подставленная примитивная переменная `var(--sn-primitive-strokeWeight-strokeMedium, ...)` тоже заменяется на эту же токен-переменную.
 
 Итог: в svgs-fixed все иконки окрашиваются через `currentColor` и используют дизайн-токен для толщины обводки.
@@ -161,4 +161,4 @@
 - **Иконка в режиме sprite пустая или fallback:** проверьте, что id символа в спрайте совпадает с symbolId в компоненте (логика `scripts/symbolId.ts` + `generateDataTestId`). Проверьте, что спрайт реально смонтирован в DOM (например, SpriteProvider в сторибуке).
 - **У части иконок нет fallback:** postProcessIconFallback не смог сопоставить `symbolId` с файлом в `svgs-fixed`. Проверка: id в компоненте должен находиться среди id в `sprite.<group>.symbol.svg`.
 - **Цвет не наследуется / жёлтые иконки:** в svgs-fixed после fixIcons не должно оставаться жёстких цветов; всё заменяется на currentColor. Если правки вносятся вручную в svgs-fixed, их перезапишет следующий fixIcons — править нужно в `svgs/`.
-- **Толщина обводки не по дизайну:** в fixIcons все `stroke-width="1.5"` и `1.5px` заменяются на `var(--sn-adaptive-size-icon-strokeWeight-s)`. Убедитесь, что эта переменная подключена в приложении (например, из @sbercloud/figma-variables).
+- **Толщина обводки не по дизайну:** в fixIcons все `stroke-width="1.5"` и `1.5px` заменяются на `var(--sn-density-size-icon-strokeWeight-s)`. Убедитесь, что эта переменная подключена в приложении (например, из @sbercloud/figma-variables).

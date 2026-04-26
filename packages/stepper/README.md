@@ -24,6 +24,10 @@ import { Stepper, MobileStepper, AdaptiveStepper } from '@ds/stepper'
 
 Десктопный степпер — горизонтальный список шагов с номером, заголовком и (опционально) описанием. Управляется через render-prop, поддерживает controlled и uncontrolled режимы.
 
+## Демо
+
+<BasicFlow client:visible />
+
 ## Когда использовать
 
 - Многошаговые desktop-формы, где пользователю важно видеть описание каждого шага.

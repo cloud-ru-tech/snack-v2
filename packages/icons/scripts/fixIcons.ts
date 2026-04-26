@@ -11,16 +11,19 @@ const FIXER_OPTION: FixerOptions = {
   throwIfDestinationDoesNotExist: false,
 };
 
-const STROKE_WEIGHT_VAR = 'var(--sn-adaptive-size-icon-strokeWeight-s)';
+const STROKE_WEIGHT_VAR = 'var(--sn-density-size-icon-strokeWeight-s)';
 
-/** Replace hardcoded fill/stroke with currentColor; stroke-width 1.5(px) with --sn-adaptive-size-icon-strokeWeight-s. Preserves fill="none" and stroke="none". */
+/** Replace hardcoded fill/stroke with currentColor; stroke-width 1.5(px) with --sn-density-size-icon-strokeWeight-s. Preserves fill="none" and stroke="none". */
 function normalizeSvgColors(svgContent: string): string {
   return svgContent
     .replace(/\bfill=(["'])(?!none|currentColor|inherit)([^"']*)\1/g, 'fill="currentColor"')
     .replace(/\bstroke=(["'])(?!none|currentColor|inherit)([^"']*)\1/g, 'stroke="currentColor"')
     .replace(/\bstroke-width\s*=\s*["']1\.5\s*px?["']/gi, `stroke-width="${STROKE_WEIGHT_VAR}"`)
     .replace(/\bstroke-width\s*=\s*["']1\.5["']/g, `stroke-width="${STROKE_WEIGHT_VAR}"`)
-    .replace(/\bstroke-width\s*=\s*["']var\(--sn-primitive-strokeWeight-strokeMedium[^"']*\)["']/gi, `stroke-width="${STROKE_WEIGHT_VAR}"`);
+    .replace(
+      /\bstroke-width\s*=\s*["']var\(--sn-primitive-strokeWeight-strokeMedium[^"']*\)["']/gi,
+      `stroke-width="${STROKE_WEIGHT_VAR}"`,
+    );
 }
 
 async function fixIconsFile(sourcePath: string, destDir: string): Promise<void> {

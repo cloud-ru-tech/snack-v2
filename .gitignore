@@ -74,9 +74,6 @@ storybook-static
 .astro
 scripts/.add-package-tmp
 
-# Generated per-package artifacts (pnpm gen:readme / pnpm gen:props)
-# packages/*/README.md
-# packages/*/docs/props.json
 # TypeScript incremental build cache
 packages/**/*.tsbuildinfo
 

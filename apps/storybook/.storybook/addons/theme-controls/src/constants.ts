@@ -5,7 +5,7 @@ export const TOOL_ID = `${ADDON_ID}/toolbar`;
 export const GLOBAL_KEYS = {
   THEME: 'theme',
   BRAND: 'brand',
-  PLATFORM: 'platform',
+  DENSITY: 'density',
   ACRYLIC: 'acrylic',
   LANGUAGE: 'language',
 } as const;
@@ -13,7 +13,7 @@ export const GLOBAL_KEYS = {
 export const INITIAL_GLOBALS = {
   [GLOBAL_KEYS.THEME]: 'light',
   [GLOBAL_KEYS.BRAND]: 'brandA',
-  [GLOBAL_KEYS.PLATFORM]: 'desktop',
+  [GLOBAL_KEYS.DENSITY]: 'compact',
   [GLOBAL_KEYS.ACRYLIC]: 'disabled',
   [GLOBAL_KEYS.LANGUAGE]: 'en-GB',
 } as const;
@@ -28,9 +28,9 @@ export const BRAND_OPTIONS = [
   { value: 'brandB', label: 'Brand B' },
 ] as const;
 
-export const PLATFORM_OPTIONS = [
-  { value: 'desktop', label: 'Desktop' },
-  { value: 'mobile', label: 'Mobile' },
+export const DENSITY_OPTIONS = [
+  { value: 'compact', label: 'Compact' },
+  { value: 'comfort', label: 'Comfort' },
 ] as const;
 
 export const ACRYLIC_OPTIONS = [
@@ -45,7 +45,7 @@ export const LANGUAGE_OPTIONS = [
 
 export type Theme = (typeof THEME_OPTIONS)[number]['value'];
 export type Brand = (typeof BRAND_OPTIONS)[number]['value'];
-export type Platform = (typeof PLATFORM_OPTIONS)[number]['value'];
+export type Density = (typeof DENSITY_OPTIONS)[number]['value'];
 export type Acrylic = (typeof ACRYLIC_OPTIONS)[number]['value'];
 export type Language = (typeof LANGUAGE_OPTIONS)[number]['value'];
 
