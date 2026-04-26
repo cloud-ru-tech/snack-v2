@@ -90,14 +90,12 @@ packages/<pkg>/
 | Skill | Когда вызывать |
 |-------|----------------|
 | [new-component-package](.claude/skills/new-component-package.md) | «добавить компонент», «новый пакет», «портировать из storybook/» |
-| [component-story-set](.claude/skills/component-story-set.md) | «написать stories», «покрыть состояния» |
-| [component-e2e-tests](.claude/skills/component-e2e-tests.md) | «написать e2e», «playwright» |
-| [component-visual-regression](.claude/skills/component-visual-regression.md) | «visual тесты», «скриншоты», «обновить baselines» |
+| [component-story-set](.claude/skills/component-story-set.md) | «написать stories», «покрыть состояния», «обновить baselines» — Playground + VisualMatrix + доп. по правилам; финальным шагом снимает visual baselines |
+| [component-e2e-tests](.claude/skills/component-e2e-tests.md) | «написать e2e», «playwright» — max 5 specs: rendering (+states +props propagation), interaction, keyboard, polymorphism, a11y |
 | [component-docs](.claude/skills/component-docs.md) | «написать docs», «страница пакета», «добавить Storybook embed» |
 | [figma-component-import](.claude/skills/figma-component-import.md) | Пользователь дал Figma URL / nodeId |
 | [component-tier-audit](.claude/skills/component-tier-audit.md) | «проверь эталонность», «обнови под эталон», «аудит пакета» |
-| [figma-verify-after-stories](.claude/skills/figma-verify-after-stories.md) | «сверь со Figma», после создания stories — отдельный проход сверки с макетом (state-layer, focus, variants, размеры) |
-| [component-validation-loop](.claude/skills/component-validation-loop.md) | «проверь готовность компонента», «запусти цикл валидации» — сквозной итеративный цикл (scope → Figma parity → runtime screenshot → docs/demos → build). Реестр типовых ошибок. |
+| [component-validation-loop](.claude/skills/component-validation-loop.md) | «проверь готовность компонента», «запусти цикл валидации» — сквозной итеративный цикл (scope → Figma parity → runtime screenshot → docs/demos → build). Стадия 2 включает чек-лист Figma-слоёв (state-layer/focused/material). |
 
 ## Слэш-команды
 
@@ -108,14 +106,16 @@ packages/<pkg>/
 
 ## Stories / Docs конвенции
 
-Stories уровня пакета:
+Stories уровня пакета (полные правила — [.claude/rules/stories-standard.md](./.claude/rules/stories-standard.md)):
 
-- `title: 'Components/<PkgName>'` (без третьего уровня — всё в одном файле `stories/<PkgName>.stories.tsx`).
-- CSF3, экспорт `default meta` + `export const <Story>: Story`.
-- `Meta<typeof Component>`, `StoryObj<typeof Component>` из `@storybook/react`.
-- `expect`, `userEvent`, `within` — из `@storybook/test`.
-- У каждой story минимальный `play` с `toBeVisible()`.
-- Визуальная матрица — отдельный `export const VisualMatrix: Story = { tags: ['!autodocs'], ... }`.
+- Структура: `stories/<ComponentName>/<ComponentName>.Playground.stories.tsx` + `<ComponentName>.VisualMatrix.stories.tsx` — обязательный минимум.
+- `title` — nesting по пакету: single-component пакет → `Components/<ComponentName>`; multi-component пакет → `Components/<PackageDisplayName>/<ComponentName>` (`@ds/button` → `Components/Button/Button` + `Components/Button/ButtonGroup`).
+- CSF3, `Meta<typeof Component>` + `StoryObj<typeof Component>` из `@storybook/react`.
+- `expect`, `userEvent`, `within`, `fn` из `storybook/test`.
+- Playground содержит полную `meta` + `argTypes` на **все** публичные пропсы (оси живут здесь, не в отдельных файлах).
+- VisualMatrix покрывает все оси × состояния через `StoryTable` из `#storybook/components`.
+- Доп. файлы (`Polymorphic`, `ClickTest`, `KeyboardTest`, `Composition`, scenario-stories) — только если сценарий нельзя выразить через `args` или `StoryTable`.
+- **Запрещено**: отдельные файлы под одну ось/состояние (`Sizes`, `Appearances`, `Views`, `LoadingState`, `DisabledState`, `WithIcon`, `IconOnly`, `WithCounter`).
 
 Demo:
 

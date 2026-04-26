@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DRAWER_TEST_ID, DRAWER_TRIGGER_TEST_ID } from './testIds';
+
 type Screen = 'list' | 'details';
 
 function BackButtonRender() {
@@ -17,8 +19,15 @@ function BackButtonRender() {
 
   return (
     <>
-      <Button label='Open multi-step drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Button
+        data-test-id={DRAWER_TRIGGER_TEST_ID}
+        label='Open multi-step drawer'
+        appearance='primary'
+        view='filled'
+        onClick={() => setOpen(true)}
+      />
       <Drawer
+        data-test-id={DRAWER_TEST_ID}
         open={open}
         position='right'
         width='m'
@@ -39,7 +48,7 @@ function BackButtonRender() {
 }
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'centered' },
 };
@@ -51,6 +60,6 @@ export const BackButton: Story = {
   tags: ['dev'],
   render: () => <BackButtonRender />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open multi-step drawer' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DRAWER_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

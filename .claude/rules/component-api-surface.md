@@ -89,16 +89,16 @@ export * from './<Name>'
 - **Не** используй `import type` / `export type` — см. [imports-exports.md](./imports-exports.md).
 - **Не** раздувай публичный API. Если `export *` тянет приватное — пиши явный список.
 
-## Связь API ↔ VisualMatrix
+## Связь API ↔ VisualMatrix ↔ E2E
 
 Каждая ось из `constants.ts` должна быть покрыта:
 
 1. **В Playground** — как `argTypes.<axis>` с `control: 'radio'|'select'` и `options: Object.values(AXIS_CONST)`.
 2. **В VisualMatrix** — как минимум один `StoryTable` с этой осью в строках или колонках.
-3. **В E2E** — как минимум один тест, проверяющий, что `data-<axis>="<value>"` применяется (через URL args или на статичной стори).
+3. **В `rendering.spec.ts` → describe `props propagation`** — один параметризованный тест через `gotoStory(playground, { <axis>: value })` с assertion `toHaveAttribute('data-<axis>', value)`. Отдельного `<pkg>.url-args.spec.ts` заводить не нужно — этот describe-блок и есть его роль.
 4. **В docs/index.mdx** — таблица «когда использовать» с описанием ролей значений.
 
-Пропуск в одной из точек — **bug**, а не feature.
+Пропуск в одной из точек — **bug**, а не feature. Фиксированные физические размеры (высота/ширина) из Figma проверяются **визуально** (VisualMatrix baseline), а не отдельным `dimensions.spec.ts`.
 
 ## Запреты
 

@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { CAROUSEL_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
@@ -17,7 +18,7 @@ export const AlwaysArrows: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.container}>
-      <Carousel controlsVisibility={CONTROLS_VISIBILITY.always}>
+      <Carousel controlsVisibility={CONTROLS_VISIBILITY.always} data-test-id={CAROUSEL_TEST_ID}>
         <div className={`${styles.slide} ${styles.slideIndigo}`}>Slide 1</div>
         <div className={`${styles.slide} ${styles.slideSky}`}>Slide 2</div>
         <div className={`${styles.slide} ${styles.slideEmerald}`}>Slide 3</div>
@@ -25,6 +26,6 @@ export const AlwaysArrows: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    expect(within(canvasElement).getByText('Slide 1')).toBeVisible();
+    expect(within(canvasElement).getByTestId(CAROUSEL_TEST_ID)).toBeVisible();
   },
 };

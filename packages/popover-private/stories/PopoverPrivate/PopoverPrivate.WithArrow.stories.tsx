@@ -2,6 +2,7 @@ import { PLACEMENT, PopoverPrivate, type PopoverPrivateProps, TRIGGER } from '@d
 import { Meta, StoryObj } from '@storybook/react';
 
 import styles from './styles.module.scss';
+import { POPOVER_PRIVATE_CONTENT_TEST_ID } from './testIds';
 
 const meta: Meta<PopoverPrivateProps> = {
   title: 'Components/PopoverPrivate',
@@ -21,6 +22,7 @@ export const WithArrow: Story = {
     trigger: TRIGGER.Click,
     arrowElementClassName: styles.popoverArrowElement,
     arrowContainerClassName: styles.popoverArrowContainer,
+    'data-test-id': POPOVER_PRIVATE_CONTENT_TEST_ID,
   },
 
   argTypes: {

@@ -27,14 +27,19 @@ export const Sizes: Story = {
   render: () => (
     <div className={styles.row}>
       <div className={styles.sizeCell}>
-        <Scroll size={SIZE.S}>{longContent}</Scroll>
+        <Scroll size={SIZE.S} data-test-id='scroll-s'>
+          {longContent}
+        </Scroll>
       </div>
       <div className={styles.sizeCell}>
-        <Scroll size={SIZE.M}>{longContent}</Scroll>
+        <Scroll size={SIZE.M} data-test-id='scroll-m'>
+          {longContent}
+        </Scroll>
       </div>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getAllByText(/Line 1/).length).toBeGreaterThan(0);
+    await expect(within(canvasElement).getByTestId('scroll-s')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('scroll-m')).toBeVisible();
   },
 };

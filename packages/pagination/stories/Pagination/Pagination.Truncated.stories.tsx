@@ -2,8 +2,10 @@ import { Pagination } from '@ds/pagination';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
+import { PAGINATION_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'Components/Pagination/Pagination',
   component: Pagination,
   parameters: { layout: 'centered' },
 };
@@ -13,8 +15,8 @@ type Story = StoryObj<typeof Pagination>;
 
 export const Truncated: Story = {
   tags: ['dev'],
-  render: () => <Pagination total={42} page={12} maxLength={7} onChange={fn()} />,
+  render: () => <Pagination data-test-id={PAGINATION_TEST_ID} total={42} page={12} maxLength={7} onChange={fn()} />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('navigation', { name: 'Pagination' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(PAGINATION_TEST_ID)).toBeVisible();
   },
 };

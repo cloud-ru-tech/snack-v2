@@ -44,7 +44,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 4. **Scope и публичное API** — `src/index.ts` export-skeleton + список публичных компонентов/хуков/типов/констант.
 5. **Структура `src/`** — дерево (flat или nested по `.claude/rules/package-src-structure.md`).
 6. **Stories** — дерево `stories/<Name>/` (кол-во файлов по tier'у, обязательно Playground + VisualMatrix + *Test).
-7. **Тесты** — список spec-файлов в `__tests__/` по `.claude/rules/e2e-testing-standard.md` (блоки по tier'у).
+7. **Тесты** — список spec-файлов в `__test__/<ComponentName>/` по `.claude/rules/e2e-testing-standard.md` (блоки по tier'у).
 8. **Docs** — `docs/*.mdx` + `demos/` + `demos/examples/` + `FIGMA_<NAME>` константы для `apps/docs/src/lib/figma.ts`.
 9. **Wire-точки** — чеклист (tsconfig references, storybook/docs aliases, package.json deps со строгими версиями, без `react`/`react-dom`).
 10. **Фазы** — пронумерованные Phase 1…N (Research → Core → Subcomponents → Stories → Tests → Docs → Verification).

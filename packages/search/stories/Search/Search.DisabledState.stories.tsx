@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { SEARCH_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Search> = {
   title: 'Components/Search',
@@ -17,10 +18,10 @@ export const DisabledState: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.item}>
-      <Search placeholder='Поиск' disabled />
+      <Search placeholder='Поиск' disabled data-test-id={SEARCH_TEST_ID} />
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('searchbox')).toBeDisabled();
+    await expect(within(canvasElement).getByTestId(SEARCH_TEST_ID)).toBeDisabled();
   },
 };

@@ -1,6 +1,8 @@
 import { SIZE, Typography, TypographyProps, VARIANT } from '@ds/typography';
 import { Meta, StoryObj } from '@storybook/react';
 
+import { TYPOGRAPHY_TEST_ID } from './testIds';
+
 const meta: Meta<TypographyProps> = {
   title: 'Components/Typography',
   component: Typography,
@@ -16,5 +18,6 @@ export const Polymorphism: Story = {
     variant: VARIANT.body,
     size: SIZE.m,
     children: 'Body text as <span>',
+    'data-test-id': TYPOGRAPHY_TEST_ID,
   },
 };

@@ -17,13 +17,14 @@ export const Sizes: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.col}>
-      <Search size={SIZE.S} placeholder='Small' />
-      <Search size={SIZE.M} placeholder='Medium' />
-      <Search size={SIZE.L} placeholder='Large' />
+      <Search size={SIZE.S} placeholder='Small' data-test-id='search-s' />
+      <Search size={SIZE.M} placeholder='Medium' data-test-id='search-m' />
+      <Search size={SIZE.L} placeholder='Large' data-test-id='search-l' />
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const boxes = within(canvasElement).getAllByRole('searchbox');
-    expect(boxes).toHaveLength(3);
+    await expect(within(canvasElement).getByTestId('search-s')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('search-m')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('search-l')).toBeVisible();
   },
 };

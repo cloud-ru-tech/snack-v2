@@ -47,6 +47,6 @@ type Story = StoryObj<typeof ProgressBarPage>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('progressbar')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('progress-bar-page')).toBeVisible();
   },
 };

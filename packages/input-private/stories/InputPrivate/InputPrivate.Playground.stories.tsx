@@ -12,6 +12,7 @@ const meta: Meta<typeof InputPrivate> = {
     disabled: false,
     readonly: false,
     type: TYPE.Text,
+    'data-test-id': 'input-private',
   },
   argTypes: {
     type: { control: 'select', options: Object.values(TYPE) },
@@ -25,7 +26,7 @@ type Story = StoryObj<typeof InputPrivate>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    const input = within(canvasElement).getByRole('textbox');
+    const input = within(canvasElement).getByTestId('input-private');
     await expect(input).toBeVisible();
   },
 };

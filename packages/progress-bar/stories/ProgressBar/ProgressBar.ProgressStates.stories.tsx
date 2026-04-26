@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 const meta: Meta<typeof ProgressBar> = {
-  title: 'Components/ProgressBar',
+  title: 'Components/ProgressBar/ProgressBar',
   component: ProgressBar,
 };
 

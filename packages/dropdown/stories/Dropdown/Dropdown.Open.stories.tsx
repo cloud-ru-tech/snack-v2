@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { DROPDOWN_TEST_ID, DROPDOWN_TRIGGER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown',
@@ -18,6 +19,7 @@ export const Open: Story = {
   tags: ['dev'],
   render: () => (
     <Dropdown
+      data-test-id={DROPDOWN_TEST_ID}
       open
       content={
         <div className={styles.content}>
@@ -26,10 +28,10 @@ export const Open: Story = {
         </div>
       }
     >
-      <Button label='Триггер' />
+      <Button data-test-id={DROPDOWN_TRIGGER_TEST_ID} label='Триггер' />
     </Dropdown>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Триггер' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DROPDOWN_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

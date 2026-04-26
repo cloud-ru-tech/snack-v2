@@ -1,6 +1,6 @@
 import { PLACEMENT, QuestionTooltip, TRIGGER } from '@ds/tooltip';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from 'storybook/test';
+import { expect } from 'storybook/test';
 
 const meta: Meta<typeof QuestionTooltip> = {
   title: 'Components/Tooltip/QuestionTooltip',
@@ -11,6 +11,7 @@ const meta: Meta<typeof QuestionTooltip> = {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.Hover,
     triggerLabel: 'Подсказка',
+    'data-test-id': 'question-tooltip-content',
   },
   argTypes: {
     tip: { control: 'text' },
@@ -26,6 +27,9 @@ type Story = StoryObj<typeof QuestionTooltip>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button')).toBeVisible();
+    // QuestionTooltip не проксирует data-test-id на внутреннюю кнопку-триггер;
+    // проверяем видимость триггера через DOM-селектор.
+    const trigger = canvasElement.querySelector('button');
+    await expect(trigger).toBeVisible();
   },
 };

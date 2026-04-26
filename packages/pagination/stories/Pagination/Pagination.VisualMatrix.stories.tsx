@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'Components/Pagination/Pagination',
   component: Pagination,
   parameters: { layout: 'padded' },
 };

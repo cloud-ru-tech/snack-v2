@@ -5,14 +5,22 @@ import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { DRAWER_TEST_ID, DRAWER_TRIGGER_TEST_ID } from './testIds';
 
 function WithFooterRender() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Button label='Open confirm drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Button
+        data-test-id={DRAWER_TRIGGER_TEST_ID}
+        label='Open confirm drawer'
+        appearance='primary'
+        view='filled'
+        onClick={() => setOpen(true)}
+      />
       <Drawer
+        data-test-id={DRAWER_TEST_ID}
         open={open}
         position='right'
         onClose={() => setOpen(false)}
@@ -42,7 +50,7 @@ function WithFooterRender() {
 }
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'centered' },
 };
@@ -54,6 +62,6 @@ export const WithFooter: Story = {
   tags: ['dev'],
   render: () => <WithFooterRender />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open confirm drawer' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DRAWER_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

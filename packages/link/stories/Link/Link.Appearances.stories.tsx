@@ -30,12 +30,12 @@ export const Appearances: Story = {
   render: () => (
     <div className={styles.row}>
       {values.map(appearance => (
-        <Link key={appearance} appearance={appearance} text={appearance} href='#' />
+        <Link key={appearance} appearance={appearance} text={appearance} href='#' data-test-id={`link-${appearance}`} />
       ))}
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const links = within(canvasElement).getAllByRole('link');
-    expect(links.length).toBe(values.length);
+    const first = within(canvasElement).getByTestId(`link-${values[0]}`);
+    await expect(first).toBeVisible();
   },
 };

@@ -2,6 +2,8 @@ import { APPEARANCE, Avatar, SHAPE, SIZE } from '@ds/avatar';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { AVATAR_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
@@ -14,7 +16,7 @@ const meta: Meta<typeof Avatar> = {
     showTwoSymbols: false,
     className: '',
     src: '',
-    'data-test-id': 'avatar',
+    'data-test-id': AVATAR_TEST_ID,
   },
   argTypes: {
     name: { control: 'text', description: 'Имя для аббревиатуры' },
@@ -38,6 +40,6 @@ type Story = StoryObj<typeof Avatar>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('avatar')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(AVATAR_TEST_ID)).toBeVisible();
   },
 };

@@ -2,8 +2,10 @@ import { Button } from '@ds/button';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
+import { BUTTON_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: { layout: 'centered' },
 };
@@ -16,9 +18,10 @@ export const KeyboardTest: Story = {
   args: {
     label: 'Focusable',
     onClick: fn(),
+    'data-test-id': BUTTON_TEST_ID,
   },
   play: async ({ args, canvasElement, step }) => {
-    const button = within(canvasElement).getByRole('button');
+    const button = within(canvasElement).getByTestId(BUTTON_TEST_ID);
 
     await step('Tab focuses button', async () => {
       await userEvent.tab();

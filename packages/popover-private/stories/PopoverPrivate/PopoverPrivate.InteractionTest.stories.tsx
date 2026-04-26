@@ -30,7 +30,9 @@ export const InteractionTest: Story = {
   },
   render: (args: PopoverPrivateProps) => (
     <PopoverPrivate {...args} popoverContent={<PopoverContent />}>
-      <button type='button'>Open popover</button>
+      <button type='button' data-test-id='popover-private-trigger'>
+        Open popover
+      </button>
     </PopoverPrivate>
   ),
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -39,7 +41,7 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement);
 
     await step('User opens popover', async () => {
-      const button = canvas.getByRole('button', { name: 'Open popover' });
+      const button = canvas.getByTestId('popover-private-trigger');
       await userEvent.click(button);
     });
 

@@ -3,6 +3,7 @@ import { expect, within } from 'storybook/test';
 
 import { HiddenDropZone, UPLOAD_MODE } from '../../src';
 import styles from './styles.module.scss';
+import { HIDDEN_DROPZONE_FORM_TEST_ID } from './testIds';
 
 const meta: Meta<typeof HiddenDropZone> = {
   title: 'Components/Dropzone/HiddenDropZone',
@@ -18,13 +19,13 @@ export const DisabledState: Story = {
   render: () => (
     <div className={styles.wrapper}>
       <HiddenDropZone disabled mode={UPLOAD_MODE.Multiple} onFilesUpload={() => {}}>
-        <div className={styles.card} data-test-id='hidden-dropzone-form'>
+        <div className={styles.card} data-test-id={HIDDEN_DROPZONE_FORM_TEST_ID}>
           <div className={styles.contentDescription}>Заблокированная область формы</div>
         </div>
       </HiddenDropZone>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('hidden-dropzone-form')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(HIDDEN_DROPZONE_FORM_TEST_ID)).toBeVisible();
   },
 };

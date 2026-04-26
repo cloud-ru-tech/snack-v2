@@ -4,6 +4,7 @@ import { expect, within } from 'storybook/test';
 
 import { HiddenDropZone, HiddenDropZoneProps, UPLOAD_MODE } from '../../src';
 import styles from './styles.module.scss';
+import { HIDDEN_DROPZONE_FORM_TEST_ID } from './testIds';
 
 const defaultContent = (
   <div data-test-id='description' className={styles.contentDescription}>
@@ -46,7 +47,7 @@ function HiddenDropZoneWithFiles(args: HiddenDropZoneProps) {
   return (
     <div className={styles.wrapper}>
       <HiddenDropZone {...args} onFilesUpload={setFiles}>
-        <div id='form' className={styles.card} data-test-id='hidden-dropzone-form'>
+        <div id='form' className={styles.card} data-test-id={HIDDEN_DROPZONE_FORM_TEST_ID}>
           <form className={styles.form}>
             <label htmlFor='firstName'>Имя</label>
             <input id='firstName' type='text' />
@@ -71,6 +72,6 @@ export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <HiddenDropZoneWithFiles {...args} />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('hidden-dropzone-form')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(HIDDEN_DROPZONE_FORM_TEST_ID)).toBeVisible();
   },
 };

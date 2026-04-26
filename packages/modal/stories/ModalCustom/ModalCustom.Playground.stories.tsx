@@ -13,7 +13,13 @@ function PlaygroundRender(args: ModalCustomProps) {
 
   return (
     <>
-      <Button label='Open custom modal' appearance='primary' view='filled' onClick={open} />
+      <Button
+        data-test-id='modal-custom-trigger'
+        label='Open custom modal'
+        appearance='primary'
+        view='filled'
+        onClick={open}
+      />
       <ModalCustom {...args} onClose={close}>
         <ModalCustom.Header title='Custom composition' subtitle='Шапка, тело и футер собираются вручную.' />
         <ModalCustom.Body
@@ -36,7 +42,7 @@ function PlaygroundRender(args: ModalCustomProps) {
 }
 
 const meta: Meta<typeof ModalCustom> = {
-  title: 'Components/ModalCustom',
+  title: 'Components/Modal/ModalCustom',
   component: ModalCustom,
   parameters: { layout: 'centered' },
   args: {
@@ -45,6 +51,7 @@ const meta: Meta<typeof ModalCustom> = {
     width: WIDTH.S,
     heightAuto: true,
     closeOnPopstate: true,
+    'data-test-id': 'modal-custom',
   },
   argTypes: {
     open: { control: 'boolean' },
@@ -71,6 +78,6 @@ type Story = StoryObj<typeof ModalCustom>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open custom modal' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId('modal-custom-trigger')).toBeVisible();
   },
 };

@@ -5,6 +5,7 @@ import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { MODAL_TEST_ID, MODAL_TRIGGER_TEST_ID } from './testIds';
 
 type ScenarioArgs = { open: boolean };
 
@@ -15,8 +16,15 @@ function WithMediaRender(args: ScenarioArgs) {
 
   return (
     <>
-      <Button label='Open welcome modal' appearance='primary' view='filled' onClick={openModal} />
+      <Button
+        data-test-id={MODAL_TRIGGER_TEST_ID}
+        label='Open welcome modal'
+        appearance='primary'
+        view='filled'
+        onClick={openModal}
+      />
       <Modal
+        data-test-id={MODAL_TEST_ID}
         open={args.open ?? open}
         onClose={closeModal}
         width='m'
@@ -30,7 +38,7 @@ function WithMediaRender(args: ScenarioArgs) {
 }
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Modal/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
 };
@@ -43,6 +51,6 @@ export const WithMedia: Story = {
   args: { open: false },
   render: WithMediaRender,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open welcome modal' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(MODAL_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

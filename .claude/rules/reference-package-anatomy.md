@@ -18,20 +18,18 @@ packages/<pkg>/
 ├── stories/
 │   └── <Name>/
 │       ├── <Name>.Playground.stories.tsx   # обязателен
-│       └── <Name>.VisualMatrix.stories.tsx # обязателен
-│       └── <Name>.<UseCase>.stories.tsx    # по tier (см. complexity-tiers.md)
-├── __tests__/                  # Playwright E2E + visual (см. e2e-testing-standard.md)
-│   ├── helpers.ts
-│   ├── <pkg>.rendering.spec.ts
-│   ├── <pkg>.states.spec.ts
-│   ├── <pkg>.url-args.spec.ts
-│   ├── <pkg>.dimensions.spec.ts
-│   ├── <pkg>.interaction.spec.ts
-│   ├── <pkg>.polymorphism.spec.ts
-│   ├── <pkg>.keyboard.spec.ts
-│   ├── <pkg>.a11y.spec.ts
-│   └── <pkg>.visual.spec.ts
-├── __snapshots__/              # Chrome-only baseline PNG'и для visual regression
+│       ├── <Name>.VisualMatrix.stories.tsx # обязателен
+│       └── <Name>.<ExtraCase>.stories.tsx  # по правилам stories-standard.md — только если нельзя выразить args/VisualMatrix
+├── __test__/                   # Playwright E2E + visual (см. e2e-testing-standard.md)
+│   └── <Name>/                 # группировка по компоненту (зеркалит stories/<Name>/)
+│       ├── helpers.ts
+│       ├── rendering.spec.ts         # render + states + props propagation (через gotoStory+args)
+│       ├── interaction.spec.ts       # tier M+
+│       ├── keyboard.spec.ts          # tier M+
+│       ├── polymorphism.spec.ts      # только если есть `as`
+│       ├── a11y.spec.ts
+│       ├── visual.spec.ts
+│       └── __snapshots__/            # baseline PNG'и (chrome-only) рядом со спеками
 ├── demos/
 │   └── <Name>Demo.tsx          # для пакетов, рендерящихся в docs-сайте
 ├── docs/
@@ -59,9 +57,9 @@ playwright/                     # корень монорепо
 └── index.ts
 ```
 
-Импорт из пакетного spec: `import { expect, test } from '../../../playwright/fixtures'`.
+Импорт из пакетного spec: `import { expect, test } from '../../../../playwright/fixtures'` (4 уровня, т.к. тесты лежат в `packages/<pkg>/__test__/<Component>/`).
 
-Корневой `playwright.config.ts` указывает `testDir: './packages'`, `testMatch: ['**/__tests__/**/*.spec.ts']` и `snapshotPathTemplate: '{testDir}/{testFileDir}/../__snapshots__/{arg}-{projectName}{ext}'`.
+Корневой `playwright.config.ts` указывает `testDir: './packages'`, `testMatch: ['**/__test__/**/*.spec.ts']` и `snapshotPathTemplate: '{testDir}/{testFileDir}/__snapshots__/{arg}-{projectName}{ext}'` — baseline'ы лежат рядом со спеками, внутри папки компонента. Префикс `{testDir}/` обязателен: `{testFileDir}` возвращает путь относительно `testDir`, и без него baseline'ы уйдут в `<cwd>/<pkg>/__test__/…` мимо папки `packages/`.
 
 Docs-тесты живут отдельно в `tests/docs/` (их запускает отдельный конфиг `tests/playwright.config.ts` против `apps/docs`).
 
@@ -90,6 +88,8 @@ Docs-тесты живут отдельно в `tests/docs/` (их запуск�
 
 - Добавлять пакет без обновления wire-точек.
 - Держать stories вне `stories/<Name>/`.
+- Заводить axis-per-file stories (`<Name>.Sizes`, `<Name>.Appearances`, `<Name>.LoadingState`, …) — они дублируют VisualMatrix. См. [stories-standard.md](./stories-standard.md) раздел «Запрещённые файлы».
+- Заводить отдельные spec'и `<pkg>.url-args.spec.ts`, `<pkg>.states.spec.ts`, `<pkg>.dimensions.spec.ts` — их роль отдана `rendering.spec.ts` (props propagation через `gotoStory+args`) и visual regression.
 - Писать визуальные матрицы flex-боксами вместо `StoryTable` из `#storybook/components`.
 - Коммитить пакет без `docs/index.mdx` и без `demos/<Name>Demo.tsx` (кроме utility-пакетов без UI).
 - Держать `README.md` руками — он генерируется.

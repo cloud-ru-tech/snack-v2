@@ -18,15 +18,20 @@ export const Truncated: Story = {
   render: () => (
     <div className={styles.stack}>
       <div className={styles.narrow}>
-        <Link text='Очень длинный текст ссылки, который не помещается' href='#' />
+        <Link text='Очень длинный текст ссылки, который не помещается' href='#' data-test-id='link-end' />
       </div>
       <div className={styles.narrow}>
-        <Link truncateVariant='middle' text='very-long-document-name-abc-2024.pdf' href='#' />
+        <Link
+          truncateVariant='middle'
+          text='very-long-document-name-abc-2024.pdf'
+          href='#'
+          data-test-id='link-middle'
+        />
       </div>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const links = within(canvasElement).getAllByRole('link');
-    expect(links.length).toBe(2);
+    await expect(within(canvasElement).getByTestId('link-end')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('link-middle')).toBeVisible();
   },
 };

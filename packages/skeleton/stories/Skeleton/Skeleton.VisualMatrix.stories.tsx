@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'Components/Skeleton',
+  title: 'Components/Skeleton/Skeleton',
   component: Skeleton,
 };
 

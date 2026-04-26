@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { TRUNCATE_STRING_TEST_ID } from './testIds';
 
 const meta: Meta<typeof TruncateString> = {
   title: 'Components/TruncateString',
@@ -19,10 +20,10 @@ export const EndTruncation: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.container}>
-      <TruncateString variant={VARIANT.End} text={SAMPLE} maxLines={1} />
+      <TruncateString variant={VARIANT.End} text={SAMPLE} maxLines={1} data-test-id={TRUNCATE_STRING_TEST_ID} />
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText(SAMPLE, { exact: false })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TRUNCATE_STRING_TEST_ID)).toBeVisible();
   },
 };

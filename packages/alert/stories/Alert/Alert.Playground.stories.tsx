@@ -2,8 +2,10 @@ import { Alert, ALIGN, APPEARANCE, SIZE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { ALERT_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Alert',
+  title: 'Components/Alert/Alert',
   component: Alert,
   parameters: { layout: 'centered' },
   args: {
@@ -15,6 +17,7 @@ const meta: Meta<typeof Alert> = {
     icon: true,
     outline: false,
     collapsible: false,
+    'data-test-id': ALERT_TEST_ID,
   },
   argTypes: {
     title: { control: 'text' },
@@ -34,6 +37,6 @@ type Story = StoryObj<typeof Alert>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('alert')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(ALERT_TEST_ID)).toBeVisible();
   },
 };

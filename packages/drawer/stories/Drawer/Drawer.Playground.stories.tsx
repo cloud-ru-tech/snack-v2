@@ -5,6 +5,7 @@ import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { DRAWER_TEST_ID, DRAWER_TRIGGER_TEST_ID } from './testIds';
 
 function PlaygroundRender(args: DrawerProps) {
   const [, updateArgs] = useArgs<DrawerProps>();
@@ -13,7 +14,13 @@ function PlaygroundRender(args: DrawerProps) {
 
   return (
     <>
-      <Button label='Open drawer' appearance='primary' view='filled' onClick={open} />
+      <Button
+        data-test-id={DRAWER_TRIGGER_TEST_ID}
+        label='Open drawer'
+        appearance='primary'
+        view='filled'
+        onClick={open}
+      />
       <Drawer
         {...args}
         onClose={close}
@@ -30,7 +37,7 @@ function PlaygroundRender(args: DrawerProps) {
 }
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'centered' },
   args: {
@@ -43,6 +50,7 @@ const meta: Meta<typeof Drawer> = {
     title: 'Headline text',
     subtitle: 'Subtitle text',
     content: 'Body content',
+    'data-test-id': DRAWER_TEST_ID,
   },
   argTypes: {
     open: { control: 'boolean', description: 'Управление видимостью' },
@@ -84,6 +92,6 @@ type Story = StoryObj<typeof Drawer>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open drawer' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DRAWER_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

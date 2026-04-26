@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { STEPPER_NEXT_TEST_ID, STEPPER_PREV_TEST_ID, STEPPER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
@@ -17,7 +18,7 @@ const meta: Meta<typeof Stepper> = {
     ],
     defaultCurrentStepIndex: 0,
     className: '',
-    'data-test-id': 'stepper',
+    'data-test-id': STEPPER_TEST_ID,
   },
   argTypes: {
     steps: { control: 'object', description: 'Массив шагов (title + description)' },
@@ -45,7 +46,7 @@ const meta: Meta<typeof Stepper> = {
                 size='s'
                 onClick={() => goPrev()}
                 disabled={currentStepIndex === 0}
-                data-test-id='stepper-prev'
+                data-test-id={STEPPER_PREV_TEST_ID}
               />
               <Button
                 label={currentStepIndex === stepCount - 1 ? 'Завершить' : 'Далее'}
@@ -53,7 +54,7 @@ const meta: Meta<typeof Stepper> = {
                 size='s'
                 onClick={() => goNext()}
                 disabled={isCompleted}
-                data-test-id='stepper-next'
+                data-test-id={STEPPER_NEXT_TEST_ID}
               />
             </div>
           </div>
@@ -70,6 +71,6 @@ export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByText('Настройка')).toBeVisible();
+    await expect(canvas.getByTestId(STEPPER_TEST_ID)).toBeVisible();
   },
 };

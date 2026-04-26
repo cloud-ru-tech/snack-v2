@@ -13,13 +13,13 @@ export const HeadlineSizes: Story = {
   tags: ['dev'],
   render: () => (
     <>
-      <Typography variant={VARIANT.headline} size={SIZE.s}>
+      <Typography variant={VARIANT.headline} size={SIZE.s} data-test-id='typography-s'>
         Headline S
       </Typography>
-      <Typography variant={VARIANT.headline} size={SIZE.m}>
+      <Typography variant={VARIANT.headline} size={SIZE.m} data-test-id='typography-m'>
         Headline M
       </Typography>
-      <Typography variant={VARIANT.headline} size={SIZE.l}>
+      <Typography variant={VARIANT.headline} size={SIZE.l} data-test-id='typography-l'>
         Headline L
       </Typography>
     </>

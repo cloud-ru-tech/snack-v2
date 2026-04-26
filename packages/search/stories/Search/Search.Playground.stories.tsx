@@ -2,6 +2,8 @@ import { Search, SIZE } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { SEARCH_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Search> = {
   title: 'Components/Search',
   component: Search,
@@ -13,6 +15,7 @@ const meta: Meta<typeof Search> = {
     outline: true,
     disabled: false,
     loading: false,
+    'data-test-id': SEARCH_TEST_ID,
   },
   argTypes: {
     size: {
@@ -34,6 +37,6 @@ type Story = StoryObj<typeof Search>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('searchbox')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(SEARCH_TEST_ID)).toBeVisible();
   },
 };

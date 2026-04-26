@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { STEPPER_NEXT_TEST_ID, STEPPER_PREV_TEST_ID, STEPPER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
@@ -20,13 +21,23 @@ export const ClickTest: Story = {
   },
   render: args => (
     <div className={styles.containerDesktop}>
-      <Stepper {...args} steps={[{ title: 'Шаг 1' }, { title: 'Шаг 2' }, { title: 'Шаг 3' }]} data-test-id='stepper'>
+      <Stepper
+        {...args}
+        steps={[{ title: 'Шаг 1' }, { title: 'Шаг 2' }, { title: 'Шаг 3' }]}
+        data-test-id={STEPPER_TEST_ID}
+      >
         {({ stepper, goNext, goPrev }) => (
           <div className={styles.stack}>
             {stepper}
             <div className={styles.row}>
-              <Button label='Prev' size='s' view='outline' onClick={() => goPrev()} data-test-id='stepper-prev' />
-              <Button label='Next' size='s' onClick={() => goNext()} data-test-id='stepper-next' />
+              <Button
+                label='Prev'
+                size='s'
+                view='outline'
+                onClick={() => goPrev()}
+                data-test-id={STEPPER_PREV_TEST_ID}
+              />
+              <Button label='Next' size='s' onClick={() => goNext()} data-test-id={STEPPER_NEXT_TEST_ID} />
             </div>
           </div>
         )}
@@ -36,7 +47,7 @@ export const ClickTest: Story = {
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
     await step('Click Next', async () => {
-      await userEvent.click(canvas.getByTestId('stepper-next'));
+      await userEvent.click(canvas.getByTestId(STEPPER_NEXT_TEST_ID));
     });
     await step('onChangeCurrentStep fired', async () => {
       await expect(args.onChangeCurrentStep).toHaveBeenCalled();

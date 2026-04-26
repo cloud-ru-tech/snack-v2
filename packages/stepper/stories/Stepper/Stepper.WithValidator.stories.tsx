@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { STEPPER_NEXT_TEST_ID, STEPPER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
@@ -25,7 +26,7 @@ function WithValidatorStory() {
       <Stepper
         steps={[{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }]}
         validator={validator}
-        data-test-id='stepper'
+        data-test-id={STEPPER_TEST_ID}
       >
         {({ stepper, goNext, goPrev, resetValidation, currentStepIndex, isCompleted }) => (
           <div className={styles.stack}>
@@ -52,7 +53,7 @@ function WithValidatorStory() {
                 size='s'
                 onClick={() => goNext()}
                 disabled={isCompleted}
-                data-test-id='stepper-next'
+                data-test-id={STEPPER_NEXT_TEST_ID}
               />
             </div>
           </div>
@@ -66,6 +67,6 @@ export const WithValidator: Story = {
   tags: ['dev'],
   render: () => <WithValidatorStory />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Данные')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(STEPPER_TEST_ID)).toBeVisible();
   },
 };

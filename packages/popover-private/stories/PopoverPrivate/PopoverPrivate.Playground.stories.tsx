@@ -9,6 +9,7 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 
 import styles from './styles.module.scss';
+import { POPOVER_PRIVATE_CONTENT_TEST_ID } from './testIds';
 
 const PopoverContent = () => <div className={styles.popoverContent}>Popover content</div>;
 
@@ -25,6 +26,7 @@ const meta: Meta<PopoverPrivateProps> = {
     heightStrategy: POPOVER_HEIGHT_STRATEGY.Auto,
     arrowElementClassName: styles.popoverArrowElement,
     arrowContainerClassName: styles.popoverArrowContainer,
+    'data-test-id': POPOVER_PRIVATE_CONTENT_TEST_ID,
   },
   argTypes: {
     placement: {

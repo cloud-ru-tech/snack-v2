@@ -5,10 +5,3 @@
   flex-direction: column;
   gap: base.$sn-primitive-dimension-32;
 }
-
-.row {
-  display: flex;
-  flex-direction: row;
-  gap: base.$sn-primitive-dimension-24;
-  align-items: center;
-}

@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { SCROLL_TEST_ID } from './testIds';
 
 const content = (
   <div className={styles.scrollContent}>
@@ -25,11 +26,11 @@ type Story = StoryObj<ScrollProps>;
 export const Resizable: Story = {
   tags: ['dev'],
   render: () => (
-    <Scroll resize={RESIZE.Both} className={styles.scroll}>
+    <Scroll resize={RESIZE.Both} className={styles.scroll} data-test-id={SCROLL_TEST_ID}>
       {content}
     </Scroll>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText(/Line 1\./)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(SCROLL_TEST_ID)).toBeVisible();
   },
 };

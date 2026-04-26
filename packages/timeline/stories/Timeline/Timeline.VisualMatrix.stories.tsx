@@ -8,7 +8,7 @@ import { DemoComponent } from '../helperComponents/DemoComponent/DemoComponent';
 import styles from '../styles.module.scss';
 
 const meta: Meta = {
-  title: 'Components/Timeline',
+  title: 'Components/Timeline/Timeline',
 };
 
 export default meta;

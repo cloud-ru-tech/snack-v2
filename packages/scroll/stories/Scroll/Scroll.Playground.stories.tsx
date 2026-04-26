@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { SCROLL_TEST_ID } from './testIds';
 
 const defaultContent = (
   <div className={styles.scrollContent}>
@@ -26,6 +27,7 @@ const meta: Meta<ScrollProps> = {
     untouchableScrollbars: false,
     resize: RESIZE.None,
     paddingAbsolute: false,
+    'data-test-id': SCROLL_TEST_ID,
   },
   argTypes: {
     children: { control: false },
@@ -51,6 +53,6 @@ export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <Scroll {...args} className={styles.scroll} />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText(/Line of content 01/)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(SCROLL_TEST_ID)).toBeVisible();
   },
 };

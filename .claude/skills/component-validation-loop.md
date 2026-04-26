@@ -6,8 +6,8 @@
 
 Скилл дополняет (не заменяет):
 - [figma-component-import](./figma-component-import.md) — первичный импорт узлов
-- [figma-verify-after-stories](./figma-verify-after-stories.md) — узкий проход по Figma-слоям
 - [component-tier-audit](./component-tier-audit.md) — эталонность артефактов
+- [component-story-set](./component-story-set.md) — набор stories + baselines visual regression (финальный шаг)
 
 ## Вход
 
@@ -30,14 +30,29 @@
 
 ### Стадия 2 — Figma parity (слои, токены, состояния)
 
-Запустить `figma-verify-after-stories` по всем узлам. Дополнительно — повторяющиеся находки из опыта:
+Для каждого Figma nodeId (master + state-master + variants + example):
 
-- [ ] Узлы с `stateLayer/<group>/<role>` → `<span className={styles.stateLayer} data-state='<group><Role>' aria-hidden />` + `@use '@ds/materials' as m; @include m.has-state-layer-as-child(stateLayer);`
-  - `regularBackground` — для кнопок с заливкой (напр. MobileStep tap-таргет)
-  - `regularBorder` — для обводочных элементов (напр. DesktopStep круглая иконка-кнопка)
-- [ ] Узлы с `focusedFrame/...` (hidden=true) → `:focus-visible { outline: 2px solid base.$sn-theme-color-primary-accent; outline-offset: 2px; }`. **НИКОГДА** не DOM-нода.
-- [ ] Узлы с `material/<appearance><Level>` → `<span className={styles.acrylic} data-acrylic-* aria-hidden />` + `m.with-material('acrylic', #{acrylic})`.
-- [ ] Все variants узла покрыты в `VisualMatrix.stories.tsx` и `constants.ts`.
+1. `mcp__figma-remote-mcp__get_metadata` — собрать DOM-структуру (`children frame names`), служебные слои (`stateLayer/`, `focusedFrame/`, `material/`), variants + оси, размеры.
+2. При необходимости — `get_variable_defs` и `get_design_context` (требуют выделения в Figma Desktop) для токенов и референсного кода.
+
+**Чек-лист соответствия Figma ↔ код** (покрывает бывший скилл `figma-verify-after-stories`):
+
+- [ ] **stateLayer/\<group\>/\<role\>** → `<span className={styles.stateLayer} data-state='<group><Role>' aria-hidden />` + `@use '@ds/materials' as m; @include m.has-state-layer-as-child(stateLayer);` в SCSS корня.
+  Допустимые `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground` (строго camelCase из этого списка).
+- [ ] **focusedFrame/...** (hidden=true в Figma) → `:focus-visible { outline: 2px solid base.$sn-theme-color-primary-accent; outline-offset: 2px; }`. **НИКОГДА** не DOM-нода.
+- [ ] **material/\<appearance\>\<Level\>** → `<span className={styles.acrylic} data-acrylic-appearance='...' data-acrylic-level='...' aria-hidden />` + `m.with-material('acrylic', #{acrylic})`.
+- [ ] **Интерактивный корень** со state-layer / material имеет `position: relative` в SCSS; `.stateLayer` / `.acrylic` имеют `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`.
+- [ ] **Цвета** из узла — токены `base.$sn-theme-color-*` / `base.simple-var(...)` / `base.composite-var(...)`, не hex/rgba.
+- [ ] **Размеры** из Figma (фиксированные height/width) — в SCSS. Parity ловится визуально (VisualMatrix baseline), отдельный `dimensions.spec.ts` не заводим.
+- [ ] **Variants** узла → каждый присутствует в `constants.ts` (`as const`) + типы в `types.ts` (`ValueOf`).
+- [ ] **Variants** покрыты в `VisualMatrix.stories.tsx` как строки/колонки `StoryTable`.
+- [ ] **Figma typos** (например `iconAfrer`) — в `constants.ts` каноническое имя + комментарий `// Figma variant: <typo>`.
+- [ ] **Visual сверка (screenshot vs Figma)**:
+  1. `mcp__figma-remote-mcp__get_screenshot` на nodeId → PNG.
+  2. Снять скриншот соответствующей story (Playwright / devtools).
+  3. Классифицировать расхождения: критические (отсутствующий слой, неверный токен, неверный размер) / средние (spacing, typography) / низкие (тени, радиусы, анимации).
+
+Если критических расхождений >3 — остановиться на этой стадии, править SCSS, повторять.
 
 ### Стадия 3 — Runtime сверка (screenshot vs Figma)
 

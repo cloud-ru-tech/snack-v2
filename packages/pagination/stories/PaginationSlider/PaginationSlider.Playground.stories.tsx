@@ -11,6 +11,7 @@ const meta: Meta<typeof PaginationSlider> = {
     page: 2,
     size: PAGINATION_SLIDER_SIZE.Xs,
     onChange: fn(),
+    'data-test-id': 'pagination-slider',
   },
   argTypes: {
     total: { control: { type: 'number', min: 1 }, description: 'Общее количество страниц' },
@@ -29,6 +30,6 @@ type Story = StoryObj<typeof PaginationSlider>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('navigation', { name: 'Pagination slider' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId('pagination-slider')).toBeVisible();
   },
 };

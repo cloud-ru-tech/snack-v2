@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { CAROUSEL_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
@@ -17,7 +18,7 @@ export const MultipleItems: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.containerWide}>
-      <Carousel showItems={3} gap='16px'>
+      <Carousel showItems={3} gap='16px' data-test-id={CAROUSEL_TEST_ID}>
         <div className={styles.card}>Card 1</div>
         <div className={styles.card}>Card 2</div>
         <div className={styles.card}>Card 3</div>
@@ -28,6 +29,6 @@ export const MultipleItems: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    expect(within(canvasElement).getByText('Card 1')).toBeVisible();
+    expect(within(canvasElement).getByTestId(CAROUSEL_TEST_ID)).toBeVisible();
   },
 };

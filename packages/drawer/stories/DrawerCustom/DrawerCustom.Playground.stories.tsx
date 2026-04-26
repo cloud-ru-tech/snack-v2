@@ -13,7 +13,13 @@ function PlaygroundRender(args: DrawerCustomProps) {
 
   return (
     <>
-      <Button label='Open custom drawer' appearance='primary' view='filled' onClick={open} />
+      <Button
+        data-test-id='drawer-custom-trigger'
+        label='Open custom drawer'
+        appearance='primary'
+        view='filled'
+        onClick={open}
+      />
       <DrawerCustom {...args} onClose={close}>
         <DrawerCustom.Header title='Custom composition' subtitle='Шапка, тело и футер собираются вручную.' />
         <DrawerCustom.Body
@@ -36,7 +42,7 @@ function PlaygroundRender(args: DrawerCustomProps) {
 }
 
 const meta: Meta<typeof DrawerCustom> = {
-  title: 'Components/DrawerCustom',
+  title: 'Components/Drawer/DrawerCustom',
   component: DrawerCustom,
   parameters: { layout: 'centered' },
   args: {
@@ -46,6 +52,7 @@ const meta: Meta<typeof DrawerCustom> = {
     heightAuto: false,
     showBlackout: true,
     closeOnPopstate: true,
+    'data-test-id': 'drawer-custom',
   },
   argTypes: {
     open: { control: 'boolean', description: 'Управление видимостью' },
@@ -83,6 +90,6 @@ type Story = StoryObj<typeof DrawerCustom>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open custom drawer' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId('drawer-custom-trigger')).toBeVisible();
   },
 };

@@ -6,7 +6,7 @@ import { SlotContent } from './SlotContent';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof Dropzone> = {
-  title: 'Components/Dropzone',
+  title: 'Components/Dropzone/Dropzone',
   component: Dropzone,
 };
 

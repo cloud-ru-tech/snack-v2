@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { MODAL_TEST_ID } from './testIds';
 
 const MODE_SUBTITLE: Record<ModalMode, string> = {
   [MODE.Regular]: 'Закрытие по Esc, клику по overlay и кнопке.',
@@ -13,7 +14,7 @@ const MODE_SUBTITLE: Record<ModalMode, string> = {
 };
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Modal/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
 };
@@ -27,12 +28,31 @@ function ModeDemo() {
 
   return (
     <div className={styles.scenarioRoot}>
-      <Button label='Regular' view='outline' appearance='neutral' onClick={() => setActiveMode(MODE.Regular)} />
-      <Button label='Aggressive' view='outline' appearance='neutral' onClick={() => setActiveMode(MODE.Aggressive)} />
-      <Button label='Forced' view='outline' appearance='neutral' onClick={() => setActiveMode(MODE.Forced)} />
+      <Button
+        data-test-id='modal-trigger-regular'
+        label='Regular'
+        view='outline'
+        appearance='neutral'
+        onClick={() => setActiveMode(MODE.Regular)}
+      />
+      <Button
+        data-test-id='modal-trigger-aggressive'
+        label='Aggressive'
+        view='outline'
+        appearance='neutral'
+        onClick={() => setActiveMode(MODE.Aggressive)}
+      />
+      <Button
+        data-test-id='modal-trigger-forced'
+        label='Forced'
+        view='outline'
+        appearance='neutral'
+        onClick={() => setActiveMode(MODE.Forced)}
+      />
 
       {activeMode && (
         <Modal
+          data-test-id={MODAL_TEST_ID}
           open
           onClose={close}
           mode={activeMode}
@@ -57,6 +77,6 @@ export const Modes: Story = {
   tags: ['dev'],
   render: () => <ModeDemo />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Regular' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId('modal-trigger-regular')).toBeVisible();
   },
 };

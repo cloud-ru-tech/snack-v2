@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { SCROLL_TEST_ID } from './testIds';
 
 const content = (
   <div className={styles.scrollContent}>
@@ -25,11 +26,11 @@ type Story = StoryObj<ScrollProps>;
 export const AutoscrollBottom: Story = {
   tags: ['dev'],
   render: () => (
-    <Scroll autoscrollTo={AUTOSCROLL_TO.Bottom} className={styles.scroll}>
+    <Scroll autoscrollTo={AUTOSCROLL_TO.Bottom} className={styles.scroll} data-test-id={SCROLL_TEST_ID}>
       {content}
     </Scroll>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Message 40')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(SCROLL_TEST_ID)).toBeVisible();
   },
 };

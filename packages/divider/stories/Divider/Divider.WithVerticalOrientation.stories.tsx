@@ -2,6 +2,7 @@ import { Divider, ORIENTATION, VARIANT } from '@ds/divider';
 import { Meta, StoryObj } from '@storybook/react';
 
 import styles from './styles.module.scss';
+import { DIVIDER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Divider> = {
   title: 'Components/Divider',
@@ -17,7 +18,7 @@ export const WithVerticalOrientation: Story = {
   args: {
     orientation: ORIENTATION.Vertical,
     variant: VARIANT.Regular,
-    'data-test-id': 'divider',
+    'data-test-id': DIVIDER_TEST_ID,
   },
   render: args => (
     <div className={styles.verticalRowCompact}>

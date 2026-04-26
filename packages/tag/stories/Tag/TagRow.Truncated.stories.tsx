@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { TAG_ROW_TEST_ID } from './testIds';
 
 const meta: Meta<typeof TagRow> = {
   title: 'Components/Tag/TagRow',
@@ -26,7 +27,7 @@ export const Truncated: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.rowNarrow}>
-      <TagRow items={items} rowLimit={1} moreButtonLabel='+{count}' />
+      <TagRow items={items} rowLimit={1} moreButtonLabel='+{count}' data-test-id={TAG_ROW_TEST_ID} />
     </div>
   ),
   play: async ({ canvasElement }) => {

@@ -5,6 +5,7 @@ import { expect, within } from 'storybook/test';
 
 import { Modal, ModalProps, MODE, WIDTH } from '../../src';
 import styles from './styles.module.scss';
+import { MODAL_TEST_ID, MODAL_TRIGGER_TEST_ID } from './testIds';
 
 function PlaygroundRender(args: ModalProps) {
   const [, updateArgs] = useArgs<ModalProps>();
@@ -13,7 +14,13 @@ function PlaygroundRender(args: ModalProps) {
 
   return (
     <>
-      <Button label='Open modal' appearance='primary' view='filled' onClick={open} />
+      <Button
+        data-test-id={MODAL_TRIGGER_TEST_ID}
+        label='Open modal'
+        appearance='primary'
+        view='filled'
+        onClick={open}
+      />
       <Modal
         {...args}
         onClose={close}
@@ -30,7 +37,7 @@ function PlaygroundRender(args: ModalProps) {
 }
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Modal/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
   args: {
@@ -43,6 +50,7 @@ const meta: Meta<typeof Modal> = {
     subtitle: 'Subtitle text',
     content: 'Body text',
     closeOnPopstate: true,
+    'data-test-id': MODAL_TEST_ID,
   },
   argTypes: {
     open: {
@@ -98,6 +106,6 @@ type Story = StoryObj<typeof Modal>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open modal' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(MODAL_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

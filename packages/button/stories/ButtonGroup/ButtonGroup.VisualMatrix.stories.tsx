@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: 'Components/ButtonGroup',
+  title: 'Components/Button/ButtonGroup',
   component: ButtonGroup,
   parameters: { layout: 'padded' },
 };

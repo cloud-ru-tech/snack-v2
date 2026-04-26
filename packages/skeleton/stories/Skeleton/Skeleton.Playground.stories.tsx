@@ -4,10 +4,8 @@ import { expect, within } from 'storybook/test';
 
 import styles from '../styles.module.scss';
 
-const WRAPPER_TEST_ID = 'skeleton-playground-wrapper';
-
 const meta: Meta<typeof Skeleton> = {
-  title: 'Components/Skeleton',
+  title: 'Components/Skeleton/Skeleton',
   component: Skeleton,
   parameters: { layout: 'centered' },
   args: {
@@ -15,6 +13,7 @@ const meta: Meta<typeof Skeleton> = {
     width: 200,
     height: 24,
     borderRadius: 4,
+    'data-test-id': 'skeleton',
   },
   argTypes: {
     loading: { control: 'boolean', description: 'Флаг состояния загрузки. true — скелетон, false — children.' },
@@ -31,13 +30,13 @@ type Story = StoryObj<typeof Skeleton>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => (
-    <div className={styles.wrapper} data-testid={WRAPPER_TEST_ID}>
+    <div className={styles.wrapper}>
       <Skeleton {...args}>
         <span>Контент после загрузки</span>
       </Skeleton>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(WRAPPER_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId('skeleton')).toBeVisible();
   },
 };

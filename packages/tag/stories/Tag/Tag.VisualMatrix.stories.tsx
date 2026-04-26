@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof Tag> = {
-  title: 'Components/Tag',
+  title: 'Components/Tag/Tag',
   component: Tag,
   parameters: { layout: 'padded' },
 };
@@ -19,8 +19,12 @@ const keyAppearances = [
   APPEARANCE.Neutral,
   APPEARANCE.Primary,
   APPEARANCE.Red,
+  APPEARANCE.Orange,
+  APPEARANCE.Yellow,
   APPEARANCE.Green,
   APPEARANCE.Blue,
+  APPEARANCE.Violet,
+  APPEARANCE.Pink,
 ] as const;
 
 const compositions = [

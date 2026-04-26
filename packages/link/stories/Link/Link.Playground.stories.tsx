@@ -44,6 +44,6 @@ type Story = StoryObj<typeof Link>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('link')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('link')).toBeVisible();
   },
 };

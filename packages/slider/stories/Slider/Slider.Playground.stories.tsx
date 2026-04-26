@@ -2,6 +2,8 @@ import { Slider } from '@ds/slider';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { SLIDER_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Slider> = {
   title: 'Components/Slider',
   component: Slider,
@@ -14,6 +16,7 @@ const meta: Meta<typeof Slider> = {
     handleTip: false,
     marksEqualSpacing: false,
     disabled: false,
+    'data-test-id': SLIDER_TEST_ID,
   },
   argTypes: {
     min: { control: 'number', description: 'Минимальное значение' },
@@ -35,6 +38,6 @@ type Story = StoryObj<typeof Slider>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('slider')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(SLIDER_TEST_ID)).toBeVisible();
   },
 };

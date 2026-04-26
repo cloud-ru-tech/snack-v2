@@ -28,7 +28,7 @@ function DrawerTrigger({ combo }: { combo: Combo }) {
 }
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'padded' },
 };

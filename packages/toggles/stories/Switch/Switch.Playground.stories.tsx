@@ -32,6 +32,7 @@ export const Playground: Story = {
     /** Без ключей в args Storybook не применяет id/name из URL (автотесты / шаринг ссылки). */
     id: undefined,
     name: undefined,
+    'data-test-id': 'switch',
   },
   argTypes: {
     checked: { control: 'boolean' },

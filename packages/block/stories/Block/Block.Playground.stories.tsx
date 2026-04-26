@@ -10,6 +10,7 @@ const meta: Meta<BlockProps> = {
   args: {
     size: SIZE.L,
     variant: VARIANT.Simple,
+    'data-test-id': 'block',
   },
   argTypes: {
     size: {
@@ -49,6 +50,7 @@ export const Playground: Story = {
     size: SIZE.L,
     variant: VARIANT.Simple,
     customText: '# slot content',
+    'data-test-id': 'block',
   },
   argTypes: {
     showBackground: {
@@ -60,6 +62,6 @@ export const Playground: Story = {
   },
   render: Template,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('# slot content')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('block')).toBeVisible();
   },
 };

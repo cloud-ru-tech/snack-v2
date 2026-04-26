@@ -11,6 +11,8 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { TYPOGRAPHY_TEST_ID } from './testIds';
+
 const meta: Meta<TypographyProps> = {
   title: 'Components/Typography',
   component: Typography,
@@ -19,6 +21,7 @@ const meta: Meta<TypographyProps> = {
     variant: DEFAULT_VARIANT,
     size: DEFAULT_SIZE,
     weight: DEFAULT_WEIGHT,
+    'data-test-id': TYPOGRAPHY_TEST_ID,
   },
   argTypes: {
     children: {
@@ -57,6 +60,6 @@ type Story = StoryObj<TypographyProps>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Typography text')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TYPOGRAPHY_TEST_ID)).toBeVisible();
   },
 };

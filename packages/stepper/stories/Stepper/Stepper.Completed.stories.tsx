@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { STEPPER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
@@ -20,7 +21,7 @@ export const Completed: Story = {
       <Stepper
         steps={[{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }]}
         defaultCurrentStepIndex={2}
-        data-test-id='stepper'
+        data-test-id={STEPPER_TEST_ID}
       >
         {({ stepper, goPrev }) => (
           <div className={styles.stack}>
@@ -38,6 +39,6 @@ export const Completed: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Готово')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(STEPPER_TEST_ID)).toBeVisible();
   },
 };

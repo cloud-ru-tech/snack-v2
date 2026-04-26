@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
   parameters: { layout: 'padded' },
 };

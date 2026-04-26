@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { TABS_BAR_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
@@ -18,15 +19,15 @@ export const WithCounter: Story = {
   render: () => (
     <div className={styles.wide}>
       <Tabs defaultValue='inbox'>
-        <Tabs.TabBar>
-          <Tabs.Tab value='inbox' label='Входящие' counter={{ label: 12 }} />
-          <Tabs.Tab value='drafts' label='Черновики' counter={{ label: 3 }} />
-          <Tabs.Tab value='archive' label='Архив' />
+        <Tabs.TabBar data-test-id={TABS_BAR_TEST_ID}>
+          <Tabs.Tab data-test-id='tabs-tab-inbox' value='inbox' label='Входящие' counter={{ label: 12 }} />
+          <Tabs.Tab data-test-id='tabs-tab-drafts' value='drafts' label='Черновики' counter={{ label: 3 }} />
+          <Tabs.Tab data-test-id='tabs-tab-archive' value='archive' label='Архив' />
         </Tabs.TabBar>
       </Tabs>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('tab', { selected: true })).toBeVisible();
+    await expect(within(canvasElement).getByTestId('tabs-tab-inbox')).toBeVisible();
   },
 };

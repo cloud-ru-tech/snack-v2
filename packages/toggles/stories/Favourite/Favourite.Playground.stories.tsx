@@ -30,6 +30,7 @@ export const Playground: Story = {
     defaultChecked: undefined,
     loading: false,
     disabled: false,
+    'data-test-id': 'favourite',
   },
   argTypes: {
     checked: { control: 'boolean' },

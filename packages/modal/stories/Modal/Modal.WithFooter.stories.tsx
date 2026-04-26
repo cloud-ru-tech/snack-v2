@@ -5,6 +5,7 @@ import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { MODAL_TEST_ID, MODAL_TRIGGER_TEST_ID } from './testIds';
 
 type ScenarioArgs = { open: boolean };
 
@@ -15,8 +16,15 @@ function WithFooterRender(args: ScenarioArgs) {
 
   return (
     <>
-      <Button label='Open confirm dialog' appearance='primary' view='filled' onClick={openModal} />
+      <Button
+        data-test-id={MODAL_TRIGGER_TEST_ID}
+        label='Open confirm dialog'
+        appearance='primary'
+        view='filled'
+        onClick={openModal}
+      />
       <Modal
+        data-test-id={MODAL_TEST_ID}
         open={args.open ?? open}
         onClose={closeModal}
         title='Удалить запись'
@@ -45,7 +53,7 @@ function WithFooterRender(args: ScenarioArgs) {
 }
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Modal/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
 };
@@ -58,6 +66,6 @@ export const WithFooter: Story = {
   args: { open: false },
   render: WithFooterRender,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open confirm dialog' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(MODAL_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

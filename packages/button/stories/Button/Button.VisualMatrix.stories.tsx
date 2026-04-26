@@ -8,7 +8,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: { layout: 'padded' },
 };
@@ -30,6 +30,16 @@ const compositions: Array<{ key: string; props: ButtonPropsForMatrix }> = [
     props: { label: 'Button', icon: <SettingsSVG />, iconPosition: ICON_POSITION.After },
   },
   { key: 'iconOnly', props: { icon: <SettingsSVG />, 'aria-label': 'Settings' } },
+  { key: 'withCounter', props: { label: 'Inbox', counter: { value: 12 } } },
+  {
+    key: 'counterWithIconAfter',
+    props: {
+      label: 'Notifications',
+      icon: <SettingsSVG />,
+      iconPosition: ICON_POSITION.After,
+      counter: { value: 5 },
+    },
+  },
 ];
 
 const states: Array<{ key: string; extra: Partial<ButtonPropsForMatrix> }> = [

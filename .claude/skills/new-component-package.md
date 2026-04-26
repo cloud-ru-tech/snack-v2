@@ -25,15 +25,13 @@
    - Если `figmaNodeId` дан — запустить skill [figma-component-import](./figma-component-import.md) → карта axes → `constants.ts`/`types.ts`.
    - Добавить `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts`.
 
-4. **Stories** — skill [component-story-set](./component-story-set.md) по tier'у.
+4. **Stories + baselines** — skill [component-story-set](./component-story-set.md). Финальным шагом генерит visual baselines (`pnpm test:e2e:update-snapshots`) — отдельно скилл visual-regression не запускается.
 
-5. **E2E** — skill [component-e2e-tests](./component-e2e-tests.md).
+5. **E2E** — skill [component-e2e-tests](./component-e2e-tests.md). Набор spec-файлов: `rendering.spec.ts` + по tier'у `interaction`, `keyboard`, `polymorphism`, `a11y`.
 
-6. **Visual regression** — skill [component-visual-regression](./component-visual-regression.md).
+6. **Docs** — skill [component-docs](./component-docs.md).
 
-7. **Docs** — skill [component-docs](./component-docs.md).
-
-8. **Генерация артефактов**
+7. **Генерация артефактов**
    ```bash
    pnpm gen        # props + README
    pnpm typecheck
@@ -41,12 +39,14 @@
    pnpm stylelint
    ```
 
-9. **Верификация**
+8. **Верификация**
    - Открыть `pnpm dev:storybook`, пройти все новые stories.
    - Открыть `pnpm dev:docs`, убедиться, что страница пакета рендерится и Storybook/Figma embed работает.
    - Запустить `pnpm test:stories` и `pnpm test:e2e` для нового пакета.
 
-10. **Аудит** — skill [component-tier-audit](./component-tier-audit.md) для проверки соответствия эталону.
+9. **Аудит и валидация**
+   - [component-tier-audit](./component-tier-audit.md) — проверить соответствие эталону (нет запрещённых stories/specs).
+   - [component-validation-loop](./component-validation-loop.md) — Figma parity + runtime сверка + wire-up.
 
 ## Что **не** делает скилл
 

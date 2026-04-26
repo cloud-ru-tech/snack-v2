@@ -51,6 +51,6 @@ export const Mobile: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Заполните данные')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('mobile-stepper')).toBeVisible();
   },
 };

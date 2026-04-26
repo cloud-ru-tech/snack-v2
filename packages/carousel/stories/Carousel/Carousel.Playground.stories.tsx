@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { CAROUSEL_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
@@ -17,6 +18,7 @@ const meta: Meta<typeof Carousel> = {
     infiniteScroll: false,
     swipeActivateLength: 48,
     controlsVisibility: CONTROLS_VISIBILITY.hover,
+    'data-test-id': CAROUSEL_TEST_ID,
   },
   argTypes: {
     showItems: { control: { type: 'number', min: 1, max: 6 } },
@@ -52,6 +54,6 @@ type Story = StoryObj<typeof Carousel>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Slide 1')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(CAROUSEL_TEST_ID)).toBeVisible();
   },
 };

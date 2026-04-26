@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
+import { DRAWER_TEST_ID, DRAWER_TRIGGER_TEST_ID } from './testIds';
+
 type TestArgs = { onOpen: () => void; onClose: () => void };
 
 function OpenCloseTestRender({ onOpen, onClose }: TestArgs) {
@@ -12,6 +14,7 @@ function OpenCloseTestRender({ onOpen, onClose }: TestArgs) {
   return (
     <>
       <Button
+        data-test-id={DRAWER_TRIGGER_TEST_ID}
         label='Open drawer'
         appearance='primary'
         view='filled'
@@ -21,6 +24,7 @@ function OpenCloseTestRender({ onOpen, onClose }: TestArgs) {
         }}
       />
       <Drawer
+        data-test-id={DRAWER_TEST_ID}
         open={open}
         position='right'
         onClose={() => {
@@ -35,7 +39,7 @@ function OpenCloseTestRender({ onOpen, onClose }: TestArgs) {
 }
 
 const meta: Meta<TestArgs> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'centered' },
 };
@@ -51,18 +55,18 @@ export const OpenCloseTest: Story = {
     const canvas = within(canvasElement);
 
     await step('Open drawer', async () => {
-      await userEvent.click(canvas.getByRole('button', { name: 'Open drawer' }));
+      await userEvent.click(canvas.getByTestId(DRAWER_TRIGGER_TEST_ID));
       expect(args.onOpen).toHaveBeenCalledTimes(1);
     });
 
     await step('Drawer content appears', async () => {
       await waitFor(() => {
-        expect(within(document.body).getByText('Drawer body content')).toBeVisible();
+        expect(within(document.body).getByTestId('drawer__body')).toBeVisible();
       });
     });
 
     await step('Close via close button', async () => {
-      const closeButton = within(document.body).getByRole('button', { name: 'close drawer' });
+      const closeButton = within(document.body).getByTestId('drawer__close-button');
       await userEvent.click(closeButton);
       expect(args.onClose).toHaveBeenCalledTimes(1);
     });

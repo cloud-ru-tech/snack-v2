@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { DIVIDER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Divider> = {
   title: 'Components/Divider',
@@ -12,7 +13,7 @@ const meta: Meta<typeof Divider> = {
     variant: VARIANT.Regular,
     orientation: ORIENTATION.Horizontal,
     className: '',
-    'data-test-id': 'divider',
+    'data-test-id': DIVIDER_TEST_ID,
   },
   argTypes: {
     variant: {
@@ -50,6 +51,6 @@ export const Playground: Story = {
       </div>
     ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('separator')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DIVIDER_TEST_ID)).toBeVisible();
   },
 };

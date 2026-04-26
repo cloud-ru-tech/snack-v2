@@ -36,18 +36,6 @@
   text-align: right;
 }
 
-.linesContainer {
-  display: flex;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-24;
-}
-
-.linesLabel {
-  margin-bottom: base.$sn-primitive-dimension-8;
-  font-size: base.$sn-regular-label-s-fontSize;
-  color: base.$sn-theme-color-available-version-textSecondary;
-}
-
 .textContainer {
   position: relative;
 

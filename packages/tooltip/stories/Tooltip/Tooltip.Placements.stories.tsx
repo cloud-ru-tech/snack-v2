@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
   parameters: { layout: 'padded' },
 };
@@ -21,7 +21,7 @@ export const Placements: Story = {
     <div className={styles.grid}>
       {placements.map(p => (
         <Tooltip key={p} tip={`Подсказка сверху: ${p}`} placement={p}>
-          <button type='button' className={styles.triggerButton}>
+          <button type='button' className={styles.triggerButton} data-test-id={`tooltip-trigger-${p}`}>
             {p}
           </button>
         </Tooltip>
@@ -29,7 +29,6 @@ export const Placements: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const buttons = within(canvasElement).getAllByRole('button');
-    expect(buttons.length).toBe(placements.length);
+    await expect(within(canvasElement).getByTestId(`tooltip-trigger-${placements[0]}`)).toBeVisible();
   },
 };

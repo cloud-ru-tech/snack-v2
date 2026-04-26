@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 const meta: Meta<typeof ProgressBar> = {
-  title: 'Components/ProgressBar',
+  title: 'Components/ProgressBar/ProgressBar',
   component: ProgressBar,
   parameters: { layout: 'centered' },
   args: {
@@ -40,6 +40,6 @@ type Story = StoryObj<typeof ProgressBar>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('progressbar')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('progress-bar')).toBeVisible();
   },
 };

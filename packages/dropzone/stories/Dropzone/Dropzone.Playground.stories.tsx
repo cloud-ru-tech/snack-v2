@@ -5,17 +5,19 @@ import { expect, within } from 'storybook/test';
 import { Dropzone, DropzoneProps, SIZE, UPLOAD_MODE } from '../../src';
 import { SlotContent } from './SlotContent';
 import styles from './styles.module.scss';
+import { DROPZONE_SLOT_CONTENT_TEST_ID, DROPZONE_TEST_ID } from './testIds';
 
 const defaultChildren = <SlotContent />;
 
 const meta: Meta<typeof Dropzone> = {
-  title: 'Components/Dropzone',
+  title: 'Components/Dropzone/Dropzone',
   component: Dropzone,
   args: {
     children: defaultChildren,
     disabled: false,
     mode: UPLOAD_MODE.Multiple,
     size: SIZE.M,
+    'data-test-id': DROPZONE_TEST_ID,
   },
   argTypes: {
     children: { table: { disable: true } },
@@ -64,6 +66,6 @@ export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <DropzoneWithFiles {...args} />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('# slot content')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DROPZONE_SLOT_CONTENT_TEST_ID)).toBeVisible();
   },
 };

@@ -3,8 +3,10 @@ import { DownloadSVG, PlusSVG, SettingsSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { BUTTON_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   parameters: { layout: 'centered' },
   args: {
@@ -17,7 +19,7 @@ const meta: Meta<typeof Button> = {
     loading: false,
     fullWidth: false,
     className: '',
-    'data-test-id': 'button',
+    'data-test-id': BUTTON_TEST_ID,
   },
   argTypes: {
     label: { control: 'text', description: 'Текст кнопки' },
@@ -61,6 +63,6 @@ type Story = StoryObj<typeof Button>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(BUTTON_TEST_ID)).toBeVisible();
   },
 };

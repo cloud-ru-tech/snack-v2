@@ -1,23 +1,38 @@
 # Visual regression — стандарт
 
-**Область действия:** `packages/*/__tests__/*.visual.spec.ts` и их baseline'ы в `packages/*/__snapshots__/`. Правило действует всегда. Эталон — [`packages/button/__tests__/button.visual.spec.ts`](../../packages/button/__tests__/button.visual.spec.ts).
+**Область действия:** `packages/*/__test__/<Component>/visual.spec.ts` и их baseline'ы в `packages/*/__test__/<Component>/__snapshots__/`. Правило действует всегда. Эталон — [`packages/button/__test__/Button/visual.spec.ts`](../../packages/button/__test__/Button/visual.spec.ts).
+
+## Принцип
+
+VisualMatrix story — **основной** источник визуальной регрессии. Один её скриншот покрывает все оси × состояния (appearance × size × view × disabled/loading). Не заводить per-case snapshots для того, что уже строка/колонка в `StoryTable`.
+
+Отдельные снимки нужны только для сценариев, которые нельзя отрендерить в матрице:
+
+- клиентские состояния (`:hover`, `:focus-visible`, `:active`/pressed) — их не покажешь статикой;
+- responsive breakpoints (375/768/1440) — изменяют layout, а не цвета;
+- открытое/закрытое состояние модалок/поповеров;
+- before/after интеракций в XL-компонентах (sort → new order).
+
+Цель — минимум снимков при максимуме покрытия. Каждый снимок стоит времени запуска и flakiness.
 
 ## Общее
 
 - Фреймворк: Playwright `toHaveScreenshot`.
 - Baselines снимаются **только на `chrome`** (см. `VISUAL_BASELINE_PROJECT` из `playwright/constants/projects.ts`). Визуальный spec обязан делать `test.skip(testInfo.project.name !== VISUAL_BASELINE_PROJECT, …)` в `beforeEach`, иначе firefox/safari/mobile попытаются сравнить несравнимое.
-- Baseline-файлы лежат в `packages/<pkg>/__snapshots__/<arg>-<projectName>.png`. Путь диктует `snapshotPathTemplate` в корневом `playwright.config.ts`:
+- Baseline-файлы лежат **рядом** со спеком: `packages/<pkg>/__test__/<Component>/__snapshots__/<arg>-<projectName>.png`. Путь диктует `snapshotPathTemplate` в корневом `playwright.config.ts`:
   ```
-  {testDir}/{testFileDir}/../__snapshots__/{arg}-{projectName}{ext}
+  {testDir}/{testFileDir}/__snapshots__/{arg}-{projectName}{ext}
   ```
+  (Префикс `{testDir}/` обязателен — `{testFileDir}` у Playwright относительный.)
+- Имя snapshot-файла (`{arg}`) — **без** префикса компонента: `visual-matrix.png`, а не `button-visual-matrix.png`. Префикс несёт папка.
 - Обновление: `pnpm test:e2e:update-snapshots` (работает только по `chrome`).
 
 ## Стабилизация снимков (обязательно)
 
 ```ts
-await gotoStory(STORY.Primary)
-await waitForFonts() // ← fixture из ../../../playwright/fixtures
-await expect(page.locator('#storybook-root')).toHaveScreenshot('button-primary.png', {
+await gotoStory(STORY.VisualMatrix)
+await waitForFonts() // ← fixture из ../../../../playwright/fixtures
+await expect(page.locator('#storybook-root')).toHaveScreenshot('visual-matrix.png', {
   animations: 'disabled',
   caret: 'hide',
 })
@@ -26,50 +41,34 @@ await expect(page.locator('#storybook-root')).toHaveScreenshot('button-primary.p
 Плюс:
 
 - `waitForFonts()` перед снимком — гарантирует, что web-шрифты загружены.
-- Фиксированный viewport из `PROJECTS.chrome.viewport` (кроме responsive-блока, где меняем размер явно).
+- Фиксированный viewport из `PROJECTS.chrome.viewport`.
 - Снимаем `#storybook-root`, а не viewport — иначе ловим шум от Storybook chrome.
 
-## Наборы снимков по tier'у
+## Наборы снимков по tier'у (минимум)
 
-### XS (минимум)
+| Tier | Snapshots | Счёт |
+|------|-----------|------|
+| XS   | VisualMatrix static | 1 |
+| S    | + Playground hover + Playground focus | 1 + 2 = 3 |
+| M    | + Playground pressed | 3 + 1 = 4 |
+| L    | + 1–2 placement/open-closed сценария на ключевом субкомпоненте | 4 + (1–2) ≈ 5–6 |
+| XL   | Сценарно: before/after каждой ключевой интеракции (sort, filter, paginate, select). VisualMatrix остаётся. | 1 + N*2 |
 
-- Static: снимок каждой use-case стори (1 файл = 1 снимок).
-- Responsive: Primary на 375/768/1440.
+Правила, которые уходят:
 
-### S
-
-Добавить к XS:
-
-- Interaction: `hover` и `focus` на Primary.
-
-### M (Button-like)
-
-Добавить к S:
-
-- Interaction: `pressed` на Primary (через `page.mouse.down()`).
-- Per-view hover: по одному снимку для каждого ключевого `view` (filled/outline/tonal/function).
-
-### L (Tabs/Tooltip/Popover)
-
-Добавить к M:
-
-- Open/closed state snapshots.
-- Placement variations (top/bottom/left/right), если есть.
-
-### XL (Table-like)
-
-Вместо декартовой матрицы — сценарные снимки:
-
-- До и после каждой ключевой интеракции (sort, filter, select, paginate).
-- Empty / loading / error / loaded.
+- ❌ **Static per use-case** — если кейс лежит в VisualMatrix, отдельного снимка ему не нужно.
+- ❌ **Per-view hover** — достаточно одного `hover` на Playground. View × hover покрывается глазами при review VisualMatrix diff-а (если он есть).
+- ❌ **Dimensions-снимок** — высоты и ширины проверяются visual diff-ом VisualMatrix, а не отдельным тестом.
+- ❌ **Responsive-снимки** (375/768/1440) — атомарные компоненты не реагируют на viewport. Responsive-поведение (mobile/desktop темы, container queries) покрывается отдельными stories с явным platform/size-пропом, которые сами попадают в VisualMatrix. Брать скриншоты одного компонента на трёх viewport'ах ради диффа, которого нет по природе — мёртвый тест, замедляющий прогон.
 
 ## Структура теста
 
 ```ts
-import { VISUAL_BASELINE_PROJECT } from '../../../playwright/constants/projects'
-import { expect, test } from '../../../playwright/fixtures'
+// packages/button/__test__/Button/visual.spec.ts
+import { VISUAL_BASELINE_PROJECT } from '../../../../playwright/constants/projects'
+import { expect, test } from '../../../../playwright/fixtures'
 
-import { BUTTON_STORIES, BUTTON_STATIC_VISUAL_CASES } from './helpers'
+import { BUTTON_STORIES } from './helpers'
 
 test.describe('Button — visual regression', () => {
   test.beforeEach(({}, testInfo) => {
@@ -79,33 +78,51 @@ test.describe('Button — visual regression', () => {
     )
   })
 
-  test.describe('static', () => {
-    for (const { id, name } of BUTTON_STATIC_VISUAL_CASES) {
-      test(`static — ${name}`, async ({ page, gotoStory, waitForFonts }) => {
-        await gotoStory(id)
-        await waitForFonts()
-        await expect(page.locator('#storybook-root')).toHaveScreenshot(name, {
-          animations: 'disabled',
-          caret: 'hide',
-        })
+  test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory(BUTTON_STORIES.visualMatrix)
+    await waitForFonts()
+    await expect(page.locator('#storybook-root')).toHaveScreenshot('visual-matrix.png', {
+      animations: 'disabled',
+      caret: 'hide',
+    })
+  })
+
+  test.describe('interaction (Playground)', () => {
+    test('hover', async ({ page, gotoStory, waitForFonts }) => {
+      await gotoStory(BUTTON_STORIES.playground)
+      await waitForFonts()
+      await page.getByRole('button').hover()
+      await expect(page.locator('#storybook-root')).toHaveScreenshot('interaction-hover.png', {
+        animations: 'disabled',
+        caret: 'hide',
       })
-    }
+    })
+
+    test('focus', async ({ page, gotoStory, waitForFonts }) => {
+      await gotoStory(BUTTON_STORIES.playground)
+      await waitForFonts()
+      await page.keyboard.press('Tab')
+      await expect(page.locator('#storybook-root')).toHaveScreenshot('interaction-focus.png', {
+        animations: 'disabled',
+        caret: 'hide',
+      })
+    })
   })
 })
 ```
 
-## Pressed snapshot (осторожно)
+## Pressed snapshot (tier M, осторожно)
 
 ```ts
-test('<name> pressed', async ({ page, gotoStory, waitForFonts }) => {
-  await gotoStory(STORY.Primary)
+test('pressed', async ({ page, gotoStory, waitForFonts }) => {
+  await gotoStory(BUTTON_STORIES.playground)
   await waitForFonts()
   const el = page.getByRole('button')
   const box = await el.boundingBox()
   await page.mouse.move(box!.x + box!.width / 2, box!.y + box!.height / 2)
   await page.mouse.down()
   try {
-    await expect(page.locator('#storybook-root')).toHaveScreenshot('<name>-pressed.png', {
+    await expect(page.locator('#storybook-root')).toHaveScreenshot('interaction-pressed.png', {
       animations: 'disabled',
       caret: 'hide',
     })
@@ -122,7 +139,7 @@ test('<name> pressed', async ({ page, gotoStory, waitForFonts }) => {
 
 1. Удали устаревшие PNG перед первой генерацией, если API изменилось:
    ```bash
-   rm packages/<pkg>/__snapshots__/*.png
+   rm packages/<pkg>/__test__/<Component>/__snapshots__/*.png
    ```
 2. Убедись, что Storybook запущен (`pnpm dev:storybook`) или что `reuseExistingServer` в корневом `playwright.config.ts` подключит dev-сервер автоматически.
 3. Запусти `pnpm test:e2e:update-snapshots`.
@@ -132,7 +149,11 @@ test('<name> pressed', async ({ page, gotoStory, waitForFonts }) => {
 ## Запреты
 
 - Не комить снимки без `animations: 'disabled'` — они будут flaky из-за transition.
-- Не использовай `page.screenshot()` без локатора — снимай `#storybook-root`, а не viewport, чтобы избежать шума от Storybook chrome.
-- Не зависай от курсора мыши — Playwright размещает курсор детерминированно, но позиция после клика может задержаться. `caret: 'hide'` + `mouse.move(0,0)` перед снимком, если видишь «лишний» артефакт.
-- Не снимай всю VisualMatrix на каждом breakpoint — матрица один раз, responsive — на Primary.
-- Не храни baseline'ы в корневом `tests/` — они живут рядом с пакетом.
+- Не используй `page.screenshot()` без локатора — снимай `#storybook-root`, а не viewport.
+- Не снимай static per-use-case — они уже в VisualMatrix.
+- Не снимай per-view hover — одного Playground hover достаточно.
+- Не снимай всю VisualMatrix на каждом breakpoint.
+- Не заводи responsive-блок (375/768/1440) на атомарных компонентах — это мёртвый тест, VisualMatrix не меняется от viewport'а. Если компонент реально адаптивный, заведи story с явным `platform`/`size` пропом, она попадёт в VisualMatrix.
+- Не заводи отдельный `<pkg>.dimensions.spec.ts` ради проверки высот — Figma-parity ловится diff-ом VisualMatrix.
+- Не храни baseline'ы в корневом `tests/` — они живут рядом со спеком, в `packages/<pkg>/__test__/<Component>/__snapshots__/`.
+- Не префиксуй snapshot-имена названием пакета/компонента (`button-hover.png`) — префикс уже в пути папки.

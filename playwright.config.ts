@@ -19,8 +19,10 @@ export default defineConfig({
   outputDir: resolve(PLAYWRIGHT_ROOT_DIR, 'test-results'),
   testIgnore: ['**/node_modules/**'],
   fullyParallel: true,
-  // Baseline PNG: packages/<pkg>/__snapshots__/<arg>-<projectName>.png
-  snapshotPathTemplate: '{testDir}/{testFileDir}/../__snapshots__/{arg}-{projectName}{ext}',
+  // Baseline PNG: packages/<pkg>/__test__/<Component>/__snapshots__/<arg>-<projectName>.png
+  // `{testFileDir}` — путь test-файла относительно `{testDir}`, поэтому обязательно его префиксить,
+  // иначе снимки уйдут в `<cwd>/<pkg>/__test__/...` (без `packages/`).
+  snapshotPathTemplate: '{testDir}/{testFileDir}/__snapshots__/{arg}-{projectName}{ext}',
 
   use: {
     baseURL: UIKIT_URL,

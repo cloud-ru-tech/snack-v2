@@ -21,6 +21,7 @@ export const Adaptive: Story = {
   args: {
     layoutType: LAYOUT_TYPE.Desktop,
     steps: [{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }],
+    'data-test-id': 'adaptive-stepper',
   },
   render: args => (
     <div className={args.layoutType === LAYOUT_TYPE.Mobile ? styles.containerMobile : styles.containerDesktop}>
@@ -51,6 +52,6 @@ export const Adaptive: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Данные')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('adaptive-stepper')).toBeVisible();
   },
 };

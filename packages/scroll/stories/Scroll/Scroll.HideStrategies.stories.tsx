@@ -30,12 +30,14 @@ export const HideStrategies: Story = {
     <div className={styles.row}>
       {strategies.map(strategy => (
         <div key={strategy} className={styles.sizeCell}>
-          <Scroll barHideStrategy={strategy}>{content}</Scroll>
+          <Scroll barHideStrategy={strategy} data-test-id={`scroll-${strategy}`}>
+            {content}
+          </Scroll>
         </div>
       ))}
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getAllByText(/Line 1/).length).toBeGreaterThan(0);
+    await expect(within(canvasElement).getByTestId(`scroll-${strategies[0]}`)).toBeVisible();
   },
 };

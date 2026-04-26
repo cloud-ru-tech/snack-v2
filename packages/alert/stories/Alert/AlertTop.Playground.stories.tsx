@@ -13,6 +13,7 @@ const meta: Meta<typeof AlertTop> = {
     description: 'Краткое описание изменения, которое касается всех пользователей.',
     appearance: APPEARANCE.Info,
     icon: true,
+    'data-test-id': 'alert-top',
   },
   argTypes: {
     title: { control: 'text' },
@@ -35,6 +36,6 @@ type Story = StoryObj<typeof AlertTop>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('alert')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('alert-top')).toBeVisible();
   },
 };

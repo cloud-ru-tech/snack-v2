@@ -5,8 +5,14 @@ import './global.scss';
 import { PortalContextProvider } from '@ds/portal-context';
 import type { Preview } from '@storybook/react';
 import { useRef } from 'react';
+import { configure } from 'storybook/test';
 
 import { StoryWrapper } from './components';
+
+// Реп использует `data-test-id` (TEST_ID_ATTRIBUTE в playwright/constants/common.ts),
+// testing-library по умолчанию ищет `data-testid`. Синхронизируем, чтобы getByTestId
+// из play-функций находил элементы по нашему атрибуту.
+configure({ testIdAttribute: 'data-test-id' });
 
 const preview: Preview = {
   decorators: [

@@ -45,6 +45,6 @@ export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <PlaygroundRender {...args} />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('radio')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('radio')).toBeVisible();
   },
 };

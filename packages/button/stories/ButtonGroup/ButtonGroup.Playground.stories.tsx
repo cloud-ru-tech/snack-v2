@@ -2,8 +2,10 @@ import { APPEARANCE, ButtonGroup, SIZE, VIEW } from '@ds/button';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { BUTTON_GROUP_PRIMARY_TEST_ID, BUTTON_GROUP_SECONDARY_TEST_ID, BUTTON_GROUP_TEST_ID } from './testIds';
+
 const meta: Meta<typeof ButtonGroup> = {
-  title: 'Components/ButtonGroup',
+  title: 'Components/Button/ButtonGroup',
   component: ButtonGroup,
   parameters: { layout: 'centered' },
   args: {
@@ -16,15 +18,15 @@ const meta: Meta<typeof ButtonGroup> = {
       label: 'Сохранить',
       appearance: 'primary',
       view: 'filled',
-      'data-test-id': 'button-group-primary',
+      'data-test-id': BUTTON_GROUP_PRIMARY_TEST_ID,
     },
     secondaryAction: {
       label: 'Отмена',
       appearance: 'neutral',
       view: 'outline',
-      'data-test-id': 'button-group-secondary',
+      'data-test-id': BUTTON_GROUP_SECONDARY_TEST_ID,
     },
-    'data-test-id': 'button-group',
+    'data-test-id': BUTTON_GROUP_TEST_ID,
   },
   argTypes: {
     size: { control: 'radio', options: Object.values(SIZE), description: 'Размер всех кнопок группы' },
@@ -44,7 +46,9 @@ type Story = StoryObj<typeof ButtonGroup>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getAllByRole('button')).toHaveLength(2);
+    const root = within(canvasElement);
+    await expect(root.getByTestId(BUTTON_GROUP_PRIMARY_TEST_ID)).toBeVisible();
+    await expect(root.getByTestId(BUTTON_GROUP_SECONDARY_TEST_ID)).toBeVisible();
   },
 };
 
@@ -57,11 +61,11 @@ export const PlaygroundPrimaryDisabled: Story = {
       appearance: 'primary',
       view: 'filled',
       disabled: true,
-      'data-test-id': 'button-group-primary',
+      'data-test-id': BUTTON_GROUP_PRIMARY_TEST_ID,
     },
   },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('button-group-primary')).toBeDisabled();
+    await expect(within(canvasElement).getByTestId(BUTTON_GROUP_PRIMARY_TEST_ID)).toBeDisabled();
   },
 };
 
@@ -73,18 +77,18 @@ export const PlaygroundCriticalPrimary: Story = {
       label: 'Применить',
       appearance: APPEARANCE.Critical,
       view: VIEW.Filled,
-      'data-test-id': 'button-group-primary',
+      'data-test-id': BUTTON_GROUP_PRIMARY_TEST_ID,
     },
     secondaryAction: {
       label: 'Отмена',
       appearance: APPEARANCE.Neutral,
       view: VIEW.Simple,
-      'data-test-id': 'button-group-secondary',
+      'data-test-id': BUTTON_GROUP_SECONDARY_TEST_ID,
     },
   },
   play: async ({ canvasElement }) => {
     const root = within(canvasElement);
-    await expect(root.getByTestId('button-group-primary')).toHaveTextContent('Применить');
-    await expect(root.getByTestId('button-group-secondary')).toHaveAttribute('data-view', 'simple');
+    await expect(root.getByTestId(BUTTON_GROUP_PRIMARY_TEST_ID)).toHaveTextContent('Применить');
+    await expect(root.getByTestId(BUTTON_GROUP_SECONDARY_TEST_ID)).toHaveAttribute('data-view', 'simple');
   },
 };

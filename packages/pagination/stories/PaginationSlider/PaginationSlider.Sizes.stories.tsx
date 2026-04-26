@@ -17,12 +17,25 @@ export const Sizes: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.col}>
-      <PaginationSlider total={6} page={2} size={PAGINATION_SLIDER_SIZE.Xs} onChange={fn()} />
-      <PaginationSlider total={6} page={2} size={PAGINATION_SLIDER_SIZE.S} onChange={fn()} />
+      <PaginationSlider
+        data-test-id='pagination-slider-xs'
+        total={6}
+        page={2}
+        size={PAGINATION_SLIDER_SIZE.Xs}
+        onChange={fn()}
+      />
+      <PaginationSlider
+        data-test-id='pagination-slider-s'
+        total={6}
+        page={2}
+        size={PAGINATION_SLIDER_SIZE.S}
+        onChange={fn()}
+      />
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const navs = within(canvasElement).getAllByRole('navigation', { name: 'Pagination slider' });
-    expect(navs).toHaveLength(2);
+    const canvas = within(canvasElement);
+    await expect(canvas.getByTestId('pagination-slider-xs')).toBeVisible();
+    await expect(canvas.getByTestId('pagination-slider-s')).toBeVisible();
   },
 };

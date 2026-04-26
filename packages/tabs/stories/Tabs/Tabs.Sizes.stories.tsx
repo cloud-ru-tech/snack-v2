@@ -24,23 +24,24 @@ export const Sizes: Story = {
   render: () => (
     <div className={styles.col}>
       <Tabs defaultValue='a'>
-        <Tabs.TabBar size={SIZE.L}>
+        <Tabs.TabBar data-test-id='tabs-bar-l' size={SIZE.L}>
           {items.map(i => (
-            <Tabs.Tab key={i.value} {...i} />
+            <Tabs.Tab key={i.value} data-test-id={`tabs-tab-l-${i.value}`} {...i} />
           ))}
         </Tabs.TabBar>
       </Tabs>
       <Tabs defaultValue='a'>
-        <Tabs.TabBar size={SIZE.M}>
+        <Tabs.TabBar data-test-id='tabs-bar-m' size={SIZE.M}>
           {items.map(i => (
-            <Tabs.Tab key={i.value} {...i} />
+            <Tabs.Tab key={i.value} data-test-id={`tabs-tab-m-${i.value}`} {...i} />
           ))}
         </Tabs.TabBar>
       </Tabs>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const lists = within(canvasElement).getAllByRole('tablist');
-    expect(lists).toHaveLength(2);
+    const canvas = within(canvasElement);
+    await expect(canvas.getByTestId('tabs-bar-l')).toBeVisible();
+    await expect(canvas.getByTestId('tabs-bar-m')).toBeVisible();
   },
 };

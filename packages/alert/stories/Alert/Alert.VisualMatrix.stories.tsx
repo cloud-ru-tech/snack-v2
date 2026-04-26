@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Alert',
+  title: 'Components/Alert/Alert',
   component: Alert,
   parameters: { layout: 'padded' },
 };
@@ -16,6 +16,7 @@ type Story = StoryObj<typeof Alert>;
 
 const keyAppearances = [
   APPEARANCE.Neutral,
+  APPEARANCE.Primary,
   APPEARANCE.Info,
   APPEARANCE.Success,
   APPEARANCE.Warning,

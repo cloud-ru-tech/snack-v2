@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { TAG_ROW_TEST_ID } from './testIds';
 
 const meta: Meta<typeof TagRow> = {
   title: 'Components/Tag/TagRow',
@@ -16,6 +17,7 @@ const meta: Meta<typeof TagRow> = {
       { id: '3', label: 'Design', appearance: 'violet' },
       { id: '4', label: 'Mobile', appearance: 'orange' },
     ],
+    'data-test-id': TAG_ROW_TEST_ID,
   },
   argTypes: {
     size: { control: 'radio', options: Object.values(SIZE) },
@@ -36,6 +38,6 @@ type Story = StoryObj<typeof TagRow>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    expect(within(canvasElement).getByText('Frontend')).toBeVisible();
+    expect(within(canvasElement).getByTestId(TAG_ROW_TEST_ID)).toBeVisible();
   },
 };

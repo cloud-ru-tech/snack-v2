@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { DRAWER_TEST_ID } from './testIds';
 
 const widths: Width[] = [WIDTH.S, WIDTH.M, WIDTH.L];
 
@@ -16,6 +17,7 @@ function SizesRender() {
       {widths.map(width => (
         <Button
           key={width}
+          data-test-id={`drawer-trigger-${width}`}
           label={`Width ${width.toUpperCase()}`}
           appearance='primary'
           view='outline'
@@ -23,6 +25,7 @@ function SizesRender() {
         />
       ))}
       <Drawer
+        data-test-id={DRAWER_TEST_ID}
         open={active !== null}
         position='right'
         width={active ?? WIDTH.S}
@@ -36,7 +39,7 @@ function SizesRender() {
 }
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'centered' },
 };
@@ -48,7 +51,9 @@ export const Sizes: Story = {
   tags: ['dev'],
   render: () => <SizesRender />,
   play: async ({ canvasElement }) => {
-    const buttons = within(canvasElement).getAllByRole('button');
-    expect(buttons).toHaveLength(widths.length);
+    const canvas = within(canvasElement);
+    for (const width of widths) {
+      await expect(canvas.getByTestId(`drawer-trigger-${width}`)).toBeVisible();
+    }
   },
 };

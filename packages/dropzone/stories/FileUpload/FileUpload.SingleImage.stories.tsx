@@ -4,6 +4,7 @@ import { expect, within } from 'storybook/test';
 
 import { FileUpload, UPLOAD_MODE } from '../../src';
 import styles from './styles.module.scss';
+import { FILE_UPLOAD_TEST_ID, FILE_UPLOAD_TRIGGER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof FileUpload> = {
   title: 'Components/Dropzone/FileUpload',
@@ -18,12 +19,17 @@ export const SingleImage: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.wrapper}>
-      <FileUpload mode={UPLOAD_MODE.Single} accept='image/*' onFilesUpload={() => {}}>
-        <Button type='button' label='Выбрать изображение' />
+      <FileUpload
+        data-test-id={FILE_UPLOAD_TEST_ID}
+        mode={UPLOAD_MODE.Single}
+        accept='image/*'
+        onFilesUpload={() => {}}
+      >
+        <Button data-test-id={FILE_UPLOAD_TRIGGER_TEST_ID} type='button' label='Выбрать изображение' />
       </FileUpload>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: /Выбрать изображение/ })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(FILE_UPLOAD_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

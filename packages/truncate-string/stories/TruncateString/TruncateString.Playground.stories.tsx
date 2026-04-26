@@ -1,8 +1,9 @@
 import { TruncateString, VARIANT } from '@ds/truncate-string';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect } from 'storybook/test';
+import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { TRUNCATE_STRING_TEST_ID } from './testIds';
 
 const meta: Meta<typeof TruncateString> = {
   title: 'Components/TruncateString',
@@ -15,6 +16,7 @@ const meta: Meta<typeof TruncateString> = {
     hideTooltip: false,
     placement: 'top',
     trigger: 'hoverAndFocusVisible',
+    'data-test-id': TRUNCATE_STRING_TEST_ID,
   },
   argTypes: {
     variant: {
@@ -46,6 +48,6 @@ type Story = StoryObj<typeof TruncateString>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(canvasElement.firstElementChild).toBeTruthy();
+    await expect(within(canvasElement).getByTestId(TRUNCATE_STRING_TEST_ID)).toBeVisible();
   },
 };

@@ -2,8 +2,10 @@ import { Pagination, PAGINATION_SIZE, VARIANT } from '@ds/pagination';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
+import { PAGINATION_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'Components/Pagination/Pagination',
   component: Pagination,
   parameters: { layout: 'centered' },
   args: {
@@ -13,6 +15,7 @@ const meta: Meta<typeof Pagination> = {
     variant: VARIANT.Button,
     maxLength: 7,
     onChange: fn(),
+    'data-test-id': PAGINATION_TEST_ID,
   },
   argTypes: {
     total: { control: { type: 'number', min: 1 }, description: 'Общее количество страниц' },
@@ -39,6 +42,6 @@ type Story = StoryObj<typeof Pagination>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('navigation', { name: 'Pagination' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(PAGINATION_TEST_ID)).toBeVisible();
   },
 };

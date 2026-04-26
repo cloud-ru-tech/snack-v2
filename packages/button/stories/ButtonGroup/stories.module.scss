@@ -4,12 +4,6 @@
   width: 320px;
 }
 
-.frame {
-  width: 480px;
-  padding: base.$sn-primitive-dimension-16;
-  border: 1px dashed base.$sn-theme-color-neutral-decor;
-}
-
 .matrix {
   display: grid;
   gap: base.$sn-primitive-dimension-24;

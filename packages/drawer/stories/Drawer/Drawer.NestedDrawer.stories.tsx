@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DRAWER_TRIGGER_TEST_ID } from './testIds';
+
 function NestedDrawerRender() {
   const [outerOpen, setOuterOpen] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
@@ -15,8 +17,15 @@ function NestedDrawerRender() {
 
   return (
     <>
-      <Button label='Open parent drawer' appearance='primary' view='filled' onClick={() => setOuterOpen(true)} />
+      <Button
+        data-test-id={DRAWER_TRIGGER_TEST_ID}
+        label='Open parent drawer'
+        appearance='primary'
+        view='filled'
+        onClick={() => setOuterOpen(true)}
+      />
       <Drawer
+        data-test-id='drawer-parent'
         open={outerOpen}
         position='right'
         width='m'
@@ -24,14 +33,20 @@ function NestedDrawerRender() {
         title='Родительский Drawer'
         subtitle='При открытии вложенного Drawer — этот сдвигается влево.'
         content={
-          <Button label='Открыть вложенный' appearance='primary' view='outline' onClick={() => setInnerOpen(true)} />
+          <Button
+            data-test-id='drawer-nested-trigger'
+            label='Открыть вложенный'
+            appearance='primary'
+            view='outline'
+            onClick={() => setInnerOpen(true)}
+          />
         }
         nestedDrawer={
           <Drawer
             open={innerOpen}
             position='right'
             width='s'
-            data-test-id='biba & boba'
+            data-test-id='drawer-nested'
             onClose={() => setInnerOpen(false)}
             title='Вложенный Drawer'
             subtitle='Кнопка «назад» возвращает к родителю'
@@ -45,7 +60,7 @@ function NestedDrawerRender() {
 }
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+  title: 'Components/Drawer/Drawer',
   component: Drawer,
   parameters: { layout: 'centered' },
 };
@@ -57,6 +72,6 @@ export const NestedDrawer: Story = {
   tags: ['dev'],
   render: () => <NestedDrawerRender />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open parent drawer' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DRAWER_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

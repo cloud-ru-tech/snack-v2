@@ -4,8 +4,10 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { MODAL_TEST_ID, MODAL_TRIGGER_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Modal/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
 };
@@ -24,8 +26,15 @@ function BackButtonScenario() {
 
   return (
     <>
-      <Button label='Open wizard' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Button
+        data-test-id={MODAL_TRIGGER_TEST_ID}
+        label='Open wizard'
+        appearance='primary'
+        view='filled'
+        onClick={() => setOpen(true)}
+      />
       <Modal
+        data-test-id={MODAL_TEST_ID}
         open={open}
         onClose={close}
         title={step === 'details' ? 'Новый проект' : 'Подтверждение'}
@@ -45,6 +54,6 @@ export const WithBackButton: Story = {
   tags: ['dev'],
   render: () => <BackButtonScenario />,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open wizard' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(MODAL_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

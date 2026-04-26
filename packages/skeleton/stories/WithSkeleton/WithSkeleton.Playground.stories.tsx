@@ -49,7 +49,7 @@ export const Playground: Story = {
         <div className={styles.contentCard}>Блок контента</div>
       );
     return (
-      <div className={styles.wrapper} data-testid='with-skeleton-wrapper'>
+      <div className={styles.wrapper} data-test-id='with-skeleton-wrapper'>
         <WithSkeleton loading={loading} skeleton={skeleton}>
           {content}
         </WithSkeleton>

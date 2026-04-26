@@ -2,6 +2,60 @@
 
 **Область действия:** `packages/*/stories/**/*.stories.@(ts|tsx)`. Правило действует всегда.
 
+## Принцип
+
+Набор stories выводится из **публичного API компонента** (`constants.ts` + `types.ts`) и **осей Figma-мастера**, а не из шаблона «файл на ось / файл на состояние». Любая ось (size, appearance, view, loading, disabled, …) существует в двух местах:
+
+1. в `argTypes` Playground-а — как интерактивный контрол;
+2. в `StoryTable` VisualMatrix — как строка/колонка для визуальной регрессии.
+
+Отдельный файл story заводится **только тогда**, когда сценарий нельзя выразить ни одним из этих двух способов.
+
+## Обязательный минимум (XS–XL)
+
+```
+packages/<pkg>/stories/<ComponentName>/
+├── <ComponentName>.Playground.stories.tsx    # полная meta + args + argTypes
+└── <ComponentName>.VisualMatrix.stories.tsx  # StoryTable со всеми осями × состояниями
+```
+
+Этого достаточно для компонентов XS/S. Дополнительные файлы появляются только под конкретный кейс (см. ниже).
+
+## Когда заводить дополнительный файл
+
+Разрешено, если сценарий удовлетворяет **всем** условиям:
+
+- Его нельзя выразить изменением `args` Playground-а (без custom `render`).
+- Его нельзя уложить в строку/колонку существующего `StoryTable` в VisualMatrix (он про композицию нескольких компонентов рядом, про полиморфизм, про специфический play).
+- Он приносит новое покрытие: новое взаимодействие, новый DOM, новую роль/ARIA.
+
+Оправданные доп. файлы:
+
+| Файл | Когда |
+|------|-------|
+| `<Name>.Polymorphic.stories.tsx` | У компонента есть `as` prop (`as='a'`, `as={Link}`) |
+| `<Name>.ClickTest.stories.tsx` | Интеракционный тест с `fn()` в `args` и `play` |
+| `<Name>.KeyboardTest.stories.tsx` | Клавиатурный сценарий (Tab → Enter, Arrow-нав) |
+| `<Name>.Composition.stories.tsx` | Несколько компонентов рядом, демонстрирующих совместное поведение |
+| `<Name>.<Scenario>.stories.tsx` | L/XL: `SortableByName`, `FilteredByCategory`, `PaginatedPage2` — stateful-сценарии |
+
+## Запрещённые файлы
+
+Эти имена — «одна ось = один файл», то есть дубликат VisualMatrix. Заводить их нельзя:
+
+```
+❌ <Name>.Sizes.stories.tsx
+❌ <Name>.Appearances.stories.tsx
+❌ <Name>.Views.stories.tsx
+❌ <Name>.Variants.stories.tsx
+❌ <Name>.LoadingState.stories.tsx
+❌ <Name>.DisabledState.stories.tsx
+❌ <Name>.EmptyState.stories.tsx
+❌ <Name>.WithIcon.stories.tsx / IconOnly / WithCounter
+```
+
+Если появляется соблазн такой завести — расширь соответствующую секцию VisualMatrix (добавь строку/колонку/новый `StoryTable`).
+
 ## Формат
 
 - **CSF3**: каждая story — объект `StoryObj<typeof Component>`. Никаких функциональных сторис CSF2.
@@ -9,28 +63,113 @@
 - Типы не через префикс `React.*` (см. [react-types.md](./react-types.md)), импорты/экспорты без `type` (см. [imports-exports.md](./imports-exports.md)).
 - **Не** используй блоки `parameters.docs.description.component` / `parameters.docs.description.story`. Описания компонента живут в `docs/*.mdx` и `README.md`, а не внутри story.
 
-## Структура папок
+## Title — nesting по пакету
 
-Каждый компонент — подпапка внутри `stories/`:
+В сайдбаре Storybook компоненты одного пакета должны лежать рядом как дети одного узла. Правило:
+
+- Пакет с **одним** публичным компонентом (например, `@ds/avatar`, `@ds/link`): `title: 'Components/<ComponentName>'`.
+- Пакет с **двумя и более** публичными компонентами (например, `@ds/button` с `Button` + `ButtonGroup`, `@ds/toggles` с `Checkbox`/`Radio`/`Switch`/`Favourite`/`ToggleGroup`): `title: 'Components/<PackageDisplayName>/<ComponentName>'`, где `<PackageDisplayName>` — PascalCase от kebab-case имени пакета без скоупа: `packages/button/` → `Button`, `packages/toggles/` → `Toggles`, `packages/tag/` → `Tag`.
+
+Во всех story-файлах одного компонента `title` одинаковый.
+
+Примеры:
+
+| Пакет | Публичные компоненты | Titles |
+|-------|----------------------|--------|
+| `@ds/avatar` | `Avatar` | `Components/Avatar` |
+| `@ds/button` | `Button`, `ButtonGroup` | `Components/Button/Button`, `Components/Button/ButtonGroup` |
+| `@ds/toggles` | `Checkbox`, `Radio`, `Switch`, `Favourite`, `ToggleGroup` | `Components/Toggles/Checkbox`, `Components/Toggles/Radio`, … |
+| `@ds/skeleton` | `Skeleton`, `SkeletonText`, `WithSkeleton` | `Components/Skeleton/Skeleton`, `Components/Skeleton/SkeletonText`, `Components/Skeleton/WithSkeleton` |
+
+**Последствие для story IDs**. Storybook генерит id из title kebab-case'ом:
+
+- `Components/Button/ButtonGroup` → id начинается с `components-button-buttongroup--<story>`.
+- `Components/Toggles/Checkbox` → `components-toggles-checkbox--<story>`.
+
+При переходе пакета на nesting **обязательно** обновить story IDs в `packages/<pkg>/__test__/<Component>/helpers.ts` — иначе E2E-тесты будут ходить на старые URL'ы и 404'иться.
+
+## Структура папок
 
 ```
 packages/<pkg>/stories/
 └── <ComponentName>/
-    ├── <ComponentName>.Playground.stories.tsx    # Полная meta: args, argTypes
-    ├── <ComponentName>.<UseCase>.stories.tsx     # Сценарий использования
-    ├── <ComponentName>.<UseCase>.stories.tsx     # …
-    └── <ComponentName>.VisualMatrix.stories.tsx  # Матрица для visual regression (скрыта)
+    ├── <ComponentName>.Playground.stories.tsx    # обязателен
+    ├── <ComponentName>.VisualMatrix.stories.tsx  # обязателен
+    └── <ComponentName>.<ExtraCase>.stories.tsx   # по правилам выше, если нужен
 ```
 
-Правила именования файла: `ComponentName.StoryName.stories.tsx`. PascalCase, префикс компонента обязателен. Никаких нумераций/kebab-case.
+Имя файла: `ComponentName.StoryName.stories.tsx`. PascalCase, префикс компонента обязателен. Никаких нумераций/kebab-case.
 
-## Playground (обязательна)
+## data-test-id — обязательный атрибут на публичных элементах
+
+Каждая story — потенциальная точка для E2E и play-функций. Чтобы селекторы не ломались при любом косметическом изменении (роль, текст, aria-label), **все публичные интерактивные/визуальные элементы** story должны получать стабильный `data-test-id` через пропс компонента.
+
+**Как задавать**:
+
+- В `args` Playground'а — как дефолтное значение:
+  ```ts
+  args: {
+    label: 'Button',
+    'data-test-id': 'button', // kebab-case от ComponentName
+  },
+  ```
+- В специализированных use-case stories (Polymorphic, ClickTest, Composition) — явным пропсом либо через `args`. Для композиций нескольких инстансов — уникальный id на каждый слот (`button-group-primary`, `button-group-secondary`).
+
+**Naming convention**: kebab-case имени компонента. Составные id для слотов: `<component>-<slot>` (`button-group-primary`, `drawer-close-button`). Для вложенных натив-input'ов (Checkbox/Radio/Switch) — базовый id на корень + суффикс `-native-input` на `<input>` (уже зафиксирован в `NATIVE_INPUT_SUFFIX`).
+
+**DRY — повторяющиеся id выносить в константы**. Если один и тот же `data-test-id` используется в 2+ файлах stories одного компонента (или в 2+ экспортах одного файла), вынеси его в `packages/<pkg>/stories/<ComponentName>/testIds.ts`:
+
+```ts
+// packages/button/stories/Button/testIds.ts
+export const BUTTON_TEST_ID = 'button'
+export const BUTTON_LINK_TEST_ID = 'button-link'
+```
+
+```ts
+// packages/button/stories/Button/Button.Playground.stories.tsx
+import { BUTTON_TEST_ID } from './testIds'
+
+args: { label: 'Button', 'data-test-id': BUTTON_TEST_ID }
+```
+
+Соглашения для `testIds.ts`:
+
+- Константы `SCREAMING_SNAKE_CASE`, суффикс `_TEST_ID`.
+- Одни и те же имена констант используются и в stories, и в play-функциях (`getByTestId(BUTTON_TEST_ID)`).
+- E2E `__test__/<Component>/helpers.ts` может импортировать эти же константы через `../../../stories/<Component>/testIds` — тогда id гарантированно совпадают между stories и Playwright-селекторами.
+- Id, который используется в **одной** story (и нигде больше) — можно оставить инлайн. Переносим только действительно повторяющиеся.
+
+**Требования к компоненту**: корневой элемент должен проксировать `data-test-id` из пропсов (обычно через spread `...rest`). Если компонент не поддерживает — это bug компонента, а не story.
+
+**Как использовать в play-функциях**: только `getByTestId`. Запрещено `getByRole`, `getByText`, `getByLabelText`, `getByPlaceholderText` — они привязаны к локализации/структуре DOM и ломаются при первых же изменениях. Исключение единственное: когда test-id физически не может существовать (например, проверка, что `aria-disabled` выставлен на anchor'е без собственного корневого элемента) — тогда комментарием в play объясни, почему `role` здесь единственная опция.
+
+```ts
+// ✅ Хорошо
+export const ClickTest: Story = {
+  tags: ['test', 'dev'],
+  args: { onClick: fn(), 'data-test-id': 'button' },
+  play: async ({ args, canvasElement }) => {
+    const button = within(canvasElement).getByTestId('button')
+    await userEvent.click(button)
+    expect(args.onClick).toHaveBeenCalledTimes(1)
+  },
+}
+
+// ❌ Плохо — getByRole ломается при смене `as='a'` или при выставлении role="menuitem"
+play: async ({ canvasElement }) => {
+  await expect(within(canvasElement).getByRole('button')).toBeVisible()
+}
+```
+
+**Глобальная конфигурация**. Репо использует `data-test-id` (с дефисом) вместо дефолтного testing-library `data-testid` — см. `TEST_ID_ATTRIBUTE` в `playwright/constants/common.ts`. В Storybook preview настроен `configure({ testIdAttribute: 'data-test-id' })`, иначе `getByTestId` ищет `data-testid` и не находит наш атрибут. Не удаляй эту конфигурацию.
+
+## Playground (обязателен)
 
 - Имя экспорта: `Playground`.
-- Содержит **полную** `meta` с `title`, `component`, `parameters`, `args`, `argTypes`.
-- Все публичные props доступны через controls.
+- Содержит **полную** `meta` с `title`, `component`, `parameters`, `args`, `argTypes` — **все публичные props доступны через controls**.
 - Без кастомного `render`.
 - Теги: `['dev', 'test']`.
+- `play` — минимальный `toBeVisible`.
 
 ```tsx
 import { Meta, StoryObj } from '@storybook/react'
@@ -58,19 +197,67 @@ export const Playground: Story = {
 }
 ```
 
-## Use Cases
+Playground — **единственный** источник истины для набора пропсов. Никакие доп. файлы не перечисляют `argTypes` заново.
 
-- 3–5 stories для простых компонентов, 5–8 — для средних, 8–12 — для сложных.
-- Каждый файл содержит свой `export default meta` с минимальным набором (`title`, `component`).
-- Теги: `['dev']`.
-- Предпочтение — `args` перед кастомным `render`. Custom `render` оправдан только для композиции/нескольких вариантов рядом.
+## VisualMatrix (обязателен)
 
-## Test Stories
+- Имя экспорта: `VisualMatrix`.
+- Теги: `['test', 'dev']`.
+- **Только** `StoryTable` из `#storybook/components`. Flex-контейнер для ряда вариантов — только если вариантов ≤ 3 и ось одна; в этом случае предпочитай всё равно `StoryTable`.
+- Покрывает **все** публичные оси из `constants.ts` × состояния (`disabled`, `loading`, `empty`). Каждая ось Figma-мастера — строка либо колонка.
+- Не декартово произведение всех комбинаций. Ключевая выборка; оси, которые не комбинируются, — разными `StoryTable` секциями под общим wrapper'ом.
 
-- Теги: `['test', 'dev']` — обязательно скрывать из sidebar.
+```tsx
+import { StoryTable } from '#storybook/components'
+
+const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const
+const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Neutral, APPEARANCE.Critical] as const
+const keyStates = ['default', 'disabled', 'loading'] as const
+
+export const VisualMatrix: Story = {
+  tags: ['test', 'dev'],
+  render: () => (
+    <div className={styles.grid}>
+      <StoryTable
+        sectionTitle="Appearance × Size"
+        firstColumnHeader="Appearance"
+        columnHeaders={keySizes.map((s) => s.toUpperCase())}
+        rows={keyAppearances.map((appearance) => ({
+          variantLabel: appearance,
+          cells: keySizes.map((size) => (
+            <Component key={size} size={size} appearance={appearance} />
+          )),
+        }))}
+      />
+      <StoryTable
+        sectionTitle="State × Appearance"
+        firstColumnHeader="State"
+        columnHeaders={keyAppearances.map((a) => a.toUpperCase())}
+        rows={keyStates.map((state) => ({
+          variantLabel: state,
+          cells: keyAppearances.map((appearance) => (
+            <Component
+              key={appearance}
+              appearance={appearance}
+              disabled={state === 'disabled'}
+              loading={state === 'loading'}
+            />
+          )),
+        }))}
+      />
+    </div>
+  ),
+}
+```
+
+Wrapper `<div className={styles.grid}>` — только класс из `styles.module.scss` (`display: grid; gap: 1.5rem`). Inline-стили запрещены.
+
+## Test stories
+
+- Теги: `['test', 'dev']` — скрываются из sidebar Test Runner-ом.
 - Используют `play` с `step()` для группировки.
 - Для мока callback — `fn()` из `storybook/test`, прокидывать через `args`.
-- Проверяют интеракции, edge cases, async, keyboard nav.
+- Отдельный файл заводится **только** если assertion нельзя поставить в play Playground-а (специфичная последовательность действий, фокус-менеджмент, long-running await).
 
 ```tsx
 export const ClickTest: Story = {
@@ -88,50 +275,14 @@ export const ClickTest: Story = {
 }
 ```
 
-## VisualMatrix
-
-- Имя экспорта: `VisualMatrix` (или `AllStates` для простого ряда).
-- Теги: `['test', 'dev']`.
-- Для табличных матриц — **обязательно** `StoryTable` из `#storybook/components` (design tokens, единый вид).
-- Для простого ряда вариантов — flex-контейнер с классом из `styles.module.scss` рядом со story. **Inline-стили (`style={{ ... }}`) запрещены** — см. [Inline-стили запрещены](#inline-стили-запрещены).
-- **Не** выводи все возможные комбинации.
-
-```tsx
-import { StoryTable } from '#storybook/components'
-
-const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const
-const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Neutral] as const
-
-export const VisualMatrix: Story = {
-  tags: ['test', 'dev'],
-  render: () => (
-    <StoryTable
-      sectionTitle="Appearance × Size"
-      firstColumnHeader="Appearance"
-      columnHeaders={keySizes.map((s) => s.toUpperCase())}
-      rows={keyAppearances.map((appearance) => ({
-        variantLabel: appearance,
-        cells: keySizes.map((size) => (
-          <Component key={size} size={size} appearance={appearance} />
-        )),
-      }))}
-    />
-  ),
-}
-```
-
-Для нескольких секций — несколько `StoryTable` внутри одного wrapper-`<div>` с классом из `styles.module.scss` (`display: grid; gap: 1.5rem`). Inline-стили на wrapper запрещены — см. [Inline-стили запрещены](#inline-стили-запрещены).
-
 ## Общие компоненты `#storybook/components`
 
 | Экспорт          | Назначение                                           |
 | ---------------- | ---------------------------------------------------- |
-| `StoryTable`     | Таблица для Visual Matrix (дизайн-токены, единый вид) |
+| `StoryTable`     | Таблица для VisualMatrix (дизайн-токены, единый вид) |
 | `StoryWrapper`   | Общая обёртка story — подключена автоматически через `preview.tsx` decorator, вручную не импортировать |
 
 Импорт: `import { StoryTable } from '#storybook/components'`.
-
-Собственные локальные стили в stories допустимы, только если макет не укладывается в `StoryTable` (редко). Файл `styles.module.scss` рядом со stories, переменные — из `@cloud-ru/figma-variables`.
 
 ## Inline-стили запрещены
 
@@ -148,56 +299,58 @@ export const VisualMatrix: Story = {
   <Button size='m' />
 </div>
 
-// ❌ Плохо — inline на самом компоненте
-<Button style={{ marginTop: 8 }} label='...' />
-
 // ✅ Хорошо — класс из styles.module.scss рядом со story
-import styles from './Button.Sizes.module.scss'
+import styles from './Button.VisualMatrix.module.scss'
 
-<div className={styles.row}>
-  <Button size='s' />
-  <Button size='m' />
+<div className={styles.grid}>
+  <StoryTable ... />
+  <StoryTable ... />
 </div>
 ```
 
-Допустимые исключения — ровно те же, что и для компонентов: `style` прокидывается **только** через публичный проп компонента, если этот проп часть его API и демонстрируется в story (например, story, показывающая `style`-override на `as='a'`). Во всех остальных случаях — SCSS module.
+Допустимое исключение: `style` прокидывается **только** через публичный проп компонента, когда этот проп часть его API и демонстрируется в story.
 
 ## Tags — семантика
 
-| Tag         | Что делает                                           |
-| ----------- | ---------------------------------------------------- |
-| `dev`       | Показывать в sidebar Storybook                       |
-| `test`      | Включать в Test Runner / Playwright                  |
+| Tag    | Что делает                                           |
+| ------ | ---------------------------------------------------- |
+| `dev`  | Показывать в sidebar Storybook                       |
+| `test` | Включать в Test Runner / Playwright                  |
 
-Тег `autodocs` не используем: автодокументация от него отключена, описания живут в `docs/*.mdx`.
+Тег `autodocs` не используем: автодокументация отключена, описания живут в `docs/*.mdx`.
 
 Типовые комбинации:
 - Playground: `['dev', 'test']`
-- Use case: `['dev']`
-- Test story / VisualMatrix: `['test', 'dev']`
+- VisualMatrix / Test story: `['test', 'dev']`
+- Доп. композиционные stories: `['dev']`
 
 ## Naming
 
-- Английский PascalCase. `Playground`, `WithIcon`, `LoadingState`, `DisabledState`, `Sizes`, `ClickTest`, `VisualMatrix`.
-- Запрещены: `Basic`, `Default`, `Example`, `Story1`, русские названия.
+- Английский PascalCase. `Playground`, `VisualMatrix`, `Polymorphic`, `ClickTest`, `KeyboardTest`, `Composition`.
+- Запрещены: `Basic`, `Default`, `Example`, `Story1`, русские названия, имена «на ось» (см. раздел «Запрещённые файлы»).
 
 ## Чего НЕ делать
 
+- Заводить файлы на одну ось / одно состояние (см. «Запрещённые файлы»).
+- Использовать `getByRole`/`getByText`/`getByLabelText`/`getByPlaceholderText` в play-функциях. Только `getByTestId`.
+- Забывать `data-test-id` в `args` Playground'а и use-case stories.
 - Пустых `export const X: Story = {}`.
 - Смешивать Playground с визуальными матрицами в одной story.
 - Дублировать сценарии (`WithImage` + `ImageFallback` — объединить).
-- Перегружать матрицы (все комбинации). Выбирать ключевые.
+- Выводить все декартовы комбинации в VisualMatrix. Ключевая выборка.
 - Забывать `export default meta` в каждом файле.
 - Добавлять `parameters.docs.description.*` и тег `autodocs`.
-- Использовать inline-стили `style={{ ... }}` в разметке stories — только `styles.module.scss` или `StoryTable`.
+- Использовать inline-стили `style={{ ... }}` в разметке stories.
 
 ## Чеклист перед коммитом story
 
-- [ ] Структура папки `<ComponentName>/` с отдельными файлами
-- [ ] CSF3, `StoryObj<typeof Component>`
-- [ ] Playground содержит полную `meta` с `argTypes`
+- [ ] Есть `Playground` (все пропсы через `argTypes`) и `VisualMatrix` (все оси в `StoryTable`)
+- [ ] В `args` Playground и use-case stories есть `data-test-id` (kebab-case от ComponentName; для слотов — `<component>-<slot>`)
+- [ ] Повторяющиеся в 2+ файлах id вынесены в `stories/<ComponentName>/testIds.ts`, инлайн-строки только для уникальных
+- [ ] Play-функции используют только `getByTestId`, нет `getByRole`/`getByText`/`getByLabelText`
+- [ ] Доп. файлы оправданы правилом выше, имя не из списка «Запрещённые»
 - [ ] Каждый файл имеет собственный `export default meta`
-- [ ] Use cases — 3–5 для простого компонента
+- [ ] CSF3, `StoryObj<typeof Component>`
 - [ ] VisualMatrix использует `StoryTable` из `#storybook/components`
 - [ ] Нет тегов `autodocs` и блоков `parameters.docs.description.*`
 - [ ] Названия на английском, PascalCase, без `Basic`/`Default`

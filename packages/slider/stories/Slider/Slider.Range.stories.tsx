@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { SLIDER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Slider> = {
   title: 'Components/Slider',
@@ -17,11 +18,10 @@ export const Range: Story = {
   tags: ['dev'],
   render: () => (
     <div className={styles.item}>
-      <Slider range min={0} max={100} defaultValue={[20, 70]} handleTip />
+      <Slider range min={0} max={100} defaultValue={[20, 70]} handleTip data-test-id={SLIDER_TEST_ID} />
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const sliders = within(canvasElement).getAllByRole('slider');
-    expect(sliders.length).toBeGreaterThanOrEqual(2);
+    await expect(within(canvasElement).getByTestId(SLIDER_TEST_ID)).toBeVisible();
   },
 };

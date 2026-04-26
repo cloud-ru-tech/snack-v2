@@ -17,12 +17,21 @@ export const InsideText: Story = {
   tags: ['dev'],
   render: () => (
     <p className={styles.paragraph}>
-      Подробнее о работе сервиса читайте <Link insideText text='в документации' href='https://example.com' />, а также
-      ознакомьтесь с <Link insideText underlined text='условиями использования' href='https://example.com/terms' />.
+      Подробнее о работе сервиса читайте{' '}
+      <Link insideText text='в документации' href='https://example.com' data-test-id='link-docs' />, а также
+      ознакомьтесь с{' '}
+      <Link
+        insideText
+        underlined
+        text='условиями использования'
+        href='https://example.com/terms'
+        data-test-id='link-terms'
+      />
+      .
     </p>
   ),
   play: async ({ canvasElement }) => {
-    const links = within(canvasElement).getAllByRole('link');
-    expect(links.length).toBe(2);
+    await expect(within(canvasElement).getByTestId('link-docs')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('link-terms')).toBeVisible();
   },
 };

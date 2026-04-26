@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { TABS_BAR_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
@@ -24,24 +25,24 @@ export const Playground: Story = {
   render: args => (
     <div className={styles.wide}>
       <Tabs {...args}>
-        <Tabs.TabBar>
-          <Tabs.Tab value='overview' label='Overview' />
-          <Tabs.Tab value='settings' label='Settings' />
-          <Tabs.Tab value='billing' label='Billing' />
+        <Tabs.TabBar data-test-id={TABS_BAR_TEST_ID}>
+          <Tabs.Tab data-test-id='tabs-tab-overview' value='overview' label='Overview' />
+          <Tabs.Tab data-test-id='tabs-tab-settings' value='settings' label='Settings' />
+          <Tabs.Tab data-test-id='tabs-tab-billing' value='billing' label='Billing' />
         </Tabs.TabBar>
-        <Tabs.TabContent value='overview'>
+        <Tabs.TabContent data-test-id='tabs-panel-overview' value='overview'>
           <div className={styles.panel}>Overview content</div>
         </Tabs.TabContent>
-        <Tabs.TabContent value='settings'>
+        <Tabs.TabContent data-test-id='tabs-panel-settings' value='settings'>
           <div className={styles.panel}>Settings content</div>
         </Tabs.TabContent>
-        <Tabs.TabContent value='billing'>
+        <Tabs.TabContent data-test-id='tabs-panel-billing' value='billing'>
           <div className={styles.panel}>Billing content</div>
         </Tabs.TabContent>
       </Tabs>
     </div>
   ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('tablist')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TABS_BAR_TEST_ID)).toBeVisible();
   },
 };

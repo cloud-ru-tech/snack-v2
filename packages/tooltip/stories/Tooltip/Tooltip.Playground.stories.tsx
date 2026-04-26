@@ -2,8 +2,10 @@ import { PLACEMENT, Tooltip, TRIGGER } from '@ds/tooltip';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { TOOLTIP_CONTENT_TEST_ID, TOOLTIP_TRIGGER_TEST_ID } from './testIds';
+
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip/Tooltip',
   component: Tooltip,
   parameters: { layout: 'centered' },
   args: {
@@ -11,7 +13,12 @@ const meta: Meta<typeof Tooltip> = {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.HoverAndFocusVisible,
     disableMaxWidth: false,
-    children: <button type='button'>Наведите на меня</button>,
+    children: (
+      <button type='button' data-test-id={TOOLTIP_TRIGGER_TEST_ID}>
+        Наведите на меня
+      </button>
+    ),
+    'data-test-id': TOOLTIP_CONTENT_TEST_ID,
   },
   argTypes: {
     tip: { control: 'text', description: 'Содержимое подсказки' },
@@ -35,6 +42,6 @@ type Story = StoryObj<typeof Tooltip>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TOOLTIP_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

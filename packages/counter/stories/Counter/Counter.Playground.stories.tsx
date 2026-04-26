@@ -1,6 +1,8 @@
-import { APPEARANCE, COLOR, Counter, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '@ds/counter'
-import { Meta, StoryObj } from '@storybook/react'
-import { expect, within } from 'storybook/test'
+import { APPEARANCE, COLOR, Counter, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '@ds/counter';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
+
+import { COUNTER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Counter> = {
   title: 'Components/Counter',
@@ -13,6 +15,7 @@ const meta: Meta<typeof Counter> = {
     variant: VARIANT.Count,
     plusLimit: DEFAULT_PLUS_LIMIT,
     color: COLOR.Accent,
+    'data-test-id': COUNTER_TEST_ID,
   },
   argTypes: {
     value: { control: 'number', description: 'Числовое значение' },
@@ -34,14 +37,14 @@ const meta: Meta<typeof Counter> = {
       description: 'Семантический цвет',
     },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof Counter>
+export default meta;
+type Story = StoryObj<typeof Counter>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('9')).toBeVisible()
+    await expect(within(canvasElement).getByTestId(COUNTER_TEST_ID)).toBeVisible();
   },
-}
+};

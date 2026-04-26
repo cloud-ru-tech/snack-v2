@@ -21,6 +21,7 @@ const meta: Meta<HotSpotProps> = {
     enabled: true,
     offsetX: 16,
     offsetY: 0,
+    'data-test-id': 'hot-spot',
   },
   argTypes: {
     appearance: {
@@ -71,8 +72,9 @@ export const Playground: Story = {
         iconPosition='before'
       />
     ),
+    'data-test-id': 'hot-spot',
   },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('hot-spot')).toBeVisible();
   },
 };

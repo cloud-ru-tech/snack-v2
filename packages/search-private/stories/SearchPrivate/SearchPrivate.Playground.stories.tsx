@@ -12,6 +12,7 @@ const meta: Meta<typeof SearchPrivate> = {
     disabled: false,
     loading: false,
     showClearButton: true,
+    'data-test-id': 'search-private',
   },
   argTypes: {
     size: { control: 'radio', options: Object.values(SIZE) },
@@ -28,6 +29,6 @@ type Story = StoryObj<typeof SearchPrivate>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('searchbox')).toBeVisible();
+    await expect(within(canvasElement).getByTestId('search-private')).toBeVisible();
   },
 };

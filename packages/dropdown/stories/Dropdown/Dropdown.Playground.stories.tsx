@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import styles from './stories.module.scss';
+import { DROPDOWN_TEST_ID, DROPDOWN_TRIGGER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown',
@@ -13,7 +14,8 @@ const meta: Meta<typeof Dropdown> = {
     trigger: 'click',
     placement: 'bottom-start',
     content: <div className={styles.content}>Содержимое выпадающего блока</div>,
-    children: <Button label='Открыть' />,
+    children: <Button data-test-id={DROPDOWN_TRIGGER_TEST_ID} label='Открыть' />,
+    'data-test-id': DROPDOWN_TEST_ID,
   },
   argTypes: {
     trigger: {
@@ -35,6 +37,6 @@ type Story = StoryObj<typeof Dropdown>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Открыть' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(DROPDOWN_TRIGGER_TEST_ID)).toBeVisible();
   },
 };

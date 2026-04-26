@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
+import { MODAL_TEST_ID, MODAL_TRIGGER_TEST_ID } from './testIds';
+
 type ScenarioArgs = { open: boolean };
 
 function LoadingRender(args: ScenarioArgs) {
@@ -13,8 +15,15 @@ function LoadingRender(args: ScenarioArgs) {
 
   return (
     <>
-      <Button label='Open loading modal' appearance='primary' view='filled' onClick={openModal} />
+      <Button
+        data-test-id={MODAL_TRIGGER_TEST_ID}
+        label='Open loading modal'
+        appearance='primary'
+        view='filled'
+        onClick={openModal}
+      />
       <Modal
+        data-test-id={MODAL_TEST_ID}
         open={args.open ?? open}
         onClose={closeModal}
         title='Сохранение изменений'
@@ -33,8 +42,15 @@ function LoadingCustomStateRender(args: ScenarioArgs) {
 
   return (
     <>
-      <Button label='Open modal with custom loading state' appearance='primary' view='filled' onClick={openModal} />
+      <Button
+        data-test-id='modal-custom-loading-trigger'
+        label='Open modal with custom loading state'
+        appearance='primary'
+        view='filled'
+        onClick={openModal}
+      />
       <Modal
+        data-test-id={MODAL_TEST_ID}
         open={args.open ?? open}
         onClose={closeModal}
         title='Импорт данных'
@@ -47,7 +63,7 @@ function LoadingCustomStateRender(args: ScenarioArgs) {
 }
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Modal/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
 };
@@ -60,7 +76,7 @@ export const Loading: Story = {
   args: { open: false },
   render: LoadingRender,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('button', { name: 'Open loading modal' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(MODAL_TRIGGER_TEST_ID)).toBeVisible();
   },
 };
 

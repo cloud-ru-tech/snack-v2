@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 const slotContent = <SlotContent />;
 
 const meta: Meta<typeof Dropzone> = {
-  title: 'Components/Dropzone',
+  title: 'Components/Dropzone/Dropzone',
   component: Dropzone,
 };
 
