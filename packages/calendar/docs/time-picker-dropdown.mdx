@@ -1,0 +1,89 @@
+---
+title: TimePickerDropdown
+package: '@ds/calendar'
+description: Выбор времени в выпадающей панели поверх триггера — наследует TimePicker и пропсы Dropdown (позиция, открытие по hover/click, контролируемый open).
+order: 3
+---
+
+import { TimePickerDropdownBasic } from '../demos/examples/TimePickerDropdownBasic'
+import TimePickerDropdownBasicSrc from '../demos/examples/TimePickerDropdownBasic.tsx?raw'
+import { TimePickerDropdownControlled } from '../demos/examples/TimePickerDropdownControlled'
+import TimePickerDropdownControlledSrc from '../demos/examples/TimePickerDropdownControlled.tsx?raw'
+import { TimePickerDropdownPlacement } from '../demos/examples/TimePickerDropdownPlacement'
+import TimePickerDropdownPlacementSrc from '../demos/examples/TimePickerDropdownPlacement.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import calendarPkgDoc from './props.json'
+
+# TimePickerDropdown
+
+Обёртка над `TimePicker` с `Dropdown`: произвольный триггер (`children`), управление открытием, позиционирование и опциональное закрытие после Apply. Подходит для полей «время открытия», фильтров и компактных форм.
+
+## Когда использовать
+
+- Нужна кнопка или кастомный триггер, а панель времени показывается по клику или ховеру.
+- Требуется связать открытие с другим UI (например, контролируемый `open`).
+
+Когда **не** нужен: для постоянно видимого времени в форме без попапа используйте [TimePicker](/components/calendar/time-picker).
+
+- ✅ Задавать `placement` и `trigger` в зависимости от layout и UX‑требований.
+- ❌ Смешивать управляемый `open` с лишними внешними кнопками, которые дублируют открытие — проще контролировать только через `onOpenChange`.
+
+## Анатомия
+
+### Триггер и открытие
+
+`trigger` — `click` | `hover` | `focus` и др. (см. пропсы Dropdown в таблице). `closeOnApply` закрывает панель после подтверждения, если сценарий это предполагает.
+
+### Позиционирование
+
+`placement` и `fallbackPlacements` наследуются из `@ds/dropdown` — подбирайте, чтобы панель не обрезалась у края экрана.
+
+### Визуал времени
+
+Макет барабана времени совпадает с [TimePicker](/components/calendar/time-picker); см. узел Figma ниже.
+
+## Установка
+
+```bash
+pnpm add @ds/calendar @ds/button
+```
+
+```ts
+import { Button } from '@ds/button'
+import { TimePickerDropdown, SIZE } from '@ds/calendar'
+```
+
+## Примеры использования
+
+<Example title='Клик по кнопке' description='closeOnApply закрывает после выбора' code={TimePickerDropdownBasicSrc}>
+  <TimePickerDropdownBasic client:only='react' />
+</Example>
+
+<Example title='Контролируемое open' code={TimePickerDropdownControlledSrc}>
+  <TimePickerDropdownControlled client:only='react' />
+</Example>
+
+<Example title='Разные placement' code={TimePickerDropdownPlacementSrc}>
+  <TimePickerDropdownPlacement client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={calendarPkgDoc.TimePickerDropdown} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-calendar-time-picker-dropdown--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('calendar', 'timePickerDropdown')} />
+
+## Смотри также
+
+- [TimePicker](/components/calendar/time-picker)
+- [Dropdown](/components/dropdown) — базовый выпадающий контейнер.

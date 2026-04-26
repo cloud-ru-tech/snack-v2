@@ -17,6 +17,7 @@
     "@ds/breadcrumbs": "workspace:*",
     "@ds/button": "workspace:*",
     "@ds/card": "workspace:*",
+    "@ds/calendar": "workspace:*",
     "@ds/carousel": "workspace:*",
     "@ds/counter": "workspace:*",
     "@ds/divider": "workspace:*",

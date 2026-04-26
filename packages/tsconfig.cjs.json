@@ -165,6 +165,9 @@
     },
     {
       "path": "./uikit-product-info-row/tsconfig.cjs.json"
+    },
+    {
+      "path": "./calendar/tsconfig.cjs.json"
     }
   ]
 }

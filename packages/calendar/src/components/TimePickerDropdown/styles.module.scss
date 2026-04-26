@@ -1,0 +1,25 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm', 'l';
+$heightMap: (
+  's': 257,
+  'm': 265,
+  'l': 337,
+);
+
+.dropdown {
+  width: fit-content;
+}
+
+.timePickerDropdownContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.timePickerBaseLimited {
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      height: #{base.simple-var($heightMap, $size)}px;
+    }
+  }
+}

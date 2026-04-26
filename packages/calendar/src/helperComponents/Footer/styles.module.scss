@@ -1,0 +1,22 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/dropdown.module' as dropdown;
+
+$sizes: 's', 'm', 'l';
+
+.divider {
+  flex-shrink: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonGroup {
+  @include base.composite-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar');
+
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  justify-content: space-between;
+}

@@ -258,6 +258,9 @@ importers:
       '@ds/button':
         specifier: workspace:*
         version: link:../../packages/button
+      '@ds/calendar':
+        specifier: workspace:*
+        version: link:../../packages/calendar
       '@ds/card':
         specifier: workspace:*
         version: link:../../packages/card
@@ -544,6 +547,42 @@ importers:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
+
+  packages/calendar:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/divider':
+        specifier: workspace:*
+        version: link:../divider
+      '@ds/dropdown':
+        specifier: workspace:*
+        version: link:../dropdown
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@snack-uikit/list':
+        specifier: 0.32.16
+        version: 0.32.16(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      uncontrollable:
+        specifier: 'catalog:'
+        version: 9.0.0(react@18.3.1)
+      weekstart:
+        specifier: 2.0.0
+        version: 2.0.0
 
   packages/card:
     dependencies:
@@ -9906,6 +9945,9 @@ packages:
 
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
+
+  weekstart@2.0.0:
+    resolution: {integrity: sha512-HjYc14IQUwDcnGICuc8tVtqAd6EFpoAQMqgrqcNtWWZB+F1b7iTq44GzwM1qvnH4upFgbhJsaNHuK93NOFheSg==}
 
   whatwg-fetch@3.6.20:
     resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
@@ -20487,6 +20529,8 @@ snapshots:
   webidl-conversions@3.0.1: {}
 
   webpack-virtual-modules@0.6.2: {}
+
+  weekstart@2.0.0: {}
 
   whatwg-fetch@3.6.20: {}
 

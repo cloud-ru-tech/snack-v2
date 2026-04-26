@@ -2,6 +2,7 @@ import '@sbercloud/figma-variables/build/css/tokens.css';
 
 import './global.scss';
 
+import { LocaleProvider } from '@ds/locale';
 import { PortalContextProvider } from '@ds/portal-context';
 import type { Preview } from '@storybook/react';
 import { useRef } from 'react';
@@ -31,17 +32,18 @@ const preview: Preview = {
       return (
         <PreviewThemeProvider theme={theme}>
           <PortalContextProvider root={storyWrapperRef}>
-            <StoryWrapper
-              ref={storyWrapperRef}
-              theme={theme}
-              brand={brand}
-              brandRole={brandRole}
-              density={density}
-              language={language}
-              acrylic={acrylic}
-            >
-              <Story />
-            </StoryWrapper>
+            <LocaleProvider lang={language}>
+              <StoryWrapper
+                ref={storyWrapperRef}
+                theme={theme}
+                brand={brand}
+                brandRole={brandRole}
+                density={density}
+                acrylic={acrylic}
+              >
+                <Story />
+              </StoryWrapper>
+            </LocaleProvider>
           </PortalContextProvider>
         </PreviewThemeProvider>
       );

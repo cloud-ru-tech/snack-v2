@@ -1,0 +1,88 @@
+---
+title: TimePicker
+package: '@ds/calendar'
+description: Встроенный выбор времени (часы, минуты, опционально секунды) с размерами s/m/l и поддержкой контролируемого значения.
+order: 2
+---
+
+import { TimePickerBasic } from '../demos/examples/TimePickerBasic'
+import TimePickerBasicSrc from '../demos/examples/TimePickerBasic.tsx?raw'
+import { TimePickerNoSeconds } from '../demos/examples/TimePickerNoSeconds'
+import TimePickerNoSecondsSrc from '../demos/examples/TimePickerNoSeconds.tsx?raw'
+import { TimePickerSizes } from '../demos/examples/TimePickerSizes'
+import TimePickerSizesSrc from '../demos/examples/TimePickerSizes.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import calendarPkgDoc from './props.json'
+
+# TimePicker
+
+Компонент для выбора времени в потоке формы: колонки часов/минут/секунд с прокруткой и фокусной навигацией. Делит контекст с календарём через внутренний `CalendarContext`, если используется рядом с `Calendar` в кастомной композиции.
+
+## Когда использовать
+
+- Нужен только выбор времени без даты на той же панели.
+- Поле должно оставаться инлайн без выпадающего попапа.
+
+Когда **не** нужен: если время выбирают редко и уместнее попап — используйте [TimePickerDropdown](/components/calendar/time-picker-dropdown).
+
+- ✅ Синхронизировать значение с полем ввода через `value` / `onChangeValue`.
+- ❌ Блокировать `onChangeValue` заглушкой — состояние не обновится и пример перестанет быть показательным.
+
+## Анатомия
+
+### Size
+
+| Значение | Назначение |
+|----------|------------|
+| `s` | Узкие колонки и плотные таблицы |
+| `m` | Значение по умолчанию |
+| `l` | Крупные тач-цели |
+
+### Секунды
+
+`showSeconds` (`true` по умолчанию) скрывает третью колонку, если достаточно часов и минут.
+
+## Установка
+
+```bash
+pnpm add @ds/calendar
+```
+
+```ts
+import { TimePicker, SIZE } from '@ds/calendar'
+```
+
+## Примеры использования
+
+<Example title='Базовый выбор' code={TimePickerBasicSrc}>
+  <TimePickerBasic client:only='react' />
+</Example>
+
+<Example title='Без секунд' code={TimePickerNoSecondsSrc}>
+  <TimePickerNoSeconds client:only='react' />
+</Example>
+
+<Example title='Размеры' code={TimePickerSizesSrc}>
+  <TimePickerSizes client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={calendarPkgDoc.TimePicker} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-calendar-time-picker--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('calendar', 'timePickerDrum')} />
+
+## Смотри также
+
+- [Calendar](/components/calendar/calendar)
+- [TimePickerDropdown](/components/calendar/time-picker-dropdown)

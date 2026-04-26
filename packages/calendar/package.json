@@ -1,0 +1,44 @@
+{
+  "name": "@ds/calendar",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/divider": "workspace:*",
+    "@ds/dropdown": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/locale": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "@snack-uikit/list": "0.32.16",
+    "classnames": "catalog:",
+    "uncontrollable": "catalog:",
+    "weekstart": "2.0.0"
+  }
+}

@@ -1,0 +1,268 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/calendar.module' as calendar;
+@use '@ds/materials' as m;
+
+$sizes: 's', 'm', 'l';
+$typography: (
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+  'l': base.$sn-regular-label-l,
+);
+
+// For reference only
+$rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-position
+
+.stateLayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  visibility: initial;
+}
+
+.focusLayer {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+
+  width: 100%;
+  height: 100%;
+  border: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-available-complementary;
+  border-radius: 0;
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  align-self: stretch;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid transparent;
+
+  background-color: transparent;
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    background-color: base.$sn-theme-color-neutral-background;
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    .focusLayer {
+      display: initial;
+    }
+  }
+
+  &:not([data-disabled]) {
+    cursor: pointer;
+
+    @include m.has-state-layer-as-child(#{stateLayer});
+
+    &:not([data-another]) {
+      &[data-checked] {
+        background-color: base.$sn-theme-color-primary-accent;
+      }
+
+      &[data-range-position='in'] {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.label {
+  text-align: center;
+
+  &[data-another] {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+
+  &[data-disabled] {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+
+  &:not([data-disabled], [data-another]) {
+    &[data-checked] {
+      &:not([data-range-position='in']) {
+        color: base.$sn-theme-color-available-onComplementary;
+      }
+
+      &[data-range-position='in'] {
+        color: base.$sn-theme-color-available-version-textMain;
+
+        &[data-holiday] {
+          color: base.$sn-theme-color-red-text;
+        }
+      }
+    }
+
+    &:not([data-checked]) {
+      color: base.$sn-theme-color-available-version-textMain;
+
+      &[data-holiday] {
+        color: base.$sn-theme-color-red-text;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    &:not([data-disabled], [data-another]) {
+      &:not([data-holiday]) {
+        color: base.$sn-theme-color-available-version-textMain;
+      }
+
+      &[data-holiday] {
+        color: base.$sn-theme-color-red-text;
+      }
+    }
+  }
+}
+
+.marker {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  left: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.markerLine {
+  flex-shrink: 0;
+
+  &[data-holiday] {
+    background-color: base.$sn-theme-color-red-text;
+  }
+
+  &[data-checked] {
+    &:not([data-range-position='in']) {
+      background-color: base.$sn-theme-color-primary-onAccent;
+    }
+
+    &[data-range-position='in'] {
+      background-color: base.$sn-theme-color-primary-accent;
+
+      &[data-holiday] {
+        background-color: base.$sn-theme-color-red-text;
+      }
+    }
+  }
+
+  &:not([data-checked]) {
+    background-color: base.$sn-theme-color-primary-accent;
+
+    &[data-holiday] {
+      background-color: base.$sn-theme-color-red-text;
+    }
+  }
+}
+
+.labelWrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:not([data-visible]) {
+    pointer-events: none;
+    visibility: hidden;
+
+    .stateLayer {
+      display: none;
+    }
+  }
+
+  &[data-disabled] {
+    .stateLayer {
+      display: none;
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar');
+
+      .container {
+        @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'container');
+
+        $borderRadius: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'container', 'border-radius');
+
+        &[data-range-position='start'] {
+          border-radius: $borderRadius 0 0 $borderRadius;
+        }
+
+        &[data-range-position='in'] {
+          border-radius: 0;
+        }
+
+        &[data-range-position='end'] {
+          border-radius: 0 $borderRadius $borderRadius 0;
+        }
+
+        &[data-range-position='out'],
+        &[data-range-position='start-end'] {
+          border-radius: $borderRadius;
+        }
+      }
+
+      .labelWrapper {
+        @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'container', 'labelWrapper');
+      }
+
+      .label {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', $size);
+      }
+
+      .markerLine {
+        @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'container', 'labelWrapper', 'marker');
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-disabled], [data-another]) {
+      .container {
+        background-color: transparent;
+      }
+
+      .label {
+        &:not([data-holiday]) {
+          color: base.$sn-theme-color-available-version-textMain;
+        }
+
+        &[data-holiday] {
+          color: base.$sn-theme-color-red-text;
+        }
+      }
+
+      .markerLine {
+        &:not([data-holiday]) {
+          background-color: base.$sn-theme-color-primary-accent;
+        }
+
+        &[data-holiday] {
+          background-color: base.$sn-theme-color-red-accent;
+        }
+      }
+    }
+  }
+}
+

@@ -61,6 +61,14 @@ export const FIGMA_NODES = {
   breadcrumbs: { ...SNACK, nodeId: '7422-10279' }, // breadcrumbs → breadcrumbs
   button: { ...SNACK, nodeId: '2507-25203' }, // button → button
   card: { ...SNACK, nodeId: '5044-22704' }, // card → card
+  calendar: {
+    _: { ...SNACK, nodeId: '3839-193281' }, // calendar → calendar
+    item: { ...SNACK, nodeId: '3722-10703' }, // calendar → itemCalendar
+    timePicker: { ...SNACK, nodeId: '23720-17915' }, // calendar → timePicker
+    timePickerDrum: { ...SNACK, nodeId: '12303-72025' }, // calendar → timePickerDrum
+    timePickerDropdown: { ...SNACK, nodeId: '23720-29347' }, // calendar → timePickerDropdown
+    calendarDropdown: { ...SNACK, nodeId: '19439-215955' }, // calendar → calendarDropdown
+  },
   carousel: { ...SNACK, nodeId: '5307-114' }, // carousel → carousel
   counter: { ...SNACK, nodeId: '2088-10548' }, // counter → counter
   divider: { ...SNACK, nodeId: '2932-6308' }, // divider → divider

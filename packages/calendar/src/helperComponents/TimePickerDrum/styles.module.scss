@@ -1,0 +1,277 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/calendar.module' as calendar;
+
+$sizes: 's', 'm', 'l';
+
+$labelTypography: (
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+  'l': base.$sn-regular-label-l,
+);
+
+$displayTypography: (
+  's': base.$sn-regular-display-s,
+  'm': base.$sn-regular-display-m,
+  'l': base.$sn-regular-display-l,
+);
+
+$bodyTypography: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-m,
+  'l': base.$sn-regular-body-l,
+);
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'gap');
+      padding: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'padding');
+    }
+  }
+}
+
+.selectedTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@each $size in $sizes {
+  .root[data-size='#{$size}'] .selectedTime {
+    gap: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'selectedTime', 'gap');
+  }
+}
+
+.dateLabel {
+  color: base.$sn-theme-color-available-version-textDisabled;
+  text-align: center;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      @include base.composite-var($labelTypography, $size);
+    }
+  }
+}
+
+.timeRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeMain {
+  color: base.$sn-theme-color-available-version-textDisabled;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      @include base.composite-var($displayTypography, $size);
+    }
+  }
+}
+
+.timeSeconds {
+  color: base.$sn-theme-color-available-version-textDisabled;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      @include base.composite-var($displayTypography, $size);
+    }
+  }
+}
+
+.drum {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      max-width: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'drum', 'max-width');
+    }
+  }
+}
+
+.column {
+  /* Не даём подсветить цифры при перетаскивании / колесе мыши */
+  user-select: none;
+  flex: 1 1 0%;
+  min-width: 0;
+
+  -webkit-touch-callout: none;
+}
+
+.wheelViewport {
+  touch-action: none;
+
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Как fadingWrapper в макете: градиенты не участвуют в hit-testing (`pointer-events: none`). */
+.wheelFadingWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.wheelFadeTop,
+.wheelFadeBottom {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  left: 0;
+
+  height: 40%;
+}
+
+.wheelFadeTop {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    base.$sn-theme-color-neutral-background1Level 0%,
+    color-mix(in srgb, base.$sn-theme-color-neutral-background1Level 45%, transparent) 52%,
+    transparent 100%
+  );
+}
+
+.wheelFadeBottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    base.$sn-theme-color-neutral-background1Level 0%,
+    color-mix(in srgb, base.$sn-theme-color-neutral-background1Level 45%, transparent) 52%,
+    transparent 100%
+  );
+}
+
+.wheelSlotLines {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: 0;
+  left: 0;
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: var(--wheel-item, 40px);
+}
+
+.wheelSlotLine {
+  height: 0;
+  border-top: 1px solid base.$sn-theme-color-available-borderColor;
+}
+
+.wheelTrack {
+  will-change: transform;
+  position: relative;
+  z-index: 0;
+  transform: translate3d(0, var(--wheel-translate), 0);
+}
+
+.wheelRow {
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--wheel-item);
+}
+
+.itemCell {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      min-width: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'min-width');
+      min-height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'min-height');
+      padding-right: base.simple-var(
+        calendar.$calendar,
+        'anatomy',
+        'size',
+        $size,
+        'itemCalendar',
+        'container',
+        'labelWrapper',
+        'padding-right'
+      );
+      padding-left: base.simple-var(
+        calendar.$calendar,
+        'anatomy',
+        'size',
+        $size,
+        'itemCalendar',
+        'container',
+        'labelWrapper',
+        'padding-left'
+      );
+      border-radius: base.simple-var(
+        calendar.$calendar,
+        'anatomy',
+        'size',
+        $size,
+        'itemCalendar',
+        'container',
+        'border-radius'
+      );
+    }
+  }
+}
+
+.stateLayer {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  visibility: initial;
+
+  &[data-state='regularFilled'] {
+    background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+  }
+}
+
+.itemLabel {
+  position: relative;
+  text-align: center;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] .itemCell & {
+      @include base.composite-var($bodyTypography, $size);
+    }
+  }
+
+  .itemCellSelected & {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  .itemCell:not(.itemCellSelected) & {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+}

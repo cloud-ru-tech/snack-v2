@@ -1,0 +1,84 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/calendar.module' as calendar;
+
+$sizes: 's', 'm', 'l';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  box-sizing: border-box;
+  width: fit-content;
+
+  &[data-fit-to-container] {
+    min-width: 100%;
+    height: 100%;
+  }
+}
+
+.dateWrapper {
+  display: flex;
+  height: 100%;
+}
+
+.calendarWrapper {
+  display: flex;
+  flex-direction: column;
+
+  &[data-fit-to-container] {
+    width: 100%;
+  }
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate');
+
+      width: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'min-width');
+      min-height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'min-height');
+    }
+  }
+
+  &[data-fit-to-container] {
+    width: 100%;
+  }
+}
+
+.divider {
+  flex-shrink: 0;
+  height: auto;
+}
+
+.verticalDividerWrap {
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.leftPanelHeader {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'header');
+    }
+  }
+}
+
+.presetsList {
+  width: 144px; // TODO: validate this hardcoded value in new list https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=18512-102811&m=dev
+}

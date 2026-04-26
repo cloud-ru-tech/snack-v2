@@ -1,0 +1,40 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm', 'l';
+
+.story {
+  resize: both;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: fit-content;
+
+  &[data-with-background] {
+    border: 1px solid base.$sn-theme-color-neutral-decor;
+    background: base.$sn-theme-color-neutral-background1Level;
+  }
+}
+
+.storyWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.valueHolder {
+  display: none;
+}
+
+.scrollS {
+  width: 124px;
+  height: 257px;
+}
+
+.scrollM {
+  width: 158px;
+  height: 265px;
+}
+
+.scrollL {
+  width: 204px;
+  height: 337px;
+}

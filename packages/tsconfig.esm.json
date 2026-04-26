@@ -163,6 +163,9 @@
     },
     {
       "path": "./uikit-product-info-row/tsconfig.esm.json"
+    },
+    {
+      "path": "./calendar/tsconfig.esm.json"
     }
   ]
 }

@@ -1,0 +1,1459 @@
+{
+  "Calendar": {
+    "displayName": "Calendar",
+    "propsTypeName": "CalendarProps",
+    "props": {
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "Автофокус"
+      },
+      "bottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Рендерится после основной разметки календаря, внутри `CalendarContext` (например футер с Apply в дропдауне)."
+      },
+      "buildCellProps": {
+        "type": "(date: Date, viewMode: ViewMode) => { isDisabled?: boolean; isHoliday?: boolean } ;",
+        "required": false,
+        "description": "Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра:\n<br> `Date` - дата ячейки\n<br> `ViewMode`:\n<br>  - `month` отображение месяца, каждая ячейка - 1 день\n<br>  - `year` отображение года, каждая ячейка - 1 месяц\n<br>  - `decade` отображение декады, каждая ячейка - 1 год\n<br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки.",
+        "typeRefs": [
+          "BuildCellPropsFunction"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`",
+        "typeRefs": [
+          "Range"
+        ]
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "locale": {
+        "type": "Intl.Locale",
+        "required": false,
+        "defaultValue": "Проставляется в соответствие с языком в настройках браузера",
+        "description": "Локаль, в соответствие с которой выставляется язык названий и первый день недели"
+      },
+      "mode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "date",
+          "date-range",
+          "date-time",
+          "month",
+          "month-range",
+          "year",
+          "year-range"
+        ],
+        "description": "Режим работы календаря: <br> - `date` - режим выбора даты\n<br> - `date-range` - режим выбора периода\n<br> - `month-range` - режим выбора периода из месяцев\n<br> - `year-range` - режим выбора периода из лет\n<br> - `month` - режим выбора месяца\n<br> - `date-time` - режим выбора даты и времени\n<br> - `year` - режим выбора года"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onChangeValue": {
+        "type": "((value: Date) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Date) => void) | ((value: Date) => void) | ((value: Date) => void)",
+        "required": false,
+        "description": "Колбек выбора значения.<br> - в режиме date принимает тип `Date`\n<br> - в режиме date-range принимает тип `Range`\n<br> - в режиме month-range принимает тип `Range`\n<br> - в режиме year-range принимает тип `Range`\n<br> - в режиме month принимает тип `Date`\n<br> - в режиме date-time принимает тип `Date`\n<br> - в режиме year принимает тип `Date`"
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "presets": {
+        "type": "PresetsOptions",
+        "required": false,
+        "description": "Настройки секции с пресетами быстрого выбора периода. Доступны только при mode === 'date-range' и отсутствии buildCellProps (временно PDS-3139)",
+        "typeRefs": [
+          "PresetsOptions"
+        ]
+      },
+      "showHolidays": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрашивает субботу и воскресенье"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли секунды (только в режиме date-time)"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Объект со стилями на контейнер."
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "value": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Выбранное значение.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`",
+        "typeRefs": [
+          "Range"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "BuildCellPropsFunction": {
+        "kind": "alias",
+        "type": "(date: Date, viewMode: ViewMode) => BuildCellProps",
+        "own": true
+      },
+      "PresetItem": {
+        "kind": "interface",
+        "props": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "ID периода"
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Лейбл пресета"
+          },
+          "range": {
+            "type": "[Date, Date]",
+            "required": true,
+            "description": "Период",
+            "typeRefs": [
+              "Range"
+            ]
+          }
+        },
+        "own": true
+      },
+      "PresetsOptions": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включение отображения секции с пресетами"
+          },
+          "items": {
+            "type": "PresetItem[] | undefined",
+            "required": false,
+            "description": "Кастомные пресеты быстрого выбора периода относительно текущего момента",
+            "typeRefs": [
+              "PresetItem"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Range": {
+        "kind": "interface",
+        "props": {
+          "0": {
+            "type": "any",
+            "required": true
+          },
+          "1": {
+            "type": "any",
+            "required": true
+          },
+          "length": {
+            "type": "any",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "CalendarBase": {
+    "displayName": "CalendarBase",
+    "propsTypeName": null,
+    "props": {
+      "autofocus": {
+        "type": "boolean",
+        "required": false
+      },
+      "bottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Рендерится после основной разметки календаря, внутри `CalendarContext` (например футер с Apply в дропдауне)."
+      },
+      "buildCellProps": {
+        "type": "BuildCellPropsFunction",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Range",
+        "required": false
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      "locale": {
+        "type": "Locale",
+        "required": false
+      },
+      "mode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "date",
+          "date-range",
+          "date-time",
+          "month",
+          "month-range",
+          "year",
+          "year-range"
+        ]
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false
+      },
+      "onChangeValue": {
+        "type": "(value: Range) => void",
+        "required": true
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false
+      },
+      "presets": {
+        "type": "PresetsOptions",
+        "required": false
+      },
+      "showHolidays": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m"
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false
+      },
+      "value": {
+        "type": "Range",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CalendarDropdown": {
+    "displayName": "CalendarDropdown",
+    "propsTypeName": "CalendarDropdownProps",
+    "props": {
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "Автофокус"
+      },
+      "bottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Рендерится после основной разметки календаря, внутри `CalendarContext` (например футер с Apply в дропдауне)."
+      },
+      "buildCellProps": {
+        "type": "(date: Date, viewMode: ViewMode) => { isDisabled?: boolean; isHoliday?: boolean } ;",
+        "required": false,
+        "description": "Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра:\n<br> `Date` - дата ячейки\n<br> `ViewMode`:\n<br>  - `month` отображение месяца, каждая ячейка - 1 день\n<br>  - `year` отображение года, каждая ячейка - 1 месяц\n<br>  - `decade` отображение декады, каждая ячейка - 1 год\n<br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки.",
+        "typeRefs": [
+          "BuildCellPropsFunction"
+        ]
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Элемент открытия dropdown (триггер)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрыть dropdown после нажатия Apply."
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`",
+        "typeRefs": [
+          "Range"
+        ]
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "locale": {
+        "type": "Intl.Locale",
+        "required": false,
+        "defaultValue": "Проставляется в соответствие с языком в настройках браузера",
+        "description": "Локаль, в соответствие с которой выставляется язык названий и первый день недели"
+      },
+      "mode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "date",
+          "date-range",
+          "date-time",
+          "month",
+          "month-range",
+          "year",
+          "year-range"
+        ],
+        "description": "Режим работы календаря: <br> - `date` - режим выбора даты\n<br> - `date-range` - режим выбора периода\n<br> - `month-range` - режим выбора периода из месяцев\n<br> - `year-range` - режим выбора периода из лет\n<br> - `month` - режим выбора месяца\n<br> - `date-time` - режим выбора даты и времени\n<br> - `year` - режим выбора года"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек после подтверждения в футере."
+      },
+      "onChangeValue": {
+        "type": "((value: Date) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Date) => void) | ((value: Date) => void) | ((value: Date) => void)",
+        "required": false,
+        "description": "Колбек выбора значения.<br> - в режиме date принимает тип `Date`\n<br> - в режиме date-range принимает тип `Range`\n<br> - в режиме month-range принимает тип `Range`\n<br> - в режиме year-range принимает тип `Range`\n<br> - в режиме month принимает тип `Date`\n<br> - в режиме date-time принимает тип `Date`\n<br> - в режиме year принимает тип `Date`"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по кнопке Current в футере."
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера",
+        "typeRefs": [
+          "OutsideClickHandler"
+        ]
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "presets": {
+        "type": "PresetsOptions",
+        "required": false,
+        "description": "Настройки секции с пресетами быстрого выбора периода. Доступны только при mode === 'date-range' и отсутствии buildCellProps (временно PDS-3139)",
+        "typeRefs": [
+          "PresetsOptions"
+        ]
+      },
+      "showHolidays": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрашивает субботу и воскресенье"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли секунды (только в режиме date-time)"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Объект со стилями на контейнер."
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "value": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Выбранное значение.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`",
+        "typeRefs": [
+          "Range"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "BuildCellPropsFunction": {
+        "kind": "alias",
+        "type": "(date: Date, viewMode: ViewMode) => BuildCellProps",
+        "own": true
+      },
+      "OutsideClickHandler": {
+        "kind": "alias",
+        "type": "(event: MouseEvent) => boolean",
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "PresetItem": {
+        "kind": "interface",
+        "props": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "ID периода"
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Лейбл пресета"
+          },
+          "range": {
+            "type": "[Date, Date]",
+            "required": true,
+            "description": "Период",
+            "typeRefs": [
+              "Range"
+            ]
+          }
+        },
+        "own": true
+      },
+      "PresetsOptions": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включение отображения секции с пресетами"
+          },
+          "items": {
+            "type": "PresetItem[] | undefined",
+            "required": false,
+            "description": "Кастомные пресеты быстрого выбора периода относительно текущего момента",
+            "typeRefs": [
+              "PresetItem"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Range": {
+        "kind": "interface",
+        "props": {
+          "0": {
+            "type": "any",
+            "required": true
+          },
+          "1": {
+            "type": "any",
+            "required": true
+          },
+          "length": {
+            "type": "any",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      }
+    }
+  },
+  "Footer": {
+    "displayName": "Footer",
+    "propsTypeName": null,
+    "props": {
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по клику на Apply"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по клику на Current"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Grid": {
+    "displayName": "Grid",
+    "propsTypeName": null,
+    "props": {
+      "grid": {
+        "type": "Cell[][]",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Item": {
+    "displayName": "Item",
+    "propsTypeName": null,
+    "props": {
+      "address": {
+        "type": "[number, number]",
+        "required": false,
+        "description": "Адрес ячейки в сетке — синхронизация фокуса и клавиатуры"
+      },
+      "another": {
+        "type": "boolean",
+        "required": false,
+        "description": "Относится ли к иному периоду (не к просматриваемому в данный момент)"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выбран ли элемент"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "current": {
+        "type": "boolean",
+        "required": false,
+        "description": "Является ли сегодняшним днем"
+      },
+      "date": {
+        "type": "Date",
+        "required": false,
+        "description": "Дата ячейки (для колбэков выбора)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли"
+      },
+      "holiday": {
+        "type": "boolean",
+        "required": false,
+        "description": "Является ли выходным/праздником"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Значение"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler",
+        "required": false
+      },
+      "onLeave": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onPreselect": {
+        "type": "((date: Date) => void)",
+        "required": false
+      },
+      "onSelect": {
+        "type": "((date: Date) => void)",
+        "required": false
+      },
+      "rangePosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "in",
+          "out",
+          "start",
+          "start-end"
+        ],
+        "defaultValue": "out",
+        "description": "Является ли частью range"
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "-1",
+          "0"
+        ],
+        "description": "Индекс фокуса кнопки"
+      },
+      "testIdSegment": {
+        "type": "string",
+        "required": false,
+        "description": "Сегмент для `data-test-id` (`getTestId(segment)`). По умолчанию `item`;\nподписи дней недели в `WeekRow` используют `header-item` (как в migration E2E)."
+      },
+      "visible": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображается ли в интерфейсе (ячейка без содержимого для мобильной сетки)"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NavButton": {
+    "displayName": "NavButton",
+    "propsTypeName": null,
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "focusName": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "Element",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onDownArrowKeyDown": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onLeftArrowKeyDown": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onRightArrowKeyDown": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "tabIndex": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "-1",
+          "0"
+        ]
+      },
+      "useNavigationStartRef": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PeriodPresetsList": {
+    "displayName": "PeriodPresetsList",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "items": {
+        "type": "PresetItem[]",
+        "required": true,
+        "description": "Список пресетов"
+      },
+      "onChange": {
+        "type": "(range: Range) => void",
+        "required": true,
+        "description": "Действие при выборе пресета"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TimeList": {
+    "displayName": "TimeList",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "keyboardNavigationRef": {
+        "type": "RefObject<{ focusItem(id: ItemId): void; }>",
+        "required": false
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false
+      },
+      "numberOfItems": {
+        "type": "number",
+        "required": true
+      },
+      "onChange": {
+        "type": "(value: number) => void",
+        "required": true
+      },
+      "onKeyDownGetter": {
+        "type": "OnKeyDownGetter",
+        "required": false
+      },
+      "value": {
+        "type": "number",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TimePicker": {
+    "displayName": "TimePicker",
+    "propsTypeName": "TimePickerProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled.",
+        "typeRefs": [
+          "TimeValue"
+        ]
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onChangeValue": {
+        "type": "((value?: TimeValue) => void)",
+        "required": false,
+        "description": "Колбек выбора значения"
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли секунды"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "value": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Выбранное значение.",
+        "typeRefs": [
+          "TimeValue"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TimeValue": {
+        "kind": "interface",
+        "props": {
+          "hours": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "minutes": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "seconds": {
+            "type": "number | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "TimePickerBase": {
+    "displayName": "TimePickerBase",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "fixedWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Фиксированная ширина (оверрайдит fitToContainer)"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TimePickerDropdown": {
+    "displayName": "TimePickerDropdown",
+    "propsTypeName": "TimePickerDropdownProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент триггера открытия dropdown"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрыть dropdown после нажатия кнопки Apply"
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled.",
+        "typeRefs": [
+          "TimeValue"
+        ]
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по нажатию Apply"
+      },
+      "onChangeValue": {
+        "type": "((value?: TimeValue) => void)",
+        "required": false,
+        "description": "Колбек выбора значения"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по нажатию Current"
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера",
+        "typeRefs": [
+          "OutsideClickHandler"
+        ]
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли секунды"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "value": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Выбранное значение.",
+        "typeRefs": [
+          "TimeValue"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "OutsideClickHandler": {
+        "kind": "alias",
+        "type": "(event: MouseEvent) => boolean",
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TimeValue": {
+        "kind": "interface",
+        "props": {
+          "hours": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "minutes": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "seconds": {
+            "type": "number | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      }
+    }
+  },
+  "TimePickerDrum": {
+    "displayName": "TimePickerDrum",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневого контейнера барабана."
+      },
+      "customOptions": {
+        "type": "TimePickerDrumCustomOptions",
+        "required": false,
+        "description": "Ограничение допустимых значений в колонках: whitelist (`allowed*`) или нижняя граница (`min*`).\nЕсли задан непустой `allowed*` после нормализации, для этой колонки используется только он; иначе при наличии `min*` — диапазон от `min` до максимума (часы 0–23, минуты и секунды 0–59).\nПри несовпадении текущего `hours` / `minutes` / `seconds` с допустимым набором компонент подставит ближайшее допустимое значение через соответствующий `on*Change`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "hours": {
+        "type": "number",
+        "required": true,
+        "description": "Текущий выбранный час (0–23), контролируемое значение колонки часов."
+      },
+      "minutes": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая выбранная минута (0–59), контролируемое значение колонки минут."
+      },
+      "onHoursChange": {
+        "type": "(value: number) => void",
+        "required": true,
+        "description": "Вызывается при смене часа после жеста (отпускание указателя / `lostpointercapture`) или после паузы при прокрутке колесом,\nа также при автоподгонке под `customOptions`. В контролируемом режиме обработчик обязан записать переданный `value` в состояние,\nиначе эффект подгонки может вызываться на каждом рендере."
+      },
+      "onMinutesChange": {
+        "type": "(value: number) => void",
+        "required": true,
+        "description": "Вызывается при смене минуты после жеста или после паузы при прокрутке колесом, а также при автоподгонке под `customOptions`.\nВ контролируемом режиме обработчик обязан записать переданный `value` в состояние, иначе эффект подгонки может вызываться на каждом рендере."
+      },
+      "onSecondsChange": {
+        "type": "((value: number) => void)",
+        "required": false,
+        "description": "Вызывается при смене секунды после жеста или после паузы при прокрутке колесом, а также при автоподгонке под `customOptions`.\nНужен при `showSeconds === true`. В контролируемом режиме обработчик обязан записать переданный `value` в состояние,\nиначе эффект подгонки может вызываться на каждом рендере."
+      },
+      "seconds": {
+        "type": "number",
+        "required": false,
+        "description": "Текущая выбранная секунда (0–59), контролируемое значение колонки секунд. Учитывается при `showSeconds === true`."
+      },
+      "selectedDateLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Текст даты над дисплеем времени (локализуется снаружи). В подписи выводится только дата; время — в `timeRow`. Допускается ISO или строка, распознаваемая `Date.parse`."
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать третью колонку секунд (`secondsList` в макете). Если `false`, колонка скрыта и `onSecondsChange` не используется."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер по оси Figma `size` календаря (высота строк барабана и отступы)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TimePickerDrumWheelColumn": {
+    "displayName": "TimePickerDrumWheelColumn",
+    "propsTypeName": null,
+    "description": "Колонка «барабана»: 5 строк в DOM, значения по кругу в пределах `options`.",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневого элемента колонки (обёртка с обработчиками указателя)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Идентификатор для автотестов на корневом элементе колонки."
+      },
+      "formatLabel": {
+        "type": "(value: number) => string",
+        "required": true,
+        "description": "Форматирование подписи в ячейке (например с ведущим нулём для минут)."
+      },
+      "height": {
+        "type": "number",
+        "required": true,
+        "description": "Высота видимой области колонки («окна») в пикселях."
+      },
+      "itemHeight": {
+        "type": "number",
+        "required": true,
+        "description": "Высота одной строки барабана в пикселях (шаг дискретизации при перетаскивании и колесе)."
+      },
+      "onChange": {
+        "type": "(value: number) => void",
+        "required": true,
+        "description": "Вызывается при смене значения после жеста (отпускание / `lostpointercapture`) или после паузы при прокрутке колесом."
+      },
+      "options": {
+        "type": "number[]",
+        "required": true,
+        "description": "Допустимые значения колонки: отсортированный по возрастанию список без дубликатов.\nЦиклическая прокрутка выполняется только по индексам этого массива."
+      },
+      "value": {
+        "type": "number",
+        "required": true,
+        "description": "Текущее выбранное значение; должно входить в `options` (иначе для отображения берётся ближайшее из списка)."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

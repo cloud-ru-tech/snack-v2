@@ -1,0 +1,121 @@
+---
+title: Calendar
+package: '@ds/calendar'
+description: Календарь с режимами одной даты, диапазона, даты со временем и выбора месяца или года — единый компонент с навигацией по месяцу, году и декаде.
+order: 1
+---
+
+import { CalendarDateSingle } from '../demos/examples/CalendarDateSingle'
+import CalendarDateSingleSrc from '../demos/examples/CalendarDateSingle.tsx?raw'
+import { CalendarDateRange } from '../demos/examples/CalendarDateRange'
+import CalendarDateRangeSrc from '../demos/examples/CalendarDateRange.tsx?raw'
+import { CalendarDateTime } from '../demos/examples/CalendarDateTime'
+import CalendarDateTimeSrc from '../demos/examples/CalendarDateTime.tsx?raw'
+import { CalendarMonthMode } from '../demos/examples/CalendarMonthMode'
+import CalendarMonthModeSrc from '../demos/examples/CalendarMonthMode.tsx?raw'
+import { CalendarYearRange } from '../demos/examples/CalendarYearRange'
+import CalendarYearRangeSrc from '../demos/examples/CalendarYearRange.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import calendarPkgDoc from './props.json'
+
+# Calendar
+
+Интерактивный календарь с переключением вида (месяц → год → декада) и режимами выбора от одной даты до диапазонов по дням, месяцам и годам. Поддерживает контролируемое и неконтролируемое значение, подсветку выходных и кастомизацию ячеек через `buildCellProps`.
+
+## Когда использовать
+
+- Нужен явный визуальный выбор даты или периода в модалке, сайдпанели или под полем ввода.
+- Требуется согласованная навигация по месяцу/году и доступность с клавиатуры.
+
+Когда **не** нужен: если достаточно свободного ввода текста или маски без обзора месяца — используйте поле ввода или другой паттерн.
+
+- ✅ Управлять значением через `value` + `onChangeValue` или через `defaultValue` для неконтролируемого режима.
+- ❌ Подменять выбор даты только стилем без обновления состояния — календарь перестанет совпадать с формой и полем ввода.
+
+- ✅ Задавать «сегодня» через `today`, если нужно зафиксировать опорный день (тесты, таймзона продукта).
+- ❌ Игнорировать локаль при работе с неделей и подписями — передавайте `locale`, если браузерная по умолчанию не совпадает с приложением.
+
+## Анатомия
+
+### Size
+
+| Значение | Назначение |
+|----------|------------|
+| `s` | Компактные попапы и плотные формы |
+| `m` | Значение по умолчанию |
+| `l` | Акцентные модальные сценарии |
+
+### Calendar mode (`mode`)
+
+Режим определяет тип значения и разметку сетки: одна дата, пара дат (диапазон), дата со временем, месяц или год.
+
+| Значение | Поведение |
+|----------|-----------|
+| `date` | Одна дата (`Date`) |
+| `date-time` | Дата и время на одной сетке (`Date`) |
+| `date-range` | Диапазон дней (`[Date, Date]`), доступны пресеты периода при `presets` |
+| `month` / `month-range` | Выбор месяца или диапазона месяцев |
+| `year` / `year-range` | Выбор года или диапазона лет |
+
+### View (навигация)
+
+Внутренние уровни навигации соответствуют константам `VIEW_MODE`: месячная сетка дней, сетка месяцев года, сетка лет декады. Пользователь переключает уровень заголовком календаря.
+
+### Прочее
+
+- `fitToContainer` — растягивание на контейнер (`width/height: 100%`); для демо ниже задана фиксированная ширина обёртки.
+- `showHolidays` — подсветка субботы и воскресенья.
+- `presets` — быстрые периоды только для `date-range` и без пользовательского `buildCellProps` (ограничение текущей версии).
+
+## Установка
+
+```bash
+pnpm add @ds/calendar
+```
+
+```ts
+import { Calendar, CALENDAR_MODE, SIZE } from '@ds/calendar'
+```
+
+## Примеры использования
+
+<Example title='Одна дата' description='Контролируемое значение' code={CalendarDateSingleSrc}>
+  <CalendarDateSingle client:only='react' />
+</Example>
+
+<Example title='Диапазон дат' code={CalendarDateRangeSrc}>
+  <CalendarDateRange client:only='react' />
+</Example>
+
+<Example title='Дата и время' description='Секунды включаются через showSeconds' code={CalendarDateTimeSrc}>
+  <CalendarDateTime client:only='react' />
+</Example>
+
+<Example title='Выбор месяца' code={CalendarMonthModeSrc}>
+  <CalendarMonthMode client:only='react' />
+</Example>
+
+<Example title='Диапазон лет' code={CalendarYearRangeSrc}>
+  <CalendarYearRange client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={calendarPkgDoc.Calendar} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-calendar-calendar--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('calendar')} />
+
+## Смотри также
+
+- [TimePicker](/components/calendar/time-picker) и [TimePickerDropdown](/components/calendar/time-picker-dropdown) — выбор времени.
+- [Паттерны календаря и времени](/patterns/calendar-patterns).

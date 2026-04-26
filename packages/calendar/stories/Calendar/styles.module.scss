@@ -1,0 +1,64 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.story {
+  resize: both;
+
+  overflow: auto;
+
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+
+  &[data-with-background] {
+    border: 1px solid base.$sn-theme-color-neutral-decor;
+    background: base.$sn-theme-color-neutral-background1Level;
+  }
+}
+
+.cell {
+  min-width: 280px;
+  padding: base.$sn-primitive-dimension-8;
+}
+
+.scrollS {
+  width: 234px; // 232px calendarWrapper + 2px borders
+  height: 259px; // 257px calendarWrapper + 2px borders
+
+  &[data-view-mode='date-time'] {
+    width: 359px; // 232px calendarWrapper + 127px timePicker
+  }
+
+  &[data-view-mode='date-range'][data-with-presets] {
+    width: 379px; // 232px calendarWrapper + 144px presetsList + 1px divider + 2px borders
+  }
+}
+
+.scrollM {
+  width: 234px; // 232px calendarWrapper + 2px borders
+  height: 267px; // 265px calendarWrapper + 2px borders
+
+  &[data-view-mode='date-time'] {
+    width: 393px; // 232px calendarWrapper + 158px timePicker (must be 152px) + 3px ?
+  }
+
+  &[data-view-mode='date-range'][data-with-presets] {
+    width: 379px; // 232px calendarWrapper + 144px presetsList + 1px divider + 2px borders
+  }
+}
+
+.scrollL {
+  width: 298px; // 296px calendarWrapper + 2px borders
+  height: 339px; // 337px calendarWrapper + 2px borders
+
+  &[data-view-mode='date-time'] {
+    width: 504px; // 296px calendarWrapper + 204px timePicker
+  }
+
+  &[data-view-mode='date-range'][data-with-presets] {
+    width: 443px; // 296px calendarWrapper + 144px presetsList + 1px divider + 2px borders
+  }
+}
+
+.valueHolder {
+  display: none;
+}
