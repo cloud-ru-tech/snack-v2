@@ -1,21 +1,27 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
+
 .footerGroup {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
 
-.image {
+/** Медиа-слот со стоковыми PNG (светлая/тёмная тема превью), как в master. */
+.themedStoryMedia {
   display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
   align-items: center;
+  align-self: stretch;
   justify-content: center;
 
   width: 100%;
-  height: 200px;
+  height: 240px;
 
-  color: rgb(255 255 255 / 88%);
-  text-align: center;
+  object-fit: cover;
 
-  background: linear-gradient(135deg, rgb(102 126 234) 0%, rgb(118 75 162) 100%);
+  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'media');
 }
 
 .scenarioRoot {

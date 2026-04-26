@@ -4,13 +4,17 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
-import styles from './styles.module.scss';
+import { usePreviewTheme } from '#storybook/components';
+
 import { MODAL_TEST_ID, MODAL_TRIGGER_TEST_ID } from './testIds';
+import { resolveModalStoryMediaSrc, ThemedModalMedia } from './ThemedModalMedia';
 
 type ScenarioArgs = { open: boolean };
 
 function WithMediaRender(args: ScenarioArgs) {
   const [{ open }, updateArgs] = useArgs<ScenarioArgs>();
+  const previewTheme = usePreviewTheme();
+  const storyMediaSrc = resolveModalStoryMediaSrc(previewTheme);
   const openModal = () => updateArgs({ open: true });
   const closeModal = () => updateArgs({ open: false });
 
@@ -28,7 +32,7 @@ function WithMediaRender(args: ScenarioArgs) {
         open={args.open ?? open}
         onClose={closeModal}
         width='m'
-        media={<div className={styles.image}>Media slot — место под иллюстрацию</div>}
+        media={<ThemedModalMedia src={storyMediaSrc} />}
         title='Добро пожаловать'
         subtitle='Кратко о том, что изменилось в этой версии.'
         content='Список ключевых улучшений и ссылки на подробности могут размещаться в теле.'
