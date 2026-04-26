@@ -36,6 +36,7 @@
 - stories: **Playground + VisualMatrix** (+0–1 оправданный, напр. `Polymorphic`).
 - E2E: `rendering.spec.ts` с describe-блоком states (disabled/loading/empty).
 - visual: + hover + focus (итого 6 снимков).
+- docs: 1 MDX + demo + Storybook/Figma embed.
 
 ### M (Button-like)
 - stories: **Playground + VisualMatrix + ClickTest/KeyboardTest + Polymorphic** (если `as`).

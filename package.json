@@ -95,10 +95,5 @@
     "typescript": "catalog:",
     "typescript-plugin-css-modules": "5.2.0",
     "vitest": "4.1.4"
-  },
-  "pnpm": {
-    "overrides": {
-      "@typescript-eslint/utils": "8.54.0"
-    }
   }
 }

@@ -32,14 +32,14 @@ design-system/
 ├── packages/tsconfig.esm.json     # Оркестратор ESM-сборки (project references)
 ├── packages/tsconfig.cjs.json     # Оркестратор CJS-сборки
 ├── scripts/
-│   ├── add-package.mts            # Скаффолд нового пакета (scaffold + wire)
+│   ├── add-package.mts            # Создаёт новый пакет и подключает его к репо
 │   ├── add-package/               # scaffold.mts, wire.mts
 │   ├── gen-props.mts              # docs/props.json из типов
 │   └── gen-readme.mts             # README.md из MDX
 └── .claude/                       # Rules / Skills / Commands для Claude Code
 ```
 
-**Инструменты оркестрации:**
+**Чем собирается и связывается репо:**
 
 - `pnpm workspaces` — линкует пакеты между собой и с приложениями.
 - Корневые скрипты (`package.json`) — сборка пакетов: `tspc` (ESM + CJS) → SCSS/CSS → постобработка CJS для CSS Modules.
@@ -98,6 +98,15 @@ packages/<pkg>/
 └── README.md                                 # автоген: pnpm gen:readme
 ```
 
+### Зачем нужны `demos/`
+
+Папка `demos/` — это **источник живых примеров для документационного портала**, а не дубль stories.
+
+- `demos/<Name>Demo.tsx` — Canvas-плейграунд для секции `## Демо` в MDX (только для props-driven компонентов без центральных колбеков; см. [`.claude/rules/docs-structure.md`](https://github.com/)).
+- `demos/examples/<Example>.tsx` — самостоятельные React-компоненты для блоков `<Example>` в MDX. Каждый файл импортируется и как живой компонент (через `client:visible`), и как исходник через `?raw` — читатель видит работающий пример **и** код, который можно скопировать целиком, включая `import`-строки.
+
+Stories vs demos: stories живут в Storybook (визуальная регрессия + play-тесты), demos живут в docs-портале (объяснение API на живых сценариях, ориентированных на потребителя). Один и тот же компонент в обеих ролях не переиспользуется — у них разные требования к state и к отображению кода.
+
 Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повторяют эту раскладку **для каждого публичного компонента**: `src/Button/`, `src/ButtonGroup/`, `stories/Button/`, `stories/ButtonGroup/`, `__test__/Button/`, `__test__/ButtonGroup/`.
 
 ### Зависимости пакета
@@ -148,6 +157,15 @@ Storybook автоматически подхватывает `packages/*/storie
 ```bash
 pnpm dev:storybook
 ```
+
+### CSF3 — формат stories
+
+Все stories пишем в **CSF3** (Component Story Format 3) — текущий формат Storybook 7+. Каждая story — объект `StoryObj<typeof Component>` с полями `args`, `play`, `tags`. Старый CSF2 (функциональные stories `() => <Button />` с присваиванием `Story.args = {}`) **не используется** — он не даёт строгой типизации `args` и хуже работает с Test Runner.
+
+Документация:
+
+- [CSF API reference](https://storybook.js.org/docs/api/csf)
+- [Storybook CSF3 is here](https://storybook.js.org/blog/storybook-csf3-is-here/)
 
 ### Структура stories — Playground + VisualMatrix
 
@@ -282,7 +300,7 @@ test('renders', async ({ page, gotoStory }) => {
 })
 ```
 
-Параметрика — через `gotoStory(id, args)`, без заведения отдельных stories «под комбинацию».
+Разные комбинации пропсов проверяются через `gotoStory(id, args)` — отдельную story «под каждую комбинацию» заводить не нужно.
 
 Набор спеков на компонент (max 5 + visual):
 `rendering.spec.ts`, `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts`, `visual.spec.ts`. Выбор набора — по tier'у ([`.claude/rules/complexity-tiers.md`](https://github.com/)).
@@ -345,7 +363,7 @@ pnpm release                       # lerna publish from-package
 - **Префикс пакета:** имя оригинального компонента без скоупа — `button`, `accordion`, `tabs`, `tooltip` и т.п.
 - **Шаги:**
   1. Изучить макет в Figma и оригинальную реализацию в legacy-репо `storybook/` либо в npm `@snack-uikit/<pkg>`. Если у компонента была отдельная мобильная версия (`@snack-uikit/<pkg>-mobile` или mobile-обёртка) — её тоже на стол.
-  2. `pnpm add-package` — скаффолд пакета. Делается **до** генерации плана, чтобы план опирался на реальную раскладку.
+  2. `pnpm add-package` — создать пакет. Делается **до** генерации плана, чтобы план опирался на реальную раскладку.
   3. `/migrate-to-v2 <pkg> <figma-url> [--ref <legacy-pkg>] [--mobile <mobile-pkg>] [--note "..."]` — план в `.claude/plan/<pkg>.md`. В `--note` обязательно указать ссылку на Figma, на legacy-источник и на мобильную реализацию (если была).
   4. `/add-stories <pkg>`, дальше снять baselines: `pnpm dev:storybook` + `pnpm test:e2e:update-snapshots packages/<pkg>`.
   5. `/add-tests <pkg>`, `/add-docs <pkg>`, `pnpm gen:props && pnpm gen:readme`.
@@ -355,7 +373,7 @@ pnpm release                       # lerna publish from-package
 ### Сценарий 2. Миграция из `@cloud-ru/uikit-product-*`
 
 - **Источник дизайна:** [Product UI Kit variables](https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-?node-id=2924-49&p=f&m=dev).
-- **Префикс пакета:** **обязательно** `uikit-product-*` (например, `uikit-product-table`, `uikit-product-filter-bar`). Это разводит пакеты Product-кита и Snack-кита по разным неймспейсам.
+- **Префикс пакета:** **обязательно** `uikit-product-*` (например, `uikit-product-table`, `uikit-product-filter-bar`). Это разделяет пакеты Product-кита и Snack-кита, чтобы их имена не пересекались.
 - **API-совместимость:** держим совместимость с `@cloud-ru/uikit-product-<name>`.
 - **Шаги:** идентичны Сценарию 1 — `pnpm add-package` → `/migrate-to-v2 <pkg> <figma-url> [--ref @cloud-ru/uikit-product-<pkg>] [--note "..."]` → `/add-stories|tests|docs` → `pnpm gen` → ручные проверки → `/make-commit` → PR.
 
@@ -364,7 +382,7 @@ pnpm release                       # lerna publish from-package
 - **Когда:** legacy-источника нет, есть только Figma-узел (или серия узлов).
 - **Префикс пакета:** `uikit-product-*`.
 - **Шаги:**
-  1. `pnpm add-package` — скаффолд.
+  1. `pnpm add-package` — создать пакет.
   2. `/create-from-figma <pkg> <figma-url> [<figma-url> ...] [--note "..."]` — команда строит черновик публичного API (`constants.ts` / `types.ts` / слоты / коллбэки) из variant-осей Figma и **обязательно показывает API на подтверждение** до финализации плана.
   3. Дальше — `/add-stories`, `/add-tests`, `/add-docs`, `pnpm gen:props && pnpm gen:readme`.
   4. Ручные проверки → `/make-commit` → PR.
@@ -391,7 +409,7 @@ pnpm release                       # lerna publish from-package
 
    Команда строит черновик публичного API (constants/types/slots/коллбэки) из variant-осей Figma и **обязательно** показывает его на подтверждение пользователю до финализации плана.
 
-2. **Скаффолд** — скилл `new-component-package` (`pnpm add-package` + tier-специфичные артефакты).
+2. **Создание пакета** — скилл `new-component-package` (`pnpm add-package` + tier-специфичные артефакты).
 3. **Доработка** — скиллы `figma-component-import`, `component-story-set`, `component-e2e-tests`, `component-docs`.
 4. **Обновление токенов старой DS** — команда `/up-cloud-deps` обновляет зависимости `@snack-uikit/*` / `@cloud-ru/*` до актуальных версий.
 5. **Валидация** — скилл `component-validation-loop` (сквозной цикл до зелёного билда).
@@ -438,6 +456,24 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 ## Claude Code инструментарий
 
 В репо подключён набор правил, скиллов и слэш-команд — это основной способ сопровождения компонентов.
+
+> Несмотря на имя `.claude/`, **Cursor тоже читает эту папку**: правила из `.claude/rules/*.md` подхватываются как контекст, а слэш-команды из `.claude/commands/*.md` доступны через палитру Cursor. Отдельной конфигурации под Cursor дублировать не нужно.
+
+### Rules vs Skills vs Commands — в чём разница
+
+Три механизма Claude Code решают разные задачи. Главное отличие — **кто и когда их активирует**.
+
+| Механизм | Где лежит | Когда применяется | Что внутри |
+|----------|-----------|-------------------|------------|
+| **Rules** | `.claude/rules/*.md` | **Всегда** — как фоновый контекст ко всем действиям агента в репо | Стандарты («как делать»): структура пакета, формат stories, правила импортов, запреты |
+| **Skills** | `.claude/skills/*.md` | Агент **сам решает** активировать, когда задача матчится по описанию | Пошаговые воркфлоу со своим контекстом и подзадачами |
+| **Commands** | `.claude/commands/*.md` | Только когда **пользователь** вызвал `/<имя>` | Прямой триггер конкретного действия с аргументами |
+
+Правило большого пальца:
+
+- Хочешь зафиксировать **стандарт** («все stories должны быть в CSF3») — это **rule**.
+- Хочешь **связать несколько шагов** под понятную задачу («покрой компонент e2e-тестами») — это **skill**.
+- Хочешь дать пользователю **кнопку** («сделай мне коммит из staged diff») — это **command**.
 
 ### Rules — правила уровня репо (`.claude/rules/`)
 
@@ -527,7 +563,7 @@ pnpm test:e2e:chrome -g "props propagation"                               # по
 ### Типовой флоу: новый компонент из Figma
 
 1. `/migrate-to-v2 <pkg> <figma-url>` — план в `.claude/plan/<pkg>.md`.
-2. Skill `new-component-package` — скаффолд через `pnpm add-package`.
+2. Skill `new-component-package` — создание пакета через `pnpm add-package`.
 3. Skill `figma-component-import` / `figma-to-code` — разметка + токены.
 4. `/add-stories <pkg>` — Playground + VisualMatrix (+ baselines вручную после).
 5. `/add-tests <pkg>` — spec-файлы по tier'у.
@@ -539,7 +575,7 @@ pnpm test:e2e:chrome -g "props propagation"                               # по
 
 ```bash
 /migrate-to-v2 accordion https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/...?node-id=2507-25203
-pnpm add-package                # скаффолд по плану
+pnpm add-package                # создание пакета по плану
 /add-stories accordion
 pnpm dev:storybook              # в отдельном терминале
 pnpm test:e2e:update-snapshots  # baselines
