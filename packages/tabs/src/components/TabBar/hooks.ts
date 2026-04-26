@@ -1,4 +1,4 @@
-import { useLayoutEffect } from '@design-system/utils';
+import { useLayoutEffect } from '@ds/utils';
 import { Children, ReactElement, RefObject, useMemo, useState } from 'react';
 
 import { Direction } from '../../types';

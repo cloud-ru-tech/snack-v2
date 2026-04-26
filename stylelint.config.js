@@ -20,16 +20,24 @@ module.exports = {
       },
     },
     {
-      files: ['astro/src/components/mdx/**/*.scss', 'astro/src/styles/starlight-overrides.scss'],
+      files: ['apps/docs/src/styles/**/*.scss', 'apps/docs/src/components/**/*.scss'],
       rules: {
         'declaration-no-important': null,
         'no-descending-specificity': null,
       },
     },
     {
-      files: ['storybook/components/ControlPanel/**/*.scss'],
-      rules: { 'declaration-property-value-allowed-list': null },
+      files: ['apps/storybook/.storybook/components/**/*.scss'],
+      rules: {
+        'declaration-property-value-allowed-list': null,
+      },
     },
   ],
-  ignoreFiles: ['**/dist/**', '**/node_modules/**', '**/storybook-static/**', '**/packages/icons/**'],
+  ignoreFiles: [
+    '**/dist/**',
+    '**/node_modules/**',
+    '**/storybook-static/**',
+    '**/.astro/**',
+    '**/packages/icons/**',
+  ],
 };

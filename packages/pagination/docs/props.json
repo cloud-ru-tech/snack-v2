@@ -1,0 +1,159 @@
+{
+  "PaginationSliderItem": {
+    "displayName": "PaginationSliderItem",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "activated": {
+        "type": "boolean",
+        "required": false
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "xs",
+          "s"
+        ]
+      },
+      "setButtonRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false
+      }
+    }
+  },
+  "PaginationSlider": {
+    "displayName": "PaginationSlider",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Общее количество страниц"
+      },
+      "page": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая страница"
+      },
+      "onChange": {
+        "type": "(page: number) => void",
+        "required": true,
+        "description": "Колбек смены значения"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS класснейм"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      }
+    }
+  },
+  "PaginationNumberItem": {
+    "displayName": "PaginationNumberItem",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string | number",
+        "required": true
+      },
+      "activated": {
+        "type": "boolean",
+        "required": false
+      },
+      "onClick": {
+        "type": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void",
+        "required": true
+      },
+      "href": {
+        "type": "string",
+        "required": false
+      },
+      "setButtonRef": {
+        "type": "Ref<HTMLButtonElement | HTMLAnchorElement>",
+        "required": false
+      }
+    }
+  },
+  "Pagination": {
+    "displayName": "Pagination",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Общее количество страниц"
+      },
+      "page": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая страница"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "link",
+          "button"
+        ],
+        "defaultValue": "button",
+        "description": "Варианты тега кнопок: <a/> или <button/>"
+      },
+      "maxLength": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "7",
+        "description": "Максимальное количество страниц/элементов, помещающихся до транкейта"
+      },
+      "onChange": {
+        "type": "(page: number, event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent> | undefined) => void",
+        "required": true,
+        "description": "Колбэк смены значения"
+      },
+      "hrefFormatter": {
+        "type": "((page: number) => string)",
+        "required": false,
+        "description": "Колбэк форматирования ссылки"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS класснейм"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      }
+    }
+  }
+}

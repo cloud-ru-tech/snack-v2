@@ -1,0 +1,11 @@
+{
+  "PortalContextProvider": {
+    "displayName": "PortalContextProvider",
+    "props": {
+      "root": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false
+      }
+    }
+  }
+}

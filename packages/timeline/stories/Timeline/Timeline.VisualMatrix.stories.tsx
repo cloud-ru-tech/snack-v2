@@ -1,18 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ReactNode } from 'react';
+import { Timeline, type TimelineProps } from '@ds/timeline';
+import { Meta, StoryObj } from '@storybook/react';
+import { ReactNode } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
-import timelineReadme from '../../README.md?raw';
-import { Timeline, type TimelineProps } from '../../src';
 import { DemoComponent } from '../helperComponents/DemoComponent/DemoComponent';
 import styles from '../styles.module.scss';
 
 const meta: Meta = {
-  title: 'Components/Timeline/Timeline',
-  parameters: {
-    readme: { content: timelineReadme },
-  },
+  title: 'Components/Timeline',
 };
 
 export default meta;

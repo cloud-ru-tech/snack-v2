@@ -1,0 +1,121 @@
+---
+title: Pagination
+package: '@ds/pagination'
+description: Постраничная навигация с нумерацией, кнопками «назад / вперёд» и свёрткой длинных диапазонов.
+order: 1
+---
+
+import { Pagination } from '@ds/pagination'
+import { PaginationDemo } from '../demos/PaginationDemo'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import paginationDoc from './props.json'
+
+# Pagination
+
+Классическая постраничная навигация. Рендерит `<nav aria-label="Pagination">` с кнопками «предыдущая», нумерацией страниц и «следующая». Длинные диапазоны сворачиваются через `...`-элементы, клик по которым прыгает в середину скрытого отрезка.
+
+## Демо
+
+<PaginationDemo client:load />
+
+## Когда использовать
+
+- Списки, таблицы, ленты с количеством страниц 5+.
+- Результаты поиска, архивы, блоги.
+- Когда пользователю нужен прямой переход на конкретную страницу.
+
+Когда **не** нужен `Pagination`: для 2–3 элементов используйте `PaginationSlider` — он плотнее и понятнее визуально.
+
+## Для дизайнеров
+
+### Size
+
+| Size | Высота кнопки | Применение |
+|------|---------------|------------|
+| `s` | 24px | Таблицы, компактные списки — по умолчанию |
+| `m` | 32px | Лендинги, широкие hero-блоки |
+
+### Variant
+
+| Variant | Рендер | Когда |
+|---------|--------|-------|
+| `button` | `<button>` | SPA-навигация с `onChange` |
+| `link` | `<a href>` | SEO-friendly страницы + `hrefFormatter` |
+
+### Truncation
+
+`maxLength` задаёт максимальное количество элементов (кнопок страниц + break'ов) между стрелками. При превышении сохраняется первая, последняя и окно вокруг текущей страницы — пропуски рисуются кликабельными `...`-элементами.
+
+### Do / Don't
+
+- ✅ Один `<nav>` пагинации на список. Не дублируйте сверху и снизу, если список короткий.
+- ❌ Пагинация на 3–4 страницы — лучше покажите все в одном ряду без свёртки.
+- ✅ `variant='link'` + `hrefFormatter` для результатов поиска, архивов — чтобы работал «Открыть в новой вкладке» и индексация.
+- ❌ `variant='link'` без `hrefFormatter` — ссылки будут без `href`.
+- ✅ `size='s'` в плотных таблицах — не занимает лишнюю высоту строки.
+- ❌ Смешивать `s` и `m` внутри одной страницы.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/pagination
+```
+
+```ts
+import { Pagination } from '@ds/pagination'
+import '@ds/pagination/style.css'
+```
+
+### Примеры использования
+
+<Example title='Базовый сценарий'>
+  <Pagination total={10} page={3} onChange={(page) => console.log(page)} />
+</Example>
+
+<Example title='Размер m'>
+  <Pagination total={10} page={3} size='m' onChange={(page) => console.log(page)} />
+</Example>
+
+<Example title='Длинный диапазон — свёртка в середине'>
+  <Pagination total={42} page={12} maxLength={7} onChange={(page) => console.log(page)} />
+</Example>
+
+<Example
+  title='Как ссылки'
+  description="variant='link' + hrefFormatter — каждая страница получает href"
+>
+  <Pagination
+    total={8}
+    page={2}
+    variant='link'
+    hrefFormatter={(page) => `?page=${page}`}
+    onChange={(page) => console.log(page)}
+  />
+</Example>
+
+### States
+
+- **Первая страница** — стрелка «назад» получает `disabled`.
+- **Последняя страница** — стрелка «вперёд» получает `disabled`.
+- **Текущая страница** — `aria-current='page'` + визуально выделенная кнопка.
+- **Break (`...`)** — кликабельная, переходит в середину скрытого диапазона и передаёт фокус на новую страницу.
+
+### Props
+
+<PropsTable data={paginationDoc.Pagination} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-pagination--playground' height={360} client:load />
+
+## Доступность
+
+- Корневой контейнер — `<nav aria-label='Pagination'>` (landmark для быстрого перехода).
+- Текущая страница — `aria-current='page'`.
+- Нативные `<button>` и `<a>` — Enter / Space и ссылочное поведение из коробки.
+- После клика по break (`...`) фокус переводится на страницу, в которую пользователя прыгнули, чтобы не терять контекст клавиатурной навигации.
+- Иконки стрелок снабжены `aria-label='Previous page'` / `'Next page'`.

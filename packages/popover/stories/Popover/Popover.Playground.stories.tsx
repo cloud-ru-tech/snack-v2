@@ -3,10 +3,10 @@ import {
   Popover,
   POPOVER_HEIGHT_STRATEGY,
   POPOVER_WIDTH_STRATEGY,
-  type PopoverProps,
+  PopoverProps,
   TRIGGER,
-} from '@design-system/popover';
-import type { Meta, StoryObj } from '@storybook/react';
+} from '@ds/popover';
+import { Meta, StoryObj } from '@storybook/react';
 
 import styles from './styles.module.scss';
 
@@ -15,12 +15,7 @@ const PopoverContentSlot = () => <div className={styles.popoverContent}>Popover 
 const meta: Meta<PopoverProps> = {
   title: 'Components/Popover',
   component: Popover,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2219-5414',
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.Click,

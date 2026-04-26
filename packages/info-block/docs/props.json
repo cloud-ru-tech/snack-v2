@@ -1,0 +1,57 @@
+{
+  "InfoBlock": {
+    "displayName": "InfoBlock",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "icon": {
+        "type": "IconPredefinedProps",
+        "required": false,
+        "description": "Иконка"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "vertical",
+          "horizontal"
+        ],
+        "defaultValue": "vertical",
+        "description": "Расположение элементов"
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вложенный контент (например ButtonGroup)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      }
+    }
+  }
+}

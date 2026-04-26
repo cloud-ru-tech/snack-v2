@@ -1,0 +1,88 @@
+import { StorybookUrlOptions } from '../../../playwright/utils';
+
+export const BUTTON_GROUP_TEST_ID = 'button-group';
+export const BUTTON_GROUP_PRIMARY_TEST_ID = 'button-group-primary';
+export const BUTTON_GROUP_SECONDARY_TEST_ID = 'button-group-secondary';
+export const BUTTON_GROUP_TERTIARY_TEST_ID = 'button-group-tertiary';
+
+/** Title `Components/ButtonGroup` → story id prefix `components-buttongroup` (SB 10). */
+export const BUTTON_GROUP_STORY_NAME = 'buttongroup';
+
+export const BUTTON_GROUP_STORIES = {
+  playground: 'playground',
+  /** `PlaygroundPrimaryDisabled` — nested action objects from URL are unreliable on static iframe. */
+  playgroundPrimaryDisabled: 'playground-primary-disabled',
+  /** `PlaygroundCriticalPrimary` — baked args for the same assertions as former URL-only overrides. */
+  playgroundCriticalPrimary: 'playground-critical-primary',
+  actions: 'actions',
+  threeActions: 'three-actions',
+  vertical: 'vertical',
+  filled: 'filled',
+  break: 'break',
+  visualMatrix: 'visual-matrix',
+} as const;
+
+export type ButtonGroupStoryProps = Record<string, unknown>;
+
+const DEFAULT_PRIMARY = {
+  label: 'Сохранить',
+  appearance: 'primary',
+  view: 'filled',
+  'data-test-id': BUTTON_GROUP_PRIMARY_TEST_ID,
+};
+const DEFAULT_SECONDARY = {
+  label: 'Отмена',
+  appearance: 'neutral',
+  view: 'outline',
+  'data-test-id': BUTTON_GROUP_SECONDARY_TEST_ID,
+};
+
+export function buildButtonGroupStoryOptions(
+  props?: ButtonGroupStoryProps,
+  story: string = BUTTON_GROUP_STORIES.playground,
+): StorybookUrlOptions {
+  const base: Record<string, unknown> = {
+    'data-test-id': BUTTON_GROUP_TEST_ID,
+    primaryAction: DEFAULT_PRIMARY,
+    secondaryAction: DEFAULT_SECONDARY,
+  };
+  return {
+    name: BUTTON_GROUP_STORY_NAME,
+    story,
+    props: { ...base, ...props },
+  };
+}
+
+export const BUTTON_GROUP_ROOT_SELECTOR = '#storybook-root';
+
+export const BUTTON_GROUP_SCREENSHOT_OPTS = {
+  animations: 'disabled',
+  caret: 'hide',
+} as const;
+
+export const BUTTON_GROUP_STATIC_VISUAL_CASES: ReadonlyArray<{
+  story: string;
+  name: string;
+}> = [
+  { story: BUTTON_GROUP_STORIES.actions, name: 'button-group-actions.png' },
+  { story: BUTTON_GROUP_STORIES.threeActions, name: 'button-group-three-actions.png' },
+  { story: BUTTON_GROUP_STORIES.vertical, name: 'button-group-vertical.png' },
+  { story: BUTTON_GROUP_STORIES.filled, name: 'button-group-filled.png' },
+  { story: BUTTON_GROUP_STORIES.break, name: 'button-group-break.png' },
+  { story: BUTTON_GROUP_STORIES.visualMatrix, name: 'button-group-visual-matrix.png' },
+];
+
+export const BUTTON_GROUP_A11Y_CASES: ReadonlyArray<{
+  story: string;
+  label: string;
+}> = [
+  { story: BUTTON_GROUP_STORIES.playground, label: 'playground' },
+  { story: BUTTON_GROUP_STORIES.threeActions, label: 'three-actions' },
+  { story: BUTTON_GROUP_STORIES.vertical, label: 'vertical' },
+];
+
+export const BUTTON_GROUP_RESPONSIVE_VIEWPORTS = [
+  { width: 375, height: 812, name: '375' },
+  { width: 768, height: 1024, name: '768' },
+  { width: 1440, height: 900, name: '1440' },
+] as const;

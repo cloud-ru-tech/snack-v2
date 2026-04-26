@@ -1,4 +1,4 @@
-import { useValueControl } from '@design-system/utils';
+import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import { Children, isValidElement, ReactElement, ReactNode } from 'react';
 

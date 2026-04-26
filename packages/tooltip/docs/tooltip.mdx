@@ -1,0 +1,87 @@
+---
+title: Tooltip
+package: '@ds/tooltip'
+description: Всплывающая подсказка над произвольным триггером — четыре placement, четыре варианта trigger, поддержка клавиатуры и screen-reader.
+order: 1
+---
+
+import { Tooltip } from '@ds/tooltip'
+import { TooltipDemo } from '../demos/TooltipDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { ClickTrigger } from '../demos/examples/ClickTrigger'
+import ClickTriggerSrc from '../demos/examples/ClickTrigger.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import tooltipDoc from './props.json'
+
+# Tooltip
+
+Pop-up-подсказка над произвольным триггером. Принимает `children` (сам триггер) и `tip` (содержимое подсказки).
+
+## Демо
+
+<TooltipDemo client:load />
+
+## Когда использовать
+
+- Для раскрытия контекста на icon-only кнопке («Настройки», «Экспорт»).
+- Для подсказки по disabled-элементу — почему он недоступен.
+- Для аббревиатур и терминов в таблицах.
+
+Когда **не** нужен: для длинного описания — вместо этого Popover или отдельная страница.
+
+## Placement
+
+Четыре базовых позиции: `top` / `right` / `bottom` / `left` плюс start/end-варианты. По умолчанию `top`, с fallback на остальные — если не хватает места, тултип «отпрыгивает» в противоположную сторону.
+
+## Trigger
+
+| Trigger | Когда |
+|---------|-------|
+| `hover` | Простой hover, без focus — для чисто указательных сценариев |
+| `hoverAndFocusVisible` *(по умолчанию)* | Hover + focus с клавиатуры — самый универсальный |
+| `click` | Подсказка остаётся открытой до повторного клика |
+| `focus` | Только на focus — для input'ов и textarea |
+
+## Do / Don't
+
+- ✅ Короткий текст в `tip` — 1–2 предложения.
+- ❌ Кнопки или ссылки внутри `tip` — пользователь не сможет до них добраться мышью.
+- ✅ `trigger='click'` для тултипов, которые важно прочитать.
+- ❌ Tooltip как единственный способ сообщить важное — он скрыт до взаимодействия.
+
+## Примеры использования
+
+<Example
+  title='1. Базовая подсказка'
+  description='Hover + focus по умолчанию'
+  code={BasicSrc}
+>
+  <Basic client:load />
+</Example>
+
+<Example
+  title='2. Click trigger'
+  description='Открывается по клику и остаётся видимой'
+  code={ClickTriggerSrc}
+>
+  <ClickTrigger client:load />
+</Example>
+
+## Props
+
+<PropsTable data={tooltipDoc.Tooltip} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tooltip--playground' height={320} client:load />
+
+## Доступность
+
+- Содержимое тултипа получает `role='tooltip'` — scree-reader ассоциирует его с триггером.
+- По умолчанию `trigger='hoverAndFocusVisible'` — подсказка доступна с клавиатуры.
+- Escape закрывает открытый тултип (поведение `PopoverPrivate`).
+- При `prefers-reduced-motion` анимации появления отключены.
+- Не полагайтесь на Tooltip как единственный способ сообщить информацию — дублируйте в ARIA-атрибутах или в UI, если контекст критичный.

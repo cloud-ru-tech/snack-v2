@@ -1,61 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, ProgressBarPage } from '@ds/progress-bar';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import progressbarReadme from '../../README.md?raw';
-import { APPEARANCE, ProgressBarPage, ProgressBarPageProps } from '../../src';
-
-const meta: Meta<ProgressBarPageProps> = {
+const meta: Meta<typeof ProgressBarPage> = {
   title: 'Components/ProgressBar/ProgressBarPage',
   component: ProgressBarPage,
-  parameters: {
-    readme: { content: progressbarReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/YOUR_FILE_ID/...',
-    },
-    docs: {
-      description: {
-        component: `
-# ProgressBarPage
-
-Глобальный индикатор загрузки страницы (фиксированный вверху экрана). Использует анимацию прогресса при включённом состоянии.
-
-## Features
-
-- Показ прогресса загрузки страницы
-- Настраиваемая длительность анимации и инкремента
-- Опциональный минимальный порог (0–1)
-- Цветовая схема (appearance)
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/progress-bar
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { ProgressBarPage, APPEARANCE } from '@design-system/progress-bar';
-
-function Layout() {
-  const [loading, setLoading] = useState(true);
-  return (
-    <ProgressBarPage
-      inProgress={loading}
-      appearance={APPEARANCE.Primary}
-    />
-  );
-}
-\`\`\`
-        `,
-      },
-    },
-  },
   args: {
     inProgress: true,
     animationDuration: 200,
     incrementDuration: 800,
     appearance: APPEARANCE.Primary,
+    'data-test-id': 'progress-bar-page',
   },
   argTypes: {
     inProgress: {
@@ -77,25 +32,21 @@ function Layout() {
     appearance: {
       control: 'select',
       options: Object.values(APPEARANCE),
-      description: 'Внешний вид (цветовая схема)',
+      description: 'Цветовая схема индикатора',
     },
     className: {
       control: 'text',
       description: 'CSS-класс',
     },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
-    },
   },
 };
 
 export default meta;
-type Story = StoryObj<ProgressBarPageProps>;
+type Story = StoryObj<typeof ProgressBarPage>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('progressbar')).toBeVisible();
+  },
 };

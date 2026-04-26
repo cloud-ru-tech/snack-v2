@@ -3,10 +3,10 @@ import {
   NotifierInfoFilledSpriteSVG,
   NotifierSuccessFilledSpriteSVG,
   NotifierWarningFilledSpriteSVG,
-} from '@design-system/icons';
+} from '@ds/icons';
 
 import { APPEARANCE } from '../../constants';
-import type { Appearance } from '../../types';
+import { Appearance } from '../../types';
 
 export function getAlertAppearanceIcon(appearance: Appearance) {
   switch (appearance) {

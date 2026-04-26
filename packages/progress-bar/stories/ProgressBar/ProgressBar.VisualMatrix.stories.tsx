@@ -1,20 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, PROGRESS_BAR_SIZE, ProgressBar } from '@ds/progress-bar';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import progressbarReadme from '../../README.md?raw';
-import { APPEARANCE, PROGRESS_BAR_SIZE, ProgressBar, ProgressBarProps } from '../../src';
-
-const meta: Meta<ProgressBarProps> = {
-  title: 'Components/ProgressBar/ProgressBar',
+const meta: Meta<typeof ProgressBar> = {
+  title: 'Components/ProgressBar',
   component: ProgressBar,
-  parameters: {
-    readme: { content: progressbarReadme },
-  },
 };
 
 export default meta;
-type Story = StoryObj<ProgressBarProps>;
+type Story = StoryObj<typeof ProgressBar>;
 
 const keySizes = Object.values(PROGRESS_BAR_SIZE);
 const keyAppearances = Object.values(APPEARANCE);

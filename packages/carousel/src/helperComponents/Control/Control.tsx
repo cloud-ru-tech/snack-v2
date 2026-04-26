@@ -1,6 +1,6 @@
-import { Button } from '@design-system/button';
-import { ChevronLeftSVG, ChevronRightSVG } from '@design-system/icons';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Button } from '@ds/button';
+import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { forwardRef } from 'react';
 

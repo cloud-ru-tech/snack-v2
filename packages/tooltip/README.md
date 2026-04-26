@@ -1,251 +1,200 @@
 # Tooltip
 
-Пакет компонентов для всплывающих подсказок: **Tooltip** (с произвольным триггером) и **QuestionTooltip** (с иконкой «вопрос»). Стили и анатомия — из design tokens (Figma variables).
+`@ds/tooltip` — Пакет подсказок — компонент Tooltip для произвольного триггера и QuestionTooltip с иконкой «?» для полей форм и сложной терминологии.
 
-## Installation
+Пакет `@ds/tooltip` содержит всплывающие подсказки:
+
+- ****Tooltip**** — универсальная подсказка. Оборачивает произвольный триггер (кнопка, иконка, текст) и показывает pop-up по hover, focus или клику.
+- ****QuestionTooltip**** — специализированный вариант с готовым триггером «?» для полей форм и терминов.
+
+## Состав пакета
+
+## Установка
 
 ```bash
-npm install @design-system/tooltip
-# or
-yarn add @design-system/tooltip
-# or
-pnpm add @design-system/tooltip
+pnpm add @ds/tooltip
 ```
 
-## Exports
-
-```typescript
-import {
-  TRIGGER,
-  PLACEMENT,
-  type Placement,
-  SIZE,
-  type Size
-} from '@design-system/tooltip';
+```ts
+import { Tooltip, QuestionTooltip } from '@ds/tooltip'
+import '@ds/tooltip/style.css'
 ```
 
-## Live examples
+## Общие принципы
 
-### Basic
+- **Короткий текст.** Tooltip не заменяет документацию — 1–2 предложения максимум.
+- **Не прячьте критичную информацию.** Если действие блокируется по причине, покажите её в UI, а не только в tooltip.
+- **Достижимо с клавиатуры.** По умолчанию trigger `hoverAndFocusVisible` — подсказка появляется при focus через Tab.
+- **Уважайте `prefers-reduced-motion`.** Анимации появления отключаются системно.
 
-```tsx
-import { QuestionTooltip } from '@design-system/tooltip';
+## Tooltip
 
-export function Example() {
-  return (
-    <QuestionTooltip tip="Подсказка при наведении на иконку" />
-  );
-}
-```
+Всплывающая подсказка над произвольным триггером — четыре placement, четыре варианта trigger, поддержка клавиатуры и screen-reader.
 
-### Размер иконки (`size`)
+Pop-up-подсказка над произвольным триггером. Принимает `children` (сам триггер) и `tip` (содержимое подсказки).
 
-```tsx
-import { QuestionTooltip, SIZE } from '@design-system/tooltip';
+## Демо
 
-export function Example() {
-  return (
-    <>
-      <QuestionTooltip tip="Компактная иконка" size={SIZE.XS} />
-      <QuestionTooltip tip="Крупная иконка" size={SIZE.S} />
-    </>
-  );
-}
-```
+## Когда использовать
 
-### Placement и triggerLabel
+- Для раскрытия контекста на icon-only кнопке («Настройки», «Экспорт»).
+- Для подсказки по disabled-элементу — почему он недоступен.
+- Для аббревиатур и терминов в таблицах.
 
-```tsx
-import { QuestionTooltip } from '@design-system/tooltip';
+Когда **не** нужен: для длинного описания — вместо этого Popover или отдельная страница.
 
-export function Example() {
-  return (
-    <QuestionTooltip
-      tip="Тултип снизу"
-      placement="bottom"
-      triggerLabel="Подсказка о поле"
-    />
-  );
-}
-```
+## Placement
 
-### Разные положения (placement)
+Четыре базовых позиции: `top` / `right` / `bottom` / `left` плюс start/end-варианты. По умолчанию `top`, с fallback на остальные — если не хватает места, тултип «отпрыгивает» в противоположную сторону.
 
-```tsx
-import { StorybookIframe } from '@design-system/tooltip';
+## Trigger
 
-Наведи курсор на иконки — тултип показывается сверху, снизу, слева или справа от триггера.
-<StorybookIframe storyId="components-tooltip-questiontooltip--placements" showControls={false} height="400px" />
-```
+| Trigger | Когда |
+|---------|-------|
+| `hover` | Простой hover, без focus — для чисто указательных сценариев |
+| `hoverAndFocusVisible` *(по умолчанию)* | Hover + focus с клавиатуры — самый универсальный |
+| `click` | Подсказка остаётся открытой до повторного клика |
+| `focus` | Только на focus — для input'ов и textarea |
 
-### Длинный текст
+## Do / Don't
 
-```tsx
-import { StorybookIframe } from '@design-system/tooltip';
+- ✅ Короткий текст в `tip` — 1–2 предложения.
+- ❌ Кнопки или ссылки внутри `tip` — пользователь не сможет до них добраться мышью.
+- ✅ `trigger='click'` для тултипов, которые важно прочитать.
+- ❌ Tooltip как единственный способ сообщить важное — он скрыт до взаимодействия.
 
-Тултип ограничивает максимальную ширину и переносит строки — длинный текст остаётся читаемым.
-<StorybookIframe storyId="components-tooltip-questiontooltip--with-long-content" showControls={false} height="300px" />
-```
+## Примеры использования
 
-### По клику (trigger)
+<Example
+  title='1. Базовая подсказка'
+  description='Hover + focus по умолчанию'
+  code={BasicSrc}
+>
+  <Basic client:load />
+</Example>
 
-```tsx
-import { QuestionTooltip, TRIGGER } from '@design-system/tooltip';
-
-export function Example() {
-  return (
-    <QuestionTooltip
-      tip="Открывается по клику"
-      trigger={TRIGGER.Click}
-    />
-  );
-}
-```
-
-### Задержки по hover
-
-```tsx
-import { QuestionTooltip } from '@design-system/tooltip';
-
-export function Example() {
-  return (
-    <QuestionTooltip
-      tip="Откроется через 500 мс"
-      hoverDelayOpen={500}
-      hoverDelayClose={200}
-    />
-  );
-}
-```
-
-### Basic usage
-
-```tsx
-import { Tooltip } from '@design-system/tooltip';
-
-export function Example() {
-  return (
-    <Tooltip tip="Подсказка">
-      <button type="button">Наведи курсор</button>
-    </Tooltip>
-  );
-}
-```
-
-### Разные положения (placement)
-
-```tsx
-import { StorybookIframe } from '@design-system/tooltip';
-
-Наведи курсор на кнопки — тултип показывается сверху, снизу, слева или справа от триггера.
-<StorybookIframe storyId="components-tooltip-tooltip--placements" showControls={false} height="400px" />
-```
-
-### Длинный текст
-
-```tsx
-import { StorybookIframe } from '@design-system/tooltip';
-
-Тултип ограничивает максимальную ширину и переносит строки — длинный текст остаётся читаемым.
-<StorybookIframe storyId="components-tooltip-tooltip--with-long-content" showControls={false} height="300px" />
-```
-
-### Trigger по клику
-
-```tsx
-import { Tooltip } from '@design-system/tooltip';
-
-export function Example() {
-  return (
-    <Tooltip
-      tip="Тултип по клику"
-      trigger="click"
-    >
-      <button type="button">Нажми, чтобы показать</button>
-    </Tooltip>
-  );
-}
-```
-
-### Задержки по hover
-
-```tsx
-import { Tooltip } from '@design-system/tooltip';
-
-export function Example() {
-  return (
-    <Tooltip
-      tip="Откроется через 500 мс"
-      hoverDelayOpen={500}
-      hoverDelayClose={200}
-    >
-      <span>Наведи курсор</span>
-    </Tooltip>
-  );
-}
-```
-
-
-## Usage
-
-
+<Example
+  title='2. Click trigger'
+  description='Открывается по клику и остаётся видимой'
+  code={ClickTriggerSrc}
+>
+  <ClickTrigger client:load />
+</Example>
 
 ## Props
 
-### QuestionTooltipProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| tip* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
-| disableMaxWidth | `boolean` | false | Отключение ограничения ширины тултипа |
-| className | `string` | - | CSS-класс |
-| triggerClassName | `string` | - | CSS-класс триггера |
-| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
-| open | `boolean` | - | Управляет состоянием показан/не показан. |
-| onOpenChange | `(isOpen: boolean) => void` | - | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
-| hoverDelayClose | `number` | - | Задержка закрытия по ховеру |
-| triggerRef | `ForwardedRef<ReferenceType \| HTMLElement>` | - | Ref ссылка на триггер |
-| disableSpanWrapper | `boolean` | - | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
-| fallbackPlacements | `Placement[]` | - | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
-| closeOnPopstate | `boolean` | - | Закрывать ли поповер при пекреходе по истории браузера |
-| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.Hover | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | top | Положение поповера относительно своего триггера (children). |
-| children | `ReactNode \| ChildrenFunction` | - | Триггер поповера (подробнее читайте ниже) |
-| tooltipClassname | `string` | - | CSS-класс контейнера подсказки |
-| triggerLabel | `string` | Подсказка | Доступное имя для иконки-триггера |
-| tabIndex | `number` | - | Tab index для кнопки-триггера |
-| size | enum Size: `"xs"`, `"s"` | xs | Размер |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `tip` | `ReactNode` | — | Содержимое тултипа (текст или разметка) |
+| `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
+| `className` | `string` | — |  |
+| `triggerClassName` | `string` | — | CSS-класс триггера |
+| `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
+| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
+| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| `hoverDelayOpen` | `number` | `0` | Задержка открытия по ховеру |
+| `hoverDelayClose` | `number` | `0` | Задержка закрытия по ховеру |
+| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
+<br/>
+Пригодится для элементов с `position: absolute` |
+| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `trigger` | `"hoverAndFocusVisible"` \| `"click"` \| `"hover"` \| `"focusVisible"` \| `"focus"` \| `"hoverAndFocus"` \| `"clickAndFocusVisible"` | `TRIGGER.HoverAndFocusVisible` | Условие отображения поповера:
+<br/> - `click` - открывать по клику
+<br/> - `hover` - открывать по ховеру
+<br/> - `focusVisible` - открывать по focus-visible
+<br/> - `focus` - открывать по фокусу
+<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible
+<br/> - `hoverAndFocus` - открывать по ховеру и фокусу
+<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `placement` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` \| `"left-start"` \| `"left-end"` \| `"right-start"` \| `"right-end"` \| `"top-start"` \| `"top-end"` \| `"bottom-start"` \| `"bottom-end"` | `PLACEMENT.Top` | Положение поповера относительно своего триггера (children). |
+| `children` | `ReactNode | ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 
-### TooltipProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| tip* | `ReactNode` | - | Содержимое тултипа (текст или разметка) |
-| disableMaxWidth | `boolean` | - | Отключение ограничения ширины тултипа |
-| className | `string` | - | CSS-класс |
-| triggerClassName | `string` | - | CSS-класс триггера |
-| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
-| open | `boolean` | - | Управляет состоянием показан/не показан. |
-| onOpenChange | `(isOpen: boolean) => void` | - | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
-| hoverDelayClose | `number` | - | Задержка закрытия по ховеру |
-| triggerRef | `ForwardedRef<ReferenceType \| HTMLElement>` | - | Ref ссылка на триггер |
-| disableSpanWrapper | `boolean` | - | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
-| fallbackPlacements | `Placement[]` | - | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
-| closeOnPopstate | `boolean` | - | Закрывать ли поповер при пекреходе по истории браузера |
-| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | TRIGGER.HoverAndFocusVisible | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | PLACEMENT.Top | Положение поповера относительно своего триггера (children). |
-| children | `ReactNode \| ChildrenFunction` | - | Триггер поповера (подробнее читайте ниже) |
+## Storybook
 
-## Best Practices
+<StorybookEmbed storyId='components-tooltip--playground' height={320} client:load />
 
-1. **Краткий текст** — используйте для коротких пояснений к полям, меткам или настройкам.
-2. **Осмысленный triggerLabel** — задайте `triggerLabel` под контекст (например, «Подсказка о сумме»), чтобы скринридеры озвучивали назначение кнопки.
-3. **Триггер по контексту** — на десктопе удобен hover; для тач-устройств можно использовать `trigger={TRIGGER.Click}`.
+## Доступность
 
----
+- Содержимое тултипа получает `role='tooltip'` — scree-reader ассоциирует его с триггером.
+- По умолчанию `trigger='hoverAndFocusVisible'` — подсказка доступна с клавиатуры.
+- Escape закрывает открытый тултип (поведение `PopoverPrivate`).
+- При `prefers-reduced-motion` анимации появления отключены.
+- Не полагайтесь на Tooltip как единственный способ сообщить информацию — дублируйте в ARIA-атрибутах или в UI, если контекст критичный.
 
-## Additional Resources
+## QuestionTooltip
 
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+Специализированный тултип с готовым триггером-иконкой «?» — для подсказок к полям форм и терминам.
+
+Тултип с встроенным триггером — иконкой «?» размером 16px. Использует `Tooltip` под капотом, добавляя стандартный triggerButton с `aria-label`.
+
+## Демо
+
+## Когда использовать
+
+- Рядом с названием поля формы, чтобы объяснить назначение поля.
+- Рядом с термином или аббревиатурой в тексте и таблицах.
+- В онбординговых состояниях — пояснение новой фичи.
+
+## Пример
+
+<Example
+  title='Подсказка к полю формы'
+  description='aria-label триггера задаётся через triggerLabel'
+  code={QuestionSrc}
+>
+  <Question client:load />
+</Example>
+
+## Props
+
+`QuestionTooltip` наследует все props `Tooltip` и добавляет несколько своих:
+
+- `triggerLabel` — доступное имя триггера-иконки (по умолчанию «Подсказка»).
+- `tooltipClassname` — класс на контейнер подсказки.
+- `tabIndex` — tabindex на triggerButton (по умолчанию 0).
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `tip` | `ReactNode` | — | Содержимое тултипа (текст или разметка) |
+| `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
+| `className` | `string` | — |  |
+| `triggerClassName` | `string` | — | CSS-класс триггера |
+| `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
+| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
+| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
+| `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
+| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
+<br/>
+Пригодится для элементов с `position: absolute` |
+| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `trigger` | `"hoverAndFocusVisible"` \| `"click"` \| `"hover"` \| `"focusVisible"` \| `"focus"` \| `"hoverAndFocus"` \| `"clickAndFocusVisible"` | `TRIGGER.Hover` | Условие отображения поповера:
+<br/> - `click` - открывать по клику
+<br/> - `hover` - открывать по ховеру
+<br/> - `focusVisible` - открывать по focus-visible
+<br/> - `focus` - открывать по фокусу
+<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible
+<br/> - `hoverAndFocus` - открывать по ховеру и фокусу
+<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `placement` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` \| `"left-start"` \| `"left-end"` \| `"right-start"` \| `"right-end"` \| `"top-start"` \| `"top-end"` \| `"bottom-start"` \| `"bottom-end"` | `top` | Положение поповера относительно своего триггера (children). |
+| `children` | `ReactNode | ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
+| `tooltipClassname` | `string` | — | CSS-класс контейнера подсказки |
+| `triggerLabel` | `string` | `Подсказка` | Доступное имя для иконки-триггера |
+| `tabIndex` | `number` | `0` | Tab index для кнопки-триггера |
+
+## Storybook
+
+<StorybookEmbed storyId='components-tooltip-question-tooltip--playground' height={320} client:load />
+
+## Доступность
+
+- Триггер — нативный `<button type='button'>` с обязательным `aria-label`.
+- По умолчанию `trigger='hover'` — для form-tooltip'ов, чтобы подсказка не появлялась при Tab через форму. Переключите на `hoverAndFocusVisible`, если хотите focus-доступность.
+- `aria-label` по умолчанию — «Подсказка»; для нестандартных сценариев передавайте `triggerLabel`.
+- Иконка «?» декоративна; смысл доступности несёт именно `aria-label` и содержимое `tip`.

@@ -1,60 +1,60 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, COLOR, Counter, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '@ds/counter';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import counterReadme from '../../README.md?raw';
-import { APPEARANCE, Counter, CounterProps, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '../../src';
+import styles from './styles.module.scss';
 
-const meta: Meta<CounterProps> = {
+const meta: Meta<typeof Counter> = {
   title: 'Components/Counter',
   component: Counter,
-  parameters: {
-    readme: { content: counterReadme },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
-type Story = StoryObj<CounterProps>;
+type Story = StoryObj<typeof Counter>;
 
-const keySizes = Object.values(SIZE);
+const keySizes = [SIZE.XS, SIZE.S] as const;
 const keyAppearances = Object.values(APPEARANCE);
+const keyVariants = [
+  { label: VARIANT.Count, value: 42 },
+  { label: VARIANT.CountPlus, value: 15 },
+  { label: VARIANT.CountK, value: 2500 },
+] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <>
+    <div className={styles.matrix}>
       <StoryTable
         sectionTitle='Appearance × Size'
         firstColumnHeader='Appearance'
-        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        columnHeaders={keySizes.map(size => size.toUpperCase())}
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
-          cells: keySizes.map(size => (
-            <Counter key={size} value={5} appearance={appearance} size={size} variant={VARIANT.Count} />
-          )),
+          cells: keySizes.map(size => <Counter key={size} value={5} appearance={appearance} size={size} />),
         }))}
       />
       <StoryTable
         sectionTitle='Variant × Size'
         firstColumnHeader='Variant'
-        columnHeaders={keySizes.map(s => s.toUpperCase())}
-        rows={[
-          {
-            variantLabel: VARIANT.Count,
-            cells: keySizes.map(size => <Counter key={size} value={42} variant={VARIANT.Count} size={size} />),
-          },
-          {
-            variantLabel: VARIANT.CountPlus,
-            cells: keySizes.map(size => (
-              <Counter key={size} value={15} variant={VARIANT.CountPlus} plusLimit={DEFAULT_PLUS_LIMIT} size={size} />
-            )),
-          },
-          {
-            variantLabel: VARIANT.CountK,
-            cells: keySizes.map(size => <Counter key={size} value={2500} variant={VARIANT.CountK} size={size} />),
-          },
-        ]}
+        columnHeaders={keySizes.map(size => size.toUpperCase())}
+        rows={keyVariants.map(({ label, value }) => ({
+          variantLabel: label,
+          cells: keySizes.map(size => (
+            <Counter key={size} value={value} variant={label} size={size} plusLimit={DEFAULT_PLUS_LIMIT} />
+          )),
+        }))}
       />
-    </>
+      <StoryTable
+        sectionTitle='Color'
+        firstColumnHeader='Color'
+        columnHeaders={keySizes.map(size => size.toUpperCase())}
+        rows={Object.values(COLOR).map(color => ({
+          variantLabel: color,
+          cells: keySizes.map(size => <Counter key={size} value={7} color={color} size={size} />),
+        }))}
+      />
+    </div>
   ),
 };

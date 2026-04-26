@@ -1,10 +1,10 @@
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
-import type { Appearance, Placement } from './types';
+import { Appearance, Placement } from './types';
 import { getOffsetStyle } from './utils';
 
 export type HotSpotProps = WithSupportProps<{

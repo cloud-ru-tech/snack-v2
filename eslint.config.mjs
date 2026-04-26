@@ -13,18 +13,26 @@ export default [
     rules: {
       '@typescript-eslint/no-namespace': 'off',
       'prettier/prettier': 'off',
+      // Explicit options required — @vitest/eslint-plugin@1.6.6 has a broken
+      // meta.defaultOptions that crashes under @typescript-eslint/utils@8.58+.
+      'vitest/no-standalone-expect': ['error', { additionalTestBlockFunctions: [] }],
     },
   },
   {
     ignores: [
       '**/dist/**/*',
+      '**/storybook-static/**/*',
+      '**/.astro/**/*',
+      '**/*.astro',
       'packages/icons/src/components/**/*',
       'packages/icons/templates/**/*',
       'packages/icons/scripts/**/*',
+      // Placeholder-templated source for scaffolded packages — not valid TS.
+      'scripts/templates/**/*',
     ],
   },
   {
-    files: ['packages/**/__test__/**/*.ts', 'packages/**/scripts/**/*.ts', 'playwright/**/*.ts'],
+    files: ['packages/**/__test__/**/*.ts', 'packages/**/scripts/**/*.ts', 'tests/**/*.ts'],
     rules: {
       '@cloud-ru/ssr-safe-react/domApi': 'off',
     },
@@ -37,7 +45,7 @@ export default [
     },
   },
   {
-    files: ['packages/*/stories/**/*', 'storybook/stories/**/*'],
+    files: ['packages/*/stories/**/*', 'apps/storybook/**/*'],
     rules: {
       'react/function-component-definition': 'off',
       '@cloud-ru/ssr-safe-react/domApi': 'off',
@@ -47,19 +55,18 @@ export default [
   },
   {
     files: [
-      'storybook/stories/**/*',
-      'storybook/preview.tsx',
-      'scripts/scss-extension-transformer.ts',
-      'storybook/main.js',
+      'apps/storybook/.storybook/**/*',
+      'apps/docs/astro.config.mjs',
+      'scripts/**/*.ts',
       'eslint.config.mjs',
-      'vitest.config.ts'
+      'vitest.config.ts',
     ],
     rules: {
       'import/no-default-export': 'off',
     },
   },
   {
-    files: ['astro/src/scripts/**/*'],
+    files: ['apps/docs/src/**/*'],
     rules: {
       '@cloud-ru/ssr-safe-react/domApi': 'off',
       'import/no-default-export': 'off',

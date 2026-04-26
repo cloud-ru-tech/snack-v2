@@ -1,10 +1,10 @@
-import { Dropdown } from '@design-system/dropdown';
-import { Scroll } from '@design-system/scroll';
-import type { Ref } from 'react';
+import { Dropdown } from '@ds/dropdown';
+import { Scroll } from '@ds/scroll';
+import { Ref } from 'react';
 
 import { TAG_ROW_TEST_IDS } from '../../components/TagRow/constants';
 import { SIZE } from '../../constants';
-import type { Size, TagRowItemInner } from '../../types';
+import { Size, TagRowItemInner } from '../../types';
 import { TagRowSimple } from '../TagRowSimple';
 import styles from './styles.module.scss';
 

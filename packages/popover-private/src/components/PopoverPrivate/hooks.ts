@@ -1,4 +1,4 @@
-import { useLayoutEffect } from '@design-system/utils';
+import { useLayoutEffect } from '@ds/utils';
 import { useState } from 'react';
 
 type UseOffsetProps = {

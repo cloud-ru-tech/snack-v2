@@ -1,25 +1,25 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 
-import { ensureParentDirectory } from '../utils/ensureDirectory';
+import { ensureParentDirectory } from '../utils/ensureDirectory'
 
 export function simpleCopy({ src, dist }: { src: string; dist: string }) {
   return (file: string) => {
     if (!fs.statSync(file).isFile()) {
-      return;
+      return
     }
-    const relativePathToSrcFile = path.relative(src, file);
-    const dirname = path.dirname(relativePathToSrcFile);
-    const extension = path.extname(relativePathToSrcFile);
-    const basename = path.basename(relativePathToSrcFile, extension);
-    const filename = path.join(dirname, `${basename}${extension}`);
+    const relativePathToSrcFile = path.relative(src, file)
+    const dirname = path.dirname(relativePathToSrcFile)
+    const extension = path.extname(relativePathToSrcFile)
+    const basename = path.basename(relativePathToSrcFile, extension)
+    const filename = path.join(dirname, `${basename}${extension}`)
 
-    const esmOutFile = path.resolve(dist, filename);
+    const esmOutFile = path.resolve(dist, filename)
 
-    const content = fs.readFileSync(file);
+    const content = fs.readFileSync(file)
 
-    ensureParentDirectory(esmOutFile);
+    ensureParentDirectory(esmOutFile)
 
-    fs.writeFileSync(esmOutFile, content);
-  };
+    fs.writeFileSync(esmOutFile, content)
+  }
 }

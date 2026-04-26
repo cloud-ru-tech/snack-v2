@@ -1,177 +1,101 @@
 # Typography
 
-Компонент типографики, использующий стили из `@sbercloud/figma-variables`. Поддерживает различные варианты, размеры и начертания шрифтов.
+`@ds/typography` — Универсальный текстовый компонент с едиными токенами стиля — variant / size / weight — и автовыбором семантического тега.
 
-## Installation
+`Typography` — единая точка входа для любого текстового стиля. Комбинация `variant` × `size` × `weight` покрывает всю типографическую шкалу дизайн-системы; тег (`h1`/`h2`/`p`/`label`) выбирается автоматически и переопределяется через `as`.
+
+## Когда использовать
+
+- Любой текст в интерфейсе — заголовки, параграфы, подписи, метки.
+- Вместо точечных CSS-классов на `font-size`/`font-weight`.
+
+Когда **не** нужен `Typography`: для чистых UI-примитивов, где текст входит в состав компонента (например, `Button` label), — используйте встроенные пропсы компонента.
+
+### Variant — смысловая роль текста
+
+| Variant | Типичное применение | Тег по умолчанию |
+|---------|---------------------|------------------|
+| `display` | Главный экранный акцент — лендинги, hero | `h1` |
+| `headline` | Заголовок раздела страницы | `h1` |
+| `title` | Заголовок карточки / блока | `h2` |
+| `label` | Метки форм, значений | `label` |
+| `body` | Основной текст, параграфы | `p` |
+
+### Size — размер
+
+`s` / `m` / `l` — применяется ко всем вариантам. Выбирается в контексте: `display l` для hero, `body m` для параграфов, `label s` для подписей.
+
+### Weight — начертание
+
+`regular` (по умолчанию) / `thin` / `mono`. `mono` — моноширинный для кода и табличных данных.
+
+### Do / Don't
+
+- ✅ Один `headline` на секцию.
+- ❌ Два `display` на одном экране — теряется иерархия.
+- ✅ Используйте `as` только если автотег не подходит семантически.
+- ❌ `as='div'` на заголовке — скринридеры пропустят его.
+
+### Установка
 
 ```bash
-npm install @design-system/typography
-# or
-yarn add @design-system/typography
-# or
-pnpm add @design-system/typography
+pnpm add @ds/typography
 ```
 
-## Exports
-
-```typescript
-import {
-  Typography,
-  type TypographyProps,
-  DEFAULT_SIZE,
-  DEFAULT_VARIANT,
-  DEFAULT_WEIGHT,
-  SIZE,
-  VARIANT,
-  WEIGHT,
-  type TypographySize,
-  type TypographyVariant,
-  type TypographyWeight
-} from '@design-system/typography';
+```ts
+import { Typography, VARIANT, SIZE, WEIGHT } from '@ds/typography'
+import '@ds/typography/style.css'
 ```
 
-## Live examples
+### Примеры использования
 
-### Basic usage
+<Example title='Базовое использование'>
+  <Typography>Обычный body-текст по умолчанию</Typography>
+</Example>
+
+<Example title='Заголовок раздела'>
+  <Typography variant='headline' size='l'>Заголовок страницы</Typography>
+</Example>
+
+<Example title='Моноширинный'>
+  <Typography variant='body' weight='mono'>const answer = 42</Typography>
+</Example>
+
+<Example title='Кастомный тег (полиморфизм)'>
+  <Typography as='span' variant='body'>Body внутри inline-потока</Typography>
+</Example>
+
+### Props
+
+<PropsTable data={typographyDoc.Typography} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-typography--playground' height={300} client:load />
+
+## Доступность
+
+- Автовыбор тега сохраняет правильную семантику: `display`/`headline` → `<h1>`, `title` → `<h2>`, `label` → `<label>`, `body` → `<p>`.
+- Переопределяйте `as` только при обоснованной семантике — не ломайте иерархию заголовков на странице.
+- Контраст текста на подложке — ответственность контейнера: компонент не задаёт цвет фона.
+
+## Typography
 
 ```tsx
-import { Typography } from '@design-system/typography';
-
-<Typography>Базовый текст</Typography>
-```
-
-### Variants
-
-```tsx
-import { Typography } from '@design-system/typography';
-
-<Typography variant="display" size="l">
-  Display Large
-</Typography>
-<Typography variant="headline" size="l">
-  Headline Large
-</Typography>
-<Typography variant="title" size="m">
-  Title Medium
-</Typography>
-<Typography variant="label" size="s">
-  Label Small
-</Typography>
-<Typography variant="body" size="m">
-  Body Medium - основной текст для чтения
-</Typography>
-```
-
-### Sizes
-
-```tsx
-import { Typography } from '@design-system/typography';
-
-<Typography variant="headline" size="s">
-  Headline Small
-</Typography>
-<Typography variant="headline" size="m">
-  Headline Medium
-</Typography>
-<Typography variant="headline" size="l">
-  Headline Large
-</Typography>
-```
-
-### Weights
-
-```tsx
-import { Typography } from '@design-system/typography';
-
-<Typography variant="headline" size="l" weight="regular">
-  Regular Weight
-</Typography>
-<Typography variant="headline" size="l" weight="thin">
-  Thin Weight
-</Typography>
-<Typography variant="headline" size="l" weight="mono">
-  Mono Weight
-</Typography>
-```
-
-
-## Usage
-
-### Basic example
-
-```tsx
-import { Typography } from '@design-system/typography';
+import { Typography } from '@ds/typography'
 
 export function Example() {
-  return <Typography>Текст</Typography>;
+  return <Typography variant="VARIANT.body" weight="WEIGHT.regular">Click me</Typography>
 }
 ```
 
-### With variant and size
+### Props
 
-```tsx
-import { Typography } from '@design-system/typography';
-
-export function Example() {
-  return (
-    <Typography variant="headline" size="l">
-      Заголовок
-    </Typography>
-  );
-}
-```
-
-### With weight
-
-```tsx
-import { Typography } from '@design-system/typography';
-
-export function Example() {
-  return (
-    <Typography variant="body" size="m" weight="thin">
-      Тонкий текст
-    </Typography>
-  );
-}
-```
-
-## Props
-
-### TypographyProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| children | `ReactNode` | - | Дочерние элементы |
-| variant | enum TypographyVariant: `"title"`, `"display"`, `"headline"`, `"label"`, `"body"` | VARIANT.body | Вариант типографики |
-| size | enum TypographySize: `"s"`, `"m"`, `"l"` | SIZE.m | Размер типографики |
-| weight | enum TypographyWeight: `"regular"`, `"thin"`, `"mono"` | WEIGHT.regular | Начертание шрифта |
-| as | `ElementType` | - | HTML тег для рендеринга |
-| className | `string` | - | CSS-класс |
-### TypographySizeProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-### TypographyVariantProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-### TypographyWeightProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-
-## Best Practices
-
-1. **Используйте правильные варианты** — выбирайте вариант типографики в соответствии с семантикой контента (display для главных заголовков, body для основного текста)
-
-2. **Соблюдайте иерархию** — используйте размеры последовательно для создания визуальной иерархии
-
-3. **Выбирайте начертание осознанно** — regular для основного контента, thin для акцентов, mono для кода и технических данных
-
-4. **Используйте семантические теги** — позвольте компоненту автоматически выбирать тег, или явно укажите `as` для лучшей семантики
-
-5. **Не смешивайте стили** — используйте компонент Typography вместо прямого применения CSS классов для консистентности
-
----
-
-## Additional Resources
-
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Дочерние элементы |
+| `variant` | `"title"` \| `"display"` \| `"headline"` \| `"label"` \| `"body"` | `VARIANT.body` | Вариант типографики |
+| `size` | `"s"` \| `"m"` \| `"l"` | `SIZE.m` | Размер типографики |
+| `weight` | `"regular"` \| `"thin"` \| `"mono"` | `WEIGHT.regular` | Начертание шрифта |
+| `as` | `ElementType` | — | HTML тег для рендеринга |
+| `className` | `string` | — | CSS-класс |

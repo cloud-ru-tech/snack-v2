@@ -1,4 +1,4 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 
 import { VARIANT } from './constants';
 

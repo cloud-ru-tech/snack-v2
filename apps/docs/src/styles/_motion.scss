@@ -1,0 +1,6 @@
+// Motion constants — no equivalents in @cloud-ru/figma-variables.
+// Kept local and narrow; do not add colours or sizes here.
+
+$docs-duration-fast: 120ms;
+$docs-duration-normal: 200ms;
+$docs-ease-out: cubic-bezier(0.16, 1, 0.3, 1);

@@ -1,5 +1,5 @@
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
-import type { MouseEvent, Ref } from 'react';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { MouseEvent, Ref } from 'react';
 
 import { usePaginationContext } from '../../contexts';
 import styles from './styles.module.scss';

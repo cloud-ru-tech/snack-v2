@@ -1,46 +1,43 @@
 ---
-title: Progress Bar
-description: Компоненты индикации прогресса — линейный ProgressBar, круговой ProgressBarCircle и страничный ProgressBarPage для дизайн-системы.
-version: "1.0.0"
+title: ProgressBar
+package: '@ds/progress-bar'
+description: Пакет индикаторов прогресса дизайн-системы — линейный ProgressBar, круговой ProgressBarCircle и верхний page-индикатор ProgressBarPage.
+order: 0
 ---
 
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
+# ProgressBar
 
-# Progress Bar
+Пакет `@ds/progress-bar` предоставляет три компонента для отображения хода длительных операций и загрузки страниц: линейный, круговой и page-индикатор поверх layout'а.
 
-Пакет содержит компоненты для отображения прогресса операции: линейный индикатор **ProgressBar**, круговой **ProgressBarCircle** и индикатор загрузки страницы **ProgressBarPage**.
+## Состав пакета
 
-**Version:** `{frontmatter.version}`
+- [**ProgressBar**](/components/progress-bar/progress-bar) — линейный детерминированный индикатор. Показывает явный процент от 0 до 100.
+- [**ProgressBarCircle**](/components/progress-bar/progress-bar-circle) — круговой детерминированный индикатор. Используется в компактных местах: карточках, таблицах, тулбарах.
+- [**ProgressBarPage**](/components/progress-bar/progress-bar-page) — неопределённый индикатор загрузки поверх страницы. Автоматически растёт, пока `inProgress=true`, и исчезает после завершения.
 
-## Installation
+## Установка
 
 ```bash
-npm install @design-system/progress-bar
-# or
-yarn add @design-system/progress-bar
-# or
-pnpm add @design-system/progress-bar
+pnpm add @ds/progress-bar
 ```
 
-## Changelog
+```ts
+import { ProgressBar, ProgressBarCircle, ProgressBarPage } from '@ds/progress-bar'
+import '@ds/progress-bar/style.css'
+```
 
-<Changelog packageName="progress-bar" />
+## Когда какой использовать
 
-<LlmLink component="progress-bar" />
+| Задача | Компонент |
+|--------|-----------|
+| Загрузка файла / форма с явным процентом | `ProgressBar` |
+| Индикатор в таблице, карточке, avatar-upload | `ProgressBarCircle` |
+| Роутинг, навигация между страницами | `ProgressBarPage` |
+| Неопределённая загрузка без прогресса | `ProgressBarPage` (с `inProgress`) |
 
-## Overview
+## Общие принципы
 
-Компоненты пакета используются для визуализации прогресса (0–100%) или состояния загрузки:
-
-- **ProgressBar** — линейный индикатор прогресса, два размера (XS, S), несколько цветовых схем (appearance)
-- **ProgressBarCircle** — круговой индикатор прогресса с теми же размерами и вариантами оформления
-- **ProgressBarPage** — индикатор загрузки страницы (неопределённый прогресс), с анимацией и настройкой скорости
-
-Общие возможности: единая палитра `appearance` (neutral, primary, red, green и др.), доступность, константы `PROGRESS_BAR_SIZE` и `APPEARANCE` для типизации.
-
-## Components
-
-- **[ProgressBar](./components/ProgressBar.mdx)** — линейный индикатор прогресса (примеры, API)
-- **[ProgressBarCircle](./components/ProgressBarCircle.mdx)** — круговой индикатор прогресса (примеры, API)
-- **[ProgressBarPage](./components/ProgressBarPage.mdx)** — индикатор загрузки страницы (примеры, API)
+- **Показывайте число, если знаете его.** `ProgressBar` и `ProgressBarCircle` всегда детерминированные — значение `progress` от 0 до 100.
+- **Цвет `appearance` — семантический.** `primary` по умолчанию, `red` для критических операций, `green` для успеха. Не используйте цвет ради декорации.
+- **Один page-индикатор на экран.** `ProgressBarPage` живёт на уровне layout — дублировать его внутри страниц не нужно.
+- **ARIA из коробки.** Компоненты рендерятся с `role="progressbar"` и `aria-valuenow/min/max`. Скринридеры читают прогресс без доработки.

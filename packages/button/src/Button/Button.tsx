@@ -1,11 +1,11 @@
-import { Counter } from '@design-system/counter';
-import { Sun } from '@design-system/loader';
+import { Counter } from '@ds/counter';
+import { Sun } from '@ds/loader';
 import cn from 'classnames';
-import { type ComponentPropsWithoutRef, type ElementType, type MouseEvent, type ReactElement } from 'react';
+import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
 import { ICON_POSITION } from './constants';
 import styles from './styles.module.scss';
-import { type ButtonProps } from './types';
+import { ButtonProps } from './types';
 import { getVariant } from './utils';
 
 const TARGET_BLANK = '_blank';

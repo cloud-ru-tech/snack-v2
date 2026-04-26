@@ -1,21 +1,14 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import ratingReadme from '../../README.md?raw';
 import { APPEARANCE, SIZE } from '../../src';
 import { RatingStar, RatingStarProps, VALUE } from '../../src/helperComponents/RatingStar';
 
 const meta: Meta<RatingStarProps> = {
   title: 'Components/Rating',
   component: RatingStar,
-  parameters: {
-    readme: { content: ratingReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=7725-1502&p=f&m=dev',
-    },
-  },
+  parameters: { layout: 'padded' },
   args: {},
   argTypes: {},
 };

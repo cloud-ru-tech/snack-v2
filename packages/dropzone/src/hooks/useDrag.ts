@@ -1,6 +1,5 @@
 import debounce from 'lodash.debounce';
-import type { DragEventHandler } from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { DragEventHandler, useCallback, useEffect, useMemo, useState } from 'react';
 
 type UseDragResult = {
   events: Record<'onDragLeave' | 'onDragOver' | 'onDrop', DragEventHandler<HTMLElement>>;

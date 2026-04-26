@@ -1,9 +1,9 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo } from 'react';
 
 import { useIsLoadingValue } from '../../hooks';
-import { Skeleton, SkeletonProps } from '../Skeleton';
+import { Skeleton, type SkeletonProps } from '../Skeleton';
 import styles from './styles.module.scss';
 import { Align, Size, Variant } from './types';
 

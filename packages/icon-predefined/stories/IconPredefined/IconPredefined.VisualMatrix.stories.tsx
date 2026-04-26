@@ -1,9 +1,8 @@
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, IconPredefined, type IconPredefinedProps, SIZE } from '@ds/icon-predefined';
+import { PlaceholderSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
-
-import { APPEARANCE, IconPredefined, type IconPredefinedProps, SIZE } from '../../src';
 
 const meta: Meta<IconPredefinedProps> = {
   title: 'Components/IconPredefined',

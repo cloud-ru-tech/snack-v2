@@ -1,0 +1,227 @@
+{
+  "TrackLine": {
+    "displayName": "TrackLine",
+    "props": {
+      "style": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "solid",
+          "dashed"
+        ],
+        "defaultValue": "solid"
+      }
+    }
+  },
+  "TrackItem": {
+    "displayName": "TrackItem",
+    "props": {
+      "key": {
+        "type": "string",
+        "required": false,
+        "description": "Уникальный ключ"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Контент"
+      },
+      "contentPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "right",
+          "left"
+        ],
+        "defaultValue": "right",
+        "description": "Положение контента"
+      },
+      "role": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "start",
+          "center",
+          "end"
+        ],
+        "description": "Роль"
+      },
+      "opposite": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент в противоположной колонке"
+      },
+      "lineStyle": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "solid",
+          "dashed"
+        ],
+        "description": "Стиль нижней линии"
+      },
+      "dotVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "subEvent"
+        ],
+        "description": "Вид маркера"
+      },
+      "dotAppearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "description": "Семантический цвет маркера"
+      },
+      "showLines": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать вертикальные сегменты"
+      },
+      "alternateMode": {
+        "type": "boolean",
+        "required": false,
+        "description": "Перемешать положение контента"
+      }
+    }
+  },
+  "TrackDot": {
+    "displayName": "TrackDot",
+    "props": {
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "subEvent"
+        ],
+        "defaultValue": "default",
+        "description": "Вид маркера"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "neutral",
+        "description": "Семантический цвет маркера"
+      }
+    }
+  },
+  "Track": {
+    "displayName": "Track",
+    "props": {
+      "role": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "start",
+          "center",
+          "end"
+        ],
+        "description": "Роль"
+      },
+      "lineStyle": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "solid",
+          "dashed"
+        ],
+        "description": "Стиль нижней линии"
+      },
+      "dotVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "subEvent"
+        ],
+        "defaultValue": "default",
+        "description": "Вид маркера"
+      },
+      "dotAppearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "description": "Семантический цвет маркера"
+      },
+      "showLines": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать вертикальные сегменты"
+      }
+    }
+  },
+  "Timeline": {
+    "displayName": "Timeline",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "TimelineItem[]",
+        "required": true,
+        "description": "Пункты таймлайна"
+      },
+      "contentPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "right",
+          "left"
+        ],
+        "defaultValue": "right",
+        "description": "Положение контента"
+      },
+      "alternate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Перемешать положение контента"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Сделать таймлайн во всю ширину"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      }
+    }
+  }
+}

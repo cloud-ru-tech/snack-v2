@@ -9,7 +9,7 @@ import {
   UIKIT_URL,
 } from './playwright/constants/common';
 import { PROJECTS } from './playwright/constants/projects';
-import { getCustomHeaders } from './playwright/utils/getCustomHeaders';
+// import { getCustomHeaders } from './playwright/utils/getCustomHeaders';
 import { getEnvironmentDependentConfigPart } from './playwright/utils/getEnvironmentDependentConfigPart';
 
 // eslint-disable-next-line import/no-default-export
@@ -19,6 +19,8 @@ export default defineConfig({
   outputDir: resolve(PLAYWRIGHT_ROOT_DIR, 'test-results'),
   testIgnore: ['**/node_modules/**'],
   fullyParallel: true,
+  // Baseline PNG: packages/<pkg>/__snapshots__/<arg>-<projectName>.png
+  snapshotPathTemplate: '{testDir}/{testFileDir}/../__snapshots__/{arg}-{projectName}{ext}',
 
   use: {
     baseURL: UIKIT_URL,
@@ -28,7 +30,7 @@ export default defineConfig({
     testIdAttribute: TEST_ID_ATTRIBUTE,
     actionTimeout: 10000,
     navigationTimeout: 20000,
-    extraHTTPHeaders: getCustomHeaders(),
+    // extraHTTPHeaders: getCustomHeaders(),
   },
 
   projects: PROJECTS,

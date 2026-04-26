@@ -1,116 +1,124 @@
 # Slider
 
-Горизонтальный слайдер значения или диапазона с опциональной шкалой.
+`@ds/slider` — Ползунок для выбора числового значения или диапазона — с метками, tooltip на ручке и опциональным равномерным распределением нелинейных значений.
 
-## Installation
+Ползунок для выбора одного значения или диапазона `[min, max]`. Поверх `rc-slider` — те же клавиатурные шорткаты и семантика, но с токенами дизайн-системы и расширениями: `handleTip` с форматированием и `marksEqualSpacing` для нелинейных наборов значений.
+
+## Демо
+
+<SliderDemo client:only="react" />
+
+## Когда использовать
+
+- Выбор числового параметра в известном диапазоне: цена, громкость, приоритет.
+- Фильтры «от…до» (`range`).
+- Управление параметрами, где ценно видеть относительное положение (например, прозрачность).
+
+Когда **не** стоит: точный ввод числа (лучше `InputNumber`), бинарные переключения (`Switch`), выбор из дискретных вариантов без порядка (`RadioGroup`).
+
+### Одиночное значение или диапазон
+
+| Режим | Props | Когда |
+|-------|-------|-------|
+| Одиночный | `value` / `defaultValue` — число | Параметр «сколько» |
+| Диапазон | `range`, `value` / `defaultValue` — `[number, number]` | Фильтр «от…до» |
+
+### Метки (marks)
+
+`marks` — объект `{ value: label }`. Ручка автоматически прилипает к значениям. Когда значения нелинейны (1, 2, 5, 10, 20, 50), включите `marksEqualSpacing`, чтобы метки распределились равномерно, а ручка всё равно отдавала реальное значение через `onChange`.
+
+### Tooltip на ручке
+
+`handleTip` показывает текущее значение внутри ручки — полезно для фильтров, где видна активная цифра без подписи снизу. Форматирование — `tipFormatter`.
+
+### Do / Don't
+
+- ✅ Короткий логичный диапазон — 5–20 шагов, чтобы пользователь мог попасть нужным движением.
+- ❌ Слайдер с 1000 шагами для «точной» настройки — лучше input с числом.
+- ✅ `range` для фильтров «цена от…до» — одна сущность вместо двух полей.
+- ❌ Смешивать `range` и отдельные слайдеры в одной форме для того же параметра.
+- ✅ `handleTip` + `tipFormatter` для денег, процентов, единиц измерения.
+- ❌ Подписывать слайдер только цветом — всегда `aria-label` или связанный `<label>`.
+
+### Установка
 
 ```bash
-npm install @design-system/slider
-# or
-yarn add @design-system/slider
-# or
-pnpm add @design-system/slider
+pnpm add @ds/slider
 ```
 
-## Exports
-
-
-
-## Live examples
-
-### Со шкалой (single)
-
-```tsx
-import { SliderLiveExampleShell, SliderSingleWithMarksExample } from '@design-system/slider';
-
-<SliderLiveExampleShell>
-<SliderSingleWithMarksExample client:only='react' />
-</SliderLiveExampleShell>
+```ts
+import { Slider } from '@ds/slider'
+import '@ds/slider/style.css'
 ```
 
-### Диапазон (range)
+### Примеры использования
+
+<Example title='Базовый слайдер' description='Одно значение, без меток' code={BasicSrc}>
+  <Basic client:only="react" />
+</Example>
+
+<Example title='Диапазон' description="range + handleTip — видно оба значения" code={RangeSrc}>
+  <Range client:only="react" />
+</Example>
+
+<Example title='С метками' code={MarksSrc}>
+  <Marks client:only="react" />
+</Example>
+
+<Example title='Disabled' code={DisabledSrc}>
+  <Disabled client:only="react" />
+</Example>
+
+### States
+
+- **`disabled`** — ручка недоступна для клавиатуры и мыши, цвет приглушён.
+- **Диапазон с равными значениями** — визуально совпадает (`[40, 40]`); рекомендуется валидировать на уровне формы.
+
+### Props
+
+<PropsTable data={sliderDoc.Slider} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-slider--playground' height={360} client:only="react" />
+
+## Доступность
+
+- Роль `slider` (от `rc-slider`), клавиатурные шорткаты: стрелки влево/вправо — шаг, Home/End — min/max.
+- `aria-valuemin`, `aria-valuemax`, `aria-valuenow` проставляются автоматически.
+- Для подписи используйте `aria-label` или оберните слайдер в `<label>`.
+- Метки (`marks`) рендерятся как текстовые узлы под треком — читаются скринридером последовательно.
+- `disabled` скрывает ручку из tab order.
+
+## getSortedMarkValues
 
 ```tsx
-import { SliderLiveExampleShell, SliderRangeWithMarksExample } from '@design-system/slider';
-
-<SliderLiveExampleShell>
-<SliderRangeWithMarksExample client:only='react' />
-</SliderLiveExampleShell>
-```
-
-### Подсказка на ручке
-
-```tsx
-import { SliderHandleTipExample, SliderLiveExampleShell } from '@design-system/slider';
-
-<SliderLiveExampleShell>
-<SliderHandleTipExample client:only='react' />
-</SliderLiveExampleShell>
-```
-
-### Равные интервалы шкалы (`marksEqualSpacing`)
-
-```tsx
-import { SliderLiveExampleShell, SliderMarksEqualSpacingComparisonExample } from '@design-system/slider';
-
-Для нелинейных значений меток (например 1, 2, 4, 8…) можно визуально распределить подписи **равномерно** по ширине трека. В `value` / `onChange` по-прежнему приходят те же числа, что в ключах `marks`. Сравнение с обычной линейной осью:
-<SliderLiveExampleShell>
-<SliderMarksEqualSpacingComparisonExample client:only='react' />
-</SliderLiveExampleShell>
-```
-
-
-## Usage
-
-### Со шкалой (single)
-
-```tsx
-import { Slider } from '@design-system/slider';
-
-const marks = { 10: '10', 20: '20', 30: '30', 40: '40', 50: '50' };
+import { getSortedMarkValues } from '@ds/slider'
 
 export function Example() {
-  return <Slider min={10} max={50} step={10} defaultValue={30} marks={marks} />;
+  return <getSortedMarkValues>Click me</getSortedMarkValues>
 }
 ```
 
-### Range
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+
+## Slider
 
 ```tsx
-import { Slider } from '@design-system/slider';
+import { Slider } from '@ds/slider'
 
-const marks = { 10: '10', 20: '20', 30: '30', 40: '40', 50: '50' };
-
-export function RangeExample() {
-  return <Slider range min={10} max={50} step={10} defaultValue={[20, 40]} marks={marks} />;
+export function Example() {
+  return <Slider>Click me</Slider>
 }
 ```
 
-### Подсказка на ручке
+### Props
 
-```tsx
-<Slider handleTip tipFormatter={v => `${v} мин`} min={0} max={100} defaultValue={50} />
-```
-
-## Props
-
-### SliderProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| handleTip | `boolean` | - | Показывать значение в тултипе на ручке |
-| tipFormatter | `(value: string \| number) => ReactNode` | - | Форматирование подсказки; по умолчанию — сырое значение |
-| marksEqualSpacing | `boolean` | - | Включение равномерного распределения при нелинейных значениях меток. |
-
-## Best Practices
-
-1. **Шкала** — передавайте `marks`, когда нужны подписи шагов; `min`/`max`/`step` должны быть согласованы с ключами `marks` (кроме режима `marksEqualSpacing`, где ось внутри индексная).
-2. **Контролируемый режим** — используйте `value` и `onChange` для синхронизации с состоянием формы.
-3. **`marksEqualSpacing`** — включайте, когда нужны равные визуальные интервалы при нелинейных значениях меток; наружу по-прежнему отдавайте доменные числа из `marks`.
-
----
-
-## Additional Resources
-
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `handleTip` | `boolean` | — | Показывать значение в тултипе на ручке |
+| `tipFormatter` | `((value: string | number) => ReactNode)` | — | Форматирование подсказки; по умолчанию — сырое значение |
+| `marksEqualSpacing` | `boolean` | — | Включение равномерного распределения при нелинейных значениях меток. |

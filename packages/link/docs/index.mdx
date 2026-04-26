@@ -1,232 +1,149 @@
 ---
 title: Link
-description: Ссылка с настраиваемым внешним видом, ролями и полиморфным рендером (в т.ч. внутри текста).
-version: '0.1.0'
+package: '@ds/link'
+description: Семантическая ссылка дизайн-системы — 10 appearance, полиморфный рендер (a / button / кастомный компонент), inline-режим в тексте и интеграция с TruncateString.
+order: 1
 ---
 
-import { Link } from '../src';
-import { APPEARANCE, ROLE } from '../src';
-import {
-  ExampleContainer,
-  ExampleRow,
-  ExampleGrid,
-  ExampleItem,
-} from '#astro/components/mdx';
+import { Link } from '@ds/link'
+import { LinkDemo } from '../demos/LinkDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { InsideText } from '../demos/examples/InsideText'
+import InsideTextSrc from '../demos/examples/InsideText.tsx?raw'
+import { Polymorphic } from '../demos/examples/Polymorphic'
+import PolymorphicSrc from '../demos/examples/Polymorphic.tsx?raw'
+import { External } from '../demos/examples/External'
+import ExternalSrc from '../demos/examples/External.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import linkDoc from './props.json'
 
 # Link
 
-Компонент стилизованной ссылки для использования в интерфейсе и внутри текста. Поддерживает разные варианты внешнего вида (appearance), роли (role), обрезку длинного текста и полиморфный рендер через `as` (например, для роутеров).
+Компонент для навигации — как внутри экрана (якорь), так и во внешних ресурсах. Полиморфен: по умолчанию рендерится как `<a>`, но поддерживает `<button>` и кастомные компоненты-роутеры через `as`. Внутри используется `TruncateString` — длинные ссылки обрезаются и раскрывают полный текст в тултипе.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-Поддерживает:
-- **Роли** — `regular`, `onAccent` — для размещения на обычном фоне или на акцентной поверхности
-- **Внешний вид** — neutral, invertNeutral, primary, red, orange, yellow, green, blue, violet, pink — для контраста с фоном
-- **Подчёркивание** — `underlined={true}` для отображения ссылки с нижним подчёркиванием (по умолчанию без подчёркивания)
-- **Внутри текста** — `insideText={true}` для ссылки в абзаце с переносами; иначе текст обрезается с настраиваемым вариантом (`truncateVariant: 'end' | 'middle'`)
-- **Полиморфный компонент** — `as` для рендера в виде другого элемента или компонента (например, `Link as={ReactRouterLink} to="/path" />`)
-- **Безопасность** — при `target="_blank"` автоматически добавляется `rel="noopener noreferrer"`
-- Figma: [Link](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6913-5372&p=f&m=dev)
+<LinkDemo client:only="react" />
 
-## Installation
+## Когда использовать
+
+- Для переходов между страницами и разделами.
+- Для ссылок внутри текста (`insideText`) — компонент не ломает перенос строк.
+- Для действий, которые семантически являются навигацией, но физически — кнопкой (`as='button'`).
+
+Когда **не** нужен: для кнопки-действия (сохранить, удалить) используйте `@ds/button` с `view='function'`, а не `Link as='button'`.
+
+## Для дизайнеров
+
+### Appearance — семантический цвет
+
+| Appearance | Когда использовать |
+|-----------|---------------------|
+| `primary` | Основная ссылка — большинство случаев |
+| `neutral` | В плотных списках и таблицах, чтобы не конкурировать с CTA |
+| `red` / `orange` / `yellow` / `green` / `blue` / `violet` / `pink` | Доменные цвета для статусов, категорий, меток |
+| `invertNeutral` | На тёмных фонах — инверсия нейтрального |
+
+<Example title='Основные appearance' code={BasicSrc}>
+  <Basic client:only="react" />
+</Example>
+
+### Role — контекст размещения
+
+- `regular` — на обычном фоне.
+- `onAccent` — на цветной подложке (hero-блок, тонированная карточка). Меняет цвет так, чтобы контраст с акцентной заливкой оставался достаточным.
+
+### Underlined — подчёркивание
+
+- В inline-контексте (`insideText`) подчёркивание чаще оправдано — глазу нужно отличить ссылку от обычного текста.
+- В навигации и списках подчёркивание избыточно — достаточно цвета и hover-состояния.
+
+### Do / Don't
+
+- ✅ `insideText` когда ссылка внутри предложения — компонент корректно переносит строки.
+- ❌ `insideText` для одиночной навигационной ссылки — она не должна переноситься.
+- ✅ `as='button'` для действий, которые не меняют URL (открыть диалог, раскрыть).
+- ❌ `as='button'` с `href` — противоречие: элемент не будет ссылкой.
+- ✅ `target='_blank'` — `rel='noopener noreferrer'` проставляется автоматически.
+- ❌ Переопределять `rel` вручную без необходимости — безопасные defaults ломаются.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/link
-# or
-yarn add @design-system/link
-# or
-pnpm add @design-system/link
+pnpm add @ds/link
 ```
 
-## Changelog
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-
-<Changelog packageName="link" />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component="link" />
-
-## Overview
-
-Link рендерит по умолчанию семантичный `<a>`, расширяемый атрибутами `href`, `target`, `onClick` и др. Через проп `as` можно передать другой компонент или тег — тогда он получит стили ссылки и пропы `data-role`, `data-appearance`, `data-inside-text`. Текст отображается через `TruncateString` (одна строка, вариант обрезки по желанию) или без обрезки при `insideText={true}`.
-
-- **Роль** — `regular` (по умолчанию) или `onAccent` для размещения на акцентном фоне
-- **Appearance** — цветовая схема ссылки (по умолчанию `primary`)
-- **underlined** — наличие нижнего подчёркивания (по умолчанию `false`)
-- **insideText** — ссылка внутри абзаца, с переносами
-- **truncateVariant** — при длинном тексте вне абзаца: `end` или `middle`
-
-## Live examples
-
-### Basic usage
-
-<ExampleContainer>
-  <ExampleRow gap="medium">
-    <Link text="Обычная ссылка" href="#" />
-    <Link text="Primary" appearance={APPEARANCE.Primary} href="#" />
-    <Link text="On accent" role={ROLE.OnAccent} appearance={APPEARANCE.Primary} href="#" />
-  </ExampleRow>
-</ExampleContainer>
-
-### Appearances
-
-<ExampleContainer>
-  <ExampleGrid columns={2} minColumnWidth="200px">
-    <ExampleItem label="Neutral" gap="medium">
-      <Link text="Neutral link" appearance={APPEARANCE.Neutral} href="#" />
-    </ExampleItem>
-    <ExampleItem label="Primary" gap="medium">
-      <Link text="Primary link" appearance={APPEARANCE.Primary} href="#" />
-    </ExampleItem>
-    <ExampleItem label="Blue" gap="medium">
-      <Link text="Blue link" appearance={APPEARANCE.Blue} href="#" />
-    </ExampleItem>
-    <ExampleItem label="Underlined" gap="medium">
-      <Link text="Подчёркнутая ссылка" href="#" underlined />
-    </ExampleItem>
-    <ExampleItem label="Inside text" gap="medium">
-      <p>
-        Текст абзаца с <Link text="ссылкой внутри" href="#" insideText /> и продолжением.
-      </p>
-    </ExampleItem>
-  </ExampleGrid>
-</ExampleContainer>
-
-## Storybook
-
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-
-### Playground
-
-<StorybookIframe storyId="components-link--playground" showControls={true} height="400px" />
-
-### Visual Matrix
-
-Для просмотра всех комбинаций ролей и вариантов внешнего вида используйте story **Visual Matrix** в Storybook.
-
-<StorybookIframe storyId="components-link--visual-matrix" showControls={false} height="800px" />
-
-## Usage
-
-### Basic example
-
-```tsx
-import { Link } from '@design-system/link';
-
-export function Example() {
-  return <Link text="Перейти" href="https://example.com" />;
-}
+```ts
+import { Link } from '@ds/link'
+import '@ds/link/style.css'
 ```
 
-По умолчанию используются `role="regular"`, `appearance="primary"`, для `<a>` — `target="_blank"` и `href="#"` при отсутствии `href`.
+### Примеры использования
 
-### With role and appearance
+<Example
+  title='1. Простая ссылка'
+  description='Рендер как нативный a href target'
+  code={BasicSrc}
+>
+  <Basic client:only="react" />
+</Example>
 
-```tsx
-import { Link, APPEARANCE, ROLE } from '@design-system/link';
+<Example
+  title='2. Внутри текста'
+  description="insideText=true: строка может переноситься, TruncateString не применяется"
+  code={InsideTextSrc}
+>
+  <InsideText client:only="react" />
+</Example>
 
-export function Example() {
-  return (
-    <Link
-      text="Ссылка на акценте"
-      href="/path"
-      role={ROLE.OnAccent}
-      appearance={APPEARANCE.Primary}
-    />
-  );
-}
-```
+<Example
+  title='3. Полиморфизм: кнопка'
+  description="as='button' — действие, семантически оформленное как ссылка"
+  code={PolymorphicSrc}
+>
+  <Polymorphic client:only="react" />
+</Example>
 
-### Underlined
+<Example
+  title='4. Внешняя ссылка'
+  description="target='_blank' → rel='noopener noreferrer' автоматически"
+  code={ExternalSrc}
+>
+  <External client:only="react" />
+</Example>
 
-```tsx
-import { Link } from '@design-system/link';
+### Полиморфизм
 
-export function Example() {
-  return <Link text="Подчёркнутая ссылка" href="#" underlined />;
-}
-```
+- `as='a'` *(по умолчанию)* — нативная ссылка.
+- `as='button'` — ссылка-действие, не меняет URL. Требуется `type='button'`, чтобы не триггерить отправку формы.
+- `as={RouterLink}` — совместим с `react-router` / `next/link`; специфичные пропсы (`to`, `href`) передаются насквозь.
 
-### Inside text
+### Обрезание длинного текста
 
-```tsx
-import { Link } from '@design-system/link';
+По умолчанию `<Link>` оборачивает текст в `TruncateString` с `maxLines={1}`. Управление через `truncateVariant`:
 
-export function Article() {
-  return (
-    <p>
-      Подробнее смотрите в <Link text="документации" href="/docs" insideText /> и на странице
-      обновлений.
-    </p>
-  );
-}
-```
+- `end` *(по умолчанию)* — обрезание с конца.
+- `middle` — обрезание посередине, подходит для имён файлов и идентификаторов.
 
-### Truncate long text
+Для ссылок внутри текста (`insideText`) обрезание отключается — строка переносится естественно.
 
-```tsx
-import { Link } from '@design-system/link';
+### Props
 
-export function Example() {
-  return (
-    <Link
-      text="Очень длинный текст ссылки, который не помещается в одну строку"
-      href="#"
-      truncateVariant="middle"
-    />
-  );
-}
-```
+<PropsTable data={linkDoc.Link} />
 
-### Polymorphic (e.g. React Router)
+### Storybook
 
-```tsx
-import { Link } from '@design-system/link';
-import { Link as RouterLink } from 'react-router-dom';
+<StorybookEmbed storyId='components-link--playground' height={320} client:only="react" />
 
-export function Nav() {
-  return (
-    <Link as={RouterLink} to="/dashboard" text="В кабинет" />
-  );
-}
-```
+## Доступность
 
-Переданный компонент должен принимать `className`, `data-role`, `data-appearance`, `data-inside-text`, `data-underlined` и остальные проброшенные пропы.
-
-## Props
-
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### LinkProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| text | `string` | - | Текст ссылки |
-| role | enum Role: `"regular"`, `"onAccent"` | regular | Роль |
-| appearance | enum Appearance: `"neutral"`, `"invertNeutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | primary | Стилизует ссылку для размещения на цветном фоне |
-| insideText | `boolean` | - | Находится ли ссылка внутри текста (и можно ли её переносить) |
-| truncateVariant | "end" \| "middle" | - | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
-| underlined | `boolean` | - | Наличие нижнего подчеркивания |
-| as | `ComponentType \| ElementType` | 'a' | Полиморфный компонент.  Оформить переданный компонент или html элемент в стиль ссылки.  Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
-
-
-[//]: DOCUMENTATION_SECTION_END
-
-При рендере как `<a>` (по умолчанию) компонент также принимает нативные атрибуты якоря: `href`, `target`, `download`, `onClick` и т.д. Поддерживаются `data-test-id` и `aria-*` через WithSupportProps. При `as` передаются все пропы, кроме описанных выше, переданному компоненту.
-
-## Accessibility
-
-- При рендере как `<a>` сохраняется семантика ссылки; скринридеры объявляют элемент как ссылку.
-- Для ссылок без понятного контекста используйте `aria-label` или убедитесь, что текст ссылки осмыслен («Подробнее», «Перейти в раздел X»).
-- При `target="_blank"` автоматически выставляется `rel="noopener noreferrer"`.
-- Компонент принимает стандартные HTML-атрибуты и поддержку `data-test-id` и `aria-*` для тестов и доступности.
-
-## Best practices
-
-1. **Текст ссылки** — используйте осмысленный текст вместо «здесь» или «подробнее» без контекста.
-2. **Appearance и фон** — подбирайте `appearance` под фон (neutral/primary на светлом, onAccent на акцентном блоке).
-3. **Внутри текста** — для ссылок в абзаце задавайте `insideText={true}`.
-4. **Длинный текст** — при ограниченной ширине используйте `truncateVariant="end"` или `"middle"`.
-5. **Роутеры** — для SPA-навигации используйте `as={RouterLink}` (или аналог) с пропом `to` вместо `href`.
-6. **Внешние ссылки** — оставляйте `target="_blank"` по умолчанию или явно; `rel="noopener noreferrer"` выставляется автоматически.
+- Нативный `<a>` — клавиатура (Enter) и screen-reader работают из коробки.
+- Для `as='button'` рендерится нативный `<button>` — Enter / Space работают, focus-ring видим при клавиатурной навигации.
+- При `target='_blank'` компонент автоматически ставит `rel='noopener noreferrer'` — защита от tabnabbing.
+- Полный текст длинной ссылки доступен через tooltip `TruncateString` — на hover и focus.
+- Цвет не единственный носитель смысла: ссылки подчёркиваются при hover/focus, и можно включить постоянное `underlined`.

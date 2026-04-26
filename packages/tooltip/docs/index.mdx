@@ -1,44 +1,38 @@
 ---
 title: Tooltip
-description: Всплывающая подсказка при наведении, по фокусу или клику. Настраиваемое расположение, триггеры и задержки.
-version: '0.1.0'
+package: '@ds/tooltip'
+description: Пакет подсказок — компонент Tooltip для произвольного триггера и QuestionTooltip с иконкой «?» для полей форм и сложной терминологии.
+order: 0
 ---
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 # Tooltip
 
-Пакет компонентов для всплывающих подсказок: **Tooltip** (с произвольным триггером) и **QuestionTooltip** (с иконкой «вопрос»). Стили и анатомия — из design tokens (Figma variables).
+Пакет `@ds/tooltip` содержит всплывающие подсказки:
 
-**Version:** `{frontmatter.version}`
+- [**Tooltip**](/components/tooltip/tooltip) — универсальная подсказка. Оборачивает произвольный триггер (кнопка, иконка, текст) и показывает pop-up по hover, focus или клику.
+- [**QuestionTooltip**](/components/tooltip/question-tooltip) — специализированный вариант с готовым триггером «?» для полей форм и терминов.
 
-## Installation
+## Состав пакета
+
+| Компонент | Когда использовать |
+|-----------|---------------------|
+| `Tooltip` | Любой кастомный триггер |
+| `QuestionTooltip` | Иконка «?» рядом с полем формы или термином |
+
+## Установка
 
 ```bash
-npm install @design-system/tooltip
-# or
-yarn add @design-system/tooltip
-# or
-pnpm add @design-system/tooltip
+pnpm add @ds/tooltip
 ```
 
-## Changelog
+```ts
+import { Tooltip, QuestionTooltip } from '@ds/tooltip'
+import '@ds/tooltip/style.css'
+```
 
-<Changelog packageName="tooltip" />
+## Общие принципы
 
-<LlmLink component="tooltip" />
-
-## Overview
-
-Компоненты тултипов показывают краткий текст или разметку рядом с элементом-триггером. В пакет входят:
-
-- **Tooltip** — подсказка с произвольным триггером (кнопка, иконка, текст). Открытие по hover, focus, click. 12 вариантов расположения, задержки, стрелка.
-- **QuestionTooltip** — тултип с готовым триггером-иконкой «?» для пояснений к полям и меткам; размер иконки — `size`: `xs` (16px) или `s` (24px).
-- **Триггеры** — hover, focus-visible, click и комбинации. По умолчанию: hover и focus-visible.
-- **Стили** — отступы, скругления, макс. ширина из design tokens.
-
-## Components
-
-- **[Tooltip](./components/tooltip/)** — всплывающая подсказка с произвольным триггером (примеры, API)
-- **[QuestionTooltip](./components/questiontooltip/)** — тултип с триггером-иконкой «вопрос» (примеры, API)
+- **Короткий текст.** Tooltip не заменяет документацию — 1–2 предложения максимум.
+- **Не прячьте критичную информацию.** Если действие блокируется по причине, покажите её в UI, а не только в tooltip.
+- **Достижимо с клавиатуры.** По умолчанию trigger `hoverAndFocusVisible` — подсказка появляется при focus через Tab.
+- **Уважайте `prefers-reduced-motion`.** Анимации появления отключаются системно.

@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Timeline, type TimelineProps } from '@ds/timeline';
+import { Meta, StoryObj } from '@storybook/react';
 
-import timelineReadme from '../../README.md?raw';
-import { Timeline, type TimelineProps } from '../../src';
 import { DemoComponent } from '../helperComponents/DemoComponent/DemoComponent';
 import styles from '../styles.module.scss';
 
@@ -14,10 +13,9 @@ const figmaDesignUrl =
   'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8976-201&m=dev';
 
 const meta: Meta<StoryProps> = {
-  title: 'Components/Timeline/Timeline',
+  title: 'Components/Timeline',
   component: Timeline,
   parameters: {
-    readme: { content: timelineReadme },
     design: {
       type: 'figma',
       url: figmaDesignUrl,

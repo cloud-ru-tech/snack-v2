@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
 
 $width: 200px;
 
@@ -11,6 +11,13 @@ $width: 200px;
 
 .dropzoneCell {
   width: $width;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
 }
 
 .filesList {

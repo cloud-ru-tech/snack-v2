@@ -1,4 +1,4 @@
-import type { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 
 import { SIZE, UPLOAD_MODE } from './constants';
 

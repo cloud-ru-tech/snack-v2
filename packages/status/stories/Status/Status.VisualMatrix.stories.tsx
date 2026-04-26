@@ -1,16 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import statusReadme from '../../README.md?raw';
 import { APPEARANCE, Status, STATUS_SIZE, StatusProps } from '../../src';
 
 const meta: Meta<StatusProps> = {
   title: 'Components/Status/Status',
   component: Status,
-  parameters: {
-    readme: { content: statusReadme },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;

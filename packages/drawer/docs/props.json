@@ -1,0 +1,364 @@
+{
+  "DrawerHeader": {
+    "displayName": "DrawerHeader",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+      }
+    },
+    "description": "Вспомогательный компонент для добавления \"шапки\" в DrawerCustom"
+  },
+  "DrawerFooter": {
+    "displayName": "DrawerFooter",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Вспомогательный компонент для добавления \"футера\" в DrawerCustom"
+  },
+  "ButtonClose": {
+    "displayName": "ButtonClose",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true,
+        "description": "Действие при клике"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  },
+  "DrawerBody": {
+    "displayName": "DrawerBody",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Контент"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Вспомогательный компонент для добавления \"тела\" в DrawerCustom"
+  },
+  "DrawerCustomLayoutProvider": {
+    "displayName": "DrawerCustomLayoutProvider",
+    "props": {
+      "value": {
+        "type": "DrawerCustomLayoutContextValue",
+        "required": true
+      }
+    }
+  },
+  "DrawerCustom": {
+    "displayName": "DrawerCustom",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "showBlackout": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение темной подложки"
+      },
+      "position": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "left",
+          "right",
+          "top",
+          "bottom"
+        ],
+        "description": "Расположение"
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "'s'",
+        "description": "Ширина (только при position: \"left\" | \"right\")"
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для корневого элемента"
+      },
+      "push": {
+        "type": "boolean | PushConfig",
+        "required": false,
+        "description": "Смещение при открытии \"вложенного\" компонента"
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+      },
+      "nestedDrawer": {
+        "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>>",
+        "required": false,
+        "description": "Вложенный Drawer"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать дровер при перемещении по истории браузера"
+      },
+      "footer": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": false,
+        "description": "Футер"
+      }
+    }
+  },
+  "DrawerCustom.Header": {
+    "displayName": "DrawerCustom.Header",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+      }
+    }
+  },
+  "DrawerCustom.Body": {
+    "displayName": "DrawerCustom.Body",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Контент"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  },
+  "DrawerCustom.Footer": {
+    "displayName": "DrawerCustom.Footer",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  },
+  "Drawer": {
+    "displayName": "Drawer",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "showBlackout": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение темной подложки"
+      },
+      "position": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "left",
+          "right",
+          "top",
+          "bottom"
+        ],
+        "description": "Расположение"
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "'s'",
+        "description": "Ширина (только при position: \"left\" | \"right\")"
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом\nCSS-класс"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для корневого элемента"
+      },
+      "push": {
+        "type": "boolean | PushConfig",
+        "required": false,
+        "description": "Смещение при открытии \"вложенного\" компонента"
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+      },
+      "nestedDrawer": {
+        "type": "(ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> & ReactElement<DrawerProps, string | JSXElementConstructor<...>>)",
+        "required": false,
+        "description": "Вложенный Drawer"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать дровер при перемещении по истории браузера"
+      },
+      "footer": {
+        "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
+        "required": false,
+        "description": "Футер"
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Контент"
+      },
+      "media": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Медиа-контент"
+      }
+    },
+    "description": "Drawer компонент"
+  }
+}

@@ -1,0 +1,84 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  overflow: hidden;
+
+  margin: 0 0 base.$sn-adaptive-spacing-interval-xl;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  padding: base.$sn-primitive-dimension-12 base.$sn-primitive-dimension-16;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.title {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm');
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.desc {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+
+  color: base.$sn-theme-color-neutral-accent;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-adaptive-spacing-interval-m;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-height: base.$sn-primitive-dimension-80;
+  padding: base.$sn-primitive-dimension-24 base.$sn-primitive-dimension-16;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.codeWrap {
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.codeLang {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+
+  color: base.$sn-theme-color-neutral-accent;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.code {
+  overflow-x: auto;
+
+  margin: 0;
+  padding: base.$sn-primitive-dimension-16;
+
+  font-family: 'SF Mono', Monaco, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: base.$sn-theme-color-neutral-text;
+
+  background: base.$sn-theme-color-neutral-background;
+}

@@ -1,17 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import { SIZE, Typography, TypographyProps, VARIANT, WEIGHT } from '@ds/typography';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
-
-import typographyReadme from '../../README.md?raw';
-import { SIZE, Typography, TypographyProps, VARIANT, WEIGHT } from '../../src';
 
 const meta: Meta<TypographyProps> = {
   title: 'Components/Typography',
   component: Typography,
-  parameters: {
-    readme: { content: typographyReadme },
-  },
 };
 
 export default meta;

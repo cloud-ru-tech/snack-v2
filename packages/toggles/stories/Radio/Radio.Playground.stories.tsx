@@ -1,72 +1,50 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
+import { expect, within } from 'storybook/test';
 
-import togglesReadme from '../../README.md?raw';
 import { Radio, RadioProps, SIZE } from '../../src';
-import { RADIO_STORIES_SCENARIO, RadioStoriesScenario, SCENARIO_PRESETS } from './constants';
 
-const meta: Meta<RadioProps & { storiesScenario: RadioStoriesScenario }> = {
+const meta: Meta<typeof Radio> = {
   title: 'Components/Toggles/Radio',
   component: Radio,
-  parameters: {
-    readme: { content: togglesReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2815-30903&p=f&m=dev',
-    },
-  },
-};
-
-export default meta;
-
-type StoryProps = RadioProps & { storiesScenario: RadioStoriesScenario };
-type Story = StoryObj<StoryProps>;
-
-const Template: StoryFn<StoryProps> = args => {
-  const { storiesScenario, ...rest } = args;
-  const [{ checked }, updateArgs] = useArgs<RadioProps>();
-
-  if (storiesScenario === RADIO_STORIES_SCENARIO.Playground) {
-    return <Radio {...rest} checked={checked} onChange={updatedValue => updateArgs({ checked: updatedValue })} />;
-  }
-
-  const preset = SCENARIO_PRESETS[storiesScenario];
-  return <Radio {...rest} {...preset} />;
-};
-
-export const Playground: Story = {
-  tags: ['dev', 'test'],
-  render: Template,
+  parameters: { layout: 'centered' },
   args: {
-    storiesScenario: RADIO_STORIES_SCENARIO.Playground,
     size: SIZE.XS,
     checked: undefined,
     defaultChecked: undefined,
     loading: false,
     disabled: false,
+    id: undefined,
+    name: undefined,
+    value: undefined,
+    className: undefined,
+    'data-test-id': 'radio',
   },
   argTypes: {
-    storiesScenario: {
-      name: '[Stories]: E2E сценарий',
-      control: 'select',
-      options: Object.values(RADIO_STORIES_SCENARIO),
-      description:
-        'Для автотестов и шаринга по ссылке: строковый сценарий стабильнее boolean в URL. Режим playground — интерактив как раньше.',
-      table: { category: 'Stories' },
-    },
-    checked: { control: 'boolean' },
-    defaultChecked: { control: 'boolean' },
-    size: {
-      control: 'radio',
-      options: Object.values(SIZE),
-      description: 'Размер',
-    },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
-    },
+    checked: { control: 'boolean', description: 'Controlled checked' },
+    defaultChecked: { control: 'boolean', description: 'Начальный checked (uncontrolled)' },
+    loading: { control: 'boolean', description: 'Состояние загрузки' },
+    disabled: { control: 'boolean', description: 'Отключён' },
+    size: { control: 'radio', options: Object.values(SIZE), description: 'Размер' },
+    id: { control: 'text', description: 'HTML id нативного input', table: { category: 'HTML Attributes' } },
+    name: { control: 'text', description: 'HTML name', table: { category: 'HTML Attributes' } },
+    value: { control: 'text', description: 'HTML value', table: { category: 'HTML Attributes' } },
+    className: { control: 'text', description: 'CSS-класс корня' },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Radio>;
+
+function PlaygroundRender(args: RadioProps) {
+  const [{ checked }, updateArgs] = useArgs<RadioProps>();
+  return <Radio {...args} checked={checked} onChange={next => updateArgs({ checked: next })} />;
+}
+
+export const Playground: Story = {
+  tags: ['dev', 'test'],
+  render: args => <PlaygroundRender {...args} />,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('radio')).toBeVisible();
   },
 };

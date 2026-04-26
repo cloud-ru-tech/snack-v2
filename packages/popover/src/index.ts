@@ -5,5 +5,5 @@ export {
   POPOVER_WIDTH_STRATEGY,
   TRIGGER,
 } from './constants';
-export { Popover } from './components';
-export type { PopoverProps } from './types';
+export * from './components';
+export * from './types';

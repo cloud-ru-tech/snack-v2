@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 import { PAGINATION_SIZE, VARIANT } from './constants';
-import type { PaginationSize, Variant } from './types';
+import { PaginationSize, Variant } from './types';
 
 export type PaginationContextValue = {
   size: PaginationSize;

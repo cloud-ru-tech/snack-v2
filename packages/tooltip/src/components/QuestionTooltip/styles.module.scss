@@ -1,6 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-
-$sizes: 'xs', 's';
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
 
 // Триггер по Figma: иконка 16px (sn/adaptive/size/icon/xs), круг и «?» в одном стиле, без отдельной рамки.
 .questionTooltipTrigger {
@@ -19,6 +17,8 @@ $sizes: 'xs', 's';
   align-items: center;
   justify-content: center;
 
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
   margin: 0;
   padding: 0;
   border: none;
@@ -27,13 +27,6 @@ $sizes: 'xs', 's';
   color: base.$sn-theme-color-available-version-textTertiary;
 
   background: transparent;
-
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      width: base.simple-var(base.$sn-adaptive, 'size', 'icon', $size);
-      height: base.simple-var(base.$sn-adaptive, 'size', 'icon', $size);
-    }
-  }
 
   &:focus-visible {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;

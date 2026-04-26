@@ -1,0 +1,108 @@
+---
+title: Status
+package: '@ds/status'
+description: Цветная метка состояния с подписью и маркером. Поддерживает loading-спиннер и progress-прогрессбар вместо точки.
+order: 1
+---
+
+import { StatusDemo } from '../demos/StatusDemo'
+import { Active } from '../demos/examples/Active'
+import ActiveSrc from '../demos/examples/Active.tsx?raw'
+import { Loading } from '../demos/examples/Loading'
+import LoadingSrc from '../demos/examples/Loading.tsx?raw'
+import { WithBackground } from '../demos/examples/WithBackground'
+import WithBackgroundSrc from '../demos/examples/WithBackground.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import statusDoc from './props.json'
+
+# Status
+
+Метка состояния с цветным маркером и текстовой подписью. Маркер — цветная точка, спиннер (`loading`) или круговой прогресс-бар (`progress`).
+
+## Демо
+
+<StatusDemo client:load />
+
+## Когда использовать
+
+- Статус записи в списке / таблице: «Active», «Suspended», «Pending».
+- Состояние асинхронной операции со спиннером (`loading`).
+- Отображение прогресса обработки (`progress=0..100`) в компактном виде.
+
+Когда **не** нужен: динамический чип с удалением — берите `Chip`/`Tag`. Промо-метка без функциональной семантики — берите `PromoTag`.
+
+## Для дизайнеров
+
+### Appearance (семантика цвета)
+
+| Appearance | Значение |
+|-----------|----------|
+| `green` | Активно, успешно, работает |
+| `red` | Ошибка, заблокировано, критично |
+| `orange`/`yellow` | Предупреждение, внимание |
+| `neutral` | В ожидании, отключено, нейтральное состояние |
+| `blue`/`violet` | Информационное состояние, особый режим |
+
+### Size
+
+| Size | Применение |
+|------|------------|
+| `xs` | Плотные списки, таблицы |
+| `s` | Карточки, header'ы |
+
+### hasBackground
+
+`hasBackground=true` добавляет цветную плашку вокруг статуса — выделяет строку в таблице, привлекает внимание. Без фона — компактный inline-вариант.
+
+### Do / Don't
+
+- ✅ Текст в `label` дублирует смысл цвета (`green` + «Active»).
+- ❌ Только цвет без текста — недоступно дальтоникам и скринридерам.
+- ✅ `loading` для асинхронных операций без известного прогресса.
+- ❌ Фиктивный `loading` как декорация — пользователь ждёт окончания процесса.
+- ✅ `progress` с реальным числом (0–100) — синхронизация с бэкендом.
+- ❌ `progress=undefined` с `appearance=green` вместо обычного readonly-статуса.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/status
+```
+
+```ts
+import { Status } from '@ds/status'
+import '@ds/status/style.css'
+```
+
+### Примеры использования
+
+<Example title='Активный статус' code={ActiveSrc}>
+  <Active client:load />
+</Example>
+
+<Example title='Loading' description='Спиннер вместо точки, appearance принудительно neutral.' code={LoadingSrc}>
+  <Loading client:load />
+</Example>
+
+<Example title='С фоном' description='hasBackground — визуально выделяет строку.' code={WithBackgroundSrc}>
+  <WithBackground client:load />
+</Example>
+
+### Props
+
+<PropsTable data={statusDoc.Status} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-status--playground' height={240} client:load />
+
+## Доступность
+
+- Корневой элемент помечен `role="status"` — screen reader озвучит текст автоматически.
+- Подпись (`label`) — основной носитель смысла; цвет — дополнительный.
+- В `loading`-режиме `appearance` принудительно сбрасывается в `neutral` — цветная окраска не путает с результатом.
+- `progress` озвучивается как часть текста подписи — добавьте число в `label`, если хотите озвучить «70%».

@@ -1,0 +1,165 @@
+{
+  "ButtonGroup": {
+    "displayName": "ButtonGroup",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "primaryAction": {
+        "type": "ActionProps",
+        "required": false,
+        "description": "Основное действие (filled)"
+      },
+      "secondaryAction": {
+        "type": "ActionProps",
+        "required": false,
+        "description": "Вторичное действие (outline), опционально"
+      },
+      "tertiaryAction": {
+        "type": "ActionProps",
+        "required": false,
+        "description": "Третичное действие (simple/text-only), опционально"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "m",
+        "description": "Размер кнопок"
+      },
+      "vertical": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Вертикальное расположение"
+      },
+      "centered": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Центрирование по горизонтали"
+      },
+      "break": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Перенос на новую строку при нехватке места"
+      },
+      "filled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Заливка контейнера"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      }
+    }
+  },
+  "Button": {
+    "displayName": "Button",
+    "props": {
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст кнопки"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "iconPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "defaultValue": "before",
+        "description": "Позиция иконки относительно текста"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "primary",
+          "neutral",
+          "critical"
+        ],
+        "defaultValue": "primary",
+        "description": "Вариант оформления"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключена"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "На всю ширину"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "function",
+          "filled",
+          "outline",
+          "simple",
+          "tonal",
+          "elevated"
+        ],
+        "defaultValue": "elevated",
+        "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)"
+      },
+      "counter": {
+        "type": "Omit<CounterProps, \"size\" | \"appearance\">",
+        "required": false,
+        "description": "Пропсы для counter"
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      }
+    }
+  }
+}

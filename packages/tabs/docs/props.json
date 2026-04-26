@@ -1,0 +1,288 @@
+{
+  "Tabs": {
+    "displayName": "Tabs",
+    "props": {
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Текущая вкладка"
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "description": "Выбранная вкладка по умолчанию"
+      },
+      "onChange": {
+        "type": "((id: T) => void)",
+        "required": false,
+        "description": "Колбек выбора вкладки"
+      }
+    }
+  },
+  "Tabs.Tab": {
+    "displayName": "Tabs.Tab",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Value вкладки"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок вкладки"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирована ли вкладка"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "counter": {
+        "type": "{ label: number; appearance?: Appearance; color?: Color; } | undefined",
+        "required": false,
+        "description": "Счетчик, отображающийся внутри кнопки переключения"
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек клика по кнопке переключения"
+      }
+    }
+  },
+  "Tabs.TabBar": {
+    "displayName": "Tabs.TabBar",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
+        "required": true,
+        "description": "Контент (элементы Tabs.Tab)"
+      },
+      "after": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дополнительный слот для кастомного контента справа от табов"
+      },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Ориентация"
+      },
+      "markerPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Позиция маркера"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m"
+        ],
+        "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента"
+      },
+      "disableDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть разделитель под/рядом с панелью табов"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  },
+  "Tabs.TabContent": {
+    "displayName": "Tabs.TabContent",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Значение таба"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  "TabContent": {
+    "displayName": "TabContent",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Значение таба"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  "TabBar": {
+    "displayName": "TabBar",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
+        "required": true,
+        "description": "Контент (элементы Tabs.Tab)"
+      },
+      "after": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дополнительный слот для кастомного контента справа от табов"
+      },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация"
+      },
+      "markerPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "defaultValue": "after",
+        "description": "Позиция маркера"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m"
+        ],
+        "defaultValue": "l",
+        "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента"
+      },
+      "disableDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Скрыть разделитель под/рядом с панелью табов"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  },
+  "Tab": {
+    "displayName": "Tab",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Value вкладки"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок вкладки"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Деактивирована ли вкладка"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "counter": {
+        "type": "{ label: number; appearance?: Appearance; color?: Color; } | undefined",
+        "required": false,
+        "description": "Счетчик, отображающийся внутри кнопки переключения"
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек клика по кнопке переключения"
+      }
+    }
+  },
+  "ScrollButton": {
+    "displayName": "ScrollButton",
+    "props": {
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m"
+        ]
+      },
+      "direction": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "left",
+          "right",
+          "top",
+          "bottom"
+        ]
+      },
+      "orientation": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "horizontal",
+          "vertical"
+        ]
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true
+      }
+    }
+  }
+}

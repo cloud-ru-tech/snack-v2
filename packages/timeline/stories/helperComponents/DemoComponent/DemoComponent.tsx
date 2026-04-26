@@ -1,4 +1,4 @@
-import { Typography } from '@design-system/typography';
+import { Typography } from '@ds/typography';
 
 import styles from '../../styles.module.scss';
 

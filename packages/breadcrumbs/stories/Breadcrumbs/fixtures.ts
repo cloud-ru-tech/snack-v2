@@ -1,4 +1,4 @@
-import type { Item } from '../../src';
+import { Item } from '../../src';
 
 /** Few items — fits a wide container without collapse. */
 export const shortTrailItems: Item[] = [

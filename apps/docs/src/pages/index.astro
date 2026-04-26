@@ -1,0 +1,73 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro'
+import { getCollection } from 'astro:content'
+import { withBase } from '../lib/base-url'
+import '../styles/home.scss'
+
+const components = await getCollection('components')
+const patterns = await getCollection('patterns')
+
+// Group component entries by package; prefer the index entry (id === pkg) for the card link
+const byPackage = new Map<string, typeof components>()
+for (const entry of components) {
+  const pkg = entry.id.split('/')[0]
+  const list = byPackage.get(pkg) ?? []
+  list.push(entry)
+  byPackage.set(pkg, list)
+}
+
+const packageMap = new Map<string, { title: string; href: string; description?: string }>()
+for (const [pkg, entries] of byPackage) {
+  const indexEntry = entries.find((e) => e.id === pkg)
+  const target = indexEntry ?? entries[0]
+  packageMap.set(pkg, {
+    title: target.data.title,
+    href: withBase(`/components/${target.id}`),
+    description: target.data.description,
+  })
+}
+---
+
+<DocsLayout title="Home" description="Design System components and patterns.">
+  <div class="home">
+    <header class="hero">
+      <h1>Design System</h1>
+      <p class="lead">
+        A collection of React components, design patterns, and guidelines
+        for building consistent interfaces.
+      </p>
+    </header>
+
+    <section class="section">
+      <h2>Components</h2>
+      <ul class="card-grid" role="list">
+        {[...packageMap.values()].map((pkg) => (
+          <li>
+            <a href={pkg.href} class="card">
+              <span class="card-title">{pkg.title}</span>
+              {pkg.description && (
+                <span class="card-desc">{pkg.description}</span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Patterns</h2>
+      <ul class="card-grid" role="list">
+        {patterns.map((p) => (
+          <li>
+            <a href={withBase(`/patterns/${p.id}`)} class="card">
+              <span class="card-title">{p.data.title}</span>
+              {p.data.description && (
+                <span class="card-desc">{p.data.description}</span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</DocsLayout>

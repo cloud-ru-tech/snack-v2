@@ -1,96 +1,72 @@
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Search, SIZE } from '@ds/search';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import searchReadme from '../../README.md?raw';
-import { Search, SearchProps, SIZE, Size } from '../../src';
-import { getIconSize } from '../../src/helperComponents/ButtonField/utils';
-import styles from './styles.module.scss';
+import styles from './stories.module.scss';
 
-type StoryArgs = SearchProps;
-
-const meta: Meta<StoryArgs> = {
-  title: 'Components/Search/VisualMatrix',
+const meta: Meta<typeof Search> = {
+  title: 'Components/Search',
   component: Search,
-  parameters: {
-    readme: { content: searchReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6313-48734&m=dev',
-    },
-  },
-  args: {},
-  argTypes: {
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
-    },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
+type Story = StoryObj<typeof Search>;
 
-type Story = StoryObj<StoryArgs>;
+const sizes = [SIZE.S, SIZE.M, SIZE.L] as const;
 
-const sizes = Object.values(SIZE);
-
-function getCommonProps(size: Size): SearchProps {
-  return {
-    size: size,
-    background: true,
-    outline: true,
-    buttonField: {
-      withDropdownList: true,
-      action: <PlaceholderSVG size={getIconSize(size)} className={styles.sampleAction} />,
-      onClick() {},
-    },
-  };
+function Wrap({ children }: { children: JSX.Element }) {
+  return <div className={styles.item}>{children}</div>;
 }
 
-const Template: StoryFn<StoryArgs> = () => (
-  <div className={styles.visualMatrixWrapper}>
-    {sizes.map(size => (
+export const VisualMatrix: Story = {
+  tags: ['test', 'dev'],
+  render: () => (
+    <div className={styles.matrix}>
       <StoryTable
-        key={size}
-        sectionTitle={`States (Size ${size})`}
-        firstColumnHeader={''}
-        columnHeaders={['without value', 'with value']}
+        sectionTitle='Size × State'
+        firstColumnHeader='Size'
+        columnHeaders={['default', 'loading', 'disabled']}
+        rows={sizes.map(size => ({
+          variantLabel: size,
+          cells: [
+            <Wrap key={`${size}-d`}>
+              <Search size={size} placeholder='Поиск' />
+            </Wrap>,
+            <Wrap key={`${size}-l`}>
+              <Search size={size} placeholder='Поиск' loading />
+            </Wrap>,
+            <Wrap key={`${size}-dis`}>
+              <Search size={size} placeholder='Поиск' disabled />
+            </Wrap>,
+          ],
+        }))}
+      />
+
+      <StoryTable
+        sectionTitle='Background'
+        firstColumnHeader='Вариант'
+        columnHeaders={['Search']}
         rows={[
           {
-            variantLabel: 'Regular',
+            variantLabel: 'с фоном',
             cells: [
-              <div key='empty' className={styles.wrapper} data-size={size}>
-                <Search value={undefined} {...getCommonProps(size)} />
-              </div>,
-              <div key='withValue' className={styles.wrapper} data-size={size}>
-                <Search value='Input value' {...getCommonProps(size)} />
-              </div>,
+              <Wrap key='bg-on'>
+                <Search placeholder='Поиск' background />
+              </Wrap>,
             ],
           },
           {
-            variantLabel: 'Disabled',
+            variantLabel: 'без фона',
             cells: [
-              <div key='empty' className={styles.wrapper} data-size={size}>
-                <Search value={undefined} disabled {...getCommonProps(size)} />
-              </div>,
-              <div key='withValue' className={styles.wrapper} data-size={size}>
-                <Search value='Input value' disabled {...getCommonProps(size)} />
-              </div>,
+              <Wrap key='bg-off'>
+                <Search placeholder='Поиск' background={false} />
+              </Wrap>,
             ],
           },
         ]}
       />
-    ))}
-  </div>
-);
-
-export const VisualMatrix: Story = {
-  tags: ['dev', 'test'],
-  render: Template,
-  args: {},
-  argTypes: {},
+    </div>
+  ),
 };

@@ -1,5 +1,5 @@
-import { TruncateStringProps } from '@design-system/truncate-string';
-import { ValueOf, WithSupportProps } from '@design-system/utils';
+import { TruncateStringProps } from '@ds/truncate-string';
+import { ValueOf, WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ElementType } from 'react';
 
 import { APPEARANCE, ROLE } from './constants';

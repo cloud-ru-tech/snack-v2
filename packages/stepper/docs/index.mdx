@@ -1,0 +1,127 @@
+---
+title: Stepper
+package: '@ds/stepper'
+description: Индикатор прогресса для многошаговых сценариев — desktop, mobile и адаптивный варианты с единым render-prop API.
+order: 0
+---
+
+import { StepperDemo } from '../demos/StepperDemo'
+import { BasicFlow } from '../demos/examples/BasicFlow'
+import BasicFlowSrc from '../demos/examples/BasicFlow.tsx?raw'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { Example } from '~docs/components/Example'
+import { FIGMA_STEPPER } from '~docs/lib/figma'
+
+# Stepper
+
+Пакет `@ds/stepper` предоставляет индикатор прогресса для многошаговых сценариев: десктопный `Stepper`, мобильный `MobileStepper` и адаптивный `AdaptiveStepper`. Все три варианта используют единый render-prop API и общую модель состояний шагов.
+
+## Демо
+
+<StepperDemo client:load />
+
+## Когда использовать
+
+- Мастер / wizard с явно разделёнными шагами (регистрация, оформление заказа, публикация).
+- Процесс, где пользователь проходит шаги по порядку и видит прогресс.
+- Подтверждение сложного действия с возможной серверной валидацией между шагами.
+
+### Когда НЕ использовать
+
+- Один длинный процесс без логических шагов — лучше обычная форма.
+- Навигация между независимыми разделами — используйте `Tabs`.
+- Бесконечный прогресс без конкретного числа шагов — `ProgressBar` или `Spinner`.
+
+## Для дизайнеров
+
+### Состав пакета
+
+| Компонент | Когда |
+|-----------|-------|
+| [`Stepper`](/components/stepper/stepper) | Desktop-вариант: горизонтальный ряд шагов с номерами и описанием |
+| [`MobileStepper`](/components/stepper/mobile-stepper) | Mobile-вариант: компактный прогресс-трек с заголовком активного шага |
+| [`AdaptiveStepper`](/components/stepper/adaptive-stepper) | Переключатель между desktop и mobile через проп `layoutType` |
+
+### Состояния шагов
+
+| State | Когда | Визуал |
+|-------|-------|--------|
+| `waiting` | Шаг ещё не начат | Нейтральный, без заливки |
+| `current` | Активный шаг | Выделен акцентным цветом |
+| `loading` | Валидация / серверный запрос | Спиннер вместо номера |
+| `completed` | Шаг успешно пройден | Галочка, заливка primary |
+| `rejected` | Валидация не прошла | Крест, красная заливка |
+
+### Do / Don't
+
+- ✅ Показывайте шаги в порядке выполнения.
+- ❌ Не перемешивайте порядок шагов между сессиями — пользователь теряет ориентир.
+- ✅ Короткие title (1–2 слова) и информативные description в одну фразу.
+- ❌ Не используйте description как основной текст — шаг не должен читаться как параграф.
+- ✅ Один `validator` на шаг с понятным сообщением об ошибке.
+- ❌ Не прыгайте через несколько шагов без явного действия пользователя.
+- ✅ Сохраняйте видимость уже пройденных шагов — это ценность компонента.
+- ❌ Не прячьте прошедшие шаги, чтобы «сэкономить место».
+
+### Figma
+
+<FigmaEmbed node={FIGMA_STEPPER} />
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/stepper
+```
+
+```ts
+import { Stepper, MobileStepper, AdaptiveStepper } from '@ds/stepper'
+import '@ds/stepper/style.css'
+```
+
+### Базовый пример
+
+<Example title='Базовый flow' description='Три шага с Next/Prev' code={BasicFlowSrc}>
+  <BasicFlow client:load />
+</Example>
+
+### Render-prop API
+
+Степпер не управляет своим контейнером — через render-prop вы получаете `stepper` (ReactElement) и набор методов, а layout вокруг рисуете сами:
+
+```tsx
+<Stepper steps={[...]}>
+  {({ stepper, goNext, goPrev, currentStepIndex, stepCount, isCompleted }) => (
+    <>
+      {stepper}
+      {/* ваши кнопки */}
+    </>
+  )}
+</Stepper>
+```
+
+Полный список методов и пропсов — на странице соответствующего компонента.
+
+### Доступ к API из потомков
+
+```tsx
+import { useStepperApi } from '@ds/stepper'
+
+function NextButton() {
+  const { goNext, isCompleted } = useStepperApi()
+  return <Button label='Далее' onClick={() => goNext()} disabled={isCompleted} />
+}
+```
+
+### Storybook
+
+<StorybookEmbed storyId='components-stepper--playground' />
+
+## Доступность
+
+- Каждый шаг рендерится как `<button>` — доступен через клавиатуру и скринридер.
+- Невыполнимые шаги получают атрибут `disabled`.
+- Состояние шага экспонируется через `data-state` — машиночитаемый контракт для E2E и кастомных стилей.
+- Иконки состояний (✓, ✗) дополняют цвет — критерий «цвет не единственный носитель смысла» соблюдается.

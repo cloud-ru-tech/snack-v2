@@ -1,4 +1,3 @@
-export { Block } from './Block';
-export type { BlockProps } from './Block';
-export { VARIANT, SIZE } from './constants';
-export type { Variant, Size } from './types';
+export * from './Block';
+export * from './constants';
+export * from './types';

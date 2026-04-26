@@ -1,32 +1,26 @@
 {
-  "name": "@design-system/typography",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Typography component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/typography",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
   "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
+    "dist",
+    "src"
   ],
   "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
+    "*.css",
+    "**/*.css"
   ],
-  "scripts": {},
   "dependencies": {
     "classnames": "2.5.1"
   },

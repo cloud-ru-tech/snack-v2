@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, within } from '@storybook/test';
+import { PLACEMENT, PopoverPrivate, type PopoverPrivateProps, TRIGGER } from '@ds/popover-private';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from 'storybook/test';
 
-import { PLACEMENT, PopoverPrivate, PopoverPrivateProps, TRIGGER } from '../../src';
 import styles from './styles.module.scss';
 
 const meta: Meta<PopoverPrivateProps> = {
-  title: 'Components/Popover Private',
+  title: 'Components/PopoverPrivate',
   component: PopoverPrivate,
 };
 

@@ -1,171 +1,170 @@
-# Truncate String
+# TruncateString
 
-Компонент для обрезки длинного текста с многоточием. При обрезке по умолчанию показывает тултип с полным текстом при наведении. Поддерживает два варианта: обрезка с конца (End) и по середине (Middle).
+`@ds/truncate-string` — Обрезает длинный текст и показывает полный текст в тултипе — варианты `end` и `middle`, поддержка многострочного обрезания.
 
-## Installation
+Обрезает длинный текст в ограниченной по ширине области и раскрывает полный вариант в тултипе при наведении. Два варианта обрезания — с конца (`end`) и посередине (`middle`) — решают разные задачи: читаемый заголовок и распознаваемое имя файла соответственно.
+
+## Когда использовать
+
+- В списках, таблицах и карточках, где ширина ячейки зафиксирована.
+- Для имён файлов, идентификаторов и коммитов — чтобы сохранить начало и конец строки (`middle`).
+- Для заголовков и описаний, длина которых непредсказуема.
+
+Когда **не** нужен: если контейнер может расти по содержимому (например, body статьи) — проще обернуть текст в абзац без обрезания.
+
+### Variant — как обрезать
+
+| Variant | Где применять |
+|---------|---------------|
+| `end` | Заголовки, описания, произвольный текст — чтение идёт слева направо |
+| `middle` | Имена файлов, email-адреса, UUID — важен и префикс, и суффикс |
+
+<Example title='Два варианта обрезания в узком контейнере'>
+  <div style={{ width: 220, display: 'grid', gap: 12 }}>
+    <TruncateString variant='end' text='Заголовок длинной задачи, который не поместится' maxLines={1} />
+    <TruncateString variant='middle' text='very-long-file-name-abc123.zip' />
+  </div>
+</Example>
+
+### maxLines — сколько строк сохранять
+
+Для `variant='end'` можно задать `maxLines` — максимальное количество строк перед обрезанием. Подходит для описаний в карточках.
+
+<Example title='maxLines=2 для описания'>
+  <div style={{ width: 260 }}>
+    <TruncateString
+      variant='end'
+      maxLines={2}
+      text='Описание задачи, которое занимает пару строк, но целиком не помещается в карточку списка.'
+    />
+  </div>
+</Example>
+
+### Do / Don't
+
+- ✅ Используйте `middle` для имён файлов и идентификаторов — видны и начало, и расширение.
+- ❌ Не используйте `middle` для произвольного текста — читатель теряет середину предложения.
+- ✅ Задавайте фиксированную ширину родителю — компонент опирается на CSS-обрезание.
+- ❌ Не ставьте `TruncateString` в контейнер без ограничения ширины — обрезание не сработает.
+- ✅ Оставляйте тултип включённым для доступа к полному тексту с клавиатуры.
+- ❌ Не скрывайте тултип (`hideTooltip`) без альтернативного способа прочитать полный текст.
+
+### Установка
 
 ```bash
-npm install @design-system/truncate-string
-# or
-yarn add @design-system/truncate-string
-# or
-pnpm add @design-system/truncate-string
+pnpm add @ds/truncate-string
 ```
 
-## Exports
-
-```typescript
-import {
-  TruncateString,
-  type TruncateStringProps,
-  VARIANT,
-  type Variant
-} from '@design-system/truncate-string';
+```ts
+import { TruncateString } from '@ds/truncate-string'
+import '@ds/truncate-string/style.css'
 ```
 
-## Live examples
+### Примеры использования
 
-### Обрезка с конца (End)
+<Example title='Обрезание с конца'>
+  <div style={{ width: 220 }}>
+    <TruncateString variant='end' text='Очень длинный заголовок, который не помещается' maxLines={1} />
+  </div>
+</Example>
 
-```tsx
-import { TruncateString } from '@design-system/truncate-string';
+<Example title='Обрезание посередине — имя файла'>
+  <div style={{ width: 220 }}>
+    <TruncateString variant='middle' text='2024-quarterly-report-final-v3.pdf' />
+  </div>
+</Example>
 
-Вариант по умолчанию. Текст обрезается с конца, многоточие в конце строки.
-<div style={{ maxWidth: '280px' }}>
-<TruncateString
-text="Очень длинная строка текста, которая будет обрезана с конца и при наведении покажет полный текст в тултипе"
-/>
-</div>
-```
-
-### Обрезка по середине (Middle)
-
-```tsx
-import { TruncateString, VARIANT } from '@design-system/truncate-string';
-
-Удобно для длинных путей, URL и идентификаторов: сохраняются начало и конец строки, середина заменяется на `...`.
-<div style={{ maxWidth: '280px' }}>
-<TruncateString
-variant={VARIANT.Middle}
-text="Путь/к/очень/длинному/файлу/или/ссылке.txt"
-/>
-</div>
-```
-
-### Многострочный текст (maxLines)
-
-```tsx
-import { TruncateString } from '@design-system/truncate-string';
-
-Только для варианта End. Текст сворачивается до заданного числа строк.
-<div style={{ maxWidth: '200px' }}>
-<TruncateString
-text="Очень длинная строка или путь к файлу /project/src/components/TruncateString.tsx"
-maxLines={1}
-hideTooltip
-/>
-</div>
-<div style={{ maxWidth: '200px' }}>
-<TruncateString
-text="Очень длинная строка или путь к файлу /project/src/components/TruncateString.tsx"
-maxLines={2}
-hideTooltip
-/>
-</div>
-<div style={{ maxWidth: '200px' }}>
-<TruncateString
-text="Очень длинная строка или путь к файлу /project/src/components/TruncateString.tsx"
-maxLines={3}
-hideTooltip
-/>
-</div>
-```
-
-### Без тултипа (hideTooltip)
-
-```tsx
-import { TruncateString } from '@design-system/truncate-string';
-
-Текст по-прежнему обрезается, но тултип с полным текстом не показывается. Подходит для списков и таблиц, где полный текст доступен по клику или в другой колонке.
-<div style={{ maxWidth: '200px' }}>
-<TruncateString
-text="Длинная строка без тултипа при наведении"
-hideTooltip
-/>
-</div>
-```
-
-
-## Usage
-
-### Базовый пример (обрезка с конца)
-
-```tsx
-import { TruncateString } from '@design-system/truncate-string';
-
-export function Example() {
-  return (
-    <TruncateString text="Очень длинная строка текста, которая будет обрезана с конца" />
-  );
-}
-```
-
-### Обрезка по середине
-
-```tsx
-import { TruncateString, VARIANT } from '@design-system/truncate-string';
-
-export function Example() {
-  return (
+<Example title='Многострочное описание'>
+  <div style={{ width: 260 }}>
     <TruncateString
-      variant={VARIANT.Middle}
-      text="Путь/к/очень/длинному/файлу/или/ссылке.txt"
+      variant='end'
+      maxLines={3}
+      text='Длинное описание, которое укладывается в три строки, а затем обрезается с троеточием в конце.'
     />
-  );
-}
-```
+  </div>
+</Example>
 
-### Многострочный текст и настройка тултипа
+### Props
+
+<PropsTable data={truncateStringDoc.TruncateString} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-truncatestring--playground' height={360} client:load />
+
+## Доступность
+
+- Тултип открывается по hover и focus — полный текст доступен с клавиатуры.
+- `trigger='hoverAndFocusVisible'` по умолчанию: focus-ring не показывается на кликах мышью, но фокус с Tab раскрывает тултип.
+- Тултип содержит полный текст — скринридер прочитает его при активации.
+- `hideTooltip` оставляет только визуальное обрезание — использовать только когда полный текст дублируется рядом (например, в `title`-атрибуте родителя).
+
+## TruncateString
 
 ```tsx
-import { TruncateString } from '@design-system/truncate-string';
+import { TruncateString } from '@ds/truncate-string'
 
 export function Example() {
-  return (
-    <TruncateString
-      text="Длинный текст на несколько строк"
-      maxLines={2}
-      placement="bottom"
-      tooltipClassName="my-tooltip"
-    />
-  );
+  return <TruncateString variant="end">Click me</TruncateString>
 }
 ```
 
-## Props
+### Props
 
-### TruncateStringProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| text* | `string` | - | Текст, который будет обрезаться |
-| variant | "middle" \| "end" | end | Вариант обрезания строки: `End` - с конца `Middle` - по середине |
-| className | `string` | - | CSS-класс |
-| tooltipClassName | `string` | - | Стиль для тултипа |
-| hideTooltip | `boolean` | - | Скрывать ли тултип с полным текстом |
-| maxLines | `number` | - | Максимальное кол-во строк, до которого может сворачиваться текст. |
-| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | - | Положение тултипа относительно обрезанного текста. |
-| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | - | Условие отображения тултипа |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"middle"` \| `"end"` | `end` | Вариант обрезания строки: `End` - с конца
+`Middle` - по середине |
+| `data-test-id` | `string` | — |  |
+| `className` | `string` | — |  |
+| `tooltipClassName` | `string` | — | Стиль для тултипа |
+| `hideTooltip` | `boolean` | — | Скрывать ли тултип с полным текстом |
+| `maxLines` | `number` | — | Максимальное кол-во строк, до которого может сворачиваться текст. |
+| `placement` | `"left"` \| `"left-start"` \| `"left-end"` \| `"right"` \| `"right-start"` \| `"right-end"` \| `"top"` \| `"top-start"` \| `"top-end"` \| `"bottom"` \| `"bottom-start"` \| `"bottom-end"` | — | Положение тултипа относительно обрезанного текста. |
+| `text` | `string` | — | Текст, который будет обрезаться |
+| `trigger` | `"click"` \| `"hover"` \| `"focusVisible"` \| `"focus"` \| `"hoverAndFocusVisible"` \| `"hoverAndFocus"` \| `"clickAndFocusVisible"` | — | Условие отображения тултипа |
 
-## Best Practices
+## TruncateStringEnd
 
-1. **Выбор варианта** — используйте **End** для обычного текста и подписей; **Middle** — для путей, URL и длинных идентификаторов, где важно видеть начало и конец.
-2. **Тултип** — в плотных списках или таблицах отключайте тултип через `hideTooltip`, если полный текст доступен по клику или в другой колонке.
-3. **Ограничение ширины** — задавайте `max-width` контейнеру (или родителю), иначе текст не будет обрезаться.
+```tsx
+import { TruncateStringEnd } from '@ds/truncate-string'
 
----
+export function Example() {
+  return <TruncateStringEnd maxLines="1" placement="top" trigger="hoverAndFocusVisible">Click me</TruncateStringEnd>
+}
+```
 
-## Additional Resources
+### Props
 
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `className` | `string` | — |  |
+| `tooltipClassName` | `string` | — | Стиль для тултипа |
+| `hideTooltip` | `boolean` | — | Скрывать ли тултип с полным текстом |
+| `maxLines` | `number` | `1` | Максимальное кол-во строк, до которого может сворачиваться текст. |
+| `placement` | `"left"` \| `"left-start"` \| `"left-end"` \| `"right"` \| `"right-start"` \| `"right-end"` \| `"top"` \| `"top-start"` \| `"top-end"` \| `"bottom"` \| `"bottom-start"` \| `"bottom-end"` | `top` | Положение тултипа относительно обрезанного текста. |
+| `text` | `string` | — | Текст, который будет обрезаться |
+| `trigger` | `"click"` \| `"hover"` \| `"focusVisible"` \| `"focus"` \| `"hoverAndFocusVisible"` \| `"hoverAndFocus"` \| `"clickAndFocusVisible"` | `hoverAndFocusVisible` | Условие отображения тултипа |
+
+## TruncateStringMiddle
+
+```tsx
+import { TruncateStringMiddle } from '@ds/truncate-string'
+
+export function Example() {
+  return <TruncateStringMiddle placement="top" trigger="hoverAndFocusVisible">Click me</TruncateStringMiddle>
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `className` | `string` | — |  |
+| `tooltipClassName` | `string` | — | Стиль для тултипа |
+| `hideTooltip` | `boolean` | — |  |
+| `placement` | `"left"` \| `"left-start"` \| `"left-end"` \| `"right"` \| `"right-start"` \| `"right-end"` \| `"top"` \| `"top-start"` \| `"top-end"` \| `"bottom"` \| `"bottom-start"` \| `"bottom-end"` | `top` |  |
+| `text` | `string` | — |  |
+| `trigger` | `"click"` \| `"hover"` \| `"focusVisible"` \| `"focus"` \| `"hoverAndFocusVisible"` \| `"hoverAndFocus"` \| `"clickAndFocusVisible"` | `hoverAndFocusVisible` |  |

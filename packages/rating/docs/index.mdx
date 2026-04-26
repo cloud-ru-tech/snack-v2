@@ -1,155 +1,95 @@
 ---
 title: Rating
-description: Компонент рейтинга в виде звёзд с настраиваемым количеством и половинчатыми значениями
-version: '0.1.0'
+package: '@ds/rating'
+description: Звёздный рейтинг — интерактивный ввод и отображение оценки. Поддерживает половинные звёзды, цветовые схемы и readonly-режим.
+order: 0
 ---
 
-import { Rating } from '../src';
-import {
-  ExampleContainer,
-  ExampleGrid,
-  ExampleItem,
-} from '#astro/components/mdx';
+import { RatingDemo } from '../demos/RatingDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Readonly } from '../demos/examples/Readonly'
+import ReadonlySrc from '../demos/examples/Readonly.tsx?raw'
+import { HalfStars } from '../demos/examples/HalfStars'
+import HalfStarsSrc from '../demos/examples/HalfStars.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import ratingDoc from './props.json'
 
 # Rating
 
-Компонент `Rating` отображает рейтинг в виде **звёзд**. Поддерживает **контролируемый и неконтролируемый** режимы (`value` / `defaultValue`), **настраиваемое количество звёзд** (`count`, по умолчанию 5), **половинчатые звёзды** (`allowHalf`), **сброс при повторном клике** (`allowClear`) и **режим только чтения** (`readonly`).
+Компонент звёздного рейтинга. Поддерживает интерактивный ввод оценки, режим «только для чтения», половинные звёзды (`allowHalf`) и сброс значения по повторному клику (`allowClear`). Поведение по умолчанию — неконтролируемое с `defaultValue`; для контролируемого использования передайте `value` + `onChange`.
 
-- **Количество звёзд**: `count` (по умолчанию 5).
-- **Значение**: число от 0 до `count`; при `allowHalf` допустимы шаги 0.5 (например, 2.5).
-- **Размеры**: `xs`, `s` (по умолчанию `s`).
-- **Цветовые схемы** (`appearance`): primary, red, orange, yellow, green, blue, violet, pink (по умолчанию `yellow`).
-- **Доступность**: каждая звезда — `role="radio"`, фокус по Tab, переключение по Enter/Space, `aria-checked`.
+## Демо
 
-**Version:** `{frontmatter.version}`
+<RatingDemo client:load />
 
-## Installation
+## Когда использовать
+
+- Оценка сущности пользователем: отзыв о товаре, качестве услуги, контента.
+- Отображение агрегированного рейтинга в readonly-режиме (карточка товара, профиль исполнителя).
+
+Когда **не** нужен: многокритериальная оценка (несколько факторов) — стройте форму с несколькими `Rating` или отдельным UI. NPS-шкала 0–10 — используйте другой компонент.
+
+## Для дизайнеров
+
+### Size
+
+| Size | Применение |
+|------|------------|
+| `xs` | В плотных списках, в таблице |
+| `s` | Значение по умолчанию — форма отзыва, карточка товара |
+
+### Appearance
+
+Восемь цветовых схем: `primary`, `red`, `orange`, `yellow` (по умолчанию), `green`, `blue`, `violet`, `pink`. `yellow` — классические жёлтые звёзды; остальные — для визуального брендинга или семантики (например, `green` для положительного фидбэка).
+
+### Half stars
+
+`allowHalf` включает половинные звёзды. Клик в левую половину — `0.5`, в правую — `1.0`. Удобно для отображения агрегированных оценок (3.5/5) и для более точного пользовательского ввода.
+
+### Do / Don't
+
+- ✅ Readonly-режим для отображения агрегированной оценки — пользователь не ждёт, что сможет кликнуть.
+- ❌ Показывать интерактивный рейтинг там, где пользователь не может оценивать.
+- ✅ 5 звёзд — устоявшийся стандарт, не меняйте без веской причины.
+- ❌ 10 звёзд — воспринимается хуже, чем слайдер или числовой ввод.
+- ✅ `allowClear` на форме отзыва — пользователь может передумать.
+- ❌ `allowClear` на агрегированной оценке readonly.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/rating
-# or
-yarn add @design-system/rating
-# or
-pnpm add @design-system/rating
+pnpm add @ds/rating
 ```
 
-## Changelog
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-
-<Changelog packageName="rating" />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component="rating" />
-
-## Overview
-
-Rating позволяет пользователям оценивать контент, товары или услуги с помощью визуального представления в виде звёзд. Состояние задаётся числом от 0 до количества звёзд; при включённом `allowHalf` можно выбирать половинки (например, 2.5 из 5).
-
-Компонент:
-
-- **Контролируемый / неконтролируемый**: управление через `value` + `onChange` или `defaultValue` (и опционально `onChange`).
-- **Интерактивный**: клик по звезде (или по её половине при `allowHalf`) устанавливает значение; при `allowClear` повторный клик по текущей звезде сбрасывает рейтинг в 0.
-- **Только чтение**: при `readonly` звёзды отображают значение без возможности изменения.
-- **Клавиатура**: каждая звезда в фокусе переключается по Enter/Space; поддерживается навигация по Tab.
-- **Кастомизация**: `count`, `size`, `appearance`, `className` и пропы из `WithSupportProps` (например, `data-test-id`).
-
-## Live examples
-
-```tsx
-import { useState } from 'react';
-import { Rating } from '@design-system/rating';
-
-function Example() {
-  const [value, setValue] = useState<number>(0);
-
-  return (
-    <Rating
-      count={5}
-      value={value}
-      onChange={setValue}
-      allowHalf={false}
-      allowClear={true}
-      size="s"
-      appearance="yellow"
-    />
-  );
-}
+```ts
+import { Rating } from '@ds/rating'
+import '@ds/rating/style.css'
 ```
 
-### Basic usage
+### Примеры использования
 
-<ExampleContainer>
-  <Rating count={5} defaultValue={0} />
-</ExampleContainer>
+<Example title='Базовый рейтинг' description='5 звёзд, дефолтное значение 3.' code={BasicSrc}>
+  <Basic client:load />
+</Example>
 
-### С половинчатыми звёздами и сбросом
+<Example title='Readonly' description='Для отображения агрегированной оценки.' code={ReadonlySrc}>
+  <Readonly client:load />
+</Example>
 
-<ExampleGrid>
-  <ExampleItem label="allowHalf, allowClear">
-    <Rating count={5} defaultValue={2.5} allowHalf allowClear />
-  </ExampleItem>
-  <ExampleItem label="readonly, 3 из 5">
-    <Rating count={5} defaultValue={3} readonly />
-  </ExampleItem>
-</ExampleGrid>
+<Example title='Половинные звёзды' description='allowHalf=true — поддержка значений 0.5 / 1.0 / 1.5 и т.д.' code={HalfStarsSrc}>
+  <HalfStars client:load />
+</Example>
 
-### Размеры и варианты
-
-<ExampleGrid>
-  <ExampleItem label="xs">
-    <Rating count={5} defaultValue={2} size="xs" />
-  </ExampleItem>
-  <ExampleItem label="s, yellow">
-    <Rating count={5} defaultValue={4} size="s" appearance="yellow" />
-  </ExampleItem>
-  <ExampleItem label="s, primary">
-    <Rating count={5} defaultValue={1} size="s" appearance="primary" />
-  </ExampleItem>
-</ExampleGrid>
-
-## Storybook
-
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-
-<StorybookIframe storyId="components-rating--playground" showControls={true} height="600px" />
-
-### Visual Matrix
-
-Для просмотра всех комбинаций состояний одной звезды (0%, 50%, 100%) и вариантов внешнего вида используйте story **Visual Matrix** в Storybook.
-
-<StorybookIframe storyId="components-rating--visual-matrix" showControls={false} height="800px" />
-
-## Usage
-
-### Неконтролируемый рейтинг
+### Контролируемое использование
 
 ```tsx
-import { Rating } from '@design-system/rating';
-
-export function Example() {
-  return (
-    <Rating
-      count={5}
-      defaultValue={3}
-      allowHalf={false}
-      allowClear
-      onChange={(value) => console.log('Rating:', value)}
-    />
-  );
-}
-```
-
-### Контролируемый рейтинг
-
-```tsx
-import { useState } from 'react';
-import { Rating } from '@design-system/rating';
-
-export function Example() {
-  const [value, setValue] = useState<number>(0);
-
+function RatingForm() {
+  const [value, setValue] = useState(0)
   return (
     <Rating
       count={5}
@@ -157,59 +97,23 @@ export function Example() {
       onChange={setValue}
       allowHalf
       allowClear
-      appearance="yellow"
+      readonly={false}
     />
-  );
+  )
 }
 ```
 
-### Только чтение и кастомное количество звёзд
+### Props
 
-```tsx
-import { Rating } from '@design-system/rating';
+<PropsTable data={ratingDoc.Rating} />
 
-export function Example() {
-  return (
-    <Rating
-      count={10}
-      defaultValue={7}
-      readonly
-      size="s"
-      data-test-id="product-rating"
-    />
-  );
-}
-```
+### Storybook
 
-## Props
+<StorybookEmbed storyId='components-rating--playground' height={240} client:load />
 
-Основные пропсы компонента:
+## Доступность
 
-| name | type | default | description |
-|------|------|---------|-------------|
-| count | `number` | 5 | Общее количество звёзд |
-| value | `number` | — | Значение в контролируемом режиме (0 … count, при allowHalf — с шагом 0.5) |
-| defaultValue | `number` | 0 | Начальное значение в неконтролируемом режиме |
-| allowHalf | `boolean` | false | Разрешить половинчатые звёзды |
-| allowClear | `boolean` | false | Сброс рейтинга при повторном клике по выбранной звезде |
-| readonly | `boolean` | false | Режим только чтения |
-| size | `'xs' \| 's'` | 's' | Размер звёзд |
-| appearance | `Appearance` | 'yellow' | Цветовая схема (primary, red, orange, yellow, green, blue, violet, pink) |
-| onChange | `(value: number) => void` | — | Колбек при смене значения |
-| className | `string` | — | CSS-класс |
-
-Компонент также поддерживает пропы из `WithSupportProps` (например, `data-test-id`).
-
-## Accessibility
-
-- Каждая звезда в интерактивном режиме имеет `role="radio"` и `aria-checked` в зависимости от заполнения.
-- Фокус по Tab, переключение по Enter и Space по текущей звезде.
-- В режиме `readonly` роль и tabIndex не задаются — компонент ведёт себя как статичное отображение рейтинга.
-
-## Best practices
-
-1. **Выбирайте контролируемый режим** при привязке к форме или API; используйте `defaultValue` для простого отображения с опциональным `onChange`.
-2. **Используйте `allowHalf`** там, где нужна более тонкая градация (например, средние оценки).
-3. **Включайте `allowClear`**, если по сценарию пользователь может снять оценку.
-4. **Задавайте `readonly`** для отображения уже выставленного рейтинга без возможности редактирования.
-5. **Добавляйте `data-test-id`** при необходимости стабильных автотестов.
+- Каждая звезда — интерактивная зона с поддержкой клавиатуры: Enter/Space меняют значение.
+- Для контролируемого использования пробрасывайте `aria-label` через обёртку (например, «Оцените товар от 1 до 5»).
+- В readonly-режиме клики и клавиатурные события не обрабатываются — компонент ведёт себя как декоративное представление значения.
+- Цвет звезды (`yellow` и др.) не является единственным носителем смысла — число заполненных звёзд передаёт оценку.

@@ -1,12 +1,12 @@
-import { Button } from '@design-system/button';
-import { ChevronLeftSVG, ChevronRightSVG } from '@design-system/icons';
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
+import { Button } from '@ds/button';
+import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 
 import { PAGINATION_SIZE, VARIANT } from '../../constants';
 import { PaginationContext } from '../../contexts';
-import type { PaginationSize, Variant } from '../../types';
-import { getPaginationEntries, type PaginationEntry, PaginationEntryKind } from '../../utils';
+import { PaginationSize, Variant } from '../../types';
+import { getPaginationEntries, PaginationEntry, PaginationEntryKind } from '../../utils';
 import { PaginationNumberItem } from '../PaginationNumberItem';
 import styles from './styles.module.scss';
 

@@ -1,9 +1,9 @@
 import cn from 'classnames';
-import { type ElementType, forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { ElementType, forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import { DEFAULT_SIZE, DEFAULT_VARIANT, DEFAULT_WEIGHT, VARIANT } from './constants';
 import styles from './styles.module.scss';
-import type { TypographySize, TypographyVariant, TypographyWeight } from './types';
+import { TypographySize, TypographyVariant, TypographyWeight } from './types';
 
 export type TypographyProps = {
   /** Дочерние элементы */
@@ -41,7 +41,7 @@ function getDefaultTag(variant: TypographyVariant): ElementType {
 /**
  * Typography компонент
  *
- * Компонент типографики, использующий стили из @sbercloud/figma-variables.
+ * Компонент типографики, использующий стили из @cloud-ru/figma-variables.
  * Поддерживает различные варианты (display, headline, title, label, body),
  * размеры (s, m, l) и начертания (regular, thin, mono).
  *

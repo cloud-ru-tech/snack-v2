@@ -1,8 +1,8 @@
-import { Button } from '@design-system/button';
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
-
-import { APPEARANCE, HotSpot, type HotSpotProps, PLACEMENT } from '../../src';
+import { Button } from '@ds/button';
+import { APPEARANCE, HotSpot, HotSpotProps, PLACEMENT } from '@ds/hot-spot';
+import { PlaceholderSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
 const meta: Meta<HotSpotProps> = {
   title: 'Components/HotSpot',
@@ -71,5 +71,8 @@ export const Playground: Story = {
         iconPosition='before'
       />
     ),
+  },
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('button')).toBeVisible();
   },
 };

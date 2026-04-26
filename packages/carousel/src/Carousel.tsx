@@ -1,5 +1,5 @@
-import { PaginationSlider } from '@design-system/pagination';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { PaginationSlider } from '@ds/pagination';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';

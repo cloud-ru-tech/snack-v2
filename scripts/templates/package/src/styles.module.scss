@@ -1,0 +1,19 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+// ── Local constants — no @cloud-ru/figma-variables equivalent yet ────────────
+// TODO: replace with figma-variables tokens once spacing/typography mapping confirmed
+$_font-sans: 'SB Sans Interface', 'Inter', system-ui, sans-serif;
+
+.root {
+  font-family: $_font-sans;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.default {
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.outlined {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentcolor;
+}

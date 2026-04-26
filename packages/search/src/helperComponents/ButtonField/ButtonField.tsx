@@ -1,5 +1,5 @@
-import { ChevronDownSVG, ChevronUpSVG } from '@design-system/icons';
-import { Sun, SUN_SIZE } from '@design-system/loader';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { Sun, SUN_SIZE } from '@ds/loader';
 import { type KeyboardEvent, ReactNode, useCallback, useMemo, useState } from 'react';
 
 import { SIZE } from './constants';

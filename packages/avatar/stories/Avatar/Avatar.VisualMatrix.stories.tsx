@@ -1,43 +1,41 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, Avatar, SHAPE, SIZE } from '@ds/avatar';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import avatarReadme from '../../README.md?raw';
-import { APPEARANCE, Avatar, AvatarProps, SHAPE, SIZE } from '../../src';
+import styles from './styles.module.scss';
 
-const meta: Meta<AvatarProps> = {
+const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
-  parameters: {
-    readme: { content: avatarReadme },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
-type Story = StoryObj<AvatarProps>;
+type Story = StoryObj<typeof Avatar>;
 
-const keySizes = [SIZE.S, SIZE.M, SIZE.L];
-const keyAppearances = [APPEARANCE.Neutral, APPEARANCE.Primary, APPEARANCE.Red, APPEARANCE.Blue];
-const shapes = Object.values(SHAPE);
+const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
+const keyAppearances = Object.values(APPEARANCE);
+const keyShapes = [SHAPE.Round, SHAPE.Square] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <>
-      {shapes.map(shape => (
+    <div className={styles.matrix}>
+      {keyShapes.map(shape => (
         <StoryTable
           key={shape}
-          sectionTitle={`${shape} Shape`}
+          sectionTitle={`Shape — ${shape}`}
           firstColumnHeader='Appearance'
-          columnHeaders={keySizes.map(s => s.toUpperCase())}
+          columnHeaders={keySizes.map(size => size.toUpperCase())}
           rows={keyAppearances.map(appearance => ({
             variantLabel: appearance,
             cells: keySizes.map(size => (
-              <Avatar key={size} name='JD' size={size} shape={shape} appearance={appearance} />
+              <Avatar key={size} name='John Doe' size={size} shape={shape} appearance={appearance} />
             )),
           }))}
         />
       ))}
-    </>
+    </div>
   ),
 };

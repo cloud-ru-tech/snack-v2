@@ -1,0 +1,77 @@
+{
+  "PromoTag": {
+    "displayName": "PromoTag",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "text": {
+        "type": "string",
+        "required": false,
+        "description": "Текст компонента"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "primary",
+        "description": "Внешний вид"
+      },
+      "role": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "defaultValue": "accent",
+        "description": "Роль промо-тега"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк для обработки клика на тег"
+      },
+      "beforeContent": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "null",
+        "description": "Контент перед текстом"
+      },
+      "afterContent": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "null",
+        "description": "Контент после текста"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s",
+          "m"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      }
+    },
+    "description": "Компонент Promo Tag"
+  }
+}

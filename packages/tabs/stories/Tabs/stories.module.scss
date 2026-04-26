@@ -1,0 +1,21 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  min-width: 420px;
+}
+
+.wide {
+  width: 560px;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.panel {
+  padding: base.$sn-primitive-dimension-16 0;
+}

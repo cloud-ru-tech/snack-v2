@@ -1,43 +1,29 @@
 {
-  "name": "@design-system/carousel",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Carousel component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/carousel",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
-  "scripts": {},
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
-    "@design-system/button": "0.1.0",
-    "@design-system/icons": "0.1.0",
-    "@design-system/pagination": "0.1.0",
-    "@design-system/utils": "0.1.0",
+    "@ds/button": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/pagination": "workspace:*",
+    "@ds/utils": "workspace:*",
     "classnames": "2.5.1",
     "lodash.debounce": "4.0.8",
     "merge-refs": "2.0.0",
     "uncontrollable": "9.0.0"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "publishConfig": { "access": "public" }
 }

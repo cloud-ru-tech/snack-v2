@@ -1,71 +1,44 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { Pagination, PAGINATION_SIZE, VARIANT } from '@ds/pagination';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, within } from 'storybook/test';
 
-import readme from '../../README.md?raw';
-import { Pagination, PAGINATION_SIZE, type PaginationProps, VARIANT } from '../../src';
-
-const meta: Meta<PaginationProps> = {
-  title: 'Components/Pagination/Pagination',
+const meta: Meta<typeof Pagination> = {
+  title: 'Components/Pagination',
   component: Pagination,
-  parameters: {
-    readme: { content: readme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5707-1465&m=dev',
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
-    'data-test-id': 'pagination',
     total: 10,
-    page: 1,
-    size: 's',
-    variant: 'button',
+    page: 3,
+    size: PAGINATION_SIZE.S,
+    variant: VARIANT.Button,
     maxLength: 7,
+    onChange: fn(),
   },
   argTypes: {
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для e2e',
-    },
-    total: {
-      control: { type: 'number', min: 1, max: 999, step: 1 },
-      description: 'Общее количество страниц',
-    },
-    page: {
-      control: { type: 'number', min: 1, max: 999, step: 1 },
-      description: 'Текущая страница',
-    },
+    total: { control: { type: 'number', min: 1 }, description: 'Общее количество страниц' },
+    page: { control: { type: 'number', min: 1 }, description: 'Текущая страница' },
     size: {
-      control: 'select',
+      control: 'radio',
       options: Object.values(PAGINATION_SIZE),
-      description: 'Размер',
+      description: 'Размер: s / m',
     },
     variant: {
       control: 'radio',
       options: Object.values(VARIANT),
-      description: 'Вариант: button или link',
+      description: 'Тип кнопок: button / link',
     },
     maxLength: {
-      control: { type: 'number', min: 5, max: 15, step: 1 },
-      description: 'Макс. количество элементов до транкейта',
-    },
-    className: {
-      control: 'text',
-      description: 'Дополнительный CSS-класс для nav',
+      control: { type: 'number', min: 5 },
+      description: 'Максимальное количество элементов до свёртки',
     },
   },
 };
-
 export default meta;
-
-type Story = StoryObj<PaginationProps>;
-
-function PaginationControlled(args: PaginationProps) {
-  const [page, setPage] = useState(args.page);
-  return <Pagination {...args} page={page} onChange={newPage => setPage(newPage)} />;
-}
+type Story = StoryObj<typeof Pagination>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => <PaginationControlled {...args} />,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('navigation', { name: 'Pagination' })).toBeVisible();
+  },
 };

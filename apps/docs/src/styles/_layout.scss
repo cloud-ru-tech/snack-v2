@@ -1,0 +1,37 @@
+// Layout constants — docs chrome sizes that don't map to @cloud-ru/figma-variables.
+// All in px. Any value representable by a package spacing/size token should use the token directly, not a constant here.
+
+// Chrome heights
+$docs-header-height: 52px;
+$docs-breadcrumb-height: 44px;
+
+// Sidebar widths
+$docs-sidebar-width-desktop: 240px;
+$docs-sidebar-width-mobile: 256px;
+
+// Content containers
+$docs-content-max-narrow: 896px;
+$docs-content-max-wide: 1152px;
+$docs-header-max-width: 1440px;
+$docs-lead-max-width: 608px;
+$docs-toc-width: 192px;
+$docs-card-min-width: 224px;
+$docs-canvas-table-min-width: 448px;
+$docs-props-table-min-width: 576px;
+$docs-props-type-max-width: 320px;
+$docs-preview-min-height: 160px;
+$docs-canvas-typecell-max-width: 224px;
+$docs-canvas-valuecell-width: 160px;
+$docs-canvas-select-min-width: 112px;
+
+// Breakpoints
+$docs-bp-mobile: 768px;
+$docs-bp-small-mobile: 640px;
+$docs-bp-tablet: 1024px;
+
+// Z-index
+$docs-z-sidebar: 20;
+$docs-z-header: 50;
+$docs-z-overlay: 39;
+$docs-z-sidebar-mobile: 40;
+$docs-z-breadcrumb: 10;

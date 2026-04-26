@@ -1,0 +1,58 @@
+{
+  "Typography": {
+    "displayName": "Typography",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дочерние элементы"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "title",
+          "display",
+          "headline",
+          "label",
+          "body"
+        ],
+        "defaultValue": "VARIANT.body",
+        "description": "Вариант типографики"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "SIZE.m",
+        "description": "Размер типографики"
+      },
+      "weight": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "regular",
+          "thin",
+          "mono"
+        ],
+        "defaultValue": "WEIGHT.regular",
+        "description": "Начертание шрифта"
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "HTML тег для рендеринга"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Typography компонент\n\nКомпонент типографики, использующий стили из"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@ds/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "BASE_PATH=${BASE_PATH:-/snack-v2/} astro build",
+    "build:root": "BASE_PATH=/ astro build",
+    "preview": "astro preview",
+    "clean": "rm -rf dist .astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.4",
+    "@astrojs/react": "^4.2.1",
+    "astro": "^5.7.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.86.3"
+  },
+  "devDependencies": {
+    "@ds/fonts": "workspace:*",
+    "@ds/tsconfig": "workspace:*",
+    "@types/react": "^18.3.20",
+    "@types/react-dom": "^18.3.5",
+    "astro-pagefind": "^1.8.6",
+    "pagefind": "^1.5.2",
+    "typescript": "^5.8.3",
+    "unist-util-visit": "^5.1.0"
+  }
+}

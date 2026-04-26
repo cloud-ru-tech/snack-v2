@@ -1,25 +1,15 @@
 {
-  "$schema": "https://json.schemastore.org/lerna.json",
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
   "npmClient": "pnpm",
   "packages": ["packages/*"],
-  "version": "independent",
   "command": {
     "publish": {
-      "ignoreChanges": ["ignored-file", "*.md"],
-      "message": "[ci skip] Version bump",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "message": "chore(release): publish"
     },
     "version": {
-      "allowBranch": "main",
-      "conventionalCommits": true,
-      "ignoreChanges": [
-        "**/*.md",
-        "**/*.MDX",
-        "./scripts/**/*",
-        "packages/*/stories/**/*.*",
-        "packages/*/__tests__/**/*.*",
-        "packages/*/docs/**/*.*"
-      ]
+      "conventionalCommits": true
     }
   }
 }

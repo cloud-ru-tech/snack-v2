@@ -1,0 +1,707 @@
+---
+title: Contribution Guide
+description: Как устроен репозиторий и как добавлять новые компоненты.
+order: 0
+---
+
+# Contribution Guide
+
+Это руководство объясняет как устроен репозиторий, как запустить среду разработки и как добавить новый компонент от первого файла до публикации в npm.
+
+## Как устроен репозиторий
+
+Это **pnpm monorepo** — один репозиторий с несколькими независимыми пакетами.
+
+```
+design-system/
+├── packages/          # Публикуемые npm-пакеты компонентов
+├── apps/
+│   ├── docs/          # Документационный портал (Astro)
+│   └── storybook/     # Среда разработки компонентов
+├── tests/             # E2E-тесты (Playwright)
+└── tooling/           # Общие конфиги (TypeScript)
+```
+
+**Инструменты оркестрации:**
+
+- **pnpm workspaces** — управляет зависимостями между пакетами, линкует их между собой.
+- **Корневые скрипты** (`package.json`) — последовательная сборка пакетов: `tspc` (ESM + CJS), затем SCSS/CSS, затем постобработка CJS для CSS Modules.
+- **Lerna** — только для версионирования и публикации в npm.
+
+## Быстрый старт
+
+```bash
+# 1. Установить зависимости для всех пакетов сразу
+pnpm install
+
+# 2. Установить браузеры Playwright (один раз)
+pnpm --filter @ds/tests exec playwright install
+
+# 3. Запустить нужную среду
+pnpm dev:storybook     # localhost:6006 — разработка компонентов
+pnpm dev:docs          # localhost:4321 — документационный портал
+```
+
+Обе команды можно запускать одновременно в разных терминалах — они не конфликтуют.
+
+## Анатомия пакета компонента
+
+Каждый пакет живёт в `packages/<name>/`. Пакет может экспортировать **один или несколько компонентов** — структура `docs/` различается.
+
+### Пакет с одним компонентом
+
+```
+packages/icon/
+├── src/
+│   ├── index.ts              # Публичный API: export { Icon }
+│   ├── Icon.tsx              # Компонент
+│   ├── styles.module.scss    # Стили (CSS Modules + SCSS)
+│   └── globals.d.ts          # Типы для import *.module.scss
+├── stories/
+│   └── Icon.stories.tsx      # Storybook-сторис с play-функциями
+├── demos/
+│   └── IconDemo.tsx          # Интерактивное демо для доки
+├── docs/
+│   ├── overview.mdx          # Единственная страница документации
+│   └── props.json            # Авто-генерируется: pnpm gen:props
+├── package.json
+├── tsconfig.json
+├── tsconfig.esm.json
+└── tsconfig.cjs.json
+```
+
+Один MDX-файл (`overview.mdx`) → одна страница в портале (`/components/icon/overview`).
+
+### Пакет с несколькими компонентами
+
+Когда пакет экспортирует несколько компонентов (например `Button` + `ButtonIcon`), структура `docs/` расширяется:
+
+```
+packages/button/
+├── src/
+│   ├── index.ts              # export { Button, ButtonIcon }
+│   ├── Button.tsx
+│   ├── ButtonIcon.tsx
+│   └── styles.module.scss
+├── stories/
+│   ├── Button.stories.tsx
+│   └── ButtonIcon.stories.tsx
+├── demos/
+│   ├── ButtonDemo.tsx
+│   └── ButtonIconDemo.tsx
+├── docs/
+│   ├── index.mdx             # Обзор пакета — оба компонента вместе
+│   ├── button.mdx            # Детальная документация Button
+│   ├── button-icon.mdx       # Детальная документация ButtonIcon
+│   └── props.json            # Авто-генерируется: pnpm gen:props
+├── package.json
+├── tsconfig.json
+├── tsconfig.esm.json
+└── tsconfig.cjs.json
+```
+
+Это создаёт **трёхуровневую навигацию** в сайдбаре:
+
+```
+Components
+└── Button                    ← /components/button  (из index.mdx)
+    ├── Button                ← /components/button/button
+    └── ButtonIcon            ← /components/button/button-icon
+```
+
+**Правила именования MDX-файлов:**
+- `index.mdx` — обзорная страница пакета (URL: `/components/<pkg>`)
+- `<component-name>.mdx` (kebab-case) — детальная страница компонента (URL: `/components/<pkg>/<component-name>`)
+- `ButtonIcon` → `button-icon.mdx`, `SelectMenu` → `select-menu.mdx`
+
+### package.json компонента
+
+Каждый пакет экспортирует **и исходники, и собранный код**:
+
+```json
+{
+  "name": "@ds/button",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  }
+}
+```
+
+- `source` — используется Storybook и docs в dev-режиме (TypeScript + SCSS напрямую).
+- `import` / `require` — используется потребителем пакета (отдельные деревья `dist/esm` и `dist/cjs`).
+- `./style.css` — агрегат скомпилированных стилей пакета; потребитель импортирует их явно.
+
+## Как работают стили
+
+Стили пишутся в `styles.module.scss` и используют токены из `@cloud-ru/figma-variables`:
+
+```scss
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+// Локальные константы для значений без эквивалента в figma-variables
+// TODO: заменить на figma-variables-токены после подтверждения маппинга
+$_radius-md: 0.375rem;
+$_font-sans: 'SB Sans Interface', 'Inter', system-ui, sans-serif;
+$_duration-fast: 120ms;
+$_ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+.button {
+  background: base.$sn-theme-color-primary-accent;
+  border-radius: $_radius-md;
+  font-family: $_font-sans;
+  transition: background $_duration-fast $_ease-out;
+}
+```
+
+**Правила CSS Modules:**
+- Имена классов генерируются с `camelCaseOnly` — `styles.primaryButton`, не `styles['primary-button']`.
+- При сборке пакетов SCSS компилируется в CSS рядом с JS в `dist/esm` и `dist/cjs`; для CJS дополнительно прогоняется `babel-plugin-react-css-modules`.
+- Потребитель должен импортировать `@ds/button/style.css` отдельно в точке входа приложения.
+
+## Как работает Storybook
+
+Storybook запускается в `apps/storybook/` и **автоматически подхватывает** все файлы `packages/*/stories/**/*.stories.tsx` — никакой ручной регистрации.
+
+```
+# Запуск
+pnpm dev:storybook
+```
+
+В `main.ts` настроен Vite с двумя alias-ами:
+- `@ds/button` → `packages/button/src/index.ts` (TypeScript-исходник)
+- `@storybook/test` → ESM-бандл (для play-функций в stories)
+
+### Структура сторис
+
+Каждая стория использует [CSF3](https://storybook.js.org/docs/react/api/csf):
+
+```tsx
+import { userEvent, within, expect } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Button } from '@ds/button'
+
+const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
+  component: Button,
+  tags: ['autodocs'],
+}
+export default meta
+
+// Базовая стория
+export const Primary: Story = {
+  args: { children: 'Button', variant: 'primary' },
+}
+
+// Стория с интерактивным тестом
+export const Clickable: Story = {
+  args: { children: 'Save' },
+  play: async ({ canvasElement }) => {
+    const btn = within(canvasElement).getByRole('button')
+    await expect(btn).toBeEnabled()
+    await userEvent.click(btn)
+  },
+}
+```
+
+`play`-функции запускаются автоматически при открытии сторис в браузере и через `test-runner` в CI.
+
+## Как работает документационный портал
+
+Портал (`apps/docs/`) собирается на [Astro](https://astro.build/) и автоматически подтягивает MDX-документацию из двух источников:
+
+| Источник | URL в портале |
+|----------|---------------|
+| `packages/*/docs/*.mdx` | `/components/<package>/<filename>` |
+| `apps/docs/src/content/patterns/*.mdx` | `/patterns/<filename>` |
+
+Это настроено через Astro Content Collections в `apps/docs/src/content/config.ts`. **Добавить новый пакет = добавить MDX-файл.** Никакой ручной регистрации не нужно.
+
+### Canvas — интерактивное демо
+
+На каждой странице компонента есть интерактивный канвас с контролами. Он реализован как React-компонент `Canvas` и рендерится прямо в MDX:
+
+```mdx
+import { ButtonDemo } from '../demos/ButtonDemo'
+
+# Button
+
+<ButtonDemo client:load />
+```
+
+Canvas умеет **автоматически строить контролы** из `props.json` через проп `componentDoc`. Описывать каждый контрол вручную не нужно:
+
+```tsx
+// demos/ButtonDemo.tsx
+import { Canvas } from '~docs/components/Canvas'
+import { Button } from '@ds/button'
+import buttonDoc from '../docs/props.json'
+
+export function ButtonDemo() {
+  return (
+    <Canvas
+      component={Button}
+      componentDoc={buttonDoc.Button}          // ← автоматические контролы из props.json
+      defaultProps={{ children: 'Button' }}
+      // controls — только для пропов которых нет в props.json (children, сложные типы)
+      controls={{ children: { type: 'text' } }}
+    />
+  )
+}
+```
+
+Canvas выводит контролы для каждого пропа:
+- Union-тип (`'primary' | 'secondary'`) → `<select>`
+- `boolean` → переключатель
+- `string` / `ReactNode` → текстовое поле
+
+Пропы из node_modules (HTML-атрибуты типа `onClick`, `className`) автоматически пропускаются. Ручные `controls` переопределяют авто-выведенные.
+
+`client:load` — директива Astro, означает что компонент гидратируется на клиенте сразу после загрузки.
+
+### Паттерны (разделы без компонентов)
+
+Для документации не привязанной к конкретному компоненту создаётся MDX-файл в `apps/docs/src/content/patterns/`:
+
+```
+apps/docs/src/content/patterns/
+├── contribution-guide.mdx   ← этот файл
+├── composition-patterns.mdx
+└── form-patterns.mdx
+```
+
+Фронтматтер управляет порядком в сайдбаре:
+
+```yaml
+---
+title: Contribution Guide
+description: Краткое описание
+order: 0   # чем меньше — тем выше в списке
+---
+```
+
+Компоненты-пакеты могут ссылаться на паттерны через обычные MDX-ссылки:
+
+```mdx
+Смотри [Паттерны форм](/patterns/form-patterns)
+```
+
+## Как добавить новый компонент
+
+### Быстрый путь: `pnpm add-package`
+
+Запусти интерактивный скаффолдер из корня репозитория:
+
+```bash
+pnpm add-package
+```
+
+Скрипт задаст несколько вопросов:
+
+| Вопрос | Описание |
+|--------|----------|
+| Package name | Имя пакета в kebab-case, без `@ds/` (например `my-component`) |
+| Main component name | Имя компонента в PascalCase (по умолчанию выводится из имени пакета) |
+| One-line description | Краткое описание для frontmatter документации |
+| Docs layout | `single-component` — одна страница `overview.mdx`; `multi-component` — `index.mdx` + страница компонента |
+| Include Canvas demo? | Создать `demos/ComponentDemo.tsx` и подключить в документацию |
+| Scaffold Playwright e2e spec? | Создать `tests/storybook/<name>.spec.ts` |
+
+После подтверждения скрипт автоматически:
+
+1. Создаёт `packages/<name>/` из шаблона
+2. Добавляет ссылку в корневой `tsconfig.json`
+3. Добавляет Vite alias в `apps/storybook/.storybook/main.ts`
+4. Добавляет Vite alias в `apps/docs/astro.config.mjs`
+5. Добавляет `"@ds/<name>": "workspace:*"` в `apps/storybook/package.json`
+
+Затем выполни:
+
+```bash
+pnpm install
+pnpm gen
+pnpm dev:storybook    # localhost:6006
+pnpm dev:docs         # localhost:4321
+```
+
+> **--dry-run** — передай флаг чтобы посмотреть что будет создано, не записывая файлы:
+> ```bash
+> pnpm add-package --dry-run
+> ```
+
+> **Шаблон** хранится в `scripts/templates/package/`. Если структура `packages/button/` изменилась — обнови шаблон в том же PR.
+
+---
+
+### Ручной путь (если скрипт не подходит)
+
+### 1. Создать структуру пакета
+
+```bash
+cp -r packages/button packages/my-component
+```
+
+Отредактировать `packages/my-component/package.json`:
+
+```json
+{
+  "name": "@ds/my-component",
+  "version": "0.0.0"
+}
+```
+
+### 2. Написать компонент
+
+```tsx
+// packages/my-component/src/MyComponent.tsx
+import styles from './styles.module.scss'
+
+export interface MyComponentProps {
+  variant?: 'default' | 'outlined'
+}
+
+export function MyComponent({ variant = 'default' }: MyComponentProps) {
+  return <div className={styles[variant]}>...</div>
+}
+```
+
+```ts
+// packages/my-component/src/index.ts
+export { MyComponent } from './MyComponent'
+export type { MyComponentProps } from './MyComponent'
+```
+
+### 3. Добавить сторис
+
+```tsx
+// packages/my-component/stories/MyComponent.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react'
+import { MyComponent } from '@ds/my-component'
+
+const meta: Meta<typeof MyComponent> = {
+  title: 'Components/MyComponent',
+  component: MyComponent,
+  tags: ['autodocs'],
+}
+export default meta
+
+export const Default: Story = {
+  args: { variant: 'default' },
+}
+```
+
+После сохранения Storybook автоматически добавит сторис в навигацию — не нужно ничего регистрировать.
+
+### 4. Сгенерировать props.json
+
+После написания компонента запусти скрипт извлечения типов:
+
+```bash
+pnpm gen:props
+```
+
+Скрипт читает все `packages/*/src/**/*.tsx`, извлекает пропы через `react-docgen-typescript` и пишет `packages/my-component/docs/props.json`. Новый пакет подхватывается **автоматически** — никакой регистрации не нужно.
+
+Или одной командой сразу props + README:
+
+```bash
+pnpm gen
+```
+
+Запускай `pnpm gen` всякий раз когда меняются пропы или документация компонента.
+
+`gen:readme` читает `docs/index.mdx` и все компонентные MDX-файлы пакета и генерирует `README.md` в корне пакета. Для пакетов с несколькими компонентами README будет содержать секцию для каждого компонента в порядке `order` из frontmatter. README автоматически исключает JSX-демо, внутренние ссылки на портал и лишние заголовки — в нём остаётся только чистый Markdown пригодный для npm.
+
+### 5. Создать демо для доки
+
+Canvas умеет **автоматически строить контролы** из `props.json` — не нужно описывать их вручную:
+
+```tsx
+// packages/my-component/demos/MyComponentDemo.tsx
+import { Canvas } from '~docs/components/Canvas'
+import { MyComponent } from '@ds/my-component'
+import myComponentDoc from '../docs/props.json'
+
+export function MyComponentDemo() {
+  return (
+    <Canvas
+      component={MyComponent}
+      componentDoc={myComponentDoc.MyComponent}
+      defaultProps={{ variant: 'default' }}
+      // controls — только для пропов которые docgen не видит (children, сложные типы)
+    />
+  )
+}
+```
+
+Canvas выводит контролы для каждого пропа:
+- Union-тип (`'default' | 'outlined'`) → `<select>`
+- `boolean` → переключатель
+- `string` / `ReactNode` → текстовое поле
+
+Пропы из node_modules (HTML-атрибуты) автоматически пропускаются. `children` добавляй через `controls={{ children: { type: 'text' } }}` если нужен в демо.
+
+### 6. Написать документацию
+
+#### Пакет с одним компонентом
+
+Создай единственный MDX-файл `packages/my-component/docs/overview.mdx`:
+
+```mdx
+---
+title: MyComponent
+package: '@ds/my-component'
+description: Краткое описание компонента.
+order: 1
+---
+
+import { MyComponentDemo } from '../demos/MyComponentDemo'
+import { PropsTable } from '~docs/components/PropsTable'
+import myComponentDoc from './props.json'
+
+# MyComponent
+
+<MyComponentDemo client:load />
+
+## Варианты
+
+...
+
+## Props
+
+<PropsTable data={myComponentDoc.MyComponent} />
+```
+
+Страница `/components/my-component/overview` появится в портале автоматически.
+
+#### Пакет с несколькими компонентами
+
+Создай три файла:
+
+**`docs/index.mdx`** — обзор пакета, оба компонента вместе:
+
+```mdx
+---
+title: MyPackage
+package: '@ds/my-package'
+description: Описание пакета.
+order: 1
+---
+
+import { FooDemo } from '../demos/FooDemo'
+import { BarDemo } from '../demos/BarDemo'
+
+# MyPackage
+
+Пакет экспортирует два компонента: `Foo` и `Bar`.
+
+## Установка
+
+\`\`\`bash
+pnpm add @ds/my-package
+\`\`\`
+
+<FooDemo client:load />
+<BarDemo client:load />
+```
+
+**`docs/foo.mdx`** — детальная страница `Foo` (kebab-case от PascalCase):
+
+```mdx
+---
+title: Foo
+description: Описание Foo.
+order: 1
+---
+
+import { FooDemo } from '../demos/FooDemo'
+import { PropsTable } from '~docs/components/PropsTable'
+import pkgDoc from './props.json'
+
+# Foo
+
+<FooDemo client:load />
+
+<PropsTable data={pkgDoc.Foo} />
+```
+
+**`docs/bar.mdx`** — детальная страница `Bar`:
+
+```mdx
+---
+title: Bar
+description: Описание Bar.
+order: 2
+---
+...
+```
+
+`PropsTable` рендерится как статический HTML — `client:` директива не нужна. Таблица пропов обновится автоматически при следующем `pnpm gen:props`.
+
+Поле `order` в frontmatter управляет порядком в сайдбаре и в README (меньше = выше).
+
+### 6. Зарегистрировать в корневом tsconfig
+
+```json
+// tsconfig.json (в корне репозитория)
+{
+  "references": [
+    { "path": "./packages/my-component" }
+  ]
+}
+```
+
+### 7. Добавить зависимость в Storybook и Docs
+
+```bash
+# apps/storybook/package.json — добавить в dependencies:
+"@ds/my-component": "workspace:*"
+
+# apps/docs/package.json — добавить в dependencies:
+"@ds/my-component": "workspace:*"
+
+# Затем:
+pnpm install
+```
+
+Добавить alias в `apps/storybook/.storybook/main.ts` и `apps/docs/astro.config.mjs`:
+
+```ts
+// main.ts viteFinal:
+'@ds/my-component': join(root, 'packages/my-component/src/index.ts'),
+
+// astro.config.mjs vite.resolve.alias:
+'@ds/my-component': resolve(root, 'packages/my-component/src/index.ts'),
+```
+
+### 8. Написать тесты
+
+```ts
+// tests/storybook/my-component.spec.ts
+import { test, expect } from '@playwright/test'
+import { gotoStory } from '../helpers/storybook'
+
+const STORY = 'components-mycomponent'
+
+test('renders in default variant', async ({ page }) => {
+  await gotoStory(page, `${STORY}--default`)
+  await expect(page.locator('#storybook-root')).toBeVisible()
+})
+```
+
+## Как работают тесты
+
+Тестирование построено вокруг Storybook как источника истины о состояниях компонента.
+
+### Три уровня
+
+**1. Play-функции в сторис** — быстрые тесты взаимодействия прямо в истории:
+
+```tsx
+play: async ({ canvasElement }) => {
+  const btn = within(canvasElement).getByRole('button')
+  await userEvent.click(btn)
+  await expect(btn).toBeFocused()
+}
+```
+
+Запуск: `pnpm test:stories`
+
+**2. Playwright против Storybook iframe** — параметрические тесты через URL:
+
+```ts
+// URL передаёт props компонента напрямую
+await gotoStory(page, 'components-button--primary', {
+  variant: 'danger',
+  children: 'Delete',
+  disabled: true,
+})
+```
+
+Storybook поднимает каждую сторис как iframe по адресу:
+```
+/iframe.html?id=components-button--primary&args=variant:danger;disabled:true
+```
+
+Это позволяет тестировать **любую комбинацию props** без создания отдельной сторис.
+
+**3. Визуальная регрессия** — скриншоты фиксируют внешний вид:
+
+```bash
+# Создать baseline (первый раз или после намеренных изменений)
+pnpm test:e2e:update-snapshots
+
+# Проверить регрессию
+pnpm test:e2e
+```
+
+Baseline-файлы коммитятся в репозиторий (`tests/visual/*.spec.ts-snapshots/`).
+
+### Структура тестовой директории
+
+```
+tests/
+├── storybook/            # Тесты компонентов (rendering, states, interaction, a11y)
+│   └── button.spec.ts
+├── visual/               # Визуальная регрессия
+│   ├── button.spec.ts
+│   └── button.spec.ts-snapshots/   # PNG baseline
+├── docs/                 # Тесты документационного портала
+│   └── button.spec.ts
+├── helpers/
+│   └── storybook.ts      # storyUrl() и gotoStory() утилиты
+└── playwright.config.ts  # Проекты: storybook-chromium/firefox/safari, docs, visual
+```
+
+## Публикация пакетов
+
+Пакеты публикуются в npm через Lerna. Lerna берёт только то, что в `packages/*` — приложения (`apps/*`) не публикуются (они `"private": true`).
+
+```bash
+# 1. Убедиться что сборка проходит
+pnpm build
+
+# 2. Проставить версии (интерактивный выбор, создаёт git-теги)
+pnpm version:packages
+
+# 3. Опубликовать в npm
+pnpm release
+```
+
+Lerna использует `"version": "independent"` — каждый пакет версионируется независимо. Это значит `@ds/button` может быть на `1.3.0` а `@ds/avatar` на `2.0.1`.
+
+## Дизайн-токены
+
+Визуальные константы предоставляются пакетом `@cloud-ru/figma-variables`, который уже установлен в монорепозитории.
+
+**В SCSS компонентов** подключайте через `@use`:
+
+```scss
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.button {
+  color: base.$sn-theme-color-primary-accent;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+}
+```
+
+**В точке входа приложения** подключайте CSS-токены:
+
+```css
+@import '@cloud-ru/figma-variables/build/css/tokens.css';
+
+/* После этого доступны CSS-переменные: var(--sn-theme-color-primary-accent), etc. */
+```
+
+Для значений без эквивалента в figma-variables (отступы, радиусы, анимации) используйте локальные `$_*` SCSS-константы с TODO-маркерами:
+
+```scss
+// TODO: replace with figma-variables tokens once spacing mapping confirmed
+$_space-4: 1rem;
+$_radius-md: 0.375rem;
+$_duration-fast: 120ms;
+```

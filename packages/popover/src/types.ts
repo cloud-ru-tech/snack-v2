@@ -1,5 +1,5 @@
-import type { PopoverPrivateProps } from '@design-system/popover-private';
-import type { ReactNode } from 'react';
+import { PopoverPrivateProps } from '@ds/popover-private';
+import { ReactNode } from 'react';
 
 /**
  * Public Popover props. Wraps PopoverPrivate with `content` as the main slot for popover body.

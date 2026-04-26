@@ -1,4 +1,4 @@
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
 import { APPEARANCE, PROGRESS_BAR_CIRCLE_SIZE } from '../../constants';

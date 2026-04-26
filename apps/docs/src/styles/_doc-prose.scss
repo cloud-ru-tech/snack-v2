@@ -1,0 +1,90 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+// Shared prose styles for MDX rendered via <article class="doc">.
+// Consumers @use this partial to emit the rules.
+
+.doc {
+  overflow-x: clip;
+  min-width: 0;
+  padding: base.$sn-adaptive-spacing-interval-l base.$sn-primitive-dimension-48 base.$sn-primitive-dimension-64;
+}
+
+.doc h1 {
+  @include base.composite-var(base.$sn-regular-display-s);
+
+  margin-bottom: base.$sn-primitive-dimension-12;
+}
+
+// First paragraph after h1 acts as lead
+.doc h1 + p {
+  @include base.composite-var(base.$sn-regular-body-l);
+
+  margin-bottom: base.$sn-adaptive-spacing-interval-xl;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.doc h2 {
+  @include base.composite-var(base.$sn-regular-title-l);
+
+  margin-top: base.$sn-adaptive-spacing-interval-3xl;
+  margin-bottom: base.$sn-primitive-dimension-12;
+  padding-top: base.$sn-adaptive-spacing-interval-xl;
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+.doc h3 {
+  @include base.composite-var(base.$sn-regular-title-m);
+
+  margin-top: base.$sn-adaptive-spacing-interval-xl;
+  margin-bottom: base.$sn-adaptive-spacing-interval-m;
+}
+
+.doc p {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  margin-bottom: base.$sn-adaptive-spacing-interval-l;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.doc ul,
+.doc ol {
+  margin-bottom: base.$sn-adaptive-spacing-interval-l;
+  padding-left: base.$sn-adaptive-spacing-interval-xl;
+}
+
+.doc li {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  margin-bottom: base.$sn-adaptive-spacing-interval-m;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.doc pre {
+  overflow-x: auto;
+  margin-bottom: base.$sn-adaptive-spacing-interval-l;
+}
+
+.doc table {
+  overflow-x: auto;
+  display: block;
+  border-collapse: collapse;
+
+  width: 100%;
+  margin-bottom: base.$sn-adaptive-spacing-interval-xl;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.doc th {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.doc a {
+  color: base.$sn-theme-color-primary-accent;
+  text-underline-offset: 2px;
+}

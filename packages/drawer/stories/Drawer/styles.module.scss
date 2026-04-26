@@ -1,24 +1,32 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
 
-.footerButtonGroup {
+.triggers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.footerGroup {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
 
-.image {
+.mediaImage {
   display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
   align-items: center;
-  align-self: stretch;
   justify-content: center;
 
   width: 100%;
-  height: 240px;
+  height: 200px;
 
-  object-fit: cover;
+  color: rgb(255 255 255 / 88%);
+  text-align: center;
 
-  @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'media');
+  background: linear-gradient(135deg, rgb(102 126 234) 0%, rgb(118 75 162) 100%);
+}
+
+.longContent > p + p {
+  margin-top: base.$sn-primitive-dimension-12;
 }

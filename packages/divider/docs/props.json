@@ -1,0 +1,37 @@
+{
+  "Divider": {
+    "displayName": "Divider",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "regular",
+          "thin"
+        ],
+        "defaultValue": "regular",
+        "description": "Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular"
+      },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation"
+  }
+}

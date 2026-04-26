@@ -1,0 +1,15 @@
+{
+  "Sprite": {
+    "displayName": "Sprite",
+    "props": {
+      "content": {
+        "type": "string",
+        "required": true
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    }
+  }
+}

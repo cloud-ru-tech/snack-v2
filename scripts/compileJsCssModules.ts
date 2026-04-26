@@ -1,40 +1,58 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import { createRequire } from 'module'
+import path from 'path'
 
-import { BabelFileResult, transformFileSync } from '@babel/core';
-import { globSync } from 'glob';
-import minimist from 'minimist';
+import { type BabelFileResult,transformFileSync } from '@babel/core'
+import { globSync } from 'glob'
+import minimist from 'minimist'
 
-import { logDebug, logHelp } from './utils/console';
-import { getAllPackageFolders } from './utils/getAllPackageFolders';
+const require = createRequire(import.meta.url)
+const babelPluginReactCssModules = require('babel-plugin-react-css-modules')
 
-const argv = minimist(process.argv.slice(2));
-const pkg = argv.pkg || '*';
+import { getBuildablePackageFoldersFromSolution } from './utils/getBuildablePackageFolders'
 
-const PACKAGES_DIR = path.resolve(__dirname, '..', 'packages');
+const argv = minimist(process.argv.slice(2))
+const pkgFilter = argv.pkg as string | undefined
 
-(async function () {
-  const start = performance.now();
-  logDebug(`Compiling css modules...`);
+const PACKAGES_DIR = path.resolve(__dirname, '..', 'packages')
 
-  const folders = getAllPackageFolders(pkg);
-  const srcPart = 'dist/cjs';
+function shouldIncludeFolder(folder: string): boolean {
+  const allowed = getBuildablePackageFoldersFromSolution()
+  if (pkgFilter && pkgFilter !== '*') {
+    return folder === pkgFilter && allowed.includes(folder)
+  }
+  return allowed.includes(folder)
+}
+
+;(async function () {
+  const start = performance.now()
+  console.info('[compileJsCssModules] Transforming CJS for CSS modules...')
+
+  const folders = fs
+    .readdirSync(PACKAGES_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .filter(shouldIncludeFolder)
+
+  const distCjs = 'dist/cjs'
 
   for (const folder of folders) {
-    const packagePath = path.join(PACKAGES_DIR, folder);
-    const src = path.join(packagePath, srcPart);
+    const packagePath = path.join(PACKAGES_DIR, folder)
+    const src = path.join(packagePath, distCjs)
 
-    const jsFiles = globSync(`${src}/**/*.js`);
+    if (!fs.existsSync(src)) continue
+
+    const jsFiles = globSync(`${src}/**/*.js`)
     for (const file of jsFiles) {
       const { code } = transformFileSync(file, {
-        plugins: [require('babel-plugin-react-css-modules')],
-      }) as BabelFileResult;
-      fs.writeFileSync(file, code as string);
+        plugins: [babelPluginReactCssModules],
+      }) as BabelFileResult
+      fs.writeFileSync(file, code as string)
     }
 
-    logDebug(`FINISHED: ${folder}`);
+    console.info(`[compileJsCssModules] Finished: ${folder}`)
   }
 
-  const end = performance.now();
-  logHelp(`Total ${(end - start) / 1000} seconds.`);
-})();
+  const end = performance.now()
+  console.info(`[compileJsCssModules] Total ${((end - start) / 1000).toFixed(2)}s`)
+})()

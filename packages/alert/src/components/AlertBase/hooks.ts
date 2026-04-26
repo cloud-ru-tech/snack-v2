@@ -1,5 +1,5 @@
-import { isBrowser, useLayoutEffect as useIsomorphicLayoutEffect } from '@design-system/utils';
-import { type RefObject, useCallback, useRef, useState } from 'react';
+import { isBrowser, useLayoutEffect as useIsomorphicLayoutEffect } from '@ds/utils';
+import { Dispatch, RefObject, SetStateAction, useCallback, useRef, useState } from 'react';
 
 export const ONE_LINE_TEXT_HEIGHT = 20;
 
@@ -14,7 +14,7 @@ export type UseAlertCollapseResult = {
   titleRef: RefObject<HTMLDivElement | null>;
   descriptionRef: RefObject<HTMLDivElement | null>;
   isExpanded: boolean;
-  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsExpanded: Dispatch<SetStateAction<boolean>>;
   isTitleLarge: boolean;
   isDescriptionLarge: boolean;
   canExpand: boolean;

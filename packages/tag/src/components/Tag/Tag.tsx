@@ -1,4 +1,4 @@
-import type { TagLinkProps, TagProps } from '../../types';
+import { TagLinkProps, TagProps } from '../../types';
 import { TagBase } from '../TagBase';
 import { TagLink } from '../TagLink';
 

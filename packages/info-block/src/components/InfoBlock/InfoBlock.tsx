@@ -1,10 +1,10 @@
-import { IconPredefined, IconPredefinedProps } from '@design-system/icon-predefined';
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
+import { IconPredefined, IconPredefinedProps } from '@ds/icon-predefined';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { ALIGN, SIZE, SIZE_TO_ICON_SIZE, TEST_IDS } from '../../constants';
-import type { Align, Size } from '../../types';
+import { Align, Size } from '../../types';
 import styles from './styles.module.scss';
 
 export type InfoBlockProps = WithSupportProps<{

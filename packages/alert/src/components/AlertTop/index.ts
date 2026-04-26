@@ -1,1 +1,2 @@
-export { AlertTop, type AlertTopProps } from './AlertTop';
+export { AlertTop } from './AlertTop';
+export type { AlertTopProps } from './AlertTop';

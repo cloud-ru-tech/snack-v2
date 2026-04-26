@@ -1,4 +1,4 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 
 import { APPEARANCE, PROGRESS_BAR_CIRCLE_SIZE, PROGRESS_BAR_SIZE } from './constants';
 

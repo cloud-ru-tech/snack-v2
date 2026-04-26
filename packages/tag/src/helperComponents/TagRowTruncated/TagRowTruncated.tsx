@@ -1,9 +1,9 @@
-import { extractSupportProps } from '@design-system/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { TAG_ROW_TEST_IDS } from '../../components/TagRow/constants';
-import type { Size, TagRowItemInner } from '../../types';
+import { Size, TagRowItemInner } from '../../types';
 import { TagList } from '../TagList';
 import { TagMore } from '../TagMore';
 import { useResizeObserver } from './hooks';
@@ -23,7 +23,7 @@ function setTagElement(
   tag: TagRowItemInner,
   index: number,
   setFirstTagElement: (el: HTMLElement | null) => void,
-  tagsMapRef: React.MutableRefObject<Map<TagRowItemInner, HTMLElement | null>>,
+  tagsMapRef: MutableRefObject<Map<TagRowItemInner, HTMLElement | null>>,
 ) {
   return (tagElement: HTMLElement | null) => {
     if (index === 0 && tagElement) {

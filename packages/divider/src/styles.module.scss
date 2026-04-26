@@ -1,9 +1,9 @@
 /**
  * Стили Divider в соответствии с Figma (Snack-Ui-Kit-variables).
- * Дом-структура повторяет слои из макета: контейнер + абсолютно позиционированный слой линии.
+ * DOM-структура повторяет слои из макета: контейнер + абсолютно позиционированный слой линии.
  */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/divider.module' as divider;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/divider.module' as divider;
 
 $variants: 'regular', 'thin';
 
@@ -24,7 +24,7 @@ $variants: 'regular', 'thin';
   }
 }
 
-/* Слой линии (второй слой): абсолютное позиционирование поверх контейнера, как в Figma */
+/* Слой линии (второй слой): абсолютное позиционирование поверх контейнера */
 .line {
   pointer-events: none;
   position: absolute;
@@ -36,7 +36,7 @@ $variants: 'regular', 'thin';
       width: 100%;
       height: base.simple-var(divider.$divider, 'anatomy', 'container', 'line', $variant, 'height');
     }
-  
+
     .root[data-orientation='vertical'][data-variant='#{$variant}'] & {
       width: base.simple-var(divider.$divider, 'anatomy', 'container', 'line', $variant, 'width');
       height: 100%;

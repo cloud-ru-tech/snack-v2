@@ -1,10 +1,10 @@
-import { Tooltip, TRIGGER } from '@design-system/tooltip';
-import { DATA_SWIPE_DIRECTIONS_ATTRIBUTE } from '@design-system/utils';
-import { type SliderProps as RCSliderProps } from 'rc-slider';
-import { cloneElement, type HTMLAttributes, type ReactElement } from 'react';
+import { Tooltip, TRIGGER } from '@ds/tooltip';
+import { DATA_SWIPE_DIRECTIONS_ATTRIBUTE } from '@ds/utils';
+import { SliderProps as RCSliderProps } from 'rc-slider';
+import { cloneElement, HTMLAttributes, ReactElement } from 'react';
 
 import styles from './styles.module.scss';
-import type { TipFormatter } from './types';
+import { TipFormatter } from './types';
 
 export function getSortedMarkValues(marks: NonNullable<RCSliderProps['marks']>): number[] {
   return Object.keys(marks)
@@ -42,7 +42,11 @@ export function internalToDomain(internal: number, markValues: number[]): number
   return markValues[clamped];
 }
 
-export function mapInternalToDomain(values: number | number[], isRange: boolean, markValues: number[]): number | number[] {
+export function mapInternalToDomain(
+  values: number | number[],
+  isRange: boolean,
+  markValues: number[],
+): number | number[] {
   if (isRange && Array.isArray(values)) {
     return values.map(v => internalToDomain(v, markValues));
   }

@@ -1,19 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ComponentProps } from 'react';
+import { Skeleton, SkeletonText, WithSkeleton } from '@ds/skeleton';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Skeleton, SkeletonText, WithSkeleton } from '../../src';
-
-type WithSkeletonProps = ComponentProps<typeof WithSkeleton>;
-
-const meta: Meta<WithSkeletonProps> = {
+const meta: Meta<typeof WithSkeleton> = {
   title: 'Components/Skeleton/WithSkeleton',
   component: WithSkeleton,
 };
 
 export default meta;
-type Story = StoryObj<WithSkeletonProps>;
+type Story = StoryObj<typeof WithSkeleton>;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],

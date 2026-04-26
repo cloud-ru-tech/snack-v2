@@ -1,0 +1,176 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use 'motion' as m;
+@use 'layout' as l;
+@use 'doc-prose';
+
+.page {
+  overflow-x: clip;
+  box-sizing: border-box;
+  max-width: l.$docs-content-max-wide;
+  padding: 0;
+}
+
+// ─── Breadcrumb ──────────────────────────────────────────────────────────────
+
+.breadcrumb {
+  display: flex;
+  gap: base.$sn-adaptive-spacing-interval-m;
+  align-items: center;
+
+  padding: base.$sn-adaptive-spacing-interval-l base.$sn-primitive-dimension-48 0;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.breadcrumb a {
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+  transition: color m.$docs-duration-fast;
+}
+
+.breadcrumb a:hover {
+  color: base.$sn-theme-color-primary-accent;
+}
+
+// ─── Two-column grid ─────────────────────────────────────────────────────────
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr l.$docs-toc-width;
+  gap: 0;
+  align-items: start;
+
+  min-width: 0;
+}
+
+// ─── TOC ─────────────────────────────────────────────────────────────────────
+
+.toc {
+  position: sticky;
+  top: calc(#{l.$docs-header-height} + #{base.$sn-adaptive-spacing-interval-l});
+  padding-left: 0;
+  border-left: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+.toc-label {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  display: none;
+  padding-left: base.$sn-primitive-dimension-4;
+  color: base.$sn-theme-color-available-version-textMain;
+  text-transform: uppercase;
+  // margin-bottom: base.$sn-primitive-dimension-12;
+}
+
+.toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+  list-style: none;
+}
+
+.toc-link {
+  display: block;
+
+  padding: base.$sn-adaptive-spacing-interval-s base.$sn-primitive-dimension-12;
+  border-left: 2px solid transparent;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+
+  transition: color m.$docs-duration-fast, border-color m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.toc-link:hover {
+  border-left-color: base.$sn-theme-color-neutral-decor;
+  color: base.$sn-theme-color-primary-accent;
+}
+
+.toc-link--active {
+  border-left-color: base.$sn-theme-color-primary-accent !important;
+  color: base.$sn-theme-color-primary-accent !important;
+}
+
+// ─── Page navigation ─────────────────────────────────────────────────────────
+
+.page-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: base.$sn-adaptive-spacing-interval-l;
+
+  margin-top: base.$sn-primitive-dimension-48;
+  padding-top: base.$sn-adaptive-spacing-interval-xl;
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+.page-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-adaptive-spacing-interval-s;
+
+  padding: base.$sn-adaptive-spacing-interval-l;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+
+  transition: border-color m.$docs-duration-fast, box-shadow m.$docs-duration-fast;
+}
+
+.page-nav-link:hover {
+  border-color: base.$sn-theme-color-primary-accent;
+  box-shadow: 0 0 0 3px base.$sn-theme-color-primary-decor;
+}
+
+.page-nav-next {
+  width: 100%;
+  margin-left: auto;
+  text-align: right;
+}
+
+.page-nav-dir {
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.page-nav-title {
+  color: base.$sn-theme-color-primary-accent;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+}
+
+// ─── Tablet: hide TOC ────────────────────────────────────────────────────────
+
+@media (max-width: l.$docs-bp-tablet) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    display: none;
+  }
+}
+
+// ─── Mobile ──────────────────────────────────────────────────────────────────
+
+@media (max-width: l.$docs-bp-small-mobile) {
+  .doc {
+    padding: base.$sn-adaptive-spacing-interval-l base.$sn-adaptive-spacing-interval-l base.$sn-primitive-dimension-48;
+  }
+
+  .doc h1 {
+    @include base.composite-var(base.$sn-regular-headline-m);
+  }
+
+  .doc h1 + p {
+    @include base.composite-var(base.$sn-regular-body-m);
+  }
+}

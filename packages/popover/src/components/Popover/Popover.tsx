@@ -1,7 +1,7 @@
-import { PLACEMENT, PopoverPrivate, type PopoverPrivateProps, TRIGGER } from '@design-system/popover-private';
+import { PLACEMENT, PopoverPrivate, PopoverPrivateProps, TRIGGER } from '@ds/popover-private';
 import cn from 'classnames';
 
-import type { PopoverProps } from '../../types';
+import { PopoverProps } from '../../types';
 import styles from './styles.module.scss';
 
 export function Popover({

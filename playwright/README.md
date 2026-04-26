@@ -1,271 +1,125 @@
-# Playwright E2E Testing
+# Playwright — общий туллинг
 
-Структура и утилиты для E2E тестирования компонентов через Storybook с помощью Playwright.
+Общие фикстуры, утилиты и конфигурационные константы для всех Playwright-тестов против Storybook.
 
-## Структура директории
+## Структура
 
 ```
 playwright/
 ├── constants/
-│   ├── common.ts          # Общие константы и переменные окружения
-│   └── projects.ts        # Конфигурация браузеров и устройств
+│   ├── common.ts      # STORYBOOK_BASE_URL, TEST_ID_ATTRIBUTE, IS_CI
+│   └── projects.ts    # PROJECTS (chrome/firefox/safari/mobile), VISUAL_BASELINE_PROJECT
 ├── utils/
-│   ├── dataTestIdSelector.ts              # Селектор для data-test-id
-│   ├── getCustomHeaders.ts                # HTTP заголовки для тестирования на ветках
-│   ├── getEnvironmentDependentConfigPart.ts # CI/локальная конфигурация
-│   ├── getStorybookUrl.ts                 # Генератор URL для Storybook stories
-│   ├── getWorkers.ts                      # Расчет количества воркеров
-│   └── index.ts                           # Экспорт утилит
-├── fixtures.ts            # Кастомные fixtures для тестов
-└── README.md             # Эта документация
+│   ├── dataTestIdSelector.ts
+│   ├── getStorybookUrl.ts
+│   ├── waitForFonts.ts
+│   └── index.ts
+├── fixtures.ts        # test, expect — расширенный runner
+├── index.ts           # barrel для путей вне пакетов
+└── README.md
 ```
 
-## Fixtures
+## Тесты пакета
 
-Кастомные fixtures расширяют возможности Playwright:
+Тесты живут **внутри пакета** в папке `__tests__/`, снэпшоты — в соседней `__snapshots__/`:
 
-### `gotoStory(options)`
+```
+packages/<pkg>/
+├── __tests__/
+│   ├── helpers.ts                 # story IDs + props-конструкторы
+│   ├── <pkg>.rendering.spec.ts
+│   ├── <pkg>.states.spec.ts
+│   ├── <pkg>.url-args.spec.ts
+│   ├── <pkg>.dimensions.spec.ts
+│   ├── <pkg>.interaction.spec.ts
+│   ├── <pkg>.polymorphism.spec.ts
+│   ├── <pkg>.a11y.spec.ts
+│   └── <pkg>.visual.spec.ts
+└── __snapshots__/                 # visual baselines (chrome-only)
+```
 
-Переходит на конкретную Storybook story с ожиданием полной загрузки.
+Эталон — [`packages/button/__tests__/`](../packages/button/__tests__).
 
-```typescript
-await gotoStory({
-  name: 'avatar',        // Имя компонента
-  story: 'playground',   // Имя story (по умолчанию = name)
-  category: 'components', // Категория (по умолчанию 'components')
-  props: {               // Props для компонента
-    'data-test-id': 'avatar',
-    size: 'm',
-  },
-  globals: {             // Глобальные параметры Storybook
-    theme: 'dark',
-  },
-});
+## Fixture API
+
+Импорт:
+
+```ts
+import { expect, test } from '#playwright/fixtures'
+```
+
+Доступные фикстуры:
+
+### `gotoStory(storyId, args?)`
+
+Открывает story по id (`components-<name>--<story>`), ждёт рендера `#storybook-root`. Args передаются query-параметром `args=key:value;...`.
+
+```ts
+await gotoStory('components-button--playground', {
+  appearance: 'primary',
+  view: 'filled',
+  size: 'm',
+})
 ```
 
 ### `getByTestId(testId)`
 
-Получает элемент по атрибуту `data-test-id`.
+Локатор по `data-test-id`:
 
-```typescript
-const button = getByTestId('submit-button');
-await expect(button).toBeVisible();
+```ts
+const btn = getByTestId('submit-button')
+await expect(btn).toBeVisible()
 ```
 
-### `scrollBy(locator, options)`
+### `waitForFonts()`
 
-Скроллит элемент на указанное количество пикселей.
+Блокирует до `document.fonts.ready`. Обязательно перед `toHaveScreenshot()`:
 
-```typescript
-const container = page.locator('.scrollable-container');
-await scrollBy(container, { top: 100, behavior: 'smooth' });
+```ts
+await gotoStory('components-button--primary')
+await waitForFonts()
+await expect(page.locator('#storybook-root')).toHaveScreenshot('button-primary.png', {
+  animations: 'disabled',
+  caret: 'hide',
+})
 ```
 
-### `getScrollTop(locator)`
+## Matrix браузеров
 
-Получает текущую позицию скролла элемента.
+`PROJECTS` описывает 4 проекта:
+- `chrome` — 1200×871, визуальные baselines только здесь
+- `firefox` — 1200×871
+- `safari` — 1200×871
+- `mobile` — Pixel 7
 
-```typescript
-const scrollTop = await getScrollTop(container);
-expect(scrollTop).toBeGreaterThan(0);
+Визуальные спеки обязаны делать `test.skip(testInfo.project.name !== VISUAL_BASELINE_PROJECT, …)` — иначе вы попытаетесь сравнить рендеры разных движков.
+
+## Снэпшоты
+
+`snapshotPathTemplate` в корневом `playwright.config.ts`:
+
+```
+{testDir}/{testFileDir}/../__snapshots__/{arg}-{projectName}{ext}
 ```
 
-### `waitForNavigation(expectedPath, options)`
+То есть `packages/button/__tests__/button.visual.spec.ts` → `packages/button/__snapshots__/<arg>-chrome.png`.
 
-Ожидает навигацию на указанный путь.
+## Запуск
 
-```typescript
-await waitForNavigation('/new-page', { timeout: 5000 });
-```
-
-### `dragTo(locator, options)`
-
-Выполняет drag and drop операцию.
-
-```typescript
-// Drag к целевому элементу
-await dragTo(sourceElement, { target: targetElement });
-
-// Drag на указанную позицию
-await dragTo(sourceElement, { 
-  targetPosition: { x: 100, y: 50 },
-  steps: 20 
-});
-```
-
-## Утилиты
-
-### `getStorybookUrl(options)`
-
-Генерирует URL для Storybook story с правильным форматированием параметров.
-
-Поддерживает:
-- Специальные значения: `undefined`, `null`
-- HEX цвета: `#ff0000` → `!hex(ff0000)`
-- RGB/RGBA цвета: `rgb(255, 0, 0)` → `!rgb(255,0,0)`
-- Даты: `new Date()` → `!date(ISO string)`
-- Вложенные объекты и массивы
-
-### `dataTestIdSelector(value)`
-
-Создает CSS-селектор для `data-test-id` атрибута.
-
-```typescript
-const selector = dataTestIdSelector('my-element');
-// Результат: '[data-test-id="my-element"]'
-```
-
-### `getCustomHeaders()`
-
-Возвращает HTTP заголовки для тестирования на разных ветках.
-
-Автоматически определяет текущую git-ветку и добавляет соответствующий заголовок, если `TEST_ON_BRANCH=true`.
-
-### `getEnvironmentDependentConfigPart()`
-
-Возвращает конфигурацию Playwright в зависимости от окружения (CI/локально).
-
-**CI окружение:**
-- 3 повтора при падении тестов
-- Динамическое количество воркеров
-- Репортеры: list, blob, junit
-
-**Локальное окружение:**
-- 0 повторов
-- 3 воркера
-- Репортеры: list, junit
-
-## Переменные окружения
-
-Смотрите `.env.example` для списка доступных переменных.
-
-## Примеры использования
-
-### Базовый тест
-
-```typescript
-import { expect, test } from '../../../playwright/fixtures';
-
-test('should render component', async ({ gotoStory, getByTestId }) => {
-  await gotoStory({
-    name: 'button',
-    story: 'playground',
-    props: {
-      'data-test-id': 'button',
-    },
-  });
-
-  const button = getByTestId('button');
-  await expect(button).toBeVisible();
-});
-```
-
-### Тест взаимодействия
-
-```typescript
-test('should handle click', async ({ gotoStory, getByTestId, page }) => {
-  await gotoStory({
-    name: 'button',
-    story: 'playground',
-    props: {
-      'data-test-id': 'button',
-    },
-  });
-
-  const button = getByTestId('button');
-  await button.click();
-  
-  // Проверка результата
-  const result = getByTestId('result');
-  await expect(result).toHaveText('Clicked!');
-});
-```
-
-### Тест с разными размерами
-
-```typescript
-import { SIZE } from '../src/constants';
-
-test.describe('Sizes', () => {
-  for (const size of Object.values(SIZE)) {
-    test(`should render with size ${size}`, async ({ gotoStory, getByTestId }) => {
-      await gotoStory({
-        name: 'button',
-        story: 'playground',
-        props: {
-          'data-test-id': 'button',
-          size,
-        },
-      });
-
-      const button = getByTestId('button');
-      await expect(button).toHaveAttribute('data-size', size);
-    });
-  }
-});
-```
-
-## Best Practices
-
-1. **Всегда используйте `data-test-id`** для идентификации элементов
-2. **Используйте fixtures** вместо прямых вызовов Playwright API
-3. **Группируйте тесты** через `test.describe()`
-4. **Проверяйте позитивные и негативные сценарии**
-5. **Ожидайте загрузки** элементов перед взаимодействием
-6. **Избегайте хардкода таймаутов** - используйте expect с автоматическими ожиданиями
-
-## Запуск тестов
+Из корня репозитория:
 
 ```bash
-# Все E2E тесты
-pnpm test:e2e
-
-# С UI интерфейсом
-pnpm test:e2e:ui
-
-# Конкретный браузер
-pnpm test:e2e:chrome
-pnpm test:e2e:firefox
-pnpm test:e2e:mobile
-
-# Режим отладки
-pnpm test:e2e:debug
-
-# С видимым браузером
-pnpm test:e2e:headed
-
-# Просмотр отчета
-pnpm test:e2e:report
+pnpm test:e2e                     # все проекты
+pnpm test:e2e:chrome              # только chrome
+pnpm test:e2e:ui                  # UI-режим Playwright
+pnpm test:e2e:update-snapshots    # регенерация visual baselines (chrome)
 ```
 
-## Отладка
+Перед запуском либо поднимите Storybook вручную (`pnpm dev:storybook`), либо положитесь на автоматический `webServer` из `playwright.config.ts` (`reuseExistingServer: true` в локале).
 
-### Playwright Inspector
+## Env
 
-```bash
-pnpm test:e2e:debug
-```
-
-Позволяет пошагово выполнять тесты и исследовать элементы.
-
-### UI Mode
-
-```bash
-pnpm test:e2e:ui
-```
-
-Интерактивный режим с визуальной отладкой и возможностью просмотра traces.
-
-### VS Code Extension
-
-Установите [Playwright Test for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) для запуска и отладки тестов прямо из редактора.
-
-## CI/CD
-
-В CI окружении тесты автоматически:
-- Запускаются с 3 повторами при падении
-- Используют оптимизированное количество воркеров
-- Генерируют отчеты в форматах blob и junit
-- Создают screenshots и videos при падении тестов
-
-Artifacts сохраняются в `playwright/test-results/`.
+| Переменная        | По умолчанию               | Что делает                    |
+| ----------------- | -------------------------- | ----------------------------- |
+| `STORYBOOK_URL`   | `http://localhost:6006/`   | base URL Playwright           |
+| `CI`              | —                          | активирует CI-поведение       |

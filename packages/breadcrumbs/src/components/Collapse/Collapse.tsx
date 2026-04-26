@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { RefObject, useContext, useRef } from 'react';
 
-// TODO: replace with @design-system/list when ready
+// TODO: replace with @ds/list when ready
 import { Droplist, DroplistProps } from '@snack-uikit/list';
 
 import { ELEMENT_TYPE, ITEM_RENDER_MODE } from '../../constants';

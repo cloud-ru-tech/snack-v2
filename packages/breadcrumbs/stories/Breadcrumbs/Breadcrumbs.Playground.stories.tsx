@@ -1,69 +1,33 @@
-import { HomeSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import { HomeSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import breadcrumbsReadme from '../../README.md?raw';
 import { Breadcrumbs, BreadcrumbsProps } from '../../src';
 import { SIZE } from '../../src/constants';
 import { longTrailItems } from './fixtures';
 import styles from './styles.module.scss';
 
+type ContainerWidth = 'full' | 'wide' | 'medium' | 'narrow';
+
 type StoryProps = BreadcrumbsProps & {
   storyUrl: boolean;
   storyIcon: boolean;
   storyOnClick: boolean;
-  storyContainerWidth: string;
+  storyContainerWidth: ContainerWidth;
+};
+
+const widthClass: Record<ContainerWidth, string> = {
+  full: styles.widthFull,
+  wide: styles.widthWide,
+  medium: styles.widthMedium,
+  narrow: styles.widthNarrow,
 };
 
 const meta: Meta<StoryProps> = {
   title: 'Components/Breadcrumbs',
   component: Breadcrumbs,
-  parameters: {
-    readme: { content: breadcrumbsReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=7422-10279&p=f&m=dev',
-    },
-    docs: {
-      description: {
-        component: `
-# Breadcrumbs
-
-Navigation trail with responsive collapse: items can show full label, short label, ellipsis, or fold into a collapse control depending on available width.
-
-## Features
-
-- Picks the best layout for the container width
-- Optional icon-only first item, custom separator, inactive last segment
-- Semantic list markup and keyboard-accessible links / buttons
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/breadcrumbs
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { Breadcrumbs } from '@design-system/breadcrumbs';
-
-function Example() {
-  return (
-    <Breadcrumbs
-      items={[
-        { id: 'home', label: 'Home', href: '#' },
-        { id: 'page', label: 'Current page' },
-      ]}
-    />
-  );
-}
-\`\`\`
-        `,
-      },
-    },
-  },
+  parameters: { layout: 'padded' },
   args: {
     items: longTrailItems,
     size: SIZE.S,
@@ -73,7 +37,7 @@ function Example() {
     storyUrl: false,
     storyIcon: false,
     storyOnClick: false,
-    storyContainerWidth: '100%',
+    storyContainerWidth: 'full',
   },
   argTypes: {
     items: {
@@ -111,6 +75,8 @@ function Example() {
     },
     storyContainerWidth: {
       name: `[story] container width`,
+      control: 'select',
+      options: ['full', 'wide', 'medium', 'narrow'] satisfies ContainerWidth[],
     },
     'data-test-id': {
       control: 'text',
@@ -126,7 +92,7 @@ export default meta;
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
   render: ({ storyIcon, items: storyItems, storyUrl, storyOnClick, storyContainerWidth, ...args }) => {
     const onClick = action('onClick');
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -150,7 +116,7 @@ export const Playground: Story = {
 
     return (
       <div>
-        <div className={styles.narrowFrame} style={{ width: storyContainerWidth }}>
+        <div className={`${styles.narrowFrame} ${widthClass[storyContainerWidth]}`}>
           <Breadcrumbs {...args} items={items} />
         </div>
         <div className={styles.crumbClickHolder} data-test-id='last-clicked-crumb'>

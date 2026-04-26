@@ -1,6 +1,6 @@
 import { APPEARANCE, VARIANT } from './constants';
 import styles from './styles.module.scss';
-import type { Appearance, Variant } from './types';
+import { Appearance, Variant } from './types';
 
 export type TrackDotProps = {
   /** Вид маркера */

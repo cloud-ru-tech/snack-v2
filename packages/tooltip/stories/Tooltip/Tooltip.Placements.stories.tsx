@@ -1,35 +1,35 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { PLACEMENT, Tooltip } from '@ds/tooltip';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import { PLACEMENT, Tooltip, TooltipProps } from '../../src';
-import styles from '../styles.module.scss';
+import styles from './stories.module.scss';
 
-const meta: Meta<TooltipProps> = {
-  title: 'Components/Tooltip/Tooltip',
+const meta: Meta<typeof Tooltip> = {
+  title: 'Components/Tooltip',
   component: Tooltip,
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
-type Story = StoryObj<TooltipProps>;
+type Story = StoryObj<typeof Tooltip>;
 
-const keyPlacements = [PLACEMENT.Top, PLACEMENT.Bottom, PLACEMENT.Left, PLACEMENT.Right];
+const placements = [PLACEMENT.Top, PLACEMENT.Right, PLACEMENT.Bottom, PLACEMENT.Left] as const;
 
 export const Placements: Story = {
-  tags: ['!dev', 'autodocs'],
+  tags: ['dev'],
   render: () => (
-    <div className={styles.placementsWrapper}>
-      {keyPlacements.map(placement => (
-        <Tooltip key={placement} tip={`Placement: ${placement}`} placement={placement}>
-          <button type='button'>{placement}</button>
+    <div className={styles.grid}>
+      {placements.map(p => (
+        <Tooltip key={p} tip={`Подсказка сверху: ${p}`} placement={p}>
+          <button type='button' className={styles.triggerButton}>
+            {p}
+          </button>
         </Tooltip>
       ))}
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Основные варианты расположения тултипа относительно триггера (top, bottom, left, right). Наведи курсор на кнопку.',
-      },
-    },
+  play: async ({ canvasElement }) => {
+    const buttons = within(canvasElement).getAllByRole('button');
+    expect(buttons.length).toBe(placements.length);
   },
 };

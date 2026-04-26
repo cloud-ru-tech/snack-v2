@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { BAR_HIDE_STRATEGY, Scroll, ScrollProps, SIZE } from '@ds/scroll';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
 import { StoryTable } from '#storybook/components';
 
-import { BAR_HIDE_STRATEGY, Scroll, type ScrollProps, SIZE } from '../../src';
 import styles from './styles.module.scss';
 
 const cellContent = (
@@ -28,6 +29,14 @@ const strategies = [BAR_HIDE_STRATEGY.Never, BAR_HIDE_STRATEGY.Leave, BAR_HIDE_S
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { layout: 'fullscreen' },
+  decorators: [
+    Story => (
+      <div className={styles.decoratorPad24}>
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <StoryTable
       sectionTitle='Size × Bar hide strategy'
@@ -45,14 +54,7 @@ export const VisualMatrix: Story = {
       }))}
     />
   ),
-  parameters: {
-    layout: 'fullscreen',
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getAllByText(/Line 1/).length).toBeGreaterThan(0);
   },
-  decorators: [
-    Story => (
-      <div className={styles.decoratorPad24}>
-        <Story />
-      </div>
-    ),
-  ],
 };

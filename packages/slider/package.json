@@ -1,39 +1,25 @@
 {
-  "name": "@design-system/slider",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Slider component for the design system (horizontal value/range with optional scale marks)",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/slider",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
-  "scripts": {},
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css", "**/*.scss"],
   "dependencies": {
-    "@design-system/tooltip": "0.1.0",
-    "@design-system/utils": "0.1.0",
-    "classnames": "catalog:",
+    "@ds/tooltip": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "2.5.1",
     "rc-slider": "11.1.9"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "publishConfig": { "access": "public" }
 }

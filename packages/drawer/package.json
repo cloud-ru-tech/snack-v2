@@ -1,42 +1,28 @@
 {
-  "name": "@design-system/drawer",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Drawer component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/drawer",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
-  "scripts": {},
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "publishConfig": { "access": "public" },
   "dependencies": {
-    "@design-system/button": "0.1.0",
-    "@design-system/icons": "0.1.0",
-    "@design-system/scroll": "0.1.0",
-    "@design-system/typography": "0.1.0",
-    "@design-system/utils": "0.1.0",
+    "@ds/button": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/scroll": "workspace:*",
+    "@ds/typography": "workspace:*",
+    "@ds/utils": "workspace:*",
     "classnames": "2.5.1",
     "rc-drawer": "6.4.1"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

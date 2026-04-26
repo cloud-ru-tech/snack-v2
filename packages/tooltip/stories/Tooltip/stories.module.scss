@@ -1,0 +1,33 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
+  justify-content: center;
+
+  padding: base.$sn-primitive-dimension-48;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.triggerButton {
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-16;
+}

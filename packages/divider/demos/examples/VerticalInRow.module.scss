@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  height: 32px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.dividerCell {
+  flex-shrink: 0;
+  width: 4px;
+  min-width: 1px;
+}

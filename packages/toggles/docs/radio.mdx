@@ -1,0 +1,104 @@
+---
+title: Radio
+package: '@ds/toggles'
+description: Радиокнопка для взаимоисключающего выбора из группы опций — два размера, state controlled/uncontrolled, единое API с остальными toggles.
+order: 2
+---
+
+import { RadioDemo } from '../demos/RadioDemo'
+import { RadioBasic } from '../demos/examples/RadioBasic'
+import RadioBasicSrc from '../demos/examples/RadioBasic.tsx?raw'
+import { RadioGroup } from '../demos/examples/RadioGroup'
+import RadioGroupSrc from '../demos/examples/RadioGroup.tsx?raw'
+import { RadioStates } from '../demos/examples/RadioStates'
+import RadioStatesSrc from '../demos/examples/RadioStates.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_RADIO } from '~docs/lib/figma'
+import togglesDoc from './props.json'
+
+# Radio
+
+Радиокнопка для взаимоисключающего выбора из группы опций. Группировка — через общий `name` или через компонент [`ToggleGroup`](/components/toggles/toggle-group) с `selectionMode='single'`.
+
+## Демо
+
+<RadioDemo client:load />
+
+## Когда использовать
+
+- Для выбора **одной** опции из 2–5 взаимоисключающих вариантов.
+- Когда все варианты должны быть видны одновременно (иначе используйте `Select`).
+
+Когда **не** нужен Radio: для множественного выбора — [`Checkbox`](/components/toggles/checkbox), для on/off — [`Switch`](/components/toggles/switch).
+
+## Для дизайнеров
+
+### Size
+
+| Size | Размер | Применение |
+|------|--------|-----------|
+| `xs` | 16×16 | Плотные списки, таблицы |
+| `s`  | 24×24 | Формы, настройки, диалоги |
+
+### Do / Don't
+
+- ✅ Группа из 2–5 опций — Radio.
+- ❌ Один Radio без группы — он не «чекбокс», пользователь не сможет снять выбор.
+- ✅ Общий `name` на все Radio в группе.
+- ❌ Разные `name` — браузер не объединит их в группу.
+- ✅ Вертикальная раскладка по умолчанию.
+- ❌ Горизонтальная раскладка > 3 опций — тяжело сканировать.
+
+### Figma
+
+<FigmaEmbed node={FIGMA_RADIO} height={480} title='Radio в Figma (Snack UI Kit)' client:load />
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/toggles
+```
+
+```ts
+import { Radio } from '@ds/toggles'
+import '@ds/toggles/style.css'
+```
+
+### Примеры использования
+
+<Example title='1. Базовый Radio' code={RadioBasicSrc}>
+  <RadioBasic client:load />
+</Example>
+
+<Example title='2. Группа радиокнопок' description='Общий name объединяет Radio в группу; выбор переключается автоматически' code={RadioGroupSrc}>
+  <RadioGroup client:load />
+</Example>
+
+<Example title='3. Все состояния' code={RadioStatesSrc}>
+  <RadioStates client:load />
+</Example>
+
+### States
+
+- **`checked` / `defaultChecked`** — controlled и uncontrolled.
+- **`disabled`** — `data-disabled="true"` + native `disabled`.
+- **`loading`** — native input скрывается, рендерится спиннер.
+
+### Props
+
+<PropsTable data={togglesDoc.Radio} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-toggles-radio--playground' height={360} client:load />
+
+## Доступность
+
+- `role="radio"` на корне + native `<input type="radio">` — клавиатура (Space/Arrow) работает из коробки внутри группы `name`.
+- `data-focusvisible` на корне для focus-ring только при навигации с клавиатуры.
+- Для каждого Radio — связанный `<label>`; без label используйте `aria-label`.

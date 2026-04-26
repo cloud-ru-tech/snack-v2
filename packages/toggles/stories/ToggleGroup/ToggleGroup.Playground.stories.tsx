@@ -1,27 +1,30 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
-import togglesReadme from '../../README.md?raw';
-import { SELECTION_MODE, ToggleGroup, ToggleGroupProps } from '../../src';
+import { SELECTION_MODE, SelectionMode, ToggleGroup } from '../../src';
 import { ToggleCard } from './components/ToggleCard';
 import styles from './styles.module.scss';
 
-const meta: Meta = {
+type PlaygroundArgs = {
+  selectionMode: SelectionMode;
+};
+
+const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Toggles/Toggle Group',
   component: ToggleGroup,
-  parameters: {
-    readme: { content: togglesReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2815-30903&p=f&m=dev',
+  parameters: { layout: 'centered' },
+  args: { selectionMode: SELECTION_MODE.Single },
+  argTypes: {
+    selectionMode: {
+      control: 'radio',
+      options: Object.values(SELECTION_MODE),
+      description: 'Режим выбора',
     },
   },
 };
 
 export default meta;
-
-type StoryProps = ToggleGroupProps;
-type Story = StoryObj<StoryProps>;
+type Story = StoryObj<PlaygroundArgs>;
 
 const ITEMS = [
   { id: '1', label: 'item1' },
@@ -30,36 +33,38 @@ const ITEMS = [
   { id: '4', label: 'item4' },
 ];
 
-const Template: StoryFn<ToggleGroupProps> = ({ selectionMode = SELECTION_MODE.Single }) => {
-  const [value, setValue] = useState<string | string[] | undefined>(undefined);
+function PlaygroundRender({ selectionMode }: PlaygroundArgs) {
+  const [singleValue, setSingleValue] = useState<string | undefined>(undefined);
+  const [multiValue, setMultiValue] = useState<string[]>([]);
 
   useEffect(() => {
-    setValue(undefined);
+    setSingleValue(undefined);
+    setMultiValue([]);
   }, [selectionMode]);
 
+  const body = (
+    <div className={styles.toggleGroup}>
+      {ITEMS.map(props => (
+        <ToggleCard key={props.id} {...props} />
+      ))}
+    </div>
+  );
+
+  if (selectionMode === SELECTION_MODE.Multiple) {
+    return (
+      <ToggleGroup selectionMode='multiple' value={multiValue} onChange={next => setMultiValue(next ?? [])}>
+        {body}
+      </ToggleGroup>
+    );
+  }
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    <ToggleGroup selectionMode={selectionMode} value={value} onChange={setValue}>
-      <div className={styles.toggleGroup}>
-        {ITEMS.map(props => (
-          <ToggleCard key={props.id} {...props} />
-        ))}
-      </div>
+    <ToggleGroup selectionMode='single' value={singleValue} onChange={setSingleValue}>
+      {body}
     </ToggleGroup>
   );
-};
+}
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: Template,
-  args: {
-    selectionMode: SELECTION_MODE.Multiple,
-  },
-  argTypes: {
-    selectionMode: {
-      control: 'radio',
-      options: Object.values(SELECTION_MODE),
-    },
-  },
+  render: args => <PlaygroundRender {...args} />,
 };

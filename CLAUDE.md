@@ -1,0 +1,150 @@
+# CLAUDE.md
+
+Инструкции для Claude Code при работе с этим репозиторием.
+
+## Проект
+
+Монорепо дизайн-системы `@ds/*` — React-компоненты, Storybook 8 для интерактивной документации и Astro-сайт для публичных docs. pnpm workspaces, TypeScript 5.8, React 18, SCSS Modules, Figma-переменные через `@cloud-ru/figma-variables`.
+
+Исторически пакеты мигрируют из соседнего репо `storybook/` (`@design-system/*`). Для генерации плана миграции конкретного пакета — слэш-команда `/migrate-to-v2`.
+
+## Команды
+
+```bash
+pnpm install                     # Установить зависимости workspace
+pnpm typecheck                   # tsc -b tsconfig.json (project references)
+pnpm build:packages              # Собрать ESM + CJS + CSS для всех пакетов
+pnpm build                       # build:packages + storybook + docs
+pnpm dev:storybook               # Storybook dev (localhost:6006)
+pnpm dev:docs                    # Astro docs dev (localhost:4321)
+pnpm lint                        # ESLint
+pnpm stylelint                   # SCSS/CSS lint
+pnpm test:stories                # @storybook/test-runner (play-функции)
+pnpm test:e2e                    # Playwright E2E + visual (packages/*/__tests__/)
+pnpm test:e2e:chrome             # Только chrome (включая visual baselines)
+pnpm test:e2e:update-snapshots   # Регенерация visual baselines в packages/*/__snapshots__/
+pnpm test:e2e:docs               # Отдельный suite для apps/docs (tests/docs/)
+pnpm gen:props                   # Сгенерировать props.json для каждого пакета
+pnpm gen:readme                  # Сгенерировать README.md из docs + props
+pnpm gen                         # gen:props + gen:readme
+pnpm add-package                 # Создать новый пакет (scaffold.mts + wire.mts)
+```
+
+## Структура
+
+```
+packages/          # Компонентные пакеты @ds/*
+  <pkg>/
+    __tests__/     # Playwright E2E + visual, живут внутри пакета
+    __snapshots__/ # Baselines визуальной регрессии (chrome-only)
+apps/
+  storybook/       # Storybook 8 (stories + alias @ds/* в main.ts)
+  docs/            # Astro + Starlight (docs-site + alias @ds/* в astro.config.mjs)
+playwright/        # Общий туллинг Playwright: fixtures, utils, browser matrix
+playwright.config.ts  # Корневой конфиг: сканирует packages/*/__tests__/*.spec.ts
+tooling/
+  tsconfig/        # Базовые tsconfig-шаблоны: base, ds-package-esm, ds-package-cjs, react-lib
+scripts/
+  add-package/     # Scaffold/wire новых пакетов
+tests/             # Docs-only Playwright (тесты apps/docs)
+```
+
+Шаблон пакета:
+
+```
+packages/<pkg>/
+├── src/           # см. .claude/rules/package-src-structure.md
+├── stories/       # *.stories.tsx (Storybook 8, @storybook/test)
+├── demos/         # *Demo.tsx с Canvas из ~docs/components/Canvas
+├── docs/          # index.mdx + props.json
+├── package.json
+├── tsconfig.json          # aggregator references
+├── tsconfig.esm.json      # extends ../../tooling/tsconfig/ds-package-esm.json
+└── tsconfig.cjs.json      # extends ../../tooling/tsconfig/ds-package-cjs.json
+```
+
+## Правила
+
+Правила уровня репозитория лежат в `.claude/rules/*.md`. Читай их в контексте любой работы с этим проектом:
+
+| Файл | О чём |
+|------|-------|
+| [packages-deps.md](.claude/rules/packages-deps.md) | Строгие версии, отсутствие `react`/`react-dom` в пакетах |
+| [package-src-structure.md](.claude/rules/package-src-structure.md) | Структура `src/`: flat vs nested `components/<Name>/`, сохранение раскладки при миграции |
+| [react-types.md](.claude/rules/react-types.md) | Типы из `'react'`, без префикса `React.*` |
+| [imports-exports.md](.claude/rules/imports-exports.md) | Без `import type`, без `export type`, `export *` по барелям |
+| [stories-standard.md](.claude/rules/stories-standard.md) | Структура stories: Playground + use cases + VisualMatrix на `StoryTable` из `#storybook/components` |
+| [reference-package-anatomy.md](.claude/rules/reference-package-anatomy.md) | Анатомия эталонного пакета, чек-лист перед PR (эталон — `@ds/button`) |
+| [complexity-tiers.md](.claude/rules/complexity-tiers.md) | Tier XS/S/M/L/XL — минимальный набор артефактов по сложности компонента |
+| [component-api-surface.md](.claude/rules/component-api-surface.md) | `constants.ts` (`as const`) + `types.ts` (`ValueOf`) + JSDoc на пропсах; связь API ↔ VisualMatrix |
+| [e2e-testing-standard.md](.claude/rules/e2e-testing-standard.md) | Playwright E2E: блоки `describe` по tier'у, параметрика через `gotoStory` + URL args |
+| [visual-regression-standard.md](.claude/rules/visual-regression-standard.md) | Screenshot-тесты: стабилизация, static/interaction/responsive, обновление baselines |
+| [docs-structure.md](.claude/rules/docs-structure.md) | MDX-шаблон пакета: обязательные секции, StorybookEmbed, FigmaEmbed |
+| [figma-integration.md](.claude/rules/figma-integration.md) | Figma MCP, карта `Figma variant → React prop`, `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts` |
+| [dont-do-that.md](.claude/rules/dont-do-that.md) | Общий свод запретов |
+
+### Skills — пошаговые воркфлоу
+
+Лежат в `.claude/skills/*.md` — используются как композитные шаги для типовых задач на компонентных пакетах:
+
+| Skill | Когда вызывать |
+|-------|----------------|
+| [new-component-package](.claude/skills/new-component-package.md) | «добавить компонент», «новый пакет», «портировать из storybook/» |
+| [component-story-set](.claude/skills/component-story-set.md) | «написать stories», «покрыть состояния» |
+| [component-e2e-tests](.claude/skills/component-e2e-tests.md) | «написать e2e», «playwright» |
+| [component-visual-regression](.claude/skills/component-visual-regression.md) | «visual тесты», «скриншоты», «обновить baselines» |
+| [component-docs](.claude/skills/component-docs.md) | «написать docs», «страница пакета», «добавить Storybook embed» |
+| [figma-component-import](.claude/skills/figma-component-import.md) | Пользователь дал Figma URL / nodeId |
+| [component-tier-audit](.claude/skills/component-tier-audit.md) | «проверь эталонность», «обнови под эталон», «аудит пакета» |
+| [figma-verify-after-stories](.claude/skills/figma-verify-after-stories.md) | «сверь со Figma», после создания stories — отдельный проход сверки с макетом (state-layer, focus, variants, размеры) |
+| [component-validation-loop](.claude/skills/component-validation-loop.md) | «проверь готовность компонента», «запусти цикл валидации» — сквозной итеративный цикл (scope → Figma parity → runtime screenshot → docs/demos → build). Реестр типовых ошибок. |
+
+## Слэш-команды
+
+Лежат в `.claude/commands/`:
+
+- `/make-commit` — создать conventional-commit из staged diff
+- `/up-cloud-deps` — обновить пакеты скоупов `@snack-uikit/*` / `@cloud-ru/*`
+
+## Stories / Docs конвенции
+
+Stories уровня пакета:
+
+- `title: 'Components/<PkgName>'` (без третьего уровня — всё в одном файле `stories/<PkgName>.stories.tsx`).
+- CSF3, экспорт `default meta` + `export const <Story>: Story`.
+- `Meta<typeof Component>`, `StoryObj<typeof Component>` из `@storybook/react`.
+- `expect`, `userEvent`, `within` — из `@storybook/test`.
+- У каждой story минимальный `play` с `toBeVisible()`.
+- Визуальная матрица — отдельный `export const VisualMatrix: Story = { tags: ['!autodocs'], ... }`.
+
+Demo:
+
+- `demos/<Name>Demo.tsx` для каждого публичного компонента.
+- Использует `<Canvas>` из `~docs/components/Canvas`.
+- `componentDoc` читается из `../docs/props.json`.
+
+Docs:
+
+- `docs/index.mdx` — главная страница пакета, frontmatter `title`, `package`, `description`, `order`.
+- Доп. компоненты — отдельные файлы `docs/<name>.mdx`.
+- `docs/props.json` генерится `pnpm gen:props`.
+- `README.md` генерится `pnpm gen:readme`.
+
+## Wire-скрипт
+
+При добавлении/регистрации пакета правятся следующие файлы (автоматизируется через `scripts/add-package/wire.mts`):
+
+1. `tsconfig.json` (root) — `references`
+2. `packages/tsconfig.esm.json` — `references`
+3. `packages/tsconfig.cjs.json` — `references`
+4. `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`
+5. `apps/docs/astro.config.mjs` — alias между маркерами `<add-package:aliases>`
+6. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`
+
+## MCP-серверы
+
+Настроены на уровне репозитория в `.cursor/mcp.json` (работают и в Claude Code, если включены у пользователя): Context7, Figma, Astro docs server, Playwright.
+
+## Миграция пакетов
+
+Пакеты портируются из соседнего репо `storybook/` (`@design-system/*` → `@ds/*`) и из legacy-скоупов `@snack-uikit/*` / `@cloud-ru/*`. Для разового скаффолда из `storybook/` есть `scripts/migrate-package.mts`. Для генерации плана миграции конкретного компонента — команда `/migrate-to-v2 <pkg> <figma-url> [--ref <pkg>] [--note "..."]`; план пишется в `.claude/plan/<pkg>.md` (папка создаётся по мере надобности).

@@ -1,10 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { PortalContextProvider, type PortalContextProviderProps, usePortalContext } from '@ds/portal-context';
+import { Meta, StoryObj } from '@storybook/react';
 import cn from 'classnames';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import portalcontextReadme from '../../README.md?raw';
-import { PortalContextProvider, PortalContextProviderProps, usePortalContext } from '../../src';
 import styles from './styles.module.scss';
 
 function PortalDemoContent({ message, portalContentClassName }: { message: string; portalContentClassName: string }) {
@@ -64,43 +63,6 @@ function PlaygroundContent() {
 const meta: Meta<PortalContextProviderProps<RefObject<HTMLDivElement | null>>> = {
   title: 'Components/PortalContext',
   component: PortalContextProvider,
-  parameters: {
-    readme: { content: portalcontextReadme },
-    docs: {
-      description: {
-        component: `
-# PortalContextProvider
-
-Контекст задаёт корневой DOM-узел, в который компоненты (Tooltip, Popover и др.) рендерят порталы.
-По умолчанию используется \`document.body\`. Через проп \`root\` можно указать другой контейнер —
-например, область внутри iframe или изолированный блок для тестов и изоляции стилей.
-
-## Features
-
-- Порталы рендерятся в переданный \`root\` (RefObject<HTMLElement>), а не только в \`document.body\`
-- Компоненты используют \`usePortalContext()\` и создают портал через \`createPortal\` в этот узел
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/portal-context
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { PortalContextProvider, usePortalContext } from '@design-system/portal-context';
-
-// Кастомный контейнер для порталов
-const rootRef = useRef<HTMLDivElement>(null);
-<PortalContextProvider root={rootRef}>
-  <App />
-</PortalContextProvider>
-\`\`\`
-        `,
-      },
-    },
-  },
   args: {},
   argTypes: {},
 };
@@ -111,12 +73,4 @@ type Story = StoryObj<PortalContextProviderProps<RefObject<HTMLDivElement | null
 export const Playground: Story = {
   tags: ['dev', 'test', 'autodocs'],
   render: () => <PlaygroundContent />,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Два примера: портал без root уходит в document.body; портал с root рендерится в кастомный контейнер (пунктирная рамка).',
-      },
-    },
-  },
 };

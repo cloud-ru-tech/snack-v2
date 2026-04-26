@@ -1,11 +1,11 @@
-import { Spinner } from '@design-system/loader';
-import { ProgressBarCircle } from '@design-system/progress-bar';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Spinner } from '@ds/loader';
+import { ProgressBarCircle } from '@ds/progress-bar';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { JSX } from 'react';
 
 import { APPEARANCE, STATUS_SIZE } from '../../constants';
-import type { Appearance, StatusSize } from '../../types';
+import { Appearance, StatusSize } from '../../types';
 import { StatusIndicator } from '../StatusIndicator';
 import styles from './styles.module.scss';
 

@@ -1,9 +1,9 @@
-import { extractSupportProps } from '@design-system/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import { useDrag } from '../../hooks/useDrag';
-import { DropzoneProps } from '../Dropzone';
+import type { DropzoneProps } from '../Dropzone';
 import { PrivateDropZone } from '../PrivateDropZone';
 import styles from './styles.module.scss';
 

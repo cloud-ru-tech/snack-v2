@@ -1,4 +1,4 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import { DrawerProps as RcDrawerProps } from 'rc-drawer';
 import { PropsWithChildren, ReactElement } from 'react';
 

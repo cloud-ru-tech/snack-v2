@@ -1,0 +1,209 @@
+{
+  "PrivateDropZone": {
+    "displayName": "PrivateDropZone",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "isOver": {
+        "type": "boolean",
+        "required": true
+      },
+      "onFilesUpload": {
+        "type": "(files: File[]) => void",
+        "required": true,
+        "description": "Колбек загрузки файла"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент dropzone"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Деактивирован ли компонент"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "defaultValue": "multiple",
+        "description": "Режим"
+      },
+      "accept": {
+        "type": "string",
+        "required": false,
+        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "m",
+        "description": "Размер компонента"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  },
+  "HiddenDropZone": {
+    "displayName": "HiddenDropZone",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onFilesUpload": {
+        "type": "(files: File[]) => void",
+        "required": true,
+        "description": "Колбек загрузки файла"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли компонент"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "defaultValue": "multiple",
+        "description": "Режим загрузки"
+      },
+      "accept": {
+        "type": "string",
+        "required": false,
+        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "m",
+        "description": "Размер компонента"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент dropzone при drag (overlay)"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Дочерний контент, поверх которого отображается dropzone при drag"
+      }
+    },
+    "description": "Компонент — скрытая дропзона, накрывающая произвольный контент (формы, карточки)"
+  },
+  "FileUpload": {
+    "displayName": "FileUpload",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onFilesUpload": {
+        "type": "(files: File[]) => void",
+        "required": true,
+        "description": "Колбек загрузки файла"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "defaultValue": "multiple",
+        "description": "Режим"
+      },
+      "accept": {
+        "type": "string",
+        "required": false,
+        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+      }
+    }
+  },
+  "Dropzone": {
+    "displayName": "Dropzone",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onFilesUpload": {
+        "type": "(files: File[]) => void",
+        "required": true,
+        "description": "Колбек загрузки файла"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент dropzone"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Деактивирован ли компонент"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "defaultValue": "multiple",
+        "description": "Режим загрузки"
+      },
+      "accept": {
+        "type": "string",
+        "required": false,
+        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "m",
+        "description": "Размер компонента"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Компонент — видимая зона для drag-n-drop загрузки файлов"
+  }
+}

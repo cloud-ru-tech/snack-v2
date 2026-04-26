@@ -1,0 +1,31 @@
+---
+title: TabContent
+package: '@ds/tabs'
+description: Контейнер контента таба — рендерится только когда его value совпадает с активным табом.
+order: 4
+---
+
+import { WithContent } from '../demos/examples/WithContent'
+import WithContentSrc from '../demos/examples/WithContent.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import tabsDoc from './props.json'
+
+# TabContent
+
+Контейнер контента. Рендерится только при совпадении `value` с активным табом. Формирует `<div role='tabpanel'>` и связывается с кнопкой таба через `aria-labelledby`.
+
+## Примеры использования
+
+<Example title='Пара Tab + TabContent' code={WithContentSrc}>
+  <WithContent client:only="react" />
+</Example>
+
+## Доступность
+
+- Каждый `TabContent` — `<div role='tabpanel'>` с `aria-labelledby={value}`.
+- Неактивные панели не рендерятся в DOM — скринридер не попадает на скрытый контент.
+
+## Props
+
+<PropsTable data={tabsDoc.TabContent} />

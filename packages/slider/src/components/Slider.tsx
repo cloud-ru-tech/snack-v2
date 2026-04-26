@@ -2,10 +2,10 @@ import 'rc-slider/assets/index.css';
 
 import './slider.scss';
 
-import { excludeSupportProps, extractSupportProps } from '@design-system/utils';
+import { excludeSupportProps, extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import RcSlider, { type SliderProps as RCSliderProps } from 'rc-slider';
-import { type ReactNode, useCallback, useMemo } from 'react';
+import RcSlider, { SliderProps as RCSliderProps } from 'rc-slider';
+import { ReactNode, useCallback, useMemo } from 'react';
 
 import { THEME_CLASS } from './constants';
 import {

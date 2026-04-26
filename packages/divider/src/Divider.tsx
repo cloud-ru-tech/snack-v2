@@ -1,8 +1,9 @@
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
+import { ORIENTATION, VARIANT } from './constants';
 import styles from './styles.module.scss';
-import type { DividerOrientation, DividerVariant } from './types';
+import { DividerOrientation, DividerVariant } from './types';
 
 export type DividerProps = WithSupportProps<{
   /** Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular */
@@ -15,10 +16,18 @@ export type DividerProps = WithSupportProps<{
 
 /**
  * Divider — разделитель контента.
- * Повторяет структуру из Figma: контейнер (relative) + слой линии (absolute).
- * Стили из @sbercloud/figma-variables (anatomy container + line regular/thin).
+ *
+ * Поддерживает:
+ * - Две ориентации: горизонтальная (по умолчанию) и вертикальная
+ * - Два варианта толщины: regular (1px) и thin (0.5px)
+ * - Семантику ARIA: role="separator" + aria-orientation
  */
-export function Divider({ variant = 'regular', orientation = 'horizontal', className, ...rest }: DividerProps) {
+export function Divider({
+  variant = VARIANT.Regular,
+  orientation = ORIENTATION.Horizontal,
+  className,
+  ...rest
+}: DividerProps) {
   return (
     <div
       role='separator'

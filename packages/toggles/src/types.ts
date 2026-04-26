@@ -1,4 +1,4 @@
-import { ValueOf, WithSupportProps } from '@design-system/utils';
+import { ValueOf, WithSupportProps } from '@ds/utils';
 import { FocusEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode, RefObject } from 'react';
 
 import { FAVOURITE_ICON, MODE, SELECTION_MODE, SIZE } from './constants';

@@ -1,6 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
-import typographyReadme from '../../README.md?raw';
 import {
   DEFAULT_SIZE,
   DEFAULT_VARIANT,
@@ -10,60 +7,13 @@ import {
   TypographyProps,
   VARIANT,
   WEIGHT,
-} from '../../src';
+} from '@ds/typography';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
 const meta: Meta<TypographyProps> = {
   title: 'Components/Typography',
   component: Typography,
-  parameters: {
-    readme: { content: typographyReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2663-191875&m=dev',
-    },
-    docs: {
-      description: {
-        component: `
-# Typography Component
-
-Компонент типографики, использующий стили из \`@sbercloud/figma-variables\`. Поддерживает различные варианты, размеры и начертания шрифтов.
-
-## Features
-
-- **Варианты типографики**: display, headline, title, label, body
-- **Размеры**: s (small), m (medium), l (large)
-- **Начертания**: regular, thin, mono
-- **Семантические HTML теги**: автоматический выбор тега на основе варианта
-- **Стили из Figma Variables**: все стили берутся из \`@sbercloud/figma-variables\`
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/typography
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { Typography, VARIANT, SIZE } from '@design-system/typography';
-
-function Example() {
-  return (
-    <>
-      <Typography variant={VARIANT.headline} size={SIZE.l}>
-        Заголовок
-      </Typography>
-      <Typography variant={VARIANT.body} size={SIZE.m}>
-        Основной текст
-      </Typography>
-    </>
-  );
-}
-\`\`\`
-        `,
-      },
-    },
-  },
   args: {
     children: 'Typography text',
     variant: DEFAULT_VARIANT,
@@ -105,5 +55,8 @@ export default meta;
 type Story = StoryObj<TypographyProps>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByText('Typography text')).toBeVisible();
+  },
 };

@@ -1,0 +1,36 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.steps {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  overflow: hidden;
+  color: base.$sn-theme-color-neutral-text;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  color: base.$sn-theme-color-neutral-accent;
+}

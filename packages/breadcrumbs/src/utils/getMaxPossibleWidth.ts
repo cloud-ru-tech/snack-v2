@@ -1,4 +1,4 @@
-import { isBrowser } from '@design-system/utils';
+import { isBrowser } from '@ds/utils';
 
 /**
  * Функция предназначена для измерения максимально возможной ширины контейнера

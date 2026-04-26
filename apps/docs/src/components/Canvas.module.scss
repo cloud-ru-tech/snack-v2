@@ -1,0 +1,389 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '../styles/motion' as m;
+@use '../styles/layout' as l;
+
+// ─── Root ────────────────────────────────────────────────────────────────────
+
+.root {
+  overflow: hidden;
+  margin-bottom: base.$sn-adaptive-spacing-interval-xl;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+}
+
+// ─── Toolbar ─────────────────────────────────────────────────────────────────
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: base.$sn-primitive-dimension-36;
+  padding: 0 base.$sn-primitive-dimension-12;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.toolbarLabel {
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.toolbarActions {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+}
+
+.bgBtn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-adaptive-size-icon-xs;
+  height: base.$sn-adaptive-size-icon-xs;
+  border: 1px solid transparent;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: none;
+
+  transition:
+    background m.$docs-duration-fast,
+    border-color m.$docs-duration-fast,
+    color m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  &:hover {
+    color: base.$sn-theme-color-neutral-text;
+    background: base.$sn-theme-color-neutral-decor;
+  }
+}
+
+.bgBtnActive {
+  border-color: base.$sn-theme-color-neutral-decor;
+  color: base.$sn-theme-color-neutral-text;
+  background: base.$sn-theme-color-neutral-decor;
+}
+
+.divider {
+  width: 1px;
+  height: base.$sn-primitive-dimension-16;
+  margin: 0 base.$sn-adaptive-spacing-interval-s;
+  background: base.$sn-theme-color-neutral-decor;
+}
+
+.actionBtn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-adaptive-size-icon-xs;
+  height: base.$sn-adaptive-size-icon-xs;
+  border: none;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: none;
+
+  transition: background m.$docs-duration-fast, color m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+
+  &:hover {
+    color: base.$sn-theme-color-neutral-text;
+    background: base.$sn-theme-color-neutral-decor;
+  }
+}
+
+// ─── Preview ─────────────────────────────────────────────────────────────────
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: l.$docs-preview-min-height;
+  padding: base.$sn-primitive-dimension-48 base.$sn-adaptive-spacing-interval-2xl;
+
+  transition: background m.$docs-duration-normal;
+}
+
+.preview_light {
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.preview_surface {
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+// Forced dark surface: the Canvas applies `sn-dark` on the element alongside this class,
+// so `neutral-background` resolves to the dark-theme value and text stays readable.
+.preview_dark {
+  color: base.$sn-theme-color-neutral-text;
+  background: base.$sn-theme-color-neutral-background;
+}
+
+// ─── Controls ────────────────────────────────────────────────────────────────
+
+.controls {
+  overflow-x: auto;
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: l.$docs-canvas-table-min-width;
+
+  th, td {
+    padding: base.$sn-adaptive-spacing-interval-m base.$sn-adaptive-spacing-interval-l;
+    border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    color: base.$sn-theme-color-neutral-text;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+
+    background: base.$sn-theme-color-neutral-background1Level;
+
+    @include base.composite-var(base.$sn-regular-label-s);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: base.$sn-theme-color-neutral-background1Level; }
+}
+
+.propName {
+  padding: 0;
+  border: none;
+
+  color: base.$sn-theme-color-neutral-text;
+  white-space: nowrap;
+
+  background: none;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.typeCell {
+  overflow: hidden;
+
+  max-width: l.$docs-canvas-typecell-max-width;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.valueCell {
+  width: l.$docs-canvas-valuecell-width;
+}
+
+// ─── Controls: Select ────────────────────────────────────────────────────────
+
+.select {
+  cursor: pointer;
+
+  min-width: l.$docs-canvas-select-min-width;
+  padding: base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-xl base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-m;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  appearance: none;
+  background: base.$sn-theme-color-neutral-background2Level url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 8px center;
+
+  transition: border-color m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  &:hover { border-color: base.$sn-theme-color-neutral-text; }
+
+  &:focus-visible {
+    border-color: transparent;
+    outline: 2px solid base.$sn-theme-color-primary-accent;
+    outline-offset: 1px;
+  }
+}
+
+// ─── Controls: Toggle ────────────────────────────────────────────────────────
+
+.toggle {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.toggleInput {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+
+  &:checked + .toggleTrack {
+    background: base.$sn-theme-color-primary-accent;
+
+    .toggleThumb {
+      transform: translateX(base.$sn-primitive-dimension-16);
+    }
+  }
+
+  &:focus-visible + .toggleTrack {
+    outline: 2px solid base.$sn-theme-color-primary-accent;
+    outline-offset: 2px;
+  }
+}
+
+.toggleTrack {
+  position: relative;
+
+  width: base.$sn-primitive-dimension-32;
+  height: base.$sn-primitive-dimension-20;
+  border-radius: base.$sn-primitive-dimension-full;
+
+  background: base.$sn-theme-color-neutral-decor;
+
+  transition: background m.$docs-duration-fast;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+
+  width: base.$sn-primitive-dimension-12;
+  height: base.$sn-primitive-dimension-12;
+  border-radius: 50%;
+
+  background: base.$sn-theme-color-neutral-onAccent;
+  box-shadow: 0 1px 3px base.$sn-theme-color-neutral-decor;
+
+  transition: transform m.$docs-duration-fast m.$docs-ease-out;
+}
+
+// ─── Code panel ──────────────────────────────────────────────────────────────
+
+.codePanel {
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+.codePanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: base.$sn-primitive-dimension-36;
+  padding: 0 base.$sn-adaptive-spacing-interval-l;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.codePanelLabel {
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.copyBtn {
+  cursor: pointer;
+
+  padding: base.$sn-primitive-dimension-2 base.$sn-adaptive-spacing-interval-m;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: none;
+
+  transition: color m.$docs-duration-fast, border-color m.$docs-duration-fast, background m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  &:hover {
+    border-color: base.$sn-theme-color-primary-accent;
+    color: base.$sn-theme-color-primary-accent;
+  }
+}
+
+.copyBtnDone {
+  border-color: base.$sn-theme-color-green-accent;
+  color: base.$sn-theme-color-green-accent;
+}
+
+// Code snippet is force-dark via `sn-dark` class applied in Canvas.tsx,
+// so neutral-background/neutral-text resolve to dark-theme values.
+.codePre {
+  overflow-x: auto;
+
+  margin: 0;
+  padding: base.$sn-adaptive-spacing-interval-l;
+  border: none;
+  border-radius: 0;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: base.$sn-theme-color-neutral-background;
+
+  -webkit-overflow-scrolling: touch;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+
+  code {
+    padding: 0;
+    border: none;
+
+    font-size: inherit;
+    color: inherit;
+
+    background: none;
+  }
+}
+
+// ─── Controls: Text input ────────────────────────────────────────────────────
+
+.input {
+  width: 100%;
+  padding: base.$sn-adaptive-spacing-interval-s base.$sn-adaptive-spacing-interval-m;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+
+  transition: border-color m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  &:hover { border-color: base.$sn-theme-color-neutral-text; }
+
+  &:focus-visible {
+    border-color: transparent;
+    outline: 2px solid base.$sn-theme-color-primary-accent;
+    outline-offset: 1px;
+  }
+}

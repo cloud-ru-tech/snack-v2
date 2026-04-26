@@ -1,0 +1,99 @@
+{
+  "SearchPrivate": {
+    "displayName": "SearchPrivate",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли компонент"
+      },
+      "onSubmit": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Колбек на подтверждение поиска по строке"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "showClearButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки Очистки поля"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Значение input"
+      },
+      "onChange": {
+        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Значение плейсхолдера"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки потери фокуса"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
+      },
+      "inputMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "text",
+          "decimal",
+          "numeric",
+          "tel",
+          "search",
+          "email",
+          "url",
+          "none"
+        ],
+        "defaultValue": "search",
+        "description": "Режим работы экранной клавиатуры"
+      }
+    }
+  }
+}

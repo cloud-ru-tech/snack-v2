@@ -1,41 +1,27 @@
 {
-  "name": "@design-system/alert",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Alert component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/alert",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
-  "scripts": {},
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
-    "@design-system/materials": "0.1.0",
-    "@design-system/icons": "0.1.0",
-    "@design-system/loader": "0.1.0",
-    "@design-system/truncate-string": "1.0.0",
-    "@design-system/utils": "0.1.0",
-    "classnames": "catalog:"
+    "@ds/icons": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "2.5.1"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "publishConfig": { "access": "public" }
 }

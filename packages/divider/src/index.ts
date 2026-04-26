@@ -1,2 +1,3 @@
 export * from './Divider';
-export { ORIENTATION, VARIANT } from './constants';
+export * from './constants';
+export * from './types';

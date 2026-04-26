@@ -1,0 +1,40 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.containerDesktop {
+  width: 480px;
+  max-width: 100%;
+}
+
+.containerPlayground {
+  width: 560px;
+  max-width: 100%;
+}
+
+.containerMobile {
+  width: 360px;
+}
+
+.containerMatrixDesktop {
+  width: 360px;
+}
+
+.containerMatrixMobile {
+  width: 280px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}

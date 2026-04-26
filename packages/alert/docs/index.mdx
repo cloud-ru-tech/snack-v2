@@ -1,43 +1,41 @@
 ---
 title: Alert
-description: Inline-алерт и верхний баннер (AlertTop) — сообщения, действия, сворачивание длинного текста.
-version: '0.1.0'
+package: '@ds/alert'
+description: Семантическое уведомление — компонент Alert для inline-нотификаций в контенте и AlertTop для системных баннеров по верхней кромке.
+order: 0
 ---
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 # Alert
 
-Пакет содержит **Alert** (встраиваемое сообщение в контенте с опциональной обводкой) и **AlertTop** (полноширинный баннер под шапкой). Оба разделяют общую разметку и пропсы (кроме `outline`, только у `Alert`).
+Пакет `@ds/alert` предоставляет два варианта уведомлений:
 
-**Version:** `{frontmatter.version}`
+- [**Alert**](/components/alert/alert) — inline-алерт внутри страницы: в форме, в карточке, в списке. Поддерживает actions, close-кнопку и режим сворачивания.
+- [**AlertTop**](/components/alert/alert-top) — системный баннер, который крепится к верхней кромке страницы. Всегда на сплошной цветной подложке.
 
-## Installation
+## Состав пакета
+
+| Компонент | Где применять |
+|-----------|----------------|
+| `Alert` | Внутренние нотификации — в форме, в карточке, в списке |
+| `AlertTop` | Глобальные баннеры на всё приложение |
+
+## Установка
 
 ```bash
-npm install @design-system/alert
-# or
-yarn add @design-system/alert
-# or
-pnpm add @design-system/alert
+pnpm add @ds/alert
 ```
 
-## Changelog
+```ts
+import { Alert, AlertTop } from '@ds/alert'
+import '@ds/alert/style.css'
+```
 
-<Changelog packageName='alert' />
+## Appearance
 
-<LlmLink component='alert' />
+`neutral`, `primary`, `info`, `success`, `warning`, `error` — семантические роли. `error` и `warning` должны сопровождать действия, которые приводят к ошибке или требуют внимания; `success` — подтверждение выполненной операции; `info` — дополнительный контекст.
 
-## Overview
+## Общие принципы
 
-- **Alert** — `variant="inline"`: фон и иконка по `appearance`, опционально `outline`, роль `alert`. Подходит для форм, карточек, модалок.
-- **AlertTop** — `variant="top"`: акцентный фон по `appearance`, типичное использование — полоса под хедером приложения.
-- Общие возможности: `title`, `description`, `actions` (primary / secondary), `onClose`, `align` (vertical | horizontal), `collapsible`, размеры `s` | `m`, константы `APPEARANCE`, `SIZE`, `ALIGN` для типизации.
-
-Figma (референс): [Snack-Ui-Kit — Alert](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3222-166&m=dev)
-
-## Components
-
-- **[Alert](./components/alert/)** — inline-алерт (примеры, Storybook, API)
-- **[AlertTop](./components/alerttop/)** — верхний баннер (примеры, Storybook, API)
+- **Один алерт на задачу.** Не показывайте одновременно `success` и `error` для одного действия.
+- **Цвет + иконка + текст.** Цвет — не единственный носитель смысла; иконка и текст обязаны дублировать семантику.
+- **AlertTop — редко.** Системный баннер занимает внимание; используйте для действительно важных сообщений (плановые работы, ограничения).

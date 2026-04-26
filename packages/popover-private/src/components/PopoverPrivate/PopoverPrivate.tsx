@@ -1,5 +1,5 @@
-import { usePortalContext } from '@design-system/portal-context';
-import { extractSupportProps, isBrowser, usePopstateSubscription, WithSupportProps } from '@design-system/utils';
+import { usePortalContext } from '@ds/portal-context';
+import { extractSupportProps, isBrowser, usePopstateSubscription, WithSupportProps } from '@ds/utils';
 import {
   arrow,
   autoUpdate,
@@ -307,7 +307,7 @@ function PopoverPrivateComponent({
         role='presentation'
         {...extractSupportProps(rest)}
         className={cn(styles.floating, className, {
-          [styles.floatingHidden]: Boolean(middlewareData.hide?.referenceHidden),
+          [styles.floatingHidden as string]: Boolean(middlewareData.hide?.referenceHidden),
         })}
         ref={refs.setFloating}
         style={floatingStyles}

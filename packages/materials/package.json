@@ -1,24 +1,14 @@
 {
-  "name": "@design-system/materials",
-  "version": "0.1.0",
-  "private": false,
-  "description": "SCSS materials (acrylic, stateLayer) for the design system",
+  "name": "@ds/materials",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "SCSS materials (acrylic, stateLayer) для дизайн-системы",
   "exports": {
     ".": {
       "sass": "./index.scss"
     }
   },
-  "files": [
-    "index.scss",
-    "src/acrylic",
-    "src/stateLayer",
-    "README.md"
-  ],
+  "files": ["index.scss", "src", "README.md"],
   "sideEffects": ["**/*.scss"],
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "classnames": "2.5.1"
-  }
+  "publishConfig": { "access": "public" }
 }

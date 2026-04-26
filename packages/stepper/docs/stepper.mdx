@@ -1,0 +1,41 @@
+---
+title: Stepper (desktop)
+package: '@ds/stepper'
+description: Десктопный степпер — горизонтальный ряд шагов с номером, заголовком и описанием.
+order: 1
+---
+
+import { BasicFlow } from '../demos/examples/BasicFlow'
+import BasicFlowSrc from '../demos/examples/BasicFlow.tsx?raw'
+import { WithValidator } from '../demos/examples/WithValidator'
+import WithValidatorSrc from '../demos/examples/WithValidator.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import stepperDoc from './props.json'
+
+# Stepper
+
+Десктопный степпер — горизонтальный список шагов с номером, заголовком и (опционально) описанием. Управляется через render-prop, поддерживает controlled и uncontrolled режимы.
+
+## Примеры
+
+<Example title='Базовый flow' description='Три шага с Next/Prev' code={BasicFlowSrc}>
+  <BasicFlow client:load />
+</Example>
+
+<Example title='С валидатором' description='Первая попытка реджектится, вторая проходит' code={WithValidatorSrc}>
+  <WithValidator client:load />
+</Example>
+
+## Валидатор
+
+`validator(prevIndex, newIndex) => Promise<boolean>`. Пока промис резолвится — шаг в `loading`. При `false` — `rejected`; `resetValidation()` возвращает шаг в `current`. Валидатор вызывается перед каждой попыткой `goNext` / `goPrev`.
+
+## Props
+
+<PropsTable data={stepperDoc.Stepper} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-stepper--basicflow' />

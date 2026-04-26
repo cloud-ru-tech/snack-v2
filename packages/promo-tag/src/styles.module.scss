@@ -1,10 +1,10 @@
 /* Базовые функции и миксины из пакета */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
 
 /* Структуры компонентов (локальные) */
-@use '@sbercloud/figma-variables/build/scss/components/promoTag.module' as promoTag;
+@use '@cloud-ru/figma-variables/build/scss/components/promoTag.module' as promoTag;
 
-@use '@design-system/materials' as materials;
+@use '@ds/materials' as materials;
 
 $sizes: 'xs', 's', 'm';
 $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'violet', 'yellow';

@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import { LocalStorageSource, QueryParamSource } from './sources';
-import { StateProps, useSource } from './useSource';
+import { type StateProps, useSource } from './useSource';
 
 export type DataPersistOptions<T> = {
   queryKey: string;

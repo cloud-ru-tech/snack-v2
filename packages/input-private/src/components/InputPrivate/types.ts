@@ -1,4 +1,4 @@
-import { ValueOf, WithSupportProps } from '@design-system/utils';
+import { ValueOf, WithSupportProps } from '@ds/utils';
 import {
   ChangeEvent,
   ClipboardEventHandler,

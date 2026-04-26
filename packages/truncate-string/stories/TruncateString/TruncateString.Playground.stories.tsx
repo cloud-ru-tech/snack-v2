@@ -1,111 +1,51 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ComponentType } from 'react';
+import { TruncateString, VARIANT } from '@ds/truncate-string';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
 
-import truncatestringReadme from '../../README.md?raw';
-import { TruncateString, TruncateStringProps, VARIANT } from '../../src';
-import styles from './styles.module.scss';
+import styles from './stories.module.scss';
 
-const meta: Meta<TruncateStringProps> = {
+const meta: Meta<typeof TruncateString> = {
   title: 'Components/TruncateString',
   component: TruncateString,
-  parameters: {
-    readme: { content: truncatestringReadme },
-    docs: {
-      description: {
-        component: `
-# TruncateString
-
-Компонент для обрезки длинного текста с многоточием и опциональным тултипом с полным текстом.
-
-## Features
-
-- **Варианты обрезки**: с конца (End) или по середине (Middle)
-- **Тултип**: при обрезке показывается тултип с полным текстом (можно отключить через \`hideTooltip\`)
-- **Многострочность** (только End): \`maxLines\` — до скольких строк сворачивать текст
-- **Позиция тултипа**: \`placement\` — положение тултипа относительно текста
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/truncate-string
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { TruncateString, VARIANT } from '@design-system/truncate-string';
-
-function Example() {
-  return (
-    <>
-      <TruncateString text="Очень длинная строка текста, которая будет обрезана с конца" />
-      <TruncateString
-        variant={VARIANT.Middle}
-        text="Путь/к/очень/длинному/файлу/или/ссылке.txt"
-      />
-    </>
-  );
-}
-\`\`\`
-        `,
-      },
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
-    text: 'Очень длинная строка текста, которая будет обрезана с конца и при наведении покажет полный текст в тултипе',
     variant: VARIANT.End,
+    text: 'Очень длинный текст, который не помещается в контейнер и должен быть обрезан',
     maxLines: 1,
     hideTooltip: false,
+    placement: 'top',
+    trigger: 'hoverAndFocusVisible',
   },
   argTypes: {
-    text: {
-      control: 'text',
-      description: 'Текст, который будет обрезаться',
-    },
     variant: {
       control: 'radio',
       options: Object.values(VARIANT),
-      description: 'Вариант обрезки: с конца (End) или по середине (Middle)',
+      description: 'Вариант обрезания: end / middle',
     },
-    maxLines: {
-      control: 'number',
-      description: 'Максимальное количество строк (только для variant End)',
-      if: { arg: 'variant', eq: VARIANT.End },
-    },
-    hideTooltip: {
-      control: 'boolean',
-      description: 'Скрывать тултип с полным текстом',
-    },
+    text: { control: 'text', description: 'Текст, который будет обрезаться' },
+    maxLines: { control: 'number', description: 'Максимум строк (только для variant=end)' },
+    hideTooltip: { control: 'boolean', description: 'Скрывать тултип с полным текстом' },
     placement: {
       control: 'select',
-      options: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'right'],
-      description: 'Положение тултипа относительно текста',
-    },
-    trigger: {
-      control: 'select',
-      options: ['hover', 'click', 'focus'],
-      description: 'Условие отображения тултипа',
-    },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'Позиция тултипа',
     },
   },
-};
-
-export default meta;
-type Story = StoryObj<TruncateStringProps>;
-
-export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
   decorators: [
-    (Story: ComponentType) => (
-      <div className={styles.wrapper}>
+    Story => (
+      <div className={styles.container}>
         <Story />
       </div>
     ),
   ],
+};
+
+export default meta;
+type Story = StoryObj<typeof TruncateString>;
+
+export const Playground: Story = {
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.firstElementChild).toBeTruthy();
+  },
 };

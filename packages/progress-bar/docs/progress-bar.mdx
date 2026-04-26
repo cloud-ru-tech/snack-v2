@@ -1,0 +1,126 @@
+---
+title: ProgressBar
+package: '@ds/progress-bar'
+description: Линейный детерминированный индикатор прогресса — размеры xs/s и девять appearance.
+order: 1
+---
+
+import { ProgressBar } from '@ds/progress-bar'
+import { ProgressBarDemo } from '../demos/ProgressBarDemo'
+import { Appearances } from '../demos/examples/Appearances'
+import AppearancesSrc from '../demos/examples/Appearances.tsx?raw'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { AnimatedProgress } from '../demos/examples/AnimatedProgress'
+import AnimatedProgressSrc from '../demos/examples/AnimatedProgress.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import progressBarDoc from './props.json'
+
+# ProgressBar
+
+Линейный детерминированный индикатор. Используется для отображения явного хода операции в диапазоне от 0 до 100 процентов.
+
+## Демо
+
+<ProgressBarDemo client:load />
+
+## Когда использовать
+
+- Загрузка файла, экспорт, импорт с известным прогрессом.
+- Пошаговые формы и wizard'ы — процент заполнения.
+- Длительные операции, где пользователь ждёт явного завершения.
+
+Когда **не** нужен `ProgressBar`: для неопределённой загрузки страницы используйте [`ProgressBarPage`](/components/progress-bar/progress-bar-page); для компактных мест в таблицах и карточках — [`ProgressBarCircle`](/components/progress-bar/progress-bar-circle).
+
+## Для дизайнеров
+
+### Appearance — семантика цвета
+
+| Appearance | Когда использовать |
+|-----------|---------------------|
+| `primary` | Стандартный прогресс, по умолчанию |
+| `green` | Успешное завершение, позитивный прогресс |
+| `red` | Ошибка, критическая операция |
+| `orange` / `yellow` | Предупреждение, внимание |
+| `blue` / `violet` / `pink` | Декоративные темы категорий |
+| `neutral` | Нейтральный прогресс без акцента |
+
+<Example
+  title='Три appearance в ряд'
+  description='Основные семантические роли'
+  code={AppearancesSrc}
+>
+  <Appearances client:load />
+</Example>
+
+### Size — плотность
+
+| Size | Высота | Сценарий |
+|------|--------|----------|
+| `xs` | 2px | Компактно — поверх контента, в карточках |
+| `s` | 4px | Основной размер формы или диалога |
+
+<Example title='Два размера' code={SizesSrc}>
+  <Sizes client:load />
+</Example>
+
+### Do / Don't
+
+- ✅ Показывайте цифру рядом с индикатором, если пользователь её ждёт («42%»).
+- ❌ Не используйте `ProgressBar` как декоративную линию — у него семантика прогресса.
+- ✅ Меняйте `appearance` только при изменении статуса (`primary` → `green` при успехе).
+- ❌ Не мигайте цветом на каждом обновлении — это сбивает восприятие.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/progress-bar
+```
+
+```ts
+import { ProgressBar } from '@ds/progress-bar'
+import '@ds/progress-bar/style.css'
+```
+
+### Примеры использования
+
+<Example
+  title='Статическое значение'
+  description='Фиксированный прогресс 40%'
+  code={`import { ProgressBar } from '@ds/progress-bar'\n\nexport function Example() {\n  return <ProgressBar progress={40} />\n}`}
+>
+  <ProgressBar progress={40} />
+</Example>
+
+<Example
+  title='Анимированный прогресс'
+  description='Значение обновляется в useEffect — компонент плавно догоняет'
+  code={AnimatedProgressSrc}
+>
+  <AnimatedProgress client:load />
+</Example>
+
+### States
+
+- **0%** — пустой контейнер без заполнителя, индикатор виден как фон.
+- **100%** — заполнитель занимает всю ширину, `aria-valuenow=100`.
+- Значения вне диапазона (отрицательные, > 100) безопасно clamp'ятся до `[0, 100]`.
+
+### Props
+
+<PropsTable data={progressBarDoc.ProgressBar} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-progressbar--playground' height={360} />
+
+## Доступность
+
+- `role="progressbar"` на элементе-заполнителе.
+- `aria-valuenow` отражает текущий процент, `aria-valuemin=0`, `aria-valuemax=100`.
+- Цвет `appearance` не является единственным носителем смысла — дублируйте статус текстом («Загружено 42%», «Ошибка»).
+- Для длительных операций добавляйте live-region со статусом рядом: скринридеры не озвучивают изменения `aria-valuenow` автоматически.

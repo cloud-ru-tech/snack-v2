@@ -1,176 +1,90 @@
-import { PlaceholderSVG } from '@design-system/icons';
-import { ValueOf } from '@design-system/utils';
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, Button, ICON_POSITION, SIZE, VIEW } from '@ds/button';
+import { SettingsSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
+import { ComponentProps, ReactElement } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
-import readme from '../../README.md?raw';
-import { Button, type ButtonProps } from '../../src/Button';
-import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constants';
+import styles from './stories.module.scss';
 
-const meta: Meta<ButtonProps> = {
-  title: 'Components/Button/Button',
+const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
   component: Button,
-  parameters: {
-    readme: { content: readme },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
+type Story = StoryObj<typeof Button>;
 
-type Story = StoryObj<ButtonProps>;
+type ButtonPropsForMatrix = ComponentProps<typeof Button>;
 
-const views: ReadonlyArray<[ValueOf<typeof VIEW>, string]> = [
-  [VIEW.Filled, 'Filled'],
-  [VIEW.Outline, 'Outline'],
-  [VIEW.Simple, 'Simple'],
-  [VIEW.Tonal, 'Tonal'],
-  [VIEW.Elevated, 'Elevated'],
-  [VIEW.Function, 'Function'],
+const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
+const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Neutral, APPEARANCE.Critical] as const;
+const keyViews = [VIEW.Filled, VIEW.Outline, VIEW.Tonal, VIEW.Simple, VIEW.Elevated, VIEW.Function] as const;
+
+const compositions: Array<{ key: string; props: ButtonPropsForMatrix }> = [
+  { key: 'labelOnly', props: { label: 'Button' } },
+  { key: 'iconBefore', props: { label: 'Button', icon: <SettingsSVG /> } },
+  {
+    key: 'iconAfter',
+    props: { label: 'Button', icon: <SettingsSVG />, iconPosition: ICON_POSITION.After },
+  },
+  { key: 'iconOnly', props: { icon: <SettingsSVG />, 'aria-label': 'Settings' } },
 ];
 
-const appearances = Object.values(APPEARANCE);
-const sizes = Object.values(SIZE);
+const states: Array<{ key: string; extra: Partial<ButtonPropsForMatrix> }> = [
+  { key: 'default', extra: {} },
+  { key: 'disabled', extra: { disabled: true } },
+  { key: 'loading', extra: { loading: true } },
+];
+
+function renderButton(props: ButtonPropsForMatrix): ReactElement {
+  return <Button {...props} />;
+}
 
 export const VisualMatrix: Story = {
-  tags: ['test', 'dev'],
+  tags: ['test', 'dev', 'no-a11y'],
   render: () => (
-    <>
+    <div className={styles.matrix}>
       <StoryTable
-        sectionTitle='View × Appearance'
-        firstColumnHeader='View'
-        columnHeaders={appearances.slice()}
-        rows={views.map(([view, label]) => ({
-          variantLabel: label,
-          cells: appearances.map(appearance => (
-            <Button key={appearance} label={label} view={view} appearance={appearance} />
-          )),
+        sectionTitle='Appearance × Size'
+        firstColumnHeader='Appearance'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={keyAppearances.map(appearance => ({
+          variantLabel: appearance,
+          cells: keySizes.map(size => renderButton({ size, appearance, label: 'Button' })),
         }))}
       />
 
       <StoryTable
-        sectionTitle='Sizes'
-        firstColumnHeader=''
-        columnHeaders={sizes.map(s => s.toUpperCase())}
-        rows={[
-          {
-            variantLabel: '',
-            cells: sizes.map(size => <Button key={size} label={size.toUpperCase()} size={size} view={VIEW.Filled} />),
-          },
-        ]}
+        sectionTitle='View × Appearance'
+        firstColumnHeader='View'
+        columnHeaders={keyAppearances.map(a => a.toUpperCase())}
+        rows={keyViews.map(view => ({
+          variantLabel: view,
+          cells: keyAppearances.map(appearance => renderButton({ view, appearance, label: 'Button' })),
+        }))}
       />
 
       <StoryTable
-        sectionTitle='States'
-        firstColumnHeader=''
-        columnHeaders={['Default', 'Disabled', 'Loading', 'Full width']}
-        rows={[
-          {
-            variantLabel: '',
-            cells: [
-              <Button key='default' label='Button' view={VIEW.Filled} />,
-              <Button key='disabled' label='Disabled' disabled view={VIEW.Filled} />,
-              <Button key='loading' label='Loading' loading view={VIEW.Filled} />,
-              <div key='full' style={{ width: 200 }}>
-                <Button label='Full width' fullWidth view={VIEW.Filled} />
-              </div>,
-            ],
-          },
-        ]}
+        sectionTitle='Composition × Size'
+        firstColumnHeader='Composition'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={compositions.map(({ key, props }) => ({
+          variantLabel: key,
+          cells: keySizes.map(size => renderButton({ ...props, size })),
+        }))}
       />
 
       <StoryTable
-        sectionTitle='With icons'
-        firstColumnHeader='Variant'
-        columnHeaders={['icon before', 'icon after']}
-        rows={[
-          {
-            variantLabel: 'Icons',
-            cells: [
-              <Button
-                key='before'
-                label='Button'
-                icon={<PlaceholderSVG />}
-                iconPosition={ICON_POSITION.Before}
-                view={VIEW.Filled}
-              />,
-              <Button
-                key='after'
-                label='Button'
-                icon={<PlaceholderSVG />}
-                iconPosition={ICON_POSITION.After}
-                view={VIEW.Filled}
-              />,
-            ],
-          },
-        ]}
+        sectionTitle='State × Composition (view=filled, appearance=primary)'
+        firstColumnHeader='State'
+        columnHeaders={compositions.map(c => c.key)}
+        rows={states.map(({ key, extra }) => ({
+          variantLabel: key,
+          cells: compositions.map(c => renderButton({ view: 'filled', appearance: 'primary', ...c.props, ...extra })),
+        }))}
       />
-
-      <StoryTable
-        sectionTitle='With counter (inline, no icon after)'
-        firstColumnHeader='Variant'
-        columnHeaders={['label only', 'icon before + label']}
-        rows={[
-          {
-            variantLabel: 'Counter inline',
-            cells: [
-              <Button key='label' label='Уведомления' counter={{ value: 5 }} view={VIEW.Filled} />,
-              <Button
-                key='before'
-                label='Уведомления'
-                icon={<PlaceholderSVG />}
-                iconPosition={ICON_POSITION.Before}
-                counter={{ value: 5 }}
-                view={VIEW.Filled}
-              />,
-            ],
-          },
-        ]}
-      />
-
-      <StoryTable
-        sectionTitle='With counter (badge, icon after)'
-        firstColumnHeader='Variant'
-        columnHeaders={['label + icon after', 'icon only']}
-        rows={[
-          {
-            variantLabel: 'Counter badge',
-            cells: [
-              <Button
-                key='after'
-                label='Уведомления'
-                icon={<PlaceholderSVG />}
-                iconPosition={ICON_POSITION.After}
-                counter={{ value: 9 }}
-                view={VIEW.Filled}
-              />,
-              <Button
-                key='iconOnly'
-                icon={<PlaceholderSVG />}
-                iconPosition={ICON_POSITION.After}
-                counter={{ value: 9 }}
-                view={VIEW.Filled}
-                aria-label='Уведомления'
-              />,
-            ],
-          },
-        ]}
-      />
-
-      <StoryTable
-        sectionTitle='As link (as="a")'
-        firstColumnHeader='Variant'
-        columnHeaders={['filled', 'outline']}
-        rows={[
-          {
-            variantLabel: 'Link',
-            cells: [
-              <Button key='filled' as='a' href='#' label='О нас' view={VIEW.Filled} />,
-              <Button key='outline' as='a' href='#' label='Внешняя ссылка' view={VIEW.Outline} target='_blank' />,
-            ],
-          },
-        ]}
-      />
-    </>
+    </div>
   ),
 };

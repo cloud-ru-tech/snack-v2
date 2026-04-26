@@ -1,0 +1,25 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  position: relative;
+
+  box-sizing: border-box;
+  width: fit-content;
+  min-width: calc(100% + base.$sn-primitive-dimension-32);
+  max-width: 100%;
+  margin: calc(base.$sn-primitive-dimension-16 * -1);
+  padding: base.$sn-adaptive-spacing-interval-l;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.content {
+  min-width: calc(100dvw - base.$sn-adaptive-spacing-interval-m);
+  margin: calc(0px - base.$sn-adaptive-spacing-interval-m);
+  padding: base.$sn-adaptive-spacing-interval-l;
+  border-radius: base.$sn-primitive-dimension-16;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}

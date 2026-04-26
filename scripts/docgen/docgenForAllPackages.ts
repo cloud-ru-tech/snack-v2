@@ -1,3 +1,0 @@
-import { docgen } from '.';
-
-docgen();

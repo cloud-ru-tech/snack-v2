@@ -1,0 +1,206 @@
+{
+  "TruncateString": {
+    "displayName": "TruncateString",
+    "props": {
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "middle",
+          "end"
+        ],
+        "defaultValue": "end",
+        "description": "Вариант обрезания строки: `End` - с конца\n`Middle` - по середине"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "tooltipClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Стиль для тултипа"
+      },
+      "hideTooltip": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрывать ли тултип с полным текстом"
+      },
+      "maxLines": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальное кол-во строк, до которого может сворачиваться текст."
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "description": "Положение тултипа относительно обрезанного текста."
+      },
+      "text": {
+        "type": "string",
+        "required": true,
+        "description": "Текст, который будет обрезаться"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "description": "Условие отображения тултипа"
+      }
+    }
+  },
+  "TruncateStringMiddle": {
+    "displayName": "TruncateStringMiddle",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "tooltipClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Стиль для тултипа"
+      },
+      "hideTooltip": {
+        "type": "boolean",
+        "required": false
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "defaultValue": "top"
+      },
+      "text": {
+        "type": "string",
+        "required": true
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "defaultValue": "hoverAndFocusVisible"
+      }
+    }
+  },
+  "TruncateStringEnd": {
+    "displayName": "TruncateStringEnd",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "tooltipClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Стиль для тултипа"
+      },
+      "hideTooltip": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрывать ли тултип с полным текстом"
+      },
+      "maxLines": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Максимальное кол-во строк, до которого может сворачиваться текст."
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "defaultValue": "top",
+        "description": "Положение тултипа относительно обрезанного текста."
+      },
+      "text": {
+        "type": "string",
+        "required": true,
+        "description": "Текст, который будет обрезаться"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "defaultValue": "hoverAndFocusVisible",
+        "description": "Условие отображения тултипа"
+      }
+    }
+  }
+}

@@ -1,21 +1,65 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+// ── Local constants — no @cloud-ru/figma-variables equivalent yet ────────────
+// TODO: replace with figma-variables tokens once spacing/typography/radius/motion mapping confirmed
+$_space-1:  0.25rem;  $_space-2: 0.5rem;   $_space-3: 0.75rem;
+$_space-4:  1rem;     $_space-6: 1.5rem;   $_space-8: 2rem;
+$_font-sans: 'SB Sans Interface', 'Inter', system-ui, sans-serif;
+$_font-mono: 'SB Sans Text Mono', 'JetBrains Mono', monospace;
+$_text-xs:  0.75rem;  $_text-sm: 0.875rem; $_text-lg: 1.125rem;
+$_text-xl:  1.25rem;
+$_font-medium:   500;
+$_font-semibold: 600;
+$_radius-sm: 0.25rem; $_radius-md: 0.375rem;
+// TODO: replace with figma-variables state tokens once confirmed
+$_color-text-subtle: oklch(50% 0 0);
 
 .catalogMinimal {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-20;
+  gap: $_space-6;
 }
 
 .minimalHeader {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-12;
+  gap: $_space-3;
+}
+
+.title {
+  margin: 0;
+  font-family: $_font-sans;
+  font-size: $_text-xl;
+  font-weight: $_font-semibold;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.searchInput {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 24rem;
+  padding: $_space-2 $_space-3;
+  font-family: $_font-sans;
+  font-size: $_text-sm;
+  color: base.$sn-theme-color-neutral-text;
+  background: base.$sn-theme-color-neutral-background2Level;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: $_radius-md;
+
+  &::placeholder {
+    color: $_color-text-subtle;
+  }
+
+  &:focus-visible {
+    outline: 2px solid base.$sn-theme-color-primary-accent;
+    outline-offset: 1px;
+  }
 }
 
 .sectionMinimal {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-8;
+  gap: $_space-2;
 }
 
 .sectionHeaderMinimal {
@@ -25,35 +69,40 @@
 }
 
 .sectionTitleMinimal {
+  margin: 0;
+  font-size: $_text-sm;
+  font-weight: $_font-medium;
   color: base.$sn-theme-color-neutral-text;
 }
 
 .sectionCountMinimal {
-  color: base.$sn-brand-color-text-version-secondary;
+  font-size: $_text-sm;
+  color: $_color-text-subtle;
 }
 
 .iconGridMinimal {
   display: flex;
   flex-wrap: wrap;
-  gap: base.$sn-primitive-dimension-6;
+  gap: $_space-2;
 }
 
 .iconButtonMinimal {
-  min-width: 24px;
-  min-height: 24px;
-
-  aspect-ratio: 1/1;
+  box-sizing: border-box;
+  min-width: 2rem;
+  min-height: 2rem;
+  aspect-ratio: 1 / 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: $_space-1;
   border: none;
-  border-radius: base.$sn-primitive-dimension-8;
+  border-radius: $_radius-md;
   background: transparent;
-  color: base.$sn-theme-color-available-complementary;
+  color: base.$sn-theme-color-neutral-text;
   cursor: pointer;
 
   &:hover {
-    background: base.$sn-theme-color-neutral-background2Level;
+    background: base.$sn-theme-color-neutral-background1Level;
   }
 
   &:focus-visible {
@@ -63,47 +112,126 @@
 }
 
 .mutedText {
-  color: base.$sn-brand-color-text-version-secondary;
+  font-size: $_text-sm;
+  color: $_color-text-subtle;
 }
 
 .emptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: base.$sn-primitive-dimension-8;
-  padding: base.$sn-primitive-dimension-32;
+  gap: $_space-2;
+  padding: $_space-8;
+  border-radius: $_radius-md;
+  border: 1px dashed base.$sn-theme-color-neutral-decor;
+}
 
-  border-radius: base.$sn-primitive-dimension-12;
-  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+.emptyTitle {
+  margin: 0;
+  font-size: $_text-lg;
+  font-weight: $_font-semibold;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $_space-4;
+}
+
+.modalBackdrop {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  cursor: pointer;
+  background: oklch(0% 0 0 / 0.45);
+  border: 0;
+}
+
+.modalPanel {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  padding: $_space-4;
+  border-radius: $_radius-md;
+  background: base.$sn-theme-color-neutral-background2Level;
+  box-shadow: 0 $_space-2 $_space-8 oklch(0% 0 0 / 0.15);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $_space-4;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: $_text-lg;
+  font-weight: $_font-semibold;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.closeButton {
+  padding: $_space-1 $_space-2;
+  font-size: $_text-xl;
+  line-height: 1;
+  color: $_color-text-subtle;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: $_radius-sm;
+
+  &:hover {
+    color: base.$sn-theme-color-neutral-text;
+    background: base.$sn-theme-color-neutral-background1Level;
+  }
 }
 
 .modalContent {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-12;
+  gap: $_space-3;
 }
 
 .modalIconPreviewMinimal {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 84px;
-  border-radius: base.$sn-primitive-dimension-12;
-  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
-  background: base.$sn-theme-color-neutral-background2Level;
+  height: 5.25rem;
+  border-radius: $_radius-md;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background1Level;
 }
 
 .modalCodeBlock {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-4;
-  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
-  border-radius: base.$sn-primitive-dimension-8;
-  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
-  background: base.$sn-theme-color-neutral-background2Level;
+  gap: $_space-1;
+  padding: $_space-2 $_space-3;
+  border-radius: $_radius-md;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  background: base.$sn-theme-color-neutral-background1Level;
   overflow-x: auto;
 }
 
 .modalCodeLabel {
-  color: base.$sn-brand-color-text-version-secondary;
+  margin: 0;
+  font-size: $_text-xs;
+  font-weight: $_font-medium;
+  color: $_color-text-subtle;
+}
+
+.modalCodeBlock code {
+  font-family: $_font-mono;
+  font-size: $_text-xs;
+  color: base.$sn-theme-color-neutral-text;
+  white-space: pre-wrap;
+  word-break: break-all;
 }

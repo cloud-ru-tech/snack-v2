@@ -1,0 +1,60 @@
+---
+title: QuestionTooltip
+package: '@ds/tooltip'
+description: Специализированный тултип с готовым триггером-иконкой «?» — для подсказок к полям форм и терминам.
+order: 2
+---
+
+import { QuestionTooltip } from '@ds/tooltip'
+import { QuestionTooltipDemo } from '../demos/QuestionTooltipDemo'
+import { Question } from '../demos/examples/Question'
+import QuestionSrc from '../demos/examples/Question.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import tooltipDoc from './props.json'
+
+# QuestionTooltip
+
+Тултип с встроенным триггером — иконкой «?» размером 16px. Использует `Tooltip` под капотом, добавляя стандартный triggerButton с `aria-label`.
+
+## Демо
+
+<QuestionTooltipDemo client:load />
+
+## Когда использовать
+
+- Рядом с названием поля формы, чтобы объяснить назначение поля.
+- Рядом с термином или аббревиатурой в тексте и таблицах.
+- В онбординговых состояниях — пояснение новой фичи.
+
+## Пример
+
+<Example
+  title='Подсказка к полю формы'
+  description='aria-label триггера задаётся через triggerLabel'
+  code={QuestionSrc}
+>
+  <Question client:load />
+</Example>
+
+## Props
+
+`QuestionTooltip` наследует все props `Tooltip` и добавляет несколько своих:
+
+- `triggerLabel` — доступное имя триггера-иконки (по умолчанию «Подсказка»).
+- `tooltipClassname` — класс на контейнер подсказки.
+- `tabIndex` — tabindex на triggerButton (по умолчанию 0).
+
+<PropsTable data={tooltipDoc.QuestionTooltip} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tooltip-question-tooltip--playground' height={320} client:load />
+
+## Доступность
+
+- Триггер — нативный `<button type='button'>` с обязательным `aria-label`.
+- По умолчанию `trigger='hover'` — для form-tooltip'ов, чтобы подсказка не появлялась при Tab через форму. Переключите на `hoverAndFocusVisible`, если хотите focus-доступность.
+- `aria-label` по умолчанию — «Подсказка»; для нестандартных сценариев передавайте `triggerLabel`.
+- Иконка «?» декоративна; смысл доступности несёт именно `aria-label` и содержимое `tip`.

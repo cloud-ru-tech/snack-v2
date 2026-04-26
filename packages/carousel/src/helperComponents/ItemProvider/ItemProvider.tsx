@@ -1,4 +1,4 @@
-import { SwipeCallback, useSwipeable } from '@design-system/utils';
+import { SwipeCallback, useSwipeable } from '@ds/utils';
 import debounce from 'lodash.debounce';
 import mergeRefs from 'merge-refs';
 import {

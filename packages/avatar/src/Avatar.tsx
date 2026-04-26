@@ -1,10 +1,10 @@
-import { extractSupportProps, getThemeClassnames, WithSupportProps } from '@design-system/utils';
+import { type WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { type HTMLAttributes, useEffect, useState } from 'react';
 
 import { APPEARANCE, SHAPE, SIZE } from './constants';
 import styles from './styles.module.scss';
-import { Appearance, Shape, Size } from './types';
+import type { Appearance, Shape, Size } from './types';
 import { getAbbreviation } from './utils';
 
 export type AvatarProps = WithSupportProps<{
@@ -34,24 +34,6 @@ export type AvatarProps = WithSupportProps<{
  * - Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl
  * - Различные формы: круглая (round) или квадратная (square)
  * - Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink
- *
- * @example
- * ```tsx
- * // Базовое использование с именем
- * <Avatar name="John Doe" />
- *
- * // С изображением
- * <Avatar name="John Doe" src="https://example.com/avatar.jpg" />
- *
- * // С кастомными параметрами
- * <Avatar
- *   name="Jane Smith"
- *   appearance={APPEARANCE.Primary}
- *   size={SIZE.Xl}
- *   shape={SHAPE.Square}
- *   showTwoSymbols
- * />
- * ```
  */
 export function Avatar({
   name,
@@ -76,16 +58,23 @@ export function Avatar({
       data-size={size}
       data-appearance={appearance}
       data-shape={shape}
-      {...extractSupportProps(rest)}
+      {...rest}
     >
       {src && !imageError ? (
-        <img className={styles.image} src={src} onError={() => setImageError(true)} alt='' aria-hidden='true' />
+        <img
+          className={styles.image}
+          src={src}
+          onError={() => setImageError(true)}
+          alt=''
+          aria-hidden='true'
+          data-test-id='image'
+        />
       ) : (
         <>
-          <div className={cn(styles.abbreviation, getThemeClassnames({ platform: 'desktop' }))}>
+          <div className={styles.abbreviation} data-test-id='abbreviation'>
             {getAbbreviation(name, numberOfSymbols)}
           </div>
-          <div className={styles.border} />
+          <div className={styles.border} data-test-id='border' />
         </>
       )}
     </div>

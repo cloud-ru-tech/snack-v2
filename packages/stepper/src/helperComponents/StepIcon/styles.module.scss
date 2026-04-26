@@ -1,0 +1,57 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+
+  // Waiting — белый фон, серая рамка, серый номер.
+  &[data-state='waiting'] {
+    border-color: base.$sn-theme-color-neutral-decor;
+    color: base.$sn-theme-color-neutral-accent;
+    background-color: transparent;
+  }
+
+  // Current — сплошной тёмно-зелёный фон, белый номер.
+  &[data-state='current'] {
+    border-color: base.$sn-theme-color-primary-accent;
+    color: base.$sn-theme-color-neutral-onAccent;
+    background-color: base.$sn-theme-color-primary-accent;
+  }
+
+  // Loading — светло-зелёный фон, тёмно-зелёный спиннер.
+  &[data-state='loading'] {
+    border-color: base.$sn-theme-color-primary-decor;
+    color: base.$sn-theme-color-primary-accent;
+    background-color: base.$sn-theme-color-primary-decor;
+  }
+
+  // Completed — светло-зелёный фон, тёмно-зелёная галочка.
+  &[data-state='completed'] {
+    border-color: base.$sn-theme-color-primary-decor;
+    color: base.$sn-theme-color-primary-accent;
+    background-color: base.$sn-theme-color-primary-decor;
+  }
+
+  // Rejected — светло-красный фон, тёмно-красный крест.
+  &[data-state='rejected'] {
+    border-color: base.$sn-theme-color-red-decor;
+    color: base.$sn-theme-color-red-accent;
+    background-color: base.$sn-theme-color-red-decor;
+  }
+}

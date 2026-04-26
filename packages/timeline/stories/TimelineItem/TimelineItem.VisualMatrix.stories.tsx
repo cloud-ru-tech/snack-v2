@@ -1,20 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ReactNode } from 'react';
+import { ROLE, STYLE, TrackItem, type TrackItemProps } from '@ds/timeline';
+import { Meta, StoryObj } from '@storybook/react';
+import { ReactNode } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
-import timelineReadme from '../../README.md?raw';
-import { ROLE } from '../../src/components/Track/constants';
-import { TrackItem, type TrackItemProps } from '../../src/components/TrackItem';
-import { STYLE } from '../../src/components/TrackLine/constants';
 import { DemoComponent } from '../helperComponents/DemoComponent/DemoComponent';
 import styles from '../styles.module.scss';
 
 const meta: Meta = {
-  title: 'Components/Timeline/Timeline Item',
-  parameters: {
-    readme: { content: timelineReadme },
-  },
+  title: 'Components/Timeline/TimelineItem',
 };
 
 export default meta;
@@ -88,7 +82,7 @@ export const VisualMatrix: Story = {
                 <TrackItem
                   {...itemProps({
                     contentPosition: 'right',
-                    role: TrackItem.roles.Center,
+                    role: ROLE.Center,
                     lineStyle: 'dashed',
                     dotVariant: 'default',
                     dotAppearance: appearance,
@@ -99,7 +93,7 @@ export const VisualMatrix: Story = {
                 <TrackItem
                   {...itemProps({
                     contentPosition: 'left',
-                    role: TrackItem.roles.Center,
+                    role: ROLE.Center,
                     lineStyle: 'dashed',
                     dotVariant: 'default',
                     dotAppearance: appearance,

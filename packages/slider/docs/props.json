@@ -1,0 +1,26 @@
+{
+  "getSortedMarkValues": {
+    "displayName": "getSortedMarkValues",
+    "props": {}
+  },
+  "Slider": {
+    "displayName": "Slider",
+    "props": {
+      "handleTip": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать значение в тултипе на ручке"
+      },
+      "tipFormatter": {
+        "type": "((value: string | number) => ReactNode)",
+        "required": false,
+        "description": "Форматирование подсказки; по умолчанию — сырое значение"
+      },
+      "marksEqualSpacing": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение равномерного распределения при нелинейных значениях меток."
+      }
+    }
+  }
+}

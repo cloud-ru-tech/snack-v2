@@ -1,0 +1,36 @@
+{
+  "Block": {
+    "displayName": "Block",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "simple",
+          "outline",
+          "shadow",
+          "transparent"
+        ],
+        "defaultValue": "simple",
+        "description": "Вариант"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "l",
+        "description": "Размер"
+      }
+    },
+    "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Различные варианты отображения: simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children"
+  }
+}

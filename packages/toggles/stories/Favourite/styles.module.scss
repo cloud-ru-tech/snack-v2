@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
 
 .wrapper {
   display: flex;
@@ -16,4 +16,11 @@
   margin: 0;
   font-size: base.$sn-primitive-dimension-16;
   font-weight: 600;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
 }

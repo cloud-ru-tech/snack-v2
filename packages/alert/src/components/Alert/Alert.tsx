@@ -1,6 +1,6 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 
-import { AlertBase, type AlertSharedFieldProps } from '../AlertBase';
+import { AlertBase, AlertSharedFieldProps } from '../AlertBase';
 
 export type AlertProps = WithSupportProps<
   AlertSharedFieldProps & {

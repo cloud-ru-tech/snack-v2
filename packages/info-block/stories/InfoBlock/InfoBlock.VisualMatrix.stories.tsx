@@ -1,18 +1,15 @@
-import { ButtonGroup } from '@design-system/button';
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Button, VIEW } from '@ds/button';
+import { PlaceholderSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import readme from '../../README.md?raw';
-import { ALIGN, InfoBlock, type InfoBlockProps, SIZE } from '../../src';
+import { ALIGN, InfoBlock, InfoBlockProps, SIZE } from '../../src';
 
 const meta: Meta<InfoBlockProps> = {
   title: 'Components/InfoBlock',
   component: InfoBlock,
-  parameters: {
-    readme: { content: readme },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
@@ -41,11 +38,10 @@ export const VisualMatrix: Story = {
               size={size}
               align={align}
               footer={
-                <ButtonGroup
-                  size={size}
-                  primaryAction={{ label: 'Label text', view: 'filled' }}
-                  secondaryAction={{ label: 'Label text', view: 'tonal' }}
-                />
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  <Button label='Label text' view={VIEW.Filled} size={size} />
+                  <Button label='Label text' view={VIEW.Tonal} size={size} />
+                </div>
               }
             />
           )),

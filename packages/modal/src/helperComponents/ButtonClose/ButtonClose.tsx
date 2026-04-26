@@ -1,5 +1,5 @@
-import { CrossSVG } from '@design-system/icons';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { CrossSVG } from '@ds/icons';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
 import { TEST_IDS } from '../../constants';

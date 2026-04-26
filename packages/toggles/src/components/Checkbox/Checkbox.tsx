@@ -1,5 +1,5 @@
-import { CheckSVG, MinusSVG } from '@design-system/icons';
-import { LOADER_SIZE, Spinner } from '@design-system/loader';
+import { CheckSVG, MinusSVG } from '@ds/icons';
+import { LOADER_SIZE, Spinner } from '@ds/loader';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { useCallback, useEffect, useRef, useState } from 'react';

@@ -1,0 +1,108 @@
+---
+title: Timeline
+package: '@ds/timeline'
+description: Вертикальная лента событий. Принимает массив items и сама расставляет роли маркеров (start / center / end), линии и opposite-контент.
+order: 1
+---
+
+import { TimelineDemo } from '../demos/TimelineDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithOpposite } from '../demos/examples/WithOpposite'
+import WithOppositeSrc from '../demos/examples/WithOpposite.tsx?raw'
+import { Alternate } from '../demos/examples/Alternate'
+import AlternateSrc from '../demos/examples/Alternate.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import timelineDoc from './props.json'
+
+# Timeline
+
+Высокоуровневая обёртка над `TrackItem`. Принимает массив `items`, автоматически проставляет роль первому/последнему (start / end) и промежуточным (center), рендерит соединительные линии и опциональный `opposite`-контент.
+
+## Демо
+
+<TimelineDemo client:load />
+
+## Когда использовать
+
+- История заявки / запроса: события + timestamp.
+- Этапы процесса (онбординг, оформление заказа).
+- Changelog на странице документа.
+
+Когда **не** нужен: горизонтальный stepper с нумерацией — берите `Stepper`. Список без хронологии — обычный `<ul>` или компонент-список.
+
+## Для дизайнеров
+
+### contentPosition
+
+| Position | Эффект |
+|----------|--------|
+| `right` | Маркеры слева, контент справа (по умолчанию) |
+| `left` | Маркеры справа, контент слева — для RTL или зеркальных макетов |
+
+### alternate
+
+При `alternate=true` контент элементов по очереди располагается слева и справа от центральной линии маркеров. Требует `fullWidth=true` или достаточной ширины родителя, иначе элементы не влезают.
+
+### opposite
+
+Противоположная колонка для timestamp, автора события или другой метаданных. Не дублируйте сюда информацию из `content`.
+
+### Маркер (dot)
+
+- `dotVariant='default'` — полноценный маркер события.
+- `dotVariant='subEvent'` — уменьшенный маркер для подсобытий (например, промежуточный автокомментарий).
+- `dotAppearance` — цветовая семантика: `green` / `red` / `yellow` / `neutral` / и т.д.
+
+### Do / Don't
+
+- ✅ Упорядочивать события от старого (сверху) к новому (снизу).
+- ❌ Обратный порядок без явной пометки — путает пользователя.
+- ✅ `opposite` для timestamp, `content` для описания.
+- ❌ Мешанина: timestamp внутри `content`.
+- ✅ `alternate` — только при `fullWidth` и комфортной ширине.
+- ❌ `alternate` в узком сайдбаре — контент ломается.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/timeline
+```
+
+```ts
+import { Timeline } from '@ds/timeline'
+import '@ds/timeline/style.css'
+```
+
+### Примеры использования
+
+<Example title='Базовый таймлайн' description='Массив items, контент справа.' code={BasicSrc}>
+  <Basic client:load />
+</Example>
+
+<Example title='С opposite-колонкой' description='Timestamp в opposite, описание в content.' code={WithOppositeSrc}>
+  <WithOpposite client:load />
+</Example>
+
+<Example title='Alternate' description='Zig-zag раскладка — контент попеременно слева и справа.' code={AlternateSrc}>
+  <Alternate client:load />
+</Example>
+
+### Props
+
+<PropsTable data={timelineDoc.Timeline} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-timeline--playground' height={480} client:load />
+
+## Доступность
+
+- Компонент использует семантические `<div>` — при необходимости оберните во внешний `<ol>` / `<ul>` с `aria-label`, чтобы screen reader озвучил «Список из N событий».
+- Порядок событий в DOM соответствует визуальному — screen reader прочитает их в том же порядке.
+- Цвет маркера (`dotAppearance`) не является единственным носителем смысла — дублируйте семантику текстом в `content` («Ошибка», «Успешно»).
+- Интерактивные элементы внутри `content` (ссылки, кнопки) доступны с клавиатуры как обычно.

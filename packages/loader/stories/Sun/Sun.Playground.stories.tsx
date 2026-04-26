@@ -1,75 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Sun, SUN_SIZE } from '@ds/loader'
+import { Meta, StoryObj } from '@storybook/react'
+import { expect } from 'storybook/test'
 
-import loaderReadme from '../../README.md?raw';
-import { Sun, SUN_SIZE, SunProps } from '../../src';
-
-const meta: Meta<SunProps> = {
+const meta: Meta<typeof Sun> = {
   title: 'Components/Loader/Sun',
   component: Sun,
-  parameters: {
-    readme: { content: loaderReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2918-21302&m=dev',
-    },
-    docs: {
-      description: {
-        component: `
-# Sun Component
-
-Sunburst-style loading indicator for the design system.
-
-## Features
-
-- Multiple sizes: XS, S, M, L
-- SVG-based, scalable
-- Supports className and data-test-id
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/loader
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { Sun, SUN_SIZE } from '@design-system/loader';
-
-function LoadingState() {
-  return <Sun size={SUN_SIZE.M} />;
-}
-\`\`\`
-        `,
-      },
-    },
-  },
-  args: {
-    size: SUN_SIZE.S,
-  },
+  parameters: { layout: 'centered' },
+  args: { size: SUN_SIZE.M },
   argTypes: {
-    size: {
-      control: 'select',
-      options: Object.values(SUN_SIZE),
-      description: 'Размер индикатора',
-    },
-    className: {
-      control: 'text',
-      description: 'CSS-класс',
-    },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
-    },
+    size: { control: 'radio', options: Object.values(SUN_SIZE), description: 'Размер' },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<SunProps>;
+export default meta
+type Story = StoryObj<typeof Sun>
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
-};
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('#SunSVG')).toBeVisible()
+  },
+}

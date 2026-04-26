@@ -1,20 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, PROGRESS_BAR_SIZE, ProgressBarCircle } from '@ds/progress-bar';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import progressbarReadme from '../../README.md?raw';
-import { APPEARANCE, PROGRESS_BAR_SIZE, ProgressBarCircle, ProgressBarCircleProps } from '../../src';
-
-const meta: Meta<ProgressBarCircleProps> = {
+const meta: Meta<typeof ProgressBarCircle> = {
   title: 'Components/ProgressBar/ProgressBarCircle',
   component: ProgressBarCircle,
-  parameters: {
-    readme: { content: progressbarReadme },
-  },
 };
 
 export default meta;
-type Story = StoryObj<ProgressBarCircleProps>;
+type Story = StoryObj<typeof ProgressBarCircle>;
 
 const keySizes = Object.values(PROGRESS_BAR_SIZE);
 const keyAppearances = Object.values(APPEARANCE);

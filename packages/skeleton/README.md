@@ -1,230 +1,177 @@
 # Skeleton
 
-Пакет компонентов для плейсхолдеров загрузки: **Skeleton** (блок произвольной формы), **SkeletonText** (строки текста) и **WithSkeleton** (обёртка для условного отображения скелетона или контента). Стили — из design tokens (Figma variables).
+`@ds/skeleton` — Пакет скелетонов дизайн-системы — компоненты Skeleton, SkeletonText и WithSkeleton для индикации состояния загрузки.
 
-## Installation
+Пакет `@ds/skeleton` предоставляет примитивы для индикации загрузки: блочный `Skeleton`, многострочный `SkeletonText` и контейнер-переключатель `WithSkeleton`, который сам выбирает, что показывать — скелетон или реальный контент.
+
+## Когда использовать
+
+- Когда данные подгружаются асинхронно и отображение контента задерживается более 200 мс.
+- Чтобы зарезервировать место под контент и избежать layout shift при появлении данных.
+- Для списков, карточек и текстовых блоков — как визуальная подсказка «идёт загрузка».
+
+Когда **не** нужен скелетон: для мгновенных переходов (< 200 мс), для обычных спиннеров поверх модальных окон (используйте `Loader`), для пустых состояний (используйте `EmptyState`).
+
+## Для дизайнеров
+
+Секция описывает семантику и поведение скелетонов в макетах.
+
+### Состав пакета
+
+### Do / Don't
+
+- ✅ Форма скелетона повторяет форму реального контента: круглая аватарка → круглый скелетон.
+- ❌ Один универсальный прямоугольник вместо набора форм — пользователь теряет ориентир.
+- ✅ `SkeletonText` с тем же `variant`/`size`, что и реальный текст — высота строк совпадёт.
+- ❌ Фиксированная высота в пикселях — при смене typography скелетон поедет.
+- ✅ Скелетоны только на первой загрузке данных экрана/секции.
+- ❌ Скелетоны при каждом фоновом обновлении — используйте `stale-while-revalidate`.
+
+### Установка
 
 ```bash
-npm install @design-system/skeleton
-# or
-yarn add @design-system/skeleton
-# or
-pnpm add @design-system/skeleton
+pnpm add @ds/skeleton
 ```
 
-## Exports
-
-
-
-## Live examples
-
-### Basic
-
-```tsx
-import { Skeleton } from '@design-system/skeleton';
-
-export function BasicExample() {
-  return (
-    <Skeleton loading width={200} height={24}>
-      <span>Контент после загрузки</span>
-    </Skeleton>
-  );
-}
+```ts
+import { Skeleton, SkeletonText, WithSkeleton } from '@ds/skeleton'
+import '@ds/skeleton/style.css'
 ```
 
-### Разные формы
+### Примеры использования
 
-```tsx
-import { Skeleton } from '@design-system/skeleton';
-
-export function LoadingCard() {
-  return (
-    <Skeleton loading width={120} height={80} borderRadius={8}>
-      <div>Карточка контента</div>
-    </Skeleton>
-  );
-}
-
-export function LoadingAvatar() {
-  return (
-    <Skeleton loading width={48} height={48} borderRadius="50%">
-      <img src="/avatar.jpg" alt="" />
-    </Skeleton>
-  );
-}
-```
-
-### Состояние контента
-
-```tsx
-import { Skeleton } from '@design-system/skeleton';
-
-export function Example() {
-  return (
-    <>
-      <Skeleton loading width={200} height={24}>
-        <span>Контент</span>
-      </Skeleton>
-      <Skeleton loading={false} width={200} height={24}>
-        <span>Контент после загрузки</span>
-      </Skeleton>
-    </>
-  );
-}
-```
-
-### Basic
-
-```tsx
-import { SkeletonText } from '@design-system/skeleton';
-
-export function Example() {
-  return (
-    <SkeletonText loading width={200}>
-      <p>Текст после загрузки</p>
-    </SkeletonText>
-  );
-}
-```
-
-### Количество строк
-
-```tsx
-import { SkeletonText } from '@design-system/skeleton';
-
-export function Example() {
-  return (
-    <>
-      <SkeletonText loading lines={1} width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-
-      <SkeletonText loading lines={5} width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-    </>
-  );
-}
-```
-
-### Purpose и size
-
-```tsx
-import { SkeletonText } from '@design-system/skeleton';
-
-export function Example() {
-  return (
-    <>
-      <SkeletonText loading purpose="title" size="m" width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-      <SkeletonText loading purpose="body" size="s" width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-      <SkeletonText loading purpose="label" size="l" width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-    </>
-  );
-}
-```
-
-### Выравнивание
-
-```tsx
-import { SkeletonText } from '@design-system/skeleton';
-
-export function Example() {
-  return (
-    <>
-      <SkeletonText loading align="left" width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-      <SkeletonText loading align="right" width={200}>
-        <p>Текст после загрузки</p>
-      </SkeletonText>
-    </>
-  );
-}
-```
-
-### Basic
-
-```tsx
-import { WithSkeleton, SkeletonText } from '@design-system/skeleton';
-
-<WithSkeleton
-  loading={isLoading}
-  skeleton={<SkeletonText loading width={200} />}
+<Example
+  title='1. Блок фиксированного размера'
+  description='Прямоугольник под аватарку/картинку'
+  code={BlockSrc}
 >
-  <span>Контент после загрузки</span>
-</WithSkeleton>
-```
+  <Block client:load />
+</Example>
 
-### Композиция скелетона
+<Example
+  title='2. Круглый блок'
+  description='borderRadius=50% — под аватар'
+  code={CircleSrc}
+>
+  <Circle client:load />
+</Example>
+
+<Example
+  title='3. Текстовые строки'
+  description='lines контролирует количество строк; variant × size задают типографику'
+  code={TextLinesSrc}
+>
+  <TextLines client:load />
+</Example>
+
+<Example
+  title='4. Переключение loading → content'
+  description='WithSkeleton рендерит skeleton при loading=true, иначе — children'
+  code={WithToggleSrc}
+>
+  <WithToggle client:load />
+</Example>
+
+### Props
+
+#### Skeleton
+
+<PropsTable data={skeletonDoc.Skeleton} />
+
+#### SkeletonText
+
+<PropsTable data={skeletonDoc.SkeletonText} />
+
+#### WithSkeleton
+
+<PropsTable data={skeletonDoc.WithSkeleton} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-skeleton--playground' height={360} client:load />
+
+## Доступность
+
+- Блоки скелетона не несут смысловой нагрузки для скринридеров: это визуальная пауза, а не контент.
+- Для секций, содержащих скелетоны, рекомендуется проставить `aria-busy="true"` на контейнере — скринридер корректно сообщит о загрузке.
+- Анимация скелетона уважает `prefers-reduced-motion: reduce` — при соответствующей системной настройке мерцание отключается.
+- Контраст фонового оттенка скелетона соответствует токенам `@cloud-ru/figma-variables` и проходит требования WCAG AA для нетекстового контента.
+
+## Skeleton
 
 ```tsx
-import { WithSkeleton, Skeleton, SkeletonText } from '@design-system/skeleton';
+import { Skeleton } from '@ds/skeleton'
 
-<WithSkeleton
-  loading={true}
-  skeleton={
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <Skeleton loading width={48} height={48} borderRadius="50%" />
-      <SkeletonText loading lines={2} purpose="body" size="m" width={180} />
-      <Skeleton loading width={120} height={32} borderRadius={4} />
-    </div>
-  }
->
-  <div>Карточка пользователя</div>
-</WithSkeleton>
+export function Example() {
+  return <Skeleton>Click me</Skeleton>
+}
 ```
 
+### Props
 
-## Usage
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
+| `width` | `Width<string | number>` | — | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
+| `height` | `Height<string | number>` | — | Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д) |
+| `borderRadius` | `BorderRadius<string | number>` | — | Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д) |
+| `className` | `string` | — |  |
 
+## SkeletonContextProvider
 
+```tsx
+import { SkeletonContextProvider } from '@ds/skeleton'
 
-## Props
+export function Example() {
+  return <SkeletonContextProvider>Click me</SkeletonContextProvider>
+}
+```
 
-### SkeletonProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| loading | `boolean` | - | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
-| width | `Width<string \| number>` | - | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
-| height | `Height<string \| number>` | - | Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д) |
-| borderRadius | `BorderRadius<string \| number>` | - | Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д) |
-| className | `string` | - | CSS-класс |
+### Props
 
-### SkeletonTextProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| loading | `boolean` | - | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
-| width | `Width<string \| number>` | - | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
-| className | `string` | - | CSS-класс |
-| lines | `number` | 3 | Количество строк. |
-| rowClassName | `string` | - | CSS-класс строки |
-| lineClassName | `string` | - | CSS-класс линии |
-| variant | enum Variant: `"display"`, `"headline"`, `"title"`, `"label"`, `"body"` | body | Роль типографики (размер по anatomy) |
-| size | enum Size: `"l"`, `"m"`, `"s"` | m | Масштаб: s, m, l |
-| align | enum Align: `"left"`, `"right"` | left | Выравнивание: left, right |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будут отрисованы блоки скелетона. |
 
-### WithSkeletonProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| skeleton* | `ReactNode` | - | JSX скелетон |
-| loading | `boolean` | - | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
+## SkeletonText
 
-## Best Practices
+```tsx
+import { SkeletonText } from '@ds/skeleton'
 
-1. **Соответствие контенту** — ширина и высота скелетона должны примерно совпадать с размерами загружаемого контента.
-2. **Используйте children** — передавайте `children` для корректного переключения между скелетоном и контентом.
-3. **Контекст** — `loading` можно задавать через проп или через `SkeletonContextProvider` для вложенных компонентов.
+export function Example() {
+  return <SkeletonText lines="3" variant="body" align="left">Click me</SkeletonText>
+}
+```
 
----
+### Props
 
-## Additional Resources
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
+| `width` | `Width<string | number>` | — | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
+| `className` | `string` | — |  |
+| `lines` | `number` | `3` | Количество строк. |
+| `rowClassName` | `string` | — | CSS-класс строки |
+| `lineClassName` | `string` | — | CSS-класс линии |
+| `variant` | `"display"` \| `"headline"` \| `"title"` \| `"label"` \| `"body"` | `body` | Роль типографики (размер по anatomy) |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Масштаб: s, m, l |
+| `align` | `"left"` \| `"right"` | `left` | Выравнивание: left, right |
 
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+## WithSkeleton
+
+```tsx
+import { WithSkeleton } from '@ds/skeleton'
+
+export function Example() {
+  return <WithSkeleton>Click me</WithSkeleton>
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `skeleton` | `ReactNode` | — | JSX скелетон |
+| `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |

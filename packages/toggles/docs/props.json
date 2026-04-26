@@ -1,0 +1,437 @@
+{
+  "ToggleGroup": {
+    "displayName": "ToggleGroup",
+    "props": {
+      "defaultValue": {
+        "type": "string | string[]",
+        "required": false,
+        "description": "Начальное состояние"
+      },
+      "value": {
+        "type": "string | string[]",
+        "required": false,
+        "description": "Controlled состояние"
+      },
+      "onChange": {
+        "type": "((value: string) => void) | ((value: string[]) => void) | undefined",
+        "required": false,
+        "description": "Controlled обработчик измения состояния"
+      },
+      "selectionMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "multiple"
+        ],
+        "defaultValue": "single",
+        "description": "Режим выбора"
+      }
+    }
+  },
+  "Switch": {
+    "displayName": "Switch",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут id"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут name"
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут value"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "HTML-аттрибут tab-index"
+      },
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут autofocus"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked"
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked по-умолчанию"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "HTML-аттрибут disabled"
+      },
+      "onChange": {
+        "type": "((checked: boolean) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек клика"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек потери фокуса"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек приобретения фокуса"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "inputRef": {
+        "type": "RefObject<HTMLInputElement>",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      }
+    }
+  },
+  "Radio": {
+    "displayName": "Radio",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут id"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут name"
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут value"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "HTML-аттрибут tab-index"
+      },
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут autofocus"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked"
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked по-умолчанию"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "HTML-аттрибут disabled"
+      },
+      "onChange": {
+        "type": "((checked: boolean) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек клика"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек потери фокуса"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек приобретения фокуса"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "inputRef": {
+        "type": "RefObject<HTMLInputElement>",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      }
+    }
+  },
+  "Favourite": {
+    "displayName": "Favourite",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут id"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут name"
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут value"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "HTML-аттрибут tab-index"
+      },
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут autofocus"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked"
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked по-умолчанию"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "HTML-аттрибут disabled"
+      },
+      "onChange": {
+        "type": "((checked: boolean) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек клика"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек потери фокуса"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек приобретения фокуса"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "inputRef": {
+        "type": "RefObject<HTMLInputElement>",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      },
+      "icon": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "star",
+          "heart"
+        ],
+        "defaultValue": "heart",
+        "description": "Вариант иконки: звезда или сердце"
+      },
+      "onKeyUp": {
+        "type": "KeyboardEventHandler<HTMLSpanElement>",
+        "required": false,
+        "description": "Обработчик keyup"
+      }
+    }
+  },
+  "Checkbox": {
+    "displayName": "Checkbox",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут id"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут name"
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-аттрибут value"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "HTML-аттрибут tab-index"
+      },
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут autofocus"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked"
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "HTML-аттрибут checked по-умолчанию"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "HTML-аттрибут disabled"
+      },
+      "onChange": {
+        "type": "((checked: boolean) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек клика"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек потери фокуса"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек приобретения фокуса"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "inputRef": {
+        "type": "RefObject<HTMLInputElement>",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние частичного выбора"
+      },
+      "indeterminateDefault": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние частичного выбора по-умолчанию"
+      }
+    }
+  }
+}

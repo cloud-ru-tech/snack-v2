@@ -1,0 +1,75 @@
+---
+title: FileUpload
+package: '@ds/dropzone'
+description: Обёртка над произвольным триггером — открывает нативный диалог выбора файлов по клику. Без визуальной зоны.
+order: 52
+---
+
+import { FileUpload } from '@ds/dropzone'
+import { FileUploadBasic } from '../demos/examples/FileUploadBasic'
+import FileUploadBasicSrc from '../demos/examples/FileUploadBasic.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import dropzoneDoc from './props.json'
+
+# FileUpload
+
+Невизуальная обёртка над произвольным триггером — как правило, кнопкой. Клик по триггеру открывает системный диалог выбора файлов. Используйте, когда загрузка — вспомогательное действие в форме или toolbar, и не нужна отдельная зона перетаскивания.
+
+## Когда использовать
+
+- Кнопка «Загрузить файлы» рядом с другими полями формы.
+- Иконка-загрузка в toolbar.
+- Скрытый триггер, когда загрузка инициируется программно через клик на дочерний элемент.
+
+Когда **не** подходит: если нужна явная зона drag-n-drop — используйте [Dropzone](/components/dropzone/dropzone) или [HiddenDropZone](/components/dropzone/hidden-drop-zone).
+
+## Для дизайнеров
+
+### Триггер
+
+`FileUpload` не имеет собственного визуала — он пробрасывает клик на единственного дочернего ребёнка. Триггер должен быть валидным интерактивным элементом: `Button`, icon-`Button`, ссылка-кнопка. Никакой `<div onClick>` — всё должно быть доступно с клавиатуры.
+
+### Do / Don't
+
+- ✅ Используйте `Button` с иконкой загрузки и чётким лейблом.
+- ❌ Не оборачивайте `FileUpload` вокруг `<div>` без роли — потеряется клавиатурный доступ.
+- ✅ Ограничивайте типы через `accept`.
+- ❌ Не используйте одновременно `FileUpload` и `Dropzone` на одну операцию — только один из них.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/dropzone
+```
+
+```ts
+import { FileUpload } from '@ds/dropzone'
+```
+
+### Примеры использования
+
+<Example
+  title='Кнопка-триггер'
+  description='FileUpload оборачивает Button'
+  code={FileUploadBasicSrc}
+>
+  <FileUploadBasic client:load />
+</Example>
+
+### Props
+
+<PropsTable data={dropzoneDoc.FileUpload} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-dropzone-fileupload--playground' height={320} />
+
+## Доступность
+
+- Триггером должен быть фокусируемый интерактивный элемент (`<button>`, `<a>`).
+- Нативный `<input type='file'>` скрыт визуально, но остаётся в DOM — скринридер объявит его при фокусе.
+- Клавиатура: Enter/Space активируют триггер, который открывает системный диалог.

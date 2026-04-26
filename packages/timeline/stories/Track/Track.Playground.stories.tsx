@@ -1,10 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, ROLE, STYLE, Track, type TrackProps, VARIANT } from '@ds/timeline';
+import { Meta, StoryObj } from '@storybook/react';
 
-import timelineReadme from '../../README.md?raw';
-import { Track, type TrackProps } from '../../src/components/Track';
-import { ROLE } from '../../src/components/Track/constants';
-import { APPEARANCE, VARIANT } from '../../src/components/TrackDot/constants';
-import { STYLE } from '../../src/components/TrackLine/constants';
 import styles from '../styles.module.scss';
 
 const figmaDesignUrl =
@@ -16,7 +12,6 @@ type StoryProps = Omit<TrackProps, 'role'> & { trackRole: TrackProps['role'] };
 const meta: Meta<StoryProps> = {
   title: 'Components/Timeline/Track',
   parameters: {
-    readme: { content: timelineReadme },
     design: {
       type: 'figma',
       url: figmaDesignUrl,

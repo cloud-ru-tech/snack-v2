@@ -1,0 +1,34 @@
+{
+  "useThemeConfig": {
+    "displayName": "useThemeConfig",
+    "props": {
+      "themeMap": {
+        "type": "Record<T, string>",
+        "required": true,
+        "description": "Объект с указанием соответсвия темы и css-класса"
+      }
+    },
+    "description": "Хук для работы с темами"
+  },
+  "ThemeProvider": {
+    "displayName": "ThemeProvider",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Дети, которые будут обёрнуты в провайдер"
+      },
+      "themeMap": {
+        "type": "Record<string, string>",
+        "required": true,
+        "description": "Объект с указанием соответсвия темы и css-класса"
+      },
+      "defaultTheme": {
+        "type": "string",
+        "required": true,
+        "description": "Значение темы по умолчанию"
+      }
+    },
+    "description": "Провайдер, предназначенный для работы с темами"
+  }
+}

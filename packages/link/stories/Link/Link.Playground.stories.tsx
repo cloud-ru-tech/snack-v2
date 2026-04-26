@@ -1,130 +1,49 @@
-import { VARIANT } from '@design-system/truncate-string';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
-import cn from 'classnames';
-import { MouseEventHandler } from 'react';
+import { APPEARANCE, Link, ROLE } from '@ds/link';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import linkReadme from '../../README.md?raw';
-import { APPEARANCE, Link, LinkProps, ROLE } from '../../src';
-import styles from './styles.module.scss';
-
-const meta: Meta<LinkProps> = {
+const meta: Meta<typeof Link> = {
   title: 'Components/Link',
   component: Link,
-  parameters: {
-    readme: { content: linkReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6913-5372&p=f&m=dev',
-    },
-    docs: {
-      description: {
-        component: `
-# Link
-
-Стилизованная ссылка для интерфейса и вставки в текст. Поддерживает роли (regular / onAccent), варианты внешнего вида (appearance), обрезку длинного текста и полиморфный рендер через \`as\` (например, для react-router). При \`target="_blank"\` автоматически добавляется \`rel="noopener noreferrer"\`.
-
-## Features
-
-- **Роли** — \`regular\`, \`onAccent\` для размещения на обычном или акцентном фоне
-- **Appearance** — neutral, primary, red, blue и др. для контраста с фоном
-- **Внутри текста** — \`insideText={true}\` для ссылки в абзаце с переносами
-- **Обрезка текста** — \`truncateVariant: 'end' | 'middle'\` при длинной подписи
-- **Полиморфный** — \`as={Component}\` для рендера в виде другого элемента или роутер-ссылки
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/link
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { Link } from '@design-system/link';
-
-function Example() {
-  return <Link text="Перейти" href="https://example.com" />;
-}
-\`\`\`
-        `,
-      },
-    },
+  parameters: { layout: 'centered' },
+  args: {
+    text: 'Link',
+    appearance: APPEARANCE.Primary,
+    role: ROLE.Regular,
+    insideText: false,
+    underlined: false,
+    href: 'https://example.com',
+    className: '',
+    'data-test-id': 'link',
   },
-  args: {},
   argTypes: {
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
+    text: { control: 'text', description: 'Текст ссылки' },
+    appearance: {
+      control: 'select',
+      options: Object.values(APPEARANCE),
+      description: 'Цветовая схема',
+    },
+    role: {
+      control: 'radio',
+      options: Object.values(ROLE),
+      description: 'Роль: regular / onAccent',
+    },
+    insideText: { control: 'boolean', description: 'Ссылка внутри текста' },
+    underlined: { control: 'boolean', description: 'Подчёркивание' },
+    truncateVariant: {
+      control: 'radio',
+      options: ['end', 'middle'],
+      description: 'Вариант обрезания строки',
     },
   },
 };
 
 export default meta;
-
-type StoryProps = LinkProps & {
-  showBackground: boolean;
-};
-
-type Story = StoryObj<StoryProps>;
-
-const handleClick: MouseEventHandler = e => {
-  e.preventDefault();
-};
-
-const Template: StoryFn<StoryProps> = ({ showBackground, ...args }: StoryProps) => (
-  <div className={styles.wrapper}>
-    <div
-      className={cn(styles.linkWrapper, styles.withResize)}
-      data-appearance={args.appearance}
-      data-role={args.role}
-      data-show-background={showBackground || undefined}
-    >
-      {args.insideText ? (
-        <span>
-          Some text some text <Link {...args} insideText={true} onClick={handleClick} /> some text some text
-        </span>
-      ) : (
-        <Link {...args} onClick={handleClick} />
-      )}
-    </div>
-  </div>
-);
+type Story = StoryObj<typeof Link>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  args: {
-    role: 'regular',
-    appearance: 'primary',
-    showBackground: true,
-    text: 'Link text',
-    href: '#',
-    target: '_blank',
-    insideText: false,
-    underlined: false,
-    truncateVariant: 'end',
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('link')).toBeVisible();
   },
-  argTypes: {
-    role: {
-      control: 'radio',
-      options: Object.values(ROLE),
-    },
-    appearance: {
-      control: 'radio',
-      options: Object.values(APPEARANCE),
-    },
-    showBackground: {
-      name: '[Stories]: Show background',
-    },
-    truncateVariant: {
-      control: 'radio',
-      options: Object.values(VARIANT),
-    },
-    download: {
-      type: 'string',
-    },
-  },
-  render: Template,
 };

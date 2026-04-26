@@ -1,7 +1,7 @@
 import { useNProgress } from '@tanem/react-nprogress';
 import cn from 'classnames';
 
-import { ProgressBarPrivate, ProgressBarPrivateProps } from '../ProgressBarPrivate';
+import { ProgressBarPrivate, type ProgressBarPrivateProps } from '../ProgressBarPrivate';
 import styles from './styles.module.scss';
 
 export type ProgressBarPageProps = Omit<ProgressBarPrivateProps, 'size' | 'progress'> & {

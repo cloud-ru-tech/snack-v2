@@ -1,9 +1,9 @@
-import { CrossSVG } from '@design-system/icons';
-import { extractSupportProps } from '@design-system/utils';
+import { CrossSVG } from '@ds/icons';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
 import { APPEARANCE, SIZE } from '../../constants';
-import type { TagBaseProps } from '../../types';
+import { TagBaseProps } from '../../types';
 import { ICON_SIZE } from './constants';
 import styles from './styles.module.scss';
 

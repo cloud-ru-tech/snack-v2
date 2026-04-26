@@ -1,4 +1,4 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { CSSProperties, PropsWithChildren } from 'react';
 

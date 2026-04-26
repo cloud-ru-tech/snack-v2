@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { SIZE, SkeletonText, VARIANT } from '@ds/skeleton';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { SIZE, SkeletonText, SkeletonTextProps, VARIANT } from '../../src';
-
-const meta: Meta<SkeletonTextProps> = {
+const meta: Meta<typeof SkeletonText> = {
   title: 'Components/Skeleton/SkeletonText',
   component: SkeletonText,
 };
 
 export default meta;
-type Story = StoryObj<SkeletonTextProps>;
+type Story = StoryObj<typeof SkeletonText>;
 
 const keyVariants = [VARIANT.Body, VARIANT.Label, VARIANT.Title, VARIANT.Headline, VARIANT.Display];
 const keySizes = [SIZE.S, SIZE.M, SIZE.L];

@@ -1,4 +1,4 @@
-import { useLayoutEffect } from '@design-system/utils';
+import { useLayoutEffect } from '@ds/utils';
 import { useEffect, useRef } from 'react';
 import { tabbable } from 'tabbable';
 
@@ -73,22 +73,22 @@ export function useModalFocusTrap(active: boolean) {
       if (activeElement === container) {
         event.preventDefault();
         if (event.shiftKey) {
-          last.focus();
+          last?.focus();
         } else {
-          first.focus();
+          first?.focus();
         }
         return;
       }
 
       if (event.shiftKey && activeElement === first) {
         event.preventDefault();
-        last.focus();
+        last?.focus();
         return;
       }
 
       if (!event.shiftKey && activeElement === last) {
         event.preventDefault();
-        first.focus();
+        first?.focus();
       }
     };
 

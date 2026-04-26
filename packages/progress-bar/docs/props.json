@@ -1,0 +1,198 @@
+{
+  "ProgressBarPrivate": {
+    "displayName": "ProgressBarPrivate",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "progress": {
+        "type": "number",
+        "required": true,
+        "description": "Процент загрузки от 0 до 100"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "description": "Размер"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "primary",
+        "description": "Внешний вид"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "animationDuration": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Скорость анимации"
+      }
+    },
+    "description": "Компонент индикатор загрузки"
+  },
+  "ProgressBarPage": {
+    "displayName": "ProgressBarPage",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "description": "Внешний вид"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "animationDuration": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "200",
+        "description": "Скорость анимации"
+      },
+      "inProgress": {
+        "type": "boolean",
+        "required": true,
+        "description": "Включен/выключен"
+      },
+      "incrementDuration": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "800",
+        "description": "Время между прогрессом"
+      },
+      "minimum": {
+        "type": "number",
+        "required": false,
+        "description": "Минимальное значение прогресс бара от 0 до 1"
+      }
+    }
+  },
+  "ProgressBarCircle": {
+    "displayName": "ProgressBarCircle",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "progress": {
+        "type": "number",
+        "required": true,
+        "description": "Процент загрузки от 0 до 100"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "primary",
+        "description": "Внешний вид"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Компонент индикатор загрузки"
+  },
+  "ProgressBar": {
+    "displayName": "ProgressBar",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "progress": {
+        "type": "number",
+        "required": true,
+        "description": "Процент загрузки от 0 до 100"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "description": "Внешний вид"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+---
+title: AlertTop
+package: '@ds/alert'
+description: Системный баннер по верхней кромке приложения — всегда на сплошной цветной подложке, используется для глобальных уведомлений.
+order: 2
+---
+
+import { AlertTop } from '@ds/alert'
+import { AlertTopDemo } from '../demos/AlertTopDemo'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import alertDoc from './props.json'
+
+# AlertTop
+
+Глобальный баннер, который крепится к верхней кромке приложения. В отличие от `Alert`, всегда рендерится на сплошной цветной подложке (определяется `appearance`) и не поддерживает `outline` — визуально это «полоса сообщения», а не карточка.
+
+## Демо
+
+<AlertTopDemo client:load />
+
+## Когда использовать
+
+- Для плановых технических работ и maintenance-окон.
+- Для глобальных ограничений (например, «В вашем регионе временно недоступны платежи»).
+- Для системных анонсов, которые касаются всех пользователей приложения.
+
+Когда **не** нужен: для сообщений, которые касаются конкретной страницы или формы — используйте `Alert`.
+
+## Props
+
+<PropsTable data={alertDoc.AlertTop} />
+
+## Пример
+
+<Example title='Системное уведомление'>
+  <AlertTop
+    appearance='info'
+    title='Плановые работы'
+    description='Сегодня с 22:00 до 23:00 возможны кратковременные перебои.'
+  />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='components-alert-alerttop--playground' height={200} client:load />
+
+## Доступность
+
+- `role='alert'` — содержимое зачитывается скринридером при появлении.
+- Контраст цветной подложки и текста соответствует WCAG AA; не переопределяйте цвета.
+- Кнопки (actions, close) — нативные, работают с клавиатуры.
+- `AlertTop` не должен блокировать интерактивные элементы под ним: резервируйте под него вертикальное пространство в layout.

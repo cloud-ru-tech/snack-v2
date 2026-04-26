@@ -1,4 +1,4 @@
-import { Typography } from '@design-system/typography';
+import { Typography } from '@ds/typography';
 import { PropsWithChildren } from 'react';
 
 import { SIZE } from '../../constants';

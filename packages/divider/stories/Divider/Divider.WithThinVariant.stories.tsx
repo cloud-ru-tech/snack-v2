@@ -1,26 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Divider, ORIENTATION, VARIANT } from '@ds/divider';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Divider, type DividerProps, VARIANT } from '../../src';
+import styles from './styles.module.scss';
 
-const meta: Meta<DividerProps> = {
+const meta: Meta<typeof Divider> = {
   title: 'Components/Divider',
   component: Divider,
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
-type Story = StoryObj<DividerProps>;
+type Story = StoryObj<typeof Divider>;
 
 export const WithThinVariant: Story = {
-  tags: ['!dev', 'autodocs'],
+  tags: ['dev'],
   args: {
     variant: VARIANT.Thin,
-    orientation: 'horizontal',
+    orientation: ORIENTATION.Horizontal,
+    'data-test-id': 'divider',
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Тонкая линия (0.5px) для менее акцентного разделения контента.',
-      },
-    },
-  },
+  render: args => (
+    <div className={styles.horizontalWrapper}>
+      <Divider {...args} />
+    </div>
+  ),
 };

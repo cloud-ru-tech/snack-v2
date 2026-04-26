@@ -1,6 +1,6 @@
-import { CounterProps } from '@design-system/counter';
-import { ValueOf } from '@design-system/utils';
-import type { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
+import { CounterProps } from '@ds/counter';
+import { ValueOf } from '@ds/utils';
+import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
 import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from './constants';
 

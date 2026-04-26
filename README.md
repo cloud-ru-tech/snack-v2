@@ -1,135 +1,126 @@
 # Design System
 
-React-компонентная библиотека с документацией на Storybook и Astro.
-
-## Возможности
-
-- **Design Tokens** — интеграция с Figma Variables (`@sbercloud/figma-variables`)
-- **Storybook** — интерактивная документация компонентов (порт 6006)
-- **Astro Docs** — сайт документации на Starlight (порт 4321)
-- **Accessibility** — проверка a11y (addon-a11y)
-- **Figma** — addon-designs для просмотра макетов
-- **Vitest + Playwright** — unit- и e2e-тесты
-- **Monorepo** — Lerna + pnpm workspaces, пакеты `@design-system/*`
-
-## Быстрый старт
-
-### Установка зависимостей
-
-```bash
-pnpm deps
-```
-
-### Запуск Storybook
-
-```bash
-pnpm storybook    # http://localhost:6006
-```
-
-### Запуск Astro
-
-```bash
-pnpm docs:dev          # Astro docs http://localhost:4321
-```
-
-### Основные команды
-
-| Действие             | Команда                        |
-| -------------------- |--------------------------------|
-| Storybook            | `pnpm storybook`               |
-| Документация (Astro) | `pnpm docs:dev`                |
-| Сборка всего         | `pnpm build` (packages + docs) |
-| Полная сборка        | `pnpm build:all` (+ storybook) |
-| Линт                 | `pnpm lint`                    |
-| Unit-тесты           | `pnpm test:unit`               |
-| E2E-тесты            | `pnpm test:e2e`                |
-
-### Сборка
-
-```bash
-pnpm build:packages     # Пакеты (TS + CSS)
-pnpm build:docs         # Astro docs (по умолчанию BASE_PATH=/snack-v2/)
-pnpm build:storybook    # Статика Storybook
-pnpm build              # Пакеты + docs
-pnpm build:all          # Пакеты + docs + storybook
-```
-
-Сборка документации для корня домена: `pnpm --filter @design-system/docs build:root`.  
-Кастомный BASE_PATH: `BASE_PATH=/path/ pnpm build:docs`.
+Монорепозиторий для разработки компонентной библиотеки на React + TypeScript. Включает компоненты, Storybook, документационный портал на Astro и полный набор e2e-тестов.
 
 ## Структура репозитория
 
 ```
-├── astro/                 # Сайт документации (Starlight)
-├── packages/              # Пакеты @design-system/*
-│   ├── avatar/
-│   ├── button/
-│   ├── counter/
-│   └── typography/
-├── storybook/             # Конфиг Storybook (main.ts, preview.tsx)
-├── scripts/               # Сборка, docgen, add-package
-├── playwright/            # E2E утилиты
-├── docs/                  # Техническая документация (архитектура, миграции)
-├── .cursor/               # Правила и инструкции для Cursor
-└── types/                 # Глобальные типы (css.d.ts, scss.d.ts, …)
+design-system/
+├── packages/               # Публикуемые npm-пакеты
+│   ├── tokens/             # Дизайн-токены (SCSS-переменные + CSS-кастом-пропсы)
+│   └── button/             # Пример компонента
+│       ├── src/            # Исходники (Button.tsx, styles.module.scss)
+│       ├── stories/        # Storybook-сторис (Button.stories.tsx)
+│       ├── demos/          # Интерактивные демо для доки (ButtonDemo.tsx)
+│       ├── docs/           # MDX-документация пакета (overview.mdx, ...)
+│       ├── tsconfig.esm.json / tsconfig.cjs.json  # Сборка ESM + CJS
+│       └── package.json    # Экспорт src + dist
+│
+├── scripts/                # Корневые скрипты (SCSS → CSS, CSS modules для CJS)
+├── apps/
+│   ├── docs/               # Документационный портал (Astro)
+│   │   └── src/
+│   │       ├── content/
+│   │       │   ├── config.ts        # Astro content collections
+│   │       │   └── patterns/        # MDX-паттерны не привязанные к пакетам
+│   │       ├── components/
+│   │       │   └── Canvas.tsx       # Интерактивное превью с контролами
+│   │       ├── layouts/
+│   │       └── pages/
+│   │           ├── components/[...slug].astro
+│   │           └── patterns/[...slug].astro
+│   └── storybook/          # Корневой Storybook
+│       └── .storybook/
+│           ├── main.ts     # Глобует stories из packages/*/stories/
+│           └── preview.ts
+│
+├── tests/                  # E2E-тесты (Playwright)
+│   ├── storybook/          # Тесты компонентов против Storybook iframe
+│   ├── visual/             # Визуальная регрессия (скриншоты)
+│   ├── docs/               # Тесты документационного портала
+│   ├── helpers/storybook.ts
+│   └── playwright.config.ts
+│
+├── tooling/
+│   └── tsconfig/           # Shared TypeScript конфиги
+│
+├── lerna.json              # Lerna: версионирование и публикация
+└── pnpm-workspace.yaml     # pnpm workspaces
 ```
 
-## Новый компонент
+## Сборка пакетов компонентов
 
-Генератор создаёт пакет со структурой, stories и конфигами:
+Подробности — в [BUILD.md](./BUILD.md).
+
+1. **`tspc -b`** по `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (после `pnpm install` применяется **ts-patch** для transformers и типов CSS modules).
+2. **Маркер CommonJS** — `dist/cjs/package.json` с `"type": "commonjs"` (скрипт `build:cjs-package-meta`).
+3. **`pnpm build:css`** — компиляция SCSS в `dist/esm` и `dist/cjs`, копирование ассетов, агрегат **`style.css`** в каждой сборке.
+4. **`pnpm build:cjs-css-modules`** — постобработка CJS через `babel-plugin-react-css-modules`.
+
+## Быстрый старт
 
 ```bash
-pnpm add-package
+# Установить зависимости
+pnpm install
+
+# Установить браузеры для e2e-тестов (один раз)
+pnpm --filter @ds/tests exec playwright install
 ```
 
-Подробнее: [scripts/README.md](./scripts/README.md).
+## Команды разработки
 
-## Storybook аддоны
+| Команда | Что делает |
+|---------|------------|
+| `pnpm dev:storybook` | Запускает Storybook на `localhost:6006` |
+| `pnpm dev:docs` | Запускает документационный портал на `localhost:4321` |
+| `pnpm dev` | Watch-сборка `button` и `avatar` (`tspc -b --watch` для ESM и CJS) |
+| `pnpm build` | Собирает пакеты, затем Storybook и docs |
+| `pnpm build:packages` | Только пакеты: TS (ESM+CJS) + CSS + CJS css-modules |
+| `pnpm gen:props` | Генерирует `docs/props.json` для каждого пакета из TypeScript-типов |
+| `pnpm gen:readme` | Генерирует `README.md` для каждого пакета из docs/overview.mdx + props.json |
+| `pnpm gen` | Запускает `gen:props` + `gen:readme` (полная регенерация) |
 
-- **addon-docs** — автодокументация
-- **addon-designs** — Figma
-- **addon-links** — навигация между stories
-- **addon-a11y** — доступность
-- **addon-vitest** — тесты в Storybook
-- **@chromatic-com/storybook** — visual regression
+## Тесты
 
-Подробнее: [storybook/ADDONS.md](./storybook/ADDONS.md).
+| Команда | Что делает |
+|---------|------------|
+| `pnpm test:stories` | Запускает play-функции сторис через `@storybook/test-runner` |
+| `pnpm test:e2e` | Playwright: компоненты + доки + визуальная регрессия |
+| `pnpm test:e2e:ui` | Playwright в интерактивном UI-режиме |
+| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты |
 
-## Тестирование
+## Публикация пакетов
 
 ```bash
-pnpm test                 # Все тесты (pnpm -r test)
-pnpm test:unit            # Vitest, один прогон
-pnpm test:unit:watch      # Vitest, watch
-pnpm test:e2e             # Playwright
-pnpm test:e2e:ui          # Playwright UI
-pnpm test:e2e:report      # Открыть отчёт
+# Проставить новые версии и создать git-теги
+pnpm version:packages
+
+# Собрать и опубликовать в npm
+pnpm release
 ```
 
-## Docgen
+## Как добавить новый компонент
 
-Генерация таблиц пропсов и README из типов и MDX:
+Подробное руководство — в [Contribution Guide](/patterns/contribution-guide) документационного портала.
 
-```bash
-pnpm docgen           # Таблицы пропсов во все пакеты
-pnpm docgen:readme    # README по пакетам
-pnpm docgen:all       # Всё разом
-pnpm docgen:staged    # Только по изменённым пакетам
-```
+Краткий алгоритм:
 
-## Документация
+1. Запустить `pnpm add-package` или скопировать `packages/button/` → `packages/my-component/`
+2. Переименовать `name` в `package.json` → `@ds/my-component`
+3. Добавить пакет в `tsconfig.json`, `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (скрипт `add-package` делает это автоматически)
+4. Описать сторис в `stories/MyComponent.stories.tsx`
+5. Написать демо в `demos/MyComponentDemo.tsx`
+6. Задокументировать в `docs/overview.mdx` — страница появится в портале автоматически
 
-- [docs/README.md](./docs/README.md) — техническая документация (архитектура, миграции, тесты)
-- [.cursor/docs/](./.cursor/docs/README.md) — инструкции для Cursor / LLM.txt
-- [storybook/README.md](./storybook/README.md) — конфигурация Storybook
-- [storybook/ADDONS.md](./storybook/ADDONS.md) — аддоны
-- [scripts/README.md](./scripts/README.md) — скрипты и генератор
-- [astro/README.md](./astro/README.md) — сайт документации на Astro
+## Технологии
 
-## Стек
-
-- React 19, TypeScript 5.9
-- Storybook 10, Astro (Starlight)
-- Vitest, Playwright
-- SCSS Modules, Figma Variables
-- Lerna, pnpm
+| Роль | Инструмент |
+|------|-----------|
+| Пакетный менеджер | pnpm workspaces |
+| Версионирование и публикация | Lerna |
+| Сборка компонентов | TypeScript (`tspc` + project references), ts-patch |
+| Стили | SCSS → CSS (sass + postcss), CSS Modules |
+| Документальный портал | Astro + MDX |
+| Среда разработки компонентов | Storybook 8 |
+| E2E-тесты | Playwright |
+| A11y-тесты | axe-core/playwright |

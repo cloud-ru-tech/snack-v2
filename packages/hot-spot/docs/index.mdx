@@ -1,239 +1,102 @@
 ---
-title: Hot Spot
-description: Индикатор-точка для привлечения внимания с анимацией пульсации и настраиваемым позиционированием.
-version: '0.1.0'
+title: HotSpot
+package: '@ds/hot-spot'
+description: Пульсирующая точка-индикатор, привязанная к целевому элементу — подсказка внимания и обучающий акцент.
+order: 20
 ---
 
-import {
-  ExampleContainer,
-  ExampleGrid,
-  ExampleItem,
-  ExampleRow,
-} from '#astro/components/mdx';
-import { APPEARANCE, HotSpot, PLACEMENT } from '../src';
+import { HotSpot } from '@ds/hot-spot'
+import { Button } from '@ds/button'
+import { HotSpotDemo } from '../demos/HotSpotDemo'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import hotSpotDoc from './props.json'
 
-# Hot Spot
+# HotSpot
 
-Компонент для привлечения внимания к элементу — цветная точка с опциональной анимацией пульсации. Может отображаться отдельно или поверх контента (children) с настраиваемым позиционированием.
+Пульсирующая точка-индикатор, которая привязывается к целевому UI-элементу. Используется для привлечения внимания к новой функции, непрочитанному статусу или обучающему шагу онбординга.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-Поддерживает:
-- **Appearance** — neutral, primary, red, orange, yellow, green, blue, violet, pink — цвет точки
-- **Pulse** — анимация пульсации (опционально)
-- **Placement** — 9 вариантов позиций относительно children (left, right, center, top, bottom)
-- **Offset** — смещение dot по осям X и Y
-- Figma: [HotSpot](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8968-2435&m=dev)
+<HotSpotDemo client:load />
 
-## Installation
+## Когда использовать
+
+- Подсветка новой функции в меню или тулбаре.
+- Индикатор непрочитанного статуса рядом с пунктом навигации.
+- Шаг обучающего онбординга — точка указывает на следующее действие.
+
+Когда **не** нужен `HotSpot`: для количественных бейджей используйте `Counter`; для постоянных статусов — `Tag`.
+
+## Для дизайнеров
+
+### Appearance — цвет точки
+
+Восемь вариантов: `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`. `primary` — по умолчанию. Остальные — для семантических статусов или цветового кодирования по категориям.
+
+### Placement — позиция относительно target
+
+Девять позиций: `left`, `left-top`, `left-bottom`, `right`, `right-top`, `right-bottom`, `center`, `center-top`, `center-bottom`. Смещения по осям (`offsetX`, `offsetY`) позволяют тонкую подстройку.
+
+### Pulse — анимация
+
+Анимация пульсации по умолчанию включена. `duration` задаёт период (CSS-значение — `'2s'`, `'500ms'`). Для пользователей с `prefers-reduced-motion` отключайте `pulse` вручную.
+
+### Do / Don't
+
+- ✅ Один HotSpot на экран — внимание не должно дробиться.
+- ❌ HotSpot на каждом элементе — превращает экран в рябь.
+- ✅ Убирайте HotSpot после взаимодействия с целевым элементом.
+- ❌ Постоянный HotSpot на давно известной функции.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/hot-spot
-# or
-yarn add @design-system/hot-spot
-# or
-pnpm add @design-system/hot-spot
+pnpm add @ds/hot-spot
 ```
 
-## Changelog
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-
-<Changelog packageName="hot-spot" />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component="hot-spot" />
-
-## Overview
-
-Hot Spot рендерит точку (8×8 px) с опциональной анимацией пульсации. Может использоваться без children (только dot) или с обёрткой — dot поверх контента в абсолютной позиции.
-
-- **Без children** — возвращает только dot в контейнере
-- **С children** — обёртка с children и dot, позиционируемым через `placement` (right-top по умолчанию)
-- **enabled** — при `false` отображаются только children (без dot)
-- **dotRender** — кастомная функция для обёртки dot (например, обёртка в Tooltip)
-
-Стили из `@sbercloud/figma-variables` (anatomy dot/pulse, theme colors).
-
-## Live examples
-
-### Basic usage
-
-<ExampleContainer>
-  <ExampleRow gap="medium">
-    <HotSpot />
-    <HotSpot pulse={false} />
-    <HotSpot appearance={APPEARANCE.Red} />
-  </ExampleRow>
-</ExampleContainer>
-
-### Appearances
-
-<ExampleContainer>
-  <ExampleGrid columns={3} minColumnWidth="120px">
-    <ExampleItem label="Primary" gap="medium">
-      <HotSpot appearance={APPEARANCE.Primary} />
-    </ExampleItem>
-    <ExampleItem label="Red" gap="medium">
-      <HotSpot appearance={APPEARANCE.Red} />
-    </ExampleItem>
-    <ExampleItem label="Orange" gap="medium">
-      <HotSpot appearance={APPEARANCE.Orange} />
-    </ExampleItem>
-    <ExampleItem label="Yellow" gap="medium">
-      <HotSpot appearance={APPEARANCE.Yellow} />
-    </ExampleItem>
-    <ExampleItem label="Green" gap="medium">
-      <HotSpot appearance={APPEARANCE.Green} />
-    </ExampleItem>
-    <ExampleItem label="Blue" gap="medium">
-      <HotSpot appearance={APPEARANCE.Blue} />
-    </ExampleItem>
-    <ExampleItem label="Violet" gap="medium">
-      <HotSpot appearance={APPEARANCE.Violet} />
-    </ExampleItem>
-    <ExampleItem label="Pink" gap="medium">
-      <HotSpot appearance={APPEARANCE.Pink} />
-    </ExampleItem>
-    <ExampleItem label="Neutral" gap="medium">
-      <HotSpot appearance={APPEARANCE.Neutral} />
-    </ExampleItem>
-  </ExampleGrid>
-</ExampleContainer>
-
-### With children
-
-<ExampleContainer>
-  <ExampleRow gap="large">
-    <HotSpot placement={PLACEMENT.RightTop} offsetX={16}>
-      <button type="button">Кнопка с индикатором</button>
-    </HotSpot>
-    <HotSpot placement={PLACEMENT.Right} appearance={APPEARANCE.Red} offsetX={16}>
-      <span>Уведомление</span>
-    </HotSpot>
-  </ExampleRow>
-</ExampleContainer>
-
-## Storybook
-
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-
-### Playground
-
-<StorybookIframe storyId="components-hotspot--playground" showControls={true} height="400px" />
-
-### Visual Matrix
-
-Для просмотра всех комбинаций appearance и pulse используйте story **Visual Matrix** в Storybook.
-
-<StorybookIframe storyId="components-hotspot--visual-matrix" showControls={false} height="600px" />
-
-## Usage
-
-### Basic example
-
-```tsx
-import { HotSpot } from '@design-system/hot-spot';
-
-export function Example() {
-  return <HotSpot />;
-}
+```ts
+import { HotSpot, APPEARANCE, PLACEMENT } from '@ds/hot-spot'
+import '@ds/hot-spot/style.css'
 ```
 
-По умолчанию: `appearance="primary"`, `pulse={true}`, `placement="right-top"`.
+### Примеры использования
 
-### With appearance and pulse
+<Example title='HotSpot на кнопке'>
+  <HotSpot placement='right-top'>
+    <Button label='Уведомления' view='outline' />
+  </HotSpot>
+</Example>
 
-```tsx
-import { HotSpot, APPEARANCE } from '@design-system/hot-spot';
+<Example title='Без анимации пульсации'>
+  <HotSpot placement='right' pulse={false}>
+    <Button label='Settings' view='outline' />
+  </HotSpot>
+</Example>
 
-export function Example() {
-  return (
-    <>
-      <HotSpot appearance={APPEARANCE.Red} />
-      <HotSpot appearance={APPEARANCE.Green} pulse={false} />
-    </>
-  );
-}
-```
+<Example title='Красный акцент'>
+  <HotSpot appearance='red' placement='right-top'>
+    <Button label='Ошибки' view='outline' />
+  </HotSpot>
+</Example>
 
-### With children and placement
+<Example title='Standalone dot (без children)'>
+  <HotSpot appearance='green' />
+</Example>
 
-```tsx
-import { HotSpot, PLACEMENT } from '@design-system/hot-spot';
+### Props
 
-export function Example() {
-  return (
-    <HotSpot placement={PLACEMENT.RightTop}>
-      <button type="button">Кнопка с индикатором</button>
-    </HotSpot>
-  );
-}
-```
+<PropsTable data={hotSpotDoc.HotSpot} />
 
-### With offset
+### Storybook
 
-```tsx
-import { HotSpot } from '@design-system/hot-spot';
+<StorybookEmbed storyId='components-hotspot--playground' height={360} client:load />
 
-export function Example() {
-  return (
-    <HotSpot offsetX={8} offsetY={-4}>
-      <span>Элемент</span>
-    </HotSpot>
-  );
-}
-```
+## Доступность
 
-### Conditional display (enabled)
-
-```tsx
-import { HotSpot } from '@design-system/hot-spot';
-
-export function Example({ hasUpdates }: { hasUpdates: boolean }) {
-  return (
-    <HotSpot enabled={hasUpdates}>
-      <button type="button">Меню</button>
-    </HotSpot>
-  );
-}
-```
-
-## Props
-
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### HotSpotProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| appearance | enum Appearance: `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | primary | Внешний вид |
-| pulse | `boolean` | true | Анимация пульсации |
-| duration | `string` | 2s | Время анимации пульсации |
-| placement | enum Placement: `"left"`, `"left-top"`, `"left-bottom"`, `"right"`, `"right-top"`, `"right-bottom"`, `"center"`, `"center-top"`, `"center-bottom"` | right-top | Положение относительно children. |
-| dotRender | `(dot: ReactNode) => ReactNode` | - | Рендер функция для dot |
-| children | `ReactNode` | - | Вложенный контент |
-| offsetX | `string \| number` | - | Смещение dot по оси X (ось направлена вправо) |
-| offsetY | `string \| number` | - | Смещение dot по оси Y (ось направлена вниз) |
-| enabled | `boolean` | true | Управление состоянием отрисовки |
-| className | `string` | - | CSS-класс |
-| wrapperClassName | `string` | - |  |
-
-
-[//]: DOCUMENTATION_SECTION_END
-
-Компонент поддерживает `data-test-id` и `aria-*` через WithSupportProps для тестов и доступности.
-
-## Accessibility
-
-- Точка — декоративный элемент; при необходимости добавляйте `aria-label` или `aria-describedby` к родительскому интерактивному элементу.
-- При использовании с `dotRender` (например, обёртка в Tooltip) обеспечивайте доступность подсказки.
-- Компонент принимает стандартные HTML-атрибуты через WithSupportProps.
-
-## Best practices
-
-1. **Appearance** — подбирайте цвет под контекст (primary для основного, red для критичных уведомлений).
-2. **Pulse** — анимация привлекает внимание; отключайте `pulse={false}` при избыточном количестве индикаторов.
-3. **Placement** — используйте `right-top` для кнопок и иконок; `center` для центрирования.
-4. **enabled** — скрывайте dot при отсутствии уведомлений (`enabled={hasUpdates}`).
-5. **dotRender** — для кастомной обёртки (Tooltip, Popover) передавайте функцию, возвращающую обёрнутый dot.
+- HotSpot — чисто визуальный индикатор, не несёт ARIA-семантики.
+- Не используйте его как единственный носитель информации — дублируйте статус текстом рядом (например, «Новое»).
+- Для `prefers-reduced-motion` отключайте `pulse` программно.

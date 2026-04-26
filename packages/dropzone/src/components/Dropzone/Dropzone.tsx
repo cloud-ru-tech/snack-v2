@@ -1,4 +1,4 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import { ReactNode } from 'react';
 
 import { useDrag } from '../../hooks/useDrag';

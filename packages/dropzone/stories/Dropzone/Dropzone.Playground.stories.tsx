@@ -1,23 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect, within } from 'storybook/test';
 
-import dropzoneReadme from '../../README.md?raw';
 import { Dropzone, DropzoneProps, SIZE, UPLOAD_MODE } from '../../src';
 import { SlotContent } from './SlotContent';
 import styles from './styles.module.scss';
 
 const defaultChildren = <SlotContent />;
 
-const meta: Meta<DropzoneProps> = {
-  title: 'Components/Dropzone/Dropzone',
+const meta: Meta<typeof Dropzone> = {
+  title: 'Components/Dropzone',
   component: Dropzone,
-  parameters: {
-    readme: { content: dropzoneReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4971-5434&m=dev',
-    },
-  },
   args: {
     children: defaultChildren,
     disabled: false,
@@ -38,9 +31,6 @@ const meta: Meta<DropzoneProps> = {
       description: 'Размер',
     },
     accept: { control: 'text', description: 'Типы файлов (например image/*)' },
-    _storybookForceOver: {
-      table: { disable: true },
-    },
     'data-test-id': {
       control: 'text',
       description: 'Test ID для автотестов',
@@ -51,7 +41,7 @@ const meta: Meta<DropzoneProps> = {
 
 export default meta;
 
-type Story = StoryObj<DropzoneProps>;
+type Story = StoryObj<typeof Dropzone>;
 
 function DropzoneWithFiles(args: DropzoneProps) {
   const [files, setFiles] = useState<File[]>([]);
@@ -73,4 +63,7 @@ function DropzoneWithFiles(args: DropzoneProps) {
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <DropzoneWithFiles {...args} />,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByText('# slot content')).toBeVisible();
+  },
 };

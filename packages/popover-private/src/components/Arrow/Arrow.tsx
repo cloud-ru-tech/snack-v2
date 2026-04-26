@@ -16,7 +16,7 @@ export function Arrow({ placement, x, y, arrowContainerClassName, arrowElementCl
   return (
     <div
       className={arrowContainerClassName}
-      ref={arrowRef}
+      ref={arrowRef as RefObject<HTMLDivElement>}
       style={getArrowPositionStyles({ x, y, placement, ref: arrowRef })}
     >
       <svg

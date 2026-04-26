@@ -1,7 +1,7 @@
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
-import type { Ref } from 'react';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { Ref } from 'react';
 
-import type { PaginationSliderSize } from '../../types';
+import { PaginationSliderSize } from '../../types';
 import styles from './styles.module.scss';
 
 export type PaginationSliderItemProps = WithSupportProps<{

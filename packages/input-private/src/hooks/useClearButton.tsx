@@ -1,6 +1,6 @@
-import { Button } from '@design-system/button';
-import { CrossCircleSVG } from '@design-system/icons';
-import { useEventHandler } from '@design-system/utils';
+import { Button } from '@ds/button';
+import { CrossCircleSVG } from '@ds/icons';
+import { useEventHandler } from '@ds/utils';
 import { MouseEventHandler, RefObject, useMemo } from 'react';
 
 import { BUTTON_SIZE_MAP } from '../constants';
@@ -47,7 +47,7 @@ export function useClearButton({
         return (
           <Button
             key={key}
-            innerRef={ref}
+            innerRef={ref as RefObject<HTMLButtonElement>}
             type='button'
             view='function'
             appearance='neutral'

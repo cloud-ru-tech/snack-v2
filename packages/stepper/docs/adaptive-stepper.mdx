@@ -1,0 +1,38 @@
+---
+title: AdaptiveStepper
+package: '@ds/stepper'
+description: Адаптивный степпер — переключает desktop и mobile варианты через проп layoutType.
+order: 3
+---
+
+import { AdaptiveFlow } from '../demos/examples/AdaptiveFlow'
+import AdaptiveFlowSrc from '../demos/examples/AdaptiveFlow.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import stepperDoc from './props.json'
+
+# AdaptiveStepper
+
+Адаптивная обёртка, которая по пропу `layoutType` отрисовывает либо `Stepper`, либо `MobileStepper`. Удобна, когда решение о layout'е принимается выше по дереву — например, через media-query-хук или feature-flag.
+
+## Пример
+
+<Example title='Переключение layout' description='Toggle между desktop и mobile' code={AdaptiveFlowSrc}>
+  <AdaptiveFlow client:load />
+</Example>
+
+## Когда использовать
+
+- Когда точка переключения между вариантами известна заранее (например, из хука, читающего viewport).
+- Когда вы не хотите дублировать вызов Stepper / MobileStepper по условию в каждом месте использования.
+
+Если адаптив не нужен — используйте [`Stepper`](/components/stepper/stepper) или [`MobileStepper`](/components/stepper/mobile-stepper) напрямую.
+
+## Props
+
+<PropsTable data={stepperDoc.AdaptiveStepper} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-stepper--adaptive' />

@@ -1,160 +1,165 @@
 # Scroll
 
-Контейнер с кастомными скроллбарами. Использует [OverlayScrollbars](https://kingsora.github.io/OverlayScrollbars/), стили и размеры соответствуют дизайн-токенам из `@sbercloud/figma-variables`.
+`@ds/scroll` — Контейнер с кастомными скроллбарами, размерами s/m, стратегиями скрытия, автоскролом и опциональным ресайзом.
 
-## Installation
+`Scroll` — контейнер с кастомными скроллбарами поверх [OverlayScrollbars](https://kingsora.github.io/OverlayScrollbars/). Оборачивает любой контент и подменяет нативные скроллбары на стилизованные — в двух размерах, с управляемыми стратегиями скрытия, автоскролом к краю и опциональным ресайзом.
+
+## Когда использовать
+
+- Прокручиваемые области внутри интерфейса: боковые панели, чаты, логи, списки, таблицы в карточках.
+- Контент с динамической высотой, где нужно прилипание к низу (чат, live-лог) — через `autoscrollTo='bottom'`.
+- Контейнер, размер которого пользователь регулирует сам — через `resize='both' | 'horizontal' | 'vertical'`.
+
+Когда **не** использовать:
+
+- На весь `<body>` — нативный скролл окна лучше для SEO, клавиатуры и системных жестов.
+- Внутри виртуализированных списков — они уже управляют своим скроллом.
+- Для коротких блоков, которые гарантированно помещаются — лишний контейнер и JS без выгоды.
+
+### Размеры
+
+| Size | Когда                                                             |
+| ---- | ----------------------------------------------------------------- |
+| `s`  | Компактные области: дропдауны, popover, узкие сайдбары.            |
+| `m`  | Основной размер: карточки, панели, основной контент (по умолчанию). |
+
+<Example title='Размер s'>
+  <SmallSize client:load />
+</Example>
+
+### Стратегии скрытия скроллбара
+
+| Value    | Поведение                                            |
+| -------- | ---------------------------------------------------- |
+| `never`  | Скроллбары показаны всегда.                           |
+| `leave`  | Скрываются, когда курсор покидает контейнер (по умолчанию). |
+| `scroll` | Видны только во время прокрутки.                      |
+| `move`   | Появляются при движении курсора внутри контейнера.    |
+
+<Example title='Скрытие при уходе курсора'>
+  <HideOnLeave client:load />
+</Example>
+
+### Do / Don't
+
+- ✅ Один `Scroll` на логическую область (панель, карточка, лог).
+- ❌ Вложенные `Scroll` друг в друга — ломают траектории курсора.
+- ✅ Фиксированная высота/ширина родителя — без неё контейнер не знает, когда появляться.
+- ❌ `Scroll` на корневом `<body>` — теряется нативный UX окна.
+- ✅ `autoscrollTo='bottom'` для чатов и логов.
+- ❌ `autoscrollTo` на статичном контенте — оно ничего не даст и усложнит код.
+
+### Установка
 
 ```bash
-npm install @design-system/scroll
-# or
-yarn add @design-system/scroll
-# or
-pnpm add @design-system/scroll
+pnpm add @ds/scroll
 ```
 
-## Exports
-
-```typescript
-import {
-  Scroll,
-  setNonce,
-  type ScrollProps,
-  type Size,
-  type BarHideStrategy,
-  type Resize,
-  type AutoscrollTo
-} from '@design-system/scroll';
+```ts
+import { Scroll } from '@ds/scroll'
+import '@ds/scroll/style.css'
 ```
 
-## Live examples
+### Примеры использования
 
-### Basic example
+<Example title='Базовый скролл' description='Оборачивает любой контент; родитель задаёт высоту.' code={BasicSrc}>
+  <Basic client:load />
+</Example>
+
+<Example title='Компактный размер s' description='Для узких областей и popover-ов.' code={SmallSizeSrc}>
+  <SmallSize client:load />
+</Example>
+
+<Example title='Скроллбар появляется при наведении' description='`barHideStrategy="leave"` — спокойный, не отвлекающий UI.' code={HideOnLeaveSrc}>
+  <HideOnLeave client:load />
+</Example>
+
+<Example title='Ресайзируемый контейнер' description='`resize="both"` — пользователь тянет за угол.' code={ResizableSrc}>
+  <Resizable client:load />
+</Example>
+
+<Example title='Автоскрол вниз' description='Для чатов и live-логов — прилипание к низу при добавлении сообщений.' code={AutoscrollBottomSrc}>
+  <AutoscrollBottom client:load />
+</Example>
+
+### States
+
+- **Без контента, влезающего в область** — скроллбары не рендерятся даже при `barHideStrategy='never'`.
+- **Ресайз** — `resize` включает нативный CSS `resize` на корне. Компонент реагирует на изменения размера через OverlayScrollbars observers.
+- **Автоскрол** — `autoscrollTo='bottom'` прилипает к низу при маунте и при росте контента, пока пользователь не отскроллил вверх. `autoscrollTo='right'` — аналогично для горизонтали.
+
+### CSP и nonce
+
+Для CSP с `nonce` прокиньте его в OverlayScrollbars через экспорт `setNonce`:
+
+```ts
+import { setNonce } from '@ds/scroll'
+
+setNonce(window.__CSP_NONCE__)
+```
+
+### Props
+
+<PropsTable data={scrollDoc.Scroll} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-scroll--playground' height={480} />
+
+## Доступность
+
+- Контейнер сохраняет нативный клавиатурный скролл: `PageUp/Down`, `Home/End`, стрелки — работают внутри области прокрутки.
+- Скроллбары кастомные, но viewport остаётся нативным — скринридеры видят содержимое без изменений.
+- `untouchableScrollbars` отключает мышь на скроллбарах; клавиатурный и колесный скролл остаются доступны.
+- Проверьте контраст хендла скроллбара на вашем фоне — при нестандартной подложке может потребоваться переопределить токены темы.
+
+## Scroll
 
 ```tsx
-import { Scroll } from '@design-system/scroll';
+import { Scroll } from '@ds/scroll'
 
-function Example() {
-  return (
-    <div style={{ height: 200 }}>
-      <Scroll barHideStrategy='never'>
-        <div>Long content...</div>
-      </Scroll>
-    </div>
-  );
+export function Example() {
+  return <Scroll clickScrolling barHideStrategy="leave" resize="none">Click me</Scroll>
 }
 ```
 
-### Bar hide strategy
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `className` | `string` | — |  |
+| `size` | `"s"` \| `"m"` | `m` | Размер скролбаров |
+| `clickScrolling` | `boolean` | `true` | Скролить ли по клику в скроллбар. |
+| `autoscrollTo` | `"bottom"` \| `"right"` | — | Включает автоскрол при маунте и изменении размера контента:
+<br /> - `bottom` - автоскрол вниз,
+<br /> - `right` - автоскрол вправо, |
+| `barHideStrategy` | `"never"` \| `"leave"` \| `"scroll"` \| `"move"` | `leave` | Управление скрытием скролл баров:
+<br /> - `Never` - показывать всегда
+<br /> - `Leave` - скрывать когда курсор покидает компонент
+<br /> - `Scroll` - показывать только когда происходит скроллинг
+<br /> - `Move` - показывать при движении курсора над компонентом |
+| `onScroll` | `((event?: Event) => void)` | — | Колбек события скрола. |
+| `resize` | `"none"` \| `"horizontal"` \| `"vertical"` \| `"both"` | `none` | Настройка возможности регулировать Scroll-контейнер:
+<br /> - `None` - нельзя изменять размер
+<br /> - `Horizontal` - можно изменять размер только по горизонтали
+<br /> - `Vertical` - можно изменять размер только по вертикали
+<br /> - `Both` - можно изменять размер в обеих координатах |
+| `untouchableScrollbars` | `boolean` | `false` | Отключает возможность взаимодействовать со скролбарами мышью. |
+| `paddingAbsolute` | `boolean` | — | Должны ли паддинги быть абсолютными |
+| `onInitialized` | `(() => void)` | — | Коллбэк вызывающийся на инициализацию скролла |
+
+## setNonce
 
 ```tsx
-import { Scroll, BAR_HIDE_STRATEGY } from '@design-system/scroll';
+import { setNonce } from '@ds/scroll'
 
-function Example() {
-  return (
-    <div style={{ height: 200 }}>
-      <Scroll barHideStrategy='never'>
-        <div>Scrollbars always visible.</div>
-      </Scroll>
-
-      <Scroll barHideStrategy='scroll'>
-        <div>Visible only while scrolling.</div>
-      </Scroll>
-    </div>
-  );
+export function Example() {
+  return <setNonce>Click me</setNonce>
 }
 ```
 
-### Автоскролл вниз (логи, чат)
+### Props
 
-```tsx
-import { Scroll, AUTOSCROLL_TO } from '@design-system/scroll';
-
-function LogView({ entries }) {
-  return (
-    <div style={{ height: 300 }}>
-      <Scroll
-        barHideStrategy='never'
-        autoscrollTo='bottom'
-      >
-        {entries.map((e, i) => (
-          <div key={i}>{e.text}</div>
-        ))}
-      </Scroll>
-    </div>
-  );
-}
-```
-
-### Resize контейнера
-
-```tsx
-import { Scroll, RESIZE } from '@design-system/scroll';
-
-function ResizablePanel() {
-  return (
-    <div style={{ height: 400 }}>
-      <Scroll resize='both'>
-        <div>Resizable content — drag the corner to resize.</div>
-      </Scroll>
-    </div>
-  );
-}
-```
-
-### Событие скролла и инициализация
-
-```tsx
-import { Scroll } from '@design-system/scroll';
-
-function Example() {
-  return (
-    <div style={{ height: 200 }}>
-      <Scroll
-        onScroll={(e) => console.log('scroll', e)}
-        onInitialized={() => console.log('scroll ready')}
-      >
-        <div>Content</div>
-      </Scroll>
-    </div>
-  );
-}
-```
-
-
-## Usage
-
-
-
-## Props
-
-### ScrollProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| className | `string` | - | CSS-класс |
-| size | enum Size: `"s"`, `"m"` | m | Размер скролбаров |
-| clickScrolling | `boolean` | true | Скролить ли по клику в скроллбар. |
-| autoscrollTo | enum AutoscrollTo: `"bottom"`, `"right"` | - | Включает автоскрол при маунте и изменении размера контента: <br /> - `bottom` - автоскрол вниз, <br /> - `right` - автоскрол вправо, |
-| barHideStrategy | enum BarHideStrategy: `"never"`, `"leave"`, `"scroll"`, `"move"` | leave | Управление скрытием скролл баров: <br /> - `Never` - показывать всегда <br /> - `Leave` - скрывать когда курсор покидает компонент <br /> - `Scroll` - показывать только когда происходит скроллинг <br /> - `Move` - показывать при движении курсора над компонентом |
-| onScroll | `(event?: Event) => void` | - | Колбек события скрола. |
-| resize | enum Resize: `"none"`, `"horizontal"`, `"vertical"`, `"both"` | none | Настройка возможности регулировать Scroll-контейнер: <br /> - `None` - нельзя изменять размер <br /> - `Horizontal` - можно изменять размер только по горизонтали <br /> - `Vertical` - можно изменять размер только по вертикали <br /> - `Both` - можно изменять размер в обеих координатах |
-| untouchableScrollbars | `boolean` | - | Отключает возможность взаимодействовать со скролбарами мышью. |
-| paddingAbsolute | `boolean` | - | Должны ли паддинги быть абсолютными |
-| onInitialized | `() => void` | - | Коллбэк вызывающийся на инициализацию скролла |
-### nonceProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-
-## Best Practices
-
-1. **Задавайте высоту контейнеру** — у родителя `Scroll` должна быть явная высота (или размер через flex/grid), иначе прокрутка не появится.
-2. **Автоскрол для потокового контента** — используйте `autoscrollTo="bottom"` или `autoscrollTo="right"` для логов и чатов; скролл к краю выполняется при маунте и при добавлении контента, если пользователь уже у края.
-3. **Стратегия скрытия скроллбаров** — `barHideStrategy="leave"` по умолчанию уменьшает визуальный шум; для панелей настроек или таблиц можно использовать `barHideStrategy="never"`.
-4. **CSP и nonce** — при строгой Content-Security-Policy используйте `setNonce(nonce)` из пакета перед первым рендером Scroll, чтобы разрешить инлайн-стили OverlayScrollbars.
-
----
-
-## Additional Resources
-
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|

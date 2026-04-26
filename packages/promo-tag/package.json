@@ -1,38 +1,25 @@
 {
-  "name": "@design-system/promo-tag",
-  "version": "1.0.0",
-  "private": false,
-  "description": "Promo Tag component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/promo-tag",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
-  "scripts": {},
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
-    "@design-system/typography": "0.1.0",
-    "@design-system/utils": "0.1.0",
+    "@ds/materials": "workspace:*",
+    "@ds/typography": "workspace:*",
+    "@ds/utils": "workspace:*",
     "classnames": "2.5.1"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "publishConfig": { "access": "public" }
 }

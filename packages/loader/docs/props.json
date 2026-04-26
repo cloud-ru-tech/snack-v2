@@ -1,0 +1,57 @@
+{
+  "Sun": {
+    "displayName": "Sun",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Компонент спиннер"
+  },
+  "Spinner": {
+    "displayName": "Spinner",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Компонент спиннер"
+  }
+}

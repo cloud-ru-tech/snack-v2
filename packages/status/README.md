@@ -1,154 +1,206 @@
 # Status
 
-Пакет содержит компоненты для отображения статуса: **Status** (индикатор с подписью) и **StatusIndicator** (только точка).
+`@ds/status` — Пакет статус-индикаторов — компоненты Status (подпись + маркер) и StatusIndicator (только маркер). Цветовая семантика состояний и поддержка loading/progress.
 
-## Installation
+Пакет `@ds/status` содержит два компонента для отображения состояния сущности:
+
+- ****Status**** — подпись с цветным маркером. Маркер может быть точкой, спиннером (`loading`) или круговым прогресс-баром (`progress`).
+- ****StatusIndicator**** — только маркер-точка без текста: для мест, где подпись избыточна (иконка в таблице, badge на иконке).
+
+## Установка
 
 ```bash
-npm install @design-system/status
-# or
-yarn add @design-system/status
-# or
-pnpm add @design-system/status
+pnpm add @ds/status
 ```
 
-## Exports
-
-```typescript
-import {
-  Status,
-  type StatusProps,
-  StatusIndicator,
-  type StatusIndicatorProps,
-  APPEARANCE,
-  STATUS_SIZE,
-  STATUS_INDICATOR_SIZE,
-  type Appearance,
-  type StatusSize,
-  type StatusIndicatorSize
-} from '@design-system/status';
+```ts
+import { Status, StatusIndicator } from '@ds/status'
+import '@ds/status/style.css'
 ```
 
-## Live examples
+## Когда какой использовать
 
-### Sizes
+| Задача 
 
-```tsx
-import { Status } from '@design-system/status';
+## Общие принципы
 
-<Status label="Активен" size="xs" appearance="neutral" />
-<Status label="Активен" size="s" appearance="neutral" />
+- **Цветовая семантика.** `green` — успех/активно, `red` — ошибка/деструктивно, `yellow/orange` — предупреждение, `neutral` — в ожидании или отключено, `blue/violet` — информационные.
+- **Цвет не единственный носитель смысла.** Текст в `label` всегда дублирует смысл цвета («Active», «Error», «Pending»).
+- **Размер согласован с контекстом.** `xs` — плотные списки, `s` — карточки.
+
+## Status
+
+Цветная метка состояния с подписью и маркером. Поддерживает loading-спиннер и progress-прогрессбар вместо точки.
+
+Метка состояния с цветным маркером и текстовой подписью. Маркер — цветная точка, спиннер (`loading`) или круговой прогресс-бар (`progress`).
+
+## Демо
+
+## Когда использовать
+
+- Статус записи в списке / таблице: «Active», «Suspended», «Pending».
+- Состояние асинхронной операции со спиннером (`loading`).
+- Отображение прогресса обработки (`progress=0..100`) в компактном виде.
+
+Когда **не** нужен: динамический чип с удалением — берите `Chip`/`Tag`. Промо-метка без функциональной семантики — берите `PromoTag`.
+
+## Для дизайнеров
+
+### Appearance (семантика цвета)
+
+| Appearance | Значение |
+|-----------|----------|
+| `green` | Активно, успешно, работает |
+| `red` | Ошибка, заблокировано, критично |
+| `orange`/`yellow` | Предупреждение, внимание |
+| `neutral` | В ожидании, отключено, нейтральное состояние |
+| `blue`/`violet` | Информационное состояние, особый режим |
+
+### Size
+
+| Size | Применение |
+|------|------------|
+| `xs` | Плотные списки, таблицы |
+| `s` | Карточки, header'ы |
+
+### hasBackground
+
+`hasBackground=true` добавляет цветную плашку вокруг статуса — выделяет строку в таблице, привлекает внимание. Без фона — компактный inline-вариант.
+
+### Do / Don't
+
+- ✅ Текст в `label` дублирует смысл цвета (`green` + «Active»).
+- ❌ Только цвет без текста — недоступно дальтоникам и скринридерам.
+- ✅ `loading` для асинхронных операций без известного прогресса.
+- ❌ Фиктивный `loading` как декорация — пользователь ждёт окончания процесса.
+- ✅ `progress` с реальным числом (0–100) — синхронизация с бэкендом.
+- ❌ `progress=undefined` с `appearance=green` вместо обычного readonly-статуса.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/status
 ```
+
+```ts
+import { Status } from '@ds/status'
+import '@ds/status/style.css'
+```
+
+### Примеры использования
+
+<Example title='Активный статус' code={ActiveSrc}>
+  <Active client:load />
+</Example>
+
+<Example title='Loading' description='Спиннер вместо точки, appearance принудительно neutral.' code={LoadingSrc}>
+  <Loading client:load />
+</Example>
+
+<Example title='С фоном' description='hasBackground — визуально выделяет строку.' code={WithBackgroundSrc}>
+  <WithBackground client:load />
+</Example>
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `label` | `string` | — | Подпись к индикатору (точка с текстом). Если не передано — только точка |
+| `size` | `"xs"` \| `"s"` | `xs` | Размер индикатора и подписи |
+| `appearance` | `"neutral"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` | Внешний вид (цветовая схема) |
+| `className` | `string` | — | CSS-класс |
+| `hasBackground` | `boolean` | `false` | Наличие фона |
+| `loading` | `boolean` | `false` | Состояние загрузки |
+| `progress` | `number` | — | Прогресс загрузки (от 0 до 100) |
+
+### Storybook
+
+<StorybookEmbed storyId='components-status--playground' height={240} client:load />
+
+## Доступность
+
+- Корневой элемент помечен `role="status"` — screen reader озвучит текст автоматически.
+- Подпись (`label`) — основной носитель смысла; цвет — дополнительный.
+- В `loading`-режиме `appearance` принудительно сбрасывается в `neutral` — цветная окраска не путает с результатом.
+- `progress` озвучивается как часть текста подписи — добавьте число в `label`, если хотите озвучить «70%».
+
+## StatusIndicator
+
+Цветной маркер-точка без подписи — для мест, где текст избыточен (иконка в таблице, badge на аватаре).
+
+Минимальный маркер-точка без подписи. Пять размеров (`4xs` → `s`) и восемь цветовых схем. Используется, когда пространства для текста нет — колонка таблицы, badge на иконке, inline-маркер в списке.
+
+## Демо
+
+## Когда использовать
+
+- Колонка «Статус» в плотной таблице — только цветная точка.
+- Badge-индикатор на аватаре или иконке (онлайн, новое событие).
+- Inline-маркер перед текстом в самописных лейаутах.
+
+Когда **не** нужен: если пользователю нужно прочитать статус — берите `Status` с подписью. Цвет без текста недоступен дальтоникам и скринридерам.
+
+## Для дизайнеров
+
+### Size
+
+| Size | Применение |
+|------|------------|
+| `4xs` / `3xs` | Badge на иконке, очень плотные сетки |
+| `2xs` | Колонка таблицы |
+| `xs` | Значение по умолчанию для inline-маркера |
+| `s` | Отдельно стоящий индикатор в карточке |
 
 ### Appearance
 
-```tsx
-import { APPEARANCE, Status } from '@design-system/status';
+Та же семантика, что и у `Status`: `green` — успех, `red` — ошибка, `orange`/`yellow` — внимание, `neutral` — нейтральное/отключено, `blue`/`violet`/`pink` — информационные.
 
-{Object.values(APPEARANCE).map(appearance => (
-      <Status label="Label" size="s" appearance={appearance} />
-))}
+### Do / Don't
+
+- ✅ Рядом с текстовой колонкой, поясняющей статус.
+- ❌ В одиночку, без подписи, в важном месте (список, карточка).
+- ✅ Badge на иконке с `aria-label` на самой иконке.
+- ❌ Украшение без смысла — используйте `PromoTag` или иконку.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/status
 ```
 
-### With background
-
-```tsx
-import { Status } from '@design-system/status';
-
-<Status label="Активен" size="s" appearance="neutral" />
-<Status label="Активен" size="s" appearance="neutral" hasBackground />
+```ts
+import { StatusIndicator } from '@ds/status'
+import '@ds/status/style.css'
 ```
 
-### Sizes
+### Пример
 
 ```tsx
-import { StatusIndicator } from '@design-system/status';
+import { StatusIndicator } from '@ds/status'
 
-{Object.values(STATUS_INDICATOR_SIZE).map(size => (
-    <StatusIndicator size={size} appearance="neutral" />
-))}
+<StatusIndicator size='xs' appearance='green' />
 ```
 
-### Appearance
+### Props
 
-```tsx
-import { APPEARANCE, StatusIndicator } from '@design-system/status';
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `size` | `"4xs"` \| `"3xs"` \| `"2xs"` \| `"xs"` \| `"s"` | `s` | Размер |
+| `appearance` | `"neutral"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` | Внешний вид |
+| `className` | `string` | — |  |
 
-{Object.values(APPEARANCE).map(appearance => (
-    <StatusIndicator size="s" appearance={appearance} />
-))}
-```
+### Storybook
 
+<StorybookEmbed storyId='components-status-statusindicator--playground' height={200} client:load />
 
-## Usage
+## Доступность
 
-### Basic
-
-```tsx
-import { Status } from '@design-system/status';
-
-export function Example() {
-  return <Status label="Активен" size="s" appearance="neutral" />;
-}
-```
-
-### With loading
-
-```tsx
-import { Status } from '@design-system/status';
-
-export function Example() {
-  return <Status label="Загрузка..." size="s" appearance="neutral" loading />;
-}
-```
-
-### With progress
-
-```tsx
-import { Status } from '@design-system/status';
-
-export function Example() {
-  return (
-    <Status
-      label="Выполнено 60%"
-      size="s"
-      appearance="green"
-      progress={60}
-    />
-  );
-}
-```
-
-## Props
-
-### StatusProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| label* | `string` | - | Подпись к индикатору (точка с текстом). Если не передано — только точка |
-| size | enum StatusSize: `"xs"`, `"s"` | xs | Размер индикатора и подписи |
-| appearance | enum Appearance: `"neutral"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | - | Внешний вид (цветовая схема) |
-| className | `string` | - | CSS-класс |
-| hasBackground | `boolean` | - | Наличие фона |
-| loading | `boolean` | - | Состояние загрузки |
-| progress | `number` | - | Прогресс загрузки (от 0 до 100) |
-
-### StatusIndicatorProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| size | enum StatusIndicatorSize: `"xs"`, `"s"`, `"4xs"`, `"3xs"`, `"2xs"` | s | Размер |
-| appearance | enum Appearance: `"neutral"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral | Внешний вид |
-| className | `string` | - | CSS-класс |
-
-## Best Practices
-
-1. **Краткая подпись** — Используйте короткий текст в `label` (например, «Активен», «В работе»)
-2. **Подбирайте appearance** — neutral для нейтрального контекста; цветные варианты — для семантики (успех, предупреждение, ошибка)
-3. **Размер по контексту** — XS для компактных мест (таблицы, карточки), S для основных экранов
-
----
-
-## Additional Resources
-
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+- Это чисто визуальный индикатор — у него нет текста и нет `role`. Скринридер его не озвучит.
+- Обязательно дополняйте `StatusIndicator` текстовой подписью рядом или `aria-label` на родительском элементе.
+- Если требуется автономный статус для скринридера — используйте `Status`.

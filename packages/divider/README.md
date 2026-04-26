@@ -1,52 +1,98 @@
 # Divider
 
-Divider — компонент для визуального разделения контента.
+`@ds/divider` — Разделитель контента с горизонтальной и вертикальной ориентацией и вариантами толщины линии.
 
-## Installation
+Компонент для визуального разделения контента. Поддерживает две ориентации (горизонтальная по умолчанию и вертикальная) и два варианта толщины линии (`regular` — 1px, `thin` — 0.5px). Объявляет ARIA-семантику `role='separator'` + `aria-orientation`.
+
+## Когда использовать
+
+- Между секциями страницы или блоками контента — горизонтальный `regular`.
+- Внутри тулбаров или рядов элементов — вертикальный `regular` (контейнер должен задать высоту).
+- Вложенные блоки и плотные списки — `thin`, чтобы визуально ослабить границу.
+
+Не ставьте Divider между каждым элементом списка — группируйте логические блоки.
+
+### Variant — толщина линии
+
+| Variant | Когда использовать |
+|---------|--------------------|
+| `regular` | Основное разделение — 1px, читается на любой подложке |
+| `thin` | Плотные списки, вложенные блоки — 0.5px |
+
+### Orientation — ориентация
+
+| Orientation | Контейнер должен задать |
+|-------------|-------------------------|
+| `horizontal` | Ширину (по умолчанию — 100% от родителя) |
+| `vertical` | Высоту — иначе Divider схлопнется |
+
+### Do / Don't
+
+- ✅ Один Divider между логическими блоками.
+- ❌ Divider между каждым пунктом списка — используйте внутренние отступы.
+- ✅ `thin` внутри плотных UI — таблицы, сайдбары.
+- ❌ `thin` на крупных секциях — линия потеряется.
+
+### Установка
 
 ```bash
-npm install @design-system/divider
-# or
-yarn add @design-system/divider
-# or
-pnpm add @design-system/divider
+pnpm add @ds/divider
 ```
 
-## Exports
-
-```typescript
-import {
-  ORIENTATION,
-  VARIANT
-} from '@design-system/divider';
+```ts
+import { Divider, ORIENTATION, VARIANT } from '@ds/divider'
+import '@ds/divider/style.css'
 ```
 
+### Примеры использования
 
+<Example title='Горизонтальный (по умолчанию)'>
+  <Divider />
+</Example>
 
-## Usage
+<Example title='Тонкая линия'>
+  <Divider variant='thin' />
+</Example>
 
+<Example
+  title='Вертикальный разделитель'
+  description='Контейнер задаёт высоту, иначе Divider схлопнется'
+  code={VerticalInRowSrc}
+>
+  <VerticalInRow client:load />
+</Example>
 
+### Props
 
-## Props
+<PropsTable data={dividerDoc.Divider} />
 
-### DividerProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| variant | enum DividerVariant: `"regular"`, `"thin"` | regular | Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular |
-| orientation | enum DividerOrientation: `"horizontal"`, `"vertical"` | horizontal | Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal |
-| className | `string` | - | CSS-класс |
+Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`.
 
-## Best Practices
+### Storybook
 
-1. **Горизонтальный разделитель** — используйте между блоками контента (секции, параграфы, карточки в колонке).
-2. **Вертикальный разделитель** — используйте внутри flex-рядов (тулбары, списки действий), обязательно задайте высоту контейнера (например, `height` или `alignItems: 'stretch'`).
-3. **Regular vs Thin** — regular для явного разделения секций, thin — когда нужно визуально ослабить границу (вложенные блоки, плотные списки).
-4. **Не перегружайте интерфейс** — не ставьте разделители между каждым элементом; группируйте логические блоки.
+<StorybookEmbed storyId='components-divider--playground' height={300} client:load />
 
----
+## Доступность
 
-## Additional Resources
+- `role='separator'` — корректное объявление разделителя для скринридеров.
+- `aria-orientation` — горизонтальный/вертикальный контекст.
+- Не несёт текстовой нагрузки и не должен использоваться как единственный признак разделения.
 
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+## Divider
+
+```tsx
+import { Divider } from '@ds/divider'
+
+export function Example() {
+  return <Divider variant="regular" orientation="horizontal">Click me</Divider>
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `variant` | `"regular"` \| `"thin"` | `regular` | Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular |
+| `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal |
+| `className` | `string` | — | CSS-класс |

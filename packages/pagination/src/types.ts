@@ -1,4 +1,4 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 
 import { PAGINATION_SIZE, PAGINATION_SLIDER_SIZE, VARIANT } from './constants';
 

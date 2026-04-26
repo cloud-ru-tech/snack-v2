@@ -1,6 +1,6 @@
 import 'rc-drawer/assets/index.css';
 
-import { extractSupportProps, useModalOpenState } from '@design-system/utils';
+import { extractSupportProps, useModalOpenState } from '@ds/utils';
 import cn from 'classnames';
 import RcDrawerImport, { type DrawerProps as RcDrawerBaseProps } from 'rc-drawer';
 import { type ComponentType, type CSSProperties, useMemo } from 'react';

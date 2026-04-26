@@ -1,49 +1,103 @@
 ---
 title: Counter
-description: Numeric counter component for displaying notifications, item counts, metrics, and other indicators in a compact format.
-version: '0.1.0'
+package: '@ds/counter'
+description: Компактный счётчик для отображения числовых меток, бейджей и состояний.
+order: 2
 ---
 
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
+import { Counter } from '@ds/counter'
+import { CounterDemo } from '../demos/CounterDemo'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import counterDoc from './props.json'
 
 # Counter
 
-The Counter component displays numeric indicators (notification counters, item counts, metrics, etc.) in a compact format. It supports multiple value display variants: regular counter (count), plus format when threshold is exceeded (count-plus), and shortened notation in thousands (count-k), controlled by variant and plusLimit props.
+Счётчик — компактный компонент для отображения числовых значений внутри другой UI-поверхности: кнопок, тегов, пунктов меню, навигации.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-## Installation
+<CounterDemo client:load />
+
+## Когда использовать
+
+- Количество непрочитанных уведомлений у иконки колокольчика.
+- Количество элементов в корзине или списке.
+- Бейдж на табе / пункте меню.
+
+Когда **не** нужен `Counter`: для крупных числовых метрик используйте `Typography`, для статусов — `Tag`.
+
+## Для дизайнеров
+
+### Variant — формат значения
+
+| Variant | Поведение |
+|---------|-----------|
+| `count` | Обычное число без форматирования |
+| `count-plus` | При превышении `plusLimit` показывает `N+` (например, `10+`) |
+| `count-k` | Свыше 1000 — сокращённая форма `NK` (например, `2K`) |
+
+### Appearance — семантическая роль
+
+| Appearance | Когда использовать |
+|------------|--------------------|
+| `primary` | Основной акцент — непрочитанное, новое |
+| `neutral` | Нейтральный счётчик без срочности |
+| `critical` | Требует внимания: ошибки, просроченное |
+
+### Size и Color
+
+`size`: `xs` / `s` — согласуется с размером родительского контейнера. `color`: `accent` / `decor` — акцентный или декоративный токен темы.
+
+### Do / Don't
+
+- ✅ `count-plus` для потенциально больших значений — не допускайте `9999` на бейдже.
+- ❌ `count` на неограниченном диапазоне — поломает раскладку.
+- ✅ `critical` только для действительно срочных состояний.
+- ❌ `critical` как декоративный акцент.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/counter
-# or
-yarn add @design-system/counter
-# or
-pnpm add @design-system/counter
+pnpm add @ds/counter
 ```
 
-## Changelog
+```ts
+import { Counter, APPEARANCE, VARIANT, SIZE } from '@ds/counter'
+import '@ds/counter/style.css'
+```
 
-<Changelog packageName='counter' />
+### Примеры использования
 
-<LlmLink component='counter' />
+<Example title='Обычное число'>
+  <Counter value={9} />
+</Example>
 
-## Overview
+<Example title='С порогом 10+'>
+  <Counter value={42} variant='count-plus' plusLimit={10} />
+</Example>
 
-Counter is a flexible component for displaying numeric indicators in your application. It automatically handles:
+<Example title='Тысячи как K'>
+  <Counter value={2500} variant='count-k' />
+</Example>
 
-- **Value formatting with multiple variants (count, count-plus, count-k)**
-- **Threshold control for plus format (plusLimit prop)**
-- **Multiple sizes (xs, s)**
-- **Three appearance options (primary, neutral, critical)**
-- **Two color schemes (accent, decor)**
-- **Compact display suitable for use inside other UI elements**
+<Example title='Critical состояние'>
+  <Counter value={3} appearance='critical' />
+</Example>
 
-## Components
+### Props
 
-- **[Counter](./components/Counter.mdx)** — компонент счётчика (примеры, API, пропсы)
+<PropsTable data={counterDoc.Counter} />
 
-## Storybook
+### Storybook
 
-Для интерактивных примеров и визуальной матрицы откройте [Counter в Storybook](./components/Counter.mdx#storybook).
+<StorybookEmbed storyId='components-counter--playground' height={360} client:load />
+
+## Доступность
+
+- Counter — визуальный счётчик, семантики роли не несёт. Рендерится как `<div>`.
+- Для скринридеров предоставляйте дублирующий текст в контейнере («3 непрочитанных уведомления»).
+- Не полагайтесь на один цвет как носитель смысла — пара appearance × variant должна оставаться читаемой в монохромном режиме.

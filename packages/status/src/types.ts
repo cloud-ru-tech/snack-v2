@@ -1,4 +1,4 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 
 import { APPEARANCE, STATUS_INDICATOR_SIZE, STATUS_SIZE } from './constants';
 

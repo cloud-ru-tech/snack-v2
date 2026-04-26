@@ -1,159 +1,40 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { PLACEMENT, Tooltip, TRIGGER } from '@ds/tooltip';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import readme from '../../README.md?raw';
-import { PLACEMENT, Tooltip, type TooltipProps, TRIGGER } from '../../src';
-import styles from '../styles.module.scss';
-
-const meta: Meta<TooltipProps> = {
-  title: 'Components/Tooltip/Tooltip',
+const meta: Meta<typeof Tooltip> = {
+  title: 'Components/Tooltip',
   component: Tooltip,
-  parameters: {
-    readme: { content: readme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2254-443',
-    },
-    docs: {
-      description: {
-        component: `
-# Tooltip
-
-Всплывающая подсказка при наведении на элемент-триггер.
-
-## Features
-
-- Триггер: hover, focus, click или комбинации (настраивается через prop trigger)
-- Показ по hover с настраиваемой задержкой
-- 12 вариантов расположения (placement)
-- Стрелка-указатель к триггеру
-- Стили из design tokens (Figma variables)
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/tooltip
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { Tooltip } from '@design-system/tooltip';
-
-function Example() {
-  return (
-    <Tooltip tip="Подсказка">
-      <button type="button">Наведи курсор</button>
-    </Tooltip>
-  );
-}
-\`\`\`
-        `,
-      },
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
-    tip: 'Текст подсказки',
+    tip: 'Подсказка о кнопке',
     placement: PLACEMENT.Top,
     trigger: TRIGGER.HoverAndFocusVisible,
-    hoverDelayOpen: 200,
-    hoverDelayClose: 100,
+    disableMaxWidth: false,
+    children: <button type='button'>Наведите на меня</button>,
   },
   argTypes: {
-    open: {
-      control: 'boolean',
-      description: 'Открыт ли тултип',
-    },
-    children: {
-      control: false,
-      description: 'Элемент, при наведении на который показывается тултип',
-    },
-    tip: {
-      control: 'text',
-      description: 'Содержимое тултипа (текст или разметка)',
-    },
+    tip: { control: 'text', description: 'Содержимое подсказки' },
     placement: {
       control: 'select',
       options: Object.values(PLACEMENT),
-      description: 'Расположение тултипа относительно триггера',
+      description: 'Позиция относительно триггера',
     },
     trigger: {
       control: 'select',
       options: Object.values(TRIGGER),
-      description: 'Событие, по которому показывается тултип (hover, focus, click или комбинации)',
+      description: 'Что открывает тултип',
     },
-    hoverDelayOpen: {
-      control: 'number',
-      description: 'Задержка открытия по ховеру (мс)',
-    },
-    hoverDelayClose: {
-      control: 'number',
-      description: 'Задержка закрытия по ховеру (мс)',
-    },
+    disableMaxWidth: { control: 'boolean' },
   },
 };
 
 export default meta;
-type Story = StoryObj<TooltipProps>;
-
-const DefaultTrigger = () => (
-  <button type='button' data-test-id='button-with-tooltip'>
-    Наведи курсор
-  </button>
-);
+type Story = StoryObj<typeof Tooltip>;
 
 export const Playground: Story = {
-  args: {
-    hoverDelayOpen: 0,
-    hoverDelayClose: 0,
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('button')).toBeVisible();
   },
-
-  argTypes: {
-    tip: {
-      control: 'text',
-      description: 'Содержимое тултипа (текст или разметка)',
-    },
-    placement: {
-      control: 'select',
-      options: Object.values(PLACEMENT),
-      description: 'Расположение тултипа относительно триггера',
-    },
-    trigger: {
-      control: 'select',
-      options: Object.values(TRIGGER),
-      description: 'Событие, по которому показывается тултип',
-    },
-    hoverDelayOpen: {
-      control: 'number',
-      description: 'Задержка открытия по ховеру (мс)',
-    },
-    hoverDelayClose: {
-      control: 'number',
-      description: 'Задержка закрытия по ховеру (мс)',
-    },
-    offset: {
-      control: 'number',
-      description: 'Отступ тултипа от триггера (px)',
-    },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
-    },
-  },
-
-  tags: ['dev', 'test', 'autodocs'],
-
-  render: args => (
-    <>
-      <div className={styles.pageWrapper}>
-        <Tooltip {...args}>
-          <DefaultTrigger />
-        </Tooltip>
-      </div>
-
-      <div data-test-id='activity-removal' role='button' tabIndex={0} className={styles.item} />
-    </>
-  ),
 };

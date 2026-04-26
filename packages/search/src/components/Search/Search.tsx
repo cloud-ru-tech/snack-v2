@@ -1,6 +1,6 @@
-import { Divider } from '@design-system/divider';
-import { SearchPrivate, SearchPrivateProps } from '@design-system/search-private';
-import { extractSupportProps } from '@design-system/utils';
+import { Divider } from '@ds/divider';
+import { SearchPrivate, SearchPrivateProps } from '@ds/search-private';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { forwardRef, useState } from 'react';
 

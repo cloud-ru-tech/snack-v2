@@ -1,0 +1,103 @@
+---
+title: Favourite
+package: '@ds/toggles'
+description: Toggle для избранного — звезда или сердце, два размера, единое API с остальными toggles.
+order: 4
+---
+
+import { FavouriteDemo } from '../demos/FavouriteDemo'
+import { FavouriteStar } from '../demos/examples/FavouriteStar'
+import FavouriteStarSrc from '../demos/examples/FavouriteStar.tsx?raw'
+import { FavouriteHeart } from '../demos/examples/FavouriteHeart'
+import FavouriteHeartSrc from '../demos/examples/FavouriteHeart.tsx?raw'
+import { FavouriteStates } from '../demos/examples/FavouriteStates'
+import FavouriteStatesSrc from '../demos/examples/FavouriteStates.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_FAVOURITE } from '~docs/lib/figma'
+import togglesDoc from './props.json'
+
+# Favourite
+
+Toggle для «избранного» — карточка товара, трек в плейлисте, пост в ленте. Переключается между пустой и заполненной иконкой (звезда или сердце).
+
+## Демо
+
+<FavouriteDemo client:load />
+
+## Когда использовать
+
+- «Добавить в избранное», «лайк», «в wishlist».
+- Каталоги, ленты, плейлисты — любой UI с персональными коллекциями.
+
+Когда **не** нужен Favourite: для булевых настроек — [`Switch`](/components/toggles/switch); для выбора опций — [`Checkbox`](/components/toggles/checkbox).
+
+## Для дизайнеров
+
+### Icon
+
+| Icon | Семантика |
+|------|-----------|
+| `star` | «Важно», «в избранное» — нейтральная коллекция |
+| `heart` | «Нравится», «лайк» — эмоциональная реакция |
+
+### Size
+
+| Size | Размеры | Применение |
+|------|---------|-----------|
+| `xs` | 16×16 | Inline в карточке, строка таблицы |
+| `s`  | 24×24 | Карточка товара, большая область action'ов |
+
+### Do / Don't
+
+- ✅ Одна иконка на контекст — выберите `star` **или** `heart` для всего приложения.
+- ❌ Переключаться между иконками на разных экранах — пользователь теряет семантическую связку.
+- ✅ Оптимистичный клик с моментальным визуальным ответом + `loading` до подтверждения бэка.
+- ❌ Двойной клик = «лайк потом анлайк» — один `onChange` на клик.
+
+### Figma
+
+<FigmaEmbed node={FIGMA_FAVOURITE} height={480} title='Favourite в Figma (Snack UI Kit)' client:load />
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/toggles
+```
+
+```ts
+import { Favourite } from '@ds/toggles'
+import '@ds/toggles/style.css'
+```
+
+### Примеры использования
+
+<Example title='1. Звезда' code={FavouriteStarSrc}>
+  <FavouriteStar client:load />
+</Example>
+
+<Example title='2. Сердце' code={FavouriteHeartSrc}>
+  <FavouriteHeart client:load />
+</Example>
+
+<Example title='3. Все состояния' code={FavouriteStatesSrc}>
+  <FavouriteStates client:load />
+</Example>
+
+### Props
+
+<PropsTable data={togglesDoc.Favourite} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-toggles-favourite--playground' height={360} client:load />
+
+## Доступность
+
+- `role="checkbox"` + native `<input type="checkbox">` — клавиатура (Space) работает из коробки.
+- Для icon-only — обязательно `aria-label` (например, «Добавить в избранное»).
+- `data-focusvisible` обеспечивает focus-ring только при клавиатурной навигации.

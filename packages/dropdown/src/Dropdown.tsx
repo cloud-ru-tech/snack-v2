@@ -1,10 +1,10 @@
-import { ButtonGroup } from '@design-system/button';
-import { UpdateSVG } from '@design-system/icons';
-import { InfoBlock } from '@design-system/info-block';
-import { Spinner } from '@design-system/loader';
-import { useLocale } from '@design-system/locale';
-import { PopoverPrivate, PopoverPrivateProps } from '@design-system/popover-private';
-import { excludeSupportProps, extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { ButtonGroup } from '@ds/button';
+import { UpdateSVG } from '@ds/icons';
+import { InfoBlock } from '@ds/info-block';
+import { Spinner } from '@ds/loader';
+import { useLocale } from '@ds/locale';
+import { PopoverPrivate, PopoverPrivateProps } from '@ds/popover-private';
+import { excludeSupportProps, extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 

@@ -1,8 +1,8 @@
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { ChangeEvent, cloneElement, MouseEvent, MouseEventHandler, ReactElement, useRef } from 'react';
 
 import { UPLOAD_MODE } from '../../constants';
-import type { UploadMode } from '../../types';
+import { UploadMode } from '../../types';
 import styles from './styles.module.scss';
 
 export type FileUploadProps = WithSupportProps<{

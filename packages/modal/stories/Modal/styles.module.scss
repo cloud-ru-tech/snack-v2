@@ -1,24 +1,32 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
-
-.image {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  align-items: center;
-  align-self: stretch;
-  justify-content: center;
-
-  width: 100%;
-  height: 240px;
-
-  object-fit: cover;
-
-  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'media');
-}
-
-.footerButtonGroup {
+.footerGroup {
   display: flex;
   justify-content: flex-end;
   width: 100%;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 200px;
+
+  color: rgb(255 255 255 / 88%);
+  text-align: center;
+
+  background: linear-gradient(135deg, rgb(102 126 234) 0%, rgb(118 75 162) 100%);
+}
+
+.scenarioRoot {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 240px;
+}
+
+.longContent > p + p {
+  margin-top: 12px;
 }

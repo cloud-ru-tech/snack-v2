@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Skeleton } from '@ds/skeleton';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Skeleton, SkeletonProps } from '../../src';
-
-const meta: Meta<SkeletonProps> = {
-  title: 'Components/Skeleton/Skeleton',
+const meta: Meta<typeof Skeleton> = {
+  title: 'Components/Skeleton',
   component: Skeleton,
 };
 
 export default meta;
-type Story = StoryObj<SkeletonProps>;
+type Story = StoryObj<typeof Skeleton>;
 
 const shapes = [
   { label: 'Rect (0px)', borderRadius: 0, isCircle: false },

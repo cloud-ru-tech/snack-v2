@@ -1,0 +1,10 @@
+{
+  "name": "@ds/fonts",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./scss": "./src/fonts.scss",
+    "./css": "./src/fonts.css"
+  },
+  "files": ["src", "fonts"]
+}

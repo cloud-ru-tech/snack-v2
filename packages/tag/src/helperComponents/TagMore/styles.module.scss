@@ -1,6 +1,6 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
-@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/tag.module' as tag;
+@use '@cloud-ru/figma-variables/build/scss/components/popover.module' as popover;
 
 $sizes: 'xs', 's', 'm';
 

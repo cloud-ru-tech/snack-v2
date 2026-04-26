@@ -1,4 +1,4 @@
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { PropsWithChildren } from 'react';
 
 import { useTabsContext } from '../../context';

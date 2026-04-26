@@ -1,0 +1,35 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.paragraph {
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.onAccent {
+  padding: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-primitive-dimension-8;
+  color: var(--sn-text-on-accent);
+  background: var(--sn-surface-accent-primary);
+}
+
+.narrow {
+  width: 200px;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}

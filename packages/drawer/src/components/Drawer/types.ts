@@ -1,4 +1,4 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import { ReactElement, ReactNode } from 'react';
 
 import { DrawerBodyProps, DrawerHeaderProps } from '../../helperComponents';

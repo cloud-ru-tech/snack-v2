@@ -1,5 +1,5 @@
-import { Typography } from '@design-system/typography';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Typography } from '@ds/typography';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { forwardRef, MouseEvent, ReactNode, Ref } from 'react';
 

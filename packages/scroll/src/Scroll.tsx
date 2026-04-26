@@ -1,6 +1,6 @@
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 
-import { isBrowser, useLayoutEffect, WithSupportProps } from '@design-system/utils';
+import { isBrowser, useLayoutEffect, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { OverlayScrollbars } from 'overlayscrollbars';
 import { OverlayScrollbarsComponent, OverlayScrollbarsComponentRef } from 'overlayscrollbars-react';
@@ -70,7 +70,7 @@ export const setNonce = OverlayScrollbars.nonce;
 
 /**
  * Scroll — контейнер с кастомными скроллбарами (OverlayScrollbars).
- * Стили из @sbercloud/figma-variables (anatomy container + slider + theme colors).
+ * Стили из @cloud-ru/figma-variables (anatomy container + slider + theme colors).
  */
 export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
   {
@@ -149,7 +149,8 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
     }
 
     host.querySelectorAll('.os-scrollbar-handle').forEach((handle: Element) => {
-      const stateLayerClass = styles.stateLayer;
+      const stateLayerClass = styles.stateLayer ?? '';
+      if (!stateLayerClass) return;
       if (handle.querySelector(`.${CSS.escape(stateLayerClass)}`)) {
         return;
       }

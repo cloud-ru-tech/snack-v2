@@ -1,0 +1,61 @@
+---
+title: DrawerCustom
+package: '@ds/drawer'
+description: Низкоуровневая сборка Drawer — полный контроль над разметкой через Header / Body / Footer субкомпоненты.
+order: 1
+---
+
+import { CustomComposition } from '../demos/examples/CustomComposition'
+import CustomCompositionSrc from '../demos/examples/CustomComposition.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import drawerDoc from './props.json'
+
+# DrawerCustom
+
+`DrawerCustom` — низкоуровневая версия `Drawer`, которая не диктует структуру содержимого. Вы сами компонуете шапку, тело и футер из субкомпонентов `DrawerCustom.Header`, `.Body`, `.Footer` или собственной разметки.
+
+Используйте `DrawerCustom`, когда стандартной шапки из `Drawer` недостаточно — например, нужна своя раскладка заголовка с несколькими действиями, кастомный футер с группами кнопок или нестандартный порядок секций.
+
+## Когда использовать
+
+- Стандартная шапка / футер из `Drawer` не подходят — нужна своя разметка.
+- Сложная раскладка нескольких секций внутри одной панели.
+- Кастомные слоты (например, фиксированный поиск между шапкой и телом).
+
+Во всех остальных случаях предпочтительнее `Drawer` — он дешевле в поддержке и даёт консистентные отступы.
+
+## Пример
+
+<Example title='Ручная композиция' description='Header + Body + Footer собираются вручную.' code={CustomCompositionSrc}>
+  <CustomComposition client:load />
+</Example>
+
+## Субкомпоненты
+
+### DrawerCustom.Header
+
+Шапка с заголовком, подзаголовком, кнопкой «назад» и слотом после заголовка.
+
+<PropsTable data={drawerDoc['DrawerCustom.Header']} />
+
+### DrawerCustom.Body
+
+Прокручиваемое тело панели (использует `@ds/scroll`).
+
+<PropsTable data={drawerDoc['DrawerCustom.Body']} />
+
+### DrawerCustom.Footer
+
+Фиксированный футер для групп кнопок и основных действий.
+
+<PropsTable data={drawerDoc['DrawerCustom.Footer']} />
+
+## Props
+
+<PropsTable data={drawerDoc.DrawerCustom} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-drawercustom--playground' height={480} client:load />

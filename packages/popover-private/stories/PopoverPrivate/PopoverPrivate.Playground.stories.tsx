@@ -1,71 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
-import popoverReadme from '../../README.md?raw';
 import {
   PLACEMENT,
   POPOVER_HEIGHT_STRATEGY,
   POPOVER_WIDTH_STRATEGY,
   PopoverPrivate,
-  PopoverPrivateProps,
+  type PopoverPrivateProps,
   TRIGGER,
-} from '../../src';
+} from '@ds/popover-private';
+import { Meta, StoryObj } from '@storybook/react';
+
 import styles from './styles.module.scss';
 
 const PopoverContent = () => <div className={styles.popoverContent}>Popover content</div>;
 
 const meta: Meta<PopoverPrivateProps> = {
-  title: 'Components/Popover Private',
+  title: 'Components/PopoverPrivate',
   component: PopoverPrivate,
-  parameters: {
-    readme: {
-      content: popoverReadme,
-    },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/YOUR_FILE_ID/...',
-    },
-    docs: {
-      description: {
-        component: `
-# Popover Private Component
-
-Низкоуровневый компонент поповера на базе Floating UI. Используется для построения Tooltip, Dropdown и других overlay-компонентов.
-
-## Features
-
-- Поддержка различных триггеров: click, hover, focus
-- Гибкое позиционирование (12 placement вариантов)
-- Стратегии управления шириной и высотой
-- Опциональная стрелка
-- Контролируемый и неконтролируемый режимы
-
-## Installation
-
-\`\`\`bash
-pnpm add @design-system/popover-private
-\`\`\`
-
-## Quick Start
-
-\`\`\`tsx
-import { PopoverPrivate, PLACEMENT, TRIGGER } from '@design-system/popover-private';
-
-function Example() {
-  return (
-    <PopoverPrivate
-      trigger={TRIGGER.Click}
-      placement={PLACEMENT.Top}
-      popoverContent={<div>Content</div>}
-    >
-      <button type="button">Open</button>
-    </PopoverPrivate>
-  );
-}
-\`\`\`
-        `,
-      },
-    },
-  },
   args: {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.Click,

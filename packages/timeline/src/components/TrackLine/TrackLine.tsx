@@ -1,6 +1,6 @@
 import styles from '../Track/styles.module.scss';
 import { STYLE } from './constants';
-import type { Style } from './types';
+import { Style } from './types';
 
 export type TrackLineProps = {
   style?: Style;

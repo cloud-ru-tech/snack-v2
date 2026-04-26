@@ -1,6 +1,6 @@
-import { Counter, CounterProps } from '@design-system/counter';
-import { Typography, TypographyProps } from '@design-system/typography';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Counter, CounterProps } from '@ds/counter';
+import { Typography, TypographyProps } from '@ds/typography';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { FocusEvent, KeyboardEvent, MouseEvent, useCallback, useEffect, useRef } from 'react';
 

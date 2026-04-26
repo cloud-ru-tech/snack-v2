@@ -1,0 +1,5 @@
+{
+  "name": "@ds/playwright-tooling",
+  "private": true,
+  "type": "module"
+}

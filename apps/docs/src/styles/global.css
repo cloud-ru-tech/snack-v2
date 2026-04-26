@@ -1,0 +1,83 @@
+@import url('@cloud-ru/figma-variables/build/css/tokens.css');
+@import url('@ds/fonts/css');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--sn-primitive-fontFamily-brandA-sans, 'SB Sans Interface');
+  font-size: 16px;
+  color: var(--sn-theme-color-available-version-textMain);
+
+  background: var(--sn-theme-color-neutral-background1Level);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  line-height: 1.5;
+}
+
+a {
+  color: var(--sn-theme-color-primary-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+}
+
+code {
+  padding: 2px 6px;
+  border: 1px solid var(--sn-theme-color-neutral-decor);
+  border-radius: var(--sn-primitive-dimension-4);
+
+  font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
+  font-size: 0.875em;
+
+  background: var(--sn-theme-color-neutral-background1Level);
+}
+
+pre {
+  overflow-x: auto;
+
+  padding: 10px 12px;
+  border: 1px solid var(--sn-theme-color-neutral-decor);
+  border-radius: var(--sn-primitive-dimension-8);
+
+  font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
+  font-size: 13px;
+  line-height: 1.5;
+
+  background: var(--sn-theme-color-neutral-background1Level);
+}
+
+pre code {
+  padding: 0;
+  border: none;
+
+  font-family: inherit;
+  font-size: inherit;
+
+  background: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px 12px;
+  border: 1px solid var(--sn-theme-color-neutral-decor);
+  text-align: left;
+}
+
+th {
+  background: var(--sn-theme-color-neutral-background1Level);
+}

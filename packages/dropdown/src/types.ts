@@ -1,4 +1,4 @@
-import { InfoBlockProps } from '@design-system/info-block';
+import { InfoBlockProps } from '@ds/info-block';
 
 import { STATE } from './constants';
 

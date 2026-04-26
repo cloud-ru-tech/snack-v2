@@ -1,9 +1,5 @@
-import { Typography } from '@design-system/typography';
 import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentType, type ReactElement, useEffect, useMemo, useState } from 'react';
-
-import { ModalCustom } from '@snack-uikit/modal';
-import { Search } from '@snack-uikit/search';
 
 import componentPackage from '../../package.json';
 import readme from '../../README.md?raw';
@@ -24,38 +20,36 @@ type IconModalData = {
 };
 
 function IconModal({ data, onClose }: { data: IconModalData; onClose: () => void }): ReactElement {
-  const reactImport = `import { ${data.baseName}SVG } from '@design-system/icons';`;
-  const reactSpriteImport = `import { ${data.baseName}SpriteSVG } from '@design-system/icons';`;
+  const reactImport = `import { ${data.baseName}SVG } from '@ds/icons';`;
+  const reactSpriteImport = `import { ${data.baseName}SpriteSVG } from '@ds/icons';`;
 
   return (
-    <>
-      {/* TODO: Заменить модалку */}
-      <ModalCustom open onClose={onClose}>
-        <ModalCustom.Header title={data.baseName} />
-        <ModalCustom.Body
-          content={
-            <div className={styles.modalContent}>
-              <div className={styles.modalIconPreviewMinimal}>
-                <data.Component size={48} />
-              </div>
-              <div className={styles.modalCodeBlock}>
-                <Typography variant='body' size='s' weight='regular' className={styles.modalCodeLabel}>
-                  Standalone
-                </Typography>
-                <code>{reactImport}</code>
-              </div>
-              <div className={styles.modalCodeBlock}>
-                <Typography variant='body' size='s' weight='regular' className={styles.modalCodeLabel}>
-                  Sprite
-                </Typography>
-                <code>{reactSpriteImport}</code>
-              </div>
-              <div />
-            </div>
-          }
-        />
-      </ModalCustom>
-    </>
+    <div className={styles.modalOverlay}>
+      <button type='button' aria-label='Закрыть' className={styles.modalBackdrop} onClick={onClose} />
+      <div className={styles.modalPanel} role='dialog' aria-modal aria-labelledby='icons-modal-title'>
+        <div className={styles.modalHeader}>
+          <h2 id='icons-modal-title' className={styles.modalTitle}>
+            {data.baseName}
+          </h2>
+          <button type='button' className={styles.closeButton} onClick={onClose} aria-label='Закрыть'>
+            ×
+          </button>
+        </div>
+        <div className={styles.modalContent}>
+          <div className={styles.modalIconPreviewMinimal}>
+            <data.Component size={48} />
+          </div>
+          <div className={styles.modalCodeBlock}>
+            <p className={styles.modalCodeLabel}>Standalone</p>
+            <code>{reactImport}</code>
+          </div>
+          <div className={styles.modalCodeBlock}>
+            <p className={styles.modalCodeLabel}>Sprite</p>
+            <code>{reactSpriteImport}</code>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -70,7 +64,6 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
     () =>
       icons.filter(icon => {
         if (!searchToken) return true;
-
         const token = toSearchToken([icon.baseName].join(' '));
         return token.includes(searchToken);
       }),
@@ -86,15 +79,7 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
   ];
 
   const handleIconClick = (name: string, baseName: string, Component: ComponentType<{ size?: number }>): void => {
-    setSelectedIcon({
-      name,
-      baseName,
-      Component,
-    });
-  };
-
-  const handleCloseModal = (): void => {
-    setSelectedIcon(null);
+    setSelectedIcon({ name, baseName, Component });
   };
 
   useEffect(() => {
@@ -102,12 +87,10 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
       setIsSpriteReady(true);
       return;
     }
-
     setIsSpriteReady(false);
     const timerId = window.setTimeout(() => {
       setIsSpriteReady(true);
     }, 0);
-
     return () => {
       window.clearTimeout(timerId);
     };
@@ -118,20 +101,14 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
   if (variant === 'sprite' && !isSpriteReady) {
     content = (
       <section className={styles.emptyState}>
-        <Typography variant='body' size='s' weight='regular' className={styles.mutedText}>
-          Подготавливаем спрайты...
-        </Typography>
+        <p className={styles.mutedText}>Подготавливаем спрайты...</p>
       </section>
     );
   } else if (filteredIcons.length === 0) {
     content = (
       <section className={styles.emptyState}>
-        <Typography variant='title' size='m' weight='regular'>
-          Ничего не найдено
-        </Typography>
-        <Typography variant='body' size='s' weight='regular' className={styles.mutedText}>
-          Проверьте строку поиска.
-        </Typography>
+        <p className={styles.emptyTitle}>Ничего не найдено</p>
+        <p className={styles.mutedText}>Проверьте строку поиска.</p>
       </section>
     );
   } else {
@@ -140,17 +117,12 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
         {orderedSections.map(sectionName => (
           <section key={sectionName} className={styles.sectionMinimal}>
             <div className={styles.sectionHeaderMinimal}>
-              <Typography variant='body' size='s' weight='regular' className={styles.sectionTitleMinimal}>
-                {sectionName}
-              </Typography>
-              <Typography variant='body' size='s' weight='regular' className={styles.sectionCountMinimal}>
-                {groupedIcons[sectionName].length} иконок
-              </Typography>
+              <p className={styles.sectionTitleMinimal}>{sectionName}</p>
+              <p className={styles.sectionCountMinimal}>{groupedIcons[sectionName].length} иконок</p>
             </div>
 
             <div className={styles.iconGridMinimal} data-test-id={`icons-row-${sectionName}`}>
               {groupedIcons[sectionName].map(({ name, baseName, Component }) => (
-                // TODO: Заменить кнопку
                 <button
                   key={name}
                   type='button'
@@ -181,37 +153,34 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
       ) : null}
 
       <section className={styles.minimalHeader}>
-        <Typography variant='title' size='l' weight='regular'>
-          Interface Icons
-        </Typography>
-
-        {/* TODO: Заменить поиск */}
-        <Search
+        <h2 className={styles.title}>Interface Icons</h2>
+        <label className={styles.mutedText} htmlFor='icons-search-input'>
+          Фильтр по названию
+        </label>
+        <input
+          id='icons-search-input'
+          type='search'
+          className={styles.searchInput}
           data-test-id='icons-search-input'
           value={search}
-          onChange={setSearch}
-          placeholder='Фильтровать по названию'
-          size='m'
-          outline
+          onChange={e => setSearch(e.target.value)}
+          placeholder='Например Search'
+          autoComplete='off'
         />
       </section>
 
       {content}
 
-      {selectedIcon && <IconModal data={selectedIcon} onClose={handleCloseModal} />}
+      {selectedIcon ? <IconModal data={selectedIcon} onClose={() => setSelectedIcon(null)} /> : null}
     </div>
   );
 }
 
 const meta: Meta<StoryProps> = {
-  title: 'Icons/Interfaces Visual Matrix',
+  title: 'Components/Icons',
   parameters: {
     readme: { content: readme },
     packageName: componentPackage.name,
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/WGeuaJKutP2gAFPThLAexW/Interfaces-icons--variables-?node-id=3-102&m=dev',
-    },
   },
   args: {
     variant: 'sprite',
@@ -234,7 +203,7 @@ const meta: Meta<StoryProps> = {
 export default meta;
 type Story = StoryObj<StoryProps>;
 
-export const InterfacesVisualMatrix: Story = {
+export const Catalog: Story = {
   tags: ['dev', 'test'],
   render: args => <IconsCatalog {...args} />,
 };

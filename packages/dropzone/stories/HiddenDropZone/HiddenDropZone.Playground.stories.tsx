@@ -1,28 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect, within } from 'storybook/test';
 
-import dropzoneReadme from '../../README.md?raw';
 import { HiddenDropZone, HiddenDropZoneProps, UPLOAD_MODE } from '../../src';
 import styles from './styles.module.scss';
 
 const defaultContent = (
-  <>
-    <div data-test-id='description' className={styles.contentDescription}>
-      Перетащите файлы на форму, чтобы прикрепить их
-    </div>
-  </>
+  <div data-test-id='description' className={styles.contentDescription}>
+    Перетащите файлы на форму, чтобы прикрепить их
+  </div>
 );
 
-const meta: Meta<HiddenDropZoneProps> = {
+const meta: Meta<typeof HiddenDropZone> = {
   title: 'Components/Dropzone/HiddenDropZone',
   component: HiddenDropZone,
-  parameters: {
-    readme: { content: dropzoneReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4971-5434&m=dev',
-    },
-  },
   args: {
     content: defaultContent,
     disabled: false,
@@ -48,7 +39,7 @@ const meta: Meta<HiddenDropZoneProps> = {
 
 export default meta;
 
-type Story = StoryObj<HiddenDropZoneProps>;
+type Story = StoryObj<typeof HiddenDropZone>;
 
 function HiddenDropZoneWithFiles(args: HiddenDropZoneProps) {
   const [files, setFiles] = useState<File[]>([]);
@@ -79,4 +70,7 @@ function HiddenDropZoneWithFiles(args: HiddenDropZoneProps) {
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <HiddenDropZoneWithFiles {...args} />,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId('hidden-dropzone-form')).toBeVisible();
+  },
 };

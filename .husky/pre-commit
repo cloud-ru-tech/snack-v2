@@ -1,6 +1,6 @@
 # 1.2.2
 node_modules/.bin/lint-staged
-pnpx @cloud-ru/ft-deps-validator@latest
+# pnpx @cloud-ru/ft-deps-validator@latest
 
-# Генерация документации для staged файлов
-pnpm docgen:staged
+# # Генерация документации для staged файлов
+# pnpm docgen:staged

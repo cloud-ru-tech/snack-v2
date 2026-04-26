@@ -1,0 +1,162 @@
+{
+  "ButtonField": {
+    "displayName": "ButtonField",
+    "props": {
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "defaultValue": "after",
+        "description": "Вариант (положение) кнопки"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "s",
+        "description": "Размер кнопки"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Деактивирован ли компонент"
+      },
+      "action": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Слот для кнопки/иконки/аватара"
+      },
+      "withDropdownList": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображение шеврона"
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true,
+        "description": "Действие при клике"
+      }
+    }
+  },
+  "Search": {
+    "displayName": "Search",
+    "props": {
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Значение input"
+      },
+      "onChange": {
+        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Значение плейсхолдера"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки потери фокуса"
+      },
+      "inputMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "text",
+          "decimal",
+          "numeric",
+          "tel",
+          "search",
+          "email",
+          "url",
+          "none"
+        ],
+        "description": "Режим работы экранной клавиатуры"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли компонент"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onSubmit": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Колбек на подтверждение поиска по строке"
+      },
+      "showClearButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки Очистки поля"
+      },
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Наличие фона"
+      },
+      "buttonField": {
+        "type": "Omit<ButtonFieldProps, \"variant\">",
+        "required": false,
+        "description": "Дополнительный слот справа от поля"
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Наличие разделителя между input и buttonField"
+      }
+    }
+  }
+}

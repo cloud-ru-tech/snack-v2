@@ -1,88 +1,66 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, Button, ICON_POSITION, SIZE, VIEW } from '@ds/button';
+import { DownloadSVG, PlusSVG, SettingsSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import readme from '../../README.md?raw';
-import { Button } from '../../src/Button';
-import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constants';
-import { type PlaygroundArgs, renderButtonPlayground } from './helpers';
-
-const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Button/Button',
+const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
   component: Button,
-  parameters: {
-    readme: { content: readme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2782-111011',
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
     label: 'Button',
-    view: VIEW.Filled,
     appearance: APPEARANCE.Primary,
     size: SIZE.M,
-    iconKey: 'none',
+    view: VIEW.Elevated,
     iconPosition: ICON_POSITION.Before,
-    counterEnabled: false,
-    counterValue: 5,
-    hrefLink: '/about',
+    disabled: false,
+    loading: false,
+    fullWidth: false,
+    className: '',
+    'data-test-id': 'button',
   },
   argTypes: {
-    as: {
-      name: 'as',
-      control: 'select',
-      options: ['button', 'a'],
-      description: 'Полиморфный рендер: button (кнопка) или a (ссылка). Для a передаётся href из поля hrefLink.',
-    },
-    hrefLink: {
-      name: 'href (when as="a")',
-      control: 'text',
-      description: 'URL ссылки, используется при as="a"',
-      if: { arg: 'as', eq: 'a' },
-    },
+    label: { control: 'text', description: 'Текст кнопки' },
     appearance: {
-      control: 'select',
+      control: 'radio',
       options: Object.values(APPEARANCE),
-    },
-    size: {
-      control: 'select',
-      options: Object.values(SIZE),
+      description: 'Цветовая схема: primary / neutral / critical',
     },
     view: {
       control: 'select',
       options: Object.values(VIEW),
+      description: 'Оформление: filled / outline / simple / tonal / elevated / function',
     },
-    iconKey: {
-      name: 'icon',
+    size: { control: 'radio', options: Object.values(SIZE), description: 'Размер: s / m / l' },
+    icon: {
       control: 'select',
-      options: ['none', 'placeholder'],
-      description: 'Иконка (PlaceholderSVG)',
+      options: ['none', 'settings', 'download', 'plus'],
+      mapping: {
+        none: undefined,
+        settings: <SettingsSVG />,
+        download: <DownloadSVG />,
+        plus: <PlusSVG />,
+      },
+      description: 'Иконка (none | settings | download | plus)',
     },
     iconPosition: {
-      name: 'icon position',
-      control: 'select',
+      control: 'radio',
       options: Object.values(ICON_POSITION),
-      description: 'Позиция иконки. При after и counter — счётчик в абсолютной позиции относительно иконки.',
+      description: 'Позиция иконки относительно лейбла',
+      if: { arg: 'icon', neq: 'none' },
     },
-    counterEnabled: {
-      name: 'counter',
-      control: 'boolean',
-      description:
-        'Показать счётчик. При iconPosition=before или без иконки — инлайн; при iconPosition=after — бейдж у иконки.',
-    },
-    counterValue: {
-      name: 'counter value',
-      control: { type: 'number', min: 0, max: 999, step: 1 },
-      description: 'Значение счётчика',
-      if: { arg: 'counterEnabled', eq: true },
-    },
+    disabled: { control: 'boolean', description: 'Отключена' },
+    loading: { control: 'boolean', description: 'Состояние загрузки (aria-busy)' },
+    fullWidth: { control: 'boolean', description: 'На всю ширину контейнера' },
   },
 };
 
 export default meta;
-
-type Story = StoryObj<PlaygroundArgs>;
+type Story = StoryObj<typeof Button>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: (args: PlaygroundArgs) => renderButtonPlayground(args),
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('button')).toBeVisible();
+  },
 };

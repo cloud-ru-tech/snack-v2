@@ -94,8 +94,10 @@ export function useDynamicList<T extends object>({
       const observer = new ResizeObserver(entities =>
         entities.forEach(entity => {
           if (entity.target === container) {
-            const [{ inlineSize: newWidth }] = entity.contentBoxSize;
-            setWidth(Math.floor(newWidth));
+            const newWidth = entity.contentBoxSize[0]?.inlineSize;
+            if (newWidth !== undefined) {
+              setWidth(Math.floor(newWidth));
+            }
           }
         }),
       );

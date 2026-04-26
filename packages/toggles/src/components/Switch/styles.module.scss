@@ -1,6 +1,6 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/toggles.module' as toggles;
-@use '@design-system/materials' as m;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/toggles.module' as toggles;
+@use '@ds/materials' as m;
 
 $sizes: 'xs', 's';
 $switchAnimationDuration: 0.1s;

@@ -1,153 +1,90 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, ButtonGroup, SIZE, VIEW } from '@ds/button';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import { APPEARANCE, SIZE, VIEW } from '../../src/Button/constants';
-import { Appearance, type View } from '../../src/Button/types';
-import { ButtonGroup, type ButtonGroupProps } from '../../src/ButtonGroup';
-
-type PlaygroundArgs = ButtonGroupProps & {
-  primaryActionText?: string;
-  primaryActionView?: View;
-  showSecondary?: boolean;
-  secondaryActionText?: string;
-  secondaryActionView?: View;
-  secondaryActionAppearance?: Appearance;
-  showTertiary?: boolean;
-  tertiaryActionText?: string;
-  tertiaryActionView?: View;
-  tertiaryActionAppearance?: Appearance;
-};
-
-const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Button/ButtonGroup',
+const meta: Meta<typeof ButtonGroup> = {
+  title: 'Components/ButtonGroup',
   component: ButtonGroup,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=9099-51008',
-    },
-    docs: {
-      description: {
-        component:
-          'Группа действий: primaryAction (filled), secondaryAction (outline), tertiaryAction (simple). Поддерживает size, vertical, centered, break, filled.',
-      },
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
     size: SIZE.M,
     vertical: false,
     centered: false,
     break: false,
     filled: false,
-    primaryActionText: 'Primary text',
-    primaryActionView: 'filled',
-    showSecondary: true,
-    secondaryActionText: 'Secondary text',
-    secondaryActionView: 'outline',
-    secondaryActionAppearance: 'neutral',
-    showTertiary: false,
-    tertiaryActionText: 'Tertiary text',
-    tertiaryActionView: 'simple',
-    tertiaryActionAppearance: 'neutral',
+    primaryAction: {
+      label: 'Сохранить',
+      appearance: 'primary',
+      view: 'filled',
+      'data-test-id': 'button-group-primary',
+    },
+    secondaryAction: {
+      label: 'Отмена',
+      appearance: 'neutral',
+      view: 'outline',
+      'data-test-id': 'button-group-secondary',
+    },
+    'data-test-id': 'button-group',
   },
   argTypes: {
-    size: {
-      control: 'select',
-      options: Object.values(SIZE),
-      description: 'Размер кнопок',
-    },
-    vertical: {
-      control: 'boolean',
-      description: 'Вертикальное расположение',
-    },
-    centered: {
-      control: 'boolean',
-      description: 'Центрирование по горизонтали',
-    },
-    break: {
-      control: 'boolean',
-      description: 'Перенос на новую строку',
-    },
-    filled: {
-      control: 'boolean',
-      description: 'Заливка контейнера',
-    },
-    showSecondary: {
-      control: 'boolean',
-      description: 'Показать secondary',
-    },
-    showTertiary: {
-      control: 'boolean',
-      description: 'Показать tertiary',
-    },
-    primaryActionText: { control: 'text' },
-    primaryActionView: {
-      control: 'select',
-      options: Object.values(VIEW),
-    },
-    secondaryActionText: {
-      control: 'text',
-      if: { arg: 'showSecondary', eq: true },
-    },
-    secondaryActionView: {
-      control: 'select',
-      options: Object.values(VIEW),
-      if: { arg: 'showSecondary', eq: true },
-    },
-    secondaryActionAppearance: {
-      control: 'select',
-      options: Object.values(APPEARANCE),
-      if: { arg: 'showSecondary', eq: true },
-    },
-    tertiaryActionText: {
-      control: 'text',
-      if: { arg: 'showTertiary', eq: true },
-    },
-    tertiaryActionView: {
-      control: 'select',
-      options: Object.values(VIEW),
-      if: { arg: 'showTertiary', eq: true },
-    },
-    tertiaryActionAppearance: {
-      control: 'select',
-      options: Object.values(APPEARANCE),
-      if: { arg: 'showTertiary', eq: true },
-    },
-    primaryAction: { control: false },
-    secondaryAction: { control: false },
-    tertiaryAction: { control: false },
-    className: { control: 'text' },
+    size: { control: 'radio', options: Object.values(SIZE), description: 'Размер всех кнопок группы' },
+    vertical: { control: 'boolean', description: 'Вертикальное расположение' },
+    centered: { control: 'boolean', description: 'Центрирование по горизонтали' },
+    break: { control: 'boolean', description: 'Перенос на новую строку при нехватке места' },
+    filled: { control: 'boolean', description: 'Заливка контейнера (кнопки тянутся)' },
+    primaryAction: { control: 'object', description: 'Основное действие' },
+    secondaryAction: { control: 'object', description: 'Вторичное действие' },
+    tertiaryAction: { control: 'object', description: 'Третичное действие' },
   },
 };
 
 export default meta;
-
-type Story = StoryObj<PlaygroundArgs>;
+type Story = StoryObj<typeof ButtonGroup>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => (
-    <ButtonGroup
-      size={args.size}
-      vertical={args.vertical}
-      centered={args.centered}
-      break={args.break}
-      filled={args.filled}
-      primaryAction={{ label: args.primaryActionText, view: args.primaryActionView }}
-      secondaryAction={
-        args.showSecondary
-          ? {
-              label: args.secondaryActionText,
-              view: args.secondaryActionView,
-              appearance: args.secondaryActionAppearance,
-            }
-          : undefined
-      }
-      tertiaryAction={
-        args.showTertiary
-          ? { label: args.tertiaryActionText, view: args.tertiaryActionView, appearance: args.tertiaryActionAppearance }
-          : undefined
-      }
-      className={args.className}
-    />
-  ),
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getAllByRole('button')).toHaveLength(2);
+  },
+};
+
+/** E2E: nested `primaryAction` via URL `args` is unreliable on static iframe loads. */
+export const PlaygroundPrimaryDisabled: Story = {
+  tags: ['dev', 'test'],
+  args: {
+    primaryAction: {
+      label: 'Сохранить',
+      appearance: 'primary',
+      view: 'filled',
+      disabled: true,
+      'data-test-id': 'button-group-primary',
+    },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId('button-group-primary')).toBeDisabled();
+  },
+};
+
+/** E2E: same assertions as former URL-only nested `primaryAction` / `secondaryAction` overrides. */
+export const PlaygroundCriticalPrimary: Story = {
+  tags: ['dev', 'test'],
+  args: {
+    primaryAction: {
+      label: 'Применить',
+      appearance: APPEARANCE.Critical,
+      view: VIEW.Filled,
+      'data-test-id': 'button-group-primary',
+    },
+    secondaryAction: {
+      label: 'Отмена',
+      appearance: APPEARANCE.Neutral,
+      view: VIEW.Simple,
+      'data-test-id': 'button-group-secondary',
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const root = within(canvasElement);
+    await expect(root.getByTestId('button-group-primary')).toHaveTextContent('Применить');
+    await expect(root.getByTestId('button-group-secondary')).toHaveAttribute('data-view', 'simple');
+  },
 };

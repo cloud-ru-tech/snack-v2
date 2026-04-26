@@ -1,8 +1,6 @@
-import { HeartSVG, PlaceholderSVG, StarFilledSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
-
-import readme from '../../README.md?raw';
-import { APPEARANCE, IconPredefined, type IconPredefinedProps, SIZE } from '../../src';
+import { APPEARANCE, IconPredefined, type IconPredefinedProps, SIZE } from '@ds/icon-predefined';
+import { HeartSVG, PlaceholderSVG, StarFilledSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
 const iconMap = {
   Placeholder: PlaceholderSVG,
@@ -15,13 +13,6 @@ type PlaygroundArgs = IconPredefinedProps & { iconKey: keyof typeof iconMap };
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/IconPredefined',
   component: IconPredefined,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5239-162127',
-    },
-    readme: { content: readme },
-  },
   args: {
     iconKey: 'Placeholder',
     appearance: APPEARANCE.Primary,

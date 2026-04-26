@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 
 import { SIZE } from '../../constants';
 import { TagRowSimple, TagRowTruncated } from '../../helperComponents';
-import type { TagRowProps } from '../../types';
+import { TagRowProps } from '../../types';
 import { mapTagRowItem } from './utils';
 
 function TagRowInner({ items, rowLimit, size = SIZE.Xs, ...props }: TagRowProps) {

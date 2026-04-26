@@ -1,0 +1,45 @@
+{
+  "createLocaleContext": {
+    "displayName": "createLocaleContext",
+    "props": {
+      "extendedDictionary": {
+        "type": "ExtendedDictionary<D>",
+        "required": false
+      },
+      "defaultLanguage": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "en-GB",
+          "ru-RU"
+        ],
+        "defaultValue": "en-GB"
+      }
+    }
+  },
+  "LocaleProvider": {
+    "displayName": "LocaleProvider",
+    "props": {
+      "lang": {
+        "type": "string",
+        "required": true
+      },
+      "fallbackLang": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "en-GB",
+          "ru-RU"
+        ]
+      },
+      "overrideLocales": {
+        "type": "PartialObjectDeep<Record<\"en-GB\" | \"ru-RU\", LocaleDictionary<Dictionary>>>",
+        "required": false
+      }
+    }
+  },
+  "useLocale": {
+    "displayName": "useLocale",
+    "props": {}
+  }
+}

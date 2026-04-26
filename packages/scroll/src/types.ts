@@ -1,4 +1,4 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 
 import { AUTOSCROLL_TO, BAR_HIDE_STRATEGY, RESIZE, SIZE } from './constants';
 

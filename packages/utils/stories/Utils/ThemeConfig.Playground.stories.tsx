@@ -9,37 +9,6 @@ const meta: Meta = {
   title: 'Utils/Theme Config',
   parameters: {
     readme: { content: utilsReadme },
-    docs: {
-      description: {
-        component: `
-# Theme Config
-
-Хук **useThemeConfig** и **ThemeProvider** для переключения светлой/тёмной темы (CSS-классы по \`themeMap\`).
-
-## useThemeConfig
-
-\`\`\`tsx
-import { useThemeConfig } from '@design-system/utils';
-
-const themeMap = { light: 'sn-light', dark: 'sn-dark' };
-const theme = useThemeConfig({ themeMap, defaultTheme: 'light' });
-// theme.themeClassName, theme.changeTheme('dark')
-\`\`\`
-
-## ThemeProvider
-
-\`\`\`tsx
-import { ThemeProvider, useThemeContext } from '@design-system/utils';
-
-<ThemeProvider themeMap={themeMap} defaultTheme="light">
-  <YourApp />
-</ThemeProvider>
-\`\`\`
-
-Демо ниже синхронизировано с глобальной темой тулбара Storybook (Theme: Светлая/Тёмная).
-        `,
-      },
-    },
   },
   args: {},
 };
@@ -98,7 +67,7 @@ function PlaygroundDemo({ initialTheme }: StoryProps) {
 }
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
   render: (_args, context) => {
     const theme = (context.globals?.theme as StorybookTheme | undefined) ?? 'light';
     return <PlaygroundDemo initialTheme={theme} />;

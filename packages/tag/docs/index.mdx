@@ -1,73 +1,38 @@
 ---
 title: Tag
-description: Компоненты тегов для дизайн-системы
-version: '0.1.0'
+package: '@ds/tag'
+description: Пакет компактных меток — компонент Tag (опционально удаляемый или ссылочный) и контейнер TagRow для групп меток с обрезанием по строкам.
+order: 0
 ---
-
-import {
-  ExampleContainer,
-  ExampleRow,
-  ExampleGrid,
-  ExampleItem,
-} from '#astro/components/mdx';
 
 # Tag
 
-Пакет компонентов для отображения тегов: одиночный тег (**Tag**) и строка тегов (**TagRow**).
+Пакет `@ds/tag` содержит компоненты для отображения коротких меток, категорий и статусов:
 
-**Version:** `{frontmatter.version}`
+- [**Tag**](/components/tag/tag) — одиночная метка. Рендерится как `<span>` по умолчанию, как `<a>` при передаче `href`, и опционально отображает кнопку удаления через `onDelete`.
+- [**TagRow**](/components/tag/tag-row) — контейнер группы меток. Поддерживает ограничение по количеству видимых строк с кнопкой «+N ещё».
 
-## Installation
+## Состав пакета
+
+| Компонент | Когда использовать |
+|-----------|---------------------|
+| `Tag` | Одиночная метка — категория записи, статус, фильтр |
+| `TagRow` | Несколько меток рядом, особенно если их количество переменное |
+
+## Установка
 
 ```bash
-npm install @design-system/tag
-# or
-yarn add @design-system/tag
-# or
-pnpm add @design-system/tag
+pnpm add @ds/tag
 ```
 
-## Changelog
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-
-<Changelog packageName="tag" />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component="tag" />
-
-## Компоненты
-
-- **[Tag](./tag.mdx)** — одиночный тег. Может быть обычным (с опциональной кнопкой удаления) или ссылкой (`href`). Тип определяется по пропсам; для проверки используется `isTagLinkProps`.
-- **[TagRow](./tag-row.mdx)** — строка из нескольких тегов. Поддерживает лимит отображаемых тегов (`rowLimit`) с выпадающим списком «ещё», размер и кастомизацию элементов (ссылки, удаление).
-
-## Exports
-
-```typescript
-import {
-  Tag,
-  TagRow,
-  isTagLinkProps,
-  SIZE,
-  APPEARANCE,
-} from '@design-system/tag';
-import type {
-  TagProps,
-  TagRowProps,
-  TagRowItem,
-  Appearance,
-  Size,
-} from '@design-system/tag';
+```ts
+import { Tag, TagRow } from '@ds/tag'
+import '@ds/tag/style.css'
 ```
 
-## Overview
+## Общие принципы
 
-- **Tag** — универсальный тег: либо `<span>` с кнопкой удаления (`onDelete`), либо `<a>` при передаче `href`. Размеры: `xs`, `s`, `m`. Цветовые схемы (appearance): neutral, primary, red, orange, yellow, green, blue, violet, pink.
-- **TagRow** — рендерит массив `items` как теги. При `rowLimit` лишние теги скрываются, показывается кнопка «+N» с выпадающим списком. Элементы могут быть ссылками (`href`, `onClick`, `target`) и поддерживают удаление через контекст строки.
-
-## Accessibility
-
-- Корректная семантика: тег-ссылка — `<a>`, обычный тег — `<span>`.
-- Кнопка удаления доступна с клавиатуры, поддерживается `tabIndex`.
-- Компоненты принимают стандартные HTML-атрибуты для кастомизации и доступности.
+- **Appearance — семантика, не декор.** `red` для ошибок, `green` для успеха, `blue` для информации. Не раскрашивайте метки ради разнообразия.
+- **Размер — от контекста.** `xs` — в таблицах и плотных списках, `s` — в карточках, `m` — когда метка сама по себе элемент UI.
+- **Удаляемые метки — только там, где есть состояние.** `onDelete` применяется в форме с выбранными фильтрами, не в read-only списках.
+- **Ссылочные метки — навигация по категории.** `href` превращает `<Tag>` в ссылку, которая ведёт на страницу фильтра.

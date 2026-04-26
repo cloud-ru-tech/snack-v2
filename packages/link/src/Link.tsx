@@ -1,5 +1,5 @@
-import { TruncateString } from '@design-system/truncate-string';
-import { extractSupportProps } from '@design-system/utils';
+import { TruncateString } from '@ds/truncate-string';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType } from 'react';
 

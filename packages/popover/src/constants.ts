@@ -4,4 +4,4 @@ export {
   POPOVER_HEIGHT_STRATEGY,
   POPOVER_WIDTH_STRATEGY,
   TRIGGER,
-} from '@design-system/popover-private';
+} from '@ds/popover-private';

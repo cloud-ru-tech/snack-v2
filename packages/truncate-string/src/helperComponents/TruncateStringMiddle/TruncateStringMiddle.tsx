@@ -1,5 +1,5 @@
-import { Tooltip, TooltipProps } from '@design-system/tooltip';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Tooltip, TooltipProps } from '@ds/tooltip';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import throttle from 'lodash.throttle';
 import { useEffect, useRef, useState } from 'react';

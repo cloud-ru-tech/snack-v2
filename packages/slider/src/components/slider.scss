@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/slider.module' as sl;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/slider.module' as sl;
 
 $theme-class: 'dsThemeSlider';
 
@@ -59,7 +59,7 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
 
   position: absolute;
   /* stylelint-disable-next-line declaration-property-value-allowed-list */
-  z-index: 1 !important;
+  z-index: 0 !important;
 
   width: $handle-size;
   height: $handle-size;
@@ -145,8 +145,6 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
   cursor: pointer;
 
   position: absolute;
-  /* stylelint-disable-next-line declaration-property-value-allowed-list */
-  z-index: 0 !important;
 
   display: inline-block;
 

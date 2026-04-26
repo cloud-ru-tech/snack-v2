@@ -1,39 +1,32 @@
 {
-  "name": "@design-system/dropzone",
-  "version": "0.1.0",
-  "private": false,
-  "description": "e",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/dropzone",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
   "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
+    "dist",
+    "src"
   ],
   "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
+    "*.css",
+    "**/*.css"
   ],
-  "scripts": {},
   "dependencies": {
-    "@design-system/utils": "0.1.0",
+    "@ds/materials": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "@types/lodash.debounce": "4.0.9",
     "classnames": "2.5.1",
     "lodash.debounce": "4.0.8"
-  },
-  "devDependencies": {
-    "@types/lodash.debounce": "4.0.9"
   },
   "publishConfig": {
     "access": "public"

@@ -1,160 +1,124 @@
 # Counter
 
-The Counter component displays numeric indicators (notification counters, item counts, metrics, etc.) in a compact format. It supports multiple value display variants: regular counter (count), plus format when threshold is exceeded (count-plus), and shortened notation in thousands (count-k), controlled by variant and plusLimit props.
+`@ds/counter` — Компактный счётчик для отображения числовых меток, бейджей и состояний.
 
-## Installation
+Счётчик — компактный компонент для отображения числовых значений внутри другой UI-поверхности: кнопок, тегов, пунктов меню, навигации.
+
+## Когда использовать
+
+- Количество непрочитанных уведомлений у иконки колокольчика.
+- Количество элементов в корзине или списке.
+- Бейдж на табе / пункте меню.
+
+Когда **не** нужен `Counter`: для крупных числовых метрик используйте `Typography`, для статусов — `Tag`.
+
+### Variant — формат значения
+
+| Variant | Поведение |
+|---------|-----------|
+| `count` | Обычное число без форматирования |
+| `count-plus` | При превышении `plusLimit` показывает `N+` (например, `10+`) |
+| `count-k` | Свыше 1000 — сокращённая форма `NK` (например, `2K`) |
+
+### Appearance — семантическая роль
+
+| Appearance | Когда использовать |
+|------------|--------------------|
+| `primary` | Основной акцент — непрочитанное, новое |
+| `neutral` | Нейтральный счётчик без срочности |
+| `critical` | Требует внимания: ошибки, просроченное |
+
+### Size и Color
+
+`size`: `xs` / `s` — согласуется с размером родительского контейнера. `color`: `accent` / `decor` — акцентный или декоративный токен темы.
+
+### Do / Don't
+
+- ✅ `count-plus` для потенциально больших значений — не допускайте `9999` на бейдже.
+- ❌ `count` на неограниченном диапазоне — поломает раскладку.
+- ✅ `critical` только для действительно срочных состояний.
+- ❌ `critical` как декоративный акцент.
+
+### Установка
 
 ```bash
-npm install @design-system/counter
-# or
-yarn add @design-system/counter
-# or
-pnpm add @design-system/counter
+pnpm add @ds/counter
 ```
 
-## Exports
-
-```typescript
-import {
-  Counter,
-  type CounterProps,
-  APPEARANCE,
-  VARIANT,
-  SIZE,
-  COLOR,
-  DEFAULT_PLUS_LIMIT,
-  type Appearance,
-  type Variant,
-  type Size,
-  type Color
-} from '@design-system/counter';
+```ts
+import { Counter, APPEARANCE, VARIANT, SIZE } from '@ds/counter'
+import '@ds/counter/style.css'
 ```
 
-## Live examples
+### Примеры использования
 
-### Basic usage
+<Example title='Обычное число'>
+  <Counter value={9} />
+</Example>
+
+<Example title='С порогом 10+'>
+  <Counter value={42} variant='count-plus' plusLimit={10} />
+</Example>
+
+<Example title='Тысячи как K'>
+  <Counter value={2500} variant='count-k' />
+</Example>
+
+<Example title='Critical состояние'>
+  <Counter value={3} appearance='critical' />
+</Example>
+
+### Props
+
+<PropsTable data={counterDoc.Counter} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-counter--playground' height={360} client:load />
+
+## Доступность
+
+- Counter — визуальный счётчик, семантики роли не несёт. Рендерится как `<div>`.
+- Для скринридеров предоставляйте дублирующий текст в контейнере («3 непрочитанных уведомления»).
+- Не полагайтесь на один цвет как носитель смысла — пара appearance × variant должна оставаться читаемой в монохромном режиме.
+
+## Counter
 
 ```tsx
-import { Counter } from '@design-system/counter';
+import { Counter } from '@ds/counter'
 
-<Counter value={9} />
-<Counter value={42} appearance="primary" />
-<Counter value={128} appearance="neutral" />
-```
-
-### Variants
-
-```tsx
-import { Counter } from '@design-system/counter';
-
-<Counter value={9} variant="count" />
-<Counter value={15} variant="count-plus" plusLimit={10} />
-<Counter value={8500} variant="count-k" />
-```
-
-### Sizes
-
-```tsx
-import { Counter } from '@design-system/counter';
-
-<Counter value={9} size="xs" />
-<Counter value={9} size="s" />
-```
-
-### Appearances
-
-```tsx
-import { Counter } from '@design-system/counter';
-
-<Counter value={9} appearance="primary" />
-<Counter value={9} appearance="neutral" />
-<Counter value={9} appearance="critical" />
-```
-
-### Colors
-
-```tsx
-import { Counter } from '@design-system/counter';
-
-<Counter value={9} color="accent" />
-<Counter value={9} color="decor" />
-```
-
-### With plus limit
-
-```tsx
-import { Counter } from '@design-system/counter';
-
-<Counter value={9} variant="count-plus" plusLimit={10} />
-<Counter value={15} variant="count-plus" plusLimit={10} />
-<Counter value={150} variant="count-plus" plusLimit={100} />
-```
-
-
-## Usage
-
-### Basic example
-
-```tsx
-import { Counter } from '@design-system/counter';
-
-export function NotificationBadge() {
-  return <Counter value={9} />;
+export function Example() {
+  return <Counter appearance="primary" variant="count" plusLimit="10" color="accent">Click me</Counter>
 }
 ```
 
-### With variant
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `value` | `number` | — | Значение |
+| `appearance` | `"primary"` \| `"neutral"` \| `"critical"` | `primary` | Внешний вид |
+| `variant` | `"count"` \| `"count-plus"` \| `"count-k"` | `count` | Вариант форматирования |
+| `size` | `"xs"` \| `"s"` | `xs` | Размер |
+| `plusLimit` | `number` | `10` | Порог сокращения значения для варианта `count-plus` |
+| `className` | `string` | — | Дополнительный CSS-класс |
+| `color` | `"accent"` \| `"decor"` | `accent` | Семантический цвет |
+
+## formatValue
 
 ```tsx
-import { Counter } from '@design-system/counter';
+import { formatValue } from '@ds/counter'
 
-export function NotificationBadge() {
-  return (
-    <>
-      <Counter value={9} variant="count" />
-      <Counter value={15} variant="count-plus" plusLimit={10} />
-      <Counter value={8500} variant="count-k" />
-    </>
-  );
+export function Example() {
+  return <formatValue>Click me</formatValue>
 }
 ```
 
-### Custom appearance and size
+### Props
 
-```tsx
-import { Counter } from '@design-system/counter';
-
-export function NotificationBadge() {
-  return <Counter value={10} appearance="critical" size="s" />;
-}
-```
-
-## Props
-
-### CounterProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| value* | `number` | - | Значение |
-| appearance | enum Appearance: `"primary"`, `"neutral"`, `"critical"` | primary | Внешний вид |
-| variant | enum Variant: `"count"`, `"count-plus"`, `"count-k"` | count | Вариант |
-| size | enum Size: `"xs"`, `"s"` | xs | Размер |
-| plusLimit | `number` | 10 | Порог сокращения значения в формат v+. Например `1500` -> `999+` для 1000 |
-| className | `string` | - | CSS-класс |
-| color | enum Color: `"accent"`, `"decor"` | accent | Семантический цвет |
-
-## Best Practices
-
-1. **Use appropriate variants** — Choose count, count-plus, or count-k based on your use case
-2. **Set plusLimit appropriately** — Configure the threshold based on your data range
-3. **Consistent size usage** — Match counter size to context and importance
-4. **Consider contrast** — Ensure counter values are readable against background colors
-5. **Use in context** — Counter is designed to be used inside other UI elements (buttons, tags, menu items)
-6. **Handle large values** — Use count-k variant for values over 1000 to keep display compact
-
----
-
-## Additional Resources
-
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — |  |
+| `variant` | `"count"` \| `"count-plus"` \| `"count-k"` | — |  |
+| `plusLimit` | `number` | — |  |

@@ -1,7 +1,7 @@
-import type { WithSupportProps } from '@design-system/utils';
-import type { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
+import { WithSupportProps } from '@ds/utils';
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
 
-import type { Size } from '../../types';
+import { Size } from '../../types';
 import { UPLOAD_MODE } from './constants';
 
 export type DragAndDropEventNames = 'onDragLeave' | 'onDragOver' | 'onDrop';

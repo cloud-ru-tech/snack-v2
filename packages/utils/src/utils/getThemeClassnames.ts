@@ -1,19 +1,19 @@
-import cn from 'classnames';
+import cn from 'classnames'
 
 type ThemeClassnames = {
-  theme?: 'light' | 'dark';
-  brand?: 'brandA' | 'brandB';
-  platform?: 'desktop' | 'mobile';
-};
+  theme?: 'light' | 'dark'
+  brand?: 'brandA' | 'brandB'
+  platform?: 'desktop' | 'mobile'
+}
 
-const DEFAULT_THEME_CLASSNAMES = {
+const DEFAULT_THEME_CLASSNAMES: Required<ThemeClassnames> = {
   brand: 'brandA',
   platform: 'desktop',
   theme: 'light',
-};
+}
 
-export function getThemeClassnames(props: ThemeClassnames = {}) {
-  const { platform, theme, brand } = { ...DEFAULT_THEME_CLASSNAMES, ...props };
+export function getThemeClassnames(props: ThemeClassnames = {}): string {
+  const { platform, theme, brand } = { ...DEFAULT_THEME_CLASSNAMES, ...props }
 
   return cn(
     'sn-primitive',
@@ -23,6 +23,6 @@ export function getThemeClassnames(props: ThemeClassnames = {}) {
     `sn-${platform}`,
     `sn-${theme}`,
     `sn-${brand}`,
-    `sn-no`, // Acrylic, temporarily disabled (acrylic === 'enabled' ? 'sn-yes' : 'sn-no')
-  );
+    'sn-no',
+  )
 }

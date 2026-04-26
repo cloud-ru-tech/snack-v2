@@ -1,0 +1,30 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  width: 560px;
+  max-width: 100%;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 200px;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  font-size: 24px;
+  color: #fff;
+}
+
+.slide1 {
+  background: #4f46e5;
+}
+
+.slide2 {
+  background: #0ea5e9;
+}
+
+.slide3 {
+  background: #10b981;
+}

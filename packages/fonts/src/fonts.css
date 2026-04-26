@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+@font-face {
+  font-family: 'SB Sans Interface';
+  font-weight: 600;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansInterface-Semibold.woff2') format('woff2'),
+    url('../fonts/SBSansInterface-Semibold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Interface';
+  font-weight: 300;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansInterface-Light.woff2') format('woff2'),
+    url('../fonts/SBSansInterface-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Interface';
+  font-weight: bold;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansInterface-Bold.woff2') format('woff2'),
+    url('../fonts/SBSansInterface-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Interface Caps';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansInterface-Caps.woff2') format('woff2'),
+    url('../fonts/SBSansInterface-Caps.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Interface';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansInterface-Regular.woff2') format('woff2'),
+    url('../fonts/SBSansInterface-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Text Mono';
+  font-weight: bold;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansTextMono-Bold.woff2') format('woff2'),
+    url('../fonts/SBSansTextMono-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Text Mono';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansTextMono-Regular.woff2') format('woff2'),
+    url('../fonts/SBSansTextMono-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Display';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansDisplay-Regular.woff2') format('woff2'),
+    url('../fonts/SBSansDisplay-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Display';
+  font-weight: 600;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansDisplay-SemiBold.woff2') format('woff2'),
+    url('../fonts/SBSansDisplay-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Display';
+  font-weight: 300;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansDisplay-Light.otf') format('opentype'),
+    url('../fonts/SBSansDisplay-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansText.woff2') format('woff2'),
+    url('../fonts/SBSansText.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  font-weight: 600;
+  font-style: normal;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansText-SemiBold.woff2') format('woff2'),
+    url('../fonts/SBSansText-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SB Sans Text';
+  font-weight: 300;
+  font-style: italic;
+
+  font-display: swap;
+  src:
+    url('../fonts/SBSansText-Italic.woff2') format('woff2'),
+    url('../fonts/SBSansText-Italic.woff') format('woff');
+}

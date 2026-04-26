@@ -1,5 +1,5 @@
-import { ValueOf } from '@design-system/utils';
-import type { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
+import { ValueOf } from '@ds/utils';
+import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
 import { ICON_POSITION, SIZE, VARIANT } from './constants';
 

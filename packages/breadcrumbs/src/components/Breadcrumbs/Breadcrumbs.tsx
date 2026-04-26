@@ -1,4 +1,4 @@
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import { memo, useMemo, useRef } from 'react';
 
 import { ELEMENT_TYPE, ITEM_RENDER_MODE, SEPARATOR, SIZE } from '../../constants';

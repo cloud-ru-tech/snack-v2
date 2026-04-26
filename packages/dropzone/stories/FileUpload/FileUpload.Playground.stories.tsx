@@ -1,22 +1,15 @@
-import { Button } from '@design-system/button';
-import { UploadSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '@ds/button';
+import { UploadSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect, within } from 'storybook/test';
 
-import dropzoneReadme from '../../README.md?raw';
 import { FileUpload, FileUploadProps, UPLOAD_MODE } from '../../src';
 import styles from './styles.module.scss';
 
-const meta: Meta<FileUploadProps> = {
+const meta: Meta<typeof FileUpload> = {
   title: 'Components/Dropzone/FileUpload',
   component: FileUpload,
-  parameters: {
-    readme: { content: dropzoneReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4971-5434&m=dev',
-    },
-  },
   args: {
     mode: UPLOAD_MODE.Multiple,
   },
@@ -37,7 +30,7 @@ const meta: Meta<FileUploadProps> = {
 
 export default meta;
 
-type Story = StoryObj<FileUploadProps>;
+type Story = StoryObj<typeof FileUpload>;
 
 function FileUploadWithFiles(args: FileUploadProps) {
   const [files, setFiles] = useState<File[]>([]);
@@ -59,4 +52,7 @@ function FileUploadWithFiles(args: FileUploadProps) {
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => <FileUploadWithFiles {...args} />,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('button', { name: /Загрузить/ })).toBeVisible();
+  },
 };

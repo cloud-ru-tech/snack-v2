@@ -1,6 +1,6 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
-@use '@design-system/materials' as m;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/field.module' as field;
+@use '@ds/materials' as m;
 
 $sizes: 's', 'm', 'l';
 $variants: 'before', 'after';

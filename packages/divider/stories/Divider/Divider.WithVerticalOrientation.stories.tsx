@@ -1,21 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Divider, ORIENTATION, VARIANT } from '@ds/divider';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Divider, type DividerProps, ORIENTATION } from '../../src';
 import styles from './styles.module.scss';
 
-const meta: Meta<DividerProps> = {
+const meta: Meta<typeof Divider> = {
   title: 'Components/Divider',
   component: Divider,
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
-type Story = StoryObj<DividerProps>;
+type Story = StoryObj<typeof Divider>;
 
 export const WithVerticalOrientation: Story = {
-  tags: ['!dev', 'autodocs'],
+  tags: ['dev'],
   args: {
     orientation: ORIENTATION.Vertical,
-    variant: 'regular',
+    variant: VARIANT.Regular,
+    'data-test-id': 'divider',
   },
   render: args => (
     <div className={styles.verticalRowCompact}>
@@ -26,11 +28,4 @@ export const WithVerticalOrientation: Story = {
       <span className={styles.verticalRowCompactLabel}>Right</span>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Вертикальный разделитель между элементами в flex-контейнере.',
-      },
-    },
-  },
 };

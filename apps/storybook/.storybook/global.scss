@@ -1,0 +1,113 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/fonts/scss';
+
+/* Сброс стилей */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Базовые стили для body */
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Базовые стили для контейнера stories */
+.sb-story-wrapper {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+/* Утилиты для демонстрации компонентов */
+.sb-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.sb-flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sb-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.sb-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.sb-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Стили для разделителей между примерами */
+.sb-divider {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+}
+
+/* Стили для меток размеров/вариантов */
+.sb-label {
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 500;
+  color: base.$sn-theme-color-neutral-text;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Стили для секций в stories */
+.sb-section {
+  margin-bottom: 32px;
+}
+
+.sb-section-title {
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+/* Стили для контейнеров с отступами */
+.sb-container {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.sb-container-white {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: 8px;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}

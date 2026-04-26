@@ -1,16 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Track, type TrackProps } from '@ds/timeline';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import timelineReadme from '../../README.md?raw';
-import { Track, type TrackProps } from '../../src/components/Track';
 import styles from '../styles.module.scss';
 
 const meta: Meta = {
   title: 'Components/Timeline/Track',
-  parameters: {
-    readme: { content: timelineReadme },
-  },
 };
 
 export default meta;

@@ -1,160 +1,101 @@
 ---
 title: Divider
+package: '@ds/divider'
 description: Разделитель контента с горизонтальной и вертикальной ориентацией и вариантами толщины линии.
-version: '0.1.0'
+order: 3
 ---
 
-import { Divider } from '../src';
-import { ExampleContainer, ExampleItem, ExampleRow } from '#astro/components/mdx';
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+import { Divider } from '@ds/divider'
+import { DividerDemo } from '../demos/DividerDemo'
+import { VerticalInRow } from '../demos/examples/VerticalInRow'
+import VerticalInRowSrc from '../demos/examples/VerticalInRow.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import dividerDoc from './props.json'
 
 # Divider
 
-Divider — компонент для визуального разделения контента. 
+Компонент для визуального разделения контента. Поддерживает две ориентации (горизонтальная по умолчанию и вертикальная) и два варианта толщины линии (`regular` — 1px, `thin` — 0.5px). Объявляет ARIA-семантику `role='separator'` + `aria-orientation`.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-## Installation
+<DividerDemo client:load />
+
+## Когда использовать
+
+- Между секциями страницы или блоками контента — горизонтальный `regular`.
+- Внутри тулбаров или рядов элементов — вертикальный `regular` (контейнер должен задать высоту).
+- Вложенные блоки и плотные списки — `thin`, чтобы визуально ослабить границу.
+
+Не ставьте Divider между каждым элементом списка — группируйте логические блоки.
+
+## Для дизайнеров
+
+### Variant — толщина линии
+
+| Variant | Когда использовать |
+|---------|--------------------|
+| `regular` | Основное разделение — 1px, читается на любой подложке |
+| `thin` | Плотные списки, вложенные блоки — 0.5px |
+
+### Orientation — ориентация
+
+| Orientation | Контейнер должен задать |
+|-------------|-------------------------|
+| `horizontal` | Ширину (по умолчанию — 100% от родителя) |
+| `vertical` | Высоту — иначе Divider схлопнется |
+
+### Do / Don't
+
+- ✅ Один Divider между логическими блоками.
+- ❌ Divider между каждым пунктом списка — используйте внутренние отступы.
+- ✅ `thin` внутри плотных UI — таблицы, сайдбары.
+- ❌ `thin` на крупных секциях — линия потеряется.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/divider
-# or
-yarn add @design-system/divider
-# or
-pnpm add @design-system/divider
+pnpm add @ds/divider
 ```
 
-## Changelog
-
-<Changelog packageName="divider" />
-
-<LlmLink component="divider" />
-
-## Overview
-
-Divider используется для отделения блоков и элементов в интерфейсе. Компонент поддерживает:
-
-- **Две ориентации** — горизонтальная (по умолчанию) и вертикальная для разделения контента в ряд
-- **Два варианта толщины** — regular (1px) и thin (0.5px) для разной визуальной нагрузки
-- **Семантика и доступность** — `role="separator"` и `aria-orientation` для скринридеров
-- **Поддержка data-test-id** — через WithSupportProps для автотестов
-
-## Примеры
-
-Для каждого примера ниже показан результат и код, который его создаёт.
-
-### Горизонтальный (по умолчанию)
-
-<ExampleContainer>
-  <div style={{ width: '100%', maxWidth: 320 }}>
-    <Divider />
-  </div>
-</ExampleContainer>
-
-```tsx
-import { Divider } from '@design-system/divider';
-
-export function Example() {
-  return <Divider />;
-}
+```ts
+import { Divider, ORIENTATION, VARIANT } from '@ds/divider'
+import '@ds/divider/style.css'
 ```
 
-### Вертикальный разделитель
+### Примеры использования
 
-<ExampleContainer>
-  <div style={{ display: 'flex', alignItems: 'stretch', height: '48px', gap: '16px' }}>
-    <div style={{ display: 'flex', alignItems: 'center' }}>Left</div>
-    <div style={{ width: '4px', minWidth: '1px', flexShrink: 0 }}>
-      <Divider orientation="vertical" />
-    </div>
-    <div style={{ display: 'flex', alignItems: 'center' }}>Right</div>
-  </div>
-</ExampleContainer>
+<Example title='Горизонтальный (по умолчанию)'>
+  <Divider />
+</Example>
 
-```tsx
-import { Divider } from '@design-system/divider';
+<Example title='Тонкая линия'>
+  <Divider variant='thin' />
+</Example>
 
-export function Toolbar() {
-  return (
-    <div style={{ display: 'flex', alignItems: 'stretch', height: 48, gap: 16 }}>
-      <span style={{ display: 'flex', alignItems: 'center' }}>Left</span>
-      <div style={{ width: 4, minWidth: 1, flexShrink: 0 }}>
-        <Divider orientation="vertical" />
-      </div>
-      <span style={{ display: 'flex', alignItems: 'center' }}>Right</span>
-    </div>
-  );
-}
-```
+<Example
+  title='Вертикальный разделитель'
+  description='Контейнер задаёт высоту, иначе Divider схлопнется'
+  code={VerticalInRowSrc}
+>
+  <VerticalInRow client:load />
+</Example>
 
-### Варианты толщины
+### Props
 
-<ExampleContainer>
-  <ExampleRow gap="xlarge">
-    <ExampleItem label="Regular (1px)" gap="medium" labelSize="medium">
-      <div style={{ width: '160px', minHeight: '2px' }}>
-        <Divider variant="regular" />
-      </div>
-    </ExampleItem>
-    <ExampleItem label="Thin (0.5px)" gap="medium" labelSize="medium">
-      <div style={{ width: '160px', minHeight: '2px' }}>
-        <Divider variant="thin" />
-      </div>
-    </ExampleItem>
-  </ExampleRow>
-</ExampleContainer>
+<PropsTable data={dividerDoc.Divider} />
 
-```tsx
-import { Divider } from '@design-system/divider';
+Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`.
 
-export function Section() {
-  return (
-    <>
-      <Divider variant="regular" />
-      {/* ... */}
-      <Divider variant="thin" />
-    </>
-  );
-}
-```
+### Storybook
 
-## Storybook
+<StorybookEmbed storyId='components-divider--playground' height={300} client:load />
 
-### Playground
+## Доступность
 
-<StorybookIframe storyId="components-divider--playground" showControls={true} height="400px" />
-
-### Visual Matrix
-
-Для просмотра комбинаций вариант × ориентация используйте story **Visual Matrix** в Storybook.
-
-<StorybookIframe storyId="components-divider--visual-matrix" showControls={false} height="400px" />
-
-## Props
-
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### DividerProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| variant | enum DividerVariant: `"regular"`, `"thin"` | regular | Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular |
-| orientation | enum DividerOrientation: `"horizontal"`, `"vertical"` | horizontal | Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal |
-| className | `string` | - | CSS-класс |
-
-
-[//]: DOCUMENTATION_SECTION_END
-
-## Accessibility
-
-- **role="separator"** — разделитель корректно объявляется скринридерам
-- **aria-orientation** — передаётся ориентация (horizontal/vertical) для контекста
-- Компонент принимает стандартные HTML-атрибуты и поддержку `data-test-id` через WithSupportProps
-
-## Best practices
-
-1. **Горизонтальный разделитель** — используйте между блоками контента (секции, параграфы, карточки в колонке).
-2. **Вертикальный разделитель** — используйте внутри flex-рядов (тулбары, списки действий), обязательно задайте высоту контейнера (например, `height` или `alignItems: 'stretch'`).
-3. **Regular vs Thin** — regular для явного разделения секций, thin — когда нужно визуально ослабить границу (вложенные блоки, плотные списки).
-4. **Не перегружайте интерфейс** — не ставьте разделители между каждым элементом; группируйте логические блоки.
+- `role='separator'` — корректное объявление разделителя для скринридеров.
+- `aria-orientation` — горизонтальный/вертикальный контекст.
+- Не несёт текстовой нагрузки и не должен использоваться как единственный признак разделения.

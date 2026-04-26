@@ -1,7 +1,7 @@
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 
 import { PAGINATION_SLIDER_SIZE } from '../../constants';
-import type { PaginationSliderSize } from '../../types';
+import { PaginationSliderSize } from '../../types';
 import { getRange } from '../../utils';
 import { PaginationSliderItem } from '../PaginationSliderItem';
 import styles from './styles.module.scss';

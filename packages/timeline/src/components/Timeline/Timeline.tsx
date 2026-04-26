@@ -1,4 +1,4 @@
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
 import { TrackItem, type TrackItemProps } from '../TrackItem';

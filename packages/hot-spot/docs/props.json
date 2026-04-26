@@ -1,0 +1,92 @@
+{
+  "HotSpot": {
+    "displayName": "HotSpot",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "primary",
+        "description": "Внешний вид"
+      },
+      "pulse": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Анимация пульсации"
+      },
+      "duration": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "2s",
+        "description": "Время анимации пульсации"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-top",
+          "left-bottom",
+          "right",
+          "right-top",
+          "right-bottom",
+          "center",
+          "center-top",
+          "center-bottom"
+        ],
+        "defaultValue": "right-top",
+        "description": "Положение относительно children."
+      },
+      "dotRender": {
+        "type": "((dot: ReactNode) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция для dot"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вложенный контент"
+      },
+      "offsetX": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Смещение dot по оси X (ось направлена вправо)"
+      },
+      "offsetY": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Смещение dot по оси Y (ось направлена вниз)"
+      },
+      "enabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Управление состоянием отрисовки"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "wrapperClassName": {
+        "type": "string",
+        "required": false
+      }
+    }
+  }
+}

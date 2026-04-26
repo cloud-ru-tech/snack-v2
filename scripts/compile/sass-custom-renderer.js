@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { resolve } = require('path');
-const { compile } = require('sass');
+const { resolve } = require('path')
+const sass = require('sass')
+
+const repoRoot = resolve(__dirname, '..', '..')
 
 function sassRenderer(css, { fileName, logger }) {
   try {
-    const { css: renderedCss } = compile(fileName, {
-      loadPaths: [resolve(__dirname, '../../node_modules')],
-    });
-    return renderedCss;
+    const result = sass.compile(fileName, {
+      loadPaths: [resolve(repoRoot, 'node_modules')],
+    })
+    return result.css
   } catch (error) {
-    logger.error(error.message);
+    logger.error(error.message)
   }
 }
 
-module.exports = sassRenderer;
+module.exports = sassRenderer

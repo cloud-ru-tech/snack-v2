@@ -1,0 +1,103 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.step {
+  all: unset;
+
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 24px;
+
+  outline: none;
+
+  @include m.has-state-layer-as-child(stateLayer);
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid base.$sn-theme-color-primary-accent;
+    outline-offset: 2px;
+  }
+}
+
+.stateLayer {
+  border-radius: 2px;
+}
+
+// Track — горизонтальная полоса шага. По умолчанию waiting (серая).
+.track {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+
+  background-color: base.$sn-theme-color-neutral-decor;
+
+  transition: background-color 150ms ease;
+}
+
+// Status — круглый индикатор поверх полосы, центрируется.
+// Виден только для completed / loading / rejected.
+.status {
+  pointer-events: none;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+// Current — сплошная тёмно-зелёная полоса. Индикатор-круг не показывается.
+.step[data-state='current'] .track {
+  background-color: base.$sn-theme-color-primary-accent;
+}
+
+// Completed — светло-зелёная полоса + круг с галочкой в центре.
+.step[data-state='completed'] .track {
+  background-color: base.$sn-theme-color-primary-decor;
+}
+
+.step[data-state='completed'] .status {
+  display: flex;
+  color: base.$sn-theme-color-primary-accent;
+  background-color: base.$sn-theme-color-primary-decor;
+}
+
+// Loading — светло-зелёная полоса + круг со спиннером.
+.step[data-state='loading'] .track {
+  background-color: base.$sn-theme-color-primary-decor;
+}
+
+.step[data-state='loading'] .status {
+  display: flex;
+  color: base.$sn-theme-color-primary-accent;
+  background-color: base.$sn-theme-color-primary-decor;
+}
+
+// Rejected — красная полоса + круг с крестом.
+.step[data-state='rejected'] .track {
+  background-color: base.$sn-theme-color-red-decor;
+}
+
+.step[data-state='rejected'] .status {
+  display: flex;
+  color: base.$sn-theme-color-red-accent;
+  background-color: base.$sn-theme-color-red-decor;
+}

@@ -1,4 +1,4 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils';
 import { JSXElementConstructor, MouseEventHandler } from 'react';
 
 import { ELEMENT_TYPE, ITEM_RENDER_MODE, SIZE } from './constants';

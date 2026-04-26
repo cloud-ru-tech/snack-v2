@@ -74,7 +74,7 @@ export function createLocaleContext<D extends Dictionary>({
 
       if (!localesObj) {
         console.warn(
-          `@design-system/locale: localization for lang ${lang} was not found. Make sure you are using correct lang or passed proper locales to LocaleProvider. For now default language (${DEFAULT_LANG}) will be used`,
+          `@ds/locale: localization for lang ${lang} was not found. Make sure you are using correct lang or passed proper locales to LocaleProvider. For now default language (${DEFAULT_LANG}) will be used`,
         );
 
         localesObj = locales[fallbackLang] as LocaleDictionary<D>;
@@ -126,7 +126,7 @@ export function createLocaleContext<D extends Dictionary>({
         }
 
         if (!translation?.length) {
-          console.warn(`@design-system/locale: the '${key}' key is not found in the current locale '${lang}'.`);
+          console.warn(`@ds/locale: the '${key}' key is not found in the current locale '${lang}'.`);
 
           return key;
         }

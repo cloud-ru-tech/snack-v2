@@ -1,87 +1,57 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useEffect, useState } from 'react';
+import { Carousel, CONTROLS_VISIBILITY } from '@ds/carousel';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import readme from '../../README.md?raw';
-import { Carousel, type CarouselProps } from '../../src';
-import { CONTROLS_VISIBILITY } from '../../src/constants';
-import { StoryCard } from './helperComponents';
-import styles from './styles.module.scss';
+import styles from './stories.module.scss';
 
-type CarouselPlaygroundArgs = Omit<CarouselProps, 'children'> & {
-  page?: number;
-  itemsCount?: number;
-};
-
-const meta: Meta<CarouselPlaygroundArgs> = {
+const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
-  parameters: {
-    readme: { content: readme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5314-429&m=dev',
-    },
-  },
+  component: Carousel,
+  parameters: { layout: 'padded' },
   args: {
-    showItems: 2.5,
-    scrollBy: 2,
+    showItems: 1,
     transition: 0.4,
     swipe: true,
     arrows: true,
     pagination: true,
-    infiniteScroll: true,
-    autoSwipe: 5,
-    itemsCount: 12,
-    page: 1,
+    infiniteScroll: false,
+    swipeActivateLength: 48,
     controlsVisibility: CONTROLS_VISIBILITY.hover,
-    'data-test-id': undefined,
   },
   argTypes: {
-    page: {
-      name: '[Story]: pagination page as controlled state',
-    },
-    itemsCount: {
-      name: '[Story]: count demo cards',
-    },
+    showItems: { control: { type: 'number', min: 1, max: 6 } },
+    scrollBy: { control: { type: 'number', min: 1, max: 6 } },
+    transition: { control: { type: 'number', min: 0, step: 0.1 } },
+    swipe: { control: 'boolean' },
+    arrows: { control: 'boolean' },
+    pagination: { control: 'boolean' },
+    infiniteScroll: { control: 'boolean' },
+    autoSwipe: { control: { type: 'number', min: 0, step: 1 } },
+    swipeActivateLength: { control: { type: 'number', min: 0, step: 1 } },
+    gap: { control: 'text' },
     controlsVisibility: {
-      control: 'select',
+      control: 'radio',
       options: Object.values(CONTROLS_VISIBILITY),
     },
   },
+  render: args => (
+    <div className={styles.container}>
+      <Carousel {...args}>
+        <div className={`${styles.slide} ${styles.slideIndigo}`}>Slide 1</div>
+        <div className={`${styles.slide} ${styles.slideSky}`}>Slide 2</div>
+        <div className={`${styles.slide} ${styles.slideEmerald}`}>Slide 3</div>
+      </Carousel>
+    </div>
+  ),
 };
 
 export default meta;
 
-type Story = StoryObj<CarouselPlaygroundArgs>;
-
-function CarouselPlayground({ page: pageProp, itemsCount, ...args }: CarouselPlaygroundArgs) {
-  const [page, setPage] = useState<number>(pageProp ? pageProp - 1 : 0);
-
-  useEffect(() => {
-    setPage(pageProp ? pageProp - 1 : 0);
-  }, [pageProp]);
-
-  return (
-    <div className={styles.wrapper}>
-      <Carousel
-        {...args}
-        state={{
-          page,
-          onChange: setPage,
-        }}
-      >
-        {Array.from({ length: itemsCount ?? 12 }).map((_, i) => (
-          <StoryCard key={i} title={`Item ${i + 1}`} />
-        ))}
-      </Carousel>
-
-      <span data-test-id='carousel__hidden-page-counter' className={styles.hiddenPageCounter}>
-        {page + 1}
-      </span>
-    </div>
-  );
-}
+type Story = StoryObj<typeof Carousel>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
-  render: args => <CarouselPlayground {...args} />,
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByText('Slide 1')).toBeVisible();
+  },
 };

@@ -1,0 +1,343 @@
+{
+  "AlertTop": {
+    "displayName": "AlertTop",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать иконку"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "defaultValue": "title: 1",
+        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Описание"
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек закрытия"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "error",
+          "warning",
+          "success",
+          "info"
+        ],
+        "description": "Внешний вид"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m"
+        ],
+        "description": "Размер"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "actions": {
+        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "required": false,
+        "description": "Кнопки в футере"
+      },
+      "collapsible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+      },
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Выравнивание контента"
+      }
+    }
+  },
+  "AlertButton": {
+    "displayName": "AlertButton",
+    "props": {
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст кнопки"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "iconPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "before",
+          "after"
+        ],
+        "defaultValue": "before",
+        "description": "Позиция иконки относительно текста"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключена"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "onColor",
+          "onAccent"
+        ],
+        "defaultValue": "onColor",
+        "description": "Вариант оформления"
+      },
+      "invertFocusOutlineColor": {
+        "type": "boolean",
+        "required": false,
+        "description": "Инвертировать цвет фокусного контура"
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      }
+    }
+  },
+  "getAlertAppearanceIcon": {
+    "displayName": "getAlertAppearanceIcon",
+    "props": {}
+  },
+  "AlertBase": {
+    "displayName": "AlertBase",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать иконку"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "defaultValue": "title: 1",
+        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Описание"
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек закрытия"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "error",
+          "warning",
+          "success",
+          "info"
+        ],
+        "description": "Внешний вид"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m"
+        ],
+        "description": "Размер"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "actions": {
+        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "required": false,
+        "description": "Кнопки в футере"
+      },
+      "collapsible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+      },
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Выравнивание контента"
+      },
+      "variant": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "inline",
+          "top"
+        ]
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false
+      }
+    }
+  },
+  "Alert": {
+    "displayName": "Alert",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать иконку"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "defaultValue": "title: 1",
+        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Описание"
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек закрытия"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "error",
+          "warning",
+          "success",
+          "info"
+        ],
+        "description": "Внешний вид"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "m"
+        ],
+        "description": "Размер"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "actions": {
+        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "required": false,
+        "description": "Кнопки в футере"
+      },
+      "collapsible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+      },
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Выравнивание контента"
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "description": "Внешний бордер"
+      }
+    }
+  }
+}

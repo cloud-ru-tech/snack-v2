@@ -1,62 +1,58 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
-import cn from 'classnames';
-import { MouseEventHandler } from 'react';
+import { APPEARANCE, Link, ROLE } from '@ds/link';
+import { Meta, StoryObj } from '@storybook/react';
 
-import linkReadme from '../../README.md?raw';
-import { APPEARANCE, Link, LinkProps, ROLE } from '../../src';
-import styles from './styles.module.scss';
+import { StoryTable } from '#storybook/components';
 
-const meta: Meta<LinkProps> = {
+import styles from './stories.module.scss';
+
+const meta: Meta<typeof Link> = {
   title: 'Components/Link',
   component: Link,
-  parameters: {
-    readme: { content: linkReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6913-5372&p=f&m=dev',
-    },
-  },
-  args: {},
-  argTypes: {},
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
+type Story = StoryObj<typeof Link>;
 
-type Story = StoryObj;
+const keyAppearances = [
+  APPEARANCE.Primary,
+  APPEARANCE.Neutral,
+  APPEARANCE.Red,
+  APPEARANCE.Green,
+  APPEARANCE.Blue,
+] as const;
 
-const roles = Object.values(ROLE);
-const appearances = Object.values(APPEARANCE);
-
-const handleClick: MouseEventHandler = e => {
-  e.preventDefault();
-};
-
-const Template: StoryFn = () => (
-  <div className={styles.wrapper}>
-    {roles.map(role => (
-      <table key={role} className={styles.linkTable}>
-        <thead className={styles.linkTableHeader}>
-          <tr className={styles.linkRow}>
-            <th className={cn(styles.linkCell, styles.linkTitleCell)}>Role</th>
-            <th className={cn(styles.linkCell, styles.linkTitleCell)}>{role}</th>
-          </tr>
-        </thead>
-        {appearances.map(appearance => (
-          <tr key={appearance} className={styles.linkRow}>
-            <td className={cn(styles.linkCell, styles.colHead)}>{appearance}</td>
-            <td className={cn(styles.linkCell, styles.colValue)}>
-              <div className={styles.linkWrapper} data-appearance={appearance} data-role={role} data-show-background>
-                <Link appearance={appearance} role={role} text='Link text' onClick={handleClick} />
-              </div>
-            </td>
-          </tr>
-        ))}
-      </table>
-    ))}
-  </div>
-);
+const underlinedStates = [false, true] as const;
 
 export const VisualMatrix: Story = {
-  tags: ['dev', 'test'],
-  render: Template,
+  tags: ['test', 'dev'],
+  render: () => (
+    <div className={styles.matrix}>
+      <StoryTable
+        sectionTitle='Appearance × Underlined (role=regular)'
+        firstColumnHeader='Appearance'
+        columnHeaders={['underlined=false', 'underlined=true']}
+        rows={keyAppearances.map(appearance => ({
+          variantLabel: appearance,
+          cells: underlinedStates.map(u => (
+            <Link key={String(u)} appearance={appearance} underlined={u} text='Link text' href='#' />
+          )),
+        }))}
+      />
+
+      <StoryTable
+        sectionTitle='Role × Appearance'
+        firstColumnHeader='Role'
+        columnHeaders={keyAppearances.map(a => a)}
+        rows={[ROLE.Regular, ROLE.OnAccent].map(role => ({
+          variantLabel: role,
+          cells: keyAppearances.map(appearance => (
+            <div key={appearance} className={role === ROLE.OnAccent ? styles.onAccent : undefined}>
+              <Link role={role} appearance={appearance} text='Link text' href='#' />
+            </div>
+          )),
+        }))}
+      />
+    </div>
+  ),
 };

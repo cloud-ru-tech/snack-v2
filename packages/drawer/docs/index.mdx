@@ -1,232 +1,158 @@
 ---
 title: Drawer
-description: Боковая (или верхняя/нижняя) выезжающая панель поверх страницы. Готовая разметка шапки, тела со скроллом и футера на базе rc-drawer, с токенами дизайн-системы.
-version: '0.1.0'
+package: '@ds/drawer'
+description: Боковая/нижняя панель поверх страницы с пресетной шапкой, телом и футером; низкоуровневая сборка — через DrawerCustom.
+order: 0
 ---
 
-import { DrawerBasicExample } from './ui/DrawerBasicExample';
-import { ExampleContainer } from '#astro/components/mdx';
+import { DrawerDemo } from '../demos/DrawerDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithFooter } from '../demos/examples/WithFooter'
+import WithFooterSrc from '../demos/examples/WithFooter.tsx?raw'
+import { WithMedia } from '../demos/examples/WithMedia'
+import WithMediaSrc from '../demos/examples/WithMedia.tsx?raw'
+import { HeightAuto } from '../demos/examples/HeightAuto'
+import HeightAutoSrc from '../demos/examples/HeightAuto.tsx?raw'
+import { NestedDrawer } from '../demos/examples/NestedDrawer'
+import NestedDrawerSrc from '../demos/examples/NestedDrawer.tsx?raw'
+import { CustomComposition } from '../demos/examples/CustomComposition'
+import CustomCompositionSrc from '../demos/examples/CustomComposition.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_DRAWER } from '~docs/lib/figma'
+import drawerDoc from './props.json'
 
 # Drawer
 
-Выезжающая панель для вторичного контекста: фильтры, детали объекта, мастер-шаги, настройки. Компонент **Drawer** собирает шапку: опциональный медиа-слот (`media`), заголовок и подзаголовок, кнопку «назад», слот после заголовка (`slotAfterHeadline`), прокручиваемое тело и опциональный футер. Низкоуровневая сборка без фиксированной шапки — через **DrawerCustom** и субкомпоненты `Header`, `Body`, `Footer`.
+Панель, выезжающая со стороны экрана — для дополнительного контекста, фильтров, форм и пошаговых сценариев. `Drawer` собирает шапку (медиа, заголовок, подзаголовок, back-button, слот после заголовка), прокручиваемое тело и опциональный футер. Полный контроль над разметкой — через `DrawerCustom` и его субкомпоненты `DrawerCustom.Header`, `.Body`, `.Footer`.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-## Installation
+<DrawerDemo client:load />
+
+## Когда использовать
+
+- Форма, фильтры или детали, которые не помещаются в основной поток и требуют отдельного контекста.
+- Пошаговый сценарий с кнопкой «назад» в шапке — возвращение между экранами без потери контекста.
+- Нижний лист (bottom sheet) для компактных действий и подтверждений на мобильных устройствах.
+- Стек из двух-трёх связанных панелей через `nestedDrawer`.
+
+Когда **не** нужен: критическое подтверждение, блокирующее остальной интерфейс (берите `Modal`), всплывающий поповер рядом с элементом (`Popover`), тост-уведомление (не блокирует UI).
+
+## Для дизайнеров
+
+### Расположение (`position`)
+
+| Position | Когда |
+|----------|-------|
+| `right` | Дефолтная правая боковая панель — фильтры, детали, формы |
+| `left` | Навигация, древовидные списки на десктопе |
+| `bottom` | Bottom sheet на мобильных устройствах (с `heightAuto`) |
+| `top` | Уведомления и баннеры, занимающие верхнюю область |
+
+### Размер (`width`)
+
+Предустановленные пресеты доступны только для `position: 'left' | 'right'`.
+
+| Width | Когда |
+|-------|-------|
+| `s` | Подтверждения, короткие формы — один-два поля |
+| `m` | Формы средней плотности, карточки с медиа |
+| `l` | Сложные формы, двухколоночные макеты |
+
+Для нестандартной ширины можно передать число (`width={480}`) или строку с единицами (`width='40rem'`).
+
+### Высота по контенту (`heightAuto`)
+
+Работает только при `position: 'top' | 'bottom'` — высота панели рассчитывается по содержимому, с максимумом в высоту контейнера. Подходит для bottom sheet'ов и верхних баннеров.
+
+### Do / Don't
+
+- ✅ Один `primary`-акцент в футере — основное действие.
+- ❌ Два `primary`-акцента в футере.
+- ✅ `position='bottom'` + `heightAuto` — для мобильных листов.
+- ❌ `position='left' | 'right'` + `heightAuto` — проп игнорируется, создаёт ложные ожидания.
+- ✅ Медиа в `media` — когда оно несёт смысл сценария (онбординг, пустое состояние).
+- ❌ Декоративная иллюстрация в панели ради украшения.
+- ✅ Кнопка «назад» (`onBackButtonClick`) — для многошаговых сценариев внутри одного Drawer.
+- ❌ Кнопка «назад» там, где шага только один.
+- ✅ Вложенный `nestedDrawer` — для связанных контекстов (список → детали).
+- ❌ Трёх-уровневый стек вложенных Drawer: пользователь теряется в глубине.
+
+### Figma
+
+<FigmaEmbed node={FIGMA_DRAWER} title='Drawer — Snack Ui Kit variables' />
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/drawer
-# or
-yarn add @design-system/drawer
-# or
-pnpm add @design-system/drawer
+pnpm add @ds/drawer
 ```
 
-## Changelog
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-
-<Changelog packageName="drawer" />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component="drawer" />
-
-## Overview
-
-**Drawer** строится на [rc-drawer](https://github.com/react-component/drawer) и интегрируется с утилитами дизайн-системы (`useModalOpenState`, `extractSupportProps`). Панель монтируется в портал (по умолчанию `document.body` или свой контейнер через `container`), при закрытии контент уничтожается (`destroyOnClose`).
-
-Компонент обеспечивает:
-
-- **Четыре стороны появления** — `position`: `left`, `right`, `top`, `bottom` (через `placement` у rc-drawer).
-- **Ширина слева/справа** — пресеты `'s' | 'm' | 'l'` или произвольное значение (`width`), см. константы `WIDTH` в пакете.
-- **Высота сверху/снизу** — при `heightAuto` панель подстраивается под контент в пределах экрана; для боковых панелей не используется.
-- **Подложка и закрытие** — при `showBlackout` (по умолчанию `true`) маска кликабельна, закрытие по Escape и клику по маске; кнопка закрытия в углу панели.
-- **Медиа и шапка** — `media` для блока над шапкой (превью, иллюстрация) и `slotAfterHeadline` для узла в одной строке с заголовком (иконка подсказки, бейдж и т.п.).
-- **Кастомная вёрстка** — `DrawerCustom` + `DrawerCustom.Header` / `Body` / `Footer` для полного контроля над разметкой.
-
-## Live examples
-
-### Базовое использование
-
-Панель справа с заголовком, подзаголовком и текстом в теле. Состояние `open` / `onClose` задаётся снаружи (контролируемый компонент).
-
-<ExampleContainer>
-  <DrawerBasicExample client:load />
-</ExampleContainer>
-
-## Storybook
-
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-
-### Playground
-
-Интерактивные контролы Storybook: сторона появления, ширина или высота по контенту (`heightAuto` для верх/низ), подложка, медиа в шапке, пошаговое включение частей шапки (флаги `[Stories]: …`), длинное тело, футер.
-
-<StorybookIframe storyId="components-drawer-playground--playground" showControls={true} height="640px" />
-
-## Usage
-
-### Базовый пример
-
-```tsx
-import { Drawer } from '@design-system/drawer';
-import { useState } from 'react';
-
-export function Example() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Открыть
-      </button>
-      <Drawer
-        open={open}
-        onClose={() => setOpen(false)}
-        position='right'
-        title='Заголовок'
-        content={<p>Контент</p>}
-      />
-    </>
-  );
-}
+```ts
+import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 ```
 
-### С футером и кнопкой «назад»
+### Примеры использования
 
-Передайте `footer` с произвольной разметкой (например, группу кнопок). Чтобы показать стрелку «назад» в шапке, задайте `onBackButtonClick`.
+<Example title='Базовое использование' description='Контролируемое open/onClose, footer из `ButtonGroup`.' code={BasicSrc}>
+  <Basic client:load />
+</Example>
 
-```tsx
-import { Drawer } from '@design-system/drawer';
-import { useState } from 'react';
+<Example title='Критическое действие' description='Critical primary, neutral outline secondary.' code={WithFooterSrc}>
+  <WithFooter client:load />
+</Example>
 
-export function Example() {
-  const [open, setOpen] = useState(false);
+<Example title='С медиа-слотом' description='`media` рендерится над шапкой на всю ширину панели.' code={WithMediaSrc}>
+  <WithMedia client:load />
+</Example>
 
-  return (
-    <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Открыть
-      </button>
-      <Drawer
-        open={open}
-        onClose={() => setOpen(false)}
-        position='left'
-        title='Редактирование'
-        onBackButtonClick={() => setOpen(false)}
-        content={<form>{/* поля */}</form>}
-        footer={<div className='actions'>{/* кнопки сохранения */}</div>}
-      />
-    </>
-  );
-}
-```
+<Example title='Bottom sheet' description='`position="bottom"` + `heightAuto` — высота по контенту.' code={HeightAutoSrc}>
+  <HeightAuto client:load />
+</Example>
 
-### DrawerCustom
+<Example title='Вложенный Drawer' description='Родитель сдвигается влево при открытии дочернего.' code={NestedDrawerSrc}>
+  <NestedDrawer client:load />
+</Example>
 
-Когда нужна своя структура без готовой шапки Drawer, используйте `DrawerCustom` и субкомпоненты:
+<Example title='DrawerCustom — ручная композиция' description='Произвольная разметка: Header + Body + Footer.' code={CustomCompositionSrc}>
+  <CustomComposition client:load />
+</Example>
 
-```tsx
-import { DrawerCustom } from '@design-system/drawer';
-import { useState } from 'react';
+### Портал и контейнер
 
-export function Example() {
-  const [open, setOpen] = useState(false);
+Панель рендерится через портал `rc-drawer` в `document.body`. Переопределяется пропсом `container` (HTMLElement или CSS-селектор) — удобно при встраивании Drawer в ограниченную область (превью в дизайн-системе, storybook-матрицы).
 
-  return (
-    <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Открыть
-      </button>
-      <DrawerCustom open={open} onClose={() => setOpen(false)} position='right' width='m'>
-        <DrawerCustom.Header title='Заголовок' />
-        <DrawerCustom.Body content={<div>Произвольный контент</div>} />
-        <DrawerCustom.Footer>Панель действий</DrawerCustom.Footer>
-      </DrawerCustom>
-    </>
-  );
-}
-```
+### Закрытие
 
-### Портал и история браузера
+- Клик по затемнению (`showBlackout=true` — по умолчанию).
+- Клавиша `Escape` (`showBlackout=true`).
+- Кнопка закрытия в правом верхнем углу.
+- `closeOnPopstate` (по умолчанию через `useModalOpenState`) — автоматическое закрытие при history navigation.
 
-Для вложенного портала (например, из `usePortalContext`) передайте `container`. Чтобы закрывать панель при навигации по истории, используйте `closeOnPopstate` (через `useModalOpenState` внутри `DrawerCustom`).
+### Props
 
-## Props
+#### Drawer
 
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### DrawerProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| content* | `ReactNode` | - | Контент |
-| position* | enum Position: `"left"`, `"right"`, `"top"`, `"bottom"` | - | Расположение |
-| onClose* | `() => void` | - | Колбэк закрытия |
-| open* | `boolean` | - | Управление состоянием показан/не показан. |
-| showBlackout | `boolean` | true | Отображение темной подложки |
-| width | `string \| number` | 's' | Ширина (только при position: "left" \| "right") |
-| heightAuto | `boolean` | false | Высота панели по контенту (только при `position: "top" \| "bottom"`). При `position: "left" \| "right"` не используется — поведение и ширина задаются только `width` (`'s' \| 'm' \| 'l'` или число/строка). |
-| className | `string` | - | CSS-класс для элемента с контентом CSS-класс |
-| rootClassName | `string` | - | CSS-класс для корневого элемента |
-| push | `boolean \| PushConfig` | - | Смещение при открытии "вложенного" компонента |
-| container | `string \| HTMLElement` | - | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
-| nestedDrawer | `ReactElement<DrawerCustomProps, string \| JSXElementConstructor<any>> & ReactElement<DrawerProps, string \| JSXElementConstructor<...>>` | - | Вложенный Drawer |
-| closeOnPopstate | `boolean` | - | Закрывать дровер при перемещении по истории браузера |
-| footer | `ReactElement<unknown, string \| JSXElementConstructor<any>> & ReactNode` | - | Футер |
-| title | `ReactNode` | - | Заголовок |
-| slotAfterHeadline | `ReactNode` | - | Слот после заголовка |
-| subtitle | `ReactNode` | - | Подзаголовок |
-| onBackButtonClick | `() => void` | - | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
-| media | `ReactNode` | - | Медиа-контент |
-### DrawerCustomProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| position* | enum Position: `"left"`, `"right"`, `"top"`, `"bottom"` | - | Расположение |
-| onClose* | `() => void` | - | Колбэк закрытия |
-| open* | `boolean` | - | Управление состоянием показан/не показан. |
-| showBlackout | `boolean` | true | Отображение темной подложки |
-| width | `string \| number` | 's' | Ширина (только при position: "left" \| "right") |
-| heightAuto | `boolean` | false | Высота панели по контенту (только при `position: "top" \| "bottom"`). При `position: "left" \| "right"` не используется — поведение и ширина задаются только `width` (`'s' \| 'm' \| 'l'` или число/строка). |
-| className | `string` | - | CSS-класс для элемента с контентом |
-| rootClassName | `string` | - | CSS-класс для корневого элемента |
-| push | `boolean \| PushConfig` | - | Смещение при открытии "вложенного" компонента |
-| container | `string \| HTMLElement` | - | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
-| nestedDrawer | `ReactElement<DrawerCustomProps, string \| JSXElementConstructor<any>>` | - | Вложенный Drawer |
-| closeOnPopstate | `boolean` | - | Закрывать дровер при перемещении по истории браузера |
-| footer | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | - | Футер |
-### DrawerCustom.HeaderProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| title | `ReactNode` | - | Заголовок |
-| slotAfterHeadline | `ReactNode` | - | Слот после заголовка |
-| subtitle | `ReactNode` | - | Подзаголовок |
-| className | `string` | - | CSS-класс |
-| onBackButtonClick | `() => void` | - | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
-### DrawerCustom.BodyProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| content* | `ReactNode` | - | Контент |
-| className | `string` | - | CSS-класс |
-### DrawerCustom.FooterProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| className | `string` | - | CSS-класс |
+<PropsTable data={drawerDoc.Drawer} />
 
+#### DrawerCustom
 
-[//]: DOCUMENTATION_SECTION_END
+Продвинутая сборка — см. [отдельную страницу](./drawer-custom).
 
-## Accessibility
+### Storybook
 
-- Кнопка закрытия панели имеет осмысленный `aria-label` (`close drawer`).
-- При включённой маске (`showBlackout`) закрытие по **Escape** и клику по подложке согласовано с поведением rc-drawer (`keyboard`, `maskClosable`).
-- Тело панели обёрнуто в компонент **Scroll** с прокруткой — длинный контент остаётся доступным с клавиатуры при фокусируемых элементах внутри.
-- Заголовок и подзаголовок рендерятся через **Typography**; при необходимости свяжите панель с видимым заголовком страницы (управление фокусом при открытии — на стороне сценария и библиотеки drawer).
+<StorybookEmbed storyId='components-drawer--playground' height={480} client:load />
 
-## Best practices
+## Доступность
 
-1. **Держите состояние снаружи** — `open` и `onClose` должны отражать единый источник правды (URL, store, родительский layout), чтобы панель не «залипала» при ре-рендерах.
-2. **Не дублируйте логику закрытия** — для согласованного поведения с модалками дизайн-системы используйте `closeOnPopstate`, если панель должна закрываться при `popstate`.
-3. **Боковая vs верхняя/нижняя** — для `top` / `bottom` явно решайте, нужна ли `heightAuto`, и проверяйте переполнение на маленьких экранах; для `left` / `right` опирайтесь на `width` (пресеты или число в пикселях).
-4. **Футер для основных действий** — размещайте подтверждение и отмену в `footer`, чтобы они оставались на виду при прокрутке тела.
+- Кнопка закрытия имеет `aria-label="close drawer"`.
+- `keyboard=true` (при `showBlackout=true`) — закрытие по `Escape`.
+- После закрытия фокус возвращается на элемент, с которого было открытие.
+- Для `DrawerCustom` без видимого заголовка задайте доступное имя вручную: `aria-label` или `aria-labelledby`.
+- Следите за видимым контрастом шапки — на медиа-изображении может потребоваться оверлей.

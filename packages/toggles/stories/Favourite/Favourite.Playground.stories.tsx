@@ -1,19 +1,12 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 
-import togglesReadme from '../../README.md?raw';
 import { Favourite, FAVOURITE_ICON, FavouriteProps, SIZE } from '../../src';
 
 const meta: Meta<FavouriteProps> = {
   title: 'Components/Toggles/Favourite',
   component: Favourite,
-  parameters: {
-    readme: { content: togglesReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/BnDZww7tvszWBemlYQS1Pg/%D0%A1%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-list--tab--toggles--FF-8135-?node-id=2852-26425&m=dev',
-    },
-  },
+  parameters: { layout: 'centered' },
 };
 
 export default meta;

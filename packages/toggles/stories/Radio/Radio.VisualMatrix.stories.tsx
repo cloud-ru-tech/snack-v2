@@ -1,21 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import togglesReadme from '../../README.md?raw';
 import { Radio, RadioProps, SIZE } from '../../src';
 import styles from './styles.module.scss';
 
 const meta: Meta<RadioProps> = {
   title: 'Components/Toggles/Radio',
   component: Radio,
-  parameters: {
-    readme: { content: togglesReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2815-30903&p=f&m=dev',
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
     size: 'xs',
     checked: false,

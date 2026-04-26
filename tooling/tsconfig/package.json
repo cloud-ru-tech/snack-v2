@@ -1,0 +1,10 @@
+{
+  "name": "@ds/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "files": ["base.json", "react-lib.json"],
+  "exports": {
+    "./base.json": "./base.json",
+    "./react-lib.json": "./react-lib.json"
+  }
+}

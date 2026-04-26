@@ -1,7 +1,17 @@
-import { Divider } from '@design-system/divider';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Divider } from '@ds/divider';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { Children, KeyboardEvent, ReactElement, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Children,
+  KeyboardEvent,
+  ReactElement,
+  ReactNode,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 import { MARKER_POSITION, ORIENTATION, SIZE } from '../../constants';
@@ -185,7 +195,7 @@ export function TabBar({
         <div className={styles.tabBarMain} data-testid='tabs__bar-wrap' data-orientation={orientation}>
           <ScrollContainer
             className={cn(SCROLL_CONTAINER_ORIENTATION_MAP[orientation], styles.scrollArea)}
-            innerRef={scrollContainerRef as React.RefObject<HTMLElement>}
+            innerRef={scrollContainerRef as RefObject<HTMLElement>}
           >
             <div
               className={styles.tabsRow}

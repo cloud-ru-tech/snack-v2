@@ -1,19 +1,12 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 
-import togglesReadme from '../../README.md?raw';
 import { Checkbox, CheckboxProps, SIZE } from '../../src';
 
 const meta: Meta<CheckboxProps> = {
   title: 'Components/Toggles/Checkbox',
   component: Checkbox,
-  parameters: {
-    readme: { content: togglesReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2815-30903&p=f&m=dev',
-    },
-  },
+  parameters: { layout: 'centered' },
 };
 
 export default meta;

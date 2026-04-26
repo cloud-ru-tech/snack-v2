@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@design-system/materials' as m;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
 
 $roles: 'regular', 'onAccent';
 $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'violet', 'pink', 'yellow', 'green';

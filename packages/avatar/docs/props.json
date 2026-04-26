@@ -1,0 +1,75 @@
+{
+  "Avatar": {
+    "displayName": "Avatar",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "description": "Имя пользователя для генерации аббревиатуры"
+      },
+      "src": {
+        "type": "string",
+        "required": false,
+        "description": "URL изображения аватара"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "neutral",
+        "description": "Внешний вид (цвет)"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "3xl",
+          "6xl",
+          "10xl"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "shape": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "round",
+          "square"
+        ],
+        "defaultValue": "round",
+        "description": "Форма: круглая или квадратная"
+      },
+      "showTwoSymbols": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отображение двух заглавных символов имени вместо одного"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (round) или квадратная (square)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink"
+  }
+}

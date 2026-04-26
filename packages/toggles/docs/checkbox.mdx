@@ -1,0 +1,123 @@
+---
+title: Checkbox
+package: '@ds/toggles'
+description: Чекбокс для множественного выбора — два размера, состояния checked/indeterminate/disabled/loading и единое API с остальными toggles.
+order: 1
+---
+
+import { CheckboxDemo } from '../demos/CheckboxDemo'
+import { CheckboxBasic } from '../demos/examples/CheckboxBasic'
+import CheckboxBasicSrc from '../demos/examples/CheckboxBasic.tsx?raw'
+import { CheckboxIndeterminate } from '../demos/examples/CheckboxIndeterminate'
+import CheckboxIndeterminateSrc from '../demos/examples/CheckboxIndeterminate.tsx?raw'
+import { CheckboxStates } from '../demos/examples/CheckboxStates'
+import CheckboxStatesSrc from '../demos/examples/CheckboxStates.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_CHECKBOX } from '~docs/lib/figma'
+import togglesDoc from './props.json'
+
+# Checkbox
+
+Чекбокс для множественного выбора из списка. Поддерживает три визуальных состояния — unchecked / checked / indeterminate — плюс disabled и loading.
+
+## Демо
+
+<CheckboxDemo client:load />
+
+## Когда использовать
+
+- Для множественного выбора из двух или более независимых опций.
+- Для согласий («Я согласен с условиями»), чек-листов, фильтров.
+- Для «выбрать всё» в группе — индикатор частичного выбора (`indeterminate`).
+
+Когда **не** нужен Checkbox: для взаимоисключающего выбора — используйте [`Radio`](/components/toggles/radio), для on/off настроек — [`Switch`](/components/toggles/switch).
+
+## Для дизайнеров
+
+### Size
+
+| Size | Размер | Применение |
+|------|--------|-----------|
+| `xs` | 16×16 | Плотные списки, таблицы |
+| `s`  | 24×24 | Формы, карточки, согласия |
+
+Размеры соответствуют Figma-токенам и фиксируются E2E-тестами на parity.
+
+### Состояния
+
+| Состояние | Когда |
+|-----------|-------|
+| `unchecked` | Опция не выбрана |
+| `checked` | Опция выбрана |
+| `indeterminate` | Частично выбрано — используется для «выбрать всё» при частичной подгруппе |
+| `disabled` | Опция временно недоступна; сохраняет checked/indeterminate |
+| `loading` | Асинхронная операция сохранения выбора — input скрывается, рендерится спиннер |
+
+<Example title='Все состояния в ряд' code={CheckboxStatesSrc}>
+  <CheckboxStates client:load />
+</Example>
+
+### Do / Don't
+
+- ✅ `indeterminate` для родителя в иерархии «выбрать всё / часть».
+- ❌ `indeterminate` как третье логическое состояние без иерархии — это не tristate, это «часть выбрано».
+- ✅ Видимый label справа от чекбокса, кликабельный через `<label>`.
+- ❌ Чекбокс без видимого лейбла в форме — используйте `aria-label` только в toolbar'ах.
+- ✅ `loading` после оптимистичного клика до ответа бэка.
+- ❌ `disabled` без подсказки, почему недоступно.
+
+### Figma
+
+<FigmaEmbed node={FIGMA_CHECKBOX} height={480} title='Checkbox в Figma (Snack UI Kit)' client:load />
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/toggles
+```
+
+```ts
+import { Checkbox } from '@ds/toggles'
+import '@ds/toggles/style.css'
+```
+
+### Примеры использования
+
+<Example title='1. Базовый чекбокс' code={CheckboxBasicSrc}>
+  <CheckboxBasic client:load />
+</Example>
+
+<Example title='2. Indeterminate' description='Используется для частично выбранной группы' code={CheckboxIndeterminateSrc}>
+  <CheckboxIndeterminate client:load />
+</Example>
+
+<Example title='3. Все состояния' code={CheckboxStatesSrc}>
+  <CheckboxStates client:load />
+</Example>
+
+### States
+
+- **`checked` / `defaultChecked`** — controlled и uncontrolled режимы.
+- **`indeterminate` / `indeterminateDefault`** — аналогично, сбрасывается при любом клике.
+- **`disabled`** — `data-disabled="true"` на корне и native `disabled` на input.
+- **`loading`** — `data-loading="true"`, native input не рендерится, вместо иконки спиннер.
+
+### Props
+
+<PropsTable data={togglesDoc.Checkbox} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-toggles-checkbox--playground' height={360} client:load />
+
+## Доступность
+
+- `role="checkbox"` на корне + нативный `<input type="checkbox">` — клавиатура (Space) работает из коробки.
+- `data-focusvisible` на корне при навигации с клавиатуры — для подсветки focus-ring.
+- `data-indeterminate="true"` + `input.indeterminate = true` — скринридеры озвучивают как «partially checked».
+- Для чекбокса без видимого текста — обязателен `aria-label` / `aria-labelledby`.

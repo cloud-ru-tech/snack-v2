@@ -1,0 +1,75 @@
+---
+title: HiddenDropZone
+package: '@ds/dropzone'
+description: Скрытая зона загрузки файлов, накрывающая оверлеем произвольный контент при перетаскивании файлов — формы, карточки, редакторы.
+order: 53
+---
+
+import { HiddenDropZone } from '@ds/dropzone'
+import { HiddenDropZoneBasic } from '../demos/examples/HiddenDropZoneBasic'
+import HiddenDropZoneBasicSrc from '../demos/examples/HiddenDropZoneBasic.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import dropzoneDoc from './props.json'
+
+# HiddenDropZone
+
+Скрытая зона загрузки, которая становится видимой только во время перетаскивания файлов. Оверлей рендерится поверх произвольного контента (форма, карточка, редактор) и позволяет прикрепить файлы к существующей сущности без отдельной визуальной области.
+
+## Когда использовать
+
+- Прикрепление файлов к форме, где уже есть другие поля и нет места под явную зону.
+- Drop-to-attach поверх карточки задачи, чата, редактора.
+- Массовая загрузка поверх полноэкранного списка.
+
+Когда **не** подходит: когда загрузка — первичный сценарий страницы и должна быть видна сразу — используйте [Dropzone](/components/dropzone/dropzone).
+
+## Для дизайнеров
+
+### Оверлей
+
+Оверлей появляется только при `dragenter` и исчезает при `dragleave` / `drop`. В покое пользователь видит исходный контент (форму) без зоны загрузки. Это экономит пространство, но требует отдельной подсказки — иначе пользователь не узнает, что drop возможен.
+
+### Do / Don't
+
+- ✅ Добавляйте подпись «Перетащите файлы» рядом с контентом — пользователь должен знать о возможности.
+- ❌ Не делайте `HiddenDropZone` единственным способом загрузить — всегда дублируйте `FileUpload` с кнопкой.
+- ✅ Используйте `content` для описания того, что произойдёт при drop.
+- ❌ Не прячьте оверлей за прозрачностью ниже 80% — пользователь должен чётко понимать, что зона активна.
+
+## Для разработчиков
+
+### Установка
+
+```bash
+pnpm add @ds/dropzone
+```
+
+```ts
+import { HiddenDropZone } from '@ds/dropzone'
+```
+
+### Примеры использования
+
+<Example
+  title='Оверлей над формой'
+  description='HiddenDropZone накрывает форму при drag'
+  code={HiddenDropZoneBasicSrc}
+>
+  <HiddenDropZoneBasic client:load />
+</Example>
+
+### Props
+
+<PropsTable data={dropzoneDoc.HiddenDropZone} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-dropzone-hiddendropzone--playground' height={420} />
+
+## Доступность
+
+- Drag-n-drop недоступен с клавиатуры — обязательно дублируйте сценарий `FileUpload`-кнопкой.
+- Оверлей `aria-hidden='true'`, чтобы скринридер не объявлял появление зоны при drag.
+- В `disabled` оверлей не появляется; форма работает как обычно.

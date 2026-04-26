@@ -1,9 +1,9 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/counter.module' as counter;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/counter.module' as counter;
 
 $sizes: 'xs', 's';
 $contexts: 'primary', 'neutral', 'critical';
-// Маппинг appearance (API) -> токен темы (figma-variables): critical использует токен red
+// appearance (API) → тема токенов figma-variables: critical мапится на токен red
 $appearance-to-theme: (
   'primary': 'primary',
   'neutral': 'neutral',
@@ -36,13 +36,24 @@ $typography: (
       $token: base.simple-var($appearance-to-theme, $appearance);
       &[data-color='#{$roleColor}'] {
         &[data-appearance='#{$appearance}'] {
-          color: base.simple-var(base.$sn-theme, 'color', $token, base.simple-var($textColor, $roleColor));
+          color: base.simple-var(
+            base.$sn-theme,
+            'color',
+            $token,
+            base.simple-var($textColor, $roleColor)
+          );
           background-color: base.simple-var(base.$sn-theme, 'color', $token, $roleColor);
 
           @each $size in $sizes {
             &[data-size='#{$size}'] {
               @include base.composite-var($typography, $size);
-              @include base.composite-var(counter.$counter, 'anatomy', 'size', $size, 'container');
+              @include base.composite-var(
+                counter.$counter,
+                'anatomy',
+                'size',
+                $size,
+                'container'
+              );
 
               height: 0;
               border-color: base.$sn-theme-color-neutral-background1Level;
@@ -53,4 +64,9 @@ $typography: (
       }
     }
   }
+}
+
+.plus,
+.key {
+  display: inline-block;
 }

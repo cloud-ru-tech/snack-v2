@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.customBody {
+  padding: 24px;
+}
+
+.customBody > p + p {
+  margin-top: 12px;
+}

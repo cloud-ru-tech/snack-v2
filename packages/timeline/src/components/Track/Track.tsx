@@ -4,7 +4,7 @@ import { VARIANT } from '../TrackDot/constants';
 import { TrackLine, type TrackLineProps } from '../TrackLine';
 import { ROLE } from './constants';
 import styles from './styles.module.scss';
-import type { Role } from './types';
+import { Role } from './types';
 
 export type TrackProps = {
   /** Роль */

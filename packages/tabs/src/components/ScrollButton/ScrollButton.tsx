@@ -1,5 +1,5 @@
-import { Button } from '@design-system/button';
-import { ChevronDownSVG, ChevronLeftSVG, ChevronRightSVG, ChevronUpSVG } from '@design-system/icons';
+import { Button } from '@ds/button';
+import { ChevronDownSVG, ChevronLeftSVG, ChevronRightSVG, ChevronUpSVG } from '@ds/icons';
 import { ReactElement } from 'react';
 
 import { Direction, Orientation, Size } from '../../types';

@@ -1,0 +1,62 @@
+---
+title: TrackItem
+package: '@ds/timeline'
+description: Одна строка ленты — маркер, соединительные линии, контент и опциональная противоположная колонка. Публичный субкомпонент для кастомной раскладки.
+order: 2
+---
+
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import timelineDoc from './props.json'
+
+# TrackItem
+
+Одна строка ленты событий. Используйте напрямую, если нужна кастомная раскладка — например, встраивание событий в таблицу или сетку с собственной логикой группировки. Для типового сценария «массив → вертикальная лента» возьмите `Timeline`.
+
+## Props — `role`
+
+Обязательный проп, определяет, какие линии рисуются вокруг маркера:
+
+| Role | Линии |
+|------|-------|
+| `start` | Только линия вниз — первый элемент ленты |
+| `center` | Линии сверху и снизу — промежуточный элемент |
+| `end` | Только линия сверху — последний элемент |
+
+При использовании через `Timeline` роль вычисляется автоматически по индексу.
+
+## Пример кастомной ленты
+
+```tsx
+import { TrackItem } from '@ds/timeline'
+
+function CustomTimeline({ events }) {
+  return (
+    <div>
+      {events.map((event, i) => (
+        <TrackItem
+          key={event.id}
+          role={i === 0 ? 'start' : i === events.length - 1 ? 'end' : 'center'}
+          content={<EventCard event={event} />}
+          opposite={event.timestamp}
+          dotAppearance={event.type === 'error' ? 'red' : 'neutral'}
+        />
+      ))}
+    </div>
+  )
+}
+```
+
+## Props
+
+<PropsTable data={timelineDoc.TrackItem} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-timeline-track--playground' height={360} client:load />
+
+## Доступность
+
+- Те же принципы, что у `Timeline`: оборачивайте список во внешний `<ol>`/`<ul>` с `aria-label` для скринридеров.
+- `opposite`-колонка читается после `content` в DOM-порядке — учитывайте это при чтении с клавиатуры.
+- Цвет маркера дублируйте текстом внутри `content`.

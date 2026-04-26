@@ -1,8 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, HotSpot, HotSpotProps } from '@ds/hot-spot';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
-
-import { APPEARANCE, HotSpot, type HotSpotProps } from '../../src';
 
 const meta: Meta<HotSpotProps> = {
   title: 'Components/HotSpot',

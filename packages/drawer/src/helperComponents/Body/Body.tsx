@@ -1,5 +1,5 @@
-import { Scroll } from '@design-system/scroll';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Scroll } from '@ds/scroll';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode } from 'react';
 

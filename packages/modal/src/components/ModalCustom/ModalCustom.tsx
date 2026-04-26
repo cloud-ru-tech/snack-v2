@@ -1,5 +1,5 @@
-import { usePortalContext } from '@design-system/portal-context';
-import { extractSupportProps, isBrowser, useModalOpenState, WithSupportProps } from '@design-system/utils';
+import { usePortalContext } from '@ds/portal-context';
+import { extractSupportProps, isBrowser, useModalOpenState, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { type ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';

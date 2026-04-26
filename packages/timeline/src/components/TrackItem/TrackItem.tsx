@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { notReachable } from '../../helpers';
 import { Track, type TrackProps } from '../Track';
 import { POSITION } from './constants';
 import styles from './styles.module.scss';
-import type { Position } from './types';
+import { Position } from './types';
 
 export type TrackItemProps = {
   /** Уникальный ключ */

@@ -1,10 +1,10 @@
-import { extractSupportProps, type WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { JSXElementConstructor } from 'react';
+import { JSXElementConstructor } from 'react';
 
 import { APPEARANCE, SIZE } from './constants';
 import styles from './styles.module.scss';
-import type { Appearance, Size } from './types';
+import { Appearance, Size } from './types';
 
 export type IconPredefinedProps = WithSupportProps<{
   /** CSS-класс */

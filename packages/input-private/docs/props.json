@@ -1,0 +1,236 @@
+{
+  "useClearButton": {
+    "displayName": "useClearButton",
+    "props": {
+      "clearButtonRef": {
+        "type": "RefObject<HTMLButtonElement | null>",
+        "required": true
+      },
+      "showClearButton": {
+        "type": "boolean",
+        "required": true
+      },
+      "onClear": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": true
+      },
+      "onDown": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "s",
+          "m",
+          "l"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "description": "Позволяет использовать кнопку сброса значения"
+  },
+  "useButtonNavigation": {
+    "displayName": "useButtonNavigation",
+    "props": {
+      "setInputFocus": {
+        "type": "(() => void)",
+        "required": false,
+        "defaultValue": "() => inputRef.current?.focus()"
+      },
+      "inputRef": {
+        "type": "RefObject<T | null>",
+        "required": true
+      },
+      "postfixButtons": {
+        "type": "ButtonProps[]",
+        "required": true
+      },
+      "prefixButtons": {
+        "type": "ButtonProps[]",
+        "required": false,
+        "defaultValue": "[]"
+      },
+      "onButtonKeyDown": {
+        "type": "KeyboardEventHandler<HTMLButtonElement>",
+        "required": false,
+        "defaultValue": "() => {}"
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": true
+      },
+      "submitKeys": {
+        "type": "string[]",
+        "required": true
+      }
+    },
+    "description": "Позволяет использовать клавиатуру для навигации по элементам управления"
+  },
+  "InputPrivate": {
+    "displayName": "InputPrivate",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Значение html-атрибута name"
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Значение input"
+      },
+      "onChange": {
+        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Значение html-атрибута id"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Значение плейсхолдера"
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Является ли поле доступным только для чтения"
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "number",
+          "text",
+          "password",
+          "tel",
+          "email",
+          "url"
+        ],
+        "defaultValue": "text",
+        "description": "Тип инпута"
+      },
+      "inputMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "text",
+          "tel",
+          "email",
+          "url",
+          "decimal",
+          "numeric",
+          "search",
+          "none"
+        ],
+        "defaultValue": "text",
+        "description": "Режим работы экранной клавиатуры"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Является ли поле деактивированным"
+      },
+      "autoComplete": {
+        "type": "string | boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включен ли автокомплит для поля"
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включен ли авто-фокус для поля"
+      },
+      "maxLength": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальная длина вводимого значения"
+      },
+      "min": {
+        "type": "number",
+        "required": false,
+        "description": "Минимальное значение поля"
+      },
+      "max": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальное значение поля"
+      },
+      "step": {
+        "type": "string | number",
+        "required": false,
+        "description": "Максимальное значение поля"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Значение атрибута tab-index"
+      },
+      "spellCheck": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Значение атрибута spellcheck (проверка орфографии)"
+      },
+      "pattern": {
+        "type": "string",
+        "required": false,
+        "description": "Регулярное выражение валидного инпута"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки потери фокуса"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
+      },
+      "onPaste": {
+        "type": "ClipboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки вставки значения"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onMouseDown": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      }
+    },
+    "description": "Input Private компонент"
+  }
+}

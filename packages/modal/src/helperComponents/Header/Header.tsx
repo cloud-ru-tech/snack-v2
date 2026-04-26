@@ -1,8 +1,8 @@
-import { Button } from '@design-system/button';
-import { ArrowLeftSVG } from '@design-system/icons';
-import { TruncateString } from '@design-system/truncate-string';
-import { Typography } from '@design-system/typography';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { Button } from '@ds/button';
+import { ArrowLeftSVG } from '@ds/icons';
+import { TruncateString } from '@ds/truncate-string';
+import { Typography } from '@ds/typography';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { type ReactNode, useMemo } from 'react';
 

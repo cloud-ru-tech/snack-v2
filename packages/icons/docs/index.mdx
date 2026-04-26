@@ -1,194 +1,34 @@
 ---
 title: Icons
-description: React-компоненты интерфейсных иконок и Sprite для кастомных SVG
-version: '0.1.0'
+package: '@ds/icons'
+description: Наборы интерфейсных иконок React и компонент Sprite для SVG-спрайтов.
+order: 3
 ---
 
-import { ExampleContainer, ExampleItem, ExampleRow } from '#astro/components/mdx';
-import { CheckSVG, SearchSVG, Sprite } from '../src';
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
+import { IconsDemo } from '../demos/IconsDemo'
+import { PropsTable } from '~docs/components/PropsTable'
+import iconsDoc from './props.json'
 
 # Icons
 
-Набор React-компонентов интерфейсных иконок и компонент **Sprite** для вставки кастомных SVG-спрайтов. Иконки поддерживают размер, наследование цвета через `fill: currentColor` и типизированные пропсы.
+Пакет экспортирует сгенерированные компоненты `*SVG` / `*SpriteSVG` и вспомогательный [`Sprite`](./props.json) для подключения спрайтов. Цвет наследуется через `currentColor`.
 
-**Version:** `{frontmatter.version}`
+<IconsDemo client:load />
 
-## Installation
+## Установка
 
 ```bash
-npm install @design-system/icons
-# or
-yarn add @design-system/icons
-# or
-pnpm add @design-system/icons
+pnpm add @ds/icons
 ```
 
-## Changelog
-
-<Changelog packageName='icons' />
-
-<LlmLink component='icons' />
-
-## Overview
-
-Пакет предоставляет:
-
-- **Три набора иконок** — **Snack Icons** (интерфейсные для Snack UI Kit), **Product Icons** и **Web Icons** (расширенные наборы). Группировка в Storybook и в исходниках соответствует структуре папок в `svgs/`.
-- **Два режима рендера** — **sprite** (через `<use href="#id">`, меньше DOM) и **standalone** (инлайн SVG). Переключатель доступен в стори Playground.
-- **Отдельные React-компоненты** для каждой иконки (например, `CheckSVG`, `SearchSVG`, `ArrowDownSVG`). Пропсы: `size`, `className`, `style`.
-- **Sprite** — компонент для рендера произвольного SVG-спрайта. Принимает `content` (строка SVG) и опционально `data-test-id`.
-- **Готовые спрайты** — `SpriteSnackIconsSVG`, `SpriteProductIconsSVG`, `SpriteWebIconsSVG` в виде сырой строки SVG для использования с `<Sprite content={...} />`.
-
-**Важно:** иконки в режиме sprite рассчитаны на использование **вместе со спрайтом**. Каждый спрайт нужно подключить **один раз** на странице (в корне приложения или layout), после чего все компоненты иконок будут ссылаться на символы из этого спрайта. Если спрайт не подключён или символа нет — срабатывает встроенный fallback (иконка отрисуется инлайн, в консоль выводится предупреждение).
-
-## Live examples
-
-### Одна иконка с размером
-
-<ExampleContainer>
-  <ExampleRow>
-    <ExampleItem label='24px'>
-      <CheckSVG size={24} />
-    </ExampleItem>
-    <ExampleItem label='16px'>
-      <CheckSVG size={16} />
-    </ExampleItem>
-  </ExampleRow>
-</ExampleContainer>
-
-### Несколько иконок
-
-<ExampleContainer>
-  <ExampleRow>
-    <ExampleItem label='CheckSVG'>
-      <CheckSVG size={24} />
-    </ExampleItem>
-    <ExampleItem label='SearchSVG'>
-      <SearchSVG size={24} />
-    </ExampleItem>
-  </ExampleRow>
-</ExampleContainer>
-
-## Storybook
-
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-
-### Playground
-
-В стори **Playground** отображаются все иконки из трёх наборов (Snack, Product, Web) с группировкой по структуре папок в `svgs/`, поиском по имени и переключателем режима **sprite** / **standalone**.
-
-<StorybookIframe
-  storyId='icons-interfaces-visual-matrix--interfaces-visual-matrix'
-  showControls={false}
-  height='600px'
-/>
-
-## Usage
-
-### Подключение спрайта (один раз на странице)
-
-Каждый спрайт нужно подключить **один раз** в корне приложения (корневой layout, провайдер или декоратор), чтобы все иконки в режиме sprite могли на него ссылаться.
-
-```tsx
-import { Sprite, SpriteSnackIconsSVG, SpriteProductIconsSVG, SpriteWebIconsSVG } from '@design-system/icons';
-
-export function RootLayout({ children }) {
-  return (
-    <>
-      <Sprite content={SpriteSnackIconsSVG as unknown as string} />
-      <Sprite content={SpriteProductIconsSVG as unknown as string} />
-      <Sprite content={SpriteWebIconsSVG as unknown as string} />
-      {children}
-    </>
-  );
-}
+```ts
+import { SearchSVG, Sprite, SpriteSnackIconsSVG } from '@ds/icons'
 ```
 
-### Импорт и использование иконки
+Для режима **sprite** сначала отрендерьте скрытый блок со спрайтом, затем используйте иконки с `<use href="#id">` внутри.
 
-```tsx
-import { CheckSVG, ArrowDownSVG } from '@design-system/icons';
+## Sprite
 
-export function Example() {
-  return (
-    <>
-      <CheckSVG size={24} />
-      <ArrowDownSVG size={16} className='my-icon' />
-    </>
-  );
-}
-```
+<PropsTable data={iconsDoc.Sprite} />
 
-### Иконки из Product Icons и Web Icons
-
-```tsx
-import { ProductIcons, WebIcons } from '@design-system/icons';
-
-// Именованные экспорты: ProductIcons.AcceptSpriteSVG, WebIcons.ServerSpriteSVG и т.д.
-export function Example() {
-  const AcceptIcon = ProductIcons.AcceptSpriteSVG;
-  const ServerIcon = WebIcons.ServerSpriteSVG;
-  return (
-    <>
-      <AcceptIcon size={24} />
-      <ServerIcon size={24} />
-    </>
-  );
-}
-```
-
-### Связка спрайта и компонента иконки
-
-- **Спрайт** рендерит в DOM один раз строку SVG с элементами `<symbol id="snack-uikit-...">` для каждой иконки.
-- **Компонент иконки** в режиме sprite рендерит `<svg><use href="#snack-uikit-..." /></svg>` — браузер подставляет содержимое символа по ссылке.
-- Итог: один спрайт на странице, много лёгких ссылок через `<use>`, цвет и размер задаются на уровне `<svg>` иконки (`fill: currentColor`, `size`).
-
-### Sprite с кастомным SVG
-
-```tsx
-import { Sprite } from '@design-system/icons';
-
-const customSvg = '<svg><symbol id="my-icon">...</symbol></svg>';
-
-export function Example() {
-  return <Sprite content={customSvg} />;
-}
-```
-
-### Fallback при отсутствии спрайта
-
-Иконки в режиме sprite ссылаются на символ в спрайте (`<use href="#snack-uikit-...">`). Если спрайт не подключён или нужного символа в нём нет, компонент автоматически отрисует иконку инлайн. В консоль выводится предупреждение: `[@design-system/icons] Symbol "#..." not found on page. Rendering inline fallback.`
-
-## Props
-
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### ISvgIconProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| size | `number` | 24 |  |
-| className | `string` | - | CSS-класс |
-| style | `CSSProperties` | - |  |
-### SpriteProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| content* | `string` | - |  |
-
-
-[//]: DOCUMENTATION_SECTION_END
-
-## Accessibility
-
-- Иконки без подписи должны использоваться вместе с видимым текстом или иметь `aria-label` / `title` на обёртке (кнопка, ссылка).
-- Декоративные иконки помечайте `aria-hidden="true"`.
-- Для интерактивных элементов с одной иконкой добавляйте доступную подпись (текст или `aria-label`).
-
-## Best practices
-
-1. **Единый размер в блоке** — в одном UI-блоке используйте один размер иконок (например, везде 24 или везде 16).
-2. **Цвет через inherit** — иконки наследуют `fill` от родителя; задавайте цвет через `color` в CSS родителя.
-3. **Sprite для множества иконок** — если на странице много разных иконок, подключайте спрайт один раз и используйте компоненты в режиме sprite для уменьшения разметки.
-4. **Выбор режима** — sprite даёт меньше DOM-узлов; standalone удобен для изолированных виджетов или когда спрайт не используется.
+Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.

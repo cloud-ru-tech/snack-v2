@@ -1,19 +1,14 @@
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { PlaceholderSVG } from '@ds/icons';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { action } from 'storybook/actions';
 
-import promoTagReadme from '../../README.md?raw';
 import { PromoTag, PromoTagProps } from '../../src';
 import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '../../src/constants';
 
 const meta: Meta<PromoTagProps> = {
   title: 'Components/PromoTag',
   component: PromoTag,
-  parameters: {
-    readme: {
-      content: promoTagReadme,
-    },
-  },
+  parameters: { layout: 'centered' },
   args: {
     text: 'Promo tag',
     appearance: APPEARANCE.Primary,
@@ -88,7 +83,7 @@ const Template: StoryFn<PlaygroundArgs> = ({ beforeContent, afterContent, ...arg
 );
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
   render: Template,
   args: {
     beforeContent: false,

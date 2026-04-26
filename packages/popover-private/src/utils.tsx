@@ -1,4 +1,3 @@
-import { isBrowser } from '@design-system/utils';
 import { Placement, ReferenceType, useInteractions } from '@floating-ui/react';
 import cn from 'classnames';
 import {
@@ -14,7 +13,7 @@ import {
 } from 'react';
 import { isForwardRef, isValidElementType } from 'react-is';
 
-import { PopoverPrivateProps } from './components';
+import type { PopoverPrivateProps } from './components';
 import { TRIGGER } from './constants';
 import { Trigger } from './types';
 

@@ -1,18 +1,9 @@
 {
-  "extends": "../tsconfig.cjs.json",
+  "extends": "../../tooling/tsconfig/ds-package-cjs.json",
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist/cjs"
   },
-  "include": [
-    "./src",
-    "../../types"
-  ],
-  "exclude": [
-    "./dist",
-    "./stories",
-    "./__tests__",
-    "./__test__",
-    "./docs"
-  ]
+  "include": ["./src", "../../types/scss.d.ts", "../../types/svg.d.ts"],
+  "exclude": ["dist", "stories", "docs", "demos", "node_modules"]
 }

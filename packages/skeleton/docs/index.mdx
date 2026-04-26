@@ -1,52 +1,130 @@
 ---
 title: Skeleton
-description: Плейсхолдеры загрузки — блоки и текст-скелетоны для индикации загрузки контента.
-version: '0.1.0'
+package: '@ds/skeleton'
+description: Пакет скелетонов дизайн-системы — компоненты Skeleton, SkeletonText и WithSkeleton для индикации состояния загрузки.
+order: 30
 ---
 
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-import {
-  ExampleContainer,
-  ExampleRow,
-  ExampleItem,
-} from '#astro/components/mdx';
-import { Skeleton, SkeletonText, WithSkeleton } from '../src';
+import { Skeleton, SkeletonText, WithSkeleton } from '@ds/skeleton'
+import { SkeletonDemo } from '../demos/SkeletonDemo'
+import { Block } from '../demos/examples/Block'
+import BlockSrc from '../demos/examples/Block.tsx?raw'
+import { Circle } from '../demos/examples/Circle'
+import CircleSrc from '../demos/examples/Circle.tsx?raw'
+import { TextLines } from '../demos/examples/TextLines'
+import TextLinesSrc from '../demos/examples/TextLines.tsx?raw'
+import { WithToggle } from '../demos/examples/WithToggle'
+import WithToggleSrc from '../demos/examples/WithToggle.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import skeletonDoc from './props.json'
 
 # Skeleton
 
-Пакет компонентов для плейсхолдеров загрузки: **Skeleton** (блок произвольной формы), **SkeletonText** (строки текста) и **WithSkeleton** (обёртка для условного отображения скелетона или контента). Стили — из design tokens (Figma variables).
+Пакет `@ds/skeleton` предоставляет примитивы для индикации загрузки: блочный `Skeleton`, многострочный `SkeletonText` и контейнер-переключатель `WithSkeleton`, который сам выбирает, что показывать — скелетон или реальный контент.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-## Installation
+<SkeletonDemo client:load />
+
+## Когда использовать
+
+- Когда данные подгружаются асинхронно и отображение контента задерживается более 200 мс.
+- Чтобы зарезервировать место под контент и избежать layout shift при появлении данных.
+- Для списков, карточек и текстовых блоков — как визуальная подсказка «идёт загрузка».
+
+Когда **не** нужен скелетон: для мгновенных переходов (< 200 мс), для обычных спиннеров поверх модальных окон (используйте `Loader`), для пустых состояний (используйте `EmptyState`).
+
+## Для дизайнеров
+
+Секция описывает семантику и поведение скелетонов в макетах.
+
+### Состав пакета
+
+| Компонент | Назначение |
+|-----------|------------|
+| `Skeleton` | Один блок произвольного размера: прямоугольник, скруглённый блок, круг |
+| `SkeletonText` | Несколько строк текста по typography-anatomy (variant × size) |
+| `WithSkeleton` | Обёртка: показывает `skeleton`, пока `loading=true`, иначе `children` |
+
+### Do / Don't
+
+- ✅ Форма скелетона повторяет форму реального контента: круглая аватарка → круглый скелетон.
+- ❌ Один универсальный прямоугольник вместо набора форм — пользователь теряет ориентир.
+- ✅ `SkeletonText` с тем же `variant`/`size`, что и реальный текст — высота строк совпадёт.
+- ❌ Фиксированная высота в пикселях — при смене typography скелетон поедет.
+- ✅ Скелетоны только на первой загрузке данных экрана/секции.
+- ❌ Скелетоны при каждом фоновом обновлении — используйте `stale-while-revalidate`.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/skeleton
-# or
-yarn add @design-system/skeleton
-# or
-pnpm add @design-system/skeleton
+pnpm add @ds/skeleton
 ```
 
-## Changelog
+```ts
+import { Skeleton, SkeletonText, WithSkeleton } from '@ds/skeleton'
+import '@ds/skeleton/style.css'
+```
 
-<Changelog packageName="skeleton" />
+### Примеры использования
 
-<LlmLink component="skeleton" />
+<Example
+  title='1. Блок фиксированного размера'
+  description='Прямоугольник под аватарку/картинку'
+  code={BlockSrc}
+>
+  <Block client:load />
+</Example>
 
-## Overview
+<Example
+  title='2. Круглый блок'
+  description='borderRadius=50% — под аватар'
+  code={CircleSrc}
+>
+  <Circle client:load />
+</Example>
 
-Компоненты скелетонов показывают анимированные плейсхолдеры во время загрузки данных. В пакет входят:
+<Example
+  title='3. Текстовые строки'
+  description='lines контролирует количество строк; variant × size задают типографику'
+  code={TextLinesSrc}
+>
+  <TextLines client:load />
+</Example>
 
-- **Skeleton** — блок-плейсхолдер с настраиваемой шириной, высотой и скруглением. Подходит для картинок, карточек, аватаров.
-- **SkeletonText** — строки-плейсхолдеры для текста. Поддержка `purpose`, `size`, `align` (типографика) и `lines` (количество строк).
-- **WithSkeleton** — обёртка: при `loading={true}` показывает произвольный JSX-скелетон, при `loading={false}` — `children`.
-- **Стили** — отступы, анимация, цвета из design tokens.
+<Example
+  title='4. Переключение loading → content'
+  description='WithSkeleton рендерит skeleton при loading=true, иначе — children'
+  code={WithToggleSrc}
+>
+  <WithToggle client:load />
+</Example>
 
-## Components
+### Props
 
-- **[Skeleton](./components/skeleton/)** — блок-плейсхолдер (примеры, API)
-- **[SkeletonText](./components/skeletontext/)** — строки-плейсхолдеры для текста (примеры, API)
-- **[WithSkeleton](./components/withskeleton/)** — обёртка для условного отображения скелетона или контента (примеры, API)
+#### Skeleton
+
+<PropsTable data={skeletonDoc.Skeleton} />
+
+#### SkeletonText
+
+<PropsTable data={skeletonDoc.SkeletonText} />
+
+#### WithSkeleton
+
+<PropsTable data={skeletonDoc.WithSkeleton} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-skeleton--playground' height={360} client:load />
+
+## Доступность
+
+- Блоки скелетона не несут смысловой нагрузки для скринридеров: это визуальная пауза, а не контент.
+- Для секций, содержащих скелетоны, рекомендуется проставить `aria-busy="true"` на контейнере — скринридер корректно сообщит о загрузке.
+- Анимация скелетона уважает `prefers-reduced-motion: reduce` — при соответствующей системной настройке мерцание отключается.
+- Контраст фонового оттенка скелетона соответствует токенам `@cloud-ru/figma-variables` и проходит требования WCAG AA для нетекстового контента.

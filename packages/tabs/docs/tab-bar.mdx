@@ -1,0 +1,42 @@
+---
+title: TabBar
+package: '@ds/tabs'
+description: Панель табов — задаёт размер, ориентацию, позицию маркера и слот справа (after) для дополнительных действий.
+order: 2
+---
+
+import { SizeL } from '../demos/examples/SizeL'
+import SizeLSrc from '../demos/examples/SizeL.tsx?raw'
+import { Vertical } from '../demos/examples/Vertical'
+import VerticalSrc from '../demos/examples/Vertical.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import tabsDoc from './props.json'
+
+# TabBar
+
+Панель переключателей табов. Задаёт:
+
+- `size` — `l` (верхнеуровневый) или `m` (внутри контента).
+- `orientation` — `horizontal` (по умолчанию) или `vertical`.
+- `markerPosition` — позиция активного маркера (`before` / `after`).
+- `after` — слот справа от табов для дополнительных действий.
+
+## Примеры использования
+
+<Example title='Size L — верхнеуровневый' code={SizeLSrc}>
+  <SizeL client:only="react" />
+</Example>
+
+<Example title='Vertical orientation' code={VerticalSrc}>
+  <Vertical client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={tabsDoc.TabBar} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tabs--sizes' height={240} client:only="react" />

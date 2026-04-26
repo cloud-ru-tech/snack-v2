@@ -1,0 +1,34 @@
+---
+title: Tabs
+package: '@ds/tabs'
+description: Корневой контейнер Tabs — владеет состоянием выбранного таба, поддерживает контролируемый и неконтролируемый режим.
+order: 1
+---
+
+import { Uncontrolled } from '../demos/examples/Uncontrolled'
+import UncontrolledSrc from '../demos/examples/Uncontrolled.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import tabsDoc from './props.json'
+
+# Tabs
+
+Корневой контейнер compound-компонента. Хранит `selectedTab` и передаёт его детям через React-контекст. Работает в двух режимах:
+
+- **Неконтролируемый** — `defaultValue`, переключение через UI.
+- **Контролируемый** — `value` + `onChange`, чаще всего синхронизируется с URL.
+
+## Примеры использования
+
+<Example title='Неконтролируемый режим' code={UncontrolledSrc}>
+  <Uncontrolled client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={tabsDoc.Tabs} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tabs--playground' height={360} client:only="react" />

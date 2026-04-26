@@ -1,8 +1,8 @@
-import { ValueOf } from '@design-system/utils';
+import { ValueOf } from '@ds/utils'
 
-import { APPEARANCE, COLOR, SIZE, VARIANT } from './constants';
+import { APPEARANCE, COLOR, SIZE, VARIANT } from './constants'
 
-export type Appearance = ValueOf<typeof APPEARANCE>;
-export type Size = ValueOf<typeof SIZE>;
-export type Variant = ValueOf<typeof VARIANT>;
-export type Color = ValueOf<typeof COLOR>;
+export type Appearance = ValueOf<typeof APPEARANCE>
+export type Size = ValueOf<typeof SIZE>
+export type Variant = ValueOf<typeof VARIANT>
+export type Color = ValueOf<typeof COLOR>

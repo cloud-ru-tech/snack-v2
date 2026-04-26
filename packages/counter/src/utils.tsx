@@ -1,20 +1,18 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
-import { DEFAULT_KEY_LIMIT, DEFAULT_KEY_POSTFIX, VARIANT } from './constants';
-import styles from './styles.module.scss';
-import { Variant } from './types';
+import { DEFAULT_KEY_LIMIT, DEFAULT_KEY_POSTFIX, VARIANT } from './constants'
+import styles from './styles.module.scss'
+import { Variant } from './types'
 
-export function formatValue({
-  value,
-  variant,
-  plusLimit,
-}: {
-  value: number;
-  variant: Variant;
-  plusLimit: number;
-}): ReactNode {
+type FormatValueOptions = {
+  value: number
+  variant: Variant
+  plusLimit: number
+}
+
+export function formatValue({ value, variant, plusLimit }: FormatValueOptions): ReactNode {
   if (variant === VARIANT.Count) {
-    return value;
+    return value
   }
 
   if (variant === VARIANT.CountPlus) {
@@ -25,7 +23,7 @@ export function formatValue({
         {plusLimit - 1}
         <span className={styles.plus}>+</span>
       </>
-    );
+    )
   }
 
   if (variant === VARIANT.CountK) {
@@ -36,6 +34,8 @@ export function formatValue({
         {Math.round(value / DEFAULT_KEY_LIMIT)}
         <span className={styles.key}>{DEFAULT_KEY_POSTFIX}</span>
       </>
-    );
+    )
   }
+
+  return null
 }

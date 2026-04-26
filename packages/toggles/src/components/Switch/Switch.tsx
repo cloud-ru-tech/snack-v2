@@ -1,5 +1,5 @@
-import { CheckSVG } from '@design-system/icons';
-import { LOADER_SIZE, Spinner } from '@design-system/loader';
+import { CheckSVG } from '@ds/icons';
+import { LOADER_SIZE, Spinner } from '@ds/loader';
 import cn from 'classnames';
 import { useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';

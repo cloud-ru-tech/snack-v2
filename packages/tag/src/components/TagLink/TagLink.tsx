@@ -1,9 +1,9 @@
-import { extractSupportProps } from '@design-system/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { ElementType, MouseEventHandler } from 'react';
+import { ElementType, MouseEventHandler } from 'react';
 
 import { APPEARANCE, SIZE } from '../../constants';
-import type { TagLinkProps } from '../../types';
+import { TagLinkProps } from '../../types';
 import styles from '../TagBase/styles.module.scss';
 
 const TARGET_BLANK = '_blank';

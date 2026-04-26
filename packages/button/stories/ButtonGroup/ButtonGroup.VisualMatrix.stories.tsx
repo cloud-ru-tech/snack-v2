@@ -1,100 +1,74 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { ButtonGroup, ButtonGroupProps, SIZE } from '@ds/button';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { SIZE } from '../../src/Button/constants';
-import { ButtonGroup, type ButtonGroupProps } from '../../src/ButtonGroup';
+import styles from './stories.module.scss';
 
-const meta: Meta<ButtonGroupProps> = {
-  title: 'Components/Button/ButtonGroup',
+const meta: Meta<typeof ButtonGroup> = {
+  title: 'Components/ButtonGroup',
   component: ButtonGroup,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=9099-51008',
-    },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
+type Story = StoryObj<typeof ButtonGroup>;
 
-type Story = StoryObj<ButtonGroupProps>;
+const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
 
-const sizes = Object.values(SIZE);
+const primaryAction = { label: 'Сохранить', appearance: 'primary', view: 'filled' } as const;
+const secondaryAction = { label: 'Отмена', appearance: 'neutral', view: 'outline' } as const;
+const tertiaryAction = { label: 'Помощь', appearance: 'neutral', view: 'simple' } as const;
 
-const primaryActionProps: ButtonGroupProps['primaryAction'] = {
-  label: 'Label text',
-  appearance: 'primary',
-  view: 'filled',
-};
+type CompositionKey = 'primaryOnly' | 'primarySecondary' | 'allThree';
 
-const secondaryActionProps: ButtonGroupProps['secondaryAction'] = {
-  label: 'Label text',
-  appearance: 'neutral',
-  view: 'outline',
-};
+const compositions: Array<{ key: CompositionKey; props: Partial<ButtonGroupProps> }> = [
+  { key: 'primaryOnly', props: { primaryAction } },
+  { key: 'primarySecondary', props: { primaryAction, secondaryAction } },
+  { key: 'allThree', props: { primaryAction, secondaryAction, tertiaryAction } },
+];
 
-const tertiaryActionProps: ButtonGroupProps['tertiaryAction'] = {
-  label: 'Label text',
-  appearance: 'neutral',
-  view: 'simple',
-};
+type ModifierKey = 'default' | 'centered' | 'break' | 'filled' | 'vertical';
+
+const modifiers: Array<{ key: ModifierKey; props: Partial<ButtonGroupProps> }> = [
+  { key: 'default', props: {} },
+  { key: 'centered', props: { centered: true } },
+  { key: 'break', props: { break: true } },
+  { key: 'filled', props: { filled: true } },
+  { key: 'vertical', props: { vertical: true } },
+];
 
 export const VisualMatrix: Story = {
-  tags: ['test', 'dev'],
+  tags: ['test', 'dev', 'no-a11y'],
   render: () => (
-    <>
+    <div className={styles.matrix}>
       <StoryTable
-        sectionTitle='Size × Layout'
-        firstColumnHeader='Size'
-        columnHeaders={['Horizontal', 'Vertical', 'Centered']}
-        rows={sizes.map(size => ({
-          variantLabel: size.toUpperCase(),
-          cells: [
-            <ButtonGroup
-              key={`${size}-h`}
-              size={size}
-              primaryAction={primaryActionProps}
-              secondaryAction={secondaryActionProps}
-            />,
-            <ButtonGroup
-              key={`${size}-v`}
-              size={size}
-              vertical
-              primaryAction={primaryActionProps}
-              secondaryAction={secondaryActionProps}
-            />,
-            <ButtonGroup
-              key={`${size}-c`}
-              size={size}
-              centered
-              primaryAction={primaryActionProps}
-              secondaryAction={secondaryActionProps}
-            />,
-          ],
+        sectionTitle='Composition × Size'
+        firstColumnHeader='Composition'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={compositions.map(({ key, props }) => ({
+          variantLabel: key,
+          cells: keySizes.map(size => (
+            <div key={size} className={styles.narrow}>
+              <ButtonGroup size={size} {...props} />
+            </div>
+          )),
         }))}
       />
 
       <StoryTable
-        sectionTitle='Variants'
-        firstColumnHeader='Variant'
-        columnHeaders={['Primary only', 'Primary + Secondary', 'Primary + Secondary + Tertiary']}
-        rows={[
-          {
-            variantLabel: 'Actions',
-            cells: [
-              <ButtonGroup key='primary' primaryAction={primaryActionProps} />,
-              <ButtonGroup key='both' primaryAction={primaryActionProps} secondaryAction={secondaryActionProps} />,
-              <ButtonGroup
-                key='all'
-                primaryAction={{ ...primaryActionProps, label: 'Primary' }}
-                secondaryAction={{ ...secondaryActionProps, label: 'Secondary' }}
-                tertiaryAction={{ ...tertiaryActionProps, label: 'Tertiary' }}
-              />,
-            ],
-          },
-        ]}
+        sectionTitle='Modifier × Composition (size=m)'
+        firstColumnHeader='Modifier'
+        columnHeaders={compositions.map(c => c.key)}
+        rows={modifiers.map(({ key, props }) => ({
+          variantLabel: key,
+          cells: compositions.map(c => (
+            <div key={c.key} className={styles.narrow}>
+              <ButtonGroup {...c.props} {...props} />
+            </div>
+          )),
+        }))}
       />
-    </>
+    </div>
   ),
 };

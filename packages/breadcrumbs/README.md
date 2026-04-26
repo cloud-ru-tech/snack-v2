@@ -1,134 +1,240 @@
 # Breadcrumbs
 
-Навигационная цепочка «хлебных крошек»: показывает путь до текущей страницы. При узком контейнере сама подбирает отображение — полный текст, короткий ярлык (`shortLabel`), многоточие или свёртка средних пунктов в выпадающий список.
+`@ds/breadcrumbs` — Хлебные крошки — навигационная цепочка пути до текущей страницы с адаптивным поведением при нехватке места.
 
-## Installation
+Навигационная цепочка, показывающая путь от корня до текущей страницы. При нехватке ширины автоматически сворачивает средние элементы в коллапс-группу, сокращает лейблы до `shortLabel` или заменяет на многоточие.
+
+## Демо
+
+<BreadcrumbsDemo client:only="react" />
+
+## Когда использовать
+
+- Когда пользователь может находиться глубоко в иерархии разделов и ему нужно быстро вернуться на уровень выше.
+- В админках, каталогах, файловых менеджерах — там, где есть естественная вложенность.
+- Как дополнение к заголовку страницы, **не** как замена основной навигации.
+
+Когда **не** нужен: плоский сайт из 2–3 страниц, одностраничные приложения без иерархии, поисковые результаты.
+
+### Size
+
+| Size | Применение |
+|------|------------|
+| `xs` | Плотные макеты, таблицы, узкие панели |
+| `s` | Значение по умолчанию — страницы, карточки |
+
+### Поведение при сжатии
+
+При нехватке ширины компонент последовательно применяет стратегии:
+
+1. Использует `shortLabel` вместо `label` для промежуточных айтемов.
+2. Схлопывает средние айтемы в кнопку `…` с выпадающим меню.
+3. Урезает длинные лейблы многоточием.
+
+Текущая страница (последний айтем) всегда сохраняет полный лейбл.
+
+### Do / Don't
+
+- ✅ Последний айтем — текущая страница, без `href`.
+- ❌ Делать последний айтем ссылкой на самого себя.
+- ✅ Первый айтем — корень раздела или главная (можно с иконкой).
+- ❌ Начинать цепочку со второго уровня, пропуская главную.
+- ✅ Передавать `shortLabel` для длинных названий — улучшает поведение в узких контейнерах.
+- ❌ Использовать кастомный `separator` длиннее 1–2 символов.
+
+### Установка
 
 ```bash
-npm install @design-system/breadcrumbs
-# or
-yarn add @design-system/breadcrumbs
-# or
-pnpm add @design-system/breadcrumbs
+pnpm add @ds/breadcrumbs
 ```
 
-## Exports
-
-```typescript
-import {
-  type Item,
-  setNonce
-} from '@design-system/breadcrumbs';
+```ts
+import { Breadcrumbs } from '@ds/breadcrumbs'
+import '@ds/breadcrumbs/style.css'
 ```
 
-## Live examples
+### Примеры использования
 
-### Базовая цепочка
+<Example
+  title='Короткая цепочка'
+  description='Базовый сценарий — главная → раздел → текущая страница.'
+  code={BasicTrailSrc}
+>
+  <BasicTrail client:only="react" />
+</Example>
+
+<Example
+  title='Длинная цепочка с shortLabel'
+  description='Передайте shortLabel для элементов, которые стоит укоротить при нехватке места.'
+  code={LongTrailSrc}
+>
+  <LongTrail client:only="react" />
+</Example>
+
+<Example
+  title='Кастомный разделитель'
+  description='Разделитель можно заменить любым коротким символом.'
+  code={CustomSeparatorSrc}
+>
+  <CustomSeparator client:only="react" />
+</Example>
+
+### Props
+
+<PropsTable data={breadcrumbsDoc.Breadcrumbs} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-breadcrumbs--playground' height={360} client:only="react" />
+
+## Доступность
+
+- Корневой контейнер рендерится как `<ul>` (список), каждый айтем — `<li>`, что корректно считывается скринридерами.
+- Текущая страница помечается `aria-current="page"`.
+- Ссылки и кнопки получают focus-ring при навигации с клавиатуры.
+- Разделитель `›` помечен `aria-hidden` — его не озвучивает screen reader.
+
+## Breadcrumbs
 
 ```tsx
-import { Breadcrumbs } from '@design-system/breadcrumbs';
+import { Breadcrumbs } from '@ds/breadcrumbs'
 
 export function Example() {
-  return (
-    <Breadcrumbs
-      items={[
-        { id: '1', label: 'Главная', href: '#' },
-        { id: '2', label: 'Раздел', href: '#' },
-        { id: '3', label: 'Текущая страница' },
-      ]}
-    />
-  );
+  return <Breadcrumbs separator="›">Click me</Breadcrumbs>
 }
 ```
 
-### Размеры
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `items` | `Item[]` | — | Массив айтемов |
+| `className` | `string` | — | CSS-класс |
+| `separator` | `string` | `›` | Разделитель между пунктами |
+| `size` | `"xs"` \| `"s"` | `s` | Размер |
+| `firstItemIconOnly` | `boolean` | `false` | Использовать иконку без лейбла в первом айтеме |
+| `inactiveLastItem` | `boolean` | `false` | Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick` |
+
+## Collapse
 
 ```tsx
-import { Breadcrumbs } from '@design-system/breadcrumbs';
-
-const items = [
-  { id: '1', label: 'Каталог', href: '#' },
-  { id: '2', label: 'Страница' },
-];
-
-export function SizeS() {
-  return <Breadcrumbs size="s" items={items} />;
-}
-
-export function SizeXs() {
-  return <Breadcrumbs size="xs" items={items} />;
-}
-```
-
-### Кастомный разделитель
-
-```tsx
-import { Breadcrumbs } from '@design-system/breadcrumbs';
+import { Collapse } from '@ds/breadcrumbs'
 
 export function Example() {
-  return (
-    <Breadcrumbs
-      separator=" / "
-      items={[
-        { id: '1', label: 'A', href: '#' },
-        { id: '2', label: 'B', href: '#' },
-        { id: '3', label: 'C' },
-      ]}
-    />
-  );
+  return <Collapse>Click me</Collapse>
 }
 ```
 
-### Иконка у первого пункта
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — |  |
+| `currentConfig` | `BreadcrumbsConfigChain` | — |  |
+
+## Crumb
 
 ```tsx
-import { Breadcrumbs } from '@design-system/breadcrumbs';
-import { PlaceholderSVG } from '@design-system/icons';
+import { Crumb } from '@ds/breadcrumbs'
 
-export function FirstItemIconOnly() {
-  return (
-    <Breadcrumbs
-      firstItemIconOnly
-      items={[
-        { id: '1', label: 'Главная', href: '#', icon: PlaceholderSVG },
-        { id: '2', label: 'Проекты', href: '#' },
-        { id: '3', label: 'Сводка' },
-      ]}
-    />
-  );
+export function Example() {
+  return <Crumb>Click me</Crumb>
 }
 ```
 
+### Props
 
-## Usage
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `renderMode` | `"full"` \| `"shortLabel"` \| `"ellipsis"` \| `"collapsed"` | — |  |
+| `className` | `string` | — |  |
+| `minWidth` | `number` | — |  |
+| `current` | `boolean` | — |  |
+| `item` | `Item` | — |  |
+| `useIconOnly` | `boolean` | — |  |
 
+## CrumbsTypography
 
+```tsx
+import { CrumbsTypography } from '@ds/breadcrumbs'
 
-## Props
+export function Example() {
+  return <CrumbsTypography>Click me</CrumbsTypography>
+}
+```
 
-### BreadcrumbsProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| items* | `Item[]` | - | Массив айтемов |
-| className | `string` | - | CSS-класс |
-| separator | `string` | › | Разделитель между пунктами |
-| size | enum Size: `"xs"`, `"s"` | s | Размер |
-| firstItemIconOnly | `boolean` | false | Использовать иконку без лейбла в первом айтеме |
-| inactiveLastItem | `boolean` | false | Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick` |
+### Props
 
-## Best Practices
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"xs"` \| `"s"` | — |  |
+| `className` | `string` | — |  |
 
-1. **Уникальные `id`** — стабильные ключи для внутренней логики и тестов.
-2. **`shortLabel`** — задавайте для длинных названий, чтобы цепочка оставалась понятной в сжатом режиме.
-3. **Текущая страница** — без `href`/`onClick`; не дублируйте заголовок страницы сомнительными ссылками на «саму себя», если это не нужно для SEO.
-4. **`inactiveLastItem`** — когда последний элемент приходит из API с URL, но в UI он должен быть только текстом.
-5. **Ширина контейнера** — крошки реагируют на ширину родителя; избегайте обрезки без учёта отступов макета.
-6. **Разделитель** — держите строку короткой и нейтральной для скринридеров (визуальный символ, а не дублирование всей навигации текстом).
+## HiddenChain
 
----
+```tsx
+import { HiddenChain } from '@ds/breadcrumbs'
 
-## Additional Resources
+export function Example() {
+  return <HiddenChain>Click me</HiddenChain>
+}
+```
 
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `separator` | `string` | — |  |
+| `items` | `Item[]` | — |  |
+| `size` | `"xs"` \| `"s"` | — |  |
+| `onConfigsBuilt` | `(config: BreadcrumbsConfig[]) => void` | — |  |
+| `firstItemIconOnly` | `boolean` | — |  |
+
+## useBreadcrumbsLayout
+
+```tsx
+import { useBreadcrumbsLayout } from '@ds/breadcrumbs'
+
+// Используйте хук внутри React-компонента (см. разделы выше в этом README).
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+
+## useItemModesRender
+
+```tsx
+import { useItemModesRender } from '@ds/breadcrumbs'
+
+// Используйте хук внутри React-компонента (см. разделы выше в этом README).
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `firstItemIconOnly` | `boolean` | — |  |
+
+## Wrapper
+
+```tsx
+import { Wrapper } from '@ds/breadcrumbs'
+
+export function Example() {
+  return <Wrapper>Click me</Wrapper>
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `hidden` | `boolean` | — |  |
+| `className` | `string` | — |  |
+| `size` | `"xs"` \| `"s"` | — |  |
+| `separator` | `string` | — |  |

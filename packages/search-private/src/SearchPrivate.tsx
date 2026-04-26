@@ -1,14 +1,14 @@
-import { SearchSVG } from '@design-system/icons';
+import { SearchSVG } from '@ds/icons';
 import {
   InputPrivate,
   InputPrivateProps,
   moveCursorToEnd,
   useButtonNavigation,
   useClearButton,
-} from '@design-system/input-private';
-import { LOADER_SIZE, Sun } from '@design-system/loader';
-import { useLocale } from '@design-system/locale';
-import { extractSupportProps, useValueControl, WithSupportProps } from '@design-system/utils';
+} from '@ds/input-private';
+import { LOADER_SIZE, Sun } from '@ds/loader';
+import { useLocale } from '@ds/locale';
+import { extractSupportProps, useValueControl, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useMemo, useRef } from 'react';

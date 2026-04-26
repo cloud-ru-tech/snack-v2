@@ -1,6 +1,6 @@
-import { TypographySize } from '@design-system/typography';
+import { TypographySize } from '@ds/typography';
 
-import type { Size } from './types';
+import { Size } from './types';
 
 export const APPEARANCE = {
   Neutral: 'neutral',

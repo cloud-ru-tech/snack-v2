@@ -1,36 +1,30 @@
 {
-  "name": "@design-system/progress-bar",
-  "version": "1.0.0",
-  "private": false,
-  "description": "Progress Bar component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/progress-bar",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
   "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
+    "dist",
+    "src"
   ],
   "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
+    "*.css",
+    "**/*.css"
   ],
-  "scripts": {},
   "dependencies": {
-    "@design-system/utils": "0.1.0",
+    "@ds/utils": "workspace:*",
     "@tanem/react-nprogress": "5.0.60",
-    "classnames": "catalog:"
+    "classnames": "2.5.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,45 +1,43 @@
 ---
 title: Dropzone
-description: Компоненты загрузки файлов — видимая дропзона, скрытая дропзона и кнопка выбора файлов.
-version: '0.1.0'
+package: '@ds/dropzone'
+description: Пакет загрузки файлов — видимая зона Dropzone, триггер FileUpload и скрытая оверлей-зона HiddenDropZone над произвольным контентом.
+order: 50
 ---
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-import LlmLink from '#astro/components/astro/LlmLink.astro';
 
 # Dropzone
 
-Пакет компонентов для загрузки файлов: **Dropzone** (видимая область drag-and-drop), **FileUpload** (кнопка выбора файлов) и **HiddenDropZone** (скрытая дропзона поверх контента). Стили — из design tokens (Figma variables).
+Пакет `@ds/dropzone` предоставляет три компонента для загрузки файлов через drag-n-drop и клик:
 
-**Version:** `{frontmatter.version}`
+- [**Dropzone**](/components/dropzone/dropzone) — видимая зона для перетаскивания и клика. Три размера `s/m/l`, режимы `single/multiple`, состояние `disabled`.
+- [**FileUpload**](/components/dropzone/file-upload) — обёртка над произвольным триггером (например, кнопкой), открывающая нативный диалог выбора файлов. Без визуальной зоны.
+- [**HiddenDropZone**](/components/dropzone/hidden-drop-zone) — скрытая оверлей-зона, накрывающая произвольный контент (форму, карточку) при перетаскивании файлов.
 
-## Installation
+## Установка
 
 ```bash
-npm install @design-system/dropzone
-# or
-yarn add @design-system/dropzone
-# or
-pnpm add @design-system/dropzone
+pnpm add @ds/dropzone
 ```
 
-## Changelog
+```ts
+import { Dropzone, FileUpload, HiddenDropZone } from '@ds/dropzone'
+import '@ds/dropzone/style.css'
+```
 
-<Changelog packageName="dropzone" />
+## Когда какой использовать
 
-<LlmLink component="dropzone" />
+| Задача | Компонент |
+|--------|-----------|
+| Явная зона для перетаскивания файлов на странице | `Dropzone` |
+| Кнопка «Загрузить» без отдельной зоны | `FileUpload` |
+| Прикрепить файл к существующей форме / карточке drag-n-drop | `HiddenDropZone` |
 
-## Overview
+## Общие принципы
 
-Компоненты поддерживают загрузку по drag-and-drop и через диалог выбора файлов. В пакет входят:
+- **Режим `single` или `multiple`.** Выбирайте по сценарию: аватарка и подпись — `single`, прикрепления к письму — `multiple`.
+- **Ограничивайте типы через `accept`.** Пользователь видит фильтр в системном диалоге и понимает, что ожидается.
+- **Дублируйте сценарий drag-n-drop клавиатурно-доступным триггером.** Drag-n-drop недоступен с клавиатуры и скринридером — используйте `FileUpload` рядом или внутри `Dropzone`.
 
-- **Dropzone** — видимая область с пунктирной рамкой. Принимает `children` для кастомного контента. Размеры s, m, l.
-- **FileUpload** — обёртка над кнопкой или другим элементом: клик открывает диалог выбора файлов. Режимы single/multiple.
-- **HiddenDropZone** — обёртка над произвольным контентом (форма, карточка). При перетаскивании файлов поверх показывается overlay с dropzone. Принимает `content` для overlay.
-- **Стили** — отступы, границы, цвета из design tokens.
+## Смотри также
 
-## Components
-
-- **[Dropzone](./components/dropzone/)** — видимая область drag-and-drop (примеры, API)
-- **[FileUpload](./components/fileupload/)** — кнопка выбора файлов (примеры, API)
-- **[HiddenDropZone](./components/hiddendropzone/)** — скрытая дропзона поверх контента (примеры, API)
+- [Паттерны форм](/patterns/form-patterns) — композиция загрузки файлов внутри форм.

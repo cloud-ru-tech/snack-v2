@@ -1,0 +1,70 @@
+---
+import { pathsMatch } from '../lib/base-url'
+import { buildNav } from '../lib/discovery'
+import type { NavItem } from '../lib/discovery'
+import '../styles/sidebar.scss'
+
+const nav = await buildNav()
+const base = import.meta.env.BASE_URL
+const currentPath = Astro.url.pathname
+
+function isActive(href: string) {
+  return pathsMatch(currentPath, href)
+}
+
+function isGroupActive(item: NavItem) {
+  return isActive(item.href) || (item.children?.some((c) => isActive(c.href)) ?? false)
+}
+---
+
+<nav class="nav" aria-label="Documentation">
+  <a href={base} class="logo" aria-label="Design System home">
+    Design System
+  </a>
+
+  {nav.map((group) => (
+    <section class="group">
+      <h2 class="group-label">{group.label}</h2>
+      <ul class="list" role="list">
+        {group.items.map((item) =>
+          item.children?.length ? (
+            /* Multi-component package: parent link + indented children */
+            <li class="pkg">
+              <a
+                href={item.href}
+                class={`link pkg-label${isGroupActive(item) ? ' link--active' : ''}`}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.title}
+              </a>
+              <ul class="sub-list" role="list">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class={`link sub-link${isActive(child.href) ? ' link--active' : ''}`}
+                      aria-current={isActive(child.href) ? 'page' : undefined}
+                    >
+                      {child.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            /* Single-page package: flat link */
+            <li>
+              <a
+                href={item.href}
+                class={`link${isActive(item.href) ? ' link--active' : ''}`}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.title}
+              </a>
+            </li>
+          )
+        )}
+      </ul>
+    </section>
+  ))}
+</nav>

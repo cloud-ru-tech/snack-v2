@@ -1,51 +1,31 @@
 {
-  "name": "@design-system/icons",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Icons component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/icons",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Иконки React и SVG-спрайты для дизайн-системы",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
+  "files": ["dist", "src", "svgs"],
+  "sideEffects": false,
   "scripts": {
-    "create-sprite": "ts-node scripts/createSprite.ts",
-    "validate:icons": "ts-node scripts/validateIcons.ts",
-    "sync:icons": "ts-node scripts/syncGeneratedIcons.ts",
-    "create-export-index-file": "ts-node scripts/createExportIndexFile.ts",
-    "build:icons": "ts-node scripts/buildIcons.ts",
-    "fix:icons": "ts-node scripts/fixIcons.ts",
-    "post-process-icons": "ts-node scripts/postProcessIconFallback.ts",
+    "create-sprite": "pnpm exec ts-node scripts/createSprite.ts",
+    "validate:icons": "pnpm exec ts-node scripts/validateIcons.ts",
+    "sync:icons": "pnpm exec ts-node scripts/syncGeneratedIcons.ts",
+    "create-export-index-file": "pnpm exec ts-node scripts/createExportIndexFile.ts",
+    "build:icons": "pnpm exec ts-node scripts/buildIcons.ts",
+    "fix:icons": "pnpm exec ts-node scripts/fixIcons.ts",
+    "post-process-icons": "pnpm exec ts-node scripts/postProcessIconFallback.ts",
     "copy:sprite-svg": "node scripts/copySpriteSvgToDist.cjs"
   },
-  "devDependencies": {
-    "@svgr/cli": "8.1.0",
-    "@svgr/plugin-jsx": "8.1.0",
-    "@types/svg-sprite": "0.0.39",
-    "fast-xml-parser": "5.3.5",
-    "oslllo-svg-fixer": "6.0.1",
-    "svg-sprite": "2.0.4",
-    "svgo": "4.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+  "publishConfig": { "access": "public" }
 }

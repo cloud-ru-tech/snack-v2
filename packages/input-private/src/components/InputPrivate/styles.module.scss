@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
 
 .inputPrivate {
   box-sizing: border-box;
@@ -14,14 +14,6 @@
 
   background-color: transparent;
   outline: 0;
-
-  //&::placeholder {
-  //  color: base.$sn-theme-color-available-version-textDisabled;
-  //}
-
-  //&:read-only {
-  //  color: base.$sn-theme-color-available-version-textDisabled;
-  //}
 
   &:placeholder-shown {
     text-overflow: ellipsis;

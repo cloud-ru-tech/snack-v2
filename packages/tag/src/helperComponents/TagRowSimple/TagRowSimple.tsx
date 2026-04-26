@@ -1,8 +1,8 @@
-import { extractSupportProps } from '@design-system/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { Ref } from 'react';
+import { Ref } from 'react';
 
-import type { Size, TagRowItemInner } from '../../types';
+import { Size, TagRowItemInner } from '../../types';
 import { TagList } from '../TagList';
 import styles from './styles.module.scss';
 

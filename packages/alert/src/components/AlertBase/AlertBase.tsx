@@ -1,14 +1,14 @@
-import { ChevronDownSpriteSVG, ChevronUpSpriteSVG, CrossSpriteSVG } from '@design-system/icons';
-import { TruncateString } from '@design-system/truncate-string';
-import { extractSupportProps, getThemeClassnames, WithSupportProps } from '@design-system/utils';
+import { ChevronDownSpriteSVG, ChevronUpSpriteSVG, CrossSpriteSVG } from '@ds/icons';
+import { TruncateString } from '@ds/truncate-string';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { MouseEvent, ReactElement, ReactNode } from 'react';
+import { MouseEvent, ReactElement, ReactNode, RefObject } from 'react';
 
 import { ALIGN, APPEARANCE, APPEARANCE_TO_THEME_COLOR } from '../../constants';
-import type { Align, Appearance, Size } from '../../types';
-import { AlertButton, type AlertButtonProps } from '../AlertButton';
+import { Align, Appearance, Size } from '../../types';
+import { AlertButton, AlertButtonProps } from '../AlertButton';
 import { VARIANT } from '../AlertButton/constants';
-import type { Variant } from '../AlertButton/types';
+import { Variant } from '../AlertButton/types';
 import { useAlertCollapse } from './hooks';
 import styles from './styles.module.scss';
 import { getAlertAppearanceIcon } from './utils';
@@ -152,7 +152,7 @@ export function AlertBase(props: AlertBaseProps) {
       ...inlineColorProps,
     };
     titleContent = collapsible ? (
-      <div ref={titleRef} {...titleShared} data-collapsed={titleCollapsed || undefined}>
+      <div ref={titleRef as RefObject<HTMLDivElement>} {...titleShared} data-collapsed={titleCollapsed || undefined}>
         {title}
       </div>
     ) : (
@@ -168,7 +168,11 @@ export function AlertBase(props: AlertBaseProps) {
   };
 
   const descriptionContent = collapsible ? (
-    <div ref={descriptionRef} {...descriptionShared} data-collapsed={titleCollapsed || undefined}>
+    <div
+      ref={descriptionRef as RefObject<HTMLDivElement>}
+      {...descriptionShared}
+      data-collapsed={titleCollapsed || undefined}
+    >
       {description}
     </div>
   ) : (
@@ -208,7 +212,7 @@ export function AlertBase(props: AlertBaseProps) {
       <div className={cn(styles.body, { [styles.bodyInteractive]: collapsible && canExpand })} data-size={size}>
         {icon && (
           <div
-            className={cn(getThemeClassnames({ platform: 'desktop' }), styles.icon)}
+            className={cn('sn-desktop', styles.icon)}
             data-size={size}
             data-test-id={`${testIdPrefix}__icon`}
             {...inlineColorProps}

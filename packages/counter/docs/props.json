@@ -1,0 +1,91 @@
+{
+  "formatValue": {
+    "displayName": "formatValue",
+    "props": {
+      "value": {
+        "type": "number",
+        "required": true
+      },
+      "variant": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "count",
+          "count-plus",
+          "count-k"
+        ]
+      },
+      "plusLimit": {
+        "type": "number",
+        "required": true
+      }
+    }
+  },
+  "Counter": {
+    "displayName": "Counter",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "number",
+        "required": true,
+        "description": "Значение"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "primary",
+          "neutral",
+          "critical"
+        ],
+        "defaultValue": "primary",
+        "description": "Внешний вид"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "count",
+          "count-plus",
+          "count-k"
+        ],
+        "defaultValue": "count",
+        "description": "Вариант форматирования"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "plusLimit": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "10",
+        "description": "Порог сокращения значения для варианта `count-plus`"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс"
+      },
+      "color": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "defaultValue": "accent",
+        "description": "Семантический цвет"
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { useEventHandler } from '@design-system/utils';
+import { useEventHandler } from '@ds/utils';
 import { KeyboardEventHandler, MouseEventHandler, RefObject, useCallback, useState } from 'react';
 
 import { isCursorInTheBeginning, isCursorInTheEnd, runAfterRerender, selectAll } from '../helpers';

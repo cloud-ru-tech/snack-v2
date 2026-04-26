@@ -1,229 +1,33 @@
 ---
 title: Materials
-description: SCSS-миксины для материалов (акрил и др.) и слоя состояний (state layer) — вспомогательные стили для разработки компонентов дизайн-системы.
-version: '0.1.0'
+package: '@ds/materials'
+description: SCSS-миксины для материалов (акрил, state layer) — вспомогательные стили для компонентов дизайн-системы.
+order: 99
 ---
-
-import Changelog from '../../../astro/src/components/astro/Changelog.astro';
-import LlmLink from '../../../astro/src/components/astro/LlmLink.astro';
 
 # Materials
 
-Пакет **не предоставляет React-компоненты**, только вспомогательные **SCSS-миксины** для общих визуальных модификаторов: материалы (корневой миксин `with-material`, сейчас — акрил, далее — например градиент) и слой состояний (state layer). Используется при разработке компонентов дизайн-системы для единообразного оформления фона и интерактивных состояний.
+Пакет экспортирует SCSS-миксины без JS runtime — используется другими пакетами как `@use '@ds/materials' as m`.
 
-**Version:** `{frontmatter.version}`
+## Состав
 
-## Installation
+- `material/_acrylic.scss` — акриловый эффект (blur + полупрозрачный фон)
+- `stateLayer/index.scss` — state-layer для hover/pressed состояний
+- `utils/_mixins.scss` — вспомогательные миксины (`has-state-layer-as-child`, `has-content-with-text-opacity`)
 
-```bash
-npm install @design-system/materials
-# or
-yarn add @design-system/materials
-# or
-pnpm add @design-system/materials
-```
-
-## Changelog
-
-<Changelog packageName="materials" />
-
-<LlmLink component="materials" />
-
-## Overview
-
-Пакет построен вокруг **корневого миксина материалов** и двух наборов миксинов:
-
-- **Material (корень)** — миксин `with-material($material, $props...)` применяет выбранный материал к элементу; аргументы после `$material` передаются в реализацию материала (для `'acrylic'` — селекторы дочерних слоёв). Со временем появятся другие материалы (например gradient). Разметка и параметры зависят от материала.
-- **Acrylic** — материал «матового стекла» (backdrop blur + полупрозрачный слой). Вызывается через `with-material('acrylic', …)` с селекторами слоёв. На корне — `data-acrylic-appearance` и `data-acrylic-level`; фон и опциональный эффект — дочерние элементы с **классами**, имена которых передаются вторым и третьим аргументом. На эти классы пакет навешивает только «акриловые» свойства (opacity, фон, blend modes); **`position: relative` на корне с материалом пакет не задаёт** — его при необходимости добавляет потребитель (например, для абсолютно позиционированных слоёв и стека). Позиционирование и `pointer-events` самих слоёв тоже задаёт потребитель.
-- **State layer** — слой состояний (hover, active) для кнопок, карточек и других интерактивных элементов. Поддерживает варианты: обычный фон/бордер, активированный, onColor, onAccent и прозрачность текста/иконок (textOpacity). Использует переменные из `@sbercloud/figma-variables`.
-
-Подключение в SCSS:
+## Использование
 
 ```scss
-@use '@design-system/materials' as m;
-```
+// packages/button/src/styles.module.scss
+@use '@ds/materials' as m;
 
-Через namespace `m` доступны миксины материалов (`with-material`), state layer (`has-state-layer-as-child`, `has-content-with-text-opacity`) и при необходимости низкоуровневые утилиты.
-
-## Storybook
-
-import StorybookIframe from '../../../astro/src/components/astro/StorybookIframe.astro';
-
-В Storybook показаны примеры компонентов, построенных с использованием миксинов материалов и state layer. Они служат референсом по разметке и подключению стилей.
-
-### Playground
-
-<StorybookIframe storyId="materials-playground--playground" showControls={true} height="400px" />
-
-### Materials Visual Matrix (акрил)
-
-<StorybookIframe storyId="materials-materials-visual-matrix--materials-visual-matrix" showControls={false} height="800px" />
-
-### State Layers Visual Matrix
-
-<StorybookIframe storyId="materials-state-layers-visual-matrix--state-layers-visual-matrix" showControls={false} height="800px" />
-
-## Usage
-
-### Material (корень) и Acrylic
-
-Акрил подключают вызовом `with-material('acrylic', $bgLayerSelector, $effectLayerSelector?)`:
-
-- **`$bgLayerSelector`** (обязательный) — имя **локального класса** дочернего фонового слоя в том же SCSS-модуле, обычно в CSS Modules задают как `#{acrylic}` при классе `.acrylic` в разметке.
-- **`$effectLayerSelector`** (опциональный) — то же для слоя color-dodge; если не передавать, стили эффекта не генерируются.
-
-На корневом элементе задайте атрибуты:
-
-- **`data-acrylic-appearance`** — вариант оформления: `'primary'`, `'neutral'`, `'blue'`, `'red'`, `'yellow'`, `'green'`.
-- **`data-acrylic-level`** — уровень глубины: `'default'`, `'1Level'`, `'2Level'`.
-
-Миксин акрила **не** выставляет на этом корне `position: relative` (чтобы не ломать layout в сложных обёртках, например у Drawer). Если дочерние слои позиционируются относительно корня (`position: absolute` и т.п.) или нужен явный контекст наложения — задайте `position: relative` (или иной подходящий `position`) на **классе того же элемента**, куда подключаете `with-material`, в своём SCSS.
-
-В разметке обязателен один дочерний элемент с классом, совпадающим с первым аргументом (например `<div className={styles.acrylic} />`). Опционально — второй дочерний элемент с классом для эффекта. Контент размещайте поверх фонового слоя (например, в отдельном блоке с `position: relative` и `z-index`).
-
-Внутри `with-material` для слоёв вызываются миксины `has-acrylic-background-layer-as-child` и при необходимости `has-acrylic-effect-layer-as-child`. Они **не** подключают `absolute-layer` и **не** выставляют `pointer-events: none` — только `opacity` / `background` для фона и режимы наложения для эффекта. Чтобы слой заполнял корень и не перехватывал события, задайте на своих классах слоёв позиционирование (часто `position: absolute`, `inset: 0`), при необходимости `border-radius: inherit`, `pointer-events: none` и порядок в стеке — как в примере ниже для `.acrylic`.
-
-**Разметка (JSX):**
-
-```tsx
-<div className={styles.card} data-acrylic-appearance="neutral" data-acrylic-level="1Level">
-  <div className={styles.acrylic} />
-  <div className={styles.content}>{children}</div>
-</div>
-```
-
-**SCSS:**
-
-```scss
-@use '@design-system/materials' as m;
-
-.acrylic {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-}
-
-.card {
-  position: relative;
-  @include m.with-material('acrylic', #{acrylic});
-}
-
-.content {
-  position: relative;
-  z-index: 1;
-}
-```
-
-С опциональным слоем эффекта (третий аргумент и второй декоративный div с собственным классом в том же модуле). Для слоя эффекта так же задайте позиционирование и при необходимости `pointer-events: none` в своём модуле — пакет добавляет только blend modes.
-
-```scss
-.acrylicEffect {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-}
-
-@include m.with-material('acrylic', #{acrylic}, #{acrylicEffect});
-```
-
-### State layer — слой состояний
-
-Миксин `has-state-layer-as-child($stateLayerSelector)` подключают в **классе корневого элемента**, с которым пользователь взаимодействует (hover, active и т.д.): в этот момент стили применяются к **потомку**, чей класс передан аргументом. В CSS Modules аргумент задают как `#{stateLayer}`, если в том же файле объявлен класс `.stateLayer`.
-
-На элементе слоя указывают `data-state`: `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground`. Набор состояний из пропа нельзя сгенерировать автоматически — только ручной маппинг к структуре Figma Variables.
-
-Примеры: **Playground**, **SampleBlock**, **StateSquare** (`packages/materials/stories/…`).
-
-**Разметка (JSX):**
-
-```tsx
-<button type="button" className={styles.button}>
-  <span className={styles.stateLayer} data-state="regularBackground" aria-hidden />
-  <span className={styles.label}>Текст кнопки</span>
-</button>
-```
-
-**SCSS:**
-
-```scss
-@use '@design-system/materials' as m;
-
-.button {
-  position: relative;
+.root {
   @include m.has-state-layer-as-child(#{stateLayer});
 }
-
-.label {
-  position: relative;
-  z-index: 1;
-}
 ```
 
-### State layer — прозрачность текста (textOpacity)
+## Установка
 
-Миксин `has-content-with-text-opacity($contentLayerSelector)` подключают в классе **корневого** элемента: при взаимодействии с ним меняется внешний вид **потомка** с классом из аргумента. На элементах **внутри** этого потомка, отмеченных `[data-text-opacity]`, задаётся opacity (default / hover / active).
-
-Пример: **Playground**, **SampleBlock** (`#{contentLayer}`).
-
-**Разметка (JSX):**
-
-```tsx
-<div className={styles.button}>
-  <div className={styles.contentLayer}>
-    <span data-text-opacity>Click me</span>
-    <Icon data-text-opacity />
-  </div>
-</div>
+```bash
+pnpm add @ds/materials
 ```
-
-**SCSS:**
-
-```scss
-@use '@design-system/materials' as m;
-
-.button {
-  position: relative;
-  @include m.has-content-with-text-opacity(#{contentLayer});
-}
-```
-
-## API миксинов
-
-### Material (корень)
-
-| миксин | параметры | описание |
-|--------|-----------|----------|
-| `with-material($material, $props...)` | `$material` — название материала (сейчас только `'acrylic'`). Для `'acrylic'` в `$props`: обязательный `$bgLayerSelector`, опционально `$effectLayerSelector` (имена классов дочерних слоёв) | Применяет выбранный материал к элементу. Для acrylic: на корне `data-acrylic-appearance` и `data-acrylic-level`; дочерний слой фона — элемент с классом, совпадающим с `$bgLayerSelector` (в модулях — `#{имяКласса}`); опционально слой эффекта — класс `$effectLayerSelector`. Blur на корне, opacity/фон на фоновом классе и blend modes на классе эффекта берутся из `@sbercloud/figma-variables` и внутренних миксинов слоёв. **`position: relative` на корне с материалом не выставляется** — при необходимости задайте сами. **Позиционирование и `pointer-events` для дочерних слоёв** пакет не задаёт — их описывает потребитель на тех же классах. |
-
-### Acrylic
-
-Акрил подключается только через `with-material('acrylic', …)` из публичного API пакета. Атрибуты на корне задают appearance и level; селекторы слоёв — **строки имён классов** для вложенных правил вида `.$bgLayerSelector` / `.$effectLayerSelector` относительно корня с материалом.
-
-- **Разметка:** корень с `data-acrylic-appearance` и `data-acrylic-level`; один дочерний элемент с классом фона; опционально дочерний элемент с классом слоя эффекта (color-dodge), если передан третий аргумент в `with-material`.
-- **Корень:** `position: relative` с акрилом **не** приходит из пакета; задавайте на классе корня при необходимости (типичный случай — абсолютные дочерние слои фона/эффекта).
-- **Стили слоёв:** пакетные миксины слоёв не дублируют `absolute-layer` и не выставляют `pointer-events: none`; эти и другие layout-правила добавляйте на классах `.acrylic` / слоя эффекта в своём SCSS.
-
-### State layer
-
-| миксин | параметры | разметка | описание |
-|--------|-----------|----------|----------|
-| `has-state-layer-as-child($stateLayerSelector)` | Имя класса целевого потомка в том же модуле (часто `#{stateLayer}`) | Корень (миксин здесь) + потомок с этим классом и `data-state` | При взаимодействии с корнем стили state layer уходят на потомка `$stateLayerSelector` |
-| `has-content-with-text-opacity($contentLayerSelector)` | Имя класса обёртки (часто `#{contentLayer}`) | Корень + потомок с этим классом; у его потомков — `[data-text-opacity]` | При взаимодействии с корнем opacity меняется у `[data-text-opacity]` внутри `$contentLayerSelector` |
-
-Переменные цветов и состояний берутся из `@sbercloud/figma-variables` (stateLayer подключает этот пакет внутри себя).
-
-## Accessibility
-
-- Разметка с декоративными слоями акрила (фон/эффект) и state layer не меняет семантику: у визуальных слоёв по возможности задавайте `aria-hidden`; на корне используйте корректные теги и атрибуты (`button`, `aria-*`, `role`).
-- Слои состояний визуально не должны подменять индикацию фокуса: сохраняйте видимый focus outline для клавиатурной навигации.
-- Контент поверх акрилового фона должен сохранять достаточный контраст для читаемости.
-
-## Best practices
-
-1. **Один фоновый слой** — в одном блоке один дочерний элемент с классом, переданным в `with-material('acrylic', #{…})` как фон; контент размещайте в соседних дочерних элементах с вышележащим z-index. Для декоративного фона/эффекта явно задавайте заполнение корня и `pointer-events: none` на классах слоёв — пакет этого не делает. Если слои абсолютные, на корне с `with-material` обычно нужен свой `position: relative` (пакет его не добавляет).
-2. **Корень взаимодействия** — `has-state-layer-as-child` и `has-content-with-text-opacity` вешайте на класс того элемента, с которым пользователь взаимодействует; аргумент — класс целевого потомка в разметке. Несколько state-слоёв — разные классы и при необходимости несколько вызовов первого миксина.
-3. **Переменные дизайн-системы** — для acrylic используйте значения `data-acrylic-appearance` и `data-acrylic-level` из палитры дизайн-системы; пакет подставляет blur, opacity и цвета из `@sbercloud/figma-variables`.
-4. **textOpacity только для нужного контента** — помечайте `data-text-opacity` только у текста и иконок, которые должны менять прозрачность при наведении/нажатии.
-5. **Не дублировать логику** — если используете готовый компонент (например, Block из `@design-system/block`), он уже может использовать эти миксины; не подключайте materials повторно для того же визуального эффекта.

@@ -1,7 +1,7 @@
 /* stylelint-disable function-name-case */
 /* stylelint-disable length-zero-no-unit */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/hotSpot.module' as hotspot;
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '@cloud-ru/figma-variables/build/scss/components/hotSpot.module' as hotspot;
 
 $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 

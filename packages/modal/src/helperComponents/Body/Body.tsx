@@ -1,5 +1,5 @@
-import { BAR_HIDE_STRATEGY, Scroll } from '@design-system/scroll';
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { BAR_HIDE_STRATEGY, Scroll } from '@ds/scroll';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { type ReactNode } from 'react';
 

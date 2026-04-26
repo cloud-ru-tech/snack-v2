@@ -1,0 +1,260 @@
+---
+title: Button
+package: '@ds/button'
+description: Полиморфная кнопка дизайн-системы — шесть видов оформления, три семантических appearance, три размера, icon/counter/loading/disabled и рендер как button / a / произвольный компонент.
+order: 1
+---
+
+import { ButtonDemo } from '../demos/ButtonDemo'
+import { ButtonFormScenario } from '../demos/ButtonFormScenario'
+import { Appearances } from '../demos/examples/Appearances'
+import AppearancesSrc from '../demos/examples/Appearances.tsx?raw'
+import { Views } from '../demos/examples/Views'
+import ViewsSrc from '../demos/examples/Views.tsx?raw'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { Actions } from '../demos/examples/Actions'
+import ActionsSrc from '../demos/examples/Actions.tsx?raw'
+import { Destructive } from '../demos/examples/Destructive'
+import DestructiveSrc from '../demos/examples/Destructive.tsx?raw'
+import { IconOnly } from '../demos/examples/IconOnly'
+import IconOnlySrc from '../demos/examples/IconOnly.tsx?raw'
+import { LinkButton } from '../demos/examples/LinkButton'
+import LinkButtonSrc from '../demos/examples/LinkButton.tsx?raw'
+import { CounterBadge } from '../demos/examples/CounterBadge'
+import CounterBadgeSrc from '../demos/examples/CounterBadge.tsx?raw'
+import { Loading } from '../demos/examples/Loading'
+import LoadingSrc from '../demos/examples/Loading.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import { FigmaEmbed } from '~docs/components/FigmaEmbed'
+import { FIGMA_BUTTON } from '~docs/lib/figma'
+import buttonDoc from './props.json'
+
+# Button
+
+Основной инструмент для действий и навигации. Рендерится как `<button>` (по умолчанию), `<a>` или произвольный компонент через проп `as` — без потери типизации пропсов целевого элемента.
+
+## Демо
+
+<ButtonDemo client:load />
+
+## Когда использовать
+
+- Для инициации действий (сохранить, удалить, применить).
+- Для навигации, оформленной как кнопка — через `as="a"`.
+- Для toolbar-иконок без текста — `icon` без `label` + обязательный `aria-label`.
+
+Когда **не** нужен `Button`: для обычных inline-ссылок используйте `<a>` или навигационный компонент, а не `as="a"` с `view="function"`.
+
+## Для дизайнеров
+
+Секция описывает семантику, внешний вид и поведение кнопки в макетах. Здесь же — источник истины в Figma и правила композиции.
+
+### Appearance — семантическая роль
+
+| Appearance | Когда использовать |
+|-----------|---------------------|
+| `primary` | Главное действие экрана — один раз на форме/диалоге |
+| `neutral` | Вторичные действия: «Назад», «Закрыть», «Отмена» |
+| `critical` | Деструктивные операции: удаление, отзыв, блокировка |
+
+<Example
+  title='Три appearance в ряд'
+  description='Сравнение семантических ролей на одном размере и view'
+  code={AppearancesSrc}
+>
+  <Appearances client:load />
+</Example>
+
+### View — оформление
+
+| View | Типичный сценарий |
+|------|--------------------|
+| `filled` | Главный CTA, максимальный акцент |
+| `tonal` | Secondary-акцент в группе с `filled` |
+| `outline` | На контрастном фоне или в композиции с карточками |
+| `simple` | Действие без фона — плотная сетка, таблицы |
+| `elevated` | Плавающая кнопка с тенью — над контентом |
+| `function` | Текстовая кнопка без горизонтального padding — toolbar, inline-действия |
+
+<Example
+  title='Все шесть view'
+  description='appearance=primary, size=m'
+  code={ViewsSrc}
+>
+  <Views client:load />
+</Example>
+
+### Size
+
+| Size | Высота | Применение |
+|------|--------|------------|
+| `s` | 24px | Таблицы, теги, чипы, плотные сетки |
+| `m` | 32px | Значение по умолчанию — формы, диалоги, карточки |
+| `l` | 40px | Hero, онбординг, CTA на лендинге |
+
+Размеры зафиксированы в Figma и совпадают с токенами `@cloud-ru/figma-variables`.
+
+<Example title='Три размера в ряд' code={SizesSrc}>
+  <Sizes client:load />
+</Example>
+
+### Do / Don't
+
+- ✅ Один `primary` на экран. Остальные действия — `neutral` / `tonal`.
+- ❌ Два `primary` рядом — пользователю непонятно, что главное.
+- ✅ `critical` для удаления, всегда с подтверждающим диалогом.
+- ❌ `critical` для «Отмена» — это нейтральное действие.
+- ✅ `loading` сразу после отправки формы — не оставляйте юзера без сигнала.
+- ❌ `disabled` без причины — используйте tooltip или подсказку, почему недоступно.
+- ✅ `fullWidth` в мобильных формах — увеличивает тап-зону.
+- ❌ `fullWidth` в горизонтальной композиции с другими элементами управления.
+
+### Figma
+
+<FigmaEmbed node={FIGMA_BUTTON} height={480} title='Button в Figma (Snack UI Kit)' client:load />
+
+### Смотри также
+
+- [Паттерны форм](/patterns/form-patterns)
+- [Паттерны композиции](/patterns/composition-patterns)
+
+## Для разработчиков
+
+Здесь — что импортировать, как собрать типовые сценарии и какие пропсы доступны.
+
+### Установка
+
+```bash
+pnpm add @ds/button
+```
+
+```ts
+import { Button } from '@ds/button'
+import '@ds/button/style.css'
+```
+
+### Примеры использования
+
+Минимум, который покрывает 80% реальных случаев. Каждый пример — отдельный файл в `packages/button/demos/examples/`, который можно скопировать целиком.
+
+<Example
+  title='1. Пара главное + вторичное'
+  description='Типичный футер формы: filled primary + simple neutral'
+  code={ActionsSrc}
+>
+  <Actions client:load />
+</Example>
+
+<Example
+  title='2. Деструктивное действие'
+  description='Critical + иконка — визуально подкрепляет риск'
+  code={DestructiveSrc}
+>
+  <Destructive client:load />
+</Example>
+
+<Example
+  title='3. Icon-only в toolbar'
+  description='Без label, но с aria-label для скринридеров'
+  code={IconOnlySrc}
+>
+  <IconOnly client:load />
+</Example>
+
+<Example
+  title='4. Кнопка-ссылка'
+  description="as='a' + target='_blank' → rel='noopener noreferrer' добавляется автоматически"
+  code={LinkButtonSrc}
+>
+  <LinkButton client:load />
+</Example>
+
+<Example
+  title='5. Кнопка с бейджем-счётчиком'
+  description="iconPosition='after' + counter → счётчик превращается в badge над иконкой"
+  code={CounterBadgeSrc}
+>
+  <CounterBadge client:load />
+</Example>
+
+<Example
+  title='6. Загрузка'
+  description="loading заменяет лейбл спиннером и проставляет aria-busy='true'"
+  code={LoadingSrc}
+>
+  <Loading client:load />
+</Example>
+
+### Живой сценарий: отправка формы
+
+Интерактивная композиция с primary-actions и loading-состоянием — кликните «Подписаться», чтобы увидеть переход `idle → submitting → success`.
+
+<ButtonFormScenario client:load />
+
+```tsx
+function SubscribeForm() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
+
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setStatus('submitting')
+    setTimeout(() => setStatus('success'), 1200)
+  }
+
+  return (
+    <form onSubmit={submit}>
+      <input value={email} onChange={(e) => setEmail(e.target.value)} />
+      <Button
+        type='submit'
+        appearance='primary'
+        label={status === 'success' ? 'Отправлено' : 'Подписаться'}
+        loading={status === 'submitting'}
+        disabled={!email && status === 'idle'}
+      />
+    </form>
+  )
+}
+```
+
+### Полиморфизм
+
+- `as="button"` *(по умолчанию)* — нативная кнопка, корректная клавиатура из коробки.
+- `as="a" href="..." target="_blank"` — ссылка, `rel="noopener noreferrer"` проставляется автоматически.
+- `as={Link}` — любой компонент-роутер (react-router, Next.js); специфичные пропсы передаются насквозь.
+
+Ref на DOM-элемент пробрасывается через `innerRef`, а не стандартный `ref`, чтобы типы оставались полиморфными без `forwardRef`.
+
+### States
+
+- **`loading`** — внутри рендерится `Sun` из `@ds/loader`, выставляется `aria-busy="true"`, клик блокируется. Для `label-only` спиннер заменяет текст — ширина сохраняется.
+- **`disabled`** — кнопка неактивна. Для `as="a"` дополнительно ставится `aria-disabled="true"` и `onClick` гасится `preventDefault`.
+- **`loading + disabled`** — `loading` имеет приоритет: `aria-busy`, без `disabled`-атрибута на DOM.
+
+### Иконки и counter
+
+- `icon` + `iconPosition="before"` *(по умолчанию)* — иконка слева от лейбла.
+- `icon` + `iconPosition="after"` — иконка справа (переходы, раскрытия).
+- `icon` без `label` — **icon-only**, нужен `aria-label` для скринридеров.
+- `counter={{ value: 12 }}` — встроенный счётчик из `@ds/counter`, инлайн после лейбла.
+- С `iconPosition="after"` счётчик превращается в badge над иконкой (`data-absolute`).
+- В `loading`-состоянии счётчик не рендерится — фокус на процессе.
+
+### Props
+
+<PropsTable data={buttonDoc.Button} />
+
+### Storybook
+
+<StorybookEmbed storyId='components-button--playground' height={360} client:load />
+
+## Доступность
+
+- Нативный `<button>` по умолчанию — клавиатура (Enter / Space) и screen-reader работают без доработки.
+- `aria-busy` при `loading`, `aria-disabled` для `as="a"` + `disabled`.
+- Видимый focus-ring только при навигации с клавиатуры (`focus-visible`).
+- Для icon-only кнопок **обязателен** `aria-label` или `aria-labelledby`.
+- Цвет не единственный носитель смысла: `critical` дублируется текстом («Удалить», «Отозвать»), иконкой или подтверждением.

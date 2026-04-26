@@ -1,0 +1,32 @@
+---
+title: Tab
+package: '@ds/tabs'
+description: Отдельная вкладка в TabBar — поддерживает label, counter и disabled.
+order: 3
+---
+
+import { WithCounter } from '../demos/examples/WithCounter'
+import WithCounterSrc from '../demos/examples/WithCounter.tsx?raw'
+import { Disabled } from '../demos/examples/Disabled'
+import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import tabsDoc from './props.json'
+
+# Tab
+
+Одна вкладка внутри `TabBar`. Идентифицируется по `value` — это же значение используется в `TabContent` для сопоставления. Поддерживает `counter` (встроенный `Counter`) и `disabled`.
+
+## Примеры использования
+
+<Example title='Tab с counter' code={WithCounterSrc}>
+  <WithCounter client:only="react" />
+</Example>
+
+<Example title='Отключённый таб' code={DisabledSrc}>
+  <Disabled client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={tabsDoc.Tab} />

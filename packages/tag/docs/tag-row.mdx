@@ -1,0 +1,53 @@
+---
+title: TagRow
+package: '@ds/tag'
+description: Контейнер группы меток с ограничением по строкам и кнопкой «+N ещё» для скрытых тегов.
+order: 2
+---
+
+import { TagRow } from '@ds/tag'
+import { TagRowDemo } from '../demos/TagRowDemo'
+import { RowTruncated } from '../demos/examples/RowTruncated'
+import RowTruncatedSrc from '../demos/examples/RowTruncated.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import tagDoc from './props.json'
+
+# TagRow
+
+Обёртка для нескольких `Tag` подряд. Принимает массив `items` и опционально ограничивает видимые метки по количеству строк с кнопкой «+N ещё» для раскрытия.
+
+## Демо
+
+<TagRowDemo client:load />
+
+## Когда использовать
+
+- Для группы тегов записи в карточке списка (обычно 3–8 штук).
+- Для выбранных фильтров, которые занимают больше одной строки.
+- Везде, где количество меток может превышать доступную ширину.
+
+## Props
+
+<PropsTable data={tagDoc.TagRow} />
+
+## Пример
+
+<Example
+  title='Ограничение по строкам'
+  description='rowLimit=1 прячет метки в кнопку +N ещё'
+  code={RowTruncatedSrc}
+>
+  <RowTruncated client:load />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='components-tag--tagrow' height={320} client:load />
+
+## Доступность
+
+- Кнопка «+N ещё» — нативный `<button>`, работает с клавиатурой.
+- При раскрытии скрытые метки появляются в документе и становятся доступны screen-reader'у.
+- Порядок меток в DOM соответствует порядку массива `items` — переходы по Tab предсказуемы.

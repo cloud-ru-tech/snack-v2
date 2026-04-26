@@ -1,34 +1,29 @@
 {
-  "name": "@design-system/scroll",
-  "version": "0.1.0",
-  "private": false,
-  "description": "Scroll component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/scroll",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
   "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
+    "dist",
+    "src"
   ],
   "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
+    "*.css",
+    "**/*.css"
   ],
-  "scripts": {},
   "dependencies": {
-    "@design-system/utils": "0.1.0",
+    "@ds/materials": "workspace:*",
+    "@ds/utils": "workspace:*",
     "classnames": "2.5.1",
     "overlayscrollbars": "2.14.0",
     "overlayscrollbars-react": "0.5.6"

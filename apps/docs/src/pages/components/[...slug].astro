@@ -1,0 +1,113 @@
+---
+import { getCollection, render } from 'astro:content'
+import DocsLayout from '../../layouts/DocsLayout.astro'
+import { withBase } from '../../lib/base-url'
+import { flatPages } from '../../lib/discovery'
+import '../../styles/doc-page.scss'
+
+export async function getStaticPaths() {
+  const entries = await getCollection('components')
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content, headings } = await render(entry)
+
+const pages = await flatPages()
+const currentHref = withBase(`/components/${entry.id}`)
+const currentIndex = pages.findIndex((p) => p.href === currentHref)
+const prev = currentIndex > 0 ? pages[currentIndex - 1] : null
+const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
+---
+
+<DocsLayout title={entry.data.title} description={entry.data.description}>
+  <div class="page">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href={import.meta.env.BASE_URL}>Docs</a>
+      <span aria-hidden>›</span>
+      <span>Components</span>
+      <span aria-hidden>›</span>
+      <span aria-current="page">{entry.data.title}</span>
+    </nav>
+
+    <!-- Two-column: content + TOC -->
+    <div class="content-grid">
+      <!-- Main content: description comes from MDX, not duplicated here -->
+      <article class="doc">
+        <Content />
+      </article>
+
+      <!-- Right sidebar: TOC -->
+      {headings.length > 0 && (
+        <aside class="toc" aria-label="На странице">
+          <p class="toc-label">На странице</p>
+          <ul class="toc-list">
+            {headings
+              .filter((h) => h.depth === 2)
+              .map((h) => (
+                <li>
+                  <a href={`#${h.slug}`} class="toc-link">{h.text}</a>
+                </li>
+              ))}
+          </ul>
+        </aside>
+      )}
+    </div>
+
+    {(prev || next) && (
+      <nav class="page-nav" aria-label="Page navigation">
+        {prev ? (
+          <a href={prev.href} class="page-nav-link page-nav-prev">
+            <span class="page-nav-dir">← Предыдущая</span>
+            <span class="page-nav-title">{prev.title}</span>
+          </a>
+        ) : <span />}
+        {next ? (
+          <a href={next.href} class="page-nav-link page-nav-next">
+            <span class="page-nav-dir">Следующая →</span>
+            <span class="page-nav-title">{next.title}</span>
+          </a>
+        ) : <span />}
+      </nav>
+    )}
+  </div>
+</DocsLayout>
+
+<script>
+  // TOC active section via IntersectionObserver
+  const headings = document.querySelectorAll<HTMLElement>('.doc h2[id]')
+  const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc-link')
+
+  if (headings.length && tocLinks.length) {
+    let activeId = ''
+
+    function setActive(id: string) {
+      if (id === activeId) return
+      activeId = id
+      tocLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${id}`
+        link.classList.toggle('toc-link--active', isActive)
+      })
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // find the topmost visible heading
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+
+        if (visible.length) {
+          setActive((visible[0].target as HTMLElement).id)
+        }
+      },
+      { rootMargin: '-56px 0px -60% 0px', threshold: 0 }
+    )
+
+    headings.forEach((h) => observer.observe(h))
+  }
+</script>

@@ -1,4 +1,4 @@
-import { isBrowser } from '@design-system/utils';
+import { isBrowser } from '@ds/utils';
 import { createContext, PropsWithChildren, RefObject, useContext } from 'react';
 
 const DEFAULT_CONTEXT_VALUE = { current: isBrowser() ? document.body : null } as RefObject<HTMLElement | null>;

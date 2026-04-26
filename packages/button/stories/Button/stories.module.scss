@@ -1,0 +1,23 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.row {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.rowWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.narrow {
+  width: 320px;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}

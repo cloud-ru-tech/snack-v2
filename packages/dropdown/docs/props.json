@@ -1,0 +1,141 @@
+{
+  "Dropdown": {
+    "displayName": "Dropdown",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Содержимое внутри поповера"
+      },
+      "state": {
+        "type": "DropdownState",
+        "required": false,
+        "description": "Состояние"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "gte",
+          "eq"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children)."
+      }
+    },
+    "description": "Dropdown компонент"
+  }
+}

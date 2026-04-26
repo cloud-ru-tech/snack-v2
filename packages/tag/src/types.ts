@@ -1,7 +1,7 @@
-import type { ValueOf, WithSupportProps } from '@design-system/utils';
-import type { ComponentPropsWithoutRef, ElementType, MouseEvent, MouseEventHandler } from 'react';
+import { ValueOf, WithSupportProps } from '@ds/utils';
+import { ComponentPropsWithoutRef, ElementType, MouseEvent, MouseEventHandler } from 'react';
 
-import type { APPEARANCE, SIZE } from './constants';
+import { APPEARANCE, SIZE } from './constants';
 
 export type Appearance = ValueOf<typeof APPEARANCE>;
 

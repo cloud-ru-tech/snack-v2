@@ -1,80 +1,73 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ReactNode } from 'react';
+import { Slider } from '@ds/slider';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import sliderReadme from '../../README.md?raw';
-import { Slider } from '../../src';
-import styles from '../styles.module.scss';
-import { VISUAL_MATRIX_COMMON } from './constants';
+import styles from './stories.module.scss';
 
-const meta: Meta = {
-  title: 'Components/Slider/VisualMatrix',
-  parameters: {
-    readme: { content: sliderReadme },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3461-243&m=dev',
-    },
-  },
+const meta: Meta<typeof Slider> = {
+  title: 'Components/Slider',
+  component: Slider,
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
+type Story = StoryObj<typeof Slider>;
 
-type Story = StoryObj;
+const marks = {
+  0: '0',
+  50: '50',
+  100: '100',
+};
 
-function MatrixWrap({ children }: { children: ReactNode }) {
-  return (
-    <div className={styles.matrixCell}>
-      <div className={styles.matrixSlider}>{children}</div>
-    </div>
-  );
+function Wrap({ children }: { children: JSX.Element }) {
+  return <div className={styles.item}>{children}</div>;
 }
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <section className={styles.matrixSection} aria-labelledby='slider-matrix-states'>
+    <div className={styles.matrix}>
       <StoryTable
-        sectionTitle='All states'
-        firstColumnHeader='State'
-        columnHeaders={['Preview']}
+        sectionTitle='Mode × State'
+        firstColumnHeader='Mode'
+        columnHeaders={['default', 'disabled']}
         rows={[
           {
-            variantLabel: 'Single, enabled',
+            variantLabel: 'single',
             cells: [
-              <MatrixWrap key='single-enabled'>
-                <Slider {...VISUAL_MATRIX_COMMON} defaultValue={35} />
-              </MatrixWrap>,
+              <Wrap key='single-default'>
+                <Slider min={0} max={100} defaultValue={40} />
+              </Wrap>,
+              <Wrap key='single-disabled'>
+                <Slider min={0} max={100} defaultValue={40} disabled />
+              </Wrap>,
             ],
           },
           {
-            variantLabel: 'Single, disabled',
+            variantLabel: 'range',
             cells: [
-              <MatrixWrap key='single-disabled'>
-                <Slider {...VISUAL_MATRIX_COMMON} defaultValue={35} disabled />
-              </MatrixWrap>,
+              <Wrap key='range-default'>
+                <Slider range min={0} max={100} defaultValue={[20, 70]} />
+              </Wrap>,
+              <Wrap key='range-disabled'>
+                <Slider range min={0} max={100} defaultValue={[20, 70]} disabled />
+              </Wrap>,
             ],
           },
           {
-            variantLabel: 'Range, enabled',
+            variantLabel: 'with marks',
             cells: [
-              <MatrixWrap key='range-enabled'>
-                <Slider {...VISUAL_MATRIX_COMMON} range defaultValue={[20, 40]} />
-              </MatrixWrap>,
-            ],
-          },
-          {
-            variantLabel: 'Range, disabled',
-            cells: [
-              <MatrixWrap key='range-disabled'>
-                <Slider {...VISUAL_MATRIX_COMMON} range defaultValue={[20, 40]} disabled />
-              </MatrixWrap>,
+              <Wrap key='marks-default'>
+                <Slider min={0} max={100} step={50} marks={marks} defaultValue={50} />
+              </Wrap>,
+              <Wrap key='marks-disabled'>
+                <Slider min={0} max={100} step={50} marks={marks} defaultValue={50} disabled />
+              </Wrap>,
             ],
           },
         ]}
-        tableMinWidthPx={480}
       />
-    </section>
+    </div>
   ),
 };

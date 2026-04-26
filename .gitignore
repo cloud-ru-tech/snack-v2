@@ -64,3 +64,28 @@ test-results/
 # AI EDITOR CONFIG START
 .history
 # AI EDITOR CONFIG END
+
+node_modules
+dist
+.turbo
+*.local
+.DS_Store
+storybook-static
+.astro
+scripts/.add-package-tmp
+
+# Generated per-package artifacts (pnpm gen:readme / pnpm gen:props)
+# packages/*/README.md
+# packages/*/docs/props.json
+# TypeScript incremental build cache
+packages/**/*.tsbuildinfo
+
+# Icons generation workspace (must stay local only)
+packages/icons/svgs-fixed/
+# Generated icon components/sprites are part of repository history
+!packages/icons/src/components/
+!packages/icons/src/components/**
+!packages/icons/src/sprite/
+!packages/icons/src/sprite/**
+
+playwright/test-results

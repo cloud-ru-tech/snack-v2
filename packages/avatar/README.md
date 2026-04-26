@@ -1,152 +1,85 @@
 # Avatar
 
-The Avatar component displays user profile pictures or initials. It supports images with automatic fallback to generated initials, multiple sizes, shapes (round and square), and various color schemes.
+`@ds/avatar` — Аватар пользователя с фото, инициалами, размерами и цветовыми схемами.
 
-## Installation
+Компонент для отображения аватара: изображение по URL с fallback на инициалы из имени, несколько размеров и форм (круг / квадрат), палитра фонов.
+
+## Когда использовать
+
+- Идентификатор пользователя в хедере, меню, списке участников.
+- Автор комментария, сообщения, коммита.
+- Плейсхолдер для отсутствующего фото — инициалы из имени.
+
+Когда **не** нужен `Avatar`: если требуется декоративная иконка или логотип бренда — используйте обычный `<img>` или иконку.
+
+### Shape — форма
+
+| Shape | Когда использовать |
+|-------|--------------------|
+| `round` | Пользовательский профиль — общепринятое оформление |
+| `square` | Организации, команды, сущности не-людей |
+
+### Size — размер
+
+Семь размеров: `xs`, `s`, `m`, `l`, `3xl`, `6xl`, `10xl`. Малые (`xs–m`) — в списках и инлайне; крупные (`3xl+`) — на странице профиля или пустом состоянии.
+
+### Appearance — цветовая схема
+
+Девять вариантов фона для инициалов: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`. Назначайте детерминированно (хэш от user id) — один и тот же пользователь должен всегда видеть себя в одном цвете.
+
+### Do / Don't
+
+- ✅ Один цвет на пользователя — стабильно между сессиями.
+- ❌ Случайный цвет при каждом рендере.
+- ✅ `alt` у `<Avatar src=...>` прокидывается как `aria-hidden` — имя рядом в DOM.
+- ❌ `src` без `name` — при ошибке загрузки fallback покажет пустой кружок.
+
+### Установка
 
 ```bash
-npm install @design-system/avatar
-# or
-yarn add @design-system/avatar
-# or
-pnpm add @design-system/avatar
+pnpm add @ds/avatar
 ```
 
-## Exports
-
-```typescript
-import {
-  Avatar,
-  type AvatarProps,
-  APPEARANCE,
-  SHAPE,
-  SIZE,
-  type Appearance,
-  type Shape,
-  type Size
-} from '@design-system/avatar';
+```ts
+import { Avatar, APPEARANCE, SHAPE, SIZE } from '@ds/avatar'
+import '@ds/avatar/style.css'
 ```
 
-## Live examples
+### Props
 
-### Basic usage
+<PropsTable data={avatarDoc.Avatar} />
+
+Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`, а также стандартные атрибуты контейнера `HTMLDivElement`.
+
+### Storybook
+
+<StorybookEmbed storyId='components-avatar--playground' height={360} client:load />
+
+## Доступность
+
+- Компонент рендерится как `<div>` — если аватар является ссылкой, оборачивайте его во внешний `<a>` / `<button>`.
+- Инициалы и картинка помечены `aria-hidden='true'`, потому что имя пользователя должно присутствовать рядом как видимый текст.
+- Выбирайте контрастные сочетания `appearance` × фон страницы — инициалы должны читаться.
+
+## Avatar
 
 ```tsx
-import { Avatar } from '@design-system/avatar';
+import { Avatar } from '@ds/avatar'
 
-<Avatar name='John Doe' />
-<Avatar name='Jane Smith' appearance="primary" />
-<Avatar name='Bob Johnson' appearance="blue" />
-```
-
-### With images
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-<Avatar name='John Doe' src='https://i.pravatar.cc/150?img=1' />
-<Avatar name='Jane Smith' src='https://i.pravatar.cc/150?img=2' appearance="primary" />
-<Avatar name='Bob Johnson' src='https://i.pravatar.cc/150?img=3' appearance="green" />
-```
-
-### Sizes
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-<Avatar name='XS' size="xs" />
-<Avatar name='S' size="s" />
-<Avatar name='M' size="m" />
-<Avatar name='L' size="l" />
-<Avatar name='3XL' size="3xl" />
-<Avatar name='6XL' size="6xl" />
-<Avatar name='10XL' size="10xl" />
-```
-
-### Shapes
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-<Avatar name='Round' shape="round" />
-<Avatar name='Square' shape="square" />
-```
-
-### Color schemes
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-<Avatar name='Neutral' appearance="neutral" />
-<Avatar name='Primary' appearance="primary" />
-<Avatar name='Red' appearance="red" />
-<Avatar name='Orange' appearance="orange" />
-<Avatar name='Yellow' appearance="yellow" />
-<Avatar name='Green' appearance="green" />
-<Avatar name='Blue' appearance="blue" />
-<Avatar name='Violet' appearance="violet" />
-<Avatar name='Pink' appearance="pink" />
-```
-
-
-## Usage
-
-### Basic example
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-export function UserProfile() {
-  return <Avatar name='John Doe' />;
+export function Example() {
+  return <Avatar appearance="neutral" shape="round">Click me</Avatar>
 }
 ```
 
-### With image
+### Props
 
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-export function UserProfile() {
-  return <Avatar name='John Doe' src='https://example.com/avatar.jpg' />;
-}
-```
-
-### Custom appearance and size
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-export function UserProfile() {
-  return <Avatar name='Jane Smith' appearance="primary" size="l" />;
-}
-```
-
-## Props
-
-### AvatarProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| name* | `string` | - | Имя пользователя для генерации аббревиатуры |
-| src | `string` | - | URL изображения аватара |
-| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral | Внешний вид (цвет) |
-| size | enum Size: `"xs"`, `"s"`, `"m"`, `"l"`, `"3xl"`, `"6xl"`, `"10xl"` | s | Размер |
-| shape | enum Shape: `"round"`, `"square"` | round | Форма: круглая или квадратная |
-| showTwoSymbols | `boolean` | - | Отображение двух заглавных символов имени вместо одного |
-| className | `string` | - | CSS-класс |
-
-## Best Practices
-
-1. **Always provide a meaningful name** — Even with images, names ensure fallback works correctly
-2. **Use appropriate sizes** — Match avatar size to context and importance
-3. **Consistent color usage** — Establish clear rules for when to use each appearance
-4. **Handle image errors gracefully** — Component handles this automatically, but ensure image URLs are valid
-5. **Consider contrast** — Ensure text/initials are readable against background colors
-6. **Group related avatars** — Use consistent sizing and spacing when displaying multiple avatars
-
----
-
-## Additional Resources
-
-- **Full Documentation:** [View documentation](./docs/index.mdx)
-- **Changelog:** [View changelog](./CHANGELOG.md)
-- **Migration Guide:** [View migration guide](./MIGRATION.md)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string` | — |  |
+| `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
+| `src` | `string` | — | URL изображения аватара |
+| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` | Внешний вид (цвет) |
+| `size` | `"xs"` \| `"s"` \| `"m"` \| `"l"` \| `"3xl"` \| `"6xl"` \| `"10xl"` | `s` | Размер |
+| `shape` | `"round"` \| `"square"` | `round` | Форма: круглая или квадратная |
+| `showTwoSymbols` | `boolean` | `false` | Отображение двух заглавных символов имени вместо одного |
+| `className` | `string` | — | CSS-класс |

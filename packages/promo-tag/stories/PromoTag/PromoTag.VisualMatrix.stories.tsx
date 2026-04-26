@@ -1,9 +1,8 @@
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import { PlaceholderSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import promoTagReadme from '../../README.md?raw';
 import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE, Size } from '../../src';
 
 const iconSizes: Record<Size, number> = {
@@ -15,9 +14,7 @@ const iconSizes: Record<Size, number> = {
 const meta: Meta<PromoTagProps> = {
   title: 'Components/PromoTag',
   component: PromoTag,
-  parameters: {
-    readme: { content: promoTagReadme },
-  },
+  parameters: { layout: 'padded' },
 };
 
 export default meta;

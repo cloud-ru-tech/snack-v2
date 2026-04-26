@@ -1,5 +1,5 @@
-import { PLACEMENT, Popover, type PopoverProps, TRIGGER } from '@design-system/popover';
-import type { Meta, StoryObj } from '@storybook/react';
+import { PLACEMENT, Popover, PopoverProps, TRIGGER } from '@ds/popover';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 

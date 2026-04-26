@@ -1,0 +1,106 @@
+{
+  "StatusIndicator": {
+    "displayName": "StatusIndicator",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "4xs",
+          "3xs",
+          "2xs",
+          "xs",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "neutral",
+        "description": "Внешний вид"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  "Status": {
+    "displayName": "Status",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Подпись к индикатору (точка с текстом). Если не передано — только точка"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер индикатора и подписи"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "neutral",
+        "description": "Внешний вид (цветовая схема)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "hasBackground": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Наличие фона"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
+      },
+      "progress": {
+        "type": "number",
+        "required": false,
+        "description": "Прогресс загрузки (от 0 до 100)"
+      }
+    }
+  }
+}

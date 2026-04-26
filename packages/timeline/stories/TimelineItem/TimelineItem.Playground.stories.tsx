@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, POSITION, ROLE, STYLE, TrackItem, type TrackItemProps, VARIANT } from '@ds/timeline';
+import { Meta, StoryObj } from '@storybook/react';
 
-import timelineReadme from '../../README.md?raw';
-import { TrackItem, type TrackItemProps } from '../../src/components/TrackItem';
 import { DemoComponent } from '../helperComponents/DemoComponent/DemoComponent';
 import styles from '../styles.module.scss';
 
@@ -15,10 +14,9 @@ const figmaDesignUrl =
   'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8934-4234&m=dev';
 
 const meta: Meta<StoryProps> = {
-  title: 'Components/Timeline/Timeline Item',
+  title: 'Components/Timeline/TimelineItem',
   component: TrackItem,
   parameters: {
-    readme: { content: timelineReadme },
     design: {
       type: 'figma',
       url: figmaDesignUrl,
@@ -51,23 +49,23 @@ const meta: Meta<StoryProps> = {
     },
     contentPosition: {
       control: 'radio',
-      options: Object.values(TrackItem.contentPositions),
+      options: Object.values(POSITION),
     },
     role: {
       control: 'radio',
-      options: Object.values(TrackItem.roles),
+      options: Object.values(ROLE),
     },
     lineStyle: {
       control: 'radio',
-      options: Object.values(TrackItem.lineStyles),
+      options: Object.values(STYLE),
     },
     dotVariant: {
       control: 'radio',
-      options: Object.values(TrackItem.dotVariants),
+      options: Object.values(VARIANT),
     },
     dotAppearance: {
       control: 'select',
-      options: Object.values(TrackItem.dotAppearances),
+      options: Object.values(APPEARANCE),
     },
     'data-test-id': {
       control: 'text',

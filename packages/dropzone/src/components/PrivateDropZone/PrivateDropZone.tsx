@@ -1,4 +1,4 @@
-import { extractSupportProps } from '@design-system/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ChangeEvent, DragEvent, useRef } from 'react';
 

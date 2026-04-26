@@ -1,42 +1,28 @@
 {
-  "name": "@design-system/truncate-string",
-  "version": "1.0.0",
-  "private": false,
-  "description": "Truncate String component for the design system",
-  "types": "./dist/esm/index.d.ts",
+  "name": "@ds/truncate-string",
+  "version": "0.0.0",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
+      "source": "./src/index.ts",
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
-  "files": [
-    "dist/cjs",
-    "dist/esm",
-    "src",
-    "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
-  ],
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
-  "scripts": {},
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
-    "@design-system/tooltip": "0.1.0",
-    "@design-system/utils": "0.1.0",
+    "@ds/tooltip": "workspace:*",
+    "@ds/utils": "workspace:*",
     "classnames": "2.5.1",
     "lodash.throttle": "4.1.1"
   },
   "devDependencies": {
     "@types/lodash.throttle": "4.1.8"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "publishConfig": { "access": "public" }
 }

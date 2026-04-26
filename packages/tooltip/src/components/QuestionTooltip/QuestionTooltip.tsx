@@ -1,11 +1,8 @@
-import { QuestionSpriteSVG } from '@design-system/icons';
-import { TRIGGER } from '@design-system/popover-private';
+import { QuestionSpriteSVG } from '@ds/icons';
+import { TRIGGER } from '@ds/popover-private';
 import cn from 'classnames';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { SIZE } from '../../constants';
-import { Size } from '../../types';
-import { getIconSize } from '../../utils';
 import { Tooltip, TooltipProps } from '../Tooltip';
 import styles from './styles.module.scss';
 
@@ -16,12 +13,12 @@ export type QuestionTooltipProps = TooltipProps & {
   triggerLabel?: string;
   /** Tab index для кнопки-триггера */
   tabIndex?: number;
-  /**
-   * Размер
-   * @default xs
-   */
-  size?: Size;
 };
+
+// Иконка «?» по Figma: размер 16 (sn/adaptive/size/icon/xs), цвет textMain.
+function QuestionIcon() {
+  return <QuestionSpriteSVG size={16} />;
+}
 
 /**
  * QuestionTooltip — тултип с триггером-иконкой «вопрос».
@@ -36,7 +33,6 @@ export function QuestionTooltip({
   open,
   onOpenChange,
   tabIndex = 0,
-  size = SIZE.XS,
   ...rest
 }: QuestionTooltipProps) {
   const [isOpen, setIsOpen] = useUncontrolledProp(open, false, onOpenChange);
@@ -58,9 +54,8 @@ export function QuestionTooltip({
         data-trigger={trigger}
         tabIndex={tabIndex}
         className={cn(styles.button, className)}
-        data-size={size}
       >
-        <QuestionSpriteSVG size={getIconSize(size)} />
+        <QuestionIcon />
       </button>
     </Tooltip>
   );

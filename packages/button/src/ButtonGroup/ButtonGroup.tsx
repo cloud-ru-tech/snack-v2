@@ -1,20 +1,15 @@
-import { Tooltip } from '@design-system/tooltip';
-import { WithSupportProps } from '@design-system/utils';
+import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { ReactNode } from 'react';
 
 import { Button } from '../Button';
 import { SIZE } from '../Button/constants';
-import type { ButtonProps } from '../Button/types';
+import { BaseButtonProps, Size } from '../Button/types';
 import styles from './styles.module.scss';
 
-/** Пропсы действия — как у `Button` с `as` по умолчанию (нативная кнопка), без `size` (задаётся группой) */
-type ActionProps = Omit<ButtonProps<'button'>, 'size'> &
-  WithSupportProps<{
-    tooltip?: { tip: ReactNode };
-  }>;
+/** Пропсы действия — все пропсы Button, кроме size (задаётся на уровне группы) */
+type ActionProps = WithSupportProps<Omit<BaseButtonProps, 'size'>>;
 
-export type ButtonGroupProps = {
+export type ButtonGroupProps = WithSupportProps<{
   /** Основное действие (filled) */
   primaryAction?: ActionProps;
   /** Вторичное действие (outline), опционально */
@@ -22,7 +17,7 @@ export type ButtonGroupProps = {
   /** Третичное действие (simple/text-only), опционально */
   tertiaryAction?: ActionProps;
   /** Размер кнопок */
-  size?: 's' | 'm' | 'l';
+  size?: Size;
   /** Вертикальное расположение */
   vertical?: boolean;
   /** Центрирование по горизонтали */
@@ -33,15 +28,10 @@ export type ButtonGroupProps = {
   filled?: boolean;
   /** Дополнительный класс */
   className?: string;
-};
+}>;
 
-function renderAction(props: ActionProps, size: 's' | 'm' | 'l') {
-  const { tooltip, ...buttonProps } = props;
-  const button = <Button {...buttonProps} size={size} />;
-  if (tooltip) {
-    return <Tooltip tip={tooltip.tip}>{button}</Tooltip>;
-  }
-  return button;
+function renderAction(props: ActionProps, size: Size) {
+  return <Button {...props} size={size} />;
 }
 
 export function ButtonGroup({
@@ -54,6 +44,7 @@ export function ButtonGroup({
   break: breakProp = false,
   filled = false,
   className,
+  ...rest
 }: ButtonGroupProps) {
   return (
     <div
@@ -62,6 +53,7 @@ export function ButtonGroup({
       data-centered={centered || undefined}
       data-break={breakProp || undefined}
       data-filled={vertical || filled || undefined}
+      {...rest}
     >
       {tertiaryAction && renderAction(tertiaryAction, size)}
       {secondaryAction && renderAction(secondaryAction, size)}

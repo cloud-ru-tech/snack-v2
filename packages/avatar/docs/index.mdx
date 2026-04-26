@@ -1,222 +1,80 @@
 ---
 title: Avatar
-description: User avatar component with image support, initials fallback, multiple sizes, shapes, and color schemes.
-version: '0.1.0'
+package: '@ds/avatar'
+description: Аватар пользователя с фото, инициалами, размерами и цветовыми схемами.
+order: 2
 ---
 
-import { ExampleContainer, ExampleGrid, ExampleItem, ExampleRow } from '#astro/components/mdx';
-import { Avatar } from '../src';
+import { AvatarDemo } from '../demos/AvatarDemo'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import avatarDoc from './props.json'
 
 # Avatar
 
-The Avatar component displays user profile pictures or initials. It supports images with automatic fallback to generated initials, multiple sizes, shapes (round and square), and various color schemes.
+Компонент для отображения аватара: изображение по URL с fallback на инициалы из имени, несколько размеров и форм (круг / квадрат), палитра фонов.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-## Installation
+<AvatarDemo client:load />
+
+## Когда использовать
+
+- Идентификатор пользователя в хедере, меню, списке участников.
+- Автор комментария, сообщения, коммита.
+- Плейсхолдер для отсутствующего фото — инициалы из имени.
+
+Когда **не** нужен `Avatar`: если требуется декоративная иконка или логотип бренда — используйте обычный `<img>` или иконку.
+
+## Для дизайнеров
+
+### Shape — форма
+
+| Shape | Когда использовать |
+|-------|--------------------|
+| `round` | Пользовательский профиль — общепринятое оформление |
+| `square` | Организации, команды, сущности не-людей |
+
+### Size — размер
+
+Семь размеров: `xs`, `s`, `m`, `l`, `3xl`, `6xl`, `10xl`. Малые (`xs–m`) — в списках и инлайне; крупные (`3xl+`) — на странице профиля или пустом состоянии.
+
+### Appearance — цветовая схема
+
+Девять вариантов фона для инициалов: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`. Назначайте детерминированно (хэш от user id) — один и тот же пользователь должен всегда видеть себя в одном цвете.
+
+### Do / Don't
+
+- ✅ Один цвет на пользователя — стабильно между сессиями.
+- ❌ Случайный цвет при каждом рендере.
+- ✅ `alt` у `<Avatar src=...>` прокидывается как `aria-hidden` — имя рядом в DOM.
+- ❌ `src` без `name` — при ошибке загрузки fallback покажет пустой кружок.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/avatar
-# or
-yarn add @design-system/avatar
-# or
-pnpm add @design-system/avatar
+pnpm add @ds/avatar
 ```
 
-## Changelog
-
-import Changelog from '#astro/components/astro/Changelog.astro';
-
-<Changelog packageName='avatar' />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component='avatar' />
-
-## Overview
-
-Avatar is a flexible component for displaying user identity in your application. It automatically handles:
-
-- **Image loading with graceful fallback to initials**
-- **Initials generation from user names (1 or 2 characters)**
-- **Multiple sizes from extra small (xs) to extra large (10xl)**
-- **Two shapes: round and square**
-- **Nine color schemes for visual variety and categorization**
-- **Accessibility with proper ARIA attributes**
-
-## Live examples
-
-### Basic usage
-
-<ExampleContainer>
-  <ExampleRow>
-    <Avatar name='John Doe' />
-    <Avatar name='Jane Smith' appearance="primary" />
-    <Avatar name='Bob Johnson' appearance="blue" />
-  </ExampleRow>
-</ExampleContainer>
-
-### With images
-
-<ExampleContainer>
-  <ExampleRow>
-    <Avatar name='John Doe' src='https://i.pravatar.cc/150?img=1' />
-    <Avatar name='Jane Smith' src='https://i.pravatar.cc/150?img=2' appearance="primary" />
-    <Avatar name='Bob Johnson' src='https://i.pravatar.cc/150?img=3' appearance="green" />
-  </ExampleRow>
-</ExampleContainer>
-
-### Sizes
-
-<ExampleContainer padding='large'>
-  <ExampleRow gap='large' justifyContent='center'>
-    <ExampleItem label='xs'>
-      <Avatar name='XS' size="xs" />
-    </ExampleItem>
-    <ExampleItem label='s'>
-      <Avatar name='S' size="s" />
-    </ExampleItem>
-    <ExampleItem label='m'>
-      <Avatar name='M' size="m" />
-    </ExampleItem>
-    <ExampleItem label='xl'>
-      <Avatar name='L' size="l" />
-    </ExampleItem>
-    <ExampleItem label='3xl'>
-      <Avatar name='3XL' size="3xl" />
-    </ExampleItem>
-    <ExampleItem label='6xl'>
-      <Avatar name='6XL' size="6xl" />
-    </ExampleItem>
-    <ExampleItem label='10xl'>
-      <Avatar name='10XL' size="10xl" />
-    </ExampleItem>
-  </ExampleRow>
-</ExampleContainer>
-
-### Shapes
-
-<ExampleContainer>
-  <ExampleRow gap='xlarge'>
-    <ExampleItem label='Round' labelSize='medium' gap='medium'>
-      <Avatar name='Round' shape="round" />
-    </ExampleItem>
-    <ExampleItem label='Square' labelSize='medium' gap='medium'>
-      <Avatar name='Square' shape="square" />
-    </ExampleItem>
-  </ExampleRow>
-</ExampleContainer>
-
-### Color schemes
-
-<ExampleContainer>
-  <ExampleGrid columns={3} minColumnWidth='120px'>
-    <ExampleItem label='Neutral' gap='medium'>
-      <Avatar name='Neutral' appearance="neutral" />
-    </ExampleItem>
-    <ExampleItem label='Primary' gap='medium'>
-      <Avatar name='Primary' appearance="primary" />
-    </ExampleItem>
-    <ExampleItem label='Red' gap='medium'>
-      <Avatar name='Red' appearance="red" />
-    </ExampleItem>
-    <ExampleItem label='Orange' gap='medium'>
-      <Avatar name='Orange' appearance="orange" />
-    </ExampleItem>
-    <ExampleItem label='Yellow' gap='medium'>
-      <Avatar name='Yellow' appearance="yellow" />
-    </ExampleItem>
-    <ExampleItem label='Green' gap='medium'>
-      <Avatar name='Green' appearance="green" />
-    </ExampleItem>
-    <ExampleItem label='Blue' gap='medium'>
-      <Avatar name='Blue' appearance="blue" />
-    </ExampleItem>
-    <ExampleItem label='Violet' gap='medium'>
-      <Avatar name='Violet' appearance="violet" />
-    </ExampleItem>
-    <ExampleItem label='Pink' gap='medium'>
-      <Avatar name='Pink' appearance="pink" />
-    </ExampleItem>
-  </ExampleGrid>
-</ExampleContainer>
-
-## Storybook
-
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
-
-### Playground
-
-<StorybookIframe storyId='components-avatar--playground' showControls={true} height='400px' />
-
-### Visual Matrix
-
-Для просмотра всех доступных комбинаций используйте story **Visual Matrix** в Storybook. Таблица показывает все варианты типографики в структурированном виде с четкими границами и заголовками, что упрощает сравнение стилей.
-
-<StorybookIframe storyId='components-avatar--visual-matrix' showControls={false} height='800px' />
-
-## Usage
-
-### Basic example
-
-```tsx
-import { Avatar } from '@design-system/avatar';
-
-export function UserProfile() {
-  return <Avatar name='John Doe' />;
-}
+```ts
+import { Avatar, APPEARANCE, SHAPE, SIZE } from '@ds/avatar'
+import '@ds/avatar/style.css'
 ```
 
-### With image
+### Props
 
-```tsx
-import { Avatar } from '@design-system/avatar';
+<PropsTable data={avatarDoc.Avatar} />
 
-export function UserProfile() {
-  return <Avatar name='John Doe' src='https://example.com/avatar.jpg' />;
-}
-```
+Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`, а также стандартные атрибуты контейнера `HTMLDivElement`.
 
-### Custom appearance and size
+### Storybook
 
-```tsx
-import { Avatar } from '@design-system/avatar';
+<StorybookEmbed storyId='components-avatar--playground' height={360} client:load />
 
-export function UserProfile() {
-  return <Avatar name='Jane Smith' appearance="primary" size="l" />;
-}
-```
+## Доступность
 
-## Props
-
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### AvatarProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| name* | `string` | - | Имя пользователя для генерации аббревиатуры |
-| src | `string` | - | URL изображения аватара |
-| appearance | enum Appearance: `"neutral"`, `"primary"`, `"red"`, `"orange"`, `"yellow"`, `"green"`, `"blue"`, `"violet"`, `"pink"` | neutral | Внешний вид (цвет) |
-| size | enum Size: `"xs"`, `"s"`, `"m"`, `"l"`, `"3xl"`, `"6xl"`, `"10xl"` | s | Размер |
-| shape | enum Shape: `"round"`, `"square"` | round | Форма: круглая или квадратная |
-| showTwoSymbols | `boolean` | - | Отображение двух заглавных символов имени вместо одного |
-| className | `string` | - | CSS-класс |
-
-
-[//]: DOCUMENTATION_SECTION_END
-
-## Accessibility
-
-- Images use `alt=""` and `aria-hidden="true"` since they are decorative
-- Initials are readable text, providing meaningful fallback
-- Component accepts all standard HTML attributes for customization
-- Semantic HTML structure ensures screen reader compatibility
-
-## Best practices
-
-1. **Always provide a meaningful name** — Even with images, names ensure fallback works correctly
-2. **Use appropriate sizes** — Match avatar size to context and importance
-3. **Consistent color usage** — Establish clear rules for when to use each appearance
-4. **Handle image errors gracefully** — Component handles this automatically, but ensure image URLs are valid
-5. **Consider contrast** — Ensure text/initials are readable against background colors
-6. **Group related avatars** — Use consistent sizing and spacing when displaying multiple avatars
+- Компонент рендерится как `<div>` — если аватар является ссылкой, оборачивайте его во внешний `<a>` / `<button>`.
+- Инициалы и картинка помечены `aria-hidden='true'`, потому что имя пользователя должно присутствовать рядом как видимый текст.
+- Выбирайте контрастные сочетания `appearance` × фон страницы — инициалы должны читаться.

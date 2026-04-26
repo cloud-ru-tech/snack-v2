@@ -1,0 +1,76 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use 'motion' as m;
+@use 'layout' as l;
+
+.home {
+  max-width: l.$docs-content-max-narrow;
+  padding: base.$sn-primitive-dimension-48 base.$sn-primitive-dimension-48;
+}
+
+.hero {
+  margin-bottom: base.$sn-primitive-dimension-48;
+}
+
+.home h1 {
+  @include base.composite-var(base.$sn-regular-display-s);
+
+  margin-bottom: base.$sn-primitive-dimension-12;
+}
+
+.home .lead {
+  @include base.composite-var(base.$sn-regular-body-l);
+
+  max-width: l.$docs-lead-max-width;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.section {
+  margin-bottom: base.$sn-primitive-dimension-48;
+}
+
+.home h2 {
+  @include base.composite-var(base.$sn-regular-title-l);
+
+  margin-bottom: base.$sn-adaptive-spacing-interval-l;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(l.$docs-card-min-width, 1fr));
+  gap: base.$sn-primitive-dimension-12;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-adaptive-spacing-interval-s;
+
+  padding: base.$sn-adaptive-spacing-interval-l;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+
+  transition:
+    border-color m.$docs-duration-fast,
+    box-shadow m.$docs-duration-fast;
+}
+
+.card:hover {
+  border-color: base.$sn-theme-color-primary-accent;
+  box-shadow: 0 0 0 3px base.$sn-theme-color-primary-decor;
+}
+
+.card-title {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-label-l);
+}
+
+.card-desc {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}

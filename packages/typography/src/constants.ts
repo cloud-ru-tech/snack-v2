@@ -1,4 +1,4 @@
-import type { TypographySize, TypographyVariant, TypographyWeight } from './types';
+import { TypographySize, TypographyVariant, TypographyWeight } from './types';
 
 /** Варианты типографики */
 export const VARIANT: Record<TypographyVariant, TypographyVariant> = {

@@ -1,8 +1,8 @@
-import type { Ref } from 'react';
+import { Ref } from 'react';
 
 import { Tag } from '../../components';
 import { SIZE } from '../../constants';
-import type { Size, TagRowItemInner } from '../../types';
+import { Size, TagRowItemInner } from '../../types';
 import styles from './styles.module.scss';
 
 type SetTagRef = (item: TagRowItemInner, index: number) => Ref<HTMLDivElement>;

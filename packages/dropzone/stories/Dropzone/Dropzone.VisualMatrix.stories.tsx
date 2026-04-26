@@ -1,27 +1,21 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Dropzone, DropzoneProps, SIZE, UPLOAD_MODE } from '../../src';
+import { Dropzone, SIZE, UPLOAD_MODE } from '../../src';
 import { SlotContent } from './SlotContent';
 import styles from './styles.module.scss';
 
 const slotContent = <SlotContent />;
 
-const meta: Meta<DropzoneProps> = {
-  title: 'Components/Dropzone/Dropzone',
+const meta: Meta<typeof Dropzone> = {
+  title: 'Components/Dropzone',
   component: Dropzone,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=4971-5434&m=dev',
-    },
-  },
 };
 
 export default meta;
 
-type Story = StoryObj<DropzoneProps>;
+type Story = StoryObj<typeof Dropzone>;
 
 const sizes = Object.values(SIZE);
 

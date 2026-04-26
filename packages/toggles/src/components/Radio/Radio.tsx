@@ -1,4 +1,4 @@
-import { LOADER_SIZE, Spinner } from '@design-system/loader';
+import { LOADER_SIZE, Spinner } from '@ds/loader';
 import cn from 'classnames';
 import { useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';

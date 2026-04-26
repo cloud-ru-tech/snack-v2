@@ -1,4 +1,4 @@
-const SPACE = ' ';
+const SPACE = ' '
 
 /**
  * Генерирует аббревиатуру из строки
@@ -7,38 +7,21 @@ const SPACE = ' ';
  * @returns аббревиатура в верхнем регистре
  */
 export const getAbbreviation = (str: string, abbreviationLength: 1 | 2): string => {
-  const trimStr = str.replace(/[^a-zа-яё\d\s]/gi, '').trim();
+  const trimStr = str.replace(/[^a-zа-яё\d\s]/gi, '').trim()
 
   if (!trimStr || trimStr.length < abbreviationLength) {
-    return trimStr.toUpperCase();
+    return trimStr.toUpperCase()
   }
 
-  const strParts = trimStr.split(SPACE);
-  let abbreviation = trimStr;
+  const strParts = trimStr.split(SPACE)
+  let abbreviation = trimStr
 
   if (strParts.length > 1) {
-    const firstLetter = strParts[0].charAt(0);
-    const secondLetter = strParts[strParts.length - 1]?.charAt(0);
-    abbreviation = `${firstLetter}${secondLetter}`.toUpperCase();
+    const firstLetter = (strParts[0] ?? '').charAt(0)
+    const lastWord = strParts[strParts.length - 1] ?? ''
+    const secondLetter = lastWord.charAt(0)
+    abbreviation = `${firstLetter}${secondLetter}`.toUpperCase()
   }
 
-  return abbreviation.slice(0, abbreviationLength).toUpperCase();
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  return abbreviation.slice(0, abbreviationLength).toUpperCase()
+}

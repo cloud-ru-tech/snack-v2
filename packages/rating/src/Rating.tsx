@@ -1,4 +1,4 @@
-import { extractSupportProps, WithSupportProps } from '@design-system/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { KeyboardEventHandler, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 

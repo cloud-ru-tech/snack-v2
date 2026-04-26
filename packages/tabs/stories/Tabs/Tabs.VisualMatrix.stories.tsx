@@ -1,131 +1,100 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { ORIENTATION, SIZE, Tabs } from '@ds/tabs';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { MARKER_POSITION, ORIENTATION, SIZE, Tabs } from '../../src';
-import styles from './styles.module.scss';
+import styles from './stories.module.scss';
 
-const meta: Meta = {
+const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
   component: Tabs,
+  parameters: { layout: 'padded' },
 };
 
 export default meta;
+type Story = StoryObj<typeof Tabs>;
 
-type Story = StoryObj<typeof meta>;
-
-const sizes = Object.values(SIZE);
-const orientations = Object.values(ORIENTATION);
-const markerPositions = Object.values(MARKER_POSITION);
-const scenarios = ['Default', 'With counter', 'Disabled tab'] as const;
-
-const TAB_CELL_ITEMS = [
-  { value: 'tab1', label: 'Вкладка 1', counter: 5 },
-  { value: 'tab2', label: 'Вкладка 2' },
-  { value: 'tab3', label: 'Вкладка 3' },
+const items = [
+  { value: 'a', label: 'Alpha' },
+  { value: 'b', label: 'Beta' },
+  { value: 'c', label: 'Gamma' },
 ];
 
-function TabsCell({
-  size,
-  orientation,
-  markerPosition,
-  scenario,
-}: {
-  size: (typeof sizes)[number];
-  orientation: (typeof orientations)[number];
-  markerPosition: (typeof markerPositions)[number];
-  scenario: (typeof scenarios)[number];
-}) {
-  const content = (
-    <Tabs defaultValue='tab1'>
-      <Tabs.TabBar size={size} orientation={orientation} markerPosition={markerPosition}>
-        <Tabs.Tab
-          label={TAB_CELL_ITEMS[0].label}
-          value={TAB_CELL_ITEMS[0].value}
-          counter={
-            scenario === 'With counter' && TAB_CELL_ITEMS[0].counter != null
-              ? { label: TAB_CELL_ITEMS[0].counter }
-              : undefined
-          }
-        />
-        <Tabs.Tab
-          label={TAB_CELL_ITEMS[1].label}
-          value={TAB_CELL_ITEMS[1].value}
-          disabled={scenario === 'Disabled tab'}
-        />
-        <Tabs.Tab label={TAB_CELL_ITEMS[2].label} value={TAB_CELL_ITEMS[2].value} />
-      </Tabs.TabBar>
-      {TAB_CELL_ITEMS.map(({ value }) => (
-        <Tabs.TabContent key={value} value={value}>
-          Контент {value.replace('tab', '')}
-        </Tabs.TabContent>
-      ))}
-    </Tabs>
+function HorizontalBar({ size }: { size: 'l' | 'm' }) {
+  return (
+    <div className={styles.wide}>
+      <Tabs defaultValue='a'>
+        <Tabs.TabBar size={size}>
+          {items.map(i => (
+            <Tabs.Tab key={i.value} {...i} />
+          ))}
+        </Tabs.TabBar>
+      </Tabs>
+    </div>
   );
+}
 
-  if (orientation === ORIENTATION.Vertical) {
-    return <div className={styles.verticalCellWrapper}>{content}</div>;
-  }
-  return content;
+function VerticalBar({ size }: { size: 'l' | 'm' }) {
+  return (
+    <div className={styles.wide}>
+      <Tabs defaultValue='a'>
+        <Tabs.TabBar size={size} orientation={ORIENTATION.Vertical}>
+          {items.map(i => (
+            <Tabs.Tab key={i.value} {...i} />
+          ))}
+        </Tabs.TabBar>
+      </Tabs>
+    </div>
+  );
 }
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <>
+    <div className={styles.matrix}>
       <StoryTable
-        sectionTitle='Size × Scenario'
+        sectionTitle='Size × Orientation'
         firstColumnHeader='Size'
-        columnHeaders={[...sizes]}
-        rows={scenarios.map(scenario => ({
-          variantLabel: scenario,
-          cells: sizes.map(size => (
-            <TabsCell
-              key={`size-${size}-${scenario}`}
-              size={size}
-              orientation={ORIENTATION.Horizontal}
-              markerPosition={MARKER_POSITION.After}
-              scenario={scenario}
-            />
-          )),
+        columnHeaders={['horizontal', 'vertical']}
+        rows={([SIZE.L, SIZE.M] as const).map(size => ({
+          variantLabel: size,
+          cells: [<HorizontalBar key={`h-${size}`} size={size} />, <VerticalBar key={`v-${size}`} size={size} />],
         }))}
       />
 
       <StoryTable
-        sectionTitle='Orientation × Scenario'
-        firstColumnHeader='Orientation'
-        columnHeaders={[...orientations]}
-        rows={scenarios.map(scenario => ({
-          variantLabel: scenario,
-          cells: orientations.map(orientation => (
-            <TabsCell
-              key={`orientation-${orientation}-${scenario}`}
-              size={SIZE.L}
-              orientation={orientation}
-              markerPosition={MARKER_POSITION.After}
-              scenario={scenario}
-            />
-          )),
-        }))}
+        sectionTitle='Content variations'
+        firstColumnHeader='Case'
+        columnHeaders={['Tabs']}
+        rows={[
+          {
+            variantLabel: 'with counter',
+            cells: [
+              <div key='counter' className={styles.wide}>
+                <Tabs defaultValue='a'>
+                  <Tabs.TabBar>
+                    <Tabs.Tab value='a' label='Входящие' counter={{ label: 12 }} />
+                    <Tabs.Tab value='b' label='Архив' />
+                  </Tabs.TabBar>
+                </Tabs>
+              </div>,
+            ],
+          },
+          {
+            variantLabel: 'with disabled',
+            cells: [
+              <div key='disabled' className={styles.wide}>
+                <Tabs defaultValue='a'>
+                  <Tabs.TabBar>
+                    <Tabs.Tab value='a' label='Активен' />
+                    <Tabs.Tab value='b' label='Выключен' disabled />
+                  </Tabs.TabBar>
+                </Tabs>
+              </div>,
+            ],
+          },
+        ]}
       />
-
-      <StoryTable
-        sectionTitle='Marker Position × Orientation'
-        firstColumnHeader='Orientation'
-        columnHeaders={[...markerPositions]}
-        rows={orientations.map(orientation => ({
-          variantLabel: orientation,
-          cells: markerPositions.map(markerPosition => (
-            <TabsCell
-              key={`marker-${markerPosition}-${orientation}`}
-              size={SIZE.L}
-              orientation={orientation}
-              markerPosition={markerPosition}
-              scenario='Default'
-            />
-          )),
-        }))}
-      />
-    </>
+    </div>
   ),
 };

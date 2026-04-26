@@ -1,0 +1,61 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  padding: base.$sn-primitive-dimension-24;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-adaptive-spacing-interval-m;
+  max-width: 360px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.label {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.input {
+  height: 32px;
+  padding: 0 base.$sn-primitive-dimension-12;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm');
+
+  &:focus-visible {
+    outline: 2px solid base.$sn-theme-color-available-complementary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: base.$sn-adaptive-spacing-interval-s;
+}
+
+.success {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+
+  margin: 0;
+  color: base.$sn-theme-color-primary-text;
+}

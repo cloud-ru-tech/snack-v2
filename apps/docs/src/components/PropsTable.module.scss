@@ -1,0 +1,97 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use '../styles/layout' as l;
+
+.wrap {
+  overflow-x: auto;
+  display: block;
+
+  width: 100%;
+  margin-bottom: base.$sn-adaptive-spacing-interval-xl;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: l.$docs-props-table-min-width;
+
+  th,
+  td {
+    padding: base.$sn-adaptive-spacing-interval-m base.$sn-adaptive-spacing-interval-l;
+    border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: base.$sn-theme-color-neutral-text;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+
+    background: base.$sn-theme-color-neutral-background1Level;
+
+    @include base.composite-var(base.$sn-regular-label-s);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background: base.$sn-theme-color-neutral-background1Level;
+  }
+}
+
+.name {
+  color: base.$sn-theme-color-neutral-text;
+  white-space: nowrap;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.type {
+  overflow: hidden;
+  display: block;
+
+  max-width: l.$docs-props-type-max-width;
+
+  color: base.$sn-theme-color-violet-accent;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.default {
+  color: base.$sn-theme-color-neutral-text;
+  white-space: nowrap;
+
+  @include base.composite-var(base.$sn-mono-body-s);
+}
+
+.empty {
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.required {
+  color: base.$sn-theme-color-red-accent;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.optional {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.desc {
+  min-width: base.$sn-primitive-dimension-100;
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}

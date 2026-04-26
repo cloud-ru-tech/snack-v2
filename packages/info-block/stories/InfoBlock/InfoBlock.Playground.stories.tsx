@@ -1,22 +1,16 @@
-import { ButtonGroup } from '@design-system/button';
-import { PlaceholderSVG } from '@design-system/icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Button, VIEW } from '@ds/button';
+import { PlaceholderSVG } from '@ds/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
-import readme from '../../README.md?raw';
-import { ALIGN, InfoBlock, type InfoBlockProps, SIZE } from '../../src';
+import { ALIGN, InfoBlock, InfoBlockProps, SIZE } from '../../src';
+import styles from './styles.module.scss';
 
 type PlaygroundArgs = InfoBlockProps & { showIcon?: boolean; showFooter?: boolean };
 
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/InfoBlock',
   component: InfoBlock,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5828-4043',
-    },
-    readme: { content: readme },
-  },
+  parameters: { layout: 'centered' },
   args: {
     title: 'Title text',
     description: 'Content text',
@@ -83,11 +77,10 @@ export const Playground: Story = {
       icon={args.showIcon ? args.icon : undefined}
       footer={
         args.showFooter ? (
-          <ButtonGroup
-            size={args.size}
-            primaryAction={{ label: 'Label text', view: 'filled' }}
-            secondaryAction={{ label: 'Label text', view: 'tonal' }}
-          />
+          <div className={styles.footerRow}>
+            <Button label='Label text' view={VIEW.Filled} size={args.size} />
+            <Button label='Label text' view={VIEW.Tonal} size={args.size} />
+          </div>
         ) : undefined
       }
       className={args.className}

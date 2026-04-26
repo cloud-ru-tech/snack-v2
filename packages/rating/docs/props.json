@@ -1,0 +1,157 @@
+{
+  "Rating": {
+    "displayName": "Rating",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "yellow",
+        "description": "Внешний вид (цветовая схема)"
+      },
+      "count": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "5",
+        "description": "Общее количество звезд"
+      },
+      "value": {
+        "type": "number",
+        "required": false,
+        "description": "Значение количества звезд в случае необходимости управления"
+      },
+      "defaultValue": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Количество звезд, заполненных по умолчанию"
+      },
+      "allowHalf": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать или нет рейтинг в виде половины звезды"
+      },
+      "allowClear": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Разрещает сброс рейтинга при повторном нажатии на звезду"
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Является ли поле доступным на изменение"
+      },
+      "onChange": {
+        "type": "((value: number) => void)",
+        "required": false,
+        "description": "Колбек, вызываемый на смену состояния"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      }
+    },
+    "description": "Компонент Rating"
+  },
+  "RatingStar": {
+    "displayName": "RatingStar",
+    "props": {
+      "value": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "0%",
+          "50%",
+          "100%"
+        ],
+        "defaultValue": "0%",
+        "description": "Значение"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "xs",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "primary",
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "blue",
+          "violet",
+          "pink"
+        ],
+        "defaultValue": "yellow",
+        "description": "Внешний вид (цветовая схема)"
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Является ли поле доступным на изменение"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "handleMouseEnter": {
+        "type": "((value: Value) => void)",
+        "required": false,
+        "description": "Действие при наведении мыши"
+      },
+      "handleMouseLeave": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие при уведении мыши"
+      },
+      "handleKeyDown": {
+        "type": "KeyboardEventHandler<HTMLDivElement>",
+        "required": false,
+        "description": "Действие при нажатии на клавишу клавиатуры"
+      },
+      "handleClick": {
+        "type": "((value: Value) => void)",
+        "required": false,
+        "description": "Действие при клике части звезды мышью"
+      }
+    },
+    "description": "Компонент RatingStar"
+  }
+}

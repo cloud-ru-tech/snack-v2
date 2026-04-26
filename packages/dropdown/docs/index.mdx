@@ -1,217 +1,130 @@
 ---
 title: Dropdown
-description: Компонент выпадающего меню
-version: '0.1.0'
+package: '@ds/dropdown'
+description: Выпадающий блок с произвольным контентом и встроенными состояниями loading / not-found / no-data / data-error.
+order: 0
 ---
 
-import { Button } from '@design-system/button';
-import { Dropdown } from '../src';
-import {
-  ExampleContainer,
-  ExampleRow,
-  ExampleGrid,
-  ExampleItem,
-} from '#astro/components/mdx';
+import { DropdownDemo } from '../demos/DropdownDemo'
+import { Button } from '@ds/button'
+import { Dropdown, STATE } from '@ds/dropdown'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
+import dropdownDoc from './props.json'
 
 # Dropdown
 
-Компонент выпадающего контейнера (dropdown), построенный на базе **PopoverPrivate**. Отображает произвольный контент в поповере относительно триггера (кнопки, иконки и т.д.), поддерживает открытие по клику, ховеру или фокусу, встроенные состояния загрузки и ошибок.
+Выпадающий блок над триггером: произвольный контент (меню, фильтры, справочная информация) + встроенные состояния `loading / not-found / no-data / data-error` через `state`. Поверх `PopoverPrivate` — те же пропсы позиционирования, плюс готовая визуальная обработка асинхронных случаев.
 
-**Version:** `{frontmatter.version}`
+## Демо
 
-## Installation
+<DropdownDemo client:load />
+
+## Когда использовать
+
+- Меню действий над кнопкой (экспорт, фильтры, настройки).
+- Асинхронные подсказки и suggestions — встроенный `state` скрывает ручное ветвление UI.
+- Композитные виджеты: селекторы, комбобоксы, авторасшифровки.
+
+Когда **не** нужен `Dropdown`: для одиночного подсказывающего текста используйте `Tooltip`, для модального выбора — `Modal` или `Popover`.
+
+## Для дизайнеров
+
+### Trigger
+
+| Trigger | Когда |
+|---------|-------|
+| `click` | Меню действий, фильтры — явное намерение открыть |
+| `hover` | Подсказки и preview — снять трение |
+| `focus` | Инлайн-подсказки внутри форм |
+
+### Placement
+
+8 позиций: `top/bottom` с суффиксами `-start/-end` и `left/right`. По умолчанию — `bottom-start`. При нехватке места Dropdown автоматически пробует fallback-позиции.
+
+### Встроенные состояния
+
+| State | Визуал | Когда |
+|-------|--------|-------|
+| `loading` | Spinner по центру | Асинхронная подгрузка списка |
+| `not-found` | InfoBlock с описанием + action | Поиск ничего не нашёл |
+| `no-data` | InfoBlock с иконкой + action | Пустой датасет, предложить создать |
+| `data-error` | InfoBlock c иконкой + retry | Ошибка загрузки, предложить повторить |
+
+### Do / Don't
+
+- ✅ Используйте `state` вместо ручной композиции `Spinner`/`EmptyState`.
+- ❌ Делать свой loading и `state={{ type: 'loading' }}` одновременно — выберите одно.
+- ✅ Контент в Dropdown должен быть короче одного экрана — для длинных форм берите `Modal`.
+- ❌ Вкладывать Dropdown в Dropdown — пользователь теряет контекст, лучше показать второй уровень в том же контейнере.
+
+## Для разработчиков
+
+### Установка
 
 ```bash
-npm install @design-system/dropdown
-# or
-yarn add @design-system/dropdown
-# or
-pnpm add @design-system/dropdown
+pnpm add @ds/dropdown
 ```
 
-## Changelog
+```ts
+import { Dropdown, STATE } from '@ds/dropdown'
+import '@ds/dropdown/style.css'
+```
 
-import Changelog from '#astro/components/astro/Changelog.astro';
+### Примеры использования
 
-<Changelog packageName="dropdown" />
-
-import LlmLink from '#astro/components/astro/LlmLink.astro';
-
-<LlmLink component="dropdown" />
-
-## Overview
-
-**Dropdown** — обёртка над PopoverPrivate с фиксированными настройками под типичный сценарий выпадающего блока: без стрелки, с контейнером под контент и опциональными состояниями (loading, not-found, no-data, data-error).
-
-Компонент автоматически обеспечивает:
-
-- **Триггеры** — открытие по клику (`click`), ховеру (`hover`), фокусу (`focus` / `focusVisible`) или комбинациям (`hoverAndFocus`, `clickAndFocusVisible` и др.).
-- **Позиционирование** — размещение поповера относительно триггера (`placement`: `bottom-start`, `top-end` и т.д.) с цепочкой запасных позиций (`fallbackPlacements`).
-- **Ширина** — стратегия `widthStrategy`: `auto`, `gte` (не уже триггера), `eq` (строго по ширине триггера). По умолчанию `gte`.
-- **Состояния** — встроенные экраны загрузки (спиннер), «Не найдено», «Нет данных», «Ошибка» с опциональной кнопкой действия (локализуются через `@design-system/locale`).
-- **Доступность** — закрытие по Escape, клик вне, поддержка `triggerRef` для кастомного триггера.
-
-## Live examples
-
-### Базовое использование
-
-<ExampleContainer>
-  <Dropdown content="Содержимое выпадающего списка">
-    <Button label="Открыть dropdown" view="filled" />
+<Example title='Базовый Dropdown'>
+  <Dropdown content={<div style={{ padding: 12 }}>Контент меню</div>}>
+    <Button label='Открыть' />
   </Dropdown>
-</ExampleContainer>
+</Example>
 
-### С триггером по ховеру
-
-<ExampleContainer>
-  <Dropdown content="Открывается при наведении" trigger="hover">
-    <Button label="Наведи курсор" view="outline" />
+<Example title='Открытое меню для визуальной сверки' description='Управляемый режим — open'>
+  <Dropdown open content={<div style={{ padding: 12 }}>Видимое содержимое</div>}>
+    <Button label='Триггер' />
   </Dropdown>
-</ExampleContainer>
+</Example>
 
-## Storybook
+<Example title='Состояние loading'>
+  <Dropdown open state={{ type: STATE.Loading }} content={null}>
+    <Button label='Загрузка' />
+  </Dropdown>
+</Example>
 
-import StorybookIframe from '#astro/components/astro/StorybookIframe.astro';
+<Example title='Состояние not-found с действием'>
+  <Dropdown
+    open
+    state={{
+      type: STATE.NotFound,
+      description: 'Ничего не нашли',
+      actionLabel: 'Сбросить фильтры',
+      onActionClick: () => {},
+    }}
+    content={null}
+  >
+    <Button label='Поиск' />
+  </Dropdown>
+</Example>
 
-<StorybookIframe storyId="components-dropdown--playground" showControls={true} height="600px" />
+### States
 
-## Usage
+- **`loading`** — контент заменяется `Spinner`'ом; реальный `content` игнорируется.
+- **`not-found` / `no-data` / `data-error`** — контент заменяется `InfoBlock`'ом; `actionLabel` + `onActionClick` рендерят повторный запрос / сброс.
+- **Без `state`** — рендерится `content` как есть.
 
-### Базовый пример
+### Props
 
-```tsx
-import { Button } from '@design-system/button';
-import { Dropdown } from '@design-system/dropdown';
+<PropsTable data={dropdownDoc.Dropdown} />
 
-export function Example() {
-  return (
-    <Dropdown content={<div>Контент поповера</div>}>
-      <Button label="Открыть" view="filled" />
-    </Dropdown>
-  );
-}
-```
+### Storybook
 
-### Управление открытием (controlled)
+<StorybookEmbed storyId='components-dropdown--playground' height={360} client:load />
 
-```tsx
-import { Button } from '@design-system/button';
-import { Dropdown } from '@design-system/dropdown';
-import { useState } from 'react';
+## Доступность
 
-export function Example() {
-  const [open, setOpen] = useState(false);
-  return (
-    <Dropdown
-      content={<div>Контент</div>}
-      open={open}
-      onOpenChange={setOpen}
-    >
-      <Button label={open ? 'Закрыть' : 'Открыть'} view="filled" />
-    </Dropdown>
-  );
-}
-```
-
-### Триггер по ref (без children)
-
-```tsx
-import { Button } from '@design-system/button';
-import { Dropdown } from '@design-system/dropdown';
-import { useRef } from 'react';
-
-export function Example() {
-  const buttonRef = useRef(null);
-  return (
-    <>
-      <Dropdown content={<div>Контент</div>} triggerRef={buttonRef} />
-      <Button innerRef={buttonRef} label="Триггер" view="filled" />
-    </>
-  );
-}
-```
-
-### Состояния: загрузка, нет данных, ошибка
-
-Компонент принимает проп `state` типа `DropdownState`. При переданном состоянии вместо `content` отображается соответствующий экран (спиннер, InfoBlock с текстом и опциональной кнопкой «Перезагрузить»). Тексты по умолчанию берутся из локали (`@design-system/locale`), при необходимости можно переопределить `description`, `actionLabel`, `onActionClick`, для состояний с иконкой — `icon`.
-
-Типы состояний: `'loading'`, `'not-found'`, `'no-data'`, `'data-error'`.
-
-```tsx
-import { Button } from '@design-system/button';
-import { Dropdown } from '@design-system/dropdown';
-import { useRef } from 'react';
-
-function Example() {
-  const ref = useRef(null);
-
-  // Загрузка — показывается спиннер
-  return (
-    <Dropdown state={{ type: 'loading' }} triggerRef={ref}>
-      <Button innerRef={ref} label="Загрузка" view="filled" />
-    </Dropdown>
-  );
-}
-
-// Нет данных + кнопка действия
-function NoDataExample() {
-  const ref = useRef(null);
-  return (
-    <Dropdown
-      content={null}
-      state={{
-        type: 'no-data',
-        description: 'Список пуст',
-        actionLabel: 'Обновить',
-        onActionClick: () => fetchData(),
-      }}
-      triggerRef={ref}
-    >
-      <Button innerRef={ref} label="Нет данных" view="filled" />
-    </Dropdown>
-  );
-}
-```
-
-## Props
-
-[//]: DOCUMENTATION_SECTION_START
-[//]: THIS_SECTION_IS_AUTOGENERATED_PLEASE_DONT_EDIT_IT
-### DropdownProps
-| name | type | default value | description |
-|------|------|---------------|-------------|
-| content* | `ReactNode` | - | Содержимое внутри поповера |
-| state | `DropdownState` | - | Состояние |
-| className | `string` | - | CSS-класс |
-| triggerClassName | `string` | - | CSS-класс триггера |
-| open | `boolean` | - | Управляет состоянием показан/не показан. |
-| onOpenChange | `(isOpen: boolean) => void` | - | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| hoverDelayOpen | `number` | - | Задержка открытия по ховеру |
-| hoverDelayClose | `number` | - | Задержка закрытия по ховеру |
-| widthStrategy | enum PopoverWidthStrategy: `"auto"`, `"gte"`, `"eq"` | gte | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
-| offset | `number` | 0 | Отступ поповера от его триггер-элемента (в пикселях). |
-| closeOnEscapeKey | `boolean` | true | Закрывать ли по нажатию на кнопку `Esc` |
-| triggerClickByKeys | `boolean` | true | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
-| triggerRef | `ForwardedRef<ReferenceType \| HTMLElement>` | - | Ref ссылка на триггер |
-| outsideClick | `boolean \| OutsideClickHandler` | - | Закрывать ли при клике вне поповера |
-| fallbackPlacements | `Placement[]` | - | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
-| disableSpanWrapper | `boolean` | - | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
-| closeOnPopstate | `boolean` | - | Закрывать ли поповер при пекреходе по истории браузера |
-| trigger | enum Trigger: `"click"`, `"hover"`, `"focusVisible"`, `"focus"`, `"hoverAndFocusVisible"`, `"hoverAndFocus"`, `"clickAndFocusVisible"` | click | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| placement | enum Placement: `"left"`, `"left-start"`, `"left-end"`, `"right"`, `"right-start"`, `"right-end"`, `"top"`, `"top-start"`, `"top-end"`, `"bottom"`, `"bottom-start"`, `"bottom-end"` | bottom-start | Положение поповера относительно своего триггера (children). |
-
-
-[//]: DOCUMENTATION_SECTION_END
-
-## Accessibility
-
-- Поведение наследуется от **PopoverPrivate**: корректное управление фокусом, закрытие по Escape, поддержка открытия по клавишам Enter/Space при `trigger="click"`.
-- Для кастомного триггера передавайте `triggerRef` и сохраняйте доступность кнопки/контрола (доступ с клавиатуры, `aria-expanded` при необходимости).
-- Встроенные состояния (loading, not-found, no-data, data-error) используют компонент **InfoBlock** и кнопки **ButtonGroup** с учётом доступности.
-
-## Best practices
-
-1. **Триггер** — используйте явный элемент управления (кнопку, иконку). Для кнопки без обёртки передавайте `triggerRef` и `innerRef` на кнопку.
-2. **Ширина** — по умолчанию `widthStrategy="gte"` обеспечивает ширину поповера не меньше триггера; для узких списков опций этого обычно достаточно.
-3. **Состояния** — при асинхронной загрузке контента передавайте `state={{ type: 'loading' }}`, после загрузки — `state={undefined}` и актуальный `content`. Для пустых выборок или ошибок используйте `'no-data'` / `'data-error'` с опциональным `onActionClick`.
-4. **Локализация** — тексты состояний задаются в `@design-system/locale` (ключи `Dropdown.states.*`); при кастомных описаниях передавайте `description` и `actionLabel` в объекте `state`.
+- Триггер — любой интерактивный элемент (`Button`, `<a>`); клавиатура работает из коробки.
+- Открытие по клавиатуре — Enter / Space на триггере, закрытие — Escape (по умолчанию `closeOnEscapeKey`).
+- Фокус возвращается на триггер при закрытии.
+- Для меню-списков рекомендуем внутри `content` ставить `role='menu'` с `role='menuitem'` на элементах — Dropdown сам не навязывает эти роли, чтобы не мешать произвольному контенту.
+- `trigger='hover'` дублируется фокусом — открытие работает и для клавиатурных пользователей.

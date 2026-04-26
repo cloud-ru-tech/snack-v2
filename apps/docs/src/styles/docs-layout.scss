@@ -1,0 +1,444 @@
+@use '@cloud-ru/figma-variables/build/scss/styles/styles.module' as base;
+@use 'motion' as m;
+@use 'layout' as l;
+
+html, body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+
+.header {
+  position: sticky;
+  z-index: l.$docs-z-header;
+  top: 0;
+
+  height: l.$docs-header-height;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+
+  background: color-mix(in srgb, base.$sn-theme-color-neutral-background1Level 90%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  display: flex;
+  gap: base.$sn-adaptive-spacing-interval-l;
+  align-items: center;
+
+  max-width: l.$docs-header-max-width;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 base.$sn-adaptive-spacing-interval-l;
+}
+
+.nav-toggle-slot {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.header-logo {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-adaptive-spacing-interval-m;
+  align-items: center;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+}
+
+.header-logo-mark {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-28;
+  height: base.$sn-primitive-dimension-28;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-primary-onAccent;
+
+  background: base.$sn-theme-color-primary-accent;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.header-logo-name {
+  @include base.composite-var(base.$sn-regular-label-l);
+}
+
+.header-nav {
+  display: flex;
+  gap: base.$sn-adaptive-spacing-interval-s;
+  align-items: center;
+}
+
+.header-link {
+  padding: base.$sn-adaptive-spacing-interval-s base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+
+  transition: color m.$docs-duration-fast, background m.$docs-duration-fast;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+}
+
+.header-link:hover {
+  color: base.$sn-theme-color-primary-accent;
+  background: base.$sn-theme-color-neutral-decorTransparent;
+}
+
+.header-end {
+  display: flex;
+  gap: base.$sn-adaptive-spacing-interval-m;
+  align-items: center;
+}
+
+// ─── Header search ───────────────────────────────────────────────────────────
+// Pagefind UI renders its own DOM inside #search. We override its BEM classes
+// to match our header instead of shipping the default widget look.
+
+.header-search {
+  position: relative;
+  flex-shrink: 1;
+  width: clamp(180px, 26vw, 320px);
+  margin-left: auto;
+}
+
+.header-search-kbd {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: base.$sn-primitive-dimension-8;
+  transform: translateY(-50%);
+
+  padding: 1px 6px;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  font-family: inherit;
+  line-height: 1.4;
+  color: base.$sn-theme-color-neutral-accent;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+// Pagefind UI overrides — scoped to our #search container.
+#search {
+  // Token passthroughs for Pagefind's own CSS variables.
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: #{base.$sn-theme-color-primary-accent};
+  --pagefind-ui-text: #{base.$sn-theme-color-neutral-text};
+  --pagefind-ui-background: #{base.$sn-theme-color-neutral-background1Level};
+  --pagefind-ui-border: #{base.$sn-theme-color-neutral-decor};
+  --pagefind-ui-tag: #{base.$sn-theme-color-neutral-decorTransparent};
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: #{base.$sn-primitive-dimension-8};
+  --pagefind-ui-font: inherit;
+
+  .pagefind-ui__form {
+    position: relative;
+  }
+
+  .pagefind-ui__form::before {
+    opacity: 0.55;
+  }
+
+  .pagefind-ui__search-input {
+    height: 36px;
+    padding-inline: 36px 88px; // space for clear button + ⌘K badge
+    background: base.$sn-theme-color-neutral-decorTransparent;
+    transition: background m.$docs-duration-fast, border-color m.$docs-duration-fast;
+
+    @include base.composite-var(base.$sn-regular-label-m);
+
+    &:focus {
+      border-color: base.$sn-theme-color-primary-accent;
+      background: base.$sn-theme-color-neutral-background1Level;
+      outline: none;
+    }
+  }
+
+  // Clear button — replace the default localised label with an X icon.
+  .pagefind-ui__search-clear {
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    right: base.$sn-primitive-dimension-8;
+    transform: translateY(-50%);
+
+    overflow: hidden;
+
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    border-radius: base.$sn-primitive-dimension-4;
+
+    color: base.$sn-theme-color-neutral-accent;
+    text-indent: -9999px; // hide "Очистить поле" / "Clear"
+
+    background: transparent;
+
+    transition: background m.$docs-duration-fast, color m.$docs-duration-fast;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      text-indent: 0;
+
+      background: currentcolor;
+
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'><line x1='6' y1='6' x2='18' y2='18'/><line x1='6' y1='18' x2='18' y2='6'/></svg>") center / 14px 14px no-repeat;
+    }
+
+    &:hover {
+      color: base.$sn-theme-color-neutral-text;
+      background: base.$sn-theme-color-neutral-decorTransparent;
+    }
+  }
+
+  // Hide the keycap once the input is focused or has a value.
+  &:focus-within .header-search-kbd,
+  &:has(.pagefind-ui__search-input:not(:placeholder-shown)) .header-search-kbd {
+    display: none;
+  }
+
+  // Results popover — absolutely position under the input.
+  .pagefind-ui__drawer {
+    position: absolute;
+    z-index: l.$docs-z-header;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+
+    overflow-y: auto;
+
+    max-height: min(70vh, 560px);
+    padding: base.$sn-primitive-dimension-4;
+    border: 1px solid base.$sn-theme-color-neutral-decor;
+    border-radius: base.$sn-primitive-dimension-8;
+
+    background: base.$sn-theme-color-neutral-background1Level;
+    box-shadow: 0 12px 32px color-mix(in srgb, base.$sn-theme-color-neutral-background 40%, transparent);
+
+    &.pagefind-ui__hidden { display: none; }
+  }
+
+  .pagefind-ui__results-area {
+    display: flex;
+    flex-direction: column;
+    gap: base.$sn-primitive-dimension-4;
+  }
+
+  // Result = one indexed page. It groups a main link + optional sub-results.
+  .pagefind-ui__result {
+    padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+    border: 0;
+    border-radius: base.$sn-primitive-dimension-4;
+
+    &:hover { background: base.$sn-theme-color-neutral-decorTransparent; }
+  }
+
+  .pagefind-ui__result-thumb { display: none; }
+
+  .pagefind-ui__result-title {
+    margin: 0 0 base.$sn-primitive-dimension-4;
+    color: base.$sn-theme-color-neutral-text;
+
+    @include base.composite-var(base.$sn-regular-label-l);
+  }
+
+  .pagefind-ui__result-link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover { color: base.$sn-theme-color-primary-accent; }
+  }
+
+  // Sub-results — anchor links within the same page.
+  .pagefind-ui__result-nested {
+    margin-left: base.$sn-primitive-dimension-4;
+    padding: base.$sn-primitive-dimension-4 0 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-12;
+    border-left: 1px solid base.$sn-theme-color-neutral-decor;
+  }
+
+  .pagefind-ui__result-nested .pagefind-ui__result-link {
+    @include base.composite-var(base.$sn-regular-label-m);
+  }
+
+  .pagefind-ui__result-excerpt {
+    margin: base.$sn-primitive-dimension-4 0 0;
+    color: base.$sn-theme-color-neutral-accent;
+
+    @include base.composite-var(base.$sn-regular-label-s);
+
+    mark {
+      padding: 0 2px;
+      border-radius: 2px;
+
+      font-weight: inherit;
+      color: inherit;
+
+      background: color-mix(in srgb, base.$sn-theme-color-primary-accent 22%, transparent);
+    }
+  }
+
+  .pagefind-ui__message {
+    padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+    color: base.$sn-theme-color-neutral-accent;
+
+    @include base.composite-var(base.$sn-regular-label-s);
+  }
+}
+
+.header-icon-link,
+.theme-toggle {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-adaptive-size-icon-m;
+  height: base.$sn-adaptive-size-icon-m;
+  border: none;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+
+  background: none;
+
+  transition: color m.$docs-duration-fast, background m.$docs-duration-fast;
+}
+
+.header-icon-link:hover,
+.theme-toggle:hover {
+  color: base.$sn-theme-color-primary-accent;
+  background: base.$sn-theme-color-neutral-decorTransparent;
+}
+
+// Theme icons: show sun in dark mode, moon in light mode
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+
+.sn-dark .icon-sun { display: block; }
+.sn-dark .icon-moon { display: none; }
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+
+// Same max-width as .header-inner so sidebar, content and header align on wide screens.
+.layout {
+  display: flex;
+  max-width: l.$docs-header-max-width;
+  min-height: calc(100vh - #{l.$docs-header-height});
+  margin: 0 auto;
+}
+
+.sidebar-wrap {
+  position: sticky;
+  z-index: l.$docs-z-sidebar;
+  top: l.$docs-header-height;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex-shrink: 0;
+  align-self: flex-start;
+
+  width: l.$docs-sidebar-width-desktop;
+  height: calc(100vh - #{l.$docs-header-height});
+  border-right: 1px solid base.$sn-theme-color-neutral-decor;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.content {
+  overflow-x: clip;
+  flex: 1;
+  min-width: 0;
+}
+
+// ─── Mobile overlay ──────────────────────────────────────────────────────────
+
+.nav-overlay {
+  position: fixed;
+  z-index: l.$docs-z-overlay;
+  inset: 0;
+
+  display: none;
+
+  opacity: 0;
+  background: base.$sn-theme-color-neutral-background;
+
+  transition: opacity m.$docs-duration-normal;
+}
+
+.nav-overlay.overlay--visible {
+  opacity: 0.4;
+}
+
+// ─── Mobile breakpoint ───────────────────────────────────────────────────────
+
+@media (max-width: l.$docs-bp-mobile) {
+  .nav-toggle-slot {
+    display: flex;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .header-search {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    max-width: 240px;
+  }
+
+  .header-search-kbd {
+    display: none;
+  }
+
+  #search .pagefind-ui__search-input {
+    padding-inline: 32px;
+  }
+
+  .sidebar-wrap {
+    position: fixed;
+    z-index: l.$docs-z-sidebar-mobile;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+
+    width: l.$docs-sidebar-width-mobile;
+    height: 100dvh;
+
+    transition: transform m.$docs-duration-normal m.$docs-ease-out;
+  }
+
+  .sidebar-wrap.sidebar--open {
+    transform: translateX(0);
+  }
+
+  .nav-overlay {
+    pointer-events: none;
+    display: block;
+  }
+
+  .nav-overlay.overlay--visible {
+    pointer-events: auto;
+  }
+}

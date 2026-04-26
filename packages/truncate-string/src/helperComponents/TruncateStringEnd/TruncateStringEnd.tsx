@@ -1,8 +1,8 @@
-import { Tooltip, TooltipProps } from '@design-system/tooltip';
-import { extractSupportProps, useLayoutEffect, WithSupportProps } from '@design-system/utils';
+import { Tooltip, TooltipProps } from '@ds/tooltip';
+import { extractSupportProps, useLayoutEffect, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import throttle from 'lodash.throttle';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 
 import { isEllipsisActive } from '../../helpers';
 import styles from './styles.module.scss';
@@ -69,7 +69,7 @@ export function TruncateStringEnd({
       className={cn(maxLines > 1 ? styles.text2AndMoreLines : styles.text1Line, className, {
         [styles.ellipsis]: !textElementRef.current || showTooltip,
       })}
-      style={{ '--max-lines': maxLines }}
+      style={{ '--max-lines': maxLines } as CSSProperties}
       {...extractSupportProps(rest)}
     >
       {text}
