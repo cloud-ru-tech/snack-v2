@@ -4,11 +4,15 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import styles from './styles.module.scss';
+import { usePreviewTheme } from '#storybook/components';
+
 import { DRAWER_TEST_ID, DRAWER_TRIGGER_TEST_ID } from './testIds';
+import { resolveDrawerStoryMediaSrc, ThemedDrawerMedia } from './ThemedDrawerMedia';
 
 function WithMediaRender() {
   const [open, setOpen] = useState(false);
+  const previewTheme = usePreviewTheme();
+  const storyMediaSrc = resolveDrawerStoryMediaSrc(previewTheme);
 
   return (
     <>
@@ -25,7 +29,7 @@ function WithMediaRender() {
         position='right'
         width='m'
         onClose={() => setOpen(false)}
-        media={<div className={styles.mediaImage}>Media slot — место под иллюстрацию</div>}
+        media={<ThemedDrawerMedia src={storyMediaSrc} />}
         title='Добро пожаловать'
         subtitle='Кратко о том, что изменилось в этой версии.'
         content='Список ключевых улучшений и ссылки на подробности могут размещаться в теле.'

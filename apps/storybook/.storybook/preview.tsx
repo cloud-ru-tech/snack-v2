@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import { configure } from 'storybook/test';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
-import { StoryWrapper } from './components';
+import { PreviewThemeProvider, StoryWrapper } from './components';
 import type { Acrylic, Brand, Density, Language, Theme } from './components/types';
 
 // Реп использует `data-test-id` (TEST_ID_ATTRIBUTE в playwright/constants/common.ts),
@@ -28,18 +28,20 @@ const preview: Preview = {
       const acrylic = (g[GLOBAL_KEYS.ACRYLIC] as Acrylic) ?? INITIAL_GLOBALS[GLOBAL_KEYS.ACRYLIC];
 
       return (
-        <PortalContextProvider root={storyWrapperRef}>
-          <StoryWrapper
-            ref={storyWrapperRef}
-            theme={theme}
-            brand={brand}
-            density={density}
-            language={language}
-            acrylic={acrylic}
-          >
-            <Story />
-          </StoryWrapper>
-        </PortalContextProvider>
+        <PreviewThemeProvider theme={theme}>
+          <PortalContextProvider root={storyWrapperRef}>
+            <StoryWrapper
+              ref={storyWrapperRef}
+              theme={theme}
+              brand={brand}
+              density={density}
+              language={language}
+              acrylic={acrylic}
+            >
+              <Story />
+            </StoryWrapper>
+          </PortalContextProvider>
+        </PreviewThemeProvider>
       );
     },
   ],

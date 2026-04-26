@@ -1,14 +1,19 @@
 import { Button } from '@ds/button';
-import { Drawer } from '@ds/drawer';
+import { Drawer, POSITION, TEST_IDS, WIDTH } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { usePreviewTheme } from '#storybook/components';
+
 import { DRAWER_TRIGGER_TEST_ID } from './testIds';
+import { resolveDrawerStoryMediaSrc, ThemedDrawerMedia } from './ThemedDrawerMedia';
 
 function NestedDrawerRender() {
   const [outerOpen, setOuterOpen] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
+  const previewTheme = usePreviewTheme();
+  const storyMediaSrc = resolveDrawerStoryMediaSrc(previewTheme);
 
   const closeAll = () => {
     setInnerOpen(false);
@@ -27,9 +32,10 @@ function NestedDrawerRender() {
       <Drawer
         data-test-id='drawer-parent'
         open={outerOpen}
-        position='right'
-        width='m'
         onClose={closeAll}
+        position={POSITION.Right}
+        width={WIDTH.M}
+        media={<ThemedDrawerMedia src={storyMediaSrc} />}
         title='Родительский Drawer'
         subtitle='При открытии вложенного Drawer — этот сдвигается влево.'
         content={
@@ -44,9 +50,9 @@ function NestedDrawerRender() {
         nestedDrawer={
           <Drawer
             open={innerOpen}
-            position='right'
-            width='s'
-            data-test-id='drawer-nested'
+            position={POSITION.Right}
+            width={WIDTH.S}
+            data-test-id={TEST_IDS.nestedDrawer}
             onClose={() => setInnerOpen(false)}
             title='Вложенный Drawer'
             subtitle='Кнопка «назад» возвращает к родителю'

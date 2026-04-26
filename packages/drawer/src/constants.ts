@@ -7,6 +7,7 @@ export const TEST_IDS = {
   subtitle: 'drawer__subtitle',
   body: 'drawer__body',
   footer: 'drawer__footer',
+  nestedDrawer: 'drawer__nested',
 };
 
 export const WIDTH = {

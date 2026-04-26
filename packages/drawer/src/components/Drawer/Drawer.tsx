@@ -48,6 +48,8 @@ export function Drawer({
       <div className={styles.safeAreaBottom} />
 
       {footer && <DrawerCustom.Footer data-test-id={TEST_IDS.footer}>{footer}</DrawerCustom.Footer>}
+
+      {nestedDrawer}
     </DrawerCustom>
   );
 }
