@@ -16,7 +16,8 @@
     "astro": "^5.7.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.86.3"
+    "sass": "^1.86.3",
+    "shiki": "3.23.0"
   },
   "devDependencies": {
     "@ds/fonts": "workspace:*",

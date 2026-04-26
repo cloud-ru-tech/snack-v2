@@ -28,31 +28,39 @@ function isGroupActive(item: NavItem) {
       <ul class="list" role="list">
         {group.items.map((item) =>
           item.children?.length ? (
-            /* Multi-component package: parent link + indented children */
             <li class="pkg">
-              <a
-                href={item.href}
-                class={`link pkg-label${isGroupActive(item) ? ' link--active' : ''}`}
-                aria-current={isActive(item.href) ? 'page' : undefined}
-              >
-                {item.title}
-              </a>
-              <ul class="sub-list" role="list">
-                {item.children.map((child) => (
-                  <li>
-                    <a
-                      href={child.href}
-                      class={`link sub-link${isActive(child.href) ? ' link--active' : ''}`}
-                      aria-current={isActive(child.href) ? 'page' : undefined}
-                    >
-                      {child.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <details class="pkg-details" open={isGroupActive(item)}>
+                <summary class="pkg-summary">
+                  <a
+                    href={item.href}
+                    class={`link pkg-label${isGroupActive(item) ? ' link--active' : ''}`}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    data-pkg-link
+                  >
+                    {item.title}
+                  </a>
+                  <span class="pkg-toggle" aria-hidden="true">
+                    <svg class="pkg-toggle-icon" viewBox="0 0 12 12" width="12" height="12">
+                      <path d="M4 2.5 L8 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </summary>
+                <ul class="sub-list" role="list">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class={`link sub-link${isActive(child.href) ? ' link--active' : ''}`}
+                        aria-current={isActive(child.href) ? 'page' : undefined}
+                      >
+                        {child.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </li>
           ) : (
-            /* Single-page package: flat link */
             <li>
               <a
                 href={item.href}
@@ -68,3 +76,34 @@ function isGroupActive(item: NavItem) {
     </section>
   ))}
 </nav>
+
+<script>
+  function initSidebar() {
+    // Navigating via the package-header link should not toggle the <details>.
+    document.querySelectorAll<HTMLAnchorElement>('[data-pkg-link]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.stopPropagation()
+      })
+    })
+
+    // Scroll the sidebar so the active link sits in the upper part of the viewport.
+    const scroller = document.getElementById('sidebar')
+    const active = document.querySelector<HTMLElement>('.nav .link--active')
+    if (scroller && active) {
+      const rect = active.getBoundingClientRect()
+      const scrollerRect = scroller.getBoundingClientRect()
+      const offsetWithinScroller = rect.top - scrollerRect.top + scroller.scrollTop
+      const target = offsetWithinScroller - scroller.clientHeight * 0.25
+      const desired = Math.max(0, target)
+      // Only scroll when the active item is actually out of the comfortable zone —
+      // avoids jumping the sidebar on every SPA navigation.
+      const viewportTop = scroller.scrollTop
+      const viewportBottom = viewportTop + scroller.clientHeight
+      if (offsetWithinScroller < viewportTop + 24 || offsetWithinScroller > viewportBottom - 48) {
+        scroller.scrollTop = desired
+      }
+    }
+  }
+
+  initSidebar()
+</script>

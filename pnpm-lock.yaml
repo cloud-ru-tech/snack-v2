@@ -38,6 +38,9 @@ importers:
       '@playwright/test':
         specifier: ^1.52.0
         version: 1.59.1
+      '@snack-uikit/locale':
+        specifier: 0.15.5
+        version: 0.15.5
       '@svgr/cli':
         specifier: 8.1.0
         version: 8.1.0(typescript@5.9.3)
@@ -170,6 +173,9 @@ importers:
       sass:
         specifier: ^1.86.3
         version: 1.99.0
+      shiki:
+        specifier: 3.23.0
+        version: 3.23.0
     devDependencies:
       '@ds/fonts':
         specifier: workspace:*

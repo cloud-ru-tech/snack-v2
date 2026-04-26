@@ -18,6 +18,8 @@ export type NavGroup = {
 const byOrder = (a: { order: number; title: string }, b: { order: number; title: string }) =>
   a.order - b.order || a.title.localeCompare(b.title);
 
+const byTitle = (a: { title: string }, b: { title: string }) => a.title.localeCompare(b.title, 'ru');
+
 export type FlatPage = {
   title: string;
   href: string;
@@ -42,9 +44,7 @@ export async function buildNav(): Promise<NavGroup[]> {
     const indexEntry = entries.find(e => e.id === pkg);
     const subEntries = entries
       .filter(e => e !== indexEntry)
-      .sort((a, b) =>
-        byOrder({ order: a.data.order, title: a.data.title }, { order: b.data.order, title: b.data.title }),
-      );
+      .sort((a, b) => byTitle({ title: a.data.title }, { title: b.data.title }));
 
     if (subEntries.length === 0) {
       // Single page (index-only or legacy overview): flat link
@@ -60,11 +60,13 @@ export async function buildNav(): Promise<NavGroup[]> {
         title: indexEntry?.data.title ?? pkg,
         href: indexEntry ? withBase(`/components/${pkg}`) : withBase(`/components/${subEntries[0].id}`),
         order: indexEntry?.data.order ?? subEntries[0].data.order,
-        children: subEntries.map(e => ({
-          title: e.data.title,
-          href: withBase(`/components/${e.id}`),
-          order: e.data.order,
-        })),
+        children: subEntries
+          .map(e => ({
+            title: e.data.title,
+            href: withBase(`/components/${e.id}`),
+            order: e.data.order,
+          }))
+          .sort(byTitle),
       });
     }
   }
@@ -76,7 +78,7 @@ export async function buildNav(): Promise<NavGroup[]> {
   }));
 
   return [
-    { label: 'Components', items: componentItems.sort(byOrder) },
+    { label: 'Components', items: componentItems.sort(byTitle) },
     { label: 'Patterns', items: patternItems.sort(byOrder) },
   ];
 }

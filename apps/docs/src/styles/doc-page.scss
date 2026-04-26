@@ -102,8 +102,9 @@
   grid-template-columns: 1fr 1fr;
   gap: base.$sn-adaptive-spacing-interval-l;
 
-  margin-top: base.$sn-primitive-dimension-48;
-  padding-top: base.$sn-adaptive-spacing-interval-xl;
+  margin-top: base.$sn-adaptive-spacing-interval-xl;
+  padding: base.$sn-adaptive-spacing-interval-xl;
+  padding-right: calc(base.$sn-adaptive-spacing-interval-xl + l.$docs-toc-width );
   border-top: 1px solid base.$sn-theme-color-neutral-decor;
 }
 
@@ -156,6 +157,10 @@
 
   .toc {
     display: none;
+  }
+
+  .page-nav {
+    padding-right: base.$sn-adaptive-spacing-interval-l;
   }
 }
 

@@ -19,6 +19,8 @@ html {
 }
 
 body {
+  position: relative;
+  z-index: 0;
   line-height: 1.5;
 }
 

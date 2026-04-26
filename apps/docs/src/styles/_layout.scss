@@ -16,6 +16,12 @@ $docs-header-max-width: 1440px;
 $docs-lead-max-width: 608px;
 $docs-toc-width: 192px;
 $docs-card-min-width: 224px;
+
+/** Canvas controls table: min widths per column; parent uses overflow-x when container < sum. */
+$docs-canvas-col-prop-min: 192px;
+$docs-canvas-col-type-min: 240px;
+$docs-canvas-col-value-min: 200px;
+
 $docs-canvas-table-min-width: 448px;
 $docs-props-table-min-width: 576px;
 $docs-props-type-max-width: 320px;

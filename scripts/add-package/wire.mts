@@ -21,7 +21,7 @@ function insertJsonReference(
   label: string,
 ): void {
   const cfg = readJson(filePath)
-  const refs = cfg.references as Array<{ path: string }>
+  const refs = (cfg.references as Array<{ path: string }> | undefined) ?? []
   if (refs.some((r) => r.path === newRef.path)) return
 
   const lastIdx = refs.reduce(

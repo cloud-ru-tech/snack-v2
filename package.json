@@ -90,7 +90,8 @@
     "oslllo-svg-fixer": "6.0.1",
     "svg-sprite": "2.0.4",
     "svgo": "4.0.0",
-    "qs": "6.15.1"
+    "qs": "6.15.1",
+    "@snack-uikit/locale": "0.15.5"
   },
   "pnpm": {
     "overrides": {

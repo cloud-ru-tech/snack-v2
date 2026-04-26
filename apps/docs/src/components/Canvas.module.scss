@@ -39,41 +39,6 @@
   align-items: center;
 }
 
-.bgBtn {
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: base.$sn-adaptive-size-icon-xs;
-  height: base.$sn-adaptive-size-icon-xs;
-  border: 1px solid transparent;
-  border-radius: base.$sn-primitive-dimension-4;
-
-  color: base.$sn-theme-color-neutral-text;
-
-  background: none;
-
-  transition:
-    background m.$docs-duration-fast,
-    border-color m.$docs-duration-fast,
-    color m.$docs-duration-fast;
-
-  @include base.composite-var(base.$sn-regular-label-s);
-
-  &:hover {
-    color: base.$sn-theme-color-neutral-text;
-    background: base.$sn-theme-color-neutral-decor;
-  }
-}
-
-.bgBtnActive {
-  border-color: base.$sn-theme-color-neutral-decor;
-  color: base.$sn-theme-color-neutral-text;
-  background: base.$sn-theme-color-neutral-decor;
-}
-
 .divider {
   width: 1px;
   height: base.$sn-primitive-dimension-16;
@@ -81,36 +46,11 @@
   background: base.$sn-theme-color-neutral-decor;
 }
 
-.actionBtn {
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: base.$sn-adaptive-size-icon-xs;
-  height: base.$sn-adaptive-size-icon-xs;
-  border: none;
-  border-radius: base.$sn-primitive-dimension-4;
-
-  color: base.$sn-theme-color-neutral-text;
-
-  background: none;
-
-  transition: background m.$docs-duration-fast, color m.$docs-duration-fast;
-
-  @include base.composite-var(base.$sn-regular-label-m);
-
-  &:hover {
-    color: base.$sn-theme-color-neutral-text;
-    background: base.$sn-theme-color-neutral-decor;
-  }
-}
-
 // ─── Preview ─────────────────────────────────────────────────────────────────
 
 .preview {
-  display: flex;
+  position: relative;
+
   align-items: center;
   justify-content: center;
 
@@ -118,6 +58,16 @@
   padding: base.$sn-primitive-dimension-48 base.$sn-adaptive-spacing-interval-2xl;
 
   transition: background m.$docs-duration-normal;
+}
+
+.previewToggleBtn {
+  position: absolute;
+  right: base.$sn-adaptive-spacing-interval-m;
+  bottom: base.$sn-adaptive-spacing-interval-m;
+
+  @media (max-width: l.$docs-bp-small-mobile) {
+    display: none;
+  }
 }
 
 .preview_light {
@@ -142,33 +92,48 @@
   border-top: 1px solid base.$sn-theme-color-neutral-decor;
 
   -webkit-overflow-scrolling: touch;
+
+  @media (max-width: l.$docs-bp-small-mobile) {
+    display: none;
+  }
 }
 
-.table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: l.$docs-canvas-table-min-width;
+.tableGrid {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template-columns:
+    l.$docs-canvas-col-prop-min
+    minmax(l.$docs-canvas-col-type-min, calc(100% - l.$docs-canvas-col-prop-min - l.$docs-canvas-valuecell-width))
+    l.$docs-canvas-valuecell-width;
+}
 
-  th, td {
-    padding: base.$sn-adaptive-spacing-interval-m base.$sn-adaptive-spacing-interval-l;
-    border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
-    text-align: left;
-    vertical-align: middle;
-  }
+.row {
+  display: contents;
+}
 
-  th {
-    color: base.$sn-theme-color-neutral-text;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
+.cell,
+.headCell {
+  padding: base.$sn-adaptive-spacing-interval-m base.$sn-adaptive-spacing-interval-l;
+  border-bottom: 1px solid base.$sn-theme-color-neutral-decor;
+  color: base.$sn-theme-color-neutral-text;
+  background: base.$sn-theme-color-neutral-background;
+}
 
-    background: base.$sn-theme-color-neutral-background1Level;
+.headCell {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  background: base.$sn-theme-color-neutral-background1Level;
 
-    @include base.composite-var(base.$sn-regular-label-s);
-  }
+  @include base.composite-var(base.$sn-regular-label-s);
+}
 
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: base.$sn-theme-color-neutral-background1Level; }
+.valueCell {
+  position: sticky;
+  z-index: 1;
+  right: 0;
+  border-left: 1px solid base.$sn-theme-color-neutral-decor;
 }
 
 .propName {
@@ -184,19 +149,11 @@
 }
 
 .typeCell {
-  overflow: hidden;
-
-  max-width: l.$docs-canvas-typecell-max-width;
-
+  border-left: 1px solid base.$sn-theme-color-neutral-decor;
   color: base.$sn-theme-color-neutral-text;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: wrap;
 
   @include base.composite-var(base.$sn-mono-body-s);
-}
-
-.valueCell {
-  width: l.$docs-canvas-valuecell-width;
 }
 
 // ─── Controls: Select ────────────────────────────────────────────────────────
@@ -308,32 +265,6 @@
   @include base.composite-var(base.$sn-regular-label-s);
 }
 
-.copyBtn {
-  cursor: pointer;
-
-  padding: base.$sn-primitive-dimension-2 base.$sn-adaptive-spacing-interval-m;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
-  border-radius: base.$sn-primitive-dimension-4;
-
-  color: base.$sn-theme-color-neutral-text;
-
-  background: none;
-
-  transition: color m.$docs-duration-fast, border-color m.$docs-duration-fast, background m.$docs-duration-fast;
-
-  @include base.composite-var(base.$sn-regular-label-s);
-
-  &:hover {
-    border-color: base.$sn-theme-color-primary-accent;
-    color: base.$sn-theme-color-primary-accent;
-  }
-}
-
-.copyBtnDone {
-  border-color: base.$sn-theme-color-green-accent;
-  color: base.$sn-theme-color-green-accent;
-}
-
 // Code snippet is force-dark via `sn-dark` class applied in Canvas.tsx,
 // so neutral-background/neutral-text resolve to dark-theme values.
 .codePre {
@@ -360,6 +291,27 @@
     color: inherit;
 
     background: none;
+  }
+}
+
+// Shiki renders its own <pre class="shiki"> with inline background + padding.
+// We wrap it in a div with .codePre so the outer chrome matches, and reset
+// Shiki's inner <pre> to inherit our padding/background/typography.
+.codeShiki {
+  padding: 0;
+
+  :global(pre.shiki) {
+    overflow-x: auto;
+    margin: 0;
+    padding: base.$sn-adaptive-spacing-interval-l;
+    background: base.$sn-theme-color-neutral-background !important;
+
+    @include base.composite-var(base.$sn-mono-body-s);
+  }
+
+  :global(pre.shiki code) {
+    font-family: inherit;
+    font-size: inherit;
   }
 }
 

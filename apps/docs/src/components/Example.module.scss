@@ -34,8 +34,8 @@
 }
 
 .preview {
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
   gap: base.$sn-adaptive-spacing-interval-m;
   align-items: center;
   justify-content: flex-start;
@@ -81,4 +81,28 @@
   color: base.$sn-theme-color-neutral-text;
 
   background: base.$sn-theme-color-neutral-background;
+}
+
+// Shiki renders its own <pre class="shiki"> with inline background + padding.
+// Reset the inner <pre> so our outer chrome (padding + dark bg) stays intact.
+.codeShiki {
+  padding: 0;
+
+  :global(pre.shiki) {
+    overflow-x: auto;
+
+    margin: 0;
+    padding: base.$sn-primitive-dimension-16;
+
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    background: base.$sn-theme-color-neutral-background !important;
+  }
+
+  :global(pre.shiki code) {
+    font-family: inherit;
+    font-size: inherit;
+  }
 }

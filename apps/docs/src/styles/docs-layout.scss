@@ -11,7 +11,7 @@ html, body {
 
 .header {
   position: sticky;
-  z-index: l.$docs-z-header;
+  z-index: 0;
   top: 0;
 
   height: l.$docs-header-height;
@@ -342,7 +342,11 @@ html, body {
 
 // Same max-width as .header-inner so sidebar, content and header align on wide screens.
 .layout {
+  position: relative;
+  z-index: -1;
+
   display: flex;
+
   max-width: l.$docs-header-max-width;
   min-height: calc(100vh - #{l.$docs-header-height});
   margin: 0 auto;

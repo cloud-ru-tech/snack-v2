@@ -51,6 +51,10 @@
 - ✅ Вложенный `nestedDrawer` — для связанных контекстов (список → детали).
 - ❌ Трёх-уровневый стек вложенных Drawer: пользователь теряется в глубине.
 
+### Figma
+
+<FigmaEmbed node={FIGMA_DRAWER} title='Drawer — Snack Ui Kit variables' />
+
 ### Установка
 
 ```bash

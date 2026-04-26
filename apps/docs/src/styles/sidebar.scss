@@ -45,6 +45,60 @@
   gap: base.$sn-primitive-dimension-2;
 }
 
+.pkg-details {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+}
+
+.pkg-summary {
+  cursor: default;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.pkg-summary > .link {
+  flex: 1;
+  min-width: 0;
+}
+
+.pkg-toggle {
+  cursor: pointer;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  transition: background-color m.$docs-duration-fast;
+}
+
+.pkg-summary:hover .pkg-toggle {
+  background: base.$sn-theme-color-neutral-decorTransparent;
+}
+
+.pkg-toggle-icon {
+  transition: transform m.$docs-duration-fast;
+}
+
+.pkg-details[open] .pkg-toggle-icon {
+  transform: rotate(90deg);
+}
+
 .sub-list {
   margin-top: base.$sn-primitive-dimension-2;
   margin-left: base.$sn-primitive-dimension-12;

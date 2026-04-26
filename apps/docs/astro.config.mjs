@@ -24,6 +24,11 @@ export default defineConfig({
     pagefind(),
   ],
   vite: {
+    // @snack-uikit/list ESM entry re-exports `./components` (directory); Node SSR
+    // rejects that unless Vite bundles the package.
+    ssr: {
+      noExternal: ['@snack-uikit/list'],
+    },
     resolve: {
       alias: {
         // ~docs points to apps/docs/src — used by package demos to import Canvas etc.
