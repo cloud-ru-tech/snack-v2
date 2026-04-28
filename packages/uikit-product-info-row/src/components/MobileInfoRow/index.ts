@@ -1,2 +1,2 @@
 export * from './MobileInfoRow';
-export * from './types.ts';
+export * from './types';

@@ -10,7 +10,7 @@ import { ReactNode } from 'react';
 
 import { POSITION } from '../../constants';
 import styles from './styles.module.scss';
-import { MobileInfoRowProps, MobileRowActionButton } from './types.ts';
+import { MobileInfoRowProps, MobileRowActionButton } from './types';
 
 function withTip(children: ReactNode, tip?: TooltipProps | string) {
   if (!tip) {

@@ -38,10 +38,8 @@
 }
 
 .label {
-  @include base.composite-var(base.$sn-thin-label-l);
+  @include base.composite-var(base.$sn-thin-label-m);
 
-  font-size: var(--sn-primitive-font-fontSize-14, 14px);
-  line-height: var(--sn-primitive-font-lineHeight-by14, 20px);
   color: base.$sn-theme-color-available-version-textSecondary;
 }
 
@@ -65,10 +63,8 @@
   min-width: 0;
   height: 100%;
 
-  @include base.composite-var(base.$sn-regular-body-m);
+  @include base.composite-var(base.$sn-regular-body-s);
 
-  font-size: var(--sn-primitive-font-fontSize-14, 14px);
-  line-height: var(--sn-primitive-font-lineHeight-by14, 20px);
   color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: anywhere;
 }

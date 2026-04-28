@@ -9,7 +9,7 @@ import cn from 'classnames';
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import styles from './styles.module.scss';
-import { InfoRowProps, RowActionButton, RowActionsPair } from './types.ts';
+import { InfoRowProps, RowActionButton, RowActionsPair } from './types';
 
 type LabelTooltipProp =
   | Pick<QuestionTooltipProps, 'trigger' | 'tip' | 'placement' | 'disableMaxWidth' | 'open' | 'onOpenChange'>

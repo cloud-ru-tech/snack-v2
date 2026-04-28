@@ -11,7 +11,7 @@ const meta: Meta<Args> = {
   component: AdaptiveInfoRow,
   parameters: { layout: 'padded' },
   args: {
-    layoutType: LAYOUT_TYPE.Compact,
+    layoutType: LAYOUT_TYPE.Desktop,
     position: POSITION.Inner,
     label: 'Адаптивная строка',
     content: 'Значение',
@@ -28,7 +28,11 @@ const meta: Meta<Args> = {
   argTypes: {
     layoutType: {
       control: 'radio',
-      options: Object.values(LAYOUT_TYPE),
+      options: ['compact', 'comfort'],
+      mapping: {
+        compact: LAYOUT_TYPE.Desktop,
+        comfort: LAYOUT_TYPE.Mobile,
+      },
       description: 'compact — горизонтальный InfoRow; comfort — MobileInfoRow + density comfort',
     },
   },

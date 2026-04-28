@@ -25,6 +25,6 @@
     "@ds/tooltip": "workspace:*",
     "@ds/truncate-string": "workspace:*",
     "@ds/utils": "workspace:*",
-    "classnames": "2.5.1"
+    "classnames": "catalog:"
   }
 }

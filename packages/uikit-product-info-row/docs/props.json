@@ -1,188 +1,2534 @@
 {
-  "InfoRow": {
-    "displayName": "InfoRow",
-    "description": "Одна строка «метка — значение» по макету Figma infoRow: одна или две колонки значений, разделители, подсказка у метки, действия, скелетон при загрузке.",
+  "MobileInfoRow": {
+    "displayName": "MobileInfoRow",
+    "propsTypeName": "MobileInfoRowProps",
     "props": {
       "data-test-id": {
         "type": "string",
+        "required": false
+      },
+      "position": {
+        "type": "enum",
         "required": false,
-        "description": "Стабильный идентификатор для тестов (WithSupportProps)"
+        "values": [
+          "inner",
+          "first",
+          "last"
+        ],
+        "defaultValue": "inner",
+        "typeRefs": [
+          "Position"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "labelTruncate": {
+        "type": "number",
+        "required": false,
+        "description": "Если > 0 — обрезка через `TruncateString` (в legacy мобильного пакета не было; опционально для паритета с десктопом)."
+      },
+      "labelTooltip": {
+        "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\">",
+        "required": false,
+        "typeRefs": [
+          "QuestionTooltipProps"
+        ]
+      },
+      "topDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      "bottomDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "rowActions": {
+        "type": "MobileRowActionsPair",
+        "required": false,
+        "typeRefs": [
+          "MobileRowActionsPair"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    },
+    "relatedTypes": {
+      "Position": {
+        "kind": "union",
+        "values": [
+          "inner",
+          "first",
+          "last"
+        ],
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "xs",
+          "s"
+        ],
+        "own": false
+      },
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<ReferenceType | HTMLElement | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "xs",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "BaseButtonProps": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "before",
+              "after"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "primary",
+              "neutral",
+              "critical"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "m",
+              "l"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "function",
+              "filled",
+              "outline",
+              "simple",
+              "tonal",
+              "elevated"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"appearance\" | \"size\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "MobileRowActionButton": {
+        "kind": "interface",
+        "props": {
+          "tip": {
+            "type": "string | Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "MobileRowActionsPair": {
+        "kind": "interface",
+        "props": {
+          "first": {
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, keyof BaseButtonProps | \"as\" | \"ref\">, \"appearance\" | \"size\" | \"view\">",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "MobileRowActionButton"
+            ]
+          },
+          "second": {
+            "type": "MobileRowActionButton | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "MobileRowActionButton"
+            ]
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "MobileInfoGroup": {
+    "displayName": "MobileInfoGroup",
+    "propsTypeName": "MobileInfoGroupProps",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "data": {
+        "type": "DataType | undefined",
+        "required": true,
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "items": {
+        "type": "MobileInfoGroupItem<T>[]",
+        "required": true,
+        "typeRefs": [
+          "MobileInfoRowPropsBase",
+          "MobileInfoGroupItem",
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "formatBoolean": {
+        "type": "((value: boolean) => string)",
+        "required": false
+      }
+    },
+    "relatedTypes": {
+      "Position": {
+        "kind": "union",
+        "values": [
+          "inner",
+          "first",
+          "last"
+        ],
+        "own": true
+      },
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<ReferenceType | HTMLElement | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "xs",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "MobileRowActionsPair": {
+        "kind": "interface",
+        "props": {
+          "first": {
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, keyof BaseButtonProps | \"as\" | \"ref\">, \"appearance\" | \"size\" | \"view\">",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "MobileRowActionButton"
+            ]
+          },
+          "second": {
+            "type": "MobileRowActionButton | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "MobileRowActionButton"
+            ]
+          }
+        },
+        "own": true
+      },
+      "MobileInfoRowPropsBase": {
+        "kind": "interface",
+        "props": {
+          "position": {
+            "type": "Position | undefined",
+            "required": false,
+            "values": [
+              "inner",
+              "first",
+              "last"
+            ],
+            "typeRefs": [
+              "Position"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "labelTruncate": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Если > 0 — обрезка через `TruncateString` (в legacy мобильного пакета не было; опционально для паритета с десктопом)."
+          },
+          "labelTooltip": {
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "topDivider": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "bottomDivider": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "rowActions": {
+            "type": "MobileRowActionsPair | undefined",
+            "required": false,
+            "typeRefs": [
+              "MobileRowActionsPair"
+            ]
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "MobileInfoGroupItem": {
+        "kind": "alias",
+        "type": "PropsWithRender<T> | PropsWithAccessorKey<T>",
+        "own": true
+      }
+    }
+  },
+  "InfoRowActionPlaceholder": {
+    "displayName": "InfoRowActionPlaceholder",
+    "propsTypeName": "ComponentPropsWithoutRef",
+    "props": {},
+    "relatedTypes": {},
+    "description": "Плейсхолдер области действий по макету Figma (декоративный; для кнопок используйте `rowActions`)."
+  },
+  "InfoRow": {
+    "displayName": "InfoRow",
+    "propsTypeName": "InfoRowProps",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "label": {
         "type": "string",
         "required": true,
-        "description": "Текст метки: при column=\"1\" — слева от значения; при column=\"2\" — у первой пары «метка — значение». Типографика — thin-label-l; в MobileInfoRow (comfort) размер/интерлиньяж зафиксированы примитивами 14px/20px (см. Figma 3540-18656)"
+        "description": "Текст метки"
       },
       "labelTruncate": {
         "type": "number",
         "required": false,
         "defaultValue": "1",
-        "description": "Максимум строк метки (TruncateString / maxLines)"
+        "description": "Максимальное число строк метки (TruncateString)"
       },
       "labelTooltip": {
-        "type": "string | QuestionTooltipProps",
+        "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\">",
         "required": false,
-        "description": "Подсказка у метки: строка (текст tip) или частичные пропсы QuestionTooltip (tip, trigger, placement и т.д.)"
+        "description": "Подсказка у метки: строка или пропсы QuestionTooltip",
+        "typeRefs": [
+          "QuestionTooltipProps"
+        ]
       },
       "secondaryLabel": {
         "type": "string",
         "required": false,
-        "description": "Текст второй метки при column=\"2\" (правая половина строки); типографика как у `label` — thin-label-l"
+        "defaultValue": "",
+        "description": "Вторая метка слева от второго значения (только при `column=\"2\"`)"
       },
       "secondaryLabelTruncate": {
         "type": "number",
         "required": false,
-        "description": "Макс. строк второй метки; по умолчанию как labelTruncate"
+        "description": "Макс. строк второй метки при `column=\"2\"`"
       },
       "secondaryLabelTooltip": {
-        "type": "string | QuestionTooltipProps",
+        "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\">",
         "required": false,
-        "description": "Подсказка у второй метки (только при column=\"2\")"
+        "description": "Подсказка у второй метки",
+        "typeRefs": [
+          "QuestionTooltipProps"
+        ]
       },
       "topDivider": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Показать разделитель над строкой"
+        "description": "Разделитель над строкой"
       },
       "bottomDivider": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Показать разделитель под строкой"
+        "description": "Разделитель под строкой"
       },
       "className": {
         "type": "string",
-        "required": false,
-        "description": "Класс корневой обёртки"
+        "required": false
       },
       "labelClassName": {
         "type": "string",
-        "required": false,
-        "description": "Класс блока первой метки"
+        "required": false
       },
       "secondaryLabelClassName": {
         "type": "string",
         "required": false,
-        "description": "Класс блока второй метки при column=\"2\""
+        "description": "Класс блока второй метки при `column=\"2\"`"
       },
       "rowClassName": {
         "type": "string",
-        "required": false,
-        "description": "Класс внутренней строки (между разделителями)"
+        "required": false
       },
       "content": {
         "type": "ReactNode",
         "required": false,
-        "description": "Первая колонка значений (при column=1 — единственная; при column=2 — левая). Типографика .content — regular-body-m; в MobileInfoRow размер/интерлиньяж 14px/20px как в compact"
-      },
-      "secondaryContent": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Вторая колонка значений (только при column=\"2\"); типографика значения как у content"
+        "description": "Первая колонка значений (ось Figma `column=1` или левая при `column=2`)"
       },
       "rowActionsSlot": {
         "type": "ReactNode",
         "required": false,
-        "description": "Кастомная область действий у первой колонки (макет / произвольный контент). Если задано, `rowActions` не рендерится"
+        "description": "Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры).\nЕсли задано, рендерится вместо `rowActions`."
       },
       "rowActions": {
-        "type": "{ first: RowActionButton; second?: RowActionButton }",
+        "type": "RowActionsPair",
         "required": false,
-        "description": "До двух кнопок у первой колонки (@ds/button tonal neutral, size m; контейнер в getThemeClassnames density compact). В макете Figma при `column=\"2\"` обычно одна кнопка (`first`). RowActionButton: пропсы Button без size/appearance/view, опционально tip. Игнорируется, если задан `rowActionsSlot`"
+        "description": "До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column=\"2\"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot`",
+        "typeRefs": [
+          "RowActionsPair"
+        ]
+      },
+      "secondaryContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вторая колонка значений (только при `column=\"2\"`, ось Figma)"
       },
       "secondaryRowActionsSlot": {
         "type": "ReactNode",
         "required": false,
-        "description": "Кастомные действия у второй колонки (при column=\"2\"). Если задано, `secondaryRowActions` не рендерится"
+        "description": "Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions`"
       },
       "secondaryRowActions": {
-        "type": "{ first: RowActionButton; second?: RowActionButton }",
+        "type": "RowActionsPair",
         "required": false,
-        "description": "До двух кнопок у второй колонки (при column=\"2\"); в макете Figma обычно одна (`first`). Игнорируется, если задан `secondaryRowActionsSlot`"
+        "description": "Кнопки у второй колонки значений; в макете при `column=\"2\"` — одна (`first`)",
+        "typeRefs": [
+          "RowActionsPair"
+        ]
       },
       "loading": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Состояние загрузки: скелетон вместо контента колонок"
+        "defaultValue": "false"
       },
       "width": {
         "type": "enum",
         "required": false,
-        "values": ["fixed", "full"],
+        "values": [
+          "fixed",
+          "full"
+        ],
         "defaultValue": "fixed",
-        "description": "Ширина строки (data-width на корне)"
+        "description": "Ширина строки относительно контейнера"
       },
       "labelWidth": {
         "type": "enum",
         "required": false,
-        "values": ["fixed", "auto"],
-        "description": "Режим ширины колонки метки для обеих меток при column=\"2\" (data-label-width)"
+        "values": [
+          "fixed",
+          "auto"
+        ],
+        "description": "Ширина колонки метки"
       },
       "column": {
         "type": "enum",
         "required": false,
-        "values": ["1", "2"],
+        "values": [
+          "1",
+          "2"
+        ],
         "defaultValue": "1",
-        "description": "Ось Figma: одна или две колонки значений в строке"
+        "description": "Ось Figma `column`: одна или две колонки значений",
+        "typeRefs": [
+          "InfoRowColumn"
+        ]
       },
       "maxWidth": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Ось Figma maxWidth для строки"
+        "description": "Ось Figma `maxWidth`"
+      }
+    },
+    "relatedTypes": {
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "xs",
+          "s"
+        ],
+        "own": false
+      },
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<ReferenceType | HTMLElement | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "xs",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "BaseButtonProps": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "before",
+              "after"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "primary",
+              "neutral",
+              "critical"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "m",
+              "l"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "function",
+              "filled",
+              "outline",
+              "simple",
+              "tonal",
+              "elevated"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"appearance\" | \"size\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "RowActionButton": {
+        "kind": "interface",
+        "props": {
+          "tip": {
+            "type": "string | Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "RowActionsPair": {
+        "kind": "interface",
+        "props": {
+          "first": {
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, keyof BaseButtonProps | \"as\" | \"ref\">, \"appearance\" | \"size\" | \"view\">",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          },
+          "second": {
+            "type": "RowActionButton | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          }
+        },
+        "own": true
+      },
+      "InfoRowColumn": {
+        "kind": "union",
+        "values": [
+          "1",
+          "2"
+        ],
+        "own": true
       }
     }
   },
   "InfoGroup": {
     "displayName": "InfoGroup",
-    "description": "Группа строк InfoRow по объекту `data` и массиву `items` (accessorKey или render на поле).",
+    "propsTypeName": "InfoGroupProps",
     "props": {
       "data-test-id": {
         "type": "string",
-        "required": false,
-        "description": "Стабильный идентификатор для тестов (WithSupportProps)"
+        "required": false
       },
       "data": {
-        "type": "Record<string, unknown>",
-        "required": false,
-        "description": "Объект данных; при отсутствии или пустых значениях показывается плейсхолдер «—»"
+        "type": "DataType | undefined",
+        "required": true,
+        "typeRefs": [
+          "T"
+        ]
       },
       "items": {
-        "type": "InfoGroupItem[]",
+        "type": "InfoGroupItem<T>[]",
         "required": true,
-        "description": "Схема полей: у каждого элемента `label` и либо `accessorKey`, либо `render`; плюс опциональные пропы строки InfoRow (без `content` — он вычисляется)"
+        "typeRefs": [
+          "InfoRowPropsBase",
+          "InfoGroupItem",
+          "T"
+        ]
       },
       "className": {
         "type": "string",
-        "required": false,
-        "description": "Класс корневой обёртки группы"
+        "required": false
       },
       "loading": {
         "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Скелетон контента во всех вложенных InfoRow"
+        "required": false
       },
       "columns": {
         "type": "enum",
         "required": false,
-        "values": ["single", "double"],
-        "defaultValue": "single",
-        "description": "Раскладка: одна колонка строк или сетка из двух (data-columns)"
+        "values": [
+          "single",
+          "double"
+        ],
+        "defaultValue": "single"
       },
       "width": {
         "type": "enum",
         "required": false,
-        "values": ["fixed", "full"],
-        "defaultValue": "fixed",
-        "description": "Ширина группы (data-width на корне и строках)"
+        "values": [
+          "fixed",
+          "full"
+        ],
+        "defaultValue": "fixed"
       },
       "formatBoolean": {
-        "type": "(value: boolean) => string",
+        "type": "((value: boolean) => string)",
         "required": false,
-        "description": "Формат булевых значений при выводе по `accessorKey` (по умолчанию «Да» / «Нет»)"
+        "description": "Локализация булевых значений при выводе по `accessorKey` (вместо peer `@cloud-ru/uikit-product-locale`)"
+      }
+    },
+    "relatedTypes": {
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<ReferenceType | HTMLElement | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "xs",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "RowActionsPair": {
+        "kind": "interface",
+        "props": {
+          "first": {
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, keyof BaseButtonProps | \"as\" | \"ref\">, \"appearance\" | \"size\" | \"view\">",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          },
+          "second": {
+            "type": "RowActionButton | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          }
+        },
+        "own": true
+      },
+      "InfoRowColumn": {
+        "kind": "union",
+        "values": [
+          "1",
+          "2"
+        ],
+        "own": true
+      },
+      "InfoRowPropsBase": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст метки"
+          },
+          "labelTruncate": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимальное число строк метки (TruncateString)"
+          },
+          "labelTooltip": {
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "description": "Подсказка у метки: строка или пропсы QuestionTooltip",
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "secondaryLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Вторая метка слева от второго значения (только при `column=\"2\"`)"
+          },
+          "secondaryLabelTruncate": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Макс. строк второй метки при `column=\"2\"`"
+          },
+          "secondaryLabelTooltip": {
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "description": "Подсказка у второй метки",
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "topDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разделитель над строкой"
+          },
+          "bottomDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разделитель под строкой"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "labelClassName": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "secondaryLabelClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Класс блока второй метки при `column=\"2\"`"
+          },
+          "rowClassName": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Первая колонка значений (ось Figma `column=1` или левая при `column=2`)"
+          },
+          "rowActionsSlot": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры).\nЕсли задано, рендерится вместо `rowActions`."
+          },
+          "rowActions": {
+            "type": "RowActionsPair | undefined",
+            "required": false,
+            "description": "До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column=\"2\"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot`",
+            "typeRefs": [
+              "RowActionsPair"
+            ]
+          },
+          "secondaryContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Вторая колонка значений (только при `column=\"2\"`, ось Figma)"
+          },
+          "secondaryRowActionsSlot": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions`"
+          },
+          "secondaryRowActions": {
+            "type": "RowActionsPair | undefined",
+            "required": false,
+            "description": "Кнопки у второй колонки значений; в макете при `column=\"2\"` — одна (`first`)",
+            "typeRefs": [
+              "RowActionsPair"
+            ]
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "width": {
+            "type": "\"fixed\" | \"full\" | undefined",
+            "required": false,
+            "values": [
+              "fixed",
+              "full"
+            ],
+            "description": "Ширина строки относительно контейнера"
+          },
+          "labelWidth": {
+            "type": "\"fixed\" | \"auto\" | undefined",
+            "required": false,
+            "values": [
+              "fixed",
+              "auto"
+            ],
+            "description": "Ширина колонки метки"
+          },
+          "column": {
+            "type": "InfoRowColumn | undefined",
+            "required": false,
+            "values": [
+              "1",
+              "2"
+            ],
+            "description": "Ось Figma `column`: одна или две колонки значений",
+            "typeRefs": [
+              "InfoRowColumn"
+            ]
+          },
+          "maxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Ось Figma `maxWidth`"
+          }
+        },
+        "own": true
+      },
+      "InfoGroupItem": {
+        "kind": "alias",
+        "type": "PropsWithRender<T> | PropsWithAccessorKey<T>",
+        "own": true
+      }
+    }
+  },
+  "getPosition": {
+    "displayName": "getPosition",
+    "propsTypeName": "__type",
+    "props": {
+      "index": {
+        "type": "number",
+        "required": true
+      },
+      "length": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AdaptiveInfoRow": {
+    "displayName": "AdaptiveInfoRow",
+    "propsTypeName": "AdaptiveInfoRowProps",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст метки"
+      },
+      "labelTruncate": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальное число строк метки (TruncateString)"
+      },
+      "labelTooltip": {
+        "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\">",
+        "required": false,
+        "description": "Подсказка у метки: строка или пропсы QuestionTooltip",
+        "typeRefs": [
+          "QuestionTooltipProps"
+        ]
+      },
+      "secondaryLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Вторая метка слева от второго значения (только при `column=\"2\"`)"
+      },
+      "secondaryLabelTruncate": {
+        "type": "number",
+        "required": false,
+        "description": "Макс. строк второй метки при `column=\"2\"`"
+      },
+      "secondaryLabelTooltip": {
+        "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\">",
+        "required": false,
+        "description": "Подсказка у второй метки",
+        "typeRefs": [
+          "QuestionTooltipProps"
+        ]
+      },
+      "topDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Разделитель над строкой"
+      },
+      "bottomDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Разделитель под строкой"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "labelClassName": {
+        "type": "string",
+        "required": false
+      },
+      "secondaryLabelClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Класс блока второй метки при `column=\"2\"`"
+      },
+      "rowClassName": {
+        "type": "string",
+        "required": false
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Первая колонка значений (ось Figma `column=1` или левая при `column=2`)"
+      },
+      "rowActionsSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры).\nЕсли задано, рендерится вместо `rowActions`."
+      },
+      "rowActions": {
+        "type": "RowActionsPair",
+        "required": false,
+        "description": "До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column=\"2\"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot`",
+        "typeRefs": [
+          "RowActionsPair"
+        ]
+      },
+      "secondaryContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вторая колонка значений (только при `column=\"2\"`, ось Figma)"
+      },
+      "secondaryRowActionsSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions`"
+      },
+      "secondaryRowActions": {
+        "type": "RowActionsPair",
+        "required": false,
+        "description": "Кнопки у второй колонки значений; в макете при `column=\"2\"` — одна (`first`)",
+        "typeRefs": [
+          "RowActionsPair"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "fixed",
+          "full"
+        ],
+        "description": "Ширина строки относительно контейнера"
+      },
+      "labelWidth": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "fixed",
+          "auto"
+        ],
+        "description": "Ширина колонки метки"
+      },
+      "column": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "1",
+          "2"
+        ],
+        "description": "Ось Figma `column`: одна или две колонки значений",
+        "typeRefs": [
+          "InfoRowColumn"
+        ]
+      },
+      "maxWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ось Figma `maxWidth`"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "compact",
+          "comfort"
+        ],
+        "typeRefs": [
+          "LayoutType"
+        ]
+      },
+      "position": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "inner",
+          "first",
+          "last"
+        ],
+        "typeRefs": [
+          "Position"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "left",
+          "left-start",
+          "left-end",
+          "right",
+          "right-start",
+          "right-end",
+          "top",
+          "top-start",
+          "top-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "hover",
+          "focusVisible",
+          "focus",
+          "hoverAndFocusVisible",
+          "hoverAndFocus",
+          "clickAndFocusVisible"
+        ],
+        "own": false
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "xs",
+          "s"
+        ],
+        "own": false
+      },
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<ReferenceType | HTMLElement | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "xs",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "BaseButtonProps": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "before",
+              "after"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "primary",
+              "neutral",
+              "critical"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "m",
+              "l"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "function",
+              "filled",
+              "outline",
+              "simple",
+              "tonal",
+              "elevated"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"appearance\" | \"size\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "RowActionButton": {
+        "kind": "interface",
+        "props": {
+          "tip": {
+            "type": "string | Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "RowActionsPair": {
+        "kind": "interface",
+        "props": {
+          "first": {
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, keyof BaseButtonProps | \"as\" | \"ref\">, \"appearance\" | \"size\" | \"view\">",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          },
+          "second": {
+            "type": "RowActionButton | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          }
+        },
+        "own": true
+      },
+      "InfoRowColumn": {
+        "kind": "union",
+        "values": [
+          "1",
+          "2"
+        ],
+        "own": true
+      },
+      "LayoutType": {
+        "kind": "union",
+        "values": [
+          "compact",
+          "comfort"
+        ],
+        "own": true
+      },
+      "Position": {
+        "kind": "union",
+        "values": [
+          "inner",
+          "first",
+          "last"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AdaptiveInfoGroup": {
+    "displayName": "AdaptiveInfoGroup",
+    "propsTypeName": "AdaptiveInfoGroupProps",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "data": {
+        "type": "DataType | undefined",
+        "required": true,
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "items": {
+        "type": "InfoGroupItem<T>[]",
+        "required": true,
+        "typeRefs": [
+          "InfoRowPropsBase",
+          "InfoGroupItem",
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "columns": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "single",
+          "double"
+        ]
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "fixed",
+          "full"
+        ]
+      },
+      "formatBoolean": {
+        "type": "((value: boolean) => string)",
+        "required": false,
+        "description": "Локализация булевых значений при выводе по `accessorKey` (вместо peer `@cloud-ru/uikit-product-locale`)"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "compact",
+          "comfort"
+        ],
+        "typeRefs": [
+          "LayoutType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<ReferenceType | HTMLElement | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "hover",
+              "focusVisible",
+              "focus",
+              "hoverAndFocusVisible",
+              "hoverAndFocus",
+              "clickAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "left",
+              "left-start",
+              "left-end",
+              "right",
+              "right-start",
+              "right-end",
+              "top",
+              "top-start",
+              "top-end",
+              "bottom",
+              "bottom-start",
+              "bottom-end"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "xs",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "RowActionsPair": {
+        "kind": "interface",
+        "props": {
+          "first": {
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, keyof BaseButtonProps | \"as\" | \"ref\">, \"appearance\" | \"size\" | \"view\">",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          },
+          "second": {
+            "type": "RowActionButton | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "RowActionButton"
+            ]
+          }
+        },
+        "own": true
+      },
+      "InfoRowColumn": {
+        "kind": "union",
+        "values": [
+          "1",
+          "2"
+        ],
+        "own": true
+      },
+      "InfoRowPropsBase": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст метки"
+          },
+          "labelTruncate": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимальное число строк метки (TruncateString)"
+          },
+          "labelTooltip": {
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "description": "Подсказка у метки: строка или пропсы QuestionTooltip",
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "secondaryLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Вторая метка слева от второго значения (только при `column=\"2\"`)"
+          },
+          "secondaryLabelTruncate": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Макс. строк второй метки при `column=\"2\"`"
+          },
+          "secondaryLabelTooltip": {
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "required": false,
+            "description": "Подсказка у второй метки",
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "topDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разделитель над строкой"
+          },
+          "bottomDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разделитель под строкой"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "labelClassName": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "secondaryLabelClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Класс блока второй метки при `column=\"2\"`"
+          },
+          "rowClassName": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Первая колонка значений (ось Figma `column=1` или левая при `column=2`)"
+          },
+          "rowActionsSlot": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры).\nЕсли задано, рендерится вместо `rowActions`."
+          },
+          "rowActions": {
+            "type": "RowActionsPair | undefined",
+            "required": false,
+            "description": "До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column=\"2\"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot`",
+            "typeRefs": [
+              "RowActionsPair"
+            ]
+          },
+          "secondaryContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Вторая колонка значений (только при `column=\"2\"`, ось Figma)"
+          },
+          "secondaryRowActionsSlot": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions`"
+          },
+          "secondaryRowActions": {
+            "type": "RowActionsPair | undefined",
+            "required": false,
+            "description": "Кнопки у второй колонки значений; в макете при `column=\"2\"` — одна (`first`)",
+            "typeRefs": [
+              "RowActionsPair"
+            ]
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "width": {
+            "type": "\"fixed\" | \"full\" | undefined",
+            "required": false,
+            "values": [
+              "fixed",
+              "full"
+            ],
+            "description": "Ширина строки относительно контейнера"
+          },
+          "labelWidth": {
+            "type": "\"fixed\" | \"auto\" | undefined",
+            "required": false,
+            "values": [
+              "fixed",
+              "auto"
+            ],
+            "description": "Ширина колонки метки"
+          },
+          "column": {
+            "type": "InfoRowColumn | undefined",
+            "required": false,
+            "values": [
+              "1",
+              "2"
+            ],
+            "description": "Ось Figma `column`: одна или две колонки значений",
+            "typeRefs": [
+              "InfoRowColumn"
+            ]
+          },
+          "maxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Ось Figma `maxWidth`"
+          }
+        },
+        "own": true
+      },
+      "InfoGroupItem": {
+        "kind": "alias",
+        "type": "PropsWithRender<T> | PropsWithAccessorKey<T>",
+        "own": true
+      },
+      "LayoutType": {
+        "kind": "union",
+        "values": [
+          "compact",
+          "comfort"
+        ],
+        "own": true
       }
     }
   }

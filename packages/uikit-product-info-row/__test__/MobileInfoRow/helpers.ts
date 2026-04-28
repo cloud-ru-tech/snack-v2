@@ -7,6 +7,7 @@ export const MOBILE_INFO_ROW_STORY_NAME = 'mobileinforow';
 
 export const MOBILE_INFO_ROW_STORIES = {
   playground: 'playground',
+  visualMatrix: 'visual-matrix',
 } as const;
 
 export function buildMobileInfoRowStoryOptions(

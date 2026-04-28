@@ -14,7 +14,7 @@ order: 0
 - [**InfoRow**](/components/uikit-product-info-row/InfoRow) — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок.
 - [**InfoGroup**](/components/uikit-product-info-row/InfoGroup) — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`).
 - **MobileInfoRow** / **MobileInfoGroup** — вертикальная строка и список (comfort-раскладка); на корне включается **density `comfort`** (`getThemeClassnames`); разделители и отступы от **`position`** (`first` / `inner` / `last`).
-- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **compact** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **comfort** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'compact'` \| `'comfort'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
+- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **desktop** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **mobile** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'desktop'` \| `'mobile'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
 
 ## Установка
 
@@ -42,5 +42,5 @@ import '@ds/uikit-product-info-row/style.css'
 | Одна строка полей или две пары «метка — значение» в одной строке | `InfoRow` |
 | Табличный список полей по одному объекту данных | `InfoGroup` |
 | Несколько однотипных строк без `InfoGroup` | `InfoRow` + `useGetContent` + `InfoRowFieldItem[]` |
-| Узкий экран / comfort-раскладка той же матрицы Figma | `MobileInfoRow` или `AdaptiveInfoRow` с `layoutType={LAYOUT_TYPE.Comfort}` |
-| Список полей с переключением compact / comfort | `AdaptiveInfoGroup` |
+| Узкий экран / mobile-раскладка той же матрицы Figma | `MobileInfoRow` или `AdaptiveInfoRow` с `layoutType={LAYOUT_TYPE.Mobile}` |
+| Список полей с переключением desktop / mobile | `AdaptiveInfoGroup` |

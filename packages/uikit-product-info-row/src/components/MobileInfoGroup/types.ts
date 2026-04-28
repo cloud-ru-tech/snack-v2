@@ -2,7 +2,7 @@ import { WithSupportProps } from '@ds/utils';
 import { ReactNode } from 'react';
 
 import { DataType } from '../InfoRow';
-import { MobileInfoRowPropsBase } from '../MobileInfoRow/types.ts';
+import { MobileInfoRowPropsBase } from '../MobileInfoRow/types';
 
 type PropsWithAccessorKey<T extends DataType> = {
   accessorKey: keyof T;

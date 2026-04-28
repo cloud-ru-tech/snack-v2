@@ -3,7 +3,7 @@ import { extractSupportProps } from '@ds/utils';
 import { LAYOUT_TYPE, POSITION } from '../../constants';
 import { LayoutType, Position } from '../../types';
 import { InfoRow } from '../InfoRow';
-import { InfoRowProps } from '../InfoRow/types.ts';
+import { InfoRowProps } from '../InfoRow/types';
 import { MobileInfoRow } from '../MobileInfoRow';
 
 export type AdaptiveInfoRowProps = InfoRowProps & {
@@ -25,7 +25,7 @@ export function getPosition({ index, length }: { index: number; length: number }
 }
 
 export function AdaptiveInfoRow({ layoutType, position, ...props }: AdaptiveInfoRowProps) {
-  if (layoutType === LAYOUT_TYPE.Compact) {
+  if (layoutType === LAYOUT_TYPE.Desktop) {
     return <InfoRow {...props} />;
   }
 

@@ -1,7 +1,7 @@
-/** В терминах Figma / дизайн-системы: compact = плотная раскладка, comfort = комфортная (мобильная вёрстка + density comfort). */
+/** В публичном API используем desktop/mobile, независимо от именования в Figma. */
 export const LAYOUT_TYPE = {
-  Compact: 'compact',
-  Comfort: 'comfort',
+  Desktop: 'desktop',
+  Mobile: 'mobile',
 } as const;
 
 /** Позиция строки в списке (мобильный `MobileInfoRow`): влияет на padding и разделители. */

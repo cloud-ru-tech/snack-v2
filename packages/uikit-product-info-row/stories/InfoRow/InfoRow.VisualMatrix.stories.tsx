@@ -23,6 +23,7 @@ type Story = StoryObj<InfoRowProps>;
 
 const widths = ['fixed', 'full'] as const;
 const loadingStates = [false, true] as const;
+const widthDemoFrameStyle = { width: '920px', maxWidth: '100%' } as const;
 
 /** Три комбинации из матрицы Figma infoRow (без column=2 + maxWidth=false) */
 const figmaMatrix: Array<{ column: '1' | '2'; maxWidth: boolean; label: string }> = [
@@ -72,21 +73,22 @@ export const VisualMatrix: Story = {
         rows={widths.map(width => ({
           variantLabel: width,
           cells: loadingStates.map(loading => (
-            <InfoRow
-              key={`${width}-${loading}`}
-              label='Label'
-              content='Value'
-              width={width}
-              loading={loading}
-              column='1'
-              topDivider
-              bottomDivider
-              data-test-id={`info-row-matrix-${width}-${loading}`}
-              rowActions={{
-                first: iconAction(`info-row-matrix-${width}-${loading}-a1`),
-                second: iconAction(`info-row-matrix-${width}-${loading}-a2`),
-              }}
-            />
+            <div key={`${width}-${loading}`} style={widthDemoFrameStyle}>
+              <InfoRow
+                label='Label'
+                content='Value'
+                width={width}
+                loading={loading}
+                column='1'
+                topDivider
+                bottomDivider
+                data-test-id={`info-row-matrix-${width}-${loading}`}
+                rowActions={{
+                  first: iconAction(`info-row-matrix-${width}-${loading}-a1`),
+                  second: iconAction(`info-row-matrix-${width}-${loading}-a2`),
+                }}
+              />
+            </div>
           )),
         }))}
       />

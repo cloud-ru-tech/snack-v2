@@ -50,11 +50,14 @@ const meta: Meta<PlaygroundArgs> = {
     showRowActions: { control: 'boolean', description: 'Кнопки у первой колонки' },
     showSecondRowAction: {
       control: 'boolean',
-      description: 'Вторая icon-only кнопка у первой колонки (только при `column="1"`)',
+      description:
+        'Вторая icon-only кнопка у первой колонки. Имеет смысл при `column="1"` и включённых «Кнопках у первой колонки».',
+      if: { arg: 'column', eq: '1' },
     },
     showSecondaryActions: {
       control: 'boolean',
       description: 'Одна icon-only кнопка у второй колонки (`column="2"`, как в макете)',
+      if: { arg: 'column', eq: '2' },
     },
     className: { control: 'text' },
     labelClassName: { control: 'text' },

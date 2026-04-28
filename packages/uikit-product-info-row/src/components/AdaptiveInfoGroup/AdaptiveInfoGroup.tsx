@@ -15,8 +15,9 @@ export function AdaptiveInfoGroup<T extends DataType>({
   width,
   ...shared
 }: AdaptiveInfoGroupProps<T>) {
-  if (layoutType === LAYOUT_TYPE.Comfort) {
-    return <MobileInfoGroup {...shared} />;
-  }
-  return <InfoGroup columns={columns} width={width} {...shared} />;
+  return layoutType === LAYOUT_TYPE.Mobile ? (
+    <MobileInfoGroup {...shared} />
+  ) : (
+    <InfoGroup columns={columns} width={width} {...shared} />
+  );
 }

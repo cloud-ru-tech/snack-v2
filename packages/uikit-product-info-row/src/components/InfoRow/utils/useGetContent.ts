@@ -1,5 +1,5 @@
 import { NO_DATA_PLACEHOLDER } from '../constants';
-import { DataType, InfoRowFieldItem } from '../types.ts';
+import { DataType, InfoRowFieldItem } from '../types';
 import { isArray, isBoolean, isNil, isObject, isString } from './typeGuards';
 
 type GetContentArgs<T extends DataType> = {

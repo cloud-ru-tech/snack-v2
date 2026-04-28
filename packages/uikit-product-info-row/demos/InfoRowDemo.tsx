@@ -1,4 +1,3 @@
-import { PlaceholderSVG } from '@ds/icons';
 import { InfoRow } from '@ds/uikit-product-info-row';
 
 import doc from '../docs/props.json';
@@ -11,33 +10,23 @@ export function InfoRowDemo() {
       component={InfoRow}
       componentDoc={doc.InfoRow}
       defaultProps={{
-        label: 'Label',
-        secondaryLabel: 'Label 2',
+        label: 'Очень длинный заголовок первого поля, который должен обрезаться по настройке truncate',
+        secondaryLabel: 'Очень длинный заголовок второго поля, который тоже должен обрезаться',
         content: 'Content',
         secondaryContent: 'Column 2',
+        labelTruncate: 1,
+        secondaryLabelTruncate: 1,
         column: '1',
         maxWidth: false,
         'data-test-id': 'info-row-demo',
-        rowActions: {
-          first: {
-            icon: <PlaceholderSVG />,
-            'aria-label': 'Действие',
-            'data-test-id': 'info-row-demo-action-1',
-          },
-        },
-        secondaryRowActions: {
-          first: {
-            icon: <PlaceholderSVG />,
-            'aria-label': 'Действие',
-            'data-test-id': 'info-row-demo-secondary-action-1',
-          },
-        },
       }}
       controls={{
         label: { type: 'text' },
         secondaryLabel: { type: 'text' },
         content: { type: 'text' },
         secondaryContent: { type: 'text' },
+        labelTruncate: { type: 'number' },
+        secondaryLabelTruncate: { type: 'number' },
         column: { type: 'select', options: ['1', '2'] },
         maxWidth: { type: 'boolean' },
         loading: { type: 'boolean' },
