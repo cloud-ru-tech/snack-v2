@@ -11,6 +11,10 @@
 
 Когда **не** нужен: если контейнер может расти по содержимому (например, body статьи) — проще обернуть текст в абзац без обрезания.
 
+## Анатомия
+
+### Variant
+Где обрезается строка: `end` — троеточие в конце (стандартный CSS `ellipsis`), `middle` — обрезка посередине (для путей, email, ID — чтобы видеть начало и конец).
 ## Установка
 ```bash
 pnpm add @ds/truncate-string
@@ -68,6 +72,8 @@ export function TruncateMultiline() {
 ```
 
 ## Props
+**TruncateStringProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — |  |
@@ -78,55 +84,4 @@ export function TruncateMultiline() {
 | `text` | `string` | — | Текст, который будет обрезаться |
 | `tooltipClassName` | `string` | — | Стиль для тултипа |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения тултипа |
-| `variant` | `"end"` \| `"middle"` | `end` | Вариант обрезания строки: `End` - с конца
-`Middle` - по середине |
-
-## Анатомия
-
-### Variant
-Где обрезается строка: `end` — троеточие в конце (стандартный CSS `ellipsis`), `middle` — обрезка посередине (для путей, email, ID — чтобы видеть начало и конец).
-
-## TruncateStringEnd
-
-```tsx
-import { TruncateStringEnd } from '@ds/truncate-string'
-
-export function Example() {
-  return <TruncateStringEnd maxLines="1" placement="top" trigger="hoverAndFocusVisible">Click me</TruncateStringEnd>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `hideTooltip` | `boolean` | — | Скрывать ли тултип с полным текстом |
-| `maxLines` | `number` | `1` | Максимальное кол-во строк, до которого может сворачиваться текст. |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение тултипа относительно обрезанного текста. |
-| `text` | `string` | — | Текст, который будет обрезаться |
-| `tooltipClassName` | `string` | — | Стиль для тултипа |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hoverAndFocusVisible` | Условие отображения тултипа |
-
-## TruncateStringMiddle
-
-```tsx
-import { TruncateStringMiddle } from '@ds/truncate-string'
-
-export function Example() {
-  return <TruncateStringMiddle placement="top" trigger="hoverAndFocusVisible">Click me</TruncateStringMiddle>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `hideTooltip` | `boolean` | — |  |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` |  |
-| `text` | `string` | — |  |
-| `tooltipClassName` | `string` | — | Стиль для тултипа |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hoverAndFocusVisible` |  |
+| `variant` | `"end"` \| `"middle"` | `end` | Вариант обрезания строки: `End` - с конца <br/> `Middle` - по середине |

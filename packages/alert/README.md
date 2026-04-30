@@ -41,15 +41,6 @@ Inline-уведомление, которое живёт в контенте —
 #### Size
 Компактность inline-алерта: `s` — для плотных поверхностей и табличных строк, `m` — дефолт.
 
-### Установка
-```bash
-pnpm add @ds/alert
-```
-
-```ts
-import { Alert } from '@ds/alert'
-```
-
 ### Примеры использования
 #### 1. Информационный алерт
 
@@ -120,14 +111,15 @@ export function Collapsible() {
 ```
 
 ### Props
+**AlertProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
+| `actions` | `AlertButtonProps` | — | Кнопки в футере |
 | `align` | `"horizontal"` \| `"vertical"` | `vertical` | Выравнивание контента |
 | `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
 | `className` | `string` | — | CSS-класс |
-| `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
-При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
+| `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop). <br/> При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
 | `data-test-id` | `string` | — |  |
 | `description` | `ReactNode` | — | Описание |
 | `icon` | `boolean` | — | Отображать иконку |
@@ -136,6 +128,36 @@ export function Collapsible() {
 | `size` | `"m"` \| `"s"` | — | Размер |
 | `title` | `string` | — | Заголовок |
 | `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
+
+##### Related types
+
+**AlertButtonProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
+| `className` | `string \| undefined` | — | Дополнительный класс |
+| `disabled` | `boolean \| undefined` | — | Отключена |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
+| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `invertFocusOutlineColor` | `boolean \| undefined` | — | Инвертировать цвет фокусного контура |
+| `label` | `string \| undefined` | — | Текст кнопки |
+| `loading` | `boolean \| undefined` | — | Состояние загрузки |
+| `size` | `"m"` \| `"s"` | — | Размер |
+| `variant` | `"onAccent"` \| `"onColor"` | — | Вариант оформления |
+
+- `Align` = `"horizontal"` \| `"vertical"`
+
+- `Appearance` = `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"`
+
+- `IconPosition` = `"after"` \| `"before"`
+
+- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
+
+- `Size` = `"m"` \| `"s"`
+
+- `Variant` = `"onAccent"` \| `"onColor"`
 
 ## AlertTop
 
@@ -162,16 +184,6 @@ export function Collapsible() {
 #### Size
 Плотность баннера: `s` — компактный, `m` — дефолт.
 
-### Установка
-
-```bash
-pnpm add @ds/alert
-```
-
-```ts
-import { AlertTop } from '@ds/alert'
-```
-
 ### Примеры использования
 
 #### Системное уведомление
@@ -192,14 +204,15 @@ export function SystemNotice() {
 
 ### Props
 
+**AlertTopProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
+| `actions` | `AlertButtonProps` | — | Кнопки в футере |
 | `align` | `"horizontal"` \| `"vertical"` | `vertical` | Выравнивание контента |
 | `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
 | `className` | `string` | — | CSS-класс |
-| `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
-При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
+| `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop). <br/> При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
 | `data-test-id` | `string` | — |  |
 | `description` | `ReactNode` | — | Описание |
 | `icon` | `boolean` | — | Отображать иконку |
@@ -208,59 +221,32 @@ export function SystemNotice() {
 | `title` | `string` | — | Заголовок |
 | `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
 
-## AlertBase
+##### Related types
 
-```tsx
-import { AlertBase } from '@ds/alert'
-
-export function Example() {
-  return <AlertBase truncate="title: 1">Click me</AlertBase>
-}
-```
-
-### Props
+**AlertButtonProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
-| `align` | `"horizontal"` \| `"vertical"` | — | Выравнивание контента |
-| `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
-| `className` | `string` | — | CSS-класс |
-| `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
-При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Описание |
-| `icon` | `boolean` | — | Отображать иконку |
-| `onClose` | `(() => void)` | — | Колбек закрытия |
-| `outline` | `boolean` | — |  |
+| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
+| `className` | `string \| undefined` | — | Дополнительный класс |
+| `disabled` | `boolean \| undefined` | — | Отключена |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
+| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `invertFocusOutlineColor` | `boolean \| undefined` | — | Инвертировать цвет фокусного контура |
+| `label` | `string \| undefined` | — | Текст кнопки |
+| `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `size` | `"m"` \| `"s"` | — | Размер |
-| `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
-| `variant` | `"inline"` \| `"top"` | — |  |
+| `variant` | `"onAccent"` \| `"onColor"` | — | Вариант оформления |
 
-## AlertButton
+- `Align` = `"horizontal"` \| `"vertical"`
 
-```tsx
-import { AlertButton } from '@ds/alert'
+- `Appearance` = `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"`
 
-export function Example() {
-  return <AlertButton iconPosition="before" variant="onColor">Click me</AlertButton>
-}
-```
+- `IconPosition` = `"after"` \| `"before"`
 
-### Props
+- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom) |
-| `className` | `string` | — | Дополнительный класс |
-| `disabled` | `boolean` | `false` | Отключена |
-| `icon` | `ReactNode` | — | Иконка |
-| `iconPosition` | `"after"` \| `"before"` | `before` | Позиция иконки относительно текста |
-| `innerRef` | `any` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.
-Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-| `invertFocusOutlineColor` | `boolean` | — | Инвертировать цвет фокусного контура |
-| `label` | `string` | — | Текст кнопки |
-| `loading` | `boolean` | `false` | Состояние загрузки |
-| `size` | `"m"` \| `"s"` | `m` | Размер |
-| `variant` | `"onAccent"` \| `"onColor"` | `onColor` | Вариант оформления |
+- `Size` = `"m"` \| `"s"`
+
+- `Variant` = `"onAccent"` \| `"onColor"`

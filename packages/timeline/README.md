@@ -20,15 +20,10 @@
 
 Когда **не** нужен: горизонтальный stepper с нумерацией — берите `Stepper`. Список без хронологии — обычный `<ul>` или компонент-список.
 
-### Установка
-```bash
-pnpm add @ds/timeline
-```
+### Анатомия
 
-```ts
-import { Timeline } from '@ds/timeline'
-```
-
+#### Width
+`auto` — ширина по содержимому, `full` — растягивается по контейнеру (для дашбордов и полноэкранных лент).
 ### Примеры использования
 #### Базовый таймлайн
 
@@ -86,6 +81,8 @@ export function Alternate() {
 ```
 
 ### Props
+**TimelineProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `alternate` | `boolean` | — | Перемешать положение контента |
@@ -93,12 +90,52 @@ export function Alternate() {
 | `contentPosition` | `"left"` \| `"right"` | `right` | Положение контента |
 | `data-test-id` | `string` | — |  |
 | `fullWidth` | `boolean` | — | Сделать таймлайн во всю ширину |
-| `items` | `TimelineItem[]` | — | Пункты таймлайна |
+| `items` | `TimelineItem` | — | Пункты таймлайна |
 
-### Анатомия
+##### Related types
 
-#### Width
-`auto` — ширина по содержимому, `full` — растягивается по контейнеру (для дашбордов и полноэкранных лент).
+- `Position` = `"left"` \| `"right"`
+
+**TimelineItem**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `alternateMode` | `boolean \| undefined` | — | Перемешать положение контента |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент |
+| `contentPosition` | `"left"` \| `"right"` | — | Положение контента |
+| `data-test-id` | `string \| undefined` | — | Стабильный идентификатор для e2e/tests |
+| `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
+| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
+| `key` | `string \| undefined` | — | Уникальный ключ |
+| `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
+| `opposite` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент в противоположной колонке |
+| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
+
+**TrackItemProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `alternateMode` | `boolean \| undefined` | — | Перемешать положение контента |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент |
+| `contentPosition` | `"left"` \| `"right"` | — | Положение контента |
+| `data-test-id` | `string \| undefined` | — | Стабильный идентификатор для e2e/tests |
+| `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
+| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
+| `key` | `string \| undefined` | — | Уникальный ключ |
+| `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
+| `opposite` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент в противоположной колонке |
+| `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
+| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
+
+**TrackProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
+| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
+| `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
+| `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
+| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
 
 ## TrackItem
 
@@ -111,21 +148,17 @@ export function Alternate() {
 - Своя раскладка, где `Timeline` не подходит (встраивание в таблицу, grid, виртуализированный список).
 - Нужен контроль над отдельным элементом: состояние маркера, положение контента, пропуск соединительной линии.
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/timeline
-```
-
-```ts
-import { TrackItem } from '@ds/timeline'
-```
-
+#### Position
+Сторона, с которой рендерится контент относительно трека: `left` — слева, `right` — справа. Используется в двухколоночных таймлайнах.
 ### Примеры использования
 
 Смотрите примеры в **Timeline** — `TrackItem` используется как внутренний строительный блок.
 
 ### Props
+
+**TrackItemProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -141,60 +174,31 @@ import { TrackItem } from '@ds/timeline'
 | `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
 | `showLines` | `boolean` | — | Показывать вертикальные сегменты |
 
-### Анатомия
+##### Related types
 
-#### Position
-Сторона, с которой рендерится контент относительно трека: `left` — слева, `right` — справа. Используется в двухколоночных таймлайнах.
+- `Position` = `"left"` \| `"right"`
 
-## Track
+- `Role` = `"center"` \| `"end"` \| `"start"`
 
-```tsx
-import { Track } from '@ds/timeline'
+**TrackDotProps**
 
-export function Example() {
-  return <Track dotVariant="default" showLines>Click me</Track>
-}
-```
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
+| `variant` | `"default"` \| `"subEvent"` | — | Вид маркера |
 
-### Props
+**TrackLineProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `style` | `"dashed"` \| `"solid"` | — |  |
+
+**TrackProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
-| `dotVariant` | `"default"` \| `"subEvent"` | `default` | Вид маркера |
+| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
 | `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
 | `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
-| `showLines` | `boolean` | `true` | Показывать вертикальные сегменты |
-
-## TrackDot
-
-```tsx
-import { TrackDot } from '@ds/timeline'
-
-export function Example() {
-  return <TrackDot appearance="neutral" variant="default">Click me</TrackDot>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Семантический цвет маркера |
-| `variant` | `"default"` \| `"subEvent"` | `default` | Вид маркера |
-
-## TrackLine
-
-```tsx
-import { TrackLine } from '@ds/timeline'
-
-export function Example() {
-  return <TrackLine style="solid">Click me</TrackLine>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `style` | `"dashed"` \| `"solid"` | `solid` |  |
+| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |

@@ -76,6 +76,8 @@ export function Critical() {
 ```
 
 ## Props
+**CounterProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `primary` | Внешний вид |
@@ -86,3 +88,13 @@ export function Critical() {
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
 | `value` | `number` | — | Значение |
 | `variant` | `"count"` \| `"count-k"` \| `"count-plus"` | `count` | Вариант форматирования |
+
+#### Related types
+
+- `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`
+
+- `Color` = `"accent"` \| `"decor"`
+
+- `Size` = `"s"` \| `"xs"`
+
+- `Variant` = `"count"` \| `"count-k"` \| `"count-plus"`

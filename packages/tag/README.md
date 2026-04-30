@@ -30,15 +30,13 @@ import { Tag, TagRow } from '@ds/tag'
 
 Когда **не** нужен: для interactive chip с чекбокс-семантикой — используйте отдельный компонент ChipGroup, если он есть в вашем наборе.
 
-### Установка
-```bash
-pnpm add @ds/tag
-```
+### Анатомия
 
-```ts
-import { Tag } from '@ds/tag'
-```
+#### Size
+`xs` — для плотных списков и инлайн-меток, `s` — дефолт, `m` — для заголовков и акцентных блоков.
 
+#### Appearance
+Семантический/декоративный цвет: `neutral` — нейтральный, `primary` — акцент, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `green` — успех, `blue` — инфо, `violet`/`pink` — декоративные.
 ### Примеры использования
 #### 1. Базовый тег
 
@@ -65,10 +63,12 @@ export function Removable() {
 ```
 
 ### Props
+**TagProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — |  |
-| `as` | `"a"` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
+| `as` | `"a"` | — | Элемент или компонент для рендера: 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `label` | `string` | — |  |
@@ -76,13 +76,11 @@ export function Removable() {
 | `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
 | `tabIndex` | `number` | — |  |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — для плотных списков и инлайн-меток, `s` — дефолт, `m` — для заголовков и акцентных блоков.
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-#### Appearance
-Семантический/декоративный цвет: `neutral` — нейтральный, `primary` — акцент, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `green` — успех, `blue` — инфо, `violet`/`pink` — декоративные.
+- `Size` = `"m"` \| `"s"` \| `"xs"`
 
 ## TagRow
 
@@ -96,16 +94,13 @@ export function Removable() {
 - Для выбранных фильтров, которые занимают больше одной строки.
 - Везде, где количество меток может превышать доступную ширину.
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/tag
-```
+#### Size
+Применяется ко всем тегам в ряду: `xs`, `s`, `m`. Наследуется вложенными `Tag`.
 
-```ts
-import { TagRow } from '@ds/tag'
-```
-
+#### Appearance
+Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.
 ### Примеры использования
 
 #### Ограничение по строкам
@@ -138,139 +133,6 @@ export function RowTruncated() {
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `items` | `TagRowItem[]` | — |  |
-| `moreButtonLabel` | `string` | — |  |
-| `onItemRemove` | `((item: string) => void)` | — |  |
-| `rowLimit` | `number` | — |  |
-| `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
-
-### Анатомия
-
-#### Size
-Применяется ко всем тегам в ряду: `xs`, `s`, `m`. Наследуется вложенными `Tag`.
-
-#### Appearance
-Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.
-
-## TagBase
-
-```tsx
-import { TagBase } from '@ds/tag'
-
-export function Example() {
-  return <TagBase appearance="neutral">Click me</TagBase>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` |  |
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `label` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
-| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
-| `tabIndex` | `number` | — |  |
-
-## TagLink
-
-```tsx
-import { TagLink } from '@ds/tag'
-
-export function Example() {
-  return <TagLink appearance="neutral">Click me</TagLink>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` |  |
-| `as` | `ElementType` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `label` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
-| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
-| `tabIndex` | `number` | — |  |
-
-## TagList
-
-```tsx
-import { TagList } from '@ds/tag'
-
-export function Example() {
-  return <TagList>Click me</TagList>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `TagRowItemInner[]` | — |  |
-| `onItemRemove` | `((item: string) => void)` | — |  |
-| `setTagRef` | `SetTagRef` | — |  |
-| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
-
-## TagMore
-
-```tsx
-import { TagMore } from '@ds/tag'
-
-export function Example() {
-  return <TagMore text="">Click me</TagMore>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `buttonRef` | `Ref<HTMLButtonElement>` | — |  |
-| `items` | `TagRowItemInner[]` | — |  |
-| `onItemRemove` | `((item: string) => void)` | — |  |
-| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
-| `text` | `string` | `` |  |
-
-## TagRowSimple
-
-```tsx
-import { TagRowSimple } from '@ds/tag'
-
-export function Example() {
-  return <TagRowSimple>Click me</TagRowSimple>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `items` | `TagRowItemInner[]` | — |  |
-| `onItemRemove` | `((item: string) => void)` | — |  |
-| `setTagRef` | `((item: TagRowItemInner, index: number) => Ref<HTMLDivElement>)` | — |  |
-| `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
-
-## TagRowTruncated
-
-```tsx
-import { TagRowTruncated } from '@ds/tag'
-
-export function Example() {
-  return <TagRowTruncated>Click me</TagRowTruncated>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `items` | `TagRowItemInner[]` | — |  |
 | `moreButtonLabel` | `string` | — |  |
 | `onItemRemove` | `((item: string) => void)` | — |  |
 | `rowLimit` | `number` | — |  |

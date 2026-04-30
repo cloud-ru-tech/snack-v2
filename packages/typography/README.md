@@ -10,6 +10,16 @@
 
 Когда **не** нужен `Typography`: для чистых UI-примитивов, где текст входит в состав компонента (например, `Button` label), — используйте встроенные пропсы компонента.
 
+## Анатомия
+
+### Variant
+Типографическая роль: `display` — крупные промо-заголовки, `headline` — заголовки секций, `title` — заголовки подсекций и карточек, `label` — подписи и бэйджи, `body` — основной текст.
+
+### Size
+Ступень размера внутри варианта: `s`, `m`, `l`. Конкретные px задаются токенами `@sbercloud/figma-variables`.
+
+### Weight
+Начертание: `regular` — дефолт, `thin` — облегчённое (display/headline), `mono` — моноширинное (коды, значения, ID).
 ## Установка
 ```bash
 pnpm add @ds/typography
@@ -73,6 +83,8 @@ export function TypographyPolymorphic() {
 ```
 
 ## Props
+**TypographyProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `as` | `ElementType` | — | HTML тег для рендеринга |
@@ -83,13 +95,10 @@ export function TypographyPolymorphic() {
 | `variant` | `"body"` \| `"display"` \| `"headline"` \| `"label"` \| `"title"` | `VARIANT.body` | Вариант типографики |
 | `weight` | `"mono"` \| `"regular"` \| `"thin"` | `WEIGHT.regular` | Начертание шрифта |
 
-## Анатомия
+#### Related types
 
-### Variant
-Типографическая роль: `display` — крупные промо-заголовки, `headline` — заголовки секций, `title` — заголовки подсекций и карточек, `label` — подписи и бэйджи, `body` — основной текст.
+- `TypographySize` = `"l"` \| `"m"` \| `"s"`
 
-### Size
-Ступень размера внутри варианта: `s`, `m`, `l`. Конкретные px задаются токенами `@sbercloud/figma-variables`.
+- `TypographyVariant` = `"body"` \| `"display"` \| `"headline"` \| `"label"` \| `"title"`
 
-### Weight
-Начертание: `regular` — дефолт, `thin` — облегчённое (display/headline), `mono` — моноширинное (коды, значения, ID).
+- `TypographyWeight` = `"mono"` \| `"regular"` \| `"thin"`

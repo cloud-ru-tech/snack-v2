@@ -27,15 +27,10 @@ import { Checkbox, Radio, Switch, Favourite, ToggleGroup } from '@ds/toggles'
 
 Когда **не** нужен Checkbox: для взаимоисключающего выбора — используйте **`Radio`**, для on/off настроек — **`Switch`**.
 
-### Установка
-```bash
-pnpm add @ds/toggles
-```
+### Анатомия
 
-```ts
-import { Checkbox } from '@ds/toggles'
-```
-
+#### Size
+`xs` — для плотных таблиц и инлайновых списков, `s` — дефолт в формах.
 ### Примеры использования
 #### 1. Базовый чекбокс
 
@@ -78,6 +73,8 @@ export function CheckboxStates() {
 ```
 
 ### Props
+**CheckboxProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `autofocus` | `boolean` | — | HTML-аттрибут autofocus |
@@ -100,10 +97,9 @@ export function CheckboxStates() {
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — для плотных таблиц и инлайновых списков, `s` — дефолт в формах.
+- `Size` = `"s"` \| `"xs"`
 
 ## Radio
 
@@ -117,15 +113,10 @@ export function CheckboxStates() {
 
 Когда **не** нужен Radio: для множественного выбора — **`Checkbox`**, для on/off — **`Switch`**.
 
-### Установка
-```bash
-pnpm add @ds/toggles
-```
+### Анатомия
 
-```ts
-import { Radio } from '@ds/toggles'
-```
-
+#### Size
+`xs` — для плотных списков опций, `s` — дефолт в формах.
 ### Примеры использования
 #### 1. Базовый Radio
 
@@ -180,6 +171,8 @@ export function RadioStates() {
 ```
 
 ### Props
+**RadioProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `autofocus` | `boolean` | — | HTML-аттрибут autofocus |
@@ -200,10 +193,9 @@ export function RadioStates() {
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — для плотных списков опций, `s` — дефолт в формах.
+- `Size` = `"s"` \| `"xs"`
 
 ## Switch
 
@@ -217,15 +209,10 @@ export function RadioStates() {
 
 Когда **не** нужен Switch: если изменение требует подтверждения — используйте **`Checkbox`** с кнопкой submit.
 
-### Установка
-```bash
-pnpm add @ds/toggles
-```
+### Анатомия
 
-```ts
-import { Switch } from '@ds/toggles'
-```
-
+#### Size
+`xs` — для плотных настроек и таблиц, `s` — дефолт в формах и карточках.
 ### Примеры использования
 #### 1. Базовый Switch
 
@@ -271,6 +258,8 @@ export function SwitchStates() {
 ```
 
 ### Props
+**SwitchProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `autofocus` | `boolean` | — | HTML-аттрибут autofocus |
@@ -291,10 +280,9 @@ export function SwitchStates() {
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — для плотных настроек и таблиц, `s` — дефолт в формах и карточках.
+- `Size` = `"s"` \| `"xs"`
 
 ## Favourite
 
@@ -308,15 +296,13 @@ Toggle для «избранного» — карточка товара, тре
 
 Когда **не** нужен Favourite: для булевых настроек — **`Switch`**; для выбора опций — **`Checkbox`**.
 
-### Установка
-```bash
-pnpm add @ds/toggles
-```
+### Анатомия
 
-```ts
-import { Favourite } from '@ds/toggles'
-```
+#### Size
+`xs` — для плотных списков, `s` — дефолт в карточках.
 
+#### Favourite icon
+Форма иконки: `star` — «в избранное», `heart` — «нравится».
 ### Примеры использования
 #### 1. Звезда
 
@@ -356,6 +342,8 @@ export function FavouriteStates() {
 ```
 
 ### Props
+**FavouriteProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `autofocus` | `boolean` | — | HTML-аттрибут autofocus |
@@ -378,13 +366,11 @@ export function FavouriteStates() {
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — для плотных списков, `s` — дефолт в карточках.
+- `FavouriteIcon` = `"heart"` \| `"star"`
 
-#### Favourite icon
-Форма иконки: `star` — «в избранное», `heart` — «нравится».
+- `Size` = `"s"` \| `"xs"`
 
 ## ToggleGroup
 
@@ -399,15 +385,16 @@ export function FavouriteStates() {
 
 Когда **не** нужен ToggleGroup: одна опция — **`Switch`** или **`Checkbox`**; взаимоисключающий выбор с нативной семантикой radio — группа **`Radio`** c общим `name`.
 
-### Установка
-```bash
-pnpm add @ds/toggles
-```
+### Анатомия
 
-```ts
-import { ToggleGroup, useToggleGroup } from '@ds/toggles'
-```
+#### Mode
+Тип дочерних контролов: `checkbox` — мультивыбор/независимые, `radio` — одиночный выбор.
 
+#### Size
+Размер вложенных тогглов: `xs` — плотный, `s` — дефолт.
+
+#### Selection mode
+Правила выбора: `single` — ровно один элемент (как radio-group), `multiple` — любое подмножество (как checkbox-group).
 ### Примеры использования
 #### 1. Single selection (сегментированный контрол)
 
@@ -494,21 +481,12 @@ export function ToggleGroupControlled() {
 ```
 
 ### Props
+**ToggleGroupProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
-| `defaultValue` | `string | string[]` | — | Начальное состояние |
-| `onChange` | `((value: string) => void) | ((value: string[]) => void) | undefined` | — | Controlled обработчик измения состояния |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `defaultValue` | `string \| string[]` | — | Начальное состояние |
+| `onChange` | `((value: string) => void) \| ((value: string[]) => void) \| undefined` | — | Controlled обработчик измения состояния |
 | `selectionMode` | `"multiple"` \| `"single"` | `single` | Режим выбора |
-| `value` | `string | string[]` | — | Controlled состояние |
-
-### Анатомия
-
-#### Mode
-Тип дочерних контролов: `checkbox` — мультивыбор/независимые, `radio` — одиночный выбор.
-
-#### Size
-Размер вложенных тогглов: `xs` — плотный, `s` — дефолт.
-
-#### Selection mode
-Правила выбора: `single` — ровно один элемент (как radio-group), `multiple` — любое подмножество (как checkbox-group).
+| `value` | `string \| string[]` | — | Controlled состояние |

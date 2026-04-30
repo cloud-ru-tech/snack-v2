@@ -30,15 +30,13 @@ import { Status, StatusIndicator } from '@ds/status'
 
 Когда **не** нужен: динамический чип с удалением — берите `Chip`/`Tag`. Промо-метка без функциональной семантики — берите `PromoTag`.
 
-### Установка
-```bash
-pnpm add @ds/status
-```
+### Анатомия
 
-```ts
-import { Status } from '@ds/status'
-```
+#### Size
+`xs` — для плотных таблиц и инлайновых меток, `s` — дефолт в карточках и заголовках.
 
+#### Appearance
+Семантический цвет: `neutral` — нейтральный, `green` — успех/активно, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `blue` — информация, `violet`/`pink` — декоративные.
 ### Примеры использования
 #### Активный статус
 
@@ -75,6 +73,8 @@ export function WithBackground() {
 ```
 
 ### Props
+**StatusProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цветовая схема) |
@@ -86,13 +86,11 @@ export function WithBackground() {
 | `progress` | `number` | — | Прогресс загрузки (от 0 до 100) |
 | `size` | `"s"` \| `"xs"` | `xs` | Размер индикатора и подписи |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — для плотных таблиц и инлайновых меток, `s` — дефолт в карточках и заголовках.
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-#### Appearance
-Семантический цвет: `neutral` — нейтральный, `green` — успех/активно, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `blue` — информация, `violet`/`pink` — декоративные.
+- `StatusSize` = `"s"` \| `"xs"`
 
 ## StatusIndicator
 
@@ -107,15 +105,13 @@ export function WithBackground() {
 
 Когда **не** нужен: если пользователю нужно прочитать статус — берите `Status` с подписью. Цвет без текста недоступен дальтоникам и скринридерам.
 
-### Установка
-```bash
-pnpm add @ds/status
-```
+### Анатомия
 
-```ts
-import { StatusIndicator } from '@ds/status'
-```
+#### Size
+Набор размеров от `4xs` (точка в плотных списках) до `s` (в заголовках): `4xs`, `3xs`, `2xs`, `xs`, `s`.
 
+#### Appearance
+Семантический цвет индикатора: `neutral`, `green` (успех), `red` (ошибка), `orange`/`yellow` (предупреждение), `blue` (инфо), `violet`/`pink` (декоративные).
 ### Примеры использования
 #### Базовый индикатор
 
@@ -128,6 +124,8 @@ export function BasicIndicator() {
 ```
 
 ### Props
+**StatusIndicatorProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид |
@@ -135,10 +133,8 @@ export function BasicIndicator() {
 | `data-test-id` | `string` | — |  |
 | `size` | `"2xs"` \| `"3xs"` \| `"4xs"` \| `"s"` \| `"xs"` | `s` | Размер |
 
-### Анатомия
+##### Related types
 
-#### Size
-Набор размеров от `4xs` (точка в плотных списках) до `s` (в заголовках): `4xs`, `3xs`, `2xs`, `xs`, `s`.
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-#### Appearance
-Семантический цвет индикатора: `neutral`, `green` (успех), `red` (ошибка), `orange`/`yellow` (предупреждение), `blue` (инфо), `violet`/`pink` (декоративные).
+- `StatusIndicatorSize` = `"2xs"` \| `"3xs"` \| `"4xs"` \| `"s"` \| `"xs"`

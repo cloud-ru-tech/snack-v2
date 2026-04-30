@@ -65,6 +65,8 @@ export function HalfStars() {
 ```
 
 ## Props
+**RatingProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `allowClear` | `boolean` | `false` | Разрещает сброс рейтинга при повторном нажатии на звезду |
@@ -79,26 +81,8 @@ export function HalfStars() {
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `value` | `number` | — | Значение количества звезд в случае необходимости управления |
 
-## RatingStar
+#### Related types
 
-```tsx
-import { RatingStar } from '@ds/rating'
+- `Appearance` = `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-export function Example() {
-  return <RatingStar appearance="yellow" value="0%">Click me</RatingStar>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `yellow` | Внешний вид (цветовая схема) |
-| `className` | `string` | — | CSS-класс |
-| `handleClick` | `((value: Value) => void)` | — | Действие при клике части звезды мышью |
-| `handleKeyDown` | `KeyboardEventHandler<HTMLDivElement>` | — | Действие при нажатии на клавишу клавиатуры |
-| `handleMouseEnter` | `((value: Value) => void)` | — | Действие при наведении мыши |
-| `handleMouseLeave` | `(() => void)` | — | Действие при уведении мыши |
-| `readonly` | `boolean` | `false` | Является ли поле доступным на изменение |
-| `size` | `"s"` \| `"xs"` | `s` | Размер |
-| `value` | `"0%"` \| `"100%"` \| `"50%"` | `0%` | Значение |
+- `Size` = `"s"` \| `"xs"`

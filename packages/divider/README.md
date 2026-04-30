@@ -72,11 +72,19 @@ export function VerticalInRow() {
 ```
 
 ## Props
+**DividerProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal |
 | `variant` | `"regular"` \| `"thin"` | `regular` | Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular |
+
+#### Related types
+
+- `DividerOrientation` = `"horizontal"` \| `"vertical"`
+
+- `DividerVariant` = `"regular"` \| `"thin"`
 
 Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`.

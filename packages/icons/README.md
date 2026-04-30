@@ -16,6 +16,14 @@ import { SearchSVG, Sprite, SpriteSnackIconsSVG } from '@ds/icons'
 
 Для режима **sprite** сначала отрендерьте скрытый блок со спрайтом, затем используйте иконки с `<use href="#id">` внутри.
 
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `content` | `string` | — |  |
+| `data-test-id` | `string` | — |  |
+
+Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.
 ## Sprite
 
 Два режима использования иконок:
@@ -40,12 +48,3 @@ export function App() {
 ```
 
 Доступные спрайты: `SpriteSnackIconsSVG` (он же `SpriteSVG`), `SpriteWebIconsSVG`, `SpriteProductIconsSVG` — подключайте только те наборы, иконки из которых реально используются.
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `content` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-
-Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.

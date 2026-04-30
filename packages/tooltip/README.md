@@ -31,16 +31,10 @@ Pop-up-подсказка над произвольным триггером. П
 
 Когда **не** нужен: для длинного описания — вместо этого Popover или отдельная страница.
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/tooltip
-```
-
-```ts
-import { Tooltip } from '@ds/tooltip'
-```
-
+#### Size
+`xs` — короткие подписи на одной строке, `s` — многострочные подсказки и описания.
 ### Примеры использования
 
 #### 1. Базовая подсказка
@@ -77,17 +71,17 @@ export function ClickTrigger() {
 
 ### Props
 
+**TooltipProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `ReactNode | ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
+| `children` | `ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 | `className` | `string` | — |  |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
-<br/>
-Пригодится для элементов с `position: absolute` |
-| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `hoverDelayClose` | `number` | `0` | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | `0` | Задержка открытия по ховеру |
 | `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
@@ -95,21 +89,13 @@ export function ClickTrigger() {
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `tip` | `ReactNode` | — | Содержимое тултипа (текст или разметка) |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hoverAndFocusVisible` | Условие отображения поповера:
-<br/> - `click` - открывать по клику
-<br/> - `hover` - открывать по ховеру
-<br/> - `focusVisible` - открывать по focus-visible
-<br/> - `focus` - открывать по фокусу
-<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible
-<br/> - `hoverAndFocus` - открывать по ховеру и фокусу
-<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hoverAndFocusVisible` | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
-| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
+| `triggerRef` | `ForwardedRef<ReferenceType \| HTMLElement \| null>` | — | Ref ссылка на триггер |
 
-### Анатомия
+##### Related types
 
-#### Size
-`xs` — короткие подписи на одной строке, `s` — многострочные подсказки и описания.
+- `Placement` = `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"`
 
 ## QuestionTooltip
 
@@ -123,16 +109,10 @@ export function ClickTrigger() {
 - Рядом с термином или аббревиатурой в тексте и таблицах.
 - В онбординговых состояниях — пояснение новой фичи.
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/tooltip
-```
-
-```ts
-import { QuestionTooltip } from '@ds/tooltip'
-```
-
+#### Size
+Размер триггера-иконки и тултипа: `xs` — для плотных форм, `s` — дефолт рядом с заголовками секций.
 ### Примеры использования
 
 #### Подсказка к полю формы
@@ -155,17 +135,17 @@ export function Question() {
 
 ### Props
 
+**QuestionTooltipProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `ReactNode | ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
+| `children` | `ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 | `className` | `string` | — |  |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
-<br/>
-Пригодится для элементов с `position: absolute` |
-| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
 | `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
@@ -176,19 +156,13 @@ export function Question() {
 | `tabIndex` | `number` | `0` | Tab index для кнопки-триггера |
 | `tip` | `ReactNode` | — | Содержимое тултипа (текст или разметка) |
 | `tooltipClassname` | `string` | — | CSS-класс контейнера подсказки |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hover` | Условие отображения поповера:
-<br/> - `click` - открывать по клику
-<br/> - `hover` - открывать по ховеру
-<br/> - `focusVisible` - открывать по focus-visible
-<br/> - `focus` - открывать по фокусу
-<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible
-<br/> - `hoverAndFocus` - открывать по ховеру и фокусу
-<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hover` | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerLabel` | `string` | `Подсказка` | Доступное имя для иконки-триггера |
-| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
+| `triggerRef` | `ForwardedRef<ReferenceType \| HTMLElement \| null>` | — | Ref ссылка на триггер |
 
-### Анатомия
+##### Related types
 
-#### Size
-Размер триггера-иконки и тултипа: `xs` — для плотных форм, `s` — дефолт рядом с заголовками секций.
+- `Placement` = `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"`
+
+- `Size` = `"s"` \| `"xs"`

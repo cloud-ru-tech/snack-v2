@@ -97,6 +97,8 @@ export function WithIcon() {
 ```
 
 ## Props
+**InfoBlockProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `align` | `"horizontal"` \| `"vertical"` | `vertical` | Расположение элементов |
@@ -107,3 +109,9 @@ export function WithIcon() {
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
 | `title` | `string` | — | Заголовок |
+
+#### Related types
+
+- `Align` = `"horizontal"` \| `"vertical"`
+
+- `Size` = `"l"` \| `"m"` \| `"s"`

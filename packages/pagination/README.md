@@ -38,15 +38,6 @@ import { Pagination, PaginationSlider } from '@ds/pagination'
 #### Variant
 `button` — элементы-кнопки (статус текущей страницы по фону, side-effect navigation), `link` — элементы-ссылки (работают с роутером, поддерживают middle-click/open-in-new-tab).
 
-### Установка
-```bash
-pnpm add @ds/pagination
-```
-
-```ts
-import { Pagination } from '@ds/pagination'
-```
-
 ### Примеры использования
 #### Базовый сценарий
 
@@ -93,17 +84,25 @@ export function AsLinks() {
 ```
 
 ### Props
+**PaginationProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS класснейм |
 | `data-test-id` | `string` | — |  |
 | `hrefFormatter` | `((page: number) => string)` | — | Колбэк форматирования ссылки |
 | `maxLength` | `number` | `7` | Максимальное количество страниц/элементов, помещающихся до транкейта |
-| `onChange` | `(page: number, event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent> | undefined) => void` | — | Колбэк смены значения |
+| `onChange` | `(page: number, event?: MouseEvent<HTMLButtonElement \| HTMLAnchorElement, MouseEvent> \| undefined) => void` | — | Колбэк смены значения |
 | `page` | `number` | — | Текущая страница |
 | `size` | `"m"` \| `"s"` | `s` | Размер |
 | `total` | `number` | — | Общее количество страниц |
 | `variant` | `"button"` \| `"link"` | `button` | Варианты тега кнопок: <a/> или <button/> |
+
+##### Related types
+
+- `PaginationSize` = `"m"` \| `"s"`
+
+- `Variant` = `"button"` \| `"link"`
 
 ## PaginationSlider
 
@@ -122,15 +121,6 @@ export function AsLinks() {
 
 #### Size
 `xs` — компактные карусели и плотные onboarding-шаги; `s` — дефолт для карточек и больших слайдеров.
-
-### Установка
-```bash
-pnpm add @ds/pagination
-```
-
-```ts
-import { PaginationSlider } from '@ds/pagination'
-```
 
 ### Примеры использования
 #### Базовый сценарий
@@ -156,6 +146,8 @@ export function SliderSizeS() {
 ```
 
 ### Props
+**PaginationSliderProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS класснейм |
@@ -165,43 +157,6 @@ export function SliderSizeS() {
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
 | `total` | `number` | — | Общее количество страниц |
 
-## PaginationNumberItem
+##### Related types
 
-```tsx
-import { PaginationNumberItem } from '@ds/pagination'
-
-export function Example() {
-  return <PaginationNumberItem>Click me</PaginationNumberItem>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `activated` | `boolean` | — |  |
-| `data-test-id` | `string` | — |  |
-| `href` | `string` | — |  |
-| `label` | `string | number` | — |  |
-| `onClick` | `(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void` | — |  |
-| `setButtonRef` | `Ref<HTMLButtonElement | HTMLAnchorElement>` | — |  |
-
-## PaginationSliderItem
-
-```tsx
-import { PaginationSliderItem } from '@ds/pagination'
-
-export function Example() {
-  return <PaginationSliderItem>Click me</PaginationSliderItem>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `activated` | `boolean` | — |  |
-| `data-test-id` | `string` | — |  |
-| `onClick` | `() => void` | — |  |
-| `setButtonRef` | `Ref<HTMLButtonElement>` | — |  |
-| `size` | `"s"` \| `"xs"` | — |  |
+- `PaginationSliderSize` = `"s"` \| `"xs"`

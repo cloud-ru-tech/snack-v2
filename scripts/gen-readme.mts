@@ -12,8 +12,8 @@
  */
 
 import { sync as globSync } from 'glob'
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { resolve, basename, dirname } from 'node:path'
+import { existsSync,readFileSync, writeFileSync } from 'node:fs'
+import { basename, dirname,resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -31,10 +31,11 @@ function packageExportsStyleCss(npmName: string): boolean {
   }
 }
 
-// Find packages that have at least one MDX file in docs/
+// Find packages that have either MDX docs or generated props (auto README still useful for
+// SCSS-only packages like @ds/materials and internal *-private packages without docs).
 const pkgDirs = [
   ...new Set(
-    globSync('packages/*/docs/*.mdx', { cwd: root, absolute: true }).map(
+    globSync('packages/*/docs/{*.mdx,props.json}', { cwd: root, absolute: true }).map(
       (f) => f.split('/packages/')[0] + '/packages/' + f.split('/packages/')[1].split('/')[0],
     ),
   ),
@@ -48,15 +49,12 @@ if (pkgDirs.length === 0) {
 for (const pkgDir of pkgDirs) {
   const pkgName = pkgDir.split(`${root}/packages/`).pop()!
   const propsPath = resolve(pkgDir, 'docs/props.json')
-
-  if (!existsSync(propsPath)) {
-    console.warn(`⚠  ${pkgName}: docs/props.json not found — run pnpm gen:props first`)
-    continue
-  }
-
-  const propsData = JSON.parse(readFileSync(propsPath, 'utf-8')) as Record<string, ComponentDoc>
+  const propsData: Record<string, ComponentDoc> = existsSync(propsPath)
+    ? (JSON.parse(readFileSync(propsPath, 'utf-8')) as Record<string, ComponentDoc>)
+    : {}
   const pkgJson = JSON.parse(readFileSync(resolve(pkgDir, 'package.json'), 'utf-8')) as {
     name: string
+    description?: string
   }
   const npmName = pkgJson.name
 
@@ -65,20 +63,25 @@ for (const pkgDir of pkgDirs) {
     existsPath(resolve(pkgDir, 'docs/index.mdx')) ??
     existsPath(resolve(pkgDir, 'docs/overview.mdx'))
 
-  if (!indexPath) {
-    console.warn(`⚠  ${pkgName}: no docs/index.mdx found`)
-    continue
-  }
-
   // Find per-component MDX files (everything in docs/ except index.mdx / overview.mdx)
   const componentMdxFiles = globSync('docs/*.mdx', { cwd: pkgDir, absolute: true }).filter(
     (f) => !['index.mdx', 'overview.mdx'].includes(basename(f)),
   )
 
   const consumedComponents = new Set<string>()
-  const indexRaw = readFileSync(indexPath, 'utf-8')
-  const frontmatter = parseFrontmatter(indexRaw)
-  const indexBody = renderMdxBody(indexRaw, indexPath, propsData, consumedComponents)
+  let frontmatter: Record<string, string>
+  let indexBody = ''
+  if (indexPath) {
+    const indexRaw = readFileSync(indexPath, 'utf-8')
+    frontmatter = parseFrontmatter(indexRaw)
+    indexBody = renderMdxBody(indexRaw, indexPath, propsData, consumedComponents)
+  } else {
+    // No MDX — derive title/description from package.json so the README still has a header.
+    frontmatter = {
+      title: npmName.replace(/^@ds\//, ''),
+      description: pkgJson.description ?? '',
+    }
+  }
 
   const readme = buildReadme({
     frontmatter,
@@ -86,6 +89,7 @@ for (const pkgDir of pkgDirs) {
     componentMdxFiles,
     propsData,
     npmName,
+    pkgDir,
     consumedComponents,
   })
 
@@ -102,6 +106,7 @@ function buildReadme({
   componentMdxFiles,
   propsData,
   npmName,
+  pkgDir,
   consumedComponents,
 }: {
   frontmatter: Record<string, string>
@@ -109,6 +114,7 @@ function buildReadme({
   componentMdxFiles: string[]
   propsData: Record<string, ComponentDoc>
   npmName: string
+  pkgDir: string
   consumedComponents: Set<string>
 }): string {
   const description = frontmatter.description ?? ''
@@ -133,7 +139,15 @@ function buildReadme({
       if (consumedComponents.has(name)) return ''
       // Skip non-component utilities/internals — published README only documents the public component API.
       if (!isPublicComponent(name)) return ''
-      return buildComponentSectionAuto(name, doc, npmName)
+      // Skip compound aliases (`Tabs.Tab` duplicates `Tab`).
+      if (name.includes('.')) return ''
+      // Skip components that have neither MDX nor a demo example — they're
+      // internal helpers (e.g. ScrollButton). The README mirrors the docs surface.
+      // Exception: if the package has no demos/examples at all (SCSS-only or
+      // *-private packages), render auto sections so the README isn't empty.
+      const examplesDirExists = existsSync(resolve(pkgDir, 'demos/examples'))
+      if (examplesDirExists && !findDemoExample(doc.displayName, pkgDir)) return ''
+      return buildComponentSectionAuto(name, doc, npmName, pkgDir)
     })
     .filter(Boolean)
 
@@ -209,6 +223,7 @@ function renderMdxBody(
   md = stripMdxOnlyJsx(md)
   md = stripDocsOnlyContent(md)
   md = stripEmptyHeadings(md)
+  md = reorderH2Sections(md)
 
   return md.replace(/\n{3,}/g, '\n\n').trim()
 }
@@ -250,14 +265,14 @@ function expandPropsTables(
       const doc = data[compName]
       if (!doc) return ''
       consumedComponents.add(compName)
-      return generatePropsTable(doc)
+      return renderInlinePropsBlock(doc)
     }
     // No `.Component` accessor — assume single-component package.
     const onlyName = Object.keys(data)[0]
     const doc = onlyName ? data[onlyName] : undefined
     if (!doc) return ''
     consumedComponents.add(onlyName)
-    return generatePropsTable(doc)
+    return renderInlinePropsBlock(doc)
   })
 }
 
@@ -321,11 +336,88 @@ function buildComponentSectionFromMdx(
   const raw = readFileSync(mdxFile, 'utf-8')
   const fm = parseFrontmatter(raw)
   // Bump headings down by one level — the rendered MDX nests under `## ${name}`.
-  const md = bumpHeadings(renderMdxBody(raw, mdxFile, propsData, consumedComponents))
+  // Strip `## Установка` — installation is shown once at the top of the README.
+  const md = bumpHeadings(
+    dropH2Section(renderMdxBody(raw, mdxFile, propsData, consumedComponents), 'установка'),
+  )
   const parts: string[] = [`## ${name}`]
   if (fm.description) parts.push(fm.description)
   if (md) parts.push(md)
   return parts.filter(Boolean).join('\n\n')
+}
+
+// Sort top-level H2 sections so README order matches the docs site (docSections.mjs).
+// Non-canonical H2s keep their position relative to each other.
+function reorderH2Sections(md: string): string {
+  // Mirrors apps/docs/src/config/docSections.mjs DOC_SECTIONS — keep in sync.
+  const CANONICAL_H2_ORDER: Record<string, number> = {
+    'демо': 0,
+    'когда использовать': 1,
+    'анатомия': 2,
+    'установка': 3,
+    'примеры использования': 4,
+    'props': 5,
+    'storybook': 6,
+    'figma': 7,
+    'смотри также': 8,
+  }
+
+  const lines = md.split('\n')
+  const sections: { title: string; rank: number; idx: number; lines: string[] }[] = []
+  const preamble: string[] = []
+  let inFence = false
+  let cur: { title: string; rank: number; idx: number; lines: string[] } | null = null
+
+  for (const line of lines) {
+    if (line.match(/^```/)) inFence = !inFence
+    const m = !inFence && line.match(/^##\s+(.+)$/)
+    if (m) {
+      if (cur) sections.push(cur)
+      const title = m[1].trim().toLowerCase()
+      const rank = CANONICAL_H2_ORDER[title] ?? Number.NaN
+      cur = { title, rank, idx: sections.length, lines: [line] }
+    } else if (cur) {
+      cur.lines.push(line)
+    } else {
+      preamble.push(line)
+    }
+  }
+  if (cur) sections.push(cur)
+
+  if (sections.length === 0) return md
+
+  const withRanks = sections.map((s, i) => ({ ...s, idx: i }))
+  withRanks.sort((a, b) => {
+    const ar = Number.isNaN(a.rank) ? Infinity : a.rank
+    const br = Number.isNaN(b.rank) ? Infinity : b.rank
+    if (ar !== br) return ar - br
+    return a.idx - b.idx
+  })
+
+  return [...preamble, ...withRanks.flatMap((s) => s.lines)].join('\n')
+}
+
+// Remove an H2 section (heading + body) by lowercase title match. Body extends
+// until the next H1/H2 or end of file. Fenced code blocks are respected.
+function dropH2Section(md: string, lowercaseTitle: string): string {
+  const lines = md.split('\n')
+  const out: string[] = []
+  let inFence = false
+  let dropping = false
+  for (const line of lines) {
+    if (line.match(/^```/)) inFence = !inFence
+    if (!inFence) {
+      const h2 = line.match(/^##\s+(.+)$/)
+      if (h2) {
+        dropping = h2[1].trim().toLowerCase() === lowercaseTitle
+        if (dropping) continue
+      } else if (dropping && /^#\s/.test(line)) {
+        dropping = false
+      }
+    }
+    if (!dropping) out.push(line)
+  }
+  return out.join('\n')
 }
 
 function bumpHeadings(md: string): string {
@@ -342,12 +434,16 @@ function bumpHeadings(md: string): string {
     .join('\n')
 }
 
-function buildComponentSectionAuto(name: string, doc: ComponentDoc, npmName: string): string {
+function buildComponentSectionAuto(
+  name: string,
+  doc: ComponentDoc,
+  npmName: string,
+  pkgDir: string,
+): string {
   return [
     `## ${name}`,
-    generateUsageBlock(doc, npmName),
-    '### Props',
-    generatePropsTable(doc),
+    generateUsageBlock(doc, npmName, pkgDir),
+    generatePropsSection(doc),
   ]
     .filter(Boolean)
     .join('\n\n')
@@ -392,55 +488,118 @@ function stripFrontmatter(content: string): string {
 
 // ─── Generators ──────────────────────────────────────────────────────────────
 
-function generateUsageBlock(doc: ComponentDoc, npmName: string): string {
+// Pull a real example from packages/<pkg>/demos/examples/*.tsx — first file
+// that mentions `<ComponentName` is inlined verbatim. If none found, return ''.
+function generateUsageBlock(doc: ComponentDoc, _npmName: string, pkgDir: string): string {
   const comp = doc.displayName
-  const styleLine = packageExportsStyleCss(npmName) ? `\nimport '${npmName}/style.css'` : ''
-
-  // Hooks are not valid JSX tags — avoid bogus <useFoo> examples.
-  if (/^use[A-Z]/.test(comp)) {
-    return `\`\`\`tsx
-import { ${comp} } from '${npmName}'${styleLine}
-
-// Используйте хук внутри React-компонента (см. разделы выше в этом README).
-\`\`\``
-  }
-
-  const SKIP = new Set(['size', 'loading', 'disabled', 'children', 'label'])
-  const propStr = Object.entries(doc.props)
-    .filter(([name, prop]) => !SKIP.has(name) && prop.defaultValue !== undefined)
-    .map(([name, prop]) => {
-      const val = prop.defaultValue!
-      if (prop.type === 'boolean') return val === 'true' ? name : ''
-      return `${name}="${val}"`
-    })
-    .filter(Boolean)
-    .join(' ')
-
-  const jsxProps = propStr ? ` ${propStr}` : ''
-
-  return `\`\`\`tsx
-import { ${comp} } from '${npmName}'${styleLine}
-
-export function Example() {
-  return <${comp}${jsxProps}>Click me</${comp}>
+  const example = findDemoExample(comp, pkgDir)
+  if (!example) return ''
+  return '```tsx\n' + example.trimEnd() + '\n```'
 }
-\`\`\``
+
+function findDemoExample(componentName: string, pkgDir: string): string | undefined {
+  const examplesDir = resolve(pkgDir, 'demos/examples')
+  if (!existsSync(examplesDir)) return undefined
+  const files = globSync('*.tsx', { cwd: examplesDir, absolute: true }).sort()
+  // Prefer file whose name matches the component (e.g. Counter.tsx for Counter).
+  const tag = new RegExp(`<${componentName}[\\s/>]|\\.${componentName}[\\s/>]`)
+  const exact = files.find((f) => basename(f, '.tsx') === componentName)
+  const candidates = exact ? [exact, ...files.filter((f) => f !== exact)] : files
+  for (const f of candidates) {
+    const src = readFileSync(f, 'utf-8')
+    if (tag.test(src)) return src
+  }
+  return undefined
+}
+
+function generatePropsSection(doc: ComponentDoc): string {
+  const heading = doc.propsTypeName ? `### Props \`${doc.propsTypeName}\`` : '### Props'
+  const parts = [heading, generatePropsTable(doc)]
+  const related = renderRelatedTypes(doc.relatedTypes)
+  if (related) parts.push(related)
+  return parts.join('\n\n')
+}
+
+// Inlined into MDX where the surrounding section already has a heading.
+function renderInlinePropsBlock(doc: ComponentDoc): string {
+  const parts: string[] = []
+  if (doc.propsTypeName) parts.push(`**${doc.propsTypeName}**`)
+  parts.push(generatePropsTable(doc))
+  const related = renderRelatedTypes(doc.relatedTypes)
+  if (related) parts.push(related)
+  return parts.join('\n\n')
 }
 
 function generatePropsTable(doc: ComponentDoc): string {
   const rows = Object.entries(doc.props).map(([name, prop]) => {
-    const type = prop.values?.length
-      ? prop.values.map((v) => `\`"${v}"\``).join(' \\| ')
-      : `\`${prop.type}\``
-    const def = prop.defaultValue !== undefined ? `\`${prop.defaultValue}\`` : '—'
-    const desc = prop.description ?? ''
-    return `| \`${name}\` | ${type} | ${def} | ${desc} |`
+    const type = formatPropType(prop)
+    const def = prop.defaultValue !== undefined ? `\`${escapeCell(prop.defaultValue)}\`` : '—'
+    const desc = formatCellText(prop.description ?? '')
+    return `| \`${escapeCell(name)}\` | ${type} | ${def} | ${desc} |`
   })
   return [
     '| Prop | Type | Default | Description |',
     '|------|------|---------|-------------|',
     ...rows,
   ].join('\n')
+}
+
+function formatPropType(prop: PropDef): string {
+  if (prop.values?.length) {
+    return prop.values.map((v) => `\`"${escapeCell(v)}"\``).join(' \\| ')
+  }
+  if (prop.typeRefs?.length) {
+    return prop.typeRefs.map((r) => `\`${escapeCell(r)}\``).join(' \\| ')
+  }
+  return `\`${escapeCell(prop.type)}\``
+}
+
+// Markdown table cells are single-line: a literal newline ends the row, a `|`
+// starts a new column. Collapse whitespace and escape pipes; keep `<br/>` so
+// hand-written multi-line descriptions still render line breaks.
+function formatCellText(text: string): string {
+  return text
+    .replace(/\r\n?/g, '\n')
+    .replace(/\n+/g, ' <br/> ')
+    .replace(/\|/g, '\\|')
+    .replace(/\s+/g, ' ')
+    .replace(/(?:\s*<br\/>\s*){2,}/g, ' <br/> ')
+    .trim()
+}
+
+function escapeCell(text: string): string {
+  return text.replace(/\r\n?/g, '\n').replace(/\n+/g, ' ').replace(/\|/g, '\\|').trim()
+}
+
+// Renders unions/aliases/interfaces from props.json relatedTypes. Skips
+// inherited DOM/ARIA types (`HTMLAttributes`, `AriaAttributes`, …) — they
+// describe the host element, not the component's own API.
+function renderRelatedTypes(relatedTypes?: Record<string, RelatedType>): string {
+  if (!relatedTypes) return ''
+  const entries = Object.entries(relatedTypes).filter(([, t]) => t.own !== false)
+  if (entries.length === 0) return ''
+  const parts: string[] = []
+  for (const [name, t] of entries) {
+    if (t.kind === 'union') {
+      const values = t.values.map((v) => `\`"${v}"\``).join(' \\| ')
+      parts.push(`- \`${name}\` = ${values}`)
+    } else if (t.kind === 'alias') {
+      parts.push(`- \`${name}\` = \`${t.type}\``)
+    } else if (t.kind === 'interface') {
+      const rows = Object.entries(t.props).map(([pname, p]) => {
+        const type = formatPropType(p)
+        const def = p.defaultValue !== undefined ? `\`${escapeCell(p.defaultValue)}\`` : '—'
+        const desc = formatCellText(p.description ?? '')
+        return `| \`${escapeCell(pname)}\` | ${type} | ${def} | ${desc} |`
+      })
+      parts.push(
+        `**${name}**`,
+        ['| Prop | Type | Default | Description |', '|------|------|---------|-------------|', ...rows].join('\n'),
+      )
+    }
+  }
+  if (parts.length === 0) return ''
+  return ['#### Related types', ...parts].join('\n\n')
 }
 
 // ─── Utils ───────────────────────────────────────────────────────────────────
@@ -459,16 +618,24 @@ function existsPath(p: string): string | undefined {
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-interface PropDef {
+type PropDef = {
   type: string
   values?: string[]
+  typeRefs?: string[]
   defaultValue?: string
   description?: string
   required: boolean
 }
 
-interface ComponentDoc {
+type RelatedType =
+  | { kind: 'union'; values: string[]; own?: boolean }
+  | { kind: 'alias'; type: string; own?: boolean }
+  | { kind: 'interface'; props: Record<string, PropDef>; own?: boolean }
+
+type ComponentDoc = {
   displayName: string
   description?: string
+  propsTypeName?: string | null
   props: Record<string, PropDef>
+  relatedTypes?: Record<string, RelatedType>
 }

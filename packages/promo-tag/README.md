@@ -63,6 +63,8 @@ export function Colors() {
 ```
 
 ## Props
+**PromoTagProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterContent` | `ReactNode` | `null` | Контент после текста |
@@ -74,3 +76,11 @@ export function Colors() {
 | `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
 | `size` | `"m"` \| `"s"` \| `"xs"` | `xs` | Размер |
 | `text` | `string` | — | Текст компонента |
+
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `RoleAppearance` = `"accent"` \| `"decor"`
+
+- `Size` = `"m"` \| `"s"` \| `"xs"`

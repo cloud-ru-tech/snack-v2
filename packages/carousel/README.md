@@ -99,11 +99,13 @@ export function Infinite() {
 ```
 
 ## Props
+**CarouselProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `arrows` | `boolean` | `true` | Использовать стрелки для переключения страниц |
 | `autoSwipe` | `number` | — | Автоматическое переключение слайдов в секундах |
-| `children` | `ReactElement<any, string | JSXElementConstructor<any>>[]` | — | Массив айтемов |
+| `children` | `ReactElement<any, string \| JSXElementConstructor<any>>[]` | — | Массив айтемов |
 | `className` | `string` | — | CSS - класснейм |
 | `controlsVisibility` | `"always"` \| `"hover"` | `hover` | Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда |
 | `data-test-id` | `string` | — |  |
@@ -117,44 +119,6 @@ export function Infinite() {
 | `swipeActivateLength` | `number` | `48` | Минимальная длина в px для активации свайпа |
 | `transition` | `number` | `0.4` | Время переключения 1 страницы (в s) |
 
-## Control
+#### Related types
 
-```tsx
-import { Control } from '@ds/carousel'
-
-export function Example() {
-  return <Control>Click me</Control>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `direction` | `"next"` \| `"prev"` | — |  |
-| `onClick` | `(() => void)` | — |  |
-
-## ItemProvider
-
-```tsx
-import { ItemProvider } from '@ds/carousel'
-
-export function Example() {
-  return <ItemProvider>Click me</ItemProvider>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `gap` | `string` | — |  |
-| `page` | `number` | — |  |
-| `scrollBy` | `number` | — |  |
-| `showItems` | `number` | — |  |
-| `slideCallback` | `(direction: number) => void` | — |  |
-| `swipe` | `boolean` | — |  |
-| `swipeActivateLength` | `number` | — |  |
-| `transition` | `number` | — |  |
+- `ControlsVisibility` = `"always"` \| `"hover"`

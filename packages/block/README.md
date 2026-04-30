@@ -72,9 +72,17 @@ export function Transparent() {
 ```
 
 ## Props
+**BlockProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | Содержимое |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 | `size` | `"l"` \| `"m"` \| `"s"` | `l` | Размер |
 | `variant` | `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |
+
+#### Related types
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
+
+- `Variant` = `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"`

@@ -97,38 +97,52 @@ export function NotFound() {
 ```
 
 ## Props
+**DropdownProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
 | `content` | `ReactNode` | — | Содержимое внутри поповера |
 | `data-test-id` | `string` | — |  |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
-<br/>
-Пригодится для элементов с `position: absolute` |
-| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
 | `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
-| `outsideClick` | `boolean | OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
+| `outsideClick` | `OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `bottom-start` | Положение поповера относительно своего триггера (children). |
-| `state` | `DropdownState` | — | Состояние |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `click` | Условие отображения поповера:
-<br/> - `click` - открывать по клику
-<br/> - `hover` - открывать по ховеру
-<br/> - `focusVisible` - открывать по focus-visible
-<br/> - `focus` - открывать по фокусу
-<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible
-<br/> - `hoverAndFocus` - открывать по ховеру и фокусу
-<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `state` | `ActionButtonProps` \| `BlockProps` \| `BlockPropsWithIcon` \| `DropdownState` | — | Состояние |
+| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `click` | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerClickByKeys` | `boolean` | `true` | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
-| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
-| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `gte` | Стратегия управления шириной контейнера поповера
-<br/> - `auto` - соответствует ширине контента,
-<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,
-<br/> - `eq` - Equal, строго равен ширине таргета. |
+| `triggerRef` | `ForwardedRef<ReferenceType \| HTMLElement \| null>` | — | Ref ссылка на триггер |
+| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `gte` | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
+
+#### Related types
+
+**ActionButtonProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `actionLabel` | `string \| undefined` | — | Лейбл кнопки-действия |
+| `onActionClick` | `(() => void) \| undefined` | — | Действие при клике по кнопке |
+
+**BlockProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+
+**BlockPropsWithIcon**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+| `icon` | `IconPredefinedProps` | — | Иконка |
+
+- `DropdownState` = `{ type: STATE.Loading; } | ({ type: STATE.NotFound; } & ActionButtonProps & BlockProps) | ({ type: STATE.NoData; } & ActionButtonProps & BlockPropsWithIcon) | ({ type: STATE.DataError; } & ActionButtonProps & BlockPropsWithIcon)`

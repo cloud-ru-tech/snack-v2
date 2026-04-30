@@ -43,15 +43,6 @@ import { Dropzone, FileUpload, HiddenDropZone } from '@ds/dropzone'
 #### Upload mode
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
-### Установка
-```bash
-pnpm add @ds/dropzone
-```
-
-```ts
-import { Dropzone } from '@ds/dropzone'
-```
-
 ### Примеры использования
 #### Базовая зона
 
@@ -115,6 +106,8 @@ export function DropzoneDisabled() {
 ```
 
 ### Props
+**DropzoneProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
@@ -125,6 +118,12 @@ export function DropzoneDisabled() {
 | `mode` | `"multiple"` \| `"single"` | `multiple` | Режим загрузки |
 | `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента |
+
+##### Related types
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
+
+- `UploadMode` = `"multiple"` \| `"single"`
 
 ## FileUpload
 
@@ -143,15 +142,6 @@ export function DropzoneDisabled() {
 
 #### Upload mode
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
-
-### Установка
-```bash
-pnpm add @ds/dropzone
-```
-
-```ts
-import { FileUpload } from '@ds/dropzone'
-```
 
 ### Примеры использования
 #### Кнопка-триггер
@@ -172,13 +162,19 @@ export function FileUploadBasic() {
 ```
 
 ### Props
+**FileUploadProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
-| `children` | `ReactElement<any, string | JSXElementConstructor<any>>` | — |  |
+| `children` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — |  |
 | `data-test-id` | `string` | — |  |
 | `mode` | `"multiple"` \| `"single"` | `multiple` | Режим |
 | `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
+
+##### Related types
+
+- `UploadMode` = `"multiple"` \| `"single"`
 
 ## HiddenDropZone
 
@@ -192,15 +188,6 @@ export function FileUploadBasic() {
 - Массовая загрузка поверх полноэкранного списка.
 
 Когда **не** подходит: когда загрузка — первичный сценарий страницы и должна быть видна сразу — используйте **Dropzone**.
-
-### Установка
-```bash
-pnpm add @ds/dropzone
-```
-
-```ts
-import { HiddenDropZone } from '@ds/dropzone'
-```
 
 ### Примеры использования
 #### Оверлей над формой
@@ -224,6 +211,8 @@ export function HiddenDropZoneBasic() {
 ```
 
 ### Props
+**HiddenDropZoneProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
@@ -236,26 +225,8 @@ export function HiddenDropZoneBasic() {
 | `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента |
 
-## PrivateDropZone
+##### Related types
 
-```tsx
-import { PrivateDropZone } from '@ds/dropzone'
+- `Size` = `"l"` \| `"m"` \| `"s"`
 
-export function Example() {
-  return <PrivateDropZone mode="multiple">Click me</PrivateDropZone>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
-| `children` | `ReactNode` | — | Контент dropzone |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
-| `isOver` | `boolean` | — |  |
-| `mode` | `"multiple"` \| `"single"` | `multiple` | Режим |
-| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
-| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента |
+- `UploadMode` = `"multiple"` \| `"single"`

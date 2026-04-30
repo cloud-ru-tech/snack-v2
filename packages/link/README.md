@@ -86,25 +86,22 @@ export function External() {
 ```
 
 ## Props
+**LinkProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Стилизует ссылку для размещения на цветном фоне |
-| `as` | `ComponentType | ElementType` | `'a'` | Полиморфный компонент.
-
-Оформить переданный компонент или html элемент в стиль ссылки.
-
-Список атрибутов, которые переданный компонент должен принять:
-<br/> - `className`
-<br/> - `data-size`
-<br/> - `data-text-mode`
-<br/> - `data-appearance`
-<br/> - `data-inside-text` |
-| `children` | `ComponentPropsWithoutRef<ElementType extends T ? "a" : T>["children"] | undefined` | — |  |
+| `as` | `T` | `'a'` | Полиморфный компонент. <br/> Оформить переданный компонент или html элемент в стиль ссылки. <br/> Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
+| `children` | `ComponentPropsWithoutRef<ElementType extends T ? "a" : T>["children"] \| undefined` | — |  |
 | `data-test-id` | `string` | — |  |
 | `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
 | `role` | `"onAccent"` \| `"regular"` | `regular` | Роль |
 | `text` | `string` | `` | Текст ссылки |
-| `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки:
-<br/> - `end` - с конца;
-<br/> - `middle` - посередине |
+| `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
 | `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |
+
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `Role` = `"onAccent"` \| `"regular"`

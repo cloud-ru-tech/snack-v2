@@ -85,6 +85,8 @@ export function Standalone() {
 ```
 
 ## Props
+**HotSpotProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
@@ -94,8 +96,14 @@ export function Standalone() {
 | `dotRender` | `((dot: ReactNode) => ReactNode)` | — | Рендер функция для dot |
 | `duration` | `string` | `2s` | Время анимации пульсации |
 | `enabled` | `boolean` | `true` | Управление состоянием отрисовки |
-| `offsetX` | `string | number` | `0` | Смещение dot по оси X (ось направлена вправо) |
-| `offsetY` | `string | number` | `0` | Смещение dot по оси Y (ось направлена вниз) |
+| `offsetX` | `string \| number` | `0` | Смещение dot по оси X (ось направлена вправо) |
+| `offsetY` | `string \| number` | `0` | Смещение dot по оси Y (ось направлена вниз) |
 | `placement` | `"center"` \| `"center-bottom"` \| `"center-top"` \| `"left"` \| `"left-bottom"` \| `"left-top"` \| `"right"` \| `"right-bottom"` \| `"right-top"` | `right-top` | Положение относительно children. |
 | `pulse` | `boolean` | `true` | Анимация пульсации |
 | `wrapperClassName` | `string` | — |  |
+
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `Placement` = `"center"` \| `"center-bottom"` \| `"center-top"` \| `"left"` \| `"left-bottom"` \| `"left-top"` \| `"right"` \| `"right-bottom"` \| `"right-top"`

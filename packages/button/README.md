@@ -39,12 +39,6 @@ import { Button, ButtonGroup } from '@ds/button'
 
 Когда **не** нужен `Button`: для обычных inline-ссылок используйте `<a>` или навигационный компонент, а не `as="a"` с `view="function"`.
 
-### Смотри также
-- [Паттерны форм](/patterns/form-patterns)
-- [Паттерны композиции](/patterns/composition-patterns)
-
-Здесь — что импортировать, как собрать типовые сценарии и какие пропсы доступны.
-
 ### Анатомия
 
 #### Appearance
@@ -58,15 +52,6 @@ import { Button, ButtonGroup } from '@ds/button'
 
 #### Icon position
 Положение иконки относительно лейбла: `before` — слева, `after` — справа. Для icon-only варианта `label` не задаётся.
-
-### Установка
-```bash
-pnpm add @ds/button
-```
-
-```ts
-import { Button } from '@ds/button'
-```
 
 ### Примеры использования
 Минимум, который покрывает 80% реальных случаев. Каждый пример — отдельный файл в `packages/button/demos/examples/`, который можно скопировать целиком.
@@ -223,22 +208,43 @@ export function Loading() {
 ```
 
 ### Props
+**ButtonProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `primary` | Вариант оформления |
-| `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom) |
+| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string` | — | Дополнительный класс |
-| `counter` | `Omit<CounterProps, "appearance" | "size">` | — | Пропсы для counter |
+| `counter` | `CounterProps` | — | Пропсы для counter |
 | `disabled` | `boolean` | `false` | Отключена |
 | `fullWidth` | `boolean` | `false` | На всю ширину |
 | `icon` | `ReactNode` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | `before` | Позиция иконки относительно текста |
-| `innerRef` | `any` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.
-Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string` | — | Текст кнопки |
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | `filled` | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
+
+##### Related types
+
+- `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`
+
+- `IconPosition` = `"after"` \| `"before"`
+
+- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
+
+- `Variant` = `"icon-after"` \| `"icon-before"` \| `"icon-only"` \| `"label-only"`
+
+- `View` = `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"`
+
+### Смотри также
+- [Паттерны форм](/patterns/form-patterns)
+- [Паттерны композиции](/patterns/composition-patterns)
+
+Здесь — что импортировать, как собрать типовые сценарии и какие пропсы доступны.
 
 ## ButtonGroup
 
@@ -253,23 +259,10 @@ export function Loading() {
 
 Когда **не** подходит: если действий больше трёх — используйте меню или split-button. Если действия разного приоритета и логики (напр. «Удалить» + «Настройки») — оставляйте их как независимые `Button`.
 
-### Смотри также
-- **Button** — сам элемент действия.
-- [Паттерны форм](/patterns/form-patterns) — футеры с ButtonGroup.
-
 ### Анатомия
 
 #### Size
 Единый размер всех кнопок в группе — задаётся на корне: `s` — для плотных поверхностей, `m` — дефолт, `l` — для крупных форм. Отдельные кнопки не могут переопределить размер.
-
-### Установка
-```bash
-pnpm add @ds/button
-```
-
-```ts
-import { ButtonGroup } from '@ds/button'
-```
 
 ### Примеры использования
 #### 1. Пара главное + вторичное
@@ -367,6 +360,8 @@ export function ButtonGroupBreak() {
 ```
 
 ### Props
+**ButtonGroupProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `break` | `boolean` | `false` | Перенос на новую строку при нехватке места |
@@ -374,8 +369,54 @@ export function ButtonGroupBreak() {
 | `className` | `string` | — | Дополнительный класс |
 | `data-test-id` | `string` | — |  |
 | `filled` | `boolean` | `false` | Заливка контейнера |
-| `primaryAction` | `ActionProps` | — | Основное действие (filled) |
-| `secondaryAction` | `ActionProps` | — | Вторичное действие (outline), опционально |
+| `primaryAction` | `ActionProps` \| `BaseButtonProps` | — | Основное действие (filled) |
+| `secondaryAction` | `ActionProps` \| `BaseButtonProps` | — | Вторичное действие (outline), опционально |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер кнопок |
-| `tertiaryAction` | `ActionProps` | — | Третичное действие (simple/text-only), опционально |
+| `tertiaryAction` | `ActionProps` \| `BaseButtonProps` | — | Третичное действие (simple/text-only), опционально |
 | `vertical` | `boolean` | `false` | Вертикальное расположение |
+
+##### Related types
+
+**ActionProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
+| `className` | `string \| undefined` | — | Дополнительный класс |
+| `counter` | `CounterProps` | — | Пропсы для counter |
+| `data-test-id` | `string \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — | Отключена |
+| `fullWidth` | `boolean \| undefined` | — | На всю ширину |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
+| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
+| `label` | `string \| undefined` | — | Текст кнопки |
+| `loading` | `boolean \| undefined` | — | Состояние загрузки |
+| `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
+
+- `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`
+
+**BaseButtonProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
+| `className` | `string \| undefined` | — | Дополнительный класс |
+| `counter` | `CounterProps` | — | Пропсы для counter |
+| `disabled` | `boolean \| undefined` | — | Отключена |
+| `fullWidth` | `boolean \| undefined` | — | На всю ширину |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
+| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
+| `label` | `string \| undefined` | — | Текст кнопки |
+| `loading` | `boolean \| undefined` | — | Состояние загрузки |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
+| `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
+
+- `IconPosition` = `"after"` \| `"before"`
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
+
+- `View` = `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"`
+
+### Смотри также
+- **Button** — сам элемент действия.
+- [Паттерны форм](/patterns/form-patterns) — футеры с ButtonGroup.

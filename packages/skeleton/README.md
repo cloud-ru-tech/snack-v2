@@ -13,6 +13,16 @@
 
 Секция описывает семантику и поведение скелетонов в макетах.
 
+## Анатомия
+
+### Variant
+Типографическая роль строки для `SkeletonText`: `display`, `headline`, `title`, `label`, `body` — совпадают с осями `Typography` и задают высоту/межстрочник плейсхолдера.
+
+### Size
+Размер текста: `s`, `m`, `l` — подбирается под размер реального контента, который заменяет скелетон.
+
+### Align
+Выравнивание хвостовой (неполной) строки в `SkeletonText`: `left` — хвост слева, `right` — справа.
 ## Установка
 ```bash
 pnpm add @ds/skeleton
@@ -79,22 +89,26 @@ export function WithToggle() {
 ## Props
 #### Skeleton
 
+**SkeletonProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `borderRadius` | `BorderRadius<string | number>` | — | Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д) |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `borderRadius` | `BorderRadius<string \| number>` | — | Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д) |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `height` | `Height<string | number>` | — | Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д) |
+| `height` | `Height<string \| number>` | — | Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д) |
 | `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
-| `width` | `Width<string | number>` | — | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
+| `width` | `Width<string \| number>` | — | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
 
 #### SkeletonText
+
+**SkeletonTextProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `align` | `"left"` \| `"right"` | `left` | Выравнивание: left, right |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `lineClassName` | `string` | — | CSS-класс линии |
@@ -103,40 +117,22 @@ export function WithToggle() {
 | `rowClassName` | `string` | — | CSS-класс строки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Масштаб: s, m, l |
 | `variant` | `"body"` \| `"display"` \| `"headline"` \| `"label"` \| `"title"` | `body` | Роль типографики (размер по anatomy) |
-| `width` | `Width<string | number>` | — | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
+| `width` | `Width<string \| number>` | — | Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д) |
+
+#### Related types
+
+- `Align` = `"left"` \| `"right"`
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
+
+- `Variant` = `"body"` \| `"display"` \| `"headline"` \| `"label"` \| `"title"`
 
 #### WithSkeleton
 
+**WithSkeletonProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
 | `skeleton` | `ReactNode` | — | JSX скелетон |
-
-## Анатомия
-
-### Variant
-Типографическая роль строки для `SkeletonText`: `display`, `headline`, `title`, `label`, `body` — совпадают с осями `Typography` и задают высоту/межстрочник плейсхолдера.
-
-### Size
-Размер текста: `s`, `m`, `l` — подбирается под размер реального контента, который заменяет скелетон.
-
-### Align
-Выравнивание хвостовой (неполной) строки в `SkeletonText`: `left` — хвост слева, `right` — справа.
-
-## SkeletonContextProvider
-
-```tsx
-import { SkeletonContextProvider } from '@ds/skeleton'
-
-export function Example() {
-  return <SkeletonContextProvider>Click me</SkeletonContextProvider>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
-| `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будут отрисованы блоки скелетона. |

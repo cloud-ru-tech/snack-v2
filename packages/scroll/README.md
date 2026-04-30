@@ -150,27 +150,29 @@ export function AutoscrollBottom() {
 ```
 
 ## Props
+**ScrollProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `autoscrollTo` | `"bottom"` \| `"right"` | — | Включает автоскрол при маунте и изменении размера контента:
-<br /> - `bottom` - автоскрол вниз,
-<br /> - `right` - автоскрол вправо, |
-| `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | `leave` | Управление скрытием скролл баров:
-<br /> - `Never` - показывать всегда
-<br /> - `Leave` - скрывать когда курсор покидает компонент
-<br /> - `Scroll` - показывать только когда происходит скроллинг
-<br /> - `Move` - показывать при движении курсора над компонентом |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `autoscrollTo` | `"bottom"` \| `"right"` | — | Включает автоскрол при маунте и изменении размера контента: <br/> <br /> - `bottom` - автоскрол вниз, <br/> <br /> - `right` - автоскрол вправо, |
+| `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | `leave` | Управление скрытием скролл баров: <br/> <br /> - `Never` - показывать всегда <br/> <br /> - `Leave` - скрывать когда курсор покидает компонент <br/> <br /> - `Scroll` - показывать только когда происходит скроллинг <br/> <br /> - `Move` - показывать при движении курсора над компонентом |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `clickScrolling` | `boolean` | `true` | Скролить ли по клику в скроллбар. |
 | `data-test-id` | `string` | — |  |
 | `onInitialized` | `(() => void)` | — | Коллбэк вызывающийся на инициализацию скролла |
 | `onScroll` | `((event?: Event) => void)` | — | Колбек события скрола. |
 | `paddingAbsolute` | `boolean` | — | Должны ли паддинги быть абсолютными |
-| `resize` | `"both"` \| `"horizontal"` \| `"none"` \| `"vertical"` | `none` | Настройка возможности регулировать Scroll-контейнер:
-<br /> - `None` - нельзя изменять размер
-<br /> - `Horizontal` - можно изменять размер только по горизонтали
-<br /> - `Vertical` - можно изменять размер только по вертикали
-<br /> - `Both` - можно изменять размер в обеих координатах |
+| `resize` | `"both"` \| `"horizontal"` \| `"none"` \| `"vertical"` | `none` | Настройка возможности регулировать Scroll-контейнер: <br/> <br /> - `None` - нельзя изменять размер <br/> <br /> - `Horizontal` - можно изменять размер только по горизонтали <br/> <br /> - `Vertical` - можно изменять размер только по вертикали <br/> <br /> - `Both` - можно изменять размер в обеих координатах |
 | `size` | `"m"` \| `"s"` | `m` | Размер скролбаров |
 | `untouchableScrollbars` | `boolean` | `false` | Отключает возможность взаимодействовать со скролбарами мышью. |
+
+#### Related types
+
+- `AutoscrollTo` = `"bottom"` \| `"right"`
+
+- `BarHideStrategy` = `"leave"` \| `"move"` \| `"never"` \| `"scroll"`
+
+- `Resize` = `"both"` \| `"horizontal"` \| `"none"` \| `"vertical"`
+
+- `Size` = `"m"` \| `"s"`

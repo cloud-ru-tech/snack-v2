@@ -7,16 +7,6 @@
 - ****Accordion**** — контейнер раскрываемых блоков с режимами `single` / `multiple` и controlled/uncontrolled API.
 - ****CollapseBlock**** — раскрываемые блоки трёх уровней: `Primary`, `Secondary`, `Tertiary` — для иерархии разделов на странице.
 
-## Установка
-
-```bash
-pnpm add @ds/accordion
-```
-
-```ts
-import { Accordion } from '@ds/accordion'
-```
-
 ## Когда использовать
 
 | Задача | Как решить |
@@ -27,6 +17,16 @@ import { Accordion } from '@ds/accordion'
 | Разрешить одновременно несколько открытых блоков | `selectionMode='multiple'` |
 
 Когда **не** нужен аккордеон: короткие списки (≤ 3 пунктов), критичный контент, который пользователь не должен пропустить, и навигация — для неё используйте `Tabs`.
+
+## Установка
+
+```bash
+pnpm add @ds/accordion
+```
+
+```ts
+import { Accordion } from '@ds/accordion'
+```
 
 ## Figma
 
@@ -48,15 +48,6 @@ import { Accordion } from '@ds/accordion'
 
 #### Selection mode
 Режим раскрытия дочерних блоков: `single` — одновременно открыт максимум один блок (как radio-группа), `multiple` — можно открыть любое количество независимо.
-
-### Установка
-```bash
-pnpm add @ds/accordion
-```
-
-```ts
-import { Accordion } from '@ds/accordion'
-```
 
 ### Примеры использования
 #### 1. Uncontrolled с начальным состоянием
@@ -114,12 +105,14 @@ export function MultipleMode() {
 ```
 
 ### Props
+**AccordionProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
-| `expanded` | `string | string[]` | — | Controlled состояние |
-| `expandedDefault` | `string | string[]` | — | Начальное состояние |
-| `onExpandedChange` | `((value: string) => void) | ((value: string[]) => void) | undefined` | — | Controlled обработчик измения состояния |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `expanded` | `string \| string[]` | — | Controlled состояние |
+| `expandedDefault` | `string \| string[]` | — | Начальное состояние |
+| `onExpandedChange` | `((value: string) => void) \| ((value: string[]) => void) \| undefined` | — | Controlled обработчик измения состояния |
 | `selectionMode` | `"multiple"` \| `"single"` | — | Режим работы аккордиона |
 
 ## CollapseBlock
@@ -143,20 +136,6 @@ export function MultipleMode() {
 
 #### Chevron
 Положение шеврона-раскрытия: `before` — слева от заголовка, `after` — справа.
-
-### Установка
-```bash
-pnpm add @ds/accordion
-```
-
-```ts
-import { Accordion } from '@ds/accordion'
-
-// Каждый уровень доступен статическим полем контейнера:
-Accordion.CollapseBlockPrimary
-Accordion.CollapseBlockSecondary
-Accordion.CollapseBlockTertiary
-```
 
 ### Примеры использования
 
@@ -289,12 +268,14 @@ export function NestedLevels() {
 ```
 
 ### Props
+**CollapseBlockProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | `neutral` | Цветовая схема акрила |
-| `chevron` | `"after"` \| `"before"` | `after` | Расположение шеврона относительно текста (`before` | `after`) |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `chevron` | `"after"` \| `"before"` | `after` | Расположение шеврона относительно текста (`before` \| `after`) |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `component` | `"accordionPrimary"` \| `"accordionSecondary"` \| `"accordionTertiary"` | — | Уровень аккордеона: размер типографики и отступы |
 | `data-test-id` | `string` | — |  |
@@ -304,24 +285,48 @@ export function NestedLevels() {
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
+##### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"`
+
+- `Chevron` = `"after"` \| `"before"`
+
+- `Component` = `"accordionPrimary"` \| `"accordionSecondary"` \| `"accordionTertiary"`
+
+- `View` = `"elevated"` \| `"outline"` \| `"simple"`
+
 ## CollapseBlockPrimary
 
 ```tsx
-import { CollapseBlockPrimary } from '@ds/accordion'
+import { Accordion } from '@ds/accordion';
+import { Counter } from '@ds/counter';
 
-export function Example() {
-  return <CollapseBlockPrimary>Click me</CollapseBlockPrimary>
+import styles from './styles.module.scss';
+
+export function AfterTitle() {
+  return (
+    <div className={styles.wrapper}>
+      <Accordion>
+        <Accordion.CollapseBlockPrimary id='inbox' title='Входящие' view='outline' afterTitle={<Counter value={12} />}>
+          Непрочитанные сообщения и уведомления.
+        </Accordion.CollapseBlockPrimary>
+        <Accordion.CollapseBlockPrimary id='archive' title='Архив' view='outline' afterTitle={<Counter value={238} />}>
+          Перемещённые из входящих.
+        </Accordion.CollapseBlockPrimary>
+      </Accordion>
+    </div>
+  );
 }
 ```
 
-### Props
+### Props `CollapseBlockPropsWithoutComponent`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | — | Цветовая схема акрила |
-| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` | `after`) |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
@@ -329,25 +334,57 @@ export function Example() {
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
+
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"`
+
+- `Chevron` = `"after"` \| `"before"`
+
+- `View` = `"elevated"` \| `"outline"` \| `"simple"`
 
 ## CollapseBlockSecondary
 
 ```tsx
-import { CollapseBlockSecondary } from '@ds/accordion'
+import { Accordion } from '@ds/accordion';
 
-export function Example() {
-  return <CollapseBlockSecondary>Click me</CollapseBlockSecondary>
+import styles from './styles.module.scss';
+export function ChevronBefore() {
+  return (
+    <div className={styles.wrapper}>
+      <Accordion>
+        <Accordion.CollapseBlockSecondary
+          id='summary'
+          view='outline'
+          title='Итого'
+          chevron='before'
+          afterTitle='1 200 ₽'
+        >
+          Разбивка платежа по позициям.
+        </Accordion.CollapseBlockSecondary>
+        <Accordion.CollapseBlockSecondary
+          id='delivery'
+          view='outline'
+          title='Доставка'
+          chevron='before'
+          afterTitle='бесплатно'
+        >
+          Курьер по Москве, 2–3 дня.
+        </Accordion.CollapseBlockSecondary>
+      </Accordion>
+    </div>
+  );
 }
 ```
 
-### Props
+### Props `CollapseBlockPropsWithoutComponent`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | — | Цветовая схема акрила |
-| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` | `after`) |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
@@ -356,26 +393,61 @@ export function Example() {
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"`
+
+- `Chevron` = `"after"` \| `"before"`
+
+- `View` = `"elevated"` \| `"outline"` \| `"simple"`
+
 ## CollapseBlockTertiary
 
 ```tsx
-import { CollapseBlockTertiary } from '@ds/accordion'
+import { Accordion } from '@ds/accordion';
 
-export function Example() {
-  return <CollapseBlockTertiary>Click me</CollapseBlockTertiary>
+import styles from './styles.module.scss';
+export function NestedLevels() {
+  return (
+    <div className={styles.wrapper}>
+      <Accordion>
+        <Accordion.CollapseBlockPrimary id='root' title='Платежи' view='outline'>
+          <Accordion>
+            <Accordion.CollapseBlockSecondary id='sub-cards' view='outline' title='Карты'>
+              <Accordion>
+                <Accordion.CollapseBlockTertiary id='visa' title='Visa •••• 4242'>
+                  Основная карта, истекает 09/28.
+                </Accordion.CollapseBlockTertiary>
+                <Accordion.CollapseBlockTertiary id='mir' title='МИР •••• 7781'>
+                  Зарплатная карта.
+                </Accordion.CollapseBlockTertiary>
+              </Accordion>
+            </Accordion.CollapseBlockSecondary>
+            <Accordion.CollapseBlockSecondary id='sub-invoices' view='outline' title='Счета'>
+              История операций и выставленные счета.
+            </Accordion.CollapseBlockSecondary>
+          </Accordion>
+        </Accordion.CollapseBlockPrimary>
+      </Accordion>
+    </div>
+  );
 }
 ```
 
-### Props
+### Props `CollapseBlockTertiaryProps`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
-| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` | `after`) |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
+
+#### Related types
+
+- `Chevron` = `"after"` \| `"before"`

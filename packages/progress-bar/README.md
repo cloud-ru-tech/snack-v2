@@ -36,15 +36,6 @@ import { ProgressBar, ProgressBarCircle, ProgressBarPage } from '@ds/progress-ba
 #### Size
 `xs` — дефолт, тонкая полоса под контролом или в строке таблицы; `s` — более заметный прогресс в карточках и формах.
 
-### Установка
-```bash
-pnpm add @ds/progress-bar
-```
-
-```ts
-import { ProgressBar } from '@ds/progress-bar'
-```
-
 ### Примеры использования
 #### Статическое значение
 
@@ -114,6 +105,8 @@ export function Sizes() {
 ```
 
 ### Props
+**ProgressBarProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид |
@@ -121,6 +114,12 @@ export function Sizes() {
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
+
+##### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `ProgressBarSize` = `"s"` \| `"xs"`
 
 ## ProgressBarCircle
 
@@ -142,15 +141,6 @@ export function Sizes() {
 
 #### Appearance
 Семантика цвета заполненной дуги: `primary` — бренд/нейтральный; `red` — ошибка/превышение лимита; `orange`/`yellow` — предупреждение; `green` — успех; `blue`, `violet`, `pink` — декоративные категории.
-
-### Установка
-```bash
-pnpm add @ds/progress-bar
-```
-
-```ts
-import { ProgressBarCircle } from '@ds/progress-bar'
-```
 
 ### Примеры использования
 #### Значение 75%
@@ -182,6 +172,8 @@ export function CircleAppearances() {
 ```
 
 ### Props
+**ProgressBarCircleProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
@@ -189,6 +181,12 @@ export function CircleAppearances() {
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
+
+##### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `ProgressBarCircleSize` = `"s"` \| `"xs"`
 
 ## ProgressBarPage
 
@@ -202,15 +200,6 @@ export function CircleAppearances() {
 - Глобальный busy-индикатор уровня layout'а.
 
 Когда **не** нужен `ProgressBarPage`: если известен реальный процент — используйте детерминированный **`ProgressBar`**. Не показывайте `ProgressBarPage` для быстрых операций (< 200 мс) — это отвлекает.
-
-### Установка
-```bash
-pnpm add @ds/progress-bar
-```
-
-```ts
-import { ProgressBarPage } from '@ds/progress-bar'
-```
 
 ### Примеры использования
 #### Переключение inProgress
@@ -236,6 +225,8 @@ export function PageToggle() {
 ```
 
 ### Props
+**ProgressBarPageProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `animationDuration` | `number` | `200` | Скорость анимации |
@@ -246,23 +237,6 @@ export function PageToggle() {
 | `incrementDuration` | `number` | `800` | Время между прогрессом |
 | `minimum` | `number` | — | Минимальное значение прогресс бара от 0 до 1 |
 
-## ProgressBarPrivate
+##### Related types
 
-```tsx
-import { ProgressBarPrivate } from '@ds/progress-bar'
-
-export function Example() {
-  return <ProgressBarPrivate animationDuration="0" appearance="primary">Click me</ProgressBarPrivate>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `animationDuration` | `number` | `0` | Скорость анимации |
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `progress` | `number` | — | Процент загрузки от 0 до 100 |
-| `size` | `"s"` \| `"xs"` | — | Размер |
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`

@@ -76,10 +76,12 @@ export function Sizes() {
 ```
 
 ## Props
+**AvatarProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цвет) |
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
@@ -87,5 +89,13 @@ export function Sizes() {
 | `showTwoSymbols` | `boolean` | `false` | Отображение двух заглавных символов имени вместо одного |
 | `size` | `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
 | `src` | `string` | — | URL изображения аватара |
+
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `Shape` = `"round"` \| `"square"`
+
+- `Size` = `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"`
 
 Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`, а также стандартные атрибуты контейнера `HTMLDivElement`.

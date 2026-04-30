@@ -265,15 +265,7 @@ type ButtonProps = WithSupportProps<{
 
 ## ThemeProvider
 
-```tsx
-import { ThemeProvider } from '@ds/utils'
-
-export function Example() {
-  return <ThemeProvider>Click me</ThemeProvider>
-}
-```
-
-### Props
+### Props `ThemeProviderProps`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -283,14 +275,8 @@ export function Example() {
 
 ## useThemeConfig
 
-```tsx
-import { useThemeConfig } from '@ds/utils'
-
-// Используйте хук внутри React-компонента (см. разделы выше в этом README).
-```
-
-### Props
+### Props `UseThemeProps`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `themeMap` | `Record<T, string>` | — | Объект с указанием соответсвия темы и css-класса |
+| `themeMap` | `T` | — | Объект с указанием соответсвия темы и css-класса |

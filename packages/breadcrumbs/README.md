@@ -87,135 +87,29 @@ export function CustomSeparator() {
 ```
 
 ## Props
+**BreadcrumbsProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `firstItemIconOnly` | `boolean` | `false` | Использовать иконку без лейбла в первом айтеме |
 | `inactiveLastItem` | `boolean` | `false` | Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick` |
-| `items` | `Item[]` | — | Массив айтемов |
+| `items` | `Item` | — | Массив айтемов |
 | `separator` | `string` | `›` | Разделитель между пунктами |
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 
-## Collapse
+#### Related types
 
-```tsx
-import { Collapse } from '@ds/breadcrumbs'
-
-export function Example() {
-  return <Collapse>Click me</Collapse>
-}
-```
-
-### Props
+**Item**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `currentConfig` | `BreadcrumbsConfigChain` | — |  |
+| `href` | `string \| undefined` | — |  |
+| `icon` | `JSXElementConstructor<{ size: number; }> \| undefined` | — |  |
+| `id` | `string` | — |  |
+| `label` | `string` | — |  |
+| `onClick` | `MouseEventHandler<HTMLAnchorElement \| HTMLButtonElement> \| undefined` | — |  |
+| `shortLabel` | `string \| undefined` | — |  |
 
-## Crumb
-
-```tsx
-import { Crumb } from '@ds/breadcrumbs'
-
-export function Example() {
-  return <Crumb>Click me</Crumb>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `current` | `boolean` | — |  |
-| `data-test-id` | `string` | — |  |
-| `item` | `Item` | — |  |
-| `minWidth` | `number` | — |  |
-| `renderMode` | `"collapsed"` \| `"ellipsis"` \| `"full"` \| `"shortLabel"` | — |  |
-| `useIconOnly` | `boolean` | — |  |
-
-## CrumbsTypography
-
-```tsx
-import { CrumbsTypography } from '@ds/breadcrumbs'
-
-export function Example() {
-  return <CrumbsTypography>Click me</CrumbsTypography>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `size` | `"s"` \| `"xs"` | — |  |
-
-## HiddenChain
-
-```tsx
-import { HiddenChain } from '@ds/breadcrumbs'
-
-export function Example() {
-  return <HiddenChain>Click me</HiddenChain>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `firstItemIconOnly` | `boolean` | — |  |
-| `items` | `Item[]` | — |  |
-| `onConfigsBuilt` | `(config: BreadcrumbsConfig[]) => void` | — |  |
-| `separator` | `string` | — |  |
-| `size` | `"s"` \| `"xs"` | — |  |
-
-## useBreadcrumbsLayout
-
-```tsx
-import { useBreadcrumbsLayout } from '@ds/breadcrumbs'
-
-// Используйте хук внутри React-компонента (см. разделы выше в этом README).
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-
-## useItemModesRender
-
-```tsx
-import { useItemModesRender } from '@ds/breadcrumbs'
-
-// Используйте хук внутри React-компонента (см. разделы выше в этом README).
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `firstItemIconOnly` | `boolean` | — |  |
-
-## Wrapper
-
-```tsx
-import { Wrapper } from '@ds/breadcrumbs'
-
-export function Example() {
-  return <Wrapper>Click me</Wrapper>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `hidden` | `boolean` | — |  |
-| `separator` | `string` | — |  |
-| `size` | `"s"` \| `"xs"` | — |  |
+- `Size` = `"s"` \| `"xs"`

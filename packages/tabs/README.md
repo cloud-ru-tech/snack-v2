@@ -40,16 +40,13 @@ import { Tabs } from '@ds/tabs'
 - Нужен compound API с независимым положением `TabBar` и `TabContent` в разметке.
 - Состояние активного таба должно синхронизироваться с внешними источниками (URL, стор).
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/tabs
-```
+#### Orientation
+`horizontal` — табы в строку (дефолт), `vertical` — колонкой (для боковых навигаций).
 
-```ts
-import { Tabs } from '@ds/tabs'
-```
-
+#### Size
+`m` — дефолт, `l` — для крупных лейаутов и посадочных страниц.
 ### Примеры использования
 
 #### Неконтролируемый режим
@@ -73,20 +70,14 @@ export function Uncontrolled() {
 
 ### Props
 
+**TabsProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
-| `defaultValue` | `string` | — | Выбранная вкладка по умолчанию |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `defaultValue` | `T` | — | Выбранная вкладка по умолчанию |
 | `onChange` | `((id: T) => void)` | — | Колбек выбора вкладки |
-| `value` | `string` | — | Текущая вкладка |
-
-### Анатомия
-
-#### Orientation
-`horizontal` — табы в строку (дефолт), `vertical` — колонкой (для боковых навигаций).
-
-#### Size
-`m` — дефолт, `l` — для крупных лейаутов и посадочных страниц.
+| `value` | `T` | — | Текущая вкладка |
 
 ## Tab
 
@@ -99,18 +90,13 @@ export function Uncontrolled() {
 - Внутри `TabBar` для каждой доступной вкладки.
 - Когда нужно показать счётчик (число уведомлений/записей) рядом с названием таба.
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/tabs
-```
+#### Size
+Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
 
-```ts
-import { Tabs } from '@ds/tabs'
-
-<Tabs.Tab value='overview' label='Overview' />
-```
-
+#### Marker position
+Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.
 ### Примеры использования
 
 #### Tab с counter
@@ -149,23 +135,21 @@ export function Disabled() {
 
 ### Props
 
+**TabProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
-| `counter` | `{ label: number; appearance?: Appearance; color?: Color; } | undefined` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `counter` | `CounterProps` | — | Счетчик, отображающийся внутри кнопки переключения |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | `false` | Деактивирована ли вкладка |
 | `label` | `string` | — | Заголовок вкладки |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
 | `value` | `string` | — | Value вкладки |
 
-### Анатомия
+##### Related types
 
-#### Size
-Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
-
-#### Marker position
-Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.
+- `Size` = `"l"` \| `"m"`
 
 ## TabBar
 
@@ -183,18 +167,16 @@ export function Disabled() {
 - Внутри `Tabs` как единственный контейнер списка кнопок-табов.
 - Если нужно разместить дополнительные действия справа от табов (через слот `after`).
 
-### Установка
+### Анатомия
 
-```bash
-pnpm add @ds/tabs
-```
+#### Orientation
+`horizontal` — бар в строку, `vertical` — колонкой.
 
-```ts
-import { Tabs } from '@ds/tabs'
+#### Size
+`m` — дефолт, `l` — для крупных лейаутов.
 
-<Tabs.Bar />
-```
-
+#### Marker position
+Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.
 ### Примеры использования
 
 #### Size L — верхнеуровневый
@@ -233,10 +215,12 @@ export function Vertical() {
 
 ### Props
 
+**TabBarProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `after` | `ReactNode` | — | Дополнительный слот для кастомного контента справа от табов |
-| `children` | `ReactElement<TabProps, string | JSXElementConstructor<any>>[]` | — | Контент (элементы Tabs.Tab) |
+| `children` | `TabProps` | — | Контент (элементы Tabs.Tab) |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `disableDivider` | `boolean` | `false` | Скрыть разделитель под/рядом с панелью табов |
@@ -244,16 +228,25 @@ export function Vertical() {
 | `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация |
 | `size` | `"l"` \| `"m"` | `l` | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
 
-### Анатомия
+##### Related types
 
-#### Orientation
-`horizontal` — бар в строку, `vertical` — колонкой.
+- `MarkerPosition` = `"after"` \| `"before"`
 
-#### Size
-`m` — дефолт, `l` — для крупных лейаутов.
+- `Orientation` = `"horizontal"` \| `"vertical"`
 
-#### Marker position
-Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.
+- `Size` = `"l"` \| `"m"`
+
+**TabProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string \| undefined` | — | CSS-класс |
+| `counter` | `CounterProps` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `data-test-id` | `string \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — | Деактивирована ли вкладка |
+| `label` | `string` | — | Заголовок вкладки |
+| `onClick` | `((event: MouseEvent<HTMLButtonElement>) => void) \| undefined` | — | Колбек клика по кнопке переключения |
+| `value` | `string` | — | Value вкладки |
 
 ## TabContent
 
@@ -265,18 +258,6 @@ export function Vertical() {
 
 - Для каждой вкладки, у которой есть видимый контент.
 - Когда нужен корректный `aria-labelledby`/`role='tabpanel'` из коробки.
-
-### Установка
-
-```bash
-pnpm add @ds/tabs
-```
-
-```ts
-import { Tabs } from '@ds/tabs'
-
-<Tabs.Content value='overview'>…</Tabs.Content>
-```
 
 ### Примеры использования
 
@@ -305,91 +286,11 @@ export function WithContent() {
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
-| `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `value` | `string` | — | Значение таба |
-
-## ScrollButton
-
-```tsx
-import { ScrollButton } from '@ds/tabs'
-
-export function Example() {
-  return <ScrollButton>Click me</ScrollButton>
-}
-```
-
-### Props
+**TabContentProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `direction` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — |  |
-| `onClick` | `() => void` | — |  |
-| `orientation` | `"horizontal"` \| `"vertical"` | — |  |
-| `size` | `"l"` \| `"m"` | — |  |
-
-## Tabs.Tab
-
-```tsx
-import { Tabs.Tab } from '@ds/tabs'
-
-export function Example() {
-  return <Tabs.Tab>Click me</Tabs.Tab>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `counter` | `{ label: number; appearance?: Appearance; color?: Color; } | undefined` | — | Счетчик, отображающийся внутри кнопки переключения |
-| `data-test-id` | `string` | — |  |
-| `disabled` | `boolean` | — | Деактивирована ли вкладка |
-| `label` | `string` | — | Заголовок вкладки |
-| `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
-| `value` | `string` | — | Value вкладки |
-
-## Tabs.TabBar
-
-```tsx
-import { Tabs.TabBar } from '@ds/tabs'
-
-export function Example() {
-  return <Tabs.TabBar>Click me</Tabs.TabBar>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `after` | `ReactNode` | — | Дополнительный слот для кастомного контента справа от табов |
-| `children` | `ReactElement<TabProps, string | JSXElementConstructor<any>>[]` | — | Контент (элементы Tabs.Tab) |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `disableDivider` | `boolean` | — | Скрыть разделитель под/рядом с панелью табов |
-| `markerPosition` | `"after"` \| `"before"` | — | Позиция маркера |
-| `orientation` | `"horizontal"` \| `"vertical"` | — | Ориентация |
-| `size` | `"l"` \| `"m"` | — | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
-
-## Tabs.TabContent
-
-```tsx
-import { Tabs.TabContent } from '@ds/tabs'
-
-export function Example() {
-  return <Tabs.TabContent>Click me</Tabs.TabContent>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `value` | `string` | — | Значение таба |

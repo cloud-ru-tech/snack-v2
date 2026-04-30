@@ -36,15 +36,6 @@ import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 
 Когда **не** нужен: критическое подтверждение, блокирующее остальной интерфейс (берите `Modal`), всплывающий поповер рядом с элементом (`Popover`), тост-уведомление (не блокирует UI).
 
-### Установка
-```bash
-pnpm add @ds/drawer
-```
-
-```ts
-import { Drawer, POSITION, WIDTH } from '@ds/drawer'
-```
-
 ### Примеры использования
 #### Базовое использование
 
@@ -280,31 +271,57 @@ export function NestedDrawer() {
 
 ### Props
 
+**DrawerProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
-| `className` | `string` | — | CSS-класс для элемента с контентом
-CSS-класс |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `className` | `string` | — | CSS-класс для элемента с контентом <br/> CSS-класс |
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
-| `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
+| `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `content` | `ReactNode` | — | Контент |
 | `data-test-id` | `string` | — |  |
-| `footer` | `(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))` | — | Футер |
-| `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" | "bottom"`).
-При `position: "left" | "right"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка). |
+| `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<...> \| ReactPortal \| null))` | — | Футер |
+| `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" \| "bottom"`). <br/> При `position: "left" \| "right"` не используется — поведение и ширина задаются только `width` (`'s' \| 'm' \| 'l'` или число/строка). |
 | `media` | `ReactNode` | — | Медиа-контент |
-| `nestedDrawer` | `(ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> & ReactElement<DrawerProps, string | JSXElementConstructor<...>>)` | — | Вложенный Drawer |
+| `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
 | `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
-| `push` | `boolean | PushConfig` | — | Смещение при открытии "вложенного" компонента |
+| `push` | `boolean \| PushConfig` | — | Смещение при открытии "вложенного" компонента |
 | `rootClassName` | `string` | — | CSS-класс для корневого элемента |
 | `showBlackout` | `boolean` | `true` | Отображение темной подложки |
 | `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
 | `subtitle` | `ReactNode` | — | Подзаголовок |
 | `title` | `ReactNode` | — | Заголовок |
-| `width` | `string | number` | `'s'` | Ширина (только при position: "left" | "right") |
+| `width` | `Width` | `'s'` | Ширина (только при position: "left" \| "right") |
+
+##### Related types
+
+**DrawerCustomProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `className` | `string \| undefined` | — | CSS-класс для элемента с контентом |
+| `closeOnPopstate` | `boolean \| undefined` | — | Закрывать дровер при перемещении по истории браузера |
+| `container` | `string \| HTMLElement \| undefined` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
+| `data-test-id` | `string \| undefined` | — |  |
+| `footer` | `ReactElement<any, string \| JSXElementConstructor<any>> \| undefined` | — | Футер |
+| `heightAuto` | `boolean \| undefined` | — | Высота панели по контенту (только при `position: "top" \| "bottom"`). <br/> При `position: "left" \| "right"` не используется — поведение и ширина задаются только `width` (`'s' \| 'm' \| 'l'` или число/строка). |
+| `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
+| `onClose` | `() => void` | — | Колбэк закрытия |
+| `open` | `boolean` | — | Управление состоянием показан/не показан. |
+| `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
+| `push` | `boolean \| PushConfig \| undefined` | — | Смещение при открытии "вложенного" компонента |
+| `rootClassName` | `string \| undefined` | — | CSS-класс для корневого элемента |
+| `showBlackout` | `boolean \| undefined` | — | Отображение темной подложки |
+| `width` | `Width` | — | Ширина (только при position: "left" \| "right") |
+
+- `Position` = `"bottom"` \| `"left"` \| `"right"` \| `"top"`
+
+- `Width` = `"l"` \| `"m"` \| `"s"`
 
 ## DrawerCustom
 
@@ -321,16 +338,6 @@ CSS-класс |
 - Кастомные слоты (например, фиксированный поиск между шапкой и телом).
 
 Во всех остальных случаях предпочтительнее `Drawer` — он дешевле в поддержке и даёт консистентные отступы.
-
-### Установка
-
-```bash
-pnpm add @ds/drawer
-```
-
-```ts
-import { DrawerCustom } from '@ds/drawer'
-```
 
 ### Анатомия
 
@@ -389,167 +396,48 @@ export function CustomComposition() {
 
 ### Props
 
+**DrawerCustomProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс для элемента с контентом |
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
-| `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
+| `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `data-test-id` | `string` | — |  |
-| `footer` | `ReactElement<any, string | JSXElementConstructor<any>>` | — | Футер |
-| `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" | "bottom"`).
-При `position: "left" | "right"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка). |
-| `nestedDrawer` | `ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>>` | — | Вложенный Drawer |
+| `footer` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Футер |
+| `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" \| "bottom"`). <br/> При `position: "left" \| "right"` не используется — поведение и ширина задаются только `width` (`'s' \| 'm' \| 'l'` или число/строка). |
+| `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
-| `push` | `boolean | PushConfig` | — | Смещение при открытии "вложенного" компонента |
+| `push` | `boolean \| PushConfig` | — | Смещение при открытии "вложенного" компонента |
 | `rootClassName` | `string` | — | CSS-класс для корневого элемента |
 | `showBlackout` | `boolean` | `true` | Отображение темной подложки |
-| `width` | `string | number` | `'s'` | Ширина (только при position: "left" | "right") |
+| `width` | `Width` | `'s'` | Ширина (только при position: "left" \| "right") |
 
-## ButtonClose
+##### Related types
 
-```tsx
-import { ButtonClose } from '@ds/drawer'
-
-export function Example() {
-  return <ButtonClose>Click me</ButtonClose>
-}
-```
-
-### Props
+**DrawerCustomProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `onClick` | `() => void` | — | Действие при клике |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `className` | `string \| undefined` | — | CSS-класс для элемента с контентом |
+| `closeOnPopstate` | `boolean \| undefined` | — | Закрывать дровер при перемещении по истории браузера |
+| `container` | `string \| HTMLElement \| undefined` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
+| `data-test-id` | `string \| undefined` | — |  |
+| `footer` | `ReactElement<any, string \| JSXElementConstructor<any>> \| undefined` | — | Футер |
+| `heightAuto` | `boolean \| undefined` | — | Высота панели по контенту (только при `position: "top" \| "bottom"`). <br/> При `position: "left" \| "right"` не используется — поведение и ширина задаются только `width` (`'s' \| 'm' \| 'l'` или число/строка). |
+| `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
+| `onClose` | `() => void` | — | Колбэк закрытия |
+| `open` | `boolean` | — | Управление состоянием показан/не показан. |
+| `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
+| `push` | `boolean \| PushConfig \| undefined` | — | Смещение при открытии "вложенного" компонента |
+| `rootClassName` | `string \| undefined` | — | CSS-класс для корневого элемента |
+| `showBlackout` | `boolean \| undefined` | — | Отображение темной подложки |
+| `width` | `Width` | — | Ширина (только при position: "left" \| "right") |
 
-## DrawerBody
+- `Position` = `"bottom"` \| `"left"` \| `"right"` \| `"top"`
 
-```tsx
-import { DrawerBody } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerBody>Click me</DrawerBody>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `content` | `ReactNode` | — | Контент |
-| `data-test-id` | `string` | — |  |
-
-## DrawerCustom.Body
-
-```tsx
-import { DrawerCustom.Body } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerCustom.Body>Click me</DrawerCustom.Body>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `content` | `ReactNode` | — | Контент |
-| `data-test-id` | `string` | — |  |
-
-## DrawerCustom.Footer
-
-```tsx
-import { DrawerCustom.Footer } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerCustom.Footer>Click me</DrawerCustom.Footer>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-
-## DrawerCustom.Header
-
-```tsx
-import { DrawerCustom.Header } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerCustom.Header>Click me</DrawerCustom.Header>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
-| `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
-| `subtitle` | `ReactNode` | — | Подзаголовок |
-| `title` | `ReactNode` | — | Заголовок |
-
-## DrawerCustomLayoutProvider
-
-```tsx
-import { DrawerCustomLayoutProvider } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerCustomLayoutProvider>Click me</DrawerCustomLayoutProvider>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `DrawerCustomLayoutContextValue` | — |  |
-
-## DrawerFooter
-
-```tsx
-import { DrawerFooter } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerFooter>Click me</DrawerFooter>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-
-## DrawerHeader
-
-```tsx
-import { DrawerHeader } from '@ds/drawer'
-
-export function Example() {
-  return <DrawerHeader>Click me</DrawerHeader>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
-| `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
-| `subtitle` | `ReactNode` | — | Подзаголовок |
-| `title` | `ReactNode` | — | Заголовок |
+- `Width` = `"l"` \| `"m"` \| `"s"`

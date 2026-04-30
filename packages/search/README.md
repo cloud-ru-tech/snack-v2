@@ -11,6 +11,10 @@
 
 Когда **не** подходит: для выбора из фиксированного списка используйте `Combobox`, для фильтра с префиксом — `Input` + `Chip`.
 
+## Анатомия
+
+### Size
+Высота поля: `s` — компактный (списки, тулбары), `m` — дефолт, `l` — для крупных форм и посадочных страниц.
 ## Установка
 ```bash
 pnpm add @ds/search
@@ -74,10 +78,12 @@ export function TransparentBackground() {
 ```
 
 ## Props
+**SearchProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `background` | `boolean` | `true` | Наличие фона |
-| `buttonField` | `Omit<ButtonFieldProps, "variant">` | — | Дополнительный слот справа от поля |
+| `buttonField` | `ButtonFieldProps` | — | Дополнительный слот справа от поля |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — | Деактивирован ли компонент |
@@ -94,29 +100,20 @@ export function TransparentBackground() {
 | `tabIndex` | `number` | — |  |
 | `value` | `string` | — | Значение input |
 
-## Анатомия
+#### Related types
 
-### Size
-Высота поля: `s` — компактный (списки, тулбары), `m` — дефолт, `l` — для крупных форм и посадочных страниц.
-
-## ButtonField
-
-```tsx
-import { ButtonField } from '@ds/search'
-
-export function Example() {
-  return <ButtonField variant="after">Click me</ButtonField>
-}
-```
-
-### Props
+**ButtonFieldProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `action` | `ReactNode` | — | Слот для кнопки/иконки/аватара |
-| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
-| `loading` | `boolean` | `false` | Состояние загрузки |
+| `action` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Слот для кнопки/иконки/аватара |
+| `disabled` | `boolean \| undefined` | — | Деактивирован ли компонент |
+| `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `onClick` | `() => void` | — | Действие при клике |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер кнопки |
-| `variant` | `"after"` \| `"before"` | `after` | Вариант (положение) кнопки |
-| `withDropdownList` | `boolean` | — | Отображение шеврона |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер кнопки |
+| `variant` | `"after"` \| `"before"` | — | Вариант (положение) кнопки |
+| `withDropdownList` | `boolean \| undefined` | — | Отображение шеврона |
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
+
+- `Variant` = `"after"` \| `"before"`

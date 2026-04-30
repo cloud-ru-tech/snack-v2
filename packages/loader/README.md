@@ -61,16 +61,28 @@ export function SunMedium() {
 ## Props
 #### Spinner
 
+**SpinnerProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `size` | `"2xs"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
 
+#### Related types
+
+- `LoaderSize` = `"2xs"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"`
+
 #### Sun
+
+**SunProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `size` | `"l"` \| `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
+
+#### Related types
+
+- `SunSize` = `"l"` \| `"m"` \| `"s"` \| `"xs"`

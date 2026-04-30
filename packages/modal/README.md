@@ -43,15 +43,6 @@ import { Modal, ModalCustom, MODE, WIDTH } from '@ds/modal'
 #### Mode
 `regular` — обычный диалог, закрывается overlay/Esc/крестиком; `aggressive` — требует явного действия, overlay-click заблокирован; `forced` — полностью блокирующий, без способов закрыть кроме явной кнопки действия (критичные подтверждения).
 
-### Установка
-```bash
-pnpm add @ds/modal
-```
-
-```ts
-import { Modal, MODE, WIDTH } from '@ds/modal'
-```
-
 ### Примеры использования
 #### Базовое использование
 
@@ -224,12 +215,13 @@ export function Forced() {
 
 ### Props
 
+**ModalProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс для окна |
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`.
-Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
+| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
 | `content` | `ReactNode` | — | Основной контент |
 | `data-test-id` | `string` | — |  |
 | `footer` | `ReactNode` | — | Контент футера |
@@ -237,8 +229,7 @@ export function Forced() {
 | `loading` | `boolean` | `false` | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
 | `loadingState` | `ReactNode` | — | Контент тела вместо спиннера при `loading` |
 | `media` | `ReactNode` | — | Медиа-контент |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.
-blur подложки — только у Aggressive и Forced. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. <br/> blur подложки — только у Aggressive и Forced. |
 | `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке «назад». Отсутствие скрывает кнопку |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | `false` | Управление состоянием показан/не показан |
@@ -246,9 +237,16 @@ blur подложки — только у Aggressive и Forced. |
 | `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
 | `subtitle` | `ReactNode` | — | Подзаголовок |
 | `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; subtitle?: number; } | undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`).
-Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
+| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`). <br/> Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
 | `width` | `"l"` \| `"m"` \| `"s"` | `s` | Размер окна |
+
+##### Related types
+
+- `ModalContainer` = `string | HTMLElement`
+
+- `ModalMode` = `"aggressive"` \| `"forced"` \| `"regular"`
+
+- `ModalWidth` = `"l"` \| `"m"` \| `"s"`
 
 ## ModalCustom
 
@@ -265,16 +263,6 @@ blur подложки — только у Aggressive и Forced. |
 - Кастомные слоты (например, фиксированный поиск между шапкой и телом).
 
 Во всех остальных случаях предпочтительнее `Modal` — он дешевле в поддержке и даёт консистентные отступы.
-
-### Установка
-
-```bash
-pnpm add @ds/modal
-```
-
-```ts
-import { ModalCustom } from '@ds/modal'
-```
 
 ### Примеры использования
 
@@ -325,29 +313,70 @@ export function CustomComposition() {
 
 ### Props
 
+**ModalCustomProps**
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | Содержимое окна (композиция Header/Body/Footer) |
 | `className` | `string` | — | CSS-класс окна |
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`.
-Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
+| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
 | `data-test-id` | `string` | — |  |
 | `heightAuto` | `boolean` | `true` | Растягивать по высоте в пределах контейнера |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.
-blur подложки — только у Aggressive и Forced. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. <br/> blur подложки — только у Aggressive и Forced. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | `false` | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
 | `width` | `"l"` \| `"m"` \| `"s"` | `s` | Размер окна |
 
+##### Related types
+
+- `ModalContainer` = `string | HTMLElement`
+
+- `ModalMode` = `"aggressive"` \| `"forced"` \| `"regular"`
+
+- `ModalWidth` = `"l"` \| `"m"` \| `"s"`
+
 ## Body
 
 ```tsx
-import { Body } from '@ds/modal'
+import { Button } from '@ds/button';
+import { ModalCustom } from '@ds/modal';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
-export function Example() {
-  return <Body>Click me</Body>
+export function CustomComposition() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <ModalCustom open={open} onClose={close} width='m'>
+          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+          <ModalCustom.Body
+            content={
+              <div style={{ padding: 24 }}>
+                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
+              </div>
+            }
+          />
+          <ModalCustom.Footer>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+            </div>
+          </ModalCustom.Footer>
+        </ModalCustom>
+      </div>
+    </PortalContextProvider>
+  );
 }
 ```
 
@@ -359,31 +388,46 @@ export function Example() {
 | `content` | `ReactNode` | — | Основной контент |
 | `data-test-id` | `string` | — |  |
 
-## ButtonClose
-
-```tsx
-import { ButtonClose } from '@ds/modal'
-
-export function Example() {
-  return <ButtonClose>Click me</ButtonClose>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `onClick` | `() => void` | — | Действие при клике |
-
 ## Footer
 
 ```tsx
-import { Footer } from '@ds/modal'
+import { Button } from '@ds/button';
+import { ModalCustom } from '@ds/modal';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
-export function Example() {
-  return <Footer>Click me</Footer>
+export function CustomComposition() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <ModalCustom open={open} onClose={close} width='m'>
+          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+          <ModalCustom.Body
+            content={
+              <div style={{ padding: 24 }}>
+                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
+              </div>
+            }
+          />
+          <ModalCustom.Footer>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+            </div>
+          </ModalCustom.Footer>
+        </ModalCustom>
+      </div>
+    </PortalContextProvider>
+  );
 }
 ```
 
@@ -397,10 +441,43 @@ export function Example() {
 ## Header
 
 ```tsx
-import { Header } from '@ds/modal'
+import { Button } from '@ds/button';
+import { ModalCustom } from '@ds/modal';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
-export function Example() {
-  return <Header truncate="title: 1; subtitle (string): 2">Click me</Header>
+export function CustomComposition() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <ModalCustom open={open} onClose={close} width='m'>
+          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+          <ModalCustom.Body
+            content={
+              <div style={{ padding: 24 }}>
+                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
+              </div>
+            }
+          />
+          <ModalCustom.Footer>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+            </div>
+          </ModalCustom.Footer>
+        </ModalCustom>
+      </div>
+    </PortalContextProvider>
+  );
 }
 ```
 
@@ -415,64 +492,4 @@ export function Example() {
 | `subtitle` | `ReactNode` | — | Подзаголовок |
 | `title` | `string` | — | Заголовок |
 | `titleId` | `string` | — | id для aria-labelledby |
-| `truncate` | `{ title?: number; subtitle?: number; } | undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`).
-Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
-
-## ModalCustom.Body
-
-```tsx
-import { ModalCustom.Body } from '@ds/modal'
-
-export function Example() {
-  return <ModalCustom.Body>Click me</ModalCustom.Body>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс для обёртки body |
-| `content` | `ReactNode` | — | Основной контент |
-| `data-test-id` | `string` | — |  |
-
-## ModalCustom.Footer
-
-```tsx
-import { ModalCustom.Footer } from '@ds/modal'
-
-export function Example() {
-  return <ModalCustom.Footer>Click me</ModalCustom.Footer>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-
-## ModalCustom.Header
-
-```tsx
-import { ModalCustom.Header } from '@ds/modal'
-
-export function Example() {
-  return <ModalCustom.Header truncate="title: 1; subtitle (string): 2">Click me</ModalCustom.Header>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке «назад». Отсутствие скрывает кнопку |
-| `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
-| `subtitle` | `ReactNode` | — | Подзаголовок |
-| `title` | `string` | — | Заголовок |
-| `titleId` | `string` | — | id для aria-labelledby |
-| `truncate` | `{ title?: number; subtitle?: number; } | undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`).
-Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
+| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`). <br/> Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
