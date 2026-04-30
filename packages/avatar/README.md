@@ -79,6 +79,7 @@ export function Sizes() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цвет) |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `name` | `string` | — | Имя пользователя для генерации аббревиатуры |

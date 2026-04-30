@@ -18,10 +18,7 @@
       },
       "onClick": {
         "type": "() => void",
-        "required": true,
-        "typeRefs": [
-          "onClick"
-        ]
+        "required": true
       },
       "orientation": {
         "type": "enum",
@@ -110,10 +107,7 @@
       "onClick": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
-        "description": "Колбек клика по кнопке переключения",
-        "typeRefs": [
-          "onClick"
-        ]
+        "description": "Колбек клика по кнопке переключения"
       },
       "value": {
         "type": "string",
@@ -438,10 +432,7 @@
           "onClick": {
             "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
             "required": false,
-            "description": "Колбек клика по кнопке переключения",
-            "typeRefs": [
-              "onClick"
-            ]
+            "description": "Колбек клика по кнопке переключения"
           },
           "value": {
             "type": "string",
@@ -457,6 +448,10 @@
     "displayName": "TabContent",
     "propsTypeName": "TabContentProps",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "className": {
         "type": "string",
         "required": false
@@ -477,6 +472,10 @@
     "displayName": "Tabs",
     "propsTypeName": "TabsProps",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "defaultValue": {
         "type": "string",
         "required": false,
@@ -488,10 +487,7 @@
       "onChange": {
         "type": "((id: T) => void)",
         "required": false,
-        "description": "Колбек выбора вкладки",
-        "typeRefs": [
-          "onChange"
-        ]
+        "description": "Колбек выбора вкладки"
       },
       "value": {
         "type": "string",

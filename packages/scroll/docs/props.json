@@ -31,6 +31,10 @@
           "BarHideStrategy"
         ]
       },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "className": {
         "type": "string",
         "required": false
@@ -48,10 +52,7 @@
       "onInitialized": {
         "type": "(() => void)",
         "required": false,
-        "description": "Коллбэк вызывающийся на инициализацию скролла",
-        "typeRefs": [
-          "onInitialized"
-        ]
+        "description": "Коллбэк вызывающийся на инициализацию скролла"
       },
       "onScroll": {
         "type": "((event?: Event) => void)",

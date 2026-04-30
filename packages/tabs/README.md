@@ -75,6 +75,7 @@ export function Uncontrolled() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `defaultValue` | `string` | — | Выбранная вкладка по умолчанию |
 | `onChange` | `((id: T) => void)` | — | Колбек выбора вкладки |
 | `value` | `string` | — | Текущая вкладка |
@@ -306,6 +307,7 @@ export function WithContent() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `value` | `string` | — | Значение таба |

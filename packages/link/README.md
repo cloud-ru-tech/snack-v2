@@ -99,6 +99,7 @@ export function External() {
 <br/> - `data-text-mode`
 <br/> - `data-appearance`
 <br/> - `data-inside-text` |
+| `children` | `ComponentPropsWithoutRef<ElementType extends T ? "a" : T>["children"] | undefined` | — |  |
 | `data-test-id` | `string` | — |  |
 | `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
 | `role` | `"onAccent"` \| `"regular"` | `regular` | Роль |

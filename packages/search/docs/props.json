@@ -117,10 +117,7 @@
       "onChange": {
         "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
         "required": false,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
+        "description": "Колбек смены значения"
       },
       "onFocus": {
         "type": "FocusEventHandler<HTMLInputElement>",
@@ -130,10 +127,7 @@
       "onSubmit": {
         "type": "((value: string) => void)",
         "required": false,
-        "description": "Колбек на подтверждение поиска по строке",
-        "typeRefs": [
-          "onSubmit"
-        ]
+        "description": "Колбек на подтверждение поиска по строке"
       },
       "outline": {
         "type": "boolean",
@@ -198,10 +192,7 @@
           "onClick": {
             "type": "() => void",
             "required": true,
-            "description": "Действие при клике",
-            "typeRefs": [
-              "onClick"
-            ]
+            "description": "Действие при клике"
           },
           "size": {
             "type": "Size | undefined",

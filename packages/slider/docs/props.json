@@ -3,28 +3,153 @@
     "displayName": "Slider",
     "propsTypeName": "SliderProps",
     "props": {
+      "activeHandleRender": {
+        "type": "((origin: React.ReactElement<React.HTMLAttributes<HTMLDivElement>>, props: RenderProps) => React.ReactElement) | undefined",
+        "required": false
+      },
+      "allowCross": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "ariaLabelForHandle": {
+        "type": "string | string[] | undefined",
+        "required": false
+      },
+      "ariaLabelledByForHandle": {
+        "type": "string | string[] | undefined",
+        "required": false
+      },
+      "ariaRequired": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "ariaValueTextFormatterForHandle": {
+        "type": "AriaValueFormat | AriaValueFormat[] | undefined",
+        "required": false
+      },
+      "autoFocus": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string | undefined",
+        "required": false
+      },
+      "count": {
+        "type": "number | undefined",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "description": "Стабильный идентификатор для e2e/tests"
+      },
+      "defaultValue": {
+        "type": "number | number[] | undefined",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "dots": {
+        "type": "boolean | undefined",
+        "required": false
       },
       "handleTip": {
         "type": "boolean",
         "required": false,
         "description": "Показывать значение в тултипе на ручке"
       },
+      "id": {
+        "type": "string | undefined",
+        "required": false
+      },
+      "included": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "keyboard": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "marks": {
+        "type": "Record<string | number, React.ReactNode | MarkObj> | undefined",
+        "required": false
+      },
       "marksEqualSpacing": {
         "type": "boolean",
         "required": false,
         "description": "Включение равномерного распределения при нелинейных значениях меток."
       },
+      "max": {
+        "type": "number | undefined",
+        "required": false
+      },
+      "min": {
+        "type": "number | undefined",
+        "required": false
+      },
+      "onAfterChange": {
+        "type": "((value: number | number[]) => void) | undefined",
+        "required": false
+      },
+      "onBeforeChange": {
+        "type": "((value: number | number[]) => void) | undefined",
+        "required": false
+      },
+      "onBlur": {
+        "type": "((e: React.FocusEvent<HTMLDivElement>) => void) | undefined",
+        "required": false
+      },
+      "onChange": {
+        "type": "((value: number | number[]) => void) | undefined",
+        "required": false
+      },
+      "onChangeComplete": {
+        "type": "((value: number | number[]) => void) | undefined",
+        "required": false
+      },
+      "onFocus": {
+        "type": "((e: React.FocusEvent<HTMLDivElement>) => void) | undefined",
+        "required": false
+      },
+      "pushable": {
+        "type": "number | boolean | undefined",
+        "required": false
+      },
+      "range": {
+        "type": "boolean | RangeConfig | undefined",
+        "required": false
+      },
+      "reverse": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "startPoint": {
+        "type": "number | undefined",
+        "required": false
+      },
+      "step": {
+        "type": "number | null | undefined",
+        "required": false
+      },
+      "tabIndex": {
+        "type": "number | number[] | undefined",
+        "required": false
+      },
       "tipFormatter": {
         "type": "((value: string | number) => ReactNode)",
         "required": false,
-        "description": "Форматирование подсказки; по умолчанию — сырое значение",
-        "typeRefs": [
-          "tipFormatter"
-        ]
+        "description": "Форматирование подсказки; по умолчанию — сырое значение"
+      },
+      "track": {
+        "type": "boolean | undefined",
+        "required": false
+      },
+      "value": {
+        "type": "number | number[] | undefined",
+        "required": false
       }
     },
     "relatedTypes": {}

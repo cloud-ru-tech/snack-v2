@@ -3,6 +3,10 @@
     "displayName": "PortalContextProvider",
     "propsTypeName": "PortalContextProviderProps",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "root": {
         "type": "RefObject<HTMLElement | null>",
         "required": false,

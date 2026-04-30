@@ -4,6 +4,10 @@
     "propsTypeName": "DropdownProps",
     "description": "Dropdown компонент",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -171,10 +175,7 @@
           "onActionClick": {
             "type": "(() => void) | undefined",
             "required": false,
-            "description": "Действие при клике по кнопке",
-            "typeRefs": [
-              "onActionClick"
-            ]
+            "description": "Действие при клике по кнопке"
           }
         },
         "own": true

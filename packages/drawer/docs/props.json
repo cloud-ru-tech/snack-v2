@@ -25,6 +25,10 @@
     "propsTypeName": "DrawerProps",
     "description": "Drawer компонент",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -76,18 +80,12 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку",
-        "typeRefs": [
-          "onBackButtonClick"
-        ]
+        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
       },
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия",
-        "typeRefs": [
-          "onClose"
-        ]
+        "description": "Колбэк закрытия"
       },
       "open": {
         "type": "boolean",
@@ -197,10 +195,7 @@
           "onClose": {
             "type": "() => void",
             "required": true,
-            "description": "Колбэк закрытия",
-            "typeRefs": [
-              "onClose"
-            ]
+            "description": "Колбэк закрытия"
           },
           "open": {
             "type": "boolean",
@@ -294,6 +289,10 @@
     "displayName": "DrawerCustom",
     "propsTypeName": "DrawerCustomProps",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -335,10 +334,7 @@
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия",
-        "typeRefs": [
-          "onClose"
-        ]
+        "description": "Колбэк закрытия"
       },
       "open": {
         "type": "boolean",
@@ -433,10 +429,7 @@
           "onClose": {
             "type": "() => void",
             "required": true,
-            "description": "Колбэк закрытия",
-            "typeRefs": [
-              "onClose"
-            ]
+            "description": "Колбэк закрытия"
           },
           "open": {
             "type": "boolean",

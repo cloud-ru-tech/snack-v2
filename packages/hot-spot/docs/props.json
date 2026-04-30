@@ -38,10 +38,7 @@
       "dotRender": {
         "type": "((dot: ReactNode) => ReactNode)",
         "required": false,
-        "description": "Рендер функция для dot",
-        "typeRefs": [
-          "dotRender"
-        ]
+        "description": "Рендер функция для dot"
       },
       "duration": {
         "type": "string",

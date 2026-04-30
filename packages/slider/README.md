@@ -77,7 +77,39 @@ export function Disabled() {
 ## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `activeHandleRender` | `((origin: React.ReactElement<React.HTMLAttributes<HTMLDivElement>>, props: RenderProps) => React.ReactElement) | undefined` | — |  |
+| `allowCross` | `boolean | undefined` | — |  |
+| `ariaLabelForHandle` | `string | string[] | undefined` | — |  |
+| `ariaLabelledByForHandle` | `string | string[] | undefined` | — |  |
+| `ariaRequired` | `boolean | undefined` | — |  |
+| `ariaValueTextFormatterForHandle` | `AriaValueFormat | AriaValueFormat[] | undefined` | — |  |
+| `autoFocus` | `boolean | undefined` | — |  |
+| `className` | `string | undefined` | — |  |
+| `count` | `number | undefined` | — |  |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
+| `defaultValue` | `number | number[] | undefined` | — |  |
+| `disabled` | `boolean | undefined` | — |  |
+| `dots` | `boolean | undefined` | — |  |
 | `handleTip` | `boolean` | — | Показывать значение в тултипе на ручке |
+| `id` | `string | undefined` | — |  |
+| `included` | `boolean | undefined` | — |  |
+| `keyboard` | `boolean | undefined` | — |  |
+| `marks` | `Record<string | number, React.ReactNode | MarkObj> | undefined` | — |  |
 | `marksEqualSpacing` | `boolean` | — | Включение равномерного распределения при нелинейных значениях меток. |
+| `max` | `number | undefined` | — |  |
+| `min` | `number | undefined` | — |  |
+| `onAfterChange` | `((value: number | number[]) => void) | undefined` | — |  |
+| `onBeforeChange` | `((value: number | number[]) => void) | undefined` | — |  |
+| `onBlur` | `((e: React.FocusEvent<HTMLDivElement>) => void) | undefined` | — |  |
+| `onChange` | `((value: number | number[]) => void) | undefined` | — |  |
+| `onChangeComplete` | `((value: number | number[]) => void) | undefined` | — |  |
+| `onFocus` | `((e: React.FocusEvent<HTMLDivElement>) => void) | undefined` | — |  |
+| `pushable` | `number | boolean | undefined` | — |  |
+| `range` | `boolean | RangeConfig | undefined` | — |  |
+| `reverse` | `boolean | undefined` | — |  |
+| `startPoint` | `number | undefined` | — |  |
+| `step` | `number | null | undefined` | — |  |
+| `tabIndex` | `number | number[] | undefined` | — |  |
 | `tipFormatter` | `((value: string | number) => ReactNode)` | — | Форматирование подсказки; по умолчанию — сырое значение |
+| `track` | `boolean | undefined` | — |  |
+| `value` | `number | number[] | undefined` | — |  |

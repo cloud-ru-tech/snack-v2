@@ -15,10 +15,7 @@
       "hrefFormatter": {
         "type": "((page: number) => string)",
         "required": false,
-        "description": "Колбэк форматирования ссылки",
-        "typeRefs": [
-          "hrefFormatter"
-        ]
+        "description": "Колбэк форматирования ссылки"
       },
       "maxLength": {
         "type": "number",
@@ -29,10 +26,7 @@
       "onChange": {
         "type": "(page: number, event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent> | undefined) => void",
         "required": true,
-        "description": "Колбэк смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
+        "description": "Колбэк смены значения"
       },
       "page": {
         "type": "number",
@@ -137,10 +131,7 @@
       "onChange": {
         "type": "(page: number) => void",
         "required": true,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
+        "description": "Колбек смены значения"
       },
       "page": {
         "type": "number",

@@ -99,6 +99,7 @@ export function NotFound() {
 ## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |

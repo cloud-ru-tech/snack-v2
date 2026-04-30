@@ -496,6 +496,7 @@ export function ToggleGroupControlled() {
 ### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `defaultValue` | `string | string[]` | — | Начальное состояние |
 | `onChange` | `((value: string) => void) | ((value: string[]) => void) | undefined` | — | Controlled обработчик измения состояния |
 | `selectionMode` | `"multiple"` \| `"single"` | `single` | Режим выбора |

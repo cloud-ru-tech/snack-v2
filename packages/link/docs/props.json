@@ -34,6 +34,10 @@
           "T"
         ]
       },
+      "children": {
+        "type": "ComponentPropsWithoutRef<ElementType extends T ? \"a\" : T>[\"children\"] | undefined",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false

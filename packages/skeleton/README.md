@@ -82,6 +82,7 @@ export function WithToggle() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `borderRadius` | `BorderRadius<string | number>` | — | Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д) |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `height` | `Height<string | number>` | — | Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д) |
@@ -93,6 +94,7 @@ export function WithToggle() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `align` | `"left"` \| `"right"` | `left` | Выравнивание: left, right |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `lineClassName` | `string` | — | CSS-класс линии |
@@ -107,6 +109,7 @@ export function WithToggle() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children. |
 | `skeleton` | `ReactNode` | — | JSX скелетон |
 
@@ -135,4 +138,5 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `loading` | `boolean` | — | Флаг состояния загрузки. Если значение true, будут отрисованы блоки скелетона. |

@@ -48,10 +48,7 @@
       "onClick": {
         "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
-        "description": "Колбэк для обработки клика на тег",
-        "typeRefs": [
-          "onClick"
-        ]
+        "description": "Колбэк для обработки клика на тег"
       },
       "role": {
         "type": "enum",

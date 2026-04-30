@@ -45,10 +45,7 @@
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла",
-        "typeRefs": [
-          "onFilesUpload"
-        ]
+        "description": "Колбек загрузки файла"
       },
       "size": {
         "type": "enum",
@@ -94,6 +91,10 @@
         "required": false,
         "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
       },
+      "children": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": true
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -114,10 +115,7 @@
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла",
-        "typeRefs": [
-          "onFilesUpload"
-        ]
+        "description": "Колбек загрузки файла"
       }
     },
     "relatedTypes": {
@@ -181,10 +179,7 @@
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла",
-        "typeRefs": [
-          "onFilesUpload"
-        ]
+        "description": "Колбек загрузки файла"
       },
       "size": {
         "type": "enum",

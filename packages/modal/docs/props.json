@@ -180,18 +180,12 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку",
-        "typeRefs": [
-          "onBackButtonClick"
-        ]
+        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
       },
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия",
-        "typeRefs": [
-          "onClose"
-        ]
+        "description": "Колбэк закрытия"
       },
       "open": {
         "type": "boolean",
@@ -320,10 +314,7 @@
       "onClose": {
         "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия",
-        "typeRefs": [
-          "onClose"
-        ]
+        "description": "Колбэк закрытия"
       },
       "open": {
         "type": "boolean",

@@ -59,10 +59,7 @@
       "onChange": {
         "type": "((value: number) => void)",
         "required": false,
-        "description": "Колбек, вызываемый на смену состояния",
-        "typeRefs": [
-          "onChange"
-        ]
+        "description": "Колбек, вызываемый на смену состояния"
       },
       "readonly": {
         "type": "boolean",

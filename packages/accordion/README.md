@@ -116,6 +116,7 @@ export function MultipleMode() {
 ### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `expanded` | `string | string[]` | — | Controlled состояние |
 | `expandedDefault` | `string | string[]` | — | Начальное состояние |
 | `onExpandedChange` | `((value: string) => void) | ((value: string[]) => void) | undefined` | — | Controlled обработчик измения состояния |
@@ -293,6 +294,7 @@ export function NestedLevels() {
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | `neutral` | Цветовая схема акрила |
 | `chevron` | `"after"` \| `"before"` | `after` | Расположение шеврона относительно текста (`before` | `after`) |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `component` | `"accordionPrimary"` \| `"accordionSecondary"` \| `"accordionTertiary"` | — | Уровень аккордеона: размер типографики и отступы |
 | `data-test-id` | `string` | — |  |
@@ -319,6 +321,7 @@ export function Example() {
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | — | Цветовая схема акрила |
 | `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` | `after`) |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
@@ -344,6 +347,7 @@ export function Example() {
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | — | Цветовая схема акрила |
 | `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` | `after`) |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
@@ -368,6 +372,7 @@ export function Example() {
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` | `after`) |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |

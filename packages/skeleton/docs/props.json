@@ -8,6 +8,10 @@
         "required": false,
         "description": "Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д)"
       },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "className": {
         "type": "string",
         "required": false
@@ -38,6 +42,10 @@
     "displayName": "SkeletonContextProvider",
     "propsTypeName": "SkeletonContextProviderProps",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "loading": {
         "type": "boolean",
         "required": true,
@@ -62,6 +70,10 @@
         "typeRefs": [
           "Align"
         ]
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
       },
       "className": {
         "type": "string",
@@ -163,6 +175,10 @@
     "displayName": "WithSkeleton",
     "propsTypeName": "WithSkeletonProps",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
       "loading": {
         "type": "boolean",
         "required": false,

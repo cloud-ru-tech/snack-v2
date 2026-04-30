@@ -83,10 +83,7 @@
       "onChange": {
         "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
         "required": false,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
+        "description": "Колбек смены значения"
       },
       "onClick": {
         "type": "MouseEventHandler<HTMLInputElement>",
@@ -242,10 +239,7 @@
       "setInputFocus": {
         "type": "(() => void)",
         "required": false,
-        "defaultValue": "() => inputRef.current?.focus()",
-        "typeRefs": [
-          "setInputFocus"
-        ]
+        "defaultValue": "() => inputRef.current?.focus()"
       },
       "submitKeys": {
         "type": "string[]",
@@ -273,10 +267,7 @@
           },
           "render": {
             "type": "(props: RenderActiveButtonProps) => ReactElement",
-            "required": true,
-            "typeRefs": [
-              "render"
-            ]
+            "required": true
           },
           "show": {
             "type": "boolean",
@@ -308,10 +299,7 @@
           },
           "render": {
             "type": "(props: RenderInactiveButtonProps) => ReactElement",
-            "required": true,
-            "typeRefs": [
-              "render"
-            ]
+            "required": true
           },
           "show": {
             "type": "boolean",

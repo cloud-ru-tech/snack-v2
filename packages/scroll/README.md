@@ -160,6 +160,7 @@ export function AutoscrollBottom() {
 <br /> - `Leave` - скрывать когда курсор покидает компонент
 <br /> - `Scroll` - показывать только когда происходит скроллинг
 <br /> - `Move` - показывать при движении курсора над компонентом |
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — |  |
 | `clickScrolling` | `boolean` | `true` | Скролить ли по клику в скроллбар. |
 | `data-test-id` | `string` | — |  |

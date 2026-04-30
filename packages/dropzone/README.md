@@ -175,6 +175,7 @@ export function FileUploadBasic() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
+| `children` | `ReactElement<any, string | JSXElementConstructor<any>>` | — |  |
 | `data-test-id` | `string` | — |  |
 | `mode` | `"multiple"` \| `"single"` | `multiple` | Режим |
 | `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |

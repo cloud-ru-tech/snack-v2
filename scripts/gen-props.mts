@@ -212,7 +212,7 @@ function collectNamedRefs(
   }
 
   const sym = type.getSymbol()
-  if (sym) {
+  if (sym && isTypeSymbol(sym)) {
     const name = sym.getName()
     if (name && name !== '__type' && !isBuiltinName(name) && !PRIMITIVE_TYPES.has(name) && !isFromNodeModulesOrReact(sym)) {
       // heuristic: only include if it actually has declarations in our packages src
@@ -232,6 +232,26 @@ function collectNamedRefs(
 
 function isBuiltinName(name: string): boolean {
   return BUILTIN_TYPE_NAMES.has(name) || PRIMITIVE_TYPES.has(name)
+}
+
+// Only true for symbols that actually denote a *type* (alias / interface / class / enum / type-param).
+// A function type's `getSymbol()` returns the function/method symbol itself — that's not a type ref,
+// it's the property's own name leaking through, and would create bogus typeRefs like
+// `typeRefs: ['onExpandedChange']`.
+function isTypeSymbol(sym: ts.Symbol): boolean {
+  const TYPE_FLAGS =
+    ts.SymbolFlags.TypeAlias |
+    ts.SymbolFlags.Interface |
+    ts.SymbolFlags.Class |
+    ts.SymbolFlags.Enum |
+    ts.SymbolFlags.EnumMember |
+    ts.SymbolFlags.TypeParameter
+  if ((sym.flags & TYPE_FLAGS) !== 0) return true
+  if (sym.flags & ts.SymbolFlags.Alias) {
+    // Aliased import — peek at what it points to.
+    return false
+  }
+  return false
 }
 
 // Given a type name, resolve its aliasSymbol declaration from program and expand it.
@@ -652,12 +672,27 @@ for (const [pkgDir, files] of byPkg) {
               ? checker.getTypeAtLocation(rootDecl.type)
               : checker.getTypeAtLocation(rootDecl)
 
-            // Attach typeRefs to existing props by name
+            // Walk the resolved root type and (a) add any prop react-docgen missed —
+            // PropsWithChildren, WithSupportProps and other generic wrappers tend to
+            // be invisible to react-docgen-typescript — (b) attach typeRefs / expand related types.
             for (const p of rootType.getProperties()) {
               const pname = p.getName()
-              if (!props[pname]) continue
               const pDecl = p.getDeclarations()?.[0]
               const pType = pDecl ? checker.getTypeOfSymbolAtLocation(p, pDecl) : checker.getDeclaredTypeOfSymbol(p)
+
+              if (!props[pname]) {
+                // Skip props inherited purely from React DOM / aria types — they pollute the API surface.
+                // `children` is always interesting (PropsWithChildren), so allow it through.
+                if (pname !== 'children' && isInheritedNoise(p)) continue
+                const required = !(p.flags & ts.SymbolFlags.Optional)
+                const desc = p.getDocumentationComment(checker).map((c) => c.text).join('\n').trim()
+                const described = describeMemberType(checker, pType, pDecl)
+                const def: PropDef = { type: stripImportPaths(described.type), required }
+                if (described.values) def.values = described.values
+                if (desc) def.description = desc
+                props[pname] = def
+              }
+
               const refs = new Set<string>()
               collectNamedRefs(checker, pType, refs)
               // Also collect syntactically from the declaration type node — catches CounterProps inside Omit<...>

@@ -282,6 +282,7 @@ export function NestedDrawer() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | CSS-класс для элемента с контентом
 CSS-класс |
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
@@ -390,6 +391,7 @@ export function CustomComposition() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined` | — |  |
 | `className` | `string` | — | CSS-класс для элемента с контентом |
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
 | `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
