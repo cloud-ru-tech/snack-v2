@@ -78,12 +78,16 @@ export function DropzoneBasic() {
 Режим single и фильтр accept
 
 ```tsx
+import { useState } from 'react';
+
 import { Dropzone } from '@ds/dropzone';
 
 export function DropzoneSingleImage() {
+  const [file, setFile] = useState<File | null>(null);
+
   return (
-    <Dropzone mode='single' accept='image/*' onFilesUpload={() => {}}>
-      <span>Только одно изображение</span>
+    <Dropzone mode='single' accept='image/*' onFilesUpload={files => setFile(files[0] ?? null)}>
+      <span>{file ? file.name : 'Только одно изображение'}</span>
     </Dropzone>
   );
 }
@@ -94,12 +98,16 @@ export function DropzoneSingleImage() {
 Состояние заблокированной загрузки
 
 ```tsx
+import { useState } from 'react';
+
 import { Dropzone } from '@ds/dropzone';
 
 export function DropzoneDisabled() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
-    <Dropzone disabled onFilesUpload={() => {}}>
-      <span>Загрузка недоступна</span>
+    <Dropzone disabled onFilesUpload={setFiles}>
+      <span>Загрузка недоступна{files.length ? ` (выбрано: ${files.length})` : ''}</span>
     </Dropzone>
   );
 }
@@ -149,14 +157,21 @@ export function DropzoneDisabled() {
 FileUpload оборачивает Button
 
 ```tsx
+import { useState } from 'react';
+
 import { Button } from '@ds/button';
 import { FileUpload } from '@ds/dropzone';
 
 export function FileUploadBasic() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
-    <FileUpload onFilesUpload={() => {}}>
-      <Button type='button' label='Загрузить файлы' />
-    </FileUpload>
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <FileUpload onFilesUpload={setFiles}>
+        <Button type='button' label='Загрузить файлы' />
+      </FileUpload>
+      {files.length > 0 && <span>Выбрано: {files.map(f => f.name).join(', ')}</span>}
+    </div>
   );
 }
 ```
@@ -195,15 +210,20 @@ export function FileUploadBasic() {
 HiddenDropZone накрывает форму при drag
 
 ```tsx
+import { useState } from 'react';
+
 import { HiddenDropZone } from '@ds/dropzone';
 
 export function HiddenDropZoneBasic() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
-    <HiddenDropZone onFilesUpload={() => {}} content={<span>Отпустите, чтобы прикрепить файлы</span>}>
+    <HiddenDropZone onFilesUpload={setFiles} content={<span>Отпустите, чтобы прикрепить файлы</span>}>
       <form>
         <label>
           Имя <input type='text' />
         </label>
+        {files.length > 0 && <p>Прикреплено: {files.map(f => f.name).join(', ')}</p>}
       </form>
     </HiddenDropZone>
   );

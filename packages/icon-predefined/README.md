@@ -1,10 +1,106 @@
-# icon-predefined
+# IconPredefined
 
-`@ds/icon-predefined` — 
+`@ds/icon-predefined` — SVG-иконка с предустановленным оформлением — цветной подложкой, размером и формой контейнера.
 
-## IconPredefined
+Оборачивает произвольную SVG-иконку в контейнер с предустановленной палитрой, размером и формой. Используется как иконка-«кружок» рядом с заголовками, в empty/info-блоках и в плашках статуса.
 
-### Props `IconPredefinedProps`
+## Когда использовать
+
+- Иконка-маркер рядом с заголовком раздела или в карточке.
+- Empty-state и info-плашки, где нужен крупный визуальный акцент.
+- Иконки в `Status`, `Alert`, `InfoBlock` — там IconPredefined даёт согласованный фон и размер.
+
+Когда **не** нужен: декоративные иконки внутри текста, иконки внутри `Button` (там собственный слот), функциональные иконки в тулбарах (используйте сырой SVG).
+
+## Анатомия
+
+### Appearance
+Цвет подложки. `primary`/`neutral` — нейтральные, остальные (`red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`) — декоративные акценты без семантики.
+
+### Size
+Размер контейнера: `m` — дефолт в строках и карточках, `l` — заголовки разделов, `5xl` — крупные empty-state.
+
+### Shape
+Форма контейнера: `round` — круглый (по умолчанию), `square` — со скруглёнными углами для технических объектов.
+
+### Decor
+`decor={false}` отключает цветную подложку — иконка рисуется поверх прозрачного фона. Применяется, когда подложка уже есть у родительского контейнера.
+
+## Установка
+
+```bash
+pnpm add @ds/icon-predefined
+```
+
+```ts
+import { IconPredefined, APPEARANCE, SIZE } from '@ds/icon-predefined'
+```
+
+## Примеры использования
+
+### Палитра appearance
+
+Декоративные цвета подложки.
+
+```tsx
+import { IconPredefined } from '@ds/icon-predefined';
+import { PlaceholderSVG } from '@ds/icons';
+
+export function Appearances() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <IconPredefined icon={PlaceholderSVG} appearance='primary' />
+      <IconPredefined icon={PlaceholderSVG} appearance='neutral' />
+      <IconPredefined icon={PlaceholderSVG} appearance='red' />
+      <IconPredefined icon={PlaceholderSVG} appearance='green' />
+      <IconPredefined icon={PlaceholderSVG} appearance='blue' />
+      <IconPredefined icon={PlaceholderSVG} appearance='violet' />
+    </div>
+  );
+}
+```
+
+### Размеры
+
+`m`, `l`, `5xl`.
+
+```tsx
+import { IconPredefined } from '@ds/icon-predefined';
+import { PlaceholderSVG } from '@ds/icons';
+
+export function Sizes() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <IconPredefined icon={PlaceholderSVG} size='m' />
+      <IconPredefined icon={PlaceholderSVG} size='l' />
+      <IconPredefined icon={PlaceholderSVG} size='5xl' />
+    </div>
+  );
+}
+```
+
+### Форма и подложка
+
+`round` / `square`, отключение decor.
+
+```tsx
+import { IconPredefined } from '@ds/icon-predefined';
+import { PlaceholderSVG } from '@ds/icons';
+
+export function Shapes() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <IconPredefined icon={PlaceholderSVG} shape='round' />
+      <IconPredefined icon={PlaceholderSVG} shape='square' />
+      <IconPredefined icon={PlaceholderSVG} shape='round' decor={false} />
+    </div>
+  );
+}
+```
+
+## Props
+
+**IconPredefinedProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

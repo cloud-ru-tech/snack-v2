@@ -1,23 +1,31 @@
-# popover-private
+# PopoverPrivate
 
-`@ds/popover-private` — 
+`@ds/popover-private` — Низкоуровневый popover на @floating-ui — позиционирование, стрелка, триггеры. Используется как фундамент для Tooltip, Popover, Dropdown.
 
-## Arrow
+`@ds/popover-private` — внутренний строительный блок: бесстилевая обёртка над `@floating-ui/react` с поддержкой `placement`, `offset`, авто-flip, стрелки и нескольких триггеров (`click`, `hover`, `focus`, controlled `open`). Поверх него собраны публичные `@ds/tooltip`, `@ds/popover`, `@ds/dropdown`. В продуктовом коде используйте их.
 
-### Props
+## Когда использовать
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `arrowContainerClassName` | `string` | — |  |
-| `arrowElementClassName` | `string` | — |  |
-| `arrowRef` | `RefObject<HTMLDivElement \| null>` | — |  |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — |  |
-| `x` | `number` | — |  |
-| `y` | `number` | — |  |
+- Реализация нового публичного компонента, которому нужно всплывающее окно (например, контекстное меню новой формы).
+- Очень специфический сценарий, который не покрыт `Tooltip`/`Popover`/`Dropdown`.
 
-## PopoverPrivate
+В обычной разработке — берите публичный компонент.
 
-### Props `PopoverPrivateProps`
+## Установка
+
+```bash
+pnpm add @ds/popover-private
+```
+
+```ts
+import { PopoverPrivate, Arrow } from '@ds/popover-private'
+```
+
+## Props
+
+### PopoverPrivate
+
+**PopoverPrivateProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -59,3 +67,18 @@
 - `PopoverWidthStrategy` = `"auto"` \| `"eq"` \| `"gte"`
 
 - `Trigger` = `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"`
+
+### Arrow
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `arrowContainerClassName` | `string` | — |  |
+| `arrowElementClassName` | `string` | — |  |
+| `arrowRef` | `RefObject<HTMLDivElement \| null>` | — |  |
+| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — |  |
+| `x` | `number` | — |  |
+| `y` | `number` | — |  |
+
+## Смотри также
+
+- **Tooltip**, **Popover**, **Dropdown** — публичные потребители.

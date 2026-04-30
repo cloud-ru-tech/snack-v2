@@ -1,0 +1,44 @@
+---
+title: PopoverPrivate
+package: '@ds/popover-private'
+description: Низкоуровневый popover на @floating-ui — позиционирование, стрелка, триггеры. Используется как фундамент для Tooltip, Popover, Dropdown.
+order: 93
+---
+
+import { PropsTable } from '~docs/components/PropsTable'
+import popoverPrivateDoc from './props.json'
+
+# PopoverPrivate
+
+`@ds/popover-private` — внутренний строительный блок: бесстилевая обёртка над `@floating-ui/react` с поддержкой `placement`, `offset`, авто-flip, стрелки и нескольких триггеров (`click`, `hover`, `focus`, controlled `open`). Поверх него собраны публичные `@ds/tooltip`, `@ds/popover`, `@ds/dropdown`. В продуктовом коде используйте их.
+
+## Когда использовать
+
+- Реализация нового публичного компонента, которому нужно всплывающее окно (например, контекстное меню новой формы).
+- Очень специфический сценарий, который не покрыт `Tooltip`/`Popover`/`Dropdown`.
+
+В обычной разработке — берите публичный компонент.
+
+## Установка
+
+```bash
+pnpm add @ds/popover-private
+```
+
+```ts
+import { PopoverPrivate, Arrow } from '@ds/popover-private'
+```
+
+## Props
+
+### PopoverPrivate
+
+<PropsTable data={popoverPrivateDoc.PopoverPrivate} />
+
+### Arrow
+
+<PropsTable data={popoverPrivateDoc.Arrow} />
+
+## Смотри также
+
+- [Tooltip](/components/tooltip), [Popover](/components/popover), [Dropdown](/components/dropdown) — публичные потребители.

@@ -1,5 +1,8 @@
 import { Pagination } from '@ds/pagination';
+import { useState } from 'react';
 
 export function SizeM() {
-  return <Pagination total={10} page={3} size='m' onChange={() => {}} />;
+  const [page, setPage] = useState(3);
+
+  return <Pagination total={10} page={page} size='m' onChange={setPage} />;
 }

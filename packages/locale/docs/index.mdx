@@ -1,0 +1,52 @@
+---
+title: Locale
+package: '@ds/locale'
+description: LocaleProvider и useLocale — словари ru-RU/en-GB и точка расширения переводов для компонентов дизайн-системы.
+order: 91
+---
+
+import { LanguageToggle } from '../demos/examples/LanguageToggle'
+import LanguageToggleSrc from '../demos/examples/LanguageToggle.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import localeDoc from './props.json'
+
+# Locale
+
+`@ds/locale` — общий слой локализации дизайн-системы. Каждый пакет, у которого есть видимые пользователю строки (плейсхолдеры `Search`, кнопки `Pagination`, тексты `Dropzone` и т.п.), читает их через `useLocale()`. `LocaleProvider` оборачивает приложение и задаёт текущий язык; `createLocaleContext` используется внутри пакета для объявления собственного словаря.
+
+## Когда использовать
+
+- Хост-приложение хочет переключить язык DS-компонентов на лету.
+- Нужно переопределить отдельные строки (`overrideLocales`) — например, доменно-специфичные термины.
+- Пакет дизайн-системы добавляет новые тексты — он создаёт собственный контекст через `createLocaleContext` и потребляет его через `useLocale`.
+
+## Установка
+
+```bash
+pnpm add @ds/locale
+```
+
+```tsx
+import { LocaleProvider, useLocale, createLocaleContext } from '@ds/locale'
+```
+
+## Примеры использования
+
+<Example title='Переключение языка на лету' description='`LocaleProvider` + `useLocale` — строка обновляется при смене `lang`.' code={LanguageToggleSrc}>
+  <LanguageToggle client:visible />
+</Example>
+
+## Props
+
+### LocaleProvider
+
+<PropsTable data={localeDoc.LocaleProvider} />
+
+### useLocale
+
+<PropsTable data={localeDoc.useLocale} />
+
+### createLocaleContext
+
+<PropsTable data={localeDoc.createLocaleContext} />

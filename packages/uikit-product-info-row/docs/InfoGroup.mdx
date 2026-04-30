@@ -1,28 +1,94 @@
 ---
 title: InfoGroup
 package: '@ds/uikit-product-info-row'
-description: Группа строк InfoRow по данным и схеме полей.
+description: Группа строк InfoRow по объекту данных и схеме полей — автоматический рендер по `accessorKey` или кастомный `render`.
 order: 2
 ---
 
 import { InfoGroupDemo } from '../demos/InfoGroupDemo'
+import { InfoGroupBasic } from '../demos/examples/InfoGroupBasic'
+import InfoGroupBasicSrc from '../demos/examples/InfoGroupBasic.tsx?raw'
+import { InfoGroupDoubleColumn } from '../demos/examples/InfoGroupDoubleColumn'
+import InfoGroupDoubleColumnSrc from '../demos/examples/InfoGroupDoubleColumn.tsx?raw'
+import { InfoGroupCustomRender } from '../demos/examples/InfoGroupCustomRender'
+import InfoGroupCustomRenderSrc from '../demos/examples/InfoGroupCustomRender.tsx?raw'
+import { Example } from '~docs/components/Example'
 import { PropsTable } from '~docs/components/PropsTable'
+import { StorybookEmbed } from '~docs/components/StorybookEmbed'
 import doc from './props.json'
 
 # InfoGroup
 
-`InfoGroup` принимает объект `data` и массив `items`. Каждый элемент либо указывает `accessorKey` для чтения поля из `data`, либо задаёт `render` для кастомного вывода.
+`InfoGroup` принимает объект `data` и массив `items` и рендерит по строке `InfoRow` на каждый элемент. Каждый `item` либо указывает `accessorKey` для чтения поля из `data`, либо задаёт `render` для кастомного вывода.
 
 ## Демо
 
-<InfoGroupDemo client:load />
+<InfoGroupDemo client:visible />
+
+## Когда использовать
+
+- Деталка сущности, где набор полей известен заранее: имя, статус, регион, тарифные параметры.
+- Карточка объекта в админке/каталоге, где данные меняются, а схема полей — нет.
+- Когда нужно единое поведение для пустых значений, булевых и async-загрузки (`loading`).
+
+Когда **не** нужен `InfoGroup`:
+- Если строк одна-две — используйте отдельные [`InfoRow`](/components/uikit-product-info-row/info-row).
+- Если поля разнородные и каждое требует своей разметки — соберите композицию из `InfoRow` руками.
+
+## Анатомия
+
+### Columns
+Раскладка строк: `single` — одна колонка строк (по умолчанию), `double` — два столбца на ряд (десктопные деталки с компактной подачей).
+
+### Width
+Ширина строк: `fixed` — фиксированный лейбл-блок, `full` — лейбл и значение растягиваются на всю доступную ширину контейнера. При `columns='double'` ширина строк всегда `full`.
+
+### Items
+Элемент `items` — это либо `{ accessorKey, label }` для прямого чтения поля, либо `{ render, label }` для кастомного JSX. Допускает все остальные пропсы `InfoRow` (кроме `content`).
+
+### Loading
+`loading={true}` показывает скелетон вместо значений во всех строках. Применяется на время первой загрузки `data`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-info-row
+```
+
+```ts
+import { InfoGroup } from '@ds/uikit-product-info-row'
+import '@ds/uikit-product-info-row/style.css'
+```
+
+## Примеры использования
+
+<Example title='Базовый список полей' description='Рендер по `accessorKey` для трёх полей объекта.' code={InfoGroupBasicSrc}>
+  <InfoGroupBasic client:visible />
+</Example>
+
+<Example title='Две колонки' description='`columns="double"` + `width="full"` для компактной деталки.' code={InfoGroupDoubleColumnSrc}>
+  <InfoGroupDoubleColumn client:visible />
+</Example>
+
+<Example title='Кастомный render и формат булевых' description='`render` для денежного формата, `formatBoolean` для «Да»/«Нет».' code={InfoGroupCustomRenderSrc}>
+  <InfoGroupCustomRender client:visible />
+</Example>
 
 ## Поведение
 
-- При отсутствии `data` или значения показывается плейсхолдер `—`.
-- Булевы по `accessorKey` форматируются через `formatBoolean` (по умолчанию «Да» / «Нет»).
-- `columns: 'double'` включает сетку из двух колонок строк (как в legacy).
+- При отсутствии `data` или значения по `accessorKey` показывается плейсхолдер `—` (`NO_DATA_PLACEHOLDER`).
+- Булевы по `accessorKey` форматируются через `formatBoolean` (по умолчанию «Да»/«Нет»).
+- При `loading={true}` вместо значений рендерятся скелетоны; разметка строк сохраняется.
 
 ## Props
 
 <PropsTable data={doc.InfoGroup} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-uikitproductinforow-infogroup--playground' height={420} />
+
+## Смотри также
+
+- [`InfoRow`](/components/uikit-product-info-row/info-row) — одна строка «метка — значение», основа `InfoGroup`.
+- [`AdaptiveInfoGroup`](/components/uikit-product-info-row) — адаптивная обёртка: десктопный `InfoGroup` либо `MobileInfoGroup` по `layoutType`.

@@ -22,6 +22,7 @@ import breadcrumbsDoc from './props.json'
 Навигационная цепочка, показывающая путь от корня до текущей страницы. При нехватке ширины автоматически сворачивает средние элементы в коллапс-группу, сокращает лейблы до `shortLabel` или заменяет на многоточие.
 
 ## Демо
+{/* client:only — Droplist из @snack-uikit/list не резолвится при SSR (CJS dir-import) */}
 <BreadcrumbsDemo client:only="react" />
 
 ## Когда использовать

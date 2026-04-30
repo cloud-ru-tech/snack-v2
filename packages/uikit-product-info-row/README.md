@@ -1,4 +1,4 @@
-# UikitProductInfoRow
+# UikitProduct InfoRow
 
 `@ds/uikit-product-info-row` — Строки «метка — значение» по макету Figma infoRow — компонент InfoRow и группа InfoGroup по данным.
 
@@ -33,6 +33,83 @@ import '@ds/uikit-product-info-row/style.css'
 ## Когда какой использовать
 
 | Задача
+
+## InfoGroup
+
+```tsx
+import { InfoGroup } from '@ds/uikit-product-info-row';
+
+type Project = { name: string; status: string; active: boolean };
+
+const data: Project = { name: 'Mercury', status: 'Running', active: true };
+
+export function InfoGroupBasic() {
+  return (
+    <InfoGroup
+      data={data}
+      items={[
+        { label: 'Имя', accessorKey: 'name' },
+        { label: 'Статус', accessorKey: 'status' },
+        { label: 'Активен', accessorKey: 'active' },
+      ]}
+    />
+  );
+}
+```
+
+### Props `InfoGroupProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — |  |
+| `columns` | `"double"` \| `"single"` | `single` |  |
+| `data` | `T` | — |  |
+| `data-test-id` | `string` | — |  |
+| `formatBoolean` | `((value: boolean) => string)` | — | Локализация булевых значений при выводе по `accessorKey` (вместо peer `@cloud-ru/uikit-product-locale`) |
+| `items` | `InfoGroupItem` \| `InfoRowPropsBase` \| `T` | — |  |
+| `loading` | `boolean` | — |  |
+| `width` | `"fixed"` \| `"full"` | `fixed` |  |
+
+#### Related types
+
+- `InfoGroupItem` = `PropsWithRender<T> | PropsWithAccessorKey<T>`
+
+- `InfoRowColumn` = `"1"` \| `"2"`
+
+**InfoRowPropsBase**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `bottomDivider` | `boolean \| undefined` | — | Разделитель под строкой |
+| `className` | `string \| undefined` | — |  |
+| `column` | `"1"` \| `"2"` | — | Ось Figma `column`: одна или две колонки значений |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Первая колонка значений (ось Figma `column=1` или левая при `column=2`) |
+| `label` | `string` | — | Текст метки |
+| `labelClassName` | `string \| undefined` | — |  |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка у метки: строка или пропсы QuestionTooltip |
+| `labelTruncate` | `number \| undefined` | — | Максимальное число строк метки (TruncateString) |
+| `labelWidth` | `"auto"` \| `"fixed"` | — | Ширина колонки метки |
+| `loading` | `boolean \| undefined` | — |  |
+| `maxWidth` | `boolean \| undefined` | — | Ось Figma `maxWidth` |
+| `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
+| `rowActionsSlot` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры). <br/> Если задано, рендерится вместо `rowActions`. |
+| `rowClassName` | `string \| undefined` | — |  |
+| `secondaryContent` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вторая колонка значений (только при `column="2"`, ось Figma) |
+| `secondaryLabel` | `string \| undefined` | — | Вторая метка слева от второго значения (только при `column="2"`) |
+| `secondaryLabelClassName` | `string \| undefined` | — | Класс блока второй метки при `column="2"` |
+| `secondaryLabelTooltip` | `QuestionTooltipProps` | — | Подсказка у второй метки |
+| `secondaryLabelTruncate` | `number \| undefined` | — | Макс. строк второй метки при `column="2"` |
+| `secondaryRowActions` | `RowActionsPair` | — | Кнопки у второй колонки значений; в макете при `column="2"` — одна (`first`) |
+| `secondaryRowActionsSlot` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
+| `topDivider` | `boolean \| undefined` | — | Разделитель над строкой |
+| `width` | `"fixed"` \| `"full"` | — | Ширина строки относительно контейнера |
+
+**RowActionsPair**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `first` | `BaseButtonProps` \| `RowActionButton` | — |  |
+| `second` | `BaseButtonProps` \| `RowActionButton` | — |  |
 
 ## InfoRow
 

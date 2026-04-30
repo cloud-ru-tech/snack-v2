@@ -1,0 +1,48 @@
+---
+title: PortalContext
+package: '@ds/portal-context'
+description: React Context, который задаёт DOM-узел для портальных компонентов (Tooltip, Popover, Dropdown, Modal, Drawer).
+order: 90
+---
+
+import { CustomRoot } from '../demos/examples/CustomRoot'
+import CustomRootSrc from '../demos/examples/CustomRoot.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import portalContextDoc from './props.json'
+
+# PortalContext
+
+`@ds/portal-context` — служебный пакет: задаёт через React Context корневой DOM-узел, в который компоненты дизайн-системы рендерят порталы (`Tooltip`, `Popover`, `Dropdown`, `Modal`, `Drawer` и др.). По умолчанию портал монтируется в `document.body`; контекст нужен, когда DS работает внутри shadow DOM, iframe или встроенного приложения с собственным rooted DOM.
+
+## Когда использовать
+
+- DS встраивается в micro-frontend / shadow DOM — `document.body` недоступен или принадлежит host-приложению.
+- Необходимо поднимать stacking-контекст всех порталов в один контейнер (например, ради scoped CSS).
+- E2E или Storybook-тесты — портал нужно монтировать в фиксированный узел `iframe`.
+
+В обычном SPA-приложении провайдер не требуется — компоненты по умолчанию используют `document.body`.
+
+## Установка
+
+```bash
+pnpm add @ds/portal-context
+```
+
+```ts
+import { PortalContextProvider } from '@ds/portal-context'
+```
+
+## Примеры использования
+
+<Example title='Кастомный root через PortalContext' description='Портал монтируется в указанный ref, а не в `document.body`.' code={CustomRootSrc}>
+  <CustomRoot client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={portalContextDoc.PortalContextProvider} />
+
+## Смотри также
+
+- [Tooltip](/components/tooltip), [Popover](/components/popover), [Dropdown](/components/dropdown), [Modal](/components/modal), [Drawer](/components/drawer) — потребители контекста.

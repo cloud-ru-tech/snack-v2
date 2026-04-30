@@ -1,10 +1,31 @@
-# input-private
+# InputPrivate
 
-`@ds/input-private` — 
+`@ds/input-private` — Базовая обёртка `<input>` с состояниями, иконками, кнопкой очистки и счётчиком — фундамент для публичных полей ввода (Search, FieldText и пр.).
 
-## InputPrivate
+`@ds/input-private` — внутренний строительный блок для полей ввода. Реализует общую визуальную обвязку: рамка по состоянию (focus / disabled / readonly / error), слоты под иконку, prefix/suffix, кнопку очистки и счётчик символов. Прямого применения в продуктовом коде не имеет — используйте публичные пакеты (`@ds/search`, доменные поля), которые композируются поверх него.
 
-### Props `InputPrivateProps`
+## Когда использовать
+
+- Создаёте новый публичный input-компонент и хотите получить готовое поведение состояний и слотов.
+- Реализуете кастомный фильтр / автокомплит и нужна та же обвязка, что у `Search`.
+
+В продуктовом коде **не** импортируйте напрямую — берите публичный компонент.
+
+## Установка
+
+```bash
+pnpm add @ds/input-private
+```
+
+```ts
+import { InputPrivate, useClearButton, useButtonNavigation } from '@ds/input-private'
+```
+
+## Props
+
+### InputPrivate
+
+**InputPrivateProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -41,9 +62,9 @@
 
 - `Type` = `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"`
 
-## useButtonNavigation
+### useButtonNavigation
 
-### Props `UseButtonNavigationProps`
+**UseButtonNavigationProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -80,9 +101,9 @@
 | `render` | `(props: RenderInactiveButtonProps) => ReactElement` | — |  |
 | `show` | `boolean` | — |  |
 
-## useClearButton
+### useClearButton
 
-### Props `UseClearButtonProps`
+**UseClearButtonProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -96,3 +117,7 @@
 #### Related types
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
+
+## Смотри также
+
+- **Search**, **SearchPrivate** — публичные потребители.

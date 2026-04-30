@@ -1,5 +1,8 @@
 import { Pagination } from '@ds/pagination';
+import { useState } from 'react';
 
 export function LongRange() {
-  return <Pagination total={42} page={12} maxLength={7} onChange={() => {}} />;
+  const [page, setPage] = useState(12);
+
+  return <Pagination total={42} page={page} maxLength={7} onChange={setPage} />;
 }

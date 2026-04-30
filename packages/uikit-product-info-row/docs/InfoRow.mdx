@@ -30,12 +30,12 @@ import { DataListExample } from '../demos/examples/DataListExample'
 
 ## Демо
 
-<InfoRowDemo client:load />
+<InfoRowDemo client:visible />
 
 ## Несколько строк по данным
 
 <Example title='Список полей' description='Несколько строк: useGetContent и map по массиву полей' code={DataListSrc}>
-  <DataListExample client:load />
+  <DataListExample client:visible />
 </Example>
 
 ## Когда использовать
@@ -50,15 +50,11 @@ import { DataListExample } from '../demos/examples/DataListExample'
 - `MobileInfoRow` - когда нужен мобильный вертикальный формат строки.
 - `AdaptiveInfoRow` - когда нужно переключение desktop/mobile по `layoutType`.
 
-## Для дизайнеров
+## Figma
 
-### Figma
+<FigmaEmbed node={FIGMA_INFO_ROW} />
 
-<FigmaEmbed node={FIGMA_INFO_ROW} client:load />
-
-## Для разработчиков
-
-### Установка
+## Установка
 
 ```bash
 pnpm add @ds/uikit-product-info-row
@@ -80,13 +76,13 @@ import '@ds/uikit-product-info-row/style.css'
 />
 ```
 
-### Props
+## Props
 
 <PropsTable data={infoRowDoc.InfoRow} />
 
-### Storybook
+## Storybook
 
-<StorybookEmbed storyId='components-uikitproductinforow-inforow--playground' height={420} client:load />
+<StorybookEmbed storyId='components-uikitproductinforow-inforow--playground' height={420} />
 
 ## Доступность
 

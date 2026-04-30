@@ -1,10 +1,51 @@
-# search-private
+# SearchPrivate
 
-`@ds/search-private` — 
+`@ds/search-private` — Базовый input для поиска без иконок и плейсхолдеров — фундамент для публичного `@ds/search` и доменных search-компонентов.
 
-## SearchPrivate
+`@ds/search-private` — нижний слой поиска: контролируемый `<input type='search'>` с состояниями (focus, disabled, loading, error), кнопкой очистки и debounce. На нём собран публичный `@ds/search` — там добавляются иконка-лупа, плейсхолдер из локали, layout. В продуктовом коде используйте `@ds/search`.
 
-### Props `SearchPrivateProps`
+## Когда использовать
+
+- Реализация кастомного поиска с иной разметкой (например, без иконки или со встроенным фильтром), который нельзя выразить пропсами `@ds/search`.
+
+В большинстве случаев — берите публичный `@ds/search`.
+
+## Установка
+
+```bash
+pnpm add @ds/search-private
+```
+
+```ts
+import { SearchPrivate } from '@ds/search-private'
+```
+
+## Примеры использования
+
+### Базовый поиск
+
+Controlled value + `onSubmit`.
+
+```tsx
+import { useState } from 'react';
+
+import { SearchPrivate } from '@ds/search-private';
+
+export function Basic() {
+  const [value, setValue] = useState('');
+
+  return (
+    <div style={{ display: 'flex', gap: 12, flexDirection: 'column' }}>
+      <SearchPrivate value={value} onChange={setValue} onSubmit={v => console.log('submit:', v)} />
+      <span>Текущее значение: {value || '—'}</span>
+    </div>
+  );
+}
+```
+
+## Props
+
+**SearchPrivateProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -27,3 +68,8 @@
 #### Related types
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
+
+## Смотри также
+
+- **Search** — публичный поиск, который большинству продуктов и нужен.
+- **InputPrivate** — общая обвязка полей ввода.

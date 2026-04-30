@@ -1,0 +1,47 @@
+---
+title: SearchPrivate
+package: '@ds/search-private'
+description: Базовый input для поиска без иконок и плейсхолдеров — фундамент для публичного `@ds/search` и доменных search-компонентов.
+order: 94
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Example } from '~docs/components/Example'
+import { PropsTable } from '~docs/components/PropsTable'
+import searchPrivateDoc from './props.json'
+
+# SearchPrivate
+
+`@ds/search-private` — нижний слой поиска: контролируемый `<input type='search'>` с состояниями (focus, disabled, loading, error), кнопкой очистки и debounce. На нём собран публичный `@ds/search` — там добавляются иконка-лупа, плейсхолдер из локали, layout. В продуктовом коде используйте `@ds/search`.
+
+## Когда использовать
+
+- Реализация кастомного поиска с иной разметкой (например, без иконки или со встроенным фильтром), который нельзя выразить пропсами `@ds/search`.
+
+В большинстве случаев — берите публичный `@ds/search`.
+
+## Установка
+
+```bash
+pnpm add @ds/search-private
+```
+
+```ts
+import { SearchPrivate } from '@ds/search-private'
+```
+
+## Примеры использования
+
+<Example title='Базовый поиск' description='Controlled value + `onSubmit`.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={searchPrivateDoc.SearchPrivate} />
+
+## Смотри также
+
+- [Search](/components/search) — публичный поиск, который большинству продуктов и нужен.
+- [InputPrivate](/components/input-private) — общая обвязка полей ввода.

@@ -25,7 +25,7 @@ import linkDoc from './props.json'
 Компонент для навигации — как внутри экрана (якорь), так и во внешних ресурсах. Полиморфен: по умолчанию рендерится как `<a>`, но поддерживает `<button>` и кастомные компоненты-роутеры через `as`. Внутри используется `TruncateString` — длинные ссылки обрезаются и раскрывают полный текст в тултипе.
 
 ## Демо
-<LinkDemo client:only="react" />
+<LinkDemo client:visible />
 
 ## Когда использовать
 - Для переходов между страницами и разделами.
@@ -60,7 +60,7 @@ import { Link } from '@ds/link'
   description='Рендер как нативный a href target'
   code={BasicSrc}
 >
-  <Basic client:only="react" />
+  <Basic client:visible />
 </Example>
 
 <Example
@@ -68,7 +68,7 @@ import { Link } from '@ds/link'
   description="insideText=true: строка может переноситься, TruncateString не применяется"
   code={InsideTextSrc}
 >
-  <InsideText client:only="react" />
+  <InsideText client:visible />
 </Example>
 
 <Example
@@ -76,7 +76,7 @@ import { Link } from '@ds/link'
   description="as='button' — действие, семантически оформленное как ссылка"
   code={PolymorphicSrc}
 >
-  <Polymorphic client:only="react" />
+  <Polymorphic client:visible />
 </Example>
 
 <Example
@@ -84,7 +84,7 @@ import { Link } from '@ds/link'
   description="target='_blank' → rel='noopener noreferrer' автоматически"
   code={ExternalSrc}
 >
-  <External client:only="react" />
+  <External client:visible />
 </Example>
 
 ## Props
