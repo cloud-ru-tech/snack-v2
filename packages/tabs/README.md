@@ -35,12 +35,12 @@ import { Tabs } from '@ds/tabs'
 - **Неконтролируемый** — `defaultValue`, переключение через UI.
 - **Контролируемый** — `value` + `onChange`, чаще всего синхронизируется с URL.
 
-## Когда использовать
+### Когда использовать
 
 - Нужен compound API с независимым положением `TabBar` и `TabContent` в разметке.
 - Состояние активного таба должно синхронизироваться с внешними источниками (URL, стор).
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/tabs
@@ -50,30 +50,41 @@ pnpm add @ds/tabs
 import { Tabs } from '@ds/tabs'
 ```
 
-## Примеры использования
+### Примеры использования
 
-<Example title='Неконтролируемый режим' code={UncontrolledSrc}>
-  <Uncontrolled client:only="react" />
-</Example>
+#### Неконтролируемый режим
 
-## Props
+```tsx
+import { Tabs } from '@ds/tabs';
+
+export function Uncontrolled() {
+  return (
+    <Tabs defaultValue='a'>
+      <Tabs.TabBar>
+        <Tabs.Tab value='a' label='Alpha' />
+        <Tabs.Tab value='b' label='Beta' />
+      </Tabs.TabBar>
+      <Tabs.TabContent value='a'>Alpha content</Tabs.TabContent>
+      <Tabs.TabContent value='b'>Beta content</Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `string` | — | Текущая вкладка |
 | `defaultValue` | `string` | — | Выбранная вкладка по умолчанию |
 | `onChange` | `((id: T) => void)` | — | Колбек выбора вкладки |
+| `value` | `string` | — | Текущая вкладка |
 
-## Storybook
+### Анатомия
 
-<StorybookEmbed storyId='components-tabs--playground' height={360} />
-
-## Анатомия
-
-### Orientation
+#### Orientation
 `horizontal` — табы в строку (дефолт), `vertical` — колонкой (для боковых навигаций).
 
-### Size
+#### Size
 `m` — дефолт, `l` — для крупных лейаутов и посадочных страниц.
 
 ## Tab
@@ -82,12 +93,12 @@ import { Tabs } from '@ds/tabs'
 
 Одна вкладка внутри `TabBar`. Идентифицируется по `value` — это же значение используется в `TabContent` для сопоставления. Поддерживает `counter` (встроенный `Counter`) и `disabled`.
 
-## Когда использовать
+### Когда использовать
 
 - Внутри `TabBar` для каждой доступной вкладки.
 - Когда нужно показать счётчик (число уведомлений/записей) рядом с названием таба.
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/tabs
@@ -99,38 +110,60 @@ import { Tabs } from '@ds/tabs'
 <Tabs.Tab value='overview' label='Overview' />
 ```
 
-## Примеры использования
+### Примеры использования
 
-<Example title='Tab с counter' code={WithCounterSrc}>
-  <WithCounter client:only="react" />
-</Example>
+#### Tab с counter
 
-<Example title='Отключённый таб' code={DisabledSrc}>
-  <Disabled client:only="react" />
-</Example>
+```tsx
+import { Tabs } from '@ds/tabs';
 
-## Props
+export function WithCounter() {
+  return (
+    <Tabs defaultValue='inbox'>
+      <Tabs.TabBar>
+        <Tabs.Tab value='inbox' label='Входящие' counter={{ label: 12 }} />
+        <Tabs.Tab value='archive' label='Архив' />
+      </Tabs.TabBar>
+    </Tabs>
+  );
+}
+```
+
+#### Отключённый таб
+
+```tsx
+import { Tabs } from '@ds/tabs';
+
+export function Disabled() {
+  return (
+    <Tabs defaultValue='a'>
+      <Tabs.TabBar>
+        <Tabs.Tab value='a' label='Активен' />
+        <Tabs.Tab value='b' label='Выключен' disabled />
+      </Tabs.TabBar>
+    </Tabs>
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `value` | `string` | — | Value вкладки |
-| `label` | `string` | — | Заголовок вкладки |
-| `disabled` | `boolean` | `false` | Деактивирована ли вкладка |
 | `className` | `string` | — | CSS-класс |
 | `counter` | `{ label: number; appearance?: Appearance; color?: Color; } | undefined` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | `false` | Деактивирована ли вкладка |
+| `label` | `string` | — | Заголовок вкладки |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
+| `value` | `string` | — | Value вкладки |
 
-## Storybook
+### Анатомия
 
-<StorybookEmbed storyId='components-tabs--playground' height={240} />
-
-## Анатомия
-
-### Size
+#### Size
 Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
 
-### Marker position
+#### Marker position
 Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.
 
 ## TabBar
@@ -144,12 +177,12 @@ import { Tabs } from '@ds/tabs'
 - `markerPosition` — позиция активного маркера (`before` / `after`).
 - `after` — слот справа от табов для дополнительных действий.
 
-## Когда использовать
+### Когда использовать
 
 - Внутри `Tabs` как единственный контейнер списка кнопок-табов.
 - Если нужно разместить дополнительные действия справа от табов (через слот `after`).
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/tabs
@@ -161,42 +194,64 @@ import { Tabs } from '@ds/tabs'
 <Tabs.Bar />
 ```
 
-## Примеры использования
+### Примеры использования
 
-<Example title='Size L — верхнеуровневый' code={SizeLSrc}>
-  <SizeL client:only="react" />
-</Example>
+#### Size L — верхнеуровневый
 
-<Example title='Vertical orientation' code={VerticalSrc}>
-  <Vertical client:only="react" />
-</Example>
+```tsx
+import { SIZE, Tabs } from '@ds/tabs';
 
-## Props
+export function SizeL() {
+  return (
+    <Tabs defaultValue='a'>
+      <Tabs.TabBar size={SIZE.L}>
+        <Tabs.Tab value='a' label='Первая' />
+        <Tabs.Tab value='b' label='Вторая' />
+      </Tabs.TabBar>
+    </Tabs>
+  );
+}
+```
+
+#### Vertical orientation
+
+```tsx
+import { ORIENTATION, Tabs } from '@ds/tabs';
+
+export function Vertical() {
+  return (
+    <Tabs defaultValue='a'>
+      <Tabs.TabBar orientation={ORIENTATION.Vertical}>
+        <Tabs.Tab value='a' label='Профиль' />
+        <Tabs.Tab value='b' label='Безопасность' />
+      </Tabs.TabBar>
+    </Tabs>
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `children` | `ReactElement<TabProps, string | JSXElementConstructor<any>>[]` | — | Контент (элементы Tabs.Tab) |
 | `after` | `ReactNode` | — | Дополнительный слот для кастомного контента справа от табов |
-| `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация |
-| `markerPosition` | `"after"` \| `"before"` | `after` | Позиция маркера |
-| `size` | `"l"` \| `"m"` | `l` | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
-| `disableDivider` | `boolean` | `false` | Скрыть разделитель под/рядом с панелью табов |
+| `children` | `ReactElement<TabProps, string | JSXElementConstructor<any>>[]` | — | Контент (элементы Tabs.Tab) |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
+| `disableDivider` | `boolean` | `false` | Скрыть разделитель под/рядом с панелью табов |
+| `markerPosition` | `"after"` \| `"before"` | `after` | Позиция маркера |
+| `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация |
+| `size` | `"l"` \| `"m"` | `l` | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
 
-## Storybook
+### Анатомия
 
-<StorybookEmbed storyId='components-tabs--sizes' height={240} />
-
-## Анатомия
-
-### Orientation
+#### Orientation
 `horizontal` — бар в строку, `vertical` — колонкой.
 
-### Size
+#### Size
 `m` — дефолт, `l` — для крупных лейаутов.
 
-### Marker position
+#### Marker position
 Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.
 
 ## TabContent
@@ -205,12 +260,12 @@ import { Tabs } from '@ds/tabs'
 
 Контейнер контента. Рендерится только при совпадении `value` с активным табом. Формирует `<div role='tabpanel'>` и связывается с кнопкой таба через `aria-labelledby`.
 
-## Когда использовать
+### Когда использовать
 
 - Для каждой вкладки, у которой есть видимый контент.
 - Когда нужен корректный `aria-labelledby`/`role='tabpanel'` из коробки.
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/tabs
@@ -222,23 +277,38 @@ import { Tabs } from '@ds/tabs'
 <Tabs.Content value='overview'>…</Tabs.Content>
 ```
 
-## Примеры использования
+### Примеры использования
 
-<Example title='Пара Tab + TabContent' code={WithContentSrc}>
-  <WithContent client:only="react" />
-</Example>
+#### Пара Tab + TabContent
 
-## Props
+```tsx
+import { Tabs } from '@ds/tabs';
+
+export function WithContent() {
+  return (
+    <Tabs defaultValue='a'>
+      <Tabs.TabBar>
+        <Tabs.Tab value='a' label='Первая' />
+        <Tabs.Tab value='b' label='Вторая' />
+      </Tabs.TabBar>
+      <Tabs.TabContent value='a'>
+        <div style={{ padding: '12px 0' }}>Контент первого таба</div>
+      </Tabs.TabContent>
+      <Tabs.TabContent value='b'>
+        <div style={{ padding: '12px 0' }}>Контент второго таба</div>
+      </Tabs.TabContent>
+    </Tabs>
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `value` | `string` | — | Значение таба |
-| `className` | `string` | — |  |
-
-## Storybook
-
-<StorybookEmbed storyId='components-tabs--playground' height={240} />
 
 ## ScrollButton
 
@@ -254,10 +324,10 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `"l"` \| `"m"` | — |  |
-| `direction` | `"left"` \| `"right"` \| `"top"` \| `"bottom"` | — |  |
-| `orientation` | `"horizontal"` \| `"vertical"` | — |  |
+| `direction` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — |  |
 | `onClick` | `() => void` | — |  |
+| `orientation` | `"horizontal"` \| `"vertical"` | — |  |
+| `size` | `"l"` \| `"m"` | — |  |
 
 ## Tabs.Tab
 
@@ -273,13 +343,13 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `value` | `string` | — | Value вкладки |
-| `label` | `string` | — | Заголовок вкладки |
-| `disabled` | `boolean` | — | Деактивирована ли вкладка |
 | `className` | `string` | — | CSS-класс |
 | `counter` | `{ label: number; appearance?: Appearance; color?: Color; } | undefined` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | — | Деактивирована ли вкладка |
+| `label` | `string` | — | Заголовок вкладки |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
+| `value` | `string` | — | Value вкладки |
 
 ## Tabs.TabBar
 
@@ -295,14 +365,14 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `children` | `ReactElement<TabProps, string | JSXElementConstructor<any>>[]` | — | Контент (элементы Tabs.Tab) |
 | `after` | `ReactNode` | — | Дополнительный слот для кастомного контента справа от табов |
-| `orientation` | `"horizontal"` \| `"vertical"` | — | Ориентация |
-| `markerPosition` | `"after"` \| `"before"` | — | Позиция маркера |
-| `size` | `"l"` \| `"m"` | — | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
-| `disableDivider` | `boolean` | — | Скрыть разделитель под/рядом с панелью табов |
+| `children` | `ReactElement<TabProps, string | JSXElementConstructor<any>>[]` | — | Контент (элементы Tabs.Tab) |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
+| `disableDivider` | `boolean` | — | Скрыть разделитель под/рядом с панелью табов |
+| `markerPosition` | `"after"` \| `"before"` | — | Позиция маркера |
+| `orientation` | `"horizontal"` \| `"vertical"` | — | Ориентация |
+| `size` | `"l"` \| `"m"` | — | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
 
 ## Tabs.TabContent
 
@@ -318,6 +388,6 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `value` | `string` | — | Значение таба |
-| `className` | `string` | — |  |

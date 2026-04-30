@@ -4,15 +4,14 @@
 
 Пульсирующая точка-индикатор, которая привязывается к целевому UI-элементу. Используется для привлечения внимания к новой функции, непрочитанному статусу или обучающему шагу онбординга.
 
-## Демо
-<HotSpotDemo client:visible />
-
 ## Когда использовать
 - Подсветка новой функции в меню или тулбаре.
 - Индикатор непрочитанного статуса рядом с пунктом навигации.
 - Шаг обучающего онбординга — точка указывает на следующее действие.
 
 Когда **не** нужен `HotSpot`: для количественных бейджей используйте `Counter`; для постоянных статусов — `Tag`.
+
+## Анатомия
 
 ### Appearance
 Цветовая семантика точки: `primary` — нейтральный акцент бренда; `red` — ошибка/важное уведомление; `orange`, `yellow` — предупреждение; `green` — успех/онлайн; `blue`, `violet`, `pink` — декоративные категории.
@@ -30,51 +29,73 @@ import { HotSpot, APPEARANCE, PLACEMENT } from '@ds/hot-spot'
 ```
 
 ## Примеры использования
-<Example title='HotSpot на кнопке' code={OnButtonSrc}>
-  <OnButton client:visible />
-</Example>
-
-<Example title='Без анимации пульсации' code={NoPulseSrc}>
-  <NoPulse client:visible />
-</Example>
-
-<Example title='Красный акцент' code={RedAccentSrc}>
-  <RedAccent client:visible />
-</Example>
-
-<Example title='Standalone dot (без children)' code={StandaloneSrc}>
-  <Standalone client:visible />
-</Example>
-
-## Props
-<PropsTable data={hotSpotDoc.HotSpot} />
-
-## Storybook
-<StorybookEmbed storyId='components-hotspot--playground' height={360} />
-
-## HotSpot
+### HotSpot на кнопке
 
 ```tsx
-import { HotSpot } from '@ds/hot-spot'
+import { Button } from '@ds/button';
+import { HotSpot } from '@ds/hot-spot';
 
-export function Example() {
-  return <HotSpot appearance="primary" pulse duration="2s" placement="right-top" offsetX="0" offsetY="0" enabled>Click me</HotSpot>
+export function OnButton() {
+  return (
+    <HotSpot placement='right-top'>
+      <Button label='Уведомления' view='outline' />
+    </HotSpot>
+  );
 }
 ```
 
-### Props
+### Без анимации пульсации
 
+```tsx
+import { Button } from '@ds/button';
+import { HotSpot } from '@ds/hot-spot';
+
+export function NoPulse() {
+  return (
+    <HotSpot placement='right' pulse={false}>
+      <Button label='Settings' view='outline' />
+    </HotSpot>
+  );
+}
+```
+
+### Красный акцент
+
+```tsx
+import { Button } from '@ds/button';
+import { HotSpot } from '@ds/hot-spot';
+
+export function RedAccent() {
+  return (
+    <HotSpot appearance='red' placement='right-top'>
+      <Button label='Ошибки' view='outline' />
+    </HotSpot>
+  );
+}
+```
+
+### Standalone dot (без children)
+
+```tsx
+import { HotSpot } from '@ds/hot-spot';
+
+export function Standalone() {
+  return <HotSpot appearance='green' />;
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `appearance` | `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `primary` | Внешний вид |
-| `pulse` | `boolean` | `true` | Анимация пульсации |
-| `duration` | `string` | `2s` | Время анимации пульсации |
-| `placement` | `"left"` \| `"left-top"` \| `"left-bottom"` \| `"right"` \| `"right-top"` \| `"right-bottom"` \| `"center"` \| `"center-top"` \| `"center-bottom"` | `right-top` | Положение относительно children. |
-| `dotRender` | `((dot: ReactNode) => ReactNode)` | — | Рендер функция для dot |
+| `appearance` | `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
 | `children` | `ReactNode` | — | Вложенный контент |
+| `className` | `string` | — |  |
+| `data-test-id` | `string` | — |  |
+| `dotRender` | `((dot: ReactNode) => ReactNode)` | — | Рендер функция для dot |
+| `duration` | `string` | `2s` | Время анимации пульсации |
+| `enabled` | `boolean` | `true` | Управление состоянием отрисовки |
 | `offsetX` | `string | number` | `0` | Смещение dot по оси X (ось направлена вправо) |
 | `offsetY` | `string | number` | `0` | Смещение dot по оси Y (ось направлена вниз) |
-| `enabled` | `boolean` | `true` | Управление состоянием отрисовки |
-| `className` | `string` | — |  |
+| `placement` | `"center"` \| `"center-bottom"` \| `"center-top"` \| `"left"` \| `"left-bottom"` \| `"left-top"` \| `"right"` \| `"right-bottom"` \| `"right-top"` | `right-top` | Положение относительно children. |
+| `pulse` | `boolean` | `true` | Анимация пульсации |
 | `wrapperClassName` | `string` | — |  |

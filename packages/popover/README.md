@@ -11,6 +11,8 @@
 
 Когда **не** нужен: модальный диалог (берите Modal), статичная подсказка с коротким текстом (берите Tooltip), выпадающее меню выбора (берите Select/DropdownMenu).
 
+## Анатомия
+
 ### Placement
 12 вариантов — базовая сторона (`top|right|bottom|left`) × выравнивание (`-start` по началу триггера, `-end` по концу, без суффикса — по центру). При нехватке места автоматически подменяется fallback из `DEFAULT_FALLBACK_PLACEMENTS`.
 
@@ -33,47 +35,79 @@ import { Popover, PLACEMENT, TRIGGER } from '@ds/popover'
 ```
 
 ## Примеры использования
-<Example title='Базовый Popover' description='Клик-триггер, placement=top.' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
+### Базовый Popover
 
-<Example title='Триггер по наведению' description='trigger="hover" — подходит для информационных карточек.' code={HoverTriggerSrc}>
-  <HoverTrigger client:visible />
-</Example>
-
-<Example title='Placement bottom-end' description='Выравнивание поповера по правому краю триггера.' code={PlacementSrc}>
-  <Placement client:visible />
-</Example>
-
-## Props
-<PropsTable data={popoverDoc.Popover} />
-
-## Storybook
-<StorybookEmbed storyId='components-popover--playground' height={480} />
-
-## Popover
+Клик-триггер, placement=top.
 
 ```tsx
-import { Popover } from '@ds/popover'
+import { Popover } from '@ds/popover';
 
-export function Example() {
-  return <Popover placement="PLACEMENT.Top" offset="0" trigger="TRIGGER.Click" widthStrategy="auto" heightStrategy="auto" closeOnEscapeKey triggerClickByKeys>Click me</Popover>
+export function Basic() {
+  return (
+    <Popover content='Подсказка для пользователя' placement='top' trigger='click'>
+      <button type='button'>Открыть поповер</button>
+    </Popover>
+  );
 }
 ```
 
-### Props
+### Триггер по наведению
 
+trigger="hover" — подходит для информационных карточек.
+
+```tsx
+import { Popover } from '@ds/popover';
+
+export function HoverTrigger() {
+  return (
+    <Popover content='Открывается при наведении' trigger='hover' placement='top'>
+      <button type='button'>Наведи курсор</button>
+    </Popover>
+  );
+}
+```
+
+### Placement bottom-end
+
+Выравнивание поповера по правому краю триггера.
+
+```tsx
+import { Popover } from '@ds/popover';
+
+export function Placement() {
+  return (
+    <Popover content='Снизу справа' placement='bottom-end' trigger='click'>
+      <button type='button'>bottom-end</button>
+    </Popover>
+  );
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
-| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| `outsideClick` | `boolean | OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
-| `placement` | `"top"` \| `"left"` \| `"left-start"` \| `"left-end"` \| `"right"` \| `"right-start"` \| `"right-end"` \| `"top-start"` \| `"top-end"` \| `"bottom"` \| `"bottom-start"` \| `"bottom-end"` | `PLACEMENT.Top` | Положение поповера относительно своего триггера (children). |
+| `children` | `ReactNode | ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 | `className` | `string` | — |  |
-| `triggerClassName` | `string` | — | CSS-класс триггера |
+| `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `content` | `ReactNode` | — | Контент поповера (отображается внутри контейнера по макету) |
+| `data-test-id` | `string` | — |  |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
+<br/>
+Пригодится для элементов с `position: absolute` |
+| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `heightStrategy` | `"auto"` \| `"eq"` \| `"lte"` | `auto` | Стратегия управления высотой контейнера поповера
+<br/> - `auto` - соответствует высоте контента,
+<br/> - `lte` - Less Than or Equal, равен высоте таргета или меньше ее, если контент в поповере меньше,
+<br/> - `eq` - Equal, строго равен высоте таргета. |
+| `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
+| `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
 | `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
-| `trigger` | `"click"` \| `"hover"` \| `"focusVisible"` \| `"focus"` \| `"hoverAndFocusVisible"` \| `"hoverAndFocus"` \| `"clickAndFocusVisible"` | `TRIGGER.Click` | Условие отображения поповера:
+| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
+| `outsideClick` | `boolean | OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
+| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
+| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `click` | Условие отображения поповера:
 <br/> - `click` - открывать по клику
 <br/> - `hover` - открывать по ховеру
 <br/> - `focusVisible` - открывать по focus-visible
@@ -81,23 +115,10 @@ export function Example() {
 <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible
 <br/> - `hoverAndFocus` - открывать по ховеру и фокусу
 <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
-| `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
-| `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
-| `widthStrategy` | `"auto"` \| `"gte"` \| `"eq"` | `auto` | Стратегия управления шириной контейнера поповера
+| `triggerClassName` | `string` | — | CSS-класс триггера |
+| `triggerClickByKeys` | `boolean` | `true` | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
+| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
+| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `auto` | Стратегия управления шириной контейнера поповера
 <br/> - `auto` - соответствует ширине контента,
 <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,
 <br/> - `eq` - Equal, строго равен ширине таргета. |
-| `heightStrategy` | `"auto"` \| `"eq"` \| `"lte"` | `auto` | Стратегия управления высотой контейнера поповера
-<br/> - `auto` - соответствует высоте контента,
-<br/> - `lte` - Less Than or Equal, равен высоте таргета или меньше ее, если контент в поповере меньше,
-<br/> - `eq` - Equal, строго равен высоте таргета. |
-| `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
-| `triggerClickByKeys` | `boolean` | `true` | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
-| `fallbackPlacements` | `Placement[]` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера
-<br/>
-Пригодится для элементов с `position: absolute` |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
-| `triggerRef` | `ForwardedRef<ReferenceType | HTMLElement | null>` | — | Ref ссылка на триггер |
-| `children` | `ReactNode | ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
-| `content` | `ReactNode` | — | Контент поповера (отображается внутри контейнера по макету) |

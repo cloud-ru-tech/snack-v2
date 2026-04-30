@@ -10,6 +10,8 @@
 
 Когда **не** нужен: многокритериальная оценка (несколько факторов) — стройте форму с несколькими `Rating` или отдельным UI. NPS-шкала 0–10 — используйте другой компонент.
 
+## Анатомия
+
 ### Appearance
 Цвет заполненных звёзд: `primary` — брендовый акцент (дефолт); `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink` — семантические/декоративные варианты под контекст.
 
@@ -26,49 +28,56 @@ import { Rating } from '@ds/rating'
 ```
 
 ## Примеры использования
-<Example title='Базовый рейтинг' description='5 звёзд, дефолтное значение 3.' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
+### Базовый рейтинг
 
-<Example title='Readonly' description='Для отображения агрегированной оценки.' code={ReadonlySrc}>
-  <Readonly client:visible />
-</Example>
-
-<Example title='Половинные звёзды' description='allowHalf=true — поддержка значений 0.5 / 1.0 / 1.5 и т.д.' code={HalfStarsSrc}>
-  <HalfStars client:visible />
-</Example>
-
-## Props
-<PropsTable data={ratingDoc.Rating} />
-
-## Storybook
-<StorybookEmbed storyId='components-rating--playground' height={240} />
-
-## Rating
+5 звёзд, дефолтное значение 3.
 
 ```tsx
-import { Rating } from '@ds/rating'
+import { Rating } from '@ds/rating';
 
-export function Example() {
-  return <Rating appearance="yellow" count="5" defaultValue="0">Click me</Rating>
+export function Basic() {
+  return <Rating count={5} defaultValue={3} allowHalf={false} allowClear={false} readonly={false} />;
 }
 ```
 
-### Props
+### Readonly
 
+Для отображения агрегированной оценки.
+
+```tsx
+import { Rating } from '@ds/rating';
+
+export function Readonly() {
+  return <Rating count={5} defaultValue={4} readonly allowHalf={false} allowClear={false} />;
+}
+```
+
+### Половинные звёзды
+
+allowHalf=true — поддержка значений 0.5 / 1.0 / 1.5 и т.д.
+
+```tsx
+import { Rating } from '@ds/rating';
+
+export function HalfStars() {
+  return <Rating count={5} defaultValue={3.5} allowHalf allowClear={false} readonly={false} />;
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` | `s` | Размер |
-| `appearance` | `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `yellow` | Внешний вид (цветовая схема) |
-| `count` | `number` | `5` | Общее количество звезд |
-| `value` | `number` | — | Значение количества звезд в случае необходимости управления |
-| `defaultValue` | `number` | `0` | Количество звезд, заполненных по умолчанию |
-| `allowHalf` | `boolean` | `false` | Показывать или нет рейтинг в виде половины звезды |
 | `allowClear` | `boolean` | `false` | Разрещает сброс рейтинга при повторном нажатии на звезду |
-| `readonly` | `boolean` | `false` | Является ли поле доступным на изменение |
-| `onChange` | `((value: number) => void)` | — | Колбек, вызываемый на смену состояния |
+| `allowHalf` | `boolean` | `false` | Показывать или нет рейтинг в виде половины звезды |
+| `appearance` | `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `yellow` | Внешний вид (цветовая схема) |
 | `className` | `string` | — | CSS-класс |
+| `count` | `number` | `5` | Общее количество звезд |
+| `data-test-id` | `string` | — |  |
+| `defaultValue` | `number` | `0` | Количество звезд, заполненных по умолчанию |
+| `onChange` | `((value: number) => void)` | — | Колбек, вызываемый на смену состояния |
+| `readonly` | `boolean` | `false` | Является ли поле доступным на изменение |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
+| `value` | `number` | — | Значение количества звезд в случае необходимости управления |
 
 ## RatingStar
 
@@ -76,7 +85,7 @@ export function Example() {
 import { RatingStar } from '@ds/rating'
 
 export function Example() {
-  return <RatingStar value="0%" appearance="yellow">Click me</RatingStar>
+  return <RatingStar appearance="yellow" value="0%">Click me</RatingStar>
 }
 ```
 
@@ -84,12 +93,12 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `"0%"` \| `"50%"` \| `"100%"` | `0%` | Значение |
-| `size` | `"xs"` \| `"s"` | `s` | Размер |
-| `appearance` | `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `yellow` | Внешний вид (цветовая схема) |
-| `readonly` | `boolean` | `false` | Является ли поле доступным на изменение |
+| `appearance` | `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `yellow` | Внешний вид (цветовая схема) |
 | `className` | `string` | — | CSS-класс |
+| `handleClick` | `((value: Value) => void)` | — | Действие при клике части звезды мышью |
+| `handleKeyDown` | `KeyboardEventHandler<HTMLDivElement>` | — | Действие при нажатии на клавишу клавиатуры |
 | `handleMouseEnter` | `((value: Value) => void)` | — | Действие при наведении мыши |
 | `handleMouseLeave` | `(() => void)` | — | Действие при уведении мыши |
-| `handleKeyDown` | `KeyboardEventHandler<HTMLDivElement>` | — | Действие при нажатии на клавишу клавиатуры |
-| `handleClick` | `((value: Value) => void)` | — | Действие при клике части звезды мышью |
+| `readonly` | `boolean` | `false` | Является ли поле доступным на изменение |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
+| `value` | `"0%"` \| `"100%"` \| `"50%"` | `0%` | Значение |

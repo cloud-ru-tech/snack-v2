@@ -21,31 +21,80 @@ import { Search } from '@ds/search'
 ```
 
 ## Примеры использования
-<Example title='Базовое поле' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
+### Базовое поле
 
-<Example title='Размер l для hero' code={SizeLSrc}>
-  <SizeL client:visible />
-</Example>
+```tsx
+import { Search } from '@ds/search';
+import { useState } from 'react';
 
-<Example title='Loading' code={LoadingSrc}>
-  <Loading client:visible />
-</Example>
+export function Basic() {
+  const [value, setValue] = useState('');
+  return <Search placeholder='Поиск' value={value} onChange={setValue} />;
+}
+```
 
-<Example title='Disabled' code={DisabledSrc}>
-  <Disabled client:visible />
-</Example>
+### Размер l для hero
 
-<Example title='Без фона' code={TransparentBackgroundSrc}>
-  <TransparentBackground client:visible />
-</Example>
+```tsx
+import { Search } from '@ds/search';
+
+export function SizeL() {
+  return <Search size='l' placeholder='Поиск по каталогу' />;
+}
+```
+
+### Loading
+
+```tsx
+import { Search } from '@ds/search';
+
+export function Loading() {
+  return <Search placeholder='Поиск' loading />;
+}
+```
+
+### Disabled
+
+```tsx
+import { Search } from '@ds/search';
+
+export function Disabled() {
+  return <Search placeholder='Поиск' disabled />;
+}
+```
+
+### Без фона
+
+```tsx
+import { Search } from '@ds/search';
+
+export function TransparentBackground() {
+  return <Search placeholder='Прозрачный фон' background={false} />;
+}
+```
 
 ## Props
-<PropsTable data={searchDoc.Search} />
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `background` | `boolean` | `true` | Наличие фона |
+| `buttonField` | `Omit<ButtonFieldProps, "variant">` | — | Дополнительный слот справа от поля |
+| `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | — | Деактивирован ли компонент |
+| `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим работы экранной клавиатуры |
+| `loading` | `boolean` | — | Состояние загрузки |
+| `onBlur` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки потери фокуса |
+| `onChange` | `((value: string, e?: ChangeEvent<HTMLInputElement>) => void)` | — | Колбек смены значения |
+| `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки получения фокуса |
+| `onSubmit` | `((value: string) => void)` | — | Колбек на подтверждение поиска по строке |
+| `outline` | `boolean` | `true` | Наличие разделителя между input и buttonField |
+| `placeholder` | `string` | — | Значение плейсхолдера |
+| `showClearButton` | `boolean` | `true` | Отображение кнопки Очистки поля |
+| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `tabIndex` | `number` | — |  |
+| `value` | `string` | — | Значение input |
 
-## Storybook
-<StorybookEmbed storyId='components-search--playground' height={240} />
+## Анатомия
 
 ### Size
 Высота поля: `s` — компактный (списки, тулбары), `m` — дефолт, `l` — для крупных форм и посадочных страниц.
@@ -64,42 +113,10 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"before"` \| `"after"` | `after` | Вариант (положение) кнопки |
-| `size` | `"s"` \| `"m"` \| `"l"` | `s` | Размер кнопки |
-| `loading` | `boolean` | `false` | Состояние загрузки |
-| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
 | `action` | `ReactNode` | — | Слот для кнопки/иконки/аватара |
-| `withDropdownList` | `boolean` | — | Отображение шеврона |
+| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
+| `loading` | `boolean` | `false` | Состояние загрузки |
 | `onClick` | `() => void` | — | Действие при клике |
-
-## Search
-
-```tsx
-import { Search } from '@ds/search'
-
-export function Example() {
-  return <Search showClearButton background outline>Click me</Search>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Значение input |
-| `onChange` | `((value: string, e?: ChangeEvent<HTMLInputElement>) => void)` | — | Колбек смены значения |
-| `placeholder` | `string` | — | Значение плейсхолдера |
-| `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки получения фокуса |
-| `onBlur` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки потери фокуса |
-| `inputMode` | `"text"` \| `"decimal"` \| `"numeric"` \| `"tel"` \| `"search"` \| `"email"` \| `"url"` \| `"none"` | — | Режим работы экранной клавиатуры |
-| `data-test-id` | `string` | — |  |
-| `className` | `string` | — | CSS-класс |
-| `disabled` | `boolean` | — | Деактивирован ли компонент |
-| `tabIndex` | `number` | — |  |
-| `size` | `"s"` \| `"m"` \| `"l"` | `s` | Размер |
-| `loading` | `boolean` | — | Состояние загрузки |
-| `onSubmit` | `((value: string) => void)` | — | Колбек на подтверждение поиска по строке |
-| `showClearButton` | `boolean` | `true` | Отображение кнопки Очистки поля |
-| `background` | `boolean` | `true` | Наличие фона |
-| `buttonField` | `Omit<ButtonFieldProps, "variant">` | — | Дополнительный слот справа от поля |
-| `outline` | `boolean` | `true` | Наличие разделителя между input и buttonField |
+| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер кнопки |
+| `variant` | `"after"` \| `"before"` | `after` | Вариант (положение) кнопки |
+| `withDropdownList` | `boolean` | — | Отображение шеврона |

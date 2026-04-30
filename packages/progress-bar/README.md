@@ -24,22 +24,19 @@ import { ProgressBar, ProgressBarCircle, ProgressBarPage } from '@ds/progress-ba
 
 Линейный детерминированный индикатор. Используется для отображения явного хода операции в диапазоне от 0 до 100 процентов.
 
-## Демо
-<ProgressBarDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Загрузка файла, экспорт, импорт с известным прогрессом.
 - Пошаговые формы и wizard'ы — процент заполнения.
 - Длительные операции, где пользователь ждёт явного завершения.
 
-Когда **не** нужен `ProgressBar`: для неопределённой загрузки страницы используйте [`ProgressBarPage`](/components/progress-bar/progress-bar-page); для компактных мест в таблицах и карточках — [`ProgressBarCircle`](/components/progress-bar/progress-bar-circle).
+Когда **не** нужен `ProgressBar`: для неопределённой загрузки страницы используйте **`ProgressBarPage`**; для компактных мест в таблицах и карточках — **`ProgressBarCircle`**.
 
-## Анатомия
+### Анатомия
 
-### Size
+#### Size
 `xs` — дефолт, тонкая полоса под контролом или в строке таблицы; `s` — более заметный прогресс в карточках и формах.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/progress-bar
 ```
@@ -48,46 +45,82 @@ pnpm add @ds/progress-bar
 import { ProgressBar } from '@ds/progress-bar'
 ```
 
-## Примеры использования
-<Example
-  title='Статическое значение'
-  description='Фиксированный прогресс 40%'
-  code={StaticSrc}
->
-  <Static client:visible />
-</Example>
+### Примеры использования
+#### Статическое значение
 
-<Example
-  title='Анимированный прогресс'
-  description='Значение обновляется в useEffect — компонент плавно догоняет'
-  code={AnimatedProgressSrc}
->
-  <AnimatedProgress client:visible />
-</Example>
+Фиксированный прогресс 40%
 
-<Example
-  title='Три appearance в ряд'
-  description='Основные семантические роли'
-  code={AppearancesSrc}
->
-  <Appearances client:visible />
-</Example>
+```tsx
+import { ProgressBar } from '@ds/progress-bar';
 
-<Example title='Два размера' code={SizesSrc}>
-  <Sizes client:visible />
-</Example>
+export function Static() {
+  return <ProgressBar progress={40} />;
+}
+```
 
-## Props
+#### Анимированный прогресс
+
+Значение обновляется в useEffect — компонент плавно догоняет
+
+```tsx
+import { ProgressBar } from '@ds/progress-bar';
+import { useEffect, useState } from 'react';
+
+export function AnimatedProgress() {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setValue(prev => (prev >= 100 ? 0 : prev + 5));
+    }, 400);
+    return () => clearInterval(id);
+  }, []);
+
+  return <ProgressBar progress={value} />;
+}
+```
+
+#### Три appearance в ряд
+
+Основные семантические роли
+
+```tsx
+import { APPEARANCE, ProgressBar } from '@ds/progress-bar';
+
+export function Appearances() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <ProgressBar progress={60} appearance={APPEARANCE.Primary} />
+      <ProgressBar progress={60} appearance={APPEARANCE.Green} />
+      <ProgressBar progress={60} appearance={APPEARANCE.Red} />
+    </div>
+  );
+}
+```
+
+#### Два размера
+
+```tsx
+import { PROGRESS_BAR_SIZE, ProgressBar } from '@ds/progress-bar';
+
+export function Sizes() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <ProgressBar progress={40} size={PROGRESS_BAR_SIZE.XS} />
+      <ProgressBar progress={40} size={PROGRESS_BAR_SIZE.S} />
+    </div>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид |
+| `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — | Внешний вид |
-| `className` | `string` | — | CSS-класс |
-
-## Storybook
-<StorybookEmbed storyId='components-progressbar-progressbar--playground' height={360} />
 
 ## ProgressBarCircle
 
@@ -95,25 +128,22 @@ import { ProgressBar } from '@ds/progress-bar'
 
 Круговой детерминированный индикатор. Занимает минимум места и хорошо читается в плотных интерфейсах — рядом с аватаром при upload, в ячейке таблицы, в карточке файла.
 
-## Демо
-<ProgressBarCircleDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Индикатор загрузки рядом с аватаром или миниатюрой.
 - Прогресс в ячейках таблицы или в списке файлов.
 - Там, где линейный индикатор слишком широкий.
 
-Когда **не** нужен `ProgressBarCircle`: если есть горизонтальное место и вы хотите показать явный процент рядом — возьмите линейный [`ProgressBar`](/components/progress-bar/progress-bar).
+Когда **не** нужен `ProgressBarCircle`: если есть горизонтальное место и вы хотите показать явный процент рядом — возьмите линейный **`ProgressBar`**.
 
-## Анатомия
+### Анатомия
 
-### Size
+#### Size
 `xs` — дефолт, для ячеек таблиц и плотных списков; `s` — для карточек и более заметных мест.
 
-### Appearance
+#### Appearance
 Семантика цвета заполненной дуги: `primary` — бренд/нейтральный; `red` — ошибка/превышение лимита; `orange`/`yellow` — предупреждение; `green` — успех; `blue`, `violet`, `pink` — декоративные категории.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/progress-bar
 ```
@@ -122,33 +152,43 @@ pnpm add @ds/progress-bar
 import { ProgressBarCircle } from '@ds/progress-bar'
 ```
 
-## Примеры использования
-<Example
-  title='Значение 75%'
-  code={CircleStaticSrc}
->
-  <CircleStatic client:visible />
-</Example>
+### Примеры использования
+#### Значение 75%
 
-<Example
-  title='Три appearance'
-  description='Primary, успех и ошибка'
-  code={CircleAppearancesSrc}
->
-  <CircleAppearances client:visible />
-</Example>
+```tsx
+import { ProgressBarCircle } from '@ds/progress-bar';
 
-## Props
+export function CircleStatic() {
+  return <ProgressBarCircle progress={75} />;
+}
+```
+
+#### Три appearance
+
+Primary, успех и ошибка
+
+```tsx
+import { APPEARANCE, ProgressBarCircle } from '@ds/progress-bar';
+
+export function CircleAppearances() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <ProgressBarCircle progress={60} appearance={APPEARANCE.Primary} />
+      <ProgressBarCircle progress={60} appearance={APPEARANCE.Green} />
+      <ProgressBarCircle progress={60} appearance={APPEARANCE.Red} />
+    </div>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
+| `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `primary` | Внешний вид |
-| `className` | `string` | — | CSS-класс |
-
-## Storybook
-<StorybookEmbed storyId='components-progressbar-progressbarcircle--playground' height={360} />
 
 ## ProgressBarPage
 
@@ -156,17 +196,14 @@ import { ProgressBarCircle } from '@ds/progress-bar'
 
 Тонкая полоска-индикатор в верхней части страницы. Похожа на классический nprogress — не знает настоящего процента, но создаёт ощущение движения для пользователя во время навигации или длительной загрузки.
 
-## Демо
-<ProgressBarPageDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Индикация навигации между страницами (роутинг SPA).
 - Длительная загрузка данных без детерминированного прогресса.
 - Глобальный busy-индикатор уровня layout'а.
 
-Когда **не** нужен `ProgressBarPage`: если известен реальный процент — используйте детерминированный [`ProgressBar`](/components/progress-bar/progress-bar). Не показывайте `ProgressBarPage` для быстрых операций (< 200 мс) — это отвлекает.
+Когда **не** нужен `ProgressBarPage`: если известен реальный процент — используйте детерминированный **`ProgressBar`**. Не показывайте `ProgressBarPage` для быстрых операций (< 200 мс) — это отвлекает.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/progress-bar
 ```
@@ -175,28 +212,39 @@ pnpm add @ds/progress-bar
 import { ProgressBarPage } from '@ds/progress-bar'
 ```
 
-## Примеры использования
-<Example
-  title='Переключение inProgress'
-  description='Живой сценарий — запустите и остановите загрузку'
-  code={PageToggleSrc}
->
-  <PageToggle client:visible />
-</Example>
+### Примеры использования
+#### Переключение inProgress
 
-## Props
+Живой сценарий — запустите и остановите загрузку
+
+```tsx
+import { ProgressBarPage } from '@ds/progress-bar';
+import { useState } from 'react';
+
+export function PageToggle() {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <>
+      <ProgressBarPage inProgress={loading} />
+      <button type='button' onClick={() => setLoading(v => !v)}>
+        {loading ? 'Stop' : 'Start'} loading
+      </button>
+    </>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — | Внешний вид |
-| `className` | `string` | — | CSS-класс |
 | `animationDuration` | `number` | `200` | Скорость анимации |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид |
+| `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
 | `inProgress` | `boolean` | — | Включен/выключен |
 | `incrementDuration` | `number` | `800` | Время между прогрессом |
 | `minimum` | `number` | — | Минимальное значение прогресс бара от 0 до 1 |
-
-## Storybook
-<StorybookEmbed storyId='components-progressbar-progressbarpage--playground' height={360} />
 
 ## ProgressBarPrivate
 
@@ -204,7 +252,7 @@ import { ProgressBarPage } from '@ds/progress-bar'
 import { ProgressBarPrivate } from '@ds/progress-bar'
 
 export function Example() {
-  return <ProgressBarPrivate appearance="primary" animationDuration="0">Click me</ProgressBarPrivate>
+  return <ProgressBarPrivate animationDuration="0" appearance="primary">Click me</ProgressBarPrivate>
 }
 ```
 
@@ -212,9 +260,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `animationDuration` | `number` | `0` | Скорость анимации |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
+| `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
 | `size` | `"s"` \| `"xs"` | — | Размер |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `primary` | Внешний вид |
-| `className` | `string` | — | CSS-класс |
-| `animationDuration` | `number` | `0` | Скорость анимации |

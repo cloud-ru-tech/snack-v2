@@ -23,28 +23,25 @@ Inline-уведомление внутри контента — шесть appea
 
 Inline-уведомление, которое живёт в контенте — в форме, в карточке, в списке. Шесть appearance задают семантику, две оси (`size`, `align`) — форму, а пропсы `actions`, `onClose`, `collapsible` — поведение.
 
-## Демо
-<AlertDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Для подтверждения результата действия (success / error).
 - Для предупреждения перед необратимой операцией (warning).
 - Для информационного контекста внутри формы (info).
 
 Когда **не** нужен: для коротких эфемерных сообщений («Скопировано», «Сохранено») используйте toast — `Alert` остаётся видимым, пока его не закрыть.
 
-## Анатомия
+### Анатомия
 
-### Appearance
+#### Appearance
 Семантическая роль сообщения: `neutral`/`primary` — нейтральная/информативная подача, `info` — информ-акцент, `success` — успешное завершение, `warning` — предупреждение о потенциальной проблеме, `error` — ошибка или блокирующее состояние.
 
-### Align
+#### Align
 Выравнивание заголовка и контента: `horizontal` — заголовок и текст в одну строку, `vertical` — заголовок над текстом (для длинного контента и экшенов).
 
-### Size
+#### Size
 Компактность inline-алерта: `s` — для плотных поверхностей и табличных строк, `m` — дефолт.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/alert
 ```
@@ -53,47 +50,92 @@ pnpm add @ds/alert
 import { Alert } from '@ds/alert'
 ```
 
-## Примеры использования
-<Example title='1. Информационный алерт' code={InfoSrc}>
-  <Info client:visible />
-</Example>
+### Примеры использования
+#### 1. Информационный алерт
 
-<Example title='2. Ошибка с close-кнопкой' code={ErrorSrc}>
-  <Error client:visible />
-</Example>
+```tsx
+import { Alert } from '@ds/alert';
 
-<Example title='3. Алерт с действиями' code={WithActionsSrc}>
-  <WithActions client:visible />
-</Example>
+export function Info() {
+  return (
+    <Alert appearance='info' title='Настройки сохранены' description='Изменения применены ко всем активным проектам.' />
+  );
+}
+```
 
-<Example
-  title='4. Сворачиваемый алерт'
-  description='Длинное описание скрыто до клика по заголовку'
-  code={CollapsibleSrc}
->
-  <Collapsible client:visible />
-</Example>
+#### 2. Ошибка с close-кнопкой
 
-## Props
+```tsx
+import { Alert } from '@ds/alert';
+
+export function Error() {
+  return (
+    <Alert
+      appearance='error'
+      title='Не удалось сохранить'
+      description='Проверьте подключение к сети и повторите попытку.'
+      onClose={() => undefined}
+    />
+  );
+}
+```
+
+#### 3. Алерт с действиями
+
+```tsx
+import { Alert } from '@ds/alert';
+
+export function WithActions() {
+  return (
+    <Alert
+      appearance='warning'
+      title='Требуется подтверждение'
+      description='Операция необратима. Продолжить?'
+      actions={{
+        primary: { label: 'Продолжить', onClick: () => undefined },
+        secondary: { label: 'Отмена', onClick: () => undefined },
+      }}
+    />
+  );
+}
+```
+
+#### 4. Сворачиваемый алерт
+
+Длинное описание скрыто до клика по заголовку
+
+```tsx
+import { Alert } from '@ds/alert';
+
+export function Collapsible() {
+  return (
+    <Alert
+      appearance='info'
+      collapsible
+      title='Совет по настройке'
+      description='Полное описание того, как правильно настроить функцию. Текст длинный и сворачивается до раскрытия.'
+    />
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `icon` | `boolean` | — | Отображать иконку |
-| `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
-| `description` | `ReactNode` | — | Описание |
-| `onClose` | `(() => void)` | — | Колбек закрытия |
-| `appearance` | `"neutral"` \| `"primary"` \| `"error"` \| `"warning"` \| `"success"` \| `"info"` | — | Внешний вид |
-| `size` | `"s"` \| `"m"` | — | Размер |
-| `className` | `string` | — | CSS-класс |
 | `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
+| `align` | `"horizontal"` \| `"vertical"` | `vertical` | Выравнивание контента |
+| `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
+| `className` | `string` | — | CSS-класс |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
 При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `align` | `"vertical"` \| `"horizontal"` | `vertical` | Выравнивание контента |
+| `data-test-id` | `string` | — |  |
+| `description` | `ReactNode` | — | Описание |
+| `icon` | `boolean` | — | Отображать иконку |
+| `onClose` | `(() => void)` | — | Колбек закрытия |
 | `outline` | `boolean` | — | Внешний бордер |
-
-## Storybook
-<StorybookEmbed storyId='components-alert-alert--playground' height={400} />
+| `size` | `"m"` \| `"s"` | — | Размер |
+| `title` | `string` | — | Заголовок |
+| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
 
 ## AlertTop
 
@@ -101,11 +143,7 @@ import { Alert } from '@ds/alert'
 
 Глобальный баннер, который крепится к верхней кромке приложения. В отличие от `Alert`, всегда рендерится на сплошной цветной подложке (определяется `appearance`) и не поддерживает `outline` — визуально это «полоса сообщения», а не карточка.
 
-## Демо
-
-<AlertTopDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 
 - Для плановых технических работ и maintenance-окон.
 - Для глобальных ограничений (например, «В вашем регионе временно недоступны платежи»).
@@ -113,18 +151,18 @@ import { Alert } from '@ds/alert'
 
 Когда **не** нужен: для сообщений, которые касаются конкретной страницы или формы — используйте `Alert`.
 
-## Анатомия
+### Анатомия
 
-### Appearance
+#### Appearance
 Семантическая роль топ-баннера: `neutral`/`primary` — нейтрально-информативная подача, `info` — информ-акцент, `success` — успех (редко в топ-баннере), `warning` — предупреждение (maintenance), `error` — критическое ограничение/инцидент.
 
-### Align
+#### Align
 Выравнивание заголовка и описания: `horizontal` — в одну строку (короткий анонс), `vertical` — заголовок над текстом (длинное описание + действие).
 
-### Size
+#### Size
 Плотность баннера: `s` — компактный, `m` — дефолт.
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/alert
@@ -134,33 +172,41 @@ pnpm add @ds/alert
 import { AlertTop } from '@ds/alert'
 ```
 
-## Примеры использования
+### Примеры использования
 
-<Example title='Системное уведомление' code={SystemNoticeSrc}>
-  <SystemNotice client:visible />
-</Example>
+#### Системное уведомление
 
-## Props
+```tsx
+import { AlertTop } from '@ds/alert';
+
+export function SystemNotice() {
+  return (
+    <AlertTop
+      appearance='info'
+      title='Плановые работы'
+      description='Сегодня с 22:00 до 23:00 возможны кратковременные перебои.'
+    />
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `icon` | `boolean` | — | Отображать иконку |
-| `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
-| `description` | `ReactNode` | — | Описание |
-| `onClose` | `(() => void)` | — | Колбек закрытия |
-| `appearance` | `"neutral"` \| `"primary"` \| `"error"` \| `"warning"` \| `"success"` \| `"info"` | — | Внешний вид |
-| `size` | `"s"` \| `"m"` | — | Размер |
-| `className` | `string` | — | CSS-класс |
 | `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
+| `align` | `"horizontal"` \| `"vertical"` | `vertical` | Выравнивание контента |
+| `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
+| `className` | `string` | — | CSS-класс |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
 При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `align` | `"vertical"` \| `"horizontal"` | `vertical` | Выравнивание контента |
-
-## Storybook
-
-<StorybookEmbed storyId='components-alert-alerttop--playground' height={200} />
+| `data-test-id` | `string` | — |  |
+| `description` | `ReactNode` | — | Описание |
+| `icon` | `boolean` | — | Отображать иконку |
+| `onClose` | `(() => void)` | — | Колбек закрытия |
+| `size` | `"m"` \| `"s"` | — | Размер |
+| `title` | `string` | — | Заголовок |
+| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
 
 ## AlertBase
 
@@ -176,21 +222,21 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `icon` | `boolean` | — | Отображать иконку |
-| `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
-| `description` | `ReactNode` | — | Описание |
-| `onClose` | `(() => void)` | — | Колбек закрытия |
-| `appearance` | `"neutral"` \| `"primary"` \| `"error"` \| `"warning"` \| `"success"` \| `"info"` | — | Внешний вид |
-| `size` | `"s"` \| `"m"` | — | Размер |
-| `className` | `string` | — | CSS-класс |
 | `actions` | `{ primary: Omit<AlertButtonProps, "size" | "variant">; secondary?: Omit<AlertButtonProps, "size" | "variant">; }` | — | Кнопки в футере |
+| `align` | `"horizontal"` \| `"vertical"` | — | Выравнивание контента |
+| `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
+| `className` | `string` | — | CSS-класс |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).
 При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
-| `align` | `"vertical"` \| `"horizontal"` | — | Выравнивание контента |
-| `variant` | `"inline"` \| `"top"` | — |  |
+| `data-test-id` | `string` | — |  |
+| `description` | `ReactNode` | — | Описание |
+| `icon` | `boolean` | — | Отображать иконку |
+| `onClose` | `(() => void)` | — | Колбек закрытия |
 | `outline` | `boolean` | — |  |
+| `size` | `"m"` \| `"s"` | — | Размер |
+| `title` | `string` | — | Заголовок |
+| `truncate` | `{ title?: number; }` | `title: 1` | Максимальное кол-во строк (только при `collapsible={false}`). |
+| `variant` | `"inline"` \| `"top"` | — |  |
 
 ## AlertButton
 
@@ -206,30 +252,15 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `label` | `string` | — | Текст кнопки |
-| `icon` | `ReactNode` | — | Иконка |
-| `iconPosition` | `"before"` \| `"after"` | `before` | Позиция иконки относительно текста |
-| `size` | `"s"` \| `"m"` | `m` | Размер |
-| `disabled` | `boolean` | `false` | Отключена |
-| `loading` | `boolean` | `false` | Состояние загрузки |
-| `className` | `string` | — | Дополнительный класс |
-| `variant` | `"onColor"` \| `"onAccent"` | `onColor` | Вариант оформления |
-| `invertFocusOutlineColor` | `boolean` | — | Инвертировать цвет фокусного контура |
 | `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom) |
+| `className` | `string` | — | Дополнительный класс |
+| `disabled` | `boolean` | `false` | Отключена |
+| `icon` | `ReactNode` | — | Иконка |
+| `iconPosition` | `"after"` \| `"before"` | `before` | Позиция иконки относительно текста |
 | `innerRef` | `any` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.
 Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-
-## getAlertAppearanceIcon
-
-```tsx
-import { getAlertAppearanceIcon } from '@ds/alert'
-
-export function Example() {
-  return <getAlertAppearanceIcon>Click me</getAlertAppearanceIcon>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| `invertFocusOutlineColor` | `boolean` | — | Инвертировать цвет фокусного контура |
+| `label` | `string` | — | Текст кнопки |
+| `loading` | `boolean` | `false` | Состояние загрузки |
+| `size` | `"m"` \| `"s"` | `m` | Размер |
+| `variant` | `"onAccent"` \| `"onColor"` | `onColor` | Вариант оформления |

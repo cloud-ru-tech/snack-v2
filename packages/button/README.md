@@ -32,40 +32,34 @@ import { Button, ButtonGroup } from '@ds/button'
 
 Основной инструмент для действий и навигации. Рендерится как `<button>` (по умолчанию), `<a>` или произвольный компонент через проп `as` — без потери типизации пропсов целевого элемента.
 
-## Демо
-<ButtonDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Для инициации действий (сохранить, удалить, применить).
 - Для навигации, оформленной как кнопка — через `as="a"`.
 - Для toolbar-иконок без текста — `icon` без `label` + обязательный `aria-label`.
 
 Когда **не** нужен `Button`: для обычных inline-ссылок используйте `<a>` или навигационный компонент, а не `as="a"` с `view="function"`.
 
-## Figma
-<FigmaEmbed node={FIGMA_BUTTON} height={480} title='Button в Figma (Snack UI Kit)' />
-
-## Смотри также
+### Смотри также
 - [Паттерны форм](/patterns/form-patterns)
 - [Паттерны композиции](/patterns/composition-patterns)
 
 Здесь — что импортировать, как собрать типовые сценарии и какие пропсы доступны.
 
-## Анатомия
+### Анатомия
 
-### Appearance
+#### Appearance
 Семантическая роль действия: `primary` — основное действие на экране (максимум одно), `neutral` — вторичные действия, `critical` — деструктивные (удаление, отмена подписки).
 
-### View
+#### View
 Визуальная подача: `filled` — сплошная заливка (ключевое CTA), `tonal` — мягкая заливка токеном appearance, `outline` — с границей, `simple` — плоский фон, `elevated` — с тенью, `function` — максимально ненавязчивая подача (тулбары, инлайны).
 
-### Size
+#### Size
 Размерный ряд: `s` — для плотных поверхностей (тулбары, таблицы), `m` — дефолт, `l` — для крупных форм и CTA.
 
-### Icon position
+#### Icon position
 Положение иконки относительно лейбла: `before` — слева, `after` — справа. Для icon-only варианта `label` не задаётся.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/button
 ```
@@ -74,97 +68,177 @@ pnpm add @ds/button
 import { Button } from '@ds/button'
 ```
 
-## Примеры использования
+### Примеры использования
 Минимум, который покрывает 80% реальных случаев. Каждый пример — отдельный файл в `packages/button/demos/examples/`, который можно скопировать целиком.
 
-<Example
-  title='Три appearance в ряд'
-  description='Сравнение семантических ролей на одном размере и view'
-  code={AppearancesSrc}
->
-  <Appearances client:visible />
-</Example>
+#### Три appearance в ряд
 
-<Example
-  title='Все шесть view'
-  description='appearance=primary, size=m'
-  code={ViewsSrc}
->
-  <Views client:visible />
-</Example>
+Сравнение семантических ролей на одном размере и view
 
-<Example title='Три размера в ряд' code={SizesSrc}>
-  <Sizes client:visible />
-</Example>
+```tsx
+import { Button } from '@ds/button';
 
-<Example
-  title='1. Пара главное + вторичное'
-  description='Типичный футер формы: filled primary + simple neutral'
-  code={ActionsSrc}
->
-  <Actions client:visible />
-</Example>
+export function Appearances() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button appearance='primary' label='Primary' />
+      <Button appearance='neutral' label='Neutral' />
+      <Button appearance='critical' label='Critical' />
+    </div>
+  );
+}
+```
 
-<Example
-  title='2. Деструктивное действие'
-  description='Critical + иконка — визуально подкрепляет риск'
-  code={DestructiveSrc}
->
-  <Destructive client:visible />
-</Example>
+#### Все шесть view
 
-<Example
-  title='3. Icon-only в toolbar'
-  description='Без label, но с aria-label для скринридеров'
-  code={IconOnlySrc}
->
-  <IconOnly client:visible />
-</Example>
+appearance=primary, size=m
 
-<Example
-  title='4. Кнопка-ссылка'
-  description="as='a' + target='_blank' → rel='noopener noreferrer' добавляется автоматически"
-  code={LinkButtonSrc}
->
-  <LinkButton client:visible />
-</Example>
+```tsx
+import { Button } from '@ds/button';
 
-<Example
-  title='5. Кнопка с бейджем-счётчиком'
-  description="iconPosition='after' + counter → счётчик превращается в badge над иконкой"
-  code={CounterBadgeSrc}
->
-  <CounterBadge client:visible />
-</Example>
+export function Views() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button view='filled' label='Filled' />
+      <Button view='outline' label='Outline' />
+      <Button view='tonal' label='Tonal' />
+      <Button view='simple' label='Simple' />
+      <Button view='elevated' label='Elevated' />
+      <Button view='function' label='Function' />
+    </div>
+  );
+}
+```
 
-<Example
-  title='6. Загрузка'
-  description="loading заменяет лейбл спиннером и проставляет aria-busy='true'"
-  code={LoadingSrc}
->
-  <Loading client:visible />
-</Example>
+#### Три размера в ряд
 
-## Props
+```tsx
+import { Button } from '@ds/button';
+
+export function Sizes() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button size='s' label='Small' />
+      <Button size='m' label='Medium' />
+      <Button size='l' label='Large' />
+    </div>
+  );
+}
+```
+
+#### 1. Пара главное + вторичное
+
+Типичный футер формы: filled primary + simple neutral
+
+```tsx
+import { Button } from '@ds/button';
+
+export function Actions() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button appearance='primary' view='filled' label='Сохранить' />
+      <Button appearance='neutral' view='simple' label='Отмена' />
+    </div>
+  );
+}
+```
+
+#### 2. Деструктивное действие
+
+Critical + иконка — визуально подкрепляет риск
+
+```tsx
+import { Button } from '@ds/button'
+import { TrashSVG } from '@ds/icons'
+
+export function Destructive() {
+  return <Button appearance='critical' view='filled' icon={<TrashSVG />} label='Удалить' />
+}
+```
+
+#### 3. Icon-only в toolbar
+
+Без label, но с aria-label для скринридеров
+
+```tsx
+import { Button } from '@ds/button'
+import { SettingsSVG } from '@ds/icons'
+
+export function IconOnly() {
+  return <Button view='function' icon={<SettingsSVG />} aria-label='Настройки' />
+}
+```
+
+#### 4. Кнопка-ссылка
+
+as='a' + target='_blank' → rel='noopener noreferrer' добавляется автоматически
+
+```tsx
+import { Button } from '@ds/button'
+
+export function LinkButton() {
+  return <Button as='a' href='https://example.com' target='_blank' label='Документация' />
+}
+```
+
+#### 5. Кнопка с бейджем-счётчиком
+
+iconPosition='after' + counter → счётчик превращается в badge над иконкой
+
+```tsx
+import { Button } from '@ds/button'
+import { EmailSVG } from '@ds/icons'
+
+export function CounterBadge() {
+  return (
+    <Button
+      icon={<EmailSVG />}
+      iconPosition='after'
+      label='Сообщения'
+      counter={{ value: 12 }}
+    />
+  )
+}
+```
+
+#### 6. Загрузка
+
+loading заменяет лейбл спиннером и проставляет aria-busy='true'
+
+```tsx
+import { Button } from '@ds/button'
+import { DownloadSVG } from '@ds/icons'
+
+export function Loading() {
+  return (
+    <Button
+      appearance='primary'
+      view='filled'
+      icon={<DownloadSVG />}
+      label='Скачать отчёт'
+      loading
+    />
+  )
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `label` | `string` | — | Текст кнопки |
-| `icon` | `ReactNode` | — | Иконка |
-| `iconPosition` | `"before"` \| `"after"` | `before` | Позиция иконки относительно текста |
-| `appearance` | `"primary"` \| `"neutral"` \| `"critical"` | `primary` | Вариант оформления |
-| `size` | `"s"` \| `"m"` \| `"l"` | `m` | Размер |
-| `disabled` | `boolean` | `false` | Отключена |
-| `loading` | `boolean` | `false` | Состояние загрузки |
-| `fullWidth` | `boolean` | `false` | На всю ширину |
-| `className` | `string` | — | Дополнительный класс |
-| `view` | `"function"` \| `"filled"` \| `"outline"` \| `"simple"` \| `"tonal"` \| `"elevated"` | `filled` | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
-| `counter` | `Omit<CounterProps, "size" | "appearance">` | — | Пропсы для counter |
+| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `primary` | Вариант оформления |
 | `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom) |
+| `className` | `string` | — | Дополнительный класс |
+| `counter` | `Omit<CounterProps, "appearance" | "size">` | — | Пропсы для counter |
+| `disabled` | `boolean` | `false` | Отключена |
+| `fullWidth` | `boolean` | `false` | На всю ширину |
+| `icon` | `ReactNode` | — | Иконка |
+| `iconPosition` | `"after"` \| `"before"` | `before` | Позиция иконки относительно текста |
 | `innerRef` | `any` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.
 Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-
-## Storybook
-<StorybookEmbed storyId='components-button-button--playground' height={360} />
+| `label` | `string` | — | Текст кнопки |
+| `loading` | `boolean` | `false` | Состояние загрузки |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
+| `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | `filled` | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
 ## ButtonGroup
 
@@ -172,26 +246,23 @@ import { Button } from '@ds/button'
 
 Группирует связанные действия формы или диалога: основное (`primary`), вторичное (`secondary`) и третичное (`tertiary`). Задаёт единый размер, расстояние между кнопками и отвечает за порядок, выравнивание и перенос при нехватке места.
 
-## Демо
-<ButtonGroupDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - В футере формы или диалога: «Сохранить / Отмена», «Продолжить / Назад».
 - Для toolbar-действий одного уровня, которые нужно визуально связать.
 - Когда нужно одинаково растянуть все кнопки на ширину контейнера (`filled`).
 
 Когда **не** подходит: если действий больше трёх — используйте меню или split-button. Если действия разного приоритета и логики (напр. «Удалить» + «Настройки») — оставляйте их как независимые `Button`.
 
-## Смотри также
-- [Button](/components/button/button) — сам элемент действия.
+### Смотри также
+- **Button** — сам элемент действия.
 - [Паттерны форм](/patterns/form-patterns) — футеры с ButtonGroup.
 
-## Анатомия
+### Анатомия
 
-### Size
+#### Size
 Единый размер всех кнопок в группе — задаётся на корне: `s` — для плотных поверхностей, `m` — дефолт, `l` — для крупных форм. Отдельные кнопки не могут переопределить размер.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/button
 ```
@@ -200,60 +271,111 @@ pnpm add @ds/button
 import { ButtonGroup } from '@ds/button'
 ```
 
-## Примеры использования
-<Example
-  title='1. Пара главное + вторичное'
-  description='Типичный футер формы'
-  code={ButtonGroupPrimarySecondarySrc}
->
-  <ButtonGroupPrimarySecondary client:visible />
-</Example>
+### Примеры использования
+#### 1. Пара главное + вторичное
 
-<Example
-  title='2. Три действия'
-  description='tertiary / secondary / primary — порядок слева направо зафиксирован'
-  code={ButtonGroupThreeActionsSrc}
->
-  <ButtonGroupThreeActions client:visible />
-</Example>
+Типичный футер формы
 
-<Example
-  title='3. Вертикальная группа'
-  description='primary снизу — ближе к большому пальцу на мобильных'
-  code={ButtonGroupVerticalSrc}
->
-  <ButtonGroupVertical client:visible />
-</Example>
+```tsx
+import { ButtonGroup } from '@ds/button';
 
-<Example
-  title='4. Заливка (filled)'
-  description='Кнопки растягиваются на всю ширину контейнера'
-  code={ButtonGroupFilledSrc}
->
-  <ButtonGroupFilled client:visible />
-</Example>
+export function ButtonGroupPrimarySecondary() {
+  return (
+    <ButtonGroup
+      primaryAction={{ label: 'Сохранить', appearance: 'primary', view: 'filled' }}
+      secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline' }}
+    />
+  );
+}
+```
 
-<Example
-  title='5. Распорка через break'
-  description='tertiary слева, primary справа — wizard-футер'
-  code={ButtonGroupBreakSrc}
->
-  <ButtonGroupBreak client:visible />
-</Example>
+#### 2. Три действия
 
-## Props
+tertiary / secondary / primary — порядок слева направо зафиксирован
+
+```tsx
+import { ButtonGroup } from '@ds/button';
+
+export function ButtonGroupThreeActions() {
+  return (
+    <ButtonGroup
+      primaryAction={{ label: 'Сохранить', appearance: 'primary', view: 'filled' }}
+      secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline' }}
+      tertiaryAction={{ label: 'Помощь', appearance: 'neutral', view: 'simple' }}
+    />
+  );
+}
+```
+
+#### 3. Вертикальная группа
+
+primary снизу — ближе к большому пальцу на мобильных
+
+```tsx
+import { ButtonGroup } from '@ds/button';
+
+export function ButtonGroupVertical() {
+  return (
+    <ButtonGroup
+      vertical
+      primaryAction={{ label: 'Сохранить', appearance: 'primary', view: 'filled' }}
+      secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline' }}
+      tertiaryAction={{ label: 'Помощь', appearance: 'neutral', view: 'simple' }}
+    />
+  );
+}
+```
+
+#### 4. Заливка (filled)
+
+Кнопки растягиваются на всю ширину контейнера
+
+```tsx
+import { ButtonGroup } from '@ds/button';
+
+export function ButtonGroupFilled() {
+  return (
+    <div style={{ width: 320 }}>
+      <ButtonGroup
+        filled
+        primaryAction={{ label: 'Применить', appearance: 'primary', view: 'filled' }}
+        secondaryAction={{ label: 'Сбросить', appearance: 'neutral', view: 'outline' }}
+      />
+    </div>
+  );
+}
+```
+
+#### 5. Распорка через break
+
+tertiary слева, primary справа — wizard-футер
+
+```tsx
+import { ButtonGroup } from '@ds/button';
+
+export function ButtonGroupBreak() {
+  return (
+    <div style={{ width: 480 }}>
+      <ButtonGroup
+        break
+        tertiaryAction={{ label: 'Назад', appearance: 'neutral', view: 'simple' }}
+        primaryAction={{ label: 'Продолжить', appearance: 'primary', view: 'filled' }}
+      />
+    </div>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `break` | `boolean` | `false` | Перенос на новую строку при нехватке места |
+| `centered` | `boolean` | `false` | Центрирование по горизонтали |
+| `className` | `string` | — | Дополнительный класс |
 | `data-test-id` | `string` | — |  |
+| `filled` | `boolean` | `false` | Заливка контейнера |
 | `primaryAction` | `ActionProps` | — | Основное действие (filled) |
 | `secondaryAction` | `ActionProps` | — | Вторичное действие (outline), опционально |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер кнопок |
 | `tertiaryAction` | `ActionProps` | — | Третичное действие (simple/text-only), опционально |
-| `size` | `"s"` \| `"m"` \| `"l"` | `m` | Размер кнопок |
 | `vertical` | `boolean` | `false` | Вертикальное расположение |
-| `centered` | `boolean` | `false` | Центрирование по горизонтали |
-| `break` | `boolean` | `false` | Перенос на новую строку при нехватке места |
-| `filled` | `boolean` | `false` | Заливка контейнера |
-| `className` | `string` | — | Дополнительный класс |
-
-## Storybook
-<StorybookEmbed storyId='components-button-buttongroup--playground' height={360} />

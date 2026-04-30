@@ -4,15 +4,14 @@
 
 Навигационная цепочка, показывающая путь от корня до текущей страницы. При нехватке ширины автоматически сворачивает средние элементы в коллапс-группу, сокращает лейблы до `shortLabel` или заменяет на многоточие.
 
-## Демо
-<BreadcrumbsDemo client:only="react" />
-
 ## Когда использовать
 - Когда пользователь может находиться глубоко в иерархии разделов и ему нужно быстро вернуться на уровень выше.
 - В админках, каталогах, файловых менеджерах — там, где есть естественная вложенность.
 - Как дополнение к заголовку страницы, **не** как замена основной навигации.
 
 Когда **не** нужен: плоский сайт из 2–3 страниц, одностраничные приложения без иерархии, поисковые результаты.
+
+## Анатомия
 
 ### Size
 Плотность крошек: `xs` — для тесных поверхностей и сайдбаров, `s` — дефолт над заголовком страницы.
@@ -30,57 +29,73 @@ import { Breadcrumbs } from '@ds/breadcrumbs'
 ```
 
 ## Примеры использования
-<Example
-  title='Короткая цепочка'
-  description='Базовый сценарий — главная → раздел → текущая страница.'
-  code={BasicTrailSrc}
->
-  <BasicTrail client:only="react" />
-</Example>
+### Короткая цепочка
 
-<Example
-  title='Длинная цепочка с shortLabel'
-  description='Передайте shortLabel для элементов, которые стоит укоротить при нехватке места.'
-  code={LongTrailSrc}
->
-  <LongTrail client:only="react" />
-</Example>
-
-<Example
-  title='Кастомный разделитель'
-  description='Разделитель можно заменить любым коротким символом.'
-  code={CustomSeparatorSrc}
->
-  <CustomSeparator client:only="react" />
-</Example>
-
-## Props
-<PropsTable data={breadcrumbsDoc.Breadcrumbs} />
-
-## Storybook
-<StorybookEmbed storyId='components-breadcrumbs--playground' height={360} />
-
-## Breadcrumbs
+Базовый сценарий — главная → раздел → текущая страница.
 
 ```tsx
-import { Breadcrumbs } from '@ds/breadcrumbs'
+import { Breadcrumbs } from '@ds/breadcrumbs';
 
-export function Example() {
-  return <Breadcrumbs separator="›">Click me</Breadcrumbs>
+const items = [
+  { id: '1', label: 'Главная', href: '#' },
+  { id: '2', label: 'Документы', href: '#' },
+  { id: '3', label: 'Текущая страница' },
+];
+
+export function BasicTrail() {
+  return <Breadcrumbs items={items} />;
 }
 ```
 
-### Props
+### Длинная цепочка с shortLabel
 
+Передайте shortLabel для элементов, которые стоит укоротить при нехватке места.
+
+```tsx
+import { Breadcrumbs } from '@ds/breadcrumbs';
+
+const items = [
+  { id: '1', label: 'Литература', href: '#' },
+  { id: '2', label: 'Стихи', href: '#' },
+  { id: '3', label: 'Золотой век русской поэзии', shortLabel: 'Золотой век', href: '#' },
+  { id: '4', label: 'Михаил Лермонтов', shortLabel: 'Лермонтов', href: '#' },
+  { id: '5', label: 'Тема "Одиночество"', shortLabel: 'Одиночество', href: '#' },
+  { id: '6', label: 'Парус' },
+];
+
+export function LongTrail() {
+  return <Breadcrumbs items={items} />;
+}
+```
+
+### Кастомный разделитель
+
+Разделитель можно заменить любым коротким символом.
+
+```tsx
+import { Breadcrumbs } from '@ds/breadcrumbs';
+
+const items = [
+  { id: '1', label: 'Dashboard', href: '#' },
+  { id: '2', label: 'Projects', href: '#' },
+  { id: '3', label: 'Astro' },
+];
+
+export function CustomSeparator() {
+  return <Breadcrumbs items={items} separator='/' />;
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `items` | `Item[]` | — | Массив айтемов |
 | `className` | `string` | — | CSS-класс |
-| `separator` | `string` | `›` | Разделитель между пунктами |
-| `size` | `"xs"` \| `"s"` | `s` | Размер |
+| `data-test-id` | `string` | — |  |
 | `firstItemIconOnly` | `boolean` | `false` | Использовать иконку без лейбла в первом айтеме |
 | `inactiveLastItem` | `boolean` | `false` | Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick` |
+| `items` | `Item[]` | — | Массив айтемов |
+| `separator` | `string` | `›` | Разделитель между пунктами |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 
 ## Collapse
 
@@ -113,12 +128,12 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `renderMode` | `"full"` \| `"shortLabel"` \| `"ellipsis"` \| `"collapsed"` | — |  |
 | `className` | `string` | — |  |
-| `minWidth` | `number` | — |  |
 | `current` | `boolean` | — |  |
+| `data-test-id` | `string` | — |  |
 | `item` | `Item` | — |  |
+| `minWidth` | `number` | — |  |
+| `renderMode` | `"collapsed"` \| `"ellipsis"` \| `"full"` \| `"shortLabel"` | — |  |
 | `useIconOnly` | `boolean` | — |  |
 
 ## CrumbsTypography
@@ -135,8 +150,8 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `"xs"` \| `"s"` | — |  |
 | `className` | `string` | — |  |
+| `size` | `"s"` \| `"xs"` | — |  |
 
 ## HiddenChain
 
@@ -152,11 +167,11 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `separator` | `string` | — |  |
-| `items` | `Item[]` | — |  |
-| `size` | `"xs"` \| `"s"` | — |  |
-| `onConfigsBuilt` | `(config: BreadcrumbsConfig[]) => void` | — |  |
 | `firstItemIconOnly` | `boolean` | — |  |
+| `items` | `Item[]` | — |  |
+| `onConfigsBuilt` | `(config: BreadcrumbsConfig[]) => void` | — |  |
+| `separator` | `string` | — |  |
+| `size` | `"s"` \| `"xs"` | — |  |
 
 ## useBreadcrumbsLayout
 
@@ -199,8 +214,8 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `hidden` | `boolean` | — |  |
-| `className` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` | — |  |
 | `separator` | `string` | — |  |
+| `size` | `"s"` \| `"xs"` | — |  |

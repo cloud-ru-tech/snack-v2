@@ -28,7 +28,7 @@ import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 
 Панель, выезжающая со стороны экрана — для дополнительного контекста, фильтров, форм и пошаговых сценариев. `Drawer` собирает шапку (медиа, заголовок, подзаголовок, back-button, слот после заголовка), прокручиваемое тело и опциональный футер. Для ручной композиции используйте [`DrawerCustom`](./drawer-custom).
 
-## Когда использовать
+### Когда использовать
 - Форма, фильтры или детали, которые не помещаются в основной поток и требуют отдельного контекста.
 - Пошаговый сценарий с кнопкой «назад» в шапке — возвращение между экранами без потери контекста.
 - Нижний лист (bottom sheet) для компактных действий и подтверждений на мобильных устройствах.
@@ -36,10 +36,7 @@ import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 
 Когда **не** нужен: критическое подтверждение, блокирующее остальной интерфейс (берите `Modal`), всплывающий поповер рядом с элементом (`Popover`), тост-уведомление (не блокирует UI).
 
-## Figma
-<FigmaEmbed node={FIGMA_DRAWER} title='Drawer — Snack Ui Kit variables' />
-
-## Установка
+### Установка
 ```bash
 pnpm add @ds/drawer
 ```
@@ -48,56 +45,265 @@ pnpm add @ds/drawer
 import { Drawer, POSITION, WIDTH } from '@ds/drawer'
 ```
 
-## Примеры использования
-<Example title='Базовое использование' description='Контролируемое open/onClose, footer из `ButtonGroup`.' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
+### Примеры использования
+#### Базовое использование
 
-<Example title='Критическое действие' description='Critical primary, neutral outline secondary.' code={WithFooterSrc}>
-  <WithFooter client:visible />
-</Example>
+Контролируемое open/onClose, footer из `ButtonGroup`.
 
-<Example title='С медиа-слотом' description='`media` рендерится над шапкой на всю ширину панели.' code={WithMediaSrc}>
-  <WithMedia client:visible />
-</Example>
+```tsx
+import { Button, ButtonGroup } from '@ds/button';
+import { Drawer } from '@ds/drawer';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
-<Example title='Bottom sheet' description='`position="bottom"` + `heightAuto` — высота по контенту.' code={HeightAutoSrc}>
-  <HeightAuto client:visible />
-</Example>
+export function Basic() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
 
-<Example title='Вложенный Drawer' description='Родитель сдвигается влево при открытии дочернего.' code={NestedDrawerSrc}>
-  <NestedDrawer client:visible />
-</Example>
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <Drawer
+          open={open}
+          position='right'
+          onClose={close}
+          title='Заголовок'
+          subtitle='Короткое пояснение сценария'
+          content='Основной контент тела. Сюда помещается форма, предупреждение или подробный текст.'
+          footer={
+            <ButtonGroup
+              primaryAction={{ label: 'Продолжить', view: 'filled', onClick: close }}
+              secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
+            />
+          }
+        />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
 
-## Props
+#### Критическое действие
+
+Critical primary, neutral outline secondary.
+
+```tsx
+import { Button, ButtonGroup } from '@ds/button';
+import { Drawer } from '@ds/drawer';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
+
+export function WithFooter() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Удалить…' appearance='critical' view='outline' onClick={() => setOpen(true)} />
+        <Drawer
+          open={open}
+          position='right'
+          onClose={close}
+          title='Удалить запись'
+          subtitle='Действие необратимо.'
+          content='После подтверждения запись и все её ссылки исчезнут из списка.'
+          footer={
+            <ButtonGroup
+              primaryAction={{
+                label: 'Удалить',
+                appearance: 'critical',
+                view: 'filled',
+                onClick: close,
+              }}
+              secondaryAction={{
+                label: 'Отмена',
+                appearance: 'neutral',
+                view: 'outline',
+                onClick: close,
+              }}
+            />
+          }
+        />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+#### С медиа-слотом
+
+`media` рендерится над шапкой на всю ширину панели.
+
+```tsx
+import { Button } from '@ds/button';
+import { Drawer } from '@ds/drawer';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
+
+export function WithMedia() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть онбординг' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <Drawer
+          open={open}
+          position='right'
+          width='m'
+          onClose={close}
+          media={
+            <div
+              style={{
+                height: 200,
+                background: 'linear-gradient(135deg, rgb(102 126 234), rgb(118 75 162))',
+              }}
+            />
+          }
+          title='Добро пожаловать'
+          subtitle='Кратко о том, что изменилось в этой версии.'
+          content='Список ключевых улучшений и ссылки на подробности могут размещаться в теле.'
+        />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+#### Bottom sheet
+
+`position="bottom"` + `heightAuto` — высота по контенту.
+
+```tsx
+import { Button } from '@ds/button';
+import { Drawer } from '@ds/drawer';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
+
+export function HeightAuto() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть bottom sheet' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <Drawer
+          open={open}
+          position='bottom'
+          heightAuto
+          onClose={close}
+          title='Bottom sheet'
+          subtitle='Высота рассчитывается по контенту'
+          content='Подходит для компактных подтверждений на мобильных устройствах.'
+        />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+#### Вложенный Drawer
+
+Родитель сдвигается влево при открытии дочернего.
+
+```tsx
+import { Button } from '@ds/button';
+import { Drawer } from '@ds/drawer';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
+
+export function NestedDrawer() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [outerOpen, setOuterOpen] = useState(false);
+  const [innerOpen, setInnerOpen] = useState(false);
+
+  const closeAll = () => {
+    setInnerOpen(false);
+    setOuterOpen(false);
+  };
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть родительский' appearance='primary' view='filled' onClick={() => setOuterOpen(true)} />
+        <Drawer
+          open={outerOpen}
+          position='right'
+          width='m'
+          onClose={closeAll}
+          title='Родительский Drawer'
+          subtitle='При открытии вложенного — родитель сдвигается влево.'
+          content={
+            <Button label='Открыть вложенный' appearance='primary' view='outline' onClick={() => setInnerOpen(true)} />
+          }
+          nestedDrawer={
+            <Drawer
+              open={innerOpen}
+              position='right'
+              width='s'
+              onClose={() => setInnerOpen(false)}
+              title='Вложенный Drawer'
+              subtitle='Кнопка «назад» возвращает к родителю'
+              onBackButtonClick={() => setInnerOpen(false)}
+              content='Вложенный Drawer рендерится через проп nestedDrawer родителя.'
+            />
+          }
+        />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `open` | `boolean` | — | Управление состоянием показан/не показан. |
-| `onClose` | `() => void` | — | Колбэк закрытия |
-| `showBlackout` | `boolean` | `true` | Отображение темной подложки |
-| `position` | `"left"` \| `"right"` \| `"top"` \| `"bottom"` | — | Расположение |
-| `width` | `string | number` | `'s'` | Ширина (только при position: "left" | "right") |
-| `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" | "bottom"`).
-При `position: "left" | "right"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка). |
 | `className` | `string` | — | CSS-класс для элемента с контентом
 CSS-класс |
-| `rootClassName` | `string` | — | CSS-класс для корневого элемента |
-| `push` | `boolean | PushConfig` | — | Смещение при открытии "вложенного" компонента |
-| `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
-| `nestedDrawer` | `(ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> & ReactElement<DrawerProps, string | JSXElementConstructor<...>>)` | — | Вложенный Drawer |
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
+| `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
+| `content` | `ReactNode` | — | Контент |
+| `data-test-id` | `string` | — |  |
 | `footer` | `(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))` | — | Футер |
-| `title` | `ReactNode` | — | Заголовок |
+| `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" | "bottom"`).
+При `position: "left" | "right"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка). |
+| `media` | `ReactNode` | — | Медиа-контент |
+| `nestedDrawer` | `(ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> & ReactElement<DrawerProps, string | JSXElementConstructor<...>>)` | — | Вложенный Drawer |
+| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
+| `onClose` | `() => void` | — | Колбэк закрытия |
+| `open` | `boolean` | — | Управление состоянием показан/не показан. |
+| `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
+| `push` | `boolean | PushConfig` | — | Смещение при открытии "вложенного" компонента |
+| `rootClassName` | `string` | — | CSS-класс для корневого элемента |
+| `showBlackout` | `boolean` | `true` | Отображение темной подложки |
 | `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
 | `subtitle` | `ReactNode` | — | Подзаголовок |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
-| `content` | `ReactNode` | — | Контент |
-| `media` | `ReactNode` | — | Медиа-контент |
-
-## Storybook
-<StorybookEmbed storyId='components-drawer-drawer--playground' height={480} />
+| `title` | `ReactNode` | — | Заголовок |
+| `width` | `string | number` | `'s'` | Ширина (только при position: "left" | "right") |
 
 ## DrawerCustom
 
@@ -107,7 +313,7 @@ CSS-класс |
 
 Используйте `DrawerCustom`, когда стандартной шапки из `Drawer` недостаточно — например, нужна своя раскладка заголовка с несколькими действиями, кастомный футер с группами кнопок или нестандартный порядок секций.
 
-## Когда использовать
+### Когда использовать
 
 - Стандартная шапка / футер из `Drawer` не подходят — нужна своя разметка.
 - Сложная раскладка нескольких секций внутри одной панели.
@@ -115,7 +321,7 @@ CSS-класс |
 
 Во всех остальных случаях предпочтительнее `Drawer` — он дешевле в поддержке и даёт консистентные отступы.
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/drawer
@@ -125,43 +331,80 @@ pnpm add @ds/drawer
 import { DrawerCustom } from '@ds/drawer'
 ```
 
-## Анатомия
+### Анатомия
 
-### Position
+#### Position
 Сторона, с которой выезжает панель: `right` — стандартный side-panel (по умолчанию), `left` — для навигации и фильтров, `top`/`bottom` — для уведомлений и bottom-sheets на мобильных.
 
-### Width
+#### Width
 Предустановленная ширина панели для `position: left | right`: `s` — для узких форм и фильтров, `m` — дефолт, `l` — для сложных форм и просмотрщиков. Также принимает число или строку CSS для точного контроля.
 
-## Примеры использования
+### Примеры использования
 
-<Example title='Ручная композиция' description='Header + Body + Footer собираются вручную.' code={CustomCompositionSrc}>
-  <CustomComposition client:visible />
-</Example>
+#### Ручная композиция
 
-## Props
+Header + Body + Footer собираются вручную.
+
+```tsx
+import { Button } from '@ds/button';
+import { DrawerCustom } from '@ds/drawer';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
+
+export function CustomComposition() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div
+        ref={hostRef}
+        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Button label='Открыть custom drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+        <DrawerCustom open={open} position='right' width='s' onClose={close}>
+          <DrawerCustom.Header title='Ручная композиция' subtitle='Header + Body + Footer собираются вручную.' />
+          <DrawerCustom.Body
+            content={
+              <div style={{ padding: 24 }}>
+                <p>Тело Drawer собирается из произвольной разметки.</p>
+                <p>Скролл включается автоматически при большом содержимом.</p>
+              </div>
+            }
+          />
+          <DrawerCustom.Footer>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+            </div>
+          </DrawerCustom.Footer>
+        </DrawerCustom>
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — | CSS-класс для элемента с контентом |
+| `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
+| `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `data-test-id` | `string` | — |  |
-| `open` | `boolean` | — | Управление состоянием показан/не показан. |
-| `onClose` | `() => void` | — | Колбэк закрытия |
-| `showBlackout` | `boolean` | `true` | Отображение темной подложки |
-| `position` | `"left"` \| `"right"` \| `"top"` \| `"bottom"` | — | Расположение |
-| `width` | `string | number` | `'s'` | Ширина (только при position: "left" | "right") |
+| `footer` | `ReactElement<any, string | JSXElementConstructor<any>>` | — | Футер |
 | `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" | "bottom"`).
 При `position: "left" | "right"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка). |
-| `className` | `string` | — | CSS-класс для элемента с контентом |
-| `rootClassName` | `string` | — | CSS-класс для корневого элемента |
-| `push` | `boolean | PushConfig` | — | Смещение при открытии "вложенного" компонента |
-| `container` | `string | HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `nestedDrawer` | `ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>>` | — | Вложенный Drawer |
-| `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
-| `footer` | `ReactElement<any, string | JSXElementConstructor<any>>` | — | Футер |
-
-## Storybook
-
-<StorybookEmbed storyId='components-drawer-drawercustom--playground' height={480} />
+| `onClose` | `() => void` | — | Колбэк закрытия |
+| `open` | `boolean` | — | Управление состоянием показан/не показан. |
+| `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
+| `push` | `boolean | PushConfig` | — | Смещение при открытии "вложенного" компонента |
+| `rootClassName` | `string` | — | CSS-класс для корневого элемента |
+| `showBlackout` | `boolean` | `true` | Отображение темной подложки |
+| `width` | `string | number` | `'s'` | Ширина (только при position: "left" | "right") |
 
 ## ButtonClose
 
@@ -177,9 +420,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `onClick` | `() => void` | — | Действие при клике |
-| `className` | `string` | — | CSS-класс |
 
 ## DrawerBody
 
@@ -195,9 +438,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `content` | `ReactNode` | — | Контент |
 | `className` | `string` | — | CSS-класс |
+| `content` | `ReactNode` | — | Контент |
+| `data-test-id` | `string` | — |  |
 
 ## DrawerCustom.Body
 
@@ -213,9 +456,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `content` | `ReactNode` | — | Контент |
 | `className` | `string` | — | CSS-класс |
+| `content` | `ReactNode` | — | Контент |
+| `data-test-id` | `string` | — |  |
 
 ## DrawerCustom.Footer
 
@@ -231,8 +474,8 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
 
 ## DrawerCustom.Header
 
@@ -248,12 +491,12 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `title` | `ReactNode` | — | Заголовок |
+| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
 | `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
 | `subtitle` | `ReactNode` | — | Подзаголовок |
-| `className` | `string` | — | CSS-класс |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
+| `title` | `ReactNode` | — | Заголовок |
 
 ## DrawerCustomLayoutProvider
 
@@ -285,8 +528,8 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
 
 ## DrawerHeader
 
@@ -302,9 +545,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `title` | `ReactNode` | — | Заголовок |
+| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
 | `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
 | `subtitle` | `ReactNode` | — | Подзаголовок |
-| `className` | `string` | — | CSS-класс |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке "назад". Отсутствие скрывает кнопку |
+| `title` | `ReactNode` | — | Заголовок |

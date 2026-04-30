@@ -11,6 +11,8 @@
 
 Когда **не** нужен: для табличных данных (используйте `@ds/tabs`), для форм (обычная вертикальная прокрутка), для длинных списков (виртуализация).
 
+## Анатомия
+
 ### Controls visibility
 Режим отображения стрелок и пагинации: `hover` — элементы управления проявляются по наведению (чище в галереях), `always` — видны всегда (рекомендуется для touch и для onboarding).
 
@@ -24,61 +26,96 @@ import { Carousel } from '@ds/carousel'
 ```
 
 ## Примеры использования
-<Example title='1. Базовая карусель' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
-
-<Example
-  title='2. Три элемента в viewport'
-  description='showItems=3, кастомный gap'
-  code={ThreePerViewSrc}
->
-  <ThreePerView client:visible />
-</Example>
-
-<Example
-  title='3. Бесконечная с автопрокруткой'
-  description='infiniteScroll + autoSwipe=3 секунды на слайд'
-  code={InfiniteSrc}
->
-  <Infinite client:visible />
-</Example>
-
-## Props
-<PropsTable data={carouselDoc.Carousel} />
-
-## Storybook
-<StorybookEmbed storyId='components-carousel--playground' height={400} />
-
-## Carousel
+### 1. Базовая карусель
 
 ```tsx
-import { Carousel } from '@ds/carousel'
+import { Carousel } from '@ds/carousel';
 
-export function Example() {
-  return <Carousel showItems="1" scrollBy="Math.trunc(show)" transition="0.4" swipe swipeActivateLength="48" arrows pagination gap="var(--dimension-2m)" controlsVisibility="hover">Click me</Carousel>
+export function Basic() {
+  return (
+    <div style={{ width: 480 }}>
+      <Carousel>
+        <div style={{ height: 180, background: '#4f46e5', color: '#fff', display: 'grid', placeItems: 'center' }}>
+          Slide 1
+        </div>
+        <div style={{ height: 180, background: '#0ea5e9', color: '#fff', display: 'grid', placeItems: 'center' }}>
+          Slide 2
+        </div>
+      </Carousel>
+    </div>
+  );
 }
 ```
 
-### Props
+### 2. Три элемента в viewport
 
+showItems=3, кастомный gap
+
+```tsx
+import { Carousel } from '@ds/carousel';
+
+export function ThreePerView() {
+  return (
+    <div style={{ width: 600 }}>
+      <Carousel showItems={3} gap='12px'>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div
+            key={i}
+            style={{ height: 120, background: '#f3f4f6', display: 'grid', placeItems: 'center', borderRadius: 8 }}
+          >
+            Card {i + 1}
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  );
+}
+```
+
+### 3. Бесконечная с автопрокруткой
+
+infiniteScroll + autoSwipe=3 секунды на слайд
+
+```tsx
+import { Carousel } from '@ds/carousel';
+
+export function Infinite() {
+  return (
+    <div style={{ width: 480 }}>
+      <Carousel infiniteScroll autoSwipe={3}>
+        <div style={{ height: 180, background: '#10b981', color: '#fff', display: 'grid', placeItems: 'center' }}>
+          Slide 1
+        </div>
+        <div style={{ height: 180, background: '#f59e0b', color: '#fff', display: 'grid', placeItems: 'center' }}>
+          Slide 2
+        </div>
+        <div style={{ height: 180, background: '#ec4899', color: '#fff', display: 'grid', placeItems: 'center' }}>
+          Slide 3
+        </div>
+      </Carousel>
+    </div>
+  );
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `className` | `string` | — | CSS - класснейм |
-| `children` | `ReactElement<any, string | JSXElementConstructor<any>>[]` | — | Массив айтемов |
-| `showItems` | `number` | `1` | Кол-во отображаемых единовременно айтемов |
-| `scrollBy` | `number` | `Math.trunc(show)` | Сдвиг айтемов при смене 1 страницы |
-| `transition` | `number` | `0.4` | Время переключения 1 страницы (в s) |
-| `swipe` | `boolean` | `true` | Переключение страниц свайпом |
-| `autoSwipe` | `number` | — | Автоматическое переключение слайдов в секундах |
-| `swipeActivateLength` | `number` | `48` | Минимальная длина в px для активации свайпа |
 | `arrows` | `boolean` | `true` | Использовать стрелки для переключения страниц |
-| `pagination` | `boolean` | `true` | Использовать пагинацию для переключения страниц |
+| `autoSwipe` | `number` | — | Автоматическое переключение слайдов в секундах |
+| `children` | `ReactElement<any, string | JSXElementConstructor<any>>[]` | — | Массив айтемов |
+| `className` | `string` | — | CSS - класснейм |
+| `controlsVisibility` | `"always"` \| `"hover"` | `hover` | Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда |
+| `data-test-id` | `string` | — |  |
 | `gap` | `string` | `var(--dimension-2m)` | Расстояние между айтемами |
-| `state` | `{ page: number; onChange(page: number): void; }` | — | Управление состоянием извне |
 | `infiniteScroll` | `boolean` | `false` | Цикличная прокрутка |
-| `controlsVisibility` | `"hover"` \| `"always"` | `hover` | Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда |
+| `pagination` | `boolean` | `true` | Использовать пагинацию для переключения страниц |
+| `scrollBy` | `number` | `Math.trunc(show)` | Сдвиг айтемов при смене 1 страницы |
+| `showItems` | `number` | `1` | Кол-во отображаемых единовременно айтемов |
+| `state` | `{ page: number; onChange(page: number): void; }` | — | Управление состоянием извне |
+| `swipe` | `boolean` | `true` | Переключение страниц свайпом |
+| `swipeActivateLength` | `number` | `48` | Минимальная длина в px для активации свайпа |
+| `transition` | `number` | `0.4` | Время переключения 1 страницы (в s) |
 
 ## Control
 
@@ -94,10 +131,10 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onClick` | `(() => void)` | — |  |
-| `direction` | `"prev"` \| `"next"` | — |  |
 | `className` | `string` | — |  |
+| `data-test-id` | `string` | — |  |
+| `direction` | `"next"` \| `"prev"` | — |  |
+| `onClick` | `(() => void)` | — |  |
 
 ## ItemProvider
 
@@ -113,11 +150,11 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `showItems` | `number` | — |  |
+| `gap` | `string` | — |  |
+| `page` | `number` | — |  |
 | `scrollBy` | `number` | — |  |
+| `showItems` | `number` | — |  |
 | `slideCallback` | `(direction: number) => void` | — |  |
-| `transition` | `number` | — |  |
 | `swipe` | `boolean` | — |  |
 | `swipeActivateLength` | `number` | — |  |
-| `page` | `number` | — |  |
-| `gap` | `string` | — |  |
+| `transition` | `number` | — |  |

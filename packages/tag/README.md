@@ -23,17 +23,14 @@ import { Tag, TagRow } from '@ds/tag'
 
 Компактная метка. По умолчанию `<span>`; становится `<a>` при `href`; показывает кнопку удаления при `onDelete`.
 
-## Демо
-<TagDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Для категорий и тегов записи (Frontend, Backend, Design).
 - Для статусов (Активный, Ошибка, Ожидание).
 - Для выбранных фильтров в search/filter UI — со свойством `onDelete`.
 
 Когда **не** нужен: для interactive chip с чекбокс-семантикой — используйте отдельный компонент ChipGroup, если он есть в вашем наборе.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/tag
 ```
@@ -42,52 +39,49 @@ pnpm add @ds/tag
 import { Tag } from '@ds/tag'
 ```
 
-## Примеры использования
-<Example
-  title='1. Базовый тег'
-  description='Простая метка с appearance'
-  code={BasicSrc}
->
-  <Basic client:visible />
-</Example>
+### Примеры использования
+#### 1. Базовый тег
 
-<Example
-  title='2. Удаляемый тег'
-  description='onDelete показывает кнопку ✕'
-  code={RemovableSrc}
->
-  <Removable client:visible />
-</Example>
+Простая метка с appearance
 
-<Example
-  title='3. Тег-ссылка'
-  description="href превращает <span> в <a>; target='_blank' → rel='noopener noreferrer' автоматически"
-  code={AsLinkSrc}
->
-  <AsLink client:visible />
-</Example>
+```tsx
+import { Tag } from '@ds/tag';
 
-## Props
+export function Basic() {
+  return <Tag label='Frontend' appearance='blue' />;
+}
+```
+
+#### 2. Удаляемый тег
+
+onDelete показывает кнопку ✕
+
+```tsx
+import { Tag } from '@ds/tag';
+
+export function Removable() {
+  return <Tag label='React' appearance='blue' onDelete={() => alert('remove')} />;
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
-| `label` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — |  |
-| `className` | `string` | — |  |
-| `tabIndex` | `number` | — |  |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — |  |
 | `as` | `"a"` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
+| `className` | `string` | — |  |
+| `data-test-id` | `string` | — |  |
+| `label` | `string` | — |  |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
+| `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
+| `tabIndex` | `number` | — |  |
 
-## Storybook
-<StorybookEmbed storyId='components-tag-tag--playground' height={320} />
+### Анатомия
 
-## Анатомия
-
-### Size
+#### Size
 `xs` — для плотных списков и инлайн-меток, `s` — дефолт, `m` — для заголовков и акцентных блоков.
 
-### Appearance
+#### Appearance
 Семантический/декоративный цвет: `neutral` — нейтральный, `primary` — акцент, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `green` — успех, `blue` — инфо, `violet`/`pink` — декоративные.
 
 ## TagRow
@@ -96,17 +90,13 @@ import { Tag } from '@ds/tag'
 
 Обёртка для нескольких `Tag` подряд. Принимает массив `items` и опционально ограничивает видимые метки по количеству строк с кнопкой «+N ещё» для раскрытия.
 
-## Демо
-
-<TagRowDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 
 - Для группы тегов записи в карточке списка (обычно 3–8 штук).
 - Для выбранных фильтров, которые занимают больше одной строки.
 - Везде, где количество меток может превышать доступную ширину.
 
-## Установка
+### Установка
 
 ```bash
 pnpm add @ds/tag
@@ -116,47 +106,28 @@ pnpm add @ds/tag
 import { TagRow } from '@ds/tag'
 ```
 
-## Примеры использования
+### Примеры использования
 
-<Example
-  title='Ограничение по строкам'
-  description='rowLimit=1 прячет метки в кнопку +N ещё'
-  code={RowTruncatedSrc}
->
-  <RowTruncated client:visible />
-</Example>
+#### Ограничение по строкам
 
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `items` | `TagRowItem[]` | — |  |
-| `rowLimit` | `number` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
-| `moreButtonLabel` | `string` | — |  |
-| `className` | `string` | — |  |
-| `onItemRemove` | `((item: string) => void)` | — |  |
-
-## Storybook
-
-<StorybookEmbed storyId='components-tag-tagrow--playground' height={320} />
-
-## Анатомия
-
-### Size
-Применяется ко всем тегам в ряду: `xs`, `s`, `m`. Наследуется вложенными `Tag`.
-
-### Appearance
-Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.
-
-## isTagLinkProps
+rowLimit=1 прячет метки в кнопку +N ещё
 
 ```tsx
-import { isTagLinkProps } from '@ds/tag'
+import { TagRow } from '@ds/tag';
 
-export function Example() {
-  return <isTagLinkProps>Click me</isTagLinkProps>
+export function RowTruncated() {
+  return (
+    <TagRow
+      rowLimit={1}
+      items={[
+        { id: '1', label: 'Frontend', appearance: 'blue' },
+        { id: '2', label: 'Backend', appearance: 'green' },
+        { id: '3', label: 'Design', appearance: 'violet' },
+        { id: '4', label: 'DevOps', appearance: 'orange' },
+        { id: '5', label: 'Data', appearance: 'yellow' },
+      ]}
+    />
+  );
 }
 ```
 
@@ -164,14 +135,21 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
-| `label` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | — |  |
 | `className` | `string` | — |  |
-| `tabIndex` | `number` | — |  |
-| `as` | `"a"` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
+| `data-test-id` | `string` | — |  |
+| `items` | `TagRowItem[]` | — |  |
+| `moreButtonLabel` | `string` | — |  |
+| `onItemRemove` | `((item: string) => void)` | — |  |
+| `rowLimit` | `number` | — |  |
+| `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
+
+### Анатомия
+
+#### Size
+Применяется ко всем тегам в ряду: `xs`, `s`, `m`. Наследуется вложенными `Tag`.
+
+#### Appearance
+Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.
 
 ## TagBase
 
@@ -187,12 +165,12 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
-| `label` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | `xs` |  |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` |  |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` |  |
 | `className` | `string` | — |  |
+| `data-test-id` | `string` | — |  |
+| `label` | `string` | — |  |
+| `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
+| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
 | `tabIndex` | `number` | — |  |
 
 ## TagLink
@@ -209,14 +187,14 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` |  |
+| `as` | `ElementType` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
+| `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `label` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | `xs` |  |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` |  |
-| `className` | `string` | — |  |
-| `tabIndex` | `number` | — |  |
 | `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
-| `as` | `ElementType` | — | Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) |
+| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
+| `tabIndex` | `number` | — |  |
 
 ## TagList
 
@@ -233,9 +211,9 @@ export function Example() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `items` | `TagRowItemInner[]` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | `xs` |  |
 | `onItemRemove` | `((item: string) => void)` | — |  |
 | `setTagRef` | `SetTagRef` | — |  |
+| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
 
 ## TagMore
 
@@ -251,11 +229,11 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `TagRowItemInner[]` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | `xs` |  |
-| `text` | `string` | `` |  |
 | `buttonRef` | `Ref<HTMLButtonElement>` | — |  |
+| `items` | `TagRowItemInner[]` | — |  |
 | `onItemRemove` | `((item: string) => void)` | — |  |
+| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` |  |
+| `text` | `string` | `` |  |
 
 ## TagRowSimple
 
@@ -271,11 +249,11 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — |  |
 | `items` | `TagRowItemInner[]` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
 | `onItemRemove` | `((item: string) => void)` | — |  |
 | `setTagRef` | `((item: TagRowItemInner, index: number) => Ref<HTMLDivElement>)` | — |  |
-| `className` | `string` | — |  |
+| `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
 
 ## TagRowTruncated
 
@@ -291,9 +269,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `TagRowItemInner[]` | — |  |
-| `rowLimit` | `number` | — |  |
-| `moreButtonLabel` | `string` | — |  |
-| `size` | `"xs"` \| `"s"` \| `"m"` | — |  |
 | `className` | `string` | — |  |
+| `items` | `TagRowItemInner[]` | — |  |
+| `moreButtonLabel` | `string` | — |  |
 | `onItemRemove` | `((item: string) => void)` | — |  |
+| `rowLimit` | `number` | — |  |
+| `size` | `"m"` \| `"s"` \| `"xs"` | — |  |

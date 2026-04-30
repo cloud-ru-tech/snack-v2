@@ -4,8 +4,6 @@
 
 Пакет экспортирует сгенерированные компоненты `*SVG` / `*SpriteSVG` и вспомогательный [`Sprite`](#sprite) для подключения спрайтов. Цвет наследуется через `currentColor`.
 
-<IconsDemo client:visible />
-
 ## Установка
 
 ```bash
@@ -45,23 +43,9 @@ export function App() {
 
 ## Props
 
-<PropsTable data={iconsDoc.Sprite} />
-
-Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.
-
-## Sprite
-
-```tsx
-import { Sprite } from '@ds/icons'
-
-export function Example() {
-  return <Sprite>Click me</Sprite>
-}
-```
-
-### Props
-
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `content` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
+
+Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.

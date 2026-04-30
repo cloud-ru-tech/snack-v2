@@ -10,6 +10,8 @@
 pnpm add @ds/utils
 ```
 
+## Примеры использования
+
 ### useThemeConfig
 
 Возвращает текущую тему, CSS-класс из `themeMap` и функцию переключения `changeTheme`.
@@ -276,8 +278,8 @@ export function Example() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | Дети, которые будут обёрнуты в провайдер |
-| `themeMap` | `Record<string, string>` | — | Объект с указанием соответсвия темы и css-класса |
 | `defaultTheme` | `string` | — | Значение темы по умолчанию |
+| `themeMap` | `Record<string, string>` | — | Объект с указанием соответсвия темы и css-класса |
 
 ## useThemeConfig
 

@@ -4,9 +4,6 @@
 
 `Typography` — единая точка входа для любого текстового стиля. Комбинация `variant` × `size` × `weight` покрывает всю типографическую шкалу дизайн-системы; тег (`h1`/`h2`/`p`/`label`) выбирается автоматически и переопределяется через `as`.
 
-## Демо
-<TypographyDemo client:visible />
-
 ## Когда использовать
 - Любой текст в интерфейсе — заголовки, параграфы, подписи, метки.
 - Вместо точечных CSS-классов на `font-size`/`font-weight`.
@@ -23,27 +20,70 @@ import { Typography, VARIANT, SIZE, WEIGHT } from '@ds/typography'
 ```
 
 ## Примеры использования
-<Example title='Базовое использование' code={TypographyBasicSrc}>
-  <TypographyBasic client:visible />
-</Example>
+### Базовое использование
 
-<Example title='Заголовок раздела' code={TypographyHeadlineSrc}>
-  <TypographyHeadline client:visible />
-</Example>
+```tsx
+import { Typography } from '@ds/typography';
 
-<Example title='Моноширинный' code={TypographyMonoSrc}>
-  <TypographyMono client:visible />
-</Example>
+export function TypographyBasic() {
+  return <Typography>Обычный body-текст по умолчанию</Typography>;
+}
+```
 
-<Example title='Кастомный тег (полиморфизм)' code={TypographyPolymorphicSrc}>
-  <TypographyPolymorphic client:visible />
-</Example>
+### Заголовок раздела
+
+```tsx
+import { Typography } from '@ds/typography';
+
+export function TypographyHeadline() {
+  return (
+    <Typography variant='headline' size='l'>
+      Заголовок страницы
+    </Typography>
+  );
+}
+```
+
+### Моноширинный
+
+```tsx
+import { Typography } from '@ds/typography';
+
+export function TypographyMono() {
+  return (
+    <Typography variant='body' weight='mono'>
+      const answer = 42
+    </Typography>
+  );
+}
+```
+
+### Кастомный тег (полиморфизм)
+
+```tsx
+import { Typography } from '@ds/typography';
+
+export function TypographyPolymorphic() {
+  return (
+    <Typography as='span' variant='body'>
+      Body внутри inline-потока
+    </Typography>
+  );
+}
+```
 
 ## Props
-<PropsTable data={typographyDoc.Typography} />
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `ElementType` | — | HTML тег для рендеринга |
+| `children` | `ReactNode` | — | Дочерние элементы |
+| `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
+| `size` | `"l"` \| `"m"` \| `"s"` | `SIZE.m` | Размер типографики |
+| `variant` | `"body"` \| `"display"` \| `"headline"` \| `"label"` \| `"title"` | `VARIANT.body` | Вариант типографики |
+| `weight` | `"mono"` \| `"regular"` \| `"thin"` | `WEIGHT.regular` | Начертание шрифта |
 
-## Storybook
-<StorybookEmbed storyId='components-typography--playground' height={300} />
+## Анатомия
 
 ### Variant
 Типографическая роль: `display` — крупные промо-заголовки, `headline` — заголовки секций, `title` — заголовки подсекций и карточек, `label` — подписи и бэйджи, `body` — основной текст.
@@ -53,25 +93,3 @@ import { Typography, VARIANT, SIZE, WEIGHT } from '@ds/typography'
 
 ### Weight
 Начертание: `regular` — дефолт, `thin` — облегчённое (display/headline), `mono` — моноширинное (коды, значения, ID).
-
-## Typography
-
-```tsx
-import { Typography } from '@ds/typography'
-
-export function Example() {
-  return <Typography variant="VARIANT.body" weight="WEIGHT.regular">Click me</Typography>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | — | Дочерние элементы |
-| `variant` | `"title"` \| `"display"` \| `"headline"` \| `"label"` \| `"body"` | `VARIANT.body` | Вариант типографики |
-| `size` | `"s"` \| `"m"` \| `"l"` | `SIZE.m` | Размер типографики |
-| `weight` | `"regular"` \| `"thin"` \| `"mono"` | `WEIGHT.regular` | Начертание шрифта |
-| `as` | `ElementType` | — | HTML тег для рендеринга |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |

@@ -4,15 +4,14 @@
 
 Компактный цветной тег для маркетинговых подписей (`NEW`, `SALE`, `BETA`), категорий и акцентных меток. Рендерится как `<div>` — или как `<button>`, если передан `onClick`.
 
-## Демо
-<PromoTagDemo client:visible />
-
 ## Когда использовать
 - Пометка карточки товара/услуги — новинка, скидка, хит.
 - Цветовая категоризация в списках (темы, теги статей).
 - Статусная метка, которая **не** несёт функциональной семантики (для статусов берите `Status`).
 
 Когда **не** нужен: интерактивные chip'ы с удалением — берите `Chip`/`Tag`; функциональные статусы — берите `Status`.
+
+## Анатомия
 
 ### Appearance
 Цветовая палитра: `primary` — брендовый акцент, `neutral` — без окраски; `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink` — декоративные категории.
@@ -33,48 +32,45 @@ import { PromoTag } from '@ds/promo-tag'
 ```
 
 ## Примеры использования
-<Example title='Базовый тег' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
-
-<Example title='Палитра' description='Основные цветовые appearance.' code={ColorsSrc}>
-  <Colors client:visible />
-</Example>
-
-<Example
-  title='Кликабельный тег'
-  description='Передайте onClick — компонент отрендерится как <button>.'
-  code={ClickableSrc}
->
-  <Clickable client:visible />
-</Example>
-
-## Props
-<PropsTable data={promoTagDoc.PromoTag} />
-
-## Storybook
-<StorybookEmbed storyId='components-promotag--playground' height={240} />
-
-## PromoTag
+### Базовый тег
 
 ```tsx
-import { PromoTag } from '@ds/promo-tag'
+import { PromoTag } from '@ds/promo-tag';
 
-export function Example() {
-  return <PromoTag appearance="primary" role="accent" beforeContent="null" afterContent="null">Click me</PromoTag>
+export function Basic() {
+  // eslint-disable-next-line jsx-a11y/aria-role -- `role` здесь — пропс компонента PromoTag, не ARIA-атрибут
+  return <PromoTag text='NEW' appearance='primary' role='accent' />;
 }
 ```
 
-### Props
+### Палитра
 
+Основные цветовые appearance.
+
+```tsx
+import { PromoTag } from '@ds/promo-tag';
+
+export function Colors() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <PromoTag text='Primary' appearance='primary' />
+      <PromoTag text='Green' appearance='green' />
+      <PromoTag text='Red' appearance='red' />
+      <PromoTag text='Violet' appearance='violet' />
+    </div>
+  );
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `text` | `string` | — | Текст компонента |
-| `appearance` | `"neutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `primary` | Внешний вид |
-| `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
-| `className` | `string` | — | CSS-класс |
-| `onClick` | `((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбэк для обработки клика на тег |
-| `beforeContent` | `ReactNode` | `null` | Контент перед текстом |
 | `afterContent` | `ReactNode` | `null` | Контент после текста |
-| `size` | `"xs"` \| `"s"` \| `"m"` | `xs` | Размер |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
+| `beforeContent` | `ReactNode` | `null` | Контент перед текстом |
+| `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
+| `onClick` | `((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбэк для обработки клика на тег |
+| `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
+| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` | Размер |
+| `text` | `string` | — | Текст компонента |

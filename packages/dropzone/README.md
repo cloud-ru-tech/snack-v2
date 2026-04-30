@@ -28,22 +28,22 @@ import { Dropzone, FileUpload, HiddenDropZone } from '@ds/dropzone'
 
 Видимая зона для загрузки файлов — перетаскиванием или кликом. Подходит, когда загрузка файлов является самостоятельным действием на странице (галерея, форма с вложениями, мастер импорта).
 
-## Когда использовать
+### Когда использовать
 - Когда загрузка файлов — отдельная область UI, которую пользователь сразу видит.
 - Когда нужно подсказать контекст через контент слота (иконка, подпись, список форматов).
 - Когда требуется поддержать сразу и drag-n-drop, и клик по зоне.
 
-Когда **не** подходит: если загрузка — вспомогательное действие в форме, используйте [FileUpload](/components/dropzone/file-upload) с обычной кнопкой.
+Когда **не** подходит: если загрузка — вспомогательное действие в форме, используйте **FileUpload** с обычной кнопкой.
 
-## Анатомия
+### Анатомия
 
-### Size
+#### Size
 Три размера: `s` для плотных форм, `m` — дефолт, `l` — для крупных страниц загрузки.
 
-### Upload mode
+#### Upload mode
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/dropzone
 ```
@@ -52,45 +52,79 @@ pnpm add @ds/dropzone
 import { Dropzone } from '@ds/dropzone'
 ```
 
-## Примеры использования
-<Example
-  title='Базовая зона'
-  description='Multiple-режим, размер M'
-  code={DropzoneBasicSrc}
->
-  <DropzoneBasic client:visible />
-</Example>
+### Примеры использования
+#### Базовая зона
 
-<Example
-  title='Одно изображение'
-  description='Режим single и фильтр accept'
-  code={DropzoneSingleImageSrc}
->
-  <DropzoneSingleImage client:visible />
-</Example>
+Multiple-режим, размер M
 
-<Example
-  title='Disabled'
-  description='Состояние заблокированной загрузки'
-  code={DropzoneDisabledSrc}
->
-  <DropzoneDisabled client:visible />
-</Example>
+```tsx
+import { Dropzone } from '@ds/dropzone';
+import { useState } from 'react';
 
-## Props
+export function DropzoneBasic() {
+  const [files, setFiles] = useState<File[]>([]);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Dropzone onFilesUpload={uploaded => setFiles(prev => [...prev, ...uploaded])}>
+        <span>Перетащите файлы или нажмите, чтобы выбрать</span>
+      </Dropzone>
+      {files.length > 0 && (
+        <ul>
+          {files.map((f, i) => (
+            <li key={`${f.name}-${i}`}>
+              {f.name} — {Math.ceil(f.size / 1024)} KB
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+```
+
+#### Одно изображение
+
+Режим single и фильтр accept
+
+```tsx
+import { Dropzone } from '@ds/dropzone';
+
+export function DropzoneSingleImage() {
+  return (
+    <Dropzone mode='single' accept='image/*' onFilesUpload={() => {}}>
+      <span>Только одно изображение</span>
+    </Dropzone>
+  );
+}
+```
+
+#### Disabled
+
+Состояние заблокированной загрузки
+
+```tsx
+import { Dropzone } from '@ds/dropzone';
+
+export function DropzoneDisabled() {
+  return (
+    <Dropzone disabled onFilesUpload={() => {}}>
+      <span>Загрузка недоступна</span>
+    </Dropzone>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
-| `children` | `ReactNode` | — | Контент dropzone |
-| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
-| `mode` | `"single"` \| `"multiple"` | `multiple` | Режим загрузки |
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
-| `size` | `"s"` \| `"m"` \| `"l"` | `m` | Размер компонента |
+| `children` | `ReactNode` | — | Контент dropzone |
 | `className` | `string` | — | CSS-класс |
-
-## Storybook
-<StorybookEmbed storyId='components-dropzone-dropzone--playground' height={420} />
+| `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
+| `mode` | `"multiple"` \| `"single"` | `multiple` | Режим загрузки |
+| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента |
 
 ## FileUpload
 
@@ -98,19 +132,19 @@ import { Dropzone } from '@ds/dropzone'
 
 Невизуальная обёртка над произвольным триггером — как правило, кнопкой. Клик по триггеру открывает системный диалог выбора файлов. Используйте, когда загрузка — вспомогательное действие в форме или toolbar, и не нужна отдельная зона перетаскивания.
 
-## Когда использовать
+### Когда использовать
 - Кнопка «Загрузить файлы» рядом с другими полями формы.
 - Иконка-загрузка в toolbar.
 - Скрытый триггер, когда загрузка инициируется программно через клик на дочерний элемент.
 
-Когда **не** подходит: если нужна явная зона drag-n-drop — используйте [Dropzone](/components/dropzone/dropzone) или [HiddenDropZone](/components/dropzone/hidden-drop-zone).
+Когда **не** подходит: если нужна явная зона drag-n-drop — используйте **Dropzone** или **HiddenDropZone**.
 
-## Анатомия
+### Анатомия
 
-### Upload mode
+#### Upload mode
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/dropzone
 ```
@@ -119,25 +153,31 @@ pnpm add @ds/dropzone
 import { FileUpload } from '@ds/dropzone'
 ```
 
-## Примеры использования
-<Example
-  title='Кнопка-триггер'
-  description='FileUpload оборачивает Button'
-  code={FileUploadBasicSrc}
->
-  <FileUploadBasic client:visible />
-</Example>
+### Примеры использования
+#### Кнопка-триггер
 
-## Props
+FileUpload оборачивает Button
+
+```tsx
+import { Button } from '@ds/button';
+import { FileUpload } from '@ds/dropzone';
+
+export function FileUploadBasic() {
+  return (
+    <FileUpload onFilesUpload={() => {}}>
+      <Button type='button' label='Загрузить файлы' />
+    </FileUpload>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
-| `mode` | `"single"` \| `"multiple"` | `multiple` | Режим |
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
-
-## Storybook
-<StorybookEmbed storyId='components-dropzone-fileupload--playground' height={320} />
+| `data-test-id` | `string` | — |  |
+| `mode` | `"multiple"` \| `"single"` | `multiple` | Режим |
+| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
 
 ## HiddenDropZone
 
@@ -145,14 +185,14 @@ import { FileUpload } from '@ds/dropzone'
 
 Скрытая зона загрузки, которая становится видимой только во время перетаскивания файлов. Оверлей рендерится поверх произвольного контента (форма, карточка, редактор) и позволяет прикрепить файлы к существующей сущности без отдельной визуальной области.
 
-## Когда использовать
+### Когда использовать
 - Прикрепление файлов к форме, где уже есть другие поля и нет места под явную зону.
 - Drop-to-attach поверх карточки задачи, чата, редактора.
 - Массовая загрузка поверх полноэкранного списка.
 
-Когда **не** подходит: когда загрузка — первичный сценарий страницы и должна быть видна сразу — используйте [Dropzone](/components/dropzone/dropzone).
+Когда **не** подходит: когда загрузка — первичный сценарий страницы и должна быть видна сразу — используйте **Dropzone**.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/dropzone
 ```
@@ -161,30 +201,39 @@ pnpm add @ds/dropzone
 import { HiddenDropZone } from '@ds/dropzone'
 ```
 
-## Примеры использования
-<Example
-  title='Оверлей над формой'
-  description='HiddenDropZone накрывает форму при drag'
-  code={HiddenDropZoneBasicSrc}
->
-  <HiddenDropZoneBasic client:visible />
-</Example>
+### Примеры использования
+#### Оверлей над формой
 
-## Props
+HiddenDropZone накрывает форму при drag
+
+```tsx
+import { HiddenDropZone } from '@ds/dropzone';
+
+export function HiddenDropZoneBasic() {
+  return (
+    <HiddenDropZone onFilesUpload={() => {}} content={<span>Отпустите, чтобы прикрепить файлы</span>}>
+      <form>
+        <label>
+          Имя <input type='text' />
+        </label>
+      </form>
+    </HiddenDropZone>
+  );
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
-| `disabled` | `boolean` | — | Деактивирован ли компонент |
-| `mode` | `"single"` \| `"multiple"` | `multiple` | Режим загрузки |
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
-| `size` | `"s"` \| `"m"` \| `"l"` | `m` | Размер компонента |
+| `children` | `ReactNode` | — | Дочерний контент, поверх которого отображается dropzone при drag |
 | `className` | `string` | — | CSS-класс |
 | `content` | `ReactNode` | — | Контент dropzone при drag (overlay) |
-| `children` | `ReactNode` | — | Дочерний контент, поверх которого отображается dropzone при drag |
-
-## Storybook
-<StorybookEmbed storyId='components-dropzone-hiddendropzone--playground' height={420} />
+| `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | — | Деактивирован ли компонент |
+| `mode` | `"multiple"` \| `"single"` | `multiple` | Режим загрузки |
+| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента |
 
 ## PrivateDropZone
 
@@ -200,12 +249,12 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `isOver` | `boolean` | — |  |
-| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
-| `children` | `ReactNode` | — | Контент dropzone |
-| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
-| `mode` | `"single"` \| `"multiple"` | `multiple` | Режим |
 | `accept` | `string` | — | Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута |
-| `size` | `"s"` \| `"m"` \| `"l"` | `m` | Размер компонента |
+| `children` | `ReactNode` | — | Контент dropzone |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | `false` | Деактивирован ли компонент |
+| `isOver` | `boolean` | — |  |
+| `mode` | `"multiple"` \| `"single"` | `multiple` | Режим |
+| `onFilesUpload` | `(files: File[]) => void` | — | Колбек загрузки файла |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента |

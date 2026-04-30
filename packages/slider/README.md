@@ -21,58 +21,63 @@ import { Slider } from '@ds/slider'
 ```
 
 ## Примеры использования
-<Example title='Базовый слайдер' description='Одно значение, без меток' code={BasicSrc}>
-  <Basic client:only="react" />
-</Example>
+### Базовый слайдер
 
-<Example title='Диапазон' description="range + handleTip — видно оба значения" code={RangeSrc}>
-  <Range client:only="react" />
-</Example>
+Одно значение, без меток
 
-<Example title='С метками' code={MarksSrc}>
-  <Marks client:only="react" />
-</Example>
+```tsx
+import { Slider } from '@ds/slider';
 
-<Example title='Disabled' code={DisabledSrc}>
-  <Disabled client:only="react" />
-</Example>
+export function Basic() {
+  return <Slider min={0} max={100} defaultValue={40} />;
+}
+```
+
+### Диапазон
+
+range + handleTip — видно оба значения
+
+```tsx
+import { Slider } from '@ds/slider';
+
+export function Range() {
+  return <Slider range min={0} max={100} defaultValue={[20, 70]} handleTip />;
+}
+```
+
+### С метками
+
+```tsx
+import { Slider } from '@ds/slider';
+
+export function Marks() {
+  return (
+    <Slider
+      min={0}
+      max={100}
+      step={25}
+      marks={{ 0: '0', 25: '25', 50: '50', 75: '75', 100: '100' }}
+      defaultValue={50}
+      handleTip
+    />
+  );
+}
+```
+
+### Disabled
+
+```tsx
+import { Slider } from '@ds/slider';
+
+export function Disabled() {
+  return <Slider min={0} max={100} defaultValue={40} disabled />;
+}
+```
 
 ## Props
-<PropsTable data={sliderDoc.Slider} />
-
-## Storybook
-<StorybookEmbed storyId='components-slider--playground' height={360} />
-
-## getSortedMarkValues
-
-```tsx
-import { getSortedMarkValues } from '@ds/slider'
-
-export function Example() {
-  return <getSortedMarkValues>Click me</getSortedMarkValues>
-}
-```
-
-### Props
-
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-
-## Slider
-
-```tsx
-import { Slider } from '@ds/slider'
-
-export function Example() {
-  return <Slider>Click me</Slider>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `handleTip` | `boolean` | — | Показывать значение в тултипе на ручке |
-| `tipFormatter` | `((value: string | number) => ReactNode)` | — | Форматирование подсказки; по умолчанию — сырое значение |
-| `marksEqualSpacing` | `boolean` | — | Включение равномерного распределения при нелинейных значениях меток. |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
+| `handleTip` | `boolean` | — | Показывать значение в тултипе на ручке |
+| `marksEqualSpacing` | `boolean` | — | Включение равномерного распределения при нелинейных значениях меток. |
+| `tipFormatter` | `((value: string | number) => ReactNode)` | — | Форматирование подсказки; по умолчанию — сырое значение |

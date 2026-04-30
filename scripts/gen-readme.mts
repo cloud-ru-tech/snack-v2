@@ -70,14 +70,15 @@ for (const pkgDir of pkgDirs) {
     continue
   }
 
-  const indexRaw = readFileSync(indexPath, 'utf-8')
-  const frontmatter = parseFrontmatter(indexRaw)
-  const indexBody = stripFrontmatter(indexRaw)
-
   // Find per-component MDX files (everything in docs/ except index.mdx / overview.mdx)
   const componentMdxFiles = globSync('docs/*.mdx', { cwd: pkgDir, absolute: true }).filter(
     (f) => !['index.mdx', 'overview.mdx'].includes(basename(f)),
   )
+
+  const consumedComponents = new Set<string>()
+  const indexRaw = readFileSync(indexPath, 'utf-8')
+  const frontmatter = parseFrontmatter(indexRaw)
+  const indexBody = renderMdxBody(indexRaw, indexPath, propsData, consumedComponents)
 
   const readme = buildReadme({
     frontmatter,
@@ -85,6 +86,7 @@ for (const pkgDir of pkgDirs) {
     componentMdxFiles,
     propsData,
     npmName,
+    consumedComponents,
   })
 
   writeFileSync(resolve(pkgDir, 'README.md'), readme)
@@ -100,20 +102,20 @@ function buildReadme({
   componentMdxFiles,
   propsData,
   npmName,
+  consumedComponents,
 }: {
   frontmatter: Record<string, string>
   indexBody: string
   componentMdxFiles: string[]
   propsData: Record<string, ComponentDoc>
   npmName: string
+  consumedComponents: Set<string>
 }): string {
   const description = frontmatter.description ?? ''
   const title = frontmatter.title ?? npmName
 
-  // Transform the index body for README (remove imports, JSX components, doc links)
-  const indexSection = transformIndexBody(indexBody, npmName)
-
-  // Build per-component sections — sorted by MDX frontmatter `order`, then name
+  // Per-component sections — sorted by MDX `order`, then name. Skip components
+  // whose props table is already inlined in the index body or per-component MDX.
   const componentSections = Object.entries(propsData)
     .map(([name, doc]) => {
       const mdxFile = findComponentMdx(name, componentMdxFiles)
@@ -123,79 +125,232 @@ function buildReadme({
       return { name, doc, mdxFile, order }
     })
     .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name))
-    .map(({ name, doc, mdxFile }) => buildComponentSection(name, doc, mdxFile, npmName))
+    .map(({ name, doc, mdxFile }) => {
+      if (mdxFile) {
+        // Per-component MDX: render and let it consume its own PropsTable.
+        return buildComponentSectionFromMdx(name, doc, mdxFile, propsData, consumedComponents)
+      }
+      if (consumedComponents.has(name)) return ''
+      // Skip non-component utilities/internals — published README only documents the public component API.
+      if (!isPublicComponent(name)) return ''
+      return buildComponentSectionAuto(name, doc, npmName)
+    })
+    .filter(Boolean)
 
   const parts = [
     `# ${title}`,
     `\`${npmName}\` — ${description}`,
-    indexSection,
+    indexBody,
     ...componentSections,
   ]
 
   return parts.filter(Boolean).join('\n\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n'
 }
 
-function transformIndexBody(body: string, npmName: string): string {
+// Heuristic: only `Capital`-named symbols document a published component or hook.
+// Lowercase exports (`formatValue`, `getPosition`, …) are utilities — skip.
+function isPublicComponent(name: string): boolean {
+  return /^[A-Z]/.test(name) || /^use[A-Z]/.test(name)
+}
+
+// Parse top-level `import` statements relevant for README expansion:
+//  - `?raw` source imports → file path (used to inline <Example code={Var}/>)
+//  - `props.json` imports   → propsData (used to inline <PropsTable data={var.Comp}/>)
+function collectMdxImports(
+  body: string,
+  mdxPath: string,
+  propsData: Record<string, ComponentDoc>,
+): { rawImports: Map<string, string>; docImports: Map<string, Record<string, ComponentDoc>> } {
+  const rawImports = new Map<string, string>()
+  const docImports = new Map<string, Record<string, ComponentDoc>>()
+  const lines = body.split('\n')
+  let inFence = false
+  for (const line of lines) {
+    if (line.match(/^```/)) inFence = !inFence
+    if (inFence) continue
+    const raw = line.match(/^import\s+(\w+)\s+from\s+['"]([^'"]+\?raw)['"]/)
+    if (raw) {
+      const [, name, spec] = raw
+      const cleanSpec = spec.replace(/\?raw$/, '')
+      rawImports.set(name, resolve(dirname(mdxPath), cleanSpec))
+      continue
+    }
+    const doc = line.match(/^import\s+(\w+)\s+from\s+['"]([^'"]+\.json)['"]/)
+    if (doc) {
+      rawImports
+      const [, name] = doc
+      // We always alias to the package's own props.json — index.mdx convention.
+      docImports.set(name, propsData)
+      continue
+    }
+  }
+  return { rawImports, docImports }
+}
+
+// Full MDX → README transform. Inlines <Example> code from `?raw` imports,
+// inlines <PropsTable> as a markdown table, strips MDX-only JSX (Storybook,
+// Figma, *Demo, anything with client:*).
+function renderMdxBody(
+  raw: string,
+  mdxPath: string,
+  propsData: Record<string, ComponentDoc>,
+  consumedComponents: Set<string>,
+): string {
+  const body = stripFrontmatter(raw)
+  const { rawImports, docImports } = collectMdxImports(body, mdxPath, propsData)
+
   let md = removeTopLevelImports(body)
 
-  // Remove the first H1 (we generate our own)
+  // Strip first H1 — we render our own from frontmatter.
   md = md.replace(/^#\s+.+\n*/m, '')
 
-  // Remove JSX demo components (<*Demo client:load />)
-  md = md.replace(/<\w+Demo[^>]*client:load\s*\/>/g, '')
+  md = expandExamples(md, rawImports)
+  md = expandPropsTables(md, docImports, consumedComponents)
+  md = stripMdxOnlyJsx(md)
+  md = stripDocsOnlyContent(md)
+  md = stripEmptyHeadings(md)
 
-  // Remove "Подробнее" links that point to /components/... internal paths
-  md = md.replace(/Подробнее:.+\n?/g, '')
-
-  // Remove H2 headings that have no content before the next H2 (empty demo sections)
-  // Only match when the NEXT non-blank content is another ## heading (not end-of-line)
-  md = md.replace(/^##\s+.+\n+(?=##)/gm, '')
-
-  // Replace markdown links to /components/... with plain text (no portal link in README)
-  md = md.replace(/\[([^\]]+)\]\(\/components\/[^)]+\)/g, '**$1**')
-
-  // Remove the component table (it's the index overview, redundant in README)
-  // Detect and strip: | Компонент | ... | headers
-  md = stripComponentIndexTable(md)
-
-  // Collapse blank lines
   return md.replace(/\n{3,}/g, '\n\n').trim()
 }
 
-function stripComponentIndexTable(md: string): string {
-  // Remove markdown tables whose header row contains "Компонент"
-  return md.replace(/\|[^|\n]*Компонент[^|\n]*\|[\s\S]*?(?=\n\n|\n#|$)/g, '').trim()
+// <Example title='X' description='Y' code={Src}>...</Example>
+//   → ### X
+//      Y
+//      ```tsx
+//      <contents of Src file>
+//      ```
+function expandExamples(body: string, rawImports: Map<string, string>): string {
+  return body.replace(/<Example\b([^>]*)>([\s\S]*?)<\/Example>/g, (_full, attrs: string) => {
+    const title = readJsxAttr(attrs, 'title')
+    const description = readJsxAttr(attrs, 'description')
+    const codeVar = attrs.match(/code=\{(\w+)\}/)?.[1]
+    const codeFile = codeVar ? rawImports.get(codeVar) : undefined
+    const code = codeFile && existsSync(codeFile) ? readFileSync(codeFile, 'utf-8').trimEnd() : ''
+    const out: string[] = []
+    if (title) out.push(`### ${title}`)
+    if (description) out.push(description)
+    if (code) out.push('```tsx\n' + code + '\n```')
+    return out.join('\n\n')
+  })
 }
 
-function buildComponentSection(
-  name: string,
-  doc: ComponentDoc,
-  mdxFile: string | undefined,
-  npmName: string,
+// <PropsTable data={varname.Component} /> or <PropsTable data={varname} />
+function expandPropsTables(
+  body: string,
+  docImports: Map<string, Record<string, ComponentDoc>>,
+  consumedComponents: Set<string>,
 ): string {
+  return body.replace(/<PropsTable\b([^/]*)\/>/g, (_full, attrs: string) => {
+    const m = attrs.match(/data=\{(\w+)(?:\.(\w+))?\}/)
+    if (!m) return ''
+    const [, varname, compName] = m
+    const data = docImports.get(varname)
+    if (!data) return ''
+    if (compName) {
+      const doc = data[compName]
+      if (!doc) return ''
+      consumedComponents.add(compName)
+      return generatePropsTable(doc)
+    }
+    // No `.Component` accessor — assume single-component package.
+    const onlyName = Object.keys(data)[0]
+    const doc = onlyName ? data[onlyName] : undefined
+    if (!doc) return ''
+    consumedComponents.add(onlyName)
+    return generatePropsTable(doc)
+  })
+}
+
+// Strip JSX that has no plain-Markdown equivalent: storybook iframe, figma iframe,
+// `*Demo` / `*Scenario` interactive widgets, anything carrying a `client:*` directive.
+function stripMdxOnlyJsx(body: string): string {
+  let md = body
+  // Self-closing or paired with explicit names + Demo/Scenario suffix.
+  const namedTags = ['StorybookEmbed', 'FigmaEmbed', 'Canvas', '\\w+Demo', '\\w+Scenario'].join('|')
+  md = md.replace(new RegExp(`<(?:${namedTags})\\b[^>]*\\/>`, 'g'), '')
+  md = md.replace(new RegExp(`<(?:${namedTags})\\b[^>]*>[\\s\\S]*?<\\/(?:${namedTags})>`, 'g'), '')
+  // Anything else with a `client:*` hydration directive is MDX-only (won't render here).
+  md = md.replace(/<[A-Z]\w*\b[^>]*\bclient:\w+[^>]*\/>/g, '')
+  md = md.replace(/<([A-Z]\w*)\b[^>]*\bclient:\w+[^>]*>[\s\S]*?<\/\1>/g, '')
+  return md
+}
+
+function stripDocsOnlyContent(body: string): string {
+  let md = body
+  // "Подробнее: ..." links to docs portal.
+  md = md.replace(/Подробнее:.+\n?/g, '')
+  // [text](/components/...) → bold text (no portal link in README).
+  md = md.replace(/\[([^\]]+)\]\(\/components\/[^)]+\)/g, '**$1**')
+  // Index overview tables ("| Компонент | ... |") — redundant for a published README.
+  md = md.replace(/\|[^|\n]*Компонент[^|\n]*\|[\s\S]*?(?=\n\n|\n#|$)/g, '').trim()
+  return md
+}
+
+// Drop H2/H3 sections whose body is empty after JSX stripping. A heading is
+// "empty" only if no non-heading content appears before the next sibling
+// (heading of same-or-higher level). We do NOT eat an H2 just because an H3
+// follows — the H3 is the H2's content.
+function stripEmptyHeadings(body: string): string {
+  let prev: string
+  let md = body
+  do {
+    prev = md
+    // Empty H3: next non-blank is H1, H2 or H3 (i.e. a sibling/parent).
+    md = md.replace(/^###\s+.+\n+(?=#{1,3}\s)/gm, '')
+    // Empty H2: next non-blank is H1 or H2 (NOT H3 — that's content of this H2).
+    md = md.replace(/^##\s+.+\n+(?=#{1,2}\s)/gm, '')
+    // Dangling H2/H3 at EOF with nothing after.
+    md = md.replace(/^(#{2,3})\s+.+\s*$(?![\s\S]*\S)/m, '')
+  } while (prev !== md)
+  return md
+}
+
+function readJsxAttr(attrs: string, name: string): string {
+  const re = new RegExp(`${name}=(?:'([^']*)'|"([^"]*)"|\\{['"]([^'"]*)['"]\\})`)
+  const m = attrs.match(re)
+  return m ? m[1] ?? m[2] ?? m[3] ?? '' : ''
+}
+
+function buildComponentSectionFromMdx(
+  name: string,
+  _doc: ComponentDoc,
+  mdxFile: string,
+  propsData: Record<string, ComponentDoc>,
+  consumedComponents: Set<string>,
+): string {
+  const raw = readFileSync(mdxFile, 'utf-8')
+  const fm = parseFrontmatter(raw)
+  // Bump headings down by one level — the rendered MDX nests under `## ${name}`.
+  const md = bumpHeadings(renderMdxBody(raw, mdxFile, propsData, consumedComponents))
   const parts: string[] = [`## ${name}`]
-
-  if (mdxFile) {
-    const raw = readFileSync(mdxFile, 'utf-8')
-    const fm = parseFrontmatter(raw)
-    const body = stripFrontmatter(raw)
-
-    if (fm.description) parts.push(fm.description)
-
-    let md = removeTopLevelImports(body)
-    md = md.replace(/^#\s+.+\n*/m, '')                           // strip H1
-    md = md.replace(/<\w+Demo[^>]*client:load\s*\/>/g, '')        // strip demo JSX
-    md = md.replace(/<PropsTable\s[^/]*\/>/gs, generatePropsTable(doc))  // inline props table
-    md = md.replace(/\n{3,}/g, '\n\n').trim()
-    parts.push(md)
-  } else {
-    // No MDX — generate from props.json only
-    parts.push(generateUsageBlock(doc, npmName))
-    parts.push('### Props')
-    parts.push(generatePropsTable(doc))
-  }
-
+  if (fm.description) parts.push(fm.description)
+  if (md) parts.push(md)
   return parts.filter(Boolean).join('\n\n')
+}
+
+function bumpHeadings(md: string): string {
+  // ## → ###, ### → ####, … (cap at H6 — Markdown's max). Outside fenced code.
+  const lines = md.split('\n')
+  let inFence = false
+  return lines
+    .map((line) => {
+      if (line.match(/^```/)) inFence = !inFence
+      if (inFence) return line
+      const m = line.match(/^(#{2,5})(\s.*)$/)
+      return m ? `#${m[1]}${m[2]}` : line
+    })
+    .join('\n')
+}
+
+function buildComponentSectionAuto(name: string, doc: ComponentDoc, npmName: string): string {
+  return [
+    `## ${name}`,
+    generateUsageBlock(doc, npmName),
+    '### Props',
+    generatePropsTable(doc),
+  ]
+    .filter(Boolean)
+    .join('\n\n')
 }
 
 // ─── MDX helpers ─────────────────────────────────────────────────────────────

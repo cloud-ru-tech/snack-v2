@@ -4,9 +4,6 @@
 
 Типовой блок информации: заголовок, описание, опциональные иконка и футер с действиями. Используется в пустых состояниях, онбординге, подсказках и хедерах разделов.
 
-## Демо
-<InfoBlockDemo client:visible />
-
 ## Когда использовать
 - Пустое состояние списка/таблицы («Нет данных», «Ничего не найдено»).
 - Подсказка внутри формы или карточки.
@@ -14,6 +11,8 @@
 - Информационная вставка над списком — например, объяснение статуса.
 
 Когда **не** нужен: если нужен только заголовок без описания — возьмите `Typography`. Если нужна полноценная карточка с рамкой — возьмите компонент-карточку.
+
+## Анатомия
 
 ### Size
 Три размера: `s` — для плотных мест (карточки, тосты), `m` — дефолт, `l` — для крупных empty-states и лендинг-секций.
@@ -31,51 +30,80 @@ import { InfoBlock } from '@ds/info-block'
 ```
 
 ## Примеры использования
-<Example title='Базовый блок' description='Заголовок и описание без иконки.' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
+### Базовый блок
 
-<Example
-  title='Горизонтальное выравнивание'
-  description='Иконка и текст рядом, а не друг под другом.'
-  code={HorizontalSrc}
->
-  <Horizontal client:visible />
-</Example>
-
-<Example title='Три размера' code={SizesSrc}>
-  <Sizes client:visible />
-</Example>
-
-<Example title='С иконкой' description='Иконка через проп icon (IconPredefinedProps).' code={WithIconSrc}>
-  <WithIcon client:visible />
-</Example>
-
-## Props
-<PropsTable data={infoBlockDoc.InfoBlock} />
-
-## Storybook
-<StorybookEmbed storyId='components-infoblock--playground' height={360} />
-
-## InfoBlock
+Заголовок и описание без иконки.
 
 ```tsx
-import { InfoBlock } from '@ds/info-block'
+import { InfoBlock } from '@ds/info-block';
 
-export function Example() {
-  return <InfoBlock align="vertical">Click me</InfoBlock>
+export function Basic() {
+  return <InfoBlock title='Заголовок' description='Короткое описание под заголовком.' />;
 }
 ```
 
-### Props
+### Горизонтальное выравнивание
 
+Иконка и текст рядом, а не друг под другом.
+
+```tsx
+import { InfoBlock } from '@ds/info-block';
+
+export function Horizontal() {
+  return (
+    <InfoBlock
+      align='horizontal'
+      size='m'
+      title='Горизонтальный вариант'
+      description='Иконка (если есть) и текст располагаются в строку.'
+    />
+  );
+}
+```
+
+### Три размера
+
+```tsx
+import { InfoBlock } from '@ds/info-block';
+
+export function Sizes() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <InfoBlock size='s' title='Size S' description='Компактный блок' />
+      <InfoBlock size='m' title='Size M' description='Средний блок' />
+      <InfoBlock size='l' title='Size L' description='Крупный блок для пустых состояний' />
+    </div>
+  );
+}
+```
+
+### С иконкой
+
+Иконка через проп icon (IconPredefinedProps).
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons';
+import { InfoBlock } from '@ds/info-block';
+
+export function WithIcon() {
+  return (
+    <InfoBlock
+      title='С иконкой'
+      description='Иконка передаётся через проп icon как IconPredefinedProps.'
+      icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+    />
+  );
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `title` | `string` | — | Заголовок |
-| `description` | `ReactNode` | — | Подзаголовок |
-| `icon` | `IconPredefinedProps` | — | Иконка |
-| `size` | `"s"` \| `"m"` \| `"l"` | `s` | Размер |
-| `align` | `"vertical"` \| `"horizontal"` | `vertical` | Расположение элементов |
-| `footer` | `ReactNode` | — | Вложенный контент (например ButtonGroup) |
+| `align` | `"horizontal"` \| `"vertical"` | `vertical` | Расположение элементов |
 | `className` | `string` | — | Дополнительный класс |
+| `data-test-id` | `string` | — |  |
+| `description` | `ReactNode` | — | Подзаголовок |
+| `footer` | `ReactNode` | — | Вложенный контент (например ButtonGroup) |
+| `icon` | `IconPredefinedProps` | — | Иконка |
+| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `title` | `string` | — | Заголовок |

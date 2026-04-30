@@ -23,17 +23,14 @@ import { Status, StatusIndicator } from '@ds/status'
 
 Метка состояния с цветным маркером и текстовой подписью. Маркер — цветная точка, спиннер (`loading`) или круговой прогресс-бар (`progress`).
 
-## Демо
-<StatusDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Статус записи в списке / таблице: «Active», «Suspended», «Pending».
 - Состояние асинхронной операции со спиннером (`loading`).
 - Отображение прогресса обработки (`progress=0..100`) в компактном виде.
 
 Когда **не** нужен: динамический чип с удалением — берите `Chip`/`Tag`. Промо-метка без функциональной семантики — берите `PromoTag`.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/status
 ```
@@ -42,40 +39,59 @@ pnpm add @ds/status
 import { Status } from '@ds/status'
 ```
 
-## Примеры использования
-<Example title='Активный статус' code={ActiveSrc}>
-  <Active client:visible />
-</Example>
+### Примеры использования
+#### Активный статус
 
-<Example title='Loading' description='Спиннер вместо точки, appearance принудительно neutral.' code={LoadingSrc}>
-  <Loading client:visible />
-</Example>
+```tsx
+import { Status } from '@ds/status';
 
-<Example title='С фоном' description='hasBackground — визуально выделяет строку.' code={WithBackgroundSrc}>
-  <WithBackground client:visible />
-</Example>
+export function Active() {
+  return <Status label='Active' appearance='green' />;
+}
+```
 
-## Props
+#### Loading
+
+Спиннер вместо точки, appearance принудительно neutral.
+
+```tsx
+import { Status } from '@ds/status';
+
+export function Loading() {
+  return <Status label='Processing' loading />;
+}
+```
+
+#### С фоном
+
+hasBackground — визуально выделяет строку.
+
+```tsx
+import { Status } from '@ds/status';
+
+export function WithBackground() {
+  return <Status label='Error' appearance='red' hasBackground />;
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `label` | `string` | — | Подпись к индикатору (точка с текстом). Если не передано — только точка |
-| `size` | `"xs"` \| `"s"` | `xs` | Размер индикатора и подписи |
-| `appearance` | `"neutral"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` | Внешний вид (цветовая схема) |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цветовая схема) |
 | `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
 | `hasBackground` | `boolean` | `false` | Наличие фона |
+| `label` | `string` | — | Подпись к индикатору (точка с текстом). Если не передано — только точка |
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `progress` | `number` | — | Прогресс загрузки (от 0 до 100) |
+| `size` | `"s"` \| `"xs"` | `xs` | Размер индикатора и подписи |
 
-## Storybook
-<StorybookEmbed storyId='components-status-status--playground' height={240} />
+### Анатомия
 
-## Анатомия
-
-### Size
+#### Size
 `xs` — для плотных таблиц и инлайновых меток, `s` — дефолт в карточках и заголовках.
 
-### Appearance
+#### Appearance
 Семантический цвет: `neutral` — нейтральный, `green` — успех/активно, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `blue` — информация, `violet`/`pink` — декоративные.
 
 ## StatusIndicator
@@ -84,17 +100,14 @@ import { Status } from '@ds/status'
 
 Минимальный маркер-точка без подписи. Пять размеров (`4xs` → `s`) и восемь цветовых схем. Используется, когда пространства для текста нет — колонка таблицы, badge на иконке, inline-маркер в списке.
 
-## Демо
-<StatusIndicatorDemo client:visible />
-
-## Когда использовать
+### Когда использовать
 - Колонка «Статус» в плотной таблице — только цветная точка.
 - Badge-индикатор на аватаре или иконке (онлайн, новое событие).
 - Inline-маркер перед текстом в самописных лейаутах.
 
 Когда **не** нужен: если пользователю нужно прочитать статус — берите `Status` с подписью. Цвет без текста недоступен дальтоникам и скринридерам.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/status
 ```
@@ -103,26 +116,29 @@ pnpm add @ds/status
 import { StatusIndicator } from '@ds/status'
 ```
 
-## Примеры использования
-<Example title='Базовый индикатор' code={BasicIndicatorSrc}>
-  <BasicIndicator client:visible />
-</Example>
+### Примеры использования
+#### Базовый индикатор
 
-## Props
+```tsx
+import { StatusIndicator } from '@ds/status';
+
+export function BasicIndicator() {
+  return <StatusIndicator size='xs' appearance='green' />;
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `size` | `"4xs"` \| `"3xs"` \| `"2xs"` \| `"xs"` \| `"s"` | `s` | Размер |
-| `appearance` | `"neutral"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `neutral` | Внешний вид |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид |
 | `className` | `string` | — |  |
+| `data-test-id` | `string` | — |  |
+| `size` | `"2xs"` \| `"3xs"` \| `"4xs"` \| `"s"` \| `"xs"` | `s` | Размер |
 
-## Storybook
-<StorybookEmbed storyId='components-status-statusindicator--playground' height={200} />
+### Анатомия
 
-## Анатомия
-
-### Size
+#### Size
 Набор размеров от `4xs` (точка в плотных списках) до `s` (в заголовках): `4xs`, `3xs`, `2xs`, `xs`, `s`.
 
-### Appearance
+#### Appearance
 Семантический цвет индикатора: `neutral`, `green` (успех), `red` (ошибка), `orange`/`yellow` (предупреждение), `blue` (инфо), `violet`/`pink` (декоративные).

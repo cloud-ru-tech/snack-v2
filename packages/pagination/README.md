@@ -23,22 +23,22 @@ import { Pagination, PaginationSlider } from '@ds/pagination'
 
 Классическая постраничная навигация. Рендерит `<nav aria-label="Pagination">` с кнопками «предыдущая», нумерацией страниц и «следующая». Длинные диапазоны сворачиваются через `...`-элементы, клик по которым прыгает в середину скрытого отрезка.
 
-## Когда использовать
+### Когда использовать
 - Списки, таблицы, ленты с количеством страниц 5+.
 - Результаты поиска, архивы, блоги.
 - Когда пользователю нужен прямой переход на конкретную страницу.
 
 Когда **не** нужен `Pagination`: для 2–3 элементов используйте `PaginationSlider` — он плотнее и понятнее визуально.
 
-## Анатомия
+### Анатомия
 
-### Size
+#### Size
 Два размера: `s` — дефолт для таблиц и списков, `m` — для более воздушных страниц.
 
-### Variant
+#### Variant
 `button` — элементы-кнопки (статус текущей страницы по фону, side-effect navigation), `link` — элементы-ссылки (работают с роутером, поддерживают middle-click/open-in-new-tab).
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/pagination
 ```
@@ -47,42 +47,63 @@ pnpm add @ds/pagination
 import { Pagination } from '@ds/pagination'
 ```
 
-## Примеры использования
-<Example title='Базовый сценарий' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
+### Примеры использования
+#### Базовый сценарий
 
-<Example title='Размер m' code={SizeMSrc}>
-  <SizeM client:visible />
-</Example>
+```tsx
+import { Pagination } from '@ds/pagination';
+import { useState } from 'react';
 
-<Example title='Длинный диапазон — свёртка в середине' code={LongRangeSrc}>
-  <LongRange client:visible />
-</Example>
+export function Basic() {
+  const [page, setPage] = useState(3);
+  return <Pagination total={10} page={page} onChange={setPage} />;
+}
+```
 
-<Example
-  title='Как ссылки'
-  description="variant='link' + hrefFormatter — каждая страница получает href"
-  code={AsLinksSrc}
->
-  <AsLinks client:visible />
-</Example>
+#### Размер m
 
-## Props
+```tsx
+import { Pagination } from '@ds/pagination';
+
+export function SizeM() {
+  return <Pagination total={10} page={3} size='m' onChange={() => {}} />;
+}
+```
+
+#### Длинный диапазон — свёртка в середине
+
+```tsx
+import { Pagination } from '@ds/pagination';
+
+export function LongRange() {
+  return <Pagination total={42} page={12} maxLength={7} onChange={() => {}} />;
+}
+```
+
+#### Как ссылки
+
+variant='link' + hrefFormatter — каждая страница получает href
+
+```tsx
+import { Pagination } from '@ds/pagination';
+
+export function AsLinks() {
+  return <Pagination total={8} page={2} variant='link' hrefFormatter={page => `?page=${page}`} onChange={() => {}} />;
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `className` | `string` | — | CSS класснейм |
 | `data-test-id` | `string` | — |  |
-| `total` | `number` | — | Общее количество страниц |
-| `page` | `number` | — | Текущая страница |
-| `variant` | `"link"` \| `"button"` | `button` | Варианты тега кнопок: <a/> или <button/> |
+| `hrefFormatter` | `((page: number) => string)` | — | Колбэк форматирования ссылки |
 | `maxLength` | `number` | `7` | Максимальное количество страниц/элементов, помещающихся до транкейта |
 | `onChange` | `(page: number, event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent> | undefined) => void` | — | Колбэк смены значения |
-| `hrefFormatter` | `((page: number) => string)` | — | Колбэк форматирования ссылки |
-| `className` | `string` | — | CSS класснейм |
-| `size` | `"s"` \| `"m"` | `s` | Размер |
-
-## Storybook
-<StorybookEmbed storyId='components-pagination-pagination--playground' height={360} />
+| `page` | `number` | — | Текущая страница |
+| `size` | `"m"` \| `"s"` | `s` | Размер |
+| `total` | `number` | — | Общее количество страниц |
+| `variant` | `"button"` \| `"link"` | `button` | Варианты тега кнопок: <a/> или <button/> |
 
 ## PaginationSlider
 
@@ -90,19 +111,19 @@ import { Pagination } from '@ds/pagination'
 
 Компактный индикатор страницы в виде ряда точек/полосок. Подходит для 3–8 однотипных элементов: шаги onboarding, карусели изображений, переключение табличных представлений.
 
-## Когда использовать
+### Когда использовать
 - Onboarding / wizard с 3–5 шагами.
 - Карусель изображений.
 - Навигация между карточками одного уровня.
 
 Когда **не** подходит: если страниц больше 8 или пользователь должен прыгать на конкретную страницу — используйте `Pagination`.
 
-## Анатомия
+### Анатомия
 
-### Size
+#### Size
 `xs` — компактные карусели и плотные onboarding-шаги; `s` — дефолт для карточек и больших слайдеров.
 
-## Установка
+### Установка
 ```bash
 pnpm add @ds/pagination
 ```
@@ -111,27 +132,38 @@ pnpm add @ds/pagination
 import { PaginationSlider } from '@ds/pagination'
 ```
 
-## Примеры использования
-<Example title='Базовый сценарий' code={SliderBasicSrc}>
-  <SliderBasic client:visible />
-</Example>
+### Примеры использования
+#### Базовый сценарий
 
-<Example title='Размер s' code={SliderSizeSSrc}>
-  <SliderSizeS client:visible />
-</Example>
+```tsx
+import { PaginationSlider } from '@ds/pagination';
+import { useState } from 'react';
 
-## Props
+export function SliderBasic() {
+  const [page, setPage] = useState(2);
+  return <PaginationSlider total={5} page={page} onChange={setPage} />;
+}
+```
+
+#### Размер s
+
+```tsx
+import { PaginationSlider } from '@ds/pagination';
+
+export function SliderSizeS() {
+  return <PaginationSlider total={5} page={2} size='s' onChange={() => {}} />;
+}
+```
+
+### Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `total` | `number` | — | Общее количество страниц |
-| `page` | `number` | — | Текущая страница |
-| `onChange` | `(page: number) => void` | — | Колбек смены значения |
 | `className` | `string` | — | CSS класснейм |
-| `size` | `"xs"` \| `"s"` | `xs` | Размер |
-
-## Storybook
-<StorybookEmbed storyId='components-pagination-paginationslider--playground' height={240} />
+| `data-test-id` | `string` | — |  |
+| `onChange` | `(page: number) => void` | — | Колбек смены значения |
+| `page` | `number` | — | Текущая страница |
+| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `total` | `number` | — | Общее количество страниц |
 
 ## PaginationNumberItem
 
@@ -147,11 +179,11 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `label` | `string | number` | — |  |
 | `activated` | `boolean` | — |  |
-| `onClick` | `(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void` | — |  |
+| `data-test-id` | `string` | — |  |
 | `href` | `string` | — |  |
+| `label` | `string | number` | — |  |
+| `onClick` | `(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void` | — |  |
 | `setButtonRef` | `Ref<HTMLButtonElement | HTMLAnchorElement>` | — |  |
 
 ## PaginationSliderItem
@@ -168,8 +200,8 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
 | `activated` | `boolean` | — |  |
+| `data-test-id` | `string` | — |  |
 | `onClick` | `() => void` | — |  |
-| `size` | `"xs"` \| `"s"` | — |  |
 | `setButtonRef` | `Ref<HTMLButtonElement>` | — |  |
+| `size` | `"s"` \| `"xs"` | — |  |

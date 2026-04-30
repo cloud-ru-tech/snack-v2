@@ -9,7 +9,7 @@
 - ****InfoRow**** — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок.
 - ****InfoGroup**** — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`).
 - **MobileInfoRow** / **MobileInfoGroup** — вертикальная строка и список (comfort-раскладка); на корне включается **density `comfort`** (`getThemeClassnames`); разделители и отступы от **`position`** (`first` / `inner` / `last`).
-- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **compact** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **comfort** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'compact'` \| `'comfort'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
+- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **desktop** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **mobile** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'desktop'` \| `'mobile'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
 
 ## Установка
 
@@ -48,15 +48,15 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `data` | `DataType | undefined` | — |  |
-| `items` | `InfoGroupItem<T>[]` | — |  |
 | `className` | `string` | — |  |
-| `loading` | `boolean` | — |  |
-| `columns` | `"single"` \| `"double"` | — |  |
-| `width` | `"fixed"` \| `"full"` | — |  |
+| `columns` | `"double"` \| `"single"` | — |  |
+| `data` | `DataType | undefined` | — |  |
+| `data-test-id` | `string` | — |  |
 | `formatBoolean` | `((value: boolean) => string)` | — | Локализация булевых значений при выводе по `accessorKey` (вместо peer `@cloud-ru/uikit-product-locale`) |
-| `layoutType` | `"compact"` \| `"comfort"` | — |  |
+| `items` | `InfoGroupItem<T>[]` | — |  |
+| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
+| `loading` | `boolean` | — |  |
+| `width` | `"fixed"` \| `"full"` | — |  |
 
 ## AdaptiveInfoRow
 
@@ -72,50 +72,33 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `label` | `string` | — | Текст метки |
-| `labelTruncate` | `number` | — | Максимальное число строк метки (TruncateString) |
-| `labelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у метки: строка или пропсы QuestionTooltip |
-| `secondaryLabel` | `string` | — | Вторая метка слева от второго значения (только при `column="2"`) |
-| `secondaryLabelTruncate` | `number` | — | Макс. строк второй метки при `column="2"` |
-| `secondaryLabelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у второй метки |
-| `topDivider` | `boolean` | — | Разделитель над строкой |
 | `bottomDivider` | `boolean` | — | Разделитель под строкой |
 | `className` | `string` | — |  |
-| `labelClassName` | `string` | — |  |
-| `secondaryLabelClassName` | `string` | — | Класс блока второй метки при `column="2"` |
-| `rowClassName` | `string` | — |  |
+| `column` | `"1"` \| `"2"` | — | Ось Figma `column`: одна или две колонки значений |
 | `content` | `ReactNode` | — | Первая колонка значений (ось Figma `column=1` или левая при `column=2`) |
+| `data-test-id` | `string` | — |  |
+| `label` | `string` | — | Текст метки |
+| `labelClassName` | `string` | — |  |
+| `labelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у метки: строка или пропсы QuestionTooltip |
+| `labelTruncate` | `number` | — | Максимальное число строк метки (TruncateString) |
+| `labelWidth` | `"auto"` \| `"fixed"` | — | Ширина колонки метки |
+| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
+| `loading` | `boolean` | — |  |
+| `maxWidth` | `boolean` | — | Ось Figma `maxWidth` |
+| `position` | `"first"` \| `"inner"` \| `"last"` | — |  |
+| `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
 | `rowActionsSlot` | `ReactNode` | — | Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры).
 Если задано, рендерится вместо `rowActions`. |
-| `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
+| `rowClassName` | `string` | — |  |
 | `secondaryContent` | `ReactNode` | — | Вторая колонка значений (только при `column="2"`, ось Figma) |
-| `secondaryRowActionsSlot` | `ReactNode` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
+| `secondaryLabel` | `string` | — | Вторая метка слева от второго значения (только при `column="2"`) |
+| `secondaryLabelClassName` | `string` | — | Класс блока второй метки при `column="2"` |
+| `secondaryLabelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у второй метки |
+| `secondaryLabelTruncate` | `number` | — | Макс. строк второй метки при `column="2"` |
 | `secondaryRowActions` | `RowActionsPair` | — | Кнопки у второй колонки значений; в макете при `column="2"` — одна (`first`) |
-| `loading` | `boolean` | — |  |
+| `secondaryRowActionsSlot` | `ReactNode` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
+| `topDivider` | `boolean` | — | Разделитель над строкой |
 | `width` | `"fixed"` \| `"full"` | — | Ширина строки относительно контейнера |
-| `labelWidth` | `"fixed"` \| `"auto"` | — | Ширина колонки метки |
-| `column` | `"1"` \| `"2"` | — | Ось Figma `column`: одна или две колонки значений |
-| `maxWidth` | `boolean` | — | Ось Figma `maxWidth` |
-| `layoutType` | `"compact"` \| `"comfort"` | — |  |
-| `position` | `"inner"` \| `"first"` \| `"last"` | — |  |
-
-## getPosition
-
-```tsx
-import { getPosition } from '@ds/uikit-product-info-row'
-
-export function Example() {
-  return <getPosition>Click me</getPosition>
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `index` | `number` | — |  |
-| `length` | `number` | — |  |
 
 ## InfoGroup
 
@@ -131,14 +114,14 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `data` | `DataType | undefined` | — |  |
-| `items` | `InfoGroupItem<T>[]` | — |  |
 | `className` | `string` | — |  |
-| `loading` | `boolean` | — |  |
-| `columns` | `"single"` \| `"double"` | `single` |  |
-| `width` | `"fixed"` \| `"full"` | `fixed` |  |
+| `columns` | `"double"` \| `"single"` | `single` |  |
+| `data` | `DataType | undefined` | — |  |
+| `data-test-id` | `string` | — |  |
 | `formatBoolean` | `((value: boolean) => string)` | — | Локализация булевых значений при выводе по `accessorKey` (вместо peer `@cloud-ru/uikit-product-locale`) |
+| `items` | `InfoGroupItem<T>[]` | — |  |
+| `loading` | `boolean` | — |  |
+| `width` | `"fixed"` \| `"full"` | `fixed` |  |
 
 ## InfoRow
 
@@ -146,7 +129,7 @@ export function Example() {
 import { InfoRow } from '@ds/uikit-product-info-row'
 
 export function Example() {
-  return <InfoRow labelTruncate="1" secondaryLabel="" topDivider bottomDivider width="fixed" column="1">Click me</InfoRow>
+  return <InfoRow bottomDivider column="1" labelTruncate="1" secondaryLabel="" topDivider width="fixed">Click me</InfoRow>
 }
 ```
 
@@ -154,31 +137,31 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `label` | `string` | — | Текст метки |
-| `labelTruncate` | `number` | `1` | Максимальное число строк метки (TruncateString) |
-| `labelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у метки: строка или пропсы QuestionTooltip |
-| `secondaryLabel` | `string` | `` | Вторая метка слева от второго значения (только при `column="2"`) |
-| `secondaryLabelTruncate` | `number` | — | Макс. строк второй метки при `column="2"` |
-| `secondaryLabelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у второй метки |
-| `topDivider` | `boolean` | `true` | Разделитель над строкой |
 | `bottomDivider` | `boolean` | `true` | Разделитель под строкой |
 | `className` | `string` | — |  |
-| `labelClassName` | `string` | — |  |
-| `secondaryLabelClassName` | `string` | — | Класс блока второй метки при `column="2"` |
-| `rowClassName` | `string` | — |  |
+| `column` | `"1"` \| `"2"` | `1` | Ось Figma `column`: одна или две колонки значений |
 | `content` | `ReactNode` | — | Первая колонка значений (ось Figma `column=1` или левая при `column=2`) |
+| `data-test-id` | `string` | — |  |
+| `label` | `string` | — | Текст метки |
+| `labelClassName` | `string` | — |  |
+| `labelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у метки: строка или пропсы QuestionTooltip |
+| `labelTruncate` | `number` | `1` | Максимальное число строк метки (TruncateString) |
+| `labelWidth` | `"auto"` \| `"fixed"` | — | Ширина колонки метки |
+| `loading` | `boolean` | `false` |  |
+| `maxWidth` | `boolean` | `false` | Ось Figma `maxWidth` |
+| `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
 | `rowActionsSlot` | `ReactNode` | — | Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры).
 Если задано, рендерится вместо `rowActions`. |
-| `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
+| `rowClassName` | `string` | — |  |
 | `secondaryContent` | `ReactNode` | — | Вторая колонка значений (только при `column="2"`, ось Figma) |
-| `secondaryRowActionsSlot` | `ReactNode` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
+| `secondaryLabel` | `string` | `` | Вторая метка слева от второго значения (только при `column="2"`) |
+| `secondaryLabelClassName` | `string` | — | Класс блока второй метки при `column="2"` |
+| `secondaryLabelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — | Подсказка у второй метки |
+| `secondaryLabelTruncate` | `number` | — | Макс. строк второй метки при `column="2"` |
 | `secondaryRowActions` | `RowActionsPair` | — | Кнопки у второй колонки значений; в макете при `column="2"` — одна (`first`) |
-| `loading` | `boolean` | `false` |  |
+| `secondaryRowActionsSlot` | `ReactNode` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
+| `topDivider` | `boolean` | `true` | Разделитель над строкой |
 | `width` | `"fixed"` \| `"full"` | `fixed` | Ширина строки относительно контейнера |
-| `labelWidth` | `"fixed"` \| `"auto"` | — | Ширина колонки метки |
-| `column` | `"1"` \| `"2"` | `1` | Ось Figma `column`: одна или две колонки значений |
-| `maxWidth` | `boolean` | `false` | Ось Figma `maxWidth` |
 
 ## InfoRowActionPlaceholder
 
@@ -209,12 +192,12 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `data` | `DataType | undefined` | — |  |
-| `items` | `MobileInfoGroupItem<T>[]` | — |  |
 | `className` | `string` | — |  |
-| `loading` | `boolean` | — |  |
+| `data` | `DataType | undefined` | — |  |
+| `data-test-id` | `string` | — |  |
 | `formatBoolean` | `((value: boolean) => string)` | — |  |
+| `items` | `MobileInfoGroupItem<T>[]` | — |  |
+| `loading` | `boolean` | — |  |
 
 ## MobileInfoRow
 
@@ -222,7 +205,7 @@ export function Example() {
 import { MobileInfoRow } from '@ds/uikit-product-info-row'
 
 export function Example() {
-  return <MobileInfoRow position="inner" topDivider bottomDivider>Click me</MobileInfoRow>
+  return <MobileInfoRow bottomDivider position="inner" topDivider>Click me</MobileInfoRow>
 }
 ```
 
@@ -230,14 +213,14 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `position` | `"inner"` \| `"first"` \| `"last"` | `inner` |  |
-| `label` | `string` | — |  |
-| `labelTruncate` | `number` | — | Если > 0 — обрезка через `TruncateString` (в legacy мобильного пакета не было; опционально для паритета с десктопом). |
-| `labelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — |  |
-| `topDivider` | `boolean` | `true` |  |
 | `bottomDivider` | `boolean` | `true` |  |
 | `className` | `string` | — |  |
 | `content` | `ReactNode` | — |  |
-| `rowActions` | `MobileRowActionsPair` | — |  |
+| `data-test-id` | `string` | — |  |
+| `label` | `string` | — |  |
+| `labelTooltip` | `string | Pick<QuestionTooltipProps, "open" | "onOpenChange" | "trigger" | "placement" | "tip" | "disableMaxWidth">` | — |  |
+| `labelTruncate` | `number` | — | Если > 0 — обрезка через `TruncateString` (в legacy мобильного пакета не было; опционально для паритета с десктопом). |
 | `loading` | `boolean` | `false` |  |
+| `position` | `"first"` \| `"inner"` \| `"last"` | `inner` |  |
+| `rowActions` | `MobileRowActionsPair` | — |  |
+| `topDivider` | `boolean` | `true` |  |

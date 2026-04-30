@@ -4,15 +4,14 @@
 
 `Block` — универсальный контейнер-слот с акриловой подложкой (backdrop-blur). Подходит для плавающих панелей, карточек над изображением, оверлеев и всплывающих блоков, где нужно сохранить читаемость контента на любом фоне.
 
-## Демо
-<BlockDemo client:visible />
-
 ## Когда использовать
 - Плавающие карточки или панели поверх фоновых изображений.
 - Модальные и всплывающие поверхности, где важна глубина.
 - Любой контент, который нужно визуально отделить от сложного фона без использования сплошного цвета.
 
 Когда **не** нужен `Block`: для обычных блоков на плоском фоне используйте свёрстанную карточку без акрилового эффекта — Block заметно дороже по отрисовке.
+
+## Анатомия
 
 ### Variant
 Способ визуального отделения поверхности: `simple` — сплошная заливка, `outline` — с контурной рамкой, `shadow` — с тенью для подъёма над фоном, `transparent` — только акриловый эффект без заливки.
@@ -30,39 +29,52 @@ import { Block, SIZE, VARIANT } from '@ds/block'
 ```
 
 ## Примеры использования
-<Example title='Базовое использование' code={BasicSrc}>
-  <Basic client:visible />
-</Example>
-
-<Example title='С обводкой и большим размером' code={OutlineLargeSrc}>
-  <OutlineLarge client:visible />
-</Example>
-
-<Example title='Прозрачное матовое стекло' code={TransparentSrc}>
-  <Transparent client:visible />
-</Example>
-
-## Props
-<PropsTable data={blockDoc.Block} />
-
-## Storybook
-<StorybookEmbed storyId='components-block--playground' height={420} />
-
-## Block
+### Базовое использование
 
 ```tsx
-import { Block } from '@ds/block'
+import { Block } from '@ds/block';
 
-export function Example() {
-  return <Block variant="simple">Click me</Block>
+export function Basic() {
+  return (
+    <Block>
+      <span>Your content here</span>
+    </Block>
+  );
 }
 ```
 
-### Props
+### С обводкой и большим размером
 
+```tsx
+import { Block } from '@ds/block';
+
+export function OutlineLarge() {
+  return (
+    <Block variant='outline' size='l'>
+      <span>Outline size L</span>
+    </Block>
+  );
+}
+```
+
+### Прозрачное матовое стекло
+
+```tsx
+import { Block } from '@ds/block';
+
+export function Transparent() {
+  return (
+    <Block variant='transparent' size='m'>
+      <span>Transparent</span>
+    </Block>
+  );
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | Содержимое |
-| `variant` | `"simple"` \| `"outline"` \| `"shadow"` \| `"transparent"` | `simple` | Вариант |
-| `size` | `"s"` \| `"m"` \| `"l"` | `l` | Размер |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
+| `size` | `"l"` \| `"m"` \| `"s"` | `l` | Размер |
+| `variant` | `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |

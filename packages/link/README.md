@@ -4,15 +4,14 @@
 
 Компонент для навигации — как внутри экрана (якорь), так и во внешних ресурсах. Полиморфен: по умолчанию рендерится как `<a>`, но поддерживает `<button>` и кастомные компоненты-роутеры через `as`. Внутри используется `TruncateString` — длинные ссылки обрезаются и раскрывают полный текст в тултипе.
 
-## Демо
-<LinkDemo client:only="react" />
-
 ## Когда использовать
 - Для переходов между страницами и разделами.
 - Для ссылок внутри текста (`insideText`) — компонент не ломает перенос строк.
 - Для действий, которые семантически являются навигацией, но физически — кнопкой (`as='button'`).
 
 Когда **не** нужен: для кнопки-действия (сохранить, удалить) используйте `@ds/button` с `view='function'`, а не `Link as='button'`.
+
+## Анатомия
 
 ### Appearance
 Семантика цвета: `neutral` — основной текстовый линк, `invertNeutral` — на тёмных фонах, `primary` — брендовый акцент; `red` для деструктивных, `orange`/`yellow` — предупреждения, `green` — успех; `blue`, `violet`, `pink` — декоративные категории.
@@ -33,67 +32,63 @@ import { Link } from '@ds/link'
 ```
 
 ## Примеры использования
-<Example
-  title='1. Простая ссылка'
-  description='Рендер как нативный a href target'
-  code={BasicSrc}
->
-  <Basic client:only="react" />
-</Example>
+### 1. Простая ссылка
 
-<Example
-  title='2. Внутри текста'
-  description="insideText=true: строка может переноситься, TruncateString не применяется"
-  code={InsideTextSrc}
->
-  <InsideText client:only="react" />
-</Example>
-
-<Example
-  title='3. Полиморфизм: кнопка'
-  description="as='button' — действие, семантически оформленное как ссылка"
-  code={PolymorphicSrc}
->
-  <Polymorphic client:only="react" />
-</Example>
-
-<Example
-  title='4. Внешняя ссылка'
-  description="target='_blank' → rel='noopener noreferrer' автоматически"
-  code={ExternalSrc}
->
-  <External client:only="react" />
-</Example>
-
-## Props
-<PropsTable data={linkDoc.Link} />
-
-## Storybook
-<StorybookEmbed storyId='components-link--playground' height={320} />
-
-## Link
+Рендер как нативный a href target
 
 ```tsx
-import { Link } from '@ds/link'
+import { Link } from '@ds/link';
 
-export function Example() {
-  return <Link text="" role="regular" appearance="primary" as="'a'">Click me</Link>
+export function Basic() {
+  return <Link text='Документация API' href='https://example.com/docs' />;
 }
 ```
 
-### Props
+### 2. Внутри текста
 
+insideText=true: строка может переноситься, TruncateString не применяется
+
+```tsx
+import { Link } from '@ds/link';
+
+export function InsideText() {
+  return (
+    <p>
+      Подробнее читайте <Link insideText text='в документации' href='https://example.com' />, а также ознакомьтесь с{' '}
+      <Link insideText underlined text='условиями' href='https://example.com/terms' />.
+    </p>
+  );
+}
+```
+
+### 3. Полиморфизм: кнопка
+
+as='button' — действие, семантически оформленное как ссылка
+
+```tsx
+import { Link } from '@ds/link';
+
+export function Polymorphic() {
+  return <Link as='button' type='button' text='Открыть диалог' onClick={() => alert('clicked')} />;
+}
+```
+
+### 4. Внешняя ссылка
+
+target='_blank' → rel='noopener noreferrer' автоматически
+
+```tsx
+import { Link } from '@ds/link';
+
+export function External() {
+  return <Link text='Открыть в новой вкладке' href='https://example.com' target='_blank' />;
+}
+```
+
+## Props
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `data-test-id` | `string` | — |  |
-| `text` | `string` | `` | Текст ссылки |
-| `role` | `"regular"` \| `"onAccent"` | `regular` | Роль |
-| `appearance` | `"neutral"` \| `"invertNeutral"` \| `"primary"` \| `"red"` \| `"orange"` \| `"yellow"` \| `"green"` \| `"blue"` \| `"violet"` \| `"pink"` | `primary` | Стилизует ссылку для размещения на цветном фоне |
-| `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
-| `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки:
-<br/> - `end` - с конца;
-<br/> - `middle` - посередине |
-| `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |
+| `appearance` | `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Стилизует ссылку для размещения на цветном фоне |
 | `as` | `ComponentType | ElementType` | `'a'` | Полиморфный компонент.
 
 Оформить переданный компонент или html элемент в стиль ссылки.
@@ -104,3 +99,11 @@ export function Example() {
 <br/> - `data-text-mode`
 <br/> - `data-appearance`
 <br/> - `data-inside-text` |
+| `data-test-id` | `string` | — |  |
+| `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
+| `role` | `"onAccent"` \| `"regular"` | `regular` | Роль |
+| `text` | `string` | `` | Текст ссылки |
+| `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки:
+<br/> - `end` - с конца;
+<br/> - `middle` - посередине |
+| `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |
