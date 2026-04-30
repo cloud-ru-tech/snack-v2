@@ -1,63 +1,21 @@
 {
-  "Header": {
-    "displayName": "Header",
+  "Body": {
+    "displayName": "Body",
     "propsTypeName": null,
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "title": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
-      },
-      "titleId": {
-        "type": "string",
-        "required": false,
-        "description": "id для aria-labelledby"
-      },
-      "slotAfterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка"
-      },
-      "subtitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подзаголовок"
-      },
-      "truncate": {
-        "type": "{ title?: number; subtitle?: number; } | undefined",
-        "required": false,
-        "defaultValue": "title: 1; subtitle (string): 2",
-        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
-      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс для обёртки body"
       },
-      "onBackButtonClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "Footer": {
-    "displayName": "Footer",
-    "propsTypeName": null,
-    "props": {
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Основной контент"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
       }
     },
     "relatedTypes": {}
@@ -66,6 +24,11 @@
     "displayName": "ButtonClose",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -74,154 +37,53 @@
         "type": "() => void",
         "required": true,
         "description": "Действие при клике"
-      },
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Footer": {
+    "displayName": "Footer",
+    "propsTypeName": null,
+    "props": {
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       }
     },
     "relatedTypes": {}
   },
-  "Body": {
-    "displayName": "Body",
+  "Header": {
+    "displayName": "Header",
     "propsTypeName": null,
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "content": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Основной контент"
-      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс для обёртки body"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "ModalCustom": {
-    "displayName": "ModalCustom",
-    "propsTypeName": "ModalCustomProps",
-    "props": {
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
       },
-      "open": {
-        "type": "boolean",
+      "onBackButtonClick": {
+        "type": "(() => void)",
         "required": false,
-        "defaultValue": "false",
-        "description": "Управление состоянием показан/не показан"
+        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
       },
-      "onClose": {
-        "type": "() => void",
-        "required": true,
-        "description": "Колбэк закрытия",
-        "typeRefs": [
-          "onClose"
-        ]
-      },
-      "mode": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "regular",
-          "aggressive",
-          "forced"
-        ],
-        "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
-        "typeRefs": [
-          "ModalMode"
-        ]
-      },
-      "children": {
+      "slotAfterHeadline": {
         "type": "ReactNode",
-        "required": true,
-        "description": "Содержимое окна (композиция Header/Body/Footer)"
-      },
-      "className": {
-        "type": "string",
         "required": false,
-        "description": "CSS-класс окна"
+        "description": "Слот после заголовка"
       },
-      "rootClassName": {
-        "type": "string",
+      "subtitle": {
+        "type": "ReactNode",
         "required": false,
-        "description": "CSS-класс корневого слоя портала"
-      },
-      "width": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "defaultValue": "s",
-        "description": "Размер окна",
-        "typeRefs": [
-          "ModalWidth"
-        ]
-      },
-      "heightAuto": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Растягивать по высоте в пределах контейнера"
-      },
-      "container": {
-        "type": "ModalContainer",
-        "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
-        "typeRefs": [
-          "ModalContainer"
-        ]
-      },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрытие при навигации по истории"
-      }
-    },
-    "relatedTypes": {
-      "ModalMode": {
-        "kind": "union",
-        "values": [
-          "regular",
-          "aggressive",
-          "forced"
-        ],
-        "own": true
-      },
-      "ModalWidth": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "own": true
-      },
-      "ModalContainer": {
-        "kind": "alias",
-        "type": "string | HTMLElement",
-        "own": true
-      }
-    }
-  },
-  "ModalCustom.Header": {
-    "displayName": "ModalCustom.Header",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
+        "description": "Подзаголовок"
       },
       "title": {
         "type": "string",
@@ -233,68 +95,11 @@
         "required": false,
         "description": "id для aria-labelledby"
       },
-      "slotAfterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка"
-      },
-      "subtitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подзаголовок"
-      },
       "truncate": {
         "type": "{ title?: number; subtitle?: number; } | undefined",
         "required": false,
         "defaultValue": "title: 1; subtitle (string): 2",
         "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "onBackButtonClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "ModalCustom.Body": {
-    "displayName": "ModalCustom.Body",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "content": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Основной контент"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для обёртки body"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "ModalCustom.Footer": {
-    "displayName": "ModalCustom.Footer",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
       }
     },
     "relatedTypes": {}
@@ -302,97 +107,17 @@
   "Modal": {
     "displayName": "Modal",
     "propsTypeName": "ModalProps",
+    "description": "Модальное окно с пресетной разметкой (шапка, тело, футер) поверх ModalCustom.",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "title": {
+      "className": {
         "type": "string",
         "required": false,
-        "description": "Заголовок"
+        "description": "CSS-класс для окна"
       },
-      "slotAfterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка"
-      },
-      "subtitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подзаголовок"
-      },
-      "truncate": {
-        "type": "{ title?: number; subtitle?: number; } | undefined",
-        "required": false,
-        "defaultValue": "title: 1; subtitle (string): 2",
-        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
-      },
-      "onBackButtonClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку",
-        "typeRefs": [
-          "onBackButtonClick"
-        ]
-      },
-      "content": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Основной контент"
-      },
-      "open": {
+      "closeOnPopstate": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Управление состоянием показан/не показан"
-      },
-      "onClose": {
-        "type": "() => void",
-        "required": true,
-        "description": "Колбэк закрытия",
-        "typeRefs": [
-          "onClose"
-        ]
-      },
-      "mode": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "regular",
-          "aggressive",
-          "forced"
-        ],
-        "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
-        "typeRefs": [
-          "ModalMode"
-        ]
-      },
-      "rootClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс корневого слоя портала"
-      },
-      "width": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "defaultValue": "s",
-        "description": "Размер окна",
-        "typeRefs": [
-          "ModalWidth"
-        ]
-      },
-      "heightAuto": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Растягивать по высоте в пределах контейнера"
+        "description": "Закрытие при навигации по истории"
       },
       "container": {
         "type": "ModalContainer",
@@ -402,25 +127,25 @@
           "ModalContainer"
         ]
       },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрытие при навигации по истории"
-      },
-      "media": {
+      "content": {
         "type": "ReactNode",
-        "required": false,
-        "description": "Медиа-контент"
+        "required": true,
+        "description": "Основной контент"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "footer": {
         "type": "ReactNode",
         "required": false,
         "description": "Контент футера"
       },
-      "className": {
-        "type": "string",
+      "heightAuto": {
+        "type": "boolean",
         "required": false,
-        "description": "CSS-класс для окна"
+        "defaultValue": "true",
+        "description": "Растягивать по высоте в пределах контейнера"
       },
       "loading": {
         "type": "boolean",
@@ -432,33 +157,308 @@
         "type": "ReactNode",
         "required": false,
         "description": "Контент тела вместо спиннера при `loading`"
+      },
+      "media": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Медиа-контент"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "regular",
+        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "typeRefs": [
+          "ModalMode"
+        ]
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку",
+        "typeRefs": [
+          "onBackButtonClick"
+        ]
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия",
+        "typeRefs": [
+          "onClose"
+        ]
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Управление состоянием показан/не показан"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого слоя портала"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "defaultValue": "title: 1; subtitle (string): 2",
+        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер окна",
+        "typeRefs": [
+          "ModalWidth"
+        ]
       }
     },
     "relatedTypes": {
-      "ModalWidth": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
         "own": true
       },
       "ModalMode": {
         "kind": "union",
         "values": [
-          "regular",
           "aggressive",
-          "forced"
+          "forced",
+          "regular"
         ],
         "own": true
       },
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ModalCustom": {
+    "displayName": "ModalCustom",
+    "propsTypeName": "ModalCustomProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Содержимое окна (композиция Header/Body/Footer)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс окна"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "container": {
+        "type": "ModalContainer",
+        "required": false,
+        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Растягивать по высоте в пределах контейнера"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "regular",
+        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "typeRefs": [
+          "ModalMode"
+        ]
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия",
+        "typeRefs": [
+          "onClose"
+        ]
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Управление состоянием показан/не показан"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого слоя портала"
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер окна",
+        "typeRefs": [
+          "ModalWidth"
+        ]
+      }
+    },
+    "relatedTypes": {
       "ModalContainer": {
         "kind": "alias",
         "type": "string | HTMLElement",
         "own": true
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": true
+      },
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ModalCustom.Body": {
+    "displayName": "ModalCustom.Body",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для обёртки body"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Основной контент"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       }
     },
-    "description": "Модальное окно с пресетной разметкой (шапка, тело, футер) поверх ModalCustom."
+    "relatedTypes": {}
+  },
+  "ModalCustom.Footer": {
+    "displayName": "ModalCustom.Footer",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ModalCustom.Header": {
+    "displayName": "ModalCustom.Header",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "id для aria-labelledby"
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "defaultValue": "title: 1; subtitle (string): 2",
+        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
+      }
+    },
+    "relatedTypes": {}
   }
 }

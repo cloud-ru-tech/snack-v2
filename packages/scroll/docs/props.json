@@ -1,42 +1,9 @@
 {
-  "setNonce": {
-    "displayName": "setNonce",
-    "propsTypeName": null,
-    "props": {},
-    "relatedTypes": {},
-    "description": "Установить nonce атрибут для инлайн стилей."
-  },
   "Scroll": {
     "displayName": "Scroll",
     "propsTypeName": "ScrollProps",
+    "description": "Scroll — контейнер с кастомными скроллбарами (OverlayScrollbars).\nСтили из",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m"
-        ],
-        "defaultValue": "m",
-        "description": "Размер скролбаров",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "clickScrolling": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Скролить ли по клику в скроллбар."
-      },
       "autoscrollTo": {
         "type": "enum",
         "required": false,
@@ -53,10 +20,10 @@
         "type": "enum",
         "required": false,
         "values": [
-          "never",
           "leave",
-          "scroll",
-          "move"
+          "move",
+          "never",
+          "scroll"
         ],
         "defaultValue": "leave",
         "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
@@ -64,36 +31,19 @@
           "BarHideStrategy"
         ]
       },
-      "onScroll": {
-        "type": "((event?: Event) => void)",
-        "required": false,
-        "description": "Колбек события скрола."
+      "className": {
+        "type": "string",
+        "required": false
       },
-      "resize": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "none",
-          "horizontal",
-          "vertical",
-          "both"
-        ],
-        "defaultValue": "none",
-        "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
-        "typeRefs": [
-          "Resize"
-        ]
-      },
-      "untouchableScrollbars": {
+      "clickScrolling": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+        "defaultValue": "true",
+        "description": "Скролить ли по клику в скроллбар."
       },
-      "paddingAbsolute": {
-        "type": "boolean",
-        "required": false,
-        "description": "Должны ли паддинги быть абсолютными"
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "onInitialized": {
         "type": "(() => void)",
@@ -102,31 +52,67 @@
         "typeRefs": [
           "onInitialized"
         ]
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек события скрола."
+      },
+      "paddingAbsolute": {
+        "type": "boolean",
+        "required": false,
+        "description": "Должны ли паддинги быть абсолютными"
+      },
+      "resize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "both",
+          "horizontal",
+          "none",
+          "vertical"
+        ],
+        "defaultValue": "none",
+        "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+        "typeRefs": [
+          "Resize"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер скролбаров",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
       }
     },
     "relatedTypes": {
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m"
-        ],
-        "own": true
-      },
       "AutoscrollTo": {
         "kind": "union",
         "values": [
-          "right",
-          "bottom"
+          "bottom",
+          "right"
         ],
         "own": true
       },
       "BarHideStrategy": {
         "kind": "union",
         "values": [
+          "leave",
           "move",
           "never",
-          "leave",
           "scroll"
         ],
         "own": true
@@ -134,14 +120,28 @@
       "Resize": {
         "kind": "union",
         "values": [
-          "none",
           "both",
           "horizontal",
+          "none",
           "vertical"
         ],
         "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
       }
-    },
-    "description": "Scroll — контейнер с кастомными скроллбарами (OverlayScrollbars).\nСтили из"
+    }
+  },
+  "setNonce": {
+    "displayName": "setNonce",
+    "propsTypeName": null,
+    "description": "Установить nonce атрибут для инлайн стилей.",
+    "props": {},
+    "relatedTypes": {}
   }
 }

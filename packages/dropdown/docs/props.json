@@ -2,15 +2,102 @@
   "Dropdown": {
     "displayName": "Dropdown",
     "propsTypeName": "DropdownProps",
+    "description": "Dropdown компонент",
     "props": {
-      "data-test-id": {
+      "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
       },
       "content": {
         "type": "ReactNode",
         "required": true,
         "description": "Содержимое внутри поповера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера",
+        "typeRefs": [
+          "OutsideClickHandler"
+        ]
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "state": {
         "type": "DropdownState",
@@ -23,61 +110,28 @@
           "DropdownState"
         ]
       },
-      "className": {
-        "type": "string",
+      "trigger": {
+        "type": "enum",
         "required": false,
-        "description": "CSS-класс"
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
       },
       "triggerClassName": {
         "type": "string",
         "required": false,
         "description": "CSS-класс триггера"
-      },
-      "open": {
-        "type": "boolean",
-        "required": false,
-        "description": "Управляет состоянием показан/не показан."
-      },
-      "onOpenChange": {
-        "type": "((isOpen: boolean) => void)",
-        "required": false,
-        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-      },
-      "hoverDelayOpen": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка открытия по ховеру"
-      },
-      "hoverDelayClose": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка закрытия по ховеру"
-      },
-      "widthStrategy": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "auto",
-          "gte",
-          "eq"
-        ],
-        "defaultValue": "gte",
-        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-        "typeRefs": [
-          "PopoverWidthStrategy"
-        ]
-      },
-      "offset": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-      },
-      "closeOnEscapeKey": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Закрывать ли по нажатию на кнопку `Esc`"
       },
       "triggerClickByKeys": {
         "type": "boolean",
@@ -90,71 +144,18 @@
         "required": false,
         "description": "Ref ссылка на триггер"
       },
-      "outsideClick": {
-        "type": "boolean | OutsideClickHandler",
-        "required": false,
-        "description": "Закрывать ли при клике вне поповера",
-        "typeRefs": [
-          "OutsideClickHandler"
-        ]
-      },
-      "fallbackPlacements": {
-        "type": "Placement[]",
-        "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-        "typeRefs": [
-          "Placement"
-        ]
-      },
-      "disableSpanWrapper": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-      },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрывать ли поповер при пекреходе по истории браузера"
-      },
-      "trigger": {
+      "widthStrategy": {
         "type": "enum",
         "required": false,
         "values": [
-          "click",
-          "hover",
-          "focusVisible",
-          "focus",
-          "hoverAndFocusVisible",
-          "hoverAndFocus",
-          "clickAndFocusVisible"
+          "auto",
+          "eq",
+          "gte"
         ],
-        "defaultValue": "click",
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
         "typeRefs": [
-          "Trigger"
-        ]
-      },
-      "placement": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
-          "bottom",
-          "bottom-start",
-          "bottom-end"
-        ],
-        "defaultValue": "bottom-start",
-        "description": "Положение поповера относительно своего триггера (children).",
-        "typeRefs": [
-          "Placement"
+          "PopoverWidthStrategy"
         ]
       }
     },
@@ -189,72 +190,6 @@
         },
         "own": true
       },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "neutral",
-              "primary",
-              "red",
-              "orange",
-              "yellow",
-              "green",
-              "blue",
-              "violet",
-              "pink"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "l",
-              "5xl"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "shape": {
-            "type": "\"round\" | \"square\" | undefined",
-            "required": false,
-            "values": [
-              "round",
-              "square"
-            ],
-            "description": "Форма: круглая или квадратная"
-          }
-        },
-        "own": false
-      },
       "BlockPropsWithIcon": {
         "kind": "interface",
         "props": {
@@ -279,22 +214,70 @@
         "type": "{ type: STATE.Loading; } | ({ type: STATE.NotFound; } & ActionButtonProps & BlockProps) | ({ type: STATE.NoData; } & ActionButtonProps & BlockPropsWithIcon) | ({ type: STATE.DataError; } & ActionButtonProps & BlockPropsWithIcon)",
         "own": true
       },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
-          "bottom",
-          "bottom-start",
-          "bottom-end"
-        ],
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
         "own": false
       },
       "OutsideClickHandler": {
@@ -302,12 +285,30 @@
         "type": "(event: MouseEvent) => boolean",
         "own": false
       },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
       "PopoverWidthStrategy": {
         "kind": "union",
         "values": [
           "auto",
-          "gte",
-          "eq"
+          "eq",
+          "gte"
         ],
         "own": false
       },
@@ -315,16 +316,15 @@
         "kind": "union",
         "values": [
           "click",
-          "hover",
-          "focusVisible",
+          "clickAndFocusVisible",
           "focus",
-          "hoverAndFocusVisible",
+          "focusVisible",
+          "hover",
           "hoverAndFocus",
-          "clickAndFocusVisible"
+          "hoverAndFocusVisible"
         ],
         "own": false
       }
-    },
-    "description": "Dropdown компонент"
+    }
   }
 }

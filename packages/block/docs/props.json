@@ -2,34 +2,25 @@
   "Block": {
     "displayName": "Block",
     "propsTypeName": "BlockProps",
+    "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Различные варианты отображения: simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children",
     "props": {
       "children": {
         "type": "ReactNode",
         "required": false,
         "description": "Содержимое"
       },
-      "variant": {
-        "type": "enum",
+      "data-test-id": {
+        "type": "string",
         "required": false,
-        "values": [
-          "simple",
-          "outline",
-          "shadow",
-          "transparent"
-        ],
-        "defaultValue": "simple",
-        "description": "Вариант",
-        "typeRefs": [
-          "Variant"
-        ]
+        "description": "Стабильный идентификатор для e2e/tests"
       },
       "size": {
         "type": "enum",
         "required": false,
         "values": [
-          "s",
+          "l",
           "m",
-          "l"
+          "s"
         ],
         "defaultValue": "l",
         "description": "Размер",
@@ -37,33 +28,42 @@
           "Size"
         ]
       },
-      "data-test-id": {
-        "type": "string",
+      "variant": {
+        "type": "enum",
         "required": false,
-        "description": "Стабильный идентификатор для e2e/tests"
+        "values": [
+          "outline",
+          "shadow",
+          "simple",
+          "transparent"
+        ],
+        "defaultValue": "simple",
+        "description": "Вариант",
+        "typeRefs": [
+          "Variant"
+        ]
       }
     },
     "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
       "Variant": {
         "kind": "union",
         "values": [
           "outline",
-          "simple",
           "shadow",
+          "simple",
           "transparent"
         ],
         "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "own": true
       }
-    },
-    "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Различные варианты отображения: simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children"
+    }
   }
 }

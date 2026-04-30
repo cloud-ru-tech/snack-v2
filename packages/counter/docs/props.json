@@ -1,87 +1,21 @@
 {
-  "formatValue": {
-    "displayName": "formatValue",
-    "propsTypeName": null,
-    "props": {
-      "value": {
-        "type": "number",
-        "required": true
-      },
-      "variant": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "count",
-          "count-plus",
-          "count-k"
-        ]
-      },
-      "plusLimit": {
-        "type": "number",
-        "required": true
-      }
-    },
-    "relatedTypes": {}
-  },
   "Counter": {
     "displayName": "Counter",
     "propsTypeName": "CounterProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "value": {
-        "type": "number",
-        "required": true,
-        "description": "Значение"
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
-          "primary",
+          "critical",
           "neutral",
-          "critical"
+          "primary"
         ],
         "defaultValue": "primary",
         "description": "Внешний вид",
         "typeRefs": [
           "Appearance"
         ]
-      },
-      "variant": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "count",
-          "count-plus",
-          "count-k"
-        ],
-        "defaultValue": "count",
-        "description": "Вариант форматирования",
-        "typeRefs": [
-          "Variant"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s"
-        ],
-        "defaultValue": "xs",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "plusLimit": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "10",
-        "description": "Порог сокращения значения для варианта `count-plus`"
       },
       "className": {
         "type": "string",
@@ -100,24 +34,65 @@
         "typeRefs": [
           "Color"
         ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "plusLimit": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "10",
+        "description": "Порог сокращения значения для варианта `count-plus`"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "value": {
+        "type": "number",
+        "required": true,
+        "description": "Значение"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "count",
+          "count-k",
+          "count-plus"
+        ],
+        "defaultValue": "count",
+        "description": "Вариант форматирования",
+        "typeRefs": [
+          "Variant"
+        ]
       }
     },
     "relatedTypes": {
       "Appearance": {
         "kind": "union",
         "values": [
+          "critical",
           "neutral",
-          "primary",
-          "critical"
+          "primary"
         ],
         "own": true
       },
-      "Variant": {
+      "Color": {
         "kind": "union",
         "values": [
-          "count",
-          "count-plus",
-          "count-k"
+          "accent",
+          "decor"
         ],
         "own": true
       },
@@ -129,14 +104,39 @@
         ],
         "own": true
       },
-      "Color": {
+      "Variant": {
         "kind": "union",
         "values": [
-          "accent",
-          "decor"
+          "count",
+          "count-k",
+          "count-plus"
         ],
         "own": true
       }
     }
+  },
+  "formatValue": {
+    "displayName": "formatValue",
+    "propsTypeName": null,
+    "props": {
+      "plusLimit": {
+        "type": "number",
+        "required": true
+      },
+      "value": {
+        "type": "number",
+        "required": true
+      },
+      "variant": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "count",
+          "count-k",
+          "count-plus"
+        ]
+      }
+    },
+    "relatedTypes": {}
   }
 }

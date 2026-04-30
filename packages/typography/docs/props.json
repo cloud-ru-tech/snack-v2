@@ -2,60 +2,17 @@
   "Typography": {
     "displayName": "Typography",
     "propsTypeName": "TypographyProps",
+    "description": "Typography компонент\n\nКомпонент типографики, использующий стили из",
     "props": {
-      "children": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Дочерние элементы"
-      },
-      "variant": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "title",
-          "display",
-          "headline",
-          "label",
-          "body"
-        ],
-        "defaultValue": "VARIANT.body",
-        "description": "Вариант типографики",
-        "typeRefs": [
-          "TypographyVariant"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "defaultValue": "SIZE.m",
-        "description": "Размер типографики",
-        "typeRefs": [
-          "TypographySize"
-        ]
-      },
-      "weight": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "regular",
-          "thin",
-          "mono"
-        ],
-        "defaultValue": "WEIGHT.regular",
-        "description": "Начертание шрифта",
-        "typeRefs": [
-          "TypographyWeight"
-        ]
-      },
       "as": {
         "type": "ElementType",
         "required": false,
         "description": "HTML тег для рендеринга"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дочерние элементы"
       },
       "className": {
         "type": "string",
@@ -66,39 +23,82 @@
         "type": "string",
         "required": false,
         "description": "Стабильный идентификатор для e2e/tests"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "SIZE.m",
+        "description": "Размер типографики",
+        "typeRefs": [
+          "TypographySize"
+        ]
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "body",
+          "display",
+          "headline",
+          "label",
+          "title"
+        ],
+        "defaultValue": "VARIANT.body",
+        "description": "Вариант типографики",
+        "typeRefs": [
+          "TypographyVariant"
+        ]
+      },
+      "weight": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "mono",
+          "regular",
+          "thin"
+        ],
+        "defaultValue": "WEIGHT.regular",
+        "description": "Начертание шрифта",
+        "typeRefs": [
+          "TypographyWeight"
+        ]
       }
     },
     "relatedTypes": {
-      "TypographyVariant": {
-        "kind": "union",
-        "values": [
-          "display",
-          "headline",
-          "title",
-          "label",
-          "body"
-        ],
-        "own": true
-      },
       "TypographySize": {
         "kind": "union",
         "values": [
-          "s",
+          "l",
           "m",
-          "l"
+          "s"
+        ],
+        "own": true
+      },
+      "TypographyVariant": {
+        "kind": "union",
+        "values": [
+          "body",
+          "display",
+          "headline",
+          "label",
+          "title"
         ],
         "own": true
       },
       "TypographyWeight": {
         "kind": "union",
         "values": [
+          "mono",
           "regular",
-          "thin",
-          "mono"
+          "thin"
         ],
         "own": true
       }
-    },
-    "description": "Typography компонент\n\nКомпонент типографики, использующий стили из"
+    }
   }
 }

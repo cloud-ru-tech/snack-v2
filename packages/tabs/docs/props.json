@@ -1,16 +1,482 @@
 {
+  "ScrollButton": {
+    "displayName": "ScrollButton",
+    "propsTypeName": "ScrollButtonProps",
+    "props": {
+      "direction": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "typeRefs": [
+          "Direction"
+        ]
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true,
+        "typeRefs": [
+          "onClick"
+        ]
+      },
+      "orientation": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "typeRefs": [
+          "Orientation"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Direction": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "own": true
+      },
+      "Orientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m"
+        ],
+        "own": true
+      }
+    }
+  },
+  "Tab": {
+    "displayName": "Tab",
+    "propsTypeName": "TabProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "counter": {
+        "type": "{ label: number; appearance?: Appearance; color?: Color; } | undefined",
+        "required": false,
+        "description": "Счетчик, отображающийся внутри кнопки переключения",
+        "typeRefs": [
+          "CounterProps"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Деактивирована ли вкладка"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок вкладки"
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек клика по кнопке переключения",
+        "typeRefs": [
+          "onClick"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Value вкладки"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "Color": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "count",
+          "count-k",
+          "count-plus"
+        ],
+        "own": false
+      }
+    }
+  },
+  "TabBar": {
+    "displayName": "TabBar",
+    "propsTypeName": "TabBarProps",
+    "props": {
+      "after": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дополнительный слот для кастомного контента справа от табов"
+      },
+      "children": {
+        "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
+        "required": true,
+        "description": "Контент (элементы Tabs.Tab)",
+        "typeRefs": [
+          "TabProps"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Скрыть разделитель под/рядом с панелью табов"
+      },
+      "markerPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "defaultValue": "after",
+        "description": "Позиция маркера",
+        "typeRefs": [
+          "MarkerPosition"
+        ]
+      },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация",
+        "typeRefs": [
+          "Orientation"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m"
+        ],
+        "defaultValue": "l",
+        "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "MarkerPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "Orientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m"
+        ],
+        "own": true
+      },
+      "TabProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "counter": {
+            "type": "{ label: number; appearance?: CounterProps[\"appearance\"]; color?: CounterProps[\"color\"]; } | undefined",
+            "required": false,
+            "description": "Счетчик, отображающийся внутри кнопки переключения",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Деактивирована ли вкладка"
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок вкладки"
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек клика по кнопке переключения",
+            "typeRefs": [
+              "onClick"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "required": true,
+            "description": "Value вкладки"
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "TabContent": {
+    "displayName": "TabContent",
+    "propsTypeName": "TabContentProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Значение таба"
+      }
+    },
+    "relatedTypes": {}
+  },
   "Tabs": {
     "displayName": "Tabs",
     "propsTypeName": "TabsProps",
     "props": {
-      "value": {
-        "type": "string",
-        "required": false,
-        "description": "Текущая вкладка",
-        "typeRefs": [
-          "T"
-        ]
-      },
       "defaultValue": {
         "type": "string",
         "required": false,
@@ -26,6 +492,14 @@
         "typeRefs": [
           "onChange"
         ]
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Текущая вкладка",
+        "typeRefs": [
+          "T"
+        ]
       }
     },
     "relatedTypes": {}
@@ -34,25 +508,6 @@
     "displayName": "Tabs.Tab",
     "propsTypeName": null,
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "value": {
-        "type": "string",
-        "required": true,
-        "description": "Value вкладки"
-      },
-      "label": {
-        "type": "string",
-        "required": true,
-        "description": "Заголовок вкладки"
-      },
-      "disabled": {
-        "type": "boolean",
-        "required": false,
-        "description": "Деактивирована ли вкладка"
-      },
       "className": {
         "type": "string",
         "required": false,
@@ -63,10 +518,29 @@
         "required": false,
         "description": "Счетчик, отображающийся внутри кнопки переключения"
       },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирована ли вкладка"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок вкладки"
+      },
       "onClick": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
         "description": "Колбек клика по кнопке переключения"
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Value вкладки"
       }
     },
     "relatedTypes": {}
@@ -75,28 +549,29 @@
     "displayName": "Tabs.TabBar",
     "propsTypeName": null,
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
+      "after": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дополнительный слот для кастомного контента справа от табов"
       },
       "children": {
         "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
         "required": true,
         "description": "Контент (элементы Tabs.Tab)"
       },
-      "after": {
-        "type": "ReactNode",
+      "className": {
+        "type": "string",
         "required": false,
-        "description": "Дополнительный слот для кастомного контента справа от табов"
+        "description": "CSS-класс"
       },
-      "orientation": {
-        "type": "enum",
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableDivider": {
+        "type": "boolean",
         "required": false,
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "description": "Ориентация"
+        "description": "Скрыть разделитель под/рядом с панелью табов"
       },
       "markerPosition": {
         "type": "enum",
@@ -107,6 +582,15 @@
         ],
         "description": "Позиция маркера"
       },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Ориентация"
+      },
       "size": {
         "type": "enum",
         "required": false,
@@ -115,16 +599,6 @@
           "m"
         ],
         "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента"
-      },
-      "disableDivider": {
-        "type": "boolean",
-        "required": false,
-        "description": "Скрыть разделитель под/рядом с панелью табов"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
       }
     },
     "relatedTypes": {}
@@ -133,6 +607,10 @@
     "displayName": "Tabs.TabContent",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -141,486 +619,8 @@
         "type": "string",
         "required": true,
         "description": "Значение таба"
-      },
-      "className": {
-        "type": "string",
-        "required": false
       }
     },
     "relatedTypes": {}
-  },
-  "TabContent": {
-    "displayName": "TabContent",
-    "propsTypeName": "TabContentProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "value": {
-        "type": "string",
-        "required": true,
-        "description": "Значение таба"
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "TabBar": {
-    "displayName": "TabBar",
-    "propsTypeName": "TabBarProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "children": {
-        "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
-        "required": true,
-        "description": "Контент (элементы Tabs.Tab)",
-        "typeRefs": [
-          "TabProps"
-        ]
-      },
-      "after": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Дополнительный слот для кастомного контента справа от табов"
-      },
-      "orientation": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "defaultValue": "horizontal",
-        "description": "Ориентация",
-        "typeRefs": [
-          "Orientation"
-        ]
-      },
-      "markerPosition": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "after",
-          "before"
-        ],
-        "defaultValue": "after",
-        "description": "Позиция маркера",
-        "typeRefs": [
-          "MarkerPosition"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "l",
-          "m"
-        ],
-        "defaultValue": "l",
-        "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "disableDivider": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Скрыть разделитель под/рядом с панелью табов"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      }
-    },
-    "relatedTypes": {
-      "CounterProps": {
-        "kind": "interface",
-        "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "value": {
-            "type": "number",
-            "required": true,
-            "description": "Значение"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "neutral",
-              "primary",
-              "critical"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "variant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "count",
-              "count-plus",
-              "count-k"
-            ],
-            "description": "Вариант форматирования",
-            "typeRefs": [
-              "Variant"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "plusLimit": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Порог сокращения значения для варианта `count-plus`"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный CSS-класс"
-          },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          }
-        },
-        "own": false
-      },
-      "TabProps": {
-        "kind": "interface",
-        "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "value": {
-            "type": "string",
-            "required": true,
-            "description": "Value вкладки"
-          },
-          "label": {
-            "type": "string",
-            "required": true,
-            "description": "Заголовок вкладки"
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Деактивирована ли вкладка"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "counter": {
-            "type": "{ label: number; appearance?: CounterProps[\"appearance\"]; color?: CounterProps[\"color\"]; } | undefined",
-            "required": false,
-            "description": "Счетчик, отображающийся внутри кнопки переключения",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "onClick": {
-            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек клика по кнопке переключения",
-            "typeRefs": [
-              "onClick"
-            ]
-          }
-        },
-        "own": true
-      },
-      "Orientation": {
-        "kind": "union",
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "own": true
-      },
-      "MarkerPosition": {
-        "kind": "union",
-        "values": [
-          "before",
-          "after"
-        ],
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "m",
-          "l"
-        ],
-        "own": true
-      }
-    }
-  },
-  "Tab": {
-    "displayName": "Tab",
-    "propsTypeName": "TabProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "value": {
-        "type": "string",
-        "required": true,
-        "description": "Value вкладки"
-      },
-      "label": {
-        "type": "string",
-        "required": true,
-        "description": "Заголовок вкладки"
-      },
-      "disabled": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Деактивирована ли вкладка"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "counter": {
-        "type": "{ label: number; appearance?: Appearance; color?: Color; } | undefined",
-        "required": false,
-        "description": "Счетчик, отображающийся внутри кнопки переключения",
-        "typeRefs": [
-          "CounterProps"
-        ]
-      },
-      "onClick": {
-        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
-        "required": false,
-        "description": "Колбек клика по кнопке переключения",
-        "typeRefs": [
-          "onClick"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "critical"
-        ],
-        "own": false
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "count",
-          "count-plus",
-          "count-k"
-        ],
-        "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "m",
-          "l"
-        ],
-        "own": true
-      },
-      "Color": {
-        "kind": "union",
-        "values": [
-          "accent",
-          "decor"
-        ],
-        "own": false
-      },
-      "CounterProps": {
-        "kind": "interface",
-        "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "value": {
-            "type": "number",
-            "required": true,
-            "description": "Значение"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "neutral",
-              "primary",
-              "critical"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "variant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "count",
-              "count-plus",
-              "count-k"
-            ],
-            "description": "Вариант форматирования",
-            "typeRefs": [
-              "Variant"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "plusLimit": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Порог сокращения значения для варианта `count-plus`"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный CSS-класс"
-          },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          }
-        },
-        "own": false
-      }
-    }
-  },
-  "ScrollButton": {
-    "displayName": "ScrollButton",
-    "propsTypeName": "ScrollButtonProps",
-    "props": {
-      "size": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "l",
-          "m"
-        ],
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "direction": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "left",
-          "right",
-          "top",
-          "bottom"
-        ],
-        "typeRefs": [
-          "Direction"
-        ]
-      },
-      "orientation": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "typeRefs": [
-          "Orientation"
-        ]
-      },
-      "onClick": {
-        "type": "() => void",
-        "required": true,
-        "typeRefs": [
-          "onClick"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "Size": {
-        "kind": "union",
-        "values": [
-          "m",
-          "l"
-        ],
-        "own": true
-      },
-      "Direction": {
-        "kind": "union",
-        "values": [
-          "left",
-          "right",
-          "top",
-          "bottom"
-        ],
-        "own": true
-      },
-      "Orientation": {
-        "kind": "union",
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "own": true
-      }
-    }
   }
 }

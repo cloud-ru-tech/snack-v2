@@ -1,4 +1,306 @@
 {
+  "Arrow": {
+    "displayName": "Arrow",
+    "propsTypeName": null,
+    "props": {
+      "arrowContainerClassName": {
+        "type": "string",
+        "required": false
+      },
+      "arrowElementClassName": {
+        "type": "string",
+        "required": false
+      },
+      "arrowRef": {
+        "type": "RefObject<HTMLDivElement | null>",
+        "required": true
+      },
+      "placement": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ]
+      },
+      "x": {
+        "type": "number",
+        "required": false
+      },
+      "y": {
+        "type": "number",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PopoverPrivate": {
+    "displayName": "PopoverPrivate",
+    "propsTypeName": "PopoverPrivateProps",
+    "props": {
+      "arrowContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера стрелки поповера"
+      },
+      "arrowElementClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс стрелки поповера"
+      },
+      "children": {
+        "type": "ReactNode | ChildrenFunction",
+        "required": false,
+        "description": "Триггер поповера (подробнее читайте ниже)",
+        "typeRefs": [
+          "ChildrenFunction"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "hasArrow": {
+        "type": "boolean",
+        "required": false,
+        "description": "Параметр наличия стрелки у поповера. В размеры стрелки встроен отступ. Дополнительный отступ может быть задан параметром `offset`. У элемента стрелки нет цвета, необходимо задавать его через параметр `arrowClassName`."
+      },
+      "heightStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "lte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления высотой контейнера поповера\n<br/> - `auto` - соответствует высоте контента,\n<br/> - `lte` - Less Than or Equal, равен высоте таргета или меньше ее, если контент в поповере меньше,\n<br/> - `eq` - Equal, строго равен высоте таргета.",
+        "typeRefs": [
+          "PopoverHeightStrategy"
+        ]
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера",
+        "typeRefs": [
+          "OutsideClickHandler"
+        ]
+      },
+      "placement": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "popoverContent": {
+        "type": "ReactNode | ReactNode[]",
+        "required": true,
+        "description": "Контент поповера"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<HTMLElement | ReferenceType | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
+        "typeRefs": [
+          "PopoverWidthStrategy"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": true
+      },
+      "OutsideClickHandler": {
+        "kind": "alias",
+        "type": "(event: MouseEvent) => boolean",
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": true
+      },
+      "PopoverHeightStrategy": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "eq",
+          "lte"
+        ],
+        "own": true
+      },
+      "PopoverWidthStrategy": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": true
+      }
+    }
+  },
+  "getArrowOffset": {
+    "displayName": "getArrowOffset",
+    "propsTypeName": null,
+    "props": {
+      "children": {
+        "type": "HTMLCollection",
+        "required": true,
+        "description": "Returns the child elements.\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/children)"
+      }
+    },
+    "relatedTypes": {}
+  },
   "getArrowPositionStyles": {
     "displayName": "getArrowPositionStyles",
     "propsTypeName": null,
@@ -7,18 +309,18 @@
         "type": "enum",
         "required": true,
         "values": [
-          "top",
-          "right",
           "bottom",
-          "left",
-          "top-start",
-          "top-end",
-          "right-start",
-          "right-end",
-          "bottom-start",
           "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
           "left-start",
-          "left-end"
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
         ]
       },
       "ref": {
@@ -36,8 +338,31 @@
     },
     "relatedTypes": {}
   },
-  "referenceActionToEvent": {
-    "displayName": "referenceActionToEvent",
+  "getPopoverTriggerJSX": {
+    "displayName": "getPopoverTriggerJSX",
+    "propsTypeName": null,
+    "props": {
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false
+      },
+      "getReferenceProps": {
+        "type": "(userProps?: HTMLProps<Element> | undefined) => Record<string, unknown>",
+        "required": true
+      },
+      "setReference": {
+        "type": "(node: ReferenceType | null) => void",
+        "required": true
+      },
+      "validElementWrapperClassName": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "getTriggerProps": {
+    "displayName": "getTriggerProps",
     "propsTypeName": null,
     "props": {},
     "relatedTypes": {}
@@ -48,43 +373,8 @@
     "props": {},
     "relatedTypes": {}
   },
-  "getArrowOffset": {
-    "displayName": "getArrowOffset",
-    "propsTypeName": null,
-    "props": {
-      "children": {
-        "type": "HTMLCollection",
-        "required": true,
-        "description": "Returns the child elements.\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/children)"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "getPopoverTriggerJSX": {
-    "displayName": "getPopoverTriggerJSX",
-    "propsTypeName": null,
-    "props": {
-      "getReferenceProps": {
-        "type": "(userProps?: HTMLProps<Element> | undefined) => Record<string, unknown>",
-        "required": true
-      },
-      "validElementWrapperClassName": {
-        "type": "string",
-        "required": true
-      },
-      "setReference": {
-        "type": "(node: ReferenceType | null) => void",
-        "required": true
-      },
-      "disableSpanWrapper": {
-        "type": "boolean",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "getTriggerProps": {
-    "displayName": "getTriggerProps",
+  "referenceActionToEvent": {
+    "displayName": "referenceActionToEvent",
     "propsTypeName": null,
     "props": {},
     "relatedTypes": {}
@@ -99,296 +389,6 @@
     "displayName": "stopPropagationTouch",
     "propsTypeName": null,
     "props": {},
-    "relatedTypes": {}
-  },
-  "PopoverPrivate": {
-    "displayName": "PopoverPrivate",
-    "propsTypeName": "PopoverPrivateProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "open": {
-        "type": "boolean",
-        "required": false,
-        "description": "Управляет состоянием показан/не показан."
-      },
-      "onOpenChange": {
-        "type": "((isOpen: boolean) => void)",
-        "required": false,
-        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-      },
-      "outsideClick": {
-        "type": "boolean | OutsideClickHandler",
-        "required": false,
-        "description": "Закрывать ли при клике вне поповера",
-        "typeRefs": [
-          "OutsideClickHandler"
-        ]
-      },
-      "placement": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "top",
-          "right",
-          "bottom",
-          "left",
-          "top-start",
-          "top-end",
-          "right-start",
-          "right-end",
-          "bottom-start",
-          "bottom-end",
-          "left-start",
-          "left-end"
-        ],
-        "defaultValue": "top",
-        "description": "Положение поповера относительно своего триггера (children).",
-        "typeRefs": [
-          "Placement"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "triggerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс триггера"
-      },
-      "hasArrow": {
-        "type": "boolean",
-        "required": false,
-        "description": "Параметр наличия стрелки у поповера. В размеры стрелки встроен отступ. Дополнительный отступ может быть задан параметром `offset`. У элемента стрелки нет цвета, необходимо задавать его через параметр `arrowClassName`."
-      },
-      "arrowContainerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера стрелки поповера"
-      },
-      "arrowElementClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс стрелки поповера"
-      },
-      "offset": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-      },
-      "popoverContent": {
-        "type": "ReactNode | ReactNode[]",
-        "required": true,
-        "description": "Контент поповера"
-      },
-      "trigger": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "click",
-          "hover",
-          "focusVisible",
-          "focus",
-          "hoverAndFocusVisible",
-          "hoverAndFocus",
-          "clickAndFocusVisible"
-        ],
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-        "typeRefs": [
-          "Trigger"
-        ]
-      },
-      "hoverDelayOpen": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка открытия по ховеру"
-      },
-      "hoverDelayClose": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка закрытия по ховеру"
-      },
-      "widthStrategy": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "auto",
-          "gte",
-          "eq"
-        ],
-        "defaultValue": "auto",
-        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-        "typeRefs": [
-          "PopoverWidthStrategy"
-        ]
-      },
-      "heightStrategy": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "auto",
-          "eq",
-          "lte"
-        ],
-        "defaultValue": "auto",
-        "description": "Стратегия управления высотой контейнера поповера\n<br/> - `auto` - соответствует высоте контента,\n<br/> - `lte` - Less Than or Equal, равен высоте таргета или меньше ее, если контент в поповере меньше,\n<br/> - `eq` - Equal, строго равен высоте таргета.",
-        "typeRefs": [
-          "PopoverHeightStrategy"
-        ]
-      },
-      "closeOnEscapeKey": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Закрывать ли по нажатию на кнопку `Esc`"
-      },
-      "triggerClickByKeys": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
-      },
-      "fallbackPlacements": {
-        "type": "Placement[]",
-        "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-        "typeRefs": [
-          "Placement"
-        ]
-      },
-      "disableSpanWrapper": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-      },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрывать ли поповер при пекреходе по истории браузера"
-      },
-      "triggerRef": {
-        "type": "ForwardedRef<HTMLElement | ReferenceType | null>",
-        "required": false,
-        "description": "Ref ссылка на триггер"
-      },
-      "children": {
-        "type": "ReactNode | ChildrenFunction",
-        "required": false,
-        "description": "Триггер поповера (подробнее читайте ниже)",
-        "typeRefs": [
-          "ChildrenFunction"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "OutsideClickHandler": {
-        "kind": "alias",
-        "type": "(event: MouseEvent) => boolean",
-        "own": true
-      },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
-          "bottom",
-          "bottom-start",
-          "bottom-end"
-        ],
-        "own": true
-      },
-      "Trigger": {
-        "kind": "union",
-        "values": [
-          "click",
-          "hover",
-          "focusVisible",
-          "focus",
-          "hoverAndFocusVisible",
-          "hoverAndFocus",
-          "clickAndFocusVisible"
-        ],
-        "own": true
-      },
-      "PopoverWidthStrategy": {
-        "kind": "union",
-        "values": [
-          "auto",
-          "gte",
-          "eq"
-        ],
-        "own": true
-      },
-      "PopoverHeightStrategy": {
-        "kind": "union",
-        "values": [
-          "auto",
-          "eq",
-          "lte"
-        ],
-        "own": true
-      },
-      "ChildrenFunction": {
-        "kind": "alias",
-        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
-        "own": true
-      }
-    }
-  },
-  "Arrow": {
-    "displayName": "Arrow",
-    "propsTypeName": null,
-    "props": {
-      "placement": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "top",
-          "right",
-          "bottom",
-          "left",
-          "top-start",
-          "top-end",
-          "right-start",
-          "right-end",
-          "bottom-start",
-          "bottom-end",
-          "left-start",
-          "left-end"
-        ]
-      },
-      "x": {
-        "type": "number",
-        "required": false
-      },
-      "y": {
-        "type": "number",
-        "required": false
-      },
-      "arrowContainerClassName": {
-        "type": "string",
-        "required": false
-      },
-      "arrowElementClassName": {
-        "type": "string",
-        "required": false
-      },
-      "arrowRef": {
-        "type": "RefObject<HTMLDivElement | null>",
-        "required": true
-      }
-    },
     "relatedTypes": {}
   }
 }

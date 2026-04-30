@@ -1,18 +1,22 @@
 {
-  "getSortedMarkValues": {
-    "displayName": "getSortedMarkValues",
-    "propsTypeName": null,
-    "props": {},
-    "relatedTypes": {}
-  },
   "Slider": {
     "displayName": "Slider",
     "propsTypeName": "SliderProps",
     "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для e2e/tests"
+      },
       "handleTip": {
         "type": "boolean",
         "required": false,
         "description": "Показывать значение в тултипе на ручке"
+      },
+      "marksEqualSpacing": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение равномерного распределения при нелинейных значениях меток."
       },
       "tipFormatter": {
         "type": "((value: string | number) => ReactNode)",
@@ -21,18 +25,14 @@
         "typeRefs": [
           "tipFormatter"
         ]
-      },
-      "marksEqualSpacing": {
-        "type": "boolean",
-        "required": false,
-        "description": "Включение равномерного распределения при нелинейных значениях меток."
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false,
-        "description": "Стабильный идентификатор для e2e/tests"
       }
     },
+    "relatedTypes": {}
+  },
+  "getSortedMarkValues": {
+    "displayName": "getSortedMarkValues",
+    "propsTypeName": null,
+    "props": {},
     "relatedTypes": {}
   }
 }

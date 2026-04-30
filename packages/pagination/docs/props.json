@@ -1,151 +1,23 @@
 {
-  "PaginationSliderItem": {
-    "displayName": "PaginationSliderItem",
-    "propsTypeName": null,
+  "Pagination": {
+    "displayName": "Pagination",
+    "propsTypeName": "PaginationProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "activated": {
-        "type": "boolean",
-        "required": false
-      },
-      "onClick": {
-        "type": "() => void",
-        "required": true
-      },
-      "size": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "xs",
-          "s"
-        ]
-      },
-      "setButtonRef": {
-        "type": "Ref<HTMLButtonElement>",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "PaginationSlider": {
-    "displayName": "PaginationSlider",
-    "propsTypeName": "PaginationSliderProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "total": {
-        "type": "number",
-        "required": true,
-        "description": "Общее количество страниц"
-      },
-      "page": {
-        "type": "number",
-        "required": true,
-        "description": "Текущая страница"
-      },
-      "onChange": {
-        "type": "(page: number) => void",
-        "required": true,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
-      },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS класснейм"
       },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s"
-        ],
-        "defaultValue": "xs",
-        "description": "Размер",
-        "typeRefs": [
-          "PaginationSliderSize"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "PaginationSliderSize": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs"
-        ],
-        "own": true
-      }
-    }
-  },
-  "PaginationNumberItem": {
-    "displayName": "PaginationNumberItem",
-    "propsTypeName": null,
-    "props": {
       "data-test-id": {
         "type": "string",
         "required": false
       },
-      "label": {
-        "type": "string | number",
-        "required": true
-      },
-      "activated": {
-        "type": "boolean",
-        "required": false
-      },
-      "onClick": {
-        "type": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void",
-        "required": true
-      },
-      "href": {
-        "type": "string",
-        "required": false
-      },
-      "setButtonRef": {
-        "type": "Ref<HTMLButtonElement | HTMLAnchorElement>",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "Pagination": {
-    "displayName": "Pagination",
-    "propsTypeName": "PaginationProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "total": {
-        "type": "number",
-        "required": true,
-        "description": "Общее количество страниц"
-      },
-      "page": {
-        "type": "number",
-        "required": true,
-        "description": "Текущая страница"
-      },
-      "variant": {
-        "type": "enum",
+      "hrefFormatter": {
+        "type": "((page: number) => string)",
         "required": false,
-        "values": [
-          "link",
-          "button"
-        ],
-        "defaultValue": "button",
-        "description": "Варианты тега кнопок: <a/> или <button/>",
+        "description": "Колбэк форматирования ссылки",
         "typeRefs": [
-          "Variant"
+          "hrefFormatter"
         ]
       },
       "maxLength": {
@@ -162,34 +34,52 @@
           "onChange"
         ]
       },
-      "hrefFormatter": {
-        "type": "((page: number) => string)",
-        "required": false,
-        "description": "Колбэк форматирования ссылки",
-        "typeRefs": [
-          "hrefFormatter"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS класснейм"
+      "page": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая страница"
       },
       "size": {
         "type": "enum",
         "required": false,
         "values": [
-          "s",
-          "m"
+          "m",
+          "s"
         ],
         "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "PaginationSize"
         ]
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Общее количество страниц"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "button",
+          "link"
+        ],
+        "defaultValue": "button",
+        "description": "Варианты тега кнопок: <a/> или <button/>",
+        "typeRefs": [
+          "Variant"
+        ]
       }
     },
     "relatedTypes": {
+      "PaginationSize": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
       "Variant": {
         "kind": "union",
         "values": [
@@ -197,15 +87,125 @@
           "link"
         ],
         "own": true
+      }
+    }
+  },
+  "PaginationNumberItem": {
+    "displayName": "PaginationNumberItem",
+    "propsTypeName": null,
+    "props": {
+      "activated": {
+        "type": "boolean",
+        "required": false
       },
-      "PaginationSize": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "href": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string | number",
+        "required": true
+      },
+      "onClick": {
+        "type": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void",
+        "required": true
+      },
+      "setButtonRef": {
+        "type": "Ref<HTMLButtonElement | HTMLAnchorElement>",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PaginationSlider": {
+    "displayName": "PaginationSlider",
+    "propsTypeName": "PaginationSliderProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS класснейм"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onChange": {
+        "type": "(page: number) => void",
+        "required": true,
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
+      },
+      "page": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая страница"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер",
+        "typeRefs": [
+          "PaginationSliderSize"
+        ]
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Общее количество страниц"
+      }
+    },
+    "relatedTypes": {
+      "PaginationSliderSize": {
         "kind": "union",
         "values": [
           "s",
-          "m"
+          "xs"
         ],
         "own": true
       }
     }
+  },
+  "PaginationSliderItem": {
+    "displayName": "PaginationSliderItem",
+    "propsTypeName": null,
+    "props": {
+      "activated": {
+        "type": "boolean",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true
+      },
+      "setButtonRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "s",
+          "xs"
+        ]
+      }
+    },
+    "relatedTypes": {}
   }
 }

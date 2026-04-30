@@ -34,7 +34,7 @@ const sourceFiles = globSync('packages/*/src/**/*.tsx', {
   cwd: root,
   absolute: true,
   ignore: ['**/packages/icons/**'],
-})
+}).sort()
 
 const byPkg = new Map<string, string[]>()
 for (const file of sourceFiles) {
@@ -527,6 +527,66 @@ function propsTypeFromComponentType(checker: ts.TypeChecker, type: ts.Type): ts.
   return null
 }
 
+// ─── Stable ordering for output (keeps diffs deterministic) ─────────────────
+
+function sortObjectByKey<T>(obj: Record<string, T>): Record<string, T> {
+  const out: Record<string, T> = {}
+  for (const k of Object.keys(obj).sort()) out[k] = obj[k]
+  return out
+}
+
+function sortPropDef(p: PropDef): PropDef {
+  const out: PropDef = { type: p.type, required: p.required }
+  if (p.values) out.values = [...p.values].sort()
+  if (p.defaultValue !== undefined) out.defaultValue = p.defaultValue
+  if (p.description) out.description = p.description
+  if (p.typeRefs) out.typeRefs = [...p.typeRefs].sort()
+  return out
+}
+
+function sortRelatedType(r: RelatedType): RelatedType {
+  if (r.kind === 'interface') {
+    const props: Record<string, PropDef> = {}
+    for (const k of Object.keys(r.props).sort()) props[k] = sortPropDef(r.props[k])
+    return { kind: 'interface', props, own: r.own }
+  }
+  if (r.kind === 'union') {
+    return { kind: 'union', values: [...r.values].sort(), own: r.own }
+  }
+  return r
+}
+
+// Score a doc: more props / relatedTypes / a resolved propsTypeName beats less.
+function docScore(c: ComponentDoc): number {
+  const propsCount = Object.keys(c.props).length
+  const relatedCount = Object.keys(c.relatedTypes).length
+  const typeName = c.propsTypeName ? 1 : 0
+  return propsCount * 1000 + relatedCount * 10 + typeName
+}
+
+function isRicher(a: ComponentDoc, b: ComponentDoc): boolean {
+  return docScore(a) > docScore(b)
+}
+
+function sortOutput(output: Record<string, ComponentDoc>): Record<string, ComponentDoc> {
+  const sorted: Record<string, ComponentDoc> = {}
+  for (const compName of Object.keys(output).sort()) {
+    const c = output[compName]
+    const props: Record<string, PropDef> = {}
+    for (const k of Object.keys(c.props).sort()) props[k] = sortPropDef(c.props[k])
+    const relatedTypes: Record<string, RelatedType> = {}
+    for (const k of Object.keys(c.relatedTypes).sort()) relatedTypes[k] = sortRelatedType(c.relatedTypes[k])
+    sorted[compName] = {
+      displayName: c.displayName,
+      propsTypeName: c.propsTypeName,
+      ...(c.description ? { description: c.description } : {}),
+      props,
+      relatedTypes,
+    }
+  }
+  return sorted
+}
+
 // ─── Main loop ───────────────────────────────────────────────────────────────
 
 for (const [pkgDir, files] of byPkg) {
@@ -614,17 +674,21 @@ for (const [pkgDir, files] of byPkg) {
       }
     }
 
-    output[comp.displayName] = {
+    const candidate: ComponentDoc = {
       displayName: comp.displayName,
       propsTypeName,
       props,
       relatedTypes,
       ...(comp.description ? { description: comp.description } : {}),
     }
+    const existing = output[comp.displayName]
+    if (!existing || isRicher(candidate, existing)) {
+      output[comp.displayName] = candidate
+    }
   }
 
   mkdirSync(docsDir, { recursive: true })
-  writeFileSync(resolve(docsDir, 'props.json'), JSON.stringify(output, null, 2) + '\n')
+  writeFileSync(resolve(docsDir, 'props.json'), JSON.stringify(sortOutput(output), null, 2) + '\n')
 
   const names = Object.keys(output).join(', ')
   const count = Object.values(output).reduce((n, c) => n + Object.keys(c.props).length, 0)

@@ -3,22 +3,37 @@
     "displayName": "SearchPrivate",
     "propsTypeName": "SearchPrivateProps",
     "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
       },
-      "size": {
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли компонент"
+      },
+      "inputMode": {
         "type": "enum",
         "required": false,
         "values": [
-          "s",
-          "m",
-          "l"
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
         ],
-        "defaultValue": "s",
-        "description": "Размер",
+        "defaultValue": "search",
+        "description": "Режим работы экранной клавиатуры",
         "typeRefs": [
-          "Size"
+          "InputMode"
         ]
       },
       "loading": {
@@ -26,10 +41,28 @@
         "required": false,
         "description": "Состояние загрузки"
       },
-      "disabled": {
-        "type": "boolean",
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
         "required": false,
-        "description": "Деактивирован ли компонент"
+        "description": "Колбек обработки потери фокуса"
+      },
+      "onChange": {
+        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
+        "required": false,
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
       },
       "onSubmit": {
         "type": "((value: string) => void)",
@@ -39,16 +72,30 @@
           "onSubmit"
         ]
       },
-      "className": {
+      "placeholder": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "Значение плейсхолдера"
       },
       "showClearButton": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
         "description": "Отображение кнопки Очистки поля"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "tabIndex": {
         "type": "number",
@@ -59,78 +106,31 @@
         "required": false,
         "defaultValue": "",
         "description": "Значение input"
-      },
-      "onChange": {
-        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
-        "required": false,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
-      },
-      "placeholder": {
-        "type": "string",
-        "required": false,
-        "description": "Значение плейсхолдера"
-      },
-      "onFocus": {
-        "type": "FocusEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки получения фокуса"
-      },
-      "onBlur": {
-        "type": "FocusEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки потери фокуса"
-      },
-      "onKeyDown": {
-        "type": "KeyboardEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
-      },
-      "inputMode": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "text",
-          "decimal",
-          "numeric",
-          "tel",
-          "search",
-          "email",
-          "url",
-          "none"
-        ],
-        "defaultValue": "search",
-        "description": "Режим работы экранной клавиатуры",
-        "typeRefs": [
-          "InputMode"
-        ]
       }
     },
     "relatedTypes": {
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "own": true
-      },
       "InputMode": {
         "kind": "union",
         "values": [
-          "search",
-          "text",
-          "none",
           "decimal",
-          "numeric",
-          "tel",
           "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
           "url"
         ],
         "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
       }
     }
   }

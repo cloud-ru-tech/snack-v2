@@ -1,101 +1,203 @@
 {
-  "TagRowTruncated": {
-    "displayName": "TagRowTruncated",
-    "propsTypeName": null,
+  "Tag": {
+    "displayName": "Tag",
+    "propsTypeName": "TagProps",
     "props": {
-      "items": {
-        "type": "TagRowItemInner[]",
-        "required": true
-      },
-      "rowLimit": {
-        "type": "number",
-        "required": true
-      },
-      "moreButtonLabel": {
-        "type": "string",
-        "required": false
-      },
-      "size": {
+      "appearance": {
         "type": "enum",
-        "required": true,
+        "required": false,
         "values": [
-          "xs",
-          "s",
-          "m"
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "typeRefs": [
+          "Appearance"
         ]
+      },
+      "as": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "a"
+        ],
+        "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
       },
       "className": {
         "type": "string",
         "required": false
       },
-      "onItemRemove": {
-        "type": "((item: string) => void)",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "TagRowSimple": {
-    "displayName": "TagRowSimple",
-    "propsTypeName": null,
-    "props": {
-      "items": {
-        "type": "TagRowItemInner[]",
-        "required": true
-      },
-      "size": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "xs",
-          "s",
-          "m"
-        ]
-      },
-      "onItemRemove": {
-        "type": "((item: string) => void)",
-        "required": false
-      },
-      "setTagRef": {
-        "type": "((item: TagRowItemInner, index: number) => Ref<HTMLDivElement>)",
-        "required": false
-      },
-      "className": {
+      "data-test-id": {
         "type": "string",
         "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "TagMore": {
-    "displayName": "TagMore",
-    "propsTypeName": null,
-    "props": {
-      "items": {
-        "type": "TagRowItemInner[]",
+      },
+      "label": {
+        "type": "string",
         "required": true
+      },
+      "onDelete": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
       },
       "size": {
         "type": "enum",
         "required": false,
         "values": [
-          "xs",
+          "m",
           "s",
-          "m"
+          "xs"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
+  },
+  "TagBase": {
+    "displayName": "TagBase",
+    "propsTypeName": null,
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "defaultValue": "neutral"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "onDelete": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s",
+          "xs"
         ],
         "defaultValue": "xs"
       },
-      "text": {
-        "type": "string",
+      "tabIndex": {
+        "type": "number",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TagLink": {
+    "displayName": "TagLink",
+    "propsTypeName": null,
+    "props": {
+      "appearance": {
+        "type": "enum",
         "required": false,
-        "defaultValue": ""
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "defaultValue": "neutral"
       },
-      "buttonRef": {
-        "type": "Ref<HTMLButtonElement>",
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
+      },
+      "className": {
+        "type": "string",
         "required": false
       },
-      "onItemRemove": {
-        "type": "((item: string) => void)",
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "onDelete": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs"
+      },
+      "tabIndex": {
+        "type": "number",
         "required": false
       }
     },
@@ -109,16 +211,6 @@
         "type": "TagRowItemInner[]",
         "required": true
       },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s",
-          "m"
-        ],
-        "defaultValue": "xs"
-      },
       "onItemRemove": {
         "type": "((item: string) => void)",
         "required": false
@@ -126,6 +218,50 @@
       "setTagRef": {
         "type": "SetTagRef",
         "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TagMore": {
+    "displayName": "TagMore",
+    "propsTypeName": null,
+    "props": {
+      "buttonRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false
+      },
+      "items": {
+        "type": "TagRowItemInner[]",
+        "required": true
+      },
+      "onItemRemove": {
+        "type": "((item: string) => void)",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs"
+      },
+      "text": {
+        "type": "string",
+        "required": false,
+        "defaultValue": ""
       }
     },
     "relatedTypes": {}
@@ -134,6 +270,10 @@
     "displayName": "TagRow",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -141,6 +281,14 @@
       "items": {
         "type": "TagRowItem[]",
         "required": true
+      },
+      "moreButtonLabel": {
+        "type": "string",
+        "required": false
+      },
+      "onItemRemove": {
+        "type": "((item: string) => void)",
+        "required": false
       },
       "rowLimit": {
         "type": "number",
@@ -150,135 +298,78 @@
         "type": "enum",
         "required": false,
         "values": [
-          "xs",
+          "m",
           "s",
-          "m"
+          "xs"
         ]
-      },
-      "moreButtonLabel": {
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TagRowSimple": {
+    "displayName": "TagRowSimple",
+    "propsTypeName": null,
+    "props": {
+      "className": {
         "type": "string",
         "required": false
       },
+      "items": {
+        "type": "TagRowItemInner[]",
+        "required": true
+      },
+      "onItemRemove": {
+        "type": "((item: string) => void)",
+        "required": false
+      },
+      "setTagRef": {
+        "type": "((item: TagRowItemInner, index: number) => Ref<HTMLDivElement>)",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TagRowTruncated": {
+    "displayName": "TagRowTruncated",
+    "propsTypeName": null,
+    "props": {
       "className": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "TagRowItemInner[]",
+        "required": true
+      },
+      "moreButtonLabel": {
         "type": "string",
         "required": false
       },
       "onItemRemove": {
         "type": "((item: string) => void)",
         "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "TagLink": {
-    "displayName": "TagLink",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
       },
-      "label": {
-        "type": "string",
+      "rowLimit": {
+        "type": "number",
         "required": true
       },
       "size": {
         "type": "enum",
-        "required": false,
+        "required": true,
         "values": [
-          "xs",
+          "m",
           "s",
-          "m"
-        ],
-        "defaultValue": "xs"
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "defaultValue": "neutral"
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false
-      },
-      "onDelete": {
-        "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false,
-        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
-      },
-      "as": {
-        "type": "ElementType",
-        "required": false,
-        "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "TagBase": {
-    "displayName": "TagBase",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onDelete": {
-        "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false,
-        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
-      },
-      "label": {
-        "type": "string",
-        "required": true
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s",
-          "m"
-        ],
-        "defaultValue": "xs"
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "defaultValue": "neutral"
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false
+          "xs"
+        ]
       }
     },
     "relatedTypes": {}
@@ -287,56 +378,23 @@
     "displayName": "isTagLinkProps",
     "propsTypeName": "TagProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onDelete": {
-        "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false,
-        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
-      },
-      "label": {
-        "type": "string",
-        "required": true
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s",
-          "m"
-        ],
-        "typeRefs": [
-          "Size"
-        ]
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "typeRefs": [
           "Appearance"
         ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false
       },
       "as": {
         "type": "enum",
@@ -345,121 +403,63 @@
           "a"
         ],
         "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
-      }
-    },
-    "relatedTypes": {
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "xs"
-        ],
-        "own": true
       },
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "own": true
-      }
-    }
-  },
-  "Tag": {
-    "displayName": "Tag",
-    "propsTypeName": "TagProps",
-    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true
       },
       "onDelete": {
         "type": "MouseEventHandler<HTMLButtonElement>",
         "required": false,
         "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
       },
-      "label": {
-        "type": "string",
-        "required": true
-      },
       "size": {
         "type": "enum",
         "required": false,
         "values": [
-          "xs",
+          "m",
           "s",
-          "m"
+          "xs"
         ],
         "typeRefs": [
           "Size"
         ]
       },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
       "tabIndex": {
         "type": "number",
         "required": false
-      },
-      "as": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "a"
-        ],
-        "description": "Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom)"
       }
     },
     "relatedTypes": {
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "xs"
-        ],
-        "own": true
-      },
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s",
+          "xs"
         ],
         "own": true
       }

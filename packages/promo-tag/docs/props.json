@@ -2,34 +2,55 @@
   "PromoTag": {
     "displayName": "PromoTag",
     "propsTypeName": "PromoTagProps",
+    "description": "Компонент Promo Tag",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "text": {
-        "type": "string",
+      "afterContent": {
+        "type": "ReactNode",
         "required": false,
-        "description": "Текст компонента"
+        "defaultValue": "null",
+        "description": "Контент после текста"
       },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "primary",
         "description": "Внешний вид",
         "typeRefs": [
           "Appearance"
+        ]
+      },
+      "beforeContent": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "null",
+        "description": "Контент перед текстом"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк для обработки клика на тег",
+        "typeRefs": [
+          "onClick"
         ]
       },
       "role": {
@@ -45,59 +66,39 @@
           "RoleAppearance"
         ]
       },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "onClick": {
-        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
-        "required": false,
-        "description": "Колбэк для обработки клика на тег",
-        "typeRefs": [
-          "onClick"
-        ]
-      },
-      "beforeContent": {
-        "type": "ReactNode",
-        "required": false,
-        "defaultValue": "null",
-        "description": "Контент перед текстом"
-      },
-      "afterContent": {
-        "type": "ReactNode",
-        "required": false,
-        "defaultValue": "null",
-        "description": "Контент после текста"
-      },
       "size": {
         "type": "enum",
         "required": false,
         "values": [
-          "xs",
+          "m",
           "s",
-          "m"
+          "xs"
         ],
         "defaultValue": "xs",
         "description": "Размер",
         "typeRefs": [
           "Size"
         ]
+      },
+      "text": {
+        "type": "string",
+        "required": false,
+        "description": "Текст компонента"
       }
     },
     "relatedTypes": {
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "own": true
       },
@@ -112,13 +113,12 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
           "m",
+          "s",
           "xs"
         ],
         "own": true
       }
-    },
-    "description": "Компонент Promo Tag"
+    }
   }
 }

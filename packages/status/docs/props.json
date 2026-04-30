@@ -1,118 +1,20 @@
 {
-  "StatusIndicator": {
-    "displayName": "StatusIndicator",
-    "propsTypeName": "StatusIndicatorProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "4xs",
-          "3xs",
-          "2xs",
-          "xs",
-          "s"
-        ],
-        "defaultValue": "s",
-        "description": "Размер",
-        "typeRefs": [
-          "StatusIndicatorSize"
-        ]
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "defaultValue": "neutral",
-        "description": "Внешний вид",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {
-      "StatusIndicatorSize": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs",
-          "4xs",
-          "3xs",
-          "2xs"
-        ],
-        "own": true
-      },
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "own": true
-      }
-    }
-  },
   "Status": {
     "displayName": "Status",
     "propsTypeName": "StatusProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "label": {
-        "type": "string",
-        "required": true,
-        "description": "Подпись к индикатору (точка с текстом). Если не передано — только точка"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s"
-        ],
-        "defaultValue": "xs",
-        "description": "Размер индикатора и подписи",
-        "typeRefs": [
-          "StatusSize"
-        ]
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
-          "neutral",
-          "red",
-          "orange",
-          "yellow",
-          "green",
           "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "red",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "neutral",
         "description": "Внешний вид (цветовая схема)",
@@ -125,11 +27,20 @@
         "required": false,
         "description": "CSS-класс"
       },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
       "hasBackground": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
         "description": "Наличие фона"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Подпись к индикатору (точка с текстом). Если не передано — только точка"
       },
       "loading": {
         "type": "boolean",
@@ -141,9 +52,36 @@
         "type": "number",
         "required": false,
         "description": "Прогресс загрузки (от 0 до 100)"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер индикатора и подписи",
+        "typeRefs": [
+          "StatusSize"
+        ]
       }
     },
     "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
       "StatusSize": {
         "kind": "union",
         "values": [
@@ -151,18 +89,80 @@
           "xs"
         ],
         "own": true
+      }
+    }
+  },
+  "StatusIndicator": {
+    "displayName": "StatusIndicator",
+    "propsTypeName": "StatusIndicatorProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "defaultValue": "neutral",
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "2xs",
+          "3xs",
+          "4xs",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "StatusIndicatorSize"
+        ]
+      }
+    },
+    "relatedTypes": {
       "Appearance": {
         "kind": "union",
         "values": [
-          "neutral",
-          "red",
-          "orange",
-          "yellow",
-          "green",
           "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "red",
           "violet",
-          "pink"
+          "yellow"
+        ],
+        "own": true
+      },
+      "StatusIndicatorSize": {
+        "kind": "union",
+        "values": [
+          "2xs",
+          "3xs",
+          "4xs",
+          "s",
+          "xs"
         ],
         "own": true
       }

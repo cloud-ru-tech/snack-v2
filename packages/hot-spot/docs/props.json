@@ -3,22 +3,18 @@
     "displayName": "HotSpot",
     "propsTypeName": "HotSpotProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "primary",
         "description": "Внешний вид",
@@ -26,37 +22,18 @@
           "Appearance"
         ]
       },
-      "pulse": {
-        "type": "boolean",
+      "children": {
+        "type": "ReactNode",
         "required": false,
-        "defaultValue": "true",
-        "description": "Анимация пульсации"
+        "description": "Вложенный контент"
       },
-      "duration": {
+      "className": {
         "type": "string",
-        "required": false,
-        "defaultValue": "2s",
-        "description": "Время анимации пульсации"
+        "required": false
       },
-      "placement": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "left",
-          "left-top",
-          "left-bottom",
-          "right",
-          "right-top",
-          "right-bottom",
-          "center",
-          "center-top",
-          "center-bottom"
-        ],
-        "defaultValue": "right-top",
-        "description": "Положение относительно children.",
-        "typeRefs": [
-          "Placement"
-        ]
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "dotRender": {
         "type": "((dot: ReactNode) => ReactNode)",
@@ -66,10 +43,17 @@
           "dotRender"
         ]
       },
-      "children": {
-        "type": "ReactNode",
+      "duration": {
+        "type": "string",
         "required": false,
-        "description": "Вложенный контент"
+        "defaultValue": "2s",
+        "description": "Время анимации пульсации"
+      },
+      "enabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Управление состоянием отрисовки"
       },
       "offsetX": {
         "type": "string | number",
@@ -83,15 +67,31 @@
         "defaultValue": "0",
         "description": "Смещение dot по оси Y (ось направлена вниз)"
       },
-      "enabled": {
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "center",
+          "center-bottom",
+          "center-top",
+          "left",
+          "left-bottom",
+          "left-top",
+          "right",
+          "right-bottom",
+          "right-top"
+        ],
+        "defaultValue": "right-top",
+        "description": "Положение относительно children.",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "pulse": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Управление состоянием отрисовки"
-      },
-      "className": {
-        "type": "string",
-        "required": false
+        "description": "Анимация пульсации"
       },
       "wrapperClassName": {
         "type": "string",
@@ -102,14 +102,14 @@
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "own": true
       },
@@ -117,14 +117,14 @@
         "kind": "union",
         "values": [
           "center",
-          "left",
-          "right",
-          "left-top",
-          "left-bottom",
-          "right-top",
-          "right-bottom",
+          "center-bottom",
           "center-top",
-          "center-bottom"
+          "left",
+          "left-bottom",
+          "left-top",
+          "right",
+          "right-bottom",
+          "right-top"
         ],
         "own": true
       }

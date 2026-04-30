@@ -1,16 +1,90 @@
 {
-  "AlertTop": {
-    "displayName": "AlertTop",
-    "propsTypeName": "AlertTopProps",
+  "Alert": {
+    "displayName": "Alert",
+    "propsTypeName": "AlertProps",
     "props": {
+      "actions": {
+        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "required": false,
+        "description": "Кнопки в футере",
+        "typeRefs": [
+          "AlertButtonProps"
+        ]
+      },
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "vertical",
+        "description": "Выравнивание контента",
+        "typeRefs": [
+          "Align"
+        ]
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "info",
+          "neutral",
+          "primary",
+          "success",
+          "warning"
+        ],
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "collapsible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+      },
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Описание"
       },
       "icon": {
         "type": "boolean",
         "required": false,
         "description": "Отображать иконку"
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек закрытия"
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "description": "Внешний бордер"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "title": {
         "type": "string",
@@ -22,126 +96,29 @@
         "required": false,
         "defaultValue": "title: 1",
         "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Описание"
-      },
-      "onClose": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Колбек закрытия"
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "error",
-          "warning",
-          "success",
-          "info"
-        ],
-        "description": "Внешний вид",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m"
-        ],
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "actions": {
-        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
-        "required": false,
-        "description": "Кнопки в футере",
-        "typeRefs": [
-          "AlertButtonProps"
-        ]
-      },
-      "collapsible": {
-        "type": "boolean",
-        "required": false,
-        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
-      },
-      "align": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "vertical",
-          "horizontal"
-        ],
-        "defaultValue": "vertical",
-        "description": "Выравнивание контента",
-        "typeRefs": [
-          "Align"
-        ]
       }
     },
     "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "error",
-          "warning",
-          "success",
-          "info"
-        ],
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m"
-        ],
-        "own": true
-      },
-      "IconPosition": {
-        "kind": "union",
-        "values": [
-          "before",
-          "after"
-        ],
-        "own": true
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "onAccent",
-          "onColor"
-        ],
-        "own": true
-      },
-      "PolymorphicRef": {
-        "kind": "alias",
-        "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": true
-      },
       "AlertButtonProps": {
         "kind": "interface",
         "props": {
-          "label": {
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
             "type": "string | undefined",
             "required": false,
-            "description": "Текст кнопки"
+            "description": "Дополнительный класс"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
           },
           "icon": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -152,40 +129,49 @@
             "type": "IconPosition | undefined",
             "required": false,
             "values": [
-              "before",
-              "after"
+              "after",
+              "before"
             ],
             "description": "Позиция иконки относительно текста",
             "typeRefs": [
               "IconPosition"
             ]
           },
-          "size": {
-            "type": "Size | undefined",
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
             "required": false,
-            "values": [
-              "s",
-              "m"
-            ],
-            "description": "Размер",
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
             "typeRefs": [
-              "Size"
+              "PolymorphicRef",
+              "T"
             ]
           },
-          "disabled": {
+          "invertFocusOutlineColor": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключена"
+            "description": "Инвертировать цвет фокусного контура"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
           },
           "loading": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Состояние загрузки"
           },
-          "className": {
-            "type": "string | undefined",
+          "size": {
+            "type": "Size | undefined",
             "required": false,
-            "description": "Дополнительный класс"
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
           },
           "variant": {
             "type": "Variant | undefined",
@@ -198,28 +184,6 @@
             "typeRefs": [
               "Variant"
             ]
-          },
-          "invertFocusOutlineColor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Инвертировать цвет фокусного контура"
-          },
-          "as": {
-            "type": "T | undefined",
-            "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
-          },
-          "innerRef": {
-            "type": "PolymorphicRef<T> | undefined",
-            "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
-            "typeRefs": [
-              "PolymorphicRef",
-              "T"
-            ]
           }
         },
         "own": true
@@ -231,17 +195,164 @@
           "vertical"
         ],
         "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "error",
+          "info",
+          "neutral",
+          "primary",
+          "success",
+          "warning"
+        ],
+        "own": true
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "onColor"
+        ],
+        "own": true
       }
     }
+  },
+  "AlertBase": {
+    "displayName": "AlertBase",
+    "propsTypeName": null,
+    "props": {
+      "actions": {
+        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "required": false,
+        "description": "Кнопки в футере"
+      },
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Выравнивание контента"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "info",
+          "neutral",
+          "primary",
+          "success",
+          "warning"
+        ],
+        "description": "Внешний вид"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "collapsible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Описание"
+      },
+      "icon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать иконку"
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек закрытия"
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "defaultValue": "title: 1",
+        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
+      },
+      "variant": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "inline",
+          "top"
+        ]
+      }
+    },
+    "relatedTypes": {}
   },
   "AlertButton": {
     "displayName": "AlertButton",
     "propsTypeName": null,
     "props": {
-      "label": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
+      },
+      "className": {
         "type": "string",
         "required": false,
-        "description": "Текст кнопки"
+        "description": "Дополнительный класс"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключена"
       },
       "icon": {
         "type": "ReactNode",
@@ -252,27 +363,26 @@
         "type": "enum",
         "required": false,
         "values": [
-          "before",
-          "after"
+          "after",
+          "before"
         ],
         "defaultValue": "before",
         "description": "Позиция иконки относительно текста"
       },
-      "size": {
-        "type": "enum",
+      "innerRef": {
+        "type": "any",
         "required": false,
-        "values": [
-          "s",
-          "m"
-        ],
-        "defaultValue": "m",
-        "description": "Размер"
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
       },
-      "disabled": {
+      "invertFocusOutlineColor": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Отключена"
+        "description": "Инвертировать цвет фокусного контура"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст кнопки"
       },
       "loading": {
         "type": "boolean",
@@ -280,207 +390,33 @@
         "defaultValue": "false",
         "description": "Состояние загрузки"
       },
-      "className": {
-        "type": "string",
+      "size": {
+        "type": "enum",
         "required": false,
-        "description": "Дополнительный класс"
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
       },
       "variant": {
         "type": "enum",
         "required": false,
         "values": [
-          "onColor",
-          "onAccent"
+          "onAccent",
+          "onColor"
         ],
         "defaultValue": "onColor",
         "description": "Вариант оформления"
-      },
-      "invertFocusOutlineColor": {
-        "type": "boolean",
-        "required": false,
-        "description": "Инвертировать цвет фокусного контура"
-      },
-      "as": {
-        "type": "ElementType",
-        "required": false,
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
-      },
-      "innerRef": {
-        "type": "any",
-        "required": false,
-        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
       }
     },
     "relatedTypes": {}
   },
-  "getAlertAppearanceIcon": {
-    "displayName": "getAlertAppearanceIcon",
-    "propsTypeName": null,
-    "props": {},
-    "relatedTypes": {}
-  },
-  "AlertBase": {
-    "displayName": "AlertBase",
-    "propsTypeName": null,
+  "AlertTop": {
+    "displayName": "AlertTop",
+    "propsTypeName": "AlertTopProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "icon": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отображать иконку"
-      },
-      "title": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
-      },
-      "truncate": {
-        "type": "{ title?: number; }",
-        "required": false,
-        "defaultValue": "title: 1",
-        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Описание"
-      },
-      "onClose": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Колбек закрытия"
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "error",
-          "warning",
-          "success",
-          "info"
-        ],
-        "description": "Внешний вид"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m"
-        ],
-        "description": "Размер"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "actions": {
-        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
-        "required": false,
-        "description": "Кнопки в футере"
-      },
-      "collapsible": {
-        "type": "boolean",
-        "required": false,
-        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
-      },
-      "align": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "vertical",
-          "horizontal"
-        ],
-        "description": "Выравнивание контента"
-      },
-      "variant": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "inline",
-          "top"
-        ]
-      },
-      "outline": {
-        "type": "boolean",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "Alert": {
-    "displayName": "Alert",
-    "propsTypeName": "AlertProps",
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "icon": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отображать иконку"
-      },
-      "title": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
-      },
-      "truncate": {
-        "type": "{ title?: number; }",
-        "required": false,
-        "defaultValue": "title: 1",
-        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Описание"
-      },
-      "onClose": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Колбек закрытия"
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "error",
-          "warning",
-          "success",
-          "info"
-        ],
-        "description": "Внешний вид",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m"
-        ],
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
       "actions": {
         "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
         "required": false,
@@ -489,17 +425,12 @@
           "AlertButtonProps"
         ]
       },
-      "collapsible": {
-        "type": "boolean",
-        "required": false,
-        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
-      },
       "align": {
         "type": "enum",
         "required": false,
         "values": [
-          "vertical",
-          "horizontal"
+          "horizontal",
+          "vertical"
         ],
         "defaultValue": "vertical",
         "description": "Выравнивание контента",
@@ -507,61 +438,96 @@
           "Align"
         ]
       },
-      "outline": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "info",
+          "neutral",
+          "primary",
+          "success",
+          "warning"
+        ],
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "collapsible": {
         "type": "boolean",
         "required": false,
-        "description": "Внешний бордер"
+        "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Описание"
+      },
+      "icon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать иконку"
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек закрытия"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "defaultValue": "title: 1",
+        "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
       }
     },
     "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "error",
-          "warning",
-          "success",
-          "info"
-        ],
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m"
-        ],
-        "own": true
-      },
-      "IconPosition": {
-        "kind": "union",
-        "values": [
-          "before",
-          "after"
-        ],
-        "own": true
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "onAccent",
-          "onColor"
-        ],
-        "own": true
-      },
-      "PolymorphicRef": {
-        "kind": "alias",
-        "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": true
-      },
       "AlertButtonProps": {
         "kind": "interface",
         "props": {
-          "label": {
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
             "type": "string | undefined",
             "required": false,
-            "description": "Текст кнопки"
+            "description": "Дополнительный класс"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
           },
           "icon": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -572,40 +538,49 @@
             "type": "IconPosition | undefined",
             "required": false,
             "values": [
-              "before",
-              "after"
+              "after",
+              "before"
             ],
             "description": "Позиция иконки относительно текста",
             "typeRefs": [
               "IconPosition"
             ]
           },
-          "size": {
-            "type": "Size | undefined",
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
             "required": false,
-            "values": [
-              "s",
-              "m"
-            ],
-            "description": "Размер",
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
             "typeRefs": [
-              "Size"
+              "PolymorphicRef",
+              "T"
             ]
           },
-          "disabled": {
+          "invertFocusOutlineColor": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключена"
+            "description": "Инвертировать цвет фокусного контура"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
           },
           "loading": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Состояние загрузки"
           },
-          "className": {
-            "type": "string | undefined",
+          "size": {
+            "type": "Size | undefined",
             "required": false,
-            "description": "Дополнительный класс"
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
           },
           "variant": {
             "type": "Variant | undefined",
@@ -618,28 +593,6 @@
             "typeRefs": [
               "Variant"
             ]
-          },
-          "invertFocusOutlineColor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Инвертировать цвет фокусного контура"
-          },
-          "as": {
-            "type": "T | undefined",
-            "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
-          },
-          "innerRef": {
-            "type": "PolymorphicRef<T> | undefined",
-            "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
-            "typeRefs": [
-              "PolymorphicRef",
-              "T"
-            ]
           }
         },
         "own": true
@@ -651,7 +604,54 @@
           "vertical"
         ],
         "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "error",
+          "info",
+          "neutral",
+          "primary",
+          "success",
+          "warning"
+        ],
+        "own": true
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "onColor"
+        ],
+        "own": true
       }
     }
+  },
+  "getAlertAppearanceIcon": {
+    "displayName": "getAlertAppearanceIcon",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
   }
 }

@@ -2,59 +2,13 @@
   "Rating": {
     "displayName": "Rating",
     "propsTypeName": "RatingProps",
+    "description": "Компонент Rating",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "size": {
-        "type": "enum",
+      "allowClear": {
+        "type": "boolean",
         "required": false,
-        "values": [
-          "xs",
-          "s"
-        ],
-        "defaultValue": "s",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "defaultValue": "yellow",
-        "description": "Внешний вид (цветовая схема)",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "count": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "5",
-        "description": "Общее количество звезд"
-      },
-      "value": {
-        "type": "number",
-        "required": false,
-        "description": "Значение количества звезд в случае необходимости управления"
-      },
-      "defaultValue": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Количество звезд, заполненных по умолчанию"
+        "defaultValue": "false",
+        "description": "Разрещает сброс рейтинга при повторном нажатии на звезду"
       },
       "allowHalf": {
         "type": "boolean",
@@ -62,17 +16,45 @@
         "defaultValue": "false",
         "description": "Показывать или нет рейтинг в виде половины звезды"
       },
-      "allowClear": {
-        "type": "boolean",
+      "appearance": {
+        "type": "enum",
         "required": false,
-        "defaultValue": "false",
-        "description": "Разрещает сброс рейтинга при повторном нажатии на звезду"
+        "values": [
+          "blue",
+          "green",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "defaultValue": "yellow",
+        "description": "Внешний вид (цветовая схема)",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
-      "readonly": {
-        "type": "boolean",
+      "className": {
+        "type": "string",
         "required": false,
-        "defaultValue": "false",
-        "description": "Является ли поле доступным на изменение"
+        "description": "CSS-класс"
+      },
+      "count": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "5",
+        "description": "Общее количество звезд"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Количество звезд, заполненных по умолчанию"
       },
       "onChange": {
         "type": "((value: number) => void)",
@@ -82,13 +64,46 @@
           "onChange"
         ]
       },
-      "className": {
-        "type": "string",
+      "readonly": {
+        "type": "boolean",
         "required": false,
-        "description": "CSS-класс"
+        "defaultValue": "false",
+        "description": "Является ли поле доступным на изменение"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "value": {
+        "type": "number",
+        "required": false,
+        "description": "Значение количества звезд в случае необходимости управления"
       }
     },
     "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
       "Size": {
         "kind": "union",
         "values": [
@@ -96,75 +111,44 @@
           "xs"
         ],
         "own": true
-      },
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "own": true
       }
-    },
-    "description": "Компонент Rating"
+    }
   },
   "RatingStar": {
     "displayName": "RatingStar",
     "propsTypeName": null,
+    "description": "Компонент RatingStar",
     "props": {
-      "value": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "0%",
-          "50%",
-          "100%"
-        ],
-        "defaultValue": "0%",
-        "description": "Значение"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s"
-        ],
-        "defaultValue": "s",
-        "description": "Размер"
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "yellow",
         "description": "Внешний вид (цветовая схема)"
-      },
-      "readonly": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Является ли поле доступным на изменение"
       },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
+      },
+      "handleClick": {
+        "type": "((value: Value) => void)",
+        "required": false,
+        "description": "Действие при клике части звезды мышью"
+      },
+      "handleKeyDown": {
+        "type": "KeyboardEventHandler<HTMLDivElement>",
+        "required": false,
+        "description": "Действие при нажатии на клавишу клавиатуры"
       },
       "handleMouseEnter": {
         "type": "((value: Value) => void)",
@@ -176,18 +160,34 @@
         "required": false,
         "description": "Действие при уведении мыши"
       },
-      "handleKeyDown": {
-        "type": "KeyboardEventHandler<HTMLDivElement>",
+      "readonly": {
+        "type": "boolean",
         "required": false,
-        "description": "Действие при нажатии на клавишу клавиатуры"
+        "defaultValue": "false",
+        "description": "Является ли поле доступным на изменение"
       },
-      "handleClick": {
-        "type": "((value: Value) => void)",
+      "size": {
+        "type": "enum",
         "required": false,
-        "description": "Действие при клике части звезды мышью"
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "value": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "0%",
+          "100%",
+          "50%"
+        ],
+        "defaultValue": "0%",
+        "description": "Значение"
       }
     },
-    "relatedTypes": {},
-    "description": "Компонент RatingStar"
+    "relatedTypes": {}
   }
 }

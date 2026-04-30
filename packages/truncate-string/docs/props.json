@@ -3,28 +3,13 @@
     "displayName": "TruncateString",
     "propsTypeName": "TruncateStringProps",
     "props": {
-      "variant": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "middle",
-          "end"
-        ],
-        "defaultValue": "end",
-        "description": "Вариант обрезания строки: `End` - с конца\n`Middle` - по середине"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false
       },
-      "tooltipClassName": {
+      "data-test-id": {
         "type": "string",
-        "required": false,
-        "description": "Стиль для тултипа"
+        "required": false
       },
       "hideTooltip": {
         "type": "boolean",
@@ -40,18 +25,18 @@
         "type": "enum",
         "required": false,
         "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
           "bottom",
+          "bottom-end",
           "bottom-start",
-          "bottom-end"
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
         ],
         "description": "Положение тултипа относительно обрезанного текста.",
         "typeRefs": [
@@ -63,116 +48,91 @@
         "required": true,
         "description": "Текст, который будет обрезаться"
       },
+      "tooltipClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Стиль для тултипа"
+      },
       "trigger": {
         "type": "enum",
         "required": false,
         "values": [
           "click",
-          "hover",
-          "focusVisible",
+          "clickAndFocusVisible",
           "focus",
-          "hoverAndFocusVisible",
+          "focusVisible",
+          "hover",
           "hoverAndFocus",
-          "clickAndFocusVisible"
+          "hoverAndFocusVisible"
         ],
         "description": "Условие отображения тултипа",
         "typeRefs": [
           "TooltipProps"
         ]
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "end",
+        "description": "Вариант обрезания строки: `End` - с конца\n`Middle` - по середине"
       }
     },
     "relatedTypes": {
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
-          "bottom",
-          "bottom-start",
-          "bottom-end"
-        ],
-        "own": false
-      },
-      "Trigger": {
-        "kind": "union",
-        "values": [
-          "click",
-          "hover",
-          "focusVisible",
-          "focus",
-          "hoverAndFocusVisible",
-          "hoverAndFocus",
-          "clickAndFocusVisible"
-        ],
-        "own": false
-      },
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
       "TooltipProps": {
         "kind": "interface",
         "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
             "required": false,
-            "description": "Отключение ограничения ширины тултипа"
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
           },
           "className": {
             "type": "string | undefined",
             "required": false
           },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
-          "open": {
+          "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Управляет состоянием показан/не показан."
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
           },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
             "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
+            "description": "Отключение ограничения ширины тултипа"
           },
           "disableSpanWrapper": {
             "type": "boolean | undefined",
@@ -187,140 +147,114 @@
               "Placement"
             ]
           },
-          "closeOnPopstate": {
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "hover",
-              "focusVisible",
-              "focus",
-              "hoverAndFocusVisible",
-              "hoverAndFocus",
-              "clickAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
+            "description": "Управляет состоянием показан/не показан."
           },
           "placement": {
             "type": "Placement | undefined",
             "required": false,
             "values": [
-              "left",
-              "left-start",
-              "left-end",
-              "right",
-              "right-start",
-              "right-end",
-              "top",
-              "top-start",
-              "top-end",
               "bottom",
+              "bottom-end",
               "bottom-start",
-              "bottom-end"
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
             ],
             "description": "Положение поповера относительно своего триггера (children).",
             "typeRefs": [
               "Placement"
             ]
           },
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
             "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
             "typeRefs": [
-              "ChildrenFunction"
+              "Trigger"
             ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
           }
         },
         "own": false
-      }
-    }
-  },
-  "TruncateStringMiddle": {
-    "displayName": "TruncateStringMiddle",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
       },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "tooltipClassName": {
-        "type": "string",
-        "required": false,
-        "description": "Стиль для тултипа"
-      },
-      "hideTooltip": {
-        "type": "boolean",
-        "required": false
-      },
-      "placement": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
-          "bottom",
-          "bottom-start",
-          "bottom-end"
-        ],
-        "defaultValue": "top"
-      },
-      "text": {
-        "type": "string",
-        "required": true
-      },
-      "trigger": {
-        "type": "enum",
-        "required": false,
+      "Trigger": {
+        "kind": "union",
         "values": [
           "click",
-          "hover",
-          "focusVisible",
+          "clickAndFocusVisible",
           "focus",
-          "hoverAndFocusVisible",
+          "focusVisible",
+          "hover",
           "hoverAndFocus",
-          "clickAndFocusVisible"
+          "hoverAndFocusVisible"
         ],
-        "defaultValue": "hoverAndFocusVisible"
+        "own": false
       }
-    },
-    "relatedTypes": {}
+    }
   },
   "TruncateStringEnd": {
     "displayName": "TruncateStringEnd",
     "propsTypeName": null,
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false
       },
-      "tooltipClassName": {
+      "data-test-id": {
         "type": "string",
-        "required": false,
-        "description": "Стиль для тултипа"
+        "required": false
       },
       "hideTooltip": {
         "type": "boolean",
@@ -337,18 +271,18 @@
         "type": "enum",
         "required": false,
         "values": [
-          "left",
-          "left-start",
-          "left-end",
-          "right",
-          "right-start",
-          "right-end",
-          "top",
-          "top-start",
-          "top-end",
           "bottom",
+          "bottom-end",
           "bottom-start",
-          "bottom-end"
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
         ],
         "defaultValue": "top",
         "description": "Положение тултипа относительно обрезанного текста."
@@ -358,20 +292,86 @@
         "required": true,
         "description": "Текст, который будет обрезаться"
       },
+      "tooltipClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Стиль для тултипа"
+      },
       "trigger": {
         "type": "enum",
         "required": false,
         "values": [
           "click",
-          "hover",
-          "focusVisible",
+          "clickAndFocusVisible",
           "focus",
-          "hoverAndFocusVisible",
+          "focusVisible",
+          "hover",
           "hoverAndFocus",
-          "clickAndFocusVisible"
+          "hoverAndFocusVisible"
         ],
         "defaultValue": "hoverAndFocusVisible",
         "description": "Условие отображения тултипа"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TruncateStringMiddle": {
+    "displayName": "TruncateStringMiddle",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "hideTooltip": {
+        "type": "boolean",
+        "required": false
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top"
+      },
+      "text": {
+        "type": "string",
+        "required": true
+      },
+      "tooltipClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Стиль для тултипа"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "hoverAndFocusVisible"
       }
     },
     "relatedTypes": {}

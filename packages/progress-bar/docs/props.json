@@ -1,8 +1,32 @@
 {
-  "ProgressBarPrivate": {
-    "displayName": "ProgressBarPrivate",
-    "propsTypeName": null,
+  "ProgressBar": {
+    "displayName": "ProgressBar",
+    "propsTypeName": "ProgressBarProps",
     "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -19,61 +43,141 @@
           "s",
           "xs"
         ],
-        "description": "Размер"
+        "defaultValue": "xs",
+        "description": "Размер",
+        "typeRefs": [
+          "ProgressBarSize"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
       },
+      "ProgressBarSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ProgressBarCircle": {
+    "displayName": "ProgressBarCircle",
+    "propsTypeName": "ProgressBarCircleProps",
+    "description": "Компонент индикатор загрузки",
+    "props": {
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "primary",
-        "description": "Внешний вид"
+        "description": "Внешний вид",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
       },
-      "animationDuration": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "progress": {
         "type": "number",
+        "required": true,
+        "description": "Процент загрузки от 0 до 100"
+      },
+      "size": {
+        "type": "enum",
         "required": false,
-        "defaultValue": "0",
-        "description": "Скорость анимации"
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер",
+        "typeRefs": [
+          "ProgressBarCircleSize"
+        ]
       }
     },
-    "relatedTypes": {},
-    "description": "Компонент индикатор загрузки"
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
+      "ProgressBarCircleSize": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
   },
   "ProgressBarPage": {
     "displayName": "ProgressBarPage",
     "propsTypeName": "ProgressBarPageProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
+      "animationDuration": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "200",
+        "description": "Скорость анимации"
       },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "description": "Внешний вид",
         "typeRefs": [
@@ -85,11 +189,9 @@
         "required": false,
         "description": "CSS-класс"
       },
-      "animationDuration": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "200",
-        "description": "Скорость анимации"
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "inProgress": {
         "type": "boolean",
@@ -112,103 +214,53 @@
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "own": true
       }
     }
   },
-  "ProgressBarCircle": {
-    "displayName": "ProgressBarCircle",
-    "propsTypeName": "ProgressBarCircleProps",
+  "ProgressBarPrivate": {
+    "displayName": "ProgressBarPrivate",
+    "propsTypeName": null,
+    "description": "Компонент индикатор загрузки",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "progress": {
+      "animationDuration": {
         "type": "number",
-        "required": true,
-        "description": "Процент загрузки от 0 до 100"
-      },
-      "size": {
-        "type": "enum",
         "required": false,
-        "values": [
-          "s",
-          "xs"
-        ],
-        "defaultValue": "xs",
-        "description": "Размер",
-        "typeRefs": [
-          "ProgressBarCircleSize"
-        ]
+        "defaultValue": "0",
+        "description": "Скорость анимации"
       },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "primary",
-        "description": "Внешний вид",
-        "typeRefs": [
-          "Appearance"
-        ]
+        "description": "Внешний вид"
       },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
-      }
-    },
-    "relatedTypes": {
-      "ProgressBarCircleSize": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs"
-        ],
-        "own": true
       },
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "own": true
-      }
-    },
-    "description": "Компонент индикатор загрузки"
-  },
-  "ProgressBar": {
-    "displayName": "ProgressBar",
-    "propsTypeName": "ProgressBarProps",
-    "props": {
       "data-test-id": {
         "type": "string",
         "required": false
@@ -225,61 +277,9 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
-        "description": "Размер",
-        "typeRefs": [
-          "ProgressBarSize"
-        ]
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "description": "Внешний вид",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
+        "description": "Размер"
       }
     },
-    "relatedTypes": {
-      "ProgressBarSize": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs"
-        ],
-        "own": true
-      },
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "own": true
-      }
-    }
+    "relatedTypes": {}
   }
 }

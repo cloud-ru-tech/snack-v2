@@ -2,35 +2,36 @@
   "IconPredefined": {
     "displayName": "IconPredefined",
     "propsTypeName": "IconPredefinedProps",
+    "description": "Icon Predefined — оборачивает SVG-иконки и применяет предустановленное стилевое оформление.\nЗадаёт цвет через appearance, размер через size и форму контейнера через shape.",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
-          "primary",
-          "neutral",
-          "red",
-          "orange",
-          "yellow",
-          "green",
           "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "primary",
         "description": "Внешний вид",
         "typeRefs": [
           "Appearance"
         ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "decor": {
         "type": "boolean",
@@ -43,20 +44,6 @@
         "required": true,
         "description": "JSX иконки"
       },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "m",
-          "l",
-          "5xl"
-        ],
-        "defaultValue": "m",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
       "shape": {
         "type": "enum",
         "required": false,
@@ -66,34 +53,47 @@
         ],
         "defaultValue": "round",
         "description": "Форма: круглая или квадратная"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "5xl",
+          "l",
+          "m"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       }
     },
     "relatedTypes": {
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "own": true
       },
       "Size": {
         "kind": "union",
         "values": [
-          "m",
+          "5xl",
           "l",
-          "5xl"
+          "m"
         ],
         "own": true
       }
-    },
-    "description": "Icon Predefined — оборачивает SVG-иконки и применяет предустановленное стилевое оформление.\nЗадаёт цвет через appearance, размер через size и форму контейнера через shape."
+    }
   }
 }

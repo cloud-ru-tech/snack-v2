@@ -3,66 +3,43 @@
     "displayName": "Carousel",
     "propsTypeName": "CarouselProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS - класснейм"
-      },
-      "children": {
-        "type": "ReactElement<any, string | JSXElementConstructor<any>>[]",
-        "required": true,
-        "description": "Массив айтемов"
-      },
-      "showItems": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "1",
-        "description": "Кол-во отображаемых единовременно айтемов"
-      },
-      "scrollBy": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "Math.trunc(show)",
-        "description": "Сдвиг айтемов при смене 1 страницы"
-      },
-      "transition": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0.4",
-        "description": "Время переключения 1 страницы (в s)"
-      },
-      "swipe": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Переключение страниц свайпом"
-      },
-      "autoSwipe": {
-        "type": "number",
-        "required": false,
-        "description": "Автоматическое переключение слайдов в секундах"
-      },
-      "swipeActivateLength": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "48",
-        "description": "Минимальная длина в px для активации свайпа"
-      },
       "arrows": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
         "description": "Использовать стрелки для переключения страниц"
       },
-      "pagination": {
-        "type": "boolean",
+      "autoSwipe": {
+        "type": "number",
         "required": false,
-        "defaultValue": "true",
-        "description": "Использовать пагинацию для переключения страниц"
+        "description": "Автоматическое переключение слайдов в секундах"
+      },
+      "children": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>[]",
+        "required": true,
+        "description": "Массив айтемов"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS - класснейм"
+      },
+      "controlsVisibility": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "always",
+          "hover"
+        ],
+        "defaultValue": "hover",
+        "description": "Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда",
+        "typeRefs": [
+          "ControlsVisibility"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "gap": {
         "type": "string",
@@ -70,47 +47,101 @@
         "defaultValue": "var(--dimension-2m)",
         "description": "Расстояние между айтемами"
       },
-      "state": {
-        "type": "{ page: number; onChange(page: number): void; }",
-        "required": false,
-        "description": "Управление состоянием извне"
-      },
       "infiniteScroll": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
         "description": "Цикличная прокрутка"
       },
-      "controlsVisibility": {
-        "type": "enum",
+      "pagination": {
+        "type": "boolean",
         "required": false,
-        "values": [
-          "hover",
-          "always"
-        ],
-        "defaultValue": "hover",
-        "description": "Управление видимостью стрелок: 'hover' — по ховеру, 'always' — всегда",
-        "typeRefs": [
-          "ControlsVisibility"
-        ]
+        "defaultValue": "true",
+        "description": "Использовать пагинацию для переключения страниц"
+      },
+      "scrollBy": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "Math.trunc(show)",
+        "description": "Сдвиг айтемов при смене 1 страницы"
+      },
+      "showItems": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Кол-во отображаемых единовременно айтемов"
+      },
+      "state": {
+        "type": "{ page: number; onChange(page: number): void; }",
+        "required": false,
+        "description": "Управление состоянием извне"
+      },
+      "swipe": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Переключение страниц свайпом"
+      },
+      "swipeActivateLength": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "48",
+        "description": "Минимальная длина в px для активации свайпа"
+      },
+      "transition": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0.4",
+        "description": "Время переключения 1 страницы (в s)"
       }
     },
     "relatedTypes": {
       "ControlsVisibility": {
         "kind": "union",
         "values": [
-          "hover",
-          "always"
+          "always",
+          "hover"
         ],
         "own": true
       }
     }
   },
+  "Control": {
+    "displayName": "Control",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "direction": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "next",
+          "prev"
+        ]
+      },
+      "onClick": {
+        "type": "(() => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
   "ItemProvider": {
     "displayName": "ItemProvider",
     "propsTypeName": null,
     "props": {
-      "showItems": {
+      "gap": {
+        "type": "string",
+        "required": false
+      },
+      "page": {
         "type": "number",
         "required": true
       },
@@ -118,12 +149,12 @@
         "type": "number",
         "required": true
       },
-      "slideCallback": {
-        "type": "(direction: number) => void",
+      "showItems": {
+        "type": "number",
         "required": true
       },
-      "transition": {
-        "type": "number",
+      "slideCallback": {
+        "type": "(direction: number) => void",
         "required": true
       },
       "swipe": {
@@ -134,40 +165,9 @@
         "type": "number",
         "required": true
       },
-      "page": {
+      "transition": {
         "type": "number",
         "required": true
-      },
-      "gap": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "Control": {
-    "displayName": "Control",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onClick": {
-        "type": "(() => void)",
-        "required": false
-      },
-      "direction": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "prev",
-          "next"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
       }
     },
     "relatedTypes": {}

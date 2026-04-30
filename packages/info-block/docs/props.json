@@ -3,19 +3,37 @@
     "displayName": "InfoBlock",
     "propsTypeName": "InfoBlockProps",
     "props": {
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "vertical",
+        "description": "Расположение элементов",
+        "typeRefs": [
+          "Align"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "title": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
       },
       "description": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок"
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вложенный контент (например ButtonGroup)"
       },
       "icon": {
         "type": "IconPredefinedProps",
@@ -29,9 +47,9 @@
         "type": "enum",
         "required": false,
         "values": [
-          "s",
+          "l",
           "m",
-          "l"
+          "s"
         ],
         "defaultValue": "s",
         "description": "Размер",
@@ -39,79 +57,60 @@
           "Size"
         ]
       },
-      "align": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "vertical",
-          "horizontal"
-        ],
-        "defaultValue": "vertical",
-        "description": "Расположение элементов",
-        "typeRefs": [
-          "Align"
-        ]
-      },
-      "footer": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Вложенный контент (например ButtonGroup)"
-      },
-      "className": {
+      "title": {
         "type": "string",
         "required": false,
-        "description": "Дополнительный класс"
+        "description": "Заголовок"
       }
     },
     "relatedTypes": {
+      "Align": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      },
       "Appearance": {
         "kind": "union",
         "values": [
+          "critical",
           "neutral",
-          "primary",
-          "critical"
+          "primary"
         ],
         "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "own": true
       },
       "IconPredefinedProps": {
         "kind": "interface",
         "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
           },
           "className": {
             "type": "string | undefined",
             "required": false,
             "description": "CSS-класс"
           },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "neutral",
-              "primary",
-              "red",
-              "orange",
-              "yellow",
-              "green",
-              "blue",
-              "violet",
-              "pink"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
           "decor": {
             "type": "boolean | undefined",
@@ -123,19 +122,6 @@
             "required": true,
             "description": "JSX иконки"
           },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "l",
-              "5xl"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
           "shape": {
             "type": "\"round\" | \"square\" | undefined",
             "required": false,
@@ -144,15 +130,29 @@
               "square"
             ],
             "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
           }
         },
         "own": false
       },
-      "Align": {
+      "Size": {
         "kind": "union",
         "values": [
-          "horizontal",
-          "vertical"
+          "l",
+          "m",
+          "s"
         ],
         "own": true
       }

@@ -1,58 +1,244 @@
 {
-  "useClearButton": {
-    "displayName": "useClearButton",
-    "propsTypeName": "UseClearButtonProps",
+  "InputPrivate": {
+    "displayName": "InputPrivate",
+    "propsTypeName": "InputPrivateProps",
+    "description": "Input Private компонент",
     "props": {
-      "clearButtonRef": {
-        "type": "RefObject<HTMLButtonElement | null>",
-        "required": true
+      "autoComplete": {
+        "type": "string | boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включен ли автокомплит для поля"
       },
-      "showClearButton": {
+      "autoFocus": {
         "type": "boolean",
-        "required": true
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включен ли авто-фокус для поля"
       },
-      "onClear": {
-        "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": true
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
       },
-      "onDown": {
-        "type": "MouseEventHandler<HTMLButtonElement>",
+      "data-test-id": {
+        "type": "string",
         "required": false
-      },
-      "size": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "typeRefs": [
-          "Size"
-        ]
       },
       "disabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "defaultValue": "false",
+        "description": "Является ли поле деактивированным"
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Значение html-атрибута id"
+      },
+      "inputMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
+        ],
+        "defaultValue": "text",
+        "description": "Режим работы экранной клавиатуры",
+        "typeRefs": [
+          "InputMode"
+        ]
+      },
+      "max": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальное значение поля"
+      },
+      "maxLength": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальная длина вводимого значения"
+      },
+      "min": {
+        "type": "number",
+        "required": false,
+        "description": "Минимальное значение поля"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Значение html-атрибута name"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки потери фокуса"
+      },
+      "onChange": {
+        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
+        "required": false,
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
+      },
+      "onMouseDown": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "onPaste": {
+        "type": "ClipboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки вставки значения"
+      },
+      "pattern": {
+        "type": "string",
+        "required": false,
+        "description": "Регулярное выражение валидного инпута"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Значение плейсхолдера"
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Является ли поле доступным только для чтения"
+      },
+      "spellCheck": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Значение атрибута spellcheck (проверка орфографии)"
+      },
+      "step": {
+        "type": "string | number",
+        "required": false,
+        "description": "Максимальное значение поля"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Значение атрибута tab-index"
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "email",
+          "number",
+          "password",
+          "tel",
+          "text",
+          "url"
+        ],
+        "defaultValue": "text",
+        "description": "Тип инпута",
+        "typeRefs": [
+          "Type"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Значение input"
       }
     },
     "relatedTypes": {
-      "Size": {
+      "InputMode": {
         "kind": "union",
         "values": [
-          "s",
-          "m",
-          "l"
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
+        ],
+        "own": true
+      },
+      "Type": {
+        "kind": "union",
+        "values": [
+          "email",
+          "number",
+          "password",
+          "tel",
+          "text",
+          "url"
         ],
         "own": true
       }
-    },
-    "description": "Позволяет использовать кнопку сброса значения"
+    }
   },
   "useButtonNavigation": {
     "displayName": "useButtonNavigation",
     "propsTypeName": "UseButtonNavigationProps",
+    "description": "Позволяет использовать клавиатуру для навигации по элементам управления",
     "props": {
+      "inputRef": {
+        "type": "RefObject<T | null>",
+        "required": true,
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "onButtonKeyDown": {
+        "type": "KeyboardEventHandler<HTMLButtonElement>",
+        "required": false,
+        "defaultValue": "() => {}"
+      },
+      "postfixButtons": {
+        "type": "ButtonProps[]",
+        "required": true,
+        "typeRefs": [
+          "ActiveItem",
+          "ButtonProps",
+          "InactiveItem"
+        ]
+      },
+      "prefixButtons": {
+        "type": "ButtonProps[]",
+        "required": false,
+        "defaultValue": "[]",
+        "typeRefs": [
+          "ActiveItem",
+          "ButtonProps",
+          "InactiveItem"
+        ]
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": true
+      },
       "setInputFocus": {
         "type": "(() => void)",
         "required": false,
@@ -61,47 +247,54 @@
           "setInputFocus"
         ]
       },
-      "inputRef": {
-        "type": "RefObject<T | null>",
-        "required": true,
-        "typeRefs": [
-          "T"
-        ]
-      },
-      "postfixButtons": {
-        "type": "ButtonProps[]",
-        "required": true,
-        "typeRefs": [
-          "InactiveItem",
-          "ActiveItem",
-          "ButtonProps"
-        ]
-      },
-      "prefixButtons": {
-        "type": "ButtonProps[]",
-        "required": false,
-        "defaultValue": "[]",
-        "typeRefs": [
-          "InactiveItem",
-          "ActiveItem",
-          "ButtonProps"
-        ]
-      },
-      "onButtonKeyDown": {
-        "type": "KeyboardEventHandler<HTMLButtonElement>",
-        "required": false,
-        "defaultValue": "() => {}"
-      },
-      "readonly": {
-        "type": "boolean",
-        "required": true
-      },
       "submitKeys": {
         "type": "string[]",
         "required": true
       }
     },
     "relatedTypes": {
+      "ActiveItem": {
+        "kind": "interface",
+        "props": {
+          "active": {
+            "type": "true",
+            "required": true
+          },
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "ref": {
+            "type": "RefObject<HTMLButtonElement | null>",
+            "required": true,
+            "typeRefs": [
+              "ButtonRef"
+            ]
+          },
+          "render": {
+            "type": "(props: RenderActiveButtonProps) => ReactElement",
+            "required": true,
+            "typeRefs": [
+              "render"
+            ]
+          },
+          "show": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "ButtonProps": {
+        "kind": "alias",
+        "type": "InactiveItem | ActiveItem",
+        "own": true
+      },
+      "ButtonRef": {
+        "kind": "alias",
+        "type": "RefObject<HTMLButtonElement | null>",
+        "own": true
+      },
       "InactiveItem": {
         "kind": "interface",
         "props": {
@@ -126,250 +319,57 @@
           }
         },
         "own": true
-      },
-      "ButtonRef": {
-        "kind": "alias",
-        "type": "RefObject<HTMLButtonElement | null>",
-        "own": true
-      },
-      "ActiveItem": {
-        "kind": "interface",
-        "props": {
-          "active": {
-            "type": "true",
-            "required": true
-          },
-          "id": {
-            "type": "string",
-            "required": true
-          },
-          "ref": {
-            "type": "RefObject<HTMLButtonElement | null>",
-            "required": true,
-            "typeRefs": [
-              "ButtonRef"
-            ]
-          },
-          "show": {
-            "type": "boolean",
-            "required": true
-          },
-          "render": {
-            "type": "(props: RenderActiveButtonProps) => ReactElement",
-            "required": true,
-            "typeRefs": [
-              "render"
-            ]
-          }
-        },
-        "own": true
-      },
-      "ButtonProps": {
-        "kind": "alias",
-        "type": "InactiveItem | ActiveItem",
-        "own": true
       }
-    },
-    "description": "Позволяет использовать клавиатуру для навигации по элементам управления"
+    }
   },
-  "InputPrivate": {
-    "displayName": "InputPrivate",
-    "propsTypeName": "InputPrivateProps",
+  "useClearButton": {
+    "displayName": "useClearButton",
+    "propsTypeName": "UseClearButtonProps",
+    "description": "Позволяет использовать кнопку сброса значения",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "name": {
-        "type": "string",
-        "required": false,
-        "description": "Значение html-атрибута name"
-      },
-      "value": {
-        "type": "string",
-        "required": false,
-        "defaultValue": "",
-        "description": "Значение input"
-      },
-      "onChange": {
-        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
-        "required": false,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
-      },
-      "id": {
-        "type": "string",
-        "required": false,
-        "description": "Значение html-атрибута id"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "placeholder": {
-        "type": "string",
-        "required": false,
-        "description": "Значение плейсхолдера"
-      },
-      "readonly": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Является ли поле доступным только для чтения"
-      },
-      "type": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "number",
-          "text",
-          "password",
-          "tel",
-          "email",
-          "url"
-        ],
-        "defaultValue": "text",
-        "description": "Тип инпута",
-        "typeRefs": [
-          "Type"
-        ]
-      },
-      "inputMode": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "text",
-          "tel",
-          "email",
-          "url",
-          "decimal",
-          "numeric",
-          "search",
-          "none"
-        ],
-        "defaultValue": "text",
-        "description": "Режим работы экранной клавиатуры",
-        "typeRefs": [
-          "InputMode"
-        ]
+      "clearButtonRef": {
+        "type": "RefObject<HTMLButtonElement | null>",
+        "required": true
       },
       "disabled": {
         "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Является ли поле деактивированным"
+        "required": false
       },
-      "autoComplete": {
-        "type": "string | boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Включен ли автокомплит для поля"
+      "onClear": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": true
       },
-      "autoFocus": {
+      "onDown": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false
+      },
+      "showClearButton": {
         "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Включен ли авто-фокус для поля"
+        "required": true
       },
-      "maxLength": {
-        "type": "number",
-        "required": false,
-        "description": "Максимальная длина вводимого значения"
-      },
-      "min": {
-        "type": "number",
-        "required": false,
-        "description": "Минимальное значение поля"
-      },
-      "max": {
-        "type": "number",
-        "required": false,
-        "description": "Максимальное значение поля"
-      },
-      "step": {
-        "type": "string | number",
-        "required": false,
-        "description": "Максимальное значение поля"
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Значение атрибута tab-index"
-      },
-      "spellCheck": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Значение атрибута spellcheck (проверка орфографии)"
-      },
-      "pattern": {
-        "type": "string",
-        "required": false,
-        "description": "Регулярное выражение валидного инпута"
-      },
-      "onFocus": {
-        "type": "FocusEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки получения фокуса"
-      },
-      "onBlur": {
-        "type": "FocusEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки потери фокуса"
-      },
-      "onKeyDown": {
-        "type": "KeyboardEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
-      },
-      "onPaste": {
-        "type": "ClipboardEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки вставки значения"
-      },
-      "onClick": {
-        "type": "MouseEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки клика"
-      },
-      "onMouseDown": {
-        "type": "MouseEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки нажатия кнопки мыши"
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
       }
     },
     "relatedTypes": {
-      "Type": {
+      "Size": {
         "kind": "union",
         "values": [
-          "number",
-          "text",
-          "tel",
-          "email",
-          "url",
-          "password"
-        ],
-        "own": true
-      },
-      "InputMode": {
-        "kind": "union",
-        "values": [
-          "search",
-          "text",
-          "none",
-          "decimal",
-          "numeric",
-          "tel",
-          "email",
-          "url"
+          "l",
+          "m",
+          "s"
         ],
         "own": true
       }
-    },
-    "description": "Input Private компонент"
+    }
   }
 }

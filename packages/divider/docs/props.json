@@ -2,23 +2,16 @@
   "Divider": {
     "displayName": "Divider",
     "propsTypeName": "DividerProps",
+    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation",
     "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "variant": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "regular",
-          "thin"
-        ],
-        "defaultValue": "regular",
-        "description": "Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular",
-        "typeRefs": [
-          "DividerVariant"
-        ]
       },
       "orientation": {
         "type": "enum",
@@ -33,21 +26,21 @@
           "DividerOrientation"
         ]
       },
-      "className": {
-        "type": "string",
+      "variant": {
+        "type": "enum",
         "required": false,
-        "description": "CSS-класс"
-      }
-    },
-    "relatedTypes": {
-      "DividerVariant": {
-        "kind": "union",
         "values": [
           "regular",
           "thin"
         ],
-        "own": true
-      },
+        "defaultValue": "regular",
+        "description": "Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular",
+        "typeRefs": [
+          "DividerVariant"
+        ]
+      }
+    },
+    "relatedTypes": {
       "DividerOrientation": {
         "kind": "union",
         "values": [
@@ -55,8 +48,15 @@
           "vertical"
         ],
         "own": true
+      },
+      "DividerVariant": {
+        "kind": "union",
+        "values": [
+          "regular",
+          "thin"
+        ],
+        "own": true
       }
-    },
-    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation"
+    }
   }
 }

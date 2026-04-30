@@ -1,40 +1,25 @@
 {
-  "SkeletonContextProvider": {
-    "displayName": "SkeletonContextProvider",
-    "propsTypeName": null,
+  "Skeleton": {
+    "displayName": "Skeleton",
+    "propsTypeName": "SkeletonProps",
     "props": {
-      "loading": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг состояния загрузки. Если значение true, будут отрисованы блоки скелетона."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "WithSkeleton": {
-    "displayName": "WithSkeleton",
-    "propsTypeName": "WithSkeletonProps",
-    "props": {
-      "skeleton": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "JSX скелетон"
-      },
-      "loading": {
-        "type": "boolean",
+      "borderRadius": {
+        "type": "BorderRadius<string | number>",
         "required": false,
-        "description": "Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "SkeletonText": {
-    "displayName": "SkeletonText",
-    "propsTypeName": "SkeletonTextProps",
-    "props": {
+        "description": "Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д)"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "height": {
+        "type": "Height<string | number>",
+        "required": false,
+        "description": "Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д)"
       },
       "loading": {
         "type": "boolean",
@@ -45,10 +30,51 @@
         "type": "Width<string | number>",
         "required": false,
         "description": "Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д)"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SkeletonContextProvider": {
+    "displayName": "SkeletonContextProvider",
+    "propsTypeName": "SkeletonContextProviderProps",
+    "props": {
+      "loading": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг состояния загрузки. Если значение true, будут отрисованы блоки скелетона."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SkeletonText": {
+    "displayName": "SkeletonText",
+    "propsTypeName": "SkeletonTextProps",
+    "props": {
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "right"
+        ],
+        "defaultValue": "left",
+        "description": "Выравнивание: left, right",
+        "typeRefs": [
+          "Align"
+        ]
       },
       "className": {
         "type": "string",
         "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "lineClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс линии"
       },
       "lines": {
         "type": "number",
@@ -56,31 +82,15 @@
         "defaultValue": "3",
         "description": "Количество строк."
       },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children."
+      },
       "rowClassName": {
         "type": "string",
         "required": false,
         "description": "CSS-класс строки"
-      },
-      "lineClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс линии"
-      },
-      "variant": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "display",
-          "headline",
-          "title",
-          "label",
-          "body"
-        ],
-        "defaultValue": "body",
-        "description": "Роль типографики (размер по anatomy)",
-        "typeRefs": [
-          "Variant"
-        ]
       },
       "size": {
         "type": "enum",
@@ -96,41 +106,29 @@
           "Size"
         ]
       },
-      "align": {
+      "variant": {
         "type": "enum",
         "required": false,
         "values": [
-          "left",
-          "right"
+          "body",
+          "display",
+          "headline",
+          "label",
+          "title"
         ],
-        "defaultValue": "left",
-        "description": "Выравнивание: left, right",
+        "defaultValue": "body",
+        "description": "Роль типографики (размер по anatomy)",
         "typeRefs": [
-          "Align"
+          "Variant"
         ]
+      },
+      "width": {
+        "type": "Width<string | number>",
+        "required": false,
+        "description": "Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д)"
       }
     },
     "relatedTypes": {
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "display",
-          "headline",
-          "title",
-          "label",
-          "body"
-        ],
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "own": true
-      },
       "Align": {
         "kind": "union",
         "values": [
@@ -138,40 +136,42 @@
           "right"
         ],
         "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "body",
+          "display",
+          "headline",
+          "label",
+          "title"
+        ],
+        "own": true
       }
     }
   },
-  "Skeleton": {
-    "displayName": "Skeleton",
-    "propsTypeName": "SkeletonProps",
+  "WithSkeleton": {
+    "displayName": "WithSkeleton",
+    "propsTypeName": "WithSkeletonProps",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
       "loading": {
         "type": "boolean",
         "required": false,
         "description": "Флаг состояния загрузки. Если значение true, будет отрисован блок скелетона, если false - children."
       },
-      "width": {
-        "type": "Width<string | number>",
-        "required": false,
-        "description": "Ширина блока. Можно указать значение допустимое для CSSProperty.width (пример `'60%'`, `'400px'` и т.д)"
-      },
-      "height": {
-        "type": "Height<string | number>",
-        "required": false,
-        "description": "Высота блока. Можно указать значение допустимое для CSSProperty.height (пример `'60%'`, `'400px'` и т.д)"
-      },
-      "borderRadius": {
-        "type": "BorderRadius<string | number>",
-        "required": false,
-        "description": "Радиус скругления. Можно указать значение допустимое для CSSProperty.borderRadius (пример `'10px'`, `'50%'` и т.д)"
-      },
-      "className": {
-        "type": "string",
-        "required": false
+      "skeleton": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "JSX скелетон"
       }
     },
     "relatedTypes": {}

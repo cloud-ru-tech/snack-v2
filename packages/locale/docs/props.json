@@ -1,16 +1,31 @@
 {
+  "LocaleProvider": {
+    "displayName": "LocaleProvider",
+    "propsTypeName": null,
+    "props": {
+      "fallbackLang": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "en-GB",
+          "ru-RU"
+        ]
+      },
+      "lang": {
+        "type": "string",
+        "required": true
+      },
+      "overrideLocales": {
+        "type": "PartialObjectDeep<Record<\"en-GB\" | \"ru-RU\", LocaleDictionary<Dictionary>>>",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
   "createLocaleContext": {
     "displayName": "createLocaleContext",
     "propsTypeName": "ContextOptions",
     "props": {
-      "extendedDictionary": {
-        "type": "ExtendedDictionary<D>",
-        "required": false,
-        "typeRefs": [
-          "ExtendedDictionary",
-          "D"
-        ]
-      },
       "defaultLanguage": {
         "type": "enum",
         "required": false,
@@ -21,6 +36,14 @@
         "defaultValue": "en-GB",
         "typeRefs": [
           "LocaleLang"
+        ]
+      },
+      "extendedDictionary": {
+        "type": "ExtendedDictionary<D>",
+        "required": false,
+        "typeRefs": [
+          "D",
+          "ExtendedDictionary"
         ]
       }
     },
@@ -48,29 +71,6 @@
         "own": true
       }
     }
-  },
-  "LocaleProvider": {
-    "displayName": "LocaleProvider",
-    "propsTypeName": null,
-    "props": {
-      "lang": {
-        "type": "string",
-        "required": true
-      },
-      "fallbackLang": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "en-GB",
-          "ru-RU"
-        ]
-      },
-      "overrideLocales": {
-        "type": "PartialObjectDeep<Record<\"en-GB\" | \"ru-RU\", LocaleDictionary<Dictionary>>>",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
   },
   "useLocale": {
     "displayName": "useLocale",

@@ -1,51 +1,14 @@
 {
-  "Sun": {
-    "displayName": "Sun",
-    "propsTypeName": "SunProps",
+  "Spinner": {
+    "displayName": "Spinner",
+    "propsTypeName": "SpinnerProps",
+    "description": "Компонент спиннер",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s",
-          "m",
-          "l"
-        ],
-        "defaultValue": "s",
-        "description": "Размер",
-        "typeRefs": [
-          "SunSize"
-        ]
-      },
       "className": {
         "type": "string",
         "required": false,
         "description": "CSS-класс"
-      }
-    },
-    "relatedTypes": {
-      "SunSize": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l",
-          "xs"
-        ],
-        "own": true
-      }
-    },
-    "description": "Компонент спиннер"
-  },
-  "Spinner": {
-    "displayName": "Spinner",
-    "propsTypeName": "SpinnerProps",
-    "props": {
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -55,36 +18,73 @@
         "required": false,
         "values": [
           "2xs",
-          "xs",
-          "s",
+          "l",
           "m",
-          "l"
+          "s",
+          "xs"
         ],
         "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "LoaderSize"
         ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
       }
     },
     "relatedTypes": {
       "LoaderSize": {
         "kind": "union",
         "values": [
-          "s",
-          "m",
+          "2xs",
           "l",
-          "xs",
-          "2xs"
+          "m",
+          "s",
+          "xs"
         ],
         "own": true
       }
+    }
+  },
+  "Sun": {
+    "displayName": "Sun",
+    "propsTypeName": "SunProps",
+    "description": "Компонент спиннер",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "SunSize"
+        ]
+      }
     },
-    "description": "Компонент спиннер"
+    "relatedTypes": {
+      "SunSize": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
   }
 }

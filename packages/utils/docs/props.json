@@ -1,7 +1,31 @@
 {
+  "ThemeProvider": {
+    "displayName": "ThemeProvider",
+    "propsTypeName": "ThemeProviderProps",
+    "description": "Провайдер, предназначенный для работы с темами",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Дети, которые будут обёрнуты в провайдер"
+      },
+      "defaultTheme": {
+        "type": "string",
+        "required": true,
+        "description": "Значение темы по умолчанию"
+      },
+      "themeMap": {
+        "type": "Record<string, string>",
+        "required": true,
+        "description": "Объект с указанием соответсвия темы и css-класса"
+      }
+    },
+    "relatedTypes": {}
+  },
   "useThemeConfig": {
     "displayName": "useThemeConfig",
     "propsTypeName": "UseThemeProps",
+    "description": "Хук для работы с темами",
     "props": {
       "themeMap": {
         "type": "Record<T, string>",
@@ -12,30 +36,6 @@
         ]
       }
     },
-    "relatedTypes": {},
-    "description": "Хук для работы с темами"
-  },
-  "ThemeProvider": {
-    "displayName": "ThemeProvider",
-    "propsTypeName": "ThemeProviderProps",
-    "props": {
-      "children": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Дети, которые будут обёрнуты в провайдер"
-      },
-      "themeMap": {
-        "type": "Record<string, string>",
-        "required": true,
-        "description": "Объект с указанием соответсвия темы и css-класса"
-      },
-      "defaultTheme": {
-        "type": "string",
-        "required": true,
-        "description": "Значение темы по умолчанию"
-      }
-    },
-    "relatedTypes": {},
-    "description": "Провайдер, предназначенный для работы с темами"
+    "relatedTypes": {}
   }
 }

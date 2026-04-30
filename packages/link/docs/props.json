@@ -2,44 +2,22 @@
   "Link": {
     "displayName": "Link",
     "propsTypeName": "LinkProps",
+    "description": "Link компонент",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "text": {
-        "type": "string",
-        "required": false,
-        "defaultValue": "",
-        "description": "Текст ссылки"
-      },
-      "role": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "regular",
-          "onAccent"
-        ],
-        "defaultValue": "regular",
-        "description": "Роль",
-        "typeRefs": [
-          "Role"
-        ]
-      },
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
-          "neutral",
+          "blue",
+          "green",
           "invertNeutral",
+          "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
+          "yellow"
         ],
         "defaultValue": "primary",
         "description": "Стилизует ссылку для размещения на цветном фоне",
@@ -47,11 +25,43 @@
           "Appearance"
         ]
       },
+      "as": {
+        "type": "ComponentType | ElementType",
+        "required": false,
+        "defaultValue": "'a'",
+        "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
       "insideText": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
         "description": "Находится ли ссылка внутри текста (и можно ли её переносить)"
+      },
+      "role": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "onAccent",
+          "regular"
+        ],
+        "defaultValue": "regular",
+        "description": "Роль",
+        "typeRefs": [
+          "Role"
+        ]
+      },
+      "text": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Текст ссылки"
       },
       "truncateVariant": {
         "type": "enum",
@@ -70,39 +80,30 @@
         "required": false,
         "defaultValue": "false",
         "description": "Наличие нижнего подчеркивания"
-      },
-      "as": {
-        "type": "ComponentType | ElementType",
-        "required": false,
-        "defaultValue": "'a'",
-        "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`",
-        "typeRefs": [
-          "T"
-        ]
       }
     },
     "relatedTypes": {
-      "Role": {
-        "kind": "union",
-        "values": [
-          "regular",
-          "onAccent"
-        ],
-        "own": true
-      },
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
+          "invertNeutral",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink",
-          "invertNeutral"
+          "yellow"
+        ],
+        "own": true
+      },
+      "Role": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "regular"
         ],
         "own": true
       },
@@ -111,7 +112,6 @@
         "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
         "own": false
       }
-    },
-    "description": "Link компонент"
+    }
   }
 }

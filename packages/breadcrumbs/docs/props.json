@@ -1,143 +1,98 @@
 {
-  "useBreadcrumbsLayout": {
-    "displayName": "useBreadcrumbsLayout",
-    "propsTypeName": null,
-    "props": {},
-    "relatedTypes": {},
-    "description": "Расчет способа отображения breadcrumbs работает следующим образом:\nКаждый item может быть отображен в одном из режимов:\n   full - целиком\n   shortLabel - с использованием укороченного лейбла\n   ellipsis - cо скруглением текста в ...\n   collapse - спрятан в специальный узел \"...\" с тултипом.\n Для того чтоб эффективно распределить свободное по ширине пространство между айтемами в компоненте создается скрытый контейнер (HiddenChain),\n в котором рендерятся все айтемы во всех возможных способах отображения. Замеряется размер каждого из айтемов и записывается в sizeMap.\n Далее перебираются все возможные варианты отображения всей цепочки - конфиги (buildBreadcrumbsConfigs). У такого конфига есть два атрибута:\n   width - суммарная ширина\n   weight - вес, отображает общее количество сокращений, примененных к цепочке (например, отображение в режиме full - 0, сокращение shortLabel - +1, а ellipsis - +100 и тд)\n Для того чтоб отобразить breadcrumbs, нужно подобрать конфиг, максимальный по ширине, влезающий в контейнер, но с минимальным весом (наименьшим количеством сокращений)."
-  },
-  "Wrapper": {
-    "displayName": "Wrapper",
-    "propsTypeName": null,
+  "Breadcrumbs": {
+    "displayName": "Breadcrumbs",
+    "propsTypeName": "BreadcrumbsProps",
+    "description": "Компонент хлебных крошек",
     "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
       },
-      "hidden": {
-        "type": "boolean",
-        "required": true
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "size": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "xs",
-          "s"
-        ]
-      },
-      "separator": {
-        "type": "string",
-        "required": true
-      }
-    },
-    "relatedTypes": {}
-  },
-  "useItemModesRender": {
-    "displayName": "useItemModesRender",
-    "propsTypeName": null,
-    "props": {
       "firstItemIconOnly": {
         "type": "boolean",
-        "required": true
-      }
-    },
-    "relatedTypes": {}
-  },
-  "HiddenChain": {
-    "displayName": "HiddenChain",
-    "propsTypeName": null,
-    "props": {
-      "separator": {
-        "type": "string",
-        "required": true
+        "required": false,
+        "defaultValue": "false",
+        "description": "Использовать иконку без лейбла в первом айтеме"
+      },
+      "inactiveLastItem": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick`"
       },
       "items": {
         "type": "Item[]",
-        "required": true
+        "required": true,
+        "description": "Массив айтемов",
+        "typeRefs": [
+          "Item"
+        ]
+      },
+      "separator": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "›",
+        "description": "Разделитель между пунктами"
       },
       "size": {
         "type": "enum",
-        "required": true,
+        "required": false,
         "values": [
-          "xs",
-          "s"
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
         ]
-      },
-      "onConfigsBuilt": {
-        "type": "(config: BreadcrumbsConfig[]) => void",
-        "required": true
-      },
-      "firstItemIconOnly": {
-        "type": "boolean",
-        "required": false
       }
     },
-    "relatedTypes": {}
-  },
-  "CrumbsTypography": {
-    "displayName": "CrumbsTypography",
-    "propsTypeName": null,
-    "props": {
-      "size": {
-        "type": "enum",
-        "required": true,
+    "relatedTypes": {
+      "Item": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "JSXElementConstructor<{ size: number; }> | undefined",
+            "required": false
+          },
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement> | undefined",
+            "required": false
+          },
+          "shortLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
         "values": [
-          "xs",
-          "s"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
+          "s",
+          "xs"
+        ],
+        "own": true
       }
-    },
-    "relatedTypes": {}
-  },
-  "Crumb": {
-    "displayName": "Crumb",
-    "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "renderMode": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "full",
-          "shortLabel",
-          "ellipsis",
-          "collapsed"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "minWidth": {
-        "type": "number",
-        "required": false
-      },
-      "current": {
-        "type": "boolean",
-        "required": false
-      },
-      "item": {
-        "type": "Item",
-        "required": true
-      },
-      "useIconOnly": {
-        "type": "boolean",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
+    }
   },
   "Collapse": {
     "displayName": "Collapse",
@@ -154,99 +109,144 @@
     },
     "relatedTypes": {}
   },
-  "Breadcrumbs": {
-    "displayName": "Breadcrumbs",
-    "propsTypeName": "BreadcrumbsProps",
+  "Crumb": {
+    "displayName": "Crumb",
+    "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "current": {
+        "type": "boolean",
+        "required": false
+      },
       "data-test-id": {
         "type": "string",
         "required": false
       },
-      "items": {
-        "type": "Item[]",
+      "item": {
+        "type": "Item",
+        "required": true
+      },
+      "minWidth": {
+        "type": "number",
+        "required": false
+      },
+      "renderMode": {
+        "type": "enum",
         "required": true,
-        "description": "Массив айтемов",
-        "typeRefs": [
-          "Item"
+        "values": [
+          "collapsed",
+          "ellipsis",
+          "full",
+          "shortLabel"
         ]
       },
+      "useIconOnly": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CrumbsTypography": {
+    "displayName": "CrumbsTypography",
+    "propsTypeName": null,
+    "props": {
       "className": {
         "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "separator": {
-        "type": "string",
-        "required": false,
-        "defaultValue": "›",
-        "description": "Разделитель между пунктами"
+        "required": false
       },
       "size": {
         "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s"
-        ],
-        "defaultValue": "s",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "firstItemIconOnly": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Использовать иконку без лейбла в первом айтеме"
-      },
-      "inactiveLastItem": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick`"
-      }
-    },
-    "relatedTypes": {
-      "Item": {
-        "kind": "interface",
-        "props": {
-          "id": {
-            "type": "string",
-            "required": true
-          },
-          "label": {
-            "type": "string",
-            "required": true
-          },
-          "icon": {
-            "type": "JSXElementConstructor<{ size: number; }> | undefined",
-            "required": false
-          },
-          "href": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "shortLabel": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement> | undefined",
-            "required": false
-          }
-        },
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
+        "required": true,
         "values": [
           "s",
           "xs"
-        ],
-        "own": true
+        ]
       }
     },
-    "description": "Компонент хлебных крошек"
+    "relatedTypes": {}
+  },
+  "HiddenChain": {
+    "displayName": "HiddenChain",
+    "propsTypeName": null,
+    "props": {
+      "firstItemIconOnly": {
+        "type": "boolean",
+        "required": false
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true
+      },
+      "onConfigsBuilt": {
+        "type": "(config: BreadcrumbsConfig[]) => void",
+        "required": true
+      },
+      "separator": {
+        "type": "string",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "s",
+          "xs"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Wrapper": {
+    "displayName": "Wrapper",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": true
+      },
+      "separator": {
+        "type": "string",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "s",
+          "xs"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useBreadcrumbsLayout": {
+    "displayName": "useBreadcrumbsLayout",
+    "propsTypeName": null,
+    "description": "Расчет способа отображения breadcrumbs работает следующим образом:\nКаждый item может быть отображен в одном из режимов:\n   full - целиком\n   shortLabel - с использованием укороченного лейбла\n   ellipsis - cо скруглением текста в ...\n   collapse - спрятан в специальный узел \"...\" с тултипом.\n Для того чтоб эффективно распределить свободное по ширине пространство между айтемами в компоненте создается скрытый контейнер (HiddenChain),\n в котором рендерятся все айтемы во всех возможных способах отображения. Замеряется размер каждого из айтемов и записывается в sizeMap.\n Далее перебираются все возможные варианты отображения всей цепочки - конфиги (buildBreadcrumbsConfigs). У такого конфига есть два атрибута:\n   width - суммарная ширина\n   weight - вес, отображает общее количество сокращений, примененных к цепочке (например, отображение в режиме full - 0, сокращение shortLabel - +1, а ellipsis - +100 и тд)\n Для того чтоб отобразить breadcrumbs, нужно подобрать конфиг, максимальный по ширине, влезающий в контейнер, но с минимальным весом (наименьшим количеством сокращений).",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useItemModesRender": {
+    "displayName": "useItemModesRender",
+    "propsTypeName": null,
+    "props": {
+      "firstItemIconOnly": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
   }
 }

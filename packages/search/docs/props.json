@@ -3,32 +3,10 @@
     "displayName": "ButtonField",
     "propsTypeName": null,
     "props": {
-      "variant": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "before",
-          "after"
-        ],
-        "defaultValue": "after",
-        "description": "Вариант (положение) кнопки"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "defaultValue": "s",
-        "description": "Размер кнопки"
-      },
-      "loading": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Состояние загрузки"
+      "action": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Слот для кнопки/иконки/аватара"
       },
       "disabled": {
         "type": "boolean",
@@ -36,20 +14,42 @@
         "defaultValue": "false",
         "description": "Деактивирован ли компонент"
       },
-      "action": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Слот для кнопки/иконки/аватара"
-      },
-      "withDropdownList": {
+      "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение шеврона"
+        "defaultValue": "false",
+        "description": "Состояние загрузки"
       },
       "onClick": {
         "type": "() => void",
         "required": true,
         "description": "Действие при клике"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер кнопки"
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "defaultValue": "after",
+        "description": "Вариант (положение) кнопки"
+      },
+      "withDropdownList": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображение шеврона"
       }
     },
     "relatedTypes": {}
@@ -58,103 +58,6 @@
     "displayName": "Search",
     "propsTypeName": "SearchProps",
     "props": {
-      "value": {
-        "type": "string",
-        "required": false,
-        "description": "Значение input"
-      },
-      "onChange": {
-        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
-        "required": false,
-        "description": "Колбек смены значения",
-        "typeRefs": [
-          "onChange"
-        ]
-      },
-      "placeholder": {
-        "type": "string",
-        "required": false,
-        "description": "Значение плейсхолдера"
-      },
-      "onFocus": {
-        "type": "FocusEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки получения фокуса"
-      },
-      "onBlur": {
-        "type": "FocusEventHandler<HTMLInputElement>",
-        "required": false,
-        "description": "Колбек обработки потери фокуса"
-      },
-      "inputMode": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "text",
-          "decimal",
-          "numeric",
-          "tel",
-          "search",
-          "email",
-          "url",
-          "none"
-        ],
-        "description": "Режим работы экранной клавиатуры",
-        "typeRefs": [
-          "InputMode"
-        ]
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "disabled": {
-        "type": "boolean",
-        "required": false,
-        "description": "Деактивирован ли компонент"
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "defaultValue": "s",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "loading": {
-        "type": "boolean",
-        "required": false,
-        "description": "Состояние загрузки"
-      },
-      "onSubmit": {
-        "type": "((value: string) => void)",
-        "required": false,
-        "description": "Колбек на подтверждение поиска по строке",
-        "typeRefs": [
-          "onSubmit"
-        ]
-      },
-      "showClearButton": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Отображение кнопки Очистки поля"
-      },
       "background": {
         "type": "boolean",
         "required": false,
@@ -169,92 +72,128 @@
           "ButtonFieldProps"
         ]
       },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли компонент"
+      },
+      "inputMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
+        ],
+        "description": "Режим работы экранной клавиатуры",
+        "typeRefs": [
+          "InputMode"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки потери фокуса"
+      },
+      "onChange": {
+        "type": "((value: string, e?: ChangeEvent<HTMLInputElement>) => void)",
+        "required": false,
+        "description": "Колбек смены значения",
+        "typeRefs": [
+          "onChange"
+        ]
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onSubmit": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Колбек на подтверждение поиска по строке",
+        "typeRefs": [
+          "onSubmit"
+        ]
+      },
       "outline": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
         "description": "Наличие разделителя между input и buttonField"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Значение плейсхолдера"
+      },
+      "showClearButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки Очистки поля"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Значение input"
       }
     },
     "relatedTypes": {
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l"
-        ],
-        "own": true
-      },
-      "InputMode": {
-        "kind": "union",
-        "values": [
-          "search",
-          "text",
-          "none",
-          "decimal",
-          "numeric",
-          "tel",
-          "email",
-          "url"
-        ],
-        "own": false
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "before",
-          "after"
-        ],
-        "own": true
-      },
       "ButtonFieldProps": {
         "kind": "interface",
         "props": {
-          "variant": {
-            "type": "\"before\" | \"after\"",
+          "action": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": true,
-            "values": [
-              "before",
-              "after"
-            ],
-            "description": "Вариант (положение) кнопки",
-            "typeRefs": [
-              "Variant"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "s",
-              "m",
-              "l"
-            ],
-            "description": "Размер кнопки",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
+            "description": "Слот для кнопки/иконки/аватара"
           },
           "disabled": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Деактивирован ли компонент"
           },
-          "action": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Слот для кнопки/иконки/аватара"
-          },
-          "withDropdownList": {
+          "loading": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отображение шеврона"
+            "description": "Состояние загрузки"
           },
           "onClick": {
             "type": "() => void",
@@ -263,8 +202,69 @@
             "typeRefs": [
               "onClick"
             ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер кнопки",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "variant": {
+            "type": "\"before\" | \"after\"",
+            "required": true,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Вариант (положение) кнопки",
+            "typeRefs": [
+              "Variant"
+            ]
+          },
+          "withDropdownList": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение шеврона"
           }
         },
+        "own": true
+      },
+      "InputMode": {
+        "kind": "union",
+        "values": [
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
         "own": true
       }
     }

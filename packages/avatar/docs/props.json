@@ -2,7 +2,33 @@
   "Avatar": {
     "displayName": "Avatar",
     "propsTypeName": "AvatarProps",
+    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (round) или квадратная (square)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink",
     "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "defaultValue": "neutral",
+        "description": "Внешний вид (цвет)",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -11,49 +37,6 @@
         "type": "string",
         "required": true,
         "description": "Имя пользователя для генерации аббревиатуры"
-      },
-      "src": {
-        "type": "string",
-        "required": false,
-        "description": "URL изображения аватара"
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "violet",
-          "pink"
-        ],
-        "defaultValue": "neutral",
-        "description": "Внешний вид (цвет)",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "xs",
-          "s",
-          "m",
-          "l",
-          "3xl",
-          "6xl",
-          "10xl"
-        ],
-        "defaultValue": "s",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
       },
       "shape": {
         "type": "enum",
@@ -74,38 +57,43 @@
         "defaultValue": "false",
         "description": "Отображение двух заглавных символов имени вместо одного"
       },
-      "className": {
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "10xl",
+          "3xl",
+          "6xl",
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "src": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "URL изображения аватара"
       }
     },
     "relatedTypes": {
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
+          "orange",
+          "pink",
           "primary",
           "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
           "violet",
-          "pink"
-        ],
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "m",
-          "l",
-          "xs",
-          "3xl",
-          "6xl",
-          "10xl"
+          "yellow"
         ],
         "own": true
       },
@@ -116,8 +104,20 @@
           "square"
         ],
         "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "10xl",
+          "3xl",
+          "6xl",
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
       }
-    },
-    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (round) или квадратная (square)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink"
+    }
   }
 }

@@ -3,15 +3,15 @@
     "displayName": "Accordion",
     "propsTypeName": "AccordionProps",
     "props": {
-      "expandedDefault": {
-        "type": "string | string[]",
-        "required": false,
-        "description": "Начальное состояние"
-      },
       "expanded": {
         "type": "string | string[]",
         "required": false,
         "description": "Controlled состояние"
+      },
+      "expandedDefault": {
+        "type": "string | string[]",
+        "required": false,
+        "description": "Начальное состояние"
       },
       "onExpandedChange": {
         "type": "((value: string) => void) | ((value: string[]) => void) | undefined",
@@ -25,8 +25,8 @@
         "type": "enum",
         "required": false,
         "values": [
-          "single",
-          "multiple"
+          "multiple",
+          "single"
         ],
         "description": "Режим работы аккордиона"
       }
@@ -36,56 +36,36 @@
   "CollapseBlock": {
     "displayName": "CollapseBlock",
     "propsTypeName": "CollapseBlockProps",
+    "description": "Элемент аккордеона: заголовок, шеврон и раскрываемая область с контентом.",
     "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "id": {
-        "type": "string",
-        "required": true,
-        "description": "Уникальный идентификатор блока в группе переключателей"
-      },
-      "title": {
-        "type": "string",
-        "required": true,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
-      },
       "afterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Контент справа от заголовка"
       },
-      "subTitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подзаголовок под строкой заголовка"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "Дополнительный класс корневого элемента"
-      },
-      "view": {
+      "appearance": {
         "type": "enum",
         "required": false,
         "values": [
-          "simple",
-          "outline",
-          "elevated"
+          "blue",
+          "green",
+          "neutral",
+          "primary",
+          "red",
+          "yellow"
         ],
-        "defaultValue": "simple",
-        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
+        "defaultValue": "neutral",
+        "description": "Цветовая схема акрила",
         "typeRefs": [
-          "View"
+          "Appearance"
         ]
       },
       "chevron": {
         "type": "enum",
         "required": false,
         "values": [
-          "before",
-          "after"
+          "after",
+          "before"
         ],
         "defaultValue": "after",
         "description": "Расположение шеврона относительно текста (`before` | `after`)",
@@ -93,22 +73,10 @@
           "Chevron"
         ]
       },
-      "appearance": {
-        "type": "enum",
+      "className": {
+        "type": "string",
         "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "yellow",
-          "green",
-          "blue"
-        ],
-        "defaultValue": "neutral",
-        "description": "Цветовая схема акрила",
-        "typeRefs": [
-          "Appearance"
-        ]
+        "description": "Дополнительный класс корневого элемента"
       },
       "component": {
         "type": "enum",
@@ -123,40 +91,64 @@
           "Component"
         ]
       },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор блока в группе переключателей"
+      },
       "keepMounted": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
         "description": "Оставлять ли контент в DOM при сворачивании"
+      },
+      "subTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под строкой заголовка"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "elevated",
+          "outline",
+          "simple"
+        ],
+        "defaultValue": "simple",
+        "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
+        "typeRefs": [
+          "View"
+        ]
       }
     },
     "relatedTypes": {
-      "View": {
+      "Appearance": {
         "kind": "union",
         "values": [
-          "outline",
-          "simple",
-          "elevated"
+          "blue",
+          "green",
+          "neutral",
+          "primary",
+          "red",
+          "yellow"
         ],
         "own": true
       },
       "Chevron": {
         "kind": "union",
         "values": [
-          "before",
-          "after"
-        ],
-        "own": true
-      },
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "yellow",
-          "green",
-          "blue"
+          "after",
+          "before"
         ],
         "own": true
       },
@@ -168,14 +160,60 @@
           "accordionTertiary"
         ],
         "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "outline",
+          "simple"
+        ],
+        "own": true
       }
-    },
-    "description": "Элемент аккордеона: заголовок, шеврон и раскрываемая область с контентом."
+    }
   },
   "CollapseBlockPrimary": {
     "displayName": "CollapseBlockPrimary",
     "propsTypeName": "CollapseBlockPropsWithoutComponent",
     "props": {
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "primary",
+          "red",
+          "yellow"
+        ],
+        "description": "Цветовая схема акрила",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -185,100 +223,62 @@
         "required": true,
         "description": "Уникальный идентификатор блока в группе переключателей"
       },
-      "title": {
-        "type": "string",
-        "required": true,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
-      },
-      "afterTitle": {
-        "type": "ReactNode",
+      "keepMounted": {
+        "type": "boolean",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Оставлять ли контент в DOM при сворачивании"
       },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под строкой заголовка"
       },
-      "className": {
+      "title": {
         "type": "string",
-        "required": false,
-        "description": "Дополнительный класс корневого элемента"
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
       },
       "view": {
         "type": "enum",
         "required": false,
         "values": [
-          "simple",
+          "elevated",
           "outline",
-          "elevated"
+          "simple"
         ],
         "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
         "typeRefs": [
           "View"
         ]
-      },
-      "chevron": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "before",
-          "after"
-        ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
-        "typeRefs": [
-          "Chevron"
-        ]
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "yellow",
-          "green",
-          "blue"
-        ],
-        "description": "Цветовая схема акрила",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "keepMounted": {
-        "type": "boolean",
-        "required": false,
-        "description": "Оставлять ли контент в DOM при сворачивании"
       }
     },
     "relatedTypes": {
-      "View": {
-        "kind": "union",
-        "values": [
-          "outline",
-          "simple",
-          "elevated"
-        ],
-        "own": true
-      },
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
           "primary",
           "red",
-          "yellow",
-          "green",
-          "blue"
+          "yellow"
         ],
         "own": true
       },
       "Chevron": {
         "kind": "union",
         "values": [
-          "before",
-          "after"
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "outline",
+          "simple"
         ],
         "own": true
       }
@@ -288,6 +288,44 @@
     "displayName": "CollapseBlockSecondary",
     "propsTypeName": "CollapseBlockPropsWithoutComponent",
     "props": {
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "primary",
+          "red",
+          "yellow"
+        ],
+        "description": "Цветовая схема акрила",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -297,100 +335,62 @@
         "required": true,
         "description": "Уникальный идентификатор блока в группе переключателей"
       },
-      "title": {
-        "type": "string",
-        "required": true,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
-      },
-      "afterTitle": {
-        "type": "ReactNode",
+      "keepMounted": {
+        "type": "boolean",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Оставлять ли контент в DOM при сворачивании"
       },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под строкой заголовка"
       },
-      "className": {
+      "title": {
         "type": "string",
-        "required": false,
-        "description": "Дополнительный класс корневого элемента"
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
       },
       "view": {
         "type": "enum",
         "required": false,
         "values": [
-          "simple",
+          "elevated",
           "outline",
-          "elevated"
+          "simple"
         ],
         "description": "Визуальный вариант обложки (`simple`, `outline`, `elevated`)",
         "typeRefs": [
           "View"
         ]
-      },
-      "chevron": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "before",
-          "after"
-        ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
-        "typeRefs": [
-          "Chevron"
-        ]
-      },
-      "appearance": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "neutral",
-          "primary",
-          "red",
-          "yellow",
-          "green",
-          "blue"
-        ],
-        "description": "Цветовая схема акрила",
-        "typeRefs": [
-          "Appearance"
-        ]
-      },
-      "keepMounted": {
-        "type": "boolean",
-        "required": false,
-        "description": "Оставлять ли контент в DOM при сворачивании"
       }
     },
     "relatedTypes": {
-      "View": {
-        "kind": "union",
-        "values": [
-          "outline",
-          "simple",
-          "elevated"
-        ],
-        "own": true
-      },
       "Appearance": {
         "kind": "union",
         "values": [
+          "blue",
+          "green",
           "neutral",
           "primary",
           "red",
-          "yellow",
-          "green",
-          "blue"
+          "yellow"
         ],
         "own": true
       },
       "Chevron": {
         "kind": "union",
         "values": [
-          "before",
-          "after"
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "outline",
+          "simple"
         ],
         "own": true
       }
@@ -400,6 +400,28 @@
     "displayName": "CollapseBlockTertiary",
     "propsTypeName": "CollapseBlockTertiaryProps",
     "props": {
+      "afterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент справа от заголовка"
+      },
+      "chevron": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "typeRefs": [
+          "Chevron"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого элемента"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -409,50 +431,28 @@
         "required": true,
         "description": "Уникальный идентификатор блока в группе переключателей"
       },
-      "title": {
-        "type": "string",
-        "required": true,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
-      },
-      "afterTitle": {
-        "type": "ReactNode",
+      "keepMounted": {
+        "type": "boolean",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Оставлять ли контент в DOM при сворачивании"
       },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под строкой заголовка"
       },
-      "className": {
+      "title": {
         "type": "string",
-        "required": false,
-        "description": "Дополнительный класс корневого элемента"
-      },
-      "chevron": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "before",
-          "after"
-        ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
-        "typeRefs": [
-          "Chevron"
-        ]
-      },
-      "keepMounted": {
-        "type": "boolean",
-        "required": false,
-        "description": "Оставлять ли контент в DOM при сворачивании"
+        "required": true,
+        "description": "Начальное состояние раскрытия (uncontrolled)"
       }
     },
     "relatedTypes": {
       "Chevron": {
         "kind": "union",
         "values": [
-          "before",
-          "after"
+          "after",
+          "before"
         ],
         "own": true
       }
