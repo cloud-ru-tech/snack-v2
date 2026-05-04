@@ -68,6 +68,7 @@
     "@vitest/browser-playwright": "4.1.4",
     "autoprefixer": "10.5.0",
     "babel-plugin-react-css-modules": "5.2.6",
+    "classnames": "catalog:",
     "fast-xml-parser": "5.3.5",
     "glob": "11.1.0",
     "lerna": "8.2.4",
