@@ -27,9 +27,8 @@ import { LocaleProvider, useLocale, createLocaleContext } from '@ds/locale'
 `LocaleProvider` + `useLocale` — строка обновляется при смене `lang`.
 
 ```tsx
-import { useState } from 'react';
-
 import { LocaleProvider, useLocale } from '@ds/locale';
+import { useState } from 'react';
 
 function NotFoundLabel() {
   const { t } = useLocale();

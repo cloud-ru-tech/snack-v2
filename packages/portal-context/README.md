@@ -29,10 +29,9 @@ import { PortalContextProvider } from '@ds/portal-context'
 Портал монтируется в указанный ref, а не в `document.body`.
 
 ```tsx
-import { useRef } from 'react';
-import { createPortal } from 'react-dom';
-
 import { PortalContextProvider, usePortalContext } from '@ds/portal-context';
+import { useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 function PortalChild() {
   const root = usePortalContext();
@@ -43,7 +42,8 @@ function PortalChild() {
 }
 
 export function CustomRoot() {
-  const root = useRef<HTMLDivElement>(null);
+  const [node, setNode] = useState<HTMLDivElement | null>(null);
+  const root = useMemo(() => ({ current: node }), [node]);
 
   return (
     <div style={{ display: 'flex', gap: 12, flexDirection: 'column' }}>
@@ -51,7 +51,7 @@ export function CustomRoot() {
         <span>Хост-компонент</span>
         <PortalChild />
       </PortalContextProvider>
-      <div ref={root} data-test-id='portal-root' />
+      <div ref={setNode} data-test-id='portal-root' />
     </div>
   );
 }

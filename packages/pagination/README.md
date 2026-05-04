@@ -54,9 +54,8 @@ export function Basic() {
 #### Размер m
 
 ```tsx
-import { useState } from 'react';
-
 import { Pagination } from '@ds/pagination';
+import { useState } from 'react';
 
 export function SizeM() {
   const [page, setPage] = useState(3);
@@ -68,9 +67,8 @@ export function SizeM() {
 #### Длинный диапазон — свёртка в середине
 
 ```tsx
-import { useState } from 'react';
-
 import { Pagination } from '@ds/pagination';
+import { useState } from 'react';
 
 export function LongRange() {
   const [page, setPage] = useState(12);
@@ -84,9 +82,8 @@ export function LongRange() {
 variant='link' + hrefFormatter — каждая страница получает href
 
 ```tsx
-import { useState } from 'react';
-
 import { Pagination } from '@ds/pagination';
+import { useState } from 'react';
 
 export function AsLinks() {
   const [page, setPage] = useState(2);
@@ -150,9 +147,8 @@ export function SliderBasic() {
 #### Размер s
 
 ```tsx
-import { useState } from 'react';
-
 import { PaginationSlider } from '@ds/pagination';
+import { useState } from 'react';
 
 export function SliderSizeS() {
   const [page, setPage] = useState(2);

@@ -78,9 +78,8 @@ export function DropzoneBasic() {
 Режим single и фильтр accept
 
 ```tsx
-import { useState } from 'react';
-
 import { Dropzone } from '@ds/dropzone';
+import { useState } from 'react';
 
 export function DropzoneSingleImage() {
   const [file, setFile] = useState<File | null>(null);
@@ -98,9 +97,8 @@ export function DropzoneSingleImage() {
 Состояние заблокированной загрузки
 
 ```tsx
-import { useState } from 'react';
-
 import { Dropzone } from '@ds/dropzone';
+import { useState } from 'react';
 
 export function DropzoneDisabled() {
   const [files, setFiles] = useState<File[]>([]);
@@ -157,10 +155,9 @@ export function DropzoneDisabled() {
 FileUpload оборачивает Button
 
 ```tsx
-import { useState } from 'react';
-
 import { Button } from '@ds/button';
 import { FileUpload } from '@ds/dropzone';
+import { useState } from 'react';
 
 export function FileUploadBasic() {
   const [files, setFiles] = useState<File[]>([]);
@@ -210,9 +207,8 @@ export function FileUploadBasic() {
 HiddenDropZone накрывает форму при drag
 
 ```tsx
-import { useState } from 'react';
-
 import { HiddenDropZone } from '@ds/dropzone';
+import { useState } from 'react';
 
 export function HiddenDropZoneBasic() {
   const [files, setFiles] = useState<File[]>([]);
