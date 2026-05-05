@@ -1,15 +1,13 @@
 import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { ButtonHTMLAttributes } from 'react';
 
 import { Button } from '../Button';
 import { SIZE } from '../Button/constants';
-import { BaseButtonProps, Size } from '../Button/types';
+import { ButtonProps, Size } from '../Button/types';
 import styles from './styles.module.scss';
 
 /** Пропсы действия — все пропсы Button, кроме size (задаётся на уровне группы) + нативные button-атрибуты */
-type ActionProps = WithSupportProps<Omit<BaseButtonProps, 'size'>> &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseButtonProps>;
+type ActionProps = WithSupportProps<Omit<ButtonProps<'button'>, 'size'>>;
 
 export type ButtonGroupProps = WithSupportProps<{
   /** Основное действие (filled) */
