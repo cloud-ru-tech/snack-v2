@@ -1,0 +1,122 @@
+{
+  "Card": {
+    "displayName": "Card",
+    "propsTypeName": "CardProps",
+    "props": {
+      "backgroundPredefined": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "defaultValue": "neutralBackground1Level",
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`.",
+        "typeRefs": [
+          "BackgroundPredefinedFill"
+        ]
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "multiSelect": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показ чекбокса для режима множественного выбора"
+      },
+      "radius": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Радиус контейнера",
+        "typeRefs": [
+          "Radius"
+        ]
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "outline",
+          "shadow",
+          "simple"
+        ],
+        "defaultValue": "simple",
+        "description": "Визуальный режим карточки",
+        "typeRefs": [
+          "View"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "BackgroundPredefinedFill": {
+        "kind": "union",
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "own": false
+      },
+      "Radius": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "outline",
+          "shadow",
+          "simple"
+        ],
+        "own": true
+      }
+    }
+  }
+}

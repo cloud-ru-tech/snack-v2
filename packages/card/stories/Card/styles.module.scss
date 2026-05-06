@@ -1,0 +1,24 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.playgroundExample {
+  display: flex;
+  gap: base.$sn-density-spacing-interval-s;
+  align-items: center;
+  padding: base.$sn-density-spacing-interval-s;
+}
+
+.playgroundExampleText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.playgroundExampleSubtitle {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

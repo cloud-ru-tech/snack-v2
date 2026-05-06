@@ -118,6 +118,12 @@ export const FIGMA_UIKIT_PRODUCT_SWITCH_ROW: FigmaNodeRef = {
   nodeId: '3019:5599',
 };
 
+export const FIGMA_CARD: FigmaNodeRef = {
+  fileKey: 'aNPU3MHwRJiEwbk5F82zux',
+  fileName: 'Snack-Ui-Kit-variables',
+  nodeId: '5044-22732',
+};
+
 export function figmaEmbedUrl({ fileKey, fileName, nodeId }: FigmaNodeRef): string {
   const params = new URLSearchParams({
     'node-id': nodeId,

@@ -1,0 +1,129 @@
+---
+title: Card
+package: '@ds/card'
+description: Корневая карточка с осями radius, view и слоем backgroundPredefined + acrylic.
+order: 0
+---
+
+import { CardDemo } from '../demos/CardDemo'
+import { BackgroundFills } from '../demos/examples/BackgroundFills'
+import BackgroundFillsSrc from '../demos/examples/BackgroundFills.tsx?raw'
+import { DisabledCard } from '../demos/examples/DisabledCard'
+import DisabledCardSrc from '../demos/examples/DisabledCard.tsx?raw'
+import { RadiusValues } from '../demos/examples/RadiusValues'
+import RadiusValuesSrc from '../demos/examples/RadiusValues.tsx?raw'
+import { SelectionToggle } from '../demos/examples/SelectionToggle'
+import SelectionToggleSrc from '../demos/examples/SelectionToggle.tsx?raw'
+import { ViewValues } from '../demos/examples/ViewValues'
+import ViewValuesSrc from '../demos/examples/ViewValues.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FIGMA_CARD } from '#docs/lib/figma'
+import cardDoc from './props.json'
+
+# Card
+
+`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, state layer и контекстом `radius` для вложенного контента. Реэкспорт **`setNonce`** — из `@ds/tag`. Корневой фокус (`tabIndex={0}`) задан для согласованности с легаси; сценарии клика и навигации дорабатываются на стороне продукта.
+
+## Демо
+
+<CardDemo client:visible />
+
+## Когда использовать
+
+- Плитки и превью сущностей в сетках и списках.
+- Выбираемые карточки (`checked`, `multiSelect`) в режиме множественного выбора.
+- Любой блок, где нужны скругления `radius`, режим `view` и согласованный акрил из `@ds/materials`.
+
+Когда **не** нужен:
+
+- Достаточно плоской поверхности без предустановленной заливки и state layer — рассмотрите более лёгкие обёртки.
+- Нужно «стекло» без карточной рамки и модели выбора — см. [`Block`](/components/block).
+
+## Анатомия
+
+### Radius (default `m`)
+
+Скругление внешнего контура:
+
+- `s` — плотные сетки.
+- `m` — базовое значение.
+- `l` — крупные карточки.
+
+| Значение | Токен  |
+| -------- | ------ |
+| `s`      | `RADIUS.S` |
+| `m`      | `RADIUS.M` |
+| `l`      | `RADIUS.L` |
+
+### View (default `simple`)
+
+Визуальный режим обводки и тени:
+
+- `simple` — базовая заливка без контура и тени.
+- `outline` — контур по бордеру.
+- `shadow` — приподнятая тень.
+
+| Значение  | Токен        |
+| --------- | ------------ |
+| `simple`  | `VIEW.Simple`  |
+| `outline` | `VIEW.Outline` |
+| `shadow`  | `VIEW.Shadow`  |
+
+### Background predefined (default `neutralBackground1Level`)
+
+Слой `backgroundPredefined` мапится на пару `data-acrylic-appearance` / `data-acrylic-level` (см. `BACKGROUND_PREDEFINED_FILL` и `_acrylic.scss` в `@ds/materials`). Меняет цвет акцента подложки, не разметку контента.
+
+## Установка
+
+```bash
+pnpm add @ds/card
+```
+
+```ts
+import { Card, RADIUS, VIEW } from '@ds/card'
+```
+
+## Примеры использования
+
+<Example title='Радиусы' code={RadiusValuesSrc}>
+  <RadiusValues client:visible />
+</Example>
+
+<Example title='Режимы view' code={ViewValuesSrc}>
+  <ViewValues client:visible />
+</Example>
+
+<Example title='Заливки backgroundPredefined' code={BackgroundFillsSrc}>
+  <BackgroundFills client:visible />
+</Example>
+
+<Example
+  title='Выбор и multiSelect'
+  description='Состояние checked задаётся снаружи — типичный controlled-сценарий списка.'
+  code={SelectionToggleSrc}
+>
+  <SelectionToggle client:visible />
+</Example>
+
+<Example title='Недоступная карточка' code={DisabledCardSrc}>
+  <DisabledCard client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={cardDoc.Card} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-card--playground' height={440} />
+
+## Figma
+
+<FigmaEmbed node={FIGMA_CARD} height={480} title='Card в Figma (Snack UI Kit)' />
+
+## Смотри также
+
+- [`Block`](/components/block) — акриловая поверхность без карточной модели выбора.

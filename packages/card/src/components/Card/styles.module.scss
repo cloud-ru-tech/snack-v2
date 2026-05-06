@@ -1,0 +1,170 @@
+/**
+ * Корень Card: внешний blur слоя backgroundPredefined, acrylic по `data-acrylic-*`
+ * (проп `backgroundPredefined` → `@ds/materials`), state layer, контент. View / radius — card.module.
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
+@use '@ds/materials' as m;
+
+$radii: 's', 'm', 'l';
+$radius-to-border-radius: (
+  's': card.$sn-card-anatomy-radius-s-container-borderRadius,
+  'm': card.$sn-card-anatomy-radius-m-container-borderRadius,
+  'l': card.$sn-card-anatomy-radius-l-container-borderRadius,
+);
+$radius-to-border-width: (
+  's': card.$sn-card-anatomy-radius-s-container-borderWidth,
+  'm': card.$sn-card-anatomy-radius-m-container-borderWidth,
+  'l': card.$sn-card-anatomy-radius-l-container-borderWidth,
+);
+$radius-to-badge-padding-left: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-paddingLeft,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-paddingLeft,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-paddingLeft,
+);
+$radius-to-badge-padding-top: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-paddingTop,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-paddingTop,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-paddingTop,
+);
+$radius-to-badge-box-size: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-box-square,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-box-square,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-box-square,
+);
+$radius-to-badge-box-border-radius: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-box-borderRadius,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-box-borderRadius,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-box-borderRadius,
+);
+$radius-to-badge-box-border-width: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-box-borderWidth,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-box-borderWidth,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-box-borderWidth,
+);
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.stateLayer {
+  visibility: initial;
+}
+
+.checkWrapper {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.checkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-color: base.$sn-theme-color-primary-accent;
+  border-style: solid;
+
+  color: base.$sn-theme-color-primary-onAccent;
+
+  background: base.$sn-theme-color-primary-accent;
+}
+
+.card {
+  cursor: default;
+
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-color: transparent;
+  border-style: solid;
+
+  background: transparent;
+  outline: none;
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  @each $r in $radii {
+    &[data-radius='#{$r}'] {
+      border-width: base.simple-var($radius-to-border-width, $r);
+      border-radius: base.simple-var($radius-to-border-radius, $r);
+
+      .checkWrapper {
+        padding-top: base.simple-var($radius-to-badge-padding-top, $r);
+        padding-left: base.simple-var($radius-to-badge-padding-left, $r);
+      }
+
+      .checkContainer {
+        width: base.simple-var($radius-to-badge-box-size, $r);
+        height: base.simple-var($radius-to-badge-box-size, $r);
+        border-width: base.simple-var($radius-to-badge-box-border-width, $r);
+        border-radius: base.simple-var($radius-to-badge-box-border-radius, $r);
+      }
+    }
+  }
+
+  @include m.with-material('acrylic', 'acrylic');
+  @include m.has-state-layer-as-child('stateLayer');
+
+  /* view=simple — плоская подложка, без тени */
+  &[data-view='simple'] {
+    box-shadow: none;
+  }
+
+  /* view=outline — видимая обводка (токен бордера из анатомии + цвет) */
+  &[data-view='outline'] {
+    border-color: base.$sn-theme-color-available-borderColor;
+    box-shadow: none;
+  }
+
+  /* view=shadow — elevation по радиусу (как block shadow) */
+  &[data-view='shadow'] {
+    border-color: transparent;
+
+    &[data-radius='l'] {
+      box-shadow: base.$sn-boxShadow-elevation-level3;
+    }
+
+    &[data-radius='m'],
+    &[data-radius='s'] {
+      box-shadow: base.$sn-boxShadow-elevation-level2;
+    }
+  }
+
+  /* checked: обводка primary/accent, одинаковая для default/hover и всех view */
+  &[data-checked] {
+    border-color: base.$sn-theme-color-primary-accent;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-8;
+  border-radius: inherit;
+}
