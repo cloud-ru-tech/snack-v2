@@ -1,8 +1,8 @@
-import { Button } from '@ds/button'
+import { Button } from '@ds/button';
 
-import buttonDoc from '../docs/props.json'
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas'
+import buttonDoc from '../docs/props.json';
 
 export function ButtonDemo() {
   return (
@@ -35,5 +35,5 @@ export function ButtonDemo() {
       }}
       excludeProps={['icon', 'counter', 'as', 'innerRef', 'className', 'children']}
     />
-  )
+  );
 }

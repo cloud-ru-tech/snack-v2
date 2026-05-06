@@ -1,11 +1,10 @@
-import { StorybookUrlOptions } from '../../../../playwright/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 export const BUTTON_GROUP_TEST_ID = 'button-group';
 export const BUTTON_GROUP_PRIMARY_TEST_ID = 'button-group-primary';
 export const BUTTON_GROUP_SECONDARY_TEST_ID = 'button-group-secondary';
 export const BUTTON_GROUP_TERTIARY_TEST_ID = 'button-group-tertiary';
 
-/** Title `Components/Button/ButtonGroup` → story id prefix `components-button-buttongroup` (SB 10). */
 export const BUTTON_GROUP_PACKAGE_NAME = 'button';
 export const BUTTON_GROUP_STORY_NAME = 'buttongroup';
 

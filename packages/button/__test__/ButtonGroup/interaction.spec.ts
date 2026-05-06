@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import {
   buildButtonGroupStoryOptions,
   BUTTON_GROUP_PRIMARY_TEST_ID,

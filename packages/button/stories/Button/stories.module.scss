@@ -8,3 +8,8 @@
   display: grid;
   gap: base.$sn-primitive-dimension-24;
 }
+
+.row {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+}

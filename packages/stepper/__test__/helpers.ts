@@ -13,7 +13,7 @@ export const STEPPER_STORIES = {
   completed: 'completed',
   mobile: 'mobile',
   adaptive: 'adaptive',
-  clickTest: 'click-test',
+  interactionTest: 'interaction-test',
   visualMatrix: 'visual-matrix',
 } as const;
 

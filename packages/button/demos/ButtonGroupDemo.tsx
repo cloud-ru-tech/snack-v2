@@ -1,8 +1,8 @@
 import { ButtonGroup } from '@ds/button';
 
-import buttonDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import buttonDoc from '../docs/props.json';
 
 export function ButtonGroupDemo() {
   return (

@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constants';
 import { buildStoryOptions, BUTTON_TEST_ID } from './helpers';
 

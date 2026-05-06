@@ -9,12 +9,12 @@ import { STEPPER_NEXT_TEST_ID, STEPPER_PREV_TEST_ID, STEPPER_TEST_ID } from './t
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
   component: Stepper,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', controls: { disable: true } },
 };
 export default meta;
 type Story = StoryObj<typeof Stepper>;
 
-export const ClickTest: Story = {
+export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   args: {
     onChangeCurrentStep: fn(),
@@ -46,7 +46,7 @@ export const ClickTest: Story = {
   ),
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    await step('Click Next', async () => {
+    await step('click: Next', async () => {
       await userEvent.click(canvas.getByTestId(STEPPER_NEXT_TEST_ID));
     });
     await step('onChangeCurrentStep fired', async () => {

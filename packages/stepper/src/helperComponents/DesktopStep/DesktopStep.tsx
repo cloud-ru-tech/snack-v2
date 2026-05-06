@@ -23,7 +23,7 @@ const getStepTestId = getTestIdBuilder('_element-step');
 
 export function DesktopStep({ step, className, 'data-test-id': testId, hideTailLine }: DesktopStepProps) {
   return (
-    <div className={cn(styles.step, className)} data-state={step.state} data-test-id={testId}>
+    <div className={cn(styles.step, className)} data-state={step.state}>
       <div className={styles.track}>
         <button
           type='button'

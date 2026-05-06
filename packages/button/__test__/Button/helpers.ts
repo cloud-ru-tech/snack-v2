@@ -1,9 +1,9 @@
-import { StorybookUrlOptions } from '../../../../playwright/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
+
 import { VIEW } from '../../src/Button/constants';
 
 export const BUTTON_TEST_ID = 'button';
 
-/** Title `Components/Button/Button` → story id prefix `components-button-button` (SB 10). */
 export const BUTTON_GROUP_NAME = 'button';
 export const BUTTON_STORY_NAME = 'button';
 
