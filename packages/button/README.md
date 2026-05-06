@@ -382,6 +382,7 @@ export function ButtonGroupBreak() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
+| `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string \| undefined` | — | Дополнительный класс |
 | `counter` | `CounterProps` | — | Пропсы для counter |
 | `data-test-id` | `string \| undefined` | — |  |
@@ -389,6 +390,7 @@ export function ButtonGroupBreak() {
 | `fullWidth` | `boolean \| undefined` | — | На всю ширину |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
@@ -412,6 +414,8 @@ export function ButtonGroupBreak() {
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
 - `IconPosition` = `"after"` \| `"before"`
+
+- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 

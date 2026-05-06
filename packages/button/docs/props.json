@@ -355,6 +355,17 @@
               "Appearance"
             ]
           },
+          "as": {
+            "type": "\"button\" | undefined",
+            "required": false,
+            "values": [
+              "button"
+            ],
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -397,6 +408,15 @@
             "description": "Позиция иконки относительно текста",
             "typeRefs": [
               "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
             ]
           },
           "label": {
@@ -616,6 +636,11 @@
           "after",
           "before"
         ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
         "own": true
       },
       "Size": {
