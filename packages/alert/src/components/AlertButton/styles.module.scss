@@ -36,7 +36,7 @@ $typography: (
 
     @include label-icon-color($label-color);
 
-    & > [data-state-layer][data-state='regularBackground'] {
+    & > [data-state-layer][data-state='regularFilled'] {
       background-color: $bg-color;
     }
   }

@@ -10,7 +10,7 @@ $sizes: 'm', 'l';
     inset: 0;
     border-radius: inherit;
 
-    &[data-state='regularBackground'] {
+    &[data-state='regularFilled'] {
       background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
     }
   }
@@ -18,7 +18,7 @@ $sizes: 'm', 'l';
   @media (hover: hover) {
     &:hover:not([data-disabled], [data-loading]) {
       & .container > [data-state-layer] {
-        &[data-state='regularBackground'] {
+        &[data-state='regularFilled'] {
           background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
         }
       }
@@ -29,7 +29,7 @@ $sizes: 'm', 'l';
   &[data-loading],
   &:active:not([data-disabled], [data-loading]) {
     & .container > [data-state-layer] {
-      &[data-state='regularBackground'] {
+      &[data-state='regularFilled'] {
         background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
       }
     }
@@ -109,6 +109,6 @@ $sizes: 'm', 'l';
 
   &:focus-visible .container {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+    outline-offset: calc(0px - #{base.$sn-primitive-strokeWeight-strokeSemiBold});
   }
 }

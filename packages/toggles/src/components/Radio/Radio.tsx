@@ -48,7 +48,7 @@ export function Radio({
     >
       <div className={styles.container}>
         <div className={styles.framing} {...stateDataAttributes} data-focusvisible={focusVisible || undefined}>
-          <div className={styles.backgroundStateLayer} data-state='regularBackground' />
+          <div className={styles.backgroundStateLayer} data-state='regularFilled' />
           <div className={styles.flag}>
             {loading ? (
               <Spinner size={SPINNER_SIZE_MAP[size]} />

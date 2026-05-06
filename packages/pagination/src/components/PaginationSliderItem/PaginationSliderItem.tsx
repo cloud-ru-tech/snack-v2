@@ -24,7 +24,7 @@ export function PaginationSliderItem({ activated, onClick, size, setButtonRef, .
       aria-current={activated ? 'true' : undefined}
     >
       <span className={styles.dot} aria-hidden>
-        {!activated && <span data-state-layer aria-hidden data-state='regularBackground' />}
+        {!activated && <span data-state-layer aria-hidden data-state='regularFilled' />}
       </span>
     </button>
   );

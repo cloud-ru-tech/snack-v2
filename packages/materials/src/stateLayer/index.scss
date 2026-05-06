@@ -7,8 +7,8 @@
   * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
   */
 $states:
-  'regularBackground', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground',
-  'onAccentBackground', 'textOpacity';
+  'regularFilled', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground', 'onAccentBackground',
+  'textOpacity';
 $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
 /**
@@ -30,7 +30,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
       border-width: base.$sn-primitive-strokeWeight-strokeRegular;
     }
 
-    &[data-state='regularBackground'] {
+    &[data-state='regularFilled'] {
       background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
     }
 
@@ -58,7 +58,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   @media (hover: hover) {
     &:hover:not([data-disabled], [data-loading]) {
       .#{$stateLayerSelector} {
-        &[data-state='regularBackground'] {
+        &[data-state='regularFilled'] {
           background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
         }
 
@@ -88,9 +88,9 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   /* stylelint-disable-next-line order/order */
   &[data-loading],
   &:active:not([data-disabled], [data-loading]),
-  &[data-pressed="true"]:not([data-disabled], [data-loading]) {
+  &[data-pressed='true']:not([data-disabled], [data-loading]) {
     .#{$stateLayerSelector} {
-      &[data-state='regularBackground'] {
+      &[data-state='regularFilled'] {
         background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
       }
 
@@ -143,7 +143,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   /* stylelint-disable-next-line order/order */
   &[data-loading],
   &:active:not([data-disabled], [data-loading]),
-  &[data-pressed="true"]:not([data-disabled], [data-loading]) {
+  &[data-pressed='true']:not([data-disabled], [data-loading]) {
     .#{$contentLayerSelector} {
       [data-text-opacity] {
         opacity: base.$sn-theme-color-material-stateLayer-text-pressed-opacity;

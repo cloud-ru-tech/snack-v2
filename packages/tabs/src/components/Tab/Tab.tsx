@@ -144,7 +144,7 @@ export function Tab({ label, value, disabled = false, className, onClick, counte
             {...counterProps}
           />
         )}
-        <span data-state-layer aria-hidden data-state='regularBackground' />
+        <span data-state-layer aria-hidden data-state='regularFilled' />
       </Typography>
     </button>
   );

@@ -64,7 +64,7 @@ export const PromoTag = forwardRef<HTMLButtonElement | HTMLDivElement, PromoTagP
 
   return onClick ? (
     <button type='button' {...commonProps} data-clickable onClick={onClick} ref={ref as Ref<HTMLButtonElement>}>
-      <span className={styles.stateLayer} aria-hidden data-state='regularBackground' />
+      <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />
       {commonProps.children}
     </button>
   ) : (

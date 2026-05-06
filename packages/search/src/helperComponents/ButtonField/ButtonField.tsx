@@ -87,7 +87,7 @@ export function ButtonField({
       data-disabled={disabled || undefined}
       data-pressed={stateLayerPressed ? true : undefined}
     >
-      <div className={styles.backgroundStateLayer} data-state='regularBackground' />
+      <div className={styles.backgroundStateLayer} data-state='regularFilled' />
       <div className={styles.elementWrapper}>
         {loading && !disabled ? <Sun size={SUN_SIZE_MAP[size]} /> : action}
         {withDropdownList && (

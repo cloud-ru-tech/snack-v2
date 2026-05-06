@@ -99,7 +99,7 @@ export function Checkbox({
     >
       <div className={styles.container}>
         <div className={styles.framing} {...stateDataAttributes} data-focusvisible={focusVisible || undefined}>
-          <div className={styles.backgroundStateLayer} data-state='regularBackground' />
+          <div className={styles.backgroundStateLayer} data-state='regularFilled' />
           <div className={styles.flag}>
             <div
               className={styles.surface}
