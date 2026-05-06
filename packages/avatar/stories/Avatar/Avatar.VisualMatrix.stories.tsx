@@ -20,6 +20,7 @@ const keyShapes = [SHAPE.Round, SHAPE.Square] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
       {keyShapes.map(shape => (

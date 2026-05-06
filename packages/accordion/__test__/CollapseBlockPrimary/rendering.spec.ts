@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { APPEARANCE, CHEVRON, VIEW } from '../../src/constants';
 import {
   AFTER_TITLE_TEST_ID,

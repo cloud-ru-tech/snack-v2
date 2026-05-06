@@ -47,6 +47,7 @@ export const VisualMatrix: Story = {
     />
   ),
   parameters: {
+    controls: { disable: true },
     docs: {
       description: {
         story: 'Сводная сетка вариантов CollapseBlockTertiary: расположение шеврона по столбцам.',

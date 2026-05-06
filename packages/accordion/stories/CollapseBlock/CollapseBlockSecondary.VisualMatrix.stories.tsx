@@ -81,6 +81,7 @@ export const VisualMatrix: Story = {
     </>
   ),
   parameters: {
+    controls: { disable: true },
     docs: {
       description: {
         story:

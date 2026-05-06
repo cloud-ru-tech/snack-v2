@@ -1,4 +1,5 @@
-import { StorybookUrlOptions } from '../../../../playwright/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
+
 import { TEST_IDS } from '../../src/constants';
 
 export const GROUP = 'accordion';

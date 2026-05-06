@@ -1,8 +1,8 @@
 import { Avatar } from '@ds/avatar';
 
-import avatarDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import avatarDoc from '../docs/props.json';
 
 export function AvatarDemo() {
   return (
