@@ -1,0 +1,155 @@
+---
+title: SegmentControl
+package: '@ds/segment-control'
+description: Сегментированный переключатель — компактная радио-группа с единственным выбором, токенами размеров s/m/l, иконками, счётчиками и режимом полной ширины.
+order: 0
+---
+
+import { SegmentControl } from '@ds/segment-control'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { WithIcons } from '../demos/examples/WithIcons'
+import WithIconsSrc from '../demos/examples/WithIcons.tsx?raw'
+import { WithCounter } from '../demos/examples/WithCounter'
+import WithCounterSrc from '../demos/examples/WithCounter.tsx?raw'
+import { FullWidth } from '../demos/examples/FullWidth'
+import FullWidthSrc from '../demos/examples/FullWidth.tsx?raw'
+import { DisabledSegment } from '../demos/examples/DisabledSegment'
+import DisabledSegmentSrc from '../demos/examples/DisabledSegment.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { FIGMA_SEGMENT_CONTROL } from '#docs/lib/figma'
+import segmentControlDoc from './props.json'
+
+# SegmentControl
+
+Радио-группа с единственным выбором, оформленная как сегментированный контрол. Подходит для переключения режимов отображения, фильтров с малым числом значений и компактных табов на плотных поверхностях. Поддерживает controlled и uncontrolled режим, клавиатурную навигацию (Arrow/Home/End с пропуском disabled), иконки, счётчики и режим полной ширины.
+
+## Когда использовать
+
+- Когда вариантов от 2 до 5 и все они одновременно видимы на экране.
+- Для переключения режимов отображения (list/grid/kanban, day/week/month).
+- Для компактных фильтров с взаимоисключающим выбором.
+
+Когда **не** нужен `SegmentControl`:
+
+- Вариантов больше 5:
+  - используйте `Tabs` или `Select`.
+- Допускается множественный выбор:
+  - используйте чекбоксы или `ToggleGroup`.
+- Выбор приводит к загрузке тяжёлого контента и нужны отдельные урлы:
+  - используйте `Tabs`.
+
+## Анатомия
+
+### Size (default `m`)
+
+Размерный ряд: `s` / `m` / `l` — стандартные плотности.
+
+### Width (default `auto`)
+
+- `auto` — ширина по контенту.
+- `full` — растягивает контейнер на всю ширину родителя, сегменты делят ширину поровну. Уместен в формах и фильтрах с фиксированной шириной поля.
+
+### Outline (default `false`)
+
+Булевый флаг — добавляет обводку контейнеру. Используется на «лёгких» поверхностях, где контрол должен явно отделяться от фона.
+
+### Segment slots
+
+Каждый элемент `items[i]` собирается из:
+
+- `label` — текст сегмента.
+- `icon` — иконка с `iconPosition: 'before' | 'after'`.
+- `counter` — счётчик после `label`.
+
+Дополнительно:
+
+- Сегмент может быть icon-only (без `label`).
+- Отдельный сегмент можно сделать `disabled` — клавиатурная навигация его пропускает.
+
+## Установка
+
+```bash
+pnpm add @ds/segment-control
+```
+
+```ts
+import { SegmentControl } from '@ds/segment-control'
+```
+
+## Примеры использования
+
+<Example
+  title='1. Базовый сценарий'
+  description='Uncontrolled режим через defaultValue — компонент сам хранит выбор'
+  code={BasicSrc}
+>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='2. Все размеры'
+  description='s / m / l'
+  code={SizesSrc}
+>
+  <Sizes client:visible />
+</Example>
+
+<Example
+  title='3. С иконками и icon-only'
+  description='label + icon, или icon без label для плотных тулбаров'
+  code={WithIconsSrc}
+>
+  <WithIcons client:visible />
+</Example>
+
+<Example
+  title='4. Со счётчиком'
+  description='counter рендерится после label и переиспользует @ds/counter'
+  code={WithCounterSrc}
+>
+  <WithCounter client:visible />
+</Example>
+
+<Example
+  title='5. Полная ширина и outline'
+  description="width='full' растягивает на родителя; outline даёт обводку контейнера"
+  code={FullWidthSrc}
+>
+  <FullWidth client:visible />
+</Example>
+
+<Example
+  title='6. Disabled сегмент'
+  description='Клавиатурная навигация Arrow/Home/End пропускает заблокированные элементы'
+  code={DisabledSegmentSrc}
+>
+  <DisabledSegment client:visible />
+</Example>
+
+<Example
+  title='7. Controlled с useState'
+  description='value + onChange когда нужен внешний источник правды'
+  code={ControlledSrc}
+>
+  <Controlled client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={segmentControlDoc.SegmentControl} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-segmentcontrol--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={FIGMA_SEGMENT_CONTROL} height={480} title='SegmentControl в Figma (Snack UI Kit)' />

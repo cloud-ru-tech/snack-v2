@@ -1,0 +1,255 @@
+{
+  "Segment": {
+    "displayName": "Segment",
+    "propsTypeName": null,
+    "props": {
+      "counter": {
+        "type": "string | number",
+        "required": false,
+        "description": "Счётчик в сегменте (отображается после лейбла)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние активности сегмента."
+      },
+      "focusable": {
+        "type": "boolean",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка сегмента."
+      },
+      "iconPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "defaultValue": "before",
+        "description": "Позиция иконки относительно лейбла."
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текстовый заголовок сегмента."
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true
+      },
+      "onGetFocusable": {
+        "type": "((ref: HTMLButtonElement | null) => void)",
+        "required": false
+      },
+      "onSelectionUpdated": {
+        "type": "(element: HTMLButtonElement) => void",
+        "required": true
+      },
+      "renderWrapSegment": {
+        "type": "((segment: ReactNode) => ReactNode)",
+        "required": false,
+        "description": "Render-обёртка над сегментом."
+      },
+      "selected": {
+        "type": "boolean",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      },
+      "testId": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "IdType",
+        "required": true,
+        "description": "Идентификатор сегмента."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SegmentControl": {
+    "displayName": "SegmentControl",
+    "propsTypeName": "SegmentControlProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "IdType",
+        "required": false,
+        "description": "ID выбранного по умолчанию сегмента (uncontrolled).",
+        "typeRefs": [
+          "Value"
+        ]
+      },
+      "items": {
+        "type": "Segment<Value>[]",
+        "required": true,
+        "description": "Набор сегментов.",
+        "typeRefs": [
+          "Segment",
+          "SegmentType",
+          "Value"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Имя поля (hidden input для формы)."
+      },
+      "onChange": {
+        "type": "((value: Value) => void)",
+        "required": false,
+        "description": "Колбек смены выбранного сегмента.",
+        "typeRefs": [
+          "Value"
+        ]
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "description": "Обводка."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер компонента.",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "value": {
+        "type": "IdType",
+        "required": false,
+        "description": "Value выбранного сегмента.",
+        "typeRefs": [
+          "Value"
+        ]
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "full"
+        ],
+        "defaultValue": "auto",
+        "description": "Управление шириной компонента.",
+        "typeRefs": [
+          "Width"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "Segment": {
+        "kind": "interface",
+        "props": {
+          "counter": {
+            "type": "string | number | undefined",
+            "required": false,
+            "description": "Счётчик в сегменте (отображается после лейбла)."
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние активности сегмента."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка сегмента."
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно лейбла.",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текстовый заголовок сегмента."
+          },
+          "renderWrapSegment": {
+            "type": "((segment: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Render-обёртка над сегментом."
+          },
+          "value": {
+            "type": "Value",
+            "required": true,
+            "description": "Идентификатор сегмента.",
+            "typeRefs": [
+              "Value"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Value": {
+        "kind": "union",
+        "values": [
+          "0%",
+          "100%",
+          "50%"
+        ],
+        "own": false
+      },
+      "Width": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "full"
+        ],
+        "own": true
+      }
+    }
+  }
+}

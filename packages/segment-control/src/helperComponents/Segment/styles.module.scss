@@ -1,0 +1,130 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/segmentControl.module' as segmentControl;
+@use '@ds/materials' as m;
+
+$sizes: 's', 'm', 'l';
+
+$typography: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+  'l': base.$sn-regular-label-l,
+);
+
+.textWrapper {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.stateLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  min-width: 0;
+  color: inherit;
+}
+
+.segment {
+  cursor: pointer;
+
+  position: relative;
+  z-index: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  border-radius: inherit;
+
+  color: base.$sn-theme-color-neutral-accent;
+
+  background-color: transparent;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      height: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'container', 'height');
+      padding: 0 base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'container', 'padding');
+      border-radius: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'container', 'border-radius');
+
+      &[data-layout='icon-only'] {
+        min-width: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'container', 'iconOnly', 'min-width');
+        padding: 0;
+      }
+
+      .textWrapper {
+        @include base.composite-var($typography, $size);
+
+        @include base.composite-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'textWrapper');
+
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &:hover {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  &[data-active] {
+    color: base.$sn-theme-color-available-version-textMain;
+
+    // Selected segment не реагирует на hover/pressed/active.
+    &:active:not([data-disabled]) .stateLayer[data-state='regularBackground'],
+    &[data-pressed='true']:not([data-disabled]) .stateLayer[data-state='regularBackground'] {
+      background: transparent;
+    }
+
+    @media (hover: hover) {
+      &:hover:not([data-disabled]) .stateLayer[data-state='regularBackground'] {
+        background: transparent;
+      }
+    }
+  }
+
+  &[data-disabled],
+  &[data-disabled]:hover {
+    cursor: not-allowed;
+
+    .textWrapper {
+      opacity: base.$sn-theme-effect-opacity-disabled;
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::after {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      border: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+      border-radius: inherit;
+    }
+  }
+}
+

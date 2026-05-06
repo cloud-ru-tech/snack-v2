@@ -1,0 +1,27 @@
+{
+  "name": "@ds/segment-control",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@ds/counter": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:",
+    "uncontrollable": "catalog:"
+  },
+  "publishConfig": { "access": "public" }
+}
