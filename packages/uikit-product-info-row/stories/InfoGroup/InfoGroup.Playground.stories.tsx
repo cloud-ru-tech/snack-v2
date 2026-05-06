@@ -8,7 +8,7 @@ type Row = { name: string; active: boolean; count: number };
 const sample: Row = { name: 'Item', active: true, count: 3 };
 
 const meta: Meta<InfoGroupProps<Row>> = {
-  title: 'Components/UikitProductInfoRow/InfoGroup',
+  title: 'Uikit Product/InfoRow/InfoGroup',
   component: InfoGroup,
   parameters: { layout: 'padded' },
   args: {

@@ -1,8 +1,8 @@
 import { InfoGroup } from '@ds/uikit-product-info-row';
 
-import doc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import doc from '../docs/props.json';
 
 type Row = { title: string; value: number };
 

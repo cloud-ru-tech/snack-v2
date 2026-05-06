@@ -12,7 +12,7 @@ const iconAction = (testId: string) => ({
 });
 
 const meta: Meta<InfoRowProps> = {
-  title: 'Components/UikitProductInfoRow/InfoRow',
+  title: 'Uikit Product/InfoRow/InfoRow',
   component: InfoRow,
   parameters: { layout: 'padded' },
 };
@@ -34,6 +34,7 @@ const figmaMatrix: Array<{ column: '1' | '2'; maxWidth: boolean; label: string }
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <StoryTable

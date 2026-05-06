@@ -10,3 +10,9 @@ export const POSITION = {
   First: 'first',
   Last: 'last',
 } as const;
+
+export const TEST_IDS = {
+  infoGroup: 'info-group',
+  infoRow: 'info-row',
+  mobileInfoRow: 'mobile-info-row',
+} as const;

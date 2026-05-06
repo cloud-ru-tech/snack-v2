@@ -12,7 +12,7 @@ const iconAction = (testId: string) => ({
 });
 
 const meta: Meta<MobileInfoRowProps> = {
-  title: 'Components/UikitProductInfoRow/MobileInfoRow',
+  title: 'Uikit Product/InfoRow/MobileInfoRow',
   component: MobileInfoRow,
   parameters: { layout: 'padded' },
 };
@@ -26,6 +26,7 @@ const loadingStates = [false, true] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <StoryTable

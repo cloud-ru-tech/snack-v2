@@ -1,4 +1,4 @@
-# UikitProduct InfoRow
+# InfoRow
 
 `@ds/uikit-product-info-row` — Строки «метка — значение» по макету Figma infoRow — компонент InfoRow и группа InfoGroup по данным.
 

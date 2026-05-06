@@ -17,7 +17,7 @@ const items: InfoGroupProps<Row>['items'] = [
 ];
 
 const meta: Meta<InfoGroupProps<Row>> = {
-  title: 'Components/UikitProductInfoRow/InfoGroup',
+  title: 'Uikit Product/InfoRow/InfoGroup',
   component: InfoGroup,
   parameters: { layout: 'padded' },
 };
@@ -32,6 +32,7 @@ const widthDemoFrameStyle = { width: '920px', maxWidth: '100%' } as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='columns × width'

@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 import { MobileInfoRow, MobileInfoRowProps, POSITION } from '../../src';
 
 const meta: Meta<MobileInfoRowProps> = {
-  title: 'Components/UikitProductInfoRow/MobileInfoRow',
+  title: 'Uikit Product/InfoRow/MobileInfoRow',
   component: MobileInfoRow,
   parameters: { layout: 'padded' },
   args: {

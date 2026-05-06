@@ -11,7 +11,7 @@ type PlaygroundArgs = InfoRowProps & {
 };
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/UikitProductInfoRow/InfoRow',
+  title: 'Uikit Product/InfoRow/InfoRow',
   component: InfoRow,
   parameters: { layout: 'padded' },
   args: {
@@ -46,7 +46,7 @@ const meta: Meta<PlaygroundArgs> = {
     width: { control: 'radio', options: ['fixed', 'full'], description: 'Ширина строки' },
     column: { control: 'radio', options: ['1', '2'], description: 'Ось Figma: число колонок значений' },
     maxWidth: { control: 'boolean', description: 'Ось Figma maxWidth' },
-    labelWidth: { control: 'radio', options: [undefined, 'fixed', 'auto'], description: 'Ширина колонки метки' },
+    labelWidth: { control: 'select', options: ['fixed', 'auto'], description: 'Ширина колонки метки' },
     showRowActions: { control: 'boolean', description: 'Кнопки у первой колонки' },
     showSecondRowAction: {
       control: 'boolean',

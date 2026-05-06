@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { buildInfoGroupStoryOptions, INFO_GROUP_STORIES } from './helpers';
 
 test.describe('InfoGroup — rendering', () => {

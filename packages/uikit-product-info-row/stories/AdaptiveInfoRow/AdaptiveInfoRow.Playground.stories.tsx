@@ -7,7 +7,7 @@ import { AdaptiveInfoRow, AdaptiveInfoRowProps, LAYOUT_TYPE, POSITION } from '..
 type Args = AdaptiveInfoRowProps;
 
 const meta: Meta<Args> = {
-  title: 'Components/UikitProductInfoRow/AdaptiveInfoRow',
+  title: 'Uikit Product/InfoRow/AdaptiveInfoRow',
   component: AdaptiveInfoRow,
   parameters: { layout: 'padded' },
   args: {
@@ -27,14 +27,22 @@ const meta: Meta<Args> = {
   },
   argTypes: {
     layoutType: {
-      control: 'radio',
-      options: ['compact', 'comfort'],
-      mapping: {
-        compact: LAYOUT_TYPE.Desktop,
-        comfort: LAYOUT_TYPE.Mobile,
-      },
-      description: 'compact — горизонтальный InfoRow; comfort — MobileInfoRow + density comfort',
+      control: 'select',
+      options: Object.values(LAYOUT_TYPE),
+      description: '`desktop` — горизонтальный InfoRow; `mobile` — MobileInfoRow + density comfort',
     },
+    position: {
+      control: 'select',
+      options: Object.values(POSITION),
+      description: 'Позиция строки в списке (для mobile layout)',
+    },
+    label: { control: 'text' },
+    content: { control: 'text' },
+    topDivider: { control: 'boolean' },
+    bottomDivider: { control: 'boolean' },
+    width: { control: 'select', options: ['fixed', 'full'], description: 'Ширина строки' },
+    column: { control: 'select', options: ['1', '2'], description: 'Ось Figma: число колонок значений' },
+    maxWidth: { control: 'boolean', description: 'Ось Figma maxWidth' },
   },
 };
 

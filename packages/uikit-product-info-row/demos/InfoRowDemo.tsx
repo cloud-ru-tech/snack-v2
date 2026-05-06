@@ -1,8 +1,8 @@
 import { InfoRow } from '@ds/uikit-product-info-row';
 
-import doc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import doc from '../docs/props.json';
 
 export function InfoRowDemo() {
   return (
