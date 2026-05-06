@@ -9,15 +9,6 @@ export const CHEVRON = {
   After: 'after',
 } as const;
 
-export const APPEARANCE = {
-  Neutral: 'neutral',
-  Primary: 'primary',
-  Red: 'red',
-  Yellow: 'yellow',
-  Green: 'green',
-  Blue: 'blue',
-} as const;
-
 export const SELECTION_MODE = {
   Single: 'single',
   Multiple: 'multiple',

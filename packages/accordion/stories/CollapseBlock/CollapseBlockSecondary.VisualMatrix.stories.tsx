@@ -1,9 +1,10 @@
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
 import { Accordion, type CollapseBlockSecondaryProps } from '../../src';
-import { APPEARANCE, CHEVRON, VIEW } from '../../src/constants';
+import { CHEVRON, VIEW } from '../../src/constants';
 
 const meta: Meta<CollapseBlockSecondaryProps> = {
   title: 'Components/Accordion/CollapseBlockSecondary',
@@ -16,12 +17,15 @@ export default meta;
 type Story = StoryObj<CollapseBlockSecondaryProps>;
 
 const views = Object.values(VIEW);
-const appearances = Object.values(APPEARANCE);
 const chevrons = Object.values(CHEVRON);
 
-type MatrixCellProps = Pick<CollapseBlockSecondaryProps, 'view' | 'appearance' | 'chevron'> & { id: string };
+const matrixBackgroundFills = Object.values(BACKGROUND_PREDEFINED_FILL);
 
-function CollapseBlockMatrixCell({ id, view, appearance, chevron = CHEVRON.After }: MatrixCellProps) {
+type MatrixCellProps = Pick<CollapseBlockSecondaryProps, 'view' | 'backgroundPredefined' | 'chevron'> & {
+  id: string;
+};
+
+function CollapseBlockMatrixCell({ id, view, backgroundPredefined, chevron = CHEVRON.After }: MatrixCellProps) {
   return (
     <Accordion>
       <Accordion.CollapseBlockSecondary
@@ -29,7 +33,7 @@ function CollapseBlockMatrixCell({ id, view, appearance, chevron = CHEVRON.After
         title='Title'
         subTitle='Subtitle'
         view={view}
-        appearance={appearance}
+        backgroundPredefined={backgroundPredefined}
         chevron={chevron}
       >
         Content
@@ -43,17 +47,17 @@ export const VisualMatrix: Story = {
   render: () => (
     <>
       <StoryTable
-        sectionTitle='Appearance × View'
-        firstColumnHeader='Appearance'
+        sectionTitle='backgroundPredefined × View'
+        firstColumnHeader='Fill'
         columnHeaders={[...views]}
-        rows={appearances.map(appearance => ({
-          variantLabel: appearance,
+        rows={matrixBackgroundFills.map(fill => ({
+          variantLabel: fill,
           cells: views.map(view => (
             <CollapseBlockMatrixCell
-              key={`${appearance}-${view}`}
-              id={`vm-${appearance}-${view}`}
+              key={`${fill}-${view}`}
+              id={`vm-${fill}-${view}`}
               view={view}
-              appearance={appearance}
+              backgroundPredefined={fill}
             />
           )),
         }))}
@@ -71,7 +75,7 @@ export const VisualMatrix: Story = {
                 key={chevron}
                 id={`vm-chevron-${chevron}`}
                 view={VIEW.Simple}
-                appearance={APPEARANCE.Neutral}
+                backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}
                 chevron={chevron}
               />
             )),
@@ -85,7 +89,7 @@ export const VisualMatrix: Story = {
     docs: {
       description: {
         story:
-          'Сводная сетка вариантов CollapseBlockSecondary: appearance по строкам и view по столбцам, затем расположение шеврона при нейтральной simple-обложке.',
+          'Сводная сетка CollapseBlockSecondary: все значения `BACKGROUND_PREDEFINED_FILL` по строкам и `view` по столбцам, затем шеврон при neutral 1Level и simple.',
       },
     },
   },

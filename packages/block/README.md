@@ -76,6 +76,7 @@ export function Transparent() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `children` | `ReactNode` | — | Содержимое |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 | `size` | `"l"` \| `"m"` \| `"s"` | `l` | Размер |

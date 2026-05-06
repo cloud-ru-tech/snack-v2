@@ -4,6 +4,28 @@
     "propsTypeName": "BlockProps",
     "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Различные варианты отображения: simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children",
     "props": {
+      "backgroundPredefined": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "defaultValue": "neutralBackground1Level",
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`.",
+        "typeRefs": [
+          "BackgroundPredefinedFill"
+        ]
+      },
       "children": {
         "type": "ReactNode",
         "required": false,
@@ -45,6 +67,23 @@
       }
     },
     "relatedTypes": {
+      "BackgroundPredefinedFill": {
+        "kind": "union",
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "own": false
+      },
       "Size": {
         "kind": "union",
         "values": [

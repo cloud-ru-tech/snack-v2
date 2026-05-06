@@ -1,4 +1,5 @@
 import { Block, BlockProps, SIZE, VARIANT } from '@ds/block';
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -10,6 +11,7 @@ const meta: Meta<BlockProps> = {
   args: {
     size: SIZE.L,
     variant: VARIANT.Simple,
+    backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     'data-test-id': 'block',
   },
   argTypes: {
@@ -22,6 +24,11 @@ const meta: Meta<BlockProps> = {
       control: 'radio',
       options: Object.values(VARIANT),
       description: 'Вариант',
+    },
+    backgroundPredefined: {
+      control: 'select',
+      options: Object.values(BACKGROUND_PREDEFINED_FILL),
+      description: 'Слой backgroundPredefined + acrylic (`BACKGROUND_PREDEFINED_FILL`).',
     },
   },
 };

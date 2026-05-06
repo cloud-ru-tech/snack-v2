@@ -44,21 +44,26 @@
         "required": false,
         "description": "Контент справа от заголовка"
       },
-      "appearance": {
+      "backgroundPredefined": {
         "type": "enum",
         "required": false,
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "primary",
-          "red",
-          "yellow"
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
         ],
-        "defaultValue": "neutral",
-        "description": "Цветовая схема акрила",
+        "defaultValue": "neutralBackground1Level",
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`.",
         "typeRefs": [
-          "Appearance"
+          "BackgroundPredefinedFill"
         ]
       },
       "chevron": {
@@ -137,17 +142,22 @@
       }
     },
     "relatedTypes": {
-      "Appearance": {
+      "BackgroundPredefinedFill": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "primary",
-          "red",
-          "yellow"
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
         ],
-        "own": true
+        "own": false
       },
       "Chevron": {
         "kind": "union",
@@ -186,20 +196,25 @@
         "required": false,
         "description": "Контент справа от заголовка"
       },
-      "appearance": {
+      "backgroundPredefined": {
         "type": "enum",
         "required": false,
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "primary",
-          "red",
-          "yellow"
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
         ],
-        "description": "Цветовая схема акрила",
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`.",
         "typeRefs": [
-          "Appearance"
+          "BackgroundPredefinedFill"
         ]
       },
       "chevron": {
@@ -262,17 +277,22 @@
       }
     },
     "relatedTypes": {
-      "Appearance": {
+      "BackgroundPredefinedFill": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "primary",
-          "red",
-          "yellow"
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
         ],
-        "own": true
+        "own": false
       },
       "Chevron": {
         "kind": "union",
@@ -302,20 +322,25 @@
         "required": false,
         "description": "Контент справа от заголовка"
       },
-      "appearance": {
+      "backgroundPredefined": {
         "type": "enum",
         "required": false,
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "primary",
-          "red",
-          "yellow"
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
         ],
-        "description": "Цветовая схема акрила",
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`.",
         "typeRefs": [
-          "Appearance"
+          "BackgroundPredefinedFill"
         ]
       },
       "chevron": {
@@ -378,17 +403,22 @@
       }
     },
     "relatedTypes": {
-      "Appearance": {
+      "BackgroundPredefinedFill": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "primary",
-          "red",
-          "yellow"
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
         ],
-        "own": true
+        "own": false
       },
       "Chevron": {
         "kind": "union",

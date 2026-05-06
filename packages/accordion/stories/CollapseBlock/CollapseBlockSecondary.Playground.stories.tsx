@@ -1,8 +1,9 @@
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { QuestionTooltip } from '@ds/tooltip';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Accordion, type CollapseBlockSecondaryProps } from '../../src';
-import { APPEARANCE, CHEVRON, VIEW } from '../../src/constants';
+import { CHEVRON, VIEW } from '../../src/constants';
 import styles from '../styles.module.scss';
 
 type PlaygroundArgs = CollapseBlockSecondaryProps & { showAfterTitleSlot: boolean };
@@ -24,7 +25,7 @@ const meta: Meta<PlaygroundArgs> = {
     children: 'CollapseBlock content',
     view: 'simple',
     chevron: 'after',
-    appearance: 'neutral',
+    backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     keepMounted: false,
   },
   argTypes: {
@@ -36,9 +37,10 @@ const meta: Meta<PlaygroundArgs> = {
       control: 'select',
       options: Object.values(CHEVRON),
     },
-    appearance: {
+    backgroundPredefined: {
       control: 'select',
-      options: Object.values(APPEARANCE),
+      options: Object.values(BACKGROUND_PREDEFINED_FILL),
+      description: 'Предопределённый вариан для фона.',
     },
     keepMounted: {
       control: 'boolean',

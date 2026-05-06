@@ -1,6 +1,8 @@
+import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
+
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { APPEARANCE, VIEW } from '../../src/constants';
+import { VIEW } from '../../src/constants';
 import { buildStoryOptions, COLLAPSE_BLOCK_TEST_ID, CONTENT_TEST_ID, TITLE_TEST_ID } from './helpers';
 
 test.describe('CollapseBlockSecondary — rendering', () => {
@@ -26,11 +28,13 @@ test.describe('CollapseBlockSecondary — rendering', () => {
       });
     }
 
-    for (const appearance of Object.values(APPEARANCE)) {
-      test(`appearance=${appearance}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ appearance }));
+    for (const fill of Object.values(BACKGROUND_PREDEFINED_FILL)) {
+      test(`backgroundPredefined=${fill}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildStoryOptions({ backgroundPredefined: fill }));
 
+        const { appearance, level } = backgroundPredefinedFillToAcrylic(fill);
         await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-acrylic-appearance', appearance);
+        await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-acrylic-level', level);
       });
     }
   });

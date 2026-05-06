@@ -12,17 +12,13 @@ const meta: Meta<BlockProps> = {
 
 export default meta;
 
-type StoryProps = BlockProps & {
-  showBackground: boolean;
-};
-
-type Story = StoryObj<StoryProps>;
+type Story = StoryObj<BlockProps>;
 
 const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
 const keyVariants = Object.values(VARIANT);
 
-const Template: StoryFn<StoryProps> = ({ showBackground }: StoryProps) => (
-  <div className={styles.externalWrapper} data-show-background={showBackground || undefined}>
+const Template: StoryFn<BlockProps> = () => (
+  <div className={styles.externalWrapper}>
     <StoryTable
       sectionTitle='Variant × Size'
       firstColumnHeader='Variant'

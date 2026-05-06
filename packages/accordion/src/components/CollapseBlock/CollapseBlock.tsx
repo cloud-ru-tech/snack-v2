@@ -1,13 +1,18 @@
 import { Button } from '@ds/button';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import {
+  BACKGROUND_PREDEFINED_FILL,
+  type BackgroundPredefinedFill,
+  backgroundPredefinedFillToAcrylic,
+} from '@ds/materials';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import { extractSupportProps, getThemeClassnames, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { ANIMATION_DURATION, APPEARANCE, CHEVRON, TEST_IDS, VIEW } from '../../constants';
-import { Appearance, Chevron, View } from '../../types';
+import { ANIMATION_DURATION, CHEVRON, TEST_IDS, VIEW } from '../../constants';
+import { Chevron, View } from '../../types';
 import { useCollapseState } from './hooks';
 import styles from './styles.module.scss';
 
@@ -29,8 +34,11 @@ export type CollapseBlockProps = PropsWithChildren<
     view?: View;
     /** Расположение шеврона относительно текста (`before` | `after`) */
     chevron?: Chevron;
-    /** Цветовая схема акрила */
-    appearance?: Appearance;
+    /**
+     * Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).
+     * По умолчанию `material/neutralBackground1Level`.
+     */
+    backgroundPredefined?: BackgroundPredefinedFill;
     /** Уровень аккордеона: размер типографики и отступы */
     component: Component;
     /** Оставлять ли контент в DOM при сворачивании */
@@ -56,7 +64,7 @@ export function CollapseBlock({
   className,
   view = VIEW.Simple,
   chevron = CHEVRON.After,
-  appearance = APPEARANCE.Neutral,
+  backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
   keepMounted = false,
   component,
   ...rest
@@ -66,12 +74,14 @@ export function CollapseBlock({
     keepMounted,
   });
 
+  const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
+
   return (
     <div
       {...extractSupportProps(rest)}
       className={cn(styles.wrapper, className)}
       data-acrylic-appearance={appearance}
-      data-acrylic-level='1Level'
+      data-acrylic-level={level}
       data-expanded={isOpen}
       data-view={view}
       data-component={component}
@@ -164,5 +174,5 @@ export const CollapseBlockPrimary = getCollapseBlock<CollapseBlockPrimaryProps>(
 export type CollapseBlockSecondaryProps = CollapseBlockPropsWithoutComponent;
 export const CollapseBlockSecondary = getCollapseBlock<CollapseBlockSecondaryProps>('accordionSecondary');
 
-export type CollapseBlockTertiaryProps = Omit<CollapseBlockPropsWithoutComponent, 'appearance' | 'view'>;
+export type CollapseBlockTertiaryProps = Omit<CollapseBlockPropsWithoutComponent, 'view' | 'backgroundPredefined'>;
 export const CollapseBlockTertiary = getCollapseBlock<CollapseBlockTertiaryProps>('accordionTertiary');

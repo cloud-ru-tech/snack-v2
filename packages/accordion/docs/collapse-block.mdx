@@ -1,7 +1,7 @@
 ---
 title: CollapseBlock
 package: '@ds/accordion'
-description: Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / appearance / chevron.
+description: Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / backgroundPredefined / chevron.
 order: 2
 ---
 
@@ -27,7 +27,7 @@ import accordionDoc from './props.json'
 ## Когда использовать
 - **`Primary`** (title size `l`) — верхнеуровневые разделы страницы или секции формы.
 - **`Secondary`** (title size `m`) — подразделы внутри `Primary`. Типовой `view='outline'`.
-- **`Tertiary`** (title size `s`) — плоские детали без дальнейшей вложенности. Без `view` / `appearance` — только заголовок и контент.
+- **`Tertiary`** (title size `s`) — плоские детали без дальнейшей вложенности. Без `view` / `backgroundPredefined` — только заголовок и контент.
 
 ## Figma
 <FigmaEmbed node={FIGMA_ACCORDION} height={480} title='CollapseBlock в Figma (Snack UI Kit)' />
@@ -37,8 +37,8 @@ import accordionDoc from './props.json'
 ### View
 Визуальная подача блока: `simple` — плоский фон без рамки, `outline` — с границей, `elevated` — с тенью для поверхностей поверх страницы.
 
-### Appearance
-Акцентный цвет заголовка/маркера: `neutral` (по умолчанию) и `primary`, плюс семантические `red`, `yellow`, `green`, `blue` для выделения статуса секции.
+### backgroundPredefined
+Слой акрила через `BACKGROUND_PREDEFINED_FILL` из `@ds/materials` (как у `Card`). По умолчанию — `neutralBackground1Level`.
 
 ### Chevron
 Положение шеврона-раскрытия: `before` — слева от заголовка, `after` — справа.

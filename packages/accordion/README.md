@@ -1,6 +1,6 @@
 # Accordion
 
-`@ds/accordion` — Аккордеон дизайн-системы — контейнер Accordion и три уровня раскрываемых блоков CollapseBlock с общими токенами view, appearance и chevron.
+`@ds/accordion` — Аккордеон дизайн-системы — контейнер Accordion и три уровня раскрываемых блоков CollapseBlock с общими токенами view, backgroundPredefined и chevron.
 
 Пакет `@ds/accordion` даёт контейнер `Accordion` и три уровня раскрываемых блоков `CollapseBlockPrimary` / `CollapseBlockSecondary` / `CollapseBlockTertiary`. Контейнер отвечает за режим выбора (`single` / `multiple`) и controlled/uncontrolled состояние, блоки — за внешний вид и иерархию на странице.
 
@@ -117,22 +117,22 @@ export function MultipleMode() {
 
 ## CollapseBlock
 
-Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / appearance / chevron.
+Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / backgroundPredefined / chevron.
 
 Три семантических уровня раскрываемого блока: `CollapseBlockPrimary`, `CollapseBlockSecondary`, `CollapseBlockTertiary`. Уровень задаёт размер типографики заголовка и плотность отступов; все три компонента используют одно и то же API — меняется только роль в иерархии.
 
 ### Когда использовать
 - **`Primary`** (title size `l`) — верхнеуровневые разделы страницы или секции формы.
 - **`Secondary`** (title size `m`) — подразделы внутри `Primary`. Типовой `view='outline'`.
-- **`Tertiary`** (title size `s`) — плоские детали без дальнейшей вложенности. Без `view` / `appearance` — только заголовок и контент.
+- **`Tertiary`** (title size `s`) — плоские детали без дальнейшей вложенности. Без `view` / `backgroundPredefined` — только заголовок и контент.
 
 ### Анатомия
 
 #### View
 Визуальная подача блока: `simple` — плоский фон без рамки, `outline` — с границей, `elevated` — с тенью для поверхностей поверх страницы.
 
-#### Appearance
-Акцентный цвет заголовка/маркера: `neutral` (по умолчанию) и `primary`, плюс семантические `red`, `yellow`, `green`, `blue` для выделения статуса секции.
+#### backgroundPredefined
+Слой акрила через `BACKGROUND_PREDEFINED_FILL` из `@ds/materials` (как у `Card`). По умолчанию — `neutralBackground1Level`.
 
 #### Chevron
 Положение шеврона-раскрытия: `before` — слева от заголовка, `after` — справа.
@@ -145,6 +145,7 @@ Neutral — дефолт. Primary — акцент. Цветные вариан�
 
 ```tsx
 import { Accordion } from '@ds/accordion';
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 
 import styles from './styles.module.scss';
 
@@ -152,16 +153,36 @@ export function Appearances() {
   return (
     <div className={styles.wrapper}>
       <Accordion>
-        <Accordion.CollapseBlockPrimary id='neutral' appearance='neutral' title='Neutral' view='outline'>
+        <Accordion.CollapseBlockPrimary
+          id='neutral'
+          backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}
+          title='Neutral'
+          view='outline'
+        >
           Нейтральный акрил — значение по умолчанию.
         </Accordion.CollapseBlockPrimary>
-        <Accordion.CollapseBlockPrimary id='primary' appearance='primary' title='Primary' view='outline'>
+        <Accordion.CollapseBlockPrimary
+          id='primary'
+          backgroundPredefined={BACKGROUND_PREDEFINED_FILL.PrimaryBackground}
+          title='Primary'
+          view='outline'
+        >
           Акцентный раздел, выделенный основным цветом.
         </Accordion.CollapseBlockPrimary>
-        <Accordion.CollapseBlockPrimary id='green' appearance='green' title='Green' view='outline'>
+        <Accordion.CollapseBlockPrimary
+          id='green'
+          backgroundPredefined={BACKGROUND_PREDEFINED_FILL.GreenBackground}
+          title='Green'
+          view='outline'
+        >
           Успех, подтверждённые действия.
         </Accordion.CollapseBlockPrimary>
-        <Accordion.CollapseBlockPrimary id='red' appearance='red' title='Red' view='outline'>
+        <Accordion.CollapseBlockPrimary
+          id='red'
+          backgroundPredefined={BACKGROUND_PREDEFINED_FILL.RedBackground}
+          title='Red'
+          view='outline'
+        >
           Предупреждение или критическое внимание.
         </Accordion.CollapseBlockPrimary>
       </Accordion>
@@ -273,7 +294,7 @@ export function NestedLevels() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | `neutral` | Цветовая схема акрила |
+| `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `chevron` | `"after"` \| `"before"` | `after` | Расположение шеврона относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
@@ -286,8 +307,6 @@ export function NestedLevels() {
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
 ##### Related types
-
-- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"`
 
 - `Chevron` = `"after"` \| `"before"`
 
@@ -324,7 +343,7 @@ export function AfterTitle() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | — | Цветовая схема акрила |
+| `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
@@ -336,8 +355,6 @@ export function AfterTitle() {
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
 #### Related types
-
-- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"`
 
 - `Chevron` = `"after"` \| `"before"`
 
@@ -382,7 +399,7 @@ export function ChevronBefore() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"` | — | Цветовая схема акрила |
+| `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
@@ -394,8 +411,6 @@ export function ChevronBefore() {
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
 #### Related types
-
-- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"primary"` \| `"red"` \| `"yellow"`
 
 - `Chevron` = `"after"` \| `"before"`
 

@@ -1,3 +1,8 @@
+import {
+  BACKGROUND_PREDEFINED_FILL,
+  type BackgroundPredefinedFill,
+  backgroundPredefinedFillToAcrylic,
+} from '@ds/materials';
 import cn from 'classnames';
 import { HTMLProps, ReactNode } from 'react';
 
@@ -12,6 +17,11 @@ export type BlockProps = {
   variant?: Variant;
   /** Размер */
   size?: Size;
+  /**
+   * Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).
+   * По умолчанию `material/neutralBackground1Level`.
+   */
+  backgroundPredefined?: BackgroundPredefinedFill;
   /** Стабильный идентификатор для e2e/tests */
   'data-test-id'?: string;
 } & Omit<HTMLProps<HTMLDivElement>, 'size'>;
@@ -50,14 +60,23 @@ export type BlockProps = {
  * </Block>
  * ```
  */
-export function Block({ children, variant = VARIANT.Simple, size = SIZE.L, className, ...rest }: BlockProps) {
+export function Block({
+  children,
+  variant = VARIANT.Simple,
+  size = SIZE.L,
+  backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
+  className,
+  ...rest
+}: BlockProps) {
+  const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
+
   return (
     <div
       className={cn(styles.block, className)}
       data-variant={variant}
       data-size={size}
-      data-acrylic-appearance='neutral'
-      data-acrylic-level='1Level'
+      data-acrylic-appearance={appearance}
+      data-acrylic-level={level}
       {...rest}
     >
       <div className={styles.acrylic} />
