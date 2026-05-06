@@ -50,5 +50,6 @@ const Template: StoryFn = () => (
 
 export const StateLayersVisualMatrix = {
   tags: ['dev', 'test'],
+  parameters: { controls: { disable: true } },
   render: Template,
 };

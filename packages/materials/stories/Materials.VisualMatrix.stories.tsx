@@ -38,5 +38,6 @@ const Template = () => (
 
 export const MaterialsVisualMatrix = {
   tags: ['dev', 'test'],
+  parameters: { controls: { disable: true } },
   render: Template,
 };

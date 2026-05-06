@@ -66,11 +66,11 @@ importers:
         specifier: 1.59.1
         version: 1.59.1
       '@sbercloud/figma-selected-block':
-        specifier: 1.0.1-3d4fa9a8.0
-        version: 1.0.1-3d4fa9a8.0
+        specifier: 1.0.0
+        version: 1.0.0
       '@sbercloud/figma-variables':
-        specifier: 2.1.4-c4be2774.0
-        version: 2.1.4-c4be2774.0
+        specifier: 2.1.5
+        version: 2.1.5
       '@snack-uikit/locale':
         specifier: 0.15.5
         version: 0.15.5
@@ -339,6 +339,9 @@ importers:
       '@ds/search-private':
         specifier: workspace:*
         version: link:../../packages/search-private
+      '@ds/segmented-control':
+        specifier: workspace:*
+        version: link:../../packages/segmented-control
       '@ds/skeleton':
         specifier: workspace:*
         version: link:../../packages/skeleton
@@ -372,9 +375,18 @@ importers:
       '@ds/typography':
         specifier: workspace:*
         version: link:../../packages/typography
+      '@ds/uikit-product-copy':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-copy
       '@ds/uikit-product-info-row':
         specifier: workspace:*
         version: link:../../packages/uikit-product-info-row
+      '@ds/uikit-product-switch-row':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-switch-row
+      '@ds/uikit-product-title-clickable':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-title-clickable
       '@ds/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -938,6 +950,27 @@ importers:
         specifier: 'catalog:'
         version: 2.0.0(@types/react@18.3.28)
 
+  packages/segmented-control:
+    dependencies:
+      '@ds/counter':
+        specifier: workspace:*
+        version: link:../counter
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      uncontrollable:
+        specifier: 'catalog:'
+        version: 9.0.0(react@18.3.1)
+
   packages/skeleton:
     dependencies:
       '@ds/utils':
@@ -1119,6 +1152,24 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
 
+  packages/uikit-product-copy:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+
   packages/uikit-product-info-row:
     dependencies:
       '@ds/button':
@@ -1142,6 +1193,54 @@ importers:
       '@ds/truncate-string':
         specifier: workspace:*
         version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-switch-row:
+    dependencies:
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/toggles':
+        specifier: workspace:*
+        version: link:../toggles
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
+      uncontrollable:
+        specifier: 8.0.4
+        version: 8.0.4(react@18.3.1)
+
+  packages/uikit-product-title-clickable:
+    dependencies:
+      '@ds/avatar':
+        specifier: workspace:*
+        version: link:../avatar
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
@@ -3067,12 +3166,12 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-selected-block@1.0.1-3d4fa9a8.0':
-    resolution: {integrity: sha512-12i+gxizjJ/33ov9va6nrYDRgA9Ny1h64NYbrvoT6uuS65b1x6o1SZgEVq8OkjuTBQ2/XAdT2qC2lmBC6yDz1Q==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-selected-block/-/@sbercloud/figma-selected-block-1.0.1-3d4fa9a8.0.tgz}
+  '@sbercloud/figma-selected-block@1.0.0':
+    resolution: {integrity: sha512-FmWW7u3+uLgvcGaV5KzSRleRYP+OwzPPA36dio6ORFvTSaZ5rMCaJBYNcFlNuHtuwpfTrEEn5iCS9PjrFpJ1ug==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-selected-block/-/@sbercloud/figma-selected-block-1.0.0.tgz}
     hasBin: true
 
-  '@sbercloud/figma-variables@2.1.4-c4be2774.0':
-    resolution: {integrity: sha512-tqadMsyFHTubXVoumcE5K71IrpMO6eWsI43hDdD/kPxJN8KF5jWMJwLD47woBbHtD4YY/mzH0HHIcsPw4LtOwA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-2.1.4-c4be2774.0.tgz}
+  '@sbercloud/figma-variables@2.1.5':
+    resolution: {integrity: sha512-mGfK350bhgJ5dEm3/FprFD/o+7mHQn0talqIe6sBFkKq0MS9g/d7yngai9NqSdK1KuRudXGpu6066udlNp2AlA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-2.1.5.tgz}
 
   '@shikijs/core@3.23.0':
     resolution: {integrity: sha512-NSWQz0riNb67xthdm5br6lAkvpDJRTgB36fxlo37ZzM2yq0PQFFzbd8psqC2XMPgCzo1fW6cVi18+ArJ44wqgA==}
@@ -12057,9 +12156,9 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-selected-block@1.0.1-3d4fa9a8.0': {}
+  '@sbercloud/figma-selected-block@1.0.0': {}
 
-  '@sbercloud/figma-variables@2.1.4-c4be2774.0': {}
+  '@sbercloud/figma-variables@2.1.5': {}
 
   '@shikijs/core@3.23.0':
     dependencies:
