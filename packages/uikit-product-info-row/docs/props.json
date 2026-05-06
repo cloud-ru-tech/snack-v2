@@ -117,7 +117,7 @@
             "required": false
           },
           "labelTooltip": {
-            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "description": "Подсказка у метки: строка или пропсы QuestionTooltip",
             "typeRefs": [
@@ -180,7 +180,7 @@
             "description": "Класс блока второй метки при `column=\"2\"`"
           },
           "secondaryLabelTooltip": {
-            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "description": "Подсказка у второй метки",
             "typeRefs": [
@@ -877,7 +877,7 @@
         "kind": "interface",
         "props": {
           "tip": {
-            "type": "string | Pick<TooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "typeRefs": [
               "TooltipProps"
@@ -1040,7 +1040,7 @@
             "required": false
           },
           "labelTooltip": {
-            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "description": "Подсказка у метки: строка или пропсы QuestionTooltip",
             "typeRefs": [
@@ -1103,7 +1103,7 @@
             "description": "Класс блока второй метки при `column=\"2\"`"
           },
           "secondaryLabelTooltip": {
-            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "description": "Подсказка у второй метки",
             "typeRefs": [
@@ -1760,7 +1760,7 @@
         "kind": "interface",
         "props": {
           "tip": {
-            "type": "string | Pick<TooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "typeRefs": [
               "TooltipProps"
@@ -1884,7 +1884,7 @@
             "required": true
           },
           "labelTooltip": {
-            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<QuestionTooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "typeRefs": [
               "QuestionTooltipProps"
@@ -2285,7 +2285,7 @@
         "kind": "interface",
         "props": {
           "tip": {
-            "type": "string | Pick<TooltipProps, \"open\" | \"placement\" | \"onOpenChange\" | \"trigger\" | \"tip\" | \"disableMaxWidth\"> | undefined",
+            "type": "string | Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\" | \"tip\" | \"disableMaxWidth\"> | undefined",
             "required": false,
             "typeRefs": [
               "TooltipProps"
