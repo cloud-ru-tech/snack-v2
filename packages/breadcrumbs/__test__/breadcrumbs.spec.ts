@@ -81,7 +81,7 @@ test.describe('Breadcrumbs', () => {
       story: 'playground',
       props: {
         'data-test-id': TEST_ID,
-        storyContainerWidth: '700px',
+        storyContainerWidth: '680px',
       },
     });
     const mainElementSelector = getByTestId(TEST_ID);

@@ -116,7 +116,10 @@ export const Playground: Story = {
 
     return (
       <div>
-        <div className={`${styles.narrowFrame} ${widthClass[storyContainerWidth]}`}>
+        <div
+          className={`${styles.narrowFrame} ${widthClass[storyContainerWidth] ?? ''}`}
+          style={widthClass[storyContainerWidth] ? undefined : { width: storyContainerWidth }}
+        >
           <Breadcrumbs {...args} items={items} />
         </div>
         <div className={styles.crumbClickHolder} data-test-id='last-clicked-crumb'>
