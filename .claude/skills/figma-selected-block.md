@@ -72,8 +72,8 @@ color: base.$sn-theme-color-primary-onaccent;
 
 ```scss
 /* composite-var (токены) */
-@include base.composite-var(button.$button, 'anatomy', 'size', $size, 'container'); // $size = 's'
-@include base.composite-var(button.$button, 'anatomy', 'size', $size, 'container', 'textWrapper'); // $size = 's'
+@include base.composite-var(button.$button, 'anatomy', 'size', $size, 'container'); 
+@include base.composite-var(button.$button, 'anatomy', 'size', $size, 'container', 'textWrapper'); 
 
 /* стили */
 display: flex;

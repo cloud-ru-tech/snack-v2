@@ -56,7 +56,16 @@ playwright/                     # корень монорепо
 └── index.ts
 ```
 
-Импорт из пакетного spec: `import { expect, test } from '../../../../playwright/fixtures'` (4 уровня, т.к. тесты лежат в `packages/<pkg>/__test__/<Component>/`).
+Импорт из пакетного spec — через TS-алиас `#playwright-tooling/*` (paths в корневом `tsconfig.json`, `tsconfig: './tsconfig.json'` в `playwright.config.ts`):
+
+```ts
+import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common'
+import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'
+import { expect, test } from '#playwright-tooling/fixtures'
+import { waitForFonts } from '#playwright-tooling/utils'
+```
+
+Относительные `'../../../../playwright/...'` запрещены.
 
 Корневой `playwright.config.ts` указывает `testDir: './packages'`, `testMatch: ['**/__test__/**/*.spec.ts']` и `snapshotPathTemplate: '{testDir}/{testFileDir}/__snapshots__/{arg}-{projectName}{ext}'` — baseline'ы лежат рядом со спеками, внутри папки компонента. Префикс `{testDir}/` обязателен: `{testFileDir}` возвращает путь относительно `testDir`, и без него baseline'ы уйдут в `<cwd>/<pkg>/__test__/…` мимо папки `packages/`.
 
@@ -66,7 +75,7 @@ Docs-тесты живут отдельно в `tests/docs/` (их запуск�
 
 1. Корневой `tsconfig.json` — `references`.
 2. `packages/tsconfig.esm.json` / `packages/tsconfig.cjs.json` — `references`.
-3. `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`.
+3. `apps/storybook/.storybook/main.ts` — alias `@ds/<pkg>` подхватывается автоматически: `collectDsAliases()` сканирует `packages/*/src/index.ts`. Никаких ручных вставок.
 4. `apps/docs/astro.config.mjs` — `@ds/*` на исходники пакетов подхватываются автоматически (`dsWorkspaceSourceAliases`).
 5. `apps/storybook/package.json` — dep `@ds/<pkg>: workspace:*`.
 

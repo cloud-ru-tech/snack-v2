@@ -16,6 +16,7 @@ import { getEnvironmentDependentConfigPart } from './playwright/utils/getEnviron
 export default defineConfig({
   testDir: './packages',
   testMatch: ['**/__test__/**/*.spec.ts'],
+  tsconfig: './tsconfig.json',
   outputDir: resolve(PLAYWRIGHT_ROOT_DIR, 'test-results'),
   testIgnore: ['**/node_modules/**'],
   fullyParallel: true,

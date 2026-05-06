@@ -113,7 +113,7 @@
 Финальная сверка wire-точек и сборки. Точки перечислены в [reference-package-anatomy.md](../rules/reference-package-anatomy.md):
 
 - [ ] `packages/tsconfig.esm.json` + `packages/tsconfig.cjs.json` — `references` на пакет.
-- [ ] `apps/storybook/.storybook/main.ts` — alias между маркерами `<add-package:aliases>`.
+- [ ] `apps/storybook/.storybook/main.ts` — alias `@ds/<pkg>` подхватывается автоматически (`collectDsAliases()` сканирует `packages/*/src/index.ts`). Ручной правки не требуется.
 - [ ] `apps/storybook/package.json` — dep `"@ds/<pkg>": "workspace:*"`.
 - [ ] `apps/docs/src/lib/figma.ts` — `FIGMA_<PKG>` (+ суб-константы для субкомпонентов).
 - [ ] `packages/<pkg>/package.json` — строгие версии, без `react` / `react-dom` / `@types/react*`, повторяемые deps — через `catalog:` (см. [packages-deps.md](../rules/packages-deps.md)). `@design-system/materials` — добавлена, если используется state-layer / material / focused.

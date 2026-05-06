@@ -14,11 +14,11 @@ E2E проверяет то, что **не покрыто** VisualMatrix screens
 
 ## Общее
 
-- Фреймворк: Playwright. Корневой конфиг — `playwright.config.ts` в корне монорепо. Проекты: `chrome`, `firefox`, `safari`, `mobile` (см. `playwright/constants/projects.ts`).
+- Фреймворк: Playwright. Корневой конфиг — `playwright.config.ts` в корне монорепо. Проекты: `chrome`, `firefox`, `safari`, `mobile` (см. `#playwright-tooling/constants/projects`).
 - Тесты живут **внутри пакета** в папке `__test__/<ComponentName>/`, baseline'ы visual-снэпшотов — в `__test__/<ComponentName>/__snapshots__/` рядом со спеком.
 - Запуск из корня: `pnpm test:e2e` (все проекты), `pnpm test:e2e:chrome`, `pnpm test:e2e:ui`, `pnpm test:e2e:update-snapshots`.
-- Общие фикстуры, утилиты и конфиг — `playwright/` в корне (`import { test, expect } from '../../../playwright/fixtures'`).
-- Хелпер навигации — fixture `gotoStory(storyId, args?)`: открывает `/iframe.html?id=<id>&viewMode=story&args=<k:v;...>` и ждёт `#storybook-root`.
+- Общие фикстуры, утилиты, конфиг и константы — пакет `playwright/` в корне, доступный через TS-алиас **`#playwright-tooling/*`** (paths в `tsconfig.json`, `tsconfig: './tsconfig.json'` в `playwright.config.ts`). Импорт: `import { test, expect } from '#playwright-tooling/fixtures'`. Не используй относительные `'../../../../playwright/...'` — алиас обязательный.
+- Хелпер навигации — fixture `gotoStory(storyId, args?)`: открывает `/iframe.html?id=<id>&viewMode=story&args=<k:v;...>` и ждёт `STORYBOOK_ROOT_SELECTOR`.
 
 ## Раскладка пакетных тестов
 
@@ -69,7 +69,7 @@ packages/<pkg>/__test__/
 
 ```ts
 // packages/button/__test__/Button/rendering.spec.ts
-import { expect, test } from '../../../../playwright/fixtures'
+import { expect, test } from '#playwright-tooling/fixtures'
 import { BUTTON_STORIES, BUTTON_KEY_COMBOS } from './helpers'
 
 test.describe('Button — rendering', () => {
@@ -113,13 +113,26 @@ test.describe('Button — rendering', () => {
 ## Импорты
 
 ```ts
-// packages/<pkg>/__test__/<ComponentName>/<spec>.spec.ts — 4 уровня до корня
-import { expect, test } from '../../../../playwright/fixtures'
+// packages/<pkg>/__test__/<ComponentName>/<spec>.spec.ts
+import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common'
+import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'
+import { expect, test } from '#playwright-tooling/fixtures'
+import { waitForFonts } from '#playwright-tooling/utils'
 
 import { COMPONENT_STORIES } from './helpers'
 ```
 
-Всё берётся из общего `playwright/`. Не импортируй `@playwright/test` напрямую — потеряешь fixtures.
+Всё через алиас `#playwright-tooling/*` (paths в корневом `tsconfig.json`, `tsconfig` указан в `playwright.config.ts`). Не импортируй `@playwright/test` напрямую — потеряешь fixtures. Относительные `'../../../../playwright/...'` запрещены.
+
+`helpers.ts` пакета также берёт типы и утилиты через алиас:
+
+```ts
+// packages/<pkg>/__test__/<ComponentName>/helpers.ts
+import { StorybookUrlOptions } from '#playwright-tooling/utils'
+import { TEST_IDS } from '../../src/constants'
+```
+
+`TEST_IDS` импортится **из исходников пакета** (`../../src/constants`), не из entry `@ds/<pkg>` — entry тянет CSS-модули и ломает playwright-compile.
 
 ## Паттерны
 

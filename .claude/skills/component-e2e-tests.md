@@ -33,7 +33,7 @@
 
    ```ts
    // packages/<pkg>/__test__/<ComponentName>/rendering.spec.ts
-   import { expect, test } from '../../../../playwright/fixtures'
+   import { expect, test } from '#playwright-tooling/fixtures'
    import { PKG_STORIES, PKG_KEY_COMBOS } from './helpers'
 
    test.describe('<Name> — rendering', () => {

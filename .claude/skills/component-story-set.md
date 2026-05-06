@@ -35,8 +35,7 @@
    | Файл | Когда заводить |
    |------|----------------|
    | `<Name>.Polymorphic.stories.tsx` | Есть `as` prop — тесты `as='a'`, `as={Link}` |
-   | `<Name>.ClickTest.stories.tsx` | Нужен `onClick: fn()` + assertion в `play` |
-   | `<Name>.KeyboardTest.stories.tsx` | Клавиатурный сценарий (Tab → Enter, Arrow-нав) |
+   | `<Name>.InteractionTest.stories.tsx` | Один экспорт `InteractionTest`: клик + клавиатура + фокус через `step('click: …')` / `step('keyboard: …')`. `controls: { disable: true }` в meta. Не разносить на `ClickTest` + `KeyboardTest` |
    | `<Name>.Composition.stories.tsx` | Несколько компонентов рядом демонстрируют совместное поведение |
    | `<Name>.<Scenario>.stories.tsx` (L/XL) | Stateful-сценарий (`SortableByName`, `PaginatedPage2`) |
 

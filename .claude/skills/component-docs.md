@@ -26,11 +26,11 @@
    ```mdx
    import { <Name> } from '@ds/<pkg>'
    import { <Name>Demo } from '../demos/<Name>Demo'  // только для презентационных компонентов
-   import { Example } from '~docs/components/Example'
-   import { PropsTable } from '~docs/components/PropsTable'
-   import { StorybookEmbed } from '~docs/components/StorybookEmbed'
-   import { FigmaEmbed } from '~docs/components/FigmaEmbed'
-   import { FIGMA_<NAME> } from '~docs/lib/figma'
+   import { Example } from '#docs/components/Example'
+   import { PropsTable } from '#docs/components/PropsTable'
+   import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+   import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+   import { FIGMA_<NAME> } from '#docs/lib/figma'
    import <name>Doc from './props.json'
    ```
 
@@ -94,7 +94,7 @@
    ```tsx
    import { <Name> } from '@ds/<pkg>'
    import <pkg>Doc from '../docs/props.json'
-   import { Canvas } from '~docs/components/Canvas'
+   import { Canvas } from '#docs/components/Canvas'
 
    export function <Name>Demo() {
      return (

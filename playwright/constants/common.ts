@@ -18,3 +18,10 @@ export const PLAYWRIGHT_ROOT_DIR = `${process.cwd()}/playwright`;
 export const CI_WORKERS = PW_CI_WORKERS;
 export const IS_LOCAL = TEST_LOCAL === 'true' || !IS_CI;
 export const UIKIT_URL = TEST_LOCAL === 'true' || !UIKIT_SNACK_URL ? 'http://localhost:6006/' : UIKIT_SNACK_URL;
+
+export const STORYBOOK_ROOT_SELECTOR = '#storybook-root';
+
+export const SCREENSHOT_DEFAULT_OPTS = {
+  animations: 'disabled',
+  caret: 'hide',
+} as const;

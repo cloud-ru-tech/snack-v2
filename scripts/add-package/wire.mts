@@ -67,29 +67,6 @@ export function wireTsconfig(pkgName: string, dryRun = false): void {
   )
 }
 
-export function wireStorybookAlias(pkgName: string, dryRun = false): void {
-  const mainPath = join(ROOT, 'apps', 'storybook', '.storybook', 'main.ts')
-  let content = readFileSync(mainPath, 'utf8')
-
-  const alias = `'@ds/${pkgName}': join(root, 'packages/${pkgName}/src/index.ts'),`
-  if (content.includes(alias)) return
-
-  const marker = '// </add-package:aliases>'
-  if (!content.includes(marker)) {
-    throw new Error(
-      `Anchor comment "${marker}" not found in apps/storybook/.storybook/main.ts`,
-    )
-  }
-
-  content = content.replace(marker, `        ${alias}\n        ${marker}`)
-
-  if (dryRun) {
-    console.log(`  [dry-run] main.ts: add alias "@ds/${pkgName}"`)
-    return
-  }
-  writeFileSync(mainPath, content, 'utf8')
-}
-
 export function wireStorybookDep(pkgName: string, dryRun = false): void {
   const pkgPath = join(ROOT, 'apps', 'storybook', 'package.json')
   const pkg = readJson(pkgPath)

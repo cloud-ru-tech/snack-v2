@@ -27,8 +27,8 @@ argument-hint: <pkg-name-or-path>
 
 1. Обязательный минимум в `packages/<pkg>/stories/<Name>/`:
    - `<Name>.Playground.stories.tsx` — полная `meta` + `argTypes` на **все** публичные пропсы, тег `['dev','test']`, `data-test-id` в `args`.
-   - `<Name>.VisualMatrix.stories.tsx` — `StoryTable` из `#storybook/components` со всеми осями × состояниями, тег `['test','dev']`.
-2. Доп. файлы (`Polymorphic`, `ClickTest`, `KeyboardTest`, `Composition`, `<Scenario>`) — только по правилам [stories-standard.md](../rules/stories-standard.md), раздел «Когда заводить дополнительный файл».
+   - `<Name>.VisualMatrix.stories.tsx` — `StoryTable` из `#storybook/components` со всеми осями × состояниями, тег `['test','dev']`, обязательно `parameters: { controls: { disable: true } }`.
+2. Доп. файлы (`Polymorphic`, `InteractionTest`, `Composition`, `<Scenario>`) — только по правилам [stories-standard.md](../rules/stories-standard.md), раздел «Когда заводить дополнительный файл». Клик + клавиатура — один экспорт `InteractionTest` со step'ами (`'click: …'`, `'keyboard: …'`); файлы `ClickTest`/`KeyboardTest` не создавать.
 3. Запрещённые имена (`Sizes`, `Appearances`, `Views`, `LoadingState`, `DisabledState`, `WithIcon`, `IconOnly`, `WithCounter`) — не создавать никогда.
 4. `title`:
    - Single-component пакет → `Components/<ComponentName>`.

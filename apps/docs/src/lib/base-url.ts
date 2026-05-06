@@ -11,12 +11,12 @@ export function withBase(path: string): string {
   return out;
 }
 
-/** Compare paths whether or not they include a trailing slash. */
-export function pathsMatch(a: string, b: string): boolean {
-  return normPath(a) === normPath(b);
-}
-
 function normPath(p: string): string {
   const t = p.replace(/\/+$/, '');
   return t === '' ? '/' : t;
+}
+
+/** Compare paths whether or not they include a trailing slash. */
+export function pathsMatch(a: string, b: string): boolean {
+  return normPath(a) === normPath(b);
 }

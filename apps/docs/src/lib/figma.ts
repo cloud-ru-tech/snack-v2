@@ -12,6 +12,12 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
   nodeId: '2782-111011',
 };
 
+export const FIGMA_TITLE_CLICKABLE: FigmaNodeRef = {
+  fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
+  fileName: 'Product-UI-Kit--variables-',
+  nodeId: '3024-193',
+};
+
 export const FIGMA_STEPPER: FigmaNodeRef = {
   fileKey: 'aNPU3MHwRJiEwbk5F82zux',
   fileName: 'Snack-Ui-Kit-variables',
@@ -72,6 +78,18 @@ export const FIGMA_DRAWER: FigmaNodeRef = {
   nodeId: '2438-94227',
 };
 
+export const FIGMA_SEGMENT_CONTROL: FigmaNodeRef = {
+  fileKey: 'aNPU3MHwRJiEwbk5F82zux',
+  fileName: 'Snack-Ui-Kit-variables',
+  nodeId: '6150-257592',
+};
+
+export const FIGMA_SEGMENT_CONTROL_SEGMENT: FigmaNodeRef = {
+  fileKey: 'aNPU3MHwRJiEwbk5F82zux',
+  fileName: 'Snack-Ui-Kit-variables',
+  nodeId: '5870-2870',
+};
+
 export const FIGMA_PRODUCT_AVATAR_DETAIL: FigmaNodeRef = {
   fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
   fileName: 'Product-UI-Kit--variables-',
@@ -82,6 +100,22 @@ export const FIGMA_INFO_ROW: FigmaNodeRef = {
   fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
   fileName: 'Product-UI-Kit--variables-',
   nodeId: '3040-21176',
+};
+
+export const FIGMA_COPY: FigmaNodeRef = {
+  fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
+  fileName: 'Product-UI-Kit--variables-',
+  nodeId: '2184:2737',
+};
+
+export const FIGMA_COPY_LINE: FigmaNodeRef = { ...FIGMA_COPY, nodeId: '2212:888' };
+
+export const FIGMA_COPY_BUTTON: FigmaNodeRef = { ...FIGMA_COPY, nodeId: '2212:613' };
+
+export const FIGMA_UIKIT_PRODUCT_SWITCH_ROW: FigmaNodeRef = {
+  fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
+  fileName: 'Product-UI-Kit--variables-',
+  nodeId: '3019:5599',
 };
 
 export function figmaEmbedUrl({ fileKey, fileName, nodeId }: FigmaNodeRef): string {

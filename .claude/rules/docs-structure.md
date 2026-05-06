@@ -75,11 +75,55 @@ order: <число, порядок в сайдбаре>
 
 Минимум — H3 на каждую ось из `constants.ts`. Если ось одна (`size`) — блок может быть коротким, но всё равно существует.
 
+### Дефолты — в заголовок H3
+
+Дефолтное значение оси выносится в сам H3, чтобы читатель видел его сразу в TOC и не искал в теле:
+
+```mdx
+### Size (default `m`)
+### Width (default `auto`)
+### Outline (default `false`)
+```
+
+Не пиши «Дефолт — `m`» отдельным предложением в конце абзаца — это шум, который теряется при беглом чтении и дублирует `<PropsTable>`.
+
+### Перечисления значений — bullet-списком, не «или»-строкой
+
+Любое перечисление значений оси, слотов или альтернатив рендерится списком, а не одной строкой через «/» / «или» / «,». Каждое значение — отдельный пункт с короткой семантикой; общая «когда уместно» идёт отдельным абзацем под списком.
+
+```mdx
+<!-- ❌ Плохо — одна строка, глаз цепляется -->
+`auto` (по контенту, дефолт) или `full` (растягивает контейнер на всю ширину родителя). `full` уместен в формах.
+
+Каждый элемент `items[i]` собирается из `label`, `icon` (с `iconPosition: 'before' | 'after'`) и `counter`.
+
+<!-- ✅ Хорошо — список, пункт = значение/слот -->
+- `auto` — ширина по контенту.
+- `full` — растягивает контейнер на всю ширину родителя, сегменты делят ширину поровну. Уместен в формах.
+
+Каждый элемент `items[i]` собирается из:
+
+- `label` — текст сегмента.
+- `icon` — иконка с `iconPosition: 'before' | 'after'`.
+- `counter` — счётчик после `label`.
+```
+
+То же правило — в `## Когда использовать` / «Когда **не** нужен»: если в пункте есть «— используйте X / или Y», разворачивай вложенным списком, не сшивай в одну строку через «—».
+
+```mdx
+<!-- ❌ Плохо -->
+- Вариантов больше 5 — используйте `Tabs` или `Select`.
+
+<!-- ✅ Хорошо -->
+- Вариантов больше 5:
+  - используйте `Tabs` или `Select`.
+```
+
 Tier XS/S: обычно достаточно `demo` + `when` + `examples` + `props` + `storybook`. Tier M+: добавляются `do-dont`, `figma`, `states`, остальное по api.
 
 ## `## Демо` — только для презентационных компонентов
 
-Секция `## Демо` с интерактивным `<Canvas>`-плейграундом (`demos/<Name>Demo.tsx` поверх `~docs/components/Canvas`) уместна **только** для props-driven компонентов без центральных колбеков и состояния. Условия — все одновременно:
+Секция `## Демо` с интерактивным `<Canvas>`-плейграундом (`demos/<Name>Demo.tsx` поверх `#docs/components/Canvas`) уместна **только** для props-driven компонентов без центральных колбеков и состояния. Условия — все одновременно:
 
 - API сводится к сериализуемым пропсам (`size`, `appearance`, `view`, `disabled`, `label`, …) — Canvas умеет крутить ровно их.
 - Колбеков нет либо они не определяют смысл компонента (`onClick` у `Button` ОК, потому что нажатие очевидно; `onChange` у `Slider` — не ОК, без живого сценария ползунок «не двигается»).
@@ -92,6 +136,8 @@ Tier XS/S: обычно достаточно `demo` + `when` + `examples` + `pro
 - **Canvas остаётся**: `avatar`, `block`, `counter`, `divider`, `skeleton`, `loader`, `status`, `tag`, `promo-tag`, `truncate-string`, `typography`, `progress-bar`, `info-block`, `breadcrumbs`, `timeline`, `button`, `link`, `icons`, `alert`, `hot-spot`.
 - **Canvas НЕ заводим**: `accordion`, `carousel`, `drawer`, `modal`, `popover`, `dropdown`, `pagination`, `rating`, `slider`, `search`, `stepper`, `tabs`, `toggles` (всё семейство), `dropzone`. У них `## Демо` отсутствует, всю интерактивность несёт `## Примеры использования`.
 
+**`defaultProps` Canvas-демо — тот же контракт, что `args` Playground-а** (см. [stories-standard.md](./stories-standard.md)). Смежные/парные пропсы (`content` + `valueToCopy`, `label` + `secondaryLabel`, …) заполняй обоими дефолтами с разными значениями — иначе пользователь не увидит, чем второй проп отличается от первого, и фича выглядит как мусорный контрол. То же для `controls` Canvas-а: для enum-пропа всегда `type: 'select', options: […]`, не `text`.
+
 ## Компоненты-обёртки
 
 Импорты (когда Canvas-демо уместно — иначе строки `import { <Name>Demo } …` и блок `## Демо` опускаем):
@@ -99,11 +145,11 @@ Tier XS/S: обычно достаточно `demo` + `when` + `examples` + `pro
 ```mdx
 import { <Name> } from '@ds/<pkg>'
 import { <Name>Demo } from '../demos/<Name>Demo'
-import { Example } from '~docs/components/Example'
-import { PropsTable } from '~docs/components/PropsTable'
-import { StorybookEmbed } from '~docs/components/StorybookEmbed'
-import { FigmaEmbed } from '~docs/components/FigmaEmbed'
-import { FIGMA_<NAME> } from '~docs/lib/figma'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { FIGMA_<NAME> } from '#docs/lib/figma'
 import <name>Doc from './props.json'
 ```
 
@@ -139,6 +185,7 @@ import DestructiveSrc from '../demos/examples/Destructive.tsx?raw'
 - Один корневой элемент — без обёртки.
 - Файл целиком показывается в docs через `?raw`, вместе с `import`-строками. Читатель копирует и запускает.
 - **Пример обязан быть живым.** Если у компонента есть `onChange` / `onClick` / `onPageChange` / `onFilesUpload` и т.п., который определяет смысл — пиши либо uncontrolled (`defaultValue`, `defaultChecked`), либо controlled с локальным `useState`. **`onChange={() => {}}` (no-op-колбек) запрещён** — это «мёртвый» пример, который скрывает поведение и хуже Canvas-а.
+- **Portals → `PortalContextProvider`**. Если демо использует компонент с порталом (`Tooltip`, `QuestionTooltip`, `Popover`, `Dropdown`, `Modal`, `Drawer`, любой `disabledToggleTip`/`tip`-проп) — оборачивай в `<PortalContextProvider>` из `@ds/portal-context` прямо в файле демки. Каждый Astro `client:visible` — это независимый React-island со своим контекстом; глобальный провайдер из layout не доезжает, и портальный контент рендерится в `null`-root → тултип не видно, popover не открывается. Импорт-строка попадает в `?raw`-листинг демо, и это нормально — читатель видит, что для портал-компонентов провайдер обязателен.
 
 Минимум **3** `<Example>` блока на пакет, типичный набор — 5–6: один на ключевую ось, один на icon-slots, один на polymorphism, один на состояния.
 

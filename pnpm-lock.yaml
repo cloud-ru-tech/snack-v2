@@ -339,9 +339,9 @@ importers:
       '@ds/search-private':
         specifier: workspace:*
         version: link:../../packages/search-private
-      '@ds/segmented-control':
+      '@ds/segment-control':
         specifier: workspace:*
-        version: link:../../packages/segmented-control
+        version: link:../../packages/segment-control
       '@ds/skeleton':
         specifier: workspace:*
         version: link:../../packages/skeleton
@@ -950,7 +950,7 @@ importers:
         specifier: 'catalog:'
         version: 2.0.0(@types/react@18.3.28)
 
-  packages/segmented-control:
+  packages/segment-control:
     dependencies:
       '@ds/counter':
         specifier: workspace:*

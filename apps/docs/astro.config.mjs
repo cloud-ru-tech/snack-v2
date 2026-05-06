@@ -79,8 +79,8 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        // ~docs points to apps/docs/src — used by package demos to import Canvas etc.
-        '~docs': resolve(dir, 'src'),
+        // #docs points to apps/docs/src — used by package demos to import Canvas etc.
+        '#docs': resolve(dir, 'src'),
         ...dsWorkspaceSourceAliases(),
       },
     },

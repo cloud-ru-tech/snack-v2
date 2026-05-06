@@ -14,13 +14,22 @@ export type StoryTableProps = {
   columnHeaders: ReactNode[];
   rows: StoryTableRow[];
   className?: string;
+  /** Горизонтальное выравнивание содержимого ячеек. По умолчанию `center`. */
+  cellAlign?: 'center' | 'start';
 };
 
 /**
  * Таблица для Visual Matrix stories: единые границы, типографика и отступы
  * на design tokens из `@sbercloud/figma-variables`.
  */
-export function StoryTable({ sectionTitle, firstColumnHeader, columnHeaders, rows, className }: StoryTableProps) {
+export function StoryTable({
+  sectionTitle,
+  firstColumnHeader,
+  columnHeaders,
+  rows,
+  className,
+  cellAlign = 'center',
+}: StoryTableProps) {
   return (
     <section className={cn(styles.section, className)}>
       {sectionTitle ? <h4 className={styles.title}>{sectionTitle}</h4> : null}
@@ -41,7 +50,7 @@ export function StoryTable({ sectionTitle, firstColumnHeader, columnHeaders, row
               <td className={cn(styles.td, styles.tdLabel)}>{row.variantLabel}</td>
               {row.cells.map((cell, cellIndex) => (
                 <td key={cellIndex} className={styles.td}>
-                  <div className={styles.cellInner}>{cell}</div>
+                  <div className={cn(styles.cellInner, cellAlign === 'start' && styles.cellInnerStart)}>{cell}</div>
                 </td>
               ))}
             </tr>

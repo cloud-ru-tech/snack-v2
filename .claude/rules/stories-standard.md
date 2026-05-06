@@ -34,10 +34,11 @@ packages/<pkg>/stories/<ComponentName>/
 | Файл | Когда |
 |------|-------|
 | `<Name>.Polymorphic.stories.tsx` | У компонента есть `as` prop (`as='a'`, `as={Link}`) |
-| `<Name>.ClickTest.stories.tsx` | Интеракционный тест с `fn()` в `args` и `play` |
-| `<Name>.KeyboardTest.stories.tsx` | Клавиатурный сценарий (Tab → Enter, Arrow-нав) |
+| `<Name>.InteractionTest.stories.tsx` | Интеракционный сценарий: клик, клавиатура, фокус — всё в одном экспорте `InteractionTest`, шаги через `step()` |
 | `<Name>.Composition.stories.tsx` | Несколько компонентов рядом, демонстрирующих совместное поведение |
 | `<Name>.<Scenario>.stories.tsx` | L/XL: `SortableByName`, `FilteredByCategory`, `PaginatedPage2` — stateful-сценарии |
+
+**Один интеракционный экспорт на компонент.** Не разноси клик и клавиатуру на `ClickTest` + `KeyboardTest` — это два пункта в сайдбаре Storybook про одно и то же поведение. Объединяй в `InteractionTest` с `step('click: …')`, `step('keyboard: Tab → …')` и т.д.; имена step'ов сохраняют гранулярность в репорте Test Runner'а. Файл — один (`<Name>.InteractionTest.stories.tsx`), даже если внутри только клик или только клавиатура.
 
 ## Запрещённые файлы
 
@@ -52,6 +53,7 @@ packages/<pkg>/stories/<ComponentName>/
 ❌ <Name>.DisabledState.stories.tsx
 ❌ <Name>.EmptyState.stories.tsx
 ❌ <Name>.WithIcon.stories.tsx / IconOnly / WithCounter
+❌ <Name>.ClickTest.stories.tsx / KeyboardTest.stories.tsx — слиты в `InteractionTest`
 ```
 
 Если появляется соблазн такой завести — расширь соответствующую секцию VisualMatrix (добавь строку/колонку/новый `StoryTable`).
@@ -113,7 +115,7 @@ packages/<pkg>/stories/
     'data-test-id': 'button', // kebab-case от ComponentName
   },
   ```
-- В специализированных use-case stories (Polymorphic, ClickTest, Composition) — явным пропсом либо через `args`. Для композиций нескольких инстансов — уникальный id на каждый слот (`button-group-primary`, `button-group-secondary`).
+- В специализированных use-case stories (Polymorphic, InteractionTest, Composition) — явным пропсом либо через `args`. Для композиций нескольких инстансов — уникальный id на каждый слот (`button-group-primary`, `button-group-secondary`).
 
 **Naming convention**: kebab-case имени компонента. Составные id для слотов: `<component>-<slot>` (`button-group-primary`, `drawer-close-button`). Для вложенных натив-input'ов (Checkbox/Radio/Switch) — базовый id на корень + суффикс `-native-input` на `<input>` (уже зафиксирован в `NATIVE_INPUT_SUFFIX`).
 
@@ -174,7 +176,7 @@ args: { 'data-test-id': SWITCH_ROW_TEST_ID }
 
 ```ts
 // ✅ Хорошо
-export const ClickTest: Story = {
+export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   args: { onClick: fn(), 'data-test-id': 'button' },
   play: async ({ args, canvasElement }) => {
@@ -190,13 +192,21 @@ play: async ({ canvasElement }) => {
 }
 ```
 
-**Глобальная конфигурация**. Репо использует `data-test-id` (с дефисом) вместо дефолтного testing-library `data-testid` — см. `TEST_ID_ATTRIBUTE` в `playwright/constants/common.ts`. В Storybook preview настроен `configure({ testIdAttribute: 'data-test-id' })`, иначе `getByTestId` ищет `data-testid` и не находит наш атрибут. Не удаляй эту конфигурацию.
+**Глобальная конфигурация**. Репо использует `data-test-id` (с дефисом) вместо дефолтного testing-library `data-testid` — см. `TEST_ID_ATTRIBUTE` в `#playwright-tooling/constants/common`. В Storybook preview настроен `configure({ testIdAttribute: 'data-test-id' })`, иначе `getByTestId` ищет `data-testid` и не находит наш атрибут. Не удаляй эту конфигурацию.
+
+**Общие константы для visual.spec'ов**: `STORYBOOK_ROOT_SELECTOR` (`'#storybook-root'`) и `SCREENSHOT_DEFAULT_OPTS` (`{ animations: 'disabled', caret: 'hide' }`) живут в `#playwright-tooling/constants/common` и импортятся всеми visual-спеками. Не дублируй их локально в `packages/<pkg>/__test__/<C>/helpers.ts` под именами `*_ROOT_SELECTOR` / `*_SCREENSHOT_OPTS` и не пиши инлайн-литералы `'#storybook-root'` / `{ animations: 'disabled', caret: 'hide' }` в spec-файлах.
 
 ## Playground (обязателен)
 
 - Имя экспорта: `Playground`.
 - Содержит **полную** `meta` с `title`, `component`, `parameters`, `args`, `argTypes` — **все публичные props доступны через controls**.
-- Без кастомного `render`.
+- Без кастомного `render` по умолчанию. URL-args (`gotoStory(id, args)`) должны прокидываться 1:1 в компонент — это контракт для `rendering.spec.ts`. Кастомный `render` с локальным `useState` ломает этот контракт; не делай его, если нет очень специфичной причины.
+- Если в API компонента есть пара `value`/`defaultValue` (или `checked`/`defaultChecked`) и контролируемый и неконтролируемый режимы — оставь в args **только** `defaultValue`/`defaultChecked`, а сами `value`/`checked` спрячь из панели через `argTypes: { value: { table: { disable: true } } }`. URL-args по-прежнему достанут эти пропсы для тестов; в панели не будет «контрол ничего не делает» (потому что без parent'а с `useState` controlled-режим не двигается).
+- **Парные/смежные пропсы заполнять в `args` оба**. Если у компонента есть смысловая пара (`content` + `valueToCopy`, `label` + `secondaryLabel`, `title` + `description`, `value` + `formattedValue` и т.д.) — обоим даём осмысленный дефолт, иначе фича пропа невидима из Playground'а. Дефолтное значение должно показывать, чем второй проп отличается от первого, а не дублировать.
+- **Каждый публичный проп — явный `argType` с подходящим контролом**. Без `argType` Storybook сваливается в `text`, и пользователь вынужден руками вводить `boolean`/`enum` строкой. Минимум: `boolean` → `control: 'boolean'`, enum → `control: 'select' \| 'radio', options: Object.values(CONST)`, число → `control: 'number'`.
+- **`select` vs `radio`**. `radio` — для 2–4 фиксированных значений без `undefined`. Если в `options` есть `undefined`/нужен «не задано» / 5+ значений — используй `select`. `radio` плохо рендерит пустой вариант.
+- **`argTypes.mapping` — только для нерасшаренных значений** (slot-пропы, ReactNode-варианты). Не используй mapping ради переименования enum-значений (`compact` ↔ `desktop`) — это создаёт два словаря на одну ось и ломает дефолт: при `args.<prop>: '<mapped value>'` контрол видит, что значение не среди ключей `options`, и показывает пусто. Если оси API в `constants.ts` называются по-другому, чем хочется в Storybook'е — переименуй в `constants.ts` и не плоди mapping.
+- **Когда `mapping` нужен** (slot/ReactNode-пропы — `icon`, `before`, `avatar`, `children`-пресеты, рендеры): задай словарь пресетов и `options: Object.keys(presets)` + `mapping: presets`. Значение `args.<prop>` — **ключ** пресета (`'none' | 'icon' | …`), а не сам ReactNode. Не оставляй такие пропы под `control: false`, если из этих пресетов состоит публичный визуальный API — тогда Playground не показывает половину компонента.
 - Теги: `['dev', 'test']`.
 - `play` — минимальный `toBeVisible`.
 
@@ -232,6 +242,7 @@ Playground — **единственный** источник истины для
 
 - Имя экспорта: `VisualMatrix`.
 - Теги: `['test', 'dev']`.
+- **Обязательно** `parameters: { controls: { disable: true } }` на самой story. VisualMatrix рендерит фиксированную сетку через `render` и `args` не использует — пустая панель Controls сбоку только сбивает.
 - **Только** `StoryTable` из `#storybook/components`. Flex-контейнер для ряда вариантов — только если вариантов ≤ 3 и ось одна; в этом случае предпочитай всё равно `StoryTable`.
 - Покрывает **все** публичные оси из `constants.ts` × состояния (`disabled`, `loading`, `empty`). Каждая ось Figma-мастера — строка либо колонка.
 - Не декартово произведение всех комбинаций. Ключевая выборка; оси, которые не комбинируются, — разными `StoryTable` секциями под общим wrapper'ом.
@@ -281,24 +292,46 @@ export const VisualMatrix: Story = {
 
 Wrapper `<div className={styles.grid}>` — только класс из `styles.module.scss` (`display: grid; gap: 1.5rem`). Inline-стили запрещены.
 
+**Поведение, зависящее от размеров контейнера**. `StoryTable` подстраивается под контент — ячейка тянется так, чтобы вместить детей. Если строка/колонка матрицы демонстрирует поведение, которое проявляется **только** при ограниченном пространстве (truncate, ellipsis, wrap, многострочность, перенос, скрытие части UI, `min-width: 0`-поведение, адаптивные брейкпоинты внутри компонента), такую ячейку нужно обернуть в контейнер с явно заданным размером из `styles.module.scss`. Иначе ячейка растянется под контент и кейс визуально не отличается от «обычного» — секция матрицы теряет смысл. Конкретный размер выбирай по компоненту: достаточно, чтобы сработало демонстрируемое поведение, и не больше.
+
 ## Test stories
 
 - Теги: `['test', 'dev']` — скрываются из sidebar Test Runner-ом.
-- Используют `play` с `step()` для группировки.
+- Имя файла и экспорта одно — `<Name>.InteractionTest.stories.tsx` + `export const InteractionTest`. Клик и клавиатура объединяются в один экспорт через `step()`. Отдельные `ClickTest` / `KeyboardTest` запрещены.
+- `parameters: { controls: { disable: true } }` в `meta` — args фиксированы, панель Controls не нужна.
+- Используют `play` с `step()` для группировки. Имена step'ов — `'click: …'`, `'keyboard: …'` — сохраняют гранулярность в репорте.
 - Для мока callback — `fn()` из `storybook/test`, прокидывать через `args`.
 - Отдельный файл заводится **только** если assertion нельзя поставить в play Playground-а (специфичная последовательность действий, фокус-менеджмент, long-running await).
 
 ```tsx
-export const ClickTest: Story = {
+const meta: Meta<typeof Component> = {
+  title: 'Components/Component',
+  component: Component,
+  parameters: { layout: 'centered', controls: { disable: true } },
+  args: { onClick: fn(), 'data-test-id': 'component' },
+}
+export default meta
+
+export const InteractionTest: Story = {
   tags: ['test', 'dev'],
-  args: { onClick: fn() },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement)
-    await step('Click button', async () => {
-      await userEvent.click(canvas.getByRole('button'))
-    })
-    await step('onClick called once', async () => {
+    const root = canvas.getByTestId('component')
+
+    await step('click: triggers onClick once', async () => {
+      await userEvent.click(root)
       expect(args.onClick).toHaveBeenCalledTimes(1)
+    })
+
+    await step('keyboard: Tab focuses the root', async () => {
+      root.blur()
+      await userEvent.tab()
+      await expect(root).toHaveFocus()
+    })
+
+    await step('keyboard: Enter triggers onClick again', async () => {
+      await userEvent.keyboard('{Enter}')
+      expect(args.onClick).toHaveBeenCalledTimes(2)
     })
   },
 }
@@ -355,12 +388,14 @@ import styles from './Button.VisualMatrix.module.scss'
 
 ## Naming
 
-- Английский PascalCase. `Playground`, `VisualMatrix`, `Polymorphic`, `ClickTest`, `KeyboardTest`, `Composition`.
+- Английский PascalCase. `Playground`, `VisualMatrix`, `Polymorphic`, `InteractionTest`, `Composition`.
 - Запрещены: `Basic`, `Default`, `Example`, `Story1`, русские названия, имена «на ось» (см. раздел «Запрещённые файлы»).
 
 ## Чего НЕ делать
 
 - Заводить файлы на одну ось / одно состояние (см. «Запрещённые файлы»).
+- Разносить интеракцию на `ClickTest` + `KeyboardTest`. Один экспорт `InteractionTest` со step'ами.
+- Забывать `parameters: { controls: { disable: true } }` в VisualMatrix и `InteractionTest` — args там не правит ничего, пустая панель Controls — шум.
 - Использовать `getByRole`/`getByText`/`getByLabelText`/`getByPlaceholderText` в play-функциях. Только `getByTestId`.
 - Забывать `data-test-id` в `args` Playground'а и use-case stories.
 - Пустых `export const X: Story = {}`.
@@ -382,6 +417,14 @@ import styles from './Button.VisualMatrix.module.scss'
 - [ ] Каждый файл имеет собственный `export default meta`
 - [ ] CSF3, `StoryObj<typeof Component>`
 - [ ] VisualMatrix использует `StoryTable` из `#storybook/components`
+- [ ] У VisualMatrix и `InteractionTest` стоит `parameters: { controls: { disable: true } }`
+- [ ] Интеракционные сценарии — один экспорт `InteractionTest` (а не `ClickTest` + `KeyboardTest`)
+- [ ] Playground без custom `render` (URL-args прокидываются в компонент 1:1); пары controlled/uncontrolled (`value`/`defaultValue`, `checked`/`defaultChecked`) спрятаны из панели через `argTypes.<prop>.table.disable`
+- [ ] Все публичные пропсы Playground имеют явный `argType` с подходящим контролом (`boolean`/`select`/`radio`/`number`); нет фолбэка в `text` для enum/boolean
+- [ ] `radio` не используется при наличии `undefined` в `options` или 5+ значений — в этих случаях `select`
+- [ ] `argTypes.mapping` — только для slot/ReactNode-пропов с пресетами; `args.<prop>` — ключ пресета. Mapping не используется для переименования enum-значений
+- [ ] Смежные/парные пропсы (`content` + `valueToCopy`, `label` + `secondaryLabel`, …) заполнены в `args` оба, дефолты различимы
+- [ ] VisualMatrix-ячейки, демонстрирующие поведение, зависящее от размеров контейнера (truncate, wrap, адаптив и т.п.), обёрнуты в контейнер с явным размером из `styles.module.scss`
 - [ ] Нет тегов `autodocs` и блоков `parameters.docs.description.*`
 - [ ] Названия на английском, PascalCase, без `Basic`/`Default`
 - [ ] Нет `React.*`-типов, нет `import type`

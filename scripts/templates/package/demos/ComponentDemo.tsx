@@ -1,4 +1,4 @@
-import { Canvas } from '~docs/components/Canvas'
+import { Canvas } from '#docs/components/Canvas'
 import { {{COMPONENT_NAME}} } from '@ds/{{PKG_NAME}}'
 import doc from '../docs/props.json'
 

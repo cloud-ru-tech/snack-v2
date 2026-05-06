@@ -38,8 +38,10 @@ export async function buildNav(): Promise<NavGroup[]> {
   }
 
   const componentItems: NavItem[] = [];
+  const uikitProductItems: NavItem[] = [];
 
   for (const [pkg, entries] of byPackage) {
+    const target = pkg.startsWith('uikit-product-') ? uikitProductItems : componentItems;
     // "index" entry: ID equals the package name alone (from docs/index.mdx)
     const indexEntry = entries.find(e => e.id === pkg);
     const subEntries = entries
@@ -49,14 +51,14 @@ export async function buildNav(): Promise<NavGroup[]> {
     if (subEntries.length === 0) {
       // Single page (index-only or legacy overview): flat link
       const e = indexEntry ?? entries[0];
-      componentItems.push({
+      target.push({
         title: e.data.title,
         href: withBase(`/components/${e.id}`),
         order: e.data.order,
       });
     } else {
       // Multi-page package: nested group
-      componentItems.push({
+      target.push({
         title: indexEntry?.data.title ?? pkg,
         href: indexEntry ? withBase(`/components/${pkg}`) : withBase(`/components/${subEntries[0].id}`),
         order: indexEntry?.data.order ?? subEntries[0].data.order,
@@ -79,6 +81,7 @@ export async function buildNav(): Promise<NavGroup[]> {
 
   return [
     { label: 'Components', items: componentItems.sort(byTitle) },
+    { label: 'Uikit Product', items: uikitProductItems.sort(byTitle) },
     { label: 'Patterns', items: patternItems.sort(byOrder) },
   ];
 }

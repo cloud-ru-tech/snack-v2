@@ -33,10 +33,10 @@ argument-hint: <pkg-name-or-path>
    - M: + `interaction.spec.ts` + `keyboard.spec.ts` + (`polymorphism.spec.ts` если есть `as`).
    - L: + focus-trap в `interaction.spec.ts`, Arrow/Home/End в `keyboard.spec.ts`, ARIA-state в `rendering.spec.ts`.
    - XL: scenario-driven spec'и + MSW.
-3. **`helpers.ts`** в папке компонента: `PKG_STORIES` (story IDs), `PKG_KEY_COMBOS` (ключевая выборка, **не** декартово произведение — по 1 представителю на каждое значение каждой оси).
+3. **`helpers.ts`** в папке компонента: `PKG_STORIES` (story IDs), `PKG_KEY_COMBOS` (ключевая выборка, **не** декартово произведение — по 1 представителю на каждое значение каждой оси). `*_TEST_ID` берутся из `TEST_IDS` в `../../src/constants` (исходники пакета), не литералами и не из entry `@ds/<pkg>`.
 4. **`rendering.spec.ts`** — 3 describe'а: `render`, `states`, `props propagation` (через `gotoStory(playground, args)` + `toHaveAttribute('data-<axis>', value)`).
-5. **Импорт fixtures** — `import { expect, test } from '../../../../playwright/fixtures'` (ровно 4 уровня вверх; не `@playwright/test`).
-6. **visual.spec.ts** — по правилам [visual-regression-standard.md](../rules/visual-regression-standard.md): `test.skip(project !== VISUAL_BASELINE_PROJECT)`, `waitForFonts()`, снимки `#storybook-root` с `animations: 'disabled', caret: 'hide'`.
+5. **Импорт fixtures и константы** — через TS-алиас `#playwright-tooling/*`: `import { expect, test } from '#playwright-tooling/fixtures'`, `import { waitForFonts } from '#playwright-tooling/utils'`, `import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'`, `import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common'`. Относительные `'../../../../playwright/...'` и прямой `@playwright/test` запрещены.
+6. **visual.spec.ts** — по правилам [visual-regression-standard.md](../rules/visual-regression-standard.md): `test.skip(project !== VISUAL_BASELINE_PROJECT)`, `waitForFonts()`, `page.locator(STORYBOOK_ROOT_SELECTOR).toHaveScreenshot(name, SCREENSHOT_DEFAULT_OPTS)`. Никаких локальных `*_ROOT_SELECTOR` / `*_SCREENSHOT_OPTS` и инлайн-литералов.
 
 ## Запреты
 
