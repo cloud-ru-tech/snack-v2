@@ -3,16 +3,27 @@
   "version": "0.0.0",
   "type": "module",
   "description": "SCSS materials (acrylic, stateLayer) для дизайн-системы",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "sass": "./index.scss"
+      "sass": "./index.scss",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "files": [
     "index.scss",
     "src",
+    "dist",
     "README.md"
   ],
+  "devDependencies": {
+    "classnames": "catalog:",
+    "@ds/utils": "workspace:*"
+  },
   "sideEffects": [
     "**/*.scss"
   ],

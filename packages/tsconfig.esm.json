@@ -21,6 +21,9 @@
       "path": "./utils/tsconfig.esm.json"
     },
     {
+      "path": "./materials/tsconfig.esm.json"
+    },
+    {
       "path": "./icons/tsconfig.esm.json"
     },
     {
@@ -133,6 +136,9 @@
     },
     {
       "path": "./tag/tsconfig.esm.json"
+    },
+    {
+      "path": "./card/tsconfig.esm.json"
     },
     {
       "path": "./search/tsconfig.esm.json"

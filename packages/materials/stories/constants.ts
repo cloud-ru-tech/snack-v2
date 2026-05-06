@@ -1,10 +1,15 @@
 export const APPEARANCE = {
   Primary: 'primary',
   Neutral: 'neutral',
-  Blue: 'blue',
   Red: 'red',
+  Orange: 'orange',
   Yellow: 'yellow',
   Green: 'green',
+  Blue: 'blue',
+  Violet: 'violet',
+  Pink: 'pink',
+  DecorTransparent: 'decorTransparent',
+  Transparent: 'transparent',
 } as const;
 
 export const LEVEL = {
@@ -14,7 +19,7 @@ export const LEVEL = {
 } as const;
 
 export const STATE = {
-  RegularBackground: 'regularBackground',
+  RegularFilled: 'regularFilled',
   RegularBorder: 'regularBorder',
   ActivatedBackground: 'activatedBackground',
   ActivatedBorder: 'activatedBorder',

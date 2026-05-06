@@ -23,6 +23,9 @@
       "path": "./utils/tsconfig.cjs.json"
     },
     {
+      "path": "./materials/tsconfig.cjs.json"
+    },
+    {
       "path": "./icons/tsconfig.cjs.json"
     },
     {
@@ -135,6 +138,9 @@
     },
     {
       "path": "./tag/tsconfig.cjs.json"
+    },
+    {
+      "path": "./card/tsconfig.cjs.json"
     },
     {
       "path": "./search/tsconfig.cjs.json"
