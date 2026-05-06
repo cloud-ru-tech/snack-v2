@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "BASE_PATH=${BASE_PATH:-/snack-v2/} astro build && node ./scripts/precompress.mjs",
-    "build:root": "BASE_PATH=/ astro build && node ./scripts/precompress.mjs",
+    "build": "BASE_PATH=${BASE_PATH:-/snack-v2/} astro build && UV_THREADPOOL_SIZE=16 node ./scripts/precompress.mjs",
+    "build:root": "BASE_PATH=/ astro build && UV_THREADPOOL_SIZE=16 node ./scripts/precompress.mjs",
     "build:fast": "SKIP_PAGEFIND=1 BASE_PATH=/ astro build",
     "preview": "astro preview",
     "clean": "rm -rf dist .astro"

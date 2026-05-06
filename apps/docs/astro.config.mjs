@@ -86,6 +86,7 @@ export default defineConfig({
     },
     css: {
       modules: { localsConvention: 'camelCaseOnly' },
+      devSourcemap: false,
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
@@ -98,6 +99,7 @@ export default defineConfig({
       // stylesheet per-entry; fixes CSS-modules from @ds/* packages vanishing
       // from React island chunks due to aggressive Rollup tree-shaking.
       cssCodeSplit: false,
+      sourcemap: false,
     },
   },
 });
