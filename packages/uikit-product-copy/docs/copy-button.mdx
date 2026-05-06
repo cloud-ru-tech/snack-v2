@@ -1,0 +1,97 @@
+---
+title: CopyButton
+package: '@ds/uikit-product-copy'
+description: Icon-only кнопка копирования значения в буфер обмена с состоянием подтверждения через иконку галочки.
+order: 1
+---
+
+import { CopyButtonDemo } from '../demos/CopyButtonDemo'
+import { CopyButtonBasic } from '../demos/examples/CopyButtonBasic'
+import CopyButtonBasicSrc from '../demos/examples/CopyButtonBasic.tsx?raw'
+import { CopyButtonSizes } from '../demos/examples/CopyButtonSizes'
+import CopyButtonSizesSrc from '../demos/examples/CopyButtonSizes.tsx?raw'
+import { CopyButtonWithHandler } from '../demos/examples/CopyButtonWithHandler'
+import CopyButtonWithHandlerSrc from '../demos/examples/CopyButtonWithHandler.tsx?raw'
+import { CopyButtonWithLabel } from '../demos/examples/CopyButtonWithLabel'
+import CopyButtonWithLabelSrc from '../demos/examples/CopyButtonWithLabel.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { FIGMA_COPY_BUTTON } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CopyButton
+
+Тонкая обёртка над `Button` (`view='function'`, `appearance='neutral'`), которая копирует строку или число в системный буфер обмена и на 1 секунду показывает иконку-галочку как подтверждение действия.
+
+## Демо
+<CopyButtonDemo client:visible />
+
+## Когда использовать
+- Рядом с identifier-ами, токенами, IP, URL — когда нужно одно действие «скопировать» без визуального шума.
+- В таблицах, тулбарах, ячейках карточек — где места хватает только под иконку.
+- Для составных строк нужна и подпись, и кнопка:
+  - используйте [`CopyLine`](/components/uikit-product-copy/copy-line).
+
+## Анатомия
+
+### Size (default `s`)
+
+Размер задаётся пропом `size` и пробрасывается в нижележащий `Button`:
+
+- `s` — для плотных поверхностей и таблиц.
+- `m` — дефолт форм.
+- `l` — для крупных карточек.
+
+### Label (default отсутствует)
+
+Необязательный проп `label` добавляет текст рядом с иконкой — кнопка перестаёт быть icon-only. Если `label` не задан, кнопка отображается только с иконкой и получает `aria-label='Copy'` для доступности; при наличии `label` атрибут не выставляется (текст уже доступен ассистивным технологиям).
+
+### State
+
+Состояние подтверждения управляется внутренним хуком `useCopyToClipboard`: после успешного `navigator.clipboard.writeText` иконка `CopySVG` на 1 секунду заменяется на `CheckSVG`, затем возвращается обратно. Внешним пропсом не управляется.
+
+## Установка
+```bash
+pnpm add @ds/uikit-product-copy
+```
+
+```ts
+import { CopyButton } from '@ds/uikit-product-copy'
+```
+
+## Примеры использования
+
+<Example title='Базовый случай' description='valueToCopy — строка или число' code={CopyButtonBasicSrc}>
+  <CopyButtonBasic client:visible />
+</Example>
+
+<Example title='С подписью' description='label выводит текст рядом с иконкой' code={CopyButtonWithLabelSrc}>
+  <CopyButtonWithLabel client:visible />
+</Example>
+
+<Example title='Три размера' code={CopyButtonSizesSrc}>
+  <CopyButtonSizes client:visible />
+</Example>
+
+<Example
+  title='С внешним обработчиком'
+  description='onClick вызывается дополнительно к копированию — логирование, аналитика'
+  code={CopyButtonWithHandlerSrc}
+>
+  <CopyButtonWithHandler client:visible />
+</Example>
+
+## Props
+<PropsTable data={componentDoc.CopyButton} />
+
+## Storybook
+<StorybookEmbed storyId='uikit-product-copy-copybutton--playground' height={320} />
+
+## Figma
+<FigmaEmbed node={FIGMA_COPY_BUTTON} height={420} title='CopyButton в Figma (Snack UI Kit)' />
+
+## Смотри также
+- [CopyLine](/components/uikit-product-copy/copy-line) — строка с контентом и встроенной кнопкой копирования.
+- [Button](/components/button/button) — нижележащий компонент.

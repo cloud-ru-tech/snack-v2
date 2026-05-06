@@ -1,0 +1,43 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.copyButton {
+  flex-shrink: 0;
+}
+
+.content {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  overflow: hidden;
+  flex: 0 1 auto;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copyLine {
+  cursor: pointer;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  min-height: base.$sn-primitive-dimension-24;
+
+  &[data-copy-button-hide-strategy='hover'] {
+    .copyButton {
+      display: none;
+    }
+
+    &:hover .copyButton,
+    &:focus-within .copyButton {
+      display: inline-flex;
+    }
+  }
+}

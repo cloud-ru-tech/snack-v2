@@ -1,0 +1,27 @@
+---
+title: Copy
+package: '@ds/uikit-product-copy'
+description: Пакет копирования значений в буфер — компоненты CopyButton и CopyLine с единой логикой clipboard и иконкой подтверждения.
+order: 0
+---
+
+# Copy
+
+Пакет `@ds/uikit-product-copy` предоставляет два готовых паттерна копирования: одиночную кнопку `CopyButton` и строку с inline-кнопкой `CopyLine`. Оба используют общий хук `useCopyToClipboard` — на 1 секунду меняют иконку на «галочку» после успешного копирования.
+
+- [**CopyButton**](/components/uikit-product-copy/copy-button) — icon-only `Button` с состоянием подтверждения, для тулбаров и таблиц.
+- [**CopyLine**](/components/uikit-product-copy/copy-line) — строка контента с truncate'ом и встроенной кнопкой копирования, для карточек ID/IP/токенов.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-copy
+```
+
+```ts
+import { CopyButton, CopyLine } from '@ds/uikit-product-copy'
+```
+
+## Figma
+
+Оба компонента живут в одном Figma-фрейме `Snack UI Kit · Copy`. Ссылки на конкретные узлы — на страницах компонентов.

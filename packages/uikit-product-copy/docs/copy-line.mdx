@@ -1,0 +1,113 @@
+---
+title: CopyLine
+package: '@ds/uikit-product-copy'
+description: Строка с truncate-контентом и inline-кнопкой копирования — для отображения identifier-ов, токенов и адресов.
+order: 2
+---
+
+import { CopyLineDemo } from '../demos/CopyLineDemo'
+import { CopyLineBasic } from '../demos/examples/CopyLineBasic'
+import CopyLineBasicSrc from '../demos/examples/CopyLineBasic.tsx?raw'
+import { CopyLineTruncated } from '../demos/examples/CopyLineTruncated'
+import CopyLineTruncatedSrc from '../demos/examples/CopyLineTruncated.tsx?raw'
+import { CopyLineAlwaysVisible } from '../demos/examples/CopyLineAlwaysVisible'
+import CopyLineAlwaysVisibleSrc from '../demos/examples/CopyLineAlwaysVisible.tsx?raw'
+import { CopyLineCustomValue } from '../demos/examples/CopyLineCustomValue'
+import CopyLineCustomValueSrc from '../demos/examples/CopyLineCustomValue.tsx?raw'
+import { CopyLineRichContent } from '../demos/examples/CopyLineRichContent'
+import CopyLineRichContentSrc from '../demos/examples/CopyLineRichContent.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { FIGMA_COPY_LINE } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CopyLine
+
+Контейнер `<div>` с однострочным truncate-контентом слева и inline-кнопкой копирования справа. Кликабельна вся строка целиком — клик копирует `valueToCopy` (по умолчанию равно `content`, если он `string` или `number`). Внутри использует `TruncateString` для усечения длинных значений.
+
+## Демо
+<CopyLineDemo client:visible />
+
+## Когда использовать
+- Карточки ресурсов: ID, ARN, IP, URL, токены — где значение надо одновременно показать и дать скопировать.
+- Detail view'ы и таблицы с длинными identifier-ами, не помещающимися в одну строку без усечения.
+- Если нужна **только** кнопка без контента:
+  - берите [`CopyButton`](/components/uikit-product-copy/copy-button).
+
+## Анатомия
+
+### CopyButtonHideStrategy (default `hover`)
+
+Управляет видимостью встроенной кнопки копирования. Значение прокидывается в DOM как `data-copy-button-hide-strategy` на корневом элементе:
+
+- `hover` — кнопка показывается только при наведении на строку.
+- `never` — кнопка видна всегда.
+
+### Content
+
+Слот `content` принимает `ReactNode`:
+
+- `string` или `number` — автоматически оборачивается в `TruncateString` (одна строка, троеточие при переполнении) и используется как `valueToCopy` по умолчанию.
+- Произвольный JSX — truncate не применяется, `valueToCopy` нужно задавать явно.
+
+## Установка
+```bash
+pnpm add @ds/uikit-product-copy
+```
+
+```ts
+import { CopyLine } from '@ds/uikit-product-copy'
+```
+
+## Примеры использования
+
+<Example title='Базовый случай' description='UUID, кнопка появляется по hover' code={CopyLineBasicSrc}>
+  <CopyLineBasic client:visible />
+</Example>
+
+<Example
+  title='Длинный контент с truncate'
+  description='Строка усекается одной строкой, в буфер уходит полное значение'
+  code={CopyLineTruncatedSrc}
+>
+  <CopyLineTruncated client:visible />
+</Example>
+
+<Example
+  title='Кнопка всегда видна'
+  description="copyButtonHideStrategy='never' для критичных значений — токенов, паролей"
+  code={CopyLineAlwaysVisibleSrc}
+>
+  <CopyLineAlwaysVisible client:visible />
+</Example>
+
+<Example
+  title='Кастомное значение для копирования'
+  description='content — человекочитаемая подпись, valueToCopy — машинный формат'
+  code={CopyLineCustomValueSrc}
+>
+  <CopyLineCustomValue client:visible />
+</Example>
+
+<Example
+  title='JSX-контент'
+  description='Произвольный ReactNode внутри content; valueToCopy задаём явно'
+  code={CopyLineRichContentSrc}
+>
+  <CopyLineRichContent client:visible />
+</Example>
+
+## Props
+<PropsTable data={componentDoc.CopyLine} />
+
+## Storybook
+<StorybookEmbed storyId='uikit-product-copy-copyline--playground' height={320} />
+
+## Figma
+<FigmaEmbed node={FIGMA_COPY_LINE} height={420} title='CopyLine в Figma (Snack UI Kit)' />
+
+## Смотри также
+- [CopyButton](/components/uikit-product-copy/copy-button) — только кнопка, без контента.
+- [TruncateString](/components/truncate-string) — нижележащий примитив усечения.
