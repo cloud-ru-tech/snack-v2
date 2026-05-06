@@ -2,6 +2,7 @@ import { Slider } from '@ds/slider';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import styles from './stories.module.scss';
 import { SLIDER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof Slider> = {
@@ -18,6 +19,13 @@ const meta: Meta<typeof Slider> = {
     disabled: false,
     'data-test-id': SLIDER_TEST_ID,
   },
+  decorators: [
+    Story => (
+      <div className={styles.item}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     min: { control: 'number', description: 'Минимальное значение' },
     max: { control: 'number', description: 'Максимальное значение' },

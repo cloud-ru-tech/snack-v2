@@ -98,7 +98,7 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
 
   &:hover {
     &::before {
-      background: base.$sn-theme-color-material-stateLayer-regular-hovered-background;
+      background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
     }
   }
 
@@ -115,7 +115,7 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
     cursor: grabbing;
 
     &::before {
-      background: base.$sn-theme-color-material-stateLayer-regular-pressed-background;
+      background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
     }
   }
 }
