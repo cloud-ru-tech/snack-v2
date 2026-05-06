@@ -1,8 +1,8 @@
 import { Tag } from '@ds/tag';
 
-import tagDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import tagDoc from '../docs/props.json';
 
 export function TagDemo() {
   return (

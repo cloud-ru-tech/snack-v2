@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { SIZE } from '../../src/constants';
 import { buildRadioStory, NATIVE_INPUT_SUFFIX, RADIO_SIZE_PX, RADIO_TEST_ID } from '../_shared/helpers';
 

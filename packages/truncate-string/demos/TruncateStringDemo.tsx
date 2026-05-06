@@ -1,8 +1,8 @@
 import { TruncateString, TruncateStringProps } from '@ds/truncate-string';
 
-import truncateStringDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import truncateStringDoc from '../docs/props.json';
 
 /**
  * Tooltip появляется только когда текст реально не помещается.

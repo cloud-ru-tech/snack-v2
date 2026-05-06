@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { buildFavouriteStory, FAVOURITE_TEST_ID, NATIVE_INPUT_SUFFIX } from '../_shared/helpers';
 
 test.describe('Favourite — interaction', () => {

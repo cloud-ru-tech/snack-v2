@@ -20,6 +20,7 @@ const PopoverContent = ({ label }: { label: string }) => <div className={styles.
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='Trigger & Placement'

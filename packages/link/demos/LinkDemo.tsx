@@ -1,8 +1,8 @@
 import { Link } from '@ds/link';
 
-import linkDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import linkDoc from '../docs/props.json';
 
 export function LinkDemo() {
   return (

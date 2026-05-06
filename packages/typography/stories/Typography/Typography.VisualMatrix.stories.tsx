@@ -17,6 +17,7 @@ const weights = Object.values(WEIGHT);
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       {weights.map(weight => (

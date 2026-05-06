@@ -43,6 +43,7 @@ function MatrixWrap({ children }: { children: ReactNode }) {
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <section className={styles.matrixSection} aria-labelledby='timeline-matrix-layout'>

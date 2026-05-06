@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { buildToggleGroupStory } from '../_shared/helpers';
 
 test.describe('ToggleGroup — rendering', () => {

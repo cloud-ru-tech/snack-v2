@@ -41,6 +41,7 @@ const keyWidths: Width[] = [WIDTH.S, WIDTH.M, WIDTH.L];
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <StoryTable

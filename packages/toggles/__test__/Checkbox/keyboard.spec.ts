@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { buildCheckboxStory, CHECKBOX_TEST_ID, NATIVE_INPUT_SUFFIX } from '../_shared/helpers';
 
 test.describe('Checkbox — keyboard', () => {

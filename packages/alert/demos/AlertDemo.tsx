@@ -1,8 +1,8 @@
 import { Alert } from '@ds/alert';
 
-import alertDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import alertDoc from '../docs/props.json';
 
 export function AlertDemo() {
   return (

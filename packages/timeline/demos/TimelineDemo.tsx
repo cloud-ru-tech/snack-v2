@@ -1,8 +1,8 @@
 import { Timeline } from '@ds/timeline';
 
-import timelineDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import timelineDoc from '../docs/props.json';
 
 const items = [
   { content: 'Заявка создана' },

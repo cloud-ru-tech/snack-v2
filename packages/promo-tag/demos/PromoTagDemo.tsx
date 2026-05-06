@@ -1,8 +1,8 @@
 import { PromoTag } from '@ds/promo-tag';
 
-import promoTagDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import promoTagDoc from '../docs/props.json';
 
 export function PromoTagDemo() {
   return (

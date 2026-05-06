@@ -21,6 +21,7 @@ const ITEMS = [
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
       <ToggleGroup selectionMode='single' value='2'>

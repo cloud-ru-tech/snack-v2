@@ -149,6 +149,15 @@
       "path": "./accordion/tsconfig.cjs.json"
     },
     {
+      "path": "./segment-control/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-copy/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-switch-row/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-info-row/tsconfig.cjs.json"
     }
   ]

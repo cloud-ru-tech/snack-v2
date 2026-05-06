@@ -16,6 +16,7 @@ type Story = StoryObj<typeof FileUpload>;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='Mode'

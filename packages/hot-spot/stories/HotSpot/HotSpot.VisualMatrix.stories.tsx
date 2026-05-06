@@ -16,6 +16,7 @@ const pulseVariants = [true, false] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='Appearance × Pulse'

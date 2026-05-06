@@ -1,4 +1,4 @@
-import { StorybookUrlOptions } from '../../../../playwright/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 export const CHECKBOX_TEST_ID = 'checkbox';
 export const RADIO_TEST_ID = 'radio';

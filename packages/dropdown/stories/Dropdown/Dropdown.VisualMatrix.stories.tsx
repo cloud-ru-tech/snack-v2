@@ -19,6 +19,7 @@ const SimpleContent = () => <div className={styles.content}>Содержимое
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
       <StoryTable

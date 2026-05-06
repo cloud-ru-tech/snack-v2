@@ -1,6 +1,7 @@
-import { VISUAL_BASELINE_PROJECT } from '../../../../playwright/constants/projects';
-import { expect, test } from '../../../../playwright/fixtures';
-import { waitForFonts } from '../../../../playwright/utils/waitForFonts';
+import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
+import { expect, test } from '#playwright-tooling/fixtures';
+import { waitForFonts } from '#playwright-tooling/utils/waitForFonts';
+
 import { buildToggleGroupStory, ROOT_SELECTOR, SCREENSHOT_OPTS } from '../_shared/helpers';
 
 test.describe('ToggleGroup — visual regression', () => {

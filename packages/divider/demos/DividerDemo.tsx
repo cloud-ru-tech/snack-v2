@@ -1,8 +1,8 @@
 import { Divider, DividerProps } from '@ds/divider';
 
-import dividerDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import dividerDoc from '../docs/props.json';
 
 /**
  * В Canvas превью flex-контейнер автоматически не даёт высоту вертикальному Divider.

@@ -1,8 +1,8 @@
 import { Counter } from '@ds/counter';
 
-import counterDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import counterDoc from '../docs/props.json';
 
 export function CounterDemo() {
   return (

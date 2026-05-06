@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { buildRadioStory, NATIVE_INPUT_SUFFIX, RADIO_TEST_ID } from '../_shared/helpers';
 
 test.describe('Radio — keyboard', () => {

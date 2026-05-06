@@ -41,6 +41,7 @@ const Template: StoryFn<StoryProps> = ({ showBackground }: StoryProps) => (
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   args: {
     showBackground: true,
   },

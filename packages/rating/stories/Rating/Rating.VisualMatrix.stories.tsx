@@ -35,6 +35,7 @@ const Template: StoryFn<StoryProps> = ({ appearance }) => (
 
 export const VisualMatrix: Story = {
   tags: ['dev', 'test', 'autodocs'],
+  parameters: { controls: { disable: true } },
   render: Template,
   args: {
     appearance: APPEARANCE.Yellow,

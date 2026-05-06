@@ -24,6 +24,7 @@ const renderForm = (key: string, disabled = false) => (
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='States'

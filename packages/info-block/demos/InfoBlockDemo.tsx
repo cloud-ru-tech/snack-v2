@@ -1,8 +1,8 @@
 import { InfoBlock } from '@ds/info-block';
 
-import infoBlockDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import infoBlockDoc from '../docs/props.json';
 
 export function InfoBlockDemo() {
   return (

@@ -1,8 +1,8 @@
 import { StatusIndicator } from '@ds/status';
 
-import statusDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import statusDoc from '../docs/props.json';
 
 export function StatusIndicatorDemo() {
   return (

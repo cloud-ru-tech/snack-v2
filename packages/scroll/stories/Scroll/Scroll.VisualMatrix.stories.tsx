@@ -29,7 +29,7 @@ const strategies = [BAR_HIDE_STRATEGY.Never, BAR_HIDE_STRATEGY.Leave, BAR_HIDE_S
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
   decorators: [
     Story => (
       <div className={styles.decoratorPad24}>

@@ -146,6 +146,15 @@
     {
       "path": "./accordion/tsconfig.esm.json"
     },
+        {
+      "path": "./segment-control/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-copy/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-switch-row/tsconfig.esm.json"
+    },
     {
       "path": "./uikit-product-info-row/tsconfig.esm.json"
     }

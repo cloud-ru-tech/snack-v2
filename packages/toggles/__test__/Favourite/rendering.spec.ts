@@ -1,4 +1,5 @@
-import { expect, test } from '../../../../playwright/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
+
 import { FAVOURITE_ICON, SIZE } from '../../src/constants';
 import { buildFavouriteStory, FAVOURITE_SIZE_PX, FAVOURITE_TEST_ID, NATIVE_INPUT_SUFFIX } from '../_shared/helpers';
 

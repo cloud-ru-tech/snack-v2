@@ -27,6 +27,7 @@ const icons = [FAVOURITE_ICON.Star, FAVOURITE_ICON.Heart] as const;
 
 export const VisualMatrix: Story = {
   tags: ['dev', 'test'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.wrapper}>
       {icons.map(iconVariant => (

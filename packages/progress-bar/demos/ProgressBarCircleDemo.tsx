@@ -1,8 +1,8 @@
 import { ProgressBarCircle } from '@ds/progress-bar';
 
-import progressBarDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import progressBarDoc from '../docs/props.json';
 
 export function ProgressBarCircleDemo() {
   return (

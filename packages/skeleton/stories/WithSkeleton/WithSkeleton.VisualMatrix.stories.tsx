@@ -13,6 +13,7 @@ type Story = StoryObj<typeof WithSkeleton>;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='Loading × Skeleton type'

@@ -16,6 +16,7 @@ const keySizes = [SIZE.S, SIZE.M, SIZE.L];
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='Purpose × Size'

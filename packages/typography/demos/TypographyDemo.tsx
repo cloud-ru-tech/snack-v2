@@ -1,8 +1,8 @@
 import { Typography } from '@ds/typography';
 
-import typographyDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import typographyDoc from '../docs/props.json';
 
 export function TypographyDemo() {
   return (

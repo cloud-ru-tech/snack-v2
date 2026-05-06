@@ -16,6 +16,7 @@ const keyAppearances = Object.values(APPEARANCE);
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
       sectionTitle='Appearance × Size'

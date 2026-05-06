@@ -1,8 +1,8 @@
 import { Skeleton, SkeletonProps } from '@ds/skeleton';
 
-import skeletonDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import skeletonDoc from '../docs/props.json';
 
 /**
  * Canvas text controls всегда возвращают строку. Skeleton применяет

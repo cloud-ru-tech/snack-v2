@@ -1,8 +1,8 @@
 import { Breadcrumbs } from '@ds/breadcrumbs';
 
-import breadcrumbsDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import breadcrumbsDoc from '../docs/props.json';
 
 const items = [
   { id: '1', label: 'Home', href: '#' },

@@ -21,6 +21,7 @@ const aligns = Object.values(ALIGN);
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <StoryTable

@@ -1,9 +1,9 @@
 import { Button } from '@ds/button';
 import { HotSpot, HotSpotProps } from '@ds/hot-spot';
 
-import hotSpotDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import hotSpotDoc from '../docs/props.json';
 
 /**
  * HotSpot — пульсирующий маркер, привязанный к UI-элементу. Без anchor'а

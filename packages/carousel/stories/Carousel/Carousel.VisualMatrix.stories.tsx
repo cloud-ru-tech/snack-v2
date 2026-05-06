@@ -30,6 +30,7 @@ function renderSlides() {
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
       <StoryTable

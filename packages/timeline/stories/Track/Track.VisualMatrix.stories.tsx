@@ -61,6 +61,7 @@ const appearanceSamples: Array<NonNullable<TrackProps['dotAppearance']>> = [
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <section className={styles.matrixSection} aria-labelledby='track-matrix-role-line-default'>

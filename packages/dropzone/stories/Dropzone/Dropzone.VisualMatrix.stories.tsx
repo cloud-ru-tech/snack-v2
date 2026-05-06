@@ -21,6 +21,7 @@ const sizes = Object.values(SIZE);
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <StoryTable

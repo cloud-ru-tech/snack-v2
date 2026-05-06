@@ -25,6 +25,7 @@ const sizes = Object.values(SIZE);
 
 export const VisualMatrix: Story = {
   tags: ['dev', 'test'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.wrapper}>
       {sizes.map(size => (

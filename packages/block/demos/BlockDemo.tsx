@@ -1,8 +1,8 @@
 import { Block } from '@ds/block';
 
-import blockDoc from '../docs/props.json';
+import { Canvas } from '#docs/components/Canvas';
 
-import { Canvas } from '~docs/components/Canvas';
+import blockDoc from '../docs/props.json';
 
 export function BlockDemo() {
   return (
