@@ -1,0 +1,159 @@
+---
+title: TitleClickable
+package: '@ds/uikit-product-title-clickable'
+description: Кликабельный заголовок-ссылка раздела с иконкой, шевроном и опциональным аватар-блоком — для шапок продуктовых разделов.
+order: 0
+---
+
+import { TitleClickable } from '@ds/uikit-product-title-clickable'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithIcon } from '../demos/examples/WithIcon'
+import WithIconSrc from '../demos/examples/WithIcon.tsx?raw'
+import { FullWidth } from '../demos/examples/FullWidth'
+import FullWidthSrc from '../demos/examples/FullWidth.tsx?raw'
+import { External } from '../demos/examples/External'
+import ExternalSrc from '../demos/examples/External.tsx?raw'
+import { HiddenArrow } from '../demos/examples/HiddenArrow'
+import HiddenArrowSrc from '../demos/examples/HiddenArrow.tsx?raw'
+import { WithAvatar } from '../demos/examples/WithAvatar'
+import WithAvatarSrc from '../demos/examples/WithAvatar.tsx?raw'
+import { WithCustomBefore } from '../demos/examples/WithCustomBefore'
+import WithCustomBeforeSrc from '../demos/examples/WithCustomBefore.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { FIGMA_TITLE_CLICKABLE } from '#docs/lib/figma'
+import titleClickableDoc from './props.json'
+
+# TitleClickable
+
+Кликабельный заголовок раздела — нативный `<a>` с заголовком, опциональной иконкой слева и шевроном справа. Используется в шапках продуктовых блоков, где сам заголовок одновременно является ссылкой на раздел. Длинный текст автоматически усекается через `TruncateString`.
+
+## Когда использовать
+- Заголовок продуктового раздела ведёт на отдельную страницу/детальный вид.
+- В шапке карточки/секции, где навигация по клику на заголовок ожидаема пользователем.
+- Когда нужен визуальный аффорданс перехода (шеврон) поверх обычной ссылки.
+
+Когда **не** нужен:
+
+- Inline-ссылка в тексте:
+  - используйте [`@ds/link`](/components/link).
+- Action-кнопка:
+  - используйте [`@ds/button`](/components/button/button).
+- Строка списка с действием:
+  - используйте [`@ds/uikit-product-info-row`](/components/uikit-product-info-row).
+
+## Анатомия
+
+### Slots
+
+- `before` — `ReactNode` слева от заголовка (Figma `+ slotTitle`). Принимает произвольную ноду либо один из готовых пресетов:
+  - `<TitleClickableIcon icon={...} />` — иконка 24×24 (Figma `simpleTitle`).
+  - `<TitleClickableAvatar name=... subtitle=... />` — `Avatar` + двухстрочный label/subtitle (Figma `userTitle`).
+- `title` — строка заголовка. Рендерится через `Typography variant='title' size='m'` с однострочным усечением.
+- `titleTag` — семантический тег заголовка (`'h2'`, `'h3'`, `'span'` и т.п.) для корректной структуры документа.
+- `children` — кастомное содержимое вместо стандартной пары `before + title`.
+- `showArrow` — управляет видимостью шеврона справа. Иконка справа автоматически меняется на `external link` при `target='_blank'`.
+
+#### Иконка справа (auto)
+
+- `chevron` (default) — внутренний переход.
+- `external link` — выставляется автоматически, когда `target='_blank'`.
+
+#### Deprecated
+
+- `icon?: ReactNode` — заменён на `before={<TitleClickableIcon icon={...} />}`. Сохранён для совместимости.
+- `avatar?: AvatarProps & { subtitle }` — заменён на `before={<TitleClickableAvatar {...} />}`. Сохранён для совместимости.
+
+Если `before` передан — `icon`/`avatar` игнорируются.
+
+### Width (default `auto`)
+
+- `auto` — компонент занимает по контенту, шеврон прижат к заголовку.
+- `fullWidth` — растягивается на ширину контейнера, шеврон уезжает в правый край.
+
+### Target (default `_self`)
+
+HTML-атрибут `target` нативной ссылки:
+
+- `_self` — открыть в текущей вкладке.
+- `_blank` — открыть в новой вкладке; `rel='noopener noreferrer'` проставляется автоматически.
+- `_parent` — открыть в родительском frame.
+- `_top` — открыть в верхнем frame.
+
+## Установка
+```bash
+pnpm add @ds/uikit-product-title-clickable
+```
+
+```ts
+import { TitleClickable } from '@ds/uikit-product-title-clickable'
+```
+
+## Примеры использования
+<Example
+  title='Простой заголовок'
+  description='Минимальный набор: href + title'
+  code={BasicSrc}
+>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='С иконкой'
+  description='Пресет `<TitleClickableIcon>` в слоте `before` — обёртка 24×24 для иконки из @ds/icons'
+  code={WithIconSrc}
+>
+  <WithIcon client:visible />
+</Example>
+
+<Example
+  title='Произвольный контент в `before`'
+  description='Слот `before` принимает любую React-ноду — версия, бейдж, статус и т.п.'
+  code={WithCustomBeforeSrc}
+>
+  <WithCustomBefore client:visible />
+</Example>
+
+<Example
+  title='Full-width'
+  description='fullWidth: шеврон уезжает в правый край контейнера'
+  code={FullWidthSrc}
+>
+  <FullWidth client:visible />
+</Example>
+
+<Example
+  title='Внешняя ссылка'
+  description="target='_blank' → rel='noopener noreferrer' автоматически"
+  code={ExternalSrc}
+>
+  <External client:visible />
+</Example>
+
+<Example
+  title='Без шеврона'
+  description='showArrow={false}: компактный режим без визуального аффорданса'
+  code={HiddenArrowSrc}
+>
+  <HiddenArrow client:visible />
+</Example>
+
+<Example
+  title='С аватаром'
+  description='Пресет `<TitleClickableAvatar>` в слоте `before` — Figma `userTitle`'
+  code={WithAvatarSrc}
+>
+  <WithAvatar client:visible />
+</Example>
+
+## Props
+<PropsTable data={titleClickableDoc.TitleClickable} />
+
+## Storybook
+<StorybookEmbed storyId='uikit-product-titleclickable--playground' height={240} />
+
+## Figma
+<FigmaEmbed node={FIGMA_TITLE_CLICKABLE} />

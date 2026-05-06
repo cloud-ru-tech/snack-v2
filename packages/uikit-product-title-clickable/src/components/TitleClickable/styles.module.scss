@@ -1,0 +1,111 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.titleClickable {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  box-sizing: border-box;
+  max-width: fit-content;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-decoration: none;
+
+  &[data-full-width] {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &:focus-visible {
+    border-radius: base.$sn-primitive-dimension-4;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(#{base.$sn-primitive-strokeWeight-strokeSemiBold} * -1);
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}
+
+.contentWrapper {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  min-width: 0;
+  max-width: 100%;
+
+  &[data-full-width] {
+    flex: 1 0 0;
+  }
+}
+
+.iconSlot {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.title {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.avatarWrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.avatarSubtitle {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.chevron {
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-20;
+  height: base.$sn-primitive-dimension-20;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  @include m.with-material('acrylic', #{acrylic});
+}
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.stateLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.chevronIcon {
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,360 @@
+{
+  "TitleClickable": {
+    "displayName": "TitleClickable",
+    "propsTypeName": "TitleClickableProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня — `'a'` по умолчанию, либо компонент-роутер (`Link` из react-router-dom).",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "avatar": {
+        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; shape?: Shape | undefined; showTwoSymbols?: boolean | undefined; className?: string | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
+        "required": false,
+        "description": "@deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.\nАватар с subtitle (Figma `userTitle`).",
+        "typeRefs": [
+          "AvatarProps"
+        ]
+      },
+      "before": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот слева от заголовка. Произвольная нода либо предзаготовленные пресеты\n`<TitleClickableIcon icon={...} />` / `<TitleClickableAvatar {...} />`.\nСоответствует Figma-слоту `+ slotTitle` (`simpleTitle` / `userTitle`)."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомное содержимое вместо title/before"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Занимает ли всю ширину"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "@deprecated Используй `before={<TitleClickableIcon icon={...} />}`.\nИконка слева от заголовка."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "showArrow": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать иконку-стрелку справа. Иконка автоматически меняется на `external link` при `target='_blank'`."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "titleTag": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`)"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "AvatarProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид (цвет)",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Имя пользователя для генерации аббревиатуры"
+          },
+          "shape": {
+            "type": "Shape | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная",
+            "typeRefs": [
+              "Shape"
+            ]
+          },
+          "showTwoSymbols": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение двух заглавных символов имени вместо одного"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "10xl",
+              "3xl",
+              "6xl",
+              "l",
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "src": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "URL изображения аватара"
+          }
+        },
+        "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      },
+      "Shape": {
+        "kind": "union",
+        "values": [
+          "round",
+          "square"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      }
+    }
+  },
+  "TitleClickableAvatar": {
+    "displayName": "TitleClickableAvatar",
+    "propsTypeName": "TitleClickableAvatarProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "description": "Внешний вид (цвет)",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "description": "Имя пользователя для генерации аббревиатуры"
+      },
+      "shape": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "round",
+          "square"
+        ],
+        "description": "Форма: круглая или квадратная",
+        "typeRefs": [
+          "Shape"
+        ]
+      },
+      "showTwoSymbols": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображение двух заглавных символов имени вместо одного"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "10xl",
+          "3xl",
+          "6xl",
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "src": {
+        "type": "string",
+        "required": false,
+        "description": "URL изображения аватара"
+      },
+      "subtitle": {
+        "type": "string",
+        "required": true,
+        "description": "Подпись под именем (e-mail, роль и т.п.)."
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "Shape": {
+        "kind": "union",
+        "values": [
+          "round",
+          "square"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      }
+    }
+  },
+  "TitleClickableContent": {
+    "displayName": "TitleClickableContent",
+    "propsTypeName": null,
+    "props": {
+      "avatar": {
+        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; shape?: Shape | undefined; showTwoSymbols?: boolean | undefined; className?: string | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
+        "required": false,
+        "description": "@deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.\nАватар с subtitle (Figma `userTitle`)."
+      },
+      "before": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот слева от заголовка. Произвольная нода либо предзаготовленные пресеты\n`<TitleClickableIcon icon={...} />` / `<TitleClickableAvatar {...} />`.\nСоответствует Figma-слоту `+ slotTitle` (`simpleTitle` / `userTitle`)."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомное содержимое вместо title/before"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Занимает ли всю ширину"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "@deprecated Используй `before={<TitleClickableIcon icon={...} />}`.\nИконка слева от заголовка."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      },
+      "titleTag": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`)"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TitleClickableIcon": {
+    "displayName": "TitleClickableIcon",
+    "propsTypeName": "TitleClickableIconProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Иконка (24×24)."
+      }
+    },
+    "relatedTypes": {}
+  }
+}
