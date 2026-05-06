@@ -26,6 +26,13 @@ test.describe('SegmentControl — visual regression', () => {
     await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_DEFAULT_OPTS);
   });
 
+  test('width-full — selection stretches across active segment', async ({ page, gotoStory }) => {
+    await gotoStory(buildStoryOptions({ width: 'full' }));
+    await waitForFonts(page);
+
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('width-full.png', SCREENSHOT_DEFAULT_OPTS);
+  });
+
   test.describe('interaction states', () => {
     for (const { name, action } of SEGMENT_CONTROL_INTERACTION_VISUAL_CASES) {
       test(`interaction — ${name}`, async ({ page, gotoStory, getByTestId }) => {

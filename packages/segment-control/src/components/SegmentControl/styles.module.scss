@@ -44,6 +44,10 @@ $sizes: 's', 'm', 'l';
   &[data-width='full'] {
     flex-basis: 0;
     flex-grow: 1;
+
+    > button {
+      width: 100%;
+    }
   }
 }
 
