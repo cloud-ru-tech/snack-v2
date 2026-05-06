@@ -20,33 +20,31 @@
           "yellow"
         ],
         "defaultValue": "primary",
-        "description": "Стилизует ссылку для размещения на цветном фоне",
-        "typeRefs": [
-          "Appearance"
-        ]
+        "description": "Стилизует ссылку для размещения на цветном фоне"
       },
       "as": {
         "type": "ComponentType | ElementType",
         "required": false,
         "defaultValue": "'a'",
-        "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`",
-        "typeRefs": [
-          "T"
-        ]
-      },
-      "children": {
-        "type": "ComponentPropsWithoutRef<ElementType extends T ? \"a\" : T>[\"children\"] | undefined",
-        "required": false
+        "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`"
       },
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "href": {
+        "type": "string",
+        "required": true
       },
       "insideText": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
         "description": "Находится ли ссылка внутри текста (и можно ли её переносить)"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
+        "required": false
       },
       "role": {
         "type": "enum",
@@ -56,10 +54,11 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Роль",
-        "typeRefs": [
-          "Role"
-        ]
+        "description": "Роль"
+      },
+      "target": {
+        "type": "string | undefined",
+        "required": false
       },
       "text": {
         "type": "string",
@@ -74,10 +73,7 @@
           "end",
           "middle"
         ],
-        "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине",
-        "typeRefs": [
-          "TruncateStringProps"
-        ]
+        "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине"
       },
       "underlined": {
         "type": "boolean",
@@ -86,36 +82,6 @@
         "description": "Наличие нижнего подчеркивания"
       }
     },
-    "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "blue",
-          "green",
-          "invertNeutral",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
-        ],
-        "own": true
-      },
-      "Role": {
-        "kind": "union",
-        "values": [
-          "onAccent",
-          "regular"
-        ],
-        "own": true
-      },
-      "TruncateStringProps": {
-        "kind": "alias",
-        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
-        "own": false
-      }
-    }
+    "relatedTypes": {}
   }
 }

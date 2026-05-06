@@ -82,7 +82,7 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"appearance\" | \"size\"> | undefined",
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
             "required": false,
             "description": "Пропсы для counter",
             "typeRefs": [

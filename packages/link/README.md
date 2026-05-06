@@ -91,17 +91,13 @@ export function External() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Стилизует ссылку для размещения на цветном фоне |
-| `as` | `T` | `'a'` | Полиморфный компонент. <br/> Оформить переданный компонент или html элемент в стиль ссылки. <br/> Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
-| `children` | `ComponentPropsWithoutRef<ElementType extends T ? "a" : T>["children"] \| undefined` | — |  |
+| `as` | `ComponentType \| ElementType` | `'a'` | Полиморфный компонент. <br/> Оформить переданный компонент или html элемент в стиль ссылки. <br/> Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
 | `data-test-id` | `string` | — |  |
+| `href` | `string` | — |  |
 | `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
+| `onClick` | `((e: MouseEvent<HTMLAnchorElement>) => void) \| undefined` | — |  |
 | `role` | `"onAccent"` \| `"regular"` | `regular` | Роль |
+| `target` | `string \| undefined` | — |  |
 | `text` | `string` | `` | Текст ссылки |
 | `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
 | `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |
-
-#### Related types
-
-- `Appearance` = `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
-
-- `Role` = `"onAccent"` \| `"regular"`
