@@ -8,7 +8,7 @@ metadata:
     app: uikit-snack-v2
     version: old
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       version: old
