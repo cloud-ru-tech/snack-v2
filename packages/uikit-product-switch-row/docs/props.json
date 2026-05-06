@@ -1,0 +1,116 @@
+{
+  "SwitchRow": {
+    "displayName": "SwitchRow",
+    "propsTypeName": "SwitchRowProps",
+    "description": "SwitchRow — строка с заголовком, описанием и переключателем Switch.\nКликабельна целиком: клик / Enter / Space в пределах корня триггерит `onChange(!checked)`.",
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние переключателя (controlled)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Начальное состояние переключателя (uncontrolled)"
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительное описание под заголовком"
+      },
+      "disableTitleTruncate": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключить truncation заголовка"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключённое состояние"
+      },
+      "disabledToggleTip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Тултип поверх переключателя, когда он disabled"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки — переключатель крутит Sun"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Атрибут `name` для нативного `<input>` внутри Switch"
+      },
+      "onChange": {
+        "type": "((checked: boolean) => void)",
+        "required": false,
+        "description": "Колбэк при переключении"
+      },
+      "tip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка рядом с заголовком (иконка «?»)"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок переключателя"
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "block",
+          "line"
+        ],
+        "defaultValue": "block",
+        "description": "Тип лейаута: `block` (карточка с отступами) или `line` (inline без паддингов)",
+        "typeRefs": [
+          "SwitchRowType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "SwitchRowType": {
+        "kind": "union",
+        "values": [
+          "block",
+          "line"
+        ],
+        "own": true
+      }
+    }
+  },
+  "Title": {
+    "displayName": "Title",
+    "propsTypeName": null,
+    "props": {
+      "disableTitleTruncate": {
+        "type": "boolean",
+        "required": false
+      },
+      "tip": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "title": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  }
+}

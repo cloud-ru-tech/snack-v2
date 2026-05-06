@@ -1,0 +1,28 @@
+{
+  "name": "@ds/uikit-product-switch-row",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@ds/materials": "workspace:*",
+    "@ds/toggles": "workspace:*",
+    "@ds/tooltip": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "2.5.1",
+    "uncontrollable": "8.0.4"
+  },
+  "publishConfig": { "access": "public" }
+}

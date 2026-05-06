@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.tipWrapper {
+  display: inline-flex;
+  align-items: center;
+  // Высота совпадает с line-height текста title (regular/title/s)
+  height: base.$sn-primitive-dimension-20;
+}
+
+.tipWrapperInline {
+  display: inline-flex;
+  height: base.$sn-primitive-dimension-20;
+  padding-left: base.$sn-primitive-dimension-4;
+
+  > span {
+    transform: translate(0, base.$sn-primitive-dimension-2);
+  }
+}

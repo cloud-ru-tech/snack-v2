@@ -1,0 +1,111 @@
+---
+title: SwitchRow
+package: '@ds/uikit-product-switch-row'
+description: Кликабельная строка настройки с заголовком, описанием и Switch — целиком кликабельна, поддерживает клавиатуру и tooltip-подсказки.
+order: 100
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Line } from '../demos/examples/Line'
+import LineSrc from '../demos/examples/Line.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { WithTip } from '../demos/examples/WithTip'
+import WithTipSrc from '../demos/examples/WithTip.tsx?raw'
+import { Disabled } from '../demos/examples/Disabled'
+import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+import { Loading } from '../demos/examples/Loading'
+import LoadingSrc from '../demos/examples/Loading.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { FIGMA_UIKIT_PRODUCT_SWITCH_ROW } from '#docs/lib/figma'
+import switchRowDoc from './props.json'
+
+# SwitchRow
+
+Строка настройки: заголовок + опциональное описание + `Switch`. Корень кликабелен целиком, поддерживает Enter/Space, проксирует tooltip-подсказки рядом с заголовком и поверх отключённого переключателя.
+
+## Когда использовать
+
+- В формах настроек, где каждая строка — одна бинарная опция с моментальным применением.
+- Когда у опции нужен поясняющий текст под заголовком и/или подсказка-вопрос рядом с ним.
+- Когда хочется увеличить hit-area переключателя на всю ширину карточки/строки.
+
+Когда **не** нужен `SwitchRow`:
+
+- Одиночный inline-переключатель без описания:
+  - используйте [`Switch`](/components/toggles/switch).
+- Опция, требующая отдельного «Сохранить»:
+  - используйте `Checkbox` в форме.
+
+## Анатомия
+
+### Type (default `block`)
+
+Визуальная ось `type` из `constants.ts`:
+
+- `block` — карточка с паддингами и фоновым state-layer'ом, описание под заголовком.
+- `line` — inline-вариант без паддингов, для плотных списков; Switch слева от заголовка.
+
+### Состояния
+
+- `disabled` — `tabIndex=-1`, клики игнорируются. Опционально `disabledToggleTip` — тултип поверх Switch.
+- `loading` — Switch крутит индикатор, состояние не меняется до завершения.
+- `checked` / `defaultChecked` — controlled / uncontrolled API через `useUncontrolledProp`.
+
+### Слоты
+
+- `title` — обязательный заголовок строки. По умолчанию truncate'ится; `disableTitleTruncate` отключает обрезание.
+- `description` — опциональный второй ряд под заголовком.
+- `tip` — `?`-иконка с тултипом справа от заголовка.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-switch-row
+```
+
+```ts
+import { SwitchRow } from '@ds/uikit-product-switch-row'
+```
+
+## Примеры использования
+
+<Example title='Базовый SwitchRow' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Inline-вариант (type=line)' code={LineSrc}>
+  <Line client:visible />
+</Example>
+
+<Example title='Controlled' description='Состояние хранится снаружи, описание реагирует на checked.' code={ControlledSrc}>
+  <Controlled client:visible />
+</Example>
+
+<Example title='С подсказкой у заголовка' code={WithTipSrc}>
+  <WithTip client:visible />
+</Example>
+
+<Example title='Disabled с тултипом поверх Switch' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+<Example title='Loading' code={LoadingSrc}>
+  <Loading client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={switchRowDoc.SwitchRow} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-switchrow--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={FIGMA_UIKIT_PRODUCT_SWITCH_ROW} height={480} title='SwitchRow в Figma' />

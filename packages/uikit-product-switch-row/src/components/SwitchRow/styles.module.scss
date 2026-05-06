@@ -1,0 +1,111 @@
+/**
+ * SwitchRow — интерактивная строка с заголовком + переключателем.
+ * Слоистая раскладка: корень (relative) + stateLayer (absolute, inset:0) + headline/description (relative, поверх слоя).
+ * State-layer реализован через @ds/materials::has-state-layer-as-child (токены material/stateLayer).
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.stateLayer {
+  visibility: initial;
+}
+
+.description {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  position: relative;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.titleLayout {
+  @include base.composite-var(base.$sn-regular-title-s);
+
+  overflow: hidden;
+  display: flex;
+  flex-grow: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  justify-content: flex-start;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.headline {
+  position: relative;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.titleWrapper {
+  overflow: hidden;
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+
+  padding: base.$sn-primitive-dimension-2 0;
+}
+
+.switchRowWrapper {
+  display: inline-flex;
+}
+
+.switchRow {
+  cursor: pointer;
+
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+
+  // State layer (material): hover и checked-состояния — через @ds/materials.
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &[data-type='line'] {
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+
+    .headline {
+      justify-content: flex-start;
+    }
+
+    .description {
+      // Выравнивание описания под текст заголовка: ширина Switch (size=m)
+      // + gap до titleLayout. Токена под комбинацию нет.
+      padding-left: base.$sn-primitive-dimension-44;
+    }
+  }
+
+  &[data-loading] {
+    cursor: wait;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    background-color: transparent;
+
+    &:not([data-type='line']) {
+      background-color: base.$sn-theme-color-neutral-background;
+    }
+
+    &:not([data-checked]) {
+      .titleLayout,
+      .description {
+        color: base.$sn-theme-color-available-version-textSecondary;
+      }
+    }
+  }
+}
