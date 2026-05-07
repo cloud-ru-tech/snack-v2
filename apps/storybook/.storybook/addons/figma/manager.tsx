@@ -7,8 +7,6 @@ addons.register(ADDON_ID, () => {
   addons.add(PANEL_ID, {
     type: types.PANEL,
     title: 'Figma',
-    // `paramKey` позволяет скрыть панель на конкретной story/meta:
-    // `parameters: { figma: { disable: true } }`.
     paramKey: 'figma',
     match: ({ viewMode }: { viewMode?: string }) => viewMode === 'story',
     render: ({ active }) => (active ? <FigmaPanel /> : null),

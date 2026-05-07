@@ -3,7 +3,7 @@ import { addons } from 'storybook/preview-api';
 
 import { FIGMA_EMBED_HOST, FIGMA_NODES, figmaNode } from '#docs/lib/figma';
 
-import { resolvePkgFromTitle } from '../_shared/pkgFromTitle';
+import { resolvePkgFromTitle } from '../shared/pkgFromTitle';
 import { EVENT_SET, FigmaPayload } from './constants';
 
 type FigmaNodeRef = { fileKey: string; fileName: string; nodeId: string };
@@ -21,7 +21,9 @@ function buildEmbedUrl(ref: FigmaNodeRef): string {
 function toEmbedUrl(rawUrl: string): string {
   try {
     const u = new URL(rawUrl);
-    if (u.hostname !== 'www.figma.com' && u.hostname !== 'figma.com') return rawUrl;
+    if (u.hostname !== 'www.figma.com' && u.hostname !== 'figma.com') {
+      return rawUrl;
+    }
     u.hostname = 'embed.figma.com';
     u.searchParams.delete('m');
     u.searchParams.set('embed-host', FIGMA_EMBED_HOST);
@@ -37,9 +39,15 @@ type DesignParam =
   | undefined;
 
 function payloadFromParams(design: DesignParam): FigmaPayload {
-  if (!design) return null;
-  if (typeof design === 'string') return { url: toEmbedUrl(design) };
-  if (design.url) return { url: toEmbedUrl(design.url) };
+  if (!design) {
+    return null;
+  }
+  if (typeof design === 'string') {
+    return { url: toEmbedUrl(design) };
+  }
+  if (design.url) {
+    return { url: toEmbedUrl(design.url) };
+  }
   if (design.fileKey && design.fileName && design.nodeId) {
     return { url: buildEmbedUrl(design as FigmaNodeRef) };
   }
@@ -48,12 +56,16 @@ function payloadFromParams(design: DesignParam): FigmaPayload {
 
 function resolveByTitle(title: string): FigmaNodeRef | undefined {
   const resolved = resolvePkgFromTitle(title, FIGMA_NODES as Record<string, unknown>);
-  if (!resolved) return undefined;
+  if (!resolved) {
+    return undefined;
+  }
   // Перебираем «отрезки» rest от длинного к короткому — сначала самый специфичный sub.
   for (let take = resolved.rest.length; take >= 0; take--) {
     const subKey = take === 0 ? undefined : resolved.rest.slice(0, take).join('-');
     const node = figmaNode(resolved.pkg, subKey);
-    if (node) return node;
+    if (node) {
+      return node;
+    }
   }
   return undefined;
 }
@@ -64,7 +76,9 @@ export const decorators: Decorator[] = [
     let payload = explicit;
     if (!payload) {
       const node = resolveByTitle(ctx.title);
-      if (node) payload = { url: buildEmbedUrl(node) };
+      if (node) {
+        payload = { url: buildEmbedUrl(node) };
+      }
     }
     addons.getChannel().emit(EVENT_SET, payload);
     return Story();

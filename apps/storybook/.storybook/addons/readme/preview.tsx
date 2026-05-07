@@ -1,7 +1,7 @@
 import { Decorator } from '@storybook/react';
 import { addons } from 'storybook/preview-api';
 
-import { resolvePkgFromTitle } from '../_shared/pkgFromTitle';
+import { resolvePkgFromTitle } from '../shared/pkgFromTitle';
 import { EVENT_SET } from './constants';
 
 const readmeModules = import.meta.glob('../../../../../packages/*/README.md', {

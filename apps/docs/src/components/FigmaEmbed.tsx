@@ -2,7 +2,7 @@ import { figmaDesignUrl, figmaEmbedUrl, FigmaNodeRef } from '../lib/figma';
 import styles from './StorybookEmbed.module.scss';
 
 type FigmaEmbedProps = {
-  node: FigmaNodeRef | undefined;
+  node?: FigmaNodeRef;
   height?: number;
   title?: string;
 };

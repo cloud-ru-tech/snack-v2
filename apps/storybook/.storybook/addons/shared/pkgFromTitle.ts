@@ -24,16 +24,23 @@ export type ResolvedPkg = {
  *   `Uikit Product/Copy/CopyLine` → `{ pkg: 'uikit-product-copy', rest: ['copy-line'] }`
  */
 export function resolvePkgFromTitle(title: string, knownPkgs: Record<string, unknown>): ResolvedPkg | undefined {
-  const segments = title
-    .split('/')
-    .map(s => s.trim())
-    .filter(Boolean)
-    .filter((s, i) => !(i === 0 && s.toLowerCase() === 'components'))
-    .map(toKebab);
+  const segments = title.split('/').reduce<string[]>((acc, raw, i) => {
+    const s = raw.trim();
+    if (!s) {
+      return acc;
+    }
+    if (i === 0 && s.toLowerCase() === 'components') {
+      return acc;
+    }
+    acc.push(toKebab(s));
+    return acc;
+  }, []);
 
   for (let take = segments.length; take > 0; take--) {
     const candidate = segments.slice(0, take).join('-');
-    if (knownPkgs[candidate]) return { pkg: candidate, rest: segments.slice(take) };
+    if (knownPkgs[candidate]) {
+      return { pkg: candidate, rest: segments.slice(take) };
+    }
   }
   return undefined;
 }
