@@ -96,5 +96,5 @@ flex-direction: row;
 
 ## Связанные правила
 
-- `.claude/rules/figma-integration.md` — константы `FIGMA_<NAME>` и MCP workflow.
+- `.claude/rules/figma-integration.md` — формат `FIGMA_NODES` и MCP workflow.
 - `.claude/rules/figma-to-code.md` — как итоговый SCSS раскладывается по модулям.

@@ -1,7 +1,8 @@
-import type { HTMLAttributes } from 'react'
+import { HTMLAttributes } from 'react'
+
 import styles from './styles.module.scss'
 
-export interface {{COMPONENT_NAME}}Props extends HTMLAttributes<HTMLDivElement> {
+export type {{COMPONENT_NAME}}Props = HTMLAttributes<HTMLDivElement> & {
   variant?: 'default' | 'outlined'
 }
 
@@ -14,7 +15,7 @@ export function {{COMPONENT_NAME}}({
   const classes = [styles.root, styles[variant], className].filter(Boolean).join(' ')
 
   return (
-    <div {...props} className={classes}>
+    <div {...props} className={classes} data-variant={variant}>
       {children}
     </div>
   )

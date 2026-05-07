@@ -44,7 +44,7 @@
 6. **Проверить docs**:
    - Все обязательные секции в `index.mdx` (см. [docs-structure.md](../rules/docs-structure.md)).
    - `<StorybookEmbed>` и `<FigmaEmbed>` (если tier > XS) присутствуют.
-   - `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts` (если применимо).
+   - Ключ пакета в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts` (если применимо).
 
 7. **Проверить API**:
    - `constants.ts` — `as const` объекты без TypeScript `enum`.
@@ -82,14 +82,14 @@ Markdown-отчёт:
 - `<pkg>.dimensions.spec.ts` — удалить; parity по высоте ловится VisualMatrix baseline
 
 ## ❌ Отсутствует
-- `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts`
+- Ключ пакета в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts`
 
 ## Рекомендации
 1. Расширить VisualMatrix секцией Composition × Size, удалить Sizes.stories.tsx.
 2. Сложить states в describe-блок в rendering.spec.ts, удалить url-args/dimensions specs.
 3. Перегенерить baselines: `pnpm test:e2e:update-snapshots`.
 4. Добавить Do/Don't секцию в index.mdx (минимум 4 пары).
-5. Завести `FIGMA_<NAME>` — запустить skill figma-component-import.
+5. Завести ключ в `FIGMA_NODES` — запустить skill figma-component-import.
 ```
 
 ## Что **не** делает

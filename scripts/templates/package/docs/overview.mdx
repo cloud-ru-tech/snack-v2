@@ -7,6 +7,9 @@ order: 1
 
 {{DEMO_IMPORT}}
 import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 import doc from './props.json'
 
 # {{DISPLAY_TITLE}}
@@ -15,6 +18,25 @@ import doc from './props.json'
 
 {{DEMO_USAGE}}
 
+## Установка
+
+```bash
+pnpm add @ds/{{PKG_NAME}}
+```
+
+```ts
+import { {{COMPONENT_NAME}} } from '@ds/{{PKG_NAME}}'
+import '@ds/{{PKG_NAME}}/style.css'
+```
+
 ## Props
 
 <PropsTable data={doc.{{COMPONENT_NAME}}} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-{{COMPONENT_KEBAB}}--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('{{PKG_NAME}}')} />

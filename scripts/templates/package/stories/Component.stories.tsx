@@ -1,15 +1,20 @@
-import { within, expect } from 'storybook/test'
-import type { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
+
 import { {{COMPONENT_NAME}} } from '@ds/{{PKG_NAME}}'
 
 const meta: Meta<typeof {{COMPONENT_NAME}}> = {
   title: 'Components/{{DISPLAY_TITLE}}',
   component: {{COMPONENT_NAME}},
   parameters: { layout: 'centered' },
-  tags: ['autodocs'],
+  args: {
+    children: '{{DISPLAY_TITLE}}',
+    variant: 'default',
+    'data-test-id': '{{COMPONENT_KEBAB}}',
+  },
   argTypes: {
     variant: {
-      control: 'select',
+      control: 'radio',
       options: ['default', 'outlined'],
     },
   },
@@ -18,18 +23,21 @@ const meta: Meta<typeof {{COMPONENT_NAME}}> = {
 export default meta
 type Story = StoryObj<typeof {{COMPONENT_NAME}}>
 
-export const Default: Story = {
-  args: { children: '{{DISPLAY_TITLE}}', variant: 'default' },
+export const Playground: Story = {
+  tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    const el = within(canvasElement).getByText('{{DISPLAY_TITLE}}')
-    await expect(el).toBeVisible()
+    const root = within(canvasElement).getByTestId('{{COMPONENT_KEBAB}}')
+    await expect(root).toBeVisible()
   },
 }
 
-export const Outlined: Story = {
-  args: { children: '{{DISPLAY_TITLE}}', variant: 'outlined' },
-  play: async ({ canvasElement }) => {
-    const el = within(canvasElement).getByText('{{DISPLAY_TITLE}}')
-    await expect(el).toBeVisible()
-  },
+export const VisualMatrix: Story = {
+  tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={{ display: 'grid', gap: 24, gridTemplateColumns: 'repeat(2, max-content)' }}>
+      <{{COMPONENT_NAME}} variant='default'>{{DISPLAY_TITLE}} default</{{COMPONENT_NAME}}>
+      <{{COMPONENT_NAME}} variant='outlined'>{{DISPLAY_TITLE}} outlined</{{COMPONENT_NAME}}>
+    </div>
+  ),
 }

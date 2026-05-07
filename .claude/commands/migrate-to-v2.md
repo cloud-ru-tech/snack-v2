@@ -29,7 +29,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
    - `mcp__figma-remote-mcp__get_design_context` (если нужна точная структура DOM) — даёт raw CSS каждого вложенного слоя; пригодится на имплементации.
    - Составь таблицу `Figma variant → React prop` (колонки: Figma axis, значения, prop, default, data-attribute).
    - Проверь имена слоёв на `stateLayer/...`, `material/acrylic/...`, `focusedFrame/...` — это триггеры для `@ds/materials`-миксинов и `:focus-visible` (см. `.claude/rules/figma-to-code.md` и `packages/materials/docs/index.mdx`). Список найденных материальных слоёв → в план.
-   - Зафиксируй `fileKey` / `nodeId` как константы `FIGMA_<NAME>` для `apps/docs/src/lib/figma.ts`.
+   - Зафиксируй `fileKey` / `nodeId` как ключ в `FIGMA_NODES` для `apps/docs/src/lib/figma.ts`.
 
 2. **Legacy-источник.** Источники задаются пользователем через флаги `--ref <pkg>` (один или несколько npm-пакетов старой ДС — `@snack-uikit/*`, `@cloud-ru/uikit-product-mobile-*` и т.п.). Для каждого `--ref`:
    - Сначала найди пакет в `node_modules` этого монорепо (может уже быть установлен как транзитивная зависимость): `find node_modules -maxdepth 4 -type d -name '<pkg>'` либо `pnpm why <pkg>`. Если нашёлся — бери `src/` (если опубликован) или разобранные `dist/*.js` + `.d.ts` оттуда.
@@ -61,7 +61,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 5. **Структура `src/`** — дерево (flat или nested по `.claude/rules/package-src-structure.md`).
 6. **Stories** — дерево `stories/<Name>/` (кол-во файлов по tier'у, обязательно Playground + VisualMatrix + *Test).
 7. **Тесты** — список spec-файлов в `__test__/<ComponentName>/` по `.claude/rules/e2e-testing-standard.md` (блоки по tier'у).
-8. **Docs** — `docs/*.mdx` + `demos/` + `demos/examples/` + `FIGMA_<NAME>` константы для `apps/docs/src/lib/figma.ts`.
+8. **Docs** — `docs/*.mdx` + `demos/` + `demos/examples/` + ключ в `FIGMA_NODES` для `apps/docs/src/lib/figma.ts`.
 9. **Wire-точки** — чеклист (tsconfig references, storybook/docs aliases, package.json deps).
 10. **Фазы** — пронумерованные Phase 1…N. **Явно разделяй логику и стили**:
     - _Логика_ — порт из референса 1:1, меняются только импорты (`@snack-uikit/*` / `@cloud-ru/*` → `@ds/*`) и (если нужно) замена сторонних утилит на внутренние аналоги из «Маппинга зависимостей». Без «улучшений» и рефакторингов сверх паритета.
@@ -79,7 +79,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
     - **Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `base.composite-var(...)`.** Захардкоженных `px`/`rem`/`#hex`/`rgba()` нет (кроме явно обоснованных в комментарии).
     - Каждый Figma-слой `stateLayer/...` / `material/...` реализован через соответствующий миксин `@ds/materials`, а не через raw CSS.
     - Оси React API ↔ Figma variant metadata взаимно-однозначны (или расхождения задокументированы в «Зафиксированных решениях»).
-    - Figma-embed в `docs/index.mdx` работает (константа `FIGMA_<NAME>` добавлена в `apps/docs/src/lib/figma.ts`).
+    - Figma-embed в `docs/index.mdx` работает (ключ для пакета добавлен в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts`).
 13. **Связанные правила** — ссылки на релевантные `.claude/rules/*.md` и `.claude/skills/*.md`. Обязательно: `figma-integration.md`, `figma-to-code.md`, `.claude/skills/figma-selected-block.md`, `packages/materials/docs/index.mdx`.
 14. **Legacy источники** — пути к распакованному коду / ссылки в соседнем репо, чтобы агент-имплементатор знал, откуда портировать **только логику** (не копировать константы цветов/размеров 1:1).
 

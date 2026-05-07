@@ -23,7 +23,8 @@
 
 3. **Figma**
    - Если `figmaNodeId` дан — запустить skill [figma-component-import](./figma-component-import.md) → карта axes → `constants.ts`/`types.ts`.
-   - Добавить `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts`.
+   - Добавить ключ пакета в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts` (см. [figma-integration.md](../rules/figma-integration.md)).
+   - Если узла нет / приватный пакет — на meta stories поставить `parameters: { figma: { disable: true } }`, чтобы скрыть Figma-таб в Storybook bottom-panel.
 
 4. **Stories + baselines** — skill [component-story-set](./component-story-set.md). Финальным шагом генерит visual baselines (`pnpm test:e2e:update-snapshots`) — отдельно скилл visual-regression не запускается.
 

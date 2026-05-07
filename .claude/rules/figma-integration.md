@@ -2,23 +2,59 @@
 
 **Область действия:** работа с Figma-узлами компонентов — как источник дизайна и как база для генерации stories/tests/docs.
 
-## Источник: `Snack Ui Kit variables`
+## Источники файлов
 
-- `fileKey`: `aNPU3MHwRJiEwbk5F82zux`
-- `fileName`: `Snack-Ui-Kit-variables`
-- Узлы компонентов — в `apps/docs/src/lib/figma.ts` как именованные `FigmaNodeRef`.
+- **Snack Ui Kit variables** — основная DS. `fileKey: 'aNPU3MHwRJiEwbk5F82zux'`, `fileName: 'Snack-Ui-Kit-variables'`. Доступен через константу `SNACK` в `apps/docs/src/lib/figma.ts`.
+- **Product UI Kit (variables)** — продуктовые компоненты `@ds/uikit-product-*`. `fileKey: 'VWNiBRIUmVXIWYlLzMxcs6'`, `fileName: 'Product-UI-Kit--variables-'`. Константа `PRODUCT`.
+- **Interfaces icons (variables)** — иконочный набор. `fileKey: 'WGeuaJKutP2gAFPThLAexW'`, `fileName: 'Interfaces-icons--variables-'`. Константа `INTERFACES_ICONS`.
 
-Пример:
+## Карта `FIGMA_NODES`
+
+Все узлы централизованы в одной map'е в `apps/docs/src/lib/figma.ts`, ключевание по имени пакета (`packages/<pkg>`):
 
 ```ts
-export const FIGMA_BUTTON: FigmaNodeRef = {
-  fileKey: 'aNPU3MHwRJiEwbk5F82zux',
-  fileName: 'Snack-Ui-Kit-variables',
-  nodeId: '2507-25203',
-}
+export const FIGMA_NODES = {
+  // single-component package: leaf-узел
+  '<pkg>': { ...SNACK, nodeId: '<root-node-id>' },
+
+  // multi-component package: root + sub-узлы по публичным компонентам
+  '<multi-pkg>': {
+    _: { ...SNACK, nodeId: '<root-node-id>' },        // страница пакета
+    '<sub-component>': { ...SNACK, nodeId: '<id>' },  // отдельный субкомпонент
+    // ...
+  },
+} as const satisfies Record<string, NodeOrSub>
 ```
 
-Новый компонент → новая константа `FIGMA_<NAME>`. Помещаем в один и тот же файл, не создавай отдельный модуль.
+Значение — либо `FigmaNodeRef` (один узел на пакет), либо объект `{ _: <root>, '<sub>': <ref>, ... }` для пакетов с несколькими публичными компонентами. Ключ `_` — узел по умолчанию, когда story title содержит только имя пакета.
+
+Sub-ключ — kebab-case имени публичного субкомпонента (тот же сегмент, что в story title после имени пакета).
+
+**Что класть в `nodeId`** — любой узел Figma:
+
+- **canvas/page** (`<canvas name="stepper">`) — целая страница компонента, удобна для root `_` пакета.
+- **frame / component_set** — конкретный вариант или субкомпонент. Удобно для sub-ключей.
+- **отдельный component / instance** — точечный показ одного варианта.
+
+Получить nodeId: ПКМ по узлу в Figma → Copy/Paste as → Copy link → из URL берётся `?node-id=A-B`. В `nodeId` пишется как `A-B` (или `A:B` — оба работают).
+
+Range/несколько узлов сразу URL не поддерживает — либо положи общий родительский фрейм, либо разнеси на sub-ключи.
+
+## Хелпер `figmaNode(pkg, sub?)`
+
+Безопасный лукап с автоматическим fallback на `_`:
+
+```ts
+import { figmaNode } from '#docs/lib/figma'
+
+figmaNode('<pkg>')                  // leaf-узел single-component пакета
+figmaNode('<multi-pkg>')            // root `_` multi-component пакета
+figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
+```
+
+Возвращает `FigmaNodeRef | undefined`. `<FigmaEmbed>` корректно обрабатывает `undefined` — рендерит `null`.
+
+Новый компонент → новый ключ в `FIGMA_NODES`. Никаких отдельно объявленных `FIGMA_<NAME>` констант — всё в одной map'е.
 
 ## Figma MCP
 
@@ -36,32 +72,26 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 
 ## Чтение metadata → карта variants
 
-Пример Button: `Frame name "buttonFilledPrimary"` + variant-оси `size`, `composition`, `load`, `disabled`. Маппинг:
+Каждая variant-ось Figma-компонента → проп React API. Правило простое:
 
-| Figma | Наш API |
-|-------|---------|
-| Frame name `<prefix><View><Appearance>` | `view` × `appearance` |
-| variant `size` | `size` |
-| variant `composition=labelOnly` | `icon` отсутствует |
-| variant `composition=iconBefore` | `icon` + `iconPosition='before'` |
-| variant `composition=iconAfter` | `icon` + `iconPosition='after'` |
-| variant `composition=iconOnly` | `icon` без `label` |
-| variant `load` | prop `loading` |
-| variant `disabled` | prop `disabled` |
+- Frame name `<prefix><View><Appearance>` (если используется) → пара пропов вида `view` × `appearance`.
+- Variant-ось со значениями-перечислением (`size`, `placement`, `orientation`, …) → enum-проп с тем же набором.
+- Variant-ось boolean (`disabled`, `load`, `selected`, `expanded`, …) → boolean-проп.
+- Variant-ось «слот-композиция» (`labelOnly`/`iconBefore`/`iconOnly`/…) → разворачивается в slot-пропы (`icon`, `iconPosition`, наличие `label`).
 
-Правило: **каждая ось Figma-компонента должна иметь отражение в VisualMatrix** (см. [stories-standard.md](./stories-standard.md)).
+**Каждая ось Figma-компонента должна отражаться в VisualMatrix** (см. [stories-standard.md](./stories-standard.md)).
 
 ## Figma-typo-мост
 
-В Figma могут быть опечатки в именах variant'ов (реальный пример: `iconAfrer` вместо `iconAfter`). Правило:
+В Figma встречаются опечатки в именах variant'ов. Правило:
 
-- В React API используем **корректное** имя (`iconPosition: 'after'`).
-- В `constants.ts` оставляем комментарий-сноску: `// Figma variant: composition=iconAfrer (typo)`.
+- В React API используем **корректное** имя.
+- В `constants.ts` рядом со значением оставляем комментарий вида `// Figma variant: <axis>=<typo> (typo, корректное — <fixed>)`.
 - В Code Connect mapping (когда подключим) — явно мапим опечатку в корректное значение.
 
 ## Размеры → E2E assertion
 
-Если Figma даёт фиксированные размеры контейнера (как `Button`: height s/m/l = 24/32/40) — **добавляй тест** в E2E `Dimensions` блок (см. [e2e-testing-standard.md](./e2e-testing-standard.md)).
+Если Figma фиксирует размеры контейнера по оси (например, height по `size`) — **добавляй тест** в E2E `Dimensions` блок (см. [e2e-testing-standard.md](./e2e-testing-standard.md)).
 
 ## Embed URLs
 
@@ -72,20 +102,37 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 
 ## Workflow «Figma → пакет»
 
-1. Открыть Figma Desktop, выделить Frame компонента.
-2. Получить `nodeId` из URL: `node-id=2507-25203` (через дефис, не через двоеточие).
-3. Добавить `FIGMA_<NAME>` в `apps/docs/src/lib/figma.ts`.
+1. Открыть Figma Desktop, выделить Frame/page компонента.
+2. Получить `nodeId` из URL (параметр `?node-id=<id>`).
+3. Добавить ключ в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts`. Для multi-component пакета — объект с `_` (root) и sub-ключами.
 4. Вызвать `mcp__figma-remote-mcp__get_metadata` для узла → построить карту axes.
 5. Если нужны padding/gap/цвета — вызвать `get_variable_defs` и `get_design_context` (требуют выделения).
 6. Обновить `styles.module.scss` компонента, если токены расходятся.
-7. Добавить `<FigmaEmbed node={FIGMA_<NAME>} />` в `docs/index.mdx`.
+7. Добавить `<FigmaEmbed node={figmaNode(...)} />` в `docs/<file>.mdx`.
+
+## Storybook Figma-аддон
+
+Панель «Figma» в Storybook автоматически подтягивает узел из `FIGMA_NODES` по имени пакета из story `title`. Логика резолвера — общая с docs (`figmaNode`).
+
+Скрыть панель на конкретной story/meta (например, для приватных пакетов или story без визуального дизайна):
+
+```ts
+const meta: Meta<typeof Component> = {
+  // ...
+  parameters: {
+    figma: { disable: true },  // прячет таб «Figma» из bottom-panel
+  },
+}
+```
+
+То же самое работает для `parameters.readme.disable = true` — скрывает Readme-панель. Параметры наследуются: ставь на `meta` (для всех story файла) или per-story.
 
 ## Запреты
 
-- Не хардкодить `fileKey` / `nodeId` в MDX — только через `FIGMA_<NAME>`.
+- Не хардкодить `fileKey` / `nodeId` в MDX — только через `figmaNode(...)`.
+- Не объявлять отдельные `FIGMA_<NAME>` константы — все узлы живут в `FIGMA_NODES` map'е.
 - Не пробрасывать Figma-typos в React API.
-- Не встраивать Figma без `loading="lazy"` — это тяжёлый iframe.
-- Не блокировать сборку при отсутствии `FIGMA_<NAME>` — если узла ещё нет, временно убери embed-блок.
+- Не блокировать сборку при отсутствии узла — `figmaNode` возвращает `undefined`, `<FigmaEmbed>` рендерит `null`. Storybook-панель покажет empty-state. Если узла принципиально не будет (приватный пакет) — поставь `parameters.figma.disable = true`.
 
 ## Связанное
 

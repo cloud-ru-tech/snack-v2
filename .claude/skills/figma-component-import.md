@@ -23,29 +23,26 @@
    - `mcp__figma-remote-mcp__get_variable_defs` — design tokens (`sn.theme.color.*`, `sn.boxShadow.elevation.*`).
    - Если нет — продолжить только с metadata, отметить в отчёте, что часть данных не получена.
 
-4. **Построить карту Figma ↔ React:**
+4. **Построить карту Figma ↔ React.** Каждая variant-ось → проп API:
+   - Frame name `<prefix><View><Appearance>` (если используется) → пара `view` × `appearance`.
+   - Enum-ось (`size`, `placement`, `orientation`, …) → enum-проп с тем же набором значений.
+   - Boolean-ось (`disabled`, `load`, `selected`, `expanded`, …) → boolean-проп.
+   - Слот-композиция (`labelOnly`/`iconBefore`/`iconOnly`/…) → разворачивается в slot-пропы (`icon`, `iconPosition`, наличие `label`).
 
-   | Figma | API |
-   |-------|-----|
-   | Frame name `<prefix><View><Appearance>` | `view` × `appearance` |
-   | variant `size` | `size` |
-   | variant `composition=<value>` | `icon` + `iconPosition` |
-   | variant `load` | `loading` |
-   | variant `disabled` | `disabled` |
+5. **Проверить typos.** В Figma встречаются опечатки в именах variant'ов. Отметить в отчёте и приписать комментарием в `constants.ts` рядом со значением: `// Figma variant: <axis>=<typo> (typo, корректное — <fixed>)`.
 
-5. **Проверить typos** (Figma иногда содержит опечатки типа `iconAfrer`). Отметить в отчёте и приписать комментарием в `constants.ts`:
+6. **Добавить ключ в `FIGMA_NODES`** в `apps/docs/src/lib/figma.ts`. Для single-component пакета:
    ```ts
-   // Figma variant: composition=iconAfrer (typo в Figma, корректное значение — after)
+   '<pkg>': { ...SNACK, nodeId: '<node-id>' }
    ```
-
-6. **Записать `FIGMA_<NAME>`** в `apps/docs/src/lib/figma.ts`:
+   Для multi-component пакета:
    ```ts
-   export const FIGMA_<NAME>: FigmaNodeRef = {
-     fileKey: '<fileKey>',
-     fileName: 'Snack-Ui-Kit-variables',
-     nodeId: '<nodeId>',
+   '<pkg>': {
+     _: { ...SNACK, nodeId: '<root-node-id>' },
+     '<sub>': { ...SNACK, nodeId: '<sub-node-id>' },
    }
    ```
+   Sub-ключ — kebab-case имени публичного субкомпонента (тот же сегмент, что в story title). Источник файла подставляется одной из существующих констант: `SNACK`, `PRODUCT`, `INTERFACES_ICONS`.
 
 7. **Выдать предложения:**
    - `constants.ts` — SCREAMING_SNAKE_CASE объекты для каждой оси (`APPEARANCE`, `VIEW`, `SIZE`).
@@ -60,22 +57,19 @@ Markdown-отчёт:
 ```markdown
 ## Figma → <Name>
 
-- **fileKey**: `aNPU3MHwRJiEwbk5F82zux`
-- **nodeId**: `2507-25203`
-- **Frames**: 18 (6 view × 3 appearance)
-- **Variants per frame**: 36 (3 size × 4 composition × 3 states)
-- **Всего variants**: 648
+- **fileKey**: `<fileKey>`
+- **nodeId**: `<nodeId>`
+- **Frames**: <N> (<axisA> × <axisB>)
+- **Variants per frame**: <M>
+- **Всего variants**: <N*M>
 
 ### Оси
-- `size`: s, m, l
-- `composition`: labelOnly, iconBefore, iconAfter (!!! Figma: iconAfrer), iconOnly
-- `load`: true, false
-- `disabled`: true, false
+- `<axis-1>`: <value>, <value>, …
+- `<axis-2>`: <value>, <value>, … (отметить typos: `<value-in-figma>` → корректное `<fixed>`)
+- `<bool-axis>`: true, false
 
 ### Фиксированные размеры
-- size=s: height 24, iconOnly 24×24
-- size=m: height 32, iconOnly 32×32
-- size=l: height 40, iconOnly 40×40
+- <axis>=<value>: <height/width>, <slot-size>, …
 
 ### Данные, которые НЕ получены (нужно выделение в Figma Desktop)
 - padding / gap autoLayout

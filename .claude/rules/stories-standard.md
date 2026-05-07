@@ -381,6 +381,31 @@ import styles from './Button.VisualMatrix.module.scss'
 
 Тег `autodocs` не используем: автодокументация отключена, описания живут в `docs/*.mdx`.
 
+## Addon-панели Readme и Figma
+
+В bottom-panel рядом с Controls работают две кастомные панели:
+
+- **Readme** — подтягивает `packages/<pkg>/README.md` по pkg из story `title`, рендерит markdown с подсветкой кода (`shiki`). Тема синхронизирована с глобальным тогглом тем.
+- **Figma** — подтягивает узел из `FIGMA_NODES` (`apps/docs/src/lib/figma.ts`) тем же резолвером по `title`. Sub-ключи — для multi-component пакетов.
+
+Скрыть панель — через стандартный `paramKey`:
+
+```ts
+parameters: {
+  figma: { disable: true },   // прячет таб «Figma»
+  readme: { disable: true },  // прячет таб «Readme»
+}
+```
+
+Когда уместно скрывать:
+
+- **Figma** — приватные пакеты (`*-private`, utility без визуального дизайна) и пакеты без узла в `FIGMA_NODES`. Явный `disable` лучше empty-state.
+- **Readme** — мета-демо и песочницы, не привязанные к публичному компоненту пакета.
+
+Параметры наследуются: `meta` распространяет на все story файла, per-story override возможен.
+
+Override содержимого: `parameters.readme = { content: '<md>' }` подменяет README; `parameters.design` (`{ url } | { fileKey, fileName, nodeId } | string`) подменяет Figma-узел. `disable` приоритетнее любого override.
+
 Типовые комбинации:
 - Playground: `['dev', 'test']`
 - VisualMatrix / Test story: `['test', 'dev']`

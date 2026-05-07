@@ -58,7 +58,7 @@ export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
   const demoImport = opts.includeDemo
     ? `import { ${opts.componentName}Demo } from '../demos/${opts.componentName}Demo'`
     : ''
-  const demoUsage = opts.includeDemo ? `<${opts.componentName}Demo client:load />` : ''
+  const demoUsage = opts.includeDemo ? `<${opts.componentName}Demo client:visible />` : ''
 
   const vars: TokenMap = {
     PKG_NAME: opts.pkgName,

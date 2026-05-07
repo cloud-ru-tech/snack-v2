@@ -149,7 +149,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_<NAME> } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import <name>Doc from './props.json'
 ```
 
@@ -223,8 +223,13 @@ packages/<pkg>/demos/examples/
 
 ### `<FigmaEmbed>`
 - Встраивает `embed.figma.com/design/<fileKey>/<fileName>?node-id=<id>&embed-host=ds-docs`.
-- Узлы пакетов живут в `apps/docs/src/lib/figma.ts` как именованные константы (`FIGMA_BUTTON`, `FIGMA_AVATAR`, ...).
-- Если узла ещё нет — не рендерь пустой iframe: либо закомментируй секцию, либо временно выведи простую ссылку.
+- Узлы пакетов живут в `apps/docs/src/lib/figma.ts` в map'е `FIGMA_NODES` по имени пакета — см. [figma-integration.md](./figma-integration.md).
+- Достаются через хелпер `figmaNode(pkg, sub?)`. Использование:
+  ```mdx
+  <FigmaEmbed node={figmaNode('button')} />
+  <FigmaEmbed node={figmaNode('toggles', 'checkbox')} />
+  ```
+- Если узла нет в `FIGMA_NODES` — `figmaNode(...)` вернёт `undefined`, `<FigmaEmbed>` отрендерит `null`. Безопасно оставлять секцию.
 - **Без `client:*`** — чистый iframe, React-гидрация не нужна. Рендерится SSR.
 
 ## Hydration-директивы — какую выбрать

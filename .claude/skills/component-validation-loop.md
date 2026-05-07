@@ -44,7 +44,7 @@
 
 Источники правил:
 - [figma-to-code](./figma-to-code.md) — словарь «слой → DOM → SCSS».
-- [figma-integration.md](../rules/figma-integration.md) — карта `Figma variant → React prop`, `FIGMA_<NAME>`.
+- [figma-integration.md](../rules/figma-integration.md) — карта `Figma variant → React prop`, формат `FIGMA_NODES`.
 - [figma-to-code.md (rule)](../rules/figma-to-code.md) — чеклист перед коммитом.
 - `packages/materials/docs/index.mdx` — миксины `has-state-layer-as-child`, `with-material`.
 

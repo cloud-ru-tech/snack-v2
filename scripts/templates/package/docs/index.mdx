@@ -6,6 +6,8 @@ order: 1
 ---
 
 {{DEMO_IMPORT}}
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # {{DISPLAY_TITLE}}
 
@@ -23,3 +25,7 @@ pnpm add @ds/{{PKG_NAME}}
 import { {{COMPONENT_NAME}} } from '@ds/{{PKG_NAME}}'
 import '@ds/{{PKG_NAME}}/style.css'
 ```
+
+## Figma
+
+<FigmaEmbed node={figmaNode('{{PKG_NAME}}')} />

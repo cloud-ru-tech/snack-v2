@@ -29,7 +29,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
    - `mcp__figma-remote-mcp__get_variable_defs` на 1–2 ключевых variant'ах (default + самый «тяжёлый») → таблица токенов (`sn/theme/color/…`, `sn/density/typography/…`, `sn/primitive/dimension/…`).
    - `mcp__figma-remote-mcp__get_design_context` — raw CSS / структура слоёв (нужно для понимания DOM и slot'ов: иконки, label, counter, описание, тултип…).
    - `mcp__figma-remote-mcp__get_screenshot` — для визуальной сверки в плане (опционально: вставь ссылку, если pre-render возможен).
-   - Зафиксируй `fileKey` / `nodeId` как `FIGMA_<NAME>` для `apps/docs/src/lib/figma.ts`.
+   - Зафиксируй `fileKey` / `nodeId` как ключ в `FIGMA_NODES` для `apps/docs/src/lib/figma.ts`.
 
 2. **Декодинг имён слоёв** (см. `.claude/rules/figma-to-code.md`):
    - `stateLayer/<group>/<role>` → `<span class={styles.stateLayer} data-state="..." aria-hidden />` + `m.has-state-layer-as-child(...)`.
@@ -65,7 +65,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
 5. **Структура `src/`** — дерево (flat для XS/S, nested для M+ — по `.claude/rules/package-src-structure.md`).
 6. **Stories** — дерево `stories/<Name>/` (Playground + VisualMatrix обязательны; *Test/Polymorphic/Composition по tier'у — см. `.claude/rules/stories-standard.md`).
 7. **Тесты** — список spec-файлов в `__test__/<Name>/` по tier'у (см. `.claude/rules/e2e-testing-standard.md`).
-8. **Docs** — `docs/index.mdx` (frontmatter + плоские H2 по `.claude/config/docSections.mjs`), `demos/`, `demos/examples/`, `FIGMA_<NAME>` для `apps/docs/src/lib/figma.ts`. Решение про секцию `## Демо` (Canvas) — по правилу из `docs-structure.md`: только для props-driven компонентов без центральных коллбэков и state.
+8. **Docs** — `docs/index.mdx` (frontmatter + плоские H2 по `.claude/config/docSections.mjs`), `demos/`, `demos/examples/`, плюс ключ пакета в `FIGMA_NODES` (`apps/docs/src/lib/figma.ts`). Решение про секцию `## Демо` (Canvas) — по правилу из `docs-structure.md`: только для props-driven компонентов без центральных коллбэков и state.
 9. **Wire-точки** — чеклист: корневой `tsconfig.json::references`, `packages/tsconfig.esm.json` / `.cjs.json::references`, `apps/storybook/package.json::deps`. (Aliases `@ds/<pkg>` для Storybook и docs подхватываются автоматически — Storybook сканирует `packages/*/src/index.ts`, docs читает `package.json`.) Совет: `pnpm add-package <pkg>` делает большинство wire'ов автоматически.
 10. **Фазы** — пронумерованные Phase 1…N. **Явно разделяй API/логику и стили**:
     - _Scaffold_ — `pnpm add-package <pkg>` + базовый `src/<Name>.tsx` со всеми пропами из утверждённого API + JSDoc + dummy DOM.
@@ -77,7 +77,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
     - Гипотезы по поведению, которые остались без подтверждения (если такие есть — вернись на чекпойнт-2).
     - Отсутствующие токены в `@sbercloud/figma-variables` (→ hardcode + комментарий).
     - Слои в Figma, которые не маппятся ни на один из паттернов `stateLayer/material/focusedFrame` — требуют ручного решения.
-    - Опечатки в variant-именах (как `iconAfrer`) — фиксируем в комментариях `constants.ts`.
+    - Опечатки в variant-именах Figma — в API используем корректное имя, в `constants.ts` приписываем комментарий `// Figma variant: <axis>=<typo> (typo, корректное — <fixed>)`.
     - Visual regression flakiness, отсутствие `FIGMA_TOKEN` (→ CSS-in режим CLI вместо `--url`).
 12. **Success criteria** — чеклист `[ ]`:
     - `typecheck` / `lint` / `stylelint` / `build:pkg <pkg>` зелёные.
@@ -86,7 +86,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
     - **Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `base.composite-var(...)`.** Захардкоженных `px`/`rem`/`#hex`/`rgba()` нет (кроме явно обоснованных в комментарии).
     - Каждый Figma-слой `stateLayer/...` / `material/...` реализован через миксин `@ds/materials`, не через raw CSS.
     - Оси React API ↔ Figma variant metadata взаимно-однозначны (или расхождения зафиксированы в «Зафиксированных решениях»).
-    - `FIGMA_<NAME>` добавлен в `apps/docs/src/lib/figma.ts`, embed в `docs/index.mdx` работает.
+    - Ключ пакета добавлен в `FIGMA_NODES` (`apps/docs/src/lib/figma.ts`), `<FigmaEmbed node={figmaNode('<pkg>')} />` в `docs/index.mdx` работает.
     - В `package.json` нет `react`/`react-dom`/`@types/react*`, версии строгие (см. `.claude/rules/packages-deps.md`).
 13. **Связанные правила** — обязательно сошлись на: `component-api-surface.md`, `package-src-structure.md`, `figma-integration.md`, `figma-to-code.md`, `.claude/skills/figma-selected-block.md`, `packages/materials/docs/index.mdx`, `complexity-tiers.md`, `stories-standard.md`, `e2e-testing-standard.md`, `docs-structure.md`.
 

@@ -8,7 +8,7 @@
 
 - Путь к пакету `packages/<name>`.
 - Имя компонента + основные оси API (читается из `constants.ts`).
-- (опционально) `FIGMA_<NAME>` — должна быть в `apps/docs/src/lib/figma.ts`.
+- (опционально) Запись пакета в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts`. Ключ = имя пакета.
 
 ## Шаги
 
@@ -30,7 +30,7 @@
    import { PropsTable } from '#docs/components/PropsTable'
    import { StorybookEmbed } from '#docs/components/StorybookEmbed'
    import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-   import { FIGMA_<NAME> } from '#docs/lib/figma'
+   import { figmaNode } from '#docs/lib/figma'
    import <name>Doc from './props.json'
    ```
 
@@ -48,7 +48,7 @@
    - `## Примеры использования` — **минимум 3** `<Example>` блока.
    - `## Props` — `<PropsTable data={<name>Doc.<Name>} />`.
    - `## Storybook` — `<StorybookEmbed storyId='components-<name>--playground' />` (без `client:*`).
-   - `## Figma` — `<FigmaEmbed node={FIGMA_<NAME>} />`.
+   - `## Figma` — `<FigmaEmbed node={figmaNode('<pkg>')} />` (для субкомпонента: `figmaNode('<pkg>', '<sub>')`).
    - `## Смотри также` — опционально, ссылки на `/patterns/*`.
 
    Локальные кастомные H2 (напр. `## Selection mode`) — произвольный текст, не совпадающий с каноном, остаётся на месте.
@@ -131,7 +131,7 @@
 
 ## Что **не** делает
 
-- Не добавляет Figma-узел. Если `FIGMA_<NAME>` отсутствует — возвращает предупреждение и просит пользователя запустить [figma-component-import](./figma-component-import.md).
+- Не добавляет Figma-узел. Если `figmaNode('<pkg>')` возвращает `undefined` (нет ключа в `FIGMA_NODES`) — возвращает предупреждение и просит пользователя запустить [figma-component-import](./figma-component-import.md). `<FigmaEmbed>` сам безопасно отрендерит `null`, секцию можно оставить.
 - Не правит frontmatter существующего MDX без явной команды.
 
 ## Связанное
