@@ -41,7 +41,11 @@ const MANAGER_REACT_POLYFILL = `
 const config: StorybookConfig = {
   stories: [join(root, 'packages/*/stories/**/*.stories.@(ts|tsx)')],
   managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
-  addons: [join(__dirname, 'addons/theme-controls/preset.ts')],
+  addons: [
+    join(__dirname, 'addons/theme-controls/preset.ts'),
+    join(__dirname, 'addons/readme/preset.ts'),
+    join(__dirname, 'addons/figma/preset.ts'),
+  ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
@@ -62,6 +66,7 @@ const config: StorybookConfig = {
         '#storybook/components': join(__dirname, 'components/index.ts'),
         '#storybook/hooks/useDraggable': join(__dirname, 'hooks/useDraggable.ts'),
         '#storybook/hooks': join(__dirname, 'hooks/index.ts'),
+        '#docs/lib/figma': join(root, 'apps/docs/src/lib/figma.ts'),
       },
     };
 
