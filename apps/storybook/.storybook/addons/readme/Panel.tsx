@@ -32,12 +32,22 @@ async function renderMarkdown(raw: string, theme: Theme): Promise<string> {
   if (blocks.length === 0) return html;
 
   const shikiTheme = theme === 'dark' ? 'github-dark' : 'github-light';
-  const { codeToHtml } = await import('shiki');
+  let codeToHtml: typeof import('shiki').codeToHtml;
+  try {
+    ({ codeToHtml } = await import('shiki'));
+  } catch (err) {
+    console.error('[readme-panel] failed to load shiki, falling back to plain code blocks', err);
+    for (const b of blocks) {
+      html = html.replace(`<!--${b.id}-->`, `<pre><code>${escapeHtml(b.code)}</code></pre>`);
+    }
+    return html;
+  }
   for (const b of blocks) {
     try {
       const highlighted = await codeToHtml(b.code, { lang: b.lang, theme: shikiTheme });
       html = html.replace(`<!--${b.id}-->`, highlighted);
-    } catch {
+    } catch (err) {
+      console.error(`[readme-panel] shiki highlight failed for lang="${b.lang}"`, err);
       html = html.replace(`<!--${b.id}-->`, `<pre><code>${escapeHtml(b.code)}</code></pre>`);
     }
   }

@@ -1,12 +1,10 @@
 import { Decorator } from '@storybook/react';
 import { addons } from 'storybook/preview-api';
 
-import { FIGMA_EMBED_HOST, FIGMA_NODES, figmaNode } from '#docs/lib/figma';
+import { FIGMA_EMBED_HOST, FIGMA_NODES, figmaNode, FigmaNodeRef } from '#docs/lib/figma';
 
 import { resolvePkgFromTitle } from '../shared/pkgFromTitle';
 import { EVENT_SET, FigmaPayload } from './constants';
-
-type FigmaNodeRef = { fileKey: string; fileName: string; nodeId: string };
 
 function buildEmbedUrl(ref: FigmaNodeRef): string {
   const params = new URLSearchParams({
