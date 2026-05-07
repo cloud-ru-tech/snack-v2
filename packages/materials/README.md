@@ -9,6 +9,7 @@
 ```bash
 pnpm add @ds/materials
 ```
+
 ## Состав
 
 - `material/_acrylic.scss` — акриловый эффект (blur + полупрозрачный фон)

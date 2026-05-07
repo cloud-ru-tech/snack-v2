@@ -37,6 +37,7 @@ import { Status, StatusIndicator } from '@ds/status'
 
 #### Appearance
 Семантический цвет: `neutral` — нейтральный, `green` — успех/активно, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `blue` — информация, `violet`/`pink` — декоративные.
+
 ### Примеры использования
 #### Активный статус
 
@@ -112,6 +113,7 @@ export function WithBackground() {
 
 #### Appearance
 Семантический цвет индикатора: `neutral`, `green` (успех), `red` (ошибка), `orange`/`yellow` (предупреждение), `blue` (инфо), `violet`/`pink` (декоративные).
+
 ### Примеры использования
 #### Базовый индикатор
 

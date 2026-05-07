@@ -20,6 +20,7 @@
 
 ### Weight
 Начертание: `regular` — дефолт, `thin` — облегчённое (display/headline), `mono` — моноширинное (коды, значения, ID).
+
 ## Установка
 ```bash
 pnpm add @ds/typography

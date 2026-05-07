@@ -36,6 +36,7 @@ import { Stepper, MobileStepper, AdaptiveStepper } from '@ds/stepper'
 
 #### Layout type
 Раскладка: `desktop` — горизонтальная с подписями, `mobile` — компактная вертикальная.
+
 ### Примеры использования
 
 #### Базовый flow
@@ -165,6 +166,7 @@ export function WithValidator() {
 
 #### Step state
 Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
+
 ### Примеры использования
 
 #### Мобильный flow
@@ -267,6 +269,7 @@ export function MobileFlow() {
 
 #### Step state
 Состояние шага: `completed`, `current`, `loading`, `waiting`, `rejected`. Раскладка (desktop/mobile) выбирается автоматически по ширине контейнера.
+
 ### Примеры использования
 
 #### Переключение layout

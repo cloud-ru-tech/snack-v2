@@ -23,6 +23,7 @@
 
 ### Align
 Выравнивание хвостовой (неполной) строки в `SkeletonText`: `left` — хвост слева, `right` — справа.
+
 ## Установка
 ```bash
 pnpm add @ds/skeleton

@@ -24,6 +24,7 @@ import { SearchSVG, Sprite, SpriteSnackIconsSVG } from '@ds/icons'
 | `data-test-id` | `string` | — |  |
 
 Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.
+
 ## Sprite
 
 Два режима использования иконок:

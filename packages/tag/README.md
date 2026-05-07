@@ -37,6 +37,7 @@ import { Tag, TagRow } from '@ds/tag'
 
 #### Appearance
 Семантический/декоративный цвет: `neutral` — нейтральный, `primary` — акцент, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `green` — успех, `blue` — инфо, `violet`/`pink` — декоративные.
+
 ### Примеры использования
 #### 1. Базовый тег
 
@@ -101,6 +102,7 @@ export function Removable() {
 
 #### Appearance
 Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.
+
 ### Примеры использования
 
 #### Ограничение по строкам
