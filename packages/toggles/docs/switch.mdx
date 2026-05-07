@@ -15,7 +15,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_SWITCH } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import togglesDoc from './props.json'
 
 # Switch
@@ -29,7 +29,7 @@ import togglesDoc from './props.json'
 Когда **не** нужен Switch: если изменение требует подтверждения — используйте [`Checkbox`](/components/toggles/checkbox) с кнопкой submit.
 
 ## Figma
-<FigmaEmbed node={FIGMA_SWITCH} height={480} title='Switch в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('toggles', 'switch')} height={480} title='Switch в Figma (Snack UI Kit)' />
 
 ## Установка
 ```bash

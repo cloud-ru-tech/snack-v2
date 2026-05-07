@@ -28,7 +28,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_BUTTON } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import buttonDoc from './props.json'
 
 # Button
@@ -46,7 +46,7 @@ import buttonDoc from './props.json'
 Когда **не** нужен `Button`: для обычных inline-ссылок используйте `<a>` или навигационный компонент, а не `as="a"` с `view="function"`.
 
 ## Figma
-<FigmaEmbed node={FIGMA_BUTTON} height={480} title='Button в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('button')} height={480} title='Button в Figma (Snack UI Kit)' />
 
 ## Смотри также
 - [Паттерны форм](/patterns/form-patterns)

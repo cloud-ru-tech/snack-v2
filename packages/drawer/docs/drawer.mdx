@@ -19,7 +19,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_DRAWER } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import drawerDoc from './props.json'
 
 # Drawer
@@ -35,7 +35,7 @@ import drawerDoc from './props.json'
 Когда **не** нужен: критическое подтверждение, блокирующее остальной интерфейс (берите `Modal`), всплывающий поповер рядом с элементом (`Popover`), тост-уведомление (не блокирует UI).
 
 ## Figma
-<FigmaEmbed node={FIGMA_DRAWER} title='Drawer — Snack Ui Kit variables' />
+<FigmaEmbed node={figmaNode('drawer')} title='Drawer — Snack Ui Kit variables' />
 
 ## Установка
 ```bash

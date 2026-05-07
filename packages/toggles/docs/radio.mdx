@@ -15,7 +15,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_RADIO } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import togglesDoc from './props.json'
 
 # Radio
@@ -29,7 +29,7 @@ import togglesDoc from './props.json'
 Когда **не** нужен Radio: для множественного выбора — [`Checkbox`](/components/toggles/checkbox), для on/off — [`Switch`](/components/toggles/switch).
 
 ## Figma
-<FigmaEmbed node={FIGMA_RADIO} height={480} title='Radio в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('toggles', 'radio')} height={480} title='Radio в Figma (Snack UI Kit)' />
 
 ## Установка
 ```bash

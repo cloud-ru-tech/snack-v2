@@ -17,7 +17,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_ACCORDION } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import accordionDoc from './props.json'
 
 # CollapseBlock
@@ -30,7 +30,7 @@ import accordionDoc from './props.json'
 - **`Tertiary`** (title size `s`) — плоские детали без дальнейшей вложенности. Без `view` / `backgroundPredefined` — только заголовок и контент.
 
 ## Figma
-<FigmaEmbed node={FIGMA_ACCORDION} height={480} title='CollapseBlock в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('accordion')} height={480} title='CollapseBlock в Figma (Snack UI Kit)' />
 
 ## Анатомия
 

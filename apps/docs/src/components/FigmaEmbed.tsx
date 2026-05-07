@@ -1,17 +1,18 @@
-import { figmaDesignUrl, figmaEmbedUrl, FigmaNodeRef } from '../lib/figma'
-import styles from './StorybookEmbed.module.scss'
+import { figmaDesignUrl, figmaEmbedUrl, FigmaNodeRef } from '../lib/figma';
+import styles from './StorybookEmbed.module.scss';
 
 type FigmaEmbedProps = {
-  node: FigmaNodeRef
-  height?: number
-  title?: string
-}
+  node: FigmaNodeRef | undefined;
+  height?: number;
+  title?: string;
+};
 
-const DEFAULT_HEIGHT = 420
+const DEFAULT_HEIGHT = 420;
 
 export function FigmaEmbed({ node, height = DEFAULT_HEIGHT, title = 'Figma' }: FigmaEmbedProps) {
-  const src = figmaEmbedUrl(node)
-  const openUrl = figmaDesignUrl(node)
+  if (!node) return null;
+  const src = figmaEmbedUrl(node);
+  const openUrl = figmaDesignUrl(node);
 
   return (
     <div className={styles.wrap}>
@@ -30,5 +31,5 @@ export function FigmaEmbed({ node, height = DEFAULT_HEIGHT, title = 'Figma' }: F
         </a>
       </div>
     </div>
-  )
+  );
 }

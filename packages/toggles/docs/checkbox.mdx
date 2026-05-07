@@ -15,7 +15,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_CHECKBOX } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import togglesDoc from './props.json'
 
 # Checkbox
@@ -30,7 +30,7 @@ import togglesDoc from './props.json'
 Когда **не** нужен Checkbox: для взаимоисключающего выбора — используйте [`Radio`](/components/toggles/radio), для on/off настроек — [`Switch`](/components/toggles/switch).
 
 ## Figma
-<FigmaEmbed node={FIGMA_CHECKBOX} height={480} title='Checkbox в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('toggles', 'checkbox')} height={480} title='Checkbox в Figma (Snack UI Kit)' />
 
 ## Установка
 ```bash

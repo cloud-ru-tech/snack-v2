@@ -15,7 +15,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_TOGGLES } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import togglesDoc from './props.json'
 
 # ToggleGroup
@@ -30,7 +30,7 @@ import togglesDoc from './props.json'
 Когда **не** нужен ToggleGroup: одна опция — [`Switch`](/components/toggles/switch) или [`Checkbox`](/components/toggles/checkbox); взаимоисключающий выбор с нативной семантикой radio — группа [`Radio`](/components/toggles/radio) c общим `name`.
 
 ## Figma
-<FigmaEmbed node={FIGMA_TOGGLES} height={480} title='Toggle components в Figma' />
+<FigmaEmbed node={figmaNode('toggles')} height={480} title='Toggle components в Figma' />
 
 ## Установка
 ```bash

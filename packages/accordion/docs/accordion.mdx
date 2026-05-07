@@ -13,7 +13,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_ACCORDION } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import accordionDoc from './props.json'
 
 # Accordion
@@ -27,7 +27,7 @@ import accordionDoc from './props.json'
 Когда **не** нужен: один изолированный раскрывающийся блок без группы — в этом случае достаточно самого `CollapseBlock*` без обёртки.
 
 ## Figma
-<FigmaEmbed node={FIGMA_ACCORDION} height={480} title='Accordion в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('accordion')} height={480} title='Accordion в Figma (Snack UI Kit)' />
 
 ## Анатомия
 

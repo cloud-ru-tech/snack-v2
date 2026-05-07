@@ -235,16 +235,16 @@ import { ButtonDemo } from '../demos/ButtonDemo'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_BUTTON } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import buttonDoc from './props.json'
 
 <ButtonDemo client:visible />
 <StorybookEmbed storyId='components-button-button--playground' />
-<FigmaEmbed node={FIGMA_BUTTON} />
+<FigmaEmbed node={figmaNode('button')} />
 <PropsTable data={buttonDoc.Button} />
 ```
 
-`Canvas` строит контролы из `props.json` (`componentDoc`). `FigmaEmbed` получает `FigmaNodeRef` из `apps/docs/src/lib/figma.ts` — все узлы компонентов централизованы там как `FIGMA_<NAME>`.
+`Canvas` строит контролы из `props.json` (`componentDoc`). `FigmaEmbed` получает `FigmaNodeRef` через `figmaNode(pkg, sub?)` из `apps/docs/src/lib/figma.ts` — все узлы компонентов централизованы в `FIGMA_NODES` map'е по имени пакета.
 
 Полный шаблон MDX-страницы — [`.claude/rules/docs-structure.md`](https://github.com/).
 
@@ -423,17 +423,27 @@ pnpm release                       # lerna publish from-package
 - `fileKey`: `aNPU3MHwRJiEwbk5F82zux`
 - `fileName`: `Snack-Ui-Kit-variables`
 
-Узлы компонентов централизованы в `apps/docs/src/lib/figma.ts`:
+Узлы компонентов централизованы в `apps/docs/src/lib/figma.ts` в map'е `FIGMA_NODES` по имени пакета:
 
 ```ts
-export const FIGMA_BUTTON: FigmaNodeRef = {
-  fileKey: 'aNPU3MHwRJiEwbk5F82zux',
-  fileName: 'Snack-Ui-Kit-variables',
-  nodeId: '2507-25203',
-}
+export const FIGMA_NODES = {
+  button: { ...SNACK, nodeId: '2507-25203' },
+  toggles: {
+    _: { ...SNACK, nodeId: '2815-30903' },        // корневой узел пакета
+    checkbox: { ...SNACK, nodeId: '2834-25233' }, // субкомпонент
+    radio: { ...SNACK, nodeId: '7587-163964' },
+  },
+} as const satisfies Record<string, NodeOrSub>
 ```
 
-Новый пакет → новая константа `FIGMA_<NAME>` в том же файле.
+Использование в MDX:
+
+```mdx
+<FigmaEmbed node={figmaNode('button')} />
+<FigmaEmbed node={figmaNode('toggles', 'checkbox')} />
+```
+
+Новый пакет → новый ключ в `FIGMA_NODES`. Sub-ключ — kebab-case имени публичного субкомпонента (совпадает с сегментом story title); `_` — узел пакета по умолчанию.
 
 ### Плагин для просмотра пропсов
 
@@ -490,7 +500,7 @@ export const FIGMA_BUTTON: FigmaNodeRef = {
 | `e2e-testing-standard.md` | Playwright specs по tier'у |
 | `visual-regression-standard.md` | Снимки, стабилизация, baselines |
 | `docs-structure.md` | Шаблон MDX, обязательные секции |
-| `figma-integration.md` | Карта variants ↔ props, `FIGMA_<NAME>` |
+| `figma-integration.md` | Карта variants ↔ props, `FIGMA_NODES[pkg]` |
 | `figma-to-code.md` | Перенос Figma-слоёв в DOM/SCSS |
 | `dont-do-that.md` | Общий свод запретов |
 
@@ -567,7 +577,7 @@ pnpm test:e2e:chrome -g "props propagation"                               # по
 3. Skill `figma-component-import` / `figma-to-code` — разметка + токены.
 4. `/add-stories <pkg>` — Playground + VisualMatrix (+ baselines вручную после).
 5. `/add-tests <pkg>` — spec-файлы по tier'у.
-6. `/add-docs <pkg>` — `docs/index.mdx`, `demos/`, `FIGMA_<NAME>`.
+6. `/add-docs <pkg>` — `docs/index.mdx`, `demos/`, `FIGMA_NODES[pkg]`.
 7. Skill `component-validation-loop` — пройти цикл до зелёного.
 8. `/make-commit`.
 

@@ -18,7 +18,7 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { FIGMA_COPY_BUTTON } from '#docs/lib/figma'
+import { figmaNode } from '#docs/lib/figma'
 import componentDoc from './props.json'
 
 # CopyButton
@@ -90,7 +90,7 @@ import { CopyButton } from '@ds/uikit-product-copy'
 <StorybookEmbed storyId='uikit-product-copy-copybutton--playground' height={320} />
 
 ## Figma
-<FigmaEmbed node={FIGMA_COPY_BUTTON} height={420} title='CopyButton в Figma (Snack UI Kit)' />
+<FigmaEmbed node={figmaNode('uikit-product-copy', 'copy-button')} height={420} title='CopyButton в Figma (Snack UI Kit)' />
 
 ## Смотри также
 - [CopyLine](/components/uikit-product-copy/copy-line) — строка с контентом и встроенной кнопкой копирования.
