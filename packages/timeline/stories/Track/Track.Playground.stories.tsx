@@ -3,20 +3,11 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import styles from '../styles.module.scss';
 
-const figmaDesignUrl =
-  'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8934-4234&m=dev';
-
 /** `role` в args Storybook конфликтует с HTML-атрибутом; для контролов и E2E используем `trackRole`. */
 type StoryProps = Omit<TrackProps, 'role'> & { trackRole: TrackProps['role'] };
 
 const meta: Meta<StoryProps> = {
   title: 'Components/Timeline/Track',
-  parameters: {
-    design: {
-      type: 'figma',
-      url: figmaDesignUrl,
-    },
-  },
   args: {
     trackRole: 'start',
     lineStyle: 'solid',

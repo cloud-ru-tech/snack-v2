@@ -84,11 +84,5 @@ export const VisualMatrix: Story = {
   ),
   parameters: {
     controls: { disable: true },
-    docs: {
-      description: {
-        story:
-          'Сводная сетка CollapseBlockPrimary: все значения `BACKGROUND_PREDEFINED_FILL` по строкам и `view` по столбцам, затем шеврон при neutral 1Level и simple.',
-      },
-    },
   },
 };

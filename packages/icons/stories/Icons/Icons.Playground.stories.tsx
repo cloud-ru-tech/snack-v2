@@ -207,10 +207,6 @@ const meta: Meta<StoryProps> = {
   parameters: {
     readme: { content: readme },
     packageName: componentPackage.name,
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/WGeuaJKutP2gAFPThLAexW/Interfaces-icons--variables-?node-id=3-102&m=dev',
-    },
   },
   args: {
     variant: 'sprite',

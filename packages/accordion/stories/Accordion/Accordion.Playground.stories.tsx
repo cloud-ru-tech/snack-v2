@@ -7,12 +7,6 @@ import styles from '../styles.module.scss';
 const meta: Meta<AccordionProps> = {
   title: 'Components/Accordion/Accordion',
   component: Accordion,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6764-5128',
-    },
-  },
   args: {
     selectionMode: SELECTION_MODE.Single,
   },

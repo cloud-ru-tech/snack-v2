@@ -11,12 +11,6 @@ type PlaygroundArgs = CollapseBlockPrimaryProps & { showAfterTitleSlot: boolean 
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Accordion/CollapseBlockPrimary',
   component: Accordion.CollapseBlockPrimary,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6764-5128',
-    },
-  },
   args: {
     id: 'collapseBlockPrimary1',
     title: 'CollapseBlock',

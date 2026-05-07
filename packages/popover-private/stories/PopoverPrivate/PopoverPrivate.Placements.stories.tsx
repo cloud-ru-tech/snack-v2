@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 const meta: Meta<PopoverPrivateProps> = {
   title: 'Components/PopoverPrivate',
   component: PopoverPrivate,
+  parameters: { figma: { disable: true } },
 };
 
 export default meta;
@@ -44,11 +45,4 @@ export const Placements: Story = {
       ))}
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Доступные варианты позиционирования поповера относительно триггера.',
-      },
-    },
-  },
 };

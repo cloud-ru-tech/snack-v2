@@ -16,6 +16,7 @@ const PopoverContent = () => <div className={styles.popoverContent}>Popover cont
 const meta: Meta<PopoverPrivateProps> = {
   title: 'Components/PopoverPrivate',
   component: PopoverPrivate,
+  parameters: { figma: { disable: true } },
   args: {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.Click,

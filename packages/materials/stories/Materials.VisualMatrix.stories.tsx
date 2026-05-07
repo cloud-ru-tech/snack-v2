@@ -10,12 +10,6 @@ import type { Appearance, Level } from './types';
 
 const meta: Meta = {
   title: 'Materials/Materials Visual Matrix',
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=3185-16508&m=dev',
-    },
-  },
   args: {},
   argTypes: {},
 };

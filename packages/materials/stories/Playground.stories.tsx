@@ -12,12 +12,6 @@ import styles from './styles.module.scss';
 const meta: Meta<SampleBlockProps> = {
   title: 'Materials/Playground',
   component: SampleBlock,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2014-81002&p=f&m=dev',
-    },
-  },
   args: {},
   argTypes: {
     state: {

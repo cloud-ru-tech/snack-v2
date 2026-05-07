@@ -63,6 +63,7 @@ function PlaygroundContent() {
 const meta: Meta<PortalContextProviderProps<RefObject<HTMLDivElement | null>>> = {
   title: 'Components/PortalContext',
   component: PortalContextProvider,
+  parameters: { figma: { disable: true } },
   args: {},
   argTypes: {},
 };

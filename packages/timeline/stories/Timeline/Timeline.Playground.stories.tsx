@@ -9,18 +9,9 @@ type StoryProps = TimelineProps & {
   itemsCount: number;
 };
 
-const figmaDesignUrl =
-  'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8976-201&m=dev';
-
 const meta: Meta<StoryProps> = {
   title: 'Components/Timeline/Timeline',
   component: Timeline,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: figmaDesignUrl,
-    },
-  },
   args: {
     alternate: false,
     fullWidth: false,

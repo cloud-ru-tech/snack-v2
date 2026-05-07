@@ -10,18 +10,9 @@ type StoryProps = Omit<TrackItemProps, 'alternateMode'> & {
   showOpposite?: boolean;
 };
 
-const figmaDesignUrl =
-  'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8934-4234&m=dev';
-
 const meta: Meta<StoryProps> = {
   title: 'Components/Timeline/TimelineItem',
   component: TrackItem,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: figmaDesignUrl,
-    },
-  },
   args: {
     contentPosition: 'right',
     role: 'start',

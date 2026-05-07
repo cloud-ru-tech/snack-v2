@@ -9,12 +9,6 @@ import styles from './styles.module.scss';
 
 const meta: Meta = {
   title: 'Materials/State Layers Visual Matrix',
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2778-29918&m=dev',
-    },
-  },
 };
 
 export default meta;

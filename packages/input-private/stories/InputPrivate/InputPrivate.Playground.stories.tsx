@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 const meta: Meta<typeof InputPrivate> = {
   title: 'Components/InputPrivate',
   component: InputPrivate,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', figma: { disable: true } },
   args: {
     value: '',
     placeholder: 'Введите значение',

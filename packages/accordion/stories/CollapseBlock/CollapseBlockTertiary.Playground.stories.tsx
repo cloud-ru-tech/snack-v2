@@ -10,12 +10,6 @@ type PlaygroundArgs = CollapseBlockTertiaryProps & { showAfterTitleSlot: boolean
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Accordion/CollapseBlockTertiary',
   component: Accordion.CollapseBlockTertiary,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6764-5128',
-    },
-  },
   args: {
     id: 'collapseBlockTertiary1',
     title: 'CollapseBlock',

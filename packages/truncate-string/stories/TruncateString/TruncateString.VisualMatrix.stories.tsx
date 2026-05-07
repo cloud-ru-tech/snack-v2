@@ -8,7 +8,7 @@ import styles from './stories.module.scss';
 const meta: Meta<typeof TruncateString> = {
   title: 'Components/TruncateString',
   component: TruncateString,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'padded', figma: { disable: true } },
 };
 
 export default meta;

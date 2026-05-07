@@ -8,7 +8,7 @@ import { TRUNCATE_STRING_TEST_ID } from './testIds';
 const meta: Meta<typeof TruncateString> = {
   title: 'Components/TruncateString',
   component: TruncateString,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', figma: { disable: true } },
   args: {
     variant: VARIANT.End,
     text: 'Очень длинный текст, который не помещается в контейнер и должен быть обрезан',

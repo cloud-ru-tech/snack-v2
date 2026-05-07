@@ -31,16 +31,6 @@ const meta = {
   component: BackgroundPredefinedDemo,
   parameters: {
     controls: { disable: true },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=5537-358&m=dev',
-    },
-    docs: {
-      description: {
-        component:
-          "Слот backgroundPredefined: blur 1Level на корне и acrylic на слоте. Варианты fill — в `@ds/materials` (`backgroundPredefinedFills.ts`); acrylic на слоте — миксин `with-material('acrylic', …)`.",
-      },
-    },
   },
 } satisfies Meta<typeof BackgroundPredefinedDemo>;
 

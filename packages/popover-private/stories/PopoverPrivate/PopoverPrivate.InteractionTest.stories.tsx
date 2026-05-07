@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 const meta: Meta<PopoverPrivateProps> = {
   title: 'Components/PopoverPrivate',
   component: PopoverPrivate,
+  parameters: { figma: { disable: true } },
 };
 
 export default meta;

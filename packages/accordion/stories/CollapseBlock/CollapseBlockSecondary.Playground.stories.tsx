@@ -11,12 +11,6 @@ type PlaygroundArgs = CollapseBlockSecondaryProps & { showAfterTitleSlot: boolea
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Accordion/CollapseBlockSecondary',
   component: Accordion.CollapseBlockSecondary,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=6764-5128',
-    },
-  },
   args: {
     id: 'collapseBlockSecondary1',
     title: 'CollapseBlock',

@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 const meta: Meta<typeof SearchPrivate> = {
   title: 'Components/SearchPrivate',
   component: SearchPrivate,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', figma: { disable: true } },
   args: {
     size: SIZE.S,
     placeholder: 'Поиск',

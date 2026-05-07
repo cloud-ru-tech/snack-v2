@@ -7,12 +7,6 @@ import { expect, within } from 'storybook/test';
 const meta: Meta<HotSpotProps> = {
   title: 'Components/HotSpot',
   component: HotSpot,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=8968-2435',
-    },
-  },
   args: {
     appearance: APPEARANCE.Primary,
     pulse: true,

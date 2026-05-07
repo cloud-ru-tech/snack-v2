@@ -7,6 +7,7 @@ import { POPOVER_PRIVATE_CONTENT_TEST_ID } from './testIds';
 const meta: Meta<PopoverPrivateProps> = {
   title: 'Components/PopoverPrivate',
   component: PopoverPrivate,
+  parameters: { figma: { disable: true } },
 };
 
 export default meta;
@@ -54,12 +55,4 @@ export const WithArrow: Story = {
       </PopoverPrivate>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Поповер с отображаемой стрелкой, указывающей на триггер. Рекомендуется задать цвет стрелки через arrowElementClassName.',
-      },
-    },
-  },
 };
