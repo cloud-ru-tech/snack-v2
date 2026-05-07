@@ -11,6 +11,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import stepperDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # MobileStepper
 
@@ -52,3 +54,6 @@ import { MobileStepper } from '@ds/stepper'
 
 ### Step state
 Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
+
+## Figma
+<FigmaEmbed node={figmaNode('stepper')} height={480} title='MobileStepper в Figma (Snack UI Kit)' />

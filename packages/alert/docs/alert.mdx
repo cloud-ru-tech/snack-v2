@@ -18,6 +18,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import alertDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Alert
 
@@ -79,3 +81,6 @@ import { Alert } from '@ds/alert'
 
 ## Storybook
 <StorybookEmbed storyId='components-alert-alert--playground' height={400} />
+
+## Figma
+<FigmaEmbed node={figmaNode('alert')} height={480} title='Alert в Figma (Snack UI Kit)' />

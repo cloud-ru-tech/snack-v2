@@ -20,6 +20,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import buttonDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # ButtonGroup
 
@@ -99,3 +101,6 @@ import { ButtonGroup } from '@ds/button'
 
 ## Storybook
 <StorybookEmbed storyId='components-button-buttongroup--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('button')} height={480} title='ButtonGroup в Figma (Snack UI Kit)' />

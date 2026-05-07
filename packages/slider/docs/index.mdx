@@ -17,6 +17,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import sliderDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Slider
 
@@ -60,3 +62,6 @@ import { Slider } from '@ds/slider'
 
 ## Storybook
 <StorybookEmbed storyId='components-slider--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('slider')} height={480} title='Slider в Figma (Snack UI Kit)' />

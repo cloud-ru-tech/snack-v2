@@ -17,6 +17,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import loaderDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Loader
 
@@ -76,3 +78,6 @@ import { Spinner, Sun, LOADER_SIZE, SUN_SIZE } from '@ds/loader'
 <StorybookEmbed storyId='components-loader-spinner--playground' height={360} />
 
 <StorybookEmbed storyId='components-loader-sun--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('loader')} height={480} title='Loader в Figma (Snack UI Kit)' />

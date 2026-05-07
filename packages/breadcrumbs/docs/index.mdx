@@ -16,6 +16,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import breadcrumbsDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Breadcrumbs
 
@@ -79,3 +81,6 @@ import { Breadcrumbs } from '@ds/breadcrumbs'
 
 ## Storybook
 <StorybookEmbed storyId='components-breadcrumbs--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('breadcrumbs')} height={480} title='Breadcrumbs в Figma (Snack UI Kit)' />

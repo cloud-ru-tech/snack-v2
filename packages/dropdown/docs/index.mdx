@@ -17,6 +17,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import dropdownDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Dropdown
 
@@ -65,3 +67,6 @@ import { Dropdown, STATE } from '@ds/dropdown'
 
 ## Storybook
 <StorybookEmbed storyId='components-dropdown--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('dropdown')} height={480} title='Dropdown в Figma (Snack UI Kit)' />

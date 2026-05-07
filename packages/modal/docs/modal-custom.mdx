@@ -11,6 +11,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import modalDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # ModalCustom
 
@@ -49,3 +51,6 @@ import { ModalCustom } from '@ds/modal'
 ## Storybook
 
 <StorybookEmbed storyId='components-modal-modalcustom--playground' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('modal')} height={480} title='ModalCustom в Figma (Snack UI Kit)' />

@@ -13,6 +13,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import progressBarDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # ProgressBarPage
 
@@ -51,3 +53,6 @@ import { ProgressBarPage } from '@ds/progress-bar'
 
 ## Storybook
 <StorybookEmbed storyId='components-progressbar-progressbarpage--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('progress-bar')} height={480} title='ProgressBarPage в Figma (Snack UI Kit)' />

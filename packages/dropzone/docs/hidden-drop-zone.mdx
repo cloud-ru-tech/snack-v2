@@ -12,6 +12,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import dropzoneDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # HiddenDropZone
 
@@ -47,3 +49,6 @@ import { HiddenDropZone } from '@ds/dropzone'
 
 ## Storybook
 <StorybookEmbed storyId='components-dropzone-hiddendropzone--playground' height={420} />
+
+## Figma
+<FigmaEmbed node={figmaNode('dropzone')} height={480} title='HiddenDropZone в Figma (Snack UI Kit)' />

@@ -19,6 +19,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import searchDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Search
 
@@ -71,3 +73,6 @@ import { Search } from '@ds/search'
 
 ### Size
 Высота поля: `s` — компактный (списки, тулбары), `m` — дефолт, `l` — для крупных форм и посадочных страниц.
+
+## Figma
+<FigmaEmbed node={figmaNode('search')} height={480} title='Search в Figma (Snack UI Kit)' />

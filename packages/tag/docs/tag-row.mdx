@@ -13,6 +13,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import tagDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # TagRow
 
@@ -63,3 +65,6 @@ import { TagRow } from '@ds/tag'
 
 ### Appearance
 Цветовая тема всех тегов в ряду: `neutral`, `primary`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`.
+
+## Figma
+<FigmaEmbed node={figmaNode('tag')} height={480} title='TagRow в Figma (Snack UI Kit)' />

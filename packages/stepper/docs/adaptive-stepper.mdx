@@ -11,6 +11,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import stepperDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # AdaptiveStepper
 
@@ -51,3 +53,6 @@ import { AdaptiveStepper } from '@ds/stepper'
 
 ### Step state
 Состояние шага: `completed`, `current`, `loading`, `waiting`, `rejected`. Раскладка (desktop/mobile) выбирается автоматически по ширине контейнера.
+
+## Figma
+<FigmaEmbed node={figmaNode('stepper')} height={480} title='AdaptiveStepper в Figma (Snack UI Kit)' />

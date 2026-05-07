@@ -12,6 +12,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import dropzoneDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # FileUpload
 
@@ -52,3 +54,6 @@ import { FileUpload } from '@ds/dropzone'
 
 ## Storybook
 <StorybookEmbed storyId='components-dropzone-fileupload--playground' height={320} />
+
+## Figma
+<FigmaEmbed node={figmaNode('dropzone')} height={480} title='FileUpload в Figma (Snack UI Kit)' />

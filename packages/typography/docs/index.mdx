@@ -18,6 +18,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import typographyDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Typography
 
@@ -74,3 +76,6 @@ import { Typography, VARIANT, SIZE, WEIGHT } from '@ds/typography'
 
 ### Weight
 Начертание: `regular` — дефолт, `thin` — облегчённое (display/headline), `mono` — моноширинное (коды, значения, ID).
+
+## Figma
+<FigmaEmbed node={figmaNode('typography')} height={480} title='Typography в Figma (Snack UI Kit)' />

@@ -15,6 +15,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import carouselDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Carousel
 
@@ -67,3 +69,6 @@ import { Carousel } from '@ds/carousel'
 
 ## Storybook
 <StorybookEmbed storyId='components-carousel--playground' height={400} />
+
+## Figma
+<FigmaEmbed node={figmaNode('carousel')} height={480} title='Carousel в Figma (Snack UI Kit)' />

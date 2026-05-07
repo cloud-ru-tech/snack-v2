@@ -18,6 +18,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import hotSpotDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # HotSpot
 
@@ -72,3 +74,6 @@ import { HotSpot, APPEARANCE, PLACEMENT } from '@ds/hot-spot'
 
 ## Storybook
 <StorybookEmbed storyId='components-hotspot--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('hot-spot')} height={480} title='HotSpot в Figma (Snack UI Kit)' />

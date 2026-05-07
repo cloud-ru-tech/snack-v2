@@ -16,6 +16,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import statusDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Status
 
@@ -66,3 +68,6 @@ import { Status } from '@ds/status'
 
 ### Appearance
 Семантический цвет: `neutral` — нейтральный, `green` — успех/активно, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `blue` — информация, `violet`/`pink` — декоративные.
+
+## Figma
+<FigmaEmbed node={figmaNode('status')} height={480} title='Status в Figma (Snack UI Kit)' />

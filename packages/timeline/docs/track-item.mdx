@@ -8,6 +8,8 @@ order: 2
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import timelineDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # TrackItem
 
@@ -44,3 +46,6 @@ import { TrackItem } from '@ds/timeline'
 
 ### Position
 Сторона, с которой рендерится контент относительно трека: `left` — слева, `right` — справа. Используется в двухколоночных таймлайнах.
+
+## Figma
+<FigmaEmbed node={figmaNode('timeline')} height={480} title='TrackItem в Figma (Snack UI Kit)' />

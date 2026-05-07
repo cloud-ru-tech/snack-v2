@@ -21,6 +21,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import scrollDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Scroll
 
@@ -89,3 +91,6 @@ import { Scroll } from '@ds/scroll'
 
 ## Storybook
 <StorybookEmbed storyId='components-scroll--playground' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('scroll')} height={480} title='Scroll в Figma (Snack UI Kit)' />

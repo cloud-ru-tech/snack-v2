@@ -16,6 +16,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import promoTagDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # PromoTag
 
@@ -73,3 +75,6 @@ import { PromoTag } from '@ds/promo-tag'
 
 ## Storybook
 <StorybookEmbed storyId='components-promotag--playground' height={240} />
+
+## Figma
+<FigmaEmbed node={figmaNode('promo-tag')} height={480} title='PromoTag в Figma (Snack UI Kit)' />

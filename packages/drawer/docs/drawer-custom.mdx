@@ -11,6 +11,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import drawerDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # DrawerCustom
 
@@ -57,3 +59,6 @@ import { DrawerCustom } from '@ds/drawer'
 ## Storybook
 
 <StorybookEmbed storyId='components-drawer-drawercustom--playground' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('drawer')} height={480} title='DrawerCustom в Figma (Snack UI Kit)' />

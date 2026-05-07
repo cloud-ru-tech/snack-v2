@@ -13,6 +13,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import tooltipDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # QuestionTooltip
 
@@ -60,3 +62,6 @@ import { QuestionTooltip } from '@ds/tooltip'
 
 ### Size
 Размер триггера-иконки и тултипа: `xs` — для плотных форм, `s` — дефолт рядом с заголовками секций.
+
+## Figma
+<FigmaEmbed node={figmaNode('tooltip')} height={480} title='QuestionTooltip в Figma (Snack UI Kit)' />

@@ -13,6 +13,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import tabsDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # TabBar
 
@@ -68,3 +70,6 @@ import { Tabs } from '@ds/tabs'
 
 ### Marker position
 Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.
+
+## Figma
+<FigmaEmbed node={figmaNode('tabs')} height={480} title='TabBar в Figma (Snack UI Kit)' />

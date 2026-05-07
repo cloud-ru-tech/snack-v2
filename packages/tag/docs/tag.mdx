@@ -17,6 +17,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import tagDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Tag
 
@@ -79,3 +81,6 @@ import { Tag } from '@ds/tag'
 
 ### Appearance
 Семантический/декоративный цвет: `neutral` — нейтральный, `primary` — акцент, `red` — ошибка/критично, `orange`/`yellow` — предупреждение, `green` — успех, `blue` — инфо, `violet`/`pink` — декоративные.
+
+## Figma
+<FigmaEmbed node={figmaNode('tag')} height={480} title='Tag в Figma (Snack UI Kit)' />

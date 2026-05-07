@@ -15,6 +15,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import iconPredefinedDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # IconPredefined
 
@@ -73,3 +75,6 @@ import { IconPredefined, APPEARANCE, SIZE } from '@ds/icon-predefined'
 ## Storybook
 
 <StorybookEmbed storyId='components-iconpredefined--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('icon-predefined')} height={480} title='IconPredefined в Figma (Snack UI Kit)' />

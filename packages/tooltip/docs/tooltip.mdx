@@ -15,6 +15,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import tooltipDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Tooltip
 
@@ -72,3 +74,6 @@ import { Tooltip } from '@ds/tooltip'
 
 ### Size
 `xs` — короткие подписи на одной строке, `s` — многострочные подсказки и описания.
+
+## Figma
+<FigmaEmbed node={figmaNode('tooltip')} height={480} title='Tooltip в Figma (Snack UI Kit)' />

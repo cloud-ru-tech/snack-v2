@@ -18,6 +18,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import counterDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Counter
 
@@ -78,3 +80,6 @@ import { Counter, APPEARANCE, VARIANT, SIZE } from '@ds/counter'
 
 ## Storybook
 <StorybookEmbed storyId='components-counter--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('counter')} height={480} title='Counter в Figma (Snack UI Kit)' />

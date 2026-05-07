@@ -16,6 +16,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import blockDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Block
 
@@ -66,3 +68,6 @@ import { Block, SIZE, VARIANT } from '@ds/block'
 
 ## Storybook
 <StorybookEmbed storyId='components-block--playground' height={420} />
+
+## Figma
+<FigmaEmbed node={figmaNode('block')} height={480} title='Block в Figma (Snack UI Kit)' />

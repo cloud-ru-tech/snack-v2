@@ -16,6 +16,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import avatarDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Avatar
 
@@ -72,3 +74,6 @@ import { Avatar, APPEARANCE, SHAPE, SIZE } from '@ds/avatar'
 
 ## Storybook
 <StorybookEmbed storyId='components-avatar--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('avatar')} height={480} title='Avatar в Figma (Snack UI Kit)' />

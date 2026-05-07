@@ -16,6 +16,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import dividerDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Divider
 
@@ -72,3 +74,6 @@ import { Divider, ORIENTATION, VARIANT } from '@ds/divider'
 
 ## Storybook
 <StorybookEmbed storyId='components-divider--playground' height={300} />
+
+## Figma
+<FigmaEmbed node={figmaNode('divider')} height={480} title='Divider в Figma (Snack UI Kit)' />

@@ -19,6 +19,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import linkDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Link
 
@@ -92,3 +94,6 @@ import { Link } from '@ds/link'
 
 ## Storybook
 <StorybookEmbed storyId='components-link--playground' height={320} />
+
+## Figma
+<FigmaEmbed node={figmaNode('link')} height={480} title='Link в Figma (Snack UI Kit)' />

@@ -18,6 +18,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import infoBlockDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # InfoBlock
 
@@ -77,3 +79,6 @@ import { InfoBlock } from '@ds/info-block'
 
 ## Storybook
 <StorybookEmbed storyId='components-infoblock--playground' height={360} />
+
+## Figma
+<FigmaEmbed node={figmaNode('info-block')} height={480} title='InfoBlock в Figma (Snack UI Kit)' />

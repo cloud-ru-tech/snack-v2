@@ -19,6 +19,8 @@ import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import skeletonDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Skeleton
 
@@ -104,3 +106,6 @@ import { Skeleton, SkeletonText, WithSkeleton } from '@ds/skeleton'
 
 ### Align
 Выравнивание хвостовой (неполной) строки в `SkeletonText`: `left` — хвост слева, `right` — справа.
+
+## Figma
+<FigmaEmbed node={figmaNode('skeleton')} height={480} title='Skeleton в Figma (Snack UI Kit)' />

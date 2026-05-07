@@ -5,6 +5,9 @@ description: SCSS-миксины для материалов (акрил, state 
 order: 99
 ---
 
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
 # Materials
 
 Пакет экспортирует SCSS-миксины без JS runtime — используется другими пакетами как `@use '@ds/materials' as m`.
@@ -212,3 +215,6 @@ order: 99
 ```bash
 pnpm add @ds/materials
 ```
+
+## Figma
+<FigmaEmbed node={figmaNode('materials')} height={480} title='Materials в Figma (Snack UI Kit)' />
