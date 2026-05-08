@@ -10,6 +10,7 @@ export function HeaderNav() {
         as='a'
         label='Contribution Guide'
         href={withBase('/patterns/contribution-guide')}
+        size='m'
         appearance='neutral'
         view='outline'
       />

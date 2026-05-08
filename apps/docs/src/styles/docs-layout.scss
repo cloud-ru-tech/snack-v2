@@ -23,7 +23,7 @@ html, body {
 
 .header-inner {
   display: flex;
-  gap: base.$sn-density-spacing-interval-l;
+  gap: base.$sn-density-spacing-interval-s;
   align-items: center;
 
   max-width: l.$docs-header-max-width;
@@ -39,40 +39,26 @@ html, body {
 }
 
 .header-logo {
-  display: flex;
+  display: inline-flex;
   flex-shrink: 0;
-  gap: base.$sn-density-spacing-interval-m;
+  gap: base.$sn-primitive-dimension-8;
   align-items: center;
 
   color: base.$sn-theme-color-neutral-text;
   text-decoration: none;
 }
 
-.header-logo-mark {
-  display: flex;
+.header-logo svg {
+  display: block;
+  width: auto;
+  height: 24px;
+}
+
+.header-logo-cross {
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-
-  width: base.$sn-primitive-dimension-28;
-  height: base.$sn-primitive-dimension-28;
-  border-radius: base.$sn-primitive-dimension-4;
-
-  color: base.$sn-theme-color-primary-onAccent;
-
-  background: base.$sn-theme-color-primary-accent;
-
-  @include base.composite-var(base.$sn-regular-label-s);
-}
-
-.header-logo-name {
-  @include base.composite-var(base.$sn-regular-label-l);
-}
-
-@media (max-width: l.$docs-bp-small-mobile) {
-  .header-logo-name {
-    display: none;
-  }
+  width: 12px !important;
+  height: 12px !important;
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .header-nav {
@@ -100,7 +86,7 @@ html, body {
 
 .header-end {
   display: flex;
-  gap: base.$sn-density-spacing-interval-m;
+  gap: base.$sn-primitive-dimension-4;
   align-items: center;
 }
 
@@ -156,7 +142,6 @@ html, body {
 
 .sidebar-wrap {
   position: sticky;
-  z-index: l.$docs-z-sidebar;
   top: l.$docs-header-height;
 
   overflow-y: auto;

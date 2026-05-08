@@ -2,11 +2,14 @@
 import Sidebar from '../components/Sidebar.astro'
 import { ThemeToggle } from '../components/layout/ThemeToggle'
 import { MobileNavToggle } from '../components/layout/MobileNavToggle'
-import { GithubLink } from '../components/layout/GithubLink'
+import { GitlabLink } from '../components/layout/GitlabLink'
+import { SupportLink } from '../components/layout/SupportLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { SpriteHost } from '../components/layout/SpriteHost'
 import { NavProgress } from '../components/layout/NavProgress'
+import { TeamSnack } from '../components/layout/logo/TeamSnack'
+import { CloudRu } from '../components/layout/logo/CloudRu'
 import { ClientRouter } from 'astro:transitions'
 import '../styles/global.css'
 import '../styles/docs-layout.scss'
@@ -26,6 +29,7 @@ const base = import.meta.env.BASE_URL
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description ?? 'Design System documentation'} />
+    <link rel="icon" type="image/x-icon" href={`${base}favicon.ico`} />
     <title>{title} — Design System</title>
     <ClientRouter />
   </head>
@@ -41,17 +45,21 @@ const base = import.meta.env.BASE_URL
         </div>
 
         <a href={base} class="header-logo" aria-label="Design System home">
-          <span class="header-logo-mark">DS</span>
-          <span class="header-logo-name">Design System</span>
+          <TeamSnack />
+          <svg class="header-logo-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M4 4 L12 12 M12 4 L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <CloudRu />
         </a>
-
-        <HeaderNav client:load />
 
         <HeaderSearch client:load />
 
+        <HeaderNav client:load />
+
         <div class="header-end">
           <ThemeToggle client:load />
-          <GithubLink client:load />
+          <SupportLink client:load />
+          <GitlabLink client:load />
         </div>
       </div>
     </header>

@@ -35,8 +35,8 @@ export function ThemeToggle() {
 
   return (
     <Button
-      size='s'
-      view='simple'
+      size='m'
+      view='outline'
       appearance='neutral'
       icon={isDark ? <DaySVG /> : <NightSVG />}
       onClick={toggle}
