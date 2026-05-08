@@ -42,7 +42,15 @@
 
 .group-summary:hover {
   color: base.$sn-theme-color-primary-accent;
-  background: base.$sn-theme-color-neutral-decorTransparent;
+  // decorTransparent — полупрозрачный токен; заголовок sticky-висит над списком,
+  // и без opaque-подложки при ховере просвечивают строки прокрутки.
+  // Стэкаем decor поверх непрозрачного фона.
+  background:
+    linear-gradient(
+      base.$sn-theme-color-neutral-decorTransparent,
+      base.$sn-theme-color-neutral-decorTransparent
+    ),
+    base.$sn-theme-color-neutral-background1Level;
 }
 
 .group-label {

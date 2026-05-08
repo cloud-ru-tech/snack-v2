@@ -200,6 +200,9 @@ importers:
       '@astrojs/react':
         specifier: 5.0.4
         version: 5.0.4(@types/node@22.19.17)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(less@4.6.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.99.0)(stylus@0.62.0)(tsx@4.21.0)(yaml@2.8.3)
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       astro:
         specifier: 6.1.9
         version: 6.1.9(@types/node@22.19.17)(less@4.6.4)(rollup@4.60.2)(sass@1.99.0)(stylus@0.62.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.3)
