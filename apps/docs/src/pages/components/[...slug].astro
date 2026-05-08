@@ -3,6 +3,8 @@ import { getCollection, render } from 'astro:content'
 import DocsLayout from '../../layouts/DocsLayout.astro'
 import { withBase } from '../../lib/base-url'
 import { flatPages } from '../../lib/discovery'
+import { resolveDomain } from '../../config/domains'
+import { PageBreadcrumbs } from '../../components/layout/PageBreadcrumbs'
 import '../../styles/doc-page.scss'
 
 export async function getStaticPaths() {
@@ -15,6 +17,28 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content, headings } = await render(entry)
+
+// Build breadcrumbs: Docs → Domain → [Package root, if current is a subpage] → Current title.
+const allComponents = await getCollection('components')
+const pkg = entry.id.split('/')[0]
+const domain = resolveDomain(pkg)
+const isSubpage = entry.id.includes('/')
+const pkgRoot = isSubpage
+  ? (allComponents.find((e) => e.id === pkg) ??
+      allComponents
+        .filter((e) => e.id.startsWith(`${pkg}/`))
+        .sort((a, b) => a.data.title.localeCompare(b.data.title, 'ru'))[0])
+  : null
+
+type Crumb = { id: string; label: string; href?: string }
+const crumbs: Crumb[] = [
+  { id: 'docs', label: 'Docs', href: import.meta.env.BASE_URL },
+  { id: `domain-${domain.id}`, label: domain.label },
+]
+if (pkgRoot) {
+  crumbs.push({ id: `pkg-${pkg}`, label: pkgRoot.data.title, href: withBase(`/components/${pkgRoot.id}`) })
+}
+crumbs.push({ id: `current-${entry.id}`, label: entry.data.title })
 
 // Nest H3s under their preceding H2, and H4s under the last H3 of that H2.
 // Allows the right-hand TOC to render up to two levels of nesting (e.g. Props
@@ -49,13 +73,9 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
 <DocsLayout title={entry.data.title} description={entry.data.description}>
   <div class="page">
     <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href={import.meta.env.BASE_URL}>Docs</a>
-      <span aria-hidden>›</span>
-      <span>Components</span>
-      <span aria-hidden>›</span>
-      <span aria-current="page">{entry.data.title}</span>
-    </nav>
+    <div class="breadcrumb">
+      <PageBreadcrumbs client:only="react" items={crumbs} />
+    </div>
 
     <!-- Two-column: content + TOC -->
     <div class="content-grid">
