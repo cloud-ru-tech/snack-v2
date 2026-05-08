@@ -108,7 +108,7 @@ export function SwitchRow({
       {...extractSupportProps(rest)}
     >
       {type === SWITCH_ROW_TYPES.Block && (
-        <span className={styles.stateLayer} data-state={'activatedBackground'} aria-hidden />
+        <span className={styles.stateLayer} data-state={'activatedFilled'} aria-hidden />
       )}
 
       <div className={styles.headline} data-test-id={TEST_IDS.title}>

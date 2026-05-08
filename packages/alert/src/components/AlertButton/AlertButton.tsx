@@ -75,7 +75,7 @@ export function AlertButton<T extends ElementType = 'button'>({
       <span
         className={styles.stateLayer}
         aria-hidden
-        data-state={variantProp === 'onColor' ? 'onColorBackground' : 'onAccentBackground'}
+        data-state={variantProp === 'onColor' ? 'onColorFilled' : 'onAccentFilled'}
       />
 
       <span className={styles.content}>

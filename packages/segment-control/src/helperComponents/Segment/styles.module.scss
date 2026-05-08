@@ -91,13 +91,13 @@ $typography: (
     color: base.$sn-theme-color-available-version-textMain;
 
     // Selected segment не реагирует на hover/pressed/active.
-    &:active:not([data-disabled]) .stateLayer[data-state='regularBackground'],
-    &[data-pressed='true']:not([data-disabled]) .stateLayer[data-state='regularBackground'] {
+    &:active:not([data-disabled]) .stateLayer[data-state='regularFilled'],
+    &[data-pressed='true']:not([data-disabled]) .stateLayer[data-state='regularFilled'] {
       background: transparent;
     }
 
     @media (hover: hover) {
-      &:hover:not([data-disabled]) .stateLayer[data-state='regularBackground'] {
+      &:hover:not([data-disabled]) .stateLayer[data-state='regularFilled'] {
         background: transparent;
       }
     }

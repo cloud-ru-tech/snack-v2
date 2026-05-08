@@ -61,11 +61,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           {...supportProps}
         >
           <span className={styles.acrylic} aria-hidden data-acrylic-background />
-          <span
-            className={styles.stateLayer}
-            data-state={checked ? 'activatedBackground' : 'regularFilled'}
-            aria-hidden
-          />
+          <span className={styles.stateLayer} data-state={checked ? 'activatedFilled' : 'regularFilled'} aria-hidden />
           {checked && multiSelect && (
             <span className={styles.checkWrapper} aria-hidden>
               <span className={styles.checkContainer} data-check-badge>

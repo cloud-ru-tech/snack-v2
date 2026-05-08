@@ -57,7 +57,7 @@ export function TitleClickable<T extends ElementType = 'a'>({
           aria-hidden
         >
           <span className={styles.acrylic} aria-hidden />
-          <span className={styles.stateLayer} data-state='regularBackground' aria-hidden />
+          <span className={styles.stateLayer} data-state='regularFilled' aria-hidden />
           <ArrowIcon size={16} className={styles.chevronIcon} />
         </span>
       )}

@@ -51,7 +51,7 @@
 **Чек-лист соответствия Figma ↔ код:**
 
 - [ ] `stateLayer/<group>/<role>` → `<span className={styles.stateLayer} data-state='<group><Role>' aria-hidden />` + `@use '@design-system/materials' as m; @include m.has-state-layer-as-child(stateLayer);` на SCSS-корне.
-      Допустимые `data-state` (camelCase, строго из списка): `regularBackground`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground`.
+      Допустимые `data-state` (camelCase, строго из списка): `regularFilled`, `regularBorder`, `activatedFilled`, `activatedBorder`, `onColorFilled`, `onAccentFilled`.
 - [ ] `focusedFrame/...` (hidden=true в Figma) → **не** DOM, только `&:focus-visible { outline: ...; outline-offset: ...; }` на интерактивном корне.
 - [ ] `material/<appearance><Level>` → `<span className={styles.acrylic} data-acrylic-appearance='...' data-acrylic-level='...' aria-hidden />` + `@include m.with-material('acrylic', #{acrylic});`.
 - [ ] Интерактивный корень, использующий `has-state-layer-as-child` / `with-material`, имеет `position: relative`; дочерние `.stateLayer` / `.acrylic` — `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`.

@@ -61,7 +61,7 @@ export function PrivateDropZone({
     >
       <span className={styles.acrylic} aria-hidden />
       <span className={styles.borderLayer} data-state-layer aria-hidden data-state='regularBorder' />
-      <span className={styles.overLayer} data-state-layer aria-hidden data-state='activatedBackground' />
+      <span className={styles.overLayer} data-state-layer aria-hidden data-state='activatedFilled' />
 
       {children && <div className={styles.content}>{children}</div>}
 

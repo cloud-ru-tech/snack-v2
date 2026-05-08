@@ -22,7 +22,7 @@ export function ButtonClose({ onClick, className, ...rest }: ButtonCloseProps) {
       data-test-id={TEST_IDS.closeButton}
       {...extractSupportProps(rest)}
     >
-      <div className={styles.stateLayer} aria-hidden data-state='onColorBackground' />
+      <div className={styles.stateLayer} aria-hidden data-state='onColorFilled' />
       <CrossSVG />
     </button>
   );
