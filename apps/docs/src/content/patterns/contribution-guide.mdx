@@ -58,7 +58,7 @@ pnpm dev                             # оба параллельно
 
 ## Анатомия пакета
 
-Реальная раскладка пакета — **nested по компоненту**, даже если компонент один. Подробности — в [`.claude/rules/package-src-structure.md`](https://github.com/) и [`.claude/rules/reference-package-anatomy.md`](https://github.com/).
+Реальная раскладка пакета — **nested по компоненту**, даже если компонент один. Подробности — в [`.claude/rules/package-src-structure.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/package-src-structure.md) и [`.claude/rules/reference-package-anatomy.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/reference-package-anatomy.md).
 
 ```
 packages/<pkg>/
@@ -102,7 +102,7 @@ packages/<pkg>/
 
 Папка `demos/` — это **источник живых примеров для документационного портала**, а не дубль stories.
 
-- `demos/<Name>Demo.tsx` — Canvas-плейграунд для секции `## Демо` в MDX (только для props-driven компонентов без центральных колбеков; см. [`.claude/rules/docs-structure.md`](https://github.com/)).
+- `demos/<Name>Demo.tsx` — Canvas-плейграунд для секции `## Демо` в MDX (только для props-driven компонентов без центральных колбеков; см. [`.claude/rules/docs-structure.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/docs-structure.md)).
 - `demos/examples/<Example>.tsx` — самостоятельные React-компоненты для блоков `<Example>` в MDX. Каждый файл импортируется и как живой компонент (через `client:visible`), и как исходник через `?raw` — читатель видит работающий пример **и** код, который можно скопировать целиком, включая `import`-строки.
 
 Stories vs demos: stories живут в Storybook (визуальная регрессия + play-тесты), demos живут в docs-портале (объяснение API на живых сценариях, ориентированных на потребителя). Один и тот же компонент в обеих ролях не переиспользуется — у них разные требования к state и к отображению кода.
@@ -116,7 +116,7 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
 - В пакете **нет** `react` / `react-dom` / `@types/react*` — ни в одном блоке. Корень workspace'а поставляет React для сборки и тестов.
 - Внутренние зависимости — `workspace:*`.
 
-Правило: [`.claude/rules/packages-deps.md`](https://github.com/).
+Правило: [`.claude/rules/packages-deps.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/packages-deps.md).
 
 ### package.json — exports
 
@@ -169,7 +169,7 @@ pnpm dev:storybook
 
 ### Структура stories — Playground + VisualMatrix
 
-Полные правила: [`.claude/rules/stories-standard.md`](https://github.com/). Каждый компонент получает минимум **два** файла.
+Полные правила: [`.claude/rules/stories-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/stories-standard.md). Каждый компонент получает минимум **два** файла.
 
 ```tsx
 // packages/<pkg>/stories/<Name>/<Name>.Playground.stories.tsx
@@ -228,6 +228,19 @@ import { StoryTable } from '#storybook/components'
 | `packages/*/docs/*.mdx` | `/components/<pkg>/<filename>` |
 | `apps/docs/src/content/patterns/*.mdx` | `/patterns/<filename>` |
 
+### Доменная группировка пакетов
+
+Главная страница и сайдбар группируют пакеты по **префиксу имени**. Конфиг — [`apps/docs/src/config/domains.ts`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/apps/docs/src/config/domains.ts):
+
+| Префикс пакета | Домен в портале и Storybook |
+|----------------|------------------------------|
+| `uikit-product-*` | Uikit Product |
+| `ai-*` | AI |
+| `admin-*` | Admin |
+| (остальное) | Components |
+
+Резолвер `resolveDomain(pkg)` идёт по списку `DOMAINS` сверху вниз, первое попадание по `prefix` выигрывает. Порядок в массиве задаёт порядок секций на главной и групп в сайдбаре. Чтобы завести новый домен — добавить блок `{ id, label, storybookLabel, description, prefix }` и подобрать правильный префикс пакета. `description` показывается абзацем под заголовком секции на главной и внутри `QuestionTooltip` рядом с заголовком группы в сайдбаре.
+
 ### Canvas, PropsTable, StorybookEmbed, FigmaEmbed
 
 ```mdx
@@ -246,7 +259,7 @@ import buttonDoc from './props.json'
 
 `Canvas` строит контролы из `props.json` (`componentDoc`). `FigmaEmbed` получает `FigmaNodeRef` через `figmaNode(pkg, sub?)` из `apps/docs/src/lib/figma.ts` — все узлы компонентов централизованы в `FIGMA_NODES` map'е по имени пакета.
 
-Полный шаблон MDX-страницы — [`.claude/rules/docs-structure.md`](https://github.com/).
+Полный шаблон MDX-страницы — [`.claude/rules/docs-structure.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/docs-structure.md).
 
 ## Как добавить новый компонент
 
@@ -287,7 +300,7 @@ pnpm test:stories:ci
 
 ### 2. Playwright E2E против Storybook iframe
 
-Полные правила: [`.claude/rules/e2e-testing-standard.md`](https://github.com/). Тесты **живут внутри пакета** — `packages/<pkg>/__test__/<Name>/*.spec.ts`. Fixtures импортируются из корневого `playwright/`.
+Полные правила: [`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md). Тесты **живут внутри пакета** — `packages/<pkg>/__test__/<Name>/*.spec.ts`. Fixtures импортируются из корневого `playwright/`.
 
 ```ts
 // packages/button/__test__/Button/rendering.spec.ts
@@ -303,7 +316,7 @@ test('renders', async ({ page, gotoStory }) => {
 Разные комбинации пропсов проверяются через `gotoStory(id, args)` — отдельную story «под каждую комбинацию» заводить не нужно.
 
 Набор спеков на компонент (max 5 + visual):
-`rendering.spec.ts`, `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts`, `visual.spec.ts`. Выбор набора — по tier'у ([`.claude/rules/complexity-tiers.md`](https://github.com/)).
+`rendering.spec.ts`, `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts`, `visual.spec.ts`. Выбор набора — по tier'у ([`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md)).
 
 ```bash
 pnpm test:e2e                            # все проекты — финальная сверка перед PR
@@ -317,7 +330,7 @@ pnpm test:e2e:docs                       # отдельный suite для apps/
 
 ### 3. Визуальная регрессия
 
-Baseline'ы лежат **рядом со спеком** — `packages/<pkg>/__test__/<Name>/__snapshots__/<arg>-<projectName>.png`. Снимки только на `chrome`, имена без префикса пакета (`visual-matrix.png`, не `button-visual-matrix.png`). Правила — [`.claude/rules/visual-regression-standard.md`](https://github.com/).
+Baseline'ы лежат **рядом со спеком** — `packages/<pkg>/__test__/<Name>/__snapshots__/<arg>-<projectName>.png`. Снимки только на `chrome`, имена без префикса пакета (`visual-matrix.png`, не `button-visual-matrix.png`). Правила — [`.claude/rules/visual-regression-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/visual-regression-standard.md).
 
 ## Генерация артефактов
 
@@ -461,7 +474,7 @@ export const FIGMA_NODES = {
 - `get_variable_defs` — имена токенов.
 - `get_screenshot` — PNG узла.
 
-Правила работы с Figma — [`.claude/rules/figma-integration.md`](https://github.com/) и [`.claude/rules/figma-to-code.md`](https://github.com/).
+Правила работы с Figma — [`.claude/rules/figma-integration.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/figma-integration.md) и [`.claude/rules/figma-to-code.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/figma-to-code.md).
 
 ## Claude Code инструментарий
 
@@ -568,7 +581,7 @@ pnpm test:e2e:chrome packages/<pkg>/__test__/<Component>/rendering.spec.ts # о�
 pnpm test:e2e:chrome -g "props propagation"                               # по grep'у имени теста
 ```
 
-Селективные команды для итераций (lint/build:pkg/typecheck/тесты по одному пакету) — см. [`.claude/rules/fast-build-commands.md`](https://github.com/).
+Селективные команды для итераций (lint/build:pkg/typecheck/тесты по одному пакету) — см. [`.claude/rules/fast-build-commands.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/fast-build-commands.md).
 
 ### Типовой флоу: новый компонент из Figma
 

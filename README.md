@@ -112,7 +112,20 @@ pnpm release
 3. Добавить пакет в `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (скрипт `add-package` делает это автоматически)
 4. Описать сторис в `stories/MyComponent.stories.tsx`
 5. Написать демо в `demos/MyComponentDemo.tsx`
-6. Задокументировать в `docs/overview.mdx` — страница появится в портале автоматически
+6. Задокументировать в `docs/index.mdx` — страница появится в портале автоматически
+
+### Доменная группировка пакетов
+
+Главная страница и сайдбар docs группируют пакеты по **префиксу имени** через конфиг `apps/docs/src/config/domains.mjs`:
+
+| Префикс пакета | Домен в портале и Storybook |
+|----------------|------------------------------|
+| `uikit-product-*` | Uikit Product |
+| `ai-*` | AI |
+| `admin-*` | Admin |
+| (всё остальное) | Components |
+
+Чтобы завести новый домен — добавить блок в `DOMAINS` массив и убедиться, что префикс пакета совпадает с `prefix`. Никаких ручных вписываний пакета по доменам не нужно.
 
 ## Технологии
 
@@ -123,5 +136,5 @@ pnpm release
 | Сборка компонентов | TypeScript (`tspc` + project references), ts-patch |
 | Стили | SCSS → CSS (sass + postcss), CSS Modules |
 | Документальный портал | Astro + MDX |
-| Среда разработки компонентов | Storybook 8 |
+| Среда разработки компонентов | Storybook 10 |
 | E2E-тесты | Playwright |

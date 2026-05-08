@@ -1,12 +1,25 @@
 ---
 import { pathsMatch } from '../lib/base-url'
-import { buildNav } from '../lib/discovery'
+import { buildNav, domainIdForPath } from '../lib/discovery'
 import type { NavItem } from '../lib/discovery'
+import { DOMAINS } from '../config/domains'
+import { GroupTooltip } from './sidebar/GroupTooltip'
+import { Counter } from '@ds/counter'
 import '../styles/sidebar.scss'
+
+const PATTERNS_DESCRIPTION = 'Гайды и паттерны проектирования: как собирать сценарии из компонентов, контрибьютить, стандарты и процессы.'
+
+const descByGroupId = new Map<string, string | undefined>(DOMAINS.map((d) => [d.id, d.description]))
+descByGroupId.set('patterns', PATTERNS_DESCRIPTION)
 
 const nav = await buildNav()
 const base = import.meta.env.BASE_URL
 const currentPath = Astro.url.pathname
+const currentDomainId = domainIdForPath(currentPath)
+const onPatterns = currentPath.includes('/patterns/')
+// Group is "in focus" when we're on one of its pages. On the home page nothing
+// is focused — all domain groups are collapsed; patterns stays open.
+const focusedGroupId = onPatterns ? 'patterns' : currentDomainId
 
 function isActive(href: string) {
   return pathsMatch(currentPath, href)
@@ -18,13 +31,28 @@ function isGroupActive(item: NavItem) {
 ---
 
 <nav class="nav" aria-label="Documentation">
-  <a href={base} class="logo" aria-label="Design System home">
-    Design System
-  </a>
-
-  {nav.map((group) => (
-    <section class="group">
-      <h2 class="group-label">{group.label}</h2>
+{nav.map((group, i) => (
+    <details class="group" open={focusedGroupId === group.id} data-group-id={group.id}>
+      <summary class="group-summary" style={`--group-index: ${i}`}>
+        <h2 class="group-label">{group.label}</h2>
+        {descByGroupId.get(group.id) && (
+          <span class="group-info" onclick="event.preventDefault(); event.stopPropagation()">
+            <GroupTooltip
+              client:visible
+              tip={descByGroupId.get(group.id)!}
+              label={`О группе ${group.label}`}
+            />
+          </span>
+        )}
+        <span class="group-count" aria-hidden="true">
+          <Counter value={group.items.length} appearance='neutral' size='xs' color='decor' />
+        </span>
+        <span class="group-toggle" aria-hidden="true">
+          <svg viewBox="0 0 12 12" width="12" height="12">
+            <path d="M4 2.5 L8 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </summary>
       <ul class="list" role="list">
         {group.items.map((item) =>
           item.children?.length ? (
@@ -73,7 +101,7 @@ function isGroupActive(item: NavItem) {
           )
         )}
       </ul>
-    </section>
+    </details>
   ))}
 </nav>
 
@@ -119,6 +147,18 @@ function isGroupActive(item: NavItem) {
       if (pkgLink) pkgLink.classList.toggle('link--active', hasActive)
       if (hasActive) d.open = true
     })
+
+    // Domain-level <details>: open the group containing the active page,
+    // collapse the rest. On the home page nothing is active — leave whatever
+    // state the user manually set.
+    const domainGroups = document.querySelectorAll<HTMLDetailsElement>('.nav .group[data-group-id]')
+    const anyActive = !!document.querySelector('.nav a.link--active')
+    if (anyActive) {
+      domainGroups.forEach((d) => {
+        d.open = !!d.querySelector('a.link--active')
+      })
+    }
+
 
     // Scroll the sidebar so the active link sits in the upper part of the viewport.
     const scroller = document.getElementById('sidebar')

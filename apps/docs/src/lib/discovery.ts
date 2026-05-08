@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 
+import { DOMAINS, resolveDomainId } from '../config/domains';
 import { withBase } from './base-url';
 
 export type NavItem = {
@@ -11,6 +12,8 @@ export type NavItem = {
 };
 
 export type NavGroup = {
+  /** Stable id of the domain (e.g. "components", "ai", "uikit-product"). */
+  id: string;
   label: string;
   items: NavItem[];
 };
@@ -25,6 +28,8 @@ export type FlatPage = {
   href: string;
 };
 
+const PATTERNS_GROUP_ID = 'patterns';
+
 export async function buildNav(): Promise<NavGroup[]> {
   const [components, patterns] = await Promise.all([getCollection('components'), getCollection('patterns')]);
 
@@ -37,11 +42,16 @@ export async function buildNav(): Promise<NavGroup[]> {
     byPackage.set(pkg, list);
   }
 
-  const componentItems: NavItem[] = [];
-  const uikitProductItems: NavItem[] = [];
+  // Initialize one bucket per domain so the groups always render in DOMAINS order,
+  // even if a domain has no packages (we'll filter empty ones at the end).
+  const itemsByDomain = new Map<string, NavItem[]>(DOMAINS.map(d => [d.id, [] as NavItem[]]));
 
   for (const [pkg, entries] of byPackage) {
-    const target = pkg.startsWith('uikit-product-') ? uikitProductItems : componentItems;
+    const domainId = resolveDomainId(pkg);
+    // itemsByDomain is seeded from DOMAINS above and resolveDomainId always
+    // returns an id from that same list, so the bucket is guaranteed to exist;
+    // the ?? branch is just here to satisfy strict-null-checks.
+    const target = itemsByDomain.get(domainId) ?? [];
     // "index" entry: ID equals the package name alone (from docs/index.mdx)
     const indexEntry = entries.find(e => e.id === pkg);
     const subEntries = entries
@@ -79,12 +89,16 @@ export async function buildNav(): Promise<NavGroup[]> {
     order: e.data.order,
   }));
 
-  return [
-    { label: 'Components', items: componentItems.sort(byTitle) },
-    { label: 'Uikit Product', items: uikitProductItems.sort(byTitle) },
-    { label: 'Patterns', items: patternItems.sort(byOrder) },
-  ];
+  const componentGroups: NavGroup[] = DOMAINS.map(d => ({
+    id: d.id,
+    label: d.label,
+    items: (itemsByDomain.get(d.id) ?? []).sort(byTitle),
+  })).filter(g => g.items.length > 0);
+
+  return [...componentGroups, { id: PATTERNS_GROUP_ID, label: 'Patterns', items: patternItems.sort(byOrder) }];
 }
+
+export { domainIdForPath, pkgFromPath } from './path';
 
 export async function flatPages(): Promise<FlatPage[]> {
   const nav = await buildNav();
