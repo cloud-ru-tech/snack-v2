@@ -21,9 +21,9 @@ export const LEVEL = {
 export const STATE = {
   RegularFilled: 'regularFilled',
   RegularBorder: 'regularBorder',
-  ActivatedBackground: 'activatedBackground',
+  ActivatedFilled: 'activatedFilled',
   ActivatedBorder: 'activatedBorder',
-  OnColorBackground: 'onColorBackground',
-  OnAccentBackground: 'onAccentBackground',
+  OnColorFilled: 'onColorFilled',
+  OnAccentFilled: 'onAccentFilled',
   TextOpacity: 'textOpacity',
 } as const;

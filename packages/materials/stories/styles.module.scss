@@ -90,15 +90,15 @@
     background-color: base.$sn-theme-color-neutral-background;
   }
 
-  &[data-state='activatedBackground'] {
+  &[data-state='activatedFilled'] {
     background-color: base.$sn-theme-color-neutral-background1Level;
   }
 
-  &[data-state='onColorBackground'] {
+  &[data-state='onColorFilled'] {
     background-color: base.$sn-theme-color-primary-background;
   }
 
-  &[data-state='onAccentBackground'] {
+  &[data-state='onAccentFilled'] {
     background-color: base.$sn-theme-color-primary-accent;
   }
 }

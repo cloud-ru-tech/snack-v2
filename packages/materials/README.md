@@ -112,7 +112,7 @@ pnpm add @ds/materials
 
 Миксин `has-state-layer-as-child($stateLayerSelector)` подключают в **классе корневого элемента**, с которым пользователь взаимодействует (hover, active и т.д.): в этот момент стили применяются к **потомку**, чей класс передан аргументом. В CSS Modules аргумент задают как `#{stateLayer}`, если в том же файле объявлен класс `.stateLayer`.
 
-На элементе слоя указывают `data-state`: `regularFilled`, `regularBorder`, `activatedBackground`, `activatedBorder`, `onColorBackground`, `onAccentBackground`. Набор состояний из пропа нельзя сгенерировать автоматически — только ручной маппинг к структуре Figma Variables.
+На элементе слоя указывают `data-state`: `regularFilled`, `regularBorder`, `activatedFilled`, `activatedBorder`, `onColorFilled`, `onAccentFilled`. Набор состояний из пропа нельзя сгенерировать автоматически — только ручной маппинг к структуре Figma Variables.
 
 Примеры: **Playground**, **SampleBlock**, **StateSquare** (`packages/materials/stories/…`).
 

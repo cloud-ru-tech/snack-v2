@@ -7,7 +7,7 @@
   * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
   */
 $states:
-  'regularFilled', 'regularBorder', 'activatedBackground', 'activatedBorder', 'onColorBackground', 'onAccentBackground',
+  'regularFilled', 'regularBorder', 'activatedFilled', 'activatedBorder', 'onColorFilled', 'onAccentFilled',
   'textOpacity';
 $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
@@ -38,7 +38,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
       border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
     }
 
-    &[data-state='activatedBackground'] {
+    &[data-state='activatedFilled'] {
       background: base.$sn-theme-color-material-stateLayer-activated-default-filled;
     }
 
@@ -46,11 +46,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
       border-color: base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
     }
 
-    &[data-state='onColorBackground'] {
+    &[data-state='onColorFilled'] {
       background: base.$sn-theme-color-material-stateLayer-onColor-default-filled;
     }
 
-    &[data-state='onAccentBackground'] {
+    &[data-state='onAccentFilled'] {
       background: base.$sn-theme-color-material-stateLayer-onAccent-default-filled;
     }
   }
@@ -66,7 +66,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
           border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
         }
 
-        &[data-state='activatedBackground'] {
+        &[data-state='activatedFilled'] {
           background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
         }
 
@@ -74,11 +74,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
           border-color: base.$sn-theme-color-material-stateLayer-activated-hovered-borderColor;
         }
 
-        &[data-state='onColorBackground'] {
+        &[data-state='onColorFilled'] {
           background: base.$sn-theme-color-material-stateLayer-onColor-hovered-filled;
         }
 
-        &[data-state='onAccentBackground'] {
+        &[data-state='onAccentFilled'] {
           background: base.$sn-theme-color-material-stateLayer-onAccent-hovered-filled;
         }
       }
@@ -98,7 +98,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
         border-color: base.$sn-theme-color-material-stateLayer-regular-pressed-borderColor;
       }
 
-      &[data-state='activatedBackground'] {
+      &[data-state='activatedFilled'] {
         background: base.$sn-theme-color-material-stateLayer-activated-pressed-filled;
       }
 
@@ -106,11 +106,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
         border-color: base.$sn-theme-color-material-stateLayer-activated-pressed-borderColor;
       }
 
-      &[data-state='onColorBackground'] {
+      &[data-state='onColorFilled'] {
         background: base.$sn-theme-color-material-stateLayer-onColor-pressed-filled;
       }
 
-      &[data-state='onAccentBackground'] {
+      &[data-state='onAccentFilled'] {
         background: base.$sn-theme-color-material-stateLayer-onAccent-pressed-filled;
       }
     }
