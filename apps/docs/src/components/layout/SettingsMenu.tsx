@@ -1,6 +1,7 @@
 import { Button } from '@ds/button';
+import { Dropdown } from '@ds/dropdown';
 import { DaySVG, NightSVG, ProductIcons, SettingsSVG } from '@ds/icons';
-import { Popover } from '@ds/popover';
+import { PortalContextProvider } from '@ds/portal-context';
 import { SegmentControl } from '@ds/segment-control';
 import { useEffect, useRef, useState } from 'react';
 
@@ -198,22 +199,33 @@ export function SettingsMenu() {
     setSettings(next);
   };
 
+  // На Astro view transitions body постоянно пересоздаётся, и popover, отрендеренный
+  // в body через FloatingPortal, теряется после первой навигации. Якоримся к
+  // persisted-узлу самой шапки — портал переживёт смену страницы.
+  const portalRootRef = useRef<HTMLDivElement>(null);
+
   return (
-    <Popover
-      open={open}
-      onOpenChange={setOpen}
-      trigger='click'
-      placement='bottom-end'
-      content={<SettingsContent settings={settings} onChange={update} />}
-    >
-      <Button
-        size='m'
-        view='outline'
-        appearance='neutral'
-        icon={<SettingsSVG />}
-        aria-label='Настройки темы и бренда'
-        title='Настройки темы и бренда'
-      />
-    </Popover>
+    <PortalContextProvider root={portalRootRef}>
+      <div ref={portalRootRef} className={styles.anchor}>
+        <Dropdown
+          open={open}
+          onOpenChange={setOpen}
+          trigger='click'
+          placement='bottom-end'
+          widthStrategy='auto'
+          triggerClassName={styles.trigger}
+          content={<SettingsContent settings={settings} onChange={update} />}
+        >
+          <Button
+            size='m'
+            view='outline'
+            appearance='neutral'
+            icon={<SettingsSVG />}
+            aria-label='Настройки темы и бренда'
+            title='Настройки темы и бренда'
+          />
+        </Dropdown>
+      </div>
+    </PortalContextProvider>
   );
 }
