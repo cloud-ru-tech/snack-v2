@@ -1,12 +1,12 @@
 import { Button } from '@ds/button';
 import { DaySVG, NightSVG, ProductIcons, SettingsSVG } from '@ds/icons';
-
-const { LaptopSVG, MobilePhoneSVG } = ProductIcons;
 import { Popover } from '@ds/popover';
 import { SegmentControl } from '@ds/segment-control';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from './SettingsMenu.module.scss';
+
+const { LaptopSVG, MobilePhoneSVG } = ProductIcons;
 
 type Theme = 'light' | 'dark';
 type Brand = 'brandA' | 'brandB' | 'brandC';
@@ -92,15 +92,26 @@ function applySettings(settings: Settings) {
   cls.toggle('sn-comfort', settings.density === 'comfort');
 }
 
-function broadcastToStorybookFrames(settings: Settings) {
-  const payload = {
-    type: 'theme-sync',
+function isStorybookFrame(frame: HTMLIFrameElement): boolean {
+  // Сообщения шлём только в storybook-iframe'ы (StorybookEmbed). Figma и
+  // прочие embeds не должны получать наш theme-sync.
+  return /\/storybook\/|:6006\//.test(frame.src);
+}
+
+function buildSyncPayload(settings: Settings) {
+  return {
+    type: 'theme-sync' as const,
     theme: settings.theme,
     brand: settings.brand,
     brandRole: settings.brandRole,
-    platform: settings.density,
+    density: settings.density,
   };
+}
+
+function broadcastToStorybookFrames(settings: Settings) {
+  const payload = buildSyncPayload(settings);
   document.querySelectorAll<HTMLIFrameElement>('iframe').forEach(frame => {
+    if (!isStorybookFrame(frame)) return;
     frame.contentWindow?.postMessage(payload, '*');
   });
 }
@@ -153,27 +164,24 @@ function SettingsContent({ settings, onChange }: { settings: Settings; onChange(
 }
 
 export function SettingsMenu() {
-  const [settings, setSettings] = useState<Settings>(DEFAULTS);
+  // Lazy initializer читает классы из <html>, выставленные inline-скриптом
+  // в DocsLayout.astro до гидратации. Это убирает мигание между DEFAULTS
+  // и реальным состоянием на первом рендере.
+  const [settings, setSettings] = useState<Settings>(() =>
+    typeof document === 'undefined' ? DEFAULTS : readSettings(),
+  );
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const current = readSettings();
-    setSettings(current);
+  // Ref на актуальные настройки нужен, чтобы handler theme-sync-request
+  // от вновь смонтированного storybook iframe всегда отдавал свежие значения.
+  const settingsRef = useRef(settings);
+  settingsRef.current = settings;
 
+  useEffect(() => {
     const handleSyncRequest = (event: MessageEvent) => {
-      if (event.data?.type === 'theme-sync-request') {
-        const target = event.source as Window | null;
-        target?.postMessage(
-          {
-            type: 'theme-sync',
-            theme: current.theme,
-            brand: current.brand,
-            brandRole: current.brandRole,
-            platform: current.density,
-          },
-          '*',
-        );
-      }
+      if (event.data?.type !== 'theme-sync-request') return;
+      const target = event.source as Window | null;
+      target?.postMessage(buildSyncPayload(settingsRef.current), '*');
     };
     window.addEventListener('message', handleSyncRequest);
     return () => window.removeEventListener('message', handleSyncRequest);

@@ -1,4 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use 'layout' as l;
 
 // Shared prose styles for MDX rendered via <article class="doc">.
 // Consumers @use this partial to emit the rules.
@@ -41,6 +42,8 @@ $island-exclude: ':not(astro-island *)';
   .doc h2#{$island-exclude} {
     @include base.composite-var(base.$sn-regular-title-l);
 
+    scroll-margin-top: l.$docs-header-height;
+
     margin-top: base.$sn-density-spacing-interval-3xl;
     margin-bottom: base.$sn-primitive-dimension-12;
     padding-top: base.$sn-density-spacing-interval-xl;
@@ -50,6 +53,7 @@ $island-exclude: ':not(astro-island *)';
   .doc h3#{$island-exclude} {
     @include base.composite-var(base.$sn-regular-title-m);
 
+    scroll-margin-top: l.$docs-header-height;
     margin-top: base.$sn-density-spacing-interval-xl;
     margin-bottom: base.$sn-density-spacing-interval-m;
   }

@@ -123,7 +123,7 @@ export function ThemeControlsToolbar() {
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
   const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
   const brandRole = (globals[GLOBAL_KEYS.BRAND_ROLE] as BrandRole) ?? 'main';
-  const density = (globals[GLOBAL_KEYS.DENSITY] as Density) ?? 'desktop';
+  const density = (globals[GLOBAL_KEYS.DENSITY] as Density) ?? 'compact';
   const language = (globals[GLOBAL_KEYS.LANGUAGE] as Language) ?? 'en-GB';
 
   const setTheme = useCallback((value: Theme) => updateGlobals({ [GLOBAL_KEYS.THEME]: value }), [updateGlobals]);

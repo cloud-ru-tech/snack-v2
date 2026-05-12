@@ -15,8 +15,7 @@
 }
 
 .label {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
   color: base.$sn-theme-color-available-version-textSecondary;
+
+  @include base.composite-var(base.$sn-regular-label-s);
 }

@@ -13,8 +13,9 @@ export function ThemeSyncBridge({ children }: { children: ReactNode }) {
 
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === 'theme-sync') {
-        const { theme, brand, brandRole, platform } = event.data;
-        channel.emit(CHANNEL_SYNC_EVENT, { theme, brand, brandRole, platform });
+        const { theme, brand, brandRole, platform, density, language } = event.data;
+        // Docs шлёт density под именем `platform`, поддерживаем оба ключа.
+        channel.emit(CHANNEL_SYNC_EVENT, { theme, brand, brandRole, density: density ?? platform, language });
       }
     };
 
