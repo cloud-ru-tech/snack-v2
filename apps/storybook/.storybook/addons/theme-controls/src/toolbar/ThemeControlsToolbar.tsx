@@ -7,6 +7,8 @@ import { DAY_PATH, LAPTOP_PATH, MOBILE_PHONE_PATH, NIGHT_PATH } from '../config/
 import {
   Brand,
   BRAND_OPTIONS,
+  BRAND_ROLE_OPTIONS,
+  BrandRole,
   CHANNEL_SYNC_EVENT,
   Density,
   DENSITY_OPTIONS,
@@ -53,6 +55,16 @@ function BrandIcon({ brand }: { brand: Brand }) {
   return <BrandColorDot color={BRAND_COLOR[brand]} />;
 }
 
+function BrandRoleIcon({ variant }: { variant: BrandRole }) {
+  return (
+    <span style={iconStyle} aria-hidden>
+      <svg width={iconSize} height={iconSize} viewBox='0 0 14 14' fill='none' style={{ display: 'block' }}>
+        <circle cx='7' cy='7' r='5' fill='none' stroke='currentColor' strokeWidth={variant === 'alter' ? 1 : 2.5} />
+      </svg>
+    </span>
+  );
+}
+
 function PlatformIcon({ density }: { density: Density }) {
   return <SvgIcon d={density === 'comfort' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
 }
@@ -69,6 +81,12 @@ const themeOptionsWithIcons: SelectOption[] = [
 const brandOptionsWithIcons: SelectOption[] = [
   { value: 'brandA', title: BRAND_OPTIONS[0].label, icon: <BrandColorDot color={BRAND_COLOR.brandA} /> },
   { value: 'brandB', title: BRAND_OPTIONS[1].label, icon: <BrandColorDot color={BRAND_COLOR.brandB} /> },
+  { value: 'brandC', title: BRAND_OPTIONS[2].label, icon: <BrandColorDot color={BRAND_COLOR.brandC} /> },
+];
+
+const brandRoleOptionsWithIcons: SelectOption[] = [
+  { value: 'main', title: BRAND_ROLE_OPTIONS[0].label, icon: <BrandRoleIcon variant='main' /> },
+  { value: 'alter', title: BRAND_ROLE_OPTIONS[1].label, icon: <BrandRoleIcon variant='alter' /> },
 ];
 
 const platformOptionsWithIcons: SelectOption[] = [
@@ -91,6 +109,7 @@ const wrapperStyle: CSSProperties = {
 type ControlsPayload = {
   theme?: Theme;
   brand?: Brand;
+  brandRole?: BrandRole;
   density?: Density;
   language?: Language;
 };
@@ -103,11 +122,16 @@ export function ThemeControlsToolbar() {
 
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
   const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
+  const brandRole = (globals[GLOBAL_KEYS.BRAND_ROLE] as BrandRole) ?? 'main';
   const density = (globals[GLOBAL_KEYS.DENSITY] as Density) ?? 'desktop';
   const language = (globals[GLOBAL_KEYS.LANGUAGE] as Language) ?? 'en-GB';
 
   const setTheme = useCallback((value: Theme) => updateGlobals({ [GLOBAL_KEYS.THEME]: value }), [updateGlobals]);
   const setBrand = useCallback((value: Brand) => updateGlobals({ [GLOBAL_KEYS.BRAND]: value }), [updateGlobals]);
+  const setBrandRole = useCallback(
+    (value: BrandRole) => updateGlobals({ [GLOBAL_KEYS.BRAND_ROLE]: value }),
+    [updateGlobals],
+  );
   const setDensity = useCallback((value: Density) => updateGlobals({ [GLOBAL_KEYS.DENSITY]: value }), [updateGlobals]);
   const setLanguage = useCallback(
     (language: Language) => updateGlobals({ [GLOBAL_KEYS.LANGUAGE]: language }),
@@ -120,6 +144,7 @@ export function ThemeControlsToolbar() {
       const next: Record<string, string> = {};
       if (payload.theme) next[GLOBAL_KEYS.THEME] = payload.theme;
       if (payload.brand) next[GLOBAL_KEYS.BRAND] = payload.brand;
+      if (payload.brandRole) next[GLOBAL_KEYS.BRAND_ROLE] = payload.brandRole;
       if (payload.density) next[GLOBAL_KEYS.DENSITY] = payload.density;
       if (payload.language) next[GLOBAL_KEYS.LANGUAGE] = payload.language;
       if (Object.keys(next).length) updateGlobals(next);
@@ -147,6 +172,16 @@ export function ThemeControlsToolbar() {
         options={brandOptionsWithIcons}
         defaultOptions={brand}
         onSelect={v => setBrand(String(v) as Brand)}
+        size='small'
+        padding='small'
+      />
+      <Select
+        key={`brandRole-${brandRole}`}
+        ariaLabel='Brand role'
+        icon={<BrandRoleIcon variant={brandRole} />}
+        options={brandRoleOptionsWithIcons}
+        defaultOptions={brandRole}
+        onSelect={v => setBrandRole(String(v) as BrandRole)}
         size='small'
         padding='small'
       />

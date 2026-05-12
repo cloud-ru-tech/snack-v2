@@ -9,7 +9,7 @@ import { configure } from 'storybook/test';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
 import { PreviewThemeProvider, StoryWrapper } from './components';
-import type { Acrylic, Brand, Density, Language, Theme } from './components/types';
+import type { Acrylic, Brand, BrandRole, Density, Language, Theme } from './components/types';
 
 // Реп использует `data-test-id` (TEST_ID_ATTRIBUTE в playwright/constants/common.ts),
 // testing-library по умолчанию ищет `data-testid`. Синхронизируем, чтобы getByTestId
@@ -23,6 +23,7 @@ const preview: Preview = {
       const g = context.globals ?? {};
       const theme = (g[GLOBAL_KEYS.THEME] as Theme) ?? INITIAL_GLOBALS[GLOBAL_KEYS.THEME];
       const brand = (g[GLOBAL_KEYS.BRAND] as Brand) ?? INITIAL_GLOBALS[GLOBAL_KEYS.BRAND];
+      const brandRole = (g[GLOBAL_KEYS.BRAND_ROLE] as BrandRole) ?? INITIAL_GLOBALS[GLOBAL_KEYS.BRAND_ROLE];
       const density = (g[GLOBAL_KEYS.DENSITY] as Density) ?? INITIAL_GLOBALS[GLOBAL_KEYS.DENSITY];
       const language = (g[GLOBAL_KEYS.LANGUAGE] as Language) ?? INITIAL_GLOBALS[GLOBAL_KEYS.LANGUAGE];
       const acrylic = (g[GLOBAL_KEYS.ACRYLIC] as Acrylic) ?? INITIAL_GLOBALS[GLOBAL_KEYS.ACRYLIC];
@@ -34,6 +35,7 @@ const preview: Preview = {
               ref={storyWrapperRef}
               theme={theme}
               brand={brand}
+              brandRole={brandRole}
               density={density}
               language={language}
               acrylic={acrylic}

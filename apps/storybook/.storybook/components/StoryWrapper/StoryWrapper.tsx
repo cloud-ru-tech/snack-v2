@@ -2,13 +2,14 @@ import { LocaleProvider } from '@ds/locale';
 import cn from 'classnames';
 import { forwardRef, ReactNode } from 'react';
 
-import type { Acrylic, Brand, Density, Language, Theme } from '../types';
+import type { Acrylic, Brand, BrandRole, Density, Language, Theme } from '../types';
 import styles from './styles.module.scss';
 
 type StoryWrapperProps = {
   children: ReactNode;
   theme: Theme;
   brand: Brand;
+  brandRole: BrandRole;
   density: Density;
   language: Language;
   acrylic: Acrylic;
@@ -20,7 +21,7 @@ type StoryWrapperProps = {
  * Тема, бренд и платформа задаются через аддон "Тема / Бренд / Платформа" в панели Storybook.
  */
 export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
-  ({ children, theme, brand, density, acrylic, language }, ref) => (
+  ({ children, theme, brand, brandRole, density, acrylic, language }, ref) => (
     <LocaleProvider lang={language}>
       <div
         ref={ref}
@@ -35,6 +36,7 @@ export const StoryWrapper = forwardRef<HTMLDivElement, StoryWrapperProps>(
           `sn-${density}`,
           `sn-${theme}`,
           `sn-${brand}`,
+          `sn-${brandRole}`,
           acrylic === 'enabled' ? 'sn-yes' : 'sn-no',
         )}
       >

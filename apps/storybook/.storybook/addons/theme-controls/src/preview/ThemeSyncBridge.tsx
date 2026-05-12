@@ -13,8 +13,8 @@ export function ThemeSyncBridge({ children }: { children: ReactNode }) {
 
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === 'theme-sync') {
-        const { theme, brand, platform } = event.data;
-        channel.emit(CHANNEL_SYNC_EVENT, { theme, brand, platform });
+        const { theme, brand, brandRole, platform } = event.data;
+        channel.emit(CHANNEL_SYNC_EVENT, { theme, brand, brandRole, platform });
       }
     };
 
