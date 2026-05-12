@@ -1,6 +1,6 @@
 ---
 import Sidebar from '../components/Sidebar.astro'
-import { ThemeToggle } from '../components/layout/ThemeToggle'
+import { SettingsMenu } from '../components/layout/SettingsMenu'
 import { MobileNavToggle } from '../components/layout/MobileNavToggle'
 import { GitlabLink } from '../components/layout/GitlabLink'
 import { SupportLink } from '../components/layout/SupportLink'
@@ -24,7 +24,7 @@ const base = import.meta.env.BASE_URL
 ---
 
 <!doctype html>
-<html lang="ru" class="sn-base-styles sn-components sn-figmaStyles sn-brandA sn-compact sn-light">
+<html lang="ru" class="sn-base-styles sn-components sn-figmaStyles sn-brandA sn-main sn-compact sn-light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,7 +57,7 @@ const base = import.meta.env.BASE_URL
         <HeaderNav client:load />
 
         <div class="header-end">
-          <ThemeToggle client:load />
+          <SettingsMenu client:load />
           <SupportLink client:load />
           <GitlabLink client:load />
         </div>
@@ -78,16 +78,29 @@ const base = import.meta.env.BASE_URL
     </div>
 
     <script is:inline>
-      // Apply initial theme synchronously to avoid FOUC. React ThemeToggle handles clicks.
-      // Also re-apply after each ClientRouter swap: the incoming <html> is SSR'd with
-      // the light class, so without this the theme flips to light on every navigation.
+      // Apply initial theme/brand/brandRole/density synchronously to avoid FOUC.
+      // React SettingsMenu handles clicks; this handles initial load and post-swap navigation.
       (function () {
         function apply() {
-          const stored = localStorage.getItem('ds-theme')
+          const cls = document.documentElement.classList
+          const storedTheme = localStorage.getItem('ds-theme')
           const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-          const isDark = (stored ?? system) === 'dark'
-          document.documentElement.classList.toggle('sn-dark', isDark)
-          document.documentElement.classList.toggle('sn-light', !isDark)
+          const theme = storedTheme ?? system
+          cls.toggle('sn-dark', theme === 'dark')
+          cls.toggle('sn-light', theme === 'light')
+
+          const brand = localStorage.getItem('ds-brand') ?? 'brandA'
+          cls.toggle('sn-brandA', brand === 'brandA')
+          cls.toggle('sn-brandB', brand === 'brandB')
+          cls.toggle('sn-brandC', brand === 'brandC')
+
+          const brandRole = localStorage.getItem('ds-brandRole') ?? 'main'
+          cls.toggle('sn-main', brandRole === 'main')
+          cls.toggle('sn-alter', brandRole === 'alter')
+
+          const density = localStorage.getItem('ds-density') ?? 'compact'
+          cls.toggle('sn-compact', density === 'compact')
+          cls.toggle('sn-comfort', density === 'comfort')
         }
         apply()
         document.addEventListener('astro:after-swap', apply)

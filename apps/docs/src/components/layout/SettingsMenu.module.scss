@@ -1,0 +1,22 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-6;
+  width: 260px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
