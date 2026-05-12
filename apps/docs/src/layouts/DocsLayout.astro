@@ -58,8 +58,8 @@ const base = import.meta.env.BASE_URL
 
         <div class="header-end">
           <SettingsMenu client:load />
-          <SupportLink client:load />
-          <GitlabLink client:load />
+          <span class="header-support"><SupportLink client:load /></span>
+          <span class="header-gitlab"><GitlabLink client:load /></span>
         </div>
       </div>
     </header>

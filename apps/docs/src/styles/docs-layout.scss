@@ -192,13 +192,39 @@ html, body {
     display: none;
   }
 
+  // На mobile шапка фиксированная: при открытом сайдбаре body получает
+  // overflow:hidden, при `position: sticky` это ломает sticky-контекст и
+  // шапка уезжает за вьюпорт, оголяя контент. Fixed якорится к окну
+  // независимо от scroll-lock.
+  .header {
+    position: fixed;
+    right: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: base.$sn-theme-color-neutral-background1Level;
+    backdrop-filter: none;
+  }
+
+  .layout {
+    padding-top: l.$docs-header-height;
+  }
+
   .header-inner {
-    gap: base.$sn-density-spacing-interval-s;
-    padding: 0 base.$sn-density-spacing-interval-m;
+    gap: base.$sn-primitive-dimension-8;
+    padding: 0 base.$sn-density-spacing-interval-s;
   }
 
   .header-end {
-    gap: base.$sn-density-spacing-interval-s;
+    gap: base.$sn-primitive-dimension-4;
+  }
+
+  // На mobile поиску нужна вся доступная ширина — Support и Gitlab
+  // доступны через страницу Contribution Guide и пункты сайдбара.
+  .header-end > .header-support,
+  .header-end > .header-gitlab {
+    display: none;
   }
 
   .sidebar-wrap {
