@@ -69,8 +69,7 @@ $sizes: 's', 'm', 'l';
   }
 
   &:focus-visible {
-    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
-      base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
     outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 

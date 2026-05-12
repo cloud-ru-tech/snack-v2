@@ -56,7 +56,7 @@ $sizes: 's', 'm', 'l';
   height: 100%;
 
   opacity: field.$sn-field-effect-focusedFrame-opacity;
-  outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
+  outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
 }
 
 .search {

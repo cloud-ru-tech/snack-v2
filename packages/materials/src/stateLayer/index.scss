@@ -7,8 +7,7 @@
   * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
   */
 $states:
-  'regularFilled', 'regularBorder', 'activatedFilled', 'activatedBorder', 'onColorFilled', 'onAccentFilled',
-  'textOpacity';
+  'regularFilled', 'regularBorder', 'activatedFilled', 'onColorFilled', 'onAccentFilled', 'textOpacity';
 $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
 /**
@@ -24,8 +23,7 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
     @include m.absolute-layer();
 
     // определяем общие стили для бордера
-    &[data-state='regularBorder'],
-    &[data-state='activatedBorder'] {
+    &[data-state='regularBorder'] {
       border-style: solid;
       border-width: base.$sn-primitive-strokeWeight-strokeRegular;
     }
@@ -40,10 +38,6 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
     &[data-state='activatedFilled'] {
       background: base.$sn-theme-color-material-stateLayer-activated-default-filled;
-    }
-
-    &[data-state='activatedBorder'] {
-      border-color: base.$sn-theme-color-material-stateLayer-activated-default-borderColor;
     }
 
     &[data-state='onColorFilled'] {
@@ -68,10 +62,6 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
         &[data-state='activatedFilled'] {
           background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
-        }
-
-        &[data-state='activatedBorder'] {
-          border-color: base.$sn-theme-color-material-stateLayer-activated-hovered-borderColor;
         }
 
         &[data-state='onColorFilled'] {
@@ -100,10 +90,6 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
 
       &[data-state='activatedFilled'] {
         background: base.$sn-theme-color-material-stateLayer-activated-pressed-filled;
-      }
-
-      &[data-state='activatedBorder'] {
-        border-color: base.$sn-theme-color-material-stateLayer-activated-pressed-borderColor;
       }
 
       &[data-state='onColorFilled'] {

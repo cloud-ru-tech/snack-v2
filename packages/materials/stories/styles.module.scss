@@ -85,7 +85,6 @@
 
   &[data-state='regularFilled'],
   &[data-state='regularBorder'],
-  &[data-state='activatedBorder'],
   &[data-state='textOpacity'] {
     background-color: base.$sn-theme-color-neutral-background;
   }

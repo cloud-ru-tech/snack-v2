@@ -29,7 +29,7 @@ DOM-структура компонента практически повтор�
 | `material/<appearance><Level>`             | `<span class={styles.acrylic} aria-hidden />` + `data-acrylic-appearance` / `data-acrylic-level` на корне + `@include m.with-material('acrylic', #{acrylic});` |
 | Variants `size=`, `disabled=`, `load=`, `checked=`, `composition=` | `data-size`, `data-disabled`, `data-loading`, `data-checked`, `data-variant` на корне                         |
 
-Допустимые значения `data-state` (camelCase, только из этого списка): `regularFilled`, `regularBorder`, `activatedFilled`, `activatedBorder`, `onColorFilled`, `onAccentFilled`.
+Допустимые значения `data-state` (camelCase, только из этого списка): `regularFilled`, `regularBorder`, `activatedFilled`, `onColorFilled`, `onAccentFilled`.
 
 ## `@design-system/materials` — что помнить
 

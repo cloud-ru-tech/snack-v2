@@ -22,7 +22,6 @@ export const STATE = {
   RegularFilled: 'regularFilled',
   RegularBorder: 'regularBorder',
   ActivatedFilled: 'activatedFilled',
-  ActivatedBorder: 'activatedBorder',
   OnColorFilled: 'onColorFilled',
   OnAccentFilled: 'onAccentFilled',
   TextOpacity: 'textOpacity',
