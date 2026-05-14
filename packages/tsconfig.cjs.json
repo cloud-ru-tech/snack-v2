@@ -168,6 +168,9 @@
     },
     {
       "path": "./calendar/tsconfig.cjs.json"
+    },
+    {
+      "path": "./toaster/tsconfig.cjs.json"
     }
   ]
 }

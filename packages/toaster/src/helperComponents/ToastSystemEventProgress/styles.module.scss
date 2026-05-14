@@ -1,0 +1,39 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+$bar-backgrounds: (
+  'neutral': base.$sn-theme-color-invertNeutral-accent,
+  'error': base.$sn-theme-color-red-accent,
+  'warning': base.$sn-theme-color-yellow-accent,
+  'success': base.$sn-theme-color-green-accent,
+  'errorCritical': base.$sn-theme-color-red-onAccent,
+);
+
+// scaleX полоски задаётся inline из React (`useToastProgress`).
+// CSS отвечает только за позиционирование, цвет и сглаживание шага между
+// кадрами rAF — короткий `transition` маскирует ступеньки, не сбивая фактический
+// прогресс (мы всё равно перезаписываем transform на каждом активном тике).
+.progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-origin: left center;
+
+  height: toaster.$sn-toaster-anatomy-toast-systemEvent-container-progress-height;
+
+  background: base.$sn-theme-color-available-inversion-textTertiary;
+
+  transition: transform 80ms linear;
+
+  // Per-appearance цвета прогресс-бара (Figma 7871:512739..7871:512758).
+  @each $appearance, $color in $bar-backgrounds {
+    &[data-appearance='#{$appearance}'] {
+      background: $color;
+    }
+  }
+
+  &[data-static='true'] {
+    transition: none;
+  }
+}

@@ -66,11 +66,11 @@ importers:
         specifier: 1.59.1
         version: 1.59.1
       '@sbercloud/figma-selected-block':
-        specifier: 1.0.1
-        version: 1.0.1
+        specifier: 1.0.2
+        version: 1.0.2
       '@sbercloud/figma-variables':
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.1
+        version: 3.0.1
       '@snack-uikit/locale':
         specifier: 0.15.5
         version: 0.15.5
@@ -369,6 +369,9 @@ importers:
       '@ds/timeline':
         specifier: workspace:*
         version: link:../../packages/timeline
+      '@ds/toaster':
+        specifier: workspace:*
+        version: link:../../packages/toaster
       '@ds/toggles':
         specifier: workspace:*
         version: link:../../packages/toggles
@@ -1151,6 +1154,39 @@ importers:
 
   packages/timeline:
     dependencies:
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/toaster:
+    dependencies:
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/link':
+        specifier: workspace:*
+        version: link:../link
+      '@ds/loader':
+        specifier: workspace:*
+        version: link:../loader
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/portal-context':
+        specifier: workspace:*
+        version: link:../portal-context
+      '@ds/scroll':
+        specifier: workspace:*
+        version: link:../scroll
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
@@ -3239,12 +3275,12 @@ packages:
       zen-observable:
         optional: true
 
-  '@sbercloud/figma-selected-block@1.0.1':
-    resolution: {integrity: sha512-ukka4aIWN0sN9YJ44Ih9gkU/s/OXegakvAAK0gLrpuWEmKhgiNhfV1HdJWn731vCJ3qRR9utnJ7LfpXiSXj3JA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-selected-block/-/@sbercloud/figma-selected-block-1.0.1.tgz}
+  '@sbercloud/figma-selected-block@1.0.2':
+    resolution: {integrity: sha512-m5zIq2qwZNoGGuEc+6qtjm1Z495J3d5dbiSYYSjlgchzFl1UIbcHl177LIMrxzX3thMGNXusiBQKhaPn3c8mQw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-selected-block/-/@sbercloud/figma-selected-block-1.0.2.tgz}
     hasBin: true
 
-  '@sbercloud/figma-variables@3.0.0':
-    resolution: {integrity: sha512-QgLFLcNSYBM2WvBM9FEm04So1kBJOU/oDi3c65nle+ruL+mKkfC8cn6rfZokAl6cd4wYVjZZepId1JjuEH3N6Q==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-3.0.0.tgz}
+  '@sbercloud/figma-variables@3.0.1':
+    resolution: {integrity: sha512-COURSO6ye1n34o9LyrmU6iFD5AsEAFwlbf0++Y0rESygA5zFW/0CGlazNYoNQ9rT7O+BE81AvcaFn5aIiMmsqw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-3.0.1.tgz}
 
   '@shikijs/core@3.23.0':
     resolution: {integrity: sha512-NSWQz0riNb67xthdm5br6lAkvpDJRTgB36fxlo37ZzM2yq0PQFFzbd8psqC2XMPgCzo1fW6cVi18+ArJ44wqgA==}
@@ -12195,9 +12231,9 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@sbercloud/figma-selected-block@1.0.1': {}
+  '@sbercloud/figma-selected-block@1.0.2': {}
 
-  '@sbercloud/figma-variables@3.0.0': {}
+  '@sbercloud/figma-variables@3.0.1': {}
 
   '@shikijs/core@3.23.0':
     dependencies:

@@ -1,0 +1,35 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+.track {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: toaster.$sn-toaster-anatomy-toast-upload-progress-height;
+  border-radius: toaster.$sn-toaster-anatomy-toast-upload-progress-borderRadius;
+
+  background-color: base.$sn-theme-color-invertNeutral-decor;
+}
+
+.filler {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  border-radius: inherit;
+
+  &[data-appearance='neutral'] {
+    background-color: base.$sn-theme-color-invertNeutral-accent;
+  }
+
+  &[data-appearance='green'] {
+    background-color: base.$sn-theme-color-green-accent;
+  }
+
+  &[data-appearance='red'] {
+    background-color: base.$sn-theme-color-red-accent;
+  }
+}

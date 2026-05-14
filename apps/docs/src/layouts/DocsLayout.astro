@@ -92,7 +92,6 @@ const base = import.meta.env.BASE_URL
           const brand = localStorage.getItem('ds-brand') ?? 'brandA'
           cls.toggle('sn-brandA', brand === 'brandA')
           cls.toggle('sn-brandB', brand === 'brandB')
-          cls.toggle('sn-brandC', brand === 'brandC')
 
           const brandRole = localStorage.getItem('ds-brandRole') ?? 'main'
           cls.toggle('sn-main', brandRole === 'main')

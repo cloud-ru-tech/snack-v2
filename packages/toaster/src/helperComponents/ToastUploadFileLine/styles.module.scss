@@ -1,0 +1,91 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+.fileLine {
+  display: flex;
+  flex-direction: column;
+  gap: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical;
+
+  padding-top: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical;
+  padding-bottom: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical;
+
+  // FileLine — публичный helper, рендерится не только внутри ToastUpload.
+  // Без явного color title наследует цвет родителя и расходится с Figma
+  // 7871:513646, где title = inversion/textMain.
+  color: base.$sn-theme-color-available-inversion-textMain;
+}
+
+.fileHeadLine {
+  display: flex;
+  gap: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-headline-gap;
+  align-items: center;
+  min-height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-headline-minHeight;
+
+  // Размер для Link (inherit). .fileTitle переопределяет на body/m.
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+}
+
+// Figma 7871:513510 — buttonWrapper 24×24, внутри toastButton 32×32 со смещением
+// (-4, -4). Визуально кнопка занимает 24 в layout headline (= statusWrapper.button.size),
+// а реальная hit-area остаётся 32×32. Без обёртки 32-кнопка ломает выравнивание
+// строки и съезжает за пределы видимой ширины.
+.buttonWrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
+  height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
+
+  > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.fileTitle {
+  flex: 1;
+  min-width: 0;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}
+
+.fileStatusLine {
+  display: flex;
+  gap: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-gap;
+  align-items: center;
+}
+
+.fileStatusWrap {
+  display: inline-flex;
+  flex: 1;
+  gap: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-gap;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.fileStatusDescription {
+  flex: 1;
+  min-width: 0;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  color: base.$sn-theme-color-available-inversion-textSecondary;
+}
+
+.fileSize {
+  flex-shrink: 0;
+  margin-left: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-fileSize-gap;
+  color: base.$sn-theme-color-available-inversion-textTertiary;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}
+
+.fileStatusPercentage {
+  flex-shrink: 0;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  color: base.$sn-theme-color-available-inversion-textSecondary;
+}

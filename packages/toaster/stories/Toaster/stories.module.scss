@@ -1,0 +1,414 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.scenario {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+
+  min-height: 400px;
+  padding: base.$sn-primitive-dimension-32;
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+// Триггерные ряды кнопок в Composition/Positions-stories — общая обёртка
+// flex с gap и внешним padding.
+.triggerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+// Кнопки в центре вьюпорта — для Toaster.Positions, чтобы тосты по краям не
+// перекрывали триггеры. min-height = вьюпорт, выравнивание центром.
+.triggerGridCentered {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
+  place-content: center center;
+
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.stackPreview {
+  position: relative;
+  min-height: 120px;
+}
+
+.stackPreviewDeep {
+  position: absolute;
+  top: base.$sn-primitive-dimension-16;
+  right: 0;
+  left: 0;
+  transform: scaleX(0.92);
+
+  opacity: 0.6;
+}
+
+.stackPreviewMid {
+  position: absolute;
+  top: base.$sn-primitive-dimension-8;
+  right: 0;
+  left: 0;
+  transform: scaleX(0.96);
+
+  opacity: 0.8;
+}
+
+.stackPreviewFront {
+  position: relative;
+}
+
+// ===== Position cards (Toaster.Positions) =====
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-32;
+
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-32;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.sectionHeading {
+  margin: 0;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.cardGridTwo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-m;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.cardTitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.cardDescription {
+  margin: 0;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+  margin-top: auto;
+}
+
+// ===== Shared demo primitives =====
+// Базовые классы для всех демо-story Toaster: центрированная страница,
+// пунктирная панель с одним и тем же background-токеном и типографикой
+// title-s/body-s/label-s. Конкретные story используют их как фундамент и
+// добавляют поверх свою layout-специфику (positions map, columns, и т.п.).
+.demoPage {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+// Вертикальный список панелей на одной странице (Stacking, UpdateFlow).
+.demoPageStack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
+
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.demoPanel {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+
+  width: 100%;
+  max-width: 720px;
+  padding: base.$sn-primitive-dimension-24;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-m;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.demoPanelWide {
+  max-width: 860px;
+}
+
+.demoPanelNarrow {
+  max-width: 420px;
+}
+
+.demoTitle {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'title', 's');
+
+  margin: 0;
+}
+
+.demoHint {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  margin: 0;
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.demoSectionLabel {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+
+  margin: 0;
+}
+
+.demoActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.demoActionsCenter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+  justify-content: center;
+}
+
+// ===== Positions — карта углов вьюпорта =====
+// Карта углов вьюпорта 3×3: углы и top/bottom-center — реальные позиции тостов,
+// центр — заголовок + dismiss-all. UA-кнопки подкладываются в top-center/bottom-center.
+// Применяется поверх .demoPanel — override flex → grid, остальное (border,
+// background, padding, max-width) приходит из .demoPanel.
+.positionsMap {
+  display: grid;
+  grid-template:
+    'tl tc tr' auto
+    'l  c  r' auto
+    'bl bc br' auto
+    / 1fr 1fr 1fr;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.positionsCell {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.cellTl {
+  grid-area: tl;
+  align-items: flex-start;
+}
+
+.cellTc {
+  grid-area: tc;
+  align-items: center;
+}
+
+.cellTr {
+  grid-area: tr;
+  align-items: flex-end;
+}
+
+.cellBl {
+  grid-area: bl;
+  align-items: flex-start;
+}
+
+.cellBc {
+  grid-area: bc;
+  align-items: center;
+}
+
+.cellBr {
+  grid-area: br;
+  align-items: flex-end;
+}
+
+.positionsCenter {
+  display: flex;
+  grid-area: c;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  text-align: center;
+}
+
+// Playground — локальный бокс для демо toasterParent. transform делает его
+// containing block для position:fixed дочерних toaster-контейнеров.
+.playgroundFrame {
+  position: relative;
+  transform: translateZ(0);
+
+  overflow: hidden;
+
+  width: 560px;
+  height: 420px;
+  margin-top: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-m;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+// ===== Mobile — две колонки: контролы слева, телефон справа =====
+.phonePage {
+  display: flex;
+  gap: base.$sn-primitive-dimension-32;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+// Телефонная рамка имитирует экран мобильного устройства. `transform: translateZ(0)`
+// делает её containing block для `position: fixed` дочерних toaster-контейнеров —
+// тосты живут внутри рамки, а не на всём вьюпорте Storybook.
+.phoneFrame {
+  position: relative;
+
+  overflow: hidden;
+  flex-shrink: 0;
+
+  border: 7px solid #1a1a1a;
+  border-radius: 36px;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+// Toast container фиксирован на 304px, потому минимальный screen-width
+// должен быть ≥ 304 + safe-area inset × 2.
+.phoneSizeSm {
+  width: 360px;
+  height: 640px;
+}
+
+.phoneSizeMd {
+  width: 390px;
+  height: 720px;
+}
+
+.phoneSizeLg {
+  width: 430px;
+  height: 800px;
+}
+
+.phoneNotch {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 96px;
+  height: 20px;
+  border-radius: 0 0 14px 14px;
+
+  background: #1a1a1a;
+}
+
+// Safe-area: внутренняя зона телефона с отступами под notch (top 32px)
+// и home-indicator (bottom 24px). Toasts позиционируются внутри неё благодаря
+// transform — она становится containing block для position: fixed.
+// Safe-area — отдельный containing block для position:fixed дочерних
+// toaster-контейнеров. position:fixed позиционируется по padding-edge
+// containing block, поэтому padding на safe-area НЕ оттолкнул бы тосты от
+// краёв. Делаем safe-area absolutely-positioned'ной зоной, физически
+// меньшей по размеру (top/left/right/bottom = safe-инсеты) — тосты
+// автоматически попадают в её углы.
+.phoneSafeArea {
+  position: absolute;
+  inset: 44px base.$sn-primitive-dimension-24 32px base.$sn-primitive-dimension-24;
+  transform: translateZ(0);
+}
+
+.phoneStatusBar {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 32px;
+  padding: 0 base.$sn-primitive-dimension-16;
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.phoneHomeIndicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 96px;
+  height: 4px;
+  border-radius: 2px;
+
+  opacity: 0.6;
+  background: base.$sn-theme-color-neutral-text;
+}
+
+// ===== Triggers — 3 колонки внутри широкой панели =====
+.triggersColumns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.triggersColumn {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+}
+
+.triggersColumnButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@ds/toaster",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "*.scss", "**/*.css", "**/*.scss"],
+  "publishConfig": { "access": "public" },
+  "dependencies": {
+    "@ds/icons": "workspace:*",
+    "@ds/link": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/locale": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/portal-context": "workspace:*",
+    "@ds/scroll": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:"
+  }
+}

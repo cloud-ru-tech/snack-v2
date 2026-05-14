@@ -1,0 +1,131 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+$gap-title-description: base.$sn-primitive-dimension-4;
+
+$icon-colors: (
+  'neutral': base.$sn-theme-color-invertNeutral-accent,
+  'error': base.$sn-theme-color-red-accent,
+  'warning': base.$sn-theme-color-yellow-accent,
+  'success': base.$sn-theme-color-green-accent,
+  'errorCritical': base.$sn-theme-color-red-onAccent,
+);
+
+.container {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-gap;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth;
+  min-height: toaster.$sn-toaster-anatomy-toast-systemEvent-container-minHeight;
+  padding: toaster.$sn-toaster-anatomy-toast-systemEvent-container-paddingVertical
+    toaster.$sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal;
+  border-radius: toaster.$sn-toaster-anatomy-toast-systemEvent-container-borderRadius;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+
+  background: base.$sn-theme-color-invertNeutral-background2Level;
+
+  &[data-appearance='errorCritical'] {
+    color: base.$sn-theme-color-red-onAccent;
+    background: base.$sn-theme-color-red-accent;
+  }
+}
+
+.body {
+  display: flex;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-gap;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size;
+  height: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size;
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @each $appearance, $color in $icon-colors {
+    [data-appearance='#{$appearance}'] & {
+      color: $color;
+    }
+  }
+}
+
+.contentLayout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-gap;
+
+  min-width: 0;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-title-description;
+}
+
+.title {
+  display: block;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'title', 's');
+}
+
+.description {
+  display: block;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  color: base.$sn-theme-color-available-inversion-textSecondary;
+
+  [data-appearance='errorCritical'] & {
+    color: base.$sn-theme-color-red-onAccent;
+  }
+}
+
+// Figma 7871:513505 — buttonClose wrapper 24×24, ToastButton 32×32 со смещением
+// -4,-4: layout-размер совпадает с buttonClose-size, hit-area остаётся 32.
+.buttonWrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size;
+  height: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size;
+
+  > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Ссылка под описанием — Figma 7072:478 использует body/m (14/20), а @ds/link
+// не задаёт собственный font-size и инхеритит от контейнера. Без явного override
+// шрифт ссылки расходится с описанием.
+.link {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}
+
+.footer {
+  display: flex;
+  flex-flow: row-reverse wrap-reverse;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-actions-gap;
+  justify-content: flex-start;
+
+  width: 100%;
+}

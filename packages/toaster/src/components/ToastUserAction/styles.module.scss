@@ -1,0 +1,76 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+$icon-colors: (
+  'error': base.$sn-theme-color-red-accent,
+  'warning': base.$sn-theme-color-yellow-accent,
+  'success': base.$sn-theme-color-green-accent,
+);
+
+.container {
+  display: inline-flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: toaster.$sn-toaster-anatomy-toast-userAction-container-paddingVertical
+    toaster.$sn-toaster-anatomy-toast-userAction-container-paddingRight
+    toaster.$sn-toaster-anatomy-toast-userAction-container-paddingVertical
+    toaster.$sn-toaster-anatomy-toast-userAction-container-paddingLeft;
+  border-radius: toaster.$sn-toaster-anatomy-toast-userAction-container-borderRadius;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+
+  background: base.$sn-theme-color-invertNeutral-background2Level;
+
+  // Ось width=full задаётся ToasterContainer'ом (он ставит `data-width='full'`
+  // на корневой контейнер). Карточка растягивается через ancestor-селектор.
+  [data-width='full'] & {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-density-size-icon-s;
+  height: base.$sn-density-size-icon-s;
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @each $appearance, $color in $icon-colors {
+    [data-appearance='#{$appearance}'] & {
+      color: $color;
+    }
+  }
+}
+
+.loader {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-density-size-icon-s;
+  height: base.$sn-density-size-icon-s;
+}
+
+.label {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+
+  min-width: 0;
+  padding: toaster.$sn-toaster-anatomy-toast-userAction-container-text-paddingVertical
+    toaster.$sn-toaster-anatomy-toast-userAction-container-text-paddingRight
+    toaster.$sn-toaster-anatomy-toast-userAction-container-text-paddingVertical
+    toaster.$sn-toaster-anatomy-toast-userAction-container-text-paddingLeft;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}

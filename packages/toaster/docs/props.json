@@ -1,0 +1,1409 @@
+{
+  "LoadingStatus": {
+    "displayName": "LoadingStatus",
+    "propsTypeName": "LoadingStatusProps",
+    "props": {
+      "actions": {
+        "type": "UploadActions",
+        "required": false,
+        "typeRefs": [
+          "UploadActions"
+        ]
+      },
+      "status": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "error",
+          "errorUploaded",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "typeRefs": [
+          "ToastUploadStatus"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ToastUploadStatus": {
+        "kind": "union",
+        "values": [
+          "error",
+          "errorUploaded",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "own": true
+      },
+      "UploadActions": {
+        "kind": "interface",
+        "props": {
+          "onCancel": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onContinue": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onPause": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onRetry": {
+            "type": "(() => void) | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "Timer": {
+    "displayName": "Timer",
+    "propsTypeName": "TimerProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "duration": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "AUTO_CLOSE_TIME[TOASTER_TYPE.UserAction] as number",
+        "description": "Длительность анимации обратного отсчёта в ms. По умолчанию = AUTO_CLOSE_TIME[UserAction]."
+      },
+      "paused": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Внешний контроль паузы (hover/touch держит Toaster в state)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToastButton": {
+    "displayName": "ToastButton",
+    "propsTypeName": "ToastButtonProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | любой компонент (Link и т.п.)",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка для `composition='iconOnly'`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс на корень."
+      },
+      "composition": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "iconOnly",
+          "labelOnly"
+        ],
+        "description": "`labelOnly` — текстовая кнопка с padding; `iconOnly` — квадратная под SVG-иконку.",
+        "typeRefs": [
+          "ToastButtonComposition"
+        ]
+      },
+      "critical": {
+        "type": "boolean",
+        "required": false,
+        "description": "Критический вариант (красная палитра, для errorCritical / Cancel-сценариев)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на DOM/instance, рендерящийся через `as`.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст для `composition='labelOnly'`."
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      },
+      "ToastButtonComposition": {
+        "kind": "union",
+        "values": [
+          "iconOnly",
+          "labelOnly"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ToastButtonAction": {
+    "displayName": "ToastButtonAction",
+    "propsTypeName": "ToastButtonActionProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "typeRefs": [
+          "As"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "toast-system-event__button-action"
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToastSlot": {
+    "displayName": "ToastSlot",
+    "propsTypeName": null,
+    "props": {
+      "containerId": {
+        "type": "string",
+        "required": true
+      },
+      "draggable": {
+        "type": "boolean",
+        "required": true
+      },
+      "draggableDirection": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "x",
+          "y"
+        ]
+      },
+      "isFront": {
+        "type": "boolean",
+        "required": true
+      },
+      "stackIndex": {
+        "type": "number",
+        "required": true
+      },
+      "toast": {
+        "type": "ManagedToast",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToastSystemEvent": {
+    "displayName": "ToastSystemEvent",
+    "propsTypeName": "ToastSystemEventProps",
+    "props": {
+      "action": {
+        "type": "ToastButtonActionProps[]",
+        "required": false,
+        "description": "Кнопки в footer'е",
+        "typeRefs": [
+          "ToastButtonActionProps"
+        ]
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "errorCritical",
+          "neutral",
+          "success",
+          "warning"
+        ],
+        "defaultValue": "neutral",
+        "description": "Цветовая схема",
+        "typeRefs": [
+          "ToastSystemEventAppearance"
+        ]
+      },
+      "autoClose": {
+        "type": "number | false",
+        "required": false,
+        "description": "Реальное время автозакрытия в мс. Подставляется toaster-системой при\nрендере, чтобы анимация progress bar совпадала с auto-dismiss таймером.\nЕсли потребитель ставит руками — будет использоваться его значение.\nДефолт — `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` (см. `constants.ts`).\n`false` — автозакрытие выключено, progress bar в этом режиме не рендерится."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корневого элемента"
+      },
+      "closable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Возможность закрыть тост"
+      },
+      "closeToast": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Описание под заголовком"
+      },
+      "link": {
+        "type": "ToastSystemEventLink",
+        "required": false,
+        "description": "Slot для ссылки",
+        "typeRefs": [
+          "ToastSystemEventLink"
+        ]
+      },
+      "onCloseClick": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>, close?: (() => void)) => void)",
+        "required": false,
+        "description": "Кастомный обработчик клика по кнопке закрытия"
+      },
+      "progressBar": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли ProgressBar внизу"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок тоста"
+      },
+      "toastProps": {
+        "type": "{ autoClose?: number | false; }",
+        "required": false
+      }
+    },
+    "relatedTypes": {
+      "ToastButtonActionProps": {
+        "kind": "interface",
+        "props": {
+          "as": {
+            "type": "As | undefined",
+            "required": false,
+            "typeRefs": [
+              "As"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "ToastSystemEventAppearance": {
+        "kind": "union",
+        "values": [
+          "error",
+          "errorCritical",
+          "neutral",
+          "success",
+          "warning"
+        ],
+        "own": true
+      },
+      "ToastSystemEventLink": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
+            "required": false
+          },
+          "text": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "ToastSystemEventCloseAll": {
+    "displayName": "ToastSystemEventCloseAll",
+    "propsTypeName": "ToastSystemEventCloseAllProps",
+    "description": "Full-width label-кнопка в нижней панели стека тостов (Figma 7902:280472 —\n`toastSystemEventCloseAll`). Используется для actions `Cancel all` и\n`Expand/Collapse stack`. Hover/pressed состояния реализованы через\nstate-layer overlay (Material).",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToastSystemEventProgress": {
+    "displayName": "ToastSystemEventProgress",
+    "propsTypeName": "ToastSystemEventProgressProps",
+    "description": "Прогресс-полоса нижней части `ToastSystemEvent`. По Figma —\nfiller `<appearance>-accent` без track (выводится поверх тёмной подложки).\nАнимация `scaleX(1) → scaleX(0)` синхронизирована с auto-close.",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "error",
+          "errorCritical",
+          "neutral",
+          "success",
+          "warning"
+        ],
+        "description": "Цветовая схема — берётся из appearance тоста.",
+        "typeRefs": [
+          "ToastSystemEventAppearance"
+        ]
+      },
+      "durationMs": {
+        "type": "number",
+        "required": false,
+        "description": "Длительность анимации обратного отсчёта (мс). Используется в реальном\nтосте для синхронизации с auto-close таймером."
+      },
+      "value": {
+        "type": "number",
+        "required": false,
+        "description": "Статическое значение 0..1 для визуальных матриц. Когда задано — анимация\nотключена, бар замораживается на этом scaleX."
+      }
+    },
+    "relatedTypes": {
+      "ToastSystemEventAppearance": {
+        "kind": "union",
+        "values": [
+          "error",
+          "errorCritical",
+          "neutral",
+          "success",
+          "warning"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ToastUpload": {
+    "displayName": "ToastUpload",
+    "propsTypeName": "ToastUploadProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать кнопку закрытия тостера. По умолчанию `true`."
+      },
+      "closeToast": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "collapsed": {
+        "type": "boolean",
+        "required": false,
+        "description": "Тостер свернут/развернут"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание статуса загрузки"
+      },
+      "files": {
+        "type": "UploadItem[]",
+        "required": true,
+        "description": "Загружаемые элементы",
+        "typeRefs": [
+          "UploadItem"
+        ]
+      },
+      "generalActions": {
+        "type": "Omit<UploadActions, \"onCancel\">",
+        "required": false,
+        "description": "Экшены для управления общей загрузкой",
+        "typeRefs": [
+          "UploadActions"
+        ]
+      },
+      "onCancelAll": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк кнопки отмены всей загрузки. Кнопка рендерится только при наличии колбэка; подпись — из `@ds/locale` (`ToastUpload.cancelAll`)."
+      },
+      "onCloseClick": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>, close?: (() => void)) => void)",
+        "required": false,
+        "description": "Закрыть тостер"
+      },
+      "onCollapsed": {
+        "type": "((collapsed: boolean) => void)",
+        "required": false,
+        "description": "Развернуть/свернуть тостер"
+      },
+      "progress": {
+        "type": "{ current: number; total: number; }",
+        "required": true,
+        "description": "Общий прогресс загрузки"
+      },
+      "status": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "error",
+          "errorUploaded",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "description": "Общий статус загрузки",
+        "typeRefs": [
+          "ToastUploadStatus"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок тостера"
+      },
+      "toastProps": {
+        "type": "{ autoClose?: number | false; }",
+        "required": false
+      }
+    },
+    "relatedTypes": {
+      "ToastUploadItemLink": {
+        "kind": "interface",
+        "props": {
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст ссылки"
+          }
+        },
+        "own": true
+      },
+      "ToastUploadItemStatus": {
+        "kind": "union",
+        "values": [
+          "error",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "own": true
+      },
+      "ToastUploadStateSubscription": {
+        "kind": "alias",
+        "type": "(subscription: (newValue: T) => void) => () => void",
+        "own": true
+      },
+      "ToastUploadStatus": {
+        "kind": "union",
+        "values": [
+          "error",
+          "errorUploaded",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "own": true
+      },
+      "UploadActions": {
+        "kind": "interface",
+        "props": {
+          "onCancel": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onContinue": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onPause": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onRetry": {
+            "type": "(() => void) | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "UploadItem": {
+        "kind": "interface",
+        "props": {
+          "actions": {
+            "type": "UploadActions | undefined",
+            "required": false,
+            "description": "Экшены управления загрузкой",
+            "typeRefs": [
+              "UploadActions"
+            ]
+          },
+          "formattedSize": {
+            "type": "string",
+            "required": true,
+            "description": "Отображаемый размер файла"
+          },
+          "id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Уникальный id элемента"
+          },
+          "link": {
+            "type": "ToastUploadItemLink | undefined",
+            "required": false,
+            "description": "Ссылка на загруженный файл",
+            "typeRefs": [
+              "ToastUploadItemLink"
+            ]
+          },
+          "progress": {
+            "type": "number",
+            "required": true,
+            "description": "Процент прогресса"
+          },
+          "status": {
+            "type": "\"error\" | \"loading\" | \"pause\" | \"uploaded\"",
+            "required": true,
+            "values": [
+              "error",
+              "loading",
+              "pause",
+              "uploaded"
+            ],
+            "description": "Статус загрузки",
+            "typeRefs": [
+              "ToastUploadItemStatus"
+            ]
+          },
+          "statusLabel": {
+            "type": "string",
+            "required": true,
+            "description": "Описание статуса загрузки"
+          },
+          "subscribeToState": {
+            "type": "ToastUploadStateSubscription<Partial<{ id?: string; title: string; status: ToastUploadItemStatus; statusLabel: string; progress: number; formattedSize: string; actions?: UploadActions; link?: ToastUploadItemLink; }>> | undefined",
+            "required": false,
+            "description": "Позволяет подписываться на изменения процесса загрузки файла внутри компонента\n— обновляет элемент независимо от всего списка (повышение производительности при частых обновлениях).",
+            "typeRefs": [
+              "T",
+              "ToastUploadStateSubscription"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Название элемента"
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "ToastUploadFileLine": {
+    "displayName": "ToastUploadFileLine",
+    "propsTypeName": "ToastUploadFileLineProps",
+    "props": {
+      "item": {
+        "type": "UploadItem",
+        "required": true,
+        "typeRefs": [
+          "UploadItem"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ToastUploadItemLink": {
+        "kind": "interface",
+        "props": {
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст ссылки"
+          }
+        },
+        "own": true
+      },
+      "ToastUploadItemStatus": {
+        "kind": "union",
+        "values": [
+          "error",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "own": true
+      },
+      "ToastUploadStateSubscription": {
+        "kind": "alias",
+        "type": "(subscription: (newValue: T) => void) => () => void",
+        "own": true
+      },
+      "UploadActions": {
+        "kind": "interface",
+        "props": {
+          "onCancel": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onContinue": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onPause": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "onRetry": {
+            "type": "(() => void) | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "UploadItem": {
+        "kind": "interface",
+        "props": {
+          "actions": {
+            "type": "UploadActions | undefined",
+            "required": false,
+            "description": "Экшены управления загрузкой",
+            "typeRefs": [
+              "UploadActions"
+            ]
+          },
+          "formattedSize": {
+            "type": "string",
+            "required": true,
+            "description": "Отображаемый размер файла"
+          },
+          "id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Уникальный id элемента"
+          },
+          "link": {
+            "type": "ToastUploadItemLink | undefined",
+            "required": false,
+            "description": "Ссылка на загруженный файл",
+            "typeRefs": [
+              "ToastUploadItemLink"
+            ]
+          },
+          "progress": {
+            "type": "number",
+            "required": true,
+            "description": "Процент прогресса"
+          },
+          "status": {
+            "type": "\"error\" | \"loading\" | \"pause\" | \"uploaded\"",
+            "required": true,
+            "values": [
+              "error",
+              "loading",
+              "pause",
+              "uploaded"
+            ],
+            "description": "Статус загрузки",
+            "typeRefs": [
+              "ToastUploadItemStatus"
+            ]
+          },
+          "statusLabel": {
+            "type": "string",
+            "required": true,
+            "description": "Описание статуса загрузки"
+          },
+          "subscribeToState": {
+            "type": "ToastUploadStateSubscription<Partial<{ id?: string; title: string; status: ToastUploadItemStatus; statusLabel: string; progress: number; formattedSize: string; actions?: UploadActions; link?: ToastUploadItemLink; }>> | undefined",
+            "required": false,
+            "description": "Позволяет подписываться на изменения процесса загрузки файла внутри компонента\n— обновляет элемент независимо от всего списка (повышение производительности при частых обновлениях).",
+            "typeRefs": [
+              "T",
+              "ToastUploadStateSubscription"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Название элемента"
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "ToastUploadProgress": {
+    "displayName": "ToastUploadProgress",
+    "propsTypeName": "ToastUploadProgressProps",
+    "description": "Прогресс-бар для ToastUpload. Палитра по Figma — track: invertNeutral-decor,\nfiller: invertNeutral-accent / green-accent / red-accent. Локальная\nреализация, потому что `@ds/progress-bar` работает в светлой палитре и не\nподходит для тёмной подложки тоста.",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "green",
+          "neutral",
+          "red"
+        ],
+        "description": "Цветовая схема.",
+        "typeRefs": [
+          "ToastUploadProgressAppearance"
+        ]
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "progress": {
+        "type": "number",
+        "required": true,
+        "description": "Процент заполнения 0..100."
+      }
+    },
+    "relatedTypes": {
+      "ToastUploadProgressAppearance": {
+        "kind": "union",
+        "values": [
+          "green",
+          "neutral",
+          "red"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ToastUserAction": {
+    "displayName": "ToastUserAction",
+    "propsTypeName": "ToastUserActionProps",
+    "props": {
+      "action": {
+        "type": "ToastUserActionAction<\"button\">",
+        "required": false,
+        "description": "Slot для action-кнопки (по умолчанию `<button>`, через `as='a'` — линка)",
+        "typeRefs": [
+          "ToastUserActionAction"
+        ]
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "neutral",
+          "success",
+          "warning"
+        ],
+        "defaultValue": "neutral",
+        "description": "Цветовая схема (status в Figma)",
+        "typeRefs": [
+          "ToastUserActionAppearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корневого элемента"
+      },
+      "closeToast": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст-уведомление"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Loading-состояние с заменой иконки на Sun-спиннер"
+      },
+      "timer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать ли таймер обратного отсчёта (24×24 SVG-кольцо).\nАнимация = `AUTO_CLOSE_TIME[UserAction]`. Пауза при hover.\nFigma axis: `timer=true|false`."
+      },
+      "toastProps": {
+        "type": "{ autoClose?: number | false; }",
+        "required": false
+      }
+    },
+    "relatedTypes": {
+      "ToastUserActionAction": {
+        "kind": "interface",
+        "props": {
+          "as": {
+            "type": "As | undefined",
+            "required": false,
+            "description": "Polymorphic элемент. Дефолт — `'button'`.",
+            "typeRefs": [
+              "As"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст action-кнопки"
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Обработчик клика"
+          }
+        },
+        "own": true
+      },
+      "ToastUserActionAppearance": {
+        "kind": "union",
+        "values": [
+          "error",
+          "neutral",
+          "success",
+          "warning"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ToasterContainer": {
+    "displayName": "ToasterContainer",
+    "propsTypeName": "ToasterProps",
+    "description": "Контейнер тостов одного типа (`system-event` / `user-action` / `upload`).\nПодписывается на `toasterManager`, держит стек, очередь автозакрытия и\nUI-состояние (hover/touch-pause/collapse).",
+    "props": {
+      "autoClose": {
+        "type": "number | false",
+        "required": false,
+        "description": "Дефолтное время автозакрытия (мс) для всех тостов этого контейнера. Используется,\nесли в `toastOptions.autoClose` явно не передано значение. Передать `false` —\nавтозакрытие отключено по умолчанию. Если проп не задан — берётся `AUTO_CLOSE_TIME[type]`."
+      },
+      "containerId": {
+        "type": "string",
+        "required": false,
+        "description": "Идентификатор контейнера — ключ маршрутизации тостов. Вызов\n`toaster.<type>.open({ containerId })` находит контейнер по этому id и\nрендерит тост в нём. Если не задан — используется дефолт\n`toaster-container__<type>` (см. `TOASTER_CONTAINER_PREFIX`), общий для\nвсех контейнеров одного `type`. Задавай явный id, когда на странице\nнесколько контейнеров одного типа и нужно адресовать конкретный."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Override `data-test-id` корня контейнера. Если не задан — используется\n`TEST_IDS.toasterContainer`. Имеет смысл, если на странице несколько\nконтейнеров одного типа и e2e-тестам нужно адресовать конкретный."
+      },
+      "displayCloseAllButton": {
+        "type": "boolean",
+        "required": false
+      },
+      "draggable": {
+        "type": "boolean",
+        "required": false
+      },
+      "draggableDirection": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "x",
+          "y"
+        ],
+        "typeRefs": [
+          "DraggableDirection"
+        ]
+      },
+      "limit": {
+        "type": "number",
+        "required": false,
+        "description": "Максимум одновременно видимых тостов в контейнере. По умолчанию — из TOASTER_CONTAINER_DEFAULTS[type]."
+      },
+      "position": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom-center",
+          "bottom-left",
+          "bottom-right",
+          "top-center",
+          "top-left",
+          "top-right"
+        ],
+        "typeRefs": [
+          "SystemEventPosition"
+        ]
+      },
+      "stacked": {
+        "type": "boolean",
+        "required": false
+      },
+      "type": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "system-event",
+          "upload",
+          "user-action"
+        ]
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "full"
+        ],
+        "typeRefs": [
+          "ToasterWidth"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "DraggableDirection": {
+        "kind": "union",
+        "values": [
+          "x",
+          "y"
+        ],
+        "own": true
+      },
+      "SystemEventPosition": {
+        "kind": "union",
+        "values": [
+          "bottom-center",
+          "bottom-left",
+          "bottom-right",
+          "top-center",
+          "top-left",
+          "top-right"
+        ],
+        "own": true
+      },
+      "ToasterWidth": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "full"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ToasterSystemEventOptions": {
+    "displayName": "ToasterSystemEventOptions",
+    "propsTypeName": null,
+    "props": {
+      "action": {
+        "type": "ToastButtonActionProps[]",
+        "required": false,
+        "description": "Кнопки в footer'е"
+      },
+      "autoClose": {
+        "type": "number | false",
+        "required": false,
+        "description": "Реальное время автозакрытия в мс. Подставляется toaster-системой при\nрендере, чтобы анимация progress bar совпадала с auto-dismiss таймером.\nЕсли потребитель ставит руками — будет использоваться его значение.\nДефолт — `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` (см. `constants.ts`).\n`false` — автозакрытие выключено, progress bar в этом режиме не рендерится."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корневого элемента"
+      },
+      "closable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Возможность закрыть тост"
+      },
+      "closeToast": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "containerId": {
+        "type": "string",
+        "required": false,
+        "description": "Маршрутизировать тост в контейнер с этим id. По умолчанию используется\nдефолтный containerId для типа (`toaster-container__<type>`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Описание под заголовком"
+      },
+      "id": {
+        "type": "ToasterId",
+        "required": false
+      },
+      "link": {
+        "type": "ToastSystemEventLink",
+        "required": false,
+        "description": "Slot для ссылки"
+      },
+      "onClose": {
+        "type": "((id?: ToasterId) => void)",
+        "required": false
+      },
+      "onCloseClick": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>, close?: (() => void)) => void)",
+        "required": false,
+        "description": "Кастомный обработчик клика по кнопке закрытия"
+      },
+      "progressBar": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли ProgressBar внизу"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок тоста"
+      },
+      "toastProps": {
+        "type": "{ autoClose?: number | false; }",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToasterUploadOptions": {
+    "displayName": "ToasterUploadOptions",
+    "propsTypeName": null,
+    "props": {
+      "autoClose": {
+        "type": "number | false",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать кнопку закрытия тостера. По умолчанию `true`."
+      },
+      "closeToast": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "collapsed": {
+        "type": "boolean",
+        "required": false,
+        "description": "Тостер свернут/развернут"
+      },
+      "containerId": {
+        "type": "string",
+        "required": false,
+        "description": "Маршрутизировать тост в контейнер с этим id. По умолчанию используется\nдефолтный containerId для типа (`toaster-container__<type>`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание статуса загрузки"
+      },
+      "files": {
+        "type": "UploadItem[]",
+        "required": true,
+        "description": "Загружаемые элементы"
+      },
+      "generalActions": {
+        "type": "Omit<UploadActions, \"onCancel\">",
+        "required": false,
+        "description": "Экшены для управления общей загрузкой"
+      },
+      "id": {
+        "type": "ToasterId",
+        "required": false
+      },
+      "onCancelAll": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк кнопки отмены всей загрузки. Кнопка рендерится только при наличии колбэка; подпись — из `@ds/locale` (`ToastUpload.cancelAll`)."
+      },
+      "onClose": {
+        "type": "((id?: ToasterId) => void)",
+        "required": false
+      },
+      "onCloseClick": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>, close?: (() => void)) => void)",
+        "required": false,
+        "description": "Закрыть тостер"
+      },
+      "onCollapsed": {
+        "type": "((collapsed: boolean) => void)",
+        "required": false,
+        "description": "Развернуть/свернуть тостер"
+      },
+      "progress": {
+        "type": "{ current: number; total: number; }",
+        "required": true,
+        "description": "Общий прогресс загрузки"
+      },
+      "status": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "error",
+          "errorUploaded",
+          "loading",
+          "pause",
+          "uploaded"
+        ],
+        "description": "Общий статус загрузки"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок тостера"
+      },
+      "toastProps": {
+        "type": "{ autoClose?: number | false; }",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToasterUserActionOptions": {
+    "displayName": "ToasterUserActionOptions",
+    "propsTypeName": null,
+    "props": {
+      "action": {
+        "type": "ToastUserActionAction<\"button\">",
+        "required": false,
+        "description": "Slot для action-кнопки (по умолчанию `<button>`, через `as='a'` — линка)"
+      },
+      "autoClose": {
+        "type": "number | false",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корневого элемента"
+      },
+      "closeToast": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "containerId": {
+        "type": "string",
+        "required": false,
+        "description": "Маршрутизировать тост в контейнер с этим id. По умолчанию используется\nдефолтный containerId для типа (`toaster-container__<type>`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "ToasterId",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст-уведомление"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Loading-состояние с заменой иконки на Sun-спиннер"
+      },
+      "onClose": {
+        "type": "((id?: ToasterId) => void)",
+        "required": false
+      },
+      "timer": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли таймер обратного отсчёта (24×24 SVG-кольцо).\nАнимация = `AUTO_CLOSE_TIME[UserAction]`. Пауза при hover.\nFigma axis: `timer=true|false`."
+      },
+      "toastProps": {
+        "type": "{ autoClose?: number | false; }",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "adaptiveDismissToast": {
+    "displayName": "adaptiveDismissToast",
+    "propsTypeName": "WithLayoutType",
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "adaptiveOpenToast": {
+    "displayName": "adaptiveOpenToast",
+    "propsTypeName": "WithLayoutType",
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "adaptiveToaster": {
+    "displayName": "adaptiveToaster",
+    "propsTypeName": "WithLayoutType",
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "adaptiveUpdateToast": {
+    "displayName": "adaptiveUpdateToast",
+    "propsTypeName": "WithLayoutType",
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "dismissToast": {
+    "displayName": "dismissToast",
+    "propsTypeName": null,
+    "props": {
+      "containerId": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "getIcon": {
+    "displayName": "getIcon",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "openToast": {
+    "displayName": "openToast",
+    "propsTypeName": null,
+    "props": {
+      "containerProps": {
+        "type": "ToasterContainerProps",
+        "required": false
+      },
+      "toastOptions": {
+        "type": "ToastOptions",
+        "required": false
+      },
+      "toasterParent": {
+        "type": "HTMLElement",
+        "required": false,
+        "defaultValue": "isBrowser() ? document.body : undefined"
+      },
+      "toasterProps": {
+        "type": "ToastUserActionProps | ToastSystemEventProps | (ToastContentProps & { 'data-test-id'?: string; } & AriaAttributes & { ...; } & { ...; })",
+        "required": false
+      },
+      "type": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "system-event",
+          "upload",
+          "user-action"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "renderFlatToasts": {
+    "displayName": "renderFlatToasts",
+    "propsTypeName": null,
+    "description": "Рендерит список тостов плоским колумом без стека (Upload-блок). `isFront`\nвсегда `false`, `stackIndex` всегда `-1` — иначе data-атрибуты в DOM были бы\nmisleading и `useFrontAware`-логика принимала бы карточки за участников\nстека.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "renderStackToasts": {
+    "displayName": "renderStackToasts",
+    "propsTypeName": null,
+    "description": "Рендерит список тостов как стек: самый старый видимый — anchor (прижат к\nякорю контейнера), новые накладываются ghost-картинками с противоположной\nстороны. Менеджер prepend'ит, поэтому в массиве самый старый — последний;\n`stackIndex` нумеруется от anchor'а (0) вверх по возрасту вглубь стека.",
+    "props": {},
+    "relatedTypes": {}
+  }
+}

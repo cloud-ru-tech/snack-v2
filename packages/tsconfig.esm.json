@@ -166,6 +166,9 @@
     },
     {
       "path": "./calendar/tsconfig.esm.json"
+    },
+    {
+      "path": "./toaster/tsconfig.esm.json"
     }
   ]
 }

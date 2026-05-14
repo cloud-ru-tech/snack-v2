@@ -1,0 +1,68 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as button;
+@use '@ds/materials' as m;
+
+.stateLayer {
+  visibility: initial;
+}
+
+// Figma toastButtonAction (7072:173): три уровня —
+// .toastButtonAction (внешний): только border-radius + focus-frame; appearance/cursor.
+// .buttonContainer: min-h 32, padding-h 4, относительный — на нём state-layer.
+// .textWrapper: padding-h 4, gap 0, label/l — реальный контент.
+// Итого горизонтальный padding текста = 4 + 4 = 8.
+.toastButtonAction {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+
+  padding: 0;
+  border: 0;
+  border-radius: button.$sn-button-anatomy-size-m-container-borderRadius;
+
+  color: inherit;
+  text-decoration: none;
+
+  appearance: none;
+  background: transparent;
+  outline: 0;
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
+      base.$sn-theme-color-available-onComplementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}
+
+.buttonContainer {
+  position: relative;
+
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: button.$sn-button-anatomy-size-m-container-minHeight;
+  padding: 0 button.$sn-button-anatomy-size-m-container-paddingHorizontal;
+  border-radius: button.$sn-button-anatomy-size-m-container-borderRadius;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}
+
+.textWrapper {
+  position: relative;
+
+  display: inline-flex;
+  gap: button.$sn-button-anatomy-size-m-container-textWrapper-gap;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 button.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+  white-space: nowrap;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
+}

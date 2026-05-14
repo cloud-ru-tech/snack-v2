@@ -10,7 +10,7 @@ import styles from './SettingsMenu.module.scss';
 const { LaptopSVG, MobilePhoneSVG } = ProductIcons;
 
 type Theme = 'light' | 'dark';
-type Brand = 'brandA' | 'brandB' | 'brandC';
+type Brand = 'brandA' | 'brandB';
 type BrandRole = 'main' | 'alter';
 type Density = 'compact' | 'comfort';
 
@@ -43,7 +43,6 @@ const THEME_ITEMS = [
 const BRAND_ITEMS = [
   { value: 'brandA' as const, label: 'A' },
   { value: 'brandB' as const, label: 'B' },
-  { value: 'brandC' as const, label: 'C' },
 ];
 
 function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {
@@ -66,7 +65,6 @@ const DENSITY_ITEMS = [
 
 function readBrand(cls: DOMTokenList): Brand {
   if (cls.contains('sn-brandB')) return 'brandB';
-  if (cls.contains('sn-brandC')) return 'brandC';
   return 'brandA';
 }
 
@@ -86,7 +84,6 @@ function applySettings(settings: Settings) {
   cls.toggle('sn-light', settings.theme === 'light');
   cls.toggle('sn-brandA', settings.brand === 'brandA');
   cls.toggle('sn-brandB', settings.brand === 'brandB');
-  cls.toggle('sn-brandC', settings.brand === 'brandC');
   cls.toggle('sn-main', settings.brandRole === 'main');
   cls.toggle('sn-alter', settings.brandRole === 'alter');
   cls.toggle('sn-compact', settings.density === 'compact');

@@ -1,0 +1,148 @@
+---
+title: ToastUserAction
+package: '@ds/toaster'
+description: Короткий feedback на действие пользователя — один label, опциональная ссылка (undo). 4 appearance, loading-спиннер, timer-кольцо. Auto-dismiss 2s.
+order: 2
+---
+
+import { UserActionBasic } from '../demos/examples/UserActionBasic'
+import UserActionBasicSrc from '../demos/examples/UserActionBasic.tsx?raw'
+import { UserActionLoading } from '../demos/examples/UserActionLoading'
+import UserActionLoadingSrc from '../demos/examples/UserActionLoading.tsx?raw'
+import { UserActionTimer } from '../demos/examples/UserActionTimer'
+import UserActionTimerSrc from '../demos/examples/UserActionTimer.tsx?raw'
+import { UserActionPositions } from '../demos/examples/UserActionPositions'
+import UserActionPositionsSrc from '../demos/examples/UserActionPositions.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import toasterDoc from './props.json'
+
+# ToastUserAction
+
+Короткое уведомление об успешно выполненном действии пользователя — copy/save/delete и т.п. Один label, без описания. Опционально — ссылка-отмена и таймер обратного отсчёта. Auto-dismiss 2s.
+
+## Когда использовать
+
+- Подтвердить локальное действие («Скопировано», «Сохранено», «Удалено»).
+- Дать возможность отмены через `action.onClick`.
+- Показать short-lived loading-состояние через `loading: true` + потом `update.*`.
+
+Когда **не** нужен UserAction:
+
+- Системные события / асинхронные результаты — используй [SystemEvent](/components/toaster/system-event).
+- Прогресс загрузки — используй [Upload](/components/toaster/upload).
+
+## Анатомия
+
+### Appearance (default `neutral`)
+
+- `neutral` — нейтральный feedback (дефолт).
+- `success` — успех.
+- `warning` — предупреждение.
+- `error` — ошибка.
+
+### Loading (default `false`)
+
+Заменяет иконку appearance на анимированный Sun-спиннер. Используется для in-progress операций с последующим `toaster.userAction.update.success(id, ...)`.
+
+### Timer (default `false`)
+
+24×24 SVG-кольцо обратного отсчёта вокруг иконки. Длительность совпадает с `AUTO_CLOSE_TIME[UserAction]` (2s). Pause при hover контейнера.
+
+## Установка
+
+```ts
+import { toaster, ToasterContainer, TOASTER_TYPE } from '@ds/toaster'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовые appearance'
+  description='Success / error / с ссылкой-отменой'
+  code={UserActionBasicSrc}
+>
+  <UserActionBasic client:visible />
+</Example>
+
+<Example
+  title='Loading → success'
+  description='Открываем loading-тост, через 1.5s обновляем на success'
+  code={UserActionLoadingSrc}
+>
+  <UserActionLoading client:visible />
+</Example>
+
+<Example
+  title='С таймером обратного отсчёта'
+  description='timer=true — SVG-кольцо вокруг иконки крутится синхронно с autoClose'
+  code={UserActionTimerSrc}
+>
+  <UserActionTimer client:visible />
+</Example>
+
+<Example
+  title='Положения контейнера'
+  description='UserAction поддерживает только top-center и bottom-center. Каждое — свой ToasterContainer.'
+  code={UserActionPositionsSrc}
+>
+  <UserActionPositions client:visible />
+</Example>
+
+## Императивный API
+
+Тосты создаются через `toaster.userAction.<appearance>({...})` — один метод на каждый visual вариант. Обновление существующего тоста — `toaster.userAction.update.<appearance>(id, {...})`. Закрытие — `toaster.userAction.dismiss(...)`.
+
+```ts
+import { toaster, type UserActionOptions } from '@ds/toaster'
+
+const id = await toaster.userAction.warning({
+  id: 'unsaved-changes',
+  containerId: 'main',
+  title: 'Есть несохранённые изменения',
+  description: 'Сохранить перед выходом?',
+  actions: [
+    { label: 'Сохранить', onClick: save },
+    { label: 'Отмена', onClick: dismiss },
+  ],
+  autoClose: false,
+  onClose: id => log('closed', id),
+})
+
+toaster.userAction.dismiss(id)
+```
+
+<PropsTable data={toasterDoc.ToasterUserActionOptions} />
+
+## Props
+
+<PropsTable data={toasterDoc.ToastUserAction} />
+
+## Storybook
+
+Playground — все props через controls (appearance, loading, timer, action-preset, width):
+
+<StorybookEmbed storyId='components-toaster-toastuseraction--playground' height={460} />
+
+### VisualMatrix · все оси
+
+Appearance × Width, Loading & Timer, набор action-пресетов (`none` / `labelOnly` / `link`):
+
+<StorybookEmbed storyId='components-toaster-toastuseraction--visual-matrix' height={560} />
+
+Связанные стори контейнера:
+
+- **Mobile** — `width: full` + `position: bottom-center`, кастомный `toasterParent`, swipe-to-dismiss: [`components-toaster-toaster--composition`](?path=/story/components-toaster-toaster--composition).
+- **Triggers** — шорткаты `toaster.userAction.*` рядом с другими типами: [`components-toaster-toaster--imperative-api`](?path=/story/components-toaster-toaster--imperative-api).
+
+## Figma
+
+<FigmaEmbed node={figmaNode('toaster', 'user-action')} height={480} title='ToastUserAction в Figma' />
+
+## Смотри также
+
+- [Toaster (root)](/components/toaster) — обзор пакета.
+- [SystemEvent](/components/toaster/system-event) — системные события.

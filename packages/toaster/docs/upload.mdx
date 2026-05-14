@@ -1,0 +1,146 @@
+---
+title: ToastUpload
+package: '@ds/toaster'
+description: Прогресс загрузки файлов. Поддерживает мульти-файл, pause/resume/retry/cancel, collapse/expand. Auto-dismiss отключён.
+order: 3
+---
+
+import { UploadBasic } from '../demos/examples/UploadBasic'
+import UploadBasicSrc from '../demos/examples/UploadBasic.tsx?raw'
+import { UploadProgress } from '../demos/examples/UploadProgress'
+import UploadProgressSrc from '../demos/examples/UploadProgress.tsx?raw'
+import { UploadCloseHooks } from '../demos/examples/UploadCloseHooks'
+import UploadCloseHooksSrc from '../demos/examples/UploadCloseHooks.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import toasterDoc from './props.json'
+
+# ToastUpload
+
+Тост для прогресса загрузки одного или нескольких файлов. Содержит общий прогресс-бар, список файлов с per-file статусами и actions (pause/resume/cancel/retry), кнопку collapse/expand. По умолчанию **не auto-dismiss'ится** — закрывается явно через crossклик или вызов API.
+
+## Когда использовать
+
+- Загрузка одного или нескольких файлов с возможностью отмены / паузы.
+- Длительная операция, требующая видимости прогресса и контроля.
+
+Когда **не** нужен Upload:
+
+- Короткий ack об успешной загрузке (без прогресса) — используй [UserAction](/components/toaster/user-action) с `success`.
+- Системное уведомление об ошибке без прогресса — используй [SystemEvent](/components/toaster/system-event) с `error`.
+
+## Анатомия
+
+### Status
+
+Общий статус загрузки:
+
+- `loading` — идёт загрузка (анимированный progress).
+- `pause` — пауза.
+- `error` — ошибка для всей операции.
+- `uploaded` — все файлы загружены.
+- `errorUploaded` — частичный результат (часть с ошибкой).
+
+### Collapsed (default `false`)
+
+Сворачивает список файлов, оставляя только заголовок и общий progress. Управляется через `collapsed` + `onCollapsed`.
+
+### Files
+
+Массив `UploadItem` с per-file статусом и actions. Каждый item опционально поддерживает `subscribeToState` для частых апдейтов прогресса без ре-рендера всего списка.
+
+### General actions
+
+`generalActions` — controls для всей операции (`onPause`, `onContinue`, `onRetry`). Кнопка cancel отдельным prop `cancelButton`.
+
+## Установка
+
+```ts
+import { toaster, ToasterContainer, TOASTER_TYPE, UploadItem } from '@ds/toaster'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовый Upload'
+  description='Один тост, несколько файлов, общий прогресс'
+  code={UploadBasicSrc}
+>
+  <UploadBasic client:visible />
+</Example>
+
+<Example
+  title='Прогрессивная загрузка → uploaded'
+  description='startOrUpdate с фиксированным id, прогресс 0 → 100 каждые 400ms, статус меняется на uploaded'
+  code={UploadProgressSrc}
+>
+  <UploadProgress client:visible />
+</Example>
+
+<Example
+  title='Хуки закрытия: onCloseClick + onClose'
+  description='Подтверждение через onCloseClick(e, close) и аналитика через onClose(id)'
+  code={UploadCloseHooksSrc}
+>
+  <UploadCloseHooks client:visible />
+</Example>
+
+## Императивный API
+
+Тосты создаются через `toaster.upload.startOrUpdate({...})`. Один и тот же id обновляет существующий тост — отдельный `update`-метод не нужен. Закрытие — `toaster.upload.dismiss(...)`.
+
+```ts
+import { toaster, type UploadOptions } from '@ds/toaster'
+
+const id = await toaster.upload.startOrUpdate({
+  id: 'main-upload',
+  containerId: 'main',
+  title: 'Загрузка файлов',
+  description: '40% из 100%',
+  status: 'loading',
+  progress: { current: 40, total: 100 },
+  files: [
+    { id: '1', title: 'doc.pdf', status: 'loading', statusLabel: '40%', progress: 40, formattedSize: '12 МБ' },
+  ],
+  onCancelAll: () => abortAllUploads(),
+  onCloseClick: (_e, close) => confirm('Закрыть?') && close?.(),
+  onClose: id => log('closed', id),
+})
+
+toaster.upload.dismiss({ containerId: 'main' })
+```
+
+<PropsTable data={toasterDoc.ToasterUploadOptions} />
+
+## Props
+
+<PropsTable data={toasterDoc.ToastUpload} />
+
+## Storybook
+
+Playground — все props через controls (status, progress, generalActions, collapsed, файлы):
+
+<StorybookEmbed storyId='components-toaster-toastupload--playground' height={520} />
+
+### VisualMatrix · статусы × состояния
+
+Status (`loading` / `paused` / `success` / `errorUploaded`), collapsed/expanded, разные item-state'ы в списке файлов:
+
+<StorybookEmbed storyId='components-toaster-toastupload--visual-matrix' height={620} />
+
+Связанные стори контейнера:
+
+- **UpdateFlow** — реалистичный сценарий: один тост проходит `loading → success → error` через `toaster.upload.startOrUpdate`: [`components-toaster-toaster--interaction-test`](?path=/story/components-toaster-toaster--interaction-test).
+- **Stacking** — общий контейнер `Upload + SystemEvent` (Upload-карточка с одной стороны, стек SystemEvent с другой, кнопки между): [`components-toaster-toaster--visual-matrix`](?path=/story/components-toaster-toaster--visual-matrix).
+- **Mobile** — Upload внутри узкого `toasterParent` с `width: full`: [`components-toaster-toaster--composition`](?path=/story/components-toaster-toaster--composition).
+
+## Figma
+
+<FigmaEmbed node={figmaNode('toaster', 'upload')} height={480} title='ToastUpload в Figma' />
+
+## Смотри также
+
+- [Toaster (root)](/components/toaster) — обзор пакета.

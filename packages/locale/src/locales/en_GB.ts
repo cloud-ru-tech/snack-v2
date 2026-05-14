@@ -41,4 +41,27 @@ export const en_GB = {
   SearchPrivate: {
     placeholder: 'Search',
   },
+  ToasterContainer: {
+    closeAll: 'Close all',
+    expand: 'Expand',
+    collapse: 'Collapse',
+    showMore: 'Show more',
+    showLess: 'Show less',
+  },
+  ToastUpload: {
+    title: {
+      loading: 'Uploading',
+      pause: 'Paused',
+      error: 'Upload error',
+      uploaded: 'Uploaded',
+      errorUploaded: 'Uploaded with errors',
+    },
+    pause: 'Pause',
+    play: 'Resume',
+    retry: 'Retry',
+    cancelAll: 'Cancel all',
+  },
+  ToastSystemEvent: {
+    closeButton: 'Close notification',
+  },
 } satisfies Dictionary;

@@ -28,7 +28,6 @@ export const THEME_OPTIONS = [
 export const BRAND_OPTIONS = [
   { value: 'brandA', label: 'Brand A' },
   { value: 'brandB', label: 'Brand B' },
-  { value: 'brandC', label: 'Brand C' },
 ] as const;
 
 export const BRAND_ROLE_OPTIONS = [

@@ -1,0 +1,28 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+// Figma 7871:513510 — buttonWrapper 24×24, ToastButton 32×32 со смещением,
+// чтобы hit-area сохранялась 32, а layout-размер совпадал с строкой статуса.
+.buttonWrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
+  height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
+
+  > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.successIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+
+  width: base.$sn-density-size-icon-s;
+  height: base.$sn-density-size-icon-s;
+
+  color: base.$sn-theme-color-green-accent;
+}

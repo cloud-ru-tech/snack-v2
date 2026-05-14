@@ -1,0 +1,404 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+// ============================================================================
+// Контейнер тостов. Самодельная реализация без `react-toastify` — на уровне
+// корневого `.container` живёт `position: fixed`, на каждом тосте — относительная
+// раскладка, deck-эффект — `transform` у не-фронт сиблингов в свёрнутом стеке.
+// ============================================================================
+
+$stack-peek: base.$sn-primitive-dimension-8;
+$stack-inset: toaster.$sn-toaster-anatomy-toast-systemEvent-stack-level1-paddingHorizontal;
+
+// Per-level visual config для ghost'ов в свёрнутом стеке. Карта — единственное
+// место, где описываются разные «слои» стека: добавили новый stackIndex —
+// добавили запись.
+$stack-levels: (
+  1: (z-index: 3, scale: 0.96, background: base.$sn-theme-color-invertNeutral-background),
+  2: (z-index: 2, scale: 0.92, background: base.$sn-theme-color-invertNeutral-background),
+);
+
+// Симметричный отступ от краёв для UserAction-центров: токен в figma-variables
+// называется `paddingBottom`, но семантически одинаков для top и bottom-center,
+// поэтому aliasим под более понятным именем.
+$user-action-edge-padding: toaster.$sn-toaster-anatomy-toast-userAction-paddingBottom;
+
+// В DS нет токена z-index для тостов, поэтому локальные константы. Контейнер
+// должен лежать выше большинства UI (modal/dialog), buttons-block (close-all /
+// collapse) — ещё на ступеньку выше, чтобы быть «над» тостами.
+$z-index-toaster-container: 9999;
+
+// Root-обёртка, которую helpers.tsx вставляет в `toasterParent`. Задаёт
+// query-container равного по размеру родителю и containing block для
+// `position: fixed` тостов — внутри тосты используют `cqh`/`cqw` относительно
+// этого контейнера, а не viewport'а. Когда `toasterParent === document.body`
+// — поведение совпадает с viewport'ом, поэтому это безопасный дефолт.
+.toasterRoot {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  container-type: size;
+}
+
+.container {
+
+  // Corner positions. Anchor sides come from $corner-anchors map.
+  $corner-anchors: (
+    'positionTopLeft': (top, left),
+    'positionTopRight': (top, right),
+    'positionBottomLeft': (bottom, left),
+    'positionBottomRight': (bottom, right),
+  );
+  // Дефолт — none, чтобы пустая обёртка не блокировала клики «насквозь» по
+  // соседним элементам страницы вокруг тостов.
+  pointer-events: none;
+  position: fixed;
+  z-index: $z-index-toaster-container;
+
+  // Узкий viewport: контейнер не должен выходить за экран, paddingHorizontal
+  // отступа от обоих краёв обязан соблюдаться. На широких экранах min() даёт
+  // обычный maxWidth, на узких — clamp по доступной ширине вьюпорта.
+  width: min(
+    #{toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth},
+    calc(100cqw - 2 * #{toaster.$sn-toaster-anatomy-toast-systemEvent-paddingHorizontal})
+  );
+
+  // В развёрнутом stacked — auto, чтобы gap-зоны между тостами считались
+  // hit-area контейнера. Иначе при наведении на ghost-тост мышь проходит
+  // через gap (контейнер с none = клик-сквозь), React видит mouseLeave из
+  // subtree → стек коллапсится посреди интеракции.
+  &[data-stacked='true'][data-collapsed='false'] {
+    pointer-events: auto;
+  }
+
+  // Center-positions: left:0/right:0 + margin auto (transform создал бы
+  // containing block для fixed-потомков и сломал бы swipe-координаты).
+  &.positionTopCenter {
+    top: toaster.$sn-toaster-anatomy-toast-systemEvent-paddingVertical;
+    right: 0;
+    left: 0;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &.positionBottomCenter {
+    right: 0;
+    bottom: toaster.$sn-toaster-anatomy-toast-systemEvent-paddingVertical;
+    left: 0;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &[data-type='user-action'].positionTopCenter {
+    top: $user-action-edge-padding;
+  }
+
+  &[data-type='user-action'].positionBottomCenter {
+    bottom: $user-action-edge-padding;
+  }
+
+  @each $cls, $sides in $corner-anchors {
+    $v: list.nth($sides, 1);
+    $h: list.nth($sides, 2);
+
+    &.#{$cls} {
+      #{$v}: toaster.$sn-toaster-anatomy-toast-systemEvent-paddingVertical;
+      #{$h}: toaster.$sn-toaster-anatomy-toast-systemEvent-paddingHorizontal;
+    }
+  }
+
+}
+
+// Скролл-обёртка из @ds/scroll. Хост получает max-height по доступному
+// dvh-окну минус paddingVertical контейнера — переполнение по высоте уходит
+// во внутренний кастомный скролл (а не в обрезание тостов экраном).
+// pointer-events: inherit оставляет «click-through» поведение пустых зон,
+// пока контейнер не переключился в `pointer-events: auto`
+// (stacked && !collapsed).
+.scrollHost {
+  pointer-events: inherit;
+  // Берём минимум из container-query-высоты (parent-relative) и dynamic
+  // viewport height (учитывает мобильные address-bar'ы). На мобилке 100cqh
+  // зачастую резолвится к "small viewport" — пока тулбар прячется, реальная
+  // видимая область меньше, и хвост стека уезжает за экран без скролла.
+  // `dvh` даёт второй ограничитель «по факту видимости».
+  max-height: calc(
+    min(100cqh, 100dvh) - 2 * #{toaster.$sn-toaster-anatomy-toast-systemEvent-paddingVertical}
+  );
+}
+
+// Внутренний flex-стек: бывшая flex-раскладка `.container` живёт здесь, чтобы
+// корневой узел остался единичным позиционно-якорным элементом, а Scroll-host
+// был его единственным ребёнком.
+.stackInner {
+  display: flex;
+  flex-direction: column;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-gap;
+  align-items: flex-end;
+
+  &.positionTopLeft {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  &.positionTopRight {
+    flex-direction: column-reverse;
+  }
+
+  &.positionBottomLeft {
+    align-items: flex-start;
+  }
+
+  &.positionTopCenter {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  &.positionBottomCenter {
+    align-items: center;
+  }
+}
+
+// Cubic-bezier для приятного «overshoot-free» появления; стек deck — чуть мягче.
+$toast-ease: cubic-bezier(0.22, 1, 0.36, 1);
+$toast-duration: 280ms;
+
+// Slot is `display: block` by default so collapsed-stack ghosts
+// (.toast with `position: absolute`) paint correctly. We switch to
+// `display: contents` only when the stack is expanded, so .toast
+// participates directly in .systemEventBlock's flex/gap. During drag
+// ToastSlot injects inline `display:block` + captured width/height
+// to reserve space while .toast goes `position: fixed`.
+.toastSlot {
+  display: block;
+}
+
+.container[data-stacked='true'][data-collapsed='false'] .toastSlot {
+  display: contents;
+}
+
+.toast {
+  pointer-events: auto;
+  will-change: transform, opacity;
+
+  display: block;
+
+  // SystemEvent / Upload используют фиксированную ширину контейнера, чтобы
+  // карточка была одинаковая независимо от длины текста. На узких viewport'ах
+  // ужимаемся до доступной ширины (тот же clamp, что и на `.container`).
+  width: min(
+    #{toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth},
+    calc(100cqw - 2 * #{toaster.$sn-toaster-anatomy-toast-systemEvent-paddingHorizontal})
+  );
+
+  transition: transform $toast-duration $toast-ease, opacity $toast-duration $toast-ease;
+
+  // Default (right-side): slide-in справа.
+  &[data-status='entering'] {
+    transform: translate3d(110%, 0, 0);
+    opacity: 0;
+  }
+
+  &[data-status='leaving'] {
+    transform: translate3d(110%, 0, 0);
+    opacity: 0;
+  }
+
+  &[data-mounted='true'][data-status='visible'] {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  // Swipe-to-dismiss. Во время активного дрэга transition отключаем — палец
+  // должен «приклеиться» к карточке без интерполяции. touch-action ограничивает
+  // нативный скролл по оси свайпа, чтобы тач-жест не уезжал в страницу.
+  &[data-draggable='true'] {
+    cursor: grab;
+  }
+
+  &[data-draggable='true'][data-drag-axis='x'] {
+    touch-action: pan-y;
+  }
+
+  &[data-draggable='true'][data-drag-axis='y'] {
+    touch-action: pan-x;
+  }
+
+  &[data-dragging='true'] {
+    cursor: grabbing;
+    user-select: none;
+    transition: none;
+  }
+}
+
+// UserAction — компактный pill: ширина по контенту, чтобы в Center-позициях
+// карточка визуально была центром, а не лежала у левого края maxWidth-обёртки.
+.container[data-type='user-action'] {
+  width: auto;
+
+  .toast {
+    width: fit-content;
+    max-width: min(
+      #{toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth},
+      calc(100cqw - 2 * #{toaster.$sn-toaster-anatomy-toast-systemEvent-paddingHorizontal})
+    );
+  }
+
+  // TODO(FF-8311): width=full сейчас не растягивает UserAction-тост — слот в
+  // column-flex с `align-items: center` шринкается под контент, и `width: 100%`
+  // на ToastUserAction.container считает от 0. Нужен совместный override на
+  // .toastSlot (align-self: stretch + width: 100%), .toast (width: 100%,
+  // max-width: none) и .container (width: 100%) — но он тянет за собой visual-
+  // регрессии в Composition-стори, нужна аккуратная сверка.
+}
+
+// Per-position enter/leave directions. Default (right-side, см. `.toast` выше) —
+// slide-in справа; ниже переопределяем для остальных позиций.
+$position-slide-transforms: (
+  'positionTopLeft': translate3d(-110%, 0, 0),
+  'positionBottomLeft': translate3d(-110%, 0, 0),
+  'positionTopCenter': translate3d(0, -120%, 0),
+  'positionBottomCenter': translate3d(0, 120%, 0),
+);
+
+@each $position-class, $transform in $position-slide-transforms {
+  .container.#{$position-class} .toast {
+    &[data-status='entering'],
+    &[data-status='leaving'] {
+      transform: $transform;
+    }
+  }
+}
+
+// ===== STACKED LAYOUT =====
+// Front остаётся в flex-потоке. В collapsed ghost'ы абсолютно позиционируются
+// поверх front'а (z-index ниже), выглядывают на $stack-peek. На expand'е они
+// возвращаются в flow, scale убирается, transform/opacity транзишены.
+
+.container[data-stacked='true'] {
+  .toast {
+    // `position: relative` нужен, чтобы `z-index` фронта применился: .toast
+    // больше не прямой flex-ребёнок .systemEventBlock'а (между ними .toastSlot
+    // с `display: block` вне раскрытого стека), а на не-positioned-элемент
+    // z-index не действует. Без этого фронт уезжает под absolute-ghost'ов с
+    // их собственным z-index'ом, и видны только peek-полоски без контента
+    // фронта.
+    position: relative;
+    transform-origin: center;
+    transition:
+      transform $toast-duration $toast-ease,
+      opacity $toast-duration $toast-ease;
+
+    &[data-front='true'] {
+      z-index: 4;
+    }
+  }
+
+  // В collapsed: ghost'ы И leaving-карточки абсолютно накладываются — иначе
+  // leaving-тост (front, который уезжает) занимает место в flow ещё 280ms,
+  // блок расширяется до двойной высоты и оставшийся front скачком переезжает
+  // вниз. Видим «пустое место сверху», пока уход не завершится.
+  &[data-collapsed='true'] .toast[data-stack-index]:not([data-front='true']),
+  &[data-collapsed='true'] .toast[data-status='leaving'] {
+    pointer-events: none;
+
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    width: 100%;
+    border-radius: toaster.$sn-toaster-anatomy-toast-systemEvent-container-borderRadius;
+  }
+
+  // Контент прячем только у ghost'ов (не у leaving — он должен быть виден
+  // во время slide-out анимации).
+  &[data-collapsed='true'] .toast[data-stack-index]:not([data-front='true']) > * {
+    visibility: hidden;
+  }
+
+  @each $idx, $cfg in $stack-levels {
+    &[data-collapsed='true'] .toast[data-stack-index='#{$idx}'] {
+      z-index: map.get($cfg, 'z-index');
+      background: map.get($cfg, 'background');
+
+      &[data-mounted='true'][data-status='visible'] {
+        transform: scaleX(map.get($cfg, 'scale'));
+      }
+    }
+  }
+
+  &[data-collapsed='true'] .toast[data-stack-index]:not([data-stack-index='0'], [data-stack-index='1'], [data-stack-index='2']) {
+    z-index: 1;
+    opacity: 0;
+  }
+}
+
+// Top/Bottom-якорь: front у края контейнера, ghost'ы peek'ают в сторону
+// центра ($stack-peek сдвиг по level'у). Anchor-сторона задаёт CSS-property
+// (`top` для top-*, `bottom` для bottom-*).
+$anchor-positions: (
+  'top': ('positionTopRight', 'positionTopLeft', 'positionTopCenter'),
+  'bottom': ('positionBottomRight', 'positionBottomLeft', 'positionBottomCenter'),
+);
+
+@each $anchor, $position-classes in $anchor-positions {
+  @each $position-class in $position-classes {
+    .container.#{$position-class}[data-stacked='true'][data-collapsed='true'] {
+      .toast[data-stack-index='1'] {
+        #{$anchor}: $stack-peek;
+      }
+
+      .toast[data-stack-index='2'],
+      .toast[data-stack-index]:not([data-stack-index='0'], [data-stack-index='1'], [data-stack-index='2']) {
+        #{$anchor}: calc(#{$stack-peek} * 2);
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Split-layout: Upload-блок и SystemEvent-блок с кнопками Expand/Close all
+// между ними (Figma 26297:48316). Оба блока живут внутри основного flex-
+// container'а, направление потока определяется position'ом (top-* —
+// column-reverse, bottom-* — column).
+// ============================================================================
+
+// Блоки наследуют flex-direction родителя, чтобы внутри SystemEvent-блока
+// front (oldest) лежал у грани, ближайшей к кнопкам (т.е. на противоположной
+// от якоря стороне внутри блока), и стек растил newer вверх/вниз
+// корректно — см. правила row/column-reverse выше у .container.
+.uploadBlock,
+.systemEventBlock {
+  display: flex;
+  flex-direction: inherit;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-gap;
+  // Без `align-items: inherit` user-action-тост (`width: fit-content`) внутри
+  // top-/bottom-center контейнера прибивается к flex-start (= левому краю
+  // systemEventBlock), потому что блок — flex-ребёнок stackInner с собственным
+  // дефолтным align-items (stretch), а не наследует center с родителя.
+  align-items: inherit;
+
+  width: 100%;
+}
+
+// Stack-логика (position: absolute у ghost'ов в collapsed) живёт относительно
+// .systemEventBlock — иначе absolute-ghost'ы позиционировались бы по всему
+// контейнеру (включая Upload-блок и Buttons-блок) и съезжали бы.
+.systemEventBlock {
+  position: relative;
+}
+
+.buttonsBlock {
+  pointer-events: auto;
+
+  display: flex;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-actions-gap;
+  justify-content: space-between;
+
+  width: toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth;
+}
+

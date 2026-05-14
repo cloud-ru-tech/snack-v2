@@ -1,0 +1,50 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+
+.timer {
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-container;
+  height: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-container;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.digit {
+  position: relative;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-align: center;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+}
+
+.track {
+  opacity: 0.2;
+  stroke: currentcolor;
+  stroke-width: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-borderWidth;
+}
+
+// stroke-dashoffset управляется из React (`useToastProgress`). CSS только
+// сглаживает дискретный шаг rAF — `transition` маскирует «прыжки» между
+// тиками, не сбивая фактический прогресс. Пауза/hover на менеджере дают
+// `live.running === false`, обновления state прекращаются и offset остаётся
+// замороженным — без отдельного CSS-правила play-state.
+.indicator {
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-width: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-borderWidth;
+  transition: stroke-dashoffset 80ms linear;
+}

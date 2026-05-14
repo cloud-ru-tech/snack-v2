@@ -1,0 +1,177 @@
+---
+title: ToastSystemEvent
+package: '@ds/toaster'
+description: Системное событие — заголовок, описание, link, action-кнопки, 5 appearance. Auto-dismiss 5s, поддерживает stack-режим.
+order: 1
+---
+
+import { BasicSystemEvent } from '../demos/examples/BasicSystemEvent'
+import BasicSystemEventSrc from '../demos/examples/BasicSystemEvent.tsx?raw'
+import { StackedSystemEvent } from '../demos/examples/StackedSystemEvent'
+import StackedSystemEventSrc from '../demos/examples/StackedSystemEvent.tsx?raw'
+import { SystemEventWithAction } from '../demos/examples/SystemEventWithAction'
+import SystemEventWithActionSrc from '../demos/examples/SystemEventWithAction.tsx?raw'
+import { SystemEventSavingFlow } from '../demos/examples/SystemEventSavingFlow'
+import SystemEventSavingFlowSrc from '../demos/examples/SystemEventSavingFlow.tsx?raw'
+import { SystemEventPositions } from '../demos/examples/SystemEventPositions'
+import SystemEventPositionsSrc from '../demos/examples/SystemEventPositions.tsx?raw'
+import { SystemEventCloseHooks } from '../demos/examples/SystemEventCloseHooks'
+import SystemEventCloseHooksSrc from '../demos/examples/SystemEventCloseHooks.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import toasterDoc from './props.json'
+
+# ToastSystemEvent
+
+Системные уведомления о состоянии системы — успех/ошибка/предупреждение, опционально с link или action-кнопками. По умолчанию auto-dismiss 5s, в `stacked`-контейнере накапливается в deck-стопку.
+
+## Когда использовать
+
+- Сообщить о результате асинхронной операции (сохранение, отправка, синхронизация).
+- Информировать о системных событиях, которые не блокируют UI (фоновые задачи, networking).
+- Показать критическую ошибку с возможностью повторить (`appearance='errorCritical'` + action).
+
+Когда **не** нужен SystemEvent:
+
+- Короткий ack на пользовательское действие («скопировано», «отменено») — используй [UserAction](/components/toaster/user-action).
+- Прогресс загрузки файлов — используй [Upload](/components/toaster/upload).
+
+## Анатомия
+
+### Appearance (default `neutral`)
+
+- `neutral` — информационное (дефолт).
+- `success` — успешное завершение действия.
+- `warning` — предупреждение, требующее внимания.
+- `error` — обычная ошибка.
+- `errorCritical` — критическая ошибка с акцентом (красный фон, изменённый стиль link).
+
+### Progress bar (default `true`)
+
+Полоса auto-dismiss таймера внизу карточки. Анимация совпадает с `autoClose` мс. Pause при hover контейнера и в свёрнутом стеке (ghost-карточки).
+
+### Closable (default `true`)
+
+Крестик закрытия в правом верхнем углу. Клик вызывает `onCloseClick(e, closeToast)`; если хендлер не задан — вызывается `closeToast`.
+
+### Action (default `undefined`)
+
+Массив 1–2 кнопок в footer'е. По соглашению Figma primary-кнопка находится справа, поэтому первый элемент массива (`action[0]`) рендерится справа как primary action, второй (`action[1]`) — слева как secondary. Используется для критических подтверждений (`autoClose: false` рекомендуется).
+
+## Установка
+
+```ts
+import { toaster, ToasterContainer, TOASTER_TYPE } from '@ds/toaster'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовые appearance'
+  description='Success и error с link'
+  code={BasicSystemEventSrc}
+>
+  <BasicSystemEvent client:visible />
+</Example>
+
+<Example
+  title='Stack-режим'
+  description='Hover разворачивает стопку, mouse-leave сворачивает'
+  code={StackedSystemEventSrc}
+>
+  <StackedSystemEvent client:visible />
+</Example>
+
+<Example
+  title='С action-кнопками'
+  description='warning + 2 кнопки, autoClose отключён'
+  code={SystemEventWithActionSrc}
+>
+  <SystemEventWithAction client:visible />
+</Example>
+
+<Example
+  title='Обновление: loading → success / error'
+  description='Открываем neutral-тост без autoClose, через 1.5s update.success / update.error'
+  code={SystemEventSavingFlowSrc}
+>
+  <SystemEventSavingFlow client:visible />
+</Example>
+
+<Example
+  title='Положения контейнера'
+  description='6 позиций: top/bottom × left/center/right. Каждое — свой ToasterContainer с уникальным containerId.'
+  code={SystemEventPositionsSrc}
+>
+  <SystemEventPositions client:visible />
+</Example>
+
+<Example
+  title='Хуки закрытия: onCloseClick + onClose'
+  description='Подтверждение через onCloseClick(e, close) и аналитика через onClose(id)'
+  code={SystemEventCloseHooksSrc}
+>
+  <SystemEventCloseHooks client:visible />
+</Example>
+
+## Императивный API
+
+Тосты создаются через `toaster.systemEvent.<appearance>({...})` — один метод на каждый visual вариант. Обновление существующего тоста — `toaster.systemEvent.update.<appearance>(id, {...})`. Закрытие — `toaster.systemEvent.dismiss(...)`.
+
+```ts
+import { toaster, type SystemEventOptions } from '@ds/toaster'
+
+const id = await toaster.systemEvent.error({
+  id: 'save-error',
+  containerId: 'main',
+  title: 'Не удалось сохранить',
+  description: 'Сервер вернул 500',
+  link: { text: 'Подробнее', href: '/logs/123' },
+  autoClose: false,
+  onCloseClick: (_e, close) => confirm('Закрыть?') && close?.(),
+  onClose: id => log('closed', id),
+})
+
+toaster.systemEvent.update.warning(id, {
+  title: 'Сохранение временно недоступно',
+  description: 'Повтор через 30s',
+})
+
+toaster.systemEvent.dismiss(id)
+```
+
+<PropsTable data={toasterDoc.ToasterSystemEventOptions} />
+
+## Props
+
+<PropsTable data={toasterDoc.ToastSystemEvent} />
+
+## Storybook
+
+Playground — все props через controls (appearance, link, action, closable, autoClose):
+
+<StorybookEmbed storyId='components-toaster-toastsystemevent--playground' height={460} />
+
+### VisualMatrix · все варианты в одной сетке
+
+Все 5 appearance × состояния (с/без link, с/без action, closable) — удобно для визуальной сверки и регрессии.
+
+<StorybookEmbed storyId='components-toaster-toastsystemevent--visual-matrix' height={520} />
+
+Связанные стори контейнера:
+
+- **Stacking** — поведение стека из SystemEvent-тостов: [`components-toaster-toaster--visual-matrix`](?path=/story/components-toaster-toaster--visual-matrix).
+- **Triggers** — императивные шорткаты `toaster.systemEvent.*`: [`components-toaster-toaster--imperative-api`](?path=/story/components-toaster-toaster--imperative-api).
+- **Positions** — все 6 точек якоря: [`components-toaster-toaster--visual-matrix`](?path=/story/components-toaster-toaster--visual-matrix).
+
+## Figma
+
+<FigmaEmbed node={figmaNode('toaster', 'system-event')} height={480} title='ToastSystemEvent в Figma' />
+
+## Смотри также
+
+- [Toaster (root)](/components/toaster) — обзор пакета.
+- [UserAction](/components/toaster/user-action) — короткие ack-уведомления.

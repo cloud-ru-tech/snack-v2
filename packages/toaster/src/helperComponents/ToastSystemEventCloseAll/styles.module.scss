@@ -1,0 +1,39 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+@use '@ds/materials' as m;
+
+.stateLayer {
+  visibility: initial;
+}
+
+.button {
+  cursor: pointer;
+
+  position: relative;
+
+  overflow: hidden;
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  min-height: toaster.$sn-toaster-anatomy-toast-systemEvent-container-closeAll-minHeight;
+  padding: 0 toaster.$sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal;
+  border: 0;
+  border-radius: toaster.$sn-toaster-anatomy-toast-systemEvent-container-closeAll-borderRadius;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+
+  appearance: none;
+  background: base.$sn-theme-color-invertNeutral-background2Level;
+  outline: 0;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
+      base.$sn-theme-color-available-onComplementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}

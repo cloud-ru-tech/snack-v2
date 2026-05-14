@@ -41,4 +41,27 @@ export const ru_RU: typeof en_GB = {
   SearchPrivate: {
     placeholder: 'Поиск',
   },
+  ToasterContainer: {
+    closeAll: 'Закрыть все',
+    expand: 'Развернуть',
+    collapse: 'Свернуть',
+    showMore: 'Показать все',
+    showLess: 'Скрыть',
+  },
+  ToastUpload: {
+    title: {
+      loading: 'Загрузка',
+      pause: 'Приостановлено',
+      error: 'Ошибка загрузки',
+      uploaded: 'Загружено',
+      errorUploaded: 'Загружено с ошибками',
+    },
+    pause: 'Пауза',
+    play: 'Продолжить',
+    retry: 'Повторить',
+    cancelAll: 'Отменить всё',
+  },
+  ToastSystemEvent: {
+    closeButton: 'Закрыть уведомление',
+  },
 };

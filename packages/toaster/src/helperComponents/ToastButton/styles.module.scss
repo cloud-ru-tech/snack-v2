@@ -1,0 +1,59 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as button;
+
+// Единый toastButton — Figma 8174:17980. Используется для всех transparent-кнопок
+// тоста (close, collapse-chevron, file-cancel, "Cancel all", "Show", status-pause).
+// Action[]-кнопки в SystemEvent footer'е (filled-tonal) — отдельный компонент.
+.toastButton {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: button.$sn-button-anatomy-size-m-container-minHeight;
+  padding: 0;
+  border: 0;
+  border-radius: button.$sn-button-anatomy-size-m-container-borderRadius;
+
+  color: base.$sn-theme-color-available-inversion-textTertiary;
+  text-decoration: none;
+
+  appearance: none;
+  background: transparent;
+  outline: 0;
+
+  // labelOnly — текст с label-l typography, padding из button anatomy.
+  &[data-composition='labelOnly'] {
+    padding: 0 button.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal;
+
+    @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
+  }
+
+  // iconOnly — квадрат 32×32 (button-anatomy), внутри 24×24 SVG.
+  &[data-composition='iconOnly'] {
+    flex-shrink: 0;
+    width: button.$sn-button-anatomy-size-m-container-iconOnly-minWidth;
+    height: button.$sn-button-anatomy-size-m-container-minHeight;
+
+    > svg {
+      width: base.$sn-density-size-icon-s;
+      height: base.$sn-density-size-icon-s;
+    }
+  }
+
+  &:hover {
+    color: base.$sn-theme-color-available-inversion-textSecondary;
+  }
+
+  &:focus-visible {
+    color: base.$sn-theme-color-available-inversion-textSecondary;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
+      base.$sn-theme-color-available-onComplementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  &:active {
+    color: base.$sn-theme-color-available-inversion-textMain;
+  }
+}

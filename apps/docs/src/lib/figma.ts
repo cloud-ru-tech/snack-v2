@@ -103,6 +103,12 @@ export const FIGMA_NODES = {
   tabs: { ...SNACK, nodeId: '8671-2412' }, // tabs → tabs
   tag: { ...SNACK, nodeId: '3733-11265' }, // tag → tag
   timeline: { ...SNACK, nodeId: '8658-114' }, // timeline → timeline
+  toaster: {
+    _: { ...SNACK, nodeId: '6847-810' }, // toaster → canvas
+    'system-event': { ...SNACK, nodeId: '7072-478' }, // toaster/system-event → toastSystemEvent
+    'user-action': { ...SNACK, nodeId: '7084-541' }, // toaster/user-action → toastUserAction
+    upload: { ...SNACK, nodeId: '7871-514005' }, // toaster/upload → toastUpload
+  },
   toggles: {
     _: { ...SNACK, nodeId: '2815-30903' }, // toggles → toggle
     checkbox: { ...SNACK, nodeId: '2834-25233' }, // toggles/checkbox → Checkbox

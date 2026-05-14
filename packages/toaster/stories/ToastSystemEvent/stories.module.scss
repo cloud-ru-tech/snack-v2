@@ -1,0 +1,74 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+  width: fit-content;
+  max-width: 100%;
+}
+
+// Контейнер для статической демонстрации SystemEventProgress в матрице:
+// фиксированная ширина + относительное позиционирование (.progress использует
+// position: absolute с right/bottom/left).
+// Ограничиваем ширину тоста — без него ячейка StoryTable растягивается
+// под контент и ни truncate ссылки, ни wrap описания не проявляется.
+.toastCell {
+  width: 304px;
+}
+
+// Замораживает прогресс-полосу тоста на 50% — для визуальной матрицы
+// нужна детерминированная позиция (анимация autoClose тикает в реальном
+// времени и снимок будет flaky). role=progressbar — стабильный селектор
+// независимо от CSS-modules-хешей.
+.frozenProgressHalf {
+  [role='progressbar'] {
+    transform: scaleX(0.5) !important;
+    animation: none !important;
+  }
+}
+
+.progressCell {
+  position: relative;
+
+  width: 160px;
+  height: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  background: base.$sn-theme-color-invertNeutral-background2Level;
+}
+
+// Playground — общий стиль с Toaster-демо: центрированная панель.
+.playgroundPage {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.playgroundPanel {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 560px;
+  padding: base.$sn-primitive-dimension-24;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-m;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.playgroundTitle {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'title', 's');
+
+  margin: 0;
+}
+
+.playgroundHint {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  margin: 0;
+  color: base.$sn-theme-color-neutral-text;
+}

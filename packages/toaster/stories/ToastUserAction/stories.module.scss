@@ -1,0 +1,54 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+// Эмуляция Figma-оси width=auto|full: контейнер ToasterContainer задаёт ширину,
+// здесь повторяем те же два визуальных режима для карточки в изоляции.
+.widthAuto {
+  display: inline-block;
+}
+
+.widthFull {
+  display: block;
+  width: 384px;
+}
+
+// Playground — общий стиль с Toaster-демо: центрированная панель с
+// title-s/body-s и карточкой компонента внутри.
+.playgroundPage {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.playgroundPanel {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 560px;
+  padding: base.$sn-primitive-dimension-24;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-m;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+}
+
+.playgroundTitle {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'title', 's');
+
+  margin: 0;
+}
+
+.playgroundHint {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  margin: 0;
+  color: base.$sn-theme-color-neutral-text;
+}

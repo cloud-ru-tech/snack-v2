@@ -52,6 +52,14 @@ export type ScrollProps = WithSupportProps<
     untouchableScrollbars?: boolean;
     /** Должны ли паддинги быть абсолютными */
     paddingAbsolute?: boolean;
+    /**
+     * Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`
+     * на обе оси; если контента по оси быть не должно — передавай `'hidden'`.
+     */
+    overflow?: {
+      x?: 'hidden' | 'visible' | 'scroll' | 'visible-hidden' | 'visible-scroll';
+      y?: 'hidden' | 'visible' | 'scroll' | 'visible-hidden' | 'visible-scroll';
+    };
     /** Коллбэк вызывающийся на инициализацию скролла */
     onInitialized?(): void;
   }>
@@ -84,6 +92,7 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
     barHideStrategy = BAR_HIDE_STRATEGY.Leave,
     autoscrollTo,
     paddingAbsolute,
+    overflow,
     untouchableScrollbars = false,
     ...rest
   },
@@ -207,6 +216,7 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
       style={{ resize }}
       options={{
         paddingAbsolute,
+        overflow,
         scrollbars: {
           autoHide: barHideStrategy,
           autoHideDelay: BAR_AUTO_HIDE_DELAY_MS,
