@@ -50,6 +50,7 @@ export function ToastUserAction({
       data-appearance={appearance}
       data-loading={loading || undefined}
       data-timer={timer || undefined}
+      role={appearance === 'error' ? 'alert' : 'status'}
     >
       {leadingSlot}
 

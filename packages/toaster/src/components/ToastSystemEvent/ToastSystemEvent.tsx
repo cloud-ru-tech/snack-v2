@@ -51,6 +51,7 @@ export function ToastSystemEvent({
       {...extractSupportProps(rest)}
       data-test-id={TEST_IDS.systemEventRoot}
       data-appearance={appearance}
+      role={appearance === 'error' || appearance === 'errorCritical' ? 'alert' : 'status'}
     >
       <div className={styles.body}>
         <span className={styles.icon} data-test-id={TEST_IDS.systemEventIcon}>

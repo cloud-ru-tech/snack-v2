@@ -55,7 +55,9 @@ $z-index-toaster-container: 9999;
   // соседним элементам страницы вокруг тостов.
   pointer-events: none;
   position: fixed;
-  z-index: $z-index-toaster-container;
+  // Override через CSS custom property: `:root { --ds-toaster-z-index: 100 }`
+  // (в DS нет токена z-index для тостов, см. $z-index-toaster-container выше).
+  z-index: var(--ds-toaster-z-index, #{$z-index-toaster-container});
 
   // Узкий viewport: контейнер не должен выходить за экран, paddingHorizontal
   // отступа от обоих краёв обязан соблюдаться. На широких экранах min() даёт
@@ -400,5 +402,23 @@ $anchor-positions: (
   justify-content: space-between;
 
   width: toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth;
+}
+
+// ============================================================================
+// Reduced motion. Обнуляем анимируемые transition'ы (slide-in/leave, stack-
+// deck transform, scaleX-ghost'ы), но НЕ трогаем позиционирующие transform'ы:
+// `translate3d(0,0,0)` у visible, абсолютное позиционирование ghost'ов и т.д.
+// — это статические позиции, без них стек развалится. Анимации убираются
+// фактически за счёт `transition: none` — тосты появляются/уходят сразу в
+// конечной позиции/прозрачности.
+// ============================================================================
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+
+  .container[data-stacked='true'] .toast {
+    transition: none;
+  }
 }
 

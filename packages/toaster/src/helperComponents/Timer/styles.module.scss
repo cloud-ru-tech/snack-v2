@@ -48,3 +48,12 @@
   stroke-width: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-borderWidth;
   transition: stroke-dashoffset 80ms linear;
 }
+
+// Reduced motion: убираем сглаживание stroke-dashoffset. Сам offset
+// обновляется из React, поэтому отсчёт остаётся живым — пропадает только
+// межкадровая интерполяция.
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
+  }
+}

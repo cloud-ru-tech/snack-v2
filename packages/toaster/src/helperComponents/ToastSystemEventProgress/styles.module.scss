@@ -37,3 +37,12 @@ $bar-backgrounds: (
     transition: none;
   }
 }
+
+// Reduced motion: убираем сглаживающий transition. Фактический scaleX всё
+// равно обновляется через inline-style на каждом rAF-тике — прогресс остаётся
+// корректным, просто без межкадровой интерполяции.
+@media (prefers-reduced-motion: reduce) {
+  .progress {
+    transition: none;
+  }
+}
