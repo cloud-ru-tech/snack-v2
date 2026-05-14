@@ -47,6 +47,7 @@ export const ru_RU: typeof en_GB = {
     collapse: 'Свернуть',
     showMore: 'Показать все',
     showLess: 'Скрыть',
+    notificationsRegion: 'Уведомления',
   },
   ToastUpload: {
     title: {

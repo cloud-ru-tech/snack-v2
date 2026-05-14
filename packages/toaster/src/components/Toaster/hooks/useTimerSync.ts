@@ -47,8 +47,8 @@ export function useTimerSync({
   visibleIdsKey,
 }: SyncOptions): void {
   useEffect(() => {
-    const pause = (id: ManagedToast['id']) => toasterManager.pause({ id, containerId });
-    const play = (id: ManagedToast['id']) => toasterManager.play({ id, containerId });
+    const pause = (id: ManagedToast['id']) => toasterManager.pauseToast(id, containerId);
+    const play = (id: ManagedToast['id']) => toasterManager.playToast(id, containerId);
 
     hiddenByLimit.forEach(t => pause(t.id));
 

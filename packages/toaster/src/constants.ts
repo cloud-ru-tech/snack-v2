@@ -33,6 +33,11 @@ export const DRAGGABLE_DIRECTION = {
 export const TOASTER_ROOT_ID = 'toaster-root';
 export const TOASTER_CONTAINER_PREFIX = 'toaster-container__';
 
+// Дефолтный id одиночного upload-тоста, который заводит `toaster.upload.startOrUpdate`
+// при отсутствии явного `options.id`. Один upload-тост на контейнер — оптимальный
+// UX-инвариант (limit=1, см. TOASTER_CONTAINER_DEFAULTS[Upload]).
+export const DEFAULT_UPLOAD_TOAST_ID = 'upload';
+
 export const AUTO_CLOSE_TIME: Record<ToasterType, number | false> = {
   [TOASTER_TYPE.SystemEvent]: 5000,
   [TOASTER_TYPE.UserAction]: 2000,

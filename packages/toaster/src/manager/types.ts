@@ -15,20 +15,22 @@ export type ToastContentProps = {
 
 export type ManagedToastStatus = 'entering' | 'visible' | 'leaving';
 
+/**
+ * Immutable snapshot, видимый подписчикам. Mutable timer-state (runningAt/elapsedMs)
+ * вынесен в приватный `timers`-Map менеджера и доступен только через
+ * `getTimerSnapshot()` — это гарантирует, что подписчики не видят in-place мутаций.
+ */
 export type ManagedToast = {
   id: ToasterId;
   // Тип карточки. Контейнер использует для split-rendering'а (Upload-блок
   // отдельно от SystemEvent-стека) и для scope'а Close-all / Expand-кнопок.
   toastType: ManagedToastType;
   content: ReactNode;
+  // Дублирует ключ контейнера для удобства потребителей (renderStackToasts и т.п.).
   containerId: string;
   autoClose: number | false;
   onClose?: (id: ToasterId) => void;
   status: ManagedToastStatus;
-  // ms, для пауз/возобновления через `manager.pause` / `manager.play`. Когда
-  // `runningAt !== null` — таймер идёт, иначе стоит на паузе.
-  elapsedMs: number;
-  runningAt: number | null;
 };
 
 export type ManagerListener = (toasts: ManagedToast[]) => void;
@@ -47,3 +49,5 @@ export type UpdateToastInput = {
   autoClose?: number | false;
   onClose?: (id: ToasterId) => void;
 };
+
+export type ContainerId = string;

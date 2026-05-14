@@ -18,7 +18,7 @@ export function useTouchStickyPauseRelease(
     const onDocPointerDown = (e: PointerEvent) => {
       if (!isTouchPointer(e)) return;
       const root = containerRef.current;
-      if (!root || root.contains(e.target as Node)) return;
+      if (!root || !(e.target instanceof Node) || root.contains(e.target)) return;
       dispatch({ type: 'touch:tap-outside', stacked });
     };
     document.addEventListener('pointerdown', onDocPointerDown);

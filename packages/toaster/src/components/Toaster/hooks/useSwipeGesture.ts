@@ -1,4 +1,4 @@
-import { CSSProperties, useCallback, useMemo, useRef, useState } from 'react';
+import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { LEAVE_ANIMATION_MS } from '../../../constants';
 import { toasterManager } from '../../../manager';
@@ -59,6 +59,20 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
   const enabled = draggable && toast.status === TOAST_STATUS.Visible;
   const [drag, setDrag] = useState<DragState | null>(null);
   const startRef = useRef<StartRef | null>(null);
+  // Snap-back: setDrag(null) откладывается на LEAVE_ANIMATION_MS, чтобы дать
+  // CSS transition доиграть. Храним id, чтобы отменить на unmount и на новый
+  // pointerdown (иначе следующий drag может быть «обнулён» отложенным таймером
+  // от предыдущего snap-back).
+  const snapResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearSnapResetTimeout = () => {
+    if (snapResetTimeoutRef.current !== null) {
+      clearTimeout(snapResetTimeoutRef.current);
+      snapResetTimeoutRef.current = null;
+    }
+  };
+
+  useEffect(() => () => clearSnapResetTimeout(), []);
 
   const handlePointerDown = useCallback(
     (e: DivPointerEvent) => {
@@ -66,7 +80,10 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       // Не перехватываем drag с интерактивных детей — иначе кнопка close внутри
       // тоста не сработает (pointerCapture забирает события у потомков).
-      if ((e.target as HTMLElement).closest(INTERACTIVE_SELECTOR)) return;
+      if (!(e.target instanceof Element) || e.target.closest(INTERACTIVE_SELECTOR)) return;
+      // Новый жест отменяет ожидающий snap-back прошлого: иначе delayed
+      // setDrag(null) может прилететь уже в активный drag и сбросить его.
+      clearSnapResetTimeout();
       // Снимаем rect карточки в момент pointerDown — на нём собираем `position:
       // fixed`-стайл во время drag'a (см. style ниже). containing block для
       // fixed создаётся .toasterRoot'ом (`container-type: size`), поэтому
@@ -93,7 +110,7 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
           height: r.height,
         },
       };
-      toasterManager.pause({ id: toast.id, containerId });
+      toasterManager.pauseToast(toast.id, containerId);
     },
     [enabled, toast.id, containerId],
   );
@@ -110,7 +127,7 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
       // событие нативной прокрутке (vertical scroll на mobile).
       if (!drag && Math.abs(cross) > Math.abs(delta) && Math.abs(cross) > SWIPE_ACTIVATION_PX) {
         startRef.current = null;
-        toasterManager.play({ id: toast.id, containerId });
+        toasterManager.playToast(toast.id, containerId);
         return;
       }
       if (!drag && Math.abs(delta) < SWIPE_ACTIVATION_PX) return;
@@ -143,7 +160,7 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
 
       if (!drag) {
         // Drag так и не активировался — обычный клик; только возобновляем таймер.
-        toasterManager.play({ id: toast.id, containerId });
+        toasterManager.playToast(toast.id, containerId);
         return;
       }
       // Свайп активный — pointerup отрабатывает мы сами (dismiss / snap-back);
@@ -161,8 +178,12 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
       // Снап обратно: active=false включает CSS-transition, delta=0 плавно
       // возвращает карточку, после чего сбрасываем state.
       setDrag({ delta: 0, active: false, dismissing: false, rect: start.rect });
-      toasterManager.play({ id: toast.id, containerId });
-      window.setTimeout(() => setDrag(null), LEAVE_ANIMATION_MS);
+      toasterManager.playToast(toast.id, containerId);
+      clearSnapResetTimeout();
+      snapResetTimeoutRef.current = setTimeout(() => {
+        snapResetTimeoutRef.current = null;
+        setDrag(null);
+      }, LEAVE_ANIMATION_MS);
     },
     [drag, draggableDirection, toast.id, containerId],
   );

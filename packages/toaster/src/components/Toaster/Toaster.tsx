@@ -121,12 +121,11 @@ export function ToasterContainer(rawProps: ToasterProps) {
     [systemEventToasts],
   );
   const frontId = systemEventNonLeaving[systemEventNonLeaving.length - 1]?.id;
+  // Включаем status в ключ: visible→leaving у того же id должен триггерить
+  // пересинхрон (карточка ушла из non-leaving выборки, таймер для неё
+  // нужно остановить, для следующего фронта — запустить).
   const visibleIdsKey = useMemo(
-    () =>
-      visibleToasts
-        .filter(t => t.status !== TOAST_STATUS.Leaving)
-        .map(t => `${t.toastType}:${t.id}`)
-        .join(','),
+    () => visibleToasts.map(t => `${t.toastType}:${t.id}:${t.status}`).join('|'),
     [visibleToasts],
   );
 
@@ -143,10 +142,13 @@ export function ToasterContainer(rawProps: ToasterProps) {
   });
 
   // Когда тосты кончились — снимаем sticky-pause, иначе следующий тост
-  // прилетит уже на паузе и будет висеть бесконечно.
+  // прилетит уже на паузе и будет висеть бесконечно. Зависим от ссылки
+  // на массив (а не от `.length`), чтобы exhaustive-deps был честным;
+  // reducer no-op'ит, если touchPaused уже false, так что лишний dispatch
+  // на каждый rerender безопасен.
   useEffect(() => {
     if (visibleToasts.length === 0) dispatch({ type: 'toasts:emptied' });
-  }, [visibleToasts.length]);
+  }, [visibleToasts]);
 
   // ===== Buttons (Expand/Collapse, Close all) =====
   const activeSystemEventCount = systemEventNonLeaving.length;
@@ -171,15 +173,25 @@ export function ToasterContainer(rawProps: ToasterProps) {
     dispatch({ type: 'close-all', stacked: stacked });
   }, [systemEventToasts, containerId, stacked]);
 
+  // systemEventNonLeaving — derived через filter, ссылка меняется на каждый
+  // emit менеджера. Чтобы не дёргать setState на каждый emit, сравниваем
+  // мемоизированный ключ id'шников: реальная работа только при изменении состава.
+  const systemEventNonLeavingIdsKey = useMemo(
+    () => systemEventNonLeaving.map(t => String(t.id)).join('|'),
+    [systemEventNonLeaving],
+  );
+
   useEffect(() => {
     if (!closeAllDismissed) return;
     const snapshot = closeAllDismissedIdsRef.current;
     const hasFresh = systemEventNonLeaving.some(t => !snapshot.has(t.id));
-    if (hasFresh) {
-      closeAllDismissedIdsRef.current = new Set();
-      setCloseAllDismissed(false);
-    }
-  }, [closeAllDismissed, systemEventNonLeaving]);
+    if (!hasFresh) return;
+    closeAllDismissedIdsRef.current = new Set();
+    setCloseAllDismissed(false);
+    // systemEventNonLeavingIdsKey стабильно отражает состав; ссылка на массив
+    // меняется чаще, ключ — только при реальной дельте.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [closeAllDismissed, systemEventNonLeavingIdsKey]);
 
   const toggleCollapsed = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
@@ -217,8 +229,8 @@ export function ToasterContainer(rawProps: ToasterProps) {
   const onPointerUp = useCallback(
     (e: DivPointerEvent) => {
       if (!isTouchPointer(e)) return;
-      const target = e.target as HTMLElement;
-      if (target.closest(INTERACTIVE_SELECTOR) || target.closest(DRAGGING_SELECTOR)) return;
+      if (!(e.target instanceof Element)) return;
+      if (e.target.closest(INTERACTIVE_SELECTOR) || e.target.closest(DRAGGING_SELECTOR)) return;
       dispatch({ type: 'touch:tap-inside', stacked: stacked });
     },
     [stacked],
@@ -257,8 +269,9 @@ export function ToasterContainer(rawProps: ToasterProps) {
       ref={containerRef}
       className={cn(styles.container, styles[POSITION_CLASS_NAME[position]])}
       role='region'
+      aria-label={t('notificationsRegion')}
       aria-live='polite'
-      aria-relevant='additions text'
+      aria-relevant='additions'
       data-test-id={rawProps['data-test-id'] ?? TEST_IDS.toasterContainer}
       data-toaster-container
       data-type={type}

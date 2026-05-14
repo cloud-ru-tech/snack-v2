@@ -9,6 +9,7 @@ import { ToastUpload, ToastUploadProps } from './components/ToastUpload';
 import { ToastUserAction, ToastUserActionProps } from './components/ToastUserAction';
 import {
   AUTO_CLOSE_TIME,
+  DEFAULT_UPLOAD_TOAST_ID,
   TOASTER_CONTAINER_DEFAULTS,
   TOASTER_CONTAINER_PREFIX,
   TOASTER_ROOT_ID,
@@ -39,10 +40,16 @@ function getOrCreateRoot(host: Element): Root {
   const cached = rootCache.get(host);
   if (cached) {
     if (host.isConnected) return cached;
-    // Unmount асинхронно: getOrCreateRoot вызывается из openToast, который
-    // может стрелять из render-фазы потребителя; синхронный unmount тогда
-    // ругается warning'ом "calling ReactDOMClient.unmount() during a render".
-    queueMicrotask(() => cached.unmount());
+    // Disconnected host: unmount синхронно перед createRoot. openToast — это
+    // imperative API, вызываемое из user-кода (handlers/effects), а не из
+    // render-фазы; синхронный unmount тут безопасен и предотвращает гонку,
+    // когда createRoot вешает второй Root на тот же узел до того, как
+    // queueMicrotask успеет освободить старый.
+    try {
+      cached.unmount();
+    } catch {
+      /* noop: cached root уже размонтирован/host detached */
+    }
     rootCache.delete(host);
   }
   const root = createRoot(host);
@@ -77,7 +84,9 @@ function getToasterRoot({
 
   const toasterRootId = `${TOASTER_ROOT_ID}__${fallbackType}`;
 
-  // CSS.escape: id может прийти из user-input через containerProps.
+  // toasterRootId детерминирован (`TOASTER_ROOT_ID__<type>`), но используем
+  // querySelector с scoped lookup'ом, чтобы найти узел только под toasterParent
+  // (а не глобально). CSS.escape страхует от любых будущих изменений id-схемы.
   let rootInDOM = toasterParent && isBrowser() ? toasterParent.querySelector(`#${CSS.escape(toasterRootId)}`) : null;
 
   // Must be called outside React render: appends a DOM node synchronously.
@@ -165,9 +174,12 @@ export const openToast: OpenToast = ({
   // SSR: toasterRoot is null and we have no React tree to render into — skip
   // root.render. Manager still records the toast, but nothing will subscribe
   // until a container mounts on the client.
-  const escapedId = isBrowser() ? CSS.escape(containerId) : containerId;
-  const externalContainerExists =
-    isBrowser() && Boolean(document.querySelector(`[data-test-id="toaster-container"][id="${escapedId}"]`));
+  // `containerId` приходит из user-input, поэтому идём через getElementById
+  // (не вкладываем строку в attribute-селектор — кавычки/спецсимволы безопасны).
+  // Уточняем матч атрибутом `data-test-id` — id-неймспейс пакетного контейнера
+  // намеренно совпадает с публичным TEST_ID, проверка отсекает collision'ы.
+  const externalContainer = isBrowser() ? document.getElementById(containerId) : null;
+  const externalContainerExists = externalContainer?.getAttribute('data-test-id') === 'toaster-container';
 
   if (toasterRoot && !externalContainerExists) {
     const root = getOrCreateRoot(toasterRoot);
@@ -179,14 +191,14 @@ export const openToast: OpenToast = ({
     content,
     containerId,
     autoClose,
-    onClose: closedId => toastOptions?.onClose?.(closedId),
+    onClose: toastOptions?.onClose ? (closedId: ToasterId) => toastOptions.onClose?.(closedId) : undefined,
   });
   return Promise.resolve(id);
 };
 
-export const updateToast: UpdateToast = (id, { type, toasterProps, toastOptions, containerId }) => {
+export const updateToast: UpdateToast = (id, { type, toasterProps, toastOptions }) => {
   // Должен совпадать с тем, что использовался при open() — иначе manager.update тихо no-op.
-  const resolvedContainerId = containerId ?? `${TOASTER_CONTAINER_PREFIX}${defaultContainerType(type)}`;
+  const resolvedContainerId = toastOptions?.containerId ?? `${TOASTER_CONTAINER_PREFIX}${defaultContainerType(type)}`;
   const autoClose = resolveAutoClose({ type, toasterProps, toastOptions, containerId: resolvedContainerId });
   const content = renderToastContent(type, toasterProps, autoClose);
 
@@ -199,29 +211,63 @@ export const updateToast: UpdateToast = (id, { type, toasterProps, toastOptions,
 
 export const isToastActive = (id: ToasterId, containerId?: string): boolean => toasterManager.isActive(id, containerId);
 
+// Маппит ключ ToasterPropsMap на соответствующий публичный Options-тип шорткатов.
+type ShortcutOptionsMap = {
+  [TOASTER_TYPE.UserAction]: UserActionOptions;
+  [TOASTER_TYPE.SystemEvent]: SystemEventOptions;
+  [TOASTER_TYPE.Upload]: UploadOptions;
+};
+
+// Только те ключи ToasterPropsMap, чьи toasterProps имеют ось `appearance` —
+// шорткаты success/neutral/.. зашивают её константой. Upload `appearance` не
+// имеет и через makeOpenShortcut/makeUpdateShortcut не идёт. Distributive
+// mapped type сужает union ключей по структурному критерию.
+type KeysWithAppearance = {
+  [K in keyof ToasterPropsMap]: ToasterPropsMap[K] extends { appearance?: unknown } ? K : never;
+}[keyof ToasterPropsMap];
+
+type AppearanceOf<T extends keyof ToasterPropsMap> = ToasterPropsMap[T] extends { appearance?: infer A } ? A : never;
+
 // Splits routing/toastOptions from public Options-типов; шорткаты используют
-// результат, чтобы не повторять одну и ту же распаковку.
-function splitOptions(type: ToasterType, options: UserActionOptions | SystemEventOptions | UploadOptions) {
-  const { id, onClose, autoClose, containerId, ...toasterProps } = options as Record<string, unknown> & {
+// результат, чтобы не повторять одну и ту же распаковку. Дженерик возвращает
+// `Omit<ToasterPropsMap[T], 'appearance'>` — appearance дольёт сам шорткат.
+function splitOptions<T extends keyof ToasterPropsMap>(
+  type: T,
+  options: ShortcutOptionsMap[T],
+): {
+  toasterProps: Omit<ToasterPropsMap[T], 'appearance'>;
+  toastOptions: ToastOptions;
+  containerProps: ToasterContainerProps | undefined;
+} {
+  const { id, onClose, autoClose, containerId, ...toasterProps } = options as ShortcutOptionsMap[T] & {
     id?: ToasterId;
     onClose?: ToastOptions['onClose'];
     autoClose?: ToastOptions['autoClose'];
     containerId?: string;
   };
   return {
-    toasterProps,
+    // ShortcutOptionsMap[T] для UserAction/SystemEvent уже структурно равен
+    // Omit<ToasterPropsMap[T], 'appearance'> + RoutingOptions + Pick<ToastOptions, …>;
+    // для Upload — равен ToasterPropsMap[Upload] + те же routing/options.
+    // Через дженерик TS не выводит это сужение, поэтому единственный локальный
+    // double-cast (через unknown) — компилятор требует его буквально при
+    // distributive дженерике.
+    toasterProps: toasterProps as unknown as Omit<ToasterPropsMap[T], 'appearance'>,
     toastOptions: { id, onClose, ...(autoClose !== undefined ? { autoClose } : {}) },
     containerProps: containerId ? ({ type, containerId } as ToasterContainerProps) : undefined,
   };
 }
 
-type AppearanceOf<T extends keyof ToasterPropsMap> = ToasterPropsMap[T] extends { appearance?: infer A } ? A : never;
-
-function makeOpenShortcut<T extends keyof ToasterPropsMap>(type: T, appearance: AppearanceOf<T>) {
-  return (options: UserActionOptions | SystemEventOptions | UploadOptions) => {
+function makeOpenShortcut<T extends KeysWithAppearance>(type: T, appearance: AppearanceOf<T>) {
+  return (options: ShortcutOptionsMap[T]) => {
     const { toasterProps, toastOptions, containerProps } = splitOptions(type, options);
     return openToast({
       type,
+      // appearance известно строковой константой соответствующего T —
+      // объединение со spread-ом даёт совместимый ToasterPropsMap[T].
+      // `Omit<P, 'appearance'> & { appearance: AppearanceOf<T> }` структурно
+      // равен ToasterPropsMap[T], но через дженерик TS не выводит required-поля
+      // (`title` и т.п.) — поэтому double-cast.
       toasterProps: { ...toasterProps, appearance } as unknown as ToasterPropsMap[T],
       toastOptions,
       containerProps,
@@ -229,14 +275,16 @@ function makeOpenShortcut<T extends keyof ToasterPropsMap>(type: T, appearance: 
   };
 }
 
-function makeUpdateShortcut<T extends keyof ToasterPropsMap>(type: T, appearance: AppearanceOf<T>) {
-  return (id: ToasterId, options: UserActionOptions | SystemEventOptions | UploadOptions) => {
+function makeUpdateShortcut<T extends KeysWithAppearance>(type: T, appearance: AppearanceOf<T>) {
+  return (id: ToasterId, options: ShortcutOptionsMap[T]) => {
     const { toasterProps, toastOptions, containerProps } = splitOptions(type, options);
     updateToast(id, {
       type,
+      // `Omit<P, 'appearance'> & { appearance: AppearanceOf<T> }` структурно
+      // равен ToasterPropsMap[T], но через дженерик TS не выводит required-поля
+      // (`title` и т.п.) — поэтому double-cast.
       toasterProps: { ...toasterProps, appearance } as unknown as ToasterPropsMap[T],
-      toastOptions,
-      containerId: containerProps?.containerId,
+      toastOptions: { ...toastOptions, containerId: containerProps?.containerId },
     });
   };
 }
@@ -288,13 +336,15 @@ const systemEvent: Toaster['systemEvent'] = {
 const upload: Toaster['upload'] = {
   startOrUpdate(options: UploadOptions) {
     const { toasterProps, toastOptions, containerProps } = splitOptions(TOASTER_TYPE.Upload, options);
-    const uploadProps = toasterProps as unknown as ToasterPropsMap[typeof TOASTER_TYPE.Upload];
-    const toastId = options.id || TOASTER_TYPE.Upload;
+    // Upload-props не имеют оси `appearance`, поэтому Omit<…, 'appearance'>
+    // структурно равен исходному ToasterPropsMap[Upload].
+    const uploadProps = toasterProps as ToasterPropsMap[typeof TOASTER_TYPE.Upload];
+    const toastId = options.id || DEFAULT_UPLOAD_TOAST_ID;
     if (isToastActive(toastId)) {
       return updateToast(toastId, {
         type: TOASTER_TYPE.Upload,
         toasterProps: uploadProps,
-        containerId: containerProps?.containerId,
+        toastOptions: { containerId: containerProps?.containerId },
       });
     }
     return openToast({

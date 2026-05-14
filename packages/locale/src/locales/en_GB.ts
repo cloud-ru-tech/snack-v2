@@ -47,6 +47,7 @@ export const en_GB = {
     collapse: 'Collapse',
     showMore: 'Show more',
     showLess: 'Show less',
+    notificationsRegion: 'Notifications',
   },
   ToastUpload: {
     title: {

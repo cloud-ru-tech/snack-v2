@@ -25,6 +25,13 @@ export type ToastOptions = {
   id?: ToasterId;
   autoClose?: number | false;
   onClose?(id?: ToasterId): void;
+  /**
+   * Маршрутизация на контейнер. Если не задан — резолвится дефолт
+   * `toaster-container__<type>` (см. `TOASTER_CONTAINER_PREFIX`). В `openToast`
+   * совпадает с `containerProps.containerId`, в `updateToast` — единственное
+   * место, где роутинг указывается потребителем.
+   */
+  containerId?: string;
 };
 
 type CommonToasterContainerProps = {
@@ -116,8 +123,8 @@ export type UpdateToast = <T extends keyof ToasterPropsMap>(
   props: {
     type: T;
     toasterProps: ToasterPropsMap[T];
+    /** Per-toast options. Маршрутизация (`containerId`) живёт здесь же, в едином месте c `openToast`. */
     toastOptions?: ToastOptions;
-    containerId?: string;
   },
 ) => void;
 

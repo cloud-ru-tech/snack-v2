@@ -150,8 +150,12 @@ export function ToastUpload({
             barHideStrategy='never'
             overflow={{ x: 'hidden' }}
           >
-            {files.map((item, index) => (
-              <ToastUploadFileLine key={item.id ?? `${item.title}-${index}`} item={item} />
+            {files.map(item => (
+              // Стабильный key: при наличии `item.id` используем его, иначе
+              // комбинация `title`+`formattedSize` (UploadItem требует оба).
+              // index сюда не подмешиваем — иначе при reorder ключ съезжает и
+              // подписки на статус (subscribeToState) обнуляются.
+              <ToastUploadFileLine key={item.id ?? `${item.title}__${item.formattedSize}`} item={item} />
             ))}
           </Scroll>
         </div>

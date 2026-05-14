@@ -114,7 +114,7 @@ describe('ToasterManager.dismiss', () => {
     expect(m.getToasts(CID).some(t => t.id === id)).toBe(false);
   });
 
-  it('calls onClose exactly once with the toast id', async () => {
+  it('calls onClose asynchronously (microtask) exactly once with the toast id', async () => {
     const m = makeManager();
     const onClose = vi.fn();
     const id = m.open({
@@ -126,9 +126,28 @@ describe('ToasterManager.dismiss', () => {
     });
     await Promise.resolve();
     m.dismiss(id, CID);
+    // onClose уехал в microtask — synчасть dismiss его не вызвала.
+    expect(onClose).not.toHaveBeenCalled();
     m.dismiss(id, CID); // повторный вызов — no-op (status уже leaving)
+    await Promise.resolve();
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledWith(id);
+  });
+
+  it('dismiss во время entering не падает и не делает лишний startCloseTimer', async () => {
+    const m = makeManager();
+    const id = openSystemEvent(m, { autoClose: 1000 });
+    // Без await — мы ещё в status='entering'.
+    expect(m.getToasts(CID)[0].status).toBe('entering');
+    expect(() => m.dismiss(id, CID)).not.toThrow();
+    expect(m.getToasts(CID).find(t => t.id === id)?.status).toBe('leaving');
+    // Дренируем микротаск open: он должен увидеть status !== 'entering' и не делать transition→visible
+    // и не стартовать close-timer.
+    await Promise.resolve();
+    expect(m.getToasts(CID).find(t => t.id === id)?.status).toBe('leaving');
+    // Нет «фантомного» close-таймера — после LEAVE_ANIMATION_MS остаётся только leave.
+    vi.advanceTimersByTime(280);
+    expect(m.getToasts(CID).some(t => t.id === id)).toBe(false);
   });
 
   it('is no-op for unknown ids and for already-leaving toasts', async () => {
@@ -180,7 +199,7 @@ describe('ToasterManager.pause / play', () => {
     expect([a, b].every(id => m.isActive(id, CID))).toBe(true);
   });
 
-  it('play повторно — не плодит таймеры (closeTimers.has guard)', async () => {
+  it('play повторно — не плодит таймеры (close guard)', async () => {
     const m = makeManager();
     const id = openSystemEvent(m, { autoClose: 1000 });
     await Promise.resolve();
@@ -191,6 +210,27 @@ describe('ToasterManager.pause / play', () => {
     m.play({ id, containerId: CID });
     vi.advanceTimersByTime(1000);
     expect(m.getToasts(CID).find(t => t.id === id)?.status).toBe('leaving');
+  });
+
+  it('pauseAll вызывает listener (уведомляет подписчиков о смене timer state)', async () => {
+    const m = makeManager();
+    openSystemEvent(m, { autoClose: 1000 });
+    await Promise.resolve();
+    const listener = vi.fn();
+    m.subscribe(CID, listener);
+    m.pauseAll();
+    expect(listener).toHaveBeenCalled();
+  });
+
+  it('playAll вызывает listener после паузы', async () => {
+    const m = makeManager();
+    openSystemEvent(m, { autoClose: 1000 });
+    await Promise.resolve();
+    m.pauseAll();
+    const listener = vi.fn();
+    m.subscribe(CID, listener);
+    m.playAll();
+    expect(listener).toHaveBeenCalled();
   });
 });
 
@@ -208,13 +248,26 @@ describe('ToasterManager.update', () => {
     expect(m.getToasts(CID).find(t => t.id === id)?.status).toBe('leaving');
   });
 
+  it('update с тем же autoClose НЕ сбрасывает elapsedMs', async () => {
+    const m = makeManager();
+    const id = openSystemEvent(m, { autoClose: 1000 });
+    await Promise.resolve();
+    vi.advanceTimersByTime(400);
+    // update с прежним autoClose — должен быть no-op для таймера.
+    m.update(id, CID, { autoClose: 1000, content: 'changed' });
+    const snap = m.getTimerSnapshot(id, CID);
+    expect(snap?.elapsedMs).toBeCloseTo(400, -1);
+    // Таймер не рестартовал — оставшиеся 600ms досчитываются.
+    vi.advanceTimersByTime(600);
+    expect(m.getToasts(CID).find(t => t.id === id)?.status).toBe('leaving');
+  });
+
   it('update без полей — no-op (не дергает emit)', async () => {
     const m = makeManager();
     const id = openSystemEvent(m);
     await Promise.resolve();
     const listener = vi.fn();
     m.subscribe(CID, listener);
-    listener.mockClear();
     m.update(id, CID, {});
     expect(listener).not.toHaveBeenCalled();
   });
@@ -263,20 +316,26 @@ describe('ToasterManager.getTimerSnapshot', () => {
 });
 
 describe('ToasterManager subscribe', () => {
-  it('синхронно вызывает listener при подписке и при каждом emit', async () => {
+  it('НЕ вызывает listener синхронно при подписке; emits приходят на структурные изменения', async () => {
     const m = makeManager();
     const listener = vi.fn();
     const unsubscribe = m.subscribe(CID, listener);
-    expect(listener).toHaveBeenCalledTimes(1);
-    expect(listener).toHaveBeenLastCalledWith([]);
+    expect(listener).not.toHaveBeenCalled();
     openSystemEvent(m);
     // sync emit из open + ещё один из микротаска entering→visible
-    expect(listener.mock.calls.length).toBeGreaterThanOrEqual(2);
+    expect(listener.mock.calls.length).toBeGreaterThanOrEqual(1);
     await Promise.resolve();
+    expect(listener.mock.calls.length).toBeGreaterThanOrEqual(2);
     unsubscribe();
     listener.mockClear();
     openSystemEvent(m);
     expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('getSnapshot — alias к getToasts', () => {
+    const m = makeManager();
+    openSystemEvent(m);
+    expect(m.getSnapshot(CID)).toBe(m.getToasts(CID));
   });
 });
 
@@ -292,5 +351,29 @@ describe('ToasterManager.dismissAll', () => {
     expect(m.getToasts(CID).every(t => t.status === 'leaving')).toBe(true);
     expect(m.isActive(a, CID)).toBe(false);
     expect(m.isActive(b, CID)).toBe(false);
+  });
+});
+
+describe('ToasterManager.destroy', () => {
+  it('очищает таймеры контейнера — нет pending close/leave', async () => {
+    const m = makeManager();
+    openSystemEvent(m, { autoClose: 1000 });
+    const id2 = openSystemEvent(m, { autoClose: 1000 });
+    await Promise.resolve();
+    m.dismiss(id2, CID); // активный leave-таймер
+    expect(vi.getTimerCount()).toBeGreaterThan(0);
+    m.destroy(CID);
+    expect(vi.getTimerCount()).toBe(0);
+    expect(m.getToasts(CID)).toEqual([]);
+  });
+
+  it('после destroy listener не вызывается', async () => {
+    const m = makeManager();
+    const listener = vi.fn();
+    m.subscribe(CID, listener);
+    m.destroy(CID);
+    listener.mockClear();
+    openSystemEvent(m); // пересоздаст state без подписки
+    expect(listener).not.toHaveBeenCalled();
   });
 });
