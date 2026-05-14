@@ -10,7 +10,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { expect, fn, within } from 'storybook/test';
 
-import { fileError, fileLoading, filePause, fileUploaded, sampleFiles } from './fixtures';
+import { fileError, fileLoading, filePause, fileUploaded, sampleFiles } from '../uploadFixtures';
 import styles from './stories.module.scss';
 import { UPLOAD_TEST_ID } from './testIds';
 

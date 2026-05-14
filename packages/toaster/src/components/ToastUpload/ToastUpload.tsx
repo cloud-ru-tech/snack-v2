@@ -1,20 +1,13 @@
-import { ChevronDownSVG, ChevronUpSVG, CrossSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { Scroll } from '@ds/scroll';
-import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { LoadingStatus } from '../../helperComponents/LoadingStatus';
-import { ToastButton } from '../../helperComponents/ToastButton';
 import { ToastUploadFileLine } from '../../helperComponents/ToastUploadFileLine';
-import { ToastUploadProgress } from '../../helperComponents/ToastUploadProgress';
-import { MAX_PROGRESS_PERCENT, progressBarAppearanceByStatus } from './constants';
+import { ToastUploadTitleLine } from '../../helperComponents/ToastUploadTitleLine';
 import styles from './styles.module.scss';
 import { ToastUploadProps } from './types';
-import { formatPercent } from './utils';
 
 export function ToastUpload({
   status,
@@ -38,10 +31,6 @@ export function ToastUpload({
     onChange: onCollapsed,
   });
 
-  const { t } = useLocale('ToastUpload');
-
-  const showingTitle = title || t(`title.${status}`);
-
   const handleCloseClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (onCloseClick) {
@@ -56,11 +45,6 @@ export function ToastUpload({
     setIsCollapsed(!isCollapsed);
   };
 
-  // total <= 0 → 0% вместо NaN/Infinity.
-  const progressPercent =
-    progress.total > 0 ? Math.round((progress.current / progress.total) * MAX_PROGRESS_PERCENT) : 0;
-  const isErrorUploaded = status === 'errorUploaded';
-
   return (
     <div
       className={cn(styles.container, className)}
@@ -68,73 +52,18 @@ export function ToastUpload({
       data-test-id={TEST_IDS.uploadRoot}
       data-collapsed={isCollapsed || undefined}
     >
-      <div className={styles.titleLine}>
-        <div className={styles.titleLineBody}>
-          <div className={styles.title} data-test-id={TEST_IDS.uploadTitle}>
-            {showingTitle}
-          </div>
-
-          {onCancelAll && (
-            <span className={styles.buttonActionWrapper}>
-              <ToastButton
-                composition='labelOnly'
-                label={t('cancelAll')}
-                onClick={onCancelAll}
-                data-test-id={TEST_IDS.uploadCancelButton}
-              />
-            </span>
-          )}
-
-          <span className={styles.buttonWrapper}>
-            <ToastButton
-              composition='iconOnly'
-              onClick={handleCollapseClick}
-              data-test-id={TEST_IDS.uploadCollapseButton}
-            >
-              {!isCollapsed ? <ChevronUpSVG /> : <ChevronDownSVG />}
-            </ToastButton>
-          </span>
-
-          {closable && (
-            <span className={styles.buttonWrapper}>
-              <ToastButton composition='iconOnly' onClick={handleCloseClick} data-test-id={TEST_IDS.uploadClose}>
-                <CrossSVG />
-              </ToastButton>
-            </span>
-          )}
-        </div>
-
-        <div className={styles.generalProgress}>
-          <div className={styles.statusLine}>
-            <div className={styles.statusWrap}>
-              <LoadingStatus status={status} actions={generalActions} />
-
-              <TruncateString
-                className={styles.description}
-                data-status={status}
-                text={description}
-                data-test-id={TEST_IDS.uploadDescription}
-              />
-            </div>
-
-            <span className={styles.totalCounter} data-test-id={TEST_IDS.uploadCounter}>
-              {`${progress.current}/${progress.total}`}
-            </span>
-
-            <span className={styles.totalPercentage} data-test-id={TEST_IDS.uploadProgress}>
-              {formatPercent(isErrorUploaded ? 0 : progressPercent)}
-            </span>
-          </div>
-
-          {isCollapsed && (
-            <ToastUploadProgress
-              progress={isErrorUploaded ? MAX_PROGRESS_PERCENT : progressPercent}
-              appearance={progressBarAppearanceByStatus[status]}
-              data-test-id={TEST_IDS.uploadProgressBar}
-            />
-          )}
-        </div>
-      </div>
+      <ToastUploadTitleLine
+        status={status}
+        title={title ?? ''}
+        description={description}
+        progress={progress}
+        isCollapsed={Boolean(isCollapsed)}
+        onCollapseClick={handleCollapseClick}
+        onCloseClick={handleCloseClick}
+        closable={closable}
+        generalActions={generalActions}
+        onCancelAll={onCancelAll}
+      />
 
       {!isCollapsed && (
         // TODO(FF-8311): полосы скролла должны рендериться в тёмной теме независимо

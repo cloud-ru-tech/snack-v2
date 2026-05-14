@@ -1,6 +1,7 @@
 import { Dispatch, RefObject, useEffect } from 'react';
 
-import { isTouchPointer, UiAction } from '../utils';
+import { UiAction } from '../uiReducer';
+import { isTouchPointer } from '../utils';
 
 /**
  * Слушает тач-pointerdown на document, пока активна sticky-pause: тап вне

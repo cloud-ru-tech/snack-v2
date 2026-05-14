@@ -15,15 +15,4 @@ export * from './types';
 export * from './helperComponents/ToastUploadFileLine';
 export * from './helperComponents/ToastUploadProgress';
 
-// Императивный API + adaptive-обёртки (drop-in shape для legacy-потребителей).
-export {
-  adaptiveDismissToast,
-  adaptiveOpenToast,
-  adaptiveToaster,
-  adaptiveUpdateToast,
-  dismissToast,
-  isToastActive,
-  openToast,
-  toaster,
-  updateToast,
-} from './helpers';
+export { dismissToast, isToastActive, openToast, toaster, updateToast } from './helpers';

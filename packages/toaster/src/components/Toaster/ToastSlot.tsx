@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { ToastRuntimeContext } from '../../manager/runtimeContext';
+import { ToastRuntimeContext } from '../../context';
 import { ManagedToast } from '../../manager/types';
 import { DraggableDirection } from '../../types';
 import { useSwipeGesture } from './hooks';

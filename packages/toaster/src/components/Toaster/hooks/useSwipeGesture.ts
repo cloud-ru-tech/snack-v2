@@ -15,7 +15,11 @@ import {
 
 type Rect = { top: number; left: number; width: number; height: number };
 type DragState = { delta: number; active: boolean; dismissing: boolean; rect: Rect };
-type StartRef = { x: number; y: number; time: number; pointerId: number; rect: Rect };
+// `activated` мутируется в pointermove синхронно (в обход useState/closure),
+// чтобы handlePointerUp корректно различал «клик без drag'а» и «активный
+// свайп», даже когда consecutive pointermove события прилетают быстрее, чем
+// React успевает зафиксировать setDrag и пересоздать useCallback.
+type StartRef = { x: number; y: number; time: number; pointerId: number; rect: Rect; activated: boolean };
 
 type SwipeOptions = {
   toast: ManagedToast;
@@ -109,6 +113,7 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
           width: r.width,
           height: r.height,
         },
+        activated: false,
       };
       toasterManager.pauseToast(toast.id, containerId);
     },
@@ -125,28 +130,34 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
       const cross = draggableDirection === 'y' ? dx : dy;
       // Первое движение явно поперёк оси — отказываемся от жеста, отдаём
       // событие нативной прокрутке (vertical scroll на mobile).
-      if (!drag && Math.abs(cross) > Math.abs(delta) && Math.abs(cross) > SWIPE_ACTIVATION_PX) {
+      if (!start.activated && Math.abs(cross) > Math.abs(delta) && Math.abs(cross) > SWIPE_ACTIVATION_PX) {
         startRef.current = null;
         toasterManager.playToast(toast.id, containerId);
         return;
       }
-      if (!drag && Math.abs(delta) < SWIPE_ACTIVATION_PX) return;
+      if (!start.activated && Math.abs(delta) < SWIPE_ACTIVATION_PX) return;
       // Активирован: захватываем pointer, чтобы pointerup пришёл нам даже если
       // палец уехал за пределы карточки. stopPropagation глушит дальнейшие
       // pointer-события до контейнера (его hover/touch-pause handlers и
       // bubbling в стек) — иначе свайп параллельно триггерит "expand stack" /
       // sticky-pause и т.п.
-      if (!drag) e.currentTarget.setPointerCapture(e.pointerId);
+      if (!start.activated) {
+        start.activated = true;
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }
       e.stopPropagation();
       setDrag({ delta, active: true, dismissing: false, rect: start.rect });
     },
-    [drag, draggableDirection, toast.id, containerId],
+    [draggableDirection, toast.id, containerId],
   );
 
   const handlePointerUp = useCallback(
     (e: DivPointerEvent) => {
       const start = startRef.current;
       startRef.current = null;
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
       if (!start) return;
       const dx = e.clientX - start.x;
       const dy = e.clientY - start.y;
@@ -158,7 +169,7 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
       const ratio = size > 0 ? Math.abs(delta) / size : 0;
       const reachedThreshold = ratio >= SWIPE_DISMISS_RATIO || velocity >= SWIPE_DISMISS_VELOCITY;
 
-      if (!drag) {
+      if (!start.activated) {
         // Drag так и не активировался — обычный клик; только возобновляем таймер.
         toasterManager.playToast(toast.id, containerId);
         return;
@@ -185,7 +196,7 @@ export function useSwipeGesture({ toast, containerId, draggable, draggableDirect
         setDrag(null);
       }, LEAVE_ANIMATION_MS);
     },
-    [drag, draggableDirection, toast.id, containerId],
+    [draggableDirection, toast.id, containerId],
   );
 
   const style = useMemo<CSSProperties | undefined>(() => {

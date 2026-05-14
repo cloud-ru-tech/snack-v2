@@ -46,6 +46,7 @@ export function useTimerSync({
   frontId,
   visibleIdsKey,
 }: SyncOptions): void {
+  const hiddenIdsKey = hiddenByLimit.map(t => t.id).join(',');
   useEffect(() => {
     const pause = (id: ManagedToast['id']) => toasterManager.pauseToast(id, containerId);
     const play = (id: ManagedToast['id']) => toasterManager.playToast(id, containerId);
@@ -72,5 +73,5 @@ export function useTimerSync({
     // visibleToasts/systemEventNonLeaving — derived из visibleIdsKey+frontId;
     // зависим только от контентных id'шников, не от ссылок.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerId, paused, stacked, collapsed, frontId, visibleIdsKey, hiddenByLimit]);
+  }, [containerId, paused, stacked, collapsed, frontId, visibleIdsKey, hiddenIdsKey]);
 }

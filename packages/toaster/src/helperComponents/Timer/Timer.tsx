@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { CSSProperties } from 'react';
 
 import { AUTO_CLOSE_TIME, TEST_IDS, TOASTER_TYPE } from '../../constants';
-import { useToastProgress } from '../../manager/runtimeContext';
+import { useToastProgress } from '../../context';
 import styles from './styles.module.scss';
 
 export type TimerProps = {

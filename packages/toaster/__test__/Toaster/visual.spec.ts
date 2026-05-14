@@ -37,10 +37,20 @@ test.describe('Toaster — visual regression', () => {
     // ретраит сравнение в пределах своего timeout.
     await expect(getByTestId(SYSTEM_EVENT_TEST_ID)).toHaveCount(5);
     await expect(getByTestId(TOASTER_BUTTON_CLOSE_ALL_TEST_ID).first()).toBeVisible();
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-      'stacking-bottom-right.png',
-      SCREENSHOT_DEFAULT_OPTS,
-    );
+    // 5 тостов с autoClose=5000 — за время retry-цикла toHaveScreenshot первый
+    // успевает уйти в leaving. Ставим контейнер в hover-pause через синтетический
+    // pointerover (React onPointerEnter биндится на pointerover/pointerout).
+    await page.evaluate(() => {
+      document.querySelectorAll('[data-test-id="toaster-container"]').forEach(el => {
+        el.dispatchEvent(new PointerEvent('pointerover', { bubbles: true, pointerType: 'mouse' }));
+      });
+    });
+    // Progress-bar тикает по реальному auto-close таймеру (rAF), маскируем,
+    // чтобы попиксельное сравнение не зависело от elapsed-time на момент снимка.
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('stacking-bottom-right.png', {
+      ...SCREENSHOT_DEFAULT_OPTS,
+      mask: [page.locator('[data-test-id="toast-system-event__progressbar"]')],
+    });
   });
 
   test('triggers — SystemEvent success + UserAction success + Upload loading', async ({
@@ -57,6 +67,30 @@ test.describe('Toaster — visual regression', () => {
     await expect(getByTestId(SYSTEM_EVENT_TEST_ID).first()).toBeVisible();
     await expect(getByTestId(USER_ACTION_TEST_ID).first()).toBeVisible();
     await expect(getByTestId(UPLOAD_TEST_ID).first()).toBeVisible();
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('triggers-mixed.png', SCREENSHOT_DEFAULT_OPTS);
+    // Контейнеры сконфигурированы с autoClose 5000/3000ms — без паузы тосты
+    // успевают уйти в leaving за время retry-цикла toHaveScreenshot. Курсором
+    // двух контейнеров сразу не удержать (BottomRight и BottomCenter
+    // не пересекаются), поэтому диспатчим синтетический pointerenter на оба
+    // .container — uiReducer'у безразлично, реальный это hover или нет.
+    await page.evaluate(() => {
+      // React реализует onPointerEnter через pointerover/pointerout, а не через
+      // нативный pointerenter (тот не bubble'ит). Диспатчим pointerover —
+      // тогда onPointerEnter сработает.
+      document.querySelectorAll('[data-test-id="toaster-container"]').forEach(el => {
+        el.dispatchEvent(new PointerEvent('pointerover', { bubbles: true, pointerType: 'mouse' }));
+      });
+    });
+    // Маскируем тикающие индикаторы авто-close у SystemEvent + UserAction —
+    // их scaleX/stroke-dashoffset тикает в rAF, а маски заменяют их пятном и
+    // выводят из попиксельного сравнения. maxDiffPixelRatio оставляет
+    // 0.5% запас на 1-px колебание границы маски progress-bar между запусками.
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('triggers-mixed.png', {
+      ...SCREENSHOT_DEFAULT_OPTS,
+      mask: [
+        page.locator('[data-test-id="toast-system-event__progressbar"]'),
+        page.locator('[data-test-id="toast-user-action__timer"]'),
+      ],
+      maxDiffPixelRatio: 0.005,
+    });
   });
 });

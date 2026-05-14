@@ -23,7 +23,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useRef, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { fileLoading, filePause, fileUploaded } from '../_shared/uploadFixtures';
+import { fileLoading, filePause, fileUploaded } from '../uploadFixtures';
 import styles from './stories.module.scss';
 import { TOASTER_CONTAINER_TEST_ID, TRIGGER_DISMISS_ALL_TEST_ID, TRIGGER_SPAWN_TEST_ID } from './testIds';
 

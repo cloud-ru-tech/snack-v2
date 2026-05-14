@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 import { ToastSystemEventAppearance } from '../../components/ToastSystemEvent/types';
 import { TEST_IDS } from '../../constants';
-import { useToastProgress } from '../../manager/runtimeContext';
+import { useToastProgress } from '../../context';
 import styles from './styles.module.scss';
 
 export type ToastSystemEventProgressProps = {

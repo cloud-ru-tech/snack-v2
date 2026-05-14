@@ -176,11 +176,11 @@ describe('ToasterManager.pause / play', () => {
     const id = openSystemEvent(m, { autoClose: 1000 });
     await Promise.resolve();
     vi.advanceTimersByTime(400);
-    m.pause({ id, containerId: CID });
+    m.pauseToast(id, CID);
     // Прошло 400ms бюджета, осталось 600ms.
     vi.advanceTimersByTime(10_000); // пауза держит таймер замороженным
     expect(m.getToasts(CID)[0].status).toBe('visible');
-    m.play({ id, containerId: CID });
+    m.playToast(id, CID);
     vi.advanceTimersByTime(599);
     expect(m.getToasts(CID)[0].status).toBe('visible');
     vi.advanceTimersByTime(1);
@@ -192,7 +192,7 @@ describe('ToasterManager.pause / play', () => {
     const a = openSystemEvent(m, { autoClose: 1000 });
     const b = openSystemEvent(m, { autoClose: 1000 });
     await Promise.resolve();
-    m.pause({ containerId: CID });
+    m.pauseContainer(CID);
     vi.advanceTimersByTime(2000);
     const statuses = m.getToasts(CID).map(t => t.status);
     expect(statuses).toEqual(['visible', 'visible']);
@@ -205,9 +205,9 @@ describe('ToasterManager.pause / play', () => {
     await Promise.resolve();
     // Несколько подряд play не должны рестартить таймер; первый старт сразу
     // после микротаска, остальные — no-op.
-    m.play({ id, containerId: CID });
-    m.play({ id, containerId: CID });
-    m.play({ id, containerId: CID });
+    m.playToast(id, CID);
+    m.playToast(id, CID);
+    m.playToast(id, CID);
     vi.advanceTimersByTime(1000);
     expect(m.getToasts(CID).find(t => t.id === id)?.status).toBe('leaving');
   });
@@ -301,7 +301,7 @@ describe('ToasterManager.getTimerSnapshot', () => {
     const id = openSystemEvent(m, { autoClose: 1000 });
     await Promise.resolve();
     vi.advanceTimersByTime(250);
-    m.pause({ id, containerId: CID });
+    m.pauseToast(id, CID);
     vi.advanceTimersByTime(5000);
     const snap = m.getTimerSnapshot(id, CID);
     expect(snap?.running).toBe(false);

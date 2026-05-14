@@ -28,7 +28,6 @@ import {
   UpdateToast,
   UploadOptions,
   UserActionOptions,
-  WithLayoutType,
 } from './types';
 
 // WeakMap-кэш Root по host'у. Без явного unmount Root удерживает React-tree
@@ -362,12 +361,3 @@ export const toaster: Toaster = {
   systemEvent,
   upload,
 };
-
-// Adaptive API kept for drop-in shape. Layout has no effect on behavior:
-// потребитель сам выбирает stacked/position через `<ToasterContainer/>`.
-/* eslint-disable @typescript-eslint/no-unused-vars */
-export const adaptiveToaster = (_layout: WithLayoutType): Toaster => toaster;
-export const adaptiveOpenToast = (_layout: WithLayoutType): OpenToast => openToast;
-export const adaptiveUpdateToast = (_layout: WithLayoutType): UpdateToast => updateToast;
-export const adaptiveDismissToast = (_layout: WithLayoutType): typeof dismissToast => dismissToast;
-/* eslint-enable @typescript-eslint/no-unused-vars */

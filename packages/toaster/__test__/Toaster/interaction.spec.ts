@@ -130,21 +130,29 @@ test.describe('Toaster — interaction', () => {
       await getByTestId(TRIGGER_SPAWN_TEST_ID).click();
       const toast = getByTestId(SYSTEM_EVENT_TEST_ID).first();
       await expect(toast).toBeVisible();
+      // Дожидаемся окончания slide-in transition ($toast-duration = 280ms),
+      // иначе координаты слота во время эмуляции жеста уезжают.
+      await toast.evaluate(el => Promise.all(el.getAnimations({ subtree: true }).map(a => a.finished)));
 
-      const box = await toast.boundingBox();
-      if (!box) throw new Error('toast has no bounding box');
+      // Эмулируем жест через CDP-канал Playwright: page.mouse + реальный
+      // setPointerCapture в headless Chromium флакает (capture перехватывает
+      // события у Playwright между промежуточными mouse.move). page.mouse.move
+      // с `steps` дробит траекторию синхронно на стороне браузера — React
+      // получает сразу несколько pointermove до возможной паузы.
+      const slot = page.locator('[data-test-id="toaster-container__toast-slot"]').first();
+      await expect(slot).toHaveAttribute('data-draggable', 'true');
+      // Playground story рендерит demo-панель шире viewport'а, и тост в
+      // `position: fixed` оказывается частично за правым краем экрана —
+      // mouse coord указывал в пустоту, pointerdown не доходил до слота.
+      await slot.scrollIntoViewIfNeeded();
+      const box = await slot.boundingBox();
+      if (!box) throw new Error('slot has no bounding box');
       const startX = box.x + box.width / 2;
       const startY = box.y + box.height / 2;
-      // Свайп вправо на ~80% ширины — гарантированно превышает 40%-порог.
       const endX = startX + box.width * 0.8;
-
       await page.mouse.move(startX, startY);
       await page.mouse.down();
-      // Несколько промежуточных шагов — иначе pointermove не активирует drag
-      // (внутри порог ~4px на одно событие). По шагам имитируем естественный жест.
-      for (let i = 1; i <= 10; i += 1) {
-        await page.mouse.move(startX + ((endX - startX) * i) / 10, startY);
-      }
+      await page.mouse.move(endX, startY, { steps: 20 });
       await page.mouse.up();
 
       // Тост уезжает и пропадает после leave-анимации — toBeHidden auto-retries.

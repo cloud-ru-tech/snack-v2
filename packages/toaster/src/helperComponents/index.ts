@@ -6,3 +6,4 @@ export * from './ToastSystemEventCloseAll';
 export * from './ToastSystemEventProgress';
 export * from './ToastUploadFileLine';
 export * from './ToastUploadProgress';
+export * from './ToastUploadTitleLine';

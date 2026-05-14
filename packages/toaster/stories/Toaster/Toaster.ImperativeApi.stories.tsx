@@ -14,7 +14,7 @@ import {
 } from '@ds/toaster';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { fileError, fileLoading, filePause, fileUploaded } from '../_shared/uploadFixtures';
+import { fileError, fileLoading, filePause, fileUploaded } from '../uploadFixtures';
 import styles from './stories.module.scss';
 import {
   systemEventTriggerTestId,

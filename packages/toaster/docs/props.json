@@ -1,14 +1,11 @@
 {
   "LoadingStatus": {
     "displayName": "LoadingStatus",
-    "propsTypeName": "LoadingStatusProps",
+    "propsTypeName": null,
     "props": {
       "actions": {
         "type": "UploadActions",
-        "required": false,
-        "typeRefs": [
-          "UploadActions"
-        ]
+        "required": false
       },
       "status": {
         "type": "enum",
@@ -19,51 +16,15 @@
           "loading",
           "pause",
           "uploaded"
-        ],
-        "typeRefs": [
-          "ToastUploadStatus"
         ]
       }
     },
-    "relatedTypes": {
-      "ToastUploadStatus": {
-        "kind": "union",
-        "values": [
-          "error",
-          "errorUploaded",
-          "loading",
-          "pause",
-          "uploaded"
-        ],
-        "own": true
-      },
-      "UploadActions": {
-        "kind": "interface",
-        "props": {
-          "onCancel": {
-            "type": "(() => void) | undefined",
-            "required": false
-          },
-          "onContinue": {
-            "type": "(() => void) | undefined",
-            "required": false
-          },
-          "onPause": {
-            "type": "(() => void) | undefined",
-            "required": false
-          },
-          "onRetry": {
-            "type": "(() => void) | undefined",
-            "required": false
-          }
-        },
-        "own": true
-      }
-    }
+    "relatedTypes": {}
   },
   "Timer": {
     "displayName": "Timer",
-    "propsTypeName": "TimerProps",
+    "propsTypeName": null,
+    "description": "Круговой обратный отсчёт UserAction-тоста. Прогресс синхронизирован с\nфактическим состоянием auto-close таймера через `useToastProgress` —\nпауза/возобновление, hover, collapsed↔expanded переходы стека отражаются\nбез рассинхрона с моментом реального закрытия.\n\n`stroke-dashoffset` интерполируется напрямую из `progress`, а отображаемая\nцифра — из `remainingMs / 1000`. Standalone-рендер вне `ToasterContainer`\n(например, в VisualMatrix) даёт `progress = 1` и зафиксированную цифру.",
     "props": {
       "className": {
         "type": "string",
@@ -73,28 +34,19 @@
         "type": "number",
         "required": false,
         "defaultValue": "AUTO_CLOSE_TIME[TOASTER_TYPE.UserAction] as number",
-        "description": "Длительность анимации обратного отсчёта в ms. По умолчанию = AUTO_CLOSE_TIME[UserAction]."
-      },
-      "paused": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Внешний контроль паузы (hover/touch держит Toaster в state)."
+        "description": "Длительность таймера в мс. По умолчанию — `AUTO_CLOSE_TIME[UserAction]`.\nИспользуется только как fallback для standalone-рендера (без\n`ToasterContainer`) и для вычисления отображаемой цифры — `scaleX`\nиндикатора берётся из реального состояния auto-close таймера менеджера."
       }
     },
     "relatedTypes": {}
   },
   "ToastButton": {
     "displayName": "ToastButton",
-    "propsTypeName": "ToastButtonProps",
+    "propsTypeName": null,
     "props": {
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | любой компонент (Link и т.п.)",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | любой компонент (Link и т.п.)"
       },
       "children": {
         "type": "ReactNode",
@@ -113,10 +65,7 @@
           "iconOnly",
           "labelOnly"
         ],
-        "description": "`labelOnly` — текстовая кнопка с padding; `iconOnly` — квадратная под SVG-иконку.",
-        "typeRefs": [
-          "ToastButtonComposition"
-        ]
+        "description": "`labelOnly` — текстовая кнопка с padding; `iconOnly` — квадратная под SVG-иконку."
       },
       "critical": {
         "type": "boolean",
@@ -130,11 +79,7 @@
       "innerRef": {
         "type": "any",
         "required": false,
-        "description": "Ref на DOM/instance, рендерящийся через `as`.",
-        "typeRefs": [
-          "PolymorphicRef",
-          "T"
-        ]
+        "description": "Ref на DOM/instance, рендерящийся через `as`."
       },
       "label": {
         "type": "string",
@@ -142,32 +87,15 @@
         "description": "Текст для `composition='labelOnly'`."
       }
     },
-    "relatedTypes": {
-      "PolymorphicRef": {
-        "kind": "alias",
-        "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": true
-      },
-      "ToastButtonComposition": {
-        "kind": "union",
-        "values": [
-          "iconOnly",
-          "labelOnly"
-        ],
-        "own": true
-      }
-    }
+    "relatedTypes": {}
   },
   "ToastButtonAction": {
     "displayName": "ToastButtonAction",
-    "propsTypeName": "ToastButtonActionProps",
+    "propsTypeName": null,
     "props": {
       "as": {
         "type": "ElementType",
-        "required": false,
-        "typeRefs": [
-          "As"
-        ]
+        "required": false
       },
       "className": {
         "type": "string",
@@ -255,7 +183,8 @@
       "autoClose": {
         "type": "number | false",
         "required": false,
-        "description": "Реальное время автозакрытия в мс. Подставляется toaster-системой при\nрендере, чтобы анимация progress bar совпадала с auto-dismiss таймером.\nЕсли потребитель ставит руками — будет использоваться его значение.\nДефолт — `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` (см. `constants.ts`).\n`false` — автозакрытие выключено, progress bar в этом режиме не рендерится."
+        "defaultValue": "undefined (резолвится в `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` = 5000)",
+        "description": "Время автозакрытия в мс. Три состояния различимы намеренно:\n- `undefined` — потребитель не указал значение, toaster-система подставит\n  дефолт `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` (5000 мс) при рендере;\n  именно этот случай позволяет ProgressBar анимироваться синхронно с\n  auto-dismiss таймером менеджера.\n- `number` — явное значение от потребителя, используется как есть.\n- `false` — автозакрытие выключено, ProgressBar в этом режиме не рендерится."
       },
       "className": {
         "type": "string",
@@ -373,20 +302,15 @@
   },
   "ToastSystemEventCloseAll": {
     "displayName": "ToastSystemEventCloseAll",
-    "propsTypeName": "ToastSystemEventCloseAllProps",
+    "propsTypeName": null,
     "description": "Full-width label-кнопка в нижней панели стека тостов (Figma 7902:280472 —\n`toastSystemEventCloseAll`). Используется для actions `Cancel all` и\n`Expand/Collapse stack`. Hover/pressed состояния реализованы через\nstate-layer overlay (Material).",
-    "props": {
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": true
-      }
-    },
+    "props": {},
     "relatedTypes": {}
   },
   "ToastSystemEventProgress": {
     "displayName": "ToastSystemEventProgress",
-    "propsTypeName": "ToastSystemEventProgressProps",
-    "description": "Прогресс-полоса нижней части `ToastSystemEvent`. По Figma —\nfiller `<appearance>-accent` без track (выводится поверх тёмной подложки).\nАнимация `scaleX(1) → scaleX(0)` синхронизирована с auto-close.",
+    "propsTypeName": null,
+    "description": "Прогресс-полоса нижней части `ToastSystemEvent`. По Figma —\nfiller `<appearance>-accent` без track (выводится поверх тёмной подложки).\n\n`scaleX` берётся из `useToastProgress` — она тикает в rAF и подписана на\nфактический `elapsedMs/autoClose` менеджера, поэтому полоска корректно\nпаузится на hover/touch и не «перезапускается» при раскрытии стопки\n(collapsed↔expanded), как это делала старая CSS-keyframe анимация.",
     "props": {
       "appearance": {
         "type": "enum",
@@ -398,35 +322,20 @@
           "success",
           "warning"
         ],
-        "description": "Цветовая схема — берётся из appearance тоста.",
-        "typeRefs": [
-          "ToastSystemEventAppearance"
-        ]
+        "description": "Цветовая схема — берётся из appearance тоста."
       },
       "durationMs": {
         "type": "number",
         "required": false,
-        "description": "Длительность анимации обратного отсчёта (мс). Используется в реальном\nтосте для синхронизации с auto-close таймером."
+        "description": "Зарезервирован. Раньше задавал `animation-duration` CSS-кейфрейма; сейчас\nscaleX полоски считается из реального состояния авто-close таймера через\n`useToastProgress`, и этот параметр в рантайме не используется. Оставлен\nв API на случай standalone-рендера карточки вне `ToasterContainer` —\nтам контекста менеджера нет, и полоска зафиксируется на `scaleX(1)`."
       },
       "value": {
         "type": "number",
         "required": false,
-        "description": "Статическое значение 0..1 для визуальных матриц. Когда задано — анимация\nотключена, бар замораживается на этом scaleX."
+        "description": "Статическое значение 0..1 для визуальных матриц. Когда задано — рендер без\nподписки на менеджер, бар замораживается на этом scaleX."
       }
     },
-    "relatedTypes": {
-      "ToastSystemEventAppearance": {
-        "kind": "union",
-        "values": [
-          "error",
-          "errorCritical",
-          "neutral",
-          "success",
-          "warning"
-        ],
-        "own": true
-      }
-    }
+    "relatedTypes": {}
   },
   "ToastUpload": {
     "displayName": "ToastUpload",
@@ -827,6 +736,60 @@
       }
     }
   },
+  "ToastUploadTitleLine": {
+    "displayName": "ToastUploadTitleLine",
+    "propsTypeName": null,
+    "props": {
+      "closable": {
+        "type": "boolean",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "required": true
+      },
+      "generalActions": {
+        "type": "Omit<UploadActions, \"onCancel\">",
+        "required": false
+      },
+      "isCollapsed": {
+        "type": "boolean",
+        "required": true
+      },
+      "onCancelAll": {
+        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false
+      },
+      "onCloseClick": {
+        "type": "(e: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+        "required": true
+      },
+      "onCollapseClick": {
+        "type": "(e: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+        "required": true
+      },
+      "progress": {
+        "type": "{ current: number; total: number; }",
+        "required": true
+      },
+      "status": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "error",
+          "errorUploaded",
+          "loading",
+          "pause",
+          "uploaded"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
   "ToastUserAction": {
     "displayName": "ToastUserAction",
     "propsTypeName": "ToastUserActionProps",
@@ -1053,7 +1016,8 @@
       "autoClose": {
         "type": "number | false",
         "required": false,
-        "description": "Реальное время автозакрытия в мс. Подставляется toaster-системой при\nрендере, чтобы анимация progress bar совпадала с auto-dismiss таймером.\nЕсли потребитель ставит руками — будет использоваться его значение.\nДефолт — `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` (см. `constants.ts`).\n`false` — автозакрытие выключено, progress bar в этом режиме не рендерится."
+        "defaultValue": "undefined (резолвится в `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` = 5000)",
+        "description": "Время автозакрытия в мс. Три состояния различимы намеренно:\n- `undefined` — потребитель не указал значение, toaster-система подставит\n  дефолт `AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent]` (5000 мс) при рендере;\n  именно этот случай позволяет ProgressBar анимироваться синхронно с\n  auto-dismiss таймером менеджера.\n- `number` — явное значение от потребителя, используется как есть.\n- `false` — автозакрытие выключено, ProgressBar в этом режиме не рендерится."
       },
       "className": {
         "type": "string",
@@ -1278,66 +1242,6 @@
       "toastProps": {
         "type": "{ autoClose?: number | false; }",
         "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "adaptiveDismissToast": {
-    "displayName": "adaptiveDismissToast",
-    "propsTypeName": "WithLayoutType",
-    "props": {
-      "layoutType": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
-      }
-    },
-    "relatedTypes": {}
-  },
-  "adaptiveOpenToast": {
-    "displayName": "adaptiveOpenToast",
-    "propsTypeName": "WithLayoutType",
-    "props": {
-      "layoutType": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
-      }
-    },
-    "relatedTypes": {}
-  },
-  "adaptiveToaster": {
-    "displayName": "adaptiveToaster",
-    "propsTypeName": "WithLayoutType",
-    "props": {
-      "layoutType": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
-      }
-    },
-    "relatedTypes": {}
-  },
-  "adaptiveUpdateToast": {
-    "displayName": "adaptiveUpdateToast",
-    "propsTypeName": "WithLayoutType",
-    "props": {
-      "layoutType": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
       }
     },
     "relatedTypes": {}

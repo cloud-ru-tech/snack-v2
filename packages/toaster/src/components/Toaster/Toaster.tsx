@@ -10,23 +10,20 @@ import { toasterManager } from '../../manager';
 import { ManagedToast, ToasterId } from '../../manager/types';
 import { DraggableDirection, ToasterContainerProps } from '../../types';
 import { useTimerSync, useTouchStickyPauseRelease } from './hooks';
+import { renderFlatToasts, renderStackToasts, RenderToastsOptions } from './render';
 import styles from './styles.module.scss';
+import { INITIAL_UI_STATE, uiReducer } from './uiReducer';
 import {
   clipByLimit,
   DivPointerEvent,
   DRAGGING_SELECTOR,
-  INITIAL_UI_STATE,
   INTERACTIVE_SELECTOR,
   isMousePointer,
   isPaused,
   isTouchPointer,
   mergeWithDefaults,
   POSITION_CLASS_NAME,
-  renderFlatToasts,
-  renderStackToasts,
-  RenderToastsOptions,
   TOAST_STATUS,
-  uiReducer,
 } from './utils';
 
 export type ToasterProps = ToasterContainerProps;

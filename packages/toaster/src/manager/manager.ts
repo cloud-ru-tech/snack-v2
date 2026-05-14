@@ -366,53 +366,6 @@ class ToasterManager {
     this.containers.forEach((_state, containerId) => this.playContainer(containerId));
   }
 
-  /**
-   * @deprecated Используй `pauseContainer` / `pauseToast` / `pauseAll`.
-   */
-  pause(params?: { id?: ToasterId; containerId?: ContainerId }): void {
-    if (params?.id !== undefined && params.containerId !== undefined) {
-      this.pauseToast(params.id, params.containerId);
-      return;
-    }
-    if (params?.containerId !== undefined) {
-      // id может быть задан без containerId — паузим по всем контейнерам с фильтром.
-      if (params.id !== undefined) {
-        this.pauseToast(params.id, params.containerId);
-      } else {
-        this.pauseContainer(params.containerId);
-      }
-      return;
-    }
-    if (params?.id !== undefined) {
-      this.containers.forEach((_s, cid) => this.pauseToast(params.id as ToasterId, cid));
-      return;
-    }
-    this.pauseAll();
-  }
-
-  /**
-   * @deprecated Используй `playContainer` / `playToast` / `playAll`.
-   */
-  play(params?: { id?: ToasterId; containerId?: ContainerId }): void {
-    if (params?.id !== undefined && params.containerId !== undefined) {
-      this.playToast(params.id, params.containerId);
-      return;
-    }
-    if (params?.containerId !== undefined) {
-      if (params.id !== undefined) {
-        this.playToast(params.id, params.containerId);
-      } else {
-        this.playContainer(params.containerId);
-      }
-      return;
-    }
-    if (params?.id !== undefined) {
-      this.containers.forEach((_s, cid) => this.playToast(params.id as ToasterId, cid));
-      return;
-    }
-    this.playAll();
-  }
-
   /** Возвращает true, если pause фактически изменил состояние таймера. */
   private pauseOne(state: ContainerState, id: ToasterId): boolean {
     const toast = state.toasts.find(t => t.id === id);

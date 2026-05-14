@@ -191,5 +191,3 @@ export type Toaster = {
     dismiss(idOrOptions?: ToasterId | { containerId?: string }): void;
   };
 };
-
-export type WithLayoutType = { layoutType: 'mobile' | 'desktop' };

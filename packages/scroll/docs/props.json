@@ -59,6 +59,11 @@
         "required": false,
         "description": "Колбек события скрола."
       },
+      "overflow": {
+        "type": "{ x?: \"scroll\" | \"hidden\" | \"visible\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"scroll\" | \"hidden\" | \"visible\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+        "required": false,
+        "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+      },
       "paddingAbsolute": {
         "type": "boolean",
         "required": false,
