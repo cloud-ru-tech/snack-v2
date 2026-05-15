@@ -1,0 +1,62 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module.scss' as base;
+@use '@sbercloud/figma-variables/build/scss/components/codeEditor.module.scss' as codeEditor;
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+
+  &[data-has-background] {
+    background-color: base.$sn-theme-color-neutral-background;
+  }
+}
+
+.loadingOverlay {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  min-height: base.$sn-primitive-dimension-48;
+}
+
+.header {
+  position: relative;
+  z-index: 0;
+
+  display: flex;
+  gap: base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'header', 'gap');
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'header', 'padding-top')
+    base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'header', 'padding-right')
+    base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'header', 'padding-bottom')
+    base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'header', 'padding-left');
+  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.editorWrap {
+  position: relative;
+
+  overflow: hidden;
+  flex: 1;
+
+  min-height: 0;
+  padding-top: base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'content', 'padding-top');
+  padding-bottom: base.simple-var(codeEditor.$codeEditor, 'anatomy', 'size', 'content', 'padding-bottom');
+
+  background-color: inherit;
+}
+
+.editor {
+  background-color: inherit;
+}

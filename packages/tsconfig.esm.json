@@ -172,6 +172,9 @@
     },
     {
       "path": "./color-picker/tsconfig.esm.json"
+    },
+    {
+      "path": "./code-editor/tsconfig.esm.json"
     }
   ]
 }

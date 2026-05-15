@@ -1,0 +1,208 @@
+---
+title: CodeEditor
+package: '@ds/code-editor'
+description: Обёртка над monaco-editor с темизацией на токенах дизайн-системы, шапкой с языком и кнопкой копирования, async/lazy-загрузкой и JSON/YAML-валидацией по schema.
+order: 0
+---
+
+import { CodeEditor } from '@ds/code-editor'
+import { Json } from '../demos/examples/Json'
+import JsonSrc from '../demos/examples/Json.tsx?raw'
+import { Yaml } from '../demos/examples/Yaml'
+import YamlSrc from '../demos/examples/Yaml.tsx?raw'
+import { WithHeader } from '../demos/examples/WithHeader'
+import WithHeaderSrc from '../demos/examples/WithHeader.tsx?raw'
+import { NoBackground } from '../demos/examples/NoBackground'
+import NoBackgroundSrc from '../demos/examples/NoBackground.tsx?raw'
+import { LazyLoaded } from '../demos/examples/LazyLoaded'
+import LazyLoadedSrc from '../demos/examples/LazyLoaded.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import codeEditorDoc from './props.json'
+
+# CodeEditor
+
+Тонкая обёртка над [`@monaco-editor/react`](https://github.com/suren-atoyan/monaco-react) с темой на токенах дизайн-системы, опциональной шапкой (language label + copy button) и фиксированными типографическими опциями. Поддерживает JSON/YAML-валидацию по JSON-Schema, async/lazy-варианты загрузки monaco-бандла и встраивание в продуктовые формы и карточки.
+
+## Когда использовать
+
+- Просмотр и редактирование JSON/YAML конфигов прямо в продукте.
+- Inline-редакторы с подсветкой синтаксиса.
+- Просмотр логов/манифестов с кнопкой копирования всего содержимого.
+
+Когда **не** нужен `CodeEditor`:
+
+- Большие IDE-сценарии (мульти-файлы, расширения, дебаггер):
+  - используйте полноценный monaco-host или web-IDE.
+- Однострочный ввод без подсветки:
+  - используйте `Input` / `Textarea` из соответствующих пакетов.
+
+## Анатомия
+
+### Header (no default, опускается ⇒ скрыта)
+
+`hasHeader` не имеет явного дефолта в API; если не передан — шапка не рендерится. Включение шапки добавляет:
+
+- Имя языка (`language`), отформатированное с заглавной буквы.
+- Кнопку копирования — копирует текущее значение `value` в clipboard и вызывает `onCopyClick`.
+
+### Background (default `true`)
+
+- `true` — поверх monaco-области рисуется лёгкий полупрозрачный фон, чтобы редактор не сливался с поверхностью.
+- `false` — режим встраивания в карточки / модалки с собственным фоном.
+
+### Language
+
+Любое значение, поддерживаемое monaco (`json`, `yaml`, `typescript`, `javascript`, `markdown`, `shell`, …). Для `json` и `yaml` дополнительно поддерживается `jsonSchema` — конфигурация диагностики и автокомплитов через JSON-Schema.
+
+### Loading
+
+- `loading={true}` — поверх редактора рендерится `<Spinner />`, само Monaco-поле скрыто. Использовать, когда контент ещё загружается из API.
+- `loading={<CustomNode />}` — подменяет дефолтный `<Spinner />` на время инициализации monaco-бандла.
+
+### Row numbers (default `true`)
+
+`showRowNumber={false}` скрывает колонку с номерами строк (mapping на monaco-опции `lineNumbers: 'off'`, `lineDecorationsWidth: 0`, `lineNumbersMinChars: 0`).
+
+## Установка
+
+```bash
+pnpm add @ds/code-editor
+```
+
+```ts
+import { CodeEditor, LazyCodeEditor, AsyncCodeEditor } from '@ds/code-editor'
+```
+
+## Микрофронтовая интеграция
+
+`monaco-editor` — крупный бандл (~3-5 MB после tree-shaking). В микрофронтовой архитектуре он должен грузиться **один раз** на уровне контейнера и переиспользоваться всеми routed-MFE, иначе каждый микрофронт тянет свою копию.
+
+Контракт реализован через глобальный реестр на `window['__snack-monaco-editor-loader__']`. Ключ совместим с `@snack-uikit/code-editor` и `@cloud-ru/uikit-product-code-editor` — миграция MFE на `@ds/code-editor` идёт без правок контейнера.
+
+### Container — однократная регистрация loader'а
+
+В root-config контейнера (вызывается до маунта любого MFE):
+
+```ts
+export function initCodeEditorConfig() {
+  if (typeof window === 'undefined') return
+  window['__snack-monaco-editor-loader__'] = {
+    loadMonaco: () => import('monaco-editor').then(m => m.default),
+  }
+}
+```
+
+Контейнер содержит `monaco-editor` в собственных `dependencies` и в `monaco-editor-webpack-plugin` / Vite chunk-конфиге; MFE — **не должны его содержать**. Динамический `import('monaco-editor')` даёт отдельный chunk, который грузится только при первом обращении к `loadMonaco()`.
+
+### MFE — потребитель
+
+```tsx
+import { LazyCodeEditor } from '@ds/code-editor'
+
+export function ManifestPanel({ manifest }: { manifest: string }) {
+  return <LazyCodeEditor height='100%' value={manifest} language='json' options={{ readOnly: true }} />
+}
+```
+
+`LazyCodeEditor` сам:
+
+- Внутри `Suspense` происходит lazy loading `AsyncCodeEditor`-фабрики.
+- В фабрике вызывает `loadMonacoEditor()` — читает `window['__snack-monaco-editor-loader__']`.
+- Если ключа нет (например, MFE отрендерился в standalone-режиме вне контейнера) — fallback на дефолтный loader `@monaco-editor/react`, который тянет бандл с jsDelivr CDN.
+
+Если нужен собственный `Suspense` (например, общий лоадер MFE), используй `AsyncCodeEditor` напрямую:
+
+```tsx
+import { Suspense, lazy } from 'react'
+import { AsyncCodeEditor } from '@ds/code-editor'
+
+const CodeEditor = lazy(() => AsyncCodeEditor())
+
+export function MyMfe() {
+  return (
+    <Suspense fallback={<MfeSpinner />}>
+      <CodeEditor language='json' value='' />
+    </Suspense>
+  )
+}
+```
+
+### Prefetch — `preloadMonacoEditor()`
+
+Если заранее известно, что пользователь перейдёт к редактору (например, по клику в навигации) — предзагрузи бандл, чтобы Suspense-фолбэк не появлялся:
+
+```ts
+import { preloadMonacoEditor } from '@ds/code-editor'
+
+linkRef.current?.addEventListener('mouseenter', () => preloadMonacoEditor(), { once: true })
+```
+
+Если контейнер ещё не зарегистрировал loader (`__snack-monaco-editor-loader__` отсутствует), `preloadMonacoEditor()` возвращает `null` — без ошибок.
+
+### SSR
+
+`loadMonacoEditor` и `preloadMonacoEditor` имеют SSR-guard и в Node-окружении возвращают `null`. Сам `CodeEditor` / `LazyCodeEditor` под SSR не рендерится: `monaco-editor` обращается к `window` и `document.fonts` на module-init. В документации (Astro) demo-примеры монтируются через `client:only='react'` — в продуктовом SPA это не проблема, но при SSR-фреймворке (Next, Remix) оборачивай редактор в `dynamic({ ssr: false })`/аналог.
+
+### Self-hosted vs CDN
+
+| Сценарий | Что делать |
+|----------|------------|
+| Контейнер + MFE | Зарегистрируй loader в контейнере — `import('monaco-editor')`. MFE использует `LazyCodeEditor`. Один бандл на все MFE. |
+| Standalone-приложение (без контейнера) | Можешь либо зарегистрировать тот же loader локально, либо не делать ничего — `@monaco-editor/react` стянет бандл с jsDelivr CDN. Для продакшена предпочтительно self-hosted (offline, контроль версий, CSP). |
+| Прямой `CodeEditor` (не Lazy/Async) | Использует дефолтный loader `@monaco-editor/react` (CDN). Lazy/Async-варианты — единственный способ self-host'а через `__snack-monaco-editor-loader__`. |
+
+<Example
+  title='1. JSON'
+  description='Базовый сценарий: json-редактор без шапки'
+  code={JsonSrc}
+>
+  <Json client:only='react' />
+</Example>
+
+<Example
+  title='2. YAML'
+  description='YAML с включённой шапкой и кнопкой копирования'
+  code={YamlSrc}
+>
+  <Yaml client:only='react' />
+</Example>
+
+<Example
+  title='3. С шапкой и onCopyClick'
+  description='hasHeader + onCopyClick — продуктовая обвязка'
+  code={WithHeaderSrc}
+>
+  <WithHeader client:only='react' />
+</Example>
+
+<Example
+  title='4. Без фона'
+  description='hasBackground=false — для встраивания в карточки с собственным фоном'
+  code={NoBackgroundSrc}
+>
+  <NoBackground client:only='react' />
+</Example>
+
+<Example
+  title='5. Lazy-загрузка'
+  description='LazyCodeEditor — Suspense + lazy-chunk с monaco-бандлом'
+  code={LazyLoadedSrc}
+>
+  <LazyLoaded client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={codeEditorDoc.CodeEditor} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-codeeditor--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('code-editor')} />

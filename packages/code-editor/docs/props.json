@@ -1,0 +1,360 @@
+{
+  "AsyncCodeEditor": {
+    "displayName": "AsyncCodeEditor",
+    "propsTypeName": null,
+    "description": "`CodeEditor` с предзагруженным `monaco-editor`.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "CodeEditor": {
+    "displayName": "CodeEditor",
+    "propsTypeName": "CodeEditorProps",
+    "props": {
+      "beforeMount": {
+        "type": "BeforeMount",
+        "required": false,
+        "description": "Signature: function(monaco: Monaco) => void\nAn event is emitted before the editor is mounted\nIt gets the monaco instance as a first argument\nDefaults to \"noop\""
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Class name for the editor container"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultLanguage": {
+        "type": "string",
+        "required": false,
+        "description": "Default language of the current model"
+      },
+      "defaultPath": {
+        "type": "string",
+        "required": false,
+        "description": "Default path of the current model\nWill be passed as the third argument to `.createModel` method\n`monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))`"
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "description": "Default value of the current model"
+      },
+      "hasBackground": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение псевдобекграунда."
+      },
+      "hasHeader": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение шапки."
+      },
+      "height": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "100%",
+        "description": "Height of the editor wrapper"
+      },
+      "jsonSchema": {
+        "type": "JsonSchema",
+        "required": false,
+        "description": "Конфигурация JSON-Schema, по которой monaco валидирует контент.",
+        "typeRefs": [
+          "JsonSchema"
+        ]
+      },
+      "keepCurrentModel": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Indicator whether to dispose the current model when the Editor is unmounted or not"
+      },
+      "language": {
+        "type": "string",
+        "required": false,
+        "description": "Language of the current model\nЯзык контента редактора. Schema-режим работает только для `json` и `yaml`."
+      },
+      "line": {
+        "type": "number",
+        "required": false,
+        "description": "The line to jump on it"
+      },
+      "loading": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Loading...",
+        "description": "The loading screen before the editor will be mounted"
+      },
+      "onChange": {
+        "type": "OnChange",
+        "required": false,
+        "description": "Signature: function(value: string | undefined, ev: monaco.editor.IModelContentChangedEvent) => void\nAn event is emitted when the content of the current model is changed"
+      },
+      "onCopyClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Клик по кнопке копирования."
+      },
+      "onMount": {
+        "type": "OnMount",
+        "required": false,
+        "description": "Signature: function(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void\nAn event is emitted when the editor is mounted\nIt gets the editor instance as a first argument and the monaco instance as a second\nDefaults to \"noop\""
+      },
+      "onValidate": {
+        "type": "OnValidate",
+        "required": false,
+        "description": "Signature: function(markers: monaco.editor.IMarker[]) => void\nAn event is emitted when the content of the current model is changed\nand the current model markers are ready\nDefaults to \"noop\""
+      },
+      "options": {
+        "type": "IStandaloneEditorConstructionOptions",
+        "required": false,
+        "description": "IStandaloneEditorConstructionOptions"
+      },
+      "overrideServices": {
+        "type": "IEditorOverrideServices",
+        "required": false,
+        "description": "IEditorOverrideServices"
+      },
+      "path": {
+        "type": "string",
+        "required": false,
+        "description": "Path of the current model\nWill be passed as the third argument to `.createModel` method\n`monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))`\nВ schema-режиме путь модели управляется внутренне (нужен стабильный `path`,\nсовпадающий с `fileMatch`), снаружи задать его нельзя. `never` запрещает\nпередачу `path` на уровне типа — попытка приводит к compile-time ошибке."
+      },
+      "saveViewState": {
+        "type": "boolean",
+        "required": false,
+        "description": "Indicator whether to save the models' view states between model changes or not\nDefaults to true"
+      },
+      "showRowNumber": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение колонки с номерами строк."
+      },
+      "theme": {
+        "type": "string",
+        "required": false,
+        "description": "Имя зарегистрированной monaco-темы из глобального реестра\n(`monaco.editor.defineTheme(name, …)`). По умолчанию подбирается\nавтоматически по DS-теме провайдера: `'snack'` для светлой, `'snackDark'`\nдля тёмной. Передавай вручную только если регистрируешь свою кастомную\nтему — иначе оставляй `undefined`."
+      },
+      "themeName": {
+        "type": "string",
+        "required": false,
+        "description": "Используется как trigger в effect deps для перепересчёта theme tokens при смене темы. Уникальное значение на каждую тему."
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Value of the current model"
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "100%",
+        "description": "Width of the editor wrapper"
+      },
+      "wrapperProps": {
+        "type": "object",
+        "required": false,
+        "description": "Props applied to the wrapper element"
+      }
+    },
+    "relatedTypes": {
+      "JsonSchema": {
+        "kind": "interface",
+        "props": {
+          "fileMatch": {
+            "type": "string",
+            "required": true,
+            "description": "Паттерн match'а пути модели, к которой применяется схема."
+          },
+          "schema": {
+            "type": "JSONSchema",
+            "required": true,
+            "description": "Тело JSON-Schema."
+          },
+          "uri": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Идентификатор схемы. Если не задан — генерится автоматически."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "LazyCodeEditor": {
+    "displayName": "LazyCodeEditor",
+    "propsTypeName": "LazyCodeEditorProps",
+    "description": "Готовый preset на базе `AsyncCodeEditor` + `Suspense`.",
+    "props": {
+      "beforeMount": {
+        "type": "BeforeMount",
+        "required": false,
+        "description": "Signature: function(monaco: Monaco) => void\nAn event is emitted before the editor is mounted\nIt gets the monaco instance as a first argument\nDefaults to \"noop\""
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Class name for the editor container"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultLanguage": {
+        "type": "string",
+        "required": false,
+        "description": "Default language of the current model"
+      },
+      "defaultPath": {
+        "type": "string",
+        "required": false,
+        "description": "Default path of the current model\nWill be passed as the third argument to `.createModel` method\n`monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))`"
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "description": "Default value of the current model"
+      },
+      "hasBackground": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение псевдобекграунда."
+      },
+      "hasHeader": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение шапки."
+      },
+      "height": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "100%",
+        "description": "Height of the editor wrapper"
+      },
+      "jsonSchema": {
+        "type": "JsonSchema",
+        "required": false,
+        "description": "Конфигурация JSON-Schema, по которой monaco валидирует контент.",
+        "typeRefs": [
+          "JsonSchema"
+        ]
+      },
+      "keepCurrentModel": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Indicator whether to dispose the current model when the Editor is unmounted or not"
+      },
+      "language": {
+        "type": "string",
+        "required": false,
+        "description": "Language of the current model\nЯзык контента редактора. Schema-режим работает только для `json` и `yaml`."
+      },
+      "line": {
+        "type": "number",
+        "required": false,
+        "description": "The line to jump on it"
+      },
+      "loading": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Loading...",
+        "description": "The loading screen before the editor will be mounted"
+      },
+      "onChange": {
+        "type": "OnChange",
+        "required": false,
+        "description": "Signature: function(value: string | undefined, ev: monaco.editor.IModelContentChangedEvent) => void\nAn event is emitted when the content of the current model is changed"
+      },
+      "onCopyClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Клик по кнопке копирования."
+      },
+      "onMount": {
+        "type": "OnMount",
+        "required": false,
+        "description": "Signature: function(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void\nAn event is emitted when the editor is mounted\nIt gets the editor instance as a first argument and the monaco instance as a second\nDefaults to \"noop\""
+      },
+      "onValidate": {
+        "type": "OnValidate",
+        "required": false,
+        "description": "Signature: function(markers: monaco.editor.IMarker[]) => void\nAn event is emitted when the content of the current model is changed\nand the current model markers are ready\nDefaults to \"noop\""
+      },
+      "options": {
+        "type": "IStandaloneEditorConstructionOptions",
+        "required": false,
+        "description": "IStandaloneEditorConstructionOptions"
+      },
+      "overrideServices": {
+        "type": "IEditorOverrideServices",
+        "required": false,
+        "description": "IEditorOverrideServices"
+      },
+      "path": {
+        "type": "string",
+        "required": false,
+        "description": "Path of the current model\nWill be passed as the third argument to `.createModel` method\n`monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))`\nВ schema-режиме путь модели управляется внутренне (нужен стабильный `path`,\nсовпадающий с `fileMatch`), снаружи задать его нельзя. `never` запрещает\nпередачу `path` на уровне типа — попытка приводит к compile-time ошибке."
+      },
+      "saveViewState": {
+        "type": "boolean",
+        "required": false,
+        "description": "Indicator whether to save the models' view states between model changes or not\nDefaults to true"
+      },
+      "showRowNumber": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение колонки с номерами строк."
+      },
+      "theme": {
+        "type": "string",
+        "required": false,
+        "description": "Имя зарегистрированной monaco-темы из глобального реестра\n(`monaco.editor.defineTheme(name, …)`). По умолчанию подбирается\nавтоматически по DS-теме провайдера: `'snack'` для светлой, `'snackDark'`\nдля тёмной. Передавай вручную только если регистрируешь свою кастомную\nтему — иначе оставляй `undefined`."
+      },
+      "themeName": {
+        "type": "string",
+        "required": false,
+        "description": "Используется как trigger в effect deps для перепересчёта theme tokens при смене темы. Уникальное значение на каждую тему."
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Value of the current model"
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "100%",
+        "description": "Width of the editor wrapper"
+      },
+      "wrapperProps": {
+        "type": "object",
+        "required": false,
+        "description": "Props applied to the wrapper element"
+      }
+    },
+    "relatedTypes": {
+      "JsonSchema": {
+        "kind": "interface",
+        "props": {
+          "fileMatch": {
+            "type": "string",
+            "required": true,
+            "description": "Паттерн match'а пути модели, к которой применяется схема."
+          },
+          "schema": {
+            "type": "JSONSchema",
+            "required": true,
+            "description": "Тело JSON-Schema."
+          },
+          "uri": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Идентификатор схемы. Если не задан — генерится автоматически."
+          }
+        },
+        "own": true
+      }
+    }
+  }
+}

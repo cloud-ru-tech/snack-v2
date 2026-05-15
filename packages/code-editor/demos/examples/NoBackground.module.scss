@@ -1,0 +1,7 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.surface {
+  padding: base.$sn-density-spacing-interval-m;
+  border-radius: base.$sn-density-radius-s;
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}

@@ -1,0 +1,16 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.frame {
+  width: 100%;
+  height: 500px;
+  padding: base.$sn-density-spacing-interval-l;
+  border-radius: base.$sn-primitive-dimension-12;
+
+  // Контрастный фон, чтобы code-editor не сливался с neutral-background story.
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
