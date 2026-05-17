@@ -1,0 +1,46 @@
+// DO NOT EDIT IT MANUALLY
+
+import { forwardRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
+import type { ISvgIconProps } from '../../../../../../types';
+
+const FALLBACK_SVG_INNER =
+  '<path d="M10.760 5.280 C 9.928 5.361,9.197 5.700,8.565 6.300 C 8.069 6.770,7.742 7.306,7.533 7.988 C 7.435 8.309,7.426 8.398,7.426 9.000 C 7.426 9.603,7.435 9.691,7.533 10.012 C 7.647 10.383,7.842 10.810,8.016 11.066 L 8.121 11.220 7.061 11.231 L 6.000 11.241 6.000 12.001 L 6.000 12.760 9.570 12.761 C 12.576 12.761,13.180 12.771,13.390 12.820 C 14.114 12.991,14.784 13.613,15.003 14.317 C 15.116 14.682,15.116 15.318,15.003 15.683 C 14.787 16.378,14.135 16.992,13.412 17.180 C 13.133 17.253,11.146 17.265,10.657 17.197 C 9.965 17.101,9.229 16.815,8.945 16.532 L 8.793 16.380 8.136 16.720 C 7.775 16.907,7.480 17.065,7.480 17.072 C 7.480 17.113,7.709 17.408,7.870 17.574 C 8.467 18.191,9.521 18.600,10.820 18.719 C 11.477 18.780,12.950 18.770,13.400 18.702 C 14.171 18.586,14.837 18.265,15.390 17.742 C 15.928 17.235,16.252 16.714,16.467 16.012 C 16.565 15.691,16.574 15.602,16.574 15.000 C 16.574 14.398,16.565 14.309,16.467 13.989 C 16.364 13.651,16.138 13.163,15.958 12.890 L 15.872 12.760 16.936 12.760 L 18.000 12.760 18.000 12.000 L 18.000 11.240 14.408 11.240 C 11.337 11.240,10.783 11.231,10.585 11.180 C 9.862 10.991,9.215 10.382,8.996 9.683 C 8.882 9.317,8.882 8.683,8.996 8.317 C 9.218 7.611,9.886 6.991,10.610 6.820 C 10.912 6.749,12.385 6.737,12.867 6.802 C 13.606 6.902,14.351 7.184,14.624 7.469 L 14.774 7.625 15.416 7.295 C 15.769 7.114,16.064 6.949,16.070 6.929 C 16.077 6.909,16.003 6.784,15.905 6.652 C 15.488 6.084,14.624 5.622,13.572 5.405 C 12.879 5.261,11.562 5.203,10.760 5.280 " stroke="none" fill-rule="evenodd"></path>';
+
+const StrikeSpriteSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: Ref<SVGSVGElement>) => {
+  props.width = undefined;
+  props.height = undefined;
+  const testId = '-strike';
+  const symbolId = 'snack-uikit-snack-icons-' + 'strike';
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById(symbolId)) {
+      setUseFallback(true);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(`[@design-system/icons] Symbol "#${symbolId}" not found on page. Rendering inline fallback.`);
+      }
+    }
+  }, [symbolId]);
+
+  const isCustomSize = typeof size === 'number';
+  if (isCustomSize) {
+    if (!props.style) props.style = {};
+    props.style.width = size + 'px';
+    props.style.height = size + 'px';
+  }
+  return (
+    <svg
+      ref={ref}
+      xmlns='http://www.w3.org/2000/svg'
+      width={24}
+      height={24}
+      fill='currentColor'
+      viewBox='0 0 24 24'
+      data-test-id={'icon' + testId}
+      {...props}
+    >
+      {useFallback ? <g dangerouslySetInnerHTML={{ __html: FALLBACK_SVG_INNER }} /> : <use href={'#' + symbolId} />}
+    </svg>
+  );
+});
+export default StrikeSpriteSVG;

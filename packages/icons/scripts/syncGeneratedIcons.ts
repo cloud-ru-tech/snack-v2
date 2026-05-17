@@ -4,7 +4,7 @@ import { basename, join } from 'path';
 import { getGroupSourcePath, getIconGroups, getSpriteGroupId } from './iconGroups';
 import { componentNameToSymbolIdPart, filenameToSymbolIdPart } from './symbolId';
 
-const ICONS_ROOT = join(__dirname, '..');
+const ICONS_ROOT = join(import.meta.dirname, '..');
 const COMPONENTS_ROOT = join(ICONS_ROOT, 'src', 'components');
 const SPRITE_DIRS = [
   join(ICONS_ROOT, 'src', 'sprite', 'svg'),
@@ -167,8 +167,8 @@ function main(): void {
   const removedComponents = syncComponentGroups(groups);
   const removedSprites = syncSpriteFiles(groups);
 
-  run('ts-node scripts/createExportIndexFile.ts');
-  run('ts-node scripts/fixTypesImport.ts');
+  run('tsx scripts/createExportIndexFile.ts');
+  run('tsx scripts/fixTypesImport.ts');
 
   // eslint-disable-next-line no-console
   console.log(

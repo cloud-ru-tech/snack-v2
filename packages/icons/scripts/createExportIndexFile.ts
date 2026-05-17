@@ -4,7 +4,7 @@ import fs from 'fs';
 import { join } from 'path';
 import { getIconGroups, getSpriteGroupId } from './iconGroups';
 
-const COMPONENTS_ROOT = join(__dirname, '..', 'src', 'components');
+const COMPONENTS_ROOT = join(import.meta.dirname, '..', 'src', 'components');
 
 function findIndexPaths(dir: string, baseDir: string): string[] {
   const result: string[] = [];
@@ -63,7 +63,7 @@ try {
   const componentsIndexPath = join(COMPONENTS_ROOT, 'index.ts');
   fs.writeFileSync(componentsIndexPath, allExports.join('\n') + '\n', 'utf-8');
 
-  const spriteIndexPath = join(__dirname, '..', 'src', 'sprite', 'index.ts');
+  const spriteIndexPath = join(import.meta.dirname, '..', 'src', 'sprite', 'index.ts');
   const spriteExportLines = groups.map(g => {
     const id = getSpriteGroupId(g);
     const exportName =

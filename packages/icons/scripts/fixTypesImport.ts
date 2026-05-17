@@ -5,7 +5,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import { join, relative } from 'path';
 
-const SRC_ROOT = join(__dirname, '..', 'src');
+const SRC_ROOT = join(import.meta.dirname, '..', 'src');
 const COMPONENTS_ROOT = join(SRC_ROOT, 'components');
 
 function walkTsx(dir: string): string[] {

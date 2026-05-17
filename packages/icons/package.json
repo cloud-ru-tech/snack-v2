@@ -22,13 +22,13 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "create-sprite": "pnpm exec ts-node scripts/createSprite.ts",
-    "validate:icons": "pnpm exec ts-node scripts/validateIcons.ts",
-    "sync:icons": "pnpm exec ts-node scripts/syncGeneratedIcons.ts",
-    "create-export-index-file": "pnpm exec ts-node scripts/createExportIndexFile.ts",
-    "build:icons": "pnpm exec ts-node scripts/buildIcons.ts",
-    "fix:icons": "pnpm exec ts-node scripts/fixIcons.ts",
-    "post-process-icons": "pnpm exec ts-node scripts/postProcessIconFallback.ts",
+    "create-sprite": "pnpm exec tsx scripts/createSprite.ts",
+    "validate:icons": "pnpm exec tsx scripts/validateIcons.ts",
+    "sync:icons": "pnpm exec tsx scripts/syncGeneratedIcons.ts",
+    "create-export-index-file": "pnpm exec tsx scripts/createExportIndexFile.ts",
+    "build:icons": "pnpm exec tsx scripts/buildIcons.ts",
+    "fix:icons": "pnpm exec tsx scripts/fixIcons.ts",
+    "post-process-icons": "pnpm exec tsx scripts/postProcessIconFallback.ts",
     "copy:sprite-svg": "node scripts/copySpriteSvgToDist.cjs"
   },
   "publishConfig": {

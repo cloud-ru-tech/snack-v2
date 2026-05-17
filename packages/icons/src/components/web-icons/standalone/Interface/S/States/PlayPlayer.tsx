@@ -10,7 +10,7 @@ const PlayPlayerSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: R
   const sizePx = isCustomSize ? size : 24;
   const children = (
     <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} fill='none' {...props}>
-      <path d='M7.24 12.001v6.282l.273-.152c6.34-3.516 11.005-6.115 11.005-6.131-.001-.011-2.451-1.379-5.445-3.04a4143.71 4143.71 0 0 1-5.638-3.131l-.195-.111z' />
+      <path d='M7.24 12.001v6.282l.273-.152c6.34-3.516 11.005-6.115 11.005-6.131-.001-.011-2.451-1.379-5.445-3.04a4144 4144 0 0 1-5.638-3.131l-.195-.111z' />
     </svg>
   ).props.children;
   const style = isCustomSize

@@ -1,11 +1,12 @@
 {
   "extends": "../tsconfig.esm.json",
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "plugins": []
   },
   "ts-node": {
-    "compilerOptions": { "module": "CommonJS" },
+    "compilerOptions": { "module": "Node16", "moduleResolution": "Node16" },
     "files": true
   }
 }

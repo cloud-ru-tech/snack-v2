@@ -10,7 +10,7 @@ const DropdownUpSVG = forwardRef(({ size = 24, ...props }: ISvgIconProps, ref: R
   const sizePx = isCustomSize ? size : 24;
   const children = (
     <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} fill='none' {...props}>
-      <path d='m10.08 11.86-1.9 1.9h7.64l-1.9-1.9A130.99 130.99 0 0 0 12 9.96c-.011 0-.875.855-1.92 1.9' />
+      <path d='m10.08 11.86-1.9 1.9h7.64l-1.9-1.9A131 131 0 0 0 12 9.96c-.011 0-.875.855-1.92 1.9' />
     </svg>
   ).props.children;
   const style = isCustomSize

@@ -7,7 +7,7 @@ import { execSync } from 'child_process';
 import { join } from 'path';
 import { getIconGroups, getGroupFixedPath, getSpriteGroupId } from './iconGroups';
 
-const ICONS_ROOT = join(__dirname, '..');
+const ICONS_ROOT = join(import.meta.dirname, '..');
 const REPO_ROOT = join(ICONS_ROOT, '..', '..');
 
 function run(cmd: string, env?: Record<string, string>): void {
@@ -33,7 +33,7 @@ function formatGeneratedFiles(): void {
 }
 
 async function main(): Promise<void> {
-  run('rimraf svgs-fixed && ts-node scripts/fixIcons.ts');
+  run('rimraf svgs-fixed && tsx scripts/fixIcons.ts');
 
   const groups = getIconGroups();
 
@@ -43,22 +43,22 @@ async function main(): Promise<void> {
     const fixedPath = getGroupFixedPath(group);
 
     run(
-      `rimraf src/components/${group}/sprite && svgr -d src/components/${group}/sprite ${fixedPath} --config-file templates/.svgrrc.sprite.js`,
+      `rimraf src/components/${group}/sprite && svgr -d src/components/${group}/sprite ${fixedPath} --config-file templates/.svgrrc.sprite.cjs`,
       { SYMBOL_PREFIX: symbolPrefix },
     );
   }
 
-  run('ts-node scripts/postProcessIconFallback.ts');
+  run('tsx scripts/postProcessIconFallback.ts');
 
   for (const group of groups) {
     const fixedPath = getGroupFixedPath(group);
     run(
-      `rimraf src/components/${group}/standalone && svgr -d src/components/${group}/standalone ${fixedPath} --config-file templates/.svgrrc.standalone.js`,
+      `rimraf src/components/${group}/standalone && svgr -d src/components/${group}/standalone ${fixedPath} --config-file templates/.svgrrc.standalone.cjs`,
     );
   }
 
-  run('ts-node scripts/createSprite.ts');
-  run('ts-node scripts/syncGeneratedIcons.ts');
+  run('tsx scripts/createSprite.ts');
+  run('tsx scripts/syncGeneratedIcons.ts');
 
   formatGeneratedFiles();
 

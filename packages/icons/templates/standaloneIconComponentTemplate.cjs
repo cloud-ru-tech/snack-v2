@@ -1,4 +1,4 @@
-const generateDataTestId = require('./generateDataTestId');
+const generateDataTestId = require('./generateDataTestId.cjs');
 
 /**
  * Standalone icon template: inline SVG as React component.

@@ -1,4 +1,4 @@
-const generateDataTestId = require('./generateDataTestId');
+const generateDataTestId = require('./generateDataTestId.cjs');
 
 /**
  * Sprite icon template: generates <use href="#..."> with fallback support.

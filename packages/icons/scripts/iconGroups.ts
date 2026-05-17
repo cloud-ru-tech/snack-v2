@@ -5,7 +5,7 @@
 import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
-const SVGS_ROOT = join(__dirname, '..', 'svgs');
+const SVGS_ROOT = join(import.meta.dirname, '..', 'svgs');
 
 function hasSvgFiles(dir: string): boolean {
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -40,7 +40,7 @@ export function getGroupSourcePath(group: string): string {
 }
 
 export function getGroupFixedPath(group: string): string {
-  return join(__dirname, '..', 'svgs-fixed', group);
+  return join(import.meta.dirname, '..', 'svgs-fixed', group);
 }
 
 /** Group id for sprite filename: snack-icons -> snack-icons, product/basic -> product-basic */
