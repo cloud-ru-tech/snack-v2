@@ -1,0 +1,91 @@
+---
+title: ColorPicker
+package: '@ds/color-picker'
+description: Компонент выбора цвета с палитрой, переключаемыми цветовыми моделями (HEX/RGB/HSV), альфа-каналом и опциональным режимом ручного применения.
+order: 0
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { AutoApply } from '../demos/examples/AutoApply'
+import AutoApplySrc from '../demos/examples/AutoApply.tsx?raw'
+import { WithoutAlpha } from '../demos/examples/WithoutAlpha'
+import WithoutAlphaSrc from '../demos/examples/WithoutAlpha.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import colorPickerDoc from './props.json'
+
+# ColorPicker
+
+Компонент выбора цвета с палитрой, переключаемыми цветовыми моделями (HEX / RGB / HSV), альфа-каналом и опциональным режимом ручного подтверждения изменений. Уведомляет об изменении полным `RawColor`-объектом (`hex`, `rgb`, `rgba`, `hsl`, `hsla`, `hsv`, `hsva`) — пользователь сам решает, в каком формате потреблять.
+
+## Когда использовать
+
+- Когда пользователю нужно выбрать произвольный цвет (брендинг, темы, разметка карт, рисование).
+- Когда требуется поддержка нескольких цветовых моделей.
+- Когда нужен альфа-канал.
+
+Когда **не** нужен `ColorPicker`:
+
+- Выбор из фиксированной палитры — используйте набор `Tag`/`Chip`.
+- Только подтверждение одной заранее заданной коррекции — используйте `Toggle`/`Switch`.
+
+## Анатомия
+
+### Size (default `m`)
+
+Размерный ряд: `s` / `m` / `l`. Меняются размер палитры, handle-указателя, превью и зазоры.
+
+### Alpha (default `true`)
+
+`withAlpha` — управляет наличием альфа-канала в палитре и поля Alpha (0–100%).
+
+### Available modes (default — все)
+
+`availableModes` — массив `ColorMode[]`. Перечисляет модели, доступные переключателю. По умолчанию доступны все (`hex`, `rgb`, `hsv`).
+
+### Apply mode (default `false`)
+
+- `autoApply: true` — `onChange` вызывается на каждое изменение, без footer'а.
+- `autoApply: false` — изменения накапливаются локально; `onChange` вызывается только по `Apply`. `Cancel` восстанавливает значение из `value` (или из начального, если используется uncontrolled).
+
+## Установка
+
+```bash
+pnpm add @ds/color-picker
+```
+
+## Примеры использования
+
+<Example title='Базовое использование' description='Controlled с локальным state' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Размеры' description='s / m / l из Figma-оси size' code={SizesSrc}>
+  <Sizes client:visible />
+</Example>
+
+<Example title='Авто-применение' description='autoApply убирает footer' code={AutoApplySrc}>
+  <AutoApply client:visible />
+</Example>
+
+<Example title='Без альфа-канала' description='withAlpha=false' code={WithoutAlphaSrc}>
+  <WithoutAlpha client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={colorPickerDoc.ColorPicker} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-colorpicker--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('color-picker')} />

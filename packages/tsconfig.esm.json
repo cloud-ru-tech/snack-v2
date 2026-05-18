@@ -169,6 +169,9 @@
     },
     {
       "path": "./toaster/tsconfig.esm.json"
+    },
+    {
+      "path": "./color-picker/tsconfig.esm.json"
     }
   ]
 }

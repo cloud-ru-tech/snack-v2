@@ -1,0 +1,306 @@
+{
+  "ChannelSlider": {
+    "displayName": "ChannelSlider",
+    "propsTypeName": null,
+    "props": {
+      "alpha": {
+        "type": "boolean",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "gradient": {
+        "type": "string",
+        "required": true
+      },
+      "max": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "100"
+      },
+      "min": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0"
+      },
+      "onChange": {
+        "type": "(value: number) => void",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      },
+      "step": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "1"
+      },
+      "thumbColor": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ColorPicker": {
+    "displayName": "ColorPicker",
+    "propsTypeName": "ColorPickerProps",
+    "props": {
+      "autoApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Применять изменения автоматически. Если `false` — появляются кнопки Cancel/Apply."
+      },
+      "availableModes": {
+        "type": "ColorMode[]",
+        "required": false,
+        "defaultValue": "['hex', 'rgb', 'hsv']",
+        "description": "Какие цветовые модели доступны переключателю.",
+        "typeRefs": [
+          "ColorMode"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onChange": {
+        "type": "((rawColor: RawColor) => void)",
+        "required": false,
+        "description": "Колбек на изменение значения. Вызывается на каждое изменение если `autoApply`, иначе только по нажатию Apply."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер компонента.",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "value": {
+        "type": "Color",
+        "required": false,
+        "description": "Текущее значение цвета. Если задано — компонент синхронизируется с ним при изменении.",
+        "typeRefs": [
+          "Alpha",
+          "Color",
+          "HslColor",
+          "HsvColor",
+          "RgbColor"
+        ]
+      },
+      "withAlpha": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Управляет альфа-каналом палитры и наличием поля Alpha."
+      }
+    },
+    "relatedTypes": {
+      "Alpha": {
+        "kind": "interface",
+        "props": {
+          "a": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "Color": {
+        "kind": "alias",
+        "type": "string | RgbColor | HslColor | HsvColor | RgbaColor | HslaColor | HsvaColor",
+        "own": true
+      },
+      "ColorMode": {
+        "kind": "union",
+        "values": [
+          "hex",
+          "hsv",
+          "rgb"
+        ],
+        "own": true
+      },
+      "HslColor": {
+        "kind": "interface",
+        "props": {
+          "h": {
+            "type": "number",
+            "required": true
+          },
+          "l": {
+            "type": "number",
+            "required": true
+          },
+          "s": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "HsvColor": {
+        "kind": "interface",
+        "props": {
+          "h": {
+            "type": "number",
+            "required": true
+          },
+          "s": {
+            "type": "number",
+            "required": true
+          },
+          "v": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "RgbColor": {
+        "kind": "interface",
+        "props": {
+          "b": {
+            "type": "number",
+            "required": true
+          },
+          "g": {
+            "type": "number",
+            "required": true
+          },
+          "r": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "FieldAlphaColor": {
+    "displayName": "FieldAlphaColor",
+    "propsTypeName": null,
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onChange": {
+        "type": "(color: Color) => void",
+        "required": true
+      },
+      "rgba": {
+        "type": "RgbaColor",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FieldPrivate": {
+    "displayName": "FieldPrivate",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "error": {
+        "type": "boolean",
+        "required": false
+      },
+      "inputType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "number",
+          "text"
+        ],
+        "defaultValue": "number"
+      },
+      "max": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "255"
+      },
+      "min": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0"
+      },
+      "onChange": {
+        "type": "((value?: string) => void)",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s"
+      },
+      "value": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": ""
+      }
+    },
+    "relatedTypes": {}
+  }
+}

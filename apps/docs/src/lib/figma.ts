@@ -70,6 +70,7 @@ export const FIGMA_NODES = {
     calendarDropdown: { ...SNACK, nodeId: '19439-215955' }, // calendar → calendarDropdown
   },
   carousel: { ...SNACK, nodeId: '5307-114' }, // carousel → carousel
+  'color-picker': { ...SNACK, nodeId: '5664-155346' }, // color-picker → colorPicker
   counter: { ...SNACK, nodeId: '2088-10548' }, // counter → counter
   divider: { ...SNACK, nodeId: '2932-6308' }, // divider → divider
   drawer: { ...SNACK, nodeId: '2438-94227' }, // drawer → drawer

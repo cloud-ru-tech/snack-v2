@@ -1,0 +1,85 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/colorPicker.module' as cp;
+
+$sizes: 's', 'm', 'l';
+
+.track {
+  touch-action: none;
+  cursor: pointer;
+
+  position: relative;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  background-image: var(--gradient);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  // Trackу собственный outline не нужен — фокус подсвечивается через `.thumb` (см. ниже).
+  // Снимаем дефолтный outline только для keyboard-focus (`:focus-visible`), чтобы
+  // не ломать a11y по мышиному клику.
+  &:focus-visible {
+    outline: none;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'sliderTrack', 'border-radius');
+    }
+  }
+}
+
+// stylelint-disable color-no-hex -- checkerboard pattern по спеке Figma; токенов под него в DS нет.
+.alpha {
+  background-color: #fff;
+  background-image:
+    var(--gradient),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><rect width='8' height='8' fill='%23e0e0e0'/><rect x='8' y='8' width='8' height='8' fill='%23e0e0e0'/></svg>");
+  background-repeat: no-repeat, repeat;
+  background-size:
+    100% 100%,
+    16px 16px;
+}
+// stylelint-enable color-no-hex
+
+.thumb {
+  pointer-events: none;
+
+  position: absolute;
+  top: 50%;
+  // Позиционирование с учётом ширины handle'а: при fraction=0 thumb стоит у левого
+  // края трека (центр на W/2), при fraction=1 — у правого (центр на 100% - W/2).
+  // Так handle никогда не выпирает за края, фон не приходится обрезать.
+  left: calc(var(--w) / 2 + var(--fraction) * (100% - var(--w)));
+  transform: translate(-50%, -50%);
+
+  box-sizing: border-box;
+  border-color: base.$sn-theme-color-neutral-onAccent;
+  border-style: solid;
+  border-radius: 50%;
+
+  background: var(--thumb-color, transparent);
+  box-shadow: base.simple-var(base.$sn-boxShadow, 'elevation', 'level3');
+
+  .track:focus-visible & {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: 0;
+  }
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] > & {
+      --w: #{base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'width')};
+
+      width: var(--w);
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
+      border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-width');
+    }
+  }
+}

@@ -65,4 +65,16 @@ export const ru_RU: typeof en_GB = {
   ToastSystemEvent: {
     closeButton: 'Закрыть уведомление',
   },
+  ColorPicker: {
+    apply: 'Применить',
+    cancel: 'Отмена',
+    hex: 'Hex',
+    r: 'Красный',
+    g: 'Зелёный',
+    b: 'Синий',
+    h: 'Тон',
+    s: 'Насыщенность',
+    v: 'Яркость',
+    alpha: 'Прозрачность',
+  },
 };

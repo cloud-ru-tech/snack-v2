@@ -24,6 +24,9 @@ catalogs:
     react:
       specifier: 18.3.1
       version: 18.3.1
+    react-colorful:
+      specifier: 5.6.1
+      version: 5.6.1
     react-dom:
       specifier: 18.3.1
       version: 18.3.1
@@ -267,6 +270,9 @@ importers:
       '@ds/carousel':
         specifier: workspace:*
         version: link:../../packages/carousel
+      '@ds/color-picker':
+        specifier: workspace:*
+        version: link:../../packages/color-picker
       '@ds/counter':
         specifier: workspace:*
         version: link:../../packages/counter
@@ -631,6 +637,33 @@ importers:
       uncontrollable:
         specifier: 'catalog:'
         version: 9.0.0(react@18.3.1)
+
+  packages/color-picker:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/input-private':
+        specifier: workspace:*
+        version: link:../input-private
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/segment-control':
+        specifier: workspace:*
+        version: link:../segment-control
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      react-colorful:
+        specifier: 'catalog:'
+        version: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   packages/counter:
     dependencies:
@@ -8517,6 +8550,12 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+
+  react-colorful@5.6.1:
+    resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   react-docgen-typescript@2.4.0:
     resolution: {integrity: sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg==}
@@ -18807,6 +18846,11 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-is: 18.3.1
+
+  react-colorful@5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-docgen-typescript@2.4.0(typescript@5.9.3):
     dependencies:

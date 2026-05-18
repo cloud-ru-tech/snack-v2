@@ -65,4 +65,16 @@ export const en_GB = {
   ToastSystemEvent: {
     closeButton: 'Close notification',
   },
+  ColorPicker: {
+    apply: 'Apply',
+    cancel: 'Cancel',
+    hex: 'Hex',
+    r: 'Red',
+    g: 'Green',
+    b: 'Blue',
+    h: 'Hue',
+    s: 'Saturation',
+    v: 'Value',
+    alpha: 'Alpha',
+  },
 } satisfies Dictionary;

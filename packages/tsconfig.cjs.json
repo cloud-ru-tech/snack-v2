@@ -171,6 +171,9 @@
     },
     {
       "path": "./toaster/tsconfig.cjs.json"
+    },
+    {
+      "path": "./color-picker/tsconfig.cjs.json"
     }
   ]
 }

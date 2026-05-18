@@ -1,0 +1,134 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/colorPicker.module' as cp;
+
+$sizes: 's', 'm', 'l';
+
+// Figma master `colorPicker` (node 5664:155346) — naked flex column. Padding/border/bg
+// — это ответственность потребителя (Popover/Dropdown/Modal). Здесь только структура и токены.
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+      width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'colorArea', 'min-width');
+      max-width: 100%;
+    }
+  }
+
+  // react-colorful по умолчанию имеет фиксированный height и flex-grow на saturation.
+  // Нам нужен auto-height: saturation = квадрат по токену, hue/alpha — фикс ~16px.
+  :global(.react-colorful) {
+    width: 100%;
+    height: auto;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] :global(.react-colorful) {
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+    }
+
+    &[data-size='#{$size}'] :global(.react-colorful__saturation) {
+      flex: none;
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'colorArea', 'min-height');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'colorArea', 'border-radius');
+    }
+
+    &[data-size='#{$size}'] :global(.react-colorful__pointer) {
+      width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'width');
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
+      border-color: base.$sn-theme-color-neutral-onAccent;
+      border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-width');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-radius');
+
+      box-shadow: base.simple-var(base.$sn-boxShadow, 'elevation', 'level3');
+    }
+
+    &[data-size='#{$size}'] :global(.react-colorful__hue),
+    &[data-size='#{$size}'] :global(.react-colorful__alpha) {
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'sliderTrack', 'border-radius');
+    }
+
+    // Все встроенные react-colorful слайдеры (hue/alpha) скрыты — мы рендерим
+    // собственный ChannelSlider'ы под полями ввода, как в Figma-макете.
+    &[data-size='#{$size}'] :global(.react-colorful__hue),
+    &[data-size='#{$size}'] :global(.react-colorful__alpha) {
+      display: none;
+    }
+
+    // react-colorful ставит handle через `left: <percent>` + `translate(-50%, -50%)`,
+    // и при position 0%/100% handle выпирает за края track'а на половину своей ширины.
+    // Сужаем интерактивную зону на полширины handle'а слева и справа — handle ходит
+    // внутри track'а, точки 0% и 100% совпадают с левым/правым краем.
+    &[data-size='#{$size}'] :global(.react-colorful__hue) :global(.react-colorful__interactive),
+    &[data-size='#{$size}'] :global(.react-colorful__alpha) :global(.react-colorful__interactive) {
+      inset: 0 calc(base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'width') / 2);
+    }
+  }
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] > & {
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+    }
+  }
+}
+
+.colorModel {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] > & {
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'parameter', 'gap');
+    }
+  }
+}
+
+.colorFields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'parameter', 'gap');
+    }
+  }
+
+  &[data-with-alpha] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &[data-mode='hex'] {
+    grid-template-columns: 1fr;
+
+    &[data-with-alpha] {
+      // Alpha field в Figma `6162:75012` имеет ширину `w-[56px]` — берём через
+      // ближайший primitive-dimension. Для других mode'ов поля занимают равные fr.
+      grid-template-columns: 1fr base.$sn-primitive-dimension-56;
+    }
+  }
+}
+
+// Footer Cancel/Apply — это legacy-фича (`autoApply=false`); в Figma master её нет,
+// поэтому даём минимальный layout без border-top'а — пусть padding/border задаёт потребитель.
+.footer {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] > & {
+      padding-top: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+    }
+  }
+}

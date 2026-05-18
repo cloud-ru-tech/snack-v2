@@ -19,6 +19,7 @@
     "@ds/card": "workspace:*",
     "@ds/calendar": "workspace:*",
     "@ds/carousel": "workspace:*",
+    "@ds/color-picker": "workspace:*",
     "@ds/counter": "workspace:*",
     "@ds/divider": "workspace:*",
     "@ds/drawer": "workspace:*",

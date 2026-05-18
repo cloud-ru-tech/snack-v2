@@ -1,0 +1,81 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as f;
+
+$sizes: 's', 'm', 'l';
+
+.container {
+  cursor: text;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  // В grid'е (`grid-template-columns: repeat(N, 1fr)`) default `min-width: auto`
+  // (= min-content) растягивает ячейку под содержимое инпута и ломает раскладку
+  // при узких контейнерах (size=s × 4 поля). Принудительно `min-width: 0`,
+  // чтобы поле умело сжиматься до 1fr-доли.
+  min-width: 0;
+  border-color: base.$sn-theme-color-available-borderColor;
+  border-style: solid;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      min-height: base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'min-height');
+      padding:
+        base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-top')
+        base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-right')
+        base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-bottom')
+        base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-left');
+      border-width: base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
+      border-radius: base.simple-var(f.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-top-left-radius');
+
+      input {
+        @include base.composite-var(base.$sn-regular, 'body', $size);
+      }
+    }
+  }
+
+  &:hover {
+    border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+  }
+
+  &:focus-within,
+  &[data-focused] {
+    border-color: base.$sn-theme-color-primary-accent;
+    outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-decorTransparent;
+    outline-offset: 0;
+  }
+
+  &[data-validation='error'] {
+    border-color: base.$sn-theme-color-red-accent;
+
+    &:focus-within,
+    &[data-focused] {
+      border-color: base.$sn-theme-color-red-accent;
+      outline-color: base.$sn-theme-color-red-decorTransparent;
+    }
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  input {
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: none;
+
+    color: inherit;
+
+    background: transparent;
+    outline: none;
+  }
+}
