@@ -1,0 +1,4 @@
+[
+  { "note_id": 1234567, "body": "Готово, поправил." },
+  { "discussion_id": "abc123def456", "body": "Ответ через явный discussion_id." }
+]

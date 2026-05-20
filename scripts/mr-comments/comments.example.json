@@ -1,0 +1,27 @@
+{
+  "project": "group/subgroup/repo",
+  "mr_iid": 1,
+  "mr_url": "https://gitlab.example.com/group/subgroup/repo/-/merge_requests/1",
+  "_legend": {
+    "id": "слаг для --only=",
+    "severity": "critical | major | minor | nit (только для list.mjs)",
+    "file": "путь от корня репо (опционально — без file/line будет general note)",
+    "line": "new_line в diff'е (опционально)",
+    "old_line": "для коммента к удалённой строке (опционально)",
+    "body": "Markdown; поддерживает ```suggestion:-0+0 ... ```"
+  },
+  "pending": [
+    {
+      "id": "example-suggestion",
+      "severity": "minor",
+      "file": "packages/foo/src/Foo.tsx",
+      "line": 42,
+      "body": "Заменить на токен:\n\n```suggestion:-0+0\n  padding: base.$sn-brand-anatomy-spacing-m;\n```"
+    },
+    {
+      "id": "example-general",
+      "severity": "nit",
+      "body": "Общий коммент без привязки к строке."
+    }
+  ]
+}
