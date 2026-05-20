@@ -1,0 +1,166 @@
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+$sizes: 's', 'm';
+$appearances: 'primary', 'neutral';
+
+$typography: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
+
+$chip-heights: (
+  's': base.$sn-primitive-dimension-32,
+  'm': base.$sn-primitive-dimension-40,
+);
+
+$chip-padding-inline: (
+  's': base.$sn-primitive-dimension-4,
+  'm': base.$sn-primitive-dimension-8,
+);
+
+$icon-size: base.$sn-density-size-icon-s;
+
+$chip-interaction-transition-duration: 120ms;
+$chip-interaction-transition:
+  background-color $chip-interaction-transition-duration ease,
+  border-color $chip-interaction-transition-duration ease,
+  color $chip-interaction-transition-duration ease;
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  color: currentcolor;
+}
+
+.chip {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid transparent;
+  border-radius: base.$sn-density-radius-full;
+
+  font-family: inherit;
+  text-decoration: none;
+
+  background-color: transparent;
+  outline: 0;
+  outline-offset: 0;
+
+  transition: $chip-interaction-transition;
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &:focus-visible {
+    background-color: transparent;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-2;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($typography, $size);
+
+      height: map.get($chip-heights, $size);
+      padding-inline: map.get($chip-padding-inline, $size);
+
+      .icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+
+        width: $icon-size;
+        height: $icon-size;
+
+        > svg {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      .labelContainer {
+        padding-inline: map.get($chip-padding-inline, $size);
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    &:focus-visible {
+      background-color: var(--sn-theme-color-#{$appearance}-background1Level);
+    }
+
+    &[data-appearance='#{$appearance}'] {
+      @if $appearance == 'neutral' {
+        border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+
+        .icon,
+        .label {
+          color: base.$sn-theme-color-neutral-text;
+        }
+
+        @media (hover: hover) {
+          &:hover:not(:disabled, [data-disabled]) {
+            border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+            background-color: base.$sn-theme-color-neutral-background1Level;
+
+            .icon,
+            .label {
+              color: base.$sn-theme-color-available-version-textMain;
+            }
+          }
+        }
+      }
+
+ @else {
+        border-color: base.$sn-theme-color-primary-accent;
+
+        .icon,
+        .label {
+          color: base.$sn-theme-color-primary-text;
+        }
+
+        @media (hover: hover) {
+          &:hover:not(:disabled, [data-disabled]) {
+            border-color: base.$sn-theme-color-primary-text;
+            background-color: base.$sn-theme-color-primary-background1Level;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.labelContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

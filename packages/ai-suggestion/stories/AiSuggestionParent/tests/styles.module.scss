@@ -1,0 +1,44 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.summaryRows {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 100%;
+}
+
+.summaryRow {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  min-width: 0;
+}
+
+.summaryLabel {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  font-weight: 500;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.case {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  min-width: 0;
+  max-width: 100%;
+}
+
+.caseWide {
+  max-width: 900px;
+}
+
+.caseMedium {
+  max-width: 600px;
+}
+
+.caseNarrow {
+  max-width: 480px;
+}

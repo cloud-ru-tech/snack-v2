@@ -153,6 +153,9 @@
       "path": "./accordion/tsconfig.esm.json"
     },
     {
+      "path": "./ai-suggestion/tsconfig.esm.json"
+    },
+    {
       "path": "./segment-control/tsconfig.esm.json"
     },
     {

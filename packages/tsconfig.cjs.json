@@ -155,6 +155,9 @@
       "path": "./accordion/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-suggestion/tsconfig.cjs.json"
+    },
+    {
       "path": "./segment-control/tsconfig.cjs.json"
     },
     {

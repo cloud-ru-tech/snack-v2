@@ -1,0 +1,21 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Без column-gap: отступы только margin на чипах (схлопнутые слоты не раздувают строку). */
+.playgroundPage {
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-4 0;
+  align-items: center;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}

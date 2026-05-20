@@ -1,0 +1,190 @@
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm';
+
+$typography: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
+
+$chip-heights: (
+  's': base.$sn-primitive-dimension-32,
+  'm': base.$sn-primitive-dimension-40,
+);
+
+$chip-padding-inline: (
+  's': base.$sn-primitive-dimension-4,
+  'm': base.$sn-primitive-dimension-8,
+);
+
+$icon-size: base.$sn-density-size-icon-s;
+
+$outline-transition-duration: 120ms;
+$parent-transition-duration: 450ms;
+$parent-transition-regular:
+  background-color $parent-transition-duration cubic-bezier(1, 0, 0.26, 0.7),
+  border-color $parent-transition-duration cubic-bezier(1, 0, 0.26, 0.7),
+  color $parent-transition-duration cubic-bezier(1, 0, 0.26, 0.7),
+  outline-color $outline-transition-duration ease;
+
+$parent-transition-activated:
+  background-color $parent-transition-duration cubic-bezier(0.7, 0.26, 0, 1.58),
+  border-color $parent-transition-duration cubic-bezier(0.7, 0.26, 0, 1.58),
+  color $parent-transition-duration cubic-bezier(0.7, 0.26, 0, 1.58),
+  outline-color $outline-transition-duration ease;
+
+$chevron-transition-regular: transform $parent-transition-duration cubic-bezier(1, 0, 0.26, 0.7);
+$chevron-transition-activated: transform $parent-transition-duration cubic-bezier(0.7, 0.26, 0, 1.58);
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  min-width: 0;
+  max-width: 100%;
+}
+
+.root[data-flatten] {
+  display: contents;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  color: currentcolor;
+}
+
+.chevron {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: $icon-size;
+  height: $icon-size;
+
+  color: currentcolor;
+}
+
+.chip {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid
+    base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-radius: base.$sn-density-radius-full;
+
+  font-family: inherit;
+  text-decoration: none;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+  outline: 0;
+  outline-offset: 0;
+
+  transition: $parent-transition-regular;
+
+  .icon,
+  .label,
+  .chevron {
+    color: base.$sn-theme-color-neutral-text;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &:not(:disabled):focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: 0;
+  }
+
+  &[data-activated] {
+    border-color: base.$sn-theme-color-primary-accent;
+    background-color: base.$sn-theme-color-primary-background1Level;
+    transition: $parent-transition-activated;
+
+    .icon,
+    .label,
+    .chevron {
+      color: base.$sn-theme-color-primary-text;
+    }
+
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        border-color: color-mix(in srgb, base.$sn-theme-color-primary-accent 80%, transparent);
+        background-color: base.$sn-theme-color-primary-background2Level;
+      }
+    }
+  }
+
+  &:not([data-activated], :disabled) {
+    @media (hover: hover) {
+      &:hover {
+        border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+      }
+    }
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($typography, $size);
+
+      height: map.get($chip-heights, $size);
+      padding-inline: map.get($chip-padding-inline, $size);
+
+      .icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+
+        width: $icon-size;
+        height: $icon-size;
+
+        > svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .labelContainer {
+        padding-inline: map.get($chip-padding-inline, $size);
+      }
+    }
+  }
+}
+
+.labelContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chevronIcon {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  transition: $chevron-transition-regular;
+}
+
+.chip[data-activated] .chevronIcon {
+  transform: rotate(90deg);
+  transition: $chevron-transition-activated;
+}

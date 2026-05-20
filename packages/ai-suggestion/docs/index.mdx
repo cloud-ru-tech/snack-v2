@@ -1,0 +1,108 @@
+---
+title: AiSuggestion
+package: '@ds/ai-suggestion'
+description: AI-подсказки — простой чип и раскрывающаяся группа с вложенными подсказками.
+order: 1
+---
+
+import { AiSuggestionDemo } from '../demos/AiSuggestionDemo';
+import { Basic } from '../demos/examples/Basic';
+import BasicSrc from '../demos/examples/Basic.tsx?raw';
+import { ControlledParent } from '../demos/examples/ControlledParent';
+import ControlledParentSrc from '../demos/examples/ControlledParent.tsx?raw';
+import { NestedParent } from '../demos/examples/NestedParent';
+import NestedParentSrc from '../demos/examples/NestedParent.tsx?raw';
+import { ParentExpandable } from '../demos/examples/ParentExpandable';
+import ParentExpandableSrc from '../demos/examples/ParentExpandable.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import aiSuggestionDoc from './props.json';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+
+# AiSuggestion
+
+Компонент **Suggestion / Simple** — pill-чип для AI-сценариев: быстрый выбор подсказки с иконкой и коротким текстом.
+
+## Демо
+
+<AiSuggestionDemo client:visible />
+
+## Когда использовать
+
+- Подсказки в AI-чате или поиске с генерацией.
+- Быстрые действия рядом с полем ввода (suggested prompts).
+
+## Анатомия
+
+### Appearance
+
+- `neutral` — нейтральная обводка и серый текст (Figma: Primary=Off).
+- `primary` — акцентная обводка и зелёный текст (Figma: Primary=On).
+
+### Size
+
+- `s` — компактный размер, 32px по высоте (Figma: Mobile=Off).
+- `m` — увеличенный размер, 40px по высоте (Figma: Mobile=On).
+
+Состояния hover и focus реализованы через CSS (`:hover`, `:focus-visible`), а не через пропы.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-suggestion
+```
+
+```ts
+import { AiSuggestionSimple, AiSuggestionParent, APPEARANCE, CHILD_TYPE, SIZE } from '@ds/ai-suggestion';
+```
+
+## Примеры
+
+<Example title='Базовый' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+## AiSuggestionParent
+
+Компонент **Suggestion / Parent** — триггер с chevron; по клику в одну строку показывает вложенные `AiSuggestionSimple` и другие `AiSuggestionParent` (рекурсивно). Список задаётся пропом `items`. Повторный клик по триггеру сворачивает группу.
+
+- `expanded` / `onExpandedChange` — controlled / uncontrolled раскрытие (без `expanded` по умолчанию свёрнут).
+- В свёрнутом виде триггер `neutral` (Figma: Activated=Off), в раскрытом — `primary` (Activated=On).
+- Вложенные подсказки в `items` всегда рендерятся как `AiSuggestionSimple` с `appearance="primary"`; проп `appearance` для элементов списка недоступен.
+- Элемент `items`: без `type` или `type: 'suggestion'` → `AiSuggestionSimple`; `type: 'parent'` → вложенная группа.
+
+<Example title='Раскрывающаяся группа' code={ParentExpandableSrc}>
+  <ParentExpandable client:visible />
+</Example>
+
+### Controlled parent
+
+<Example title='Controlled parent' code={ControlledParentSrc}>
+  <ControlledParent client:visible />
+</Example>
+
+### Nested groups
+
+<Example title='Nested groups' code={NestedParentSrc}>
+  <NestedParent client:visible />
+</Example>
+
+## Свойства
+
+#### AiSuggestionSimple
+
+<PropsTable data={aiSuggestionDoc.AiSuggestionSimple} />
+
+#### AiSuggestionParent
+
+<PropsTable data={aiSuggestionDoc.AiSuggestionParent} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aisuggestion-aisuggestionparent--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-suggestion')} />

@@ -1,0 +1,22 @@
+.outerChip {
+  contain: layout;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerChip {
+  will-change: transform, opacity;
+  transform-origin: center;
+  display: inline-flex;
+}
+
+.innerChipHidden {
+  pointer-events: none;
+}
+
+.triggerWrap {
+  display: inline-flex;
+  flex-shrink: 0;
+}
