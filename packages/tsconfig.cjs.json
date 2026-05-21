@@ -183,6 +183,9 @@
     },
     {
       "path": "./attachment/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-card/tsconfig.cjs.json"
     }
   ]
 }

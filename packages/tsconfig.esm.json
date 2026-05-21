@@ -181,6 +181,9 @@
     },
     {
       "path": "./attachment/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-card/tsconfig.esm.json"
     }
   ]
 }

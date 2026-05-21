@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ds/accordion": "workspace:*",
+    "@ds/ai-card": "workspace:*",
     "@ds/alert": "workspace:*",
     "@ds/attachment": "workspace:*",
     "@ds/avatar": "workspace:*",

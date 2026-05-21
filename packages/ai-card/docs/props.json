@@ -1,0 +1,51 @@
+{
+  "AiCard": {
+    "displayName": "AiCard",
+    "propsTypeName": "AiCardProps",
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Selected-состояние карточки. Controlled — источник истины в родителе. По умолчанию `false`."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент карточки. Не рендерится, если не задан."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-card"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disabled-состояние: opacity 0.4, нативная блокировка кликов и клавиатуры."
+      },
+      "onChange": {
+        "type": "((checked: boolean) => void)",
+        "required": false,
+        "description": "Срабатывает при toggle (клик / Enter / Space). Получает новое значение `checked`."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нативный обработчик клика. Срабатывает после `onChange` (toggle первичен).\nНе вызывается для disabled-карточки — браузер сам не дёргает onClick на disabled button."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок карточки. Semibold, single-line с ellipsis. Не рендерится, если не задан."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

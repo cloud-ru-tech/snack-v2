@@ -17,6 +17,10 @@ const INTERFACES_ICONS = {
   fileKey: 'WGeuaJKutP2gAFPThLAexW',
   fileName: 'Interfaces-icons--variables-',
 } as const;
+const AI_COMPONENTS = {
+  fileKey: 'tCbbB5RUGyJeBRtjF3dt4d',
+  fileName: 'AI-COMPONENTS',
+} as const;
 
 /**
  * Карта Figma-узлов по имени пакета (`packages/<pkg>`).
@@ -55,6 +59,7 @@ const INTERFACES_ICONS = {
 // Формат комментариев: `// <pkg-or-sub> → <figma-node-name>`.
 export const FIGMA_NODES = {
   accordion: { ...SNACK, nodeId: '6045-114' }, // accordion → accordion
+  'ai-card': { ...AI_COMPONENTS, nodeId: '6081-3818' }, // ai-card → Card / Generative
   alert: { ...SNACK, nodeId: '3222-166' }, // alert → alert
   attachment: {
     _: { ...SNACK, nodeId: '5778-49181' },

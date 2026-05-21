@@ -267,6 +267,9 @@ importers:
       '@ds/accordion':
         specifier: workspace:*
         version: link:../../packages/accordion
+      '@ds/ai-card':
+        specifier: workspace:*
+        version: link:../../packages/ai-card
       '@ds/alert':
         specifier: workspace:*
         version: link:../../packages/alert
@@ -514,6 +517,15 @@ importers:
       '@ds/typography':
         specifier: workspace:*
         version: link:../typography
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-card:
+    dependencies:
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils

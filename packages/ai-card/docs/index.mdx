@@ -1,0 +1,99 @@
+---
+title: AiCard
+package: '@ds/ai-card'
+description: Selectable AI-карточка с независимым boolean toggle, single-line заголовком и опциональным контентом.
+order: 0
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiCardDoc from './props.json'
+
+import { Default } from '../demos/examples/Default'
+import DefaultSrc from '../demos/examples/Default.tsx?raw'
+import { Selected } from '../demos/examples/Selected'
+import SelectedSrc from '../demos/examples/Selected.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { Disabled } from '../demos/examples/Disabled'
+import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+
+# AiCard
+
+`AiCard` — выбираемая карточка из набора AI Components. Поведение — независимый boolean-переключатель: клик / Enter / Space меняют `checked`. Подходит для выбора AI-предложений, карточек настроек, любых сценариев, где каждая карточка переключается отдельно.
+
+Компонент рендерится как `<button>`. Полиморфизм (`as`) не поддерживается: для навигационной карточки используйте `@ds/card`.
+
+## Когда использовать
+
+- Карточки выбора в AI-сценариях (карточки-пресеты, генеративные варианты).
+- Настройки, где каждая опция — самостоятельный переключатель.
+- Выделенные блоки с состоянием «выделено / не выделено».
+
+### Когда не нужен
+
+- Один из группы (radio-семантика):
+  - используйте `SegmentControl` либо обёртку с собственным состоянием.
+- Статичный контейнер без выбора:
+  - используйте `@ds/card`.
+- Действие-кнопка:
+  - используйте `@ds/button`.
+
+## Анатомия
+
+### Title
+
+Заголовок в одну строку, semibold 14/20 с обрезкой по `text-overflow: ellipsis`. Слот скрыт, если `title` не задан.
+
+### Content
+
+Контент `children` под заголовком. Regular 14/20, вторичный цвет текста. Слот скрыт, если `children` не задан.
+
+### Checked state (default `false`)
+
+`checked` добавляет акцентный зелёный border и полупрозрачную заливку. `:hover` усиливает контраст, `:focus-visible` накладывает outline толщиной 2px акцентного цвета.
+
+`checked` работает и как controlled-проп (если задан `onChange`), и как стартовое значение для uncontrolled-режима (если `onChange` не передан — компонент сам ведёт состояние).
+
+## Установка
+
+```bash
+pnpm add @ds/ai-card
+```
+
+```ts
+import { AiCard } from '@ds/ai-card'
+```
+
+## Примеры использования
+
+<Example title='Default' description='Uncontrolled — клик переключает выбор' code={DefaultSrc}>
+  <Default client:visible />
+</Example>
+
+<Example title='Selected' description='Стартовое selected-состояние через `defaultChecked`' code={SelectedSrc}>
+  <Selected client:visible />
+</Example>
+
+<Example title='Controlled' description='Состояние в родителе через `checked` + `onChange`' code={ControlledSrc}>
+  <Controlled client:visible />
+</Example>
+
+<Example title='Disabled' description='Disabled-состояние блокирует клик и клавиатуру' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiCardDoc.AiCard} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-card--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-card')} />

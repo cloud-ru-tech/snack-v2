@@ -1,0 +1,81 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.title {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
+
+  overflow: hidden;
+  display: block;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  display: block;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: anywhere;
+}
+
+.root {
+  cursor: pointer;
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding-block: base.$sn-primitive-dimension-20;
+  padding-inline: base.$sn-primitive-dimension-20;
+  border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-style: solid;
+  border-width: base.$sn-brand-anatomy-line-chips-strokeWeight;
+  border-radius: base.$sn-density-radius-s;
+
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  &[data-checked] {
+    border-color: base.$sn-theme-color-primary-accent;
+    background: base.$sn-theme-color-material-stateLayer-activated-default-filled;
+  }
+
+  &:focus-visible {
+    background: base.$sn-theme-color-neutral-background1Level;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: 0;
+
+    &[data-checked] {
+      background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
+    }
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-disabled]) {
+      border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+      background: base.$sn-theme-color-neutral-background1Level;
+
+      &[data-checked] {
+        border-color: base.$sn-theme-color-primary-accent;
+        background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
+      }
+    }
+  }
+}
