@@ -1,4 +1,4 @@
-import { Timeline, type TimelineProps } from '@ds/timeline';
+import { Timeline, TimelineProps } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';
 

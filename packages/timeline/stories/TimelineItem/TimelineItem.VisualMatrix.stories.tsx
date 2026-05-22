@@ -1,4 +1,4 @@
-import { ROLE, STYLE, TrackItem, type TrackItemProps } from '@ds/timeline';
+import { ROLE, STYLE, TrackItem, TrackItemProps } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';
 

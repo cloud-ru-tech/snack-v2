@@ -1,7 +1,7 @@
 import { notReachable } from '../../helpers';
-import { TrackDot, type TrackDotProps } from '../TrackDot';
+import { TrackDot, TrackDotProps } from '../TrackDot';
 import { VARIANT } from '../TrackDot/constants';
-import { TrackLine, type TrackLineProps } from '../TrackLine';
+import { TrackLine, TrackLineProps } from '../TrackLine';
 import { ROLE } from './constants';
 import styles from './styles.module.scss';
 import { Role } from './types';

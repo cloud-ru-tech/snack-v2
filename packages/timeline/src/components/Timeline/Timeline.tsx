@@ -1,7 +1,7 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
-import { TrackItem, type TrackItemProps } from '../TrackItem';
+import { TrackItem, TrackItemProps } from '../TrackItem';
 import { POSITION } from '../TrackItem/constants';
 import { getContentPosition, getRole } from './helpers';
 import styles from './styles.module.scss';

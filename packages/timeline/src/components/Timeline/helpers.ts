@@ -1,6 +1,6 @@
 import { notReachable } from '../../helpers';
 import { ROLE } from '../Track/constants';
-import type { Position, TrackItemProps } from '../TrackItem';
+import { Position, TrackItemProps } from '../TrackItem';
 import { POSITION } from '../TrackItem/constants';
 
 export const getRole = (index: number, total: number): TrackItemProps['role'] => {

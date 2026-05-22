@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { notReachable } from '../../helpers';
-import { Track, type TrackProps } from '../Track';
+import { Track, TrackProps } from '../Track';
 import { POSITION } from './constants';
 import styles from './styles.module.scss';
 import { Position } from './types';

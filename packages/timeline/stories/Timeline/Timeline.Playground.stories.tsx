@@ -1,8 +1,12 @@
-import { Timeline, type TimelineProps } from '@ds/timeline';
+import { Timeline, TimelineProps } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { DemoComponent } from '../helperComponents/DemoComponent/DemoComponent';
 import styles from '../styles.module.scss';
+import { TEST_IDS } from '../testIds';
 
 type StoryProps = TimelineProps & {
   showOpposite: boolean;
@@ -12,6 +16,7 @@ type StoryProps = TimelineProps & {
 const meta: Meta<StoryProps> = {
   title: 'Components/Timeline/Timeline',
   component: Timeline,
+  parameters: { layout: 'fullscreen' },
   args: {
     alternate: false,
     fullWidth: false,
@@ -19,7 +24,7 @@ const meta: Meta<StoryProps> = {
     itemsCount: 4,
     contentPosition: 'right',
     className: undefined,
-    'data-test-id': 'timeline-track',
+    'data-test-id': TEST_IDS.timeline.root,
   },
   argTypes: {
     className: {
@@ -77,19 +82,30 @@ const itemsWithOpposite = items.map(item => ({ ...item, opposite: <Opposite /> }
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.timeline.root)).toBeVisible();
+  },
   render: ({ showOpposite, contentPosition, fullWidth, alternate, itemsCount, ...args }) => {
     const calculatedItems = (showOpposite ? itemsWithOpposite : items).slice(0, itemsCount);
 
     return (
-      <div className={styles.wrapper}>
-        <Timeline
-          {...args}
-          contentPosition={contentPosition}
-          items={calculatedItems}
-          fullWidth={fullWidth}
-          alternate={alternate}
-        />
-      </div>
+      <DemoPage>
+        <DemoPanel>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Вертикальный таймлайн событий с настраиваемым расположением контента.</DemoHint>
+          <DemoActions align='start'>
+            <div className={styles.wrapper}>
+              <Timeline
+                {...args}
+                contentPosition={contentPosition}
+                items={calculatedItems}
+                fullWidth={fullWidth}
+                alternate={alternate}
+              />
+            </div>
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
     );
   },
 };

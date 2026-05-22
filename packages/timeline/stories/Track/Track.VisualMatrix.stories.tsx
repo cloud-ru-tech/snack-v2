@@ -1,4 +1,4 @@
-import { ROLE, STYLE, Track, type TrackProps, VARIANT } from '@ds/timeline';
+import { ROLE, STYLE, Track, TrackProps, VARIANT } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
