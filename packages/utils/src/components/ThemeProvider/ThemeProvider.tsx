@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { useThemeConfig } from '../../hooks';
 import { ThemeContext } from './contexts';

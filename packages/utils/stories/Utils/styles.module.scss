@@ -1,17 +1,14 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-// ── Local constants — no @sbercloud/figma-variables equivalent yet ────────────
-// TODO: replace with figma-variables tokens once spacing mapping confirmed
-$_space-4: 1rem;
-
 .themeWrapper {
-  padding: $_space-4;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
+  width: 100%;
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
   background-color: base.$sn-theme-color-neutral-background2Level;
 }
 
 .buttonWrapper {
   display: flex;
-  gap: $_space-4;
-  padding: $_space-4;
+  gap: base.$sn-primitive-dimension-16;
+  padding: base.$sn-primitive-dimension-16;
 }

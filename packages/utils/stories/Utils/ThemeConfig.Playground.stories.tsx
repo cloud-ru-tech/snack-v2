@@ -1,24 +1,30 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { Meta, StoryObj } from '@storybook/react';
 import cn from 'classnames';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import utilsReadme from '../../README.md?raw';
-import { useThemeConfig } from '../../src';
+import { useThemeConfig, ValueOf } from '../../src';
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta = {
   title: 'Utils/Theme Config',
   parameters: {
+    layout: 'fullscreen',
     readme: { content: utilsReadme },
   },
-  args: {},
+  args: { 'data-test-id': TEST_IDS.themeConfig },
 };
 
 export default meta;
 
-enum Theme {
-  Light = 'Light',
-  Dark = 'Dark',
-}
+const Theme = {
+  Light: 'Light',
+  Dark: 'Dark',
+} as const;
+type Theme = ValueOf<typeof Theme>;
 
 const themeMap = {
   [Theme.Light]: 'sn-light',
@@ -43,23 +49,35 @@ function PlaygroundDemo({ initialTheme }: StoryProps) {
       <p>Текущая тема: {theme1.theme}</p>
       <p>Класс: {theme1.themeClassName}</p>
       <div className={styles.buttonWrapper}>
-        <button type='button' onClick={() => theme1.changeTheme(Theme.Light)}>
-          Light Theme
-        </button>
-        <button type='button' onClick={() => theme1.changeTheme(Theme.Dark)}>
-          Dark Theme
-        </button>
+        <Button
+          label='Light Theme'
+          view={VIEW.Outline}
+          appearance={APPEARANCE.Neutral}
+          onClick={() => theme1.changeTheme(Theme.Light)}
+        />
+        <Button
+          label='Dark Theme'
+          view={VIEW.Outline}
+          appearance={APPEARANCE.Neutral}
+          onClick={() => theme1.changeTheme(Theme.Dark)}
+        />
       </div>
       <div className={cn(theme2.themeClassName, styles.themeWrapper)}>
         <p>Текущая тема: {theme2.theme}</p>
         <p>Класс: {theme2.themeClassName}</p>
         <div className={styles.buttonWrapper}>
-          <button type='button' onClick={() => theme2.changeTheme(Theme.Light)}>
-            Light Theme
-          </button>
-          <button type='button' onClick={() => theme2.changeTheme(Theme.Dark)}>
-            Dark Theme
-          </button>
+          <Button
+            label='Light Theme'
+            view={VIEW.Outline}
+            appearance={APPEARANCE.Neutral}
+            onClick={() => theme2.changeTheme(Theme.Light)}
+          />
+          <Button
+            label='Dark Theme'
+            view={VIEW.Outline}
+            appearance={APPEARANCE.Neutral}
+            onClick={() => theme2.changeTheme(Theme.Dark)}
+          />
         </div>
       </div>
     </div>
@@ -70,6 +88,16 @@ export const Playground: Story = {
   tags: ['dev', 'test'],
   render: (_args, context) => {
     const theme = (context.globals?.theme as StorybookTheme | undefined) ?? 'light';
-    return <PlaygroundDemo initialTheme={theme} />;
+    return (
+      <DemoPage>
+        <DemoPanel>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Хук useThemeConfig: два независимых scope-провайдера, каждый со своей темой.</DemoHint>
+          <DemoActions align='center'>
+            <PlaygroundDemo initialTheme={theme} />
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
+    );
   },
 };

@@ -1,5 +1,4 @@
-import type { AriaAttributes } from 'react';
-
+import { AriaAttributes } from 'react';
 const DATA_TEST_REGEXP = /^data-test-/;
 const DATA_AND_ARIA_REGEXP = /^(data|aria)-/;
 
