@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import { ComponentType } from 'react';
 
 import * as AllIcons from '../../src';
 import { ProductIcons, WebIcons } from '../../src';

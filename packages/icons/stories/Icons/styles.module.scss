@@ -39,14 +39,16 @@
 }
 
 .iconButtonMinimal {
-  min-width: 24px;
-  min-height: 24px;
+  min-width: base.$sn-primitive-dimension-24;
+  min-height: base.$sn-primitive-dimension-24;
 
   aspect-ratio: 1/1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
   background: transparent;
   color: base.$sn-theme-color-available-complementary;
@@ -57,8 +59,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid base.$sn-theme-color-primary-accent;
-    outline-offset: 1px;
+    outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-1;
   }
 }
 
@@ -73,6 +75,8 @@
   gap: base.$sn-primitive-dimension-8;
   padding: base.$sn-primitive-dimension-32;
 
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-12;
   border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
 }
@@ -87,7 +91,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 84px;
+  height: base.$sn-primitive-dimension-84;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-12;
   border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
   background: base.$sn-theme-color-neutral-background2Level;
@@ -98,6 +104,8 @@
   flex-direction: column;
   gap: base.$sn-primitive-dimension-4;
   padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
   border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
   background: base.$sn-theme-color-neutral-background2Level;

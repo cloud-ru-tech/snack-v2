@@ -1,14 +1,17 @@
 import { ModalCustom } from '@ds/modal';
 import { Search } from '@ds/search';
 import { Typography } from '@ds/typography';
-import type { Meta, StoryObj } from '@storybook/react';
-import { type ComponentType, type ReactElement, useEffect, useMemo, useState } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { ComponentType, ReactElement, useEffect, useMemo, useState } from 'react';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import componentPackage from '../../package.json';
 import readme from '../../README.md?raw';
 import { Sprite, SpriteProductIconsSVG, SpriteSnackIconsSVG, SpriteWebIconsSVG } from '../../src';
 import { ICON_VARIANTS } from './constants';
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 import { ALL_SECTION_KEYS_ORDER, getAllIcons, groupAllIconsBySection, toSearchToken } from './utils';
 
 type StoryProps = {
@@ -147,14 +150,14 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
               </Typography>
             </div>
 
-            <div className={styles.iconGridMinimal} data-test-id={`icons-row-${sectionName}`}>
+            <div className={styles.iconGridMinimal} data-test-id={TEST_IDS.row(sectionName)}>
               {groupedIcons[sectionName].map(({ name, baseName, Component }) => (
                 // TODO: Заменить кнопку
                 <button
                   key={name}
                   type='button'
                   className={styles.iconButtonMinimal}
-                  data-test-id={`icon-card-${name}`}
+                  data-test-id={TEST_IDS.card(name)}
                   onClick={() => handleIconClick(name, baseName, Component)}
                   aria-label={baseName}
                   title={baseName}
@@ -170,7 +173,7 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
   }
 
   return (
-    <div className={styles.catalogMinimal} data-test-id='icons-catalog'>
+    <div className={styles.catalogMinimal} data-test-id={TEST_IDS.catalog}>
       {variant === 'sprite' ? (
         <>
           <Sprite content={SpriteWebIconsSVG} />
@@ -186,7 +189,7 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
 
         {/* TODO: Заменить поиск */}
         <Search
-          data-test-id='icons-search-input'
+          data-test-id={TEST_IDS.searchInput}
           value={search}
           onChange={setSearch}
           placeholder='Фильтровать по названию'
@@ -205,6 +208,7 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
 const meta: Meta<StoryProps> = {
   title: 'Icons/Interfaces Visual Matrix',
   parameters: {
+    layout: 'fullscreen',
     readme: { content: readme },
     packageName: componentPackage.name,
   },
@@ -231,5 +235,15 @@ type Story = StoryObj<StoryProps>;
 
 export const InterfacesVisualMatrix: Story = {
   tags: ['dev', 'test'],
-  render: args => <IconsCatalog {...args} />,
+  render: args => (
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Каталог иконок интерфейса с поиском и режимами sprite или standalone.</DemoHint>
+        <DemoActions align='center'>
+          <IconsCatalog {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
 };

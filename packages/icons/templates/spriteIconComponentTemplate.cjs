@@ -21,6 +21,9 @@ const spriteIconComponentTemplate =
     // DO NOT EDIT IT MANUALLY
 
     `}
+    // TODO(FF-8488): убрать \`type\`-keyword согласно .claude/rules/imports-exports.md
+    // на следующей перегенерации иконок (\`pnpm gen:icons\`). Сейчас оставлено, чтобы
+    // соответствовать фактическому состоянию закоммиченных файлов src/components/.
     import { forwardRef } from 'react';
     import type { Ref } from 'react';
     import type { ISvgIconProps } from '../../../types';

@@ -1,5 +1,9 @@
 const path = require('path');
 
+// TODO(FF-8488): убрать `type`-keyword из ICON_PROPS_IMPORT и IMPORTS согласно
+// .claude/rules/imports-exports.md на следующей перегенерации иконок
+// (`pnpm gen:icons`). Сейчас оставлено, чтобы соответствовать фактическому
+// состоянию закоммиченных файлов src/components/.
 const ICON_PROPS_IMPORT = "import type { ISvgIconProps } from '../../../types';";
 const ICON_SIZE_SINGLE = 1;
 const IMPORTS = ["import { forwardRef } from 'react';", "import type { Ref } from 'react';"];

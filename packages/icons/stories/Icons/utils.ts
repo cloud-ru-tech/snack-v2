@@ -1,14 +1,14 @@
-import type { ComponentType } from 'react';
+import { ComponentType } from 'react';
 
 import * as AllIcons from '../../src';
 import { ProductIcons, WebIcons } from '../../src';
 import {
   ICON_GROUPS,
-  type IconEntry,
-  type IconGroup,
-  type IconSubgroupMap,
-  type IconSubgroupOrder,
-  type IconVariant,
+  IconEntry,
+  IconGroup,
+  IconSubgroupMap,
+  IconSubgroupOrder,
+  IconVariant,
   normalizeIconName,
   SKIP_KEYS,
 } from './constants';
