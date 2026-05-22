@@ -4,7 +4,7 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { forwardRef, ReactNode } from 'react';
 
-import { RADIUS, VIEW } from '../../constants';
+import { RADIUS, TEST_IDS, VIEW } from '../../constants';
 import { CardContext } from '../../context';
 import { Radius, View } from '../../types';
 import styles from './styles.module.scss';
@@ -64,7 +64,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           <span className={styles.stateLayer} data-state={checked ? 'activatedFilled' : 'regularFilled'} aria-hidden />
           {checked && multiSelect && (
             <span className={styles.checkWrapper} aria-hidden>
-              <span className={styles.checkContainer} data-check-badge>
+              <span className={styles.checkContainer} data-test-id={TEST_IDS.checkBadge}>
                 <CheckSVG size={16} />
               </span>
             </span>

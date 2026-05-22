@@ -1,9 +1,8 @@
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import { test } from '#playwright-tooling/fixtures';
+import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, CARD_INTERACTION_VISUAL_CASES, CARD_STORIES, CARD_TEST_ID } from './helpers';
+import { buildStoryOptions, CARD_STORIES, CARD_TEST_ID } from './helpers';
 
 test.describe('Card — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -14,39 +13,17 @@ test.describe('Card — visual regression', () => {
     );
   });
 
-  test('visual matrix', async ({ page, gotoStory }) => {
+  test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, CARD_STORIES.visualMatrix));
-    await waitForFonts(page);
+    await waitForFonts();
 
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_DEFAULT_OPTS);
+    await assertVisualMatrixSnapshot(page);
   });
 
-  test('visual background-predefined', async ({ page, gotoStory }) => {
-    await gotoStory(buildStoryOptions(undefined, CARD_STORIES.visualBackgroundPredefined));
-    await waitForFonts(page);
+  test('interaction states (default × hover × focus)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions({ children: 'Card' }));
+    await waitForFonts();
 
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-      'visual-background-predefined.png',
-      SCREENSHOT_DEFAULT_OPTS,
-    );
-  });
-
-  test.describe('interaction (Playground)', () => {
-    for (const { name, action } of CARD_INTERACTION_VISUAL_CASES) {
-      test(action, async ({ page, gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ children: 'Card' }));
-        await waitForFonts(page);
-
-        const card = getByTestId(CARD_TEST_ID);
-
-        if (action === 'hover') {
-          await card.hover();
-        } else {
-          await card.focus();
-        }
-
-        await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(name, SCREENSHOT_DEFAULT_OPTS);
-      });
-    }
+    await assertInteractionStatesSnapshot(page, { target: getByTestId(CARD_TEST_ID), layout: 'col' });
   });
 });

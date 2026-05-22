@@ -6,8 +6,10 @@ import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import styles from './styles.module.scss';
-import { CARD_TEST_ID } from './testIds';
+import { TEST_IDS } from './testIds';
 
 function CardPlaygroundExampleContent() {
   return (
@@ -31,7 +33,7 @@ function CardPlaygroundExampleContent() {
 const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     radius: RADIUS.M,
     view: VIEW.Simple,
@@ -41,7 +43,7 @@ const meta: Meta<typeof Card> = {
     multiSelect: false,
     children: <CardPlaygroundExampleContent />,
     className: '',
-    'data-test-id': CARD_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     radius: {
@@ -63,7 +65,7 @@ const meta: Meta<typeof Card> = {
     checked: { control: 'boolean' },
     multiSelect: { control: 'boolean', description: 'Показ галочки в checked состоянии' },
     children: {
-      control: false,
+      table: { disable: true },
       description: 'По умолчанию — пример с иконкой и тремя строками текста; можно переопределить через args.',
     },
   },
@@ -74,7 +76,18 @@ type Story = StoryObj<typeof Card>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Карточка-контейнер с радиусом, фоном и опциональным selected-состоянием.</DemoHint>
+        <DemoActions align='center'>
+          <Card {...args} className={[args.className, styles.fullWidth].filter(Boolean).join(' ')} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(CARD_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

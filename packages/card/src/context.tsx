@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 import { RADIUS } from './constants';
-import type { Radius } from './types';
+import { Radius } from './types';
 
 export type CardContextValue = {
   radius: Radius;

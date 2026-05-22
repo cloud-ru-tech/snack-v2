@@ -1,1 +1,1 @@
-export const CARD_TEST_ID = 'card';
+export { TEST_IDS } from '../../src/constants';

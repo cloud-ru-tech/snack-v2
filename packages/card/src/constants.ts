@@ -9,3 +9,8 @@ export const VIEW = {
   Outline: 'outline',
   Shadow: 'shadow',
 } as const;
+
+export const TEST_IDS = {
+  root: 'card',
+  checkBadge: 'card__check-badge',
+} as const;

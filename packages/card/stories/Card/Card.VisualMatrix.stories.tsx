@@ -1,4 +1,5 @@
 import { Card, RADIUS, VIEW } from '@ds/card';
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, ReactElement } from 'react';
 
@@ -48,6 +49,16 @@ export const VisualMatrix: Story = {
               children: `${view} · ${radius}`,
             }),
           ),
+        }))}
+      />
+
+      <StoryTable
+        sectionTitle='backgroundPredefined (radius=m, view=simple)'
+        firstColumnHeader='Fill'
+        columnHeaders={['Card']}
+        rows={Object.values(BACKGROUND_PREDEFINED_FILL).map(fill => ({
+          variantLabel: fill,
+          cells: [renderCard({ backgroundPredefined: fill, radius: RADIUS.M, view: VIEW.Simple, children: fill })],
         }))}
       />
 
