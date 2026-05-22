@@ -1,32 +1,27 @@
-import { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
 
-export const CODE_EDITOR_TEST_ID = TEST_IDS.root;
-export const CODE_EDITOR_HEADER_TEST_ID = TEST_IDS.header;
-export const CODE_EDITOR_LANGUAGE_TEST_ID = TEST_IDS.language;
-export const CODE_EDITOR_COPY_BUTTON_TEST_ID = TEST_IDS.copyButton;
-export const CODE_EDITOR_LOADING_TEST_ID = TEST_IDS.loading;
-
-export const CODE_EDITOR_STORY_NAME = 'codeeditor';
+export { TEST_IDS };
 
 export const CODE_EDITOR_STORIES = {
-  playground: 'playground',
-  visualMatrix: 'visual-matrix',
-  interactionTest: 'interaction-test',
-} as const;
+  playground: { name: 'codeeditor', story: 'playground' },
+  visualMatrix: { name: 'codeeditor', story: 'visual-matrix' },
+  interactionTest: { name: 'codeeditor-tests-interaction', story: 'interaction-test' },
+} as const satisfies Record<string, StoryRef>;
 
 export type CodeEditorStoryProps = Record<string, unknown>;
 
 export function buildStoryOptions(
   props?: CodeEditorStoryProps,
-  story: string = CODE_EDITOR_STORIES.playground,
+  ref: StoryRef = CODE_EDITOR_STORIES.playground,
 ): StorybookUrlOptions {
   return {
-    name: CODE_EDITOR_STORY_NAME,
-    story,
+    name: ref.name,
+    group: ref.group,
+    story: ref.story,
     props: {
-      'data-test-id': CODE_EDITOR_TEST_ID,
+      'data-test-id': TEST_IDS.root,
       ...props,
     },
   };

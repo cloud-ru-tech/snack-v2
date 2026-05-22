@@ -2,31 +2,23 @@ import { CodeEditor } from '@ds/code-editor';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import { CODE } from './constants';
-import styles from './stories.module.scss';
-import { CODE_EDITOR_TEST_ID, KNOWN_LANGUAGES } from './testIds';
+import styles from './styles.module.scss';
+import { KNOWN_LANGUAGES, TEST_IDS } from './testIds';
 
 const meta: Meta<typeof CodeEditor> = {
   title: 'Components/CodeEditor',
   component: CodeEditor,
-  parameters: { layout: 'padded' },
-  decorators: [
-    // contrast wrapper, same pattern as segment-control — code editor surface
-    // would blend into the storybook background otherwise.
-    Story => (
-      <div className={styles.frame}>
-        <Story />
-      </div>
-    ),
-  ],
+  parameters: { layout: 'fullscreen' },
   args: {
     value: CODE,
     language: 'typescript',
     hasHeader: true,
     hasBackground: true,
     showRowNumber: true,
-    loading: undefined,
-    'data-test-id': CODE_EDITOR_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     value: { control: 'text', description: 'Содержимое редактора' },
@@ -40,8 +32,7 @@ const meta: Meta<typeof CodeEditor> = {
     showRowNumber: { control: 'boolean', description: 'Показывать колонку с номерами строк' },
     loading: { control: 'boolean', description: 'Показать спиннер поверх редактора' },
     theme: {
-      control: 'select',
-      options: ['snack', 'snackDark'],
+      control: 'text',
       description:
         'Имя зарегистрированной monaco-темы. По умолчанию подбирается автоматически по DS-теме провайдера (`snack` для светлой, `snackDark` для тёмной). Передавай вручную, только если регистрируешь свою тему через `monaco.editor.defineTheme(...)`.',
     },
@@ -60,7 +51,20 @@ type Story = StoryObj<typeof CodeEditor>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Редактор кода поверх monaco-editor с поддержкой DS-тем.</DemoHint>
+        <DemoActions block>
+          <div className={styles.frame}>
+            <CodeEditor {...args} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(CODE_EDITOR_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

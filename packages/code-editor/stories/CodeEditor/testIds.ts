@@ -1,9 +1,6 @@
-import { TEST_IDS } from '@ds/code-editor';
+import { TEST_IDS } from '../../src/constants';
 
-export const CODE_EDITOR_TEST_ID = TEST_IDS.root;
-export const CODE_EDITOR_HEADER_TEST_ID = TEST_IDS.header;
-export const CODE_EDITOR_LANGUAGE_TEST_ID = TEST_IDS.language;
-export const CODE_EDITOR_COPY_BUTTON_TEST_ID = TEST_IDS.copyButton;
+export { TEST_IDS };
 
 // Поддерживаемые языки для контролов Playground/VisualMatrix. Список общий, чтобы spec'и
 // и stories не разъезжались по порядку/составу значений.

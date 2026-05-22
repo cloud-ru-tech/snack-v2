@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { CODE, CODE_JSON, CODE_YAML } from './constants';
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 import { matrixCellTestId } from './testIds';
 
 const meta: Meta<typeof CodeEditor> = {

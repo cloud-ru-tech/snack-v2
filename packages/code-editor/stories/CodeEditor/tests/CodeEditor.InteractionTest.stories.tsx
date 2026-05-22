@@ -2,34 +2,37 @@ import { CodeEditor } from '@ds/code-editor';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { CODE_JSON } from './constants';
-import styles from './stories.module.scss';
-import {
-  CODE_EDITOR_COPY_BUTTON_TEST_ID,
-  CODE_EDITOR_HEADER_TEST_ID,
-  CODE_EDITOR_LANGUAGE_TEST_ID,
-  CODE_EDITOR_TEST_ID,
-} from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { CODE_JSON } from '../constants';
+import styles from '../styles.module.scss';
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof CodeEditor> = {
-  title: 'Components/CodeEditor',
+  title: 'Components/CodeEditor/Tests/Interaction',
   component: CodeEditor,
-  parameters: { layout: 'padded', controls: { disable: true } },
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
     language: 'json',
     value: CODE_JSON,
     hasHeader: true,
     hasBackground: true,
     onCopyClick: fn(),
-    'data-test-id': CODE_EDITOR_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
-  decorators: [
-    Story => (
-      <div className={styles.frame}>
-        <Story />
-      </div>
-    ),
-  ],
+  render: args => (
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>InteractionTest</DemoTitle>
+        <DemoHint>{'Header показывает язык; копирующая кнопка фокусируется и вызывает onCopyClick.'}</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.frame}>
+            <CodeEditor {...args} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
 };
 
 export default meta;
@@ -41,15 +44,15 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement);
 
     await waitFor(async () => {
-      await expect(canvas.getByTestId(CODE_EDITOR_HEADER_TEST_ID)).toBeVisible();
+      await expect(canvas.getByTestId(TEST_IDS.header)).toBeVisible();
     });
 
     await step('header: language label is rendered', async () => {
-      await expect(canvas.getByTestId(CODE_EDITOR_LANGUAGE_TEST_ID)).toHaveTextContent('Json');
+      await expect(canvas.getByTestId(TEST_IDS.language)).toHaveTextContent('Json');
     });
 
     await step('click: copy button triggers onCopyClick', async () => {
-      const copyButton = canvas.getByTestId(CODE_EDITOR_COPY_BUTTON_TEST_ID);
+      const copyButton = canvas.getByTestId(TEST_IDS.copyButton);
       await userEvent.click(copyButton);
       expect(args.onCopyClick).toHaveBeenCalledTimes(1);
     });
@@ -57,7 +60,7 @@ export const InteractionTest: Story = {
     await step('keyboard: copy button is focusable', async () => {
       // Программный focus вместо Tab — Monaco-textarea монтируется и может перехватить
       // tab-секвенцию в зависимости от тайминга гидрации.
-      const copyButton = canvas.getByTestId(CODE_EDITOR_COPY_BUTTON_TEST_ID) as HTMLElement;
+      const copyButton = canvas.getByTestId(TEST_IDS.copyButton) as HTMLElement;
       copyButton.focus();
       await expect(copyButton).toHaveFocus();
     });
