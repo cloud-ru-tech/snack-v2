@@ -3,12 +3,25 @@ import { DownloadSVG, PlusSVG, SettingsSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { BUTTON_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button/Button',
   component: Button,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Кнопка действия с настраиваемым видом, размером и иконкой.</DemoHint>
+        <DemoActions align='center'>
+          <Button {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     label: 'Button',
     appearance: APPEARANCE.Primary,
@@ -18,8 +31,7 @@ const meta: Meta<typeof Button> = {
     disabled: false,
     loading: false,
     fullWidth: false,
-    className: '',
-    'data-test-id': BUTTON_TEST_ID,
+    'data-test-id': TEST_IDS.button.root,
   },
   argTypes: {
     label: { control: 'text', description: 'Текст кнопки' },
@@ -63,6 +75,6 @@ type Story = StoryObj<typeof Button>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(BUTTON_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.button.root)).toBeVisible();
   },
 };

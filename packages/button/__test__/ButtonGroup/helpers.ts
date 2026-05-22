@@ -1,67 +1,67 @@
-import { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-export const BUTTON_GROUP_TEST_ID = 'button-group';
-export const BUTTON_GROUP_PRIMARY_TEST_ID = 'button-group-primary';
-export const BUTTON_GROUP_SECONDARY_TEST_ID = 'button-group-secondary';
-export const BUTTON_GROUP_TERTIARY_TEST_ID = 'button-group-tertiary';
+import { APPEARANCE, VIEW } from '../../src/Button/constants';
+import { BUTTON_GROUP_LABELS } from '../../stories/ButtonGroup/constants';
+import { TEST_IDS } from '../../stories/testIds';
+
+export { TEST_IDS, BUTTON_GROUP_LABELS };
 
 export const BUTTON_GROUP_PACKAGE_NAME = 'button';
 export const BUTTON_GROUP_STORY_NAME = 'buttongroup';
 
+const PG = (story: string): StoryRef => ({
+  name: BUTTON_GROUP_STORY_NAME,
+  group: BUTTON_GROUP_PACKAGE_NAME,
+  story,
+});
+const FX = (story: string): StoryRef => ({
+  name: 'buttongroup-tests-interaction',
+  group: BUTTON_GROUP_PACKAGE_NAME,
+  story,
+});
+
 export const BUTTON_GROUP_STORIES = {
-  playground: 'playground',
-  /** `PlaygroundPrimaryDisabled` — nested action objects from URL are unreliable on static iframe. */
-  playgroundPrimaryDisabled: 'playground-primary-disabled',
-  /** `PlaygroundCriticalPrimary` — baked args for the same assertions as former URL-only overrides. */
-  playgroundCriticalPrimary: 'playground-critical-primary',
-  twoActions: 'two-actions',
-  threeActions: 'three-actions',
-  visualMatrix: 'visual-matrix',
-} as const;
+  playground: PG('playground'),
+  visualMatrix: PG('visual-matrix'),
+  // Baked-args fixtures in tests/ButtonGroup.InteractionTest.stories.tsx
+  // (URL args can't encode nested action objects reliably).
+  disabledPrimaryFixture: FX('disabled-primary-fixture'),
+  criticalPrimaryFixture: FX('critical-primary-fixture'),
+  threeActionsFixture: FX('three-actions-fixture'),
+} as const satisfies Record<string, StoryRef>;
 
 export type ButtonGroupStoryProps = Record<string, unknown>;
 
 const DEFAULT_PRIMARY = {
-  label: 'Сохранить',
-  appearance: 'primary',
-  view: 'filled',
-  'data-test-id': BUTTON_GROUP_PRIMARY_TEST_ID,
+  label: BUTTON_GROUP_LABELS.primary,
+  appearance: APPEARANCE.Primary,
+  view: VIEW.Filled,
+  'data-test-id': TEST_IDS.buttonGroup.primary,
 };
 const DEFAULT_SECONDARY = {
-  label: 'Отмена',
-  appearance: 'neutral',
-  view: 'outline',
-  'data-test-id': BUTTON_GROUP_SECONDARY_TEST_ID,
+  label: BUTTON_GROUP_LABELS.secondary,
+  appearance: APPEARANCE.Neutral,
+  view: VIEW.Outline,
+  'data-test-id': TEST_IDS.buttonGroup.secondary,
 };
 
 export function buildButtonGroupStoryOptions(
   props?: ButtonGroupStoryProps,
-  story: string = BUTTON_GROUP_STORIES.playground,
+  ref: StoryRef = BUTTON_GROUP_STORIES.playground,
 ): StorybookUrlOptions {
-  const base: Record<string, unknown> = {
-    'data-test-id': BUTTON_GROUP_TEST_ID,
-    primaryAction: DEFAULT_PRIMARY,
-    secondaryAction: DEFAULT_SECONDARY,
-  };
+  // Default args only apply to Playground; baked-arg fixtures own their own args.
+  const isPlayground = ref === BUTTON_GROUP_STORIES.playground;
+  const base: Record<string, unknown> = isPlayground
+    ? {
+        'data-test-id': TEST_IDS.buttonGroup.root,
+        primaryAction: DEFAULT_PRIMARY,
+        secondaryAction: DEFAULT_SECONDARY,
+      }
+    : { 'data-test-id': TEST_IDS.buttonGroup.root };
   return {
-    name: BUTTON_GROUP_STORY_NAME,
-    group: BUTTON_GROUP_PACKAGE_NAME,
-    story,
+    name: ref.name,
+    group: ref.group,
+    story: ref.story,
     props: { ...base, ...props },
   };
 }
-
-export const BUTTON_GROUP_ROOT_SELECTOR = '#storybook-root';
-
-export const BUTTON_GROUP_SCREENSHOT_OPTS = {
-  animations: 'disabled',
-  caret: 'hide',
-} as const;
-
-export const BUTTON_GROUP_A11Y_CASES: ReadonlyArray<{
-  story: string;
-  label: string;
-}> = [
-  { story: BUTTON_GROUP_STORIES.playground, label: 'playground' },
-  { story: BUTTON_GROUP_STORIES.threeActions, label: 'three-actions' },
-];

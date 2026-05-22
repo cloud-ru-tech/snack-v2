@@ -5,7 +5,7 @@ import { ComponentProps, ReactElement } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button/Button',
@@ -88,12 +88,28 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
+        sectionTitle='fullWidth (container=320px)'
+        firstColumnHeader='fullWidth'
+        columnHeaders={['Button']}
+        rows={[false, true].map(fullWidth => ({
+          variantLabel: String(fullWidth),
+          cells: [
+            <div key={String(fullWidth)} className={styles.narrow}>
+              <Button fullWidth={fullWidth} label='Continue' />
+            </div>,
+          ],
+        }))}
+      />
+
+      <StoryTable
         sectionTitle='State × Composition (view=filled, appearance=primary)'
         firstColumnHeader='State'
         columnHeaders={compositions.map(c => c.key)}
         rows={states.map(({ key, extra }) => ({
           variantLabel: key,
-          cells: compositions.map(c => renderButton({ view: 'filled', appearance: 'primary', ...c.props, ...extra })),
+          cells: compositions.map(c =>
+            renderButton({ view: VIEW.Filled, appearance: APPEARANCE.Primary, ...c.props, ...extra }),
+          ),
         }))}
       />
     </div>

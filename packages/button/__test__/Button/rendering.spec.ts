@@ -1,130 +1,66 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
 import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from '../../src/Button/constants';
-import { buildStoryOptions, BUTTON_TEST_ID } from './helpers';
+import { buildStoryOptions, TEST_IDS } from './helpers';
 
-const KEY_COMBOS: Array<{ appearance: string; view: string }> = [
-  { appearance: APPEARANCE.Primary, view: VIEW.Filled },
-  { appearance: APPEARANCE.Neutral, view: VIEW.Outline },
-  { appearance: APPEARANCE.Critical, view: VIEW.Tonal },
-];
+// Behavioral assertions (click/keyboard/onClick fired) live in
+// stories/Button/tests/Button.InteractionTest.stories.tsx::play.
+// All-axis visual coverage lives in Button.VisualMatrix story snapshot.
+
+const KEY_COMBOS = [
+  { appearance: APPEARANCE.Primary, view: VIEW.Filled, size: SIZE.M },
+  { appearance: APPEARANCE.Neutral, view: VIEW.Outline, size: SIZE.S },
+  { appearance: APPEARANCE.Critical, view: VIEW.Tonal, size: SIZE.L },
+] as const;
+
+const VARIANT_CASES = [
+  { label: 'Button', icon: undefined, iconPosition: undefined, expected: 'label-only' },
+  { label: 'Button', icon: 'settings', iconPosition: ICON_POSITION.Before, expected: 'icon-before' },
+  { label: 'Button', icon: 'settings', iconPosition: ICON_POSITION.After, expected: 'icon-after' },
+  { label: undefined, icon: 'settings', iconPosition: undefined, expected: 'icon-only' },
+] as const;
 
 test.describe('Button — rendering', () => {
-  test.describe('render', () => {
-    test('renders with default props', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions());
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toBeVisible();
-    });
-
-    test('renders label text', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ label: 'Click me' }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toContainText('Click me');
-    });
-
-    test('applies custom className', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ className: 'custom-btn' }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveClass(/custom-btn/);
-    });
+  test('renders with default props', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
+    const root = getByTestId(TEST_IDS.button.root);
+    await expect(root).toBeVisible();
+    await expect(root).toContainText('Button');
   });
 
-  test.describe('props propagation', () => {
-    for (const size of Object.values(SIZE)) {
-      test(`size=${size}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ size }));
-
-        await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-size', size);
-      });
-    }
-
-    for (const appearance of Object.values(APPEARANCE)) {
-      test(`appearance=${appearance}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ appearance }));
-
-        await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-appearance', appearance);
-      });
-    }
-
-    for (const view of Object.values(VIEW)) {
-      test(`view=${view}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ view }));
-
-        await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-view', view);
-      });
-    }
-
-    for (const { appearance, view } of KEY_COMBOS) {
-      test(`appearance=${appearance} + view=${view}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ appearance, view }));
-
-        const button = getByTestId(BUTTON_TEST_ID);
-        await expect(button).toHaveAttribute('data-appearance', appearance);
-        await expect(button).toHaveAttribute('data-view', view);
-      });
-    }
-
-    test('data-variant=label-only when no icon', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ label: 'Button' }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-variant', 'label-only');
+  for (const { appearance, view, size } of KEY_COMBOS) {
+    test(`props propagate: ${appearance} + ${view} + ${size}`, async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ appearance, view, size }));
+      const root = getByTestId(TEST_IDS.button.root);
+      await expect(root).toHaveAttribute('data-appearance', appearance);
+      await expect(root).toHaveAttribute('data-view', view);
+      await expect(root).toHaveAttribute('data-size', size);
     });
+  }
 
-    test('data-variant=icon-before when icon + iconPosition=before', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ label: 'Button', icon: 'settings', iconPosition: ICON_POSITION.Before }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-variant', 'icon-before');
+  for (const { label, icon, iconPosition, expected } of VARIANT_CASES) {
+    test(`data-variant=${expected}`, async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ label, icon, iconPosition }));
+      await expect(getByTestId(TEST_IDS.button.root)).toHaveAttribute('data-variant', expected);
     });
+  }
 
-    test('data-variant=icon-after when icon + iconPosition=after', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ label: 'Button', icon: 'settings', iconPosition: ICON_POSITION.After }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-variant', 'icon-after');
-    });
-
-    test('data-variant=icon-only when icon without label', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ icon: 'settings', label: undefined }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-variant', 'icon-only');
-    });
+  test('disabled propagates to native disabled + data-disabled', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ disabled: true }));
+    const root = getByTestId(TEST_IDS.button.root);
+    await expect(root).toBeDisabled();
+    await expect(root).toHaveAttribute('data-disabled', 'true');
   });
 
-  test.describe('states', () => {
-    test('disabled → native disabled attribute', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ disabled: true }));
+  test('loading propagates to aria-busy + data-loading', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ loading: true }));
+    const root = getByTestId(TEST_IDS.button.root);
+    await expect(root).toHaveAttribute('aria-busy', 'true');
+    await expect(root).toHaveAttribute('data-loading', 'true');
+  });
 
-      await expect(getByTestId(BUTTON_TEST_ID)).toBeDisabled();
-    });
-
-    test('disabled → data-disabled attribute', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ disabled: true }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-disabled', 'true');
-    });
-
-    test('loading → aria-busy attribute', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ loading: true }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('aria-busy', 'true');
-    });
-
-    test('loading → data-loading attribute', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ loading: true }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-loading', 'true');
-    });
-
-    test('fullWidth → data-full-width attribute', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ fullWidth: true }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-full-width', 'true');
-    });
-
-    test('counter → data-counter attribute', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ counter: { value: 5 } }));
-
-      await expect(getByTestId(BUTTON_TEST_ID)).toHaveAttribute('data-counter', 'true');
-    });
+  test('applies custom className', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ className: 'custom-btn' }));
+    await expect(getByTestId(TEST_IDS.button.root)).toHaveClass(/custom-btn/);
   });
 });

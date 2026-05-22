@@ -1,13 +1,8 @@
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import { test } from '#playwright-tooling/fixtures';
+import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
-import {
-  buildButtonGroupStoryOptions,
-  BUTTON_GROUP_ROOT_SELECTOR,
-  BUTTON_GROUP_SCREENSHOT_OPTS,
-  BUTTON_GROUP_STORIES,
-} from './helpers';
+import { buildButtonGroupStoryOptions, BUTTON_GROUP_STORIES } from './helpers';
 
 test.describe('ButtonGroup — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -18,13 +13,10 @@ test.describe('ButtonGroup — visual regression', () => {
     );
   });
 
-  test('visual-matrix', async ({ page, gotoStory }) => {
+  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildButtonGroupStoryOptions(undefined, BUTTON_GROUP_STORIES.visualMatrix));
-    await waitForFonts(page);
+    await waitForFonts();
 
-    await expect(page.locator(BUTTON_GROUP_ROOT_SELECTOR)).toHaveScreenshot(
-      'visual-matrix.png',
-      BUTTON_GROUP_SCREENSHOT_OPTS,
-    );
+    await assertVisualMatrixSnapshot(page);
   });
 });

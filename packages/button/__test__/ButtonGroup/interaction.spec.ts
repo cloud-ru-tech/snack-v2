@@ -1,17 +1,12 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import {
-  buildButtonGroupStoryOptions,
-  BUTTON_GROUP_PRIMARY_TEST_ID,
-  BUTTON_GROUP_SECONDARY_TEST_ID,
-  BUTTON_GROUP_STORIES,
-} from './helpers';
+import { buildButtonGroupStoryOptions, BUTTON_GROUP_STORIES, TEST_IDS } from './helpers';
 
 test.describe('ButtonGroup — interaction', () => {
   test('primary action is clickable', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildButtonGroupStoryOptions());
 
-    const primary = getByTestId(BUTTON_GROUP_PRIMARY_TEST_ID);
+    const primary = getByTestId(TEST_IDS.buttonGroup.primary);
     await primary.click();
     // Кнопка должна остаться видимой и интерактивной после клика
     await expect(primary).toBeVisible();
@@ -19,9 +14,9 @@ test.describe('ButtonGroup — interaction', () => {
   });
 
   test('disabled primary does not fire click', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildButtonGroupStoryOptions(undefined, BUTTON_GROUP_STORIES.playgroundPrimaryDisabled));
+    await gotoStory(buildButtonGroupStoryOptions(undefined, BUTTON_GROUP_STORIES.disabledPrimaryFixture));
 
-    const primary = getByTestId(BUTTON_GROUP_PRIMARY_TEST_ID);
+    const primary = getByTestId(TEST_IDS.buttonGroup.primary);
     await expect(primary).toBeDisabled();
     await expect(primary).toHaveAttribute('data-disabled', 'true');
   });
@@ -34,8 +29,8 @@ test.describe('ButtonGroup — interaction', () => {
     await gotoStory(buildButtonGroupStoryOptions());
 
     await page.keyboard.press('Tab');
-    await expect(getByTestId(BUTTON_GROUP_SECONDARY_TEST_ID)).toBeFocused();
+    await expect(getByTestId(TEST_IDS.buttonGroup.secondary)).toBeFocused();
     await page.keyboard.press('Tab');
-    await expect(getByTestId(BUTTON_GROUP_PRIMARY_TEST_ID)).toBeFocused();
+    await expect(getByTestId(TEST_IDS.buttonGroup.primary)).toBeFocused();
   });
 });
