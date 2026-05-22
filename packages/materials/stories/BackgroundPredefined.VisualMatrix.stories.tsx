@@ -1,5 +1,5 @@
-import { BACKGROUND_PREDEFINED_FILL, type BackgroundPredefinedFill } from '@ds/materials';
-import type { Meta } from '@storybook/react';
+import { BACKGROUND_PREDEFINED_FILL, BackgroundPredefinedFill } from '@ds/materials';
+import { Meta } from '@storybook/react';
 import cn from 'classnames';
 
 import { StoryTable } from '#storybook/components';

@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { Fragment } from 'react';
 
 import { StoryTable } from '#storybook/components';
@@ -6,8 +6,7 @@ import { StoryTable } from '#storybook/components';
 import { MaterialSquare } from './components/MaterialSquare';
 import { APPEARANCE, LEVEL } from './constants';
 import styles from './styles.module.scss';
-import type { Appearance, Level } from './types';
-
+import { Appearance, Level } from './types';
 const meta: Meta = {
   title: 'Materials/Materials Visual Matrix',
   args: {},

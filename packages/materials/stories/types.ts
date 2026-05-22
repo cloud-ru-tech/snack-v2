@@ -1,4 +1,4 @@
-import type { ValueOf } from '@ds/utils';
+import { ValueOf } from '@ds/utils';
 
 import { APPEARANCE, LEVEL, STATE } from './constants';
 

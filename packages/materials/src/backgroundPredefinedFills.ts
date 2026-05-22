@@ -1,5 +1,4 @@
-import type { ValueOf } from '@ds/utils';
-
+import { ValueOf } from '@ds/utils';
 /** Значения `data-acrylic-appearance` / `data-acrylic-level` — в паре с `_acrylic.scss`. */
 const APPEARANCE = {
   Primary: 'primary',

@@ -1,6 +1,11 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '../index' as m;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 // Common
 .externalWrapper {
   position: relative;
