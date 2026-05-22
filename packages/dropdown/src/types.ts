@@ -13,7 +13,7 @@ type BlockProps = Pick<InfoBlockProps, 'description'>;
 type BlockPropsWithIcon = Pick<InfoBlockProps, 'description' | 'icon'>;
 
 export type DropdownState =
-  | { type: STATE.Loading }
-  | ({ type: STATE.NotFound } & ActionButtonProps & BlockProps)
-  | ({ type: STATE.NoData } & ActionButtonProps & BlockPropsWithIcon)
-  | ({ type: STATE.DataError } & ActionButtonProps & BlockPropsWithIcon);
+  | { type: typeof STATE.Loading }
+  | ({ type: typeof STATE.NotFound } & ActionButtonProps & BlockProps)
+  | ({ type: typeof STATE.NoData } & ActionButtonProps & BlockPropsWithIcon)
+  | ({ type: typeof STATE.DataError } & ActionButtonProps & BlockPropsWithIcon);

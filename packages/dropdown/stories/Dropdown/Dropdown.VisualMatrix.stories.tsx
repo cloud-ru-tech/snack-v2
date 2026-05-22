@@ -1,10 +1,11 @@
 import { Button } from '@ds/button';
 import { Dropdown, STATE } from '@ds/dropdown';
 import { Meta, StoryObj } from '@storybook/react';
+import cn from 'classnames';
 
 import { StoryTable } from '#storybook/components';
 
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown',
@@ -17,6 +18,23 @@ type Story = StoryObj<typeof Dropdown>;
 
 const SimpleContent = () => <div className={styles.content}>Содержимое dropdown</div>;
 
+const SHORT_ITEMS = ['Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск', 'Екатеринбург'];
+const LONG_ITEMS = Array.from({ length: 24 }, (_, i) => `Элемент списка ${i + 1}`);
+
+function renderList(items: string[], className?: string) {
+  return (
+    <ul className={cn(styles.list, className)}>
+      {items.map(item => (
+        <li key={item} className={styles.listItem}>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+const placements = ['bottom-start', 'bottom', 'bottom-end'] as const;
+
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
@@ -25,11 +43,11 @@ export const VisualMatrix: Story = {
       <StoryTable
         sectionTitle='Placement'
         firstColumnHeader='Opened'
-        columnHeaders={['bottom-start', 'bottom', 'bottom-end']}
+        columnHeaders={[...placements]}
         rows={[
           {
             variantLabel: 'open',
-            cells: (['bottom-start', 'bottom', 'bottom-end'] as const).map(placement => (
+            cells: placements.map(placement => (
               <div key={placement} className={styles.cell}>
                 <Dropdown open placement={placement} content={<SimpleContent />}>
                   <Button label={placement} />
@@ -42,8 +60,8 @@ export const VisualMatrix: Story = {
 
       <StoryTable
         sectionTitle='States'
-        firstColumnHeader='Opened'
-        columnHeaders={['loading', 'not-found']}
+        firstColumnHeader='State'
+        columnHeaders={['loading', 'not-found', 'no-data', 'data-error']}
         rows={[
           {
             variantLabel: 'open',
@@ -54,8 +72,53 @@ export const VisualMatrix: Story = {
                 </Dropdown>
               </div>,
               <div key='not-found' className={styles.cell}>
-                <Dropdown open state={{ type: STATE.NotFound, description: 'Ничего не найдено' }} content={null}>
+                <Dropdown
+                  open
+                  state={{ type: STATE.NotFound, description: 'Ничего не найдено', actionLabel: 'Retry' }}
+                  content={null}
+                >
                   <Button label='not-found' />
+                </Dropdown>
+              </div>,
+              <div key='no-data' className={styles.cell}>
+                <Dropdown
+                  open
+                  state={{ type: STATE.NoData, description: 'Нет данных', actionLabel: 'Retry' }}
+                  content={null}
+                >
+                  <Button label='no-data' />
+                </Dropdown>
+              </div>,
+              <div key='data-error' className={styles.cell}>
+                <Dropdown
+                  open
+                  state={{ type: STATE.DataError, description: 'Ошибка загрузки', actionLabel: 'Retry' }}
+                  content={null}
+                >
+                  <Button label='data-error' />
+                </Dropdown>
+              </div>,
+            ],
+          },
+        ]}
+      />
+
+      <StoryTable
+        sectionTitle='Content shape'
+        firstColumnHeader='Items'
+        columnHeaders={['short list', 'long list (scrollable)']}
+        rows={[
+          {
+            variantLabel: 'open',
+            cells: [
+              <div key='short' className={styles.cell}>
+                <Dropdown open content={renderList(SHORT_ITEMS)}>
+                  <Button label='Открыть список' />
+                </Dropdown>
+              </div>,
+              <div key='long' className={styles.cell}>
+                <Dropdown open content={renderList(LONG_ITEMS, styles.longList)}>
+                  <Button label='Длинный список' />
                 </Dropdown>
               </div>,
             ],

@@ -145,4 +145,4 @@ export function NotFound() {
 | `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 
-- `DropdownState` = `{ type: STATE.Loading; } | ({ type: STATE.NotFound; } & ActionButtonProps & BlockProps) | ({ type: STATE.NoData; } & ActionButtonProps & BlockPropsWithIcon) | ({ type: STATE.DataError; } & ActionButtonProps & BlockPropsWithIcon)`
+- `DropdownState` = `{ type: typeof STATE.Loading; } | ({ type: typeof STATE.NotFound; } & ActionButtonProps & BlockProps) | ({ type: typeof STATE.NoData; } & ActionButtonProps & BlockPropsWithIcon) | ({ type: typeof STATE.DataError; } & ActionButtonProps & BlockPropsWithIcon)`
