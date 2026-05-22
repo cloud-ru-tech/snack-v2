@@ -1,4 +1,6 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
 .matrix {
   display: grid;
-  gap: 1.5rem;
+  gap: base.$sn-primitive-dimension-24;
 }

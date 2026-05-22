@@ -2,12 +2,25 @@ import { APPEARANCE, COLOR, Counter, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '@
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { COUNTER_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Counter> = {
   title: 'Components/Counter',
   component: Counter,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Счётчик числовых значений с порогом для варианта count-plus.</DemoHint>
+        <DemoActions align='center'>
+          <Counter {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     value: 9,
     appearance: APPEARANCE.Primary,
@@ -15,7 +28,7 @@ const meta: Meta<typeof Counter> = {
     variant: VARIANT.Count,
     plusLimit: DEFAULT_PLUS_LIMIT,
     color: COLOR.Accent,
-    'data-test-id': COUNTER_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     value: { control: 'number', description: 'Числовое значение' },
@@ -45,6 +58,6 @@ type Story = StoryObj<typeof Counter>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(COUNTER_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

@@ -1,1 +1,3 @@
-export const COUNTER_TEST_ID = 'counter';
+export const TEST_IDS = {
+  root: 'counter',
+} as const;
