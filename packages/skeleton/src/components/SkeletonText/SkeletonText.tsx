@@ -2,8 +2,9 @@ import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo } from 'react';
 
+import { TEST_IDS } from '../../constants';
 import { useIsLoadingValue } from '../../hooks';
-import { Skeleton, type SkeletonProps } from '../Skeleton';
+import { Skeleton, SkeletonProps } from '../Skeleton';
 import styles from './styles.module.scss';
 import { Align, Size, Variant } from './types';
 
@@ -37,7 +38,7 @@ export function SkeletonText({
   align = 'left',
   ...restProps
 }: SkeletonTextProps) {
-  const lineTestId = restProps['data-test-id'] ? `${restProps['data-test-id']}_line` : undefined;
+  const lineTestId = restProps['data-test-id'] ? TEST_IDS.skeletonText.line : undefined;
 
   const rows = useMemo(
     () =>

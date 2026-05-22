@@ -3,7 +3,10 @@ import { Typography } from '@ds/typography';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import styles from '../styles.module.scss';
+import { TEST_IDS } from '../testIds';
 
 type PlaygroundArgs = {
   loading?: boolean;
@@ -12,7 +15,7 @@ type PlaygroundArgs = {
 
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Skeleton/WithSkeleton',
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     loading: true,
     skeletonVariant: 'text',
@@ -48,14 +51,22 @@ export const Playground: Story = {
         <div className={styles.contentCard}>Блок контента</div>
       );
     return (
-      <div className={styles.wrapper} data-test-id='with-skeleton-wrapper'>
-        <WithSkeleton loading={loading} skeleton={skeleton}>
-          {content}
-        </WithSkeleton>
-      </div>
+      <DemoPage>
+        <DemoPanel>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Обёртка WithSkeleton: подменяет children скелетоном при loading.</DemoHint>
+          <DemoActions align='center'>
+            <div className={styles.wrapper} data-test-id={TEST_IDS.withSkeleton.wrapper}>
+              <WithSkeleton loading={loading} skeleton={skeleton}>
+                {content}
+              </WithSkeleton>
+            </div>
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
     );
   },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('with-skeleton-wrapper')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.withSkeleton.wrapper)).toBeVisible();
   },
 };
