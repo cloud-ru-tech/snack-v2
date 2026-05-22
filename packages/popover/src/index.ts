@@ -3,6 +3,7 @@ export {
   PLACEMENT,
   POPOVER_HEIGHT_STRATEGY,
   POPOVER_WIDTH_STRATEGY,
+  TEST_IDS,
   TRIGGER,
 } from './constants';
 export * from './components';

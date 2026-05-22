@@ -1,5 +1,10 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .pageWrapper {
   display: flex;
   align-items: center;
@@ -11,6 +16,6 @@
 }
 
 .popoverContent {
-  padding: 8px;
+  padding: base.$sn-primitive-dimension-8;
   color: base.$sn-theme-color-available-version-textMain;
 }

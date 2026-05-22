@@ -1,3 +1,4 @@
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import {
   PLACEMENT,
   Popover,
@@ -8,14 +9,21 @@ import {
 } from '@ds/popover';
 import { Meta, StoryObj } from '@storybook/react';
 
-import styles from './styles.module.scss';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-const PopoverContentSlot = () => <div className={styles.popoverContent}>Popover content</div>;
+import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
+
+const PopoverContentSlot = () => (
+  <div className={styles.popoverContent} data-test-id={TEST_IDS.content}>
+    Popover content
+  </div>
+);
 
 const meta: Meta<PopoverProps> = {
   title: 'Components/Popover',
   component: Popover,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     placement: PLACEMENT.Top,
     trigger: TRIGGER.Click,
@@ -23,6 +31,7 @@ const meta: Meta<PopoverProps> = {
     closeOnEscapeKey: true,
     widthStrategy: POPOVER_WIDTH_STRATEGY.Auto,
     heightStrategy: POPOVER_HEIGHT_STRATEGY.Auto,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     placement: {
@@ -84,11 +93,24 @@ const meta: Meta<PopoverProps> = {
     const { content: contentArg, ...rest } = args;
     const content = contentArg != null && contentArg !== '' ? contentArg : <PopoverContentSlot />;
     return (
-      <div className={styles.pageWrapper}>
-        <Popover {...rest} content={content}>
-          <button type='button'>Open popover</button>
-        </Popover>
-      </div>
+      <DemoPage>
+        <DemoPanel>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>
+            Открыть поповер триггером ниже. Тип ({rest.trigger}) и позиционирование рулятся из Controls.
+          </DemoHint>
+          <DemoActions align='center'>
+            <Popover {...rest} content={content}>
+              <Button
+                data-test-id={TEST_IDS.triggerOpen}
+                label='Open popover'
+                view={VIEW.Outline}
+                appearance={APPEARANCE.Neutral}
+              />
+            </Popover>
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
     );
   },
 };

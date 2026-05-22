@@ -5,3 +5,5 @@ export {
   POPOVER_WIDTH_STRATEGY,
   TRIGGER,
 } from '@ds/popover-private';
+
+export { TEST_IDS } from './testIds';
