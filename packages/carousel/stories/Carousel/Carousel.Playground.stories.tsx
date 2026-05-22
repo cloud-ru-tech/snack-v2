@@ -2,23 +2,28 @@ import { Carousel, CONTROLS_VISIBILITY } from '@ds/carousel';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { CAROUSEL_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
   component: Carousel,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     showItems: 1,
+    scrollBy: 1,
     transition: 0.4,
     swipe: true,
     arrows: true,
     pagination: true,
     infiniteScroll: false,
+    autoSwipe: 0,
     swipeActivateLength: 48,
+    gap: '0px',
     controlsVisibility: CONTROLS_VISIBILITY.hover,
-    'data-test-id': CAROUSEL_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     showItems: { control: { type: 'number', min: 1, max: 6 } },
@@ -37,13 +42,21 @@ const meta: Meta<typeof Carousel> = {
     },
   },
   render: args => (
-    <div className={styles.container}>
-      <Carousel {...args}>
-        <div className={`${styles.slide} ${styles.slideIndigo}`}>Slide 1</div>
-        <div className={`${styles.slide} ${styles.slideSky}`}>Slide 2</div>
-        <div className={`${styles.slide} ${styles.slideEmerald}`}>Slide 3</div>
-      </Carousel>
-    </div>
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Карусель слайдов со стрелками и пагинацией.</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.container}>
+            <Carousel {...args}>
+              <div className={`${styles.slide} ${styles.slideIndigo}`}>Slide 1</div>
+              <div className={`${styles.slide} ${styles.slideSky}`}>Slide 2</div>
+              <div className={`${styles.slide} ${styles.slideEmerald}`}>Slide 3</div>
+            </Carousel>
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   ),
 };
 
@@ -54,6 +67,6 @@ type Story = StoryObj<typeof Carousel>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(CAROUSEL_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

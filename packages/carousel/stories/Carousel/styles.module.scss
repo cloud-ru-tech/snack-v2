@@ -1,0 +1,70 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
+.container {
+  width: 560px;
+  max-width: 100%;
+}
+
+.containerWide {
+  width: 720px;
+  max-width: 100%;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 200px;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
+
+  font-size: base.$sn-primitive-dimension-24;
+  color: #fff;
+}
+
+.slideIndigo {
+  background: #4f46e5;
+}
+
+.slideSky {
+  background: #0ea5e9;
+}
+
+.slideEmerald {
+  background: #10b981;
+}
+
+.slideAmber {
+  background: #f59e0b;
+}
+
+.slidePink {
+  background: #ec4899;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 160px;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
+
+  font-size: 18px;
+
+  background: var(--sn-surface-secondary, #f3f4f6);
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
