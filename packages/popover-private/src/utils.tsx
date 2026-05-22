@@ -13,7 +13,7 @@ import {
 } from 'react';
 import { isForwardRef, isValidElementType } from 'react-is';
 
-import type { PopoverPrivateProps } from './components';
+import { PopoverPrivateProps } from './components';
 import { TRIGGER } from './constants';
 import { Trigger } from './types';
 
