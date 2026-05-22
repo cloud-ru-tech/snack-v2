@@ -1,8 +1,9 @@
+import { APPEARANCE, Status, STATUS_SIZE, StatusProps } from '@ds/status';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { APPEARANCE, Status, STATUS_SIZE, StatusProps } from '../../src';
+import styles from './Status.VisualMatrix.module.scss';
 
 const meta: Meta<StatusProps> = {
   title: 'Components/Status/Status',
@@ -23,7 +24,7 @@ export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
   render: () => (
-    <>
+    <div className={styles.grid}>
       <StoryTable
         sectionTitle='Appearance × Size'
         firstColumnHeader='Appearance'
@@ -44,21 +45,19 @@ export const VisualMatrix: Story = {
         columnHeaders={keySizesAndBackground.map(
           ([size, hasBackground]) => `${size} ${hasBackground ? 'с фоном' : 'без фона'}`,
         )}
-        rows={[
-          {
-            variantLabel: '',
-            cells: keySizesAndBackground.map(([size, hasBackground]) => (
-              <Status
-                key={size}
-                size={size}
-                appearance='neutral'
-                label='Label text'
-                hasBackground={hasBackground}
-                loading
-              />
-            )),
-          },
-        ]}
+        rows={keyAppearances.map(appearance => ({
+          variantLabel: appearance,
+          cells: keySizesAndBackground.map(([size, hasBackground]) => (
+            <Status
+              key={size}
+              size={size}
+              appearance={appearance}
+              label='Label text'
+              hasBackground={hasBackground}
+              loading
+            />
+          )),
+        }))}
       />
 
       <StoryTable
@@ -81,6 +80,6 @@ export const VisualMatrix: Story = {
           )),
         }))}
       />
-    </>
+    </div>
   ),
 };

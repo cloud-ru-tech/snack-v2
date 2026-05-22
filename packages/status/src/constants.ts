@@ -11,6 +11,16 @@ export const STATUS_INDICATOR_SIZE = {
   S: 's',
 } as const;
 
+export const TEST_IDS = {
+  status: {
+    root: 'status',
+    label: 'status__label',
+  },
+  statusIndicator: {
+    root: 'status-indicator',
+  },
+} as const;
+
 export const APPEARANCE = {
   Neutral: 'neutral',
   Red: 'red',

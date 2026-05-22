@@ -1,6 +1,10 @@
+import { APPEARANCE, Status, STATUS_SIZE, StatusProps } from '@ds/status';
 import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import { APPEARANCE, Status, STATUS_SIZE, StatusProps } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 type StoryType = StatusProps & {
   showProgress: boolean;
@@ -9,7 +13,18 @@ type StoryType = StatusProps & {
 const meta: Meta<StoryType> = {
   title: 'Components/Status/Status',
   component: Status,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
+  render: ({ showProgress, progress, ...args }) => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Индикатор статуса: точка с подписью, опциональный прогресс и состояние загрузки.</DemoHint>
+        <DemoActions align='center'>
+          <Status {...args} progress={showProgress ? progress : undefined} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     label: 'Label text',
     size: STATUS_SIZE.S,
@@ -18,6 +33,7 @@ const meta: Meta<StoryType> = {
     loading: false,
     showProgress: false,
     progress: 50,
+    'data-test-id': TEST_IDS.status.root,
   },
   argTypes: {
     showProgress: {
@@ -47,17 +63,8 @@ const meta: Meta<StoryType> = {
       options: Object.values(APPEARANCE),
       description: 'Внешний вид (цветовая схема)',
     },
-    className: {
-      control: 'text',
-      description: 'CSS-класс',
-    },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
-    },
+    className: { table: { disable: true } },
+    'data-test-id': { table: { disable: true } },
   },
 };
 
@@ -65,5 +72,8 @@ export default meta;
 type Story = StoryObj<StoryType>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['dev', 'test'],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.status.root)).toBeVisible();
+  },
 };

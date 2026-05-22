@@ -4,7 +4,7 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { JSX } from 'react';
 
-import { APPEARANCE, STATUS_SIZE } from '../../constants';
+import { APPEARANCE, STATUS_SIZE, TEST_IDS } from '../../constants';
 import { Appearance, StatusSize } from '../../types';
 import { StatusIndicator } from '../StatusIndicator';
 import styles from './styles.module.scss';
@@ -65,7 +65,7 @@ export function Status({
       data-has-background={hasBackground || undefined}
     >
       <div className={styles.centeredWrapper}>{marker}</div>
-      <label className={styles.textWrapper} data-test-id='status__label'>
+      <label className={styles.textWrapper} data-test-id={TEST_IDS.status.label}>
         {/* TODO: <TruncateString> - компонент в работе */}
         {label}
         {/* </TruncateString> */}
