@@ -2,7 +2,7 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { KeyboardEventHandler, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { APPEARANCE, DEFAULT_RATING_VALUE, DEFAULT_STAR_COUNT, SIZE } from './constants';
+import { APPEARANCE, DEFAULT_RATING_VALUE, DEFAULT_STAR_COUNT, SIZE, TEST_IDS } from './constants';
 import { RatingStar, Value } from './helperComponents/RatingStar';
 import { Appearance, Size } from './types';
 import { getRatingStarValue, getStarValue } from './utils';
@@ -100,6 +100,7 @@ export function Rating({
             handleMouseLeave={handleMouseLeave}
             handleKeyDown={handleKeyDown(starIndex)}
             handleClick={handleClick(starIndex)}
+            data-test-id={`${TEST_IDS.star}-${starIndex}`}
           />
         );
       })}

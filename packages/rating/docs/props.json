@@ -137,6 +137,11 @@
         "required": false,
         "description": "CSS-класс"
       },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для e2e"
+      },
       "handleClick": {
         "type": "((value: Value) => void)",
         "required": false,

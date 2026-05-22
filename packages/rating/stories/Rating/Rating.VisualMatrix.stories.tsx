@@ -1,50 +1,103 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { APPEARANCE, Rating, RatingProps, SIZE } from '@ds/rating';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { APPEARANCE, SIZE } from '../../src';
-import { RatingStar, RatingStarProps, VALUE } from '../../src/helperComponents/RatingStar';
-
-const meta: Meta<RatingStarProps> = {
+const meta: Meta<RatingProps> = {
   title: 'Components/Rating',
-  component: RatingStar,
+  component: Rating,
   parameters: { layout: 'padded' },
-  args: {},
-  argTypes: {},
 };
 
 export default meta;
+type Story = StoryObj<RatingProps>;
 
-type StoryProps = Pick<RatingStarProps, 'appearance'>;
-type Story = StoryObj<StoryProps>;
-
-const sizes = Object.values(SIZE);
-const values = Object.values(VALUE);
-
-const Template: StoryFn<StoryProps> = ({ appearance }) => (
-  <StoryTable
-    sectionTitle='Rating'
-    firstColumnHeader='Value'
-    columnHeaders={sizes.map(s => s.toUpperCase())}
-    rows={values.map(value => ({
-      variantLabel: value,
-      cells: sizes.map(size => <RatingStar key={size} size={size} value={value} appearance={appearance} />),
-    }))}
-  />
-);
+const keySizes = Object.values(SIZE);
+const keyAppearances = [APPEARANCE.Yellow, APPEARANCE.Primary, APPEARANCE.Red, APPEARANCE.Green, APPEARANCE.Blue];
+const keyValues = [0, 1, 2.5, 4, 5] as const;
 
 export const VisualMatrix: Story = {
-  tags: ['dev', 'test', 'autodocs'],
+  tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
-  render: Template,
-  args: {
-    appearance: APPEARANCE.Yellow,
-  },
-  argTypes: {
-    appearance: {
-      control: 'select',
-      options: Object.values(APPEARANCE),
-      description: 'Внешний вид (цветовая схема)',
-    },
-  },
+  render: () => (
+    <>
+      <StoryTable
+        sectionTitle='Appearance × Size (defaultValue=3)'
+        firstColumnHeader='Appearance'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={keyAppearances.map(appearance => ({
+          variantLabel: appearance,
+          cells: keySizes.map(size => (
+            <Rating
+              key={`${appearance}-${size}`}
+              appearance={appearance}
+              size={size}
+              count={5}
+              defaultValue={3}
+              allowHalf={false}
+              allowClear={false}
+              readonly={false}
+            />
+          )),
+        }))}
+      />
+      <StoryTable
+        sectionTitle='Value × Size (allowHalf, appearance=yellow)'
+        firstColumnHeader='Value'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={keyValues.map(value => ({
+          variantLabel: String(value),
+          cells: keySizes.map(size => (
+            <Rating
+              key={`${value}-${size}`}
+              appearance={APPEARANCE.Yellow}
+              size={size}
+              count={5}
+              defaultValue={value}
+              allowHalf
+              allowClear={false}
+              readonly={false}
+            />
+          )),
+        }))}
+      />
+      <StoryTable
+        sectionTitle='State × Size (readonly, defaultValue=2)'
+        firstColumnHeader='State'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={[
+          {
+            variantLabel: 'default',
+            cells: keySizes.map(size => (
+              <Rating
+                key={`d-${size}`}
+                appearance={APPEARANCE.Yellow}
+                size={size}
+                count={5}
+                defaultValue={2}
+                allowHalf={false}
+                allowClear={false}
+                readonly={false}
+              />
+            )),
+          },
+          {
+            variantLabel: 'readonly',
+            cells: keySizes.map(size => (
+              <Rating
+                key={`ro-${size}`}
+                appearance={APPEARANCE.Yellow}
+                size={size}
+                count={5}
+                defaultValue={2}
+                allowHalf={false}
+                allowClear={false}
+                readonly
+              />
+            )),
+          },
+        ]}
+      />
+    </>
+  ),
 };

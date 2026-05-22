@@ -2,7 +2,7 @@ import { StarFilledSVG } from '@ds/icons';
 import cn from 'classnames';
 import { KeyboardEventHandler } from 'react';
 
-import { APPEARANCE, SIZE } from '../../constants';
+import { APPEARANCE, SIZE, TEST_IDS } from '../../constants';
 import { Appearance, Size } from '../../types';
 import { VALUE } from './constants';
 import styles from './styles.module.scss';
@@ -27,6 +27,8 @@ export type RatingStarProps = {
   handleKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   /** Действие при клике части звезды мышью */
   handleClick?(value: Value): void;
+  /** Стабильный идентификатор для e2e */
+  'data-test-id'?: string;
 };
 
 /**
@@ -43,6 +45,7 @@ export function RatingStar({
   handleMouseLeave,
   handleKeyDown,
   handleClick,
+  'data-test-id': dataTestId,
 }: RatingStarProps) {
   return (
     <div
@@ -54,22 +57,29 @@ export function RatingStar({
       data-appearance={appearance}
       aria-checked={value !== VALUE.Zero}
       role={readonly ? undefined : 'radio'}
+      data-test-id={dataTestId}
     >
-      <div className={styles.firstStarContainer}>
-        <StarFilledSVG
-          className={styles.icon}
-          onMouseEnter={handleMouseEnter ? () => handleMouseEnter(VALUE.Half) : undefined}
-          onMouseLeave={handleMouseLeave || undefined}
-          onClick={handleClick ? () => handleClick(VALUE.Half) : undefined}
-        />
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- click-handler на обёртке нужен,
+          чтобы клик по любому месту половинки (включая SVG-иконку с её pointer-events) вызывал onClick.
+          Сама звезда (родитель) имеет role='radio' и tabIndex — это публичный интерактив. */}
+      <div
+        className={styles.firstStarContainer}
+        data-test-id={dataTestId ? TEST_IDS.starHalfLeft : undefined}
+        onMouseEnter={handleMouseEnter ? () => handleMouseEnter(VALUE.Half) : undefined}
+        onMouseLeave={handleMouseLeave || undefined}
+        onClick={handleClick ? () => handleClick(VALUE.Half) : undefined}
+      >
+        <StarFilledSVG className={styles.icon} />
       </div>
-      <div className={styles.secondStarContainer}>
-        <StarFilledSVG
-          className={styles.icon}
-          onMouseEnter={handleMouseEnter ? () => handleMouseEnter(VALUE.Full) : undefined}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick ? () => handleClick(VALUE.Full) : undefined}
-        />
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div
+        className={styles.secondStarContainer}
+        data-test-id={dataTestId ? TEST_IDS.starHalfRight : undefined}
+        onMouseEnter={handleMouseEnter ? () => handleMouseEnter(VALUE.Full) : undefined}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick ? () => handleClick(VALUE.Full) : undefined}
+      >
+        <StarFilledSVG className={styles.icon} />
       </div>
     </div>
   );
