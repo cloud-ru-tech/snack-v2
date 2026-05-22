@@ -1,6 +1,6 @@
 import './motion.css';
 
-import type { DrawerProps } from 'rc-drawer';
+import { DrawerProps } from 'rc-drawer';
 
 export const maskMotion: DrawerProps['maskMotion'] = {
   motionAppear: true,

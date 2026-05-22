@@ -3,8 +3,8 @@ import 'rc-drawer/assets/index.css';
 import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, useModalOpenState } from '@ds/utils';
 import cn from 'classnames';
-import RcDrawerImport, { type DrawerProps as RcDrawerBaseProps } from 'rc-drawer';
-import { type ComponentType, type CSSProperties, useMemo } from 'react';
+import RcDrawerImport, { DrawerProps as RcDrawerBaseProps } from 'rc-drawer';
+import { ComponentType, CSSProperties, useMemo } from 'react';
 
 import { WIDTH_AS_VALUES } from '../../constants';
 import {
@@ -18,6 +18,7 @@ import {
 } from '../../helperComponents';
 import { interopDefault } from '../../utils/interopDefault';
 import { motionProps } from './constants';
+import { useDrawerFocusTrap } from './hooks';
 import { DrawerCustomLayoutProvider } from './layoutContext';
 import styles from './styles.module.scss';
 import { DrawerCustomProps } from './types';
@@ -75,6 +76,8 @@ export function DrawerCustom(props: DrawerCustomProps) {
 
   useModalOpenState(open, onClose, { closeOnPopstate });
 
+  const focusTrapRef = useDrawerFocusTrap(Boolean(open));
+
   // Fallback: if no explicit container, route the portal through PortalContextProvider
   // (matches Modal behaviour). This lets callers scope the drawer to a local element and
   // avoids the body-level scroll lock that rc-drawer applies when rendering into document.body.
@@ -110,13 +113,15 @@ export function DrawerCustom(props: DrawerCustomProps) {
         data-acrylic-level='1Level'
         {...motionProps}
       >
-        <div className={styles.badgeButtonClosedWrapper}>
-          <ButtonClose className={styles.badgeButtonClosed} onClick={onClose} />
+        <div ref={focusTrapRef} className={styles.focusScope}>
+          <div className={styles.badgeButtonClosedWrapper}>
+            <ButtonClose className={styles.badgeButtonClosed} onClick={onClose} />
+          </div>
+
+          {children}
+
+          {nestedDrawer}
         </div>
-
-        {children}
-
-        {nestedDrawer}
       </RcDrawer>
     </DrawerCustomLayoutProvider>
   );

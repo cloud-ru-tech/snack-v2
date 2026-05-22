@@ -1,15 +1,23 @@
-import { Button, ButtonGroup } from '@ds/button';
+import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
 import { Drawer, DrawerProps } from '@ds/drawer';
 import { usePortalContext } from '@ds/portal-context';
 import { QuestionTooltip } from '@ds/tooltip';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
-import { type RefObject, useEffect, useRef, useState } from 'react';
-import { useArgs } from 'storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { usePreviewTheme } from '#storybook/components';
+import {
+  DemoActions,
+  DemoHint,
+  DemoPage,
+  DemoPanel,
+  DemoTitle,
+  DemoWarning,
+  usePreviewTheme,
+} from '#storybook/components';
 
-import { POSITION, TEST_IDS, WIDTH } from '../../src/constants';
+import { POSITION, TEST_IDS as PUBLIC_TEST_IDS, WIDTH } from '../../src/constants';
+import { TEST_IDS } from '../testIds';
 import {
   LONG_BODY_TEXT,
   NESTED_DRAWER_BODY,
@@ -19,7 +27,6 @@ import {
   SHORT_BODY_TEXT,
 } from './constants';
 import styles from './styles.module.scss';
-import { DRAWER_TRIGGER_TEST_ID } from './testIds';
 import { resolveDrawerStoryMediaSrc, ThemedDrawerMedia } from './ThemedDrawerMedia';
 
 const onBackButtonClick = () => {
@@ -43,35 +50,27 @@ type StoryProps = DrawerProps & {
 
 type Story = StoryObj<StoryProps>;
 
-/** Storybook из URL может отдать строку; для e2e важно не потерять `false`. */
-function coerceStoryBooleanArg(value: unknown, defaultValue: boolean): boolean {
-  if (value === false || value === 0) {
-    return false;
-  }
-  if (typeof value === 'string' && value.trim().toLowerCase() === 'false') {
-    return false;
-  }
-  if (value === true || value === 1) {
-    return true;
-  }
-  if (typeof value === 'string' && value.trim().toLowerCase() === 'true') {
-    return true;
-  }
-  return defaultValue;
+/**
+ * Резолв оси `position` × `width`/`heightAuto`:
+ * - left/right: ширина (`width`) активна, высота автоматическая не имеет смысла.
+ * - top/bottom: высота автоматическая (`heightAuto`) активна, фиксированная ширина игнорируется.
+ *
+ * Передаём в Drawer только валидные значения, остальные подавляем; если args
+ * пользователя содержат «лишний» проп — показываем DemoWarning.
+ */
+function resolveDrawerAxes(args: Pick<StoryProps, 'position' | 'width' | 'heightAuto'>) {
+  const isHorizontal = args.position === POSITION.Bottom || args.position === POSITION.Top;
+  const widthClamped = isHorizontal && args.width !== undefined;
+  const heightAutoClamped = !isHorizontal && args.heightAuto !== undefined;
+  return {
+    effectiveWidth: isHorizontal ? undefined : args.width,
+    effectiveHeightAuto: isHorizontal ? (args.heightAuto ?? true) : undefined,
+    widthClamped,
+    heightAutoClamped,
+  };
 }
 
-type UpdateStoryArgs = (nextPartial: Partial<StoryProps>) => void;
-
-type DrawerPlaygroundCanvasProps = StoryProps & {
-  updateArgsRef: RefObject<UpdateStoryArgs>;
-};
-
-/**
- * Логика стори без `useArgs` на смене `open`: при смене `open` родитель задаёт `key`, экземпляр размонтируется
- * и `nestedOpen` сбрасывается без `useEffect([open])`.
- */
-function DrawerPlaygroundCanvas(props: DrawerPlaygroundCanvasProps) {
-  const { updateArgsRef, ...propsRest } = props;
+function PlaygroundRender(args: StoryProps) {
   const {
     showMedia,
     showHeader,
@@ -83,97 +82,95 @@ function DrawerPlaygroundCanvas(props: DrawerPlaygroundCanvasProps) {
     customTooltipText,
     position,
     longBodyContent,
-    open,
+    // open/onClose спрятаны из argTypes; локальный state управляет открытием.
+    open: _open, // eslint-disable-line @typescript-eslint/no-unused-vars
+    onClose: _onClose, // eslint-disable-line @typescript-eslint/no-unused-vars
     content,
     showBlackout,
     title,
     subtitle,
-    ...args
-  } = propsRest;
+    width,
+    heightAuto,
+    ...rest
+  } = args;
 
   const portalRoot = usePortalContext();
   const previewTheme = usePreviewTheme();
   const storyMediaSrc = resolveDrawerStoryMediaSrc(previewTheme);
-  const prevLongBodyContent = useRef<boolean | null>(null);
+
+  const [open, setOpen] = useState(false);
   const [nestedOpen, setNestedOpen] = useState(false);
 
-  const longBody = coerceStoryBooleanArg(longBodyContent, false);
-  const blackout = coerceStoryBooleanArg(showBlackout, true);
+  const { effectiveWidth, effectiveHeightAuto, widthClamped, heightAutoClamped } = resolveDrawerAxes({
+    position,
+    width,
+    heightAuto,
+  });
 
-  useEffect(() => {
-    if (longBody) {
-      updateArgsRef.current({ content: LONG_BODY_TEXT });
-    } else if (prevLongBodyContent.current === true) {
-      updateArgsRef.current({ content: SHORT_BODY_TEXT });
-    }
-    prevLongBodyContent.current = longBody;
-  }, [longBody, updateArgsRef]);
+  // Header контролируется одним флагом showHeader — без мутации соседних args.
+  // При showHeader=false подавляем headline/back-button/etc. локально.
+  const renderHeadline = showHeader && showHeadline;
+  const renderAfterHeadline = showHeader && showAfterHeadline;
+  const renderSubHeadline = showHeader && showSubHeadline;
+  const renderBackButton = showHeader && showBackButton;
 
-  useEffect(() => {
-    if (showHeader) {
-      return;
-    }
-
-    updateArgsRef.current({
-      showBackButton: false,
-      showHeadline: false,
-      showAfterHeadline: false,
-      showSubHeadline: false,
-    });
-  }, [showHeader, updateArgsRef]);
-
-  useEffect(() => {
-    switch (position) {
-      case POSITION.Bottom:
-      case POSITION.Top:
-        updateArgsRef.current({
-          width: undefined,
-          heightAuto: true,
-        });
-        break;
-      case POSITION.Left:
-      case POSITION.Right:
-        updateArgsRef.current({
-          heightAuto: undefined,
-          width: WIDTH.S,
-        });
-        break;
-      default:
-        break;
-    }
-  }, [position, updateArgsRef]);
+  const body = longBodyContent ? LONG_BODY_TEXT : (content ?? SHORT_BODY_TEXT);
 
   const handleMainClose = () => {
     setNestedOpen(false);
-    updateArgsRef.current({ open: false });
+    setOpen(false);
   };
 
   return (
-    <>
-      <Button
-        data-test-id={DRAWER_TRIGGER_TEST_ID}
-        label='Toggle drawer'
-        appearance='primary'
-        view='filled'
-        onClick={() => updateArgsRef.current({ open: true })}
-      />
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Открыть Drawer триггером ниже. Положение, ширина, слоты — из Controls.</DemoHint>
+        {widthClamped && (
+          <DemoWarning>
+            <code>width={String(width)}</code> не применяется при <code>position={position}</code> (horizontal).
+            Игнорирую.
+          </DemoWarning>
+        )}
+        {heightAutoClamped && (
+          <DemoWarning>
+            <code>heightAuto</code> не применяется при <code>position={position}</code> (vertical). Игнорирую.
+          </DemoWarning>
+        )}
+        <DemoActions align='center'>
+          <Button
+            data-test-id={TEST_IDS.drawer.triggerOpen}
+            label='Открыть Drawer'
+            view={VIEW.Outline}
+            appearance={APPEARANCE.Neutral}
+            onClick={() => setOpen(true)}
+          />
+        </DemoActions>
+      </DemoPanel>
       <Drawer
-        {...args}
-        open={open ?? false}
+        {...rest}
+        open={open}
         onClose={handleMainClose}
         position={position}
-        content={content}
+        width={effectiveWidth}
+        heightAuto={effectiveHeightAuto}
+        content={body}
         container={portalRoot.current || undefined}
-        showBlackout={blackout}
-        onBackButtonClick={showBackButton ? onBackButtonClick : undefined}
-        title={showHeadline ? title : undefined}
-        subtitle={showSubHeadline ? subtitle : undefined}
+        showBlackout={showBlackout}
+        onBackButtonClick={renderBackButton ? onBackButtonClick : undefined}
+        title={renderHeadline ? title : undefined}
+        subtitle={renderSubHeadline ? subtitle : undefined}
         slotAfterHeadline={
-          showAfterHeadline ? (
-            <QuestionTooltip tip={customTooltipText} data-test-id={TEST_IDS.tooltip} size='s' />
+          renderAfterHeadline ? (
+            // Оборачиваем в span с stable data-test-id: QuestionTooltip пробрасывает
+            // `data-test-id` на floating-portal (рендерится только на hover), а слот
+            // нужен в DOM сразу при открытии drawer'а для e2e-проверки.
+            <span data-test-id={PUBLIC_TEST_IDS.tooltip}>
+              <QuestionTooltip tip={customTooltipText} size='s' />
+            </span>
           ) : undefined
         }
-        media={showMedia ? <ThemedDrawerMedia src={storyMediaSrc} data-test-id={TEST_IDS.image} /> : undefined}
+        media={showMedia ? <ThemedDrawerMedia src={storyMediaSrc} data-test-id={PUBLIC_TEST_IDS.image} /> : undefined}
         footer={
           showFooter ? (
             <ButtonGroup
@@ -183,6 +180,7 @@ function DrawerPlaygroundCanvas(props: DrawerPlaygroundCanvasProps) {
                 view: 'simple',
                 appearance: 'neutral',
                 onClick: () => setNestedOpen(true),
+                'data-test-id': TEST_IDS.drawer.nestedTrigger,
               }}
               primaryAction={{ label: 'Label text', view: 'filled' }}
               secondaryAction={{ label: 'Label text', view: 'outline', appearance: 'neutral' }}
@@ -195,13 +193,13 @@ function DrawerPlaygroundCanvas(props: DrawerPlaygroundCanvasProps) {
               open={nestedOpen}
               onClose={() => setNestedOpen(false)}
               position={position}
-              width={args.width}
-              heightAuto={args.heightAuto}
+              width={effectiveWidth}
+              heightAuto={effectiveHeightAuto}
               container={portalRoot.current || undefined}
-              showBlackout={blackout}
+              showBlackout={showBlackout}
               title={NESTED_DRAWER_TITLE}
               content={NESTED_DRAWER_BODY}
-              data-test-id={TEST_IDS.nestedDrawer}
+              data-test-id={PUBLIC_TEST_IDS.nestedDrawer}
               footer={
                 <ButtonGroup
                   className={styles.footerGroup}
@@ -216,33 +214,22 @@ function DrawerPlaygroundCanvas(props: DrawerPlaygroundCanvasProps) {
           ) : undefined
         }
       />
-    </>
+    </DemoPage>
   );
 }
 
 const meta: Meta<StoryProps> = {
   title: 'Components/Drawer/Drawer',
   component: Drawer,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
 
-const Template: StoryFn<StoryProps> = props => {
-  const [, updateArgs] = useArgs<StoryProps>();
-  const updateArgsRef = useRef(updateArgs);
-  updateArgsRef.current = updateArgs;
-
-  const canvasKey = String(coerceStoryBooleanArg(props.open, false));
-
-  return <DrawerPlaygroundCanvas key={canvasKey} {...props} updateArgsRef={updateArgsRef} />;
-};
-
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: Template,
+  render: args => <PlaygroundRender {...args} />,
   args: {
-    open: false,
     position: POSITION.Right,
     width: WIDTH.S,
     heightAuto: undefined,
@@ -268,9 +255,12 @@ export const Playground: Story = {
     content: SHORT_BODY_TEXT,
   },
   argTypes: {
+    // open/onClose отсутствуют в args — open живёт в local useState внутри render.
+    open: { table: { disable: true } },
+    onClose: { table: { disable: true } },
     showBlackout: {
       control: 'boolean',
-      description: 'Тёмная подложка; для e2e явно в argTypes, чтобы значение из URL стабильно доходило до Drawer.',
+      description: 'Тёмная подложка',
     },
     position: {
       control: 'radio',
@@ -279,10 +269,11 @@ export const Playground: Story = {
     width: {
       control: 'radio',
       options: Object.values(WIDTH),
+      description: 'Активна при position=left/right; для top/bottom — игнорируется (runtime + DemoWarning)',
     },
     heightAuto: {
       control: 'boolean',
-      description: 'Только для position top/bottom; при left/right игнорируется',
+      description: 'Активна при position=top/bottom; для left/right — игнорируется (runtime + DemoWarning)',
     },
     showMedia: { control: 'boolean' },
 
@@ -296,7 +287,6 @@ export const Playground: Story = {
       if: { arg: 'showHeader', eq: true },
     },
     title: {
-      name: 'headlineText',
       if: { arg: 'showHeadline', eq: true },
     },
     showAfterHeadline: {
@@ -321,8 +311,7 @@ export const Playground: Story = {
     showFooter: { control: 'boolean' },
     longBodyContent: {
       name: '[Stories]: Huge body content',
-      description:
-        'Без привязки к слоту подсказки: иначе Storybook не применяет arg из URL при showAfterHeadline: false (e2e).',
+      control: 'boolean',
     },
     customTooltipText: {
       name: '[Stories]: Custom tooltip text',
@@ -331,12 +320,11 @@ export const Playground: Story = {
     footer: { table: { disable: true } },
     media: { table: { disable: true } },
     nestedDrawer: { table: { disable: true } },
-    onClose: { table: { disable: true } },
     onBackButtonClick: { table: { disable: true } },
     slotAfterHeadline: { table: { disable: true } },
     container: { table: { disable: true } },
   },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(DRAWER_TRIGGER_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.drawer.triggerOpen)).toBeVisible();
   },
 };

@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
 export type DrawerCustomLayoutContextValue = {
   /** true только при `heightAuto` и `position` top/bottom; для left/right всегда false */

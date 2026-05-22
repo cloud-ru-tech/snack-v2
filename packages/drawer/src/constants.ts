@@ -8,7 +8,9 @@ export const TEST_IDS = {
   body: 'drawer__body',
   footer: 'drawer__footer',
   nestedDrawer: 'drawer__nested',
-};
+  overlay: 'drawer__overlay',
+  contentWrapper: 'drawer__content-wrapper',
+} as const;
 
 export const WIDTH = {
   S: 's',

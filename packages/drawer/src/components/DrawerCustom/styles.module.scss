@@ -19,6 +19,10 @@ $widthSizes: 's', 'm', 'l';
   z-index: initial !important; /* stylelint-disable-line declaration-no-important */
 }
 
+.focusScope {
+  display: contents;
+}
+
 .drawer {
   position: relative;
   display: flex;

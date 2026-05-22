@@ -32,6 +32,7 @@
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
-    "rc-drawer": "6.4.1"
+    "rc-drawer": "6.4.1",
+    "tabbable": "6.4.0"
   }
 }

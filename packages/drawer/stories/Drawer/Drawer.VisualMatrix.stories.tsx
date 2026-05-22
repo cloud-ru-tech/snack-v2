@@ -1,99 +1,121 @@
-import { Button } from '@ds/button';
+import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
 import { Drawer, POSITION, Position, WIDTH, Width } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { StoryTable } from '#storybook/components';
+import { DemoHint, DemoPage, DemoPanel, DemoTitle, StoryTable } from '#storybook/components';
 
-type Combo = { position: Position; width?: Width; heightAuto?: boolean; label: string };
+import { TEST_IDS } from '../testIds';
 
-function DrawerTrigger({ combo }: { combo: Combo }) {
-  const [open, setOpen] = useState(false);
+type Combo = {
+  key: string;
+  position: Position;
+  width?: Width;
+  heightAuto?: boolean;
+};
+
+const LR_POSITIONS: Position[] = [POSITION.Left, POSITION.Right];
+const TB_POSITIONS: Position[] = [POSITION.Top, POSITION.Bottom];
+const WIDTHS: Width[] = [WIDTH.S, WIDTH.M, WIDTH.L];
+const HEIGHT_AUTOS = [
+  { key: 'auto', value: true, label: 'auto' },
+  { key: 'full', value: false, label: 'full' },
+];
+
+function VisualMatrixCanvas() {
+  const [active, setActive] = useState<Combo | null>(null);
+  const close = () => setActive(null);
 
   return (
-    <>
-      <Button label={combo.label} appearance='neutral' view='outline' onClick={() => setOpen(true)} />
-      <Drawer
-        open={open}
-        position={combo.position}
-        width={combo.width}
-        heightAuto={combo.heightAuto}
-        onClose={() => setOpen(false)}
-        title={combo.label}
-        subtitle={`position=${combo.position}${combo.width ? ` width=${combo.width}` : ''}`}
-        content='Содержимое панели.'
-      />
-    </>
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Visual matrix</DemoTitle>
+        <DemoHint>
+          Триггеры сгруппированы по осям: <code>left/right × width</code> и <code>top/bottom × heightAuto</code>. Снимки
+          собираются visual.spec&apos;ом: клик → screenshot → закрыть → следующий.
+        </DemoHint>
+
+        <StoryTable
+          sectionTitle='Left / Right × Width'
+          firstColumnHeader='position \ width'
+          columnHeaders={WIDTHS.map(w => w.toUpperCase())}
+          rows={LR_POSITIONS.map(position => ({
+            variantLabel: position,
+            cells: WIDTHS.map(width => {
+              const key = `${position}-${width}`;
+              return (
+                <Button
+                  key={key}
+                  data-test-id={TEST_IDS.drawerVm.trigger(key)}
+                  label={`${position} · ${width}`}
+                  view={VIEW.Outline}
+                  appearance={APPEARANCE.Neutral}
+                  onClick={() => setActive({ key, position, width })}
+                />
+              );
+            }),
+          }))}
+        />
+
+        <StoryTable
+          sectionTitle='Top / Bottom × Height'
+          firstColumnHeader='position \ height'
+          columnHeaders={HEIGHT_AUTOS.map(h => h.label)}
+          rows={TB_POSITIONS.map(position => ({
+            variantLabel: position,
+            cells: HEIGHT_AUTOS.map(({ key: hKey, value, label }) => {
+              const key = `${position}-${hKey}`;
+              return (
+                <Button
+                  key={key}
+                  data-test-id={TEST_IDS.drawerVm.trigger(key)}
+                  label={`${position} · ${label}`}
+                  view={VIEW.Outline}
+                  appearance={APPEARANCE.Neutral}
+                  onClick={() => setActive({ key, position, heightAuto: value })}
+                />
+              );
+            }),
+          }))}
+        />
+      </DemoPanel>
+      {active && (
+        <Drawer
+          key={active.key}
+          open
+          onClose={close}
+          position={active.position}
+          width={active.width}
+          heightAuto={active.heightAuto}
+          title={active.key}
+          subtitle={`position=${active.position}${active.width ? ` width=${active.width}` : ''}`}
+          content='Содержимое панели.'
+          footer={
+            <ButtonGroup
+              primaryAction={{
+                label: 'Закрыть',
+                view: 'filled',
+                appearance: 'neutral',
+                'data-test-id': TEST_IDS.drawerVm.dismiss,
+                onClick: close,
+              }}
+            />
+          }
+        />
+      )}
+    </DemoPage>
   );
 }
 
-const meta: Meta<typeof Drawer> = {
+const meta: Meta<typeof VisualMatrixCanvas> = {
   title: 'Components/Drawer/Drawer',
-  component: Drawer,
-  parameters: { layout: 'padded' },
+  component: VisualMatrixCanvas,
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
 };
 export default meta;
 
-type Story = StoryObj<typeof Drawer>;
-
-const keyPositions: Position[] = [POSITION.Left, POSITION.Right, POSITION.Top, POSITION.Bottom];
-const keyWidths: Width[] = [WIDTH.S, WIDTH.M, WIDTH.L];
+type Story = StoryObj<typeof VisualMatrixCanvas>;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <>
-      <StoryTable
-        sectionTitle='Position (trigger buttons)'
-        firstColumnHeader='Position'
-        columnHeaders={['Trigger']}
-        rows={keyPositions.map(position => ({
-          variantLabel: position,
-          cells: [<DrawerTrigger key={position} combo={{ position, label: position }} />],
-        }))}
-      />
-
-      <StoryTable
-        sectionTitle='Width × Position (left/right)'
-        firstColumnHeader='Width'
-        columnHeaders={[POSITION.Left, POSITION.Right]}
-        rows={keyWidths.map(width => ({
-          variantLabel: width.toUpperCase(),
-          cells: [POSITION.Left, POSITION.Right].map(position => (
-            <DrawerTrigger
-              key={`${position}-${width}`}
-              combo={{ position: position as Position, width, label: `${position} / ${width}` }}
-            />
-          )),
-        }))}
-      />
-
-      <StoryTable
-        sectionTitle='Height-auto (top/bottom)'
-        firstColumnHeader='Height'
-        columnHeaders={[POSITION.Top, POSITION.Bottom]}
-        rows={[
-          {
-            variantLabel: 'auto',
-            cells: [POSITION.Top, POSITION.Bottom].map(position => (
-              <DrawerTrigger
-                key={`${position}-auto`}
-                combo={{ position: position as Position, heightAuto: true, label: `${position} auto` }}
-              />
-            )),
-          },
-          {
-            variantLabel: 'full',
-            cells: [POSITION.Top, POSITION.Bottom].map(position => (
-              <DrawerTrigger
-                key={`${position}-full`}
-                combo={{ position: position as Position, heightAuto: false, label: `${position} full` }}
-              />
-            )),
-          },
-        ]}
-      />
-    </>
-  ),
 };

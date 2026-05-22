@@ -1,26 +1,39 @@
-import { Button } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { DrawerCustom, DrawerCustomProps, POSITION, WIDTH } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from 'storybook/preview-api';
+import { useEffect, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 import styles from './styles.module.scss';
 
 function PlaygroundRender(args: DrawerCustomProps) {
-  const [, updateArgs] = useArgs<DrawerCustomProps>();
-  const open = () => updateArgs({ open: true });
-  const close = () => updateArgs({ open: false });
+  const { open: initialOpen, ...rest } = args;
+  const [open, setOpen] = useState(initialOpen ?? false);
+  useEffect(() => {
+    if (initialOpen !== undefined) setOpen(initialOpen);
+  }, [initialOpen]);
+  const openDrawer = () => setOpen(true);
+  const close = () => setOpen(false);
 
   return (
-    <>
-      <Button
-        data-test-id='drawer-custom-trigger'
-        label='Open custom drawer'
-        appearance='primary'
-        view='filled'
-        onClick={open}
-      />
-      <DrawerCustom {...args} onClose={close}>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Открыть кастомный Drawer триггером ниже. Состав слотов задан вручную в render.</DemoHint>
+        <DemoActions align='center'>
+          <Button
+            data-test-id={TEST_IDS.drawerCustom.triggerOpen}
+            label='Open custom drawer'
+            view={VIEW.Outline}
+            appearance={APPEARANCE.Neutral}
+            onClick={openDrawer}
+          />
+        </DemoActions>
+      </DemoPanel>
+      <DrawerCustom {...rest} open={open} onClose={close}>
         <DrawerCustom.Header title='Custom composition' subtitle='Шапка, тело и футер собираются вручную.' />
         <DrawerCustom.Body
           content={
@@ -37,25 +50,24 @@ function PlaygroundRender(args: DrawerCustomProps) {
           </div>
         </DrawerCustom.Footer>
       </DrawerCustom>
-    </>
+    </DemoPage>
   );
 }
 
 const meta: Meta<typeof DrawerCustom> = {
   title: 'Components/Drawer/DrawerCustom',
   component: DrawerCustom,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
-    open: false,
     position: POSITION.Right,
     width: WIDTH.S,
     heightAuto: false,
     showBlackout: true,
     closeOnPopstate: true,
-    'data-test-id': 'drawer-custom',
+    'data-test-id': TEST_IDS.drawerCustom.root,
   },
   argTypes: {
-    open: { control: 'boolean', description: 'Управление видимостью' },
+    open: { control: 'boolean', table: { disable: true } },
     position: {
       control: 'radio',
       options: Object.values(POSITION),
@@ -90,6 +102,6 @@ type Story = StoryObj<typeof DrawerCustom>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('drawer-custom-trigger')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.drawerCustom.triggerOpen)).toBeVisible();
   },
 };
