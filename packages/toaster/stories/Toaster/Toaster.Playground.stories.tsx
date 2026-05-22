@@ -23,9 +23,11 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useRef, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, DemoWarning } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 import { fileLoading, filePause, fileUploaded } from '../uploadFixtures';
-import styles from './stories.module.scss';
-import { TOASTER_CONTAINER_TEST_ID, TRIGGER_DISMISS_ALL_TEST_ID, TRIGGER_SPAWN_TEST_ID } from './testIds';
+import styles from './styles.module.scss';
 
 const ALL_POSITIONS: ToasterPosition[] = Array.from(
   new Set<ToasterPosition>([...Object.values(POSITION_SYSTEM_EVENT), ...Object.values(POSITION_USER_ACTION)]),
@@ -203,38 +205,38 @@ function PlaygroundDemo({
   };
 
   return (
-    <div className={styles.demoPage}>
-      <section className={styles.demoPanel}>
-        <h3 className={styles.demoTitle}>Playground</h3>
-        <p className={styles.demoHint}>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>
           Настройки контейнера рулятся из Controls справа. Тост — заготовленный шаблон под выбранный <code>type</code>.
           UserAction поддерживает только <code>top-center</code> и <code>bottom-center</code>: если выбрана
           несовместимая позиция — она снапится на дефолт для текущего типа.
-        </p>
+        </DemoHint>
 
         {clamped && (
-          <p className={styles.demoHint}>
-            ⚠ <code>position={position}</code> недопустим для <code>type={type}</code>. Использую{' '}
+          <DemoWarning>
+            <code>position={position}</code> недопустим для <code>type={type}</code>. Использую{' '}
             <code>{effectivePosition}</code>.
-          </p>
+          </DemoWarning>
         )}
 
-        <div className={styles.demoActions}>
+        <DemoActions>
           <Button
             view={VIEW.Outline}
             appearance={APPEARANCE.Neutral}
             label={`Открыть тост (${type})`}
             onClick={open}
-            data-test-id={TRIGGER_SPAWN_TEST_ID}
+            data-test-id={TEST_IDS.playground.triggerOpen}
           />
           <Button
             appearance={APPEARANCE.Critical}
             label='Закрыть все'
             onClick={dismissAll}
-            data-test-id={TRIGGER_DISMISS_ALL_TEST_ID}
+            data-test-id={TEST_IDS.playground.triggerReset}
           />
-        </div>
-      </section>
+        </DemoActions>
+      </DemoPanel>
 
       {scopeToFrame ? (
         <div className={styles.playgroundFrame} ref={frameRef} />
@@ -253,7 +255,7 @@ function PlaygroundDemo({
           data-test-id={dataTestId || undefined}
         />
       )}
-    </div>
+    </DemoPage>
   );
 }
 
@@ -273,7 +275,7 @@ const meta: Meta<PlaygroundArgs> = {
     draggable: false,
     draggableDirection: 'auto',
     containerId: undefined,
-    dataTestId: TOASTER_CONTAINER_TEST_ID,
+    dataTestId: TEST_IDS.toasterContainer,
     scopeToFrame: false,
   },
   argTypes: {
@@ -350,6 +352,6 @@ type Story = StoryObj<PlaygroundArgs>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(TRIGGER_SPAWN_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.playground.triggerOpen)).toBeVisible();
   },
 };

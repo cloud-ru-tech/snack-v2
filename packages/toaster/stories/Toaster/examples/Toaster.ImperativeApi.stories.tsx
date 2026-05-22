@@ -14,14 +14,11 @@ import {
 } from '@ds/toaster';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { fileError, fileLoading, filePause, fileUploaded } from '../uploadFixtures';
-import styles from './stories.module.scss';
-import {
-  systemEventTriggerTestId,
-  TOASTER_TRIGGER_DISMISS_ALL_TEST_ID,
-  uploadTriggerTestId,
-  userActionTriggerTestId,
-} from './testIds';
+import { DemoPage, DemoPanel } from '#storybook/components';
+
+import { TEST_IDS } from '../../testIds';
+import { fileError, fileLoading, filePause, fileUploaded } from '../../uploadFixtures';
+import styles from '../styles.module.scss';
 
 // Демонстрация императивных API `toaster.systemEvent.*` / `toaster.userAction.*` /
 // `toaster.upload.startOrUpdate`. Соответствует Tier L scenario-stories.
@@ -110,8 +107,8 @@ function ImperativeApiDemo() {
   };
 
   return (
-    <div className={styles.demoPage}>
-      <section className={`${styles.demoPanel} ${styles.demoPanelWide}`}>
+    <DemoPage>
+      <DemoPanel width='wide' className={`${styles.demoPanel} ${styles.demoPanelWide}`}>
         <h3 className={styles.demoTitle}>Императивный API</h3>
         <p className={styles.demoHint}>
           SystemEvent и Upload рисуются в один общий контейнер справа снизу. UserAction — в свой контейнер по центру
@@ -130,7 +127,7 @@ function ImperativeApiDemo() {
                   appearance={APPEARANCE.Neutral}
                   label={appearance}
                   onClick={() => fireSystemEvent(appearance)}
-                  data-test-id={systemEventTriggerTestId(appearance)}
+                  data-test-id={TEST_IDS.imperativeApi.systemEvent(appearance)}
                 />
               ))}
             </div>
@@ -147,7 +144,7 @@ function ImperativeApiDemo() {
                   appearance={APPEARANCE.Neutral}
                   label={appearance}
                   onClick={() => fireUserAction(appearance)}
-                  data-test-id={userActionTriggerTestId(appearance)}
+                  data-test-id={TEST_IDS.imperativeApi.userAction(appearance)}
                 />
               ))}
             </div>
@@ -164,7 +161,7 @@ function ImperativeApiDemo() {
                   appearance={APPEARANCE.Neutral}
                   label={status}
                   onClick={() => fireUpload(status)}
-                  data-test-id={uploadTriggerTestId(status)}
+                  data-test-id={TEST_IDS.imperativeApi.upload(status)}
                 />
               ))}
             </div>
@@ -176,10 +173,10 @@ function ImperativeApiDemo() {
             appearance={APPEARANCE.Critical}
             label='Закрыть все'
             onClick={dismissAll}
-            data-test-id={TOASTER_TRIGGER_DISMISS_ALL_TEST_ID}
+            data-test-id={TEST_IDS.imperativeApi.triggerReset}
           />
         </div>
-      </section>
+      </DemoPanel>
 
       <ToasterContainer
         type={TOASTER_TYPE.SystemEvent}
@@ -197,12 +194,12 @@ function ImperativeApiDemo() {
         limit={2}
         autoClose={3000}
       />
-    </div>
+    </DemoPage>
   );
 }
 
 const meta: Meta<typeof ImperativeApiDemo> = {
-  title: 'Components/Toaster/Toaster',
+  title: 'Components/Toaster/Toaster/Examples/ImperativeApi',
   component: ImperativeApiDemo,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

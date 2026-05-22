@@ -16,14 +16,10 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
-import styles from './stories.module.scss';
-import {
-  TOASTER_MOBILE_DISMISS_ALL_TEST_ID,
-  TOASTER_MOBILE_SIZE_TEST_ID,
-  TOASTER_MOBILE_SYSTEM_EVENT_TEST_ID,
-  TOASTER_MOBILE_UPLOAD_TEST_ID,
-  TOASTER_MOBILE_USER_ACTION_TEST_ID,
-} from './testIds';
+import { DemoPage, DemoPanel } from '#storybook/components';
+
+import { TEST_IDS } from '../../testIds';
+import styles from '../styles.module.scss';
 
 // Composition-стори: тосты привязаны к локальному containing block (телефонная
 // рамка) через `toasterParent` + `transform: translateZ(0)`. Демонстрирует
@@ -144,8 +140,8 @@ function CompositionDemo() {
   };
 
   return (
-    <div className={styles.phonePage}>
-      <section className={`${styles.demoPanel} ${styles.demoPanelNarrow}`}>
+    <DemoPage className={styles.phonePage}>
+      <DemoPanel width='narrow' className={`${styles.demoPanel} ${styles.demoPanelNarrow}`}>
         <h3 className={styles.demoTitle}>Scoped frame composition</h3>
         <p className={styles.demoHint}>
           Контейнеры тостов привязаны к рамке справа через <code>toasterParent</code> — тосты появляются и живут внутри
@@ -165,7 +161,7 @@ function CompositionDemo() {
             items={PHONE_SIZE_ITEMS}
             value={size}
             onChange={setSize}
-            data-test-id={TOASTER_MOBILE_SIZE_TEST_ID}
+            data-test-id={TEST_IDS.composition.size}
           />
         </div>
 
@@ -177,14 +173,14 @@ function CompositionDemo() {
               appearance={APPEARANCE.Neutral}
               label='Открыть событие'
               onClick={fireSystemEvent}
-              data-test-id={TOASTER_MOBILE_SYSTEM_EVENT_TEST_ID}
+              data-test-id={TEST_IDS.composition.systemEvent}
             />
             <Button
               view={VIEW.Outline}
               appearance={APPEARANCE.Neutral}
               label='Открыть upload'
               onClick={fireUpload}
-              data-test-id={TOASTER_MOBILE_UPLOAD_TEST_ID}
+              data-test-id={TEST_IDS.composition.upload}
             />
           </div>
         </div>
@@ -197,7 +193,7 @@ function CompositionDemo() {
               appearance={APPEARANCE.Neutral}
               label='Скопировано'
               onClick={fireUserAction}
-              data-test-id={TOASTER_MOBILE_USER_ACTION_TEST_ID}
+              data-test-id={TEST_IDS.composition.userAction}
             />
           </div>
         </div>
@@ -207,10 +203,10 @@ function CompositionDemo() {
             appearance={APPEARANCE.Critical}
             label='Закрыть все'
             onClick={dismissAll}
-            data-test-id={TOASTER_MOBILE_DISMISS_ALL_TEST_ID}
+            data-test-id={TEST_IDS.composition.triggerReset}
           />
         </div>
-      </section>
+      </DemoPanel>
 
       <div className={`${styles.phoneFrame} ${PHONE_SIZE_CLASS[size]}`}>
         <div className={styles.phoneNotch} />
@@ -221,12 +217,12 @@ function CompositionDemo() {
         <div className={styles.phoneSafeArea} ref={frameRef} />
         <div className={styles.phoneHomeIndicator} />
       </div>
-    </div>
+    </DemoPage>
   );
 }
 
 const meta: Meta<typeof CompositionDemo> = {
-  title: 'Components/Toaster/Toaster',
+  title: 'Components/Toaster/Toaster/Examples/Composition',
   component: CompositionDemo,
   parameters: {
     layout: 'fullscreen',

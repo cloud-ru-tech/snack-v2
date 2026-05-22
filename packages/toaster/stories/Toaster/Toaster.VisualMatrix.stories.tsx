@@ -9,8 +9,8 @@ import {
 } from '@ds/toaster';
 import { Meta, StoryObj } from '@storybook/react';
 
-import styles from './stories.module.scss';
-import { stackingSpawnTestId, TOASTER_STACKING_DISMISS_ALL_TEST_ID } from './testIds';
+import { TEST_IDS } from '../testIds';
+import styles from './styles.module.scss';
 
 // VisualMatrix для Toaster — карта 6 позиций × stacked-ось. Каждый угол —
 // свой контейнер, кнопка спавнит 5 тостов подряд, чтобы стек собрался; «Закрыть все»
@@ -60,7 +60,7 @@ function VisualMatrixDemo() {
               appearance={APPEARANCE.Neutral}
               label={`${position} · спавн 5`}
               onClick={() => spawnInto(stackContainerId(position), 5)}
-              data-test-id={stackingSpawnTestId(position)}
+              data-test-id={TEST_IDS.visualMatrix.spawnAt(position)}
             />
           </div>
         ))}
@@ -76,7 +76,7 @@ function VisualMatrixDemo() {
             appearance={APPEARANCE.Critical}
             label='Закрыть все'
             onClick={dismissAll}
-            data-test-id={TOASTER_STACKING_DISMISS_ALL_TEST_ID}
+            data-test-id={TEST_IDS.visualMatrix.triggerReset}
           />
         </div>
       </div>

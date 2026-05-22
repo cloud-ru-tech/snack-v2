@@ -7,8 +7,10 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { SYSTEM_EVENT_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
+import styles from './styles.module.scss';
 
 const linkPresets = {
   none: undefined,
@@ -47,18 +49,21 @@ type PlaygroundArgs = {
 
 function PlaygroundCard(props: PlaygroundArgs) {
   return (
-    <div className={styles.playgroundPage}>
-      <section className={styles.playgroundPanel}>
-        <h3 className={styles.playgroundTitle}>ToastSystemEvent</h3>
-        <p className={styles.playgroundHint}>
-          Системная карточка-уведомление с заголовком, описанием, ссылкой и кнопками действий. Все props в панели
-          Controls. В реальной системе размещается через <code>ToasterContainer</code> со стеком и autoClose-каскадом.
-        </p>
-        <div className={styles.toastCell}>
-          <ToastSystemEvent {...props} />
-        </div>
-      </section>
-    </div>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>
+          {
+            'Системная карточка-уведомление с заголовком, описанием, ссылкой и кнопками действий. В реальной системе размещается через ToasterContainer со стеком и autoClose-каскадом.'
+          }
+        </DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.toastCell}>
+            <ToastSystemEvent {...props} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 }
 
@@ -76,7 +81,7 @@ const meta: Meta<PlaygroundArgs> = {
     link: undefined,
     action: undefined,
     onCloseClick: fn(),
-    'data-test-id': SYSTEM_EVENT_TEST_ID,
+    'data-test-id': TEST_IDS.systemEventRoot,
   },
   argTypes: {
     title: { control: 'text' },
@@ -108,6 +113,6 @@ type Story = StoryObj<PlaygroundArgs>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(SYSTEM_EVENT_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.systemEventRoot)).toBeVisible();
   },
 };

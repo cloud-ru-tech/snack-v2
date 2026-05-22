@@ -14,7 +14,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { fileError, fileLoading, filePause, fileUploaded } from '../uploadFixtures';
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof ToastUpload> = {
   title: 'Components/Toaster/ToastUpload',

@@ -1,52 +1,44 @@
-import { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { TEST_IDS } from '../../src/constants';
+// E2E helpers импортят TEST_IDS из stories/testIds, а не из entry `@ds/toaster` —
+// entry тащит CSS-модули, что ломает playwright-compile.
+import { TEST_IDS } from '../../stories/testIds';
 
-export const TOASTER_CONTAINER_TEST_ID = TEST_IDS.toasterContainer;
-export const TOASTER_BUTTON_CLOSE_ALL_TEST_ID = TEST_IDS.buttonCloseAll;
-export const SYSTEM_EVENT_TEST_ID = TEST_IDS.systemEventRoot;
-export const USER_ACTION_TEST_ID = TEST_IDS.userActionRoot;
-export const UPLOAD_TEST_ID = TEST_IDS.uploadRoot;
+export { TEST_IDS };
 
-const GROUP = 'toaster';
-const STORY_NAME = 'toaster';
+const PG = (story: string): StoryRef => ({ name: 'toaster', group: 'toaster', story });
+const EX = (sub: string, story: string): StoryRef => ({ name: `toaster-examples-${sub}`, group: 'toaster', story });
+const TS = (sub: string, story: string): StoryRef => ({ name: `toaster-tests-${sub}`, group: 'toaster', story });
 
 export const TOASTER_STORIES = {
-  playground: 'playground',
-  visualMatrix: 'visual-matrix',
-  imperativeApi: 'imperative-api',
-  interactionTest: 'interaction-test',
-  composition: 'composition',
-  // Legacy-алиасы под существующие e2e specs до их переписывания: stacking →
-  // VisualMatrix, triggers → ImperativeApi, updateFlow → InteractionTest,
-  // mobile → Composition. Триггеры/data-test-id'ы сохранены 1:1.
-  stacking: 'visual-matrix',
-  triggers: 'imperative-api',
-  updateFlow: 'interaction-test',
-  mobile: 'composition',
-} as const;
+  playground: PG('playground'),
+  visualMatrix: PG('visual-matrix'),
+  imperativeApi: EX('imperativeapi', 'imperative-api'),
+  composition: EX('composition', 'composition'),
+  interactionTest: TS('interaction', 'interaction-test'),
+} as const satisfies Record<string, StoryRef>;
 
-export type ToasterStoryId = (typeof TOASTER_STORIES)[keyof typeof TOASTER_STORIES];
+export type ToasterStoryRef = StoryRef;
 
 export function buildStoryOptions(
-  story: ToasterStoryId = TOASTER_STORIES.playground,
   props?: Record<string, unknown>,
+  ref: StoryRef = TOASTER_STORIES.playground,
 ): StorybookUrlOptions {
   return {
-    name: STORY_NAME,
-    group: GROUP,
-    story,
+    name: ref.name,
+    group: ref.group,
+    story: ref.story,
     props,
   };
 }
 
-// Stories-level test-id'ы (объявлены в stories/Toaster/testIds.ts и в самих story-файлах)
-export const TRIGGER_SPAWN_TEST_ID = 'toaster-trigger-spawn';
-export const TRIGGER_DISMISS_ALL_TEST_ID = 'toaster-trigger-dismiss-all';
-export const TRIGGER_STACKING_DISMISS_ALL_TEST_ID = 'toaster-stacking-dismiss-all';
-export const stackingSpawnTestId = (position: string) => `toaster-stacking-${position}-spawn`;
-export const systemEventTriggerTestId = (appearance: string) => `toaster-trigger-system-event-${appearance}`;
-export const userActionTriggerTestId = (appearance: string) => `toaster-trigger-user-action-${appearance}`;
-export const uploadTriggerTestId = (status: string) => `toaster-trigger-upload-${status}`;
-export const TRIGGER_UPDATE_SYSTEM_SUCCESS_TEST_ID = 'update-flow-system-success';
-export const TRIGGER_UPDATE_USER_ACTION_TEST_ID = 'update-flow-user-action';
+// Ключевая выборка комбинаций для параметризованных props-propagation тестов.
+// Не декартово произведение всех осей — по 1 представителю каждого значения.
+export const TOASTER_KEY_COMBOS = [
+  { position: 'top-left' },
+  { position: 'top-right' },
+  { position: 'bottom-left' },
+  { position: 'bottom-right' },
+] as const;
+
+export const TOASTER_TYPE_KEY_VALUES = ['systemEvent', 'userAction', 'upload'] as const;

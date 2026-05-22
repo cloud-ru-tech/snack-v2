@@ -28,7 +28,7 @@ export type ToastUserActionProps = ToastContentProps &
     /** Цветовая схема (status в Figma) */
     appearance?: ToastUserActionAppearance;
     /** Slot для action-кнопки (по умолчанию `<button>`, через `as='a'` — линка) */
-    action?: ToastUserActionAction;
+    action?: ToastUserActionAction<'button'> | ToastUserActionAction<'a'>;
     /** Доп. класс корневого элемента */
     className?: string;
     /** Loading-состояние с заменой иконки на Sun-спиннер */

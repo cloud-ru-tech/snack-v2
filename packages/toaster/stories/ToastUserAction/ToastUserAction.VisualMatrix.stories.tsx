@@ -10,7 +10,7 @@ import { ReactNode } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof ToastUserAction> = {
   title: 'Components/Toaster/ToastUserAction',
@@ -32,7 +32,10 @@ const loadingRows: ReadonlyArray<{ key: string; props: { loading?: boolean; time
 
 const noop = () => {};
 
-const actionPresets: ReadonlyArray<{ key: string; action: ToastUserActionAction | undefined }> = [
+const actionPresets: ReadonlyArray<{
+  key: string;
+  action: ToastUserActionAction<'button'> | ToastUserActionAction<'a'> | undefined;
+}> = [
   { key: 'none', action: undefined },
   { key: 'labelOnly', action: { label: 'Отменить', onClick: noop } },
   {

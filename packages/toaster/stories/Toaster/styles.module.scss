@@ -1,5 +1,10 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .matrix {
   display: grid;
   gap: base.$sn-primitive-dimension-24;
@@ -43,7 +48,7 @@
 
 .stackPreview {
   position: relative;
-  min-height: 120px;
+  min-height: base.$sn-primitive-dimension-120;
 }
 
 .stackPreviewDeep {
@@ -307,7 +312,9 @@
   flex-shrink: 0;
 
   border: 7px solid #1a1a1a;
-  border-radius: 36px;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-36;
 
   background: base.$sn-theme-color-neutral-background1Level;
 }
@@ -336,15 +343,15 @@
   left: 50%;
   transform: translateX(-50%);
 
-  width: 96px;
-  height: 20px;
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-20;
   border-radius: 0 0 14px 14px;
 
   background: #1a1a1a;
 }
 
-// Safe-area: внутренняя зона телефона с отступами под notch (top 32px)
-// и home-indicator (bottom 24px). Toasts позиционируются внутри неё благодаря
+// Safe-area: внутренняя зона телефона с отступами под notch (top base.$sn-primitive-dimension-32)
+// и home-indicator (bottom base.$sn-primitive-dimension-24). Toasts позиционируются внутри неё благодаря
 // transform — она становится containing block для position: fixed.
 // Safe-area — отдельный containing block для position:fixed дочерних
 // toaster-контейнеров. position:fixed позиционируется по padding-edge
@@ -354,7 +361,7 @@
 // автоматически попадают в её углы.
 .phoneSafeArea {
   position: absolute;
-  inset: 44px base.$sn-primitive-dimension-24 32px base.$sn-primitive-dimension-24;
+  inset: base.$sn-primitive-dimension-44 base.$sn-primitive-dimension-24 base.$sn-primitive-dimension-32 base.$sn-primitive-dimension-24;
   transform: translateZ(0);
 }
 
@@ -369,7 +376,7 @@
   align-items: center;
   justify-content: space-between;
 
-  height: 32px;
+  height: base.$sn-primitive-dimension-32;
   padding: 0 base.$sn-primitive-dimension-16;
 
   color: base.$sn-theme-color-neutral-text;
@@ -377,13 +384,15 @@
 
 .phoneHomeIndicator {
   position: absolute;
-  bottom: 8px;
+  bottom: base.$sn-primitive-dimension-8;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 96px;
-  height: 4px;
-  border-radius: 2px;
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-4;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-2;
 
   opacity: 0.6;
   background: base.$sn-theme-color-neutral-text;

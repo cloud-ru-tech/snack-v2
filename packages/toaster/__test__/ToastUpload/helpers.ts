@@ -1,12 +1,9 @@
 import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
+import { TOAST_UPLOAD_STATUS } from '../../src/components/ToastUpload/constants';
 import { TEST_IDS } from '../../src/constants';
 
-export const UPLOAD_TEST_ID = TEST_IDS.uploadRoot;
-export const UPLOAD_CLOSE_TEST_ID = TEST_IDS.uploadClose;
-export const UPLOAD_COLLAPSE_BUTTON_TEST_ID = TEST_IDS.uploadCollapseButton;
-export const UPLOAD_LIST_TEST_ID = TEST_IDS.uploadList;
-export const UPLOAD_FILE_ITEM_TEST_ID = TEST_IDS.uploadFileItem;
+export { TEST_IDS };
 
 const GROUP = 'toaster';
 const STORY_NAME = 'toastupload';
@@ -28,8 +25,12 @@ export function buildStoryOptions(
     group: GROUP,
     story,
     props: {
-      'data-test-id': UPLOAD_TEST_ID,
+      'data-test-id': TEST_IDS.uploadRoot,
       ...props,
     },
   };
 }
+
+// Ключевая выборка status — по 1 представителю каждого значения TOAST_UPLOAD_STATUS.
+// Не axis-per-test loop: остальные значения покрываются VisualMatrix.
+export const UPLOAD_STATUS_KEY_VALUES = [TOAST_UPLOAD_STATUS.Loading, TOAST_UPLOAD_STATUS.Error] as const;

@@ -1,14 +1,23 @@
 import { STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, TOASTER_CONTAINER_TEST_ID, TOASTER_STORIES, ToasterStoryId } from './helpers';
+import {
+  buildStoryOptions,
+  TEST_IDS,
+  TOASTER_KEY_COMBOS,
+  TOASTER_STORIES,
+  TOASTER_TYPE_KEY_VALUES,
+  ToasterStoryRef,
+} from './helpers';
 
 test.describe('Toaster — rendering', () => {
   test.describe('stories load', () => {
-    for (const story of Array.from(new Set(Object.values(TOASTER_STORIES))) as ToasterStoryId[]) {
-      test(`story "${story}" renders without errors`, async ({ page, gotoStory }) => {
-        await gotoStory(buildStoryOptions(story));
-        // Storybook root всегда есть; убеждаемся, что страница story отрендерила хоть какую-то разметку
+    const refs = Array.from(
+      new Map(Object.values(TOASTER_STORIES).map(r => [`${r.name}--${r.story}`, r])).values(),
+    ) as ToasterStoryRef[];
+    for (const ref of refs) {
+      test(`story "${ref.name}--${ref.story}" renders without errors`, async ({ page, gotoStory }) => {
+        await gotoStory(buildStoryOptions(undefined, ref));
         await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toBeAttached();
         await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).not.toBeEmpty();
       });
@@ -17,30 +26,32 @@ test.describe('Toaster — rendering', () => {
 
   test.describe('container mount', () => {
     test('Playground renders ToasterContainer with default data-test-id', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(TOASTER_STORIES.playground));
-      // Контейнер монтируется через портал в document.body; getByTestId ищет глобально.
-      await expect(getByTestId(TOASTER_CONTAINER_TEST_ID).first()).toBeAttached();
+      await gotoStory(buildStoryOptions(undefined, TOASTER_STORIES.playground));
+      await expect(getByTestId(TEST_IDS.toasterContainer).first()).toBeAttached();
     });
   });
 
   test.describe('props propagation', () => {
-    const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const;
-
-    for (const position of POSITIONS) {
+    // Параметризация по ключевой выборке позиций — по 1 представителю каждой
+    // top/bottom × left/right комбинации. Полная матрица позиций — в VisualMatrix.
+    for (const { position } of TOASTER_KEY_COMBOS) {
       test(`position=${position} propagates to data-position`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions(TOASTER_STORIES.playground, { position }));
-        await expect(getByTestId(TOASTER_CONTAINER_TEST_ID).first()).toHaveAttribute('data-position', position);
+        await gotoStory(buildStoryOptions({ position }, TOASTER_STORIES.playground));
+        await expect(getByTestId(TEST_IDS.toasterContainer).first()).toHaveAttribute('data-position', position);
       });
     }
 
     test('stacked=true propagates to data-stacked', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(TOASTER_STORIES.playground, { stacked: true }));
-      await expect(getByTestId(TOASTER_CONTAINER_TEST_ID).first()).toHaveAttribute('data-stacked', 'true');
+      await gotoStory(buildStoryOptions({ stacked: true }, TOASTER_STORIES.playground));
+      await expect(getByTestId(TEST_IDS.toasterContainer).first()).toHaveAttribute('data-stacked', 'true');
     });
 
-    test('type=systemEvent propagates to data-type', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(TOASTER_STORIES.playground, { type: 'systemEvent' }));
-      await expect(getByTestId(TOASTER_CONTAINER_TEST_ID).first()).toHaveAttribute('data-type', 'systemEvent');
-    });
+    // Ключевая выборка значений type — по 1 представителю каждого варианта.
+    for (const type of TOASTER_TYPE_KEY_VALUES) {
+      test(`type=${type} propagates to data-type`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildStoryOptions({ type }, TOASTER_STORIES.playground));
+        await expect(getByTestId(TEST_IDS.toasterContainer).first()).toHaveAttribute('data-type', type);
+      });
+    }
   });
 });

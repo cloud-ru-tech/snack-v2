@@ -161,19 +161,19 @@ Playground — все props контейнера через controls:
 
 Список кнопок-триггеров под все шорткаты (`toaster.systemEvent.success`, `…neutral`, `…error`, `userAction`, `upload`). Удобно для сверки, как кадровые случаи смотрятся бок о бок.
 
-<StorybookEmbed storyId='components-toaster-toaster--imperative-api' height={480} />
+<StorybookEmbed storyId='components-toaster-toaster-examples-imperativeapi--imperative-api' height={480} />
 
 ### UpdateFlow · `id` + `update`-семантика
 
 Длительный сценарий: один и тот же тост проходит через `loading → success → error`. Демонстрирует контракт `toaster.upload.startOrUpdate(...)` / возврат `id` и `update`.
 
-<StorybookEmbed storyId='components-toaster-toaster--interaction-test' height={480} />
+<StorybookEmbed storyId='components-toaster-toaster-tests-interaction--interaction-test' height={480} />
 
 ### Mobile · кастомный `toasterParent` + узкий viewport
 
 Тосты рендерятся внутри телефонной рамки через `toasterParent={frameRef.current}`. Ширина / высота клампится по `cqw` / `min(cqh, dvh)`, скролл-fallback по высоте, swipe-to-dismiss (экспериментально). Можно переключать размер экрана (SE / iPhone / Pro Max) и проверять реакцию на узкий контейнер.
 
-<StorybookEmbed storyId='components-toaster-toaster--composition' height={620} />
+<StorybookEmbed storyId='components-toaster-toaster-examples-composition--composition' height={620} />
 
 ## Figma
 

@@ -1,12 +1,9 @@
 import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
+import { TOAST_SYSTEM_EVENT_APPEARANCE } from '../../src/components/ToastSystemEvent/constants';
 import { TEST_IDS } from '../../src/constants';
 
-export const SYSTEM_EVENT_TEST_ID = TEST_IDS.systemEventRoot;
-export const SYSTEM_EVENT_BUTTON_CLOSE_TEST_ID = TEST_IDS.systemEventButtonClose;
-export const SYSTEM_EVENT_BUTTON_ACTION_TEST_ID = TEST_IDS.systemEventButtonAction;
-export const SYSTEM_EVENT_LINK_TEST_ID = TEST_IDS.systemEventLink;
-export const SYSTEM_EVENT_PROGRESS_BAR_TEST_ID = TEST_IDS.systemEventProgressBar;
+export { TEST_IDS };
 
 const GROUP = 'toaster';
 const STORY_NAME = 'toastsystemevent';
@@ -28,8 +25,15 @@ export function buildStoryOptions(
     group: GROUP,
     story,
     props: {
-      'data-test-id': SYSTEM_EVENT_TEST_ID,
+      'data-test-id': TEST_IDS.systemEventRoot,
       ...props,
     },
   };
 }
+
+// Ключевая выборка appearance — по 1 представителю каждого значения.
+export const SYSTEM_EVENT_APPEARANCE_KEY_VALUES = [
+  TOAST_SYSTEM_EVENT_APPEARANCE.Neutral,
+  TOAST_SYSTEM_EVENT_APPEARANCE.Success,
+  TOAST_SYSTEM_EVENT_APPEARANCE.ErrorCritical,
+] as const;

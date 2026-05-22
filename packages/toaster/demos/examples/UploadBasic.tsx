@@ -65,7 +65,7 @@ export function UploadBasic() {
   };
 
   const filesWithActions: UploadItem[] = files.map(f =>
-    f.status === TOAST_UPLOAD_ITEM_STATUS.Loading ? { ...f, actions: { onCancel: () => removeFile(f.id) } } : f,
+    f.status === TOAST_UPLOAD_ITEM_STATUS.Loading ? { ...f, actions: { onCancel: () => removeFile(f.id ?? '') } } : f,
   );
 
   const open = () => {

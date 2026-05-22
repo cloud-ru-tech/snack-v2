@@ -10,9 +10,10 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { expect, fn, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 import { fileError, fileLoading, filePause, fileUploaded, sampleFiles } from '../uploadFixtures';
-import styles from './stories.module.scss';
-import { UPLOAD_TEST_ID } from './testIds';
 
 // Figma master `toastUpload` (7871:514005) выкатывает 1 variant-ось: expanded.
 // В коде она инвертирована — `collapsed`. Остальные оси (общий status, набор
@@ -77,17 +78,19 @@ function PlaygroundCard({ files, closeAll, generalActions, progress, collapsed, 
   };
 
   return (
-    <div className={styles.playgroundPage}>
-      <section className={styles.playgroundPanel}>
-        <h3 className={styles.playgroundTitle}>ToastUpload</h3>
-        <p className={styles.playgroundHint}>
-          Карточка загрузки с шапкой (title + общий прогресс), списком файлов и слотами общих экшенов (pause / continue
-          / retry). Все слоты в панели Controls — через пресеты, потому что значения — объекты (массивы файлов,
-          callbacks).
-        </p>
-        <ToastUpload {...resolved} />
-      </section>
-    </div>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>
+          {
+            'Карточка загрузки с шапкой (title + общий прогресс), списком файлов и слотами общих экшенов (pause / continue / retry). Все слоты в панели Controls — через пресеты, потому что значения — объекты.'
+          }
+        </DemoHint>
+        <DemoActions align='center'>
+          <ToastUpload {...resolved} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 }
 
@@ -105,7 +108,7 @@ const meta: Meta<PlaygroundArgs> = {
     closeAll: true,
     generalActions: 'pauseContinue',
     progress: '50%',
-    'data-test-id': UPLOAD_TEST_ID,
+    'data-test-id': TEST_IDS.uploadRoot,
   },
   argTypes: {
     title: { control: 'text' },
@@ -144,6 +147,6 @@ type Story = StoryObj<PlaygroundArgs>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(UPLOAD_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.uploadRoot)).toBeVisible();
   },
 };

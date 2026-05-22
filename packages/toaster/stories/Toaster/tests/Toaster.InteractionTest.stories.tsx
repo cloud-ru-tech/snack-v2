@@ -11,14 +11,10 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import {
-  TOASTER_UPDATE_FLOW_DISMISS_ALL_TEST_ID,
-  TRIGGER_UPDATE_SYSTEM_ERROR_TEST_ID,
-  TRIGGER_UPDATE_SYSTEM_SUCCESS_TEST_ID,
-  TRIGGER_UPDATE_UPLOAD_TEST_ID,
-  TRIGGER_UPDATE_USER_ACTION_TEST_ID,
-} from './testIds';
+import { DemoPage, DemoPanel } from '#storybook/components';
+
+import { TEST_IDS } from '../../testIds';
+import styles from '../styles.module.scss';
 
 // InteractionTest для Toaster: проверяет, что pending-тосты `toaster.*.neutral`
 // корректно превращаются в финальный appearance через `update.*(id, …)`.
@@ -137,8 +133,8 @@ function InteractionTestDemo() {
   };
 
   return (
-    <div className={styles.demoPage}>
-      <section className={`${styles.demoPanel} ${styles.demoPanelWide}`}>
+    <DemoPage>
+      <DemoPanel width='wide' className={`${styles.demoPanel} ${styles.demoPanelWide}`}>
         <h3 className={styles.demoTitle}>Обновление тостов</h3>
         <p className={styles.demoHint}>
           Pending-тост открывается с <code>autoClose: false</code>, через <code>update.*(id, options)</code>{' '}
@@ -155,14 +151,14 @@ function InteractionTestDemo() {
                 appearance={APPEARANCE.Neutral}
                 label='→ success'
                 onClick={startSystemSuccess}
-                data-test-id={TRIGGER_UPDATE_SYSTEM_SUCCESS_TEST_ID}
+                data-test-id={TEST_IDS.interactionTest.systemSuccess}
               />
               <Button
                 view={VIEW.Outline}
                 appearance={APPEARANCE.Neutral}
                 label='→ error'
                 onClick={startSystemError}
-                data-test-id={TRIGGER_UPDATE_SYSTEM_ERROR_TEST_ID}
+                data-test-id={TEST_IDS.interactionTest.systemError}
               />
             </div>
           </div>
@@ -175,7 +171,7 @@ function InteractionTestDemo() {
                 appearance={APPEARANCE.Neutral}
                 label='Запустить'
                 onClick={startUserAction}
-                data-test-id={TRIGGER_UPDATE_USER_ACTION_TEST_ID}
+                data-test-id={TEST_IDS.interactionTest.userAction}
               />
             </div>
           </div>
@@ -188,7 +184,7 @@ function InteractionTestDemo() {
                 appearance={APPEARANCE.Neutral}
                 label='Запустить'
                 onClick={startUpload}
-                data-test-id={TRIGGER_UPDATE_UPLOAD_TEST_ID}
+                data-test-id={TEST_IDS.interactionTest.upload}
               />
             </div>
           </div>
@@ -199,10 +195,10 @@ function InteractionTestDemo() {
             appearance={APPEARANCE.Critical}
             label='Закрыть все'
             onClick={dismissAll}
-            data-test-id={TOASTER_UPDATE_FLOW_DISMISS_ALL_TEST_ID}
+            data-test-id={TEST_IDS.interactionTest.triggerReset}
           />
         </div>
-      </section>
+      </DemoPanel>
 
       <ToasterContainer
         type={TOASTER_TYPE.SystemEvent}
@@ -220,12 +216,12 @@ function InteractionTestDemo() {
         limit={2}
         autoClose={false}
       />
-    </div>
+    </DemoPage>
   );
 }
 
 const meta: Meta<typeof InteractionTestDemo> = {
-  title: 'Components/Toaster/Toaster',
+  title: 'Components/Toaster/Toaster/Tests/Interaction',
   component: InteractionTestDemo,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };
@@ -239,13 +235,13 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement);
 
     await step('click: SystemEvent neutral → success transition triggers', async () => {
-      const button = canvas.getByTestId(TRIGGER_UPDATE_SYSTEM_SUCCESS_TEST_ID);
+      const button = canvas.getByTestId(TEST_IDS.interactionTest.systemSuccess);
       await userEvent.click(button);
       await waitFor(() => expect(button).toBeVisible());
     });
 
     await step('click: UserAction neutral → success transition triggers', async () => {
-      const button = canvas.getByTestId(TRIGGER_UPDATE_USER_ACTION_TEST_ID);
+      const button = canvas.getByTestId(TEST_IDS.interactionTest.userAction);
       await userEvent.click(button);
       await waitFor(() => expect(button).toBeVisible());
     });

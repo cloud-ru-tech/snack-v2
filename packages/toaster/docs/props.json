@@ -795,7 +795,7 @@
     "propsTypeName": "ToastUserActionProps",
     "props": {
       "action": {
-        "type": "ToastUserActionAction<\"button\">",
+        "type": "ToastUserActionAction<\"button\"> | ToastUserActionAction<\"a\">",
         "required": false,
         "description": "Slot для action-кнопки (по умолчанию `<button>`, через `as='a'` — линка)",
         "typeRefs": [

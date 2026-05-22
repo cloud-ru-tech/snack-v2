@@ -8,8 +8,10 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { USER_ACTION_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
+import styles from './styles.module.scss';
 
 // Figma master `toastUserAction` (7084:541) выкатывает 4 variant-оси: status,
 // width, load, timer. Status/load/timer ложатся в публичные пропы (appearance/
@@ -29,7 +31,10 @@ type PlaygroundArgs = {
   'data-test-id'?: string;
 };
 
-function buildAction(preset: ActionPreset, onClick: (e: unknown) => void): ToastUserActionAction | undefined {
+function buildAction(
+  preset: ActionPreset,
+  onClick: (e: unknown) => void,
+): ToastUserActionAction<'button'> | ToastUserActionAction<'a'> | undefined {
   switch (preset) {
     case 'labelOnly':
       return { label: 'Отменить', onClick };
@@ -51,19 +56,21 @@ function buildAction(preset: ActionPreset, onClick: (e: unknown) => void): Toast
 
 function PlaygroundCard({ width, action, onActionClick, ...props }: PlaygroundArgs) {
   return (
-    <div className={styles.playgroundPage}>
-      <section className={styles.playgroundPanel}>
-        <h3 className={styles.playgroundTitle}>ToastUserAction</h3>
-        <p className={styles.playgroundHint}>
-          Снэкбар-карточка по результату действия пользователя. Все props в панели Controls. Ось <code>width</code> в
-          реальной системе задаётся контейнером (<code>ToasterContainer.width</code>), здесь эмулируется обёрткой для
-          изолированного рендера.
-        </p>
-        <div className={width === TOASTER_WIDTH.Full ? styles.widthFull : styles.widthAuto} data-width={width}>
-          <ToastUserAction {...props} action={buildAction(action, onActionClick)} />
-        </div>
-      </section>
-    </div>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>
+          {
+            'Снэкбар-карточка по результату действия пользователя. Ось width в реальной системе задаётся контейнером (ToasterContainer.width), здесь эмулируется обёрткой для изолированного рендера.'
+          }
+        </DemoHint>
+        <DemoActions align='center'>
+          <div className={width === TOASTER_WIDTH.Full ? styles.widthFull : styles.widthAuto} data-width={width}>
+            <ToastUserAction {...props} action={buildAction(action, onActionClick)} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 }
 
@@ -79,7 +86,7 @@ const meta: Meta<PlaygroundArgs> = {
     action: 'labelOnly',
     width: TOASTER_WIDTH.Auto,
     onActionClick: fn(),
-    'data-test-id': USER_ACTION_TEST_ID,
+    'data-test-id': TEST_IDS.userActionRoot,
   },
   argTypes: {
     label: { control: 'text' },
@@ -112,6 +119,6 @@ type Story = StoryObj<PlaygroundArgs>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(USER_ACTION_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.userActionRoot)).toBeVisible();
   },
 };

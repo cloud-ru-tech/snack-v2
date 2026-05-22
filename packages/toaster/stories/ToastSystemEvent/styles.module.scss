@@ -1,5 +1,10 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .matrix {
   display: grid;
   gap: base.$sn-primitive-dimension-24;
@@ -32,6 +37,8 @@
 
   width: 160px;
   height: base.$sn-primitive-dimension-16;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-4;
 
   background: base.$sn-theme-color-invertNeutral-background2Level;
