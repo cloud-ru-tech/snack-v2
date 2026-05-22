@@ -3,7 +3,7 @@ import { TRIGGER } from '@ds/popover-private';
 import cn from 'classnames';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { SIZE } from '../../constants';
+import { SIZE, TEST_IDS } from '../../constants';
 import { Size } from '../../types';
 import { getIconSize } from '../../utils';
 import { Tooltip, TooltipProps } from '../Tooltip';
@@ -59,6 +59,7 @@ export function QuestionTooltip({
         tabIndex={tabIndex}
         className={cn(styles.button, className)}
         data-size={size}
+        data-test-id={TEST_IDS.questionTooltip.triggerOpen}
       >
         <QuestionSpriteSVG size={getIconSize(size)} />
       </button>
