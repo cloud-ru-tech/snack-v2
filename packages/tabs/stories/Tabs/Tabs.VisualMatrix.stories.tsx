@@ -3,12 +3,12 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Components/Tabs',
+  title: 'Components/Tabs/Tabs',
   component: Tabs,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
