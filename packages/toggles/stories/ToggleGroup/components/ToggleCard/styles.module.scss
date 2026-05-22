@@ -1,13 +1,14 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 @mixin item ($type) {
-  width: 100px;
-  height: 60px;
-  margin: 10px;
-  border: 3px solid base.simple-var(base.$sn-theme, 'color', $type, 'decor');
-  border-radius: 0.2em;
+  width: base.$sn-primitive-dimension-100;
+  height: base.$sn-primitive-dimension-60;
+  margin: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeBold solid base.simple-var(base.$sn-theme, 'color', $type, 'decor');
+  border-radius: base.$sn-brand-anatomy-radius-block-s;
 
-  font-size: 1.2rem;
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'l');
+
   color: base.simple-var(base.$sn-theme, 'color', $type, 'text');
 
   background-color: base.simple-var(base.$sn-theme, 'color', $type, 'background');

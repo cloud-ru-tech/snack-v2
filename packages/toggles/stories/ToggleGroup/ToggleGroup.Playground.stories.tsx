@@ -1,7 +1,10 @@
+import { SELECTION_MODE, SelectionMode, ToggleGroup } from '@ds/toggles';
 import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
-import { SELECTION_MODE, SelectionMode, ToggleGroup } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 import { ToggleCard } from './components/ToggleCard';
 import styles from './styles.module.scss';
 
@@ -9,11 +12,11 @@ type PlaygroundArgs = {
   selectionMode: SelectionMode;
 };
 
-const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Toggles/Toggle Group',
+const meta: Meta<PlaygroundArgs & { 'data-test-id'?: string }> = {
+  title: 'Components/Toggles/ToggleGroup',
   component: ToggleGroup,
-  parameters: { layout: 'centered' },
-  args: { selectionMode: SELECTION_MODE.Single },
+  parameters: { layout: 'fullscreen' },
+  args: { 'data-test-id': TEST_IDS.toggleGroup.root, selectionMode: SELECTION_MODE.Single },
   argTypes: {
     selectionMode: {
       control: 'radio',
@@ -50,17 +53,25 @@ function PlaygroundRender({ selectionMode }: PlaygroundArgs) {
     </div>
   );
 
-  if (selectionMode === SELECTION_MODE.Multiple) {
-    return (
+  const inner =
+    selectionMode === SELECTION_MODE.Multiple ? (
       <ToggleGroup selectionMode='multiple' value={multiValue} onChange={next => setMultiValue(next ?? [])}>
         {body}
       </ToggleGroup>
+    ) : (
+      <ToggleGroup selectionMode='single' value={singleValue} onChange={setSingleValue}>
+        {body}
+      </ToggleGroup>
     );
-  }
+
   return (
-    <ToggleGroup selectionMode='single' value={singleValue} onChange={setSingleValue}>
-      {body}
-    </ToggleGroup>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Группа переключателей с режимом одиночного или множественного выбора.</DemoHint>
+        <DemoActions align='center'>{inner}</DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 }
 

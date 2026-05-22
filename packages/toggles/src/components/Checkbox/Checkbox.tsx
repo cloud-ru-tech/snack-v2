@@ -5,7 +5,7 @@ import mergeRefs from 'merge-refs';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { MODE, SIZE } from '../../constants';
+import { MODE, NATIVE_INPUT_SUFFIX, SIZE } from '../../constants';
 import { ToggleProps } from '../../types';
 import { getIconSize, getVisualStateAttributes } from '../../utils';
 import styles from './styles.module.scss';
@@ -114,7 +114,7 @@ export function Checkbox({
         {!loading && (
           <input
             {...otherProps}
-            data-test-id={dataTestId ? `${dataTestId}-native-input` : undefined}
+            data-test-id={dataTestId ? `${dataTestId}${NATIVE_INPUT_SUFFIX}` : undefined}
             ref={ref}
             type={MODE.Checkbox}
             className={styles.inputPrivate}

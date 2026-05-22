@@ -1,12 +1,16 @@
+import { SIZE, Switch, SwitchProps } from '@ds/toggles';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
+import { expect, within } from 'storybook/test';
 
-import { SIZE, Switch, SwitchProps } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<SwitchProps> = {
   title: 'Components/Toggles/Switch',
   component: Switch,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
@@ -17,12 +21,25 @@ type Story = StoryObj<StoryProps>;
 const Template: StoryFn<StoryProps> = args => {
   const [{ checked }, updateArgs] = useArgs<SwitchProps>();
 
-  return <Switch {...args} checked={checked} onChange={updatedValue => updateArgs({ checked: updatedValue })} />;
+  return (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Переключатель состояния включено/выключено.</DemoHint>
+        <DemoActions align='center'>
+          <Switch {...args} checked={checked} onChange={updatedValue => updateArgs({ checked: updatedValue })} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
 };
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: Template,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.switch.root)).toBeVisible();
+  },
   args: {
     size: SIZE.XS,
     checked: undefined,
@@ -32,7 +49,7 @@ export const Playground: Story = {
     /** Без ключей в args Storybook не применяет id/name из URL (автотесты / шаринг ссылки). */
     id: undefined,
     name: undefined,
-    'data-test-id': 'switch',
+    'data-test-id': TEST_IDS.switch.root,
   },
   argTypes: {
     checked: { control: 'boolean' },

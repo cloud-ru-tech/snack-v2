@@ -1,6 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildCheckboxStory, CHECKBOX_TEST_ID, NATIVE_INPUT_SUFFIX } from '../_shared/helpers';
+import { buildCheckboxStory, TEST_IDS } from '../_shared/helpers';
 
 test.describe('Checkbox — keyboard', () => {
   test('native input receives focus on Tab', async ({ page, gotoStory, getByTestId }) => {
@@ -8,13 +8,13 @@ test.describe('Checkbox — keyboard', () => {
 
     await page.keyboard.press('Tab');
 
-    await expect(getByTestId(`${CHECKBOX_TEST_ID}${NATIVE_INPUT_SUFFIX}`)).toBeFocused();
+    await expect(getByTestId(TEST_IDS.checkbox.nativeInput)).toBeFocused();
   });
 
   test('Space toggles when focused', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory(buildCheckboxStory());
 
-    const input = getByTestId(`${CHECKBOX_TEST_ID}${NATIVE_INPUT_SUFFIX}`);
+    const input = getByTestId(TEST_IDS.checkbox.nativeInput);
     await input.focus();
     await page.keyboard.press('Space');
 
@@ -24,7 +24,7 @@ test.describe('Checkbox — keyboard', () => {
   test('Space does nothing on disabled', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory(buildCheckboxStory({ disabled: true }));
 
-    const input = getByTestId(`${CHECKBOX_TEST_ID}${NATIVE_INPUT_SUFFIX}`);
+    const input = getByTestId(TEST_IDS.checkbox.nativeInput);
     await input.focus().catch(() => {});
     await page.keyboard.press('Space');
 

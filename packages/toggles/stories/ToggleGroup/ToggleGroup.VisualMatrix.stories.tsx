@@ -1,11 +1,11 @@
+import { ToggleGroup } from '@ds/toggles';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ToggleGroup } from '../../src';
 import { ToggleCard } from './components/ToggleCard';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof ToggleGroup> = {
-  title: 'Components/Toggles/Toggle Group',
+  title: 'Components/Toggles/ToggleGroup',
   component: ToggleGroup,
   parameters: { layout: 'padded' },
 };

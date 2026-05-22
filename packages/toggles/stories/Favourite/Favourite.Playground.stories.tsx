@@ -1,12 +1,16 @@
+import { Favourite, FAVOURITE_ICON, FavouriteProps, SIZE } from '@ds/toggles';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
+import { expect, within } from 'storybook/test';
 
-import { Favourite, FAVOURITE_ICON, FavouriteProps, SIZE } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<FavouriteProps> = {
   title: 'Components/Toggles/Favourite',
   component: Favourite,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
@@ -17,12 +21,25 @@ type Story = StoryObj<StoryProps>;
 const Template: StoryFn<StoryProps> = args => {
   const [{ checked }, updateArgs] = useArgs<FavouriteProps>();
 
-  return <Favourite {...args} checked={checked} onChange={updatedValue => updateArgs({ checked: updatedValue })} />;
+  return (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Кнопка добавления в избранное с двумя состояниями.</DemoHint>
+        <DemoActions align='center'>
+          <Favourite {...args} checked={checked} onChange={updatedValue => updateArgs({ checked: updatedValue })} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
 };
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: Template,
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.favourite.root)).toBeVisible();
+  },
   args: {
     size: SIZE.XS,
     icon: FAVOURITE_ICON.Star,
@@ -30,7 +47,7 @@ export const Playground: Story = {
     defaultChecked: undefined,
     loading: false,
     disabled: false,
-    'data-test-id': 'favourite',
+    'data-test-id': TEST_IDS.favourite.root,
   },
   argTypes: {
     checked: { control: 'boolean' },

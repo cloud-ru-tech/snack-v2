@@ -17,3 +17,11 @@ export const SELECTION_MODE = {
   Single: 'single',
   Multiple: 'multiple',
 } as const;
+
+/**
+ * Суффикс `data-test-id` нативного `<input>` внутри Checkbox/Radio/Switch/Favourite.
+ * Если потребитель передаёт `data-test-id='foo'` на корень, нативный input получает
+ * `data-test-id='foo-native-input'`. Константа публичная — потребитель и e2e helpers
+ * берут один и тот же суффикс из API пакета.
+ */
+export const NATIVE_INPUT_SUFFIX = '-native-input';

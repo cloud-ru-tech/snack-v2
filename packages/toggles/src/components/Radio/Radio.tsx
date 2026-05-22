@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { MODE, SIZE } from '../../constants';
+import { MODE, NATIVE_INPUT_SUFFIX, SIZE } from '../../constants';
 import { ToggleProps } from '../../types';
 import { getVisualStateAttributes } from '../../utils';
 import styles from './styles.module.scss';
@@ -61,7 +61,7 @@ export function Radio({
         {!loading && (
           <input
             {...otherProps}
-            data-test-id={dataTestId ? `${dataTestId}-native-input` : undefined}
+            data-test-id={dataTestId ? `${dataTestId}${NATIVE_INPUT_SUFFIX}` : undefined}
             ref={inputRef}
             type={MODE.Radio}
             className={styles.inputPrivate}

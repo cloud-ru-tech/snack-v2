@@ -1,8 +1,8 @@
+import { Checkbox, CheckboxProps, SIZE } from '@ds/toggles';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Checkbox, CheckboxProps, SIZE } from '../../src';
 import styles from './styles.module.scss';
 
 const meta: Meta<CheckboxProps> = {

@@ -1,13 +1,16 @@
+import { Radio, RadioProps, SIZE } from '@ds/toggles';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
-import { Radio, RadioProps, SIZE } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof Radio> = {
   title: 'Components/Toggles/Radio',
   component: Radio,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     size: SIZE.XS,
     checked: undefined,
@@ -18,7 +21,7 @@ const meta: Meta<typeof Radio> = {
     name: undefined,
     value: undefined,
     className: undefined,
-    'data-test-id': 'radio',
+    'data-test-id': TEST_IDS.radio.root,
   },
   argTypes: {
     checked: { control: 'boolean', description: 'Controlled checked' },
@@ -39,13 +42,23 @@ type Story = StoryObj<typeof Radio>;
 const Template: StoryFn<RadioProps> = args => {
   const [{ checked }, updateArgs] = useArgs<RadioProps>();
 
-  return <Radio {...args} checked={checked} onChange={next => updateArgs({ checked: next })} />;
+  return (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Радио-переключатель для выбора одного варианта из набора.</DemoHint>
+        <DemoActions align='center'>
+          <Radio {...args} checked={checked} onChange={next => updateArgs({ checked: next })} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
 };
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: Template,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('radio')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.radio.root)).toBeVisible();
   },
 };

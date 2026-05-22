@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { KeyboardEventHandler, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { FAVOURITE_ICON, MODE, SIZE } from '../../constants';
+import { FAVOURITE_ICON, MODE, NATIVE_INPUT_SUFFIX, SIZE } from '../../constants';
 import { FavouriteIcon, ToggleProps } from '../../types';
 import { getIconSize } from '../../utils';
 import styles from './styles.module.scss';
@@ -93,7 +93,7 @@ export function Favourite({
         {!loading && (
           <input
             {...otherProps}
-            data-test-id={dataTestId ? `${dataTestId}-native-input` : undefined}
+            data-test-id={dataTestId ? `${dataTestId}${NATIVE_INPUT_SUFFIX}` : undefined}
             ref={inputRef}
             type={MODE.Checkbox}
             className={styles.inputPrivate}

@@ -1,8 +1,8 @@
+import { Radio, RadioProps, SIZE } from '@ds/toggles';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Radio, RadioProps, SIZE } from '../../src';
 import styles from './styles.module.scss';
 
 const meta: Meta<RadioProps> = {

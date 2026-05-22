@@ -1,9 +1,8 @@
 import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
-export const CHECKBOX_TEST_ID = 'checkbox';
-export const RADIO_TEST_ID = 'radio';
-export const SWITCH_TEST_ID = 'switch';
-export const FAVOURITE_TEST_ID = 'favourite';
+import { TEST_IDS } from '../../stories/testIds';
+
+export { TEST_IDS };
 
 export const TOGGLES_GROUP = 'toggles' as const;
 
@@ -22,29 +21,23 @@ function build(name: string, story: string, testId: string | undefined, props?: 
 }
 
 export function buildCheckboxStory(props?: ToggleStoryProps, story = 'playground'): StorybookUrlOptions {
-  return build('checkbox', story, CHECKBOX_TEST_ID, props);
+  return build('checkbox', story, TEST_IDS.checkbox.root, props);
 }
 export function buildRadioStory(props?: ToggleStoryProps, story = 'playground'): StorybookUrlOptions {
-  return build('radio', story, RADIO_TEST_ID, props);
+  return build('radio', story, TEST_IDS.radio.root, props);
 }
 export function buildSwitchStory(props?: ToggleStoryProps, story = 'playground'): StorybookUrlOptions {
-  return build('switch', story, SWITCH_TEST_ID, props);
+  return build('switch', story, TEST_IDS.switch.root, props);
 }
 export function buildFavouriteStory(props?: ToggleStoryProps, story = 'playground'): StorybookUrlOptions {
-  return build('favourite', story, FAVOURITE_TEST_ID, props);
+  return build('favourite', story, TEST_IDS.favourite.root, props);
 }
 export function buildToggleGroupStory(props?: ToggleStoryProps, story = 'playground'): StorybookUrlOptions {
-  return build('toggle-group', story, undefined, props);
+  return build('togglegroup', story, TEST_IDS.toggleGroup.root, props);
 }
 
-export const NATIVE_INPUT_SUFFIX = '-native-input';
-
-export const SCREENSHOT_OPTS = {
-  animations: 'disabled',
-  caret: 'hide',
-} as const;
-
-export const ROOT_SELECTOR = '#storybook-root';
+// Toggle-элементы маленькие, focus-ring выходит за bounding box — нужен запас в композите.
+export const INTERACTION_PADDING = 12;
 
 export const A11Y_DISABLED_RULES = [
   'color-contrast',

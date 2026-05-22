@@ -1,4 +1,5 @@
-import { useToggleGroup } from '../../../../src';
+import { useToggleGroup } from '@ds/toggles';
+
 import styles from './styles.module.scss';
 
 export type ToggleCardProps = {

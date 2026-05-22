@@ -1,58 +1,38 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
-import { useArgs } from 'storybook/preview-api';
+import { Checkbox, CheckboxProps, SIZE } from '@ds/toggles';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
 
-import { Checkbox, CheckboxProps, SIZE } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<CheckboxProps> = {
   title: 'Components/Toggles/Checkbox',
   component: Checkbox,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
 
-type StoryProps = CheckboxProps;
-
-type Story = StoryObj<StoryProps>;
-
-const Template: StoryFn<StoryProps> = args => {
-  const [{ checked, indeterminate }, updateArgs] = useArgs<CheckboxProps>();
-
-  return (
-    <Checkbox
-      {...args}
-      checked={checked}
-      indeterminate={indeterminate}
-      onChange={updatedValue =>
-        updateArgs({
-          checked: updatedValue,
-          indeterminate: false,
-        })
-      }
-    />
-  );
-};
+type Story = StoryObj<CheckboxProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: Template,
   args: {
     size: SIZE.XS,
-    checked: undefined,
-    defaultChecked: undefined,
-    indeterminate: undefined,
-    indeterminateDefault: undefined,
+    defaultChecked: false,
+    indeterminateDefault: false,
     loading: false,
     disabled: false,
     /** Без ключей в args Storybook не применяет id/name из URL (автотесты / шаринг ссылки). */
     id: undefined,
     name: undefined,
-    'data-test-id': 'checkbox',
+    'data-test-id': TEST_IDS.checkbox.root,
   },
   argTypes: {
-    checked: { control: 'boolean' },
+    checked: { table: { disable: true } },
+    indeterminate: { table: { disable: true } },
     defaultChecked: { control: 'boolean' },
-    indeterminate: { control: 'boolean' },
     indeterminateDefault: { control: 'boolean' },
     size: {
       control: 'radio',
@@ -62,9 +42,7 @@ export const Playground: Story = {
     'data-test-id': {
       control: 'text',
       description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
+      table: { category: 'HTML Attributes' },
     },
     id: {
       control: 'text',
@@ -76,5 +54,19 @@ export const Playground: Story = {
       description: 'HTML name нативного input',
       table: { category: 'HTML Attributes' },
     },
+  },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Чекбокс для выбора одного или нескольких значений.</DemoHint>
+        <DemoActions align='center'>
+          <Checkbox {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.checkbox.root)).toBeVisible();
   },
 };
