@@ -1,5 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/*
+  Inter и Roboto Mono локально (variable woff2). Раньше тянулись с
+  fonts.googleapis.com — в CI без доступа к CDN браузер падал на fallback
+  и visual regression диффался по каждому глифу. См. docs/plans/.
+*/
+@font-face {
+  font-family: Inter;
+  font-weight: 100 900;
+  font-style: normal;
+
+  font-display: swap;
+  src: url('../fonts/InterVariable.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 100 900;
+  font-style: italic;
+
+  font-display: swap;
+  src: url('../fonts/InterVariable-Italic.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-weight: 100 700;
+  font-style: normal;
+
+  font-display: swap;
+  src: url('../fonts/RobotoMono-Variable.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-weight: 100 700;
+  font-style: italic;
+
+  font-display: swap;
+  src: url('../fonts/RobotoMono-Italic-Variable.woff2') format('woff2-variations');
+}
 
 @font-face {
   font-family: 'SB Sans Interface';
