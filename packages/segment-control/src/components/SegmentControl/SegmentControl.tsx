@@ -43,7 +43,11 @@ export function SegmentControl<Value extends IdType>({
   ...other
 }: SegmentControlProps<Value>) {
   const [selected, setSelected] = useUncontrolledProp(value, defaultValue, onChange);
-  const { focusableSegmentValue, onGetFocusable, onKeyDown } = useFocusControl({ selected, items });
+  const { focusableSegmentValue, onGetFocusable, onKeyDown } = useFocusControl({
+    selected,
+    items,
+    onSelect: setSelected as (value: IdType) => void,
+  });
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedElementRef = useRef<HTMLButtonElement | undefined>(undefined);
   const [selectionPosition, setSelectionPosition] = useState<SelectionPosition>();

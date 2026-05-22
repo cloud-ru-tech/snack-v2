@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.item {
+  padding: base.$sn-density-spacing-interval-l;
+  // Демо-карточка обрамляет SegmentControl для визуального контраста — берём
+  // block-l (самый крупный из block-радиусов), чтобы скругление визуально читалось
+  // на demo-фоне. У самого SegmentControl радиус приходит из его src/styles.
+  border-radius: base.$sn-brand-anatomy-radius-block-l;
+
+  // Контрастный фон, чтобы контейнер сегментов не сливался с neutral-background story.
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}

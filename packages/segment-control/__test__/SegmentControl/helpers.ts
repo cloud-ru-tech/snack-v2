@@ -1,44 +1,34 @@
-import { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
 import { segmentTestId, SIZE, TEST_IDS, WIDTH } from '../../src/constants';
 
-export { segmentTestId };
-
-export const SEGMENT_CONTROL_TEST_ID = TEST_IDS.root;
-
-export const SEGMENT_CONTROL_STORY_NAME = 'segmentcontrol';
+export { TEST_IDS, segmentTestId };
 
 export const SEGMENT_CONTROL_STORIES = {
-  playground: 'playground',
-  visualMatrix: 'visual-matrix',
-  interactionTest: 'interaction-test',
-} as const;
+  playground: { name: 'segmentcontrol', story: 'playground' },
+  visualMatrix: { name: 'segmentcontrol', story: 'visual-matrix' },
+  interactionTest: { name: 'segmentcontrol-tests-interaction', story: 'interaction-test' },
+} as const satisfies Record<string, StoryRef>;
 
 export type SegmentControlStoryProps = Record<string, unknown>;
 
 export function buildStoryOptions(
   props?: SegmentControlStoryProps,
-  story: string = SEGMENT_CONTROL_STORIES.playground,
+  ref: StoryRef = SEGMENT_CONTROL_STORIES.playground,
 ): StorybookUrlOptions {
   return {
-    name: SEGMENT_CONTROL_STORY_NAME,
-    story,
+    name: ref.name,
+    group: ref.group,
+    story: ref.story,
     props: {
-      'data-test-id': SEGMENT_CONTROL_TEST_ID,
+      'data-test-id': TEST_IDS.root,
       ...props,
     },
   };
 }
 
-export const KEY_SIZES = Object.values(SIZE);
-export const KEY_WIDTHS = Object.values(WIDTH);
-
-export const SEGMENT_CONTROL_INTERACTION_VISUAL_CASES: ReadonlyArray<{
-  name: string;
-  action: 'none' | 'hover' | 'focus' | 'pressed';
-}> = [
-  { name: 'default.png', action: 'none' },
-  { name: 'hover.png', action: 'hover' },
-  { name: 'focus.png', action: 'focus' },
-  { name: 'pressed.png', action: 'pressed' },
-];
+export const SEGMENT_CONTROL_KEY_COMBOS = [
+  { size: SIZE.S, width: WIDTH.Auto },
+  { size: SIZE.M, width: WIDTH.Auto },
+  { size: SIZE.L, width: WIDTH.Full },
+] as const;

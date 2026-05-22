@@ -1,9 +1,10 @@
-import { SegmentControl, SIZE, WIDTH } from '@ds/segment-control';
+import { SegmentControl, SIZE, TEST_IDS, WIDTH } from '@ds/segment-control';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { SEGMENT_CONTROL_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import styles from './styles.module.scss';
 
 const ITEMS = [
   { value: 'overview', label: 'Overview' },
@@ -15,22 +16,28 @@ const ITEMS = [
 const meta: Meta<typeof SegmentControl> = {
   title: 'Components/SegmentControl',
   component: SegmentControl,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     items: ITEMS,
     defaultValue: 'overview',
     size: SIZE.M,
     width: WIDTH.Auto,
     outline: false,
-    'data-test-id': SEGMENT_CONTROL_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
-  decorators: [
-    Story => (
-      <div className={styles.item}>
-        <Story />
-      </div>
-    ),
-  ],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Сегментный контрол для переключения между связанными вариантами.</DemoHint>
+        <DemoActions block>
+          <div className={styles.item}>
+            <SegmentControl key={String(args.defaultValue ?? '')} {...args} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   argTypes: {
     size: {
       control: 'radio',
@@ -44,9 +51,9 @@ const meta: Meta<typeof SegmentControl> = {
     },
     outline: { control: 'boolean', description: 'Обводка контейнера' },
     name: { control: 'text', description: 'Имя поля (hidden input для формы)' },
-    value: { control: false },
-    defaultValue: { control: false },
-    items: { control: false },
+    value: { table: { disable: true } },
+    defaultValue: { table: { disable: true } },
+    items: { table: { disable: true } },
     onChange: { action: 'change' },
   },
 };
@@ -57,6 +64,6 @@ type Story = StoryObj<typeof SegmentControl>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(SEGMENT_CONTROL_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof SegmentControl> = {
   title: 'Components/SegmentControl',

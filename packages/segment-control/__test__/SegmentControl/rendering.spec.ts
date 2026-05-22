@@ -1,7 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { SIZE, WIDTH } from '../../src/constants';
-import { buildStoryOptions, KEY_SIZES, KEY_WIDTHS, SEGMENT_CONTROL_TEST_ID, segmentTestId } from './helpers';
+import { buildStoryOptions, SEGMENT_CONTROL_KEY_COMBOS, segmentTestId, TEST_IDS } from './helpers';
 
 const ITEMS = [
   { value: 'overview', label: 'Overview' },
@@ -14,7 +13,7 @@ test.describe('SegmentControl — rendering', () => {
     test('renders with default props', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
 
-      await expect(getByTestId(SEGMENT_CONTROL_TEST_ID)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     });
 
     test('renders all segments', async ({ gotoStory, getByTestId }) => {
@@ -34,34 +33,20 @@ test.describe('SegmentControl — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    for (const size of KEY_SIZES) {
-      test(`size=${size}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ size }));
+    for (const { size, width } of SEGMENT_CONTROL_KEY_COMBOS) {
+      test(`size=${size} + width=${width}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildStoryOptions({ size, width }));
 
-        await expect(getByTestId(SEGMENT_CONTROL_TEST_ID)).toHaveAttribute('data-size', size);
-      });
-    }
-
-    for (const width of KEY_WIDTHS) {
-      test(`width=${width}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ width }));
-
-        await expect(getByTestId(SEGMENT_CONTROL_TEST_ID)).toHaveAttribute('data-width', width);
+        const root = getByTestId(TEST_IDS.root);
+        await expect(root).toHaveAttribute('data-size', size);
+        await expect(root).toHaveAttribute('data-width', width);
       });
     }
 
     test('outline=true → data-outline', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ outline: true }));
 
-      await expect(getByTestId(SEGMENT_CONTROL_TEST_ID)).toHaveAttribute('data-outline', 'true');
-    });
-
-    test(`size=${SIZE.M} + width=${WIDTH.Full}`, async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ size: SIZE.M, width: WIDTH.Full }));
-
-      const root = getByTestId(SEGMENT_CONTROL_TEST_ID);
-      await expect(root).toHaveAttribute('data-size', SIZE.M);
-      await expect(root).toHaveAttribute('data-width', WIDTH.Full);
+      await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-outline', 'true');
     });
   });
 
