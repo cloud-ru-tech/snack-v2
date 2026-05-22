@@ -1,6 +1,5 @@
-const PREFIX = 'hot-spot';
-
 export const TEST_IDS = {
-  dot: `${PREFIX}__dot`,
-  dotContainer: `${PREFIX}__dot-container`,
-};
+  root: 'hot-spot',
+  dot: 'hot-spot__dot',
+  dotContainer: 'hot-spot__dot-container',
+} as const;

@@ -1,6 +1,6 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
@@ -84,7 +84,7 @@ export function HotSpot({
           '--offset-x': getOffsetStyle(offsetX),
           '--offset-y': getOffsetStyle(offsetY),
           '--duration': duration,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {children}

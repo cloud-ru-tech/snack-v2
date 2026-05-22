@@ -4,9 +4,25 @@ import { PlaceholderSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
+
 const meta: Meta<HotSpotProps> = {
   title: 'Components/HotSpot',
   component: HotSpot,
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Точка-индикатор поверх children, настраивается placement и offset.</DemoHint>
+        <DemoActions align='center'>
+          <HotSpot {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     appearance: APPEARANCE.Primary,
     pulse: true,
@@ -15,7 +31,7 @@ const meta: Meta<HotSpotProps> = {
     enabled: true,
     offsetX: 16,
     offsetY: 0,
-    'data-test-id': 'hot-spot',
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     appearance: {
@@ -66,9 +82,9 @@ export const Playground: Story = {
         iconPosition='before'
       />
     ),
-    'data-test-id': 'hot-spot',
+    'data-test-id': TEST_IDS.root,
   },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('hot-spot')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
