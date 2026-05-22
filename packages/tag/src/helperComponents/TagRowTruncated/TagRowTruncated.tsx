@@ -2,7 +2,7 @@ import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { memo, MutableRefObject, useEffect, useRef, useState } from 'react';
 
-import { TAG_ROW_TEST_IDS } from '../../components/TagRow/constants';
+import { TEST_IDS } from '../../constants';
 import { Size, TagRowItemInner } from '../../types';
 import { TagList } from '../TagList';
 import { TagMore } from '../TagMore';
@@ -126,7 +126,7 @@ function TagRowTruncatedInner({
       <div className={styles.hiddenMoreButton}>
         <TagMore items={items} text={moreButtonLabel} size={size} buttonRef={hiddenMoreButtonRef} />
       </div>
-      <div className={styles.visibleRow} data-size={size} data-test-id={TAG_ROW_TEST_IDS.visibleTagsWrapper}>
+      <div className={styles.visibleRow} data-size={size} data-test-id={TEST_IDS.tagRow.visibleTagsWrapper}>
         <TagList items={visibleTags} size={size} onItemRemove={onItemRemove} />
         {hiddenTags.length > 0 && (
           <TagMore items={hiddenTags} text={moreButtonLabel} size={size} onItemRemove={onItemRemove} />

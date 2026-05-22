@@ -2,7 +2,7 @@ import { CrossSVG } from '@ds/icons';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
-import { APPEARANCE, SIZE } from '../../constants';
+import { APPEARANCE, SIZE, TEST_IDS } from '../../constants';
 import { TagBaseProps } from '../../types';
 import { ICON_SIZE } from './constants';
 import styles from './styles.module.scss';
@@ -34,7 +34,7 @@ export function TagBase({
           type='button'
           className={styles.tagButton}
           onClick={onDelete}
-          data-test-id='tag-remove-button'
+          data-test-id={TEST_IDS.tag.removeButton}
           tabIndex={tabIndex}
         >
           <span className={styles.icon}>

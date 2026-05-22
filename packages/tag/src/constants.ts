@@ -15,3 +15,20 @@ export const APPEARANCE = {
   Violet: 'violet',
   Pink: 'pink',
 } as const;
+
+/**
+ * Канонические `data-test-id` слотов, которые компонент ставит на свои внутренние
+ * элементы (не получаются от потребителя через `...rest`). Реэкспортируются
+ * из `src/index.ts`, чтобы потребитель и e2e helpers брали строки из одного
+ * источника.
+ */
+export const TEST_IDS = {
+  tag: {
+    removeButton: 'tag-remove-button',
+  },
+  tagRow: {
+    moreButton: 'tag-row__more-button',
+    visibleTagsWrapper: 'tag-row__visible-row',
+    droplistTagsWrapper: 'tag-row__droplist-contents',
+  },
+} as const;

@@ -2,8 +2,7 @@ import { Dropdown } from '@ds/dropdown';
 import { Scroll } from '@ds/scroll';
 import { Ref } from 'react';
 
-import { TAG_ROW_TEST_IDS } from '../../components/TagRow/constants';
-import { SIZE } from '../../constants';
+import { SIZE, TEST_IDS } from '../../constants';
 import { Size, TagRowItemInner } from '../../types';
 import { TagRowSimple } from '../TagRowSimple';
 import styles from './styles.module.scss';
@@ -29,7 +28,7 @@ export function TagMore({ items, text = '', size = SIZE.Xs, buttonRef, onItemRem
               items={items}
               size={size}
               onItemRemove={onItemRemove}
-              data-test-id={TAG_ROW_TEST_IDS.droplistTagsWrapper}
+              data-test-id={TEST_IDS.tagRow.droplistTagsWrapper}
             />
           </Scroll>
         </div>
@@ -40,7 +39,7 @@ export function TagMore({ items, text = '', size = SIZE.Xs, buttonRef, onItemRem
         className={styles.button}
         ref={buttonRef}
         data-size={size}
-        data-test-id={TAG_ROW_TEST_IDS.moreButton}
+        data-test-id={TEST_IDS.tagRow.moreButton}
       >
         <div className={styles.textWrapper}>{`${text}${items.length}`}</div>
       </button>

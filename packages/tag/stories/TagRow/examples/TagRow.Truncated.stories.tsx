@@ -2,13 +2,15 @@ import { TagRow } from '@ds/tag';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { TAG_ROW_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../../testIds';
+import styles from '../styles.module.scss';
 
 const meta: Meta<typeof TagRow> = {
-  title: 'Components/Tag/TagRow',
+  title: 'Components/Tag/TagRow/Examples/Truncated',
   component: TagRow,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
@@ -26,9 +28,17 @@ const items = [
 export const Truncated: Story = {
   tags: ['dev'],
   render: () => (
-    <div className={styles.rowNarrow}>
-      <TagRow items={items} rowLimit={1} moreButtonLabel='+{count}' data-test-id={TAG_ROW_TEST_ID} />
-    </div>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Truncated</DemoTitle>
+        <DemoHint>TagRow с ограничением в одну строку и кнопкой раскрытия.</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.rowNarrow}>
+            <TagRow items={items} rowLimit={1} moreButtonLabel='+{count}' data-test-id={TEST_IDS.tagRow.root} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   ),
   play: async ({ canvasElement }) => {
     expect(canvasElement.firstElementChild).toBeTruthy();
