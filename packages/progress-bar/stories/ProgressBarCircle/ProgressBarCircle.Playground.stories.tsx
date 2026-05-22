@@ -1,16 +1,20 @@
-import { APPEARANCE, PROGRESS_BAR_SIZE, ProgressBarCircle } from '@ds/progress-bar';
+import { APPEARANCE, PROGRESS_BAR_CIRCLE_SIZE, ProgressBarCircle } from '@ds/progress-bar';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof ProgressBarCircle> = {
   title: 'Components/ProgressBar/ProgressBarCircle',
   component: ProgressBarCircle,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     progress: 50,
-    size: PROGRESS_BAR_SIZE.S,
+    size: PROGRESS_BAR_CIRCLE_SIZE.S,
     appearance: APPEARANCE.Primary,
-    'data-test-id': 'progress-bar-circle',
+    'data-test-id': TEST_IDS.progressBarCircle.root,
   },
   argTypes: {
     progress: {
@@ -19,7 +23,7 @@ const meta: Meta<typeof ProgressBarCircle> = {
     },
     size: {
       control: 'radio',
-      options: Object.values(PROGRESS_BAR_SIZE),
+      options: Object.values(PROGRESS_BAR_CIRCLE_SIZE),
       description: 'Размер индикатора: xs / s',
     },
     appearance: {
@@ -39,7 +43,18 @@ type Story = StoryObj<typeof ProgressBarCircle>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Круговой индикатор прогресса.</DemoHint>
+        <DemoActions align='center'>
+          <ProgressBarCircle {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('progress-bar-circle')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.progressBarCircle.root)).toBeVisible();
   },
 };

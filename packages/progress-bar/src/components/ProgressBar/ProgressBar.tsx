@@ -1,5 +1,5 @@
 import { PROGRESS_BAR_SIZE } from '../../constants';
-import { ProgressBarPrivate, type ProgressBarPrivateProps } from '../ProgressBarPrivate';
+import { ProgressBarPrivate, ProgressBarPrivateProps } from '../ProgressBarPrivate';
 
 export type ProgressBarProps = Omit<ProgressBarPrivateProps, 'animationDuration'>;
 

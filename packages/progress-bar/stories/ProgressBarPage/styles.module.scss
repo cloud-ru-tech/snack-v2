@@ -1,0 +1,21 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
+.wrapper {
+  position: relative;
+  // ProgressBarPage внутри использует `position: fixed` (рендерится как индикатор
+  // загрузки страницы по верху viewport'а). Чтобы удержать его внутри ячейки
+  // VisualMatrix, создаём новый containing block через `contain: paint`.
+  contain: paint;
+  width: 320px;
+  height: base.$sn-primitive-dimension-8;
+}
+
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}

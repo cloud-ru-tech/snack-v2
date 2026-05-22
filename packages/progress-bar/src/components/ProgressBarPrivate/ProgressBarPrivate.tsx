@@ -1,7 +1,7 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
-import { APPEARANCE } from '../../constants';
+import { APPEARANCE, TEST_IDS } from '../../constants';
 import { Appearance, ProgressBarSize } from '../../types';
 import { clamp, getProgressBarAriaAttributes } from '../../utils';
 import styles from './styles.module.scss';
@@ -35,7 +35,7 @@ export function ProgressBarPrivate({
       <div
         {...getProgressBarAriaAttributes(progress)}
         className={styles.progressBarFiller}
-        data-test-id='progress-bar-filler'
+        data-test-id={TEST_IDS.progressBar.filler}
         data-appearance={appearance}
         style={{
           '--snack-progress-bar-value': `${progress}%`,
