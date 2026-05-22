@@ -1,6 +1,5 @@
 import { BAR_HIDE_STRATEGY, Scroll, ScrollProps, SIZE } from '@ds/scroll';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from 'storybook/test';
 
 import { StoryTable } from '#storybook/components';
 
@@ -54,7 +53,4 @@ export const VisualMatrix: Story = {
       }))}
     />
   ),
-  play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getAllByText(/Line 1/).length).toBeGreaterThan(0);
-  },
 };

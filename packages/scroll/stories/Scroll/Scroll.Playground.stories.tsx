@@ -2,8 +2,10 @@ import { AUTOSCROLL_TO, BAR_HIDE_STRATEGY, RESIZE, Scroll, ScrollProps, SIZE } f
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import styles from './styles.module.scss';
-import { SCROLL_TEST_ID } from './testIds';
+import { TEST_IDS } from './testIds';
 
 const defaultContent = (
   <div className={styles.scrollContent}>
@@ -27,10 +29,10 @@ const meta: Meta<ScrollProps> = {
     untouchableScrollbars: false,
     resize: RESIZE.None,
     paddingAbsolute: false,
-    'data-test-id': SCROLL_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    children: { control: false },
+    children: { table: { disable: true } },
     size: { options: Object.values(SIZE), control: 'radio' },
     barHideStrategy: { options: Object.values(BAR_HIDE_STRATEGY), control: 'select' },
     clickScrolling: { control: 'boolean' },
@@ -38,11 +40,11 @@ const meta: Meta<ScrollProps> = {
     resize: { options: Object.values(RESIZE), control: 'select' },
     paddingAbsolute: { control: 'boolean' },
     autoscrollTo: {
-      options: [undefined, ...Object.values(AUTOSCROLL_TO)],
+      options: Object.values(AUTOSCROLL_TO),
       control: 'select',
     },
-    onScroll: { action: 'scroll', control: false },
-    onInitialized: { action: 'initialized', control: false },
+    onScroll: { table: { disable: true } },
+    onInitialized: { table: { disable: true } },
   },
 };
 
@@ -51,8 +53,18 @@ type Story = StoryObj<ScrollProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => <Scroll {...args} className={styles.scroll} />,
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Кастомный скроллбар вокруг прокручиваемой области.</DemoHint>
+        <DemoActions align='start'>
+          <Scroll {...args} className={styles.scroll} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(SCROLL_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

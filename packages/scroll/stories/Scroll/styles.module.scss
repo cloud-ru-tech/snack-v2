@@ -1,5 +1,10 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .scroll {
   width: 400px;
   height: 400px;
@@ -18,7 +23,7 @@
 
   width: max-content;
   min-width: 100%;
-  padding: 4px 8px;
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8;
 
   color: base.$sn-theme-color-available-version-textMain;
   white-space: nowrap;
@@ -35,7 +40,7 @@
 .decoratorPad24 {
   @include base.composite-var(base.$sn-regular-body-m);
 
-  padding: 24px;
+  padding: base.$sn-primitive-dimension-24;
   color: base.$sn-theme-color-available-version-textMain;
 }
 
@@ -47,8 +52,8 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  padding: 24px;
+  gap: base.$sn-primitive-dimension-24;
+  padding: base.$sn-primitive-dimension-24;
 }
 
 .sizeCell {
