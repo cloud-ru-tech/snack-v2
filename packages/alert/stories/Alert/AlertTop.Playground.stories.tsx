@@ -1,33 +1,42 @@
 import { AlertTop, APPEARANCE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from 'storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof AlertTop> = {
   title: 'Components/Alert/AlertTop',
   component: AlertTop,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     title: 'Системное уведомление',
     description: 'Краткое описание изменения, которое касается всех пользователей.',
     appearance: APPEARANCE.Info,
     icon: true,
-    'data-test-id': 'alert-top',
+    onClose: fn(),
+    'data-test-id': TEST_IDS.alertTop.root,
   },
   argTypes: {
-    title: { control: 'text' },
-    description: { control: 'text' },
-    appearance: { control: 'select', options: Object.values(APPEARANCE) },
-    icon: { control: 'boolean' },
+    title: { control: 'text', description: 'Заголовок' },
+    description: { control: 'text', description: 'Описание' },
+    appearance: { control: 'select', options: Object.values(APPEARANCE), description: 'Внешний вид' },
+    icon: { control: 'boolean', description: 'Отображать иконку' },
+    onClose: { table: { disable: true } },
+    actions: { table: { disable: true } },
   },
-  decorators: [
-    Story => (
-      <div className={styles.wide}>
-        <Story />
-      </div>
-    ),
-  ],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Верхнее системное уведомление на всю ширину страницы.</DemoHint>
+        <DemoActions block>
+          <AlertTop {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
 };
 
 export default meta;
@@ -36,6 +45,6 @@ type Story = StoryObj<typeof AlertTop>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('alert-top')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.alertTop.root)).toBeVisible();
   },
 };

@@ -1,1 +1,1 @@
-export const ALERT_TEST_ID = 'alert';
+export { TEST_IDS } from '../../src/constants';

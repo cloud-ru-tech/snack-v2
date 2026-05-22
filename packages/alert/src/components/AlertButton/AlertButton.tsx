@@ -1,11 +1,11 @@
 import { Sun } from '@ds/loader';
 import { getThemeClassnames } from '@ds/utils';
 import cn from 'classnames';
-import { type ComponentPropsWithoutRef, type ElementType, type MouseEvent, type ReactElement } from 'react';
+import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
 import { ICON_POSITION, VARIANT } from './constants';
 import styles from './styles.module.scss';
-import { type AlertButtonProps } from './types';
+import { AlertButtonProps } from './types';
 import { getVariant } from './utils';
 
 const TARGET_BLANK = '_blank';

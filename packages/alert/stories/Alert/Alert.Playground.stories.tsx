@@ -1,13 +1,26 @@
 import { Alert, ALIGN, APPEARANCE, SIZE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from 'storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
-import { ALERT_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert/Alert',
   component: Alert,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Информационное сообщение с заголовком, описанием и иконкой статуса.</DemoHint>
+        <DemoActions block>
+          <Alert {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     title: 'Alert title',
     description: 'Alert description text',
@@ -17,17 +30,20 @@ const meta: Meta<typeof Alert> = {
     icon: true,
     outline: true,
     collapsible: false,
-    'data-test-id': ALERT_TEST_ID,
+    onClose: fn(),
+    'data-test-id': TEST_IDS.alert.root,
   },
   argTypes: {
-    title: { control: 'text' },
-    description: { control: 'text' },
-    appearance: { control: 'select', options: Object.values(APPEARANCE) },
-    size: { control: 'radio', options: Object.values(SIZE) },
-    align: { control: 'radio', options: Object.values(ALIGN) },
-    icon: { control: 'boolean' },
-    outline: { control: 'boolean' },
-    collapsible: { control: 'boolean' },
+    title: { control: 'text', description: 'Заголовок' },
+    description: { control: 'text', description: 'Описание' },
+    appearance: { control: 'select', options: Object.values(APPEARANCE), description: 'Внешний вид' },
+    size: { control: 'radio', options: Object.values(SIZE), description: 'Размер' },
+    align: { control: 'radio', options: Object.values(ALIGN), description: 'Выравнивание контента' },
+    icon: { control: 'boolean', description: 'Отображать иконку' },
+    outline: { control: 'boolean', description: 'Бордер' },
+    collapsible: { control: 'boolean', description: 'Сворачиваемый длинный текст' },
+    onClose: { table: { disable: true } },
+    actions: { table: { disable: true } },
   },
 };
 export default meta;
@@ -37,6 +53,6 @@ type Story = StoryObj<typeof Alert>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(ALERT_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.alert.root)).toBeVisible();
   },
 };

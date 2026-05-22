@@ -4,7 +4,7 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, ReactElement, ReactNode, RefObject } from 'react';
 
-import { ALIGN, APPEARANCE, APPEARANCE_TO_THEME_COLOR } from '../../constants';
+import { ALIGN, APPEARANCE, APPEARANCE_TO_THEME_COLOR, TEST_IDS } from '../../constants';
 import { Align, Appearance, Size } from '../../types';
 import { AlertButton, AlertButtonProps } from '../AlertButton';
 import { VARIANT } from '../AlertButton/constants';
@@ -109,7 +109,7 @@ export function AlertBase(props: AlertBaseProps) {
 
   const isTop = variant === 'top';
   const themeColor = APPEARANCE_TO_THEME_COLOR[appearance];
-  const testIdPrefix = isTop ? 'alert-top' : 'alert';
+  const testIds = isTop ? TEST_IDS.alertTop : TEST_IDS.alert;
   const buttonVariant = isTop ? VARIANT.OnAccent : VARIANT.OnColor;
   const inlineColorProps = !isTop ? { 'data-color': themeColor } : {};
   const invertFocusOutlineColor = isTop && appearance === APPEARANCE.Neutral;
@@ -148,7 +148,7 @@ export function AlertBase(props: AlertBaseProps) {
     const titleShared = {
       className: styles.title,
       'data-size': size,
-      'data-test-id': `${testIdPrefix}__title`,
+      'data-test-id': testIds.title,
       ...inlineColorProps,
     };
     titleContent = collapsible ? (
@@ -163,7 +163,7 @@ export function AlertBase(props: AlertBaseProps) {
   const descriptionShared = {
     className: styles.description,
     'data-size': size,
-    'data-test-id': `${testIdPrefix}__description`,
+    'data-test-id': testIds.description,
     ...inlineColorProps,
   };
 
@@ -185,7 +185,7 @@ export function AlertBase(props: AlertBaseProps) {
 
   const closeButton = onClose && showCloseButton && (
     <AlertButton
-      data-test-id={`${testIdPrefix}__close-button`}
+      data-test-id={testIds.closeButton}
       icon={<CrossSpriteSVG />}
       onClick={handleOnClose}
       size={size}
@@ -214,7 +214,7 @@ export function AlertBase(props: AlertBaseProps) {
           <div
             className={cn('sn-compact', styles.icon)}
             data-size={size}
-            data-test-id={`${testIdPrefix}__icon`}
+            data-test-id={testIds.icon}
             {...inlineColorProps}
           >
             {getAlertAppearanceIcon(appearance)}
@@ -233,7 +233,7 @@ export function AlertBase(props: AlertBaseProps) {
         <div className={styles.bodyActions} data-size={size}>
           {showExpandChevron && (
             <AlertButton
-              data-test-id={`${testIdPrefix}__expanding-icon`}
+              data-test-id={testIds.expandingIcon}
               icon={isExpanded ? <ChevronUpSpriteSVG /> : <ChevronDownSpriteSVG />}
               size={size}
               variant={buttonVariant}
