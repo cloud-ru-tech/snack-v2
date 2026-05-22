@@ -42,6 +42,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
     tabIndex,
     size = SIZE.S,
     inputMode,
+    'data-test-id': dataTestId,
     ...rest
   },
   ref,
@@ -51,6 +52,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
 
   return (
     <div
+      data-test-id={dataTestId}
       className={cn(styles.root, className)}
       data-size={size}
       data-loading={loading || undefined}

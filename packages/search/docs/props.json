@@ -8,6 +8,10 @@
         "required": true,
         "description": "Слот для кнопки/иконки/аватара"
       },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
       "disabled": {
         "type": "boolean",
         "required": false,
@@ -178,6 +182,10 @@
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": true,
             "description": "Слот для кнопки/иконки/аватара"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
           "disabled": {
             "type": "boolean | undefined",

@@ -1,5 +1,6 @@
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
 import { Sun, SUN_SIZE } from '@ds/loader';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { type KeyboardEvent, ReactNode, useCallback, useMemo, useState } from 'react';
 
 import { SIZE } from './constants';
@@ -7,7 +8,7 @@ import styles from './styles.module.scss';
 import { Size, Variant } from './types';
 import { getIconSize } from './utils';
 
-export type ButtonFieldProps = {
+export type ButtonFieldProps = WithSupportProps<{
   /** Вариант (положение) кнопки */
   variant: Variant;
   /**
@@ -25,7 +26,7 @@ export type ButtonFieldProps = {
   withDropdownList?: boolean;
   /** Действие при клике */
   onClick(): void;
-};
+}>;
 
 const SUN_SIZE_MAP = {
   [SIZE.S]: SUN_SIZE.XS,
@@ -41,6 +42,7 @@ export function ButtonField({
   withDropdownList,
   variant = 'after',
   action,
+  ...rest
 }: ButtonFieldProps) {
   const [isListOpen, setListOpen] = useState<boolean>(false);
   const [stateLayerPressed, setStateLayerPressed] = useState(false);
@@ -86,6 +88,7 @@ export function ButtonField({
       data-loading={loading || undefined}
       data-disabled={disabled || undefined}
       data-pressed={stateLayerPressed ? true : undefined}
+      {...extractSupportProps(rest)}
     >
       <div className={styles.backgroundStateLayer} data-state='regularFilled' />
       <div className={styles.elementWrapper}>

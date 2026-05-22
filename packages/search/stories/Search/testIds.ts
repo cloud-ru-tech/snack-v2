@@ -1,1 +1,1 @@
-export const SEARCH_TEST_ID = 'search';
+export { TEST_IDS } from '../../src/constants';

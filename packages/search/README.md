@@ -108,6 +108,7 @@ export function TransparentBackground() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `action` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Слот для кнопки/иконки/аватара |
+| `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Деактивирован ли компонент |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `onClick` | `() => void` | — | Действие при клике |
