@@ -3,6 +3,7 @@ import { DATA_SWIPE_DIRECTIONS_ATTRIBUTE } from '@ds/utils';
 import { SliderProps as RCSliderProps } from 'rc-slider';
 import { cloneElement, HTMLAttributes, ReactElement } from 'react';
 
+import { TEST_IDS } from './constants';
 import styles from './styles.module.scss';
 import { TipFormatter } from './types';
 
@@ -86,6 +87,7 @@ export function mapDomainValueToEqualInternal(
 const addSwipeAttribute = (node: ReactElement) =>
   cloneElement(node, {
     [DATA_SWIPE_DIRECTIONS_ATTRIBUTE]: 'Left Right',
+    'data-test-id': TEST_IDS.handle,
   } as HTMLAttributes<HTMLElement>);
 
 export function createTipHandleRender(

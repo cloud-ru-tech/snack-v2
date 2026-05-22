@@ -2,13 +2,15 @@ import { Slider } from '@ds/slider';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { SLIDER_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Slider> = {
   title: 'Components/Slider',
   component: Slider,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     min: 0,
     max: 100,
@@ -17,15 +19,9 @@ const meta: Meta<typeof Slider> = {
     handleTip: false,
     marksEqualSpacing: false,
     disabled: false,
-    'data-test-id': SLIDER_TEST_ID,
+    reverse: false,
+    'data-test-id': TEST_IDS.root,
   },
-  decorators: [
-    Story => (
-      <div className={styles.item}>
-        <Story />
-      </div>
-    ),
-  ],
   argTypes: {
     min: { control: 'number', description: 'Минимальное значение' },
     max: { control: 'number', description: 'Максимальное значение' },
@@ -37,6 +33,7 @@ const meta: Meta<typeof Slider> = {
     },
     disabled: { control: 'boolean', description: 'Отключён' },
     reverse: { control: 'boolean', description: 'Перевёрнутое направление' },
+    value: { table: { disable: true } },
   },
 };
 
@@ -45,7 +42,20 @@ type Story = StoryObj<typeof Slider>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Ползунок для выбора значения из диапазона.</DemoHint>
+        <DemoActions block>
+          <div className={styles.item}>
+            <Slider {...args} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(SLIDER_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

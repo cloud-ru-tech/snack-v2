@@ -1,1 +1,1 @@
-export const SLIDER_TEST_ID = 'slider';
+export { TEST_IDS } from '../../src/components/constants';
