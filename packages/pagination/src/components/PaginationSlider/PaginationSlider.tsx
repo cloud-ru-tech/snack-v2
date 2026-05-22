@@ -1,6 +1,6 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 
-import { PAGINATION_SLIDER_SIZE } from '../../constants';
+import { getSliderItemTestId, PAGINATION_SLIDER_SIZE } from '../../constants';
 import { PaginationSliderSize } from '../../types';
 import { getRange } from '../../utils';
 import { PaginationSliderItem } from '../PaginationSliderItem';
@@ -40,7 +40,7 @@ export function PaginationSlider({
               activated={value === page}
               onClick={() => onChange(value)}
               size={size}
-              data-test-id={`page-button-slider-${value}`}
+              data-test-id={getSliderItemTestId(value)}
             />
           </li>
         ))}

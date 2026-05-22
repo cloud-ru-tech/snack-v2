@@ -2,12 +2,14 @@ import { Pagination, PAGINATION_SIZE, VARIANT } from '@ds/pagination';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
-import { PAGINATION_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof Pagination> = {
   title: 'Components/Pagination/Pagination',
   component: Pagination,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     total: 10,
     page: 3,
@@ -15,7 +17,7 @@ const meta: Meta<typeof Pagination> = {
     variant: VARIANT.Button,
     maxLength: 7,
     onChange: fn(),
-    'data-test-id': PAGINATION_TEST_ID,
+    'data-test-id': TEST_IDS.pagination.root,
   },
   argTypes: {
     total: { control: { type: 'number', min: 1 }, description: 'Общее количество страниц' },
@@ -41,7 +43,18 @@ type Story = StoryObj<typeof Pagination>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Постраничная навигация по списку.</DemoHint>
+        <DemoActions align='center'>
+          <Pagination {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(PAGINATION_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.pagination.root)).toBeVisible();
   },
 };

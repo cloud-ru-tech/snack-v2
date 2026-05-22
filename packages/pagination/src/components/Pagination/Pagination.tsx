@@ -3,7 +3,7 @@ import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 
-import { PAGINATION_SIZE, VARIANT } from '../../constants';
+import { getPageMoreTestId, getPageNumberTestId, PAGINATION_SIZE, TEST_IDS, VARIANT } from '../../constants';
 import { PaginationContext } from '../../contexts';
 import { PaginationSize, Variant } from '../../types';
 import { getPaginationEntries, PaginationEntry, PaginationEntryKind } from '../../utils';
@@ -97,7 +97,7 @@ export function Pagination({
             }}
             href={hrefFormatter?.(entry.page)}
             aria-current={entry.page === page ? 'page' : undefined}
-            data-test-id={`page-number-button-${entry.page}`}
+            data-test-id={getPageNumberTestId(entry.page)}
           />
         </li>
       );
@@ -109,7 +109,7 @@ export function Pagination({
           <PaginationNumberItem
             label='...'
             onClick={() => handleMoreButtonClick(entry.start, entry.end)}
-            data-test-id={`page-more-button-${entry.start}-${entry.end}`}
+            data-test-id={getPageMoreTestId(entry.start, entry.end)}
           />
         </li>
       );
@@ -122,7 +122,13 @@ export function Pagination({
 
   return (
     <PaginationContext.Provider value={{ size, variant }}>
-      <nav className={className} aria-label='Pagination' {...extractSupportProps(rest)}>
+      <nav
+        className={className}
+        aria-label='Pagination'
+        data-size={size}
+        data-variant={variant}
+        {...extractSupportProps(rest)}
+      >
         <ul className={styles.pagination} data-size={size}>
           <li>
             <Button
@@ -133,7 +139,7 @@ export function Pagination({
               disabled={page === FIRST_PAGE}
               size={buttonSize}
               aria-label='Previous page'
-              data-test-id='page-prev-button'
+              data-test-id={TEST_IDS.prev}
             />
           </li>
           {entries.map(renderEntry)}
@@ -146,7 +152,7 @@ export function Pagination({
               disabled={page === total}
               size={buttonSize}
               aria-label='Next page'
-              data-test-id='page-next-button'
+              data-test-id={TEST_IDS.next}
             />
           </li>
         </ul>
