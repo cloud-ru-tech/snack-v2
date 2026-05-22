@@ -5,49 +5,31 @@ import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-import styles from './styles.module.scss';
-import { TEST_IDS } from './testIds';
+import styles from '../styles.module.scss';
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof Stepper> = {
-  title: 'Components/Stepper',
+  title: 'Components/Stepper/Examples/BasicFlow',
   component: Stepper,
   parameters: { layout: 'fullscreen' },
-  args: {
-    steps: [
-      { title: 'Настройка', description: 'Укажите основные параметры' },
-      { title: 'Проверка', description: 'Убедитесь, что всё корректно' },
-      { title: 'Готово', description: 'Подтвердите создание' },
-    ],
-    defaultCurrentStepIndex: 0,
-    className: '',
-    'data-test-id': TEST_IDS.root,
-  },
-  argTypes: {
-    steps: { control: 'object', description: 'Массив шагов (title + description)' },
-    defaultCurrentStepIndex: {
-      control: { type: 'number', min: 0, step: 1 },
-      description: 'Индекс шага, на котором степпер откроется изначально',
-    },
-    className: { control: 'text', description: 'CSS-класс на корне степпера' },
-    validator: { control: false },
-    onChangeCurrentStep: { control: false },
-    onCompleteChange: { control: false },
-    children: { control: false },
-  },
 };
-
 export default meta;
 type Story = StoryObj<typeof Stepper>;
 
-export const Playground: Story = {
+export const BasicFlow: Story = {
   tags: ['dev', 'test'],
+  args: {
+    steps: [{ title: 'Шаг 1' }, { title: 'Шаг 2' }, { title: 'Шаг 3' }],
+    defaultCurrentStepIndex: 0,
+    'data-test-id': TEST_IDS.root,
+  },
   render: args => (
     <DemoPage>
       <DemoPanel width='wide'>
-        <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Пошаговый мастер с кнопками навигации.</DemoHint>
-        <DemoActions align='center'>
-          <div className={styles.containerPlayground}>
+        <DemoTitle>BasicFlow</DemoTitle>
+        <DemoHint>Базовый сценарий пошагового перехода вперёд и назад.</DemoHint>
+        <DemoActions block>
+          <div className={styles.containerDesktop} data-test-id={TEST_IDS.example}>
             <Stepper {...args}>
               {({ stepper, goNext, goPrev, currentStepIndex, stepCount, isCompleted }) => (
                 <div className={styles.stack}>
@@ -55,8 +37,8 @@ export const Playground: Story = {
                   <div className={styles.row}>
                     <Button
                       label='Назад'
-                      appearance='neutral'
                       view='outline'
+                      appearance='neutral'
                       size='s'
                       onClick={() => goPrev()}
                       disabled={currentStepIndex === 0}
@@ -80,7 +62,6 @@ export const Playground: Story = {
     </DemoPage>
   ),
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getByTestId(TEST_IDS.root)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
