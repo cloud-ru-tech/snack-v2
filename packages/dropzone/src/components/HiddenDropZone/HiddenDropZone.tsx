@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import { useDrag } from '../../hooks/useDrag';
-import type { DropzoneProps } from '../Dropzone';
+import { DropzoneProps } from '../Dropzone';
 import { PrivateDropZone } from '../PrivateDropZone';
 import styles from './styles.module.scss';
 
@@ -16,13 +16,17 @@ export type HiddenDropZoneProps = Omit<DropzoneProps, 'children'> & {
 
 /** Компонент — скрытая дропзона, накрывающая произвольный контент (формы, карточки) */
 export function HiddenDropZone(props: HiddenDropZoneProps) {
-  const { disabled = false, children, className, content, ...rest } = props;
+  const { disabled = false, children, className, content, 'data-test-id': dataTestId, ...rest } = props;
 
   const { events, isOver } = useDrag(disabled);
   const showOverlay = isOver && !disabled;
 
   return (
-    <div className={cn(styles.wrapper, className)} {...extractSupportProps(rest)} {...events}>
+    <div
+      className={cn(styles.wrapper, className)}
+      {...extractSupportProps({ ...rest, 'data-test-id': dataTestId })}
+      {...events}
+    >
       {showOverlay && (
         <PrivateDropZone className={styles.dropZone} {...events} {...rest} isOver disabled={disabled}>
           {content}

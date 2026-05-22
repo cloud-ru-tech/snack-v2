@@ -2,9 +2,10 @@ import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ChangeEvent, DragEvent, useRef } from 'react';
 
+import { TEST_IDS } from '../../constants';
 import { UPLOAD_MODE } from './constants';
 import styles from './styles.module.scss';
-import type { PrivateDropZoneProps } from './types';
+import { PrivateDropZoneProps } from './types';
 
 export function PrivateDropZone({
   disabled = false,
@@ -66,7 +67,7 @@ export function PrivateDropZone({
       {children && <div className={styles.content}>{children}</div>}
 
       <input
-        data-test-id='file-input'
+        data-test-id={TEST_IDS.dropzone.nativeInput}
         className={styles.hidden}
         onChange={handleFileSelect}
         multiple={mode === UPLOAD_MODE.Multiple}

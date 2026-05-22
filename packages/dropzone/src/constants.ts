@@ -8,3 +8,12 @@ export const SIZE = {
   M: 'm',
   L: 'l',
 } as const;
+
+export const TEST_IDS = {
+  dropzone: {
+    nativeInput: 'file-input',
+  },
+  fileUpload: {
+    nativeInput: 'file-upload__native-input',
+  },
+} as const;

@@ -2,22 +2,25 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import { Dropzone, DropzoneProps, SIZE, UPLOAD_MODE } from '../../src';
+import { TEST_IDS } from '../testIds';
 import { SlotContent } from './SlotContent';
 import styles from './styles.module.scss';
-import { DROPZONE_SLOT_CONTENT_TEST_ID, DROPZONE_TEST_ID } from './testIds';
 
 const defaultChildren = <SlotContent />;
 
 const meta: Meta<typeof Dropzone> = {
   title: 'Components/Dropzone/Dropzone',
   component: Dropzone,
+  parameters: { layout: 'fullscreen' },
   args: {
     children: defaultChildren,
     disabled: false,
     mode: UPLOAD_MODE.Multiple,
     size: SIZE.M,
-    'data-test-id': DROPZONE_TEST_ID,
+    'data-test-id': TEST_IDS.dropzone.root,
   },
   argTypes: {
     children: { table: { disable: true } },
@@ -54,7 +57,7 @@ function DropzoneWithFiles(args: DropzoneProps) {
       </Dropzone>
 
       {files.length > 0 && (
-        <div className={styles.filesList} data-test-id='files-list'>
+        <div className={styles.filesList} data-test-id={TEST_IDS.dropzone.filesList}>
           Загружено: {files.map(f => f.name).join(', ')}
         </div>
       )}
@@ -64,8 +67,18 @@ function DropzoneWithFiles(args: DropzoneProps) {
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => <DropzoneWithFiles {...args} />,
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Зона загрузки файлов с поддержкой drag-and-drop.</DemoHint>
+        <DemoActions align='center'>
+          <DropzoneWithFiles {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(DROPZONE_SLOT_CONTENT_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.dropzone.slotContent)).toBeVisible();
   },
 };

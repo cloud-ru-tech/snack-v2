@@ -4,16 +4,19 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import { FileUpload, FileUploadProps, UPLOAD_MODE } from '../../src';
+import { TEST_IDS } from '../testIds';
 import styles from './styles.module.scss';
-import { FILE_UPLOAD_TEST_ID, FILE_UPLOAD_TRIGGER_TEST_ID } from './testIds';
 
 const meta: Meta<typeof FileUpload> = {
   title: 'Components/Dropzone/FileUpload',
   component: FileUpload,
+  parameters: { layout: 'fullscreen' },
   args: {
     mode: UPLOAD_MODE.Multiple,
-    'data-test-id': FILE_UPLOAD_TEST_ID,
+    'data-test-id': TEST_IDS.fileUpload.root,
   },
   argTypes: {
     mode: {
@@ -39,11 +42,11 @@ function FileUploadWithFiles(args: FileUploadProps) {
   return (
     <div className={styles.wrapper}>
       <FileUpload {...args} onFilesUpload={setFiles}>
-        <Button data-test-id={FILE_UPLOAD_TRIGGER_TEST_ID} type='button' label='Загрузить' icon={<UploadSVG />} />
+        <Button data-test-id={TEST_IDS.fileUpload.trigger} type='button' label='Загрузить' icon={<UploadSVG />} />
       </FileUpload>
 
       {files.length > 0 && (
-        <div className={styles.filesList} data-test-id='files-list'>
+        <div className={styles.filesList} data-test-id={TEST_IDS.fileUpload.filesList}>
           Загружено: {files.map(f => f.name).join(', ')}
         </div>
       )}
@@ -53,8 +56,18 @@ function FileUploadWithFiles(args: FileUploadProps) {
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => <FileUploadWithFiles {...args} />,
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Кнопка-триггер загрузки файлов.</DemoHint>
+        <DemoActions align='center'>
+          <FileUploadWithFiles {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(FILE_UPLOAD_TRIGGER_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.fileUpload.trigger)).toBeVisible();
   },
 };

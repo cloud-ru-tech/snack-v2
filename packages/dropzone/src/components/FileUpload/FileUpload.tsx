@@ -1,7 +1,7 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { ChangeEvent, cloneElement, MouseEvent, MouseEventHandler, ReactElement, useRef } from 'react';
 
-import { UPLOAD_MODE } from '../../constants';
+import { TEST_IDS, UPLOAD_MODE } from '../../constants';
 import { UploadMode } from '../../types';
 import styles from './styles.module.scss';
 
@@ -54,6 +54,7 @@ export function FileUpload({ mode = UPLOAD_MODE.Multiple, onFilesUpload, accept,
         type='file'
         accept={accept}
         onClick={handleClick}
+        data-test-id={TEST_IDS.fileUpload.nativeInput}
         {...extractSupportProps(rest)}
       />
     </>

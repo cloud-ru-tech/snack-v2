@@ -1,11 +1,16 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 $width: 200px;
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: base.$sn-primitive-dimension-8;
   width: $width;
 }
 
@@ -16,7 +21,7 @@ $width: 200px;
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
   align-items: flex-start;
 }
 

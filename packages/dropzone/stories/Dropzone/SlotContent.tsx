@@ -1,5 +1,5 @@
-import { DROPZONE_SLOT_CONTENT_TEST_ID } from './testIds';
+import { TEST_IDS } from '../testIds';
 
 export function SlotContent() {
-  return <span data-test-id={DROPZONE_SLOT_CONTENT_TEST_ID}># slot content</span>;
+  return <span data-test-id={TEST_IDS.dropzone.slotContent}># slot content</span>;
 }

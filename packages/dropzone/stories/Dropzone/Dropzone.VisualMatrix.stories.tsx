@@ -18,6 +18,7 @@ export default meta;
 type Story = StoryObj<typeof Dropzone>;
 
 const sizes = Object.values(SIZE);
+const modes = Object.values(UPLOAD_MODE);
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
@@ -25,21 +26,19 @@ export const VisualMatrix: Story = {
   render: () => (
     <>
       <StoryTable
-        sectionTitle='Size'
-        firstColumnHeader=''
+        sectionTitle='Mode × Size'
+        firstColumnHeader='Mode'
         columnHeaders={sizes.map(s => s.toUpperCase())}
-        rows={[
-          {
-            variantLabel: '',
-            cells: sizes.map(size => (
-              <div key={size} className={styles.dropzoneCell}>
-                <Dropzone size={size} mode={UPLOAD_MODE.Multiple} onFilesUpload={() => {}}>
-                  {slotContent}
-                </Dropzone>
-              </div>
-            )),
-          },
-        ]}
+        rows={modes.map(mode => ({
+          variantLabel: mode,
+          cells: sizes.map(size => (
+            <div key={`${mode}-${size}`} className={styles.dropzoneCell}>
+              <Dropzone size={size} mode={mode} onFilesUpload={() => {}}>
+                {slotContent}
+              </Dropzone>
+            </div>
+          )),
+        }))}
       />
 
       <StoryTable
