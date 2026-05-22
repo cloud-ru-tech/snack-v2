@@ -1,6 +1,6 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import type { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';

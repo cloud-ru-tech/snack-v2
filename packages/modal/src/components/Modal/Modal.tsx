@@ -1,10 +1,10 @@
 import { Spinner } from '@ds/loader';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
-import { type ReactNode, useId, useMemo } from 'react';
+import { ReactNode, useId, useMemo } from 'react';
 
 import { MODE, TEST_IDS, WIDTH } from '../../constants';
 import { BodyProps, HeaderProps } from '../../helperComponents';
-import { ModalCustom, type ModalCustomProps } from '../ModalCustom';
+import { ModalCustom, ModalCustomProps } from '../ModalCustom';
 import styles from './styles.module.scss';
 
 export type ModalProps = WithSupportProps<

@@ -1,7 +1,7 @@
 import cn from 'classnames';
-import type { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
-import type { Theme } from '#storybook/components';
+import { Theme } from '#storybook/components';
 
 import darkMedia from './dark.png';
 import lightMedia from './light.png';
@@ -11,8 +11,13 @@ export type ThemedModalMediaProps = Omit<ComponentPropsWithoutRef<'div'>, 'src'>
   src: string;
 };
 
+// PNG-импорт в storybook (vite) даёт строку, в astro-окружении — ImageMetadata.
+function toUrl(asset: string | { src: string }): string {
+  return typeof asset === 'string' ? asset : asset.src;
+}
+
 export function resolveModalStoryMediaSrc(theme: Theme): string {
-  return theme === 'dark' ? darkMedia : lightMedia;
+  return toUrl(theme === 'dark' ? darkMedia : lightMedia);
 }
 
 export function ThemedModalMedia({ className, style, src, ...rest }: ThemedModalMediaProps) {

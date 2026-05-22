@@ -1,17 +1,24 @@
-import { Button, ButtonGroup } from '@ds/button';
+import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
 import { Modal, ModalProps, MODE, WIDTH } from '@ds/modal';
 import { QuestionTooltip } from '@ds/tooltip';
-import type { Meta, StoryObj } from '@storybook/react';
-import { useEffect } from 'react';
-import { useArgs } from 'storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { usePreviewTheme } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, usePreviewTheme } from '#storybook/components';
 
-import { SAMPLE_CONTENT, STORY_TEST_IDS } from './constants';
+import { TEST_IDS } from '../testIds';
+import { SAMPLE_CONTENT } from './constants';
 import styles from './styles.module.scss';
-import { MODAL_TEST_ID } from './testIds';
 import { resolveModalStoryMediaSrc, ThemedModalMedia } from './ThemedModalMedia';
+
+const STORY_TEST_IDS = {
+  triggerOpen: TEST_IDS.modal.triggerOpen,
+  firstButton: TEST_IDS.modal.firstButton,
+  secondButton: TEST_IDS.modal.secondButton,
+  image: TEST_IDS.modal.image,
+  tooltip: TEST_IDS.modal.tooltip,
+};
 
 type PlaygroundStoryProps = ModalProps & {
   showMedia: boolean;
@@ -27,22 +34,6 @@ type PlaygroundStoryProps = ModalProps & {
   customTooltipText: string;
   longBodyContent: boolean;
 };
-
-function coerceStoryBooleanArg(value: unknown, defaultValue: boolean): boolean {
-  if (value === false || value === 0) {
-    return false;
-  }
-  if (typeof value === 'string' && value.trim().toLowerCase() === 'false') {
-    return false;
-  }
-  if (value === true || value === 1) {
-    return true;
-  }
-  if (typeof value === 'string' && value.trim().toLowerCase() === 'true') {
-    return true;
-  }
-  return defaultValue;
-}
 
 const onBackButtonClick = () => {
   alert('clicked');
@@ -64,47 +55,38 @@ function PlaygroundRender(args: PlaygroundStoryProps) {
     loadingState,
     title,
     subtitle,
-    open,
     ...restModal
   } = args;
 
-  const [, updateArgs] = useArgs<PlaygroundStoryProps>();
+  // Trigger-based: open живёт в локальном state, не в args. e2e/spec открывают
+  // модалку кликом по триггеру (см. trigger-based-stories.md §1).
+  const [open, setOpen] = useState(false);
   const previewTheme = usePreviewTheme();
   const storyMediaSrc = resolveModalStoryMediaSrc(previewTheme);
 
-  const longBody = coerceStoryBooleanArg(longBodyContent, false);
-  const showMediaFlag = coerceStoryBooleanArg(showMedia, true);
-  const showFooterFlag = coerceStoryBooleanArg(showFooter, true);
-  const modalContent = longBody ? SAMPLE_CONTENT : content;
+  const modalContent = longBodyContent ? SAMPLE_CONTENT : content;
 
-  const close = () => updateArgs({ open: false });
-  const openModal = () => updateArgs({ open: true });
-
-  useEffect(() => {
-    if (showHeader) {
-      return;
-    }
-
-    updateArgs({
-      showBackButton: false,
-      showHeadline: false,
-      showAfterHeadline: false,
-      showSubHeadline: false,
-    });
-  }, [showHeader, updateArgs]);
+  const close = () => setOpen(false);
+  const openModal = () => setOpen(true);
 
   return (
-    <>
-      <Button
-        data-test-id={STORY_TEST_IDS.buttonControlled}
-        label='Toggle modal'
-        appearance='primary'
-        view='filled'
-        onClick={openModal}
-      />
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Открыть модальное окно триггером ниже. Состав слотов и режим — из Controls.</DemoHint>
+        <DemoActions align='center'>
+          <Button
+            data-test-id={STORY_TEST_IDS.triggerOpen}
+            label='Открыть модалку'
+            view={VIEW.Outline}
+            appearance={APPEARANCE.Neutral}
+            onClick={openModal}
+          />
+        </DemoActions>
+      </DemoPanel>
       <Modal
         {...restModal}
-        open={open ?? false}
+        open={open}
         onClose={close}
         title={showHeader && showHeadline ? title : undefined}
         subtitle={showHeader && showSubHeadline ? subtitle : undefined}
@@ -117,9 +99,9 @@ function PlaygroundRender(args: PlaygroundStoryProps) {
         content={modalContent}
         loading={loading}
         loadingState={loadingState}
-        media={showMediaFlag ? <ThemedModalMedia src={storyMediaSrc} data-test-id={STORY_TEST_IDS.image} /> : undefined}
+        media={showMedia ? <ThemedModalMedia src={storyMediaSrc} data-test-id={STORY_TEST_IDS.image} /> : undefined}
         footer={
-          showFooterFlag && !loading ? (
+          showFooter && !loading ? (
             <ButtonGroup
               className={styles.footerGroup}
               primaryAction={{
@@ -139,16 +121,15 @@ function PlaygroundRender(args: PlaygroundStoryProps) {
           ) : undefined
         }
       />
-    </>
+    </DemoPage>
   );
 }
 
 const meta: Meta<PlaygroundStoryProps> = {
   title: 'Components/Modal/Modal',
   component: Modal,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
-    open: false,
     mode: MODE.Regular,
     width: WIDTH.S,
     heightAuto: true,
@@ -177,13 +158,9 @@ const meta: Meta<PlaygroundStoryProps> = {
     className: '',
     rootClassName: '',
     closeOnPopstate: true,
-    'data-test-id': MODAL_TEST_ID,
+    'data-test-id': TEST_IDS.modal.root,
   },
   argTypes: {
-    open: {
-      control: 'boolean',
-      description: 'Открыта ли модалка',
-    },
     content: {
       control: 'text',
       description: 'Контент модалки',
@@ -296,6 +273,6 @@ type Story = StoryObj<PlaygroundStoryProps>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(STORY_TEST_IDS.buttonControlled)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(STORY_TEST_IDS.triggerOpen)).toBeVisible();
   },
 };

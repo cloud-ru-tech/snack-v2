@@ -1,21 +1,21 @@
 import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, isBrowser, useModalOpenState, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { type ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { RemoveScroll } from 'react-remove-scroll';
 
 import { MODE, TEST_IDS, WIDTH } from '../../constants';
 import {
   Body as ModalBodyComponent,
-  type BodyProps as ModalBodyPropsType,
+  BodyProps as ModalBodyPropsType,
   ButtonClose,
   Footer as ModalFooterComponent,
-  type FooterProps as ModalFooterPropsType,
+  FooterProps as ModalFooterPropsType,
   Header as ModalHeaderComponent,
-  type HeaderProps as ModalHeaderPropsType,
+  HeaderProps as ModalHeaderPropsType,
 } from '../../helperComponents';
-import type { ModalMode, ModalWidth } from '../../types';
+import { ModalMode, ModalWidth } from '../../types';
 import { useModalFocusTrap } from './hooks';
 import styles from './styles.module.scss';
 
@@ -161,6 +161,7 @@ export function ModalCustom({
         <div
           className={cn(styles.modal, className)}
           data-width={width}
+          data-mode={mode}
           data-height-auto={heightAuto || undefined}
           role='dialog'
           aria-modal='true'

@@ -1,6 +1,11 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .footerGroup {
   display: flex;
   justify-content: flex-end;
@@ -26,7 +31,7 @@
 
 .scenarioRoot {
   display: flex;
-  gap: 12px;
+  gap: base.$sn-primitive-dimension-12;
   align-items: center;
   justify-content: center;
 
@@ -34,5 +39,5 @@
 }
 
 .longContent > p + p {
-  margin-top: 12px;
+  margin-top: base.$sn-primitive-dimension-12;
 }

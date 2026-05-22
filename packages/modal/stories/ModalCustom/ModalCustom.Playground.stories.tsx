@@ -1,26 +1,37 @@
-import { Button } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { ModalCustom, ModalCustomProps, MODE, WIDTH } from '@ds/modal';
 import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from 'storybook/preview-api';
+import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 import styles from './styles.module.scss';
 
 function PlaygroundRender(args: ModalCustomProps) {
-  const [, updateArgs] = useArgs<ModalCustomProps>();
-  const open = () => updateArgs({ open: true });
-  const close = () => updateArgs({ open: false });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- open отбрасываем, открытие управляется триггером
+  const { open: _open, ...rest } = args;
+  const [isOpen, setOpen] = useState(false);
+  const openModal = () => setOpen(true);
+  const close = () => setOpen(false);
 
   return (
-    <>
-      <Button
-        data-test-id='modal-custom-trigger'
-        label='Open custom modal'
-        appearance='primary'
-        view='filled'
-        onClick={open}
-      />
-      <ModalCustom {...args} onClose={close}>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Открыть кастомную модалку триггером ниже. Состав слотов задан вручную в render.</DemoHint>
+        <DemoActions align='center'>
+          <Button
+            data-test-id={TEST_IDS.modalCustom.triggerOpen}
+            label='Open custom modal'
+            view={VIEW.Outline}
+            appearance={APPEARANCE.Neutral}
+            onClick={openModal}
+          />
+        </DemoActions>
+      </DemoPanel>
+      <ModalCustom {...rest} open={isOpen} onClose={close}>
         <ModalCustom.Header title='Custom composition' subtitle='Шапка, тело и футер собираются вручную.' />
         <ModalCustom.Body
           content={
@@ -37,24 +48,22 @@ function PlaygroundRender(args: ModalCustomProps) {
           </div>
         </ModalCustom.Footer>
       </ModalCustom>
-    </>
+    </DemoPage>
   );
 }
 
 const meta: Meta<typeof ModalCustom> = {
   title: 'Components/Modal/ModalCustom',
   component: ModalCustom,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
-    open: false,
     mode: MODE.Regular,
     width: WIDTH.S,
     heightAuto: true,
     closeOnPopstate: true,
-    'data-test-id': 'modal-custom',
+    'data-test-id': TEST_IDS.modalCustom.root,
   },
   argTypes: {
-    open: { control: 'boolean' },
     mode: {
       control: 'radio',
       options: Object.values(MODE),
@@ -78,6 +87,6 @@ type Story = StoryObj<typeof ModalCustom>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('modal-custom-trigger')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.modalCustom.triggerOpen)).toBeVisible();
   },
 };
