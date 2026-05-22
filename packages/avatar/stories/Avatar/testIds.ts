@@ -1,1 +1,1 @@
-export const AVATAR_TEST_ID = 'avatar';
+export { TEST_IDS } from '../../src/constants';

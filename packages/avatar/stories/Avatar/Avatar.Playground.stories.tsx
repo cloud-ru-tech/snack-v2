@@ -2,12 +2,25 @@ import { APPEARANCE, Avatar, SHAPE, SIZE } from '@ds/avatar';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { AVATAR_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Аватар пользователя: инициалы или картинка, варианты по size, shape и appearance.</DemoHint>
+        <DemoActions align='center'>
+          <Avatar {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     name: 'John Doe',
     size: SIZE.S,
@@ -15,8 +28,7 @@ const meta: Meta<typeof Avatar> = {
     appearance: APPEARANCE.Neutral,
     showTwoSymbols: false,
     className: '',
-    src: '',
-    'data-test-id': AVATAR_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     name: { control: 'text', description: 'Имя для аббревиатуры' },
@@ -29,8 +41,8 @@ const meta: Meta<typeof Avatar> = {
       description: 'Цветовая схема',
     },
     showTwoSymbols: { control: 'boolean', description: 'Показать две заглавные буквы' },
-    className: { control: 'text', table: { category: 'Testing' } },
-    'data-test-id': { control: 'text', table: { category: 'Testing' } },
+    className: { table: { disable: true } },
+    'data-test-id': { table: { disable: true } },
   },
 };
 
@@ -40,6 +52,6 @@ type Story = StoryObj<typeof Avatar>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(AVATAR_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

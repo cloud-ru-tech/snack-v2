@@ -8,7 +8,7 @@ export const APPEARANCE = {
   Blue: 'blue',
   Violet: 'violet',
   Pink: 'pink',
-} as const
+} as const;
 
 export const SIZE = {
   Xs: 'xs',
@@ -18,9 +18,16 @@ export const SIZE = {
   '3Xl': '3xl',
   '6Xl': '6xl',
   '10Xl': '10xl',
-} as const
+} as const;
 
 export const SHAPE = {
   Round: 'round',
   Square: 'square',
-} as const
+} as const;
+
+export const TEST_IDS = {
+  root: 'avatar',
+  image: 'avatar__image',
+  abbreviation: 'avatar__abbreviation',
+  border: 'avatar__border',
+} as const;

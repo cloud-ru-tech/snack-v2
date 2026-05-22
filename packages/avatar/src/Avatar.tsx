@@ -1,10 +1,10 @@
-import { type WithSupportProps } from '@ds/utils';
+import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { type HTMLAttributes, useEffect, useState } from 'react';
+import { HTMLAttributes, useEffect, useState } from 'react';
 
-import { APPEARANCE, SHAPE, SIZE } from './constants';
+import { APPEARANCE, SHAPE, SIZE, TEST_IDS } from './constants';
 import styles from './styles.module.scss';
-import type { Appearance, Shape, Size } from './types';
+import { Appearance, Shape, Size } from './types';
 import { getAbbreviation } from './utils';
 
 export type AvatarProps = WithSupportProps<{
@@ -67,14 +67,14 @@ export function Avatar({
           onError={() => setImageError(true)}
           alt=''
           aria-hidden='true'
-          data-test-id='image'
+          data-test-id={TEST_IDS.image}
         />
       ) : (
         <>
-          <div className={styles.abbreviation} data-test-id='abbreviation'>
+          <div className={styles.abbreviation} data-test-id={TEST_IDS.abbreviation}>
             {getAbbreviation(name, numberOfSymbols)}
           </div>
-          <div className={styles.border} data-test-id='border' />
+          <div className={styles.border} data-test-id={TEST_IDS.border} />
         </>
       )}
     </div>

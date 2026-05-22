@@ -1,10 +1,12 @@
-.row {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .matrix {
   display: grid;
-  gap: 1.5rem;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
 }
