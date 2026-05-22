@@ -15,6 +15,8 @@ const variants = Object.values(VARIANT);
 const sizes = Object.values(SIZE);
 const weights = Object.values(WEIGHT);
 
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
@@ -23,14 +25,14 @@ export const VisualMatrix: Story = {
       {weights.map(weight => (
         <StoryTable
           key={weight}
-          sectionTitle={`${weight.charAt(0).toUpperCase() + weight.slice(1)} Weight`}
+          sectionTitle={`${capitalize(weight)} Weight`}
           firstColumnHeader='Variant'
           columnHeaders={sizes.map(s => s.toUpperCase())}
           rows={variants.map(variant => ({
             variantLabel: variant,
             cells: sizes.map(size => (
               <Typography key={size} variant={variant} size={size} weight={weight}>
-                {variant.charAt(0).toUpperCase() + variant.slice(1)} {size.toUpperCase()}
+                {capitalize(variant)} {size.toUpperCase()}
               </Typography>
             )),
           }))}

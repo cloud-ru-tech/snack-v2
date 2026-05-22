@@ -1,1 +1,3 @@
-export const TYPOGRAPHY_TEST_ID = 'typography';
+export const TEST_IDS = {
+  root: 'typography',
+} as const;

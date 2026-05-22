@@ -11,17 +11,31 @@ import {
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { TYPOGRAPHY_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<TypographyProps> = {
   title: 'Components/Typography',
   component: Typography,
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Типографический компонент: variant, size, weight и произвольный HTML-тег.</DemoHint>
+        <DemoActions align='center'>
+          <Typography {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     children: 'Typography text',
     variant: DEFAULT_VARIANT,
     size: DEFAULT_SIZE,
     weight: DEFAULT_WEIGHT,
-    'data-test-id': TYPOGRAPHY_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     children: {
@@ -60,6 +74,6 @@ type Story = StoryObj<TypographyProps>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(TYPOGRAPHY_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
