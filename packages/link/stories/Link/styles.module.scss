@@ -1,0 +1,41 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.paragraph {
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.onAccent {
+  padding: base.$sn-primitive-dimension-16;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
+  background: base.$sn-theme-color-neutral-accent;
+}
+
+.narrow {
+  width: 200px;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}

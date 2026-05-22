@@ -2,10 +2,14 @@ import { APPEARANCE, Link, ROLE } from '@ds/link';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
+
 const meta: Meta<typeof Link> = {
   title: 'Components/Link',
   component: Link,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     text: 'Link',
     appearance: APPEARANCE.Primary,
@@ -14,7 +18,7 @@ const meta: Meta<typeof Link> = {
     underlined: false,
     href: 'https://example.com',
     className: '',
-    'data-test-id': 'link',
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     text: { control: 'text', description: 'Текст ссылки' },
@@ -43,7 +47,18 @@ type Story = StoryObj<typeof Link>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Ссылка с appearance, ролью и поведением внутри текста.</DemoHint>
+        <DemoActions align='center'>
+          <Link {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('link')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
