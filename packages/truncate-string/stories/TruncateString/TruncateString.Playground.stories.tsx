@@ -2,13 +2,28 @@ import { TruncateString, VARIANT } from '@ds/truncate-string';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import styles from './stories.module.scss';
-import { TRUNCATE_STRING_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof TruncateString> = {
   title: 'Components/TruncateString',
   component: TruncateString,
-  parameters: { layout: 'centered', figma: { disable: true } },
+  parameters: { layout: 'fullscreen', figma: { disable: true } },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Обрезка длинной строки с тултипом полного текста, обрез по концу или середине.</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.container}>
+            <TruncateString {...args} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     variant: VARIANT.End,
     text: 'Очень длинный текст, который не помещается в контейнер и должен быть обрезан',
@@ -16,7 +31,7 @@ const meta: Meta<typeof TruncateString> = {
     hideTooltip: false,
     placement: 'top',
     trigger: 'hoverAndFocusVisible',
-    'data-test-id': TRUNCATE_STRING_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     variant: {
@@ -33,13 +48,6 @@ const meta: Meta<typeof TruncateString> = {
       description: 'Позиция тултипа',
     },
   },
-  decorators: [
-    Story => (
-      <div className={styles.container}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -48,6 +56,6 @@ type Story = StoryObj<typeof TruncateString>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(TRUNCATE_STRING_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

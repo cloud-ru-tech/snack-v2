@@ -4,6 +4,7 @@ import cn from 'classnames';
 import throttle from 'lodash.throttle';
 import { useEffect, useRef, useState } from 'react';
 
+import { TEST_IDS } from '../../constants';
 import { isEllipsisActive, truncateStringMiddle } from '../../helpers';
 import styles from './styles.module.scss';
 
@@ -58,10 +59,10 @@ export function TruncateStringMiddle({
 
   const textElement = (
     <>
-      <span ref={textElementRef} className={styles.fullText} data-test-id='full-text'>
+      <span ref={textElementRef} className={styles.fullText} data-test-id={TEST_IDS.fullText}>
         {text}
       </span>
-      <span ref={truncatedTextElementRef} className={styles.truncatedText} data-test-id='truncated-text'>
+      <span ref={truncatedTextElementRef} className={styles.truncatedText} data-test-id={TEST_IDS.truncatedText}>
         {truncatedString}
       </span>
     </>

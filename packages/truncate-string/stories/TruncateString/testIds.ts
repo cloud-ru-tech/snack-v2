@@ -1,1 +1,3 @@
-export const TRUNCATE_STRING_TEST_ID = 'truncate-string';
+import { TEST_IDS } from '../../src/constants';
+
+export { TEST_IDS };
