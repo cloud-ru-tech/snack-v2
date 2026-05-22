@@ -1,104 +1,71 @@
 import { PlaceholderSVG } from '@ds/icons';
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
-import { action } from 'storybook/actions';
+import { APPEARANCE, PromoTag, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
+import { Meta, StoryObj } from '@storybook/react';
+import { fn } from 'storybook/test';
 
-import { PromoTag, PromoTagProps } from '../../src';
-import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '../../src/constants';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-const meta: Meta<PromoTagProps> = {
+import { TEST_IDS } from './testIds';
+
+const slotPresets = {
+  none: undefined,
+  icon16Before: <PlaceholderSVG data-test-id={TEST_IDS.beforeNode} size={16} />,
+  icon24Before: <PlaceholderSVG data-test-id={TEST_IDS.beforeNode} size={24} />,
+  icon16After: <PlaceholderSVG data-test-id={TEST_IDS.afterNode} size={16} />,
+  icon24After: <PlaceholderSVG data-test-id={TEST_IDS.afterNode} size={24} />,
+} as const;
+
+const meta: Meta<typeof PromoTag> = {
   title: 'Components/PromoTag',
   component: PromoTag,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Промо-тег с иконкой до или после текста и набором appearance/role.</DemoHint>
+        <DemoActions align='center'>
+          <PromoTag {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   args: {
     text: 'Promo tag',
     appearance: APPEARANCE.Primary,
     role: ROLE_APPEARANCE.Accent,
     size: SIZE.Xs,
+    beforeContent: undefined,
+    afterContent: undefined,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    text: {
-      control: 'text',
-      description: 'Текст компонента',
-    },
-    appearance: {
+    text: { control: 'text', description: 'Текст компонента' },
+    appearance: { control: 'select', options: Object.values(APPEARANCE) },
+    role: { control: 'radio', options: Object.values(ROLE_APPEARANCE) },
+    size: { control: 'radio', options: Object.values(SIZE) },
+    beforeContent: {
       control: 'select',
-      options: Object.values(APPEARANCE),
+      options: ['none', 'icon16Before', 'icon24Before'],
+      mapping: slotPresets,
+      description: 'Контент перед текстом (none | icon16Before | icon24Before)',
     },
-    role: {
+    afterContent: {
       control: 'select',
-      options: Object.values(ROLE_APPEARANCE),
-    },
-    size: {
-      control: 'select',
-      options: Object.values(SIZE),
-    },
-    'data-test-id': {
-      control: 'text',
-      description: 'Test ID для автотестов',
-      table: {
-        category: 'HTML Attributes',
-      },
+      options: ['none', 'icon16After', 'icon24After'],
+      mapping: slotPresets,
+      description: 'Контент после текста (none | icon16After | icon24After)',
     },
   },
 };
 
 export default meta;
 
-type PlaygroundArgs = Omit<PromoTagProps, 'beforeContent' | 'afterContent'> & {
-  beforeContent?: boolean;
-  afterContent?: boolean;
-  hasOnClick?: boolean;
-};
-
-type Story = StoryObj<PlaygroundArgs>;
-
-const icons = {
-  before: {
-    [SIZE.Xs]: 16,
-    [SIZE.S]: 16,
-    [SIZE.M]: 24,
-  },
-  after: {
-    [SIZE.Xs]: 16,
-    [SIZE.S]: 16,
-    [SIZE.M]: 24,
-  },
-} as const;
-
-const Template: StoryFn<PlaygroundArgs> = ({ beforeContent, afterContent, ...args }: PlaygroundArgs) => (
-  <div style={{ display: 'flex' }}>
-    <PromoTag
-      {...args}
-      beforeContent={
-        beforeContent ? (
-          <PlaceholderSVG data-test-id='before-node' size={icons.before[args.size || SIZE.Xs]} />
-        ) : undefined
-      }
-      afterContent={
-        afterContent ? <PlaceholderSVG data-test-id='after-node' size={icons.after[args.size || SIZE.Xs]} /> : undefined
-      }
-      onClick={args.hasOnClick ? action('onClick') : undefined}
-    />
-  </div>
-);
+type Story = StoryObj<typeof PromoTag>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: Template,
   args: {
-    beforeContent: false,
-    afterContent: false,
-    hasOnClick: false,
-  },
-  argTypes: {
-    beforeContent: {
-      name: '[Stories]: Before content',
-    },
-    afterContent: {
-      name: '[Stories]: After content',
-    },
-    hasOnClick: {
-      name: '[Stories]: Has onClick',
-    },
+    onClick: fn(),
   },
 };

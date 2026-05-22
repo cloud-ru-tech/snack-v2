@@ -30,3 +30,7 @@ export const MAP_SIZE_TO_TYPOGRAPHY_SIZE: Record<Size, TypographySize> = {
   [SIZE.S]: 's',
   [SIZE.M]: 'm',
 } as const;
+
+export const TEST_IDS = {
+  root: 'promo-tag',
+} as const;

@@ -1,9 +1,8 @@
 import { PlaceholderSVG } from '@ds/icons';
+import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE, Size } from '@ds/promo-tag';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
-
-import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE, Size } from '../../src';
 
 const iconSizes: Record<Size, number> = {
   [SIZE.Xs]: 16,
@@ -21,7 +20,7 @@ export default meta;
 type Story = StoryObj<PromoTagProps>;
 
 const keySizes = Object.values(SIZE);
-const keyAppearances = Object.values(APPEARANCE);
+const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Neutral, APPEARANCE.Red, APPEARANCE.Green, APPEARANCE.Blue];
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
