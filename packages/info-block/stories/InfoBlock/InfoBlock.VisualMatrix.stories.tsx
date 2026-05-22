@@ -5,6 +5,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { ALIGN, InfoBlock, InfoBlockProps, SIZE } from '../../src';
+import styles from './styles.module.scss';
 
 const meta: Meta<InfoBlockProps> = {
   title: 'Components/InfoBlock',
@@ -39,7 +40,7 @@ export const VisualMatrix: Story = {
               size={size}
               align={align}
               footer={
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                <div className={styles.footerRow}>
                   <Button label='Label text' view={VIEW.Filled} size={size} />
                   <Button label='Label text' view={VIEW.Tonal} size={size} />
                 </div>

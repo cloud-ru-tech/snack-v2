@@ -10,6 +10,7 @@ export const ALIGN = {
 } as const;
 
 export const TEST_IDS = {
+  root: 'info-block',
   icon: 'info-block__icon',
   title: 'info-block__title',
   description: 'info-block__description',

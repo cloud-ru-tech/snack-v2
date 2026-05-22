@@ -1,5 +1,7 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
 .footerRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: base.$sn-primitive-dimension-8;
 }
