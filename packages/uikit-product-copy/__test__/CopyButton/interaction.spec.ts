@@ -1,37 +1,21 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, COPY_BUTTON_TEST_ID } from './helpers';
+import { buildStoryOptions, TEST_IDS } from './helpers';
 
-test.describe('CopyButton — interaction', () => {
+// Browser-specific: real clipboard read via navigator.clipboard. Behavioral click/keyboard
+// (focus, Enter, Space, onClick fires) is covered in tests/CopyButton.InteractionTest.stories.tsx::play.
+test.describe('CopyButton — interaction (browser clipboard)', () => {
   test.beforeEach(async ({ context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   });
 
-  test('click copies value to clipboard', async ({ page, gotoStory, getByTestId }) => {
+  test('click copies valueToCopy into the real clipboard', async ({ page, gotoStory, getByTestId }) => {
     const value = 'hello-clipboard';
     await gotoStory(buildStoryOptions({ valueToCopy: value }));
 
-    await getByTestId(COPY_BUTTON_TEST_ID).click();
+    await getByTestId(TEST_IDS.copyButton.root).click();
 
     const clipboard = await page.evaluate(() => navigator.clipboard.readText());
     expect(clipboard).toBe(value);
-  });
-
-  test('click is a no-op for visible state when valueToCopy empty', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ valueToCopy: '' }));
-
-    const button = getByTestId(COPY_BUTTON_TEST_ID);
-    await button.click();
-
-    await expect(button).toBeVisible();
-  });
-
-  test('numeric valueToCopy is coerced to string in clipboard', async ({ page, gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ valueToCopy: 12345 }));
-
-    await getByTestId(COPY_BUTTON_TEST_ID).click();
-
-    const clipboard = await page.evaluate(() => navigator.clipboard.readText());
-    expect(clipboard).toBe('12345');
   });
 });

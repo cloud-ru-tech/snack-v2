@@ -2,17 +2,19 @@ import { COPY_BUTTON_HIDE_STRATEGY, CopyLine } from '@ds/uikit-product-copy';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { COPY_LINE_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof CopyLine> = {
   title: 'Uikit Product/Copy/CopyLine',
   component: CopyLine,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     content: 'example-copy-value-12345',
     valueToCopy: 'example-value',
     copyButtonHideStrategy: COPY_BUTTON_HIDE_STRATEGY.Hover,
-    'data-test-id': COPY_LINE_TEST_ID,
+    'data-test-id': TEST_IDS.copyLine.root,
   },
   argTypes: {
     content: { control: 'text', description: 'Отображаемое содержимое' },
@@ -31,7 +33,18 @@ type Story = StoryObj<typeof CopyLine>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Строка с отображаемым содержимым и кнопкой копирования.</DemoHint>
+        <DemoActions align='center'>
+          <CopyLine {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(COPY_LINE_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.copyLine.root)).toBeVisible();
   },
 };

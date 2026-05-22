@@ -1,4 +1,9 @@
 export const TEST_IDS = {
-  copyButton: 'copy-button',
-  copyLine: 'copy-line',
+  copyButton: {
+    root: 'copy-button',
+  },
+  copyLine: {
+    root: 'copy-line',
+    copyButton: 'copy-line__copy-button',
+  },
 } as const;

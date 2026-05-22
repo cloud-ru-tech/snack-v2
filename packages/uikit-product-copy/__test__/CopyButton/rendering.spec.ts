@@ -1,32 +1,32 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, COPY_BUTTON_SIZES, COPY_BUTTON_TEST_ID } from './helpers';
+import { buildStoryOptions, COPY_BUTTON_KEY_COMBOS, TEST_IDS } from './helpers';
 
 test.describe('CopyButton — rendering', () => {
   test.describe('render', () => {
     test('renders with default props', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
 
-      await expect(getByTestId(COPY_BUTTON_TEST_ID)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.copyButton.root)).toBeVisible();
     });
 
     test('renders as a button element', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
 
-      const button = getByTestId(COPY_BUTTON_TEST_ID);
+      const button = getByTestId(TEST_IDS.copyButton.root);
       await expect(button).toHaveJSProperty('tagName', 'BUTTON');
     });
 
     test('has aria-label="Copy" when no label provided', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
 
-      await expect(getByTestId(COPY_BUTTON_TEST_ID)).toHaveAttribute('aria-label', 'Copy');
+      await expect(getByTestId(TEST_IDS.copyButton.root)).toHaveAttribute('aria-label', 'Copy');
     });
 
     test('renders provided label and drops aria-label', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ label: 'Copy value' }));
 
-      const button = getByTestId(COPY_BUTTON_TEST_ID);
+      const button = getByTestId(TEST_IDS.copyButton.root);
       await expect(button).toContainText('Copy value');
       await expect(button).not.toHaveAttribute('aria-label', /.+/);
     });
@@ -34,17 +34,16 @@ test.describe('CopyButton — rendering', () => {
     test('applies custom className', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ className: 'custom-copy' }));
 
-      await expect(getByTestId(COPY_BUTTON_TEST_ID)).toHaveClass(/custom-copy/);
+      await expect(getByTestId(TEST_IDS.copyButton.root)).toHaveClass(/custom-copy/);
     });
   });
 
-  test.describe('props propagation', () => {
-    for (const size of COPY_BUTTON_SIZES) {
-      test(`size=${size}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ size }));
+  test('props propagation', async ({ gotoStory, getByTestId }) => {
+    for (const { size, label } of COPY_BUTTON_KEY_COMBOS) {
+      await gotoStory(buildStoryOptions({ size, label }));
 
-        await expect(getByTestId(COPY_BUTTON_TEST_ID)).toHaveAttribute('data-size', size);
-      });
+      const button = getByTestId(TEST_IDS.copyButton.root);
+      await expect(button).toHaveAttribute('data-size', size);
     }
   });
 });

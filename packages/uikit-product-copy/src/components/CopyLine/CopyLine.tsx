@@ -5,6 +5,7 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, MouseEventHandler, ReactNode } from 'react';
 
+import { TEST_IDS } from '../../constants';
 import { useCopyToClipboard } from '../../hooks';
 import { isStringOrNumber } from '../../utils';
 import { COPY_BUTTON_HIDE_STRATEGY } from './constants';
@@ -61,6 +62,7 @@ export function CopyLine({
         size='s'
         type='button'
         aria-label='Copy'
+        data-test-id={TEST_IDS.copyLine.copyButton}
         icon={isChecked ? <CheckSVG size={ICON_SIZE} /> : <CopySVG size={ICON_SIZE} />}
         onClick={(e: MouseEvent<HTMLButtonElement>) => {
           e.stopPropagation();

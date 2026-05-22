@@ -1,42 +1,42 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, COPY_BUTTON_HIDE_STRATEGIES, COPY_LINE_TEST_ID } from './helpers';
+import { buildStoryOptions, COPY_LINE_KEY_COMBOS, TEST_IDS } from './helpers';
 
 test.describe('CopyLine — rendering', () => {
   test.describe('render', () => {
     test('renders with default props', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
 
-      await expect(getByTestId(COPY_LINE_TEST_ID)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.copyLine.root)).toBeVisible();
     });
 
     test('renders content text', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ content: 'visible-payload' }));
 
-      await expect(getByTestId(COPY_LINE_TEST_ID)).toContainText('visible-payload');
+      await expect(getByTestId(TEST_IDS.copyLine.root)).toContainText('visible-payload');
     });
 
     test('applies custom className', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ className: 'custom-line' }));
 
-      await expect(getByTestId(COPY_LINE_TEST_ID)).toHaveClass(/custom-line/);
+      await expect(getByTestId(TEST_IDS.copyLine.root)).toHaveClass(/custom-line/);
     });
 
     test('exposes inner copy button', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ copyButtonHideStrategy: 'never' }));
 
-      const root = getByTestId(COPY_LINE_TEST_ID);
-      await expect(root.locator('button[aria-label="Copy"]')).toBeVisible();
+      await expect(getByTestId(TEST_IDS.copyLine.copyButton)).toBeVisible();
     });
   });
 
-  test.describe('props propagation', () => {
-    for (const strategy of COPY_BUTTON_HIDE_STRATEGIES) {
-      test(`copyButtonHideStrategy=${strategy}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ copyButtonHideStrategy: strategy }));
+  test('props propagation', async ({ gotoStory, getByTestId }) => {
+    for (const { copyButtonHideStrategy } of COPY_LINE_KEY_COMBOS) {
+      await gotoStory(buildStoryOptions({ copyButtonHideStrategy }));
 
-        await expect(getByTestId(COPY_LINE_TEST_ID)).toHaveAttribute('data-copy-button-hide-strategy', strategy);
-      });
+      await expect(getByTestId(TEST_IDS.copyLine.root)).toHaveAttribute(
+        'data-copy-button-hide-strategy',
+        copyButtonHideStrategy,
+      );
     }
   });
 
@@ -44,8 +44,8 @@ test.describe('CopyLine — rendering', () => {
     test('hover strategy hides button until hover', async ({ page, gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ copyButtonHideStrategy: 'hover' }));
 
-      const root = getByTestId(COPY_LINE_TEST_ID);
-      const copyBtn = root.locator('button[aria-label="Copy"]');
+      const root = getByTestId(TEST_IDS.copyLine.root);
+      const copyBtn = getByTestId(TEST_IDS.copyLine.copyButton);
 
       // Перед hover кнопка не видима пользователю (CSS-скрыта).
       await expect(copyBtn).toBeHidden();
@@ -61,7 +61,7 @@ test.describe('CopyLine — rendering', () => {
     test('never strategy keeps button always visible', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ copyButtonHideStrategy: 'never' }));
 
-      const copyBtn = getByTestId(COPY_LINE_TEST_ID).locator('button[aria-label="Copy"]');
+      const copyBtn = getByTestId(TEST_IDS.copyLine.copyButton);
 
       await expect(copyBtn).toBeVisible();
     });
