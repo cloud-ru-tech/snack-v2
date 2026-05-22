@@ -115,7 +115,7 @@ export function InfoGroupBasic() {
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons';
-import { InfoRow, type InfoRowFieldItem, useGetContent } from '@ds/uikit-product-info-row';
+import { InfoRow, InfoRowFieldItem, useGetContent } from '@ds/uikit-product-info-row';
 
 type Row = { name: string; active: boolean };
 

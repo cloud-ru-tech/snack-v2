@@ -2,7 +2,10 @@ import { PlaceholderSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import { InfoRow, InfoRowProps } from '../../src';
+import { TEST_IDS } from '../testIds';
 
 type PlaygroundArgs = InfoRowProps & {
   showRowActions?: boolean;
@@ -13,13 +16,13 @@ type PlaygroundArgs = InfoRowProps & {
 const meta: Meta<PlaygroundArgs> = {
   title: 'Uikit Product/InfoRow/InfoRow',
   component: InfoRow,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     label: 'Label',
     secondaryLabel: 'Label 2',
     content: 'Content value',
     secondaryContent: 'Second value',
-    'data-test-id': 'info-row',
+    'data-test-id': TEST_IDS.infoRow.root,
     topDivider: true,
     bottomDivider: true,
     loading: false,
@@ -63,10 +66,10 @@ const meta: Meta<PlaygroundArgs> = {
     labelClassName: { control: 'text' },
     secondaryLabelClassName: { control: 'text' },
     rowClassName: { control: 'text' },
-    rowActions: { control: false },
-    rowActionsSlot: { control: false },
-    secondaryRowActions: { control: false },
-    secondaryRowActionsSlot: { control: false },
+    rowActions: { table: { disable: true } },
+    rowActionsSlot: { table: { disable: true } },
+    secondaryRowActions: { table: { disable: true } },
+    secondaryRowActionsSlot: { table: { disable: true } },
   },
 };
 
@@ -77,7 +80,7 @@ type Story = StoryObj<PlaygroundArgs>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByText('Label')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.infoRow.root)).toBeVisible();
   },
   render: ({
     showRowActions,
@@ -89,43 +92,51 @@ export const Playground: Story = {
     secondaryLabelTooltip,
     ...args
   }) => (
-    <InfoRow
-      {...args}
-      column={column}
-      secondaryLabel={column === '2' ? secondaryLabel : undefined}
-      secondaryLabelTooltip={column === '2' ? secondaryLabelTooltip : undefined}
-      secondaryContent={column === '2' ? secondaryContent : undefined}
-      rowActions={
-        showRowActions
-          ? {
-              first: {
-                icon: <PlaceholderSVG />,
-                'aria-label': 'Действие',
-                'data-test-id': 'info-row-action-first',
-              },
-              ...(column === '1' && showSecondRowAction
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Строка-метка для отображения значения в форме или карточке.</DemoHint>
+        <DemoActions align='center'>
+          <InfoRow
+            {...args}
+            column={column}
+            secondaryLabel={column === '2' ? secondaryLabel : undefined}
+            secondaryLabelTooltip={column === '2' ? secondaryLabelTooltip : undefined}
+            secondaryContent={column === '2' ? secondaryContent : undefined}
+            rowActions={
+              showRowActions
                 ? {
-                    second: {
+                    first: {
                       icon: <PlaceholderSVG />,
                       'aria-label': 'Действие',
-                      'data-test-id': 'info-row-action-second',
+                      'data-test-id': TEST_IDS.infoRow.actionFirst,
+                    },
+                    ...(column === '1' && showSecondRowAction
+                      ? {
+                          second: {
+                            icon: <PlaceholderSVG />,
+                            'aria-label': 'Действие',
+                            'data-test-id': TEST_IDS.infoRow.actionSecond,
+                          },
+                        }
+                      : {}),
+                  }
+                : undefined
+            }
+            secondaryRowActions={
+              column === '2' && showSecondaryActions
+                ? {
+                    first: {
+                      icon: <PlaceholderSVG />,
+                      'aria-label': 'Действие',
+                      'data-test-id': TEST_IDS.infoRow.actionSecondColFirst,
                     },
                   }
-                : {}),
+                : undefined
             }
-          : undefined
-      }
-      secondaryRowActions={
-        column === '2' && showSecondaryActions
-          ? {
-              first: {
-                icon: <PlaceholderSVG />,
-                'aria-label': 'Действие',
-                'data-test-id': 'info-row-action-second-col-first',
-              },
-            }
-          : undefined
-      }
-    />
+          />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   ),
 };

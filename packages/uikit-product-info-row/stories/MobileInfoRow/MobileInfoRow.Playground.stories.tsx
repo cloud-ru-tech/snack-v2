@@ -2,16 +2,19 @@ import { PlaceholderSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import { MobileInfoRow, MobileInfoRowProps, POSITION } from '../../src';
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<MobileInfoRowProps> = {
   title: 'Uikit Product/InfoRow/MobileInfoRow',
   component: MobileInfoRow,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     label: 'Мобильная метка',
     content: 'Значение поля',
-    'data-test-id': 'mobile-info-row',
+    'data-test-id': TEST_IDS.mobileInfoRow.root,
     topDivider: true,
     bottomDivider: true,
     loading: false,
@@ -31,8 +34,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  name: 'Playground',
+  tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Мобильный вариант InfoRow с вертикальной раскладкой.</DemoHint>
+        <DemoActions align='center'>
+          <MobileInfoRow {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('mobile-info-row')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.mobileInfoRow.root)).toBeVisible();
   },
 };

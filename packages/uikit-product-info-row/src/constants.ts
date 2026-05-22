@@ -15,4 +15,5 @@ export const TEST_IDS = {
   infoGroup: 'info-group',
   infoRow: 'info-row',
   mobileInfoRow: 'mobile-info-row',
+  adaptiveInfoRow: 'adaptive-info-row',
 } as const;

@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { InfoRow, InfoRowProps } from '../../src';
+import { TEST_IDS } from '../testIds';
+import styles from './styles.module.scss';
 
 const iconAction = (testId: string) => ({
   icon: <PlaceholderSVG />,
@@ -23,7 +25,6 @@ type Story = StoryObj<InfoRowProps>;
 
 const widths = ['fixed', 'full'] as const;
 const loadingStates = [false, true] as const;
-const widthDemoFrameStyle = { width: '920px', maxWidth: '100%' } as const;
 
 /** Три комбинации из матрицы Figma infoRow (без column=2 + maxWidth=false) */
 const figmaMatrix: Array<{ column: '1' | '2'; maxWidth: boolean; label: string }> = [
@@ -55,7 +56,7 @@ export const VisualMatrix: Story = {
               width='fixed'
               topDivider
               bottomDivider
-              data-test-id={`info-row-figma-${column}-${maxWidth}`}
+              data-test-id={TEST_IDS.infoRow.figma(column, maxWidth.toString())}
               rowActions={{
                 first: iconAction(`info-row-figma-${column}-${maxWidth}-a1`),
                 ...(column === '1' ? { second: iconAction(`info-row-figma-${column}-${maxWidth}-a2`) } : {}),
@@ -74,7 +75,7 @@ export const VisualMatrix: Story = {
         rows={widths.map(width => ({
           variantLabel: width,
           cells: loadingStates.map(loading => (
-            <div key={`${width}-${loading}`} style={widthDemoFrameStyle}>
+            <div key={`${width}-${loading}`} className={styles.widthDemoFrame}>
               <InfoRow
                 label='Label'
                 content='Value'
@@ -83,7 +84,7 @@ export const VisualMatrix: Story = {
                 column='1'
                 topDivider
                 bottomDivider
-                data-test-id={`info-row-matrix-${width}-${loading}`}
+                data-test-id={TEST_IDS.infoRow.matrix(width, loading.toString())}
                 rowActions={{
                   first: iconAction(`info-row-matrix-${width}-${loading}-a1`),
                   second: iconAction(`info-row-matrix-${width}-${loading}-a2`),
@@ -107,7 +108,7 @@ export const VisualMatrix: Story = {
                 content='C'
                 topDivider
                 bottomDivider
-                data-test-id='info-row-div-both'
+                data-test-id={TEST_IDS.infoRow.divBoth}
               />,
             ],
           },
@@ -120,7 +121,7 @@ export const VisualMatrix: Story = {
                 content='C'
                 topDivider
                 bottomDivider={false}
-                data-test-id='info-row-div-top'
+                data-test-id={TEST_IDS.infoRow.divTop}
               />,
             ],
           },
@@ -133,7 +134,7 @@ export const VisualMatrix: Story = {
                 content='C'
                 topDivider={false}
                 bottomDivider
-                data-test-id='info-row-div-bottom'
+                data-test-id={TEST_IDS.infoRow.divBottom}
               />,
             ],
           },

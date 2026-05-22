@@ -3,6 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { InfoGroup, InfoGroupProps } from '../../src';
+import { TEST_IDS } from '../testIds';
+import styles from './styles.module.scss';
 
 type Row = { a: string; b: boolean };
 
@@ -28,8 +30,6 @@ type Story = StoryObj<InfoGroupProps<Row>>;
 
 const columnsOpts = ['single', 'double'] as const;
 const widths = ['fixed', 'full'] as const;
-const widthDemoFrameStyle = { width: '920px', maxWidth: '100%' } as const;
-
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
@@ -41,13 +41,13 @@ export const VisualMatrix: Story = {
       rows={columnsOpts.map(columns => ({
         variantLabel: columns,
         cells: widths.map(width => (
-          <div key={`${columns}-${width}`} style={widthDemoFrameStyle}>
+          <div key={`${columns}-${width}`} className={styles.widthDemoFrame}>
             <InfoGroup<Row>
               data={data}
               items={items}
               columns={columns}
               width={width}
-              data-test-id={`info-group-matrix-${columns}-${width}`}
+              data-test-id={TEST_IDS.infoGroup.matrix(columns, width)}
             />
           </div>
         )),

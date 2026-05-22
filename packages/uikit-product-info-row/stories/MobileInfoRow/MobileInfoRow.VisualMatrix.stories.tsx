@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { MobileInfoRow, MobileInfoRowProps, POSITION } from '../../src';
+import { TEST_IDS } from '../testIds';
 
 const iconAction = (testId: string) => ({
   icon: <PlaceholderSVG />,
@@ -44,7 +45,7 @@ export const VisualMatrix: Story = {
               content='Значение поля'
               topDivider
               bottomDivider
-              data-test-id={`mobile-info-row-position-${position}-${hasActions}`}
+              data-test-id={TEST_IDS.mobileInfoRow.position(position, hasActions.toString())}
               rowActions={
                 hasActions
                   ? {
@@ -72,7 +73,7 @@ export const VisualMatrix: Story = {
               loading={loading}
               topDivider
               bottomDivider
-              data-test-id={`mobile-info-row-loading-${position}-${loading}`}
+              data-test-id={TEST_IDS.mobileInfoRow.loading(position, loading.toString())}
             />
           )),
         }))}
