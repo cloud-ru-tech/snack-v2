@@ -1,4 +1,4 @@
-import { APPEARANCE, IconPredefined, type IconPredefinedProps, SIZE } from '@ds/icon-predefined';
+import { APPEARANCE, IconPredefined, IconPredefinedProps, SIZE } from '@ds/icon-predefined';
 import { PlaceholderSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 

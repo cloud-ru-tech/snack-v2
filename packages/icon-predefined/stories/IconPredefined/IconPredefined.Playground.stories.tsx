@@ -1,6 +1,10 @@
-import { APPEARANCE, IconPredefined, type IconPredefinedProps, SIZE } from '@ds/icon-predefined';
+import { APPEARANCE, IconPredefined, IconPredefinedProps, SIZE } from '@ds/icon-predefined';
 import { HeartSVG, PlaceholderSVG, StarFilledSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const iconMap = {
   Placeholder: PlaceholderSVG,
@@ -13,12 +17,14 @@ type PlaygroundArgs = IconPredefinedProps & { iconKey: keyof typeof iconMap };
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/IconPredefined',
   component: IconPredefined,
+  parameters: { layout: 'fullscreen' },
   args: {
     iconKey: 'Placeholder',
     appearance: APPEARANCE.Primary,
     size: SIZE.M,
     shape: 'round',
     decor: true,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     iconKey: {
@@ -46,10 +52,7 @@ const meta: Meta<PlaygroundArgs> = {
       control: 'boolean',
       description: 'Наличие цветной подложки',
     },
-    className: {
-      control: 'text',
-      description: 'CSS-класс',
-    },
+    className: { table: { disable: true } },
   },
 };
 
@@ -60,16 +63,18 @@ type Story = StoryObj<PlaygroundArgs>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => {
-    const IconComponent = iconMap[args.iconKey];
+    const { iconKey, ...rest } = args;
+    const IconComponent = iconMap[iconKey];
     return (
-      <IconPredefined
-        icon={IconComponent}
-        appearance={args.appearance}
-        size={args.size}
-        shape={args.shape}
-        decor={args.decor}
-        className={args.className}
-      />
+      <DemoPage>
+        <DemoPanel>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Иконка с предустановленной цветной подложкой и формой round или square.</DemoHint>
+          <DemoActions align='center'>
+            <IconPredefined {...rest} icon={IconComponent} />
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
     );
   },
 };

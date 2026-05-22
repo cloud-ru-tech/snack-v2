@@ -15,3 +15,7 @@ export const SIZE = {
   L: 'l',
   '5XL': '5xl',
 } as const;
+
+export const TEST_IDS = {
+  root: 'icon-predefined',
+} as const;
