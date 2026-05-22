@@ -1,14 +1,19 @@
 import { HomeSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { action } from 'storybook/actions';
+import { CSSProperties, useState } from 'react';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { Breadcrumbs, BreadcrumbsProps } from '../../src';
 import { SIZE } from '../../src/constants';
 import { longTrailItems } from './fixtures';
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
-type ContainerWidth = 'full' | 'wide' | 'medium' | 'narrow';
+type ContainerWidthPreset = 'full' | 'wide' | 'medium' | 'narrow';
+// Может быть именованным пресетом или произвольной CSS-шириной (`'680px'`) — последнее
+// используется e2e specs, чтобы проверять truncation на ровно нужной ширине.
+type ContainerWidth = ContainerWidthPreset | (string & {});
 
 type StoryProps = BreadcrumbsProps & {
   storyUrl: boolean;
@@ -17,7 +22,7 @@ type StoryProps = BreadcrumbsProps & {
   storyContainerWidth: ContainerWidth;
 };
 
-const widthClass: Record<ContainerWidth, string> = {
+const widthClass: Partial<Record<ContainerWidth, string>> = {
   full: styles.widthFull,
   wide: styles.widthWide,
   medium: styles.widthMedium,
@@ -27,7 +32,7 @@ const widthClass: Record<ContainerWidth, string> = {
 const meta: Meta<StoryProps> = {
   title: 'Components/Breadcrumbs',
   component: Breadcrumbs,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     items: longTrailItems,
     size: SIZE.S,
@@ -38,6 +43,7 @@ const meta: Meta<StoryProps> = {
     storyIcon: false,
     storyOnClick: false,
     storyContainerWidth: 'full',
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     items: {
@@ -63,20 +69,20 @@ const meta: Meta<StoryProps> = {
     },
     storyUrl: {
       name: '[story] url',
-      description: 'Передать урлы для айтемов',
+      description: 'Передать href для каждого элемента',
     },
     storyOnClick: {
       name: '[story] onClick',
-      description: 'Передать обработчики кликов для айтемов',
+      description: 'Передать обработчик клика для каждого элемента',
     },
     storyIcon: {
       name: '[story] icon',
-      description: 'Передать иконку в первый айтем',
+      description: 'Показать иконку в первом элементе',
     },
     storyContainerWidth: {
       name: `[story] container width`,
       control: 'select',
-      options: ['full', 'wide', 'medium', 'narrow'] satisfies ContainerWidth[],
+      options: ['full', 'wide', 'medium', 'narrow'] satisfies ContainerWidthPreset[],
     },
     'data-test-id': {
       control: 'text',
@@ -91,41 +97,59 @@ const meta: Meta<StoryProps> = {
 export default meta;
 type Story = StoryObj<StoryProps>;
 
+type PlaygroundRenderProps = Omit<StoryProps, 'data-test-id'> & { 'data-test-id'?: string };
+
+function PlaygroundRender({
+  storyIcon,
+  items: storyItems,
+  storyUrl,
+  storyOnClick,
+  storyContainerWidth,
+  ...args
+}: PlaygroundRenderProps) {
+  const [lastClickedCrumb, setLastClickedCrumb] = useState('');
+
+  const items: BreadcrumbsProps['items'] = storyItems.map((item, index) => ({
+    ...item,
+    id: item.id ?? `id${index}`,
+    href: storyUrl ? `https://yandex.ru/search?text=${encodeURIComponent(item.label)}` : item.href,
+    onClick: storyOnClick ? () => setLastClickedCrumb(item.label) : undefined,
+  }));
+
+  if (storyIcon) {
+    items[0].icon = HomeSVG;
+  }
+
+  // Width — preset (`full`/`wide`/`medium`/`narrow`) via className либо произвольная
+  // px-строка через URL-args (используется e2e specs для проверки truncation на ровно
+  // нужной ширине). Произвольная px-ширина пробрасывается через CSS-переменную в
+  // styles.module.scss, чтобы избежать inline-style на DOM.
+  const presetClass = widthClass[storyContainerWidth];
+  const widthVarStyle: CSSProperties | undefined = presetClass
+    ? undefined
+    : ({ '--breadcrumbs-story-width': storyContainerWidth } as CSSProperties);
+
+  return (
+    <DemoPage>
+      <DemoPanel width='fluid'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Хлебные крошки с настраиваемым размером, разделителем и шириной контейнера.</DemoHint>
+        <DemoActions block>
+          <div>
+            <div className={`${styles.narrowFrame} ${presetClass ?? styles.widthCustom}`} style={widthVarStyle}>
+              <Breadcrumbs {...args} items={items} />
+            </div>
+            <div className={styles.crumbClickHolder} data-test-id={TEST_IDS.clickHolder}>
+              {lastClickedCrumb}
+            </div>
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
+}
+
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: ({ storyIcon, items: storyItems, storyUrl, storyOnClick, storyContainerWidth, ...args }) => {
-    const onClick = action('onClick');
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [lastClickedCrumb, setLastClickedCrumb] = useState('');
-
-    const items: BreadcrumbsProps['items'] = storyItems.map((item, index) => ({
-      ...item,
-      id: item.id ?? `id${index}`,
-      href: storyUrl ? `https://yandex.ru/search?text=${encodeURIComponent(item.label)}` : item.href,
-      onClick: storyOnClick
-        ? (...args) => {
-            setLastClickedCrumb(item.label);
-            onClick(...args);
-          }
-        : undefined,
-    }));
-
-    if (storyIcon) {
-      items[0].icon = HomeSVG;
-    }
-
-    return (
-      <div>
-        <div
-          className={`${styles.narrowFrame} ${widthClass[storyContainerWidth] ?? ''}`}
-          style={widthClass[storyContainerWidth] ? undefined : { width: storyContainerWidth }}
-        >
-          <Breadcrumbs {...args} items={items} />
-        </div>
-        <div className={styles.crumbClickHolder} data-test-id='last-clicked-crumb'>
-          {lastClickedCrumb}
-        </div>
-      </div>
-    );
-  },
+  render: args => <PlaygroundRender {...args} />,
 };
