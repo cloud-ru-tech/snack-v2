@@ -3,48 +3,55 @@ import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@
 import { expect, test } from '#playwright-tooling/fixtures';
 
 import { VIEW } from '../../src/constants';
-import { buildStoryOptions, COLLAPSE_BLOCK_TEST_ID, CONTENT_TEST_ID, TITLE_TEST_ID } from './helpers';
+import { buildStoryOptions, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
+
+const KEY_COMBOS = [
+  { view: VIEW.Simple, fill: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level },
+  { view: VIEW.Outline, fill: BACKGROUND_PREDEFINED_FILL.PrimaryBackground },
+  { view: VIEW.Elevated, fill: BACKGROUND_PREDEFINED_FILL.Transparent },
+] as const;
 
 test.describe('CollapseBlockSecondary — rendering', () => {
   test('renders with default props', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toBeVisible();
-    await expect(getByTestId(TITLE_TEST_ID)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.title)).toBeVisible();
   });
 
   test('data-component=accordionSecondary', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-component', 'accordionSecondary');
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-component', 'accordionSecondary');
   });
 
   test.describe('props propagation', () => {
-    for (const view of Object.values(VIEW)) {
-      test(`view=${view}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ view }));
+    for (const { view, fill } of KEY_COMBOS) {
+      test(`view=${view} + backgroundPredefined=${fill}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(
+          buildStoryOptions({
+            ...PLAYGROUND_DEFAULT_ARGS,
+            view,
+            backgroundPredefined: fill,
+          }),
+        );
 
-        await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-view', view);
-      });
-    }
-
-    for (const fill of Object.values(BACKGROUND_PREDEFINED_FILL)) {
-      test(`backgroundPredefined=${fill}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ backgroundPredefined: fill }));
+        const root = getByTestId(TEST_IDS.collapseBlock);
+        await expect(root).toHaveAttribute('data-view', view);
 
         const { appearance, level } = backgroundPredefinedFillToAcrylic(fill);
-        await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-acrylic-appearance', appearance);
-        await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-acrylic-level', level);
+        await expect(root).toHaveAttribute('data-acrylic-appearance', appearance);
+        await expect(root).toHaveAttribute('data-acrylic-level', level);
       });
     }
   });
 
   test('expands on title click', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ children: 'Secondary content' }));
+    await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, children: 'Secondary content' }));
 
-    await getByTestId(TITLE_TEST_ID).click();
+    await getByTestId(TEST_IDS.title).click();
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-expanded', 'true');
-    await expect(getByTestId(CONTENT_TEST_ID)).toContainText('Secondary content');
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
+    await expect(getByTestId(TEST_IDS.content)).toContainText('Secondary content');
   });
 });

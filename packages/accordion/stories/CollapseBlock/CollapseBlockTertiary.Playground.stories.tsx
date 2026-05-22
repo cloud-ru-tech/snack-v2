@@ -1,7 +1,9 @@
 import { QuestionTooltip } from '@ds/tooltip';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Accordion, type CollapseBlockTertiaryProps } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { Accordion, CollapseBlockTertiaryProps } from '../../src';
 import { CHEVRON } from '../../src/constants';
 import styles from '../styles.module.scss';
 
@@ -10,6 +12,7 @@ type PlaygroundArgs = CollapseBlockTertiaryProps & { showAfterTitleSlot: boolean
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Accordion/CollapseBlockTertiary',
   component: Accordion.CollapseBlockTertiary,
+  parameters: { layout: 'fullscreen' },
   args: {
     id: 'collapseBlockTertiary1',
     title: 'CollapseBlock',
@@ -37,18 +40,30 @@ const meta: Meta<PlaygroundArgs> = {
     },
   },
   render: ({ showAfterTitleSlot, ...props }) => (
-    <div className={styles.story}>
-      <Accordion>
-        <Accordion.CollapseBlockTertiary
-          {...props}
-          afterTitle={
-            showAfterTitleSlot ? (
-              <QuestionTooltip size='xs' tip='Подсказка к заголовку аккордеона' triggerLabel='Подсказка к заголовку' />
-            ) : undefined
-          }
-        />
-      </Accordion>
-    </div>
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Раскрывающийся блок третьего уровня.</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.story}>
+            <Accordion>
+              <Accordion.CollapseBlockTertiary
+                {...props}
+                afterTitle={
+                  showAfterTitleSlot ? (
+                    <QuestionTooltip
+                      size='xs'
+                      tip='Подсказка к заголовку аккордеона'
+                      triggerLabel='Подсказка к заголовку'
+                    />
+                  ) : undefined
+                }
+              />
+            </Accordion>
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   ),
 };
 

@@ -1,36 +1,37 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
 import { CHEVRON } from '../../src/constants';
-import { buildStoryOptions, COLLAPSE_BLOCK_TEST_ID, CONTENT_TEST_ID, TITLE_TEST_ID } from './helpers';
+import { buildStoryOptions, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
+
+const KEY_CHEVRONS = [CHEVRON.Before, CHEVRON.After] as const;
 
 test.describe('CollapseBlockTertiary — rendering', () => {
   test('renders with default props', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toBeVisible();
-    await expect(getByTestId(TITLE_TEST_ID)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.title)).toBeVisible();
   });
 
   test('data-component=accordionTertiary', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-component', 'accordionTertiary');
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-component', 'accordionTertiary');
   });
 
-  for (const chevron of Object.values(CHEVRON)) {
-    test(`chevron=${chevron}`, async ({ gotoStory, page }) => {
-      await gotoStory(buildStoryOptions({ chevron }));
-
+  test('chevron placement propagates to data-chevron', async ({ gotoStory, page }) => {
+    for (const chevron of KEY_CHEVRONS) {
+      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, chevron }));
       await expect(page.locator(`[data-chevron="${chevron}"]`)).toBeVisible();
-    });
-  }
+    }
+  });
 
   test('expands on title click', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ children: 'Tertiary content' }));
+    await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, children: 'Tertiary content' }));
 
-    await getByTestId(TITLE_TEST_ID).click();
+    await getByTestId(TEST_IDS.title).click();
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-expanded', 'true');
-    await expect(getByTestId(CONTENT_TEST_ID)).toContainText('Tertiary content');
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
+    await expect(getByTestId(TEST_IDS.content)).toContainText('Tertiary content');
   });
 });

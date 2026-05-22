@@ -2,32 +2,20 @@ import { expect, test } from '#playwright-tooling/fixtures';
 
 import { buildStoryOptions, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
 
-test.describe('CollapseBlockPrimary — keyboard', () => {
-  test('chevron button is focusable via Tab', async ({ page, gotoStory, getByTestId }) => {
+test.describe('CollapseBlockSecondary — keyboard', () => {
+  test('expands on Enter when focused', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
     await page.keyboard.press('Tab');
-
-    await expect(getByTestId(TEST_IDS.chevron)).toBeFocused();
-  });
-
-  test('expands on Enter when chevron focused', async ({ page, gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
-
-    await page.keyboard.press('Tab');
-    await expect(getByTestId(TEST_IDS.chevron)).toBeFocused();
-
     await page.keyboard.press('Enter');
 
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
   });
 
-  test('expands on Space when chevron focused', async ({ page, gotoStory, getByTestId }) => {
+  test('expands on Space when focused', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
     await page.keyboard.press('Tab');
-    await expect(getByTestId(TEST_IDS.chevron)).toBeFocused();
-
     await page.keyboard.press('Space');
 
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');

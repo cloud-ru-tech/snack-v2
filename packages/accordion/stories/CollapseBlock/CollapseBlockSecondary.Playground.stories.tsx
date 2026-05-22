@@ -1,8 +1,10 @@
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { QuestionTooltip } from '@ds/tooltip';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Accordion, type CollapseBlockSecondaryProps } from '../../src';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { Accordion, CollapseBlockSecondaryProps } from '../../src';
 import { CHEVRON, VIEW } from '../../src/constants';
 import styles from '../styles.module.scss';
 
@@ -11,6 +13,7 @@ type PlaygroundArgs = CollapseBlockSecondaryProps & { showAfterTitleSlot: boolea
 const meta: Meta<PlaygroundArgs> = {
   title: 'Components/Accordion/CollapseBlockSecondary',
   component: Accordion.CollapseBlockSecondary,
+  parameters: { layout: 'fullscreen' },
   args: {
     id: 'collapseBlockSecondary1',
     title: 'CollapseBlock',
@@ -49,18 +52,30 @@ const meta: Meta<PlaygroundArgs> = {
     },
   },
   render: ({ showAfterTitleSlot, ...props }) => (
-    <div className={styles.story}>
-      <Accordion>
-        <Accordion.CollapseBlockSecondary
-          {...props}
-          afterTitle={
-            showAfterTitleSlot ? (
-              <QuestionTooltip size='s' tip='Подсказка к заголовку аккордеона' triggerLabel='Подсказка к заголовку' />
-            ) : undefined
-          }
-        />
-      </Accordion>
-    </div>
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Раскрывающийся блок второго уровня.</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.story}>
+            <Accordion>
+              <Accordion.CollapseBlockSecondary
+                {...props}
+                afterTitle={
+                  showAfterTitleSlot ? (
+                    <QuestionTooltip
+                      size='s'
+                      tip='Подсказка к заголовку аккордеона'
+                      triggerLabel='Подсказка к заголовку'
+                    />
+                  ) : undefined
+                }
+              />
+            </Accordion>
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   ),
 };
 

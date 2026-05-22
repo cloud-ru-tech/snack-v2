@@ -1,25 +1,25 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, CHEVRON_TEST_ID, COLLAPSE_BLOCK_TEST_ID, CONTENT_TEST_ID, TITLE_TEST_ID } from './helpers';
+import { buildStoryOptions, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
 
 test.describe('CollapseBlockPrimary — interaction', () => {
   test('expands when title is clicked', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ children: 'Expanded content' }));
+    await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, children: 'Expanded content' }));
 
-    const block = getByTestId(COLLAPSE_BLOCK_TEST_ID);
+    const block = getByTestId(TEST_IDS.collapseBlock);
     await expect(block).toHaveAttribute('data-expanded', 'false');
 
-    await getByTestId(TITLE_TEST_ID).click();
+    await getByTestId(TEST_IDS.title).click();
 
     await expect(block).toHaveAttribute('data-expanded', 'true');
-    await expect(getByTestId(CONTENT_TEST_ID)).toContainText('Expanded content');
+    await expect(getByTestId(TEST_IDS.content)).toContainText('Expanded content');
   });
 
   test('collapses on second title click', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-    const block = getByTestId(COLLAPSE_BLOCK_TEST_ID);
-    const title = getByTestId(TITLE_TEST_ID);
+    const block = getByTestId(TEST_IDS.collapseBlock);
+    const title = getByTestId(TEST_IDS.title);
 
     await title.click();
     await expect(block).toHaveAttribute('data-expanded', 'true');
@@ -29,12 +29,12 @@ test.describe('CollapseBlockPrimary — interaction', () => {
   });
 
   test('chevron icon is visible and clickable', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-    const chevron = getByTestId(CHEVRON_TEST_ID);
+    const chevron = getByTestId(TEST_IDS.chevron);
     await expect(chevron).toBeVisible();
     await chevron.click();
 
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-expanded', 'true');
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
   });
 });

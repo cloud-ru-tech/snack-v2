@@ -1,15 +1,15 @@
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Accordion, type CollapseBlockPrimaryProps } from '../../src';
+import { Accordion, CollapseBlockPrimaryProps } from '../../src';
 import { CHEVRON, VIEW } from '../../src/constants';
 
 const meta: Meta<CollapseBlockPrimaryProps> = {
   title: 'Components/Accordion/CollapseBlockPrimary',
   component: Accordion.CollapseBlockPrimary,
-  parameters: {},
+  parameters: { controls: { disable: true } },
 };
 
 export default meta;
@@ -82,7 +82,4 @@ export const VisualMatrix: Story = {
       />
     </>
   ),
-  parameters: {
-    controls: { disable: true },
-  },
 };

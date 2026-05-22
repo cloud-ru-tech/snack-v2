@@ -1,24 +1,25 @@
-import { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { TEST_IDS } from '../../src/constants';
+import { TEST_IDS } from '../../stories/testIds';
 
-export const GROUP = 'accordion';
-export const NAME = 'accordion';
+export { TEST_IDS };
 
-export const STORIES = {
-  playground: 'playground',
-} as const;
+export const ACCORDION_STORIES = {
+  playground: { name: 'accordion', group: 'accordion', story: 'playground' },
+  visualMatrix: { name: 'accordion', group: 'accordion', story: 'visual-matrix' },
+} as const satisfies Record<string, StoryRef>;
 
-export const COLLAPSE_BLOCK_TEST_ID = TEST_IDS.collapseBlock;
-export const TITLE_TEST_ID = TEST_IDS.title;
-
-export type StoryProps = Record<string, unknown>;
-
-export function buildStoryOptions(props?: StoryProps, story: string = STORIES.playground): StorybookUrlOptions {
+export function buildStoryOptions(
+  props?: Record<string, unknown>,
+  ref: StoryRef = ACCORDION_STORIES.playground,
+): StorybookUrlOptions {
   return {
-    name: NAME,
-    group: GROUP,
-    story,
-    props,
+    name: ref.name,
+    group: ref.group,
+    story: ref.story,
+    props: {
+      'data-test-id': TEST_IDS.accordion.root,
+      ...props,
+    },
   };
 }

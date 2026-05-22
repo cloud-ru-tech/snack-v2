@@ -67,6 +67,7 @@ export function CollapseBlock({
   backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
   keepMounted = false,
   component,
+  'data-test-id': dataTestId,
   ...rest
 }: CollapseBlockProps) {
   const { isOpen, isMounted, toggleOpen, isCompletelyOpen, isCompletelyClose } = useCollapseState({
@@ -85,7 +86,7 @@ export function CollapseBlock({
       data-expanded={isOpen}
       data-view={view}
       data-component={component}
-      data-test-id={TEST_IDS.collapseBlock}
+      data-test-id={dataTestId ?? TEST_IDS.collapseBlock}
       style={{
         '--sn-collapse-block-animation-duration': `${ANIMATION_DURATION}ms`,
       }}

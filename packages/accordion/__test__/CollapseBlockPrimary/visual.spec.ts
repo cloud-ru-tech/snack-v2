@@ -1,15 +1,14 @@
+import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
-
 import {
-  buildStoryOptions,
-  COLLAPSE_BLOCK_TEST_ID,
-  ROOT_SELECTOR,
-  SCREENSHOT_OPTS,
-  STORIES,
-  TITLE_TEST_ID,
-} from './helpers';
+  assertInteractionStatesSnapshot,
+  assertVisualMatrixSnapshot,
+  screenshotWithPadding,
+  waitForStableBbox,
+} from '#playwright-tooling/utils';
+
+import { buildStoryOptions, COLLAPSE_BLOCK_PRIMARY_STORIES, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
 
 test.describe('CollapseBlockPrimary — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -20,40 +19,44 @@ test.describe('CollapseBlockPrimary — visual regression', () => {
     );
   });
 
-  test('visual-matrix', async ({ page, gotoStory }) => {
-    await gotoStory(buildStoryOptions(undefined, STORIES.visualMatrix));
-    await waitForFonts(page);
+  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory(buildStoryOptions(undefined, COLLAPSE_BLOCK_PRIMARY_STORIES.visualMatrix));
+    await waitForFonts();
 
-    await expect(page.locator(ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_OPTS);
+    await assertVisualMatrixSnapshot(page);
   });
 
-  test('hover', async ({ page, gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
-    await waitForFonts(page);
+  test('interaction states (default × hover × focus) — title', async ({
+    page,
+    gotoStory,
+    getByTestId,
+    waitForFonts,
+  }) => {
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
+    await waitForFonts();
 
-    await getByTestId(TITLE_TEST_ID).hover();
-
-    await expect(page.locator(ROOT_SELECTOR)).toHaveScreenshot('hover.png', SCREENSHOT_OPTS);
+    // Hover на title (row-подсветка); focus по Tab уходит на chevron-кнопку
+    // (единственный focusable внутри блока). Title сам не focusable.
+    await assertInteractionStatesSnapshot(page, {
+      target: getByTestId(TEST_IDS.collapseBlock),
+      hoverTarget: getByTestId(TEST_IDS.title),
+      layout: 'col',
+    });
   });
 
-  test('focus', async ({ page, gotoStory }) => {
-    await gotoStory(buildStoryOptions());
-    await waitForFonts(page);
+  // expanded — отдельный сценарий: prop-driven state, который VM не покрывает
+  // (VM рендерит только collapsed-вариант). Не объединяется с interaction-states.
+  test('expanded', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, children: 'Visible content' }));
+    await waitForFonts();
 
-    await page.keyboard.press('Tab');
+    await getByTestId(TEST_IDS.title).click();
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
+    // Ждём стабилизации bbox: после animation finished Chromium может ещё один
+    // frame округлять высоту к +1/-1px (subpixel-rounding на конце slide-open).
+    await waitForStableBbox(getByTestId(TEST_IDS.collapseBlock));
 
-    await expect(page.locator(ROOT_SELECTOR)).toHaveScreenshot('focus.png', SCREENSHOT_OPTS);
-  });
-
-  test('expanded', async ({ page, gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ children: 'Visible content' }));
-    await waitForFonts(page);
-
-    await getByTestId(TITLE_TEST_ID).click();
-    await expect(getByTestId(COLLAPSE_BLOCK_TEST_ID)).toHaveAttribute('data-expanded', 'true');
-    // Wait for open animation to settle: containerCompletelyOpen signal.
-    await expect(page.locator('[data-completely-close]')).toHaveCount(0);
-
-    await expect(page.locator(ROOT_SELECTOR)).toHaveScreenshot('expanded.png', SCREENSHOT_OPTS);
+    const png = await screenshotWithPadding(page, getByTestId(TEST_IDS.collapseBlock), 16, SCREENSHOT_DEFAULT_OPTS);
+    expect(png).toMatchSnapshot('expanded.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 });

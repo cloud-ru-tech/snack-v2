@@ -1,15 +1,20 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .listM {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: base.$sn-primitive-dimension-16;
 }
 
 .listS {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: base.$sn-primitive-dimension-8;
 }
 
 .story {
@@ -20,7 +25,7 @@
 
   width: 620px;
   max-width: 100%;
-  padding: 1.5rem;
+  padding: base.$sn-primitive-dimension-24;
 }
 
 .paragraph {

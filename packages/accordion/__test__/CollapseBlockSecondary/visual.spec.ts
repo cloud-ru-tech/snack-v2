@@ -1,8 +1,14 @@
+import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import {
+  assertInteractionStatesSnapshot,
+  assertVisualMatrixSnapshot,
+  screenshotWithPadding,
+  waitForStableBbox,
+} from '#playwright-tooling/utils';
 
-import { buildStoryOptions, ROOT_SELECTOR, SCREENSHOT_OPTS, STORIES } from './helpers';
+import { buildStoryOptions, COLLAPSE_BLOCK_SECONDARY_STORIES, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
 
 test.describe('CollapseBlockSecondary — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -13,10 +19,34 @@ test.describe('CollapseBlockSecondary — visual regression', () => {
     );
   });
 
-  test('visual-matrix', async ({ page, gotoStory }) => {
-    await gotoStory(buildStoryOptions(undefined, STORIES.visualMatrix));
-    await waitForFonts(page);
+  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory(buildStoryOptions(undefined, COLLAPSE_BLOCK_SECONDARY_STORIES.visualMatrix));
+    await waitForFonts();
 
-    await expect(page.locator(ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_OPTS);
+    await assertVisualMatrixSnapshot(page);
+  });
+
+  test('interaction states (default × hover × focus)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
+    await waitForFonts();
+
+    await assertInteractionStatesSnapshot(page, {
+      target: getByTestId(TEST_IDS.collapseBlock),
+      hoverTarget: getByTestId(TEST_IDS.title),
+      layout: 'col',
+    });
+  });
+
+  test('expanded', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, children: 'Visible content' }));
+    await waitForFonts();
+
+    await getByTestId(TEST_IDS.title).click();
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
+    await expect(page.locator('[data-completely-close]')).toHaveCount(0);
+    await waitForStableBbox(getByTestId(TEST_IDS.collapseBlock));
+
+    const png = await screenshotWithPadding(page, getByTestId(TEST_IDS.collapseBlock), 16, SCREENSHOT_DEFAULT_OPTS);
+    expect(png).toMatchSnapshot('expanded.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 });

@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { Accordion, type CollapseBlockTertiaryProps } from '../../src';
+import { Accordion, CollapseBlockTertiaryProps } from '../../src';
 import { CHEVRON } from '../../src/constants';
 
 const meta: Meta<CollapseBlockTertiaryProps> = {
   title: 'Components/Accordion/CollapseBlockTertiary',
   component: Accordion.CollapseBlockTertiary,
-  parameters: {},
+  parameters: { controls: { disable: true } },
 };
 
 export default meta;
@@ -46,7 +46,4 @@ export const VisualMatrix: Story = {
       ]}
     />
   ),
-  parameters: {
-    controls: { disable: true },
-  },
 };
