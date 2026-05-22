@@ -2,12 +2,15 @@ import { SWITCH_ROW_TYPES, SwitchRow } from '@ds/uikit-product-switch-row';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { SWITCH_ROW_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof SwitchRow> = {
   title: 'Uikit Product/SwitchRow',
   component: SwitchRow,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     title: 'Включить уведомления',
     description: 'Раз в сутки будет приходить дайджест событий',
@@ -16,7 +19,7 @@ const meta: Meta<typeof SwitchRow> = {
     loading: false,
     disableTitleTruncate: false,
     type: SWITCH_ROW_TYPES.Block,
-    'data-test-id': SWITCH_ROW_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     title: { control: 'text', description: 'Заголовок' },
@@ -42,7 +45,20 @@ type Story = StoryObj<typeof SwitchRow>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Строка-переключатель с заголовком, описанием и Switch справа.</DemoHint>
+        <DemoActions align='center'>
+          <div className={styles.fullWidth}>
+            <SwitchRow {...args} />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(SWITCH_ROW_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };

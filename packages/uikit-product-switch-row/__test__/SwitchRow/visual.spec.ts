@@ -1,9 +1,8 @@
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import { test } from '#playwright-tooling/fixtures';
+import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, SWITCH_ROW_STORIES, SWITCH_ROW_TEST_ID } from './helpers';
+import { buildStoryOptions, SWITCH_ROW_STORIES, TEST_IDS } from './helpers';
 
 test.describe('SwitchRow — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -14,37 +13,17 @@ test.describe('SwitchRow — visual regression', () => {
     );
   });
 
-  test('visual-matrix', async ({ page, gotoStory }) => {
+  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, SWITCH_ROW_STORIES.visualMatrix));
-    await waitForFonts(page);
+    await waitForFonts();
 
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_DEFAULT_OPTS);
+    await assertVisualMatrixSnapshot(page);
   });
 
-  test.describe('interaction states', () => {
-    test('hover', async ({ page, gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions());
-      await waitForFonts(page);
+  test('interaction states (default × hover × focus)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions());
+    await waitForFonts();
 
-      await getByTestId(SWITCH_ROW_TEST_ID).hover();
-
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-hover.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
-    });
-
-    test('focus', async ({ page, gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions());
-      await waitForFonts(page);
-
-      await page.keyboard.press('Tab');
-      await expect(getByTestId(SWITCH_ROW_TEST_ID)).toBeFocused();
-
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-focus.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
-    });
+    await assertInteractionStatesSnapshot(page, { target: getByTestId(TEST_IDS.root), layout: 'col' });
   });
 });
