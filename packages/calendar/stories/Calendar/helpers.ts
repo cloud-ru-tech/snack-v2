@@ -1,5 +1,5 @@
 import { CALENDAR_MODE } from '../../src/constants';
-import type { BuildCellPropsFunction, CalendarMode, ViewMode } from '../../src/types';
+import { BuildCellPropsFunction, CalendarMode, ViewMode } from '../../src/types';
 import { ControlledValue } from './types.ts';
 
 /** Режим колбэка ячеек для Playground (migration / E2E). */

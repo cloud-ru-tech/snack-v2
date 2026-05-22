@@ -1,12 +1,12 @@
 import { Dropdown, DropdownProps } from '@ds/dropdown';
-import { type WithSupportProps } from '@ds/utils';
+import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode, useCallback, useMemo } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import { Footer } from '../../helperComponents';
 import { getTestIdBuilder } from '../../utils';
-import { Calendar, type CalendarProps } from '../Calendar';
+import { Calendar, CalendarProps } from '../Calendar';
 import styles from './styles.module.scss';
 
 type DropdownBridgeProps = Pick<

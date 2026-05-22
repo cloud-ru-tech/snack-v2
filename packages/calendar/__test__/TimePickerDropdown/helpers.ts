@@ -1,4 +1,4 @@
-import type { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
 
@@ -10,17 +10,17 @@ export const TIME_PICKER_DROPDOWN_NAME = 'time-picker-dropdown';
 
 export const TIME_PICKER_DROPDOWN_STORIES = {
   playground: 'playground',
+  visualMatrix: 'visual-matrix',
 } as const;
 
 /**
- * `data-test-id` колонок времени внутри панели при дефолтном `data-test-id=\"time-picker-dropdown\"` на `TimePickerDropdown`
- * (как в Playground: `getTestId('hours')` → `hours-${testId}`).
- * У каждой ячейки `TimeList` тот же id, что у списка — для `expect(...).toBeVisible()` используйте `.first()` / `.nth(i)`.
+ * `data-test-id` ячеек колонок времени внутри панели: `<column>-<rootTestId>-<index>` (см. `TimeList`).
+ * Колоночный id (`hours-<root>`) на DOM не присутствует — только индексированные item'ы.
  */
 export const TIME_PICKER_DROPDOWN_LIST_TEST_IDS = {
-  hours: `hours-${TEST_IDS.timePickerDropdown}`,
-  minutes: `minutes-${TEST_IDS.timePickerDropdown}`,
-  seconds: `seconds-${TEST_IDS.timePickerDropdown}`,
+  hours: (index: number) => `hours-${TEST_IDS.timePickerDropdown}-${index}`,
+  minutes: (index: number) => `minutes-${TEST_IDS.timePickerDropdown}-${index}`,
+  seconds: (index: number) => `seconds-${TEST_IDS.timePickerDropdown}-${index}`,
 } as const;
 
 /**

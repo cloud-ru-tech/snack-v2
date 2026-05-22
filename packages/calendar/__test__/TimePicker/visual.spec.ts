@@ -1,13 +1,11 @@
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import { test } from '#playwright-tooling/fixtures';
+import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
 import { SIZE } from '../../src/constants';
-import { buildTimePickerOptions, TIME_PICKER_LIST_TEST_IDS } from './helpers';
+import { buildTimePickerOptions, TEST_IDS, TIME_PICKER_LIST_TEST_IDS, TIME_PICKER_STORIES } from './helpers';
 
 test.describe('TimePicker — visual regression', () => {
-  /** Снимки `TimePicker` + `TimePickerBase` / `TimeList`. При смене вёрстки — `pnpm test:e2e:update-snapshots`. */
   // eslint-disable-next-line no-empty-pattern
   test.beforeEach(({}, testInfo) => {
     test.skip(
@@ -16,34 +14,32 @@ test.describe('TimePicker — visual regression', () => {
     );
   });
 
-  test('playground', async ({ page, gotoStory }) => {
-    await gotoStory(buildTimePickerOptions({ size: SIZE.M }));
-    await waitForFonts(page);
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-      'visual-playground.png',
-      SCREENSHOT_DEFAULT_OPTS,
-    );
+  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory(buildTimePickerOptions(undefined, TIME_PICKER_STORIES.visualMatrix));
+    await waitForFonts();
+    await assertVisualMatrixSnapshot(page);
   });
 
-  test.describe('interaction (Playground)', () => {
-    test('hover', async ({ page, gotoStory }) => {
-      await gotoStory(buildTimePickerOptions({ size: SIZE.M }));
-      await waitForFonts(page);
-      await page.getByTestId(TIME_PICKER_LIST_TEST_IDS.hours).nth(5).hover();
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-hover.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
-    });
+  test('interaction states (default × hover × focus) — hour item', async ({
+    page,
+    gotoStory,
+    getByTestId,
+    waitForFonts,
+  }) => {
+    await gotoStory(buildTimePickerOptions({ size: SIZE.M }));
+    await waitForFonts();
 
-    test('focus', async ({ page, gotoStory }) => {
-      await gotoStory(buildTimePickerOptions({ size: SIZE.M }));
-      await waitForFonts(page);
-      await page.keyboard.press('Tab');
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-focus.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
+    // Hover и focus оба на hour-item 5:00 — diff между ячейками показывает именно его
+    // state-фон + focus-ring (а не разные элементы — иначе кажется, что hover/focus
+    // принадлежат разным слотам).
+    const hour5 = getByTestId(TIME_PICKER_LIST_TEST_IDS.hours(5));
+    await assertInteractionStatesSnapshot(page, {
+      target: getByTestId(TEST_IDS.timePickerPlayground),
+      hoverTarget: hour5,
+      focusAction: async () => {
+        await hour5.evaluate((el: HTMLElement) => el.focus({ focusVisible: true } as FocusOptions));
+      },
+      layout: 'col',
     });
   });
 });

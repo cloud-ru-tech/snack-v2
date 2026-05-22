@@ -9,13 +9,13 @@
 .story {
   display: flex;
   justify-content: center;
-  padding: 24px;
+  padding: base.$sn-primitive-dimension-24;
 }
 
 .tablesWrapper {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: base.$sn-primitive-dimension-24;
 }
 
 .matrixCell {

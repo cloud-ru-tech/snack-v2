@@ -1,15 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useMemo, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import { SIZE } from '../../src';
 import {
-  TEST_IDS,
   TimePickerDrum,
   type TimePickerDrumCustomOptions,
   type TimePickerDrumProps,
 } from '../../src/helperComponents/TimePickerDrum';
 import { coerceStoryDate } from '../Calendar/helpers';
+import { TEST_IDS } from '../testIds';
 import styles from './styles.module.scss';
 
 const FIGMA_DESIGN_URL =
@@ -53,12 +55,14 @@ type StoryProps = Omit<TimePickerDrumProps, 'selectedDateLabel' | 'hours' | 'min
 const meta: Meta<StoryProps> = {
   title: 'Components/Calendar/Time Picker Drum',
   parameters: {
+    layout: 'fullscreen',
     design: {
       type: 'figma',
       url: FIGMA_DESIGN_URL,
     },
   },
   args: {
+    'data-test-id': TEST_IDS.timePickerDrum,
     size: SIZE.S,
     showSeconds: true,
     options: 'all',
@@ -109,24 +113,32 @@ export const Playground: Story = {
     const selectedDateLabel = useMemo(() => formatDateOnlyFromCalendar(baseDate), [baseDate]);
 
     return (
-      <div className={styles.storyWrapper}>
-        <div className={styles.story}>
-          <TimePickerDrum
-            {...pickerArgs}
-            customOptions={customOptions}
-            hours={hours}
-            minutes={minutes}
-            seconds={seconds}
-            selectedDateLabel={selectedDateLabel}
-            onHoursChange={setHours}
-            onMinutesChange={setMinutes}
-            onSecondsChange={setSeconds}
-          />
-        </div>
-      </div>
+      <DemoPage>
+        <DemoPanel>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Барабанный пикер времени с подписью даты сверху.</DemoHint>
+          <DemoActions align='center'>
+            <div className={styles.storyWrapper}>
+              <div className={styles.story}>
+                <TimePickerDrum
+                  {...pickerArgs}
+                  customOptions={customOptions}
+                  hours={hours}
+                  minutes={minutes}
+                  seconds={seconds}
+                  selectedDateLabel={selectedDateLabel}
+                  onHoursChange={setHours}
+                  onMinutesChange={setMinutes}
+                  onSecondsChange={setSeconds}
+                />
+              </div>
+            </div>
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
     );
   },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.timePickerDrum)).toBeVisible();
   },
 };

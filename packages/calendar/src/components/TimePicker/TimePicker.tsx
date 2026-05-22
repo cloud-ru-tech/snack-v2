@@ -1,5 +1,5 @@
 import { useLocale } from '@ds/locale';
-import { useEventHandler, type WithSupportProps } from '@ds/utils';
+import { useEventHandler, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
@@ -7,9 +7,9 @@ import { useUncontrolledProp } from 'uncontrollable';
 import { ListProps } from '@snack-uikit/list';
 
 import { SIZE } from '../../constants';
-import { CalendarContext, type CalendarContextType, TimePickerBase } from '../../helperComponents';
+import { CalendarContext, CalendarContextType, TimePickerBase } from '../../helperComponents';
 import { useDateAndTime } from '../../hooks';
-import { type BuildCellPropsFunction, FocusDirection, Range, Size, TimeValue } from '../../types';
+import { BuildCellPropsFunction, FocusDirection, Range, Size, TimeValue } from '../../types';
 import { getLocale, getTestIdBuilder, isTimePortionComplete, timeValuesEqual } from '../../utils';
 import { DEFAULT_LOCALE } from './constants';
 import styles from './styles.module.scss';

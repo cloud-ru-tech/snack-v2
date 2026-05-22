@@ -1,16 +1,18 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 
-import { StoryTable, type StoryTableRow } from '#storybook/components';
+import { StoryTable, StoryTableRow } from '#storybook/components';
 
 import calendarReadme from '../../README.md?raw';
 import { Calendar, CALENDAR_MODE, SIZE } from '../../src';
-import type { Range, Size } from '../../src/types';
+import { Range, Size } from '../../src/types';
 import styles from './styles.module.scss';
 
 const meta = {
   title: 'Components/Calendar/Calendar',
   component: Calendar,
   parameters: {
+    layout: 'padded',
+    controls: { disable: true },
     readme: { content: calendarReadme },
     design: {
       type: 'figma',

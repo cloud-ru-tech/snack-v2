@@ -31,7 +31,7 @@ import {
   sortDates,
 } from '../../utils';
 import { CalendarBody } from '../CalendarBody';
-import { CalendarContext, type CalendarContextType } from '../CalendarContext';
+import { CalendarContext, CalendarContextType } from '../CalendarContext';
 import { Header } from '../Header';
 import { PeriodPresetsList } from '../PeriodPresetsList';
 import { getDefaultPresets } from '../PeriodPresetsList/utils';

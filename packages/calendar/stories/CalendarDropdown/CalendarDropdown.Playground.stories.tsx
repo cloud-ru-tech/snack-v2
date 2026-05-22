@@ -2,8 +2,11 @@ import { Button } from '@ds/button';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import calendarReadme from '../../README.md?raw';
 import { CALENDAR_MODE, CalendarDropdown, CalendarDropdownProps, SIZE } from '../../src';
+import { TEST_IDS } from '../testIds';
 
 type StoryProps = CalendarDropdownProps & {
   /** Только для `mode: date-range`: включает пресеты периода (как в Calendar Playground). */
@@ -15,7 +18,7 @@ const meta: Meta<StoryProps> = {
   component: CalendarDropdown,
   parameters: {
     readme: { content: calendarReadme },
-    layout: 'centered',
+    layout: 'fullscreen',
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=19439-215955&m=dev',
@@ -31,9 +34,17 @@ const Template: StoryFn<StoryProps> = ({ showPeriodPresets, ...args }) => {
   const presets = args.mode === CALENDAR_MODE.DateRange && showPeriodPresets ? { enabled: true } : undefined;
 
   return (
-    <CalendarDropdown {...args} presets={presets}>
-      <Button data-test-id='calendar-dropdown-trigger' label='Открыть CalendarDropdown' />
-    </CalendarDropdown>
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Кнопка-триггер с выпадающим календарём.</DemoHint>
+        <DemoActions align='center'>
+          <CalendarDropdown {...args} presets={presets}>
+            <Button data-test-id={TEST_IDS.calendarDropdownTrigger} label='Открыть CalendarDropdown' />
+          </CalendarDropdown>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 };
 
@@ -48,7 +59,7 @@ export const Playground: Story = {
     closeOnApply: true,
     placement: 'bottom-start',
     fitToContainer: false,
-    'data-test-id': 'calendar-dropdown',
+    'data-test-id': TEST_IDS.calendarDropdown,
   },
   argTypes: {
     onChangeValue: { table: { disable: true } },
@@ -81,7 +92,7 @@ export const Playground: Story = {
     },
   },
   render: Template,
-  play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('calendar-dropdown-trigger')).toBeVisible();
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.calendarDropdownTrigger)).toBeVisible();
   },
 };

@@ -18,7 +18,7 @@ test.describe('TimePicker — interaction', () => {
     const holder = page.getByTestId(TEST_IDS.timePickerValueHolder);
     const before = await holder.textContent();
 
-    await page.getByTestId(TIME_PICKER_LIST_TEST_IDS.hours).nth(7).click();
+    await page.getByTestId(TIME_PICKER_LIST_TEST_IDS.hours(7)).click();
 
     const after = await holder.textContent();
     await expect(after).not.toEqual(before);

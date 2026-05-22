@@ -1,4 +1,4 @@
-import type { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
 
@@ -9,6 +9,7 @@ export const CALENDAR_DROPDOWN_NAME = 'calendar-dropdown';
 
 export const CALENDAR_DROPDOWN_STORIES = {
   playground: 'playground',
+  visualMatrix: 'visual-matrix',
 } as const;
 
 /**

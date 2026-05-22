@@ -1,5 +1,10 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 $sizes: 's', 'm', 'l';
 
 .story {
@@ -9,7 +14,7 @@ $sizes: 's', 'm', 'l';
   width: fit-content;
 
   &[data-with-background] {
-    border: 1px solid base.$sn-theme-color-neutral-decor;
+    border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
     background: base.$sn-theme-color-neutral-background1Level;
   }
 }
@@ -25,7 +30,7 @@ $sizes: 's', 'm', 'l';
 }
 
 .scrollS {
-  width: 124px;
+  width: base.$sn-primitive-dimension-124;
   height: 257px;
 }
 

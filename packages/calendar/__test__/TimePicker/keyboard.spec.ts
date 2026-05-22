@@ -8,7 +8,8 @@ test.describe('TimePicker — keyboard', () => {
   test('Tab reaches hours column', async ({ page, gotoStory }) => {
     await gotoStory(buildTimePickerOptions({ size: SIZE.M }));
 
-    const prefix = TIME_PICKER_LIST_TEST_IDS.hours;
+    // Колонка часов: индексированные id `hours-<root>-<i>`; берём префикс без индекса.
+    const prefix = TIME_PICKER_LIST_TEST_IDS.hours(0).replace(/-0$/, '');
     await expect
       .poll(async () => {
         for (let i = 0; i < 25; i++) {

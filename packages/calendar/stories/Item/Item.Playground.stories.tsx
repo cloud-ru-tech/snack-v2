@@ -1,14 +1,18 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import calendarReadme from '../../README.md?raw';
 import { RANGE_POSITION, SIZE } from '../../src/constants.ts';
 import { CalendarItemProps, Item } from '../../src/helperComponents/Item';
+import { TEST_IDS } from '../testIds';
 import styles from './styles.module.scss';
 
-const meta: Meta<CalendarItemProps> = {
+const meta: Meta<CalendarItemProps & { 'data-test-id'?: string }> = {
   title: 'Components/Calendar/Item',
   component: Item,
   parameters: {
+    layout: 'fullscreen',
     readme: { content: calendarReadme },
     design: {
       type: 'figma',
@@ -20,19 +24,28 @@ const meta: Meta<CalendarItemProps> = {
 
 export default meta;
 
-type StoryProps = CalendarItemProps;
+type StoryProps = CalendarItemProps & { 'data-test-id'?: string };
 
 type Story = StoryObj<StoryProps>;
 
 const Template: StoryFn<StoryProps> = (args: StoryProps) => (
-  <div className={styles.storyWrapper}>
-    <Item {...args} />
-  </div>
+  <DemoPage>
+    <DemoPanel>
+      <DemoTitle>Playground</DemoTitle>
+      <DemoHint>Атомарная ячейка календаря (день / месяц / год) во всех состояниях.</DemoHint>
+      <DemoActions align='center'>
+        <div className={styles.storyWrapper}>
+          <Item {...args} />
+        </div>
+      </DemoActions>
+    </DemoPanel>
+  </DemoPage>
 );
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   args: {
+    'data-test-id': TEST_IDS.calendarItem,
     size: 's',
     visible: true,
     checked: false,

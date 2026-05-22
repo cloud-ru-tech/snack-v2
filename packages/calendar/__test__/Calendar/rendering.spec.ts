@@ -1,7 +1,18 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
 import { CALENDAR_MODE, SIZE } from '../../src/constants';
-import { buildCalendarOptions, CALENDAR_STORIES, TEST_IDS } from './helpers';
+import { buildCalendarOptions, CALENDAR_STORIES, getCalendarMatrixCellTestId, TEST_IDS } from './helpers';
+
+/** Ключевая выборка: по 1 представителю на каждое значение `size` и `mode` без декартова произведения. */
+const KEY_COMBOS = [
+  { size: SIZE.S, mode: CALENDAR_MODE.Date },
+  { size: SIZE.M, mode: CALENDAR_MODE.DateRange },
+  { size: SIZE.L, mode: CALENDAR_MODE.DateTime },
+  { size: SIZE.M, mode: CALENDAR_MODE.Month },
+  { size: SIZE.M, mode: CALENDAR_MODE.MonthRange },
+  { size: SIZE.M, mode: CALENDAR_MODE.Year },
+  { size: SIZE.M, mode: CALENDAR_MODE.YearRange },
+] as const;
 
 test.describe('Calendar — rendering', () => {
   /** Монтирование Playground и Visual Matrix; атрибуты корня `calendar-playground`. */
@@ -13,7 +24,7 @@ test.describe('Calendar — rendering', () => {
 
     test(`story ${CALENDAR_STORIES.visualMatrix} renders matrix calendars`, async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildCalendarOptions(undefined, CALENDAR_STORIES.visualMatrix));
-      await expect(getByTestId('calendar-matrix-date-s')).toBeVisible();
+      await expect(getByTestId(getCalendarMatrixCellTestId('date', SIZE.S))).toBeVisible();
     });
   });
 
@@ -41,17 +52,12 @@ test.describe('Calendar — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    for (const size of Object.values(SIZE)) {
-      test(`data-size=${size}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildCalendarOptions({ mode: CALENDAR_MODE.Date, size }));
-        await expect(getByTestId(TEST_IDS.calendarPlayground)).toHaveAttribute('data-size', size);
-      });
-    }
-
-    for (const mode of Object.values(CALENDAR_MODE)) {
-      test(`data-mode=${mode}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildCalendarOptions({ mode, size: SIZE.M }));
-        await expect(getByTestId(TEST_IDS.calendarPlayground)).toHaveAttribute('data-mode', mode);
+    for (const { size, mode } of KEY_COMBOS) {
+      test(`size=${size} + mode=${mode}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildCalendarOptions({ mode, size }));
+        const root = getByTestId(TEST_IDS.calendarPlayground);
+        await expect(root).toHaveAttribute('data-size', size);
+        await expect(root).toHaveAttribute('data-mode', mode);
       });
     }
 

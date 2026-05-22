@@ -1,10 +1,13 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import cn from 'classnames';
 import { useArgs, useMemo } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import calendarReadme from '../../README.md?raw';
 import { SIZE, Size, TimePicker, TimeValue } from '../../src';
+import { TEST_IDS } from '../testIds';
 import { parseTimeFromStoryParts } from './helpers.ts';
 import styles from './styles.module.scss';
 
@@ -12,6 +15,7 @@ const meta = {
   title: 'Components/Calendar/Time Picker',
   component: TimePicker,
   parameters: {
+    layout: 'fullscreen',
     readme: { content: calendarReadme },
     design: {
       type: 'figma',
@@ -82,24 +86,32 @@ const Template: StoryFn<StoryProps> = ({
   const seconds = String(valueSeconds).padStart(2, '0');
 
   return (
-    <div
-      className={cn(styles.story, withFixedSizes && SCROLL_SIZE[size || SIZE.S])}
-      data-with-background={withBackground || undefined}
-    >
-      <TimePicker
-        size={size}
-        showSeconds={showSeconds}
-        fitToContainer={fitToContainer}
-        defaultValue={defaultFromControls}
-        value={valueFromControls}
-        onChangeValue={onChangeValue}
-        data-test-id='timepicker-playground'
-      />
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Барабан выбора времени: часы, минуты и опционально секунды.</DemoHint>
+        <DemoActions align='center'>
+          <div
+            className={cn(styles.story, withFixedSizes && SCROLL_SIZE[size || SIZE.S])}
+            data-with-background={withBackground || undefined}
+          >
+            <TimePicker
+              size={size}
+              showSeconds={showSeconds}
+              fitToContainer={fitToContainer}
+              defaultValue={defaultFromControls}
+              value={valueFromControls}
+              onChangeValue={onChangeValue}
+              data-test-id={TEST_IDS.timePickerPlayground}
+            />
 
-      <div className={styles.valueHolder} data-test-id='timepicker-value-holder'>
-        {valueFromControls ? `${hours}:${minutes}:${seconds}` : ''}
-      </div>
-    </div>
+            <div className={styles.valueHolder} data-test-id={TEST_IDS.timePickerValueHolder}>
+              {valueFromControls ? `${hours}:${minutes}:${seconds}` : ''}
+            </div>
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 };
 

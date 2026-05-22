@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { type CSSProperties, type PointerEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, PointerEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { ROW_REL } from './constants';
 import styles from './styles.module.scss';

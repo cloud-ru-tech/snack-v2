@@ -1,6 +1,13 @@
-import type { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
+
+/** Builder для VisualMatrix-ячеек Calendar (соответствует data-test-id из VisualMatrix story). */
+export const getCalendarMatrixCellTestId = (mode: 'date' | 'date-range' | 'date-time', size: string): string =>
+  `calendar-matrix-${mode}-${size}`;
+
+/** Builder для кнопки перехода периода (next) внутри корня calendar root. */
+export const getPeriodNextTestId = (rootTestId: string): string => `period-next-${rootTestId}`;
 
 /** Сегмент URL: `components-calendar-<CALENDAR_NAME>--<story>`. */
 export const CALENDAR_GROUP = 'calendar';

@@ -1,6 +1,6 @@
 import { Dropdown, DropdownProps } from '@ds/dropdown';
 import { useLocale } from '@ds/locale';
-import { useEventHandler, type WithSupportProps } from '@ds/utils';
+import { useEventHandler, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
@@ -8,9 +8,9 @@ import { useUncontrolledProp } from 'uncontrollable';
 import { ListProps } from '@snack-uikit/list';
 
 import { SIZE } from '../../constants';
-import { CalendarContext, type CalendarContextType, Footer, TimePickerBase } from '../../helperComponents';
+import { CalendarContext, CalendarContextType, Footer, TimePickerBase } from '../../helperComponents';
 import { useDateAndTime } from '../../hooks';
-import { type BuildCellPropsFunction, Range, TimeValue } from '../../types';
+import { BuildCellPropsFunction, Range, TimeValue } from '../../types';
 import { getLocale, getTestIdBuilder, isTimePortionComplete, timeValuesEqual } from '../../utils';
 import { TimePickerProps } from '../TimePicker';
 import { DEFAULT_LOCALE } from '../TimePicker/constants';

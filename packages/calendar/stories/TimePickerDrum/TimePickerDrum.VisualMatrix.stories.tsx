@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import { StoryTable, StoryTableRow } from '#storybook/components';
@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 const meta: Meta = {
   title: 'Components/Calendar/Time Picker Drum',
   parameters: {
+    controls: { disable: true },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=12303-72025&m=dev',

@@ -22,8 +22,8 @@ test.describe('TimePickerDropdown — interaction', () => {
   test('when open, time lists are interactable targets in DOM', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildTimePickerDropdownOptions({ size: SIZE.M, showSeconds: true }));
     await getByTestId(TEST_IDS.timePickerDropdownTrigger).click();
-    await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.hours).first()).toBeVisible();
-    await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.minutes).first()).toBeVisible();
-    await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds).first()).toBeVisible();
+    await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.hours(0))).toBeVisible();
+    await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.minutes(0))).toBeVisible();
+    await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds(0))).toBeVisible();
   });
 });

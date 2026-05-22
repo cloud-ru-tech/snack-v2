@@ -1,12 +1,17 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .storyWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  max-width: 100px;
-  padding: 32px;
+  max-width: base.$sn-primitive-dimension-100;
+  padding: base.$sn-primitive-dimension-32;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
@@ -16,7 +21,7 @@
   flex-direction: column;
 
   max-width: 400px;
-  padding: 16px 24px;
+  padding: base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-24;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 }

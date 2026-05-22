@@ -48,6 +48,8 @@ export const TEST_IDS = {
   timePickerDropdown: 'time-picker-dropdown',
   timePickerDropdownTrigger: 'time-picker-dropdown-trigger',
   timePickerDropdownContent: 'content-time-picker-dropdown',
+  timePickerDrum: 'time-picker-drum',
+  calendarItem: 'calendar-item',
 } as const;
 
 export const HOURS = 24;

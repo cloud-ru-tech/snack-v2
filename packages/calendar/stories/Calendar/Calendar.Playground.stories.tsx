@@ -4,10 +4,13 @@ import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import calendarReadme from '../../README.md?raw';
 import { Calendar, CALENDAR_MODE, CalendarMode, CalendarProps, Range, SIZE, Size } from '../../src';
+import { TEST_IDS } from '../testIds';
 import {
-  type CalendarStoryBuildCellPropsMode,
+  CalendarStoryBuildCellPropsMode,
   coerceStoryDate,
   getBuildCellProps,
   parseDefaultValueFromStory,
@@ -26,6 +29,7 @@ const meta = {
   title: 'Components/Calendar/Calendar',
   component: Calendar,
   parameters: {
+    layout: 'fullscreen',
     readme: { content: calendarReadme },
     design: {
       type: 'figma',
@@ -116,7 +120,7 @@ const Template: StoryFn<StoryProps> = ({
     showHolidays,
     fitToContainer,
     buildCellProps: getBuildCellProps(modeBuildCellProps),
-    'data-test-id': 'calendar-playground',
+    'data-test-id': TEST_IDS.calendarPlayground,
   };
 
   let calendar: CalendarProps;
@@ -200,23 +204,31 @@ const Template: StoryFn<StoryProps> = ({
   const rangeEndValueMs = Array.isArray(selectedValue) && selectedValue[1].valueOf();
 
   return (
-    <div
-      key={mode}
-      className={cn(styles.story, withFixedSizes && SCROLL_SIZE[size || SIZE.S])}
-      data-view-mode={mode}
-      data-with-presets={Boolean(presets) || undefined}
-      data-with-background={withBackground || undefined}
-    >
-      <Scroll>
-        <Calendar {...calendar} />
-      </Scroll>
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Календарь: date / date-time / date-range / month / month-range / year / year-range.</DemoHint>
+        <DemoActions align='center'>
+          <div
+            key={mode}
+            className={cn(styles.story, withFixedSizes && SCROLL_SIZE[size || SIZE.S])}
+            data-view-mode={mode}
+            data-with-presets={Boolean(presets) || undefined}
+            data-with-background={withBackground || undefined}
+          >
+            <Scroll>
+              <Calendar {...calendar} />
+            </Scroll>
 
-      <div className={styles.valueHolder} data-test-id='calendar-value-holder'>
-        {singleValueMs}
-        {rangeStartValueMs}
-        {rangeEndValueMs}
-      </div>
-    </div>
+            <div className={styles.valueHolder} data-test-id={TEST_IDS.calendarValueHolder}>
+              {singleValueMs}
+              {rangeStartValueMs}
+              {rangeEndValueMs}
+            </div>
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   );
 };
 
@@ -318,6 +330,6 @@ export const Playground: Story = {
   },
   render: Template,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('calendar-playground')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.calendarPlayground)).toBeVisible();
   },
 };

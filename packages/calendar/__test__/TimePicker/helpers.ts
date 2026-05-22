@@ -1,4 +1,4 @@
-import type { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
 
@@ -9,16 +9,18 @@ export const TIME_PICKER_NAME = 'time-picker';
 
 export const TIME_PICKER_STORIES = {
   playground: 'playground',
+  visualMatrix: 'visual-matrix',
 } as const;
 
 /**
- * `data-test-id` ячеек колонок времени: на каждой ячейке `TimeList` дублируется id списка (см. `TimeList`).
- * Используйте `.nth(i)` для клика по конкретному часу/минуте.
+ * `data-test-id` ячеек колонок времени: каждая ячейка — `<column>-<rootTestId>-<index>` (см. `TimeList`).
+ * Колоночный id (`hours-<root>`) на DOM не существует — есть только индексированные item'ы.
+ * Используйте `itemId(column, index)` для конкретной ячейки.
  */
 export const TIME_PICKER_LIST_TEST_IDS = {
-  hours: `hours-${TEST_IDS.timePickerPlayground}`,
-  minutes: `minutes-${TEST_IDS.timePickerPlayground}`,
-  seconds: `seconds-${TEST_IDS.timePickerPlayground}`,
+  hours: (index: number) => `hours-${TEST_IDS.timePickerPlayground}-${index}`,
+  minutes: (index: number) => `minutes-${TEST_IDS.timePickerPlayground}-${index}`,
+  seconds: (index: number) => `seconds-${TEST_IDS.timePickerPlayground}-${index}`,
 } as const;
 
 /**

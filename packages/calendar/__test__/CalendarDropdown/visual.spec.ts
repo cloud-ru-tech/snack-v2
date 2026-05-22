@@ -1,13 +1,12 @@
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
+import { MATCH_SNAPSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import { composeScreenshots, screenshotRegion } from '#playwright-tooling/utils';
 
-import { CALENDAR_MODE, SIZE } from '../../src/constants';
-import { buildCalendarDropdownOptions, TEST_IDS } from './helpers';
+import { CALENDAR_DROPDOWN_MATRIX } from '../../stories/testIds';
+import { buildCalendarDropdownOptions, CALENDAR_DROPDOWN_STORIES } from './helpers';
 
 test.describe('CalendarDropdown — visual regression', () => {
-  /** Снимки триггера и панели с `Calendar` + `Footer`. При смене вёрстки — обновить baseline. */
   // eslint-disable-next-line no-empty-pattern
   test.beforeEach(({}, testInfo) => {
     test.skip(
@@ -16,20 +15,25 @@ test.describe('CalendarDropdown — visual regression', () => {
     );
   });
 
-  test('playground closed', async ({ page, gotoStory }) => {
-    await gotoStory(buildCalendarDropdownOptions({ mode: CALENDAR_MODE.Date, size: SIZE.M }));
-    await waitForFonts(page);
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-      'visual-playground.png',
-      SCREENSHOT_DEFAULT_OPTS,
-    );
-  });
+  // visual-matrix — composite открытых dropdown'ов 3×3 (size × mode).
+  // Click-loop по триггерам VM-story: открыть → snap union(trigger, content) → Escape → следующий.
+  test('visual-matrix', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildCalendarDropdownOptions(undefined, CALENDAR_DROPDOWN_STORIES.visualMatrix));
+    await waitForFonts();
 
-  test('dropdown open', async ({ page, gotoStory, getByTestId }) => {
-    await gotoStory(buildCalendarDropdownOptions({ mode: CALENDAR_MODE.Date, size: SIZE.M }));
-    await waitForFonts(page);
-    await getByTestId(TEST_IDS.calendarDropdownTrigger).click();
-    await expect(getByTestId(TEST_IDS.calendarDropdownContent)).toBeVisible();
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-open.png', SCREENSHOT_DEFAULT_OPTS);
+    const cells = [];
+    for (const { size, mode, triggerTestId, contentTestId } of CALENDAR_DROPDOWN_MATRIX) {
+      const trigger = getByTestId(triggerTestId);
+      await trigger.click();
+      const content = getByTestId(contentTestId);
+      await expect(content).toBeVisible();
+      const png = await screenshotRegion(page, [trigger, content], 16);
+      cells.push({ label: `${size} / ${mode}`, png });
+      await page.keyboard.press('Escape');
+      await expect(content).toHaveCount(0);
+    }
+
+    const composite = await composeScreenshots(cells, { layout: 'grid', columns: 3 });
+    expect(composite).toMatchSnapshot('visual-matrix.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 });

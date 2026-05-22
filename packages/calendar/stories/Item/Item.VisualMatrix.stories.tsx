@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { StoryTable, StoryTableRow } from '#storybook/components';
 
@@ -11,6 +11,7 @@ const meta: Meta<CalendarItemProps> = {
   title: 'Components/Calendar/Item',
   component: Item,
   parameters: {
+    controls: { disable: true },
     readme: { content: calendarReadme },
     design: {
       type: 'figma',

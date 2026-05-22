@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 /**
  * Текстовый снимок сетки календаря (логика как в migration/calendar/__test__/utils.ts),

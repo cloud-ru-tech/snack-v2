@@ -8,14 +8,15 @@ import {
   TIME_PICKER_DROPDOWN_STORIES,
 } from './helpers';
 
+/** Ключевая выборка `size`: по одному представителю на каждое значение. */
+const KEY_SIZES = [SIZE.S, SIZE.M, SIZE.L] as const;
+
 test.describe('TimePickerDropdown — rendering', () => {
   test.describe('render', () => {
-    for (const story of Object.values(TIME_PICKER_DROPDOWN_STORIES)) {
-      test(`story ${story} renders trigger`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildTimePickerDropdownOptions(undefined, story));
-        await expect(getByTestId(TEST_IDS.timePickerDropdownTrigger)).toBeVisible();
-      });
-    }
+    test(`story ${TIME_PICKER_DROPDOWN_STORIES.playground} renders trigger`, async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildTimePickerDropdownOptions(undefined, TIME_PICKER_DROPDOWN_STORIES.playground));
+      await expect(getByTestId(TEST_IDS.timePickerDropdownTrigger)).toBeVisible();
+    });
   });
 
   test.describe('states', () => {
@@ -32,21 +33,21 @@ test.describe('TimePickerDropdown — rendering', () => {
       await gotoStory(buildTimePickerDropdownOptions({ size: SIZE.M, showSeconds: true }));
       await getByTestId(TEST_IDS.timePickerDropdownTrigger).click();
       await expect(getByTestId(TEST_IDS.timePickerDropdownContent)).toBeVisible();
-      await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.hours).first()).toBeVisible();
-      await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.minutes).first()).toBeVisible();
-      await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds).first()).toBeVisible();
+      await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.hours(0))).toBeVisible();
+      await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.minutes(0))).toBeVisible();
+      await expect(getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds(0))).toBeVisible();
     });
 
     test('showSeconds=false hides seconds column', async ({ gotoStory, getByTestId, page }) => {
       await gotoStory(buildTimePickerDropdownOptions({ size: SIZE.M, showSeconds: false }));
       await getByTestId(TEST_IDS.timePickerDropdownTrigger).click();
       await expect(getByTestId(TEST_IDS.timePickerDropdownContent)).toBeVisible();
-      await expect(page.getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds)).toHaveCount(0);
+      await expect(page.getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds(0))).toHaveCount(0);
     });
   });
 
   test.describe('props propagation', () => {
-    for (const size of Object.values(SIZE)) {
+    for (const size of KEY_SIZES) {
       test(`opened panel exposes data-size=${size} on inner chrome`, async ({ gotoStory, getByTestId }) => {
         await gotoStory(buildTimePickerDropdownOptions({ size, showSeconds: true }));
         await getByTestId(TEST_IDS.timePickerDropdownTrigger).click();

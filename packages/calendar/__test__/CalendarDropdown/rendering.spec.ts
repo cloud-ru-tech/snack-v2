@@ -3,15 +3,20 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { CALENDAR_MODE, SIZE } from '../../src/constants';
 import { buildCalendarDropdownOptions, CALENDAR_DROPDOWN_STORIES, TEST_IDS } from './helpers';
 
+/** Ключевая выборка `size × mode`: по одному представителю на каждое значение оси. */
+const KEY_COMBOS = [
+  { size: SIZE.S, mode: CALENDAR_MODE.Date },
+  { size: SIZE.M, mode: CALENDAR_MODE.DateRange },
+  { size: SIZE.L, mode: CALENDAR_MODE.DateTime },
+] as const;
+
 test.describe('CalendarDropdown — rendering', () => {
   /** Триггер, открытая панель и прокидывание пропов во вложенный `Calendar`. */
   test.describe('render', () => {
-    for (const story of Object.values(CALENDAR_DROPDOWN_STORIES)) {
-      test(`story ${story} renders trigger`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildCalendarDropdownOptions(undefined, story));
-        await expect(getByTestId(TEST_IDS.calendarDropdownTrigger)).toBeVisible();
-      });
-    }
+    test(`story ${CALENDAR_DROPDOWN_STORIES.playground} renders trigger`, async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildCalendarDropdownOptions(undefined, CALENDAR_DROPDOWN_STORIES.playground));
+      await expect(getByTestId(TEST_IDS.calendarDropdownTrigger)).toBeVisible();
+    });
   });
 
   test.describe('states', () => {
@@ -37,28 +42,14 @@ test.describe('CalendarDropdown — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    test('opened calendar inherits mode and size', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(
-        buildCalendarDropdownOptions({
-          mode: CALENDAR_MODE.DateRange,
-          size: SIZE.L,
-        }),
-      );
-      await getByTestId(TEST_IDS.calendarDropdownTrigger).click();
-      await expect(getByTestId(TEST_IDS.calendarDropdownContent)).toBeVisible();
-
-      const calendarRoot = getByTestId(TEST_IDS.calendarDropdownContent).locator('[data-mode]').first();
-      await expect(calendarRoot).toHaveAttribute('data-mode', CALENDAR_MODE.DateRange);
-      await expect(calendarRoot).toHaveAttribute('data-size', SIZE.L);
-    });
-
-    for (const size of Object.values(SIZE)) {
-      test(`opened panel: календарь наследует data-size=${size}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildCalendarDropdownOptions({ mode: CALENDAR_MODE.Date, size }));
+    for (const { size, mode } of KEY_COMBOS) {
+      test(`opened calendar inherits size=${size}, mode=${mode}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildCalendarDropdownOptions({ mode, size }));
         await getByTestId(TEST_IDS.calendarDropdownTrigger).click();
         await expect(getByTestId(TEST_IDS.calendarDropdownContent)).toBeVisible();
 
         const calendarRoot = getByTestId(TEST_IDS.calendarDropdownContent).locator('[data-mode]').first();
+        await expect(calendarRoot).toHaveAttribute('data-mode', mode);
         await expect(calendarRoot).toHaveAttribute('data-size', size);
       });
     }

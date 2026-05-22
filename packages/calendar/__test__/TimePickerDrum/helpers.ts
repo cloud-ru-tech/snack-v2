@@ -1,4 +1,4 @@
-import type { StorybookUrlOptions } from '#playwright-tooling/utils';
+import { StorybookUrlOptions } from '#playwright-tooling/utils';
 
 import { SIZE } from '../../src/constants';
 import { TEST_IDS } from '../../src/helperComponents/TimePickerDrum/constants';
