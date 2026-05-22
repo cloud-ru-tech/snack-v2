@@ -1,6 +1,6 @@
-import { TEST_IDS } from '@ds/uikit-product-title-clickable';
+export { TEST_IDS } from '../../src/constants';
 
-export const TITLE_CLICKABLE_TEST_ID = TEST_IDS.root;
-export const TITLE_CLICKABLE_CHEVRON_TEST_ID = TEST_IDS.chevron;
-export const TITLE_CLICKABLE_TITLE_TEST_ID = TEST_IDS.title;
-export const TITLE_CLICKABLE_AVATAR_TEST_ID = TEST_IDS.avatar;
+/** Story-level id'шники для VisualMatrix-слотов (`before`/`after`). */
+export const STORY_TEST_IDS = {
+  customBefore: 'custom-before',
+} as const;

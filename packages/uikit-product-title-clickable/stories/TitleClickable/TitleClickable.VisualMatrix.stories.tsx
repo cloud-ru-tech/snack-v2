@@ -4,7 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import styles from './stories.module.scss';
+import styles from './styles.module.scss';
+import { STORY_TEST_IDS } from './testIds';
 
 const meta: Meta<typeof TitleClickable> = {
   title: 'Uikit Product/TitleClickable',
@@ -98,7 +99,7 @@ export const VisualMatrix: Story = {
               <TitleClickable
                 key='custom'
                 href='#'
-                before={<span data-test-id='custom-before'> Custom before </span>}
+                before={<span data-test-id={STORY_TEST_IDS.customBefore}> Custom before </span>}
               />,
             ],
           },

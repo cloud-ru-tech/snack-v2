@@ -3,7 +3,9 @@ import { TitleClickable, TitleClickableAvatar, TitleClickableIcon } from '@ds/ui
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { TITLE_CLICKABLE_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from './testIds';
 
 const beforePresets = {
   none: undefined,
@@ -15,15 +17,15 @@ const beforePresets = {
 const meta: Meta<typeof TitleClickable> = {
   title: 'Uikit Product/TitleClickable',
   component: TitleClickable,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'fullscreen' },
   args: {
     href: '#',
     target: '_self',
     title: 'Title',
-    fullWidth: false,
+    fullWidth: true,
     showArrow: true,
     before: beforePresets.none,
-    'data-test-id': TITLE_CLICKABLE_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     href: { control: 'text' },
@@ -40,9 +42,9 @@ const meta: Meta<typeof TitleClickable> = {
       mapping: beforePresets,
       description: 'Слот слева: иконка / аватар / произвольная нода',
     },
-    icon: { control: false },
-    avatar: { control: false },
-    children: { control: false },
+    icon: { table: { disable: true } },
+    avatar: { table: { disable: true } },
+    children: { table: { disable: true } },
     titleTag: { control: 'text' },
     onClick: { action: 'onClick' },
   },
@@ -53,7 +55,18 @@ type Story = StoryObj<typeof TitleClickable>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Кликабельный заголовок-ссылка с опциональным слотом слева и стрелкой справа.</DemoHint>
+        <DemoActions align='center'>
+          <TitleClickable {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(TITLE_CLICKABLE_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
