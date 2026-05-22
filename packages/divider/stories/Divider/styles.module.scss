@@ -1,3 +1,10 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 /**
  * Стили для stories компонента Divider.
  * Обёртки для корректного отображения горизонтального и вертикального разделителя.
@@ -9,9 +16,9 @@
 
 .verticalRow {
   display: flex;
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
   align-items: stretch;
-  height: 64px;
+  height: base.$sn-primitive-dimension-64;
 }
 
 .verticalRowLabel {
@@ -21,28 +28,16 @@
 
 .verticalRowDividerCell {
   flex-shrink: 0;
-  width: 4px;
-  min-width: 1px;
-}
-
-.verticalRowCompact {
-  display: flex;
-  gap: 16px;
-  align-items: stretch;
-  height: 48px;
-}
-
-.verticalRowCompactLabel {
-  display: flex;
-  align-items: center;
+  width: base.$sn-primitive-dimension-4;
+  min-width: base.$sn-primitive-dimension-1;
 }
 
 .matrixCellHorizontal {
-  width: 80px;
+  width: base.$sn-primitive-dimension-80;
 }
 
 .matrixCellVertical {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: base.$sn-primitive-dimension-40;
 }

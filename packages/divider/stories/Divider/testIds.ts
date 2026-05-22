@@ -1,1 +1,1 @@
-export const DIVIDER_TEST_ID = 'divider';
+export { TEST_IDS } from '../../src/constants';

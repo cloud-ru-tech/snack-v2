@@ -7,3 +7,7 @@ export const ORIENTATION = {
   Horizontal: 'horizontal',
   Vertical: 'vertical',
 } as const;
+
+export const TEST_IDS = {
+  root: 'divider',
+} as const;

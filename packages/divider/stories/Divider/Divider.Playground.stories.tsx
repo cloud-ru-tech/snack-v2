@@ -2,18 +2,20 @@ import { Divider, ORIENTATION, VARIANT } from '@ds/divider';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import styles from './styles.module.scss';
-import { DIVIDER_TEST_ID } from './testIds';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Divider> = {
   title: 'Components/Divider',
   component: Divider,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'fullscreen' },
   args: {
     variant: VARIANT.Regular,
     orientation: ORIENTATION.Horizontal,
     className: '',
-    'data-test-id': DIVIDER_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     variant: {
@@ -36,21 +38,30 @@ type Story = StoryObj<typeof Divider>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args =>
-    args.orientation === ORIENTATION.Vertical ? (
-      <div className={styles.verticalRow}>
-        <span className={styles.verticalRowLabel}>Left</span>
-        <div className={styles.verticalRowDividerCell}>
-          <Divider {...args} />
-        </div>
-        <span className={styles.verticalRowLabel}>Right</span>
-      </div>
-    ) : (
-      <div className={styles.horizontalWrapper}>
-        <Divider {...args} />
-      </div>
-    ),
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Разделитель: горизонтальный или вертикальный, варианты по толщине линии.</DemoHint>
+        <DemoActions block>
+          {args.orientation === ORIENTATION.Vertical ? (
+            <div className={styles.verticalRow}>
+              <span className={styles.verticalRowLabel}>Left</span>
+              <div className={styles.verticalRowDividerCell}>
+                <Divider {...args} />
+              </div>
+              <span className={styles.verticalRowLabel}>Right</span>
+            </div>
+          ) : (
+            <div className={styles.horizontalWrapper}>
+              <Divider {...args} />
+            </div>
+          )}
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(DIVIDER_TEST_ID)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
