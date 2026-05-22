@@ -1,10 +1,13 @@
-import { PortalContextProvider, type PortalContextProviderProps, usePortalContext } from '@ds/portal-context';
+import { PortalContextProvider, PortalContextProviderProps, usePortalContext } from '@ds/portal-context';
 import { Meta, StoryObj } from '@storybook/react';
 import cn from 'classnames';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 function PortalDemoContent({ message, portalContentClassName }: { message: string; portalContentClassName: string }) {
   const portalRoot = usePortalContext();
@@ -60,18 +63,32 @@ function PlaygroundContent() {
   );
 }
 
-const meta: Meta<PortalContextProviderProps<RefObject<HTMLDivElement | null>>> = {
+type StoryArgs = PortalContextProviderProps<RefObject<HTMLDivElement | null>> & { 'data-test-id'?: string };
+
+const meta: Meta<StoryArgs> = {
   title: 'Components/PortalContext',
   component: PortalContextProvider,
-  parameters: { figma: { disable: true } },
-  args: {},
+  parameters: { layout: 'fullscreen', figma: { disable: true } },
+  args: { 'data-test-id': TEST_IDS.root },
   argTypes: {},
 };
 
 export default meta;
-type Story = StoryObj<PortalContextProviderProps<RefObject<HTMLDivElement | null>>>;
+type Story = StoryObj<StoryArgs>;
 
 export const Playground: Story = {
-  tags: ['dev', 'test', 'autodocs'],
-  render: () => <PlaygroundContent />,
+  tags: ['dev', 'test'],
+  render: args => (
+    <div data-test-id={args['data-test-id'] ?? TEST_IDS.root}>
+      <DemoPage>
+        <DemoPanel width='wide'>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>PortalContextProvider: монтаж порталов в document.body или в кастомный контейнер.</DemoHint>
+          <DemoActions align='center'>
+            <PlaygroundContent />
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
+    </div>
+  ),
 };

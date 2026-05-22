@@ -1,16 +1,21 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 .page {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: base.$sn-primitive-dimension-24;
   max-width: 560px;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: base.$sn-primitive-dimension-8;
 }
 
 .sectionTitle {
@@ -20,20 +25,22 @@
 }
 
 .container {
-  min-height: 100px;
-  padding: 16px;
-  border-radius: 8px;
+  min-height: base.$sn-primitive-dimension-100;
+  padding: base.$sn-primitive-dimension-16;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
 }
 
 .containerBody {
   position: relative;
-  border: 2px dashed base.$sn-theme-color-neutral-decor;
+  border: base.$sn-primitive-dimension-2 dashed base.$sn-theme-color-neutral-decor;
   background: base.$sn-theme-color-neutral-background1Level;
 }
 
 .containerCustom {
   position: relative;
-  border: 2px dashed base.$sn-theme-color-neutral-decor;
+  border: base.$sn-primitive-dimension-2 dashed base.$sn-theme-color-neutral-decor;
   background: base.$sn-theme-color-neutral-background1Level;
 }
 
@@ -45,17 +52,19 @@
 
 .portalContent {
   position: absolute;
-  right: 4px;
-  bottom: 4px;
+  right: base.$sn-primitive-dimension-4;
+  bottom: base.$sn-primitive-dimension-4;
 
-  margin-top: 8px;
-  padding: 12px;
-  border-radius: 8px;
+  margin-top: base.$sn-primitive-dimension-8;
+  padding: base.$sn-primitive-dimension-12;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
 
   color: base.$sn-theme-color-available-inversion-textMain;
 
   background: base.$sn-theme-color-invertNeutral-background;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  box-shadow: 0 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-12 rgb(0 0 0 / 15%);
 }
 
 .hint {
