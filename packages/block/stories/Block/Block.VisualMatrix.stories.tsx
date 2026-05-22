@@ -1,5 +1,5 @@
 import { Block, BlockProps, SIZE, VARIANT } from '@ds/block';
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
@@ -17,34 +17,24 @@ type Story = StoryObj<BlockProps>;
 const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
 const keyVariants = Object.values(VARIANT);
 
-const Template: StoryFn<BlockProps> = () => (
-  <div className={styles.externalWrapper}>
-    <StoryTable
-      sectionTitle='Variant × Size'
-      firstColumnHeader='Variant'
-      columnHeaders={keySizes.map(s => s.toUpperCase())}
-      rows={keyVariants.map(variant => ({
-        variantLabel: variant,
-        cells: keySizes.map(size => (
-          <Block key={size} variant={variant} size={size}>
-            <span className={styles.sampleContent}># slot content</span>
-          </Block>
-        )),
-      }))}
-    />
-  </div>
-);
-
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
-  args: {
-    showBackground: true,
-  },
-  argTypes: {
-    showBackground: {
-      name: '[Stories]: Show colorful background',
-    },
-  },
-  render: Template,
+  render: () => (
+    <div className={styles.externalWrapper}>
+      <StoryTable
+        sectionTitle='Variant × Size'
+        firstColumnHeader='Variant'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={keyVariants.map(variant => ({
+          variantLabel: variant,
+          cells: keySizes.map(size => (
+            <Block key={size} variant={variant} size={size}>
+              <span className={styles.sampleContent}># slot content</span>
+            </Block>
+          )),
+        }))}
+      />
+    </div>
+  ),
 };

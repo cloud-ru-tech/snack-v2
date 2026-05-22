@@ -3,16 +3,20 @@ import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<BlockProps> = {
   title: 'Components/Block',
   component: Block,
+  parameters: { layout: 'fullscreen' },
   args: {
     size: SIZE.L,
     variant: VARIANT.Simple,
     backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
-    'data-test-id': 'block',
+    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     size: {
@@ -43,11 +47,19 @@ type StoryProps = BlockProps & {
 type Story = StoryObj<StoryProps>;
 
 const Template: StoryFn<StoryProps> = ({ showBackground, customText, ...args }: StoryProps) => (
-  <div className={styles.externalWrapper} data-show-background={showBackground || undefined}>
-    <Block {...args}>
-      <span className={styles.sampleContent}>{customText}</span>
-    </Block>
-  </div>
+  <DemoPage>
+    <DemoPanel>
+      <DemoTitle>Playground</DemoTitle>
+      <DemoHint>Контейнер-блок со слоем backgroundPredefined и акриловым эффектом.</DemoHint>
+      <DemoActions block>
+        <div className={styles.externalWrapper} data-show-background={showBackground || undefined}>
+          <Block {...args}>
+            <span className={styles.sampleContent}>{customText}</span>
+          </Block>
+        </div>
+      </DemoActions>
+    </DemoPanel>
+  </DemoPage>
 );
 
 export const Playground: Story = {
@@ -57,7 +69,6 @@ export const Playground: Story = {
     size: SIZE.L,
     variant: VARIANT.Simple,
     customText: '# slot content',
-    'data-test-id': 'block',
   },
   argTypes: {
     showBackground: {
@@ -69,6 +80,6 @@ export const Playground: Story = {
   },
   render: Template,
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('block')).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },
 };
