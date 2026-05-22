@@ -1,24 +1,25 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, COLOR_PICKER_TEST_ID, KEY_SIZES, TEST_IDS } from './helpers';
+import { buildStoryOptions, KEY_SIZES, TEST_IDS } from './helpers';
 
 test.describe('ColorPicker — rendering', () => {
   test.describe('render', () => {
     test('renders with default props', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
-      await expect(getByTestId(COLOR_PICKER_TEST_ID)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     });
   });
 
   test.describe('states', () => {
-    for (const autoApply of [true, false] as const) {
-      test(`autoApply=${autoApply}: footer ${autoApply ? 'hidden' : 'visible'}`, async ({ gotoStory, page }) => {
-        await gotoStory(buildStoryOptions({ autoApply }));
-        const expectedCount = autoApply ? 0 : 1;
-        await expect(page.getByTestId(TEST_IDS.apply)).toHaveCount(expectedCount);
-        await expect(page.getByTestId(TEST_IDS.cancel)).toHaveCount(expectedCount);
-      });
-    }
+    test('autoApply toggles footer visibility', async ({ gotoStory, page }) => {
+      await gotoStory(buildStoryOptions({ autoApply: true }));
+      await expect(page.getByTestId(TEST_IDS.apply)).toHaveCount(0);
+      await expect(page.getByTestId(TEST_IDS.cancel)).toHaveCount(0);
+
+      await gotoStory(buildStoryOptions({ autoApply: false }));
+      await expect(page.getByTestId(TEST_IDS.apply)).toHaveCount(1);
+      await expect(page.getByTestId(TEST_IDS.cancel)).toHaveCount(1);
+    });
 
     test('withAlpha=false hides alpha field', async ({ gotoStory, page }) => {
       await gotoStory(buildStoryOptions({ withAlpha: false, availableModes: ['hex'] }));
@@ -30,7 +31,7 @@ test.describe('ColorPicker — rendering', () => {
     for (const size of KEY_SIZES) {
       test(`size=${size}`, async ({ gotoStory, getByTestId }) => {
         await gotoStory(buildStoryOptions({ size }));
-        await expect(getByTestId(COLOR_PICKER_TEST_ID)).toHaveAttribute('data-size', size);
+        await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-size', size);
       });
     }
 

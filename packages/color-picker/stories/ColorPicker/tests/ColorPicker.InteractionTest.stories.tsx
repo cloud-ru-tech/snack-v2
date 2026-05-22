@@ -1,20 +1,22 @@
-import { COLOR_MODE, ColorPicker, TEST_IDS } from '@ds/color-picker';
+import { COLOR_MODE, ColorPicker } from '@ds/color-picker';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
-import { COLOR_PICKER_TEST_ID } from './testIds';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof ColorPicker> = {
-  title: 'Components/ColorPicker',
+  title: 'Components/ColorPicker/Tests/Interaction',
   component: ColorPicker,
-  parameters: { layout: 'centered', controls: { disable: true } },
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
     onChange: fn(),
     value: '#389f74',
     autoApply: false,
     withAlpha: false,
     availableModes: [COLOR_MODE.Hex, COLOR_MODE.Rgb, COLOR_MODE.Hsv],
-    'data-test-id': COLOR_PICKER_TEST_ID,
+    'data-test-id': TEST_IDS.root,
   },
 };
 
@@ -23,9 +25,20 @@ type Story = StoryObj<typeof ColorPicker>;
 
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>InteractionTest</DemoTitle>
+        <DemoHint>Проверка Apply/Cancel — onChange срабатывает только на Apply.</DemoHint>
+        <DemoActions align='center'>
+          <ColorPicker {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const root = canvas.getByTestId(COLOR_PICKER_TEST_ID);
+    const root = canvas.getByTestId(TEST_IDS.root);
 
     await step('renders root', async () => {
       await expect(root).toBeVisible();

@@ -1,9 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-// Импорт из исходников пакета, а не из entry `@ds/segment-control`: entry тянет
-// CSS-модули, которые ломают playwright-compile (правило e2e-testing-standard).
-import { segmentTestId } from '../../../segment-control/src/constants';
-import { buildStoryOptions, TEST_IDS } from './helpers';
+import { buildStoryOptions, segmentTestId, TEST_IDS } from './helpers';
 
 test.describe('ColorPicker — interaction', () => {
   test('switching to RGB segment renders R/G/B fields', async ({ gotoStory, getByTestId }) => {

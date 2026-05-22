@@ -1,7 +1,6 @@
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForFonts } from '#playwright-tooling/utils';
+import { test } from '#playwright-tooling/fixtures';
+import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, COLOR_PICKER_STORIES, TEST_IDS } from './helpers';
 
@@ -14,48 +13,54 @@ test.describe('ColorPicker — visual regression', () => {
     );
   });
 
-  test('visual-matrix', async ({ page, gotoStory }) => {
+  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, COLOR_PICKER_STORIES.visualMatrix));
-    await waitForFonts(page);
+    await waitForFonts();
 
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_DEFAULT_OPTS);
+    await assertVisualMatrixSnapshot(page);
   });
 
-  test.describe('interaction (Playground)', () => {
-    test('hover on hex field', async ({ page, gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ autoApply: true }));
-      await waitForFonts(page);
+  test('interaction states (hex field) — default × hover × focus', async ({
+    page,
+    gotoStory,
+    getByTestId,
+    waitForFonts,
+  }) => {
+    await gotoStory(buildStoryOptions({ autoApply: true }));
+    await waitForFonts();
 
-      await getByTestId(TEST_IDS.fieldHex).hover();
-
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-hover-field.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
+    // Снимаем весь color-picker (видны saturation/hue/value и соседние fields для
+    // контекста), state-изменения целимся в hex-field.
+    const field = getByTestId(TEST_IDS.fieldHex);
+    await assertInteractionStatesSnapshot(page, {
+      target: getByTestId(TEST_IDS.root),
+      hoverTarget: field,
+      focusAction: async () => {
+        // У компонента Field нет отдельного TEST_IDS на нативный <input>; используем
+        // единственный input внутри fieldHex.
+        await field
+          .locator('input')
+          .first()
+          .evaluate((el: HTMLInputElement) => el.focus({ focusVisible: true } as FocusOptions));
+      },
+      snapshotName: 'interaction-states-field.png',
+      layout: 'row',
     });
+  });
 
-    test('focus on hex field', async ({ page, gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ autoApply: true }));
-      await waitForFonts(page);
+  test('interaction states (hue slider) — default × focus', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions({ autoApply: true }));
+    await waitForFonts();
 
-      await getByTestId(TEST_IDS.fieldHex).locator('input').focus();
-
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-focus-field.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
-    });
-
-    test('focus on hue slider', async ({ page, gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ autoApply: true }));
-      await waitForFonts(page);
-
-      await getByTestId(TEST_IDS.sliderH).focus();
-
-      await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-        'interaction-focus-slider.png',
-        SCREENSHOT_DEFAULT_OPTS,
-      );
+    const slider = getByTestId(TEST_IDS.sliderH);
+    await assertInteractionStatesSnapshot(page, {
+      target: getByTestId(TEST_IDS.root),
+      hoverTarget: slider,
+      focusAction: async () => {
+        await slider.evaluate((el: HTMLElement) => el.focus({ focusVisible: true } as FocusOptions));
+      },
+      snapshotName: 'interaction-states-slider.png',
+      layout: 'row',
     });
   });
 });
