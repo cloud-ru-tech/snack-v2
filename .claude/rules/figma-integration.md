@@ -127,6 +127,13 @@ const meta: Meta<typeof Component> = {
 
 То же самое работает для `parameters.readme.disable = true` — скрывает Readme-панель. Параметры наследуются: ставь на `meta` (для всех story файла) или per-story.
 
+Override содержимого: `parameters.readme = { content: '<md>' }` подменяет README; `parameters.design` (`{ url } | { fileKey, fileName, nodeId } | string`) подменяет Figma-узел. `disable` приоритетнее любого override.
+
+Когда уместно скрывать:
+
+- **Figma** — приватные пакеты (`*-private`, utility без визуального дизайна) и пакеты без узла в `FIGMA_NODES`. Явный `disable` лучше empty-state.
+- **Readme** — мета-демо и песочницы, не привязанные к публичному компоненту пакета.
+
 ## Запреты
 
 - Не хардкодить `fileKey` / `nodeId` в MDX — только через `figmaNode(...)`.

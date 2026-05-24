@@ -48,7 +48,7 @@ DOM-структура компонента практически повтор�
 - [ ] На интерактивном корне с миксинами есть `position: relative`
 - [ ] `.stateLayer` / `.acrylic` / `.acrylicEffect` имеют `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`
 - [ ] Значения `data-state` — только из допустимого списка, camelCase
-- [ ] Варианты Figma (`size`, `disabled`, `load`, `checked`, `composition`) прокинуты как `data-*` атрибуты на корне
+- [ ] Варианты Figma (`size`, `disabled`, `load`, `checked`, `composition`) переданы как `data-*` атрибуты на корне
 - [ ] Нет `React.FC` / `React.ReactNode` / `any` / `@ts-ignore`; типы импортируются напрямую из `'react'`
 - [ ] В `packages/<pkg>/package.json` нет `react`/`react-dom`, все версии точные (без `^`/`~`)
 - [ ] В meta story указан `parameters.design = { type: 'figma', url: '...' }`

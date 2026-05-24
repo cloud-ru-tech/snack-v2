@@ -1,9 +1,9 @@
 ---
-description: Сгенерить Playground + VisualMatrix (+ оправданные доп. stories) для пакета `packages/<pkg>`
+description: Сгенерировать Playground + VisualMatrix (+ оправданные дополнительные stories) для пакета `packages/<pkg>`
 argument-hint: <pkg-name-or-path>
 ---
 
-Сгенерить набор stories для компонентного пакета `@ds/*`. Тонкая обёртка над skill'ом [component-story-set](../skills/component-story-set.md).
+Сгенерировать набор stories для компонентного пакета `@ds/*`. Тонкая обёртка над skill'ом [component-story-set](../skills/component-story-set.md).
 
 ## Входные аргументы
 
@@ -28,14 +28,21 @@ argument-hint: <pkg-name-or-path>
 1. Обязательный минимум в `packages/<pkg>/stories/<Name>/`:
    - `<Name>.Playground.stories.tsx` — полная `meta` + `argTypes` на **все** публичные пропсы, тег `['dev','test']`, `data-test-id` в `args`.
    - `<Name>.VisualMatrix.stories.tsx` — `StoryTable` из `#storybook/components` со всеми осями × состояниями, тег `['test','dev']`, обязательно `parameters: { controls: { disable: true } }`.
-2. Доп. файлы (`Polymorphic`, `InteractionTest`, `Composition`, `<Scenario>`) — только по правилам [stories-standard.md](../rules/stories-standard.md), раздел «Когда заводить дополнительный файл». Клик + клавиатура — один экспорт `InteractionTest` со step'ами (`'click: …'`, `'keyboard: …'`); файлы `ClickTest`/`KeyboardTest` не создавать.
-3. Запрещённые имена (`Sizes`, `Appearances`, `Views`, `LoadingState`, `DisabledState`, `WithIcon`, `IconOnly`, `WithCounter`) — не создавать никогда.
+2. Доп. story — только если проходит «Критерий обоснованности артефакта» из [complexity-tiers.md](../rules/complexity-tiers.md). Раскладка определяется механическим критерием:
+   - **`examples/<Name>.<Scenario>.stories.tsx`** — если фрагмент копируется потребителем в продакшн-код как самостоятельный (composition, polymorphism, controlled-режим, slot-пресет с реальным DOM). Title — `Components/<…>/<Name>/Examples/<Scenario>`.
+   - **`tests/<Name>.<Scenario>.stories.tsx`** — если фрагмент содержит `fn()`-моки, stub-state, edge-state, важные только для assertion'а; вне теста смысла не имеет. Title — `Components/<…>/<Name>/Tests/<Scenario>`. Тег `fixture` **не использовать**.
+   
+   Один интеракционный сценарий — один экспорт `InteractionTest` в `tests/<Name>.InteractionTest.stories.tsx` (клик + клавиатура + фокус через `step('click: …')` / `step('keyboard: …')`); файлы `ClickTest`/`KeyboardTest` не создавать. Подробности раскладки — [stories-standard.md](../rules/stories-standard.md) §§ «Подпапки `examples/` и `tests/`», «Examples — формат», «Tests — формат».
+3. Запрещённые имена (`Sizes`, `Appearances`, `Views`, `Variants`, `LoadingState`, `DisabledState`, `EmptyState`, `WithIcon`/`IconOnly`/`WithCounter` если это просто включение слота, `ClickTest`, `KeyboardTest`) — не создавать никогда. Также запрещено: дубль одной story между `examples/` и `tests/`; title с висящим `/Tests` или `/Examples` без имени сценария.
 4. `title`:
-   - Single-component пакет → `Components/<ComponentName>`.
+   - Single-component пакет → `Components/<ComponentName>` (Playground/VisualMatrix).
    - Multi-component пакет → `Components/<PackageDisplayName>/<ComponentName>`.
-5. Повторяющиеся `data-test-id` (2+ файла) — вынести в `stories/<Name>/testIds.ts`.
-6. В play-функциях — только `getByTestId`. Никаких `getByRole`/`getByText`/`getByLabelText`/`getByPlaceholderText`.
-7. Никаких `style={{ ... }}` в разметке stories. Wrapper-классы — из `styles.module.scss` рядом со story.
+   - Story из подпапки добавляет сегмент `/Examples/<Scenario>` либо `/Tests/<Scenario>`.
+5. При переезде story между корнем и подпапкой обязательно обновить story IDs в `packages/<pkg>/__test__/<Name>/helpers.ts` — иначе e2e получит 404.
+6. Повторяющиеся `data-test-id` (2+ файла) — вынести в `stories/testIds.ts` (multi-component) или `stories/<Name>/testIds.ts` (single-component), единым объектом `TEST_IDS`. Не плодить отдельные `<NAME>_TEST_ID` const'ы.
+7. В play-функциях — только `getByTestId`. Никаких `getByRole`/`getByText`/`getByLabelText`/`getByPlaceholderText`.
+8. Никаких `style={{ ... }}` в разметке stories. Wrapper-классы — из `styles.module.scss` рядом со story.
+9. Для trigger-based компонентов (modal, drawer, popover, dropdown, tooltip, toaster) дополнительно — [trigger-based-stories.md](../rules/trigger-based-stories.md): `open` не в args, триггер — `Button` из `@ds/button` с `data-test-id={TEST_IDS.triggerOpen}`, `layout: 'fullscreen'`, конфликты args — runtime + `<DemoWarning>`, не `if:`.
 
 ## Правила (обязательное чтение)
 

@@ -155,6 +155,6 @@ pnpm gen:props && pnpm gen:readme   # автоген артефактов
 | Версионирование и публикация | Lerna |
 | Сборка компонентов | TypeScript (`tspc` + project references), ts-patch |
 | Стили | SCSS → CSS (sass + postcss), CSS Modules |
-| Документальный портал | Astro + MDX |
+| Документационный портал | Astro + MDX |
 | Среда разработки компонентов | Storybook 10 |
 | E2E-тесты | Playwright |

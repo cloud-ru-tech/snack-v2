@@ -1,5 +1,5 @@
 ---
-description: Работа с комментами GitLab MR через scripts/mr-comments/* (fetch / reply / post)
+description: Работа с комментариями GitLab MR через scripts/mr-comments/* (fetch / reply / post)
 ---
 
 Следуй инструкции из `.claude/skills/mr-comments.md` в этом репо. Краткая шпаргалка:
@@ -10,7 +10,7 @@ description: Работа с комментами GitLab MR через scripts/m
 2. `scripts/mr-comments/comments.json` / `replies.json` — gitignored. Если файлов нет, скопируй из `*.example.json`.
 3. Запуск: `pnpm exec tsx scripts/mr-comments/<cmd>.mts ...` (без префикса `pnpm exec` `tsx` глобально не установлен).
 
-## A. Ответ на чужие комменты
+## A. Ответ на чужие комментарии
 
 ```bash
 pnpm exec tsx scripts/mr-comments/fetch.mts --mr=<MR_URL> --out=scripts/mr-comments/fetched/<slug>
@@ -19,7 +19,7 @@ pnpm exec tsx scripts/mr-comments/reply.mts --mr=<MR_URL> --replies=scripts/mr-c
 pnpm exec tsx scripts/mr-comments/reply.mts --mr=<MR_URL> --replies=scripts/mr-comments/replies.json --notes=scripts/mr-comments/fetched/<slug>/notes.json
 ```
 
-## B. Свой review: серия инлайн-комментов
+## B. Свой review: серия инлайн-комментариев
 
 ```bash
 # составить scripts/mr-comments/comments.json по diff'у: { project, mr_iid, pending: [{ id, file, line, body, severity? }] }

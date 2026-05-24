@@ -6,6 +6,26 @@
 
 `args` и `argTypes` — это публичный API компонента, спроецированный на Storybook-контролы. То, как они выглядят в панели Controls, диктует пользовательский опыт: какой контрол показывается, какие значения подсвечены, как обозначено «не задано». Любая опечатка/недогаданное значение здесь — это лишний клик/недоумение у разработчика, который пришёл смотреть, как компонент себя ведёт.
 
+## Источник argTypes — TS-типы + JSDoc, а не явные описания
+
+Storybook автоматически выводит `argTypes` из типов компонента через `react-docgen-typescript` (см. `apps/storybook/.storybook/main.ts → typescript.reactDocgen`). Из коробки получаются:
+
+- **Контрол** — из TS-типа пропа: `boolean` → boolean-toggle, union `'s' | 'm' | 'l'` (включая `Size = ValueOf<typeof SIZE>`) → radio/select из значений, `number` → number-input, `ReactNode` → object-input, и т.д.
+- **Описание** — из JSDoc-комментария на пропе (`/** Размер */`). Видно в колонке Description в Controls (включена `controls.expanded: true` в `preview.tsx`).
+- **Дефолт** — из default-значения в деструктуре пропса компонента (`size = SIZE.S`).
+
+Это значит: **по дефолту `argTypes` в meta не нужны вообще**. Достаточно правильно типизированных пропсов с JSDoc'ами в `src/types.ts` / `src/**/<Component>.tsx`.
+
+Прописывай `argTypes.<prop>` **только** в этих случаях:
+
+- **`mapping`** для slot/ReactNode-пропов с пресетами (`icon`, `before`, `avatar`) — docgen не знает, какие именно ReactNode подставлять.
+- **`table.disable: true`** — скрыть проп из Controls (когда он не имеет визуального эффекта в этой story, как `outline` без `buttonField`).
+- **`if: { arg, eq | neq }`** — условная видимость зависимых пропсов.
+- **Принудительное переопределение контрола** — например, заставить `radio` вместо `select` (3 значения, но docgen может выбрать `select`).
+- **`options` для нерасширяемых типов** — крайне редкий случай, когда docgen не разрезолвил union (обычно это сигнал поправить тип, а не задать options вручную).
+
+**Не пиши `description` в `argTypes` руками** — описания должны жить в JSDoc на пропе, docgen их подтянет. Дублирование = два места правды → расхождение через спринт. См. [component-api-surface.md](./component-api-surface.md) и [writing-style.md](./writing-style.md).
+
 ## Не указывать `undefined` / `null` среди `options`
 
 Если контрол enum-like (`select` / `radio`) и у пропа есть состояние «не задано» (`undefined`) — **не добавлять `undefined` в `options`**. Storybook сам поднимет пустую опцию («Choose Option» / «—»), когда `args.<prop>` не выставлено или сброшено.
@@ -57,7 +77,7 @@ language: { control: 'select', options: KNOWN_LANGUAGES }
 
 ## `options: Object.values(CONST)` — для enum-констант
 
-Если ось живёт в `constants.ts` пакета через `as const`-объект, `options` подключается через `Object.values`:
+Если docgen по какой-то причине не разрезолвил union (нетипичная цепочка дженериков, утечка `string`), задаём `options` через `Object.values` от той же const'ы, на которую ссылается тип:
 
 ```ts
 import { SIZE, APPEARANCE } from '@ds/<pkg>'
@@ -68,7 +88,7 @@ argTypes: {
 }
 ```
 
-Так Playground автоматически отслеживает добавление/удаление значений в API без правки story.
+Так Playground автоматически отслеживает добавление/удаление значений в API без правки story. **В норме это не нужно** — docgen вытащит values сам. Если такая ручная подкрутка стала регулярной для пакета, скорее всего тип где-то теряется через утилитки `Pick`/`Omit` — лучше поправить тип.
 
 ## `mapping` — только для нерасшаренных значений
 
@@ -93,30 +113,16 @@ icon: {
 
 `mapping` не используется ради переименования enum-значений (`'compact' → 'desktop'`). Это ломает дефолт (`args` хранит mapped value, контрол не подсветит) и плодит два словаря на одну ось. Если оси `constants.ts` называются «не так как хочется» — переименовать в `constants.ts`, `mapping` не для этого.
 
-## Описание в `description`
+## Описание пропа — только JSDoc, никаких `description` в argTypes
 
-`description` контрола — короткое предложение, объясняющее **что делает** проп и какие значения валидны. Не нужно дублировать JSDoc один-в-один, но смысл должен совпадать. Для slot-пресета — перечислить ключи:
+JSDoc-комментарий на пропе — единственное место для описания. Он подтягивается:
 
-```ts
-size: {
-  control: 'radio',
-  options: ['s', 'm', 'l'],
-  description: 'Размер контейнера и типографики',
-}
+- в **IDE hover/autocomplete** потребителя пакета,
+- в **`packages/<pkg>/docs/props.json`** (через `pnpm gen:props` → react-docgen-typescript),
+- в **Storybook Controls** «Description» (через docgen + `controls.expanded: true` в preview.tsx),
+- в **README.md** пакета (через `pnpm gen:readme`).
 
-icon: {
-  control: 'select',
-  options: ['none', 'settings', 'plus'],
-  mapping: { ... },
-  description: 'Иконка (none | settings | plus)',
-}
-```
-
-При расхождении JSDoc и `description` потребитель видит два разных объяснения — хуже, чем одно.
-
-## JSDoc на пропсе — обязателен
-
-Любое описание Storybook-контрола дублируется в JSDoc на самом пропсе компонента. JSDoc виден в IDE при hover/autocomplete потребителя, `description` — только в Storybook. Без JSDoc'а пользователь, не открывший Storybook, не узнает, что делает проп.
+Все четыре точки берут один и тот же текст. **Не дублируй его в `argTypes.<prop>.description`** — это сразу создаёт второй источник, который разойдётся с JSDoc через первую же правку.
 
 ```ts
 type CodeEditorProps = {
@@ -130,7 +136,19 @@ type CodeEditorProps = {
 }
 ```
 
-В Storybook `description` повторяет ту же мысль кратко. Один источник истины — JSDoc; `description` в story — производное.
+```ts
+// ❌ Плохо — два места правды
+argTypes: {
+  theme: { description: 'Имя зарегистрированной monaco-темы…' }
+}
+
+// ✅ Хорошо — argType только для того, чего docgen не знает (mapping/if/disable)
+argTypes: {
+  icon: { mapping: { none: undefined, settings: <SettingsSVG /> } }
+}
+```
+
+Если JSDoc плохо читается в Storybook (длинно, разметка ломается) — правь сам JSDoc, чтобы он был хорош и в IDE, и в Storybook. Storybook отображает первый параграф JSDoc, поэтому начинай с короткого summary, дополнительные детали — следующими параграфами.
 
 ## Условные контролы — `if: { arg, eq | neq }`
 
@@ -145,7 +163,6 @@ icon: {
 iconPosition: {
   control: 'radio',
   options: Object.values(ICON_POSITION),
-  description: 'Позиция иконки относительно лейбла',
   if: { arg: 'icon', neq: 'none' },
 },
 ```
@@ -196,16 +213,16 @@ args: { label: 'Главное', secondaryLabel: 'Доп. описание' }
 
 ## Чек-лист перед коммитом story
 
-- [ ] Все публичные пропсы — в `argTypes` с явным `control` (нет фолбэка в `text` для enum/boolean).
+- [ ] Каждый публичный проп имеет JSDoc-комментарий в `src/types.ts` / в типе компонента. Не пиши `description` в `argTypes`.
+- [ ] `argTypes` в meta пуст или содержит **только** заточенные случаи: `mapping`, `table.disable`, `if:`, принудительный override контрола, `options` для нерасрезолвенных union'ов.
 - [ ] Нет `undefined` / `null` в `options` — Storybook сам показывает «не задано».
-- [ ] `radio` для ≤ 4 значений без `undefined`, иначе `select`.
-- [ ] enum-оси подключены через `Object.values(CONST)` из публичной константы пакета.
+- [ ] Где задаёшь `options` руками: `radio` для ≤ 4 значений без `undefined`, иначе `select`.
+- [ ] Если задаёшь `options` руками — подключение через `Object.values(CONST)` из той же const'ы пакета, на которую ссылается тип.
 - [ ] `mapping` — только для slot/ReactNode-пресетов с осмысленными ключами; не для переименования.
 - [ ] Зависимые пропсы используют `if: { arg, eq | neq }`, а не оставлены «мёртвыми» контролами.
-- [ ] JSDoc на самом пропсе совпадает по смыслу с `description` в `argTypes`.
 - [ ] Внутренние пропсы (refs, callbacks, technical-only) спрятаны через `table.disable`, не через `control: false`.
-- [ ] Controlled-партнёры (`value`/`checked`) спрятаны, в `args` — только `defaultValue`/`defaultChecked`.
-- [ ] Парные пропсы заполнены **обоими** разными дефолтами.
+- [ ] Controlled-партнёры (`value`/`checked`) спрятаны через `table.disable`, в `args` — только `defaultValue`/`defaultChecked`.
+- [ ] Парные пропсы заполнены **обоими** разными дефолтами в `args`.
 
 ## Связанное
 

@@ -19,15 +19,18 @@ packages/<pkg>/
 │   └── <Name>/
 │       ├── <Name>.Playground.stories.tsx   # обязателен
 │       ├── <Name>.VisualMatrix.stories.tsx # обязателен
-│       └── <Name>.<ExtraCase>.stories.tsx  # по правилам stories-standard.md — только если нельзя выразить args/VisualMatrix
+│       ├── examples/                       # сценарии для потребителя (Polymorphic, Composition, WithFooter, …)
+│       │   └── <Name>.<Scenario>.stories.tsx
+│       └── tests/                          # стори только для тестов (InteractionTest, Controlled, …)
+│           └── <Name>.<Scenario>.stories.tsx
 ├── __test__/                   # Playwright E2E + visual (см. e2e-testing-standard.md)
-│   └── <Name>/                 # группировка по компоненту (зеркалит stories/<Name>/)
-│       ├── helpers.ts
-│       ├── rendering.spec.ts         # render + states + props propagation (через gotoStory+args)
-│       ├── interaction.spec.ts       # tier M+
-│       ├── keyboard.spec.ts          # tier M+
-│       ├── polymorphism.spec.ts      # только если есть `as`
-│       ├── visual.spec.ts
+│   └── <ParentComponent>/      # одна папка на parent-компонент; варианты сабкомпонентов параметризуются через args
+│       ├── helpers.ts                # STORIES = { playground, visualMatrix, ... } как StoryRef-объекты
+│       ├── rendering.spec.ts         # smoke render + props propagation (1–3 ключевых значения, не all-enum)
+│       ├── interaction.spec.ts       # ТОЛЬКО browser-specific (file upload, DnD, viewport, scroll lock) — НЕ дублирует play
+│       ├── keyboard.spec.ts          # ТОЛЬКО focus-trap / arrow-nav / multi-step keyboard — НЕ дублирует play
+│       ├── polymorphism.spec.ts      # только при `as` — runtime attribute checks
+│       ├── visual.spec.ts            # 1 VM snapshot + по 1 на состояние (hover/focus/pressed/open портала)
 │       └── __snapshots__/            # baseline PNG'и (chrome-only) рядом со спеками
 ├── demos/
 │   └── <Name>Demo.tsx          # для пакетов, рендерящихся в docs-сайте

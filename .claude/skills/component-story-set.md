@@ -1,6 +1,6 @@
 # Skill: component-story-set
 
-**Триггеры:** «написать stories», «покрыть состояния сторями», «создать VisualMatrix», «обновить Playground», «сгенерить baselines».
+**Триггеры:** «написать stories», «покрыть состояния сторями», «создать VisualMatrix», «обновить Playground», «сгенерировать baselines».
 
 Скилл собирает минимально достаточный набор stories для пакета. Отправная точка — **публичный API** (`constants.ts` + `types.ts`) и **оси Figma-мастера**. Исходная аксиома: набор stories не зависит от tier'а напрямую — tier лишь подсказывает, какие доп. сценарии ожидаются. См. [stories-standard.md](../rules/stories-standard.md) и [complexity-tiers.md](../rules/complexity-tiers.md).
 
@@ -26,18 +26,27 @@
 
    **`<Name>.VisualMatrix.stories.tsx`** — `StoryTable` из `#storybook/components` со **всеми** осями × состояниями. Каждая ось `constants.ts` — строка либо колонка минимум в одной секции. Если секций несколько — wrapper `<div>` с классом из `styles.module.scss` (без inline-стилей). Тег `['test','dev']`.
 
-4. **Оценить, нужны ли доп. файлы** — по правилам [stories-standard.md](../rules/stories-standard.md), раздел «Когда заводить дополнительный файл». Доп. файл оправдан, если сценарий:
-   - нельзя выразить `args` Playground-а (без custom `render`), **и**
-   - нельзя уложить в строку/колонку существующего `StoryTable`.
+4. **Оценить, нужны ли доп. story** — каждая обязана пройти «Критерий обоснованности артефакта» из [complexity-tiers.md](../rules/complexity-tiers.md) (3 условия). Алгоритм решения «куда положить»:
 
-   Типовые оправданные доп. файлы:
+   1. Эффект достижим через `args` Playground (включая URL-args в e2e) → story не нужна.
+   2. Эффект достижим строкой/колонкой StoryTable → расширяем VisualMatrix, story не нужна.
+   3. Кейс требует своего DOM / композиции / state → одна story в подпапке. **Куда именно**:
 
-   | Файл | Когда заводить |
-   |------|----------------|
-   | `<Name>.Polymorphic.stories.tsx` | Есть `as` prop — тесты `as='a'`, `as={Link}` |
-   | `<Name>.InteractionTest.stories.tsx` | Один экспорт `InteractionTest`: клик + клавиатура + фокус через `step('click: …')` / `step('keyboard: …')`. `controls: { disable: true }` в meta. Не разносить на `ClickTest` + `KeyboardTest` |
-   | `<Name>.Composition.stories.tsx` | Несколько компонентов рядом демонстрируют совместное поведение |
-   | `<Name>.<Scenario>.stories.tsx` (L/XL) | Stateful-сценарий (`SortableByName`, `PaginatedPage2`) |
+      - **`stories/<Name>/examples/<Name>.<Scenario>.stories.tsx`** — если фрагмент копируется потребителем в продакшн-код как самостоятельный (composition, slot-пресет, polymorphism с `as={Link}`, controlled/uncontrolled-режим, состояние с реальным react state). Title — `Components/<…>/<Name>/Examples/<Scenario>`.
+      - **`stories/<Name>/tests/<Name>.<Scenario>.stories.tsx`** — если фрагмент содержит `fn()`-моки, контролируемый stub-state, edge-state или последовательность действий, важную только для assertion'а; вне теста смысла не имеет. Title — `Components/<…>/<Name>/Tests/<Scenario>`.
+
+   Подробности раскладки и формата — [stories-standard.md](../rules/stories-standard.md) §§ «Подпапки `examples/` и `tests/`», «Examples — формат», «Tests — формат».
+
+   Типовые сценарии:
+
+   | Куда | Файл | Когда заводить |
+   |------|------|----------------|
+   | `examples/` | `<Name>.Polymorphic.stories.tsx` | `as` prop с реальным элементом (`as='a'`, `as={Link}`) — потребитель копирует |
+   | `examples/` | `<Name>.Composition.stories.tsx` | Несколько компонентов рядом, совместное поведение |
+   | `examples/` | `<Name>.Controlled.stories.tsx` | Controlled-режим с `useState` потребителя |
+   | `examples/` | `<Name>.<Scenario>.stories.tsx` | L/XL stateful-сценарий (`SortableByName`, `PaginatedPage2`) |
+   | `tests/` | `<Name>.InteractionTest.stories.tsx` | Один экспорт `InteractionTest`: клик + клавиатура + фокус через `step('click: …')` / `step('keyboard: …')`. `controls: { disable: true }` в meta. Не разносить на `ClickTest` + `KeyboardTest` |
+   | `tests/` | `<Name>.<EdgeState>.stories.tsx` | Контролируемый stub, который нужен только для play/screenshot |
 
 5. **Запрещённые файлы** — не создавать никогда:
 
@@ -45,20 +54,25 @@
    ❌ <Name>.Sizes.stories.tsx
    ❌ <Name>.Appearances.stories.tsx
    ❌ <Name>.Views.stories.tsx
+   ❌ <Name>.Variants.stories.tsx
    ❌ <Name>.LoadingState.stories.tsx
    ❌ <Name>.DisabledState.stories.tsx
-   ❌ <Name>.WithIcon.stories.tsx / IconOnly / WithCounter
+   ❌ <Name>.WithIcon.stories.tsx / IconOnly / WithCounter (если это просто включение слота)
+   ❌ <Name>.ClickTest.stories.tsx / <Name>.KeyboardTest.stories.tsx — слиты в InteractionTest
    ```
 
    Их роль — строки/колонки в VisualMatrix. Если появляется желание завести — расширить соответствующий `StoryTable`.
 
+   Также запрещено: тег `tag: 'fixture'` (test-стори отделяются раскладкой `tests/`), title с висящим `/Tests` или `/Examples` без имени сценария, дубли одной story между `examples/` и `tests/`.
+
 6. **Правила оформления** (см. [stories-standard.md](../rules/stories-standard.md)):
    - CSF3, `StoryObj<typeof Component>`.
    - Импорты: `Meta`, `StoryObj` из `@storybook/react`; `expect`, `userEvent`, `within`, `fn` из `storybook/test`.
-   - `title: 'Components/<Name>'` один и тот же во всех файлах.
+   - `title` у Playground/VisualMatrix — **один и тот же** (без суффикса). У story из подпапки — с сегментом `/Examples/<Scenario>` или `/Tests/<Scenario>`.
    - Полный `meta` + `argTypes` **только** в Playground.
    - VisualMatrix **только** через `StoryTable` из `#storybook/components`.
    - Никаких `style={{ ... }}` — только SCSS-modules рядом со story.
+   - При переезде story между корнем и подпапкой обновить story IDs в `packages/<pkg>/__test__/<Name>/helpers.ts` — иначе e2e получит 404.
 
 7. **Финальный шаг — baselines visual regression**
 

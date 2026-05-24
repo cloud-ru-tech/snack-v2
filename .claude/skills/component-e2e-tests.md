@@ -2,13 +2,25 @@
 
 **Триггеры:** «написать e2e», «playwright тесты», «проверить взаимодействие».
 
-Скилл генерирует набор `packages/<pkg>/__test__/<ComponentName>/*.spec.ts` по шаблону из [e2e-testing-standard.md](../rules/e2e-testing-standard.md). Тесты группируются **по компоненту** — подпапка с именем компонента (зеркалит `stories/<ComponentName>/`). Baseline'ы лежат рядом со спеком в `<ComponentName>/__snapshots__/`. Эталон — `packages/button/__test__/Button/`.
+Скилл генерирует набор `packages/<pkg>/__test__/<ParentComponent>/*.spec.ts` по шаблону из [e2e-testing-standard.md](../rules/e2e-testing-standard.md). Тесты группируются **по parent-компоненту** — одна папка на parent; сабкомпоненты варианта parent'а параметризуются через args в той же папке (см. e2e §«Папка тестов пакета»). Baseline'ы лежат рядом со спеком в `<ParentComponent>/__snapshots__/`. Эталон — `packages/button/__test__/Button/`.
 
 ## Границы скилла
 
-- E2E проверяет то, что **не покрыто** VisualMatrix screenshot-ом: рендер, прокидку `data-*`, интеракции, клавиатуру, ARIA.
-- Отдельные spec'и `<pkg>.url-args.spec.ts`, `<pkg>.states.spec.ts`, `<pkg>.dimensions.spec.ts` **не создаются** — их роль отдана describe-блокам внутри `rendering.spec.ts` и visual regression.
-- Visual snapshots делает [component-story-set](./component-story-set.md) (финальный шаг), не этот скилл.
+Тесты живут в трёх слоях. Скилл генерирует **только** Playwright-уровень. Behavioral assertion'ы (click/keyboard/focus/callback) — в Storybook play через [component-story-set](./component-story-set.md).
+
+| Слой | Что покрывает | Где |
+|------|---------------|-----|
+| Storybook play | click, keyboard, focus, callback assertions, ARIA-state-after-action | `stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play` — валидируется через `pnpm test:stories` |
+| Playwright `rendering.spec.ts` | smoke render + props propagation в `data-*` для ключевых значений осей | этот скилл |
+| Playwright `interaction.spec.ts` / `keyboard.spec.ts` / `polymorphism.spec.ts` | **только** browser-specific сценарии из закрытых списков (см. e2e §§ «interaction.spec.ts», «keyboard.spec.ts») | этот скилл, **если** есть подходящий пункт списка |
+
+Что **не делается** через E2E:
+
+- Отдельные spec'и `<pkg>.url-args.spec.ts`, `<pkg>.states.spec.ts`, `<pkg>.dimensions.spec.ts` — их роль отдана `rendering.spec.ts` (props propagation параметризованным тестом) и visual regression.
+- Дубль play-функций в Playwright. Если поведение уже в `InteractionTest::play` — в `interaction.spec.ts` это **не** дублируется.
+- Axis-per-test loop в rendering (`for (const v of Object.values(ENUM))`) — заменяется параметризацией по ключевой выборке `KEY_COMBOS`.
+
+Visual snapshots делает [component-story-set](./component-story-set.md) (финальный шаг), не этот скилл.
 
 ## Вход
 
@@ -17,48 +29,50 @@
 
 ## Шаги
 
-1. **Определить набор spec-файлов по tier'у** (max 5 + visual):
+1. **Определить набор spec-файлов**:
 
-   | Tier | rendering | interaction | keyboard | polymorphism |
-   |------|-----------|-------------|----------|--------------|
-   | XS   | ✅        | —           | —        | —            |
-   | S    | ✅ (+ states) | —      | —        | —            |
-   | M    | ✅ (+ states + props propagation) | ✅ | ✅ | если `as` |
-   | L    | ✅ (+ ARIA-state) | ✅ (+ focus-trap) | ✅ (+ Arrow/Home/End) | если `as` |
-   | XL   | ✅ или scenario-spec'и | ✅ per-scenario | ✅ | если `as` |
+   - `rendering.spec.ts` — **всегда**. Ориентир по числу тестов — таблица из e2e §«rendering.spec.ts — ориентир по tier'у».
+   - `interaction.spec.ts` — **только если** есть сценарий из закрытого списка browser-specific (e2e §«interaction.spec.ts»: file upload, real DnD, viewport/orientation resize, body scroll lock, click outside portal, focus-trap внутри портала, theme switching, multi-frame, `rel=noopener` инжекция, native disabled vs `aria-disabled`).
+   - `keyboard.spec.ts` — **только если** применим пункт из закрытого списка kbd-сценариев (e2e §«keyboard.spec.ts»: roving tabindex / Arrow / Home / End nav, focus-trap внутри портала, Escape closes layered portals, multi-step focus management).
+   - `polymorphism.spec.ts` — **только если** в API есть `as` prop.
 
-2. **Создать `packages/<pkg>/__test__/<ComponentName>/helpers.ts`** — вытянуть story ids, ключевые комбинации пропсов в переиспользуемые константы. `<COMPONENT>_KEY_COMBOS` — **ключевая выборка** по 1 представителю на каждое значение каждой оси, не декартово произведение. Каждый компонент пакета имеет свои `helpers.ts` в своей папке.
+   Если ни один пункт списка не применим — соответствующий spec-файл не заводится, независимо от tier'а.
 
-3. **Создать `rendering.spec.ts`** (без префикса имени пакета — префикс в папке) с 3 describe-блоками:
+2. **Создать `packages/<pkg>/__test__/<ParentComponent>/helpers.ts`** — одна папка на parent-компонент. Сабкомпоненты, являющиеся вариантом parent'а, тестируются параметризацией args в той же папке. Отдельная папка автономного компонента — только если он импортируется самостоятельно и имеет собственный публичный API (см. e2e §«Папка тестов пакета», критерий из 2 условий).
+
+   В `helpers.ts`:
+   - `<COMPONENT>_STORIES = { playground, visualMatrix, [scenario] }` — StoryRef-объекты `{ name, story, group? }`, не хардкод-строки id.
+   - `<COMPONENT>_KEY_COMBOS` — **ключевая выборка** по 1 представителю на каждое значение каждой оси, не декартово произведение.
+   - `buildStoryOptions(props?, ref?)` — единая точка построения URL для `gotoStory`.
+
+3. **Создать `rendering.spec.ts`** (без префикса имени пакета — префикс в папке) с describe-блоками `render`, `states` (если применимо), `props propagation`:
 
    ```ts
-   // packages/<pkg>/__test__/<ComponentName>/rendering.spec.ts
+   // packages/<pkg>/__test__/<ParentComponent>/rendering.spec.ts
    import { expect, test } from '#playwright-tooling/fixtures'
-   import { PKG_STORIES, PKG_KEY_COMBOS } from './helpers'
+   import { PKG_STORIES, PKG_KEY_COMBOS, PKG_TEST_ID, buildStoryOptions } from './helpers'
 
    test.describe('<Name> — rendering', () => {
      test.describe('render', () => {
-       // смоук: ключевые stories рендерят видимый элемент
+       // смоук: ключевые stories рендерят видимый getByTestId(ROOT)
      })
 
      test.describe('states', () => {
-       // disabled, loading, empty через gotoStory(playground, { disabled: true })
+       // disabled, loading, empty через gotoStory(buildStoryOptions({ disabled: true }))
      })
 
      test.describe('props propagation', () => {
-       // parametric loop по PKG_KEY_COMBOS
-       // gotoStory(playground, args) → toHaveAttribute('data-<axis>', value)
+       // параметризация по PKG_KEY_COMBOS (не axis-per-test loop)
+       // gotoStory(buildStoryOptions(args)) → toHaveAttribute('data-<axis>', value)
      })
    })
    ```
 
-4. **Создать `interaction.spec.ts`** (tier M+) — click / hover / focus-trap. Для L — ещё focus-trap внутри modal/popover.
+4. **Создать `interaction.spec.ts`** — один тест на каждый применимый пункт из закрытого списка browser-specific сценариев. Не дублируй click/keyboard, которые уже в Storybook play.
 
-5. **Создать `keyboard.spec.ts`** (tier M+) — Tab / Enter / Space. Для L — ещё Arrow / Home / End для компонентов с keyboard nav.
+5. **Создать `keyboard.spec.ts`** — один тест на каждый применимый пункт из закрытого списка kbd-сценариев. Tab/Enter/Space на одном focusable — это play, а не keyboard.spec.
 
-6. **Создать `polymorphism.spec.ts`** **только** если в API есть `as` prop. Проверяет:
-   - `as='a'` + `href` → `<a>` c корректным `rel="noopener"` для `target="_blank"`.
-   - `as='a'` + `disabled` → `aria-disabled="true"` (нативный `disabled` на `<a>` не работает).
+6. **Создать `polymorphism.spec.ts`** **только** если в API есть `as` prop. Проверяет runtime-атрибуты, которые ставит браузер: `href`, `target`, `rel=noopener noreferrer` (инжектится при `target=_blank`), `aria-disabled` на anchor'е (нативный `disabled` на `<a>` не работает).
 
 7. **Запуск** (из корня монорепо — селективные варианты в [fast-build-commands.md](../rules/fast-build-commands.md)):
    ```bash
@@ -71,16 +85,16 @@
 
 ## Паттерны
 
-### Параметрика через `gotoStory(playground, args)`
+### Параметрика через `gotoStory(buildStoryOptions(args))`
 
 ```ts
 for (const { appearance, view, size } of PKG_KEY_COMBOS) {
-  test(`${appearance} + ${view} + ${size}`, async ({ page, gotoStory }) => {
-    await gotoStory(PKG_STORIES.playground, { appearance, view, size })
-    const btn = page.getByRole('button')
-    await expect(btn).toHaveAttribute('data-appearance', appearance)
-    await expect(btn).toHaveAttribute('data-view', view)
-    await expect(btn).toHaveAttribute('data-size', size)
+  test(`${appearance} + ${view} + ${size}`, async ({ page, gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ appearance, view, size }))
+    const root = getByTestId(PKG_TEST_ID)
+    await expect(root).toHaveAttribute('data-appearance', appearance)
+    await expect(root).toHaveAttribute('data-view', view)
+    await expect(root).toHaveAttribute('data-size', size)
   })
 }
 ```
@@ -88,21 +102,27 @@ for (const { appearance, view, size } of PKG_KEY_COMBOS) {
 ### Состояния
 
 ```ts
-test('loading', async ({ page, gotoStory }) => {
-  await gotoStory(PKG_STORIES.playground, { loading: true })
-  await expect(page.getByRole('button')).toHaveAttribute('data-loading', 'true')
+test('loading', async ({ gotoStory, getByTestId }) => {
+  await gotoStory(buildStoryOptions({ loading: true }))
+  await expect(getByTestId(PKG_TEST_ID)).toHaveAttribute('data-loading', 'true')
 })
 ```
+
+Локаторы — только `getByTestId`. `getByRole` / `getByText` / `getByLabelText` запрещены (привязаны к локализации/DOM, перестают работать при первых же изменениях). Исключение — когда test-id физически не может существовать; в play объясни комментарием.
 
 ## Запреты
 
 - Не заводи `url-args.spec.ts`, `states.spec.ts`, `dimensions.spec.ts` — запрещено правилом.
 - Не префиксуй spec/PNG именем пакета/компонента (`button.rendering.spec.ts`, `button-visual-matrix.png`) — префикс теперь в имени папки.
-- Не держи тесты плоско в корне `__test__/` — группируй по `<ComponentName>/`.
-- Не пиши `boundingBox` ± 1px против фиксированных Figma-высот отдельным тестом. Высота ловится diff-ом VisualMatrix baseline.
-- Не дублируй stories ради URL-args — параметризуй через `gotoStory(id, args)`.
+- Не держи тесты плоско в корне `__test__/` — группируй по parent-компоненту.
+- Не пиши `boundingBox` ± 1px против фиксированных Figma-высот отдельным тестом. Высота проверяется визуальной разницей VisualMatrix baseline.
+- Не дублируй stories ради URL-args — параметризуй через `gotoStory(buildStoryOptions(args))`.
+- Не дублируй behavioral assertion'ы (click/keyboard/focus/callback) из Storybook play в `interaction.spec.ts`/`keyboard.spec.ts` — это разные слои, дубль избыточен.
+- Не используй axis-per-test loop `for (const v of Object.values(ENUM)) test(...)` — параметризуй ключевую выборку.
+- Не используй `getByRole` / `getByText` / `getByLabelText` — только `getByTestId`.
 - Не используй фиксированные `page.waitForTimeout(N)` — `expect.poll` или auto-wait.
--Не создавай клик по disabled без `force: true`.
+- Не создавай клик по disabled без `force: true`.
+- Не используй id-строковую сигнатуру `gotoStory('components-...--story', args)` — только `gotoStory(buildStoryOptions(args?, storyRef?))`.
 
 ## Что **не** делает
 

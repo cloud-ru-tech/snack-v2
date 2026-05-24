@@ -2,7 +2,7 @@
 
 **Триггеры:** «проверь готовность компонента», «запусти цикл валидации», «сверь реализацию», после фазы имплементации любого пакета `packages/*`, финал миграции из `/migrate-to-v2`.
 
-Сквозной итеративный цикл сверки готовности компонентного пакета. Не переписывает артефакты — **делегирует** в профильные скилы и правила, сам отвечает только за **порядок проходов, чек-листы соответствия, реестр расхождений и остановки**.
+Сквозной итеративный цикл сверки готовности компонентного пакета. Не переписывает артефакты — **делегирует** в профильные skill'ы и правила, сам отвечает только за **порядок проходов, чек-листы соответствия, реестр расхождений и остановки**.
 
 ## Границы скилла
 
@@ -95,7 +95,7 @@
 **Runtime-проверки docs** (частые ошибки, которые tier-audit не ловит):
 
 - [ ] `<PropsTable data={pkgDoc.<ComponentName>} />` — prop называется `data`, не `componentDoc`.
-- [ ] `<StorybookEmbed storyId='components-<pkg>--<story>' />` — prop `storyId`, не `id`; story id совпадает с актуальным `title` stories ([stories-standard.md](../rules/stories-standard.md) раздел «Title — nesting по пакету»).
+- [ ] `<StorybookEmbed storyId='components-<pkg>--<story>' />` — prop `storyId`, не `id`; story id совпадает с актуальным `title` stories ([stories-standard.md](../rules/stories-standard.md) раздел «Title — nesting»).
 - [ ] `<FigmaEmbed node={FIGMA_<PKG>} />` работает (константа существует, `loading='lazy'` на iframe — по умолчанию).
 - [ ] Каждый `<Example>` с React-пропсами, содержащими JSX (иконки, children-как-элементы), вынесен в `demos/examples/<Name>.tsx` и подключён через `import <Name>Src from '../demos/examples/<Name>.tsx?raw'` — иначе Astro MDX скомпилит JSX-проп в `astro:jsx` и React-компонент упадёт (см. [docs-structure.md](../rules/docs-structure.md)).
 - [ ] Для render-prop компонентов demo не использует `<Canvas component={...} />` — обёртывает живой сценарий (`return <BasicFlow />`).
@@ -186,7 +186,7 @@ pnpm test:e2e:chrome packages/<pkg>             2>&1 | tail -20
 - Рабочая docs-страница.
 - Commit через `/make-commit` (см. `.claude/commands/make-commit.md`) — сообщение из conventional-commits формата по staged diff.
 
-## Связанные правила и скилы
+## Связанные правила и skill'ы
 
 - [complexity-tiers.md](../rules/complexity-tiers.md)
 - [reference-package-anatomy.md](../rules/reference-package-anatomy.md)

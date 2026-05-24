@@ -4,12 +4,25 @@
 
 ## Принцип
 
-Набор stories выводится из **публичного API компонента** (`constants.ts` + `types.ts`) и **осей Figma-мастера**, а не из шаблона «файл на ось / файл на состояние». Любая ось (size, appearance, view, loading, disabled, …) существует в двух местах:
+Набор stories выводится из **публичного API компонента** (`constants.ts` + `types.ts`) и **осей Figma-мастера**, а не из шаблона «файл на ось / файл на состояние». Каждая ось (size, appearance, view, loading, disabled, …) существует в двух местах:
 
-1. в `argTypes` Playground-а — как интерактивный контрол;
+1. в `argTypes` Playground'а — как интерактивный контрол;
 2. в `StoryTable` VisualMatrix — как строка/колонка для визуальной регрессии.
 
 Отдельный файл story заводится **только тогда**, когда сценарий нельзя выразить ни одним из этих двух способов.
+
+## Принцип минимальной достаточности
+
+Количество сторей в пакете — **минимально достаточное**, чтобы покрыть все кейсы для просмотра и тестов. Если story можно упразднить, передав параметры в другую существующую story (через `args` Playground или строку/колонку StoryTable VisualMatrix) — она не нужна.
+
+Алгоритм решения «нужна ли новая story»:
+
+1. Можно ли получить этот вид, выставив `args` у Playground (включая URL-args для Playwright через `gotoStory(buildStoryOptions({ … }))`)? → story не нужна, кейс покрывается через args.
+2. Можно ли добавить строку/колонку/секцию в VisualMatrix? → story не нужна, расширяем матрицу.
+3. Кейс требует свой DOM/композицию/state, который не выражается ни в (1), ни в (2)? → одна story в `examples/` (если для пользователя) или `tests/` (если для play/screenshot only).
+4. Дубли между `examples/` и `tests/` запрещены: если play-функция нужна на пользовательском сценарии — play пишется прямо на story из `examples/`, дублирование в `tests/` не делается.
+
+Каждая новая story обязана проходить «Критерий обоснованности артефакта» из [complexity-tiers.md](./complexity-tiers.md) — все 3 условия. Если хотя бы одно нарушено, story не заводится; в PR-ревью таким story возвращают «closed».
 
 ## Обязательный минимум (XS–XL)
 
@@ -19,26 +32,47 @@ packages/<pkg>/stories/<ComponentName>/
 └── <ComponentName>.VisualMatrix.stories.tsx  # StoryTable со всеми осями × состояниями
 ```
 
-Этого достаточно для компонентов XS/S. Дополнительные файлы появляются только под конкретный кейс (см. ниже).
+Этого достаточно для компонентов XS/S. Дополнительные файлы появляются только под конкретный кейс — и кладутся в `examples/` либо `tests/` (см. ниже).
 
-## Когда заводить дополнительный файл
+## Подпапки `examples/` и `tests/`
 
-Разрешено, если сценарий удовлетворяет **всем** условиям:
+```
+stories/<ComponentName>/
+├── <ComponentName>.Playground.stories.tsx
+├── <ComponentName>.VisualMatrix.stories.tsx
+├── examples/
+│   ├── <ComponentName>.WithCounter.stories.tsx     # title: …/<Component>/Examples/WithCounter
+│   ├── <ComponentName>.Polymorphic.stories.tsx     # title: …/<Component>/Examples/Polymorphic
+│   └── <ComponentName>.Composition.stories.tsx     # title: …/<Component>/Examples/Composition
+└── tests/
+    ├── <ComponentName>.InteractionTest.stories.tsx # title: …/<Component>/Tests/Interaction
+    └── <ComponentName>.Controlled.stories.tsx     # title: …/<Component>/Tests/Controlled
+```
 
-- Его нельзя выразить изменением `args` Playground-а (без custom `render`).
-- Его нельзя уложить в строку/колонку существующего `StoryTable` в VisualMatrix (он про композицию нескольких компонентов рядом, про полиморфизм, про специфический play).
-- Он приносит новое покрытие: новое взаимодействие, новый DOM, новую роль/ARIA.
+### `examples/` — сценарии для потребителя
 
-Оправданные доп. файлы:
+Story в `examples/` показывает реальный сценарий API, который **нельзя** выразить ни `args` Playground'а, ни строкой/колонкой StoryTable.
 
-| Файл | Когда |
-|------|-------|
-| `<Name>.Polymorphic.stories.tsx` | У компонента есть `as` prop (`as='a'`, `as={Link}`) |
-| `<Name>.InteractionTest.stories.tsx` | Интеракционный сценарий: клик, клавиатура, фокус — всё в одном экспорте `InteractionTest`, шаги через `step()` |
-| `<Name>.Composition.stories.tsx` | Несколько компонентов рядом, демонстрирующих совместное поведение |
-| `<Name>.<Scenario>.stories.tsx` | L/XL: `SortableByName`, `FilteredByCategory`, `PaginatedPage2` — stateful-сценарии |
+**Механический критерий принадлежности к `examples/`**: содержимое story может быть скопировано потребителем в продакшн-код пакета-приложения как самостоятельный фрагмент, который продолжит работать. Если ответ «да» — `examples/`.
 
-**Один интеракционный экспорт на компонент.** Не разноси клик и клавиатуру на `ClickTest` + `KeyboardTest` — это два пункта в сайдбаре Storybook про одно и то же поведение. Объединяй в `InteractionTest` с `step('click: …')`, `step('keyboard: Tab → …')` и т.д.; имена step'ов сохраняют гранулярность в репорте Test Runner'а. Файл — один (`<Name>.InteractionTest.stories.tsx`), даже если внутри только клик или только клавиатура.
+Типичные кейсы:
+
+- многокомпонентная композиция (несколько компонентов рядом, демонстрирующих совместное поведение);
+- slot-пресет, требующий своего DOM (`WithFooter`, `WithMedia`, `NestedDrawer`);
+- режим компонента (`Controlled`/`Uncontrolled`, `Range`, `Polymorphic` с `as={Link}`);
+- состояние, требующее своего react state, которое потребителю придётся писать самому (открытие/закрытие модалок, поповеров с триггером).
+
+Story может покрываться play-функциями и screenshot'ами — но критерий принадлежности остаётся «копируемость».
+
+### `tests/` — стори только для тестов
+
+**Механический критерий принадлежности к `tests/`**: фрагмент не имеет смысла вне теста — он содержит `fn()`-моки callback'ов, контролируемые stub-state ради проверки фокус-менеджмента, edge-state, который в продакшне реализуется реальным backend'ом / провайдером, либо последовательность действий, важную только для assertion'а. Скопировать в продакшн-код нельзя, потому что половина — это тестовая обвязка.
+
+Подпапка `Tests/` в сайдбаре сама отделяет такие story визуально — `fixture`-тег упразднён.
+
+Один интеракционный сценарий компонента — один экспорт `InteractionTest`. Не разноси клик и клавиатуру на `ClickTest` + `KeyboardTest`. Объединяй через `step('click: …')`, `step('keyboard: Tab → …')`. Файл — один (`<Name>.InteractionTest.stories.tsx`), даже если внутри только клик или только клавиатура.
+
+Если на один пользовательский сценарий из `examples/` нужно повесить play — пиши play прямо там, не дублируй story в `tests/`.
 
 ## Запрещённые файлы
 
@@ -52,11 +86,16 @@ packages/<pkg>/stories/<ComponentName>/
 ❌ <Name>.LoadingState.stories.tsx
 ❌ <Name>.DisabledState.stories.tsx
 ❌ <Name>.EmptyState.stories.tsx
-❌ <Name>.WithIcon.stories.tsx / IconOnly / WithCounter
+❌ <Name>.WithIcon.stories.tsx / IconOnly / WithCounter (если это просто включение слота)
 ❌ <Name>.ClickTest.stories.tsx / KeyboardTest.stories.tsx — слиты в `InteractionTest`
 ```
 
 Если появляется соблазн такой завести — расширь соответствующую секцию VisualMatrix (добавь строку/колонку/новый `StoryTable`).
+
+Также **запрещено**:
+
+- `tag: 'fixture'` — больше не используется. Test-стори отделяются подпапкой `tests/` и сегментом `/Tests/` в title.
+- title с висящим `/Tests` или `/Examples` (без имени сценария) для обычного экспорта. Группа `Tests` / `Examples` в сайдбаре появляется только тогда, когда в соответствующей подпапке есть story.
 
 ## Формат
 
@@ -65,30 +104,38 @@ packages/<pkg>/stories/<ComponentName>/
 - Типы не через префикс `React.*` (см. [react-types.md](./react-types.md)), импорты/экспорты без `type` (см. [imports-exports.md](./imports-exports.md)).
 - **Не** используй блоки `parameters.docs.description.component` / `parameters.docs.description.story`. Описания компонента живут в `docs/*.mdx` и `README.md`, а не внутри story.
 
-## Title — nesting по пакету
+## Title — nesting
 
-В сайдбаре Storybook компоненты одного пакета должны лежать рядом как дети одного узла. Правило:
+В сайдбаре Storybook компоненты одного пакета должны лежать рядом как дети одного узла. Правила:
 
 - Пакет с **одним** публичным компонентом (например, `@ds/avatar`, `@ds/link`): `title: 'Components/<ComponentName>'`.
 - Пакет с **двумя и более** публичными компонентами (например, `@ds/button` с `Button` + `ButtonGroup`, `@ds/toggles` с `Checkbox`/`Radio`/`Switch`/`Favourite`/`ToggleGroup`): `title: 'Components/<PackageDisplayName>/<ComponentName>'`, где `<PackageDisplayName>` — PascalCase от kebab-case имени пакета без скоупа: `packages/button/` → `Button`, `packages/toggles/` → `Toggles`, `packages/tag/` → `Tag`.
 
-Во всех story-файлах одного компонента `title` одинаковый.
+Playground/VisualMatrix файлов одного компонента имеют **один и тот же** title (без суффикса).
+
+Stories из подпапок добавляют сегмент:
+
+- `examples/<Name>.<Scenario>.stories.tsx` → `title: 'Components/<…>/<Component>/Examples/<Scenario>'`
+- `tests/<Name>.<Scenario>.stories.tsx` → `title: 'Components/<…>/<Component>/Tests/<Scenario>'`
+
+Последний сегмент — короткое PascalCase имя сценария **без** префикса компонента: `Interaction`, `Controlled`, `WithFooter`, `Polymorphic`.
 
 Примеры:
 
-| Пакет | Публичные компоненты | Titles |
-|-------|----------------------|--------|
-| `@ds/avatar` | `Avatar` | `Components/Avatar` |
-| `@ds/button` | `Button`, `ButtonGroup` | `Components/Button/Button`, `Components/Button/ButtonGroup` |
-| `@ds/toggles` | `Checkbox`, `Radio`, `Switch`, `Favourite`, `ToggleGroup` | `Components/Toggles/Checkbox`, `Components/Toggles/Radio`, … |
-| `@ds/skeleton` | `Skeleton`, `SkeletonText`, `WithSkeleton` | `Components/Skeleton/Skeleton`, `Components/Skeleton/SkeletonText`, `Components/Skeleton/WithSkeleton` |
+| Пакет | Компонент | Story-файл | Title |
+|-------|-----------|------------|-------|
+| `@ds/avatar` | `Avatar` | `Avatar.Playground.stories.tsx` | `Components/Avatar` |
+| `@ds/avatar` | `Avatar` | `examples/Avatar.WithImage.stories.tsx` | `Components/Avatar/Examples/WithImage` |
+| `@ds/button` | `Button` | `Button.VisualMatrix.stories.tsx` | `Components/Button/Button` |
+| `@ds/button` | `Button` | `tests/Button.InteractionTest.stories.tsx` | `Components/Button/Button/Tests/Interaction` |
+| `@ds/toggles` | `Checkbox` | `tests/Checkbox.InteractionTest.stories.tsx` | `Components/Toggles/Checkbox/Tests/Interaction` |
 
-**Последствие для story IDs**. Storybook генерит id из title kebab-case'ом:
+**Последствие для story IDs**. Storybook генерит id из title kebab-case'ом. После переноса story в `examples/` или `tests/` id изменится:
 
-- `Components/Button/ButtonGroup` → id начинается с `components-button-buttongroup--<story>`.
-- `Components/Toggles/Checkbox` → `components-toggles-checkbox--<story>`.
+- `Components/Button/Button` + `Playground` → `components-button-button--playground`
+- `Components/Button/Button/Tests/Interaction` + `InteractionTest` → `components-button-button-tests-interaction--interaction-test`
 
-При переходе пакета на nesting **обязательно** обновить story IDs в `packages/<pkg>/__test__/<Component>/helpers.ts` — иначе E2E-тесты будут ходить на старые URL'ы и 404'иться.
+При переезде stories **обязательно** обновить story IDs в `packages/<pkg>/__test__/<Component>/helpers.ts` — иначе E2E-тесты пойдут на старые URL и получат 404.
 
 ## Структура папок
 
@@ -97,10 +144,15 @@ packages/<pkg>/stories/
 └── <ComponentName>/
     ├── <ComponentName>.Playground.stories.tsx    # обязателен
     ├── <ComponentName>.VisualMatrix.stories.tsx  # обязателен
-    └── <ComponentName>.<ExtraCase>.stories.tsx   # по правилам выше, если нужен
+    ├── examples/
+    │   └── <ComponentName>.<Scenario>.stories.tsx
+    └── tests/
+        └── <ComponentName>.<Scenario>.stories.tsx
 ```
 
 Имя файла: `ComponentName.StoryName.stories.tsx`. PascalCase, префикс компонента обязателен. Никаких нумераций/kebab-case.
+
+`examples/` и `tests/` появляются **только если в них что-то есть**. Пустые подпапки не создаём.
 
 ## data-test-id — обязательный атрибут на публичных элементах
 
@@ -115,16 +167,16 @@ packages/<pkg>/stories/
     'data-test-id': 'button', // kebab-case от ComponentName
   },
   ```
-- В специализированных use-case stories (Polymorphic, InteractionTest, Composition) — явным пропсом либо через `args`. Для композиций нескольких инстансов — уникальный id на каждый слот (`button-group-primary`, `button-group-secondary`).
+- В examples/ и tests/ stories — явным пропсом либо через `args`. Для композиций нескольких инстансов — уникальный id на каждый слот (`button-group-primary`, `button-group-secondary`).
 
-**Naming convention**: kebab-case имени компонента. Составные id для слотов: `<component>-<slot>` (`button-group-primary`, `drawer-close-button`). Для вложенных натив-input'ов (Checkbox/Radio/Switch) — базовый id на корень + суффикс `-native-input` на `<input>` (уже зафиксирован в `NATIVE_INPUT_SUFFIX`).
+**Naming convention**: kebab-case имени компонента. Составные id для слотов: `<component>-<slot>` (`button-group-primary`, `drawer-close-button`). Для вложенных натив-input'ов (Checkbox/Radio/Switch) — базовый id на корень + суффикс `-native-input` на `<input>` (зафиксирован в `NATIVE_INPUT_SUFFIX`).
 
 **Хардкод id внутри компонента — только через экспортируемую константу `TEST_IDS`**. Если реализация компонента ставит `data-test-id` на внутренние слоты (вложенные кнопки, icons, описания, тултипы — всё, что не получает id от потребителя через spread `...rest`), эти строки **обязаны** жить в публичной константе `TEST_IDS` в `packages/<pkg>/src/constants.ts` и реэкспортироваться через `src/index.ts`. Инлайн-литералы `data-test-id='foo__bar'` внутри `.tsx` запрещены.
 
 ```ts
 // packages/<pkg>/src/constants.ts
 export const TEST_IDS = {
-  root: 'switch-row',                 // для справки / дефолтных args
+  root: 'switch-row',
   switch: 'switch-row__switch',
   title: 'switch-row__title',
   titleTooltip: 'switch-row__title-tooltip',
@@ -146,33 +198,52 @@ import { TEST_IDS } from '../../constants'
 - Stories и `__test__/<Component>/helpers.ts` берут те же строки из одного источника. Рассинхрон между компонентом и тестами физически невозможен.
 - Видно из публичного API, какие слоты вообще существуют — это документация.
 
-**DRY — повторяющиеся id в stories выносить в `testIds.ts`**. Stories-level id (те, которые ставит story, а не сам компонент), используемые в 2+ файлах stories одного компонента или в 2+ экспортах одного файла, выносятся в `packages/<pkg>/stories/<ComponentName>/testIds.ts`. Если stories-level id совпадает с `TEST_IDS.root` из пакета — реэкспортируй из пакета, не дублируй строку:
+**DRY — повторяющиеся id в stories выносить в `testIds.ts` единым объектом**. Stories-level id (те, которые ставит story, а не сам компонент), используемые в 2+ файлах stories одного компонента или в 2+ экспортах одного файла, выносятся в `packages/<pkg>/stories/testIds.ts` (для пакета с несколькими публичными компонентами) **или** `packages/<pkg>/stories/<ComponentName>/testIds.ts` (для одно-компонентного пакета). Формат — **один объект** `TEST_IDS` со вложенной структурой по компонентам/слотам, а не россыпь отдельных `<NAME>_TEST_ID` констант. Это даёт IDE-autocomplete (`TEST_IDS.<componentName>.<slot>`), один источник истины и компактный экспорт.
 
 ```ts
-// packages/<pkg>/stories/<ComponentName>/testIds.ts
-import { TEST_IDS } from '@ds/<pkg>'
+// packages/<pkg>/stories/testIds.ts (multi-component package)
+export const TEST_IDS = {
+  <componentA>: { root: '<component-a>', nativeInput: '<component-a>-native-input' },
+  <componentB>: { root: '<component-b>' },
+  // …по одному ключу на каждый публичный компонент пакета
+} as const
+```
 
-export const SWITCH_ROW_TEST_ID = TEST_IDS.root
-export const SWITCH_ROW_SWITCH_TEST_ID = TEST_IDS.switch
+```ts
+// packages/<pkg>/stories/<ComponentName>/testIds.ts (single-component package)
+export const TEST_IDS = {
+  root: 'switch-row',
+  switch: 'switch-row__switch',
+  titleTooltip: 'switch-row__title-tooltip',
+} as const
 ```
 
 ```ts
 // packages/<pkg>/stories/<Name>/<Name>.Playground.stories.tsx
-import { SWITCH_ROW_TEST_ID } from './testIds'
+import { TEST_IDS } from '../testIds' // multi-component: stories/testIds.ts
+// или
+import { TEST_IDS } from './testIds'    // single-component: stories/<Name>/testIds.ts
 
-args: { 'data-test-id': SWITCH_ROW_TEST_ID }
+args: { 'data-test-id': TEST_IDS.<componentName>.root }
+// или
+args: { 'data-test-id': TEST_IDS.root }
 ```
+
+Stories из подпапок (`examples/`, `tests/`) импортируют testIds родительского уровня: `import { TEST_IDS } from '../../testIds'` (multi) или `from '../testIds'` (single).
 
 Соглашения для `testIds.ts`:
 
-- Константы `SCREAMING_SNAKE_CASE`, суффикс `_TEST_ID`.
-- Одни и те же имена констант используются и в stories, и в play-функциях (`getByTestId(BUTTON_TEST_ID)`).
-- E2E `__test__/<Component>/helpers.ts` импортирует **`TEST_IDS` напрямую из исходников пакета** — `from '../../src/constants'`, не из entry `@ds/<pkg>`. Entry тянет CSS-модули, которые ломают ts-node / playwright-compile в e2e-процессе. Stories грузятся через storybook-бандлер, поэтому импорт entry `@ds/<pkg>` там ок.
-- Id, который используется в **одной** story (и нигде больше) и не присутствует в `TEST_IDS` пакета — можно оставить инлайн. Переносим только повторяющиеся.
+- Единственный экспорт — `export const TEST_IDS = { ... } as const`. Не заводить набор отдельных `<NAME>_TEST_ID` const'ов.
+- Если у компонента есть только один публичный id (root) — это `TEST_IDS.root` (single-component) или `TEST_IDS.<componentName>.root` (multi).
+- Значения id — kebab-case строки (как в DOM), ключи — camelCase.
+- E2E `__test__/<Component>/helpers.ts` импортирует **`TEST_IDS` из stories** — `from '../../stories/testIds'` или соответствующего подпути. Не из entry `@ds/<pkg>` (entry подтягивает CSS-модули, что несовместимо с playwright-compile). Если пакет публикует `TEST_IDS` из `src/constants.ts` (когда компонент сам ставит id на свои слоты — см. ниже про component-level TEST_IDS), helpers тоже могут импортить оттуда `from '../../src/constants'`.
+- Id, который используется в **одной** story (и нигде больше) и не присутствует в `TEST_IDS` — можно оставить инлайн. Переносим только повторяющиеся.
+
+При миграции пакета с отдельных `<NAME>_TEST_ID` const'ов на единый `TEST_IDS` — переписать все упоминания в specs сразу (sed-replace, ~10 минут на пакет). Не оставлять legacy-aliases в helpers как «переходный мост» — это удваивает поверхность и снова возвращает россыпь отдельных констант.
 
 **Требования к компоненту**: корневой элемент должен проксировать `data-test-id` из пропсов (обычно через spread `...rest`). Если компонент не поддерживает — это bug компонента, а не story.
 
-**Как использовать в play-функциях**: только `getByTestId`. Запрещено `getByRole`, `getByText`, `getByLabelText`, `getByPlaceholderText` — они привязаны к локализации/структуре DOM и ломаются при первых же изменениях. Исключение единственное: когда test-id физически не может существовать (например, проверка, что `aria-disabled` выставлен на anchor'е без собственного корневого элемента) — тогда комментарием в play объясни, почему `role` здесь единственная опция.
+**Как использовать в play-функциях**: только `getByTestId`. Запрещено `getByRole`, `getByText`, `getByLabelText`, `getByPlaceholderText` — они привязаны к локализации/структуре DOM и перестают работать при первых же изменениях. Исключение единственное: когда test-id физически не может существовать (например, проверка `aria-disabled` на anchor'е без собственного корневого элемента) — комментарием в play объясни, почему `role` здесь единственная опция.
 
 ```ts
 // ✅ Хорошо
@@ -186,7 +257,7 @@ export const InteractionTest: Story = {
   },
 }
 
-// ❌ Плохо — getByRole ломается при смене `as='a'` или при выставлении role="menuitem"
+// ❌ Плохо — getByRole перестаёт работать при смене `as='a'` или при выставлении role="menuitem"
 play: async ({ canvasElement }) => {
   await expect(within(canvasElement).getByRole('button')).toBeVisible()
 }
@@ -199,14 +270,12 @@ play: async ({ canvasElement }) => {
 ## Playground (обязателен)
 
 - Имя экспорта: `Playground`.
-- Содержит **полную** `meta` с `title`, `component`, `parameters`, `args`, `argTypes` — **все публичные props доступны через controls**.
-- Без кастомного `render` по умолчанию. URL-args (`gotoStory(id, args)`) должны прокидываться 1:1 в компонент — это контракт для `rendering.spec.ts`. Кастомный `render` с локальным `useState` ломает этот контракт; не делай его, если нет очень специфичной причины.
-- Если в API компонента есть пара `value`/`defaultValue` (или `checked`/`defaultChecked`) и контролируемый и неконтролируемый режимы — оставь в args **только** `defaultValue`/`defaultChecked`, а сами `value`/`checked` спрячь из панели через `argTypes: { value: { table: { disable: true } } }`. URL-args по-прежнему достанут эти пропсы для тестов; в панели не будет «контрол ничего не делает» (потому что без parent'а с `useState` controlled-режим не двигается).
+- Содержит `meta` с `title`, `component`, `parameters`, `args`. `argTypes` — **только при необходимости** (см. ниже).
+- Без кастомного `render` по умолчанию. URL-args (`gotoStory(buildStoryOptions(args))`) должны передаваться 1:1 в компонент — это контракт для `rendering.spec.ts`. Кастомный `render` с локальным `useState` нарушает этот контракт; не делай его без очень специфичной причины.
+- **`argTypes` строятся автоматически** из TS-типов + JSDoc через `react-docgen-typescript` (см. `apps/storybook/.storybook/main.ts`). Все публичные пропсы видны в Controls с правильными контролами и описанием **без** ручного перечисления. Детали и исключения — в [storybook-args-conventions.md](./storybook-args-conventions.md).
+- Прописывай `argTypes.<prop>` в meta **только** в этих случаях: `mapping` (slot/ReactNode), `table.disable` (скрыть проп), `if:` (условная видимость), принудительный override контрола, `options` для нерасрезолвенных union'ов. **Не пиши `description` руками** — он живёт в JSDoc на пропе.
+- Если в API компонента есть пара `value`/`defaultValue` (или `checked`/`defaultChecked`) — оставь в args **только** `defaultValue`/`defaultChecked`, а сами `value`/`checked` спрячь через `argTypes: { value: { table: { disable: true } } }`. URL-args по-прежнему достанут эти пропсы для тестов; в панели не будет «контрол ничего не делает».
 - **Парные/смежные пропсы заполнять в `args` оба**. Если у компонента есть смысловая пара (`content` + `valueToCopy`, `label` + `secondaryLabel`, `title` + `description`, `value` + `formattedValue` и т.д.) — обоим даём осмысленный дефолт, иначе фича пропа невидима из Playground'а. Дефолтное значение должно показывать, чем второй проп отличается от первого, а не дублировать.
-- **Каждый публичный проп — явный `argType` с подходящим контролом**. Без `argType` Storybook сваливается в `text`, и пользователь вынужден руками вводить `boolean`/`enum` строкой. Минимум: `boolean` → `control: 'boolean'`, enum → `control: 'select' \| 'radio', options: Object.values(CONST)`, число → `control: 'number'`.
-- **`select` vs `radio`**. `radio` — для 2–4 фиксированных значений без `undefined`. Если в `options` есть `undefined`/нужен «не задано» / 5+ значений — используй `select`. `radio` плохо рендерит пустой вариант.
-- **`argTypes.mapping` — только для нерасшаренных значений** (slot-пропы, ReactNode-варианты). Не используй mapping ради переименования enum-значений (`compact` ↔ `desktop`) — это создаёт два словаря на одну ось и ломает дефолт: при `args.<prop>: '<mapped value>'` контрол видит, что значение не среди ключей `options`, и показывает пусто. Если оси API в `constants.ts` называются по-другому, чем хочется в Storybook'е — переименуй в `constants.ts` и не плоди mapping.
-- **Когда `mapping` нужен** (slot/ReactNode-пропы — `icon`, `before`, `avatar`, `children`-пресеты, рендеры): задай словарь пресетов и `options: Object.keys(presets)` + `mapping: presets`. Значение `args.<prop>` — **ключ** пресета (`'none' | 'icon' | …`), а не сам ReactNode. Не оставляй такие пропы под `control: false`, если из этих пресетов состоит публичный визуальный API — тогда Playground не показывает половину компонента.
 - Теги: `['dev', 'test']`.
 - `play` — минимальный `toBeVisible`.
 
@@ -220,10 +289,7 @@ const meta: Meta<typeof Component> = {
   component: Component,
   parameters: { layout: 'centered' },
   args: { size: SIZE.M, appearance: APPEARANCE.Primary },
-  argTypes: {
-    size: { control: 'select', options: Object.values(SIZE) },
-    appearance: { control: 'radio', options: Object.values(APPEARANCE) },
-  },
+  // argTypes не нужны: docgen выведет controls + descriptions из типов и JSDoc.
 }
 export default meta
 type Story = StoryObj<typeof Component>
@@ -231,12 +297,12 @@ type Story = StoryObj<typeof Component>
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('...')).toBeVisible()
+    await expect(within(canvasElement).getByTestId('component')).toBeVisible()
   },
 }
 ```
 
-Playground — **единственный** источник истины для набора пропсов. Никакие доп. файлы не перечисляют `argTypes` заново.
+Playground — источник истины для **набора `args`** (дефолтные значения). Описания и control-типы — из TS-типов и JSDoc, эти источники едины между Storybook, IDE, `docs/props.json` и автогенерируемым README.
 
 ## VisualMatrix (обязателен)
 
@@ -256,6 +322,7 @@ const keyStates = ['default', 'disabled', 'loading'] as const
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.grid}>
       <StoryTable
@@ -292,20 +359,32 @@ export const VisualMatrix: Story = {
 
 Wrapper `<div className={styles.grid}>` — только класс из `styles.module.scss` (`display: grid; gap: 1.5rem`). Inline-стили запрещены.
 
-**Поведение, зависящее от размеров контейнера**. `StoryTable` подстраивается под контент — ячейка тянется так, чтобы вместить детей. Если строка/колонка матрицы демонстрирует поведение, которое проявляется **только** при ограниченном пространстве (truncate, ellipsis, wrap, многострочность, перенос, скрытие части UI, `min-width: 0`-поведение, адаптивные брейкпоинты внутри компонента), такую ячейку нужно обернуть в контейнер с явно заданным размером из `styles.module.scss`. Иначе ячейка растянется под контент и кейс визуально не отличается от «обычного» — секция матрицы теряет смысл. Конкретный размер выбирай по компоненту: достаточно, чтобы сработало демонстрируемое поведение, и не больше.
+**Поведение, зависящее от размеров контейнера**. `StoryTable` подстраивается под контент. Если строка/колонка матрицы демонстрирует поведение, которое проявляется **только** при ограниченном пространстве (truncate, ellipsis, wrap, многострочность, перенос, скрытие части UI, `min-width: 0`-поведение, адаптивные брейкпоинты внутри компонента) — ячейку оборачиваем в контейнер с явно заданным размером из `styles.module.scss`. Иначе ячейка растянется под контент и кейс визуально не отличается от «обычного». Конкретный размер выбирай по компоненту: достаточно, чтобы сработало демонстрируемое поведение, и не больше.
 
-## Test stories
+## Examples (`examples/`) — формат
 
-- Теги: `['test', 'dev']` — скрываются из sidebar Test Runner-ом.
-- Имя файла и экспорта одно — `<Name>.InteractionTest.stories.tsx` + `export const InteractionTest`. Клик и клавиатура объединяются в один экспорт через `step()`. Отдельные `ClickTest` / `KeyboardTest` запрещены.
+- Story лежит в `stories/<ComponentName>/examples/<Name>.<Scenario>.stories.tsx`.
+- В `meta.title` — `Components/<…>/<Component>/Examples/<Scenario>` (сегмент `Examples/<Scenario>` появляется автоматически из правила nesting).
+- Имя экспорта совпадает со сценарием в title: `WithFooter`, `Polymorphic`, `Controlled`.
+- Теги: `['dev', 'test']` (для пользователя в сайдбаре + опц. в test runner).
+- Если на сценарий нужна play-функция — пиши её прямо здесь, не дублируй story в `tests/`.
+- Если сценарий требует state — `render` с локальным `useState` допустим.
+- `meta.component` обязателен (для PropsTable / consistent meta).
+
+## Tests (`tests/`) — формат
+
+- Story лежит в `stories/<ComponentName>/tests/<Name>.<Scenario>.stories.tsx`.
+- В `meta.title` — `Components/<…>/<Component>/Tests/<Scenario>`.
+- Теги: `['test', 'dev']` — `dev` оставляем, чтобы story была кликабельна в Storybook (подпапка `Tests/` сама сигнализирует «это тест»). Tag `fixture` **не использовать**.
+- Имя файла и экспорта совпадает со сценарием: `<Name>.InteractionTest.stories.tsx` + `export const InteractionTest`. Клик и клавиатура объединяются в один экспорт через `step()`. Отдельные `ClickTest` / `KeyboardTest` запрещены.
 - `parameters: { controls: { disable: true } }` в `meta` — args фиксированы, панель Controls не нужна.
-- Используют `play` с `step()` для группировки. Имена step'ов — `'click: …'`, `'keyboard: …'` — сохраняют гранулярность в репорте.
-- Для мока callback — `fn()` из `storybook/test`, прокидывать через `args`.
-- Отдельный файл заводится **только** если assertion нельзя поставить в play Playground-а (специфичная последовательность действий, фокус-менеджмент, long-running await).
+- Для мока callback — `fn()` из `storybook/test`, передавать через `args`.
+- Заводи test-story **только** если assertion нельзя поставить в play Playground'а: специфичная последовательность действий, фокус-менеджмент, long-running await, контролируемый state.
 
 ```tsx
+// stories/Component/tests/Component.InteractionTest.stories.tsx
 const meta: Meta<typeof Component> = {
-  title: 'Components/Component',
+  title: 'Components/Component/Tests/Interaction',
   component: Component,
   parameters: { layout: 'centered', controls: { disable: true } },
   args: { onClick: fn(), 'data-test-id': 'component' },
@@ -337,6 +416,10 @@ export const InteractionTest: Story = {
 }
 ```
 
+Play-функции исполняются в синтетической среде (`storybook/test`). Часть низкоуровневых browser-API не симулируется в полном объёме, а сторонние библиотеки могут читать события не так, как ожидает testing-library. Ассертируй то, что обещает **твой публичный API**, не нативные browser side-effects: пиши play вокруг callback'ов из `args`, focus-management по своим `data-test-id`, и т.п. Если play стабильно падает на одном и том же шаге keyboard/click, который «должен работать по природе браузера», — вынеси его в Playwright (там реальная среда), а в play оставь то, что гарантирует компонент. Каталог типовых случаев — в [test-environment-pitfalls.md](./test-environment-pitfalls.md).
+
+URL-args, передаваемые в play через `gotoStory(buildStoryOptions({ ... }))`, действуют как **controlled** props — пользовательский click не меняет их. Если play должен переключить состояние, передавай uncontrolled-эквивалент (`defaultValue`/`defaultChecked`/...), а не controlled.
+
 ## Общие компоненты `#storybook/components`
 
 | Экспорт          | Назначение                                           |
@@ -351,7 +434,7 @@ export const InteractionTest: Story = {
 В stories **нельзя** использовать проп `style={{ ... }}` — ни на wrapper'ах, ни на компонентах, ни на demo-разметке. Причины:
 
 - Inline-стили обходят дизайн-токены (`@sbercloud/figma-variables`) и дают визуальный шум в visual regression.
-- В PR-ревью теряется контроль над spacing/layout: story «подкручивается» в нотации, которую нельзя переиспользовать.
+- В PR-ревью теряется контроль над spacing/layout.
 - Любой лейаут stories должен быть выразим через `StoryTable` либо через класс из `styles.module.scss` рядом со story.
 
 ```tsx
@@ -370,57 +453,40 @@ import styles from './Button.VisualMatrix.module.scss'
 </div>
 ```
 
-Допустимое исключение: `style` прокидывается **только** через публичный проп компонента, когда этот проп часть его API и демонстрируется в story.
+Допустимое исключение: `style` передаётся **только** через публичный проп компонента, когда этот проп часть его API и демонстрируется в story.
 
 ## Tags — семантика
 
-| Tag    | Что делает                                           |
-| ------ | ---------------------------------------------------- |
-| `dev`  | Показывать в sidebar Storybook                       |
-| `test` | Включать в Test Runner / Playwright                  |
+| Tag       | Что делает                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------- |
+| `dev`     | Показывать в sidebar Storybook                                                              |
+| `test`    | Включать в Test Runner / Playwright                                                         |
 
 Тег `autodocs` не используем: автодокументация отключена, описания живут в `docs/*.mdx`.
 
-## Addon-панели Readme и Figma
+Тег `fixture` **больше не используется** — test-стори отделяются раскладкой `tests/` и сегментом `/Tests/` в title.
 
-В bottom-panel рядом с Controls работают две кастомные панели:
+Типовые комбинации (порядок тегов внутри массива на работу не влияет, существующий разнобой — стилистический):
 
-- **Readme** — подтягивает `packages/<pkg>/README.md` по pkg из story `title`, рендерит markdown с подсветкой кода (`shiki`). Тема синхронизирована с глобальным тогглом тем.
-- **Figma** — подтягивает узел из `FIGMA_NODES` (`apps/docs/src/lib/figma.ts`) тем же резолвером по `title`. Sub-ключи — для multi-component пакетов.
-
-Скрыть панель — через стандартный `paramKey`:
-
-```ts
-parameters: {
-  figma: { disable: true },   // прячет таб «Figma»
-  readme: { disable: true },  // прячет таб «Readme»
-}
-```
-
-Когда уместно скрывать:
-
-- **Figma** — приватные пакеты (`*-private`, utility без визуального дизайна) и пакеты без узла в `FIGMA_NODES`. Явный `disable` лучше empty-state.
-- **Readme** — мета-демо и песочницы, не привязанные к публичному компоненту пакета.
-
-Параметры наследуются: `meta` распространяет на все story файла, per-story override возможен.
-
-Override содержимого: `parameters.readme = { content: '<md>' }` подменяет README; `parameters.design` (`{ url } | { fileKey, fileName, nodeId } | string`) подменяет Figma-узел. `disable` приоритетнее любого override.
-
-Типовые комбинации:
 - Playground: `['dev', 'test']`
-- VisualMatrix / Test story: `['test', 'dev']`
-- Доп. композиционные stories: `['dev']`
+- VisualMatrix: `['test', 'dev']`
+- Examples/* (включая `Controlled`, `Polymorphic`, `Composition`): `['dev', 'test']`
+- Tests/* (включая `InteractionTest`): `['test', 'dev']`
 
 ## Naming
 
-- Английский PascalCase. `Playground`, `VisualMatrix`, `Polymorphic`, `InteractionTest`, `Composition`.
+- Английский PascalCase. `Playground`, `VisualMatrix`, `Polymorphic`, `InteractionTest`, `Composition`, `Controlled`, `WithFooter`.
 - Запрещены: `Basic`, `Default`, `Example`, `Story1`, русские названия, имена «на ось» (см. раздел «Запрещённые файлы»).
 
 ## Чего НЕ делать
 
 - Заводить файлы на одну ось / одно состояние (см. «Запрещённые файлы»).
 - Разносить интеракцию на `ClickTest` + `KeyboardTest`. Один экспорт `InteractionTest` со step'ами.
-- Забывать `parameters: { controls: { disable: true } }` в VisualMatrix и `InteractionTest` — args там не правит ничего, пустая панель Controls — шум.
+- Класть scenario / interaction / composition stories в корень `stories/<Name>/`. Только в `examples/` или `tests/`.
+- Использовать тег `fixture`.
+- Делать висящий `/Tests` или `/Examples` в title без сценария.
+- Дублировать одну и ту же story между `examples/` и `tests/`.
+- Забывать `parameters: { controls: { disable: true } }` в VisualMatrix и `InteractionTest`.
 - Использовать `getByRole`/`getByText`/`getByLabelText`/`getByPlaceholderText` в play-функциях. Только `getByTestId`.
 - Забывать `data-test-id` в `args` Playground'а и use-case stories.
 - Пустых `export const X: Story = {}`.
@@ -433,24 +499,28 @@ Override содержимого: `parameters.readme = { content: '<md>' }` по�
 
 ## Чеклист перед коммитом story
 
-- [ ] Есть `Playground` (все пропсы через `argTypes`) и `VisualMatrix` (все оси в `StoryTable`)
+- [ ] Есть `Playground` (все публичные пропсы доступны в Controls через автоматический docgen) и `VisualMatrix` (все оси в `StoryTable`)
+- [ ] Каждая story в `examples/` и `tests/` обоснована: кейс **нельзя** получить через `args` Playground или строку/колонку StoryTable. Дубликаты между `examples/` и `tests/` отсутствуют
+- [ ] Stories из `examples/` лежат в `stories/<Name>/examples/`, title с сегментом `/Examples/<Scenario>`
+- [ ] Stories из `tests/` лежат в `stories/<Name>/tests/`, title с сегментом `/Tests/<Scenario>`. Тег `fixture` не используется
 - [ ] В `args` Playground и use-case stories есть `data-test-id` (kebab-case от ComponentName; для слотов — `<component>-<slot>`)
 - [ ] Все `data-test-id`, которые компонент ставит сам себе на внутренние слоты, — в `src/constants.ts::TEST_IDS` (реэкспорт через `src/index.ts`); инлайн-строк `data-test-id='...'` в `.tsx` нет
-- [ ] Повторяющиеся в 2+ файлах id вынесены в `stories/<ComponentName>/testIds.ts`, инлайн-строки только для уникальных; stories-level id реэкспортируют `TEST_IDS` пакета, не дублируют строку
+- [ ] Повторяющиеся в 2+ файлах id вынесены в `stories/testIds.ts` (multi-component пакет) или `stories/<ComponentName>/testIds.ts` (single-component); единый объект `TEST_IDS`, не россыпь `<NAME>_TEST_ID` const'ов; инлайн-строки только для уникальных
 - [ ] Play-функции используют только `getByTestId`, нет `getByRole`/`getByText`/`getByLabelText`
-- [ ] Доп. файлы оправданы правилом выше, имя не из списка «Запрещённые»
 - [ ] Каждый файл имеет собственный `export default meta`
 - [ ] CSF3, `StoryObj<typeof Component>`
 - [ ] VisualMatrix использует `StoryTable` из `#storybook/components`
 - [ ] У VisualMatrix и `InteractionTest` стоит `parameters: { controls: { disable: true } }`
 - [ ] Интеракционные сценарии — один экспорт `InteractionTest` (а не `ClickTest` + `KeyboardTest`)
-- [ ] Playground без custom `render` (URL-args прокидываются в компонент 1:1); пары controlled/uncontrolled (`value`/`defaultValue`, `checked`/`defaultChecked`) спрятаны из панели через `argTypes.<prop>.table.disable`
-- [ ] Все публичные пропсы Playground имеют явный `argType` с подходящим контролом (`boolean`/`select`/`radio`/`number`); нет фолбэка в `text` для enum/boolean
-- [ ] `radio` не используется при наличии `undefined` в `options` или 5+ значений — в этих случаях `select`
-- [ ] `argTypes.mapping` — только для slot/ReactNode-пропов с пресетами; `args.<prop>` — ключ пресета. Mapping не используется для переименования enum-значений
-- [ ] Смежные/парные пропсы (`content` + `valueToCopy`, `label` + `secondaryLabel`, …) заполнены в `args` оба, дефолты различимы
-- [ ] VisualMatrix-ячейки, демонстрирующие поведение, зависящее от размеров контейнера (truncate, wrap, адаптив и т.п.), обёрнуты в контейнер с явным размером из `styles.module.scss`
+- [ ] Playground без custom `render` (URL-args передаются в компонент 1:1); пары controlled/uncontrolled (`value`/`defaultValue`, `checked`/`defaultChecked`) спрятаны из панели через `argTypes.<prop>.table.disable`
+- [ ] Каждый публичный проп имеет JSDoc (`/** ... */`) в `src/types.ts` или в типе компонента — docgen подтянет его в Controls
+- [ ] В meta нет ручных `argTypes.<prop>.description` (это дубль JSDoc); ручные `argTypes` оставлены только для `mapping` / `table.disable` / `if:` / override контрола
+- [ ] При ручном `options` — `radio` для ≤ 4 значений без `undefined`, иначе `select`; значения через `Object.values(CONST)`
+- [ ] `argTypes.mapping` — только для slot/ReactNode-пропов с пресетами
+- [ ] Смежные/парные пропсы заполнены в `args` оба, дефолты различимы
+- [ ] VisualMatrix-ячейки, демонстрирующие поведение, зависящее от размеров контейнера, обёрнуты в контейнер с явным размером из `styles.module.scss`
 - [ ] Нет тегов `autodocs` и блоков `parameters.docs.description.*`
 - [ ] Названия на английском, PascalCase, без `Basic`/`Default`
 - [ ] Нет `React.*`-типов, нет `import type`
 - [ ] Нет inline-стилей `style={{ ... }}` в разметке stories
+- [ ] При переезде stories между корнем и `examples/`/`tests/` обновлены story IDs в `packages/<pkg>/__test__/<Component>/helpers.ts`

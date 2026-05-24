@@ -53,6 +53,8 @@ export const TEST_IDS = {
 - Компонент использует эти константы внутри реализации (`data-test-id={TEST_IDS.switch}`), инлайн-строк быть не должно.
 - Реэкспортируется из `src/index.ts` через `export * from './constants'` — попадает в публичный API пакета.
 - Stories и `__test__/<Component>/helpers.ts` берут id из этой же константы, не пересоздают строки. Подробности — в [stories-standard.md](./stories-standard.md) раздел «data-test-id — обязательный атрибут…».
+- **`data-test-id` и handler-интеракции (`onClick`, `onKeyDown`, ...) — на одном DOM-узле.** Тесты адресуют элемент по test-id и дispatch'ат события через `userEvent.click(byTestId)`. Если handler висит на дочернем узле (например, `<svg>` внутри обёрточного `<div data-test-id>`), синтетический click из тест-среды не всегда долетает до inner-узла (тонкости `pointer-events`, layered transforms). Держи их на одном узле — это контракт «адресуемый = интерактивный».
+- **Components без собственного DOM-узла** (Context.Provider only — `Accordion`, `ToggleGroup`) не имеют куда вешать `data-test-id` из `rest`. Либо добавляй wrapper-div в компонент с `data-test-id` из props, либо страховочно оборачивай в story-рендере. Документируй выбранный вариант в комментарии у `AccordionProps` — иначе потребитель ждёт нативное поведение, а его нет.
 
 ## Пропсы
 
@@ -72,7 +74,7 @@ export type BaseButtonProps = {
 }
 ```
 
-- JSDoc на каждом поле (`/** Текст кнопки */`) — именно эти строки попадают в `docs/props.json` через `react-docgen-typescript` и в автогенерируемый README.
+- JSDoc на каждом поле (`/** Текст кнопки */`) — единственный источник описания пропа. Эти строки попадают одновременно в: (1) IDE на hover/autocomplete, (2) `docs/props.json` через `pnpm gen:props`, (3) Storybook Controls «Description» через `react-docgen-typescript` плагин, (4) автогенерируемый `README.md`. **Не дублируй JSDoc в `argTypes.<prop>.description`** — это создаёт второй источник правды. Подробности в [storybook-args-conventions.md](./storybook-args-conventions.md).
 - Булевы пропсы называются утверждающе: `disabled`, `loading`, `fullWidth`. Избегай отрицательных `notDisabled`.
 - Коллбэки — `onClick`, `onChange`, `onOpen`. Не `handleClick`.
 

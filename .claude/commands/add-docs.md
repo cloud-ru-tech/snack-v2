@@ -3,7 +3,7 @@ description: Сгенерировать `docs/index.mdx` + demos для паке
 argument-hint: <pkg-name-or-path>
 ---
 
-Сгенерить MDX-документацию + demos для компонентного пакета `@ds/*`. Тонкая обёртка над skill'ом [component-docs](../skills/component-docs.md).
+Сгенерировать MDX-документацию + demos для компонентного пакета `@ds/*`. Тонкая обёртка над skill'ом [component-docs](../skills/component-docs.md).
 
 ## Входные аргументы
 
@@ -28,7 +28,7 @@ argument-hint: <pkg-name-or-path>
 1. **Frontmatter**: `title`, `package`, `description` (одно предложение — генератор README читает), `order`.
 2. **Импорты**: `<Name>`, `<Name>Demo`, `Example`, `PropsTable`, `StorybookEmbed`, `FigmaEmbed`, `figmaNode` (из `#docs/lib/figma`), `<name>Doc` из `./props.json`. В `## Figma`: `<FigmaEmbed node={figmaNode(...)} />` — для субкомпонента передавай вторым аргументом sub-ключ.
 3. **Плоский каркас H2** (tier M+): `## Демо`, `## Когда использовать`, `## Анатомия` (с H3 на каждую визуальную ось из `constants.ts`: `### Appearance`, `### View`, `### Size`, `### Variant`, …), `## Установка`, `## Примеры использования`, `## Props`, `## Storybook`, `## Figma`, `## Смотри также` (опц.). Порядок канонических в MDX не важен — `apps/docs/src/config/docSections.mjs` задаёт порядок.
-4. **Примеры** (`<Example>`): минимум 3, типично 5–6. Содержимое **каждого** `<Example>` — в отдельном файле `demos/examples/<Name>.tsx` + `?raw`-источник, рендер через `client:visible`. Инлайн-JSX внутри `<Example>` запрещён (Astro+MDX не гидрирует React-детей — интерактив ломается). Несколько корневых элементов — в `<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>`.
+4. **Примеры** (`<Example>`): минимум 3, типично 5–6. Содержимое **каждого** `<Example>` — в отдельном файле `demos/examples/<Name>.tsx` + `?raw`-источник, рендер через `client:visible`. Инлайн-JSX внутри `<Example>` запрещён (Astro+MDX не гидрирует React-детей — интерактив перестаёт работать). Несколько корневых элементов — в `<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>`.
 5. **Demo** — `demos/<Name>Demo.tsx` с `<Canvas>` из `#docs/components/Canvas`, `componentDoc` из `../docs/props.json`.
 6. **L/XL**: корневой `docs/index.mdx` + отдельный `docs/<sub>.mdx` на каждый публичный субкомпонент; для XL — `apps/docs/src/content/patterns/<name>-patterns.mdx`.
 

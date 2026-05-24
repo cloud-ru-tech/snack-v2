@@ -17,29 +17,35 @@
    - Посчитать публичные субкомпоненты в `src/*`.
 
 2. **Проверить структуру** — по [reference-package-anatomy.md](../rules/reference-package-anatomy.md):
-   - `src/`: `Name.tsx`, `constants.ts`, `index.ts`, `styles.module.scss`, `types.ts`, опционально `utils.ts`.
-   - `stories/<Name>/`: минимум `Playground.stories.tsx` + `VisualMatrix.stories.tsx`.
-   - `demos/<Name>Demo.tsx`.
+   - `src/`: `Name.tsx`, `constants.ts` (с `TEST_IDS` если компонент сам ставит id на внутренние слоты), `index.ts`, `styles.module.scss`, `types.ts`, опционально `utils.ts`.
+   - `stories/<Name>/`: минимум `Playground.stories.tsx` + `VisualMatrix.stories.tsx`. Подпапки `examples/` и `tests/` — **только если** в них что-то есть.
+   - `demos/<Name>Demo.tsx` (если Canvas-демо уместен для пакета).
    - `docs/index.mdx` + `docs/props.json`.
    - Корневой `README.md` (автоген).
 
 3. **Проверить stories** — по [stories-standard.md](../rules/stories-standard.md):
    - Есть `Playground` (все пропсы в `argTypes`) и `VisualMatrix` (все оси в `StoryTable`).
-   - Нет **запрещённых** файлов (`<Name>.Sizes`, `<Name>.Appearances`, `<Name>.Views`, `<Name>.LoadingState`, `<Name>.DisabledState`, `<Name>.WithIcon`, `<Name>.IconOnly`, `<Name>.WithCounter`) — если есть, пометить как дубликаты VisualMatrix.
-   - Доп. файлы оправданы правилом «Когда заводить дополнительный файл».
+   - Нет **запрещённых** файлов (`<Name>.Sizes`, `<Name>.Appearances`, `<Name>.Views`, `<Name>.Variants`, `<Name>.LoadingState`, `<Name>.DisabledState`, `<Name>.EmptyState`, `<Name>.WithIcon`/`IconOnly`/`WithCounter` если это просто включение слота, `<Name>.ClickTest`, `<Name>.KeyboardTest`) — если есть, пометить как дубликаты VisualMatrix или сливаемые в `InteractionTest`.
+   - Доп. файлы оправданы «Критерием обоснованности артефакта» из [complexity-tiers.md](../rules/complexity-tiers.md) (3 условия) и лежат в правильной подпапке (`examples/` — копируется в продакшн-код, `tests/` — только тест-обвязка).
+   - Title подпапочных story содержит сегмент `/Examples/<Scenario>` или `/Tests/<Scenario>`; нет тега `fixture`, нет дублей между `examples/` и `tests/`.
+   - Story IDs в `packages/<pkg>/__test__/<Name>/helpers.ts` соответствуют актуальным title'ам (после переезда между корнем и подпапкой обязательно обновляются — иначе 404 в e2e).
+   - Для trigger-based компонентов — соответствие [trigger-based-stories.md](../rules/trigger-based-stories.md).
    - Нет inline-стилей `style={{ ... }}`, нет `React.*`-типов, нет `import type`.
 
 4. **Проверить E2E** — по [e2e-testing-standard.md](../rules/e2e-testing-standard.md):
-   - Структура: `packages/<pkg>/__test__/<ComponentName>/` — группировка по компоненту (зеркалит `stories/<ComponentName>/`). Тесты плоско в корне `__test__/` — признак устаревшей раскладки, пометить для переноса.
-   - Файлы внутри папки компонента: `rendering.spec.ts` + по tier'у `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts` (если `as`). Без префикса имени пакета/компонента.
-   - **Нет** файлов `url-args.spec.ts`, `states.spec.ts`, `dimensions.spec.ts` — если есть, пометить для удаления (их роль отдана `rendering.spec.ts` и visual regression).
-   - В `rendering.spec.ts` есть describe-блоки `render`, `states`, `props propagation` (для M+).
+   - Структура: одна папка `packages/<pkg>/__test__/<ParentComponent>/` на parent-компонент. Сабкомпоненты варианта parent'а — параметризацией через args. Отдельная папка автономного компонента — только если он импортируется самостоятельно и имеет собственный публичный API (см. e2e §«Папка тестов пакета»).
+   - Файлы: `rendering.spec.ts` обязателен; `interaction.spec.ts` / `keyboard.spec.ts` — **только** под пункты из закрытых списков browser-specific (e2e §«interaction.spec.ts») и kbd-сценариев (§«keyboard.spec.ts»); `polymorphism.spec.ts` — если `as`. Behavioral assertion'ы (click/keyboard/focus/callback) — в `stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play`, не в Playwright.
+   - **Нет** файлов `url-args.spec.ts`, `states.spec.ts`, `dimensions.spec.ts` — их роль отдана `rendering.spec.ts` (props propagation параметризованным тестом) и visual regression.
+   - В `rendering.spec.ts` нет axis-per-test loop (`for (const v of Object.values(ENUM))`) — только параметризация по ключевой выборке `KEY_COMBOS`.
+   - В helpers.ts story IDs представлены как StoryRef-объекты, не хардкод-строки. `gotoStory` вызывается только через `buildStoryOptions(...)`.
 
 5. **Проверить visual**:
-   - `packages/<pkg>/__test__/<ComponentName>/visual.spec.ts` существует.
-   - Baselines PNG в `packages/<pkg>/__test__/<ComponentName>/__snapshots__/` не пустая папка. Старые baseline'ы в `packages/<pkg>/__snapshots__/` (flat) — признак устаревшей раскладки.
-   - Имена PNG без префикса компонента: `visual-matrix.png`, а не `<pkg>-visual-matrix.png`.
-   - Набор снимков соответствует [visual-regression-standard.md](../rules/visual-regression-standard.md): matrix + responsive + (по tier'у) hover/focus/pressed/placement. Нет static-снимков per-use-case, дублирующих VisualMatrix.
+   - `packages/<pkg>/__test__/<ParentComponent>/visual.spec.ts` существует.
+   - Baselines PNG в `packages/<pkg>/__test__/<ParentComponent>/__snapshots__/` не пустая папка. Старые baseline'ы в `packages/<pkg>/__snapshots__/` (flat) — признак устаревшей раскладки.
+   - Имена PNG без префикса компонента: `visual-matrix.png`, а не `<pkg>-visual-matrix.png`. Дополнительно допустимы канонические имена: `interaction-states.png`, `<axis>-state-matrix.png` (где `<axis>` ∈ {`appearance`, `view`, `size`, `placement`, `orientation`, `variant`}), `placements.png` / `widths.png` / `modes.png`, `open-<scenario>.png`. Другие имена — повод для вопроса в PR.
+   - Нет per-state раздельных PNG (`hover.png` + `focus.png` + `pressed.png`) — заменяется `interaction-states.png` через `assertInteractionStatesSnapshot`.
+   - Нет per-view × per-state cartesian, нет per-axis snapshot (`size-s.png`, …), нет portal content без триггера/окружения в кадре.
+   - Каждый дополнительный снимок проходит «Критерий обоснованности артефакта».
 
 6. **Проверить docs**:
    - Все обязательные секции в `index.mdx` (см. [docs-structure.md](../rules/docs-structure.md)).

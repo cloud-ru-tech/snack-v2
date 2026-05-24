@@ -1,9 +1,9 @@
 ---
-description: Сгенерить набор Playwright E2E specs для пакета `packages/<pkg>` по tier'у
+description: Сгенерировать набор Playwright E2E specs для пакета `packages/<pkg>` по tier'у
 argument-hint: <pkg-name-or-path>
 ---
 
-Сгенерить E2E тесты для компонентного пакета `@ds/*`. Тонкая обёртка над skill'ом [component-e2e-tests](../skills/component-e2e-tests.md).
+Сгенерировать E2E тесты для компонентного пакета `@ds/*`. Тонкая обёртка над skill'ом [component-e2e-tests](../skills/component-e2e-tests.md).
 
 ## Входные аргументы
 
@@ -19,31 +19,47 @@ argument-hint: <pkg-name-or-path>
 2. `packages/<pkg>/stories/<Name>/` — story IDs. Учитывай nesting title'а:
    - Single-component: `Components/<Name>` → `components-<name>--<story>`.
    - Multi-component: `Components/<Pkg>/<Name>` → `components-<pkg>-<name>--<story>`.
-3. `packages/<pkg>/__test__/` — что уже есть. Не дублируй. Если тесты лежат плоско в корне `__test__/` без папки `<ComponentName>/` — нужно перенести.
+3. `packages/<pkg>/__test__/` — что уже есть. Не дублируй. Если тесты лежат плоско в корне `__test__/` без папки `<ParentComponent>/` — нужно перенести.
 4. Tier по `.claude/rules/complexity-tiers.md`.
 
 ## Делегирование skill'у
 
 Следуй шагам [component-e2e-tests](../skills/component-e2e-tests.md):
 
-1. **Раскладка** — строго `packages/<pkg>/__test__/<ComponentName>/`. Snapshot baselines — в `__test__/<ComponentName>/__snapshots__/` рядом со спеком.
-2. **Файлы по tier'у** (max 5 + visual):
-   - XS: `rendering.spec.ts` + `visual.spec.ts`.
-   - S: + describe `states` в `rendering.spec.ts`.
-   - M: + `interaction.spec.ts` + `keyboard.spec.ts` + (`polymorphism.spec.ts` если есть `as`).
-   - L: + focus-trap в `interaction.spec.ts`, Arrow/Home/End в `keyboard.spec.ts`, ARIA-state в `rendering.spec.ts`.
-   - XL: scenario-driven spec'и + MSW.
-3. **`helpers.ts`** в папке компонента: `PKG_STORIES` (story IDs), `PKG_KEY_COMBOS` (ключевая выборка, **не** декартово произведение — по 1 представителю на каждое значение каждой оси). `*_TEST_ID` берутся из `TEST_IDS` в `../../src/constants` (исходники пакета), не литералами и не из entry `@ds/<pkg>`.
-4. **`rendering.spec.ts`** — 3 describe'а: `render`, `states`, `props propagation` (через `gotoStory(playground, args)` + `toHaveAttribute('data-<axis>', value)`).
-5. **Импорт fixtures и константы** — через TS-алиас `#playwright-tooling/*`: `import { expect, test } from '#playwright-tooling/fixtures'`, `import { waitForFonts } from '#playwright-tooling/utils'`, `import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'`, `import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common'`. Относительные `'../../../../playwright/...'` и прямой `@playwright/test` запрещены.
-6. **visual.spec.ts** — по правилам [visual-regression-standard.md](../rules/visual-regression-standard.md): `test.skip(project !== VISUAL_BASELINE_PROJECT)`, `waitForFonts()`, `page.locator(STORYBOOK_ROOT_SELECTOR).toHaveScreenshot(name, SCREENSHOT_DEFAULT_OPTS)`. Никаких локальных `*_ROOT_SELECTOR` / `*_SCREENSHOT_OPTS` и инлайн-литералов.
+1. **Раскладка** — одна папка на parent-компонент: `packages/<pkg>/__test__/<ParentComponent>/`. Сабкомпоненты варианта parent'а параметризуются через args в той же папке. Отдельная папка автономного компонента — только если он импортируется самостоятельно и имеет собственный публичный API (см. e2e §«Папка тестов пакета»). Snapshot baselines — в `__test__/<ParentComponent>/__snapshots__/` рядом со спеком.
+
+2. **Тесты живут в трёх слоях**:
+   - **Storybook play** (`stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play`) — behavioral: click, keyboard, focus, callback assertions. Валидируется через `pnpm test:stories`. Не дублируется в Playwright.
+   - **`rendering.spec.ts`** — всегда. Smoke render + props propagation в `data-*` для ключевых значений (1–3 на ось, не цикл по всем enum-values).
+   - **`interaction.spec.ts` / `keyboard.spec.ts` / `polymorphism.spec.ts`** — **только** под пункты закрытых списков из [e2e-testing-standard.md](../rules/e2e-testing-standard.md) §§ «interaction.spec.ts — когда заводим» и «keyboard.spec.ts — когда заводим». Если ни один пункт не применим — файл не заводится, независимо от tier'а.
+
+3. **Каждый дополнительный тест** обязан проходить «Критерий обоснованности артефакта» из [complexity-tiers.md](../rules/complexity-tiers.md) (3 условия). Ориентир по числу тестов в `rendering.spec.ts` — таблица из e2e §«rendering.spec.ts — ориентир по tier'у». Превышение допустимо при выполнении критерия; дубль play или axis-per-test loop — нет.
+
+4. **`helpers.ts`** в папке parent-компонента:
+   - `<COMPONENT>_STORIES = { playground, visualMatrix, [scenario] }` — **StoryRef-объекты** `{ name, story, group? }`, не хардкод-строки `'components-<...>--<...>'`.
+   - `<COMPONENT>_KEY_COMBOS` — ключевая выборка, **не** декартово произведение.
+   - `buildStoryOptions(props?, ref?)` — единая точка построения URL.
+   - `*_TEST_ID` импортируются из `TEST_IDS` в `../../stories/testIds` (stories-level) либо `../../src/constants` (component-level, когда компонент сам ставит id), не литералами и не из entry `@ds/<pkg>`.
+
+5. **`gotoStory` — единая каноническая форма** в spec'ах: `gotoStory(buildStoryOptions(args?, storyRef?))`. ID-строковая сигнатура `gotoStory('components-<...>--<...>', args)` запрещена.
+
+6. **`rendering.spec.ts`** — describe `render`, `states` (если применимо), `props propagation` через параметризацию по `KEY_COMBOS`. Не axis-per-test loop.
+
+7. **Импорт fixtures и констант** — через TS-алиас `#playwright-tooling/*`: `import { expect, test } from '#playwright-tooling/fixtures'`, `import { waitForFonts } from '#playwright-tooling/utils'`, `import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'`, `import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common'`. Относительные `'../../../../playwright/...'` и прямой `@playwright/test` запрещены.
+
+8. **Локаторы** — только `getByTestId`. `getByRole` / `getByText` / `getByLabelText` запрещены.
+
+9. **visual.spec.ts** — по правилам [visual-regression-standard.md](../rules/visual-regression-standard.md): `test.skip(project !== VISUAL_BASELINE_PROJECT)`, `waitForFonts()` **один раз после `gotoStory`** (не перед каждым cell composite). Для VM-снимка — `page.locator(STORYBOOK_ROOT_SELECTOR).toHaveScreenshot(name, SCREENSHOT_DEFAULT_OPTS)`. Для сценарных снимков компонента — `screenshotWithPadding(page, getByTestId(ROOT), 16, SCREENSHOT_DEFAULT_OPTS)` + `expect(png).toMatchSnapshot(...)`. Для composite (interaction states / axis × state matrix) — утилита `assertInteractionStatesSnapshot` либо `composeScreenshots`. Никаких локальных `*_ROOT_SELECTOR` / `*_SCREENSHOT_OPTS` и инлайн-литералов.
 
 ## Запреты
 
 - Не заводи `url-args.spec.ts`, `states.spec.ts`, `dimensions.spec.ts` — запрещено правилом, их роль отдана describe-блокам внутри `rendering.spec.ts` и visual regression.
 - Не префиксуй файлы/PNG именем пакета-компонента (`button.rendering.spec.ts`, `button-visual-matrix.png`) — префикс в имени папки.
-- Не держи тесты плоско в `__test__/`.
-- В play/spec — только `getByTestId` и auto-wait; никаких `page.waitForTimeout(N)`.
+- Не держи тесты плоско в `__test__/` — одна папка на parent-компонент.
+- Не дублируй behavioral assertion'ы (click/keyboard/focus/callback) из Storybook play в `interaction.spec.ts`/`keyboard.spec.ts`.
+- Не используй axis-per-test loop в rendering.
+- В play/spec — только `getByTestId` и auto-wait; никаких `page.waitForTimeout(N)`, никаких `getByRole`/`getByText`/`getByLabelText`.
+- Не используй id-строковую сигнатуру `gotoStory('...', args)` в spec'ах — только `gotoStory(buildStoryOptions(args?, storyRef?))`.
 
 ## Правила (обязательное чтение)
 

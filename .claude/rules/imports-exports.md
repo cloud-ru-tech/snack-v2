@@ -76,4 +76,16 @@ export { Popover, PopoverProps } from './components/Popover'
 export { TRIGGER, PLACEMENT } from './constants'
 ```
 
+## Исключение: re-export чисто-типовых символов из внешних пакетов
+
+TS-флаг `isolatedModules` (включён в репо) требует **явный** `export type { ... }` при re-export'е чисто-типовых символов из внешних пакетов (TS1205). Это единственное место, где `export type` допустим — и только когда у символа нет соответствующего runtime-значения (interface/type alias).
+
+```ts
+// ✅ Хорошо — value-side и type-side разнесены, т.к. Locator/Page — только типы
+export { expect } from '@playwright/test'
+export type { Locator, Page } from '@playwright/test'
+```
+
+Если у символа есть и значение, и тип (class, enum-like `as const`-объект), пиши его в общем `export { ... }`, не дублируй через `export type`.
+
 Связанное правило: никаких `React.*`-типов. См. [react-types.md](./react-types.md).

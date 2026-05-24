@@ -4,17 +4,29 @@
 
 ## Классификация
 
-| Tier | Критерии | Примеры | Stories | E2E specs | Visual snaps | Docs |
-|------|----------|---------|---------|-----------|--------------|------|
-| **XS** | 0–1 интерактивных состояния, 1–2 props axes, без композиции | `avatar`, `counter`, `loader/Sun` | Playground + VisualMatrix (2 файла) | rendering | 1 matrix | 1 `index.mdx` |
-| **S**  | до 3 props axes, 1 интеракция, без полиморфизма | `badge`, `chip`, `tag` | Playground + VisualMatrix (+ 0–1 оправданный) | + states (в rendering) | 1 + 2 (hover/focus) = 3 | 1 `index.mdx` |
-| **M**  | полиморфизм (`as`), 3–5 осей, loading/disabled, иконки, слоты | `button` | Playground + VisualMatrix + (Polymorphic? + InteractionTest?) = 2–4 | + interaction + keyboard + polymorphism | 3 + 1 (pressed) = 4 | 1 `index.mdx` |
-| **L**  | составной (субкомпоненты), shared context, keyboard nav | `tabs`, `tooltip`, `popover` | Playground + VisualMatrix на корень + те же для ключевых субкомпонентов; опц. `Composition` = 4–10 | + keyboard nav, focus trap, ARIA-roles | 4 + 1–2 (open/closed/placement) ≈ 5–6 | `index.mdx` + `<sub>.mdx` |
-| **XL** | stateful (sort/filter/select/paginate), виртуализация, drag-drop | `table`, `select`, `combobox`, `datepicker` | Playground + VisualMatrix + scenario-файлы (`SortableByName`, `FilteredByCategory`, `PaginatedPage2`) | scenario-driven (возможно несколько spec'ов) + MSW | Matrix + before/after каждой ключевой интеракции | `index.mdx` + `<sub>.mdx` + patterns |
+| Tier | Критерии | Примеры | Stories | Playwright specs | Visual snaps | Docs |
+|------|----------|---------|---------|------------------|--------------|------|
+| **XS** | 0–1 интерактивных состояния, 1–2 props axes, без композиции | `avatar`, `counter`, `loader/Sun` | Playground + VisualMatrix (2 файла) | `rendering` (1 test) | 1 (VM) | 1 `index.mdx` |
+| **S**  | до 3 props axes, 1 интеракция, без полиморфизма | `badge`, `chip`, `tag` | Playground + VisualMatrix (+ 0–1 в `examples/`) + `tests/InteractionTest` | `rendering` (2–3 tests) | 3 (+ hover, focus) | 1 `index.mdx` |
+| **M**  | полиморфизм (`as`), 3–5 осей, loading/disabled, иконки, слоты | `button` | Playground + VisualMatrix + `tests/InteractionTest` (+ `examples/Polymorphic` если `as`) | `rendering` (3–5) + `polymorphism` (если `as`) | 4 (+ pressed) | 1 `index.mdx` |
+| **L**  | составной (субкомпоненты), shared context, keyboard nav, portal | `tabs`, `tooltip`, `popover`, `dropdown` | Playground + VisualMatrix на parent + subcomp scenarios в `examples/`; `tests/InteractionTest` + `tests/Controlled` | `rendering` (5–8) + `interaction` (focus trap / scroll lock — 2–4 теста, при наличии) + `keyboard` (при roving tabindex или focus-trap, см. e2e §«keyboard.spec»)  | 4–5 (+ portal `open.png`) | `index.mdx` + `<sub>.mdx` |
+| **XL** | stateful (sort/filter/select/paginate), виртуализация, drag-drop, file upload | `table`, `modal`, `drawer`, `toaster`, `dropzone` | Playground + VisualMatrix + scenario-файлы в `examples/`; `tests/InteractionTest` + `tests/Controlled` | `rendering` (8–12) + `interaction` (file upload / DnD / viewport resize — до 6) + `keyboard` (любой пункт из закрытого списка e2e §«keyboard.spec» — обычно Escape + multi-step focus management) | 5–8 (+ before/after на ключевую интеракцию) | `index.mdx` + `<sub>.mdx` + patterns |
 
-Счёт stories — **минимум** артефактов; доп. файлы вводятся только по правилам [stories-standard.md](./stories-standard.md) (раздел «Когда заводить дополнительный файл»). Axis-per-file (`Sizes`, `Appearances`, `LoadingState`, …) запрещён на всех tier'ах.
+Все числа в таблице — **ориентир минимума**, а не cap. Реальный объём stories / тестов / снимков диктуется поверхностью публичного API компонента: каждый публично значимый prop / state / scenario получает покрытие. Превышение ориентира допустимо, если каждый дополнительный артефакт проходит критерий обоснованности (ниже).
 
-Счёт E2E specs — **список файлов**, не список тестов. Один spec может содержать десятки параметризованных тестов через `gotoStory(playground, args)`.
+## Критерий обоснованности артефакта
+
+Это единый чек-вопросник для решения «нужна ли эта story / этот test / этот snapshot». Применяется одинаково к stories ([stories-standard.md](./stories-standard.md)), Playwright-тестам ([e2e-testing-standard.md](./e2e-testing-standard.md)) и visual baselines ([visual-regression-standard.md](./visual-regression-standard.md)).
+
+Артефакт обоснован тогда и только тогда, когда выполнены **все три** условия:
+
+1. **Проверяет что-то новое из публичной поверхности.** Покрывает либо публичный prop / state / scenario, либо browser-specific поведение, либо уникальный визуальный кадр. Перепроверка одного и того же значения одной оси — не новое.
+2. **Не получается тем же эффектом из уже существующего артефакта.** Если эффект достижим выставлением `args` у Playground (включая URL-args в `gotoStory`), добавлением строки/колонки в `StoryTable` VisualMatrix, либо ассертом в существующей play-функции — артефакт лишний.
+3. **Не дублирует другой слой.** Behavioral (click/keyboard/focus/callback) живёт в play, статика осей — в VisualMatrix, props propagation — в `rendering.spec.ts` параметризованным тестом. Один и тот же факт не проверяется в двух местах.
+
+Если хотя бы одно условие нарушено — артефакт не заводится. Запрещённые паттерны, попадающие под нарушения (axis-per-file stories, axis-per-test loops, per-view × per-state cartesian в visual, дубли play в interaction.spec), перечислены в соответствующих rules-файлах.
+
+`interaction.spec.ts` / `keyboard.spec.ts` заводятся **только** если есть browser-specific assertion'ы, которые нельзя сделать в Storybook play (см. [e2e-testing-standard.md](./e2e-testing-standard.md)). Behavioral assertions (click, keyboard, focus, callback) живут в `tests/<Name>.InteractionTest.stories.tsx::play` и валидируются через `pnpm test:stories` (Storybook Test Runner).
 
 ## Как определить tier
 
@@ -28,41 +40,45 @@
 
 ### XS (Avatar-like)
 - stories: **Playground + VisualMatrix** (2 файла).
-- E2E: `rendering.spec.ts` (render).
-- visual: 1 matrix.
+- Playwright: `rendering.spec.ts` (1 test — smoke render).
+- visual: 1 (VM).
 - docs: 1 MDX + demo + Storybook/Figma embed.
 
 ### S (Badge-like)
-- stories: **Playground + VisualMatrix** (+0–1 оправданный, напр. `Polymorphic`).
-- E2E: `rendering.spec.ts` с describe-блоком states (disabled/loading/empty).
-- visual: + hover + focus (итого 6 снимков).
+- stories: **Playground + VisualMatrix + `tests/InteractionTest`** (если есть click/keyboard поведение).
+- Playwright: `rendering.spec.ts` (2–3 теста — render + props propagation для 1–2 ключевых значений). `interaction`/`keyboard` НЕ заводим — всё в play.
+- visual: 3 (VM + hover + focus).
 - docs: 1 MDX + demo + Storybook/Figma embed.
 
 ### M (Button-like)
-- stories: **Playground + VisualMatrix + InteractionTest + Polymorphic** (если `as`). Клик и клавиатура объединены в один экспорт `InteractionTest` со step'ами.
-- E2E: `rendering.spec.ts` (+ props propagation), `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts` (если `as`).
-- visual: + pressed (итого 7 снимков).
+- stories: **Playground + VisualMatrix + `tests/InteractionTest`** (+ `examples/Polymorphic` если `as`). Клик и клавиатура объединены в один экспорт `InteractionTest` со step'ами.
+- Playwright: `rendering.spec.ts` (3–5), `polymorphism.spec.ts` (если `as`). `interaction`/`keyboard` — только если есть browser-specific (rel-injection, focus-visible vs focus).
+- visual: 4 (VM + hover + focus + pressed). **Один** hover-snapshot, не per-view.
 - docs: Do/Don't table обязательна.
 
 ### L (Tabs-like)
-- stories: `Playground` + `VisualMatrix` для каждого ключевого субкомпонента (TabBar/TabContent/Tab), опц. `Composition` для связи.
-- E2E: + keyboard navigation (Arrow keys, Home/End) в `keyboard.spec.ts`, + focus trap в `interaction.spec.ts`, ARIA-роли в `rendering.spec.ts`.
-- visual: + 1–2 open/closed или placement снимков на ключевом субкомпоненте.
-- docs: корневой `index.mdx` + `docs/<sub>.mdx` для каждого субкомпонента.
+- stories: `Playground` + `VisualMatrix` parent + scenario-композиции в `examples/`; `tests/InteractionTest` + опц. `tests/Controlled`.
+- Playwright: `rendering.spec.ts` (5–8 — render + ARIA роли + параметризация subcomponent-вариантов через args), `interaction.spec.ts` (focus-trap / scroll-lock — 2–4 теста, при наличии), `keyboard.spec.ts` (при roving tabindex или focus-trap — пункты 1–2 закрытого списка из e2e §«keyboard.spec»).
+- visual: 4–5 (VM + 1–2 portal-snapshot типа `open.png`).
+- docs: корневой `index.mdx` + `docs/<sub>.mdx` для каждого публичного субкомпонента.
 
 ### XL (Table-like)
-- stories: scenario-driven (`SortableByName`, `FilteredByCategory`, `PaginatedPage2`) + Playground + VisualMatrix.
-- E2E: scenario-spec'и (`<pkg>.<scenario>.spec.ts`) + MSW-mock данных + keyboard shortcuts.
-- visual: before/after каждой ключевой интеракции (не матрица для всех комбинаций).
+- stories: scenario-driven в `examples/` (`SortableByName`, `FilteredByCategory`, `PaginatedPage2`) + Playground + VisualMatrix; интеракционные сценарии — в `tests/`.
+- Playwright: `rendering.spec.ts` (8–12, scenario-driven render), `interaction.spec.ts` (file upload / DnD / viewport resize — до 6), `keyboard.spec.ts` (любой пункт 1–4 из e2e §«keyboard.spec»; обычно Escape closes layered portals + multi-step focus management).
+- visual: 5–8 (VM + before/after на ключевую интеракцию).
 - docs: корневой + субкомпоненты + `patterns/<name>-patterns.mdx`.
 
 ## Анти-правила
 
-- **Не** генерируй декартовы матрицы для L/XL. VisualMatrix для XL — только ключевая выборка (max ~3×N).
+- **Не** генерируй декартовы матрицы ради полноты. VisualMatrix покрывает оси компонента осмысленно — ключевые комбинации, а не каждое значение каждой оси с каждым значением каждой другой. Объём диктуется тем, какие комбинации действительно различимы визуально / актуальны.
 - **Не** добавляй story-per-axis / story-per-state (`Sizes`, `Appearances`, `LoadingState`) — это прямой путь к сотням stories. Используй `argTypes` Playground-а + строки/колонки `StoryTable` в VisualMatrix.
 - **Не** опускай play-функции у Playground и test-stories — даже однострочный `toBeVisible()` лучше, чем пустая story.
-- **Не** downgrade-ай tier ради упрощения. Если компонент реально сложный — весь чек-лист обязателен.
+- **Не** понижай tier ради упрощения. Если компонент реально сложный — весь чек-лист обязателен.
 - **Не** заводи отдельные spec'и `url-args.spec.ts` / `states.spec.ts` / `dimensions.spec.ts` — их роль отдана `rendering.spec.ts` и visual regression.
+
+## Coverage gate
+
+Независимо от tier'а каждый компонентный пакет обязан проходить per-package coverage gate **lines/stmts ≥ 80%, funcs ≥ 75%, branches ≥ 70%**. Команды и исключения — в [coverage-standard.md](./coverage-standard.md). Если тестов набора для tier'а не хватает до порога — добавляй play-step'ы в существующий `InteractionTest` либо новый сценарий в `examples/`/`tests/`, а не понижай порог.
 
 ## Связанные правила
 
@@ -71,3 +87,4 @@
 - [e2e-testing-standard.md](./e2e-testing-standard.md) — блоки E2E по tier.
 - [visual-regression-standard.md](./visual-regression-standard.md) — набор visual snapshots по tier.
 - [docs-structure.md](./docs-structure.md) — структура MDX по tier.
+- [coverage-standard.md](./coverage-standard.md) — пороги coverage и команды.

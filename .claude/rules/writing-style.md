@@ -138,6 +138,6 @@
 ## Связанное
 
 - [docs-structure.md](./docs-structure.md) — структура страницы MDX.
-- [stories-standard.md](./stories-standard.md) — `description` в `argTypes`.
+- [stories-standard.md](./stories-standard.md) — JSDoc-описания пропсов и их связь с Storybook Controls.
 - [storybook-args-conventions.md](./storybook-args-conventions.md) — JSDoc + `description` согласованы.
 - [dont-do-that.md](./dont-do-that.md) — общий список «нельзя».

@@ -184,14 +184,14 @@ import DestructiveSrc from '../demos/examples/Destructive.tsx?raw'
 </Example>
 ```
 
-Файл демки:
+Файл демо:
 
 - Один именованный PascalCase-экспорт на файл, импорт компонента из `@ds/<pkg>` (не из `../../src/...`).
 - Несколько корневых элементов оборачиваются в `<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>` — единственное допустимое место для инлайн-`style` в demo-файлах (gap-обёртка самого примера).
 - Один корневой элемент — без обёртки.
 - Файл целиком показывается в docs через `?raw`, вместе с `import`-строками. Читатель копирует и запускает.
 - **Пример обязан быть живым.** Если у компонента есть `onChange` / `onClick` / `onPageChange` / `onFilesUpload` и т.п., который определяет смысл — пиши либо uncontrolled (`defaultValue`, `defaultChecked`), либо controlled с локальным `useState`. **`onChange={() => {}}` (no-op-колбек) запрещён** — это «мёртвый» пример, который скрывает поведение и хуже Canvas-а.
-- **Portals → `PortalContextProvider`**. Если демо использует компонент с порталом (`Tooltip`, `QuestionTooltip`, `Popover`, `Dropdown`, `Modal`, `Drawer`, любой `disabledToggleTip`/`tip`-проп) — оборачивай в `<PortalContextProvider>` из `@ds/portal-context` прямо в файле демки. Каждый Astro `client:visible` — это независимый React-island со своим контекстом; глобальный провайдер из layout не доезжает, и портальный контент рендерится в `null`-root → тултип не видно, popover не открывается. Импорт-строка попадает в `?raw`-листинг демо, и это нормально — читатель видит, что для портал-компонентов провайдер обязателен.
+- **Portals → `PortalContextProvider`**. Если демо использует компонент с порталом (`Tooltip`, `QuestionTooltip`, `Popover`, `Dropdown`, `Modal`, `Drawer`, любой `disabledToggleTip`/`tip`-проп) — оборачивай в `<PortalContextProvider>` из `@ds/portal-context` прямо в файле демо. Каждый Astro `client:visible` — это независимый React-island со своим контекстом; глобальный провайдер из layout не доезжает, и портальный контент рендерится в `null`-root → тултип не видно, popover не открывается. Импорт-строка попадает в `?raw`-листинг демо, и это нормально — читатель видит, что для портал-компонентов провайдер обязателен.
 
 Минимум **3** `<Example>` блока на пакет, типичный набор — 5–6: один на ключевую ось, один на icon-slots, один на polymorphism, один на состояния.
 
@@ -248,7 +248,7 @@ packages/<pkg>/demos/examples/
 | `<StorybookEmbed />`, `<FigmaEmbed />` | **без директивы** (SSR, iframe без JS) |
 | `<PropsTable />`, статические таблицы/текст | **без директивы** (SSR) |
 
-**Не используй `client:load` в MDX** — он гидрирует сразу при загрузке страницы, даже если демка в самом низу. Для всех интерактивных демок по умолчанию `client:visible`. `client:only='react'` — только если компонент реально не работает на SSR (последний вариант, требует обоснования).
+**Не используй `client:load` в MDX** — он гидрирует сразу при загрузке страницы, даже если демо в самом низу. Для всех интерактивных демок по умолчанию `client:visible`. `client:only='react'` — только если компонент реально не работает на SSR (последний вариант, требует обоснования).
 
 ## Do / Don't — формат
 
