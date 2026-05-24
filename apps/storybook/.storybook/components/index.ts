@@ -1,3 +1,4 @@
+export * from './Demo';
 export * from './PreviewThemeContext';
 export * from './StoryTable';
 export * from './StoryWrapper';

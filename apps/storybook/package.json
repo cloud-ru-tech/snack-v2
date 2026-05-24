@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
-    "test": "test-storybook --url http://localhost:6006",
-    "test:ci": "concurrently -k -s first -n SB,TEST \"pnpm dev\" \"wait-on http://localhost:6006 && test-storybook --url http://localhost:6006\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev:coverage": "INSTRUMENT=true storybook dev -p 6006",
     "clean": "rm -rf storybook-static"
   },
   "dependencies": {
@@ -70,17 +71,21 @@
     "shiki": "3.23.0"
   },
   "devDependencies": {
+    "@storybook/addon-vitest": "10.4.0",
     "@storybook/react": "10.4.0",
     "@storybook/react-vite": "10.4.0",
-    "@storybook/test-runner": "0.24.4",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "concurrently": "9.2.1",
+    "@vitest/browser": "4.1.4",
+    "@vitest/browser-playwright": "4.1.4",
+    "@vitest/coverage-istanbul": "4.1.4",
+    "vite-plugin-istanbul": "6.0.2",
+    "playwright": "1.59.1",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
     "storybook": "10.4.0",
     "typescript": "catalog:",
-    "wait-on": "9.0.5"
+    "vitest": "4.1.4"
   }
 }

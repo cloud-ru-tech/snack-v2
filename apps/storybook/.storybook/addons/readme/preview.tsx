@@ -1,4 +1,4 @@
-import { Decorator } from '@storybook/react';
+import type { Decorator } from '@storybook/react';
 import { addons } from 'storybook/preview-api';
 
 import { resolvePkgFromTitle } from '../shared/pkgFromTitle';

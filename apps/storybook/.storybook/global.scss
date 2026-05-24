@@ -1,6 +1,11 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/fonts/scss';
 
+// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
+// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
+// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
+// маппится на dimension/strokeWeight/radius токены, уже переписано.
+
 /* Сброс стилей */
 *,
 *::before,
@@ -8,13 +13,28 @@
   box-sizing: border-box;
 }
 
+html {
+  // Резервируем место под вертикальный scrollbar даже когда контент влезает.
+  // Без этого появление/исчезновение scrollbar'а между прогонами visual regression
+  // меняет ширину viewport на ~16px → StoryTable перевёрстывается, высота снимка
+  // прыгает на сотни пикселей.
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   padding: 0;
 
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-synthesis: none;
   line-height: 1.5;
   color: base.$sn-theme-color-neutral-text;
+
+  // Снижает расхождение subpixel-рендера между macOS (CoreText) и Linux
+  // (FreeType/Skia) в visual regression: geometricPrecision выключает
+  // hinting/optimizeLegibility, font-synthesis: none запрещает браузеру
+  // синтезировать bold/italic, если в variable-woff2 нужная ось не нашлась.
+  text-rendering: geometricprecision;
 
   background-color: base.$sn-theme-color-neutral-background;
 
@@ -37,45 +57,45 @@ body {
 .sb-flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
   align-items: center;
 }
 
 .sb-flex-column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
 }
 
 .sb-grid {
   display: grid;
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
 }
 
 .sb-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
 }
 
 .sb-grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: base.$sn-primitive-dimension-16;
 }
 
 /* Стили для разделителей между примерами */
 .sb-divider {
-  margin: 24px 0;
+  margin: base.$sn-primitive-dimension-24 0;
   border: none;
-  border-top: 1px solid base.$sn-theme-color-neutral-decor;
+  border-top: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
 }
 
 /* Стили для меток размеров/вариантов */
 .sb-label {
-  margin-bottom: 8px;
+  margin-bottom: base.$sn-primitive-dimension-8;
 
-  font-size: 12px;
+  font-size: base.$sn-primitive-dimension-12;
   font-weight: 500;
   color: base.$sn-theme-color-neutral-text;
   text-transform: uppercase;
@@ -84,11 +104,11 @@ body {
 
 /* Стили для секций в stories */
 .sb-section {
-  margin-bottom: 32px;
+  margin-bottom: base.$sn-primitive-dimension-32;
 }
 
 .sb-section-title {
-  margin-bottom: 16px;
+  margin-bottom: base.$sn-primitive-dimension-16;
   font-size: 14px;
   font-weight: 600;
   color: base.$sn-theme-color-neutral-text;
@@ -96,17 +116,21 @@ body {
 
 /* Стили для контейнеров с отступами */
 .sb-container {
-  margin-bottom: 16px;
-  padding: 16px;
-  border-radius: 8px;
+  margin-bottom: base.$sn-primitive-dimension-16;
+  padding: base.$sn-primitive-dimension-16;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .sb-container-white {
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
-  border-radius: 8px;
+  margin-bottom: base.$sn-primitive-dimension-16;
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
+  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
 
   background-color: base.$sn-theme-color-neutral-background;
 }

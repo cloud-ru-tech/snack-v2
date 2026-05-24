@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import { ComponentType } from 'react';
 
 import { INITIAL_GLOBALS } from './src/constants';
 import { ThemeSyncBridge } from './src/preview/ThemeSyncBridge';

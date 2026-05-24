@@ -3,7 +3,7 @@ import './panel.css';
 import { useState } from 'react';
 import { useChannel } from 'storybook/manager-api';
 
-import { EVENT_SET, FigmaPayload } from './constants';
+import { EVENT_SET, type FigmaPayload } from './constants';
 
 export function FigmaPanel() {
   const [payload, setPayload] = useState<FigmaPayload>(null);

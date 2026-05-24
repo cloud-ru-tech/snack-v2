@@ -1,21 +1,21 @@
-import { type CSSProperties, type ReactNode, useCallback, useEffect } from 'react';
+import { CSSProperties, ReactNode, useCallback, useEffect } from 'react';
 import { Select } from 'storybook/internal/components';
 import { addons, useGlobals } from 'storybook/manager-api';
 
 import { BRAND_COLOR } from '../config/brandColors';
 import { DAY_PATH, LAPTOP_PATH, MOBILE_PHONE_PATH, NIGHT_PATH } from '../config/svgPaths';
 import {
-  Brand,
+  type Brand,
   BRAND_OPTIONS,
   BRAND_ROLE_OPTIONS,
-  BrandRole,
+  type BrandRole,
   CHANNEL_SYNC_EVENT,
-  Density,
+  type Density,
   DENSITY_OPTIONS,
   GLOBAL_KEYS,
-  Language,
+  type Language,
   LANGUAGE_OPTIONS,
-  Theme,
+  type Theme,
   THEME_OPTIONS,
 } from '../constants';
 

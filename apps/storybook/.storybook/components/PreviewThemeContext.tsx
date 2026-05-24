@@ -1,7 +1,6 @@
-import { createContext, type ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
 import type { Theme } from './types';
-
 export const PreviewThemeContext = createContext<Theme>('light');
 
 export function PreviewThemeProvider({ theme, children }: { theme: Theme; children: ReactNode }) {

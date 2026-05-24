@@ -31,7 +31,7 @@ export function StoryTable({
   cellAlign = 'center',
 }: StoryTableProps) {
   return (
-    <section className={cn(styles.section, className)}>
+    <section className={cn(styles.section, className)} data-test-id='story-table'>
       {sectionTitle ? <h4 className={styles.title}>{sectionTitle}</h4> : null}
       <table className={styles.table}>
         <thead>

@@ -1,3 +1,9 @@
+/*
+ * Storybook addon panel CSS — plain (не CSS-modules, не SCSS), грузится напрямую
+ * в Storybook manager-frame и не имеет доступа к @sbercloud/figma-variables.
+ * `em`/`%`-значения тут — text-relative spacing для markdown-рендера, что и есть
+ * корректное использование em (масштаб шрифта addon-панели), а не дизайн-параметр.
+ */
 .ds-figma-root {
   width: 100%;
   height: 100%;
