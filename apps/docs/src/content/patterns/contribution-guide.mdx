@@ -75,15 +75,18 @@ packages/<pkg>/
 │       ├── <Name>.Playground.stories.tsx     # обязателен
 │       ├── <Name>.VisualMatrix.stories.tsx   # обязателен
 │       ├── testIds.ts                        # если id повторяются в 2+ местах
-│       └── <Name>.<ExtraCase>.stories.tsx    # по правилам stories-standard
+│       ├── examples/                         # появляется только если в ней есть story
+│       │   └── <Name>.<Scenario>.stories.tsx # сценарии, копируемые потребителем
+│       └── tests/                            # появляется только если в ней есть story
+│           └── <Name>.<Scenario>.stories.tsx # InteractionTest и т.п. — только тест-обвязка
 ├── __test__/
-│   └── <Name>/
+│   └── <ParentComponent>/                    # одна папка на parent; сабкомпоненты — через args
 │       ├── helpers.ts
-│       ├── rendering.spec.ts
-│       ├── interaction.spec.ts
-│       ├── keyboard.spec.ts
+│       ├── rendering.spec.ts                 # всегда
+│       ├── visual.spec.ts                    # всегда
+│       ├── interaction.spec.ts               # только при applicable browser-specific сценариях
+│       ├── keyboard.spec.ts                  # только при applicable kbd-сценариях
 │       ├── polymorphism.spec.ts              # если есть `as`
-│       ├── visual.spec.ts
 │       └── __snapshots__/                    # baseline PNG (chrome-only)
 ├── demos/
 │   ├── <Name>Demo.tsx
@@ -214,10 +217,24 @@ import { StoryTable } from '#storybook/components'
 - CSF3, `Meta<typeof Component>` + `StoryObj<typeof Component>`.
 - Импорты play-утилит — из `storybook/test` (subpath ядра `storybook@10`), **не** из `@storybook/test`.
 - Каждая story имеет `data-test-id` в `args` (kebab-case от имени компонента).
-- В `play` — только `getByTestId`. `getByRole`/`getByText` запрещены.
+- В `play` — только `getByTestId`. `getByRole`/`getByText`/`getByLabelText` запрещены.
 - VisualMatrix строится на `StoryTable` из `#storybook/components`.
-- **Запрещены**: тег `autodocs`, `parameters.docs.description.*`, файлы «на одну ось» (`Sizes`, `Appearances`, `LoadingState`, ...).
-- Повторяющиеся `data-test-id` выносятся в `stories/<Name>/testIds.ts`.
+- **Запрещены файлы**: «на одну ось» (`Sizes`, `Appearances`, `Views`, `Variants`, `LoadingState`, `DisabledState`, `EmptyState`, `WithIcon`/`IconOnly`/`WithCounter` если это просто включение слота), `ClickTest`/`KeyboardTest` (объединяются в `InteractionTest`).
+- **Запрещены**: тег `autodocs`, тег `fixture`, `parameters.docs.description.*`, дубль одной story между `examples/` и `tests/`, висящий `/Tests` или `/Examples` в title без имени сценария.
+- Повторяющиеся `data-test-id` выносятся в `stories/<Name>/testIds.ts` (single-component) или `stories/testIds.ts` (multi-component) **единым объектом** `TEST_IDS` со вложенной структурой по компонентам/слотам. Россыпь отдельных `<NAME>_TEST_ID` const'ов не заводится. Если компонент сам ставит `data-test-id` на свои внутренние слоты — эти строки публикуются через `TEST_IDS` в `src/constants.ts` (часть публичного API пакета).
+
+### Подпапки `examples/` и `tests/`
+
+Доп. story всегда живёт в подпапке `stories/<Name>/examples/` либо `stories/<Name>/tests/`. Корень `stories/<Name>/` содержит **только** Playground/VisualMatrix. Куда положить — решается механическим критерием **копируемости**:
+
+- **`examples/<Name>.<Scenario>.stories.tsx`** — если фрагмент копируется потребителем в продакшн-код как самостоятельный, работающий снаружи теста (composition, slot-пресет, polymorphism с `as={Link}`, controlled-режим, реальный react state). Title — `Components/<…>/<Name>/Examples/<Scenario>`.
+- **`tests/<Name>.<Scenario>.stories.tsx`** — если фрагмент содержит `fn()`-моки, контролируемые stub-state, edge-state или последовательность действий, важную только для assertion'а; вне теста смысла не имеет. Title — `Components/<…>/<Name>/Tests/<Scenario>`. Один интеракционный сценарий — один экспорт `InteractionTest` (клик + клавиатура + фокус через `step()`).
+
+Каждая дополнительная story обязана проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md) (3 условия: проверяет что-то новое из публичной поверхности, не выражается через `args`/StoryTable/play, не дублирует другой слой). При переезде story между корнем и подпапкой обязательно обновить story IDs в `packages/<pkg>/__test__/<Name>/helpers.ts` — иначе e2e получит 404.
+
+### Trigger-based компоненты
+
+Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / portal-компоненты следуют отдельному правилу [`.claude/rules/trigger-based-stories.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/trigger-based-stories.md): `open` не выводится в args (живёт в локальном `useState` render-компонента), триггер — `Button` из `@ds/button` с `data-test-id={TEST_IDS.triggerOpen}`, `parameters.layout: 'fullscreen'`, конфликты значений между осями разрешаются runtime + `<DemoWarning>`, а не через `if:`.
 
 ## Документационный портал
 
@@ -289,14 +306,24 @@ pnpm dev:docs
 
 ## Тестирование
 
-Три уровня, все привязаны к Storybook как источнику истины.
+Тесты живут в **трёх слоях** ([`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md)). Каждый слой решает свою задачу и не дублирует другие.
+
+| Слой | Что проверяет | Где живёт |
+|------|---------------|-----------|
+| **1. Storybook play** | Behavioral: click, keyboard, focus, controlled-state, callback assertions, ARIA-state-after-action | `stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play` — валидируется командой `pnpm test:stories` |
+| **2. Playwright `rendering.spec.ts`** | Smoke render + props propagation в `data-*` для ключевых значений осей | `packages/<pkg>/__test__/<ParentComponent>/rendering.spec.ts` |
+| **3. Playwright `interaction.spec.ts` / `keyboard.spec.ts` / `polymorphism.spec.ts` / `visual.spec.ts`** | Только то, что Storybook play не может: browser-specific API, focus-trap, скриншоты | там же, отдельные spec-файлы |
+
+Каждый дополнительный артефакт обязан проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md): (1) проверяет что-то новое из публичной поверхности, (2) не выражается через `args`/StoryTable/play, (3) не дублирует другой слой.
 
 ### 1. Play-функции в stories
 
 ```bash
-pnpm test:stories          # Storybook Test Runner
+pnpm test:stories          # Storybook Test Runner — CI-gate для play-функций
 pnpm test:stories:ci
 ```
+
+Behavioral assertion'ы пишутся **только здесь** — в Playwright не дублируются. Test Runner запускает все play-функции в headless Chrome через Playwright; падение assertion'а делает CI красным.
 
 ### 2. Playwright E2E против Storybook iframe
 
@@ -304,19 +331,31 @@ pnpm test:stories:ci
 
 ```ts
 // packages/button/__test__/Button/rendering.spec.ts
-import { expect, test } from '../../../../playwright/fixtures'
-import { BUTTON_STORIES } from './helpers'
+import { expect, test } from '#playwright-tooling/fixtures'
 
-test('renders', async ({ page, gotoStory }) => {
-  await gotoStory(BUTTON_STORIES.playground, { appearance: 'critical', size: 'l' })
-  await expect(page.getByRole('button')).toBeVisible()
+import { BUTTON_STORIES, BUTTON_TEST_ID, buildStoryOptions } from './helpers'
+
+test('renders', async ({ gotoStory, getByTestId }) => {
+  await gotoStory(buildStoryOptions({ appearance: 'critical', size: 'l' }, BUTTON_STORIES.playground))
+  await expect(getByTestId(BUTTON_TEST_ID)).toBeVisible()
 })
 ```
 
-Разные комбинации пропсов проверяются через `gotoStory(id, args)` — отдельную story «под каждую комбинацию» заводить не нужно.
+Импорт fixtures и utils — только через TS-алиас `#playwright-tooling/*`, относительные пути (`'../../../../playwright/...'`) запрещены. Канонический вызов `gotoStory` в spec'ах — только через `buildStoryOptions(args?, storyRef?)`; id-строковая форма устарела.
 
-Набор спеков на компонент (max 5 + visual):
-`rendering.spec.ts`, `interaction.spec.ts`, `keyboard.spec.ts`, `polymorphism.spec.ts`, `visual.spec.ts`. Выбор набора — по tier'у ([`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md)).
+Локаторы — только `getByTestId`. `getByRole` / `getByText` / `getByLabelText` запрещены (они привязаны к локализации и структуре DOM, перестают работать при первых же изменениях).
+
+Разные комбинации пропсов проверяются через `gotoStory(buildStoryOptions(args))` — отдельную story «под каждую комбинацию» заводить не нужно.
+
+Набор spec-файлов на parent-компонент:
+
+- **`rendering.spec.ts`** — всегда. Smoke render + props propagation для ключевых значений осей (1–3 на ось, не цикл по всем enum-values).
+- **`interaction.spec.ts`** — **только** если применим хотя бы один пункт закрытого списка browser-specific сценариев (file upload, real DnD, viewport resize, body scroll lock, focus-trap, click outside portal, theme switching внутри портала, `rel=noopener` инжекция, native disabled vs `aria-disabled` и т.п. — полный список в [`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md) §«interaction.spec.ts»).
+- **`keyboard.spec.ts`** — **только** если применим хотя бы один пункт закрытого списка kbd-сценариев (roving tabindex, focus-trap, Escape closes layered portals, multi-step focus management — там же §«keyboard.spec.ts»). Tab/Enter/Space на одном focusable — это play, а не keyboard.spec.
+- **`polymorphism.spec.ts`** — **только** если в API есть `as` prop.
+- **`visual.spec.ts`** — всегда. Покрытие — по [`.claude/rules/visual-regression-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/visual-regression-standard.md).
+
+Behavioral assertion'ы (click, keyboard, focus, callback) **не** живут в Playwright — они в Storybook play (`stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play`) и валидируются командой `pnpm test:stories`. Дублировать их в `interaction.spec.ts`/`keyboard.spec.ts` запрещено. Ориентиры по числу тестов и tier-таблица — в [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md).
 
 ```bash
 pnpm test:e2e                            # все проекты — финальная сверка перед PR
@@ -527,9 +566,11 @@ export const FIGMA_NODES = {
 | `component-docs` | «написать docs», «страница пакета», «Storybook embed» |
 | `figma-component-import` | Пользователь дал Figma URL / nodeId |
 | `figma-to-code` | Перенос Figma-слоёв в React + SCSS Modules |
+| `scss-styles-audit` | «проверь SCSS», аудит хардкода и axis-копипаста в стилях |
 | `component-tier-audit` | «проверь эталонность», «аудит пакета» |
 | `component-validation-loop` | «проверь готовность компонента» (сквозной цикл) |
-| `migrate-to-v2` | План миграции из старой DS |
+| `mr-comments` | Работа с комментами GitLab MR через `scripts/mr-comments/*` |
+| `figma-selected-block` | Получить SCSS стили выделенного слоя из Figma-ноды |
 
 ### Commands — слэш-команды (`.claude/commands/`)
 

@@ -37,7 +37,7 @@ if (!dryRun) {
   console.log(`
   ✓  packages/${options.pkgName}/       создан
   ✓  tsconfig.json               обновлён
-  ✓  apps/storybook/package.json обновлён  (алиас @ds/${options.pkgName} подхватится автоматически)${e2eSpecPath ? `\n  ✓  packages/${options.pkgName}/__tests__/${componentKebab}.rendering.spec.ts  создан` : ''}
+  ✓  apps/storybook/package.json обновлён  (алиас @ds/${options.pkgName} подхватится автоматически)${e2eSpecPath ? `\n  ✓  packages/${options.pkgName}/__test__/${options.componentName}/rendering.spec.ts  создан` : ''}
 
   (алиасы @ds/* для apps/docs берутся из packages/*/package.json + src/index.ts — см. astro.config.mjs)
 

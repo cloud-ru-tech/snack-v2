@@ -100,6 +100,16 @@ export default defineConfig({
       // from React island chunks due to aggressive Rollup tree-shaking.
       cssCodeSplit: false,
       sourcemap: false,
+      rollupOptions: {
+        // Подавляем circular-chunk warning между barrel'ами @ds/tag
+        // (export * через несколько уровней index.ts) — на рантайм не влияет.
+        onwarn(warning, defaultHandler) {
+          const msg = String(warning.message || '');
+          if (msg.includes('reexported through module') && msg.includes('different chunks')) return;
+          if (warning.code === 'CIRCULAR_DEPENDENCY') return;
+          defaultHandler(warning);
+        },
+      },
     },
   },
 });

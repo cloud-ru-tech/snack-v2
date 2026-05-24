@@ -1,4 +1,4 @@
-import type { ComponentDoc, PropDef, RelatedType } from './Canvas';
+import { ComponentDoc, PropDef, RelatedType } from './Canvas';
 import styles from './PropsTable.module.scss';
 
 type PropsTableProps = {

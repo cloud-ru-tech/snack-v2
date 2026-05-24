@@ -14,7 +14,6 @@ export interface ScaffoldOptions {
   componentKebab: string
   displayTitle: string
   description: string
-  docsLayout: 'single' | 'multi'
   includeDemo: boolean
   includeE2E: boolean
   dryRun?: boolean
@@ -44,6 +43,13 @@ function copyVerbatim(src: string, dest: string, dryRun: boolean): void {
   writeFileSync(dest, readFileSync(src, 'utf8'), 'utf8')
 }
 
+function toScreamingSnake(name: string): string {
+  return name
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/[-\s]+/g, '_')
+    .toUpperCase()
+}
+
 export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
   const packageDir = join(ROOT, 'packages', opts.pkgName)
 
@@ -58,11 +64,14 @@ export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
   const demoImport = opts.includeDemo
     ? `import { ${opts.componentName}Demo } from '../demos/${opts.componentName}Demo'`
     : ''
-  const demoUsage = opts.includeDemo ? `<${opts.componentName}Demo client:visible />` : ''
+  const demoUsage = opts.includeDemo
+    ? `<${opts.componentName}Demo client:visible />`
+    : '<!-- TODO: добавить демо или удалить секцию «## Демо», если компонент не props-driven -->'
 
   const vars: TokenMap = {
     PKG_NAME: opts.pkgName,
     COMPONENT_NAME: opts.componentName,
+    COMPONENT_CONST: toScreamingSnake(opts.componentName),
     COMPONENT_KEBAB: opts.componentKebab,
     DISPLAY_TITLE: opts.displayTitle,
     DESCRIPTION: opts.description || `${opts.displayTitle} component.`,
@@ -71,34 +80,55 @@ export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
   }
 
   try {
+    // package metadata + tsconfigs
     writeRendered(tpl('package.json'), out('package.json'), vars, opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.json'), out('tsconfig.json'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.esm.json'), out('tsconfig.esm.json'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.cjs.json'), out('tsconfig.cjs.json'), opts.dryRun ?? false)
+
+    // src/
     writeRendered(tpl('src/Component.tsx'), out(`src/${opts.componentName}.tsx`), vars, opts.dryRun ?? false)
+    writeRendered(tpl('src/constants.ts'), out('src/constants.ts'), vars, opts.dryRun ?? false)
+    writeRendered(tpl('src/types.ts'), out('src/types.ts'), vars, opts.dryRun ?? false)
     writeRendered(tpl('src/index.ts'), out('src/index.ts'), vars, opts.dryRun ?? false)
     writeRendered(tpl('src/styles.module.scss'), out('src/styles.module.scss'), vars, opts.dryRun ?? false)
-    writeRendered(tpl('stories/Component.stories.tsx'), out(`stories/${opts.componentName}.stories.tsx`), vars, opts.dryRun ?? false)
 
+    // stories/<Component>/
+    const storyDir = `stories/${opts.componentName}`
+    writeRendered(tpl('stories/Component/testIds.ts'), out(`${storyDir}/testIds.ts`), vars, opts.dryRun ?? false)
+    writeRendered(
+      tpl('stories/Component/Component.Playground.stories.tsx'),
+      out(`${storyDir}/${opts.componentName}.Playground.stories.tsx`),
+      vars,
+      opts.dryRun ?? false,
+    )
+    writeRendered(
+      tpl('stories/Component/Component.VisualMatrix.stories.tsx'),
+      out(`${storyDir}/${opts.componentName}.VisualMatrix.stories.tsx`),
+      vars,
+      opts.dryRun ?? false,
+    )
+
+    // demos/
     if (opts.includeDemo) {
       writeRendered(tpl('demos/ComponentDemo.tsx'), out(`demos/${opts.componentName}Demo.tsx`), vars, opts.dryRun ?? false)
     }
 
-    if (opts.docsLayout === 'single') {
-      writeRendered(tpl('docs/overview.mdx'), out('docs/overview.mdx'), vars, opts.dryRun ?? false)
-    } else {
-      writeRendered(tpl('docs/index.mdx'), out('docs/index.mdx'), vars, opts.dryRun ?? false)
-      writeRendered(tpl('docs/component.mdx'), out(`docs/${opts.componentKebab}.mdx`), vars, opts.dryRun ?? false)
-    }
+    // docs/index.mdx — единый файл, без single/multi разделения
+    writeRendered(tpl('docs/index.mdx'), out('docs/index.mdx'), vars, opts.dryRun ?? false)
 
     if (!opts.dryRun) {
       renameSync(tmpBase, packageDir)
     }
 
+    // __test__/<Component>/ — пишется уже в финальный пакетный путь
     let e2eSpecPath: string | null = null
     if (opts.includeE2E) {
-      e2eSpecPath = join(packageDir, '__tests__', `${opts.componentKebab}.rendering.spec.ts`)
-      writeRendered(tpl('__tests__/{{COMPONENT_KEBAB}}.rendering.spec.ts'), e2eSpecPath, vars, opts.dryRun ?? false)
+      const testDir = join(packageDir, '__test__', opts.componentName)
+      writeRendered(tpl('__test__/Component/helpers.ts'), join(testDir, 'helpers.ts'), vars, opts.dryRun ?? false)
+      writeRendered(tpl('__test__/Component/rendering.spec.ts'), join(testDir, 'rendering.spec.ts'), vars, opts.dryRun ?? false)
+      writeRendered(tpl('__test__/Component/visual.spec.ts'), join(testDir, 'visual.spec.ts'), vars, opts.dryRun ?? false)
+      e2eSpecPath = join(testDir, 'rendering.spec.ts')
     }
 
     return { packageDir, e2eSpecPath }

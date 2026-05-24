@@ -11,7 +11,6 @@
       "#storybook/hooks": ["apps/storybook/.storybook/hooks"],
       "#storybook/hooks/*": ["apps/storybook/.storybook/hooks/*"],
       "@ds/*": ["./packages/*/src"],
-      "@ds/materials": ["/packages/materials"],
       "#docs/*": ["apps/docs/src/*"],
       "@playwright-tooling": ["./playwright"],
       "#playwright-tooling/*": ["./playwright/*"]

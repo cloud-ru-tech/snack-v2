@@ -1,21 +1,22 @@
 import { HTMLAttributes } from 'react'
 
+import { VARIANT } from './constants'
 import styles from './styles.module.scss'
+import { Variant } from './types'
 
 export type {{COMPONENT_NAME}}Props = HTMLAttributes<HTMLDivElement> & {
-  variant?: 'default' | 'outlined'
+  /** Визуальный вариант контейнера. */
+  variant?: Variant
 }
 
 export function {{COMPONENT_NAME}}({
-  variant = 'default',
+  variant = VARIANT.Default,
   className,
   children,
-  ...props
+  ...rest
 }: {{COMPONENT_NAME}}Props) {
-  const classes = [styles.root, styles[variant], className].filter(Boolean).join(' ')
-
   return (
-    <div {...props} className={classes} data-variant={variant}>
+    <div {...rest} className={[styles.root, className].filter(Boolean).join(' ')} data-variant={variant}>
       {children}
     </div>
   )

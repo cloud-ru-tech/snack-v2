@@ -6,14 +6,30 @@ order: 1
 ---
 
 {{DEMO_IMPORT}}
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
 import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
 
 # {{DISPLAY_TITLE}}
 
 {{DESCRIPTION}}
 
+## Демо
+
 {{DEMO_USAGE}}
+
+## Когда использовать
+
+TODO: один-два пункта, в каких сценариях компонент уместен.
+
+## Анатомия
+
+### Variant (default `default`)
+
+- `default` — заполненный фон.
+- `outlined` — прозрачный фон с обводкой.
 
 ## Установка
 
@@ -25,6 +41,18 @@ pnpm add @ds/{{PKG_NAME}}
 import { {{COMPONENT_NAME}} } from '@ds/{{PKG_NAME}}'
 import '@ds/{{PKG_NAME}}/style.css'
 ```
+
+## Примеры использования
+
+TODO: добавь `<Example>` с файлами из `demos/examples/<Name>.tsx`.
+
+## Props
+
+<PropsTable data={doc.{{COMPONENT_NAME}}} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-{{COMPONENT_KEBAB}}--playground' />
 
 ## Figma
 

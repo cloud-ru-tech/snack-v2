@@ -90,4 +90,13 @@ playwright/test-results
 .playwright-mcp
 
 .claude/plan
+.claude/review
+.claude/scheduled_tasks.lock
 tmp
+*.playwright-mcp/
+*.tmp
+
+# Coverage reports
+/coverage/
+playwright/coverage/.stories.json
+

@@ -6,46 +6,60 @@
 
 ```
 design-system/
-├── packages/               # Публикуемые npm-пакеты
-│   ├── tokens/             # Дизайн-токены (SCSS-переменные + CSS-кастом-пропсы)
-│   └── button/             # Пример компонента
-│       ├── src/            # Исходники (Button.tsx, styles.module.scss)
-│       ├── stories/        # Storybook-сторис (Button.stories.tsx)
-│       ├── demos/          # Интерактивные демо для доки (ButtonDemo.tsx)
-│       ├── docs/           # MDX-документация пакета (overview.mdx, ...)
-│       ├── tsconfig.esm.json / tsconfig.cjs.json  # Сборка ESM + CJS
-│       └── package.json    # Экспорт src + dist
+├── packages/                            # Публикуемые npm-пакеты @ds/*
+│   └── <pkg>/
+│       ├── src/<Name>/                  # Nested-раскладка по компоненту
+│       │   ├── <Name>.tsx
+│       │   ├── constants.ts             # Оси API + TEST_IDS (если есть)
+│       │   ├── types.ts
+│       │   ├── styles.module.scss
+│       │   └── index.ts
+│       ├── stories/<Name>/              # Playground + VisualMatrix (+ examples/, tests/)
+│       │   ├── <Name>.Playground.stories.tsx
+│       │   ├── <Name>.VisualMatrix.stories.tsx
+│       │   ├── examples/                # Сценарии, копируемые потребителем (опц.)
+│       │   └── tests/                   # Story только для тест-обвязки (опц.)
+│       ├── demos/                       # <Name>Demo.tsx + examples/ для MDX (?raw)
+│       ├── docs/                        # index.mdx + props.json (автоген)
+│       ├── __test__/<ParentComponent>/  # Playwright spec'и пакета + baselines
+│       │   ├── helpers.ts
+│       │   ├── rendering.spec.ts
+│       │   ├── visual.spec.ts
+│       │   ├── interaction.spec.ts      # при наличии browser-specific сценариев
+│       │   ├── keyboard.spec.ts         # при наличии kbd-сценариев
+│       │   └── __snapshots__/           # baseline PNG (chrome-only)
+│       ├── tsconfig.esm.json / tsconfig.cjs.json
+│       └── package.json
 │
-├── scripts/                # Корневые скрипты (SCSS → CSS, CSS modules для CJS)
 ├── apps/
-│   ├── docs/               # Документационный портал (Astro)
+│   ├── docs/                            # Документационный портал (Astro + MDX)
 │   │   └── src/
-│   │       ├── content.config.ts    # Astro content collections
-│   │       ├── content/
-│   │       │   └── patterns/        # MDX-паттерны не привязанные к пакетам
-│   │       ├── components/
-│   │       │   └── Canvas.tsx       # Интерактивное превью с контролами
-│   │       ├── layouts/
+│   │       ├── config/                  # docSections.mjs, domains.ts, external-links.ts
+│   │       ├── content/patterns/        # MDX-паттерны не привязанные к пакетам
+│   │       ├── components/              # Canvas, PropsTable, StorybookEmbed, FigmaEmbed
+│   │       ├── lib/figma.ts             # FIGMA_NODES — карта Figma-узлов по пакету
 │   │       └── pages/
 │   │           ├── components/[...slug].astro
 │   │           └── patterns/[...slug].astro
-│   └── storybook/          # Корневой Storybook
-│       └── .storybook/
-│           ├── main.ts     # Глобует stories из packages/*/stories/
-│           └── preview.ts
+│   └── storybook/                       # Storybook 10
+│       └── .storybook/                  # main.ts (auto-alias из packages/*/src/index.ts)
 │
-├── tests/                  # E2E-тесты (Playwright)
-│   ├── storybook/          # Тесты компонентов против Storybook iframe
-│   ├── visual/             # Визуальная регрессия (скриншоты)
-│   ├── docs/               # Тесты документационного портала
-│   ├── helpers/storybook.ts
-│   └── playwright.config.ts
+├── playwright/                          # Корневые fixtures, constants, utils
+│   ├── fixtures.ts                      # test, expect, gotoStory, getByTestId, waitForFonts
+│   ├── constants/{common,projects}.ts
+│   └── utils/{getStorybookUrl,waitForFonts,…}.ts
+├── playwright.config.ts                 # Сканирует packages/**/__test__/**/*.spec.ts
 │
-├── tsconfig.base.json      # Единый источник общих compilerOptions
-├── tsconfig.json           # Typecheck-профиль (noEmit)
-├── lerna.json              # Lerna: версионирование и публикация
-└── pnpm-workspace.yaml     # pnpm workspaces + catalog для общих внешних deps
+├── scripts/                             # add-package, build-pkg, gen-props, gen-readme
+├── .claude/                             # Rules / Skills / Commands для Claude Code и Cursor
+│
+├── tsconfig.base.json                   # Единый источник общих compilerOptions
+├── tsconfig.json                        # Typecheck-профиль (noEmit), #playwright-tooling/*
+├── lerna.json                           # Lerna: версионирование и публикация
+└── pnpm-workspace.yaml                  # pnpm workspaces + catalog внешних deps
 ```
+
+Spec-файлы Playwright живут **внутри пакета** (`packages/<pkg>/__test__/<ParentComponent>/`), а не в корневой папке. Корневой `playwright/` хранит только общие fixtures и утилиты, импортируемые через TS-алиас `#playwright-tooling/*`.
 
 ## Сборка пакетов компонентов
 
@@ -76,7 +90,7 @@ pnpm --filter @ds/tests exec playwright install
 | `pnpm build:pkg <pkg>[,<pkg2>]` | Селективная инкрементальная сборка одного пакета (`scripts/build-pkg.mts`) — на порядки быстрее `build:packages` при работе над одним компонентом |
 | `pnpm build:fast` | `build:packages` + `build:docs:fast` (без Storybook static) |
 | `pnpm gen:props` | Генерирует `docs/props.json` для каждого пакета из TypeScript-типов |
-| `pnpm gen:readme` | Генерирует `README.md` для каждого пакета из docs/overview.mdx + props.json |
+| `pnpm gen:readme` | Генерирует `README.md` для каждого пакета из docs/index.mdx + props.json |
 | `pnpm gen` | Запускает `gen:props` + `gen:readme` (полная регенерация) |
 
 ## Тесты
@@ -105,18 +119,24 @@ pnpm release
 
 Подробное руководство — в [Contribution Guide](/patterns/contribution-guide) документационного портала.
 
-Краткий алгоритм:
+Базовый поток через Claude Code (`/<slash-command>` работают и в Claude Code, и в Cursor):
 
-1. Запустить `pnpm add-package` или скопировать `packages/button/` → `packages/my-component/`
-2. Переименовать `name` в `package.json` → `@ds/my-component`
-3. Добавить пакет в `packages/tsconfig.esm.json` и `packages/tsconfig.cjs.json` (скрипт `add-package` делает это автоматически)
-4. Описать сторис в `stories/MyComponent.stories.tsx`
-5. Написать демо в `demos/MyComponentDemo.tsx`
-6. Задокументировать в `docs/index.mdx` — страница появится в портале автоматически
+```bash
+pnpm add-package                    # создаёт packages/<pkg>/ и подключает его к репо
+/add-stories <pkg>                  # Playground + VisualMatrix (+ examples/ / tests/ при необходимости)
+pnpm dev:storybook                  # в отдельном терминале
+pnpm test:e2e:update-snapshots packages/<pkg>   # снять baselines (chrome-only)
+/add-tests <pkg>                    # Playwright spec'и по rules
+/add-docs <pkg>                     # docs/index.mdx + demos/
+pnpm gen:props && pnpm gen:readme   # автоген артефактов
+/make-commit                        # conventional commit из staged diff
+```
+
+Перед первым PR прочитать [`.claude/rules/`](./.claude/rules/) — там стандарты на структуру, stories, тесты, документацию.
 
 ### Доменная группировка пакетов
 
-Главная страница и сайдбар docs группируют пакеты по **префиксу имени** через конфиг `apps/docs/src/config/domains.mjs`:
+Главная страница и сайдбар docs группируют пакеты по **префиксу имени** через конфиг `apps/docs/src/config/domains.ts`:
 
 | Префикс пакета | Домен в портале и Storybook |
 |----------------|------------------------------|

@@ -1,4 +1,4 @@
-import { input, confirm, select } from '@inquirer/prompts'
+import { input, confirm } from '@inquirer/prompts'
 import { validatePackageName, validateComponentName, packageExists, toPascal } from './validate.mts'
 
 export interface PackageOptions {
@@ -6,7 +6,6 @@ export interface PackageOptions {
   readonly componentName: string
   readonly displayTitle: string
   readonly description: string
-  readonly docsLayout: 'single' | 'multi'
   readonly includeDemo: boolean
   readonly includeE2E: boolean
 }
@@ -49,14 +48,6 @@ export async function collectOptions(): Promise<PackageOptions> {
     default: '',
   })
 
-  const docsLayout = await select<'single' | 'multi'>({
-    message: 'Docs layout',
-    choices: [
-      { name: 'Single-component  (docs/overview.mdx)', value: 'single' },
-      { name: 'Multi-component   (docs/index.mdx + component pages)', value: 'multi' },
-    ],
-  })
-
   const includeDemo = await confirm({
     message: 'Include Canvas demo in docs?',
     default: true,
@@ -72,7 +63,6 @@ export async function collectOptions(): Promise<PackageOptions> {
     componentName: componentName.trim(),
     displayTitle: componentName.trim(),
     description: description.trim(),
-    docsLayout,
     includeDemo,
     includeE2E,
   })
