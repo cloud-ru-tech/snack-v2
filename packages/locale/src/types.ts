@@ -1,6 +1,5 @@
 import { LOCALES } from './locales';
-import type { PartialDeep, PathsToProps } from './typeUtils';
-
+import { PartialDeep, PathsToProps } from './typeUtils';
 export type LocaleLang = keyof typeof LOCALES;
 
 export type TranslatedEntity = {
