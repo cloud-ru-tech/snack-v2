@@ -14,11 +14,17 @@ import { getEnvironmentDependentConfigPart } from './playwright/utils/getEnviron
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
-  testDir: './packages',
-  testMatch: ['**/__test__/**/*.spec.ts'],
+  testDir: '.',
+  testMatch: ['packages/**/__test__/**/*.spec.ts', 'playwright/coverage/**/*.spec.ts'],
   tsconfig: './tsconfig.json',
   outputDir: resolve(PLAYWRIGHT_ROOT_DIR, 'test-results'),
-  testIgnore: ['**/node_modules/**'],
+  testIgnore: [
+    '**/node_modules/**',
+    // FF-8488 (temp): на CI пропускаем visual regression spec'и, чтобы не
+    // блокировать пайплайн на расхождении macOS↔Linux font-rendering.
+    // Включение обратно — снять переменную SKIP_VISUAL в CI.
+    ...(process.env.SKIP_VISUAL ? ['**/__test__/**/visual.spec.ts'] : []),
+  ],
   fullyParallel: true,
   // Baseline PNG: packages/<pkg>/__test__/<Component>/__snapshots__/<arg>-<projectName>.png
   // `{testFileDir}` — путь test-файла относительно `{testDir}`, поэтому обязательно его префиксить,

@@ -1,6 +1,16 @@
+import { randomUUID } from 'crypto';
+import { mkdirSync, writeFileSync } from 'fs';
+import { resolve } from 'path';
+
 import { expect as playwrightExpect, Locator, test as base } from '@playwright/test';
 
-import { dataTestIdSelector, getStorybookUrl, StorybookUrlOptions } from './utils';
+import { dataTestIdSelector, getStorybookUrl, getStorybookUrlById, StorybookUrlOptions, waitForFonts } from './utils';
+
+const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
+const COVERAGE_DIR = resolve(process.cwd(), 'coverage', 'raw', 'playwright');
+if (COVERAGE_ENABLED) {
+  mkdirSync(COVERAGE_DIR, { recursive: true });
+}
 
 type DragOptions = {
   targetPosition?: { x: number; y: number };
@@ -8,25 +18,50 @@ type DragOptions = {
   steps?: number;
 };
 
+type GotoStoryFn = {
+  (options: StorybookUrlOptions): Promise<void>;
+  (storyId: string, args?: Record<string, unknown>): Promise<void>;
+};
+
 type PlaywrightFixtures = {
-  gotoStory(options: StorybookUrlOptions): Promise<void>;
+  gotoStory: GotoStoryFn;
   getByTestId(testId: string): Locator;
+  /** Fixture-форма `waitForFonts` — без аргумента, использует `page` из контекста. См. `visual-regression-standard.md`. */
+  waitForFonts(): Promise<void>;
   scrollBy(locator: Locator, options?: { top?: number; left?: number; behavior?: ScrollBehavior }): Promise<void>;
   getScrollTop(locator: Locator): Promise<number>;
   waitForNavigation(expectedPath: string, options?: { timeout?: number }): Promise<void>;
   dragTo(locator: Locator, options?: DragOptions): Promise<void>;
+  collectCoverage: void;
 };
 
 export const test = base.extend<PlaywrightFixtures>({
+  collectCoverage: [
+    async ({ page }, customUse) => {
+      await customUse();
+      if (!COVERAGE_ENABLED) return;
+      try {
+        const coverage = await page.evaluate(
+          () => (window as unknown as { __coverage__?: unknown }).__coverage__ ?? null,
+        );
+        if (coverage) {
+          writeFileSync(resolve(COVERAGE_DIR, `${randomUUID()}.json`), JSON.stringify(coverage));
+        }
+      } catch {
+        // page may already be closed — ignore
+      }
+    },
+    { auto: true },
+  ],
   gotoStory: async ({ page }, customUse) => {
-    await customUse(async (options: StorybookUrlOptions) => {
-      const url = getStorybookUrl(options);
+    const navigate: GotoStoryFn = (async (first: StorybookUrlOptions | string, second?: Record<string, unknown>) => {
+      const url = typeof first === 'string' ? getStorybookUrlById({ id: first, args: second }) : getStorybookUrl(first);
       await page.goto(url, { waitUntil: 'domcontentloaded' });
 
       await page.waitForLoadState('load');
 
       const storybookLoaderLocator = page.locator('.sb-preparing-story .sb-loader');
-      await playwrightExpect(storybookLoaderLocator).toBeHidden({ timeout: 10000 });
+      await playwrightExpect(storybookLoaderLocator).toBeHidden({ timeout: 15000 });
 
       const errorMessage = page.locator("text=/Couldn't find story|Unable to find story|Story not found/i");
       const errorVisible = await errorMessage.isVisible().catch(() => false);
@@ -79,10 +114,14 @@ export const test = base.extend<PlaywrightFixtures>({
         // Give Storybook a tick to re-render with updated args.
         await page.waitForLoadState('networkidle').catch(() => {});
       }
-    });
+    }) as GotoStoryFn;
+    await customUse(navigate);
   },
   getByTestId: async ({ page }, customUse) => {
     await customUse((testId: string) => page.locator(dataTestIdSelector(testId)));
+  },
+  waitForFonts: async ({ page }, customUse) => {
+    await customUse(() => waitForFonts(page));
   },
   // eslint-disable-next-line no-empty-pattern
   scrollBy: async ({}, customUse) => {
@@ -156,4 +195,8 @@ export const test = base.extend<PlaywrightFixtures>({
   },
 });
 
-export { expect, type Locator, type Page } from '@playwright/test';
+export { expect } from '@playwright/test';
+// `Locator` / `Page` — type-only re-export. TS-флаг `isolatedModules` требует
+// явный `export type` для re-export'а типов из внешних пакетов; без него TS1205.
+// Это исключение к [imports-exports.md](../.claude/rules/imports-exports.md).
+export type { Locator, Page } from '@playwright/test';

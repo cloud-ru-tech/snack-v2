@@ -34,6 +34,9 @@ const QS_OPTIONS: IStringifyOptions<true> = {
 const buildArgsParam = (args: Record<string, unknown>): string =>
   stringify(encodeSpecialValues(args), QS_OPTIONS)
     .replace(/ /g, '+')
+    // '#' в значениях терминирует search и превращает остаток URL во fragment,
+    // ломая последующие args. qs с `encode: false` не экранирует — делаем руками.
+    .replace(/#/g, '%23')
     .split(';')
     .map((part: string) => part.replace('=', ':'))
     .join(';');
@@ -46,6 +49,39 @@ export type StorybookUrlOptions = {
   category?: string;
   globals?: Record<string, unknown>;
 };
+
+/**
+ * Канонический shape ссылки на story из `__test__/<Component>/helpers.ts`.
+ * Все пакеты должны импортить этот тип из `#playwright-tooling/utils`, а не
+ * дублировать `type StoryRef = { name; story; group? }` в каждом helpers'е.
+ */
+export type StoryRef = {
+  name: string;
+  story: string;
+  group?: string;
+};
+
+export type StorybookByIdOptions = {
+  id: string;
+  args?: Record<string, unknown>;
+  globals?: Record<string, unknown>;
+};
+
+export function getStorybookUrlById({ id, args, globals }: StorybookByIdOptions): string {
+  let argsString = '';
+  let globalsString = '';
+
+  if (args) {
+    argsString = buildArgsParam(args);
+  }
+  if (globals) {
+    globalsString = buildArgsParam(globals);
+  }
+
+  return `iframe.html?id=${id}&viewMode=story${globalsString ? `&globals=${globalsString}` : ''}${
+    argsString ? `&args=${argsString}` : ''
+  }`;
+}
 
 export function getStorybookUrl({
   name,
