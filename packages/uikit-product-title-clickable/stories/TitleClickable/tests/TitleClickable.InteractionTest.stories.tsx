@@ -20,7 +20,10 @@ export const InteractionTest: Story = {
   args: {
     href: '#',
     title: 'Click me',
-    onClick: fn(e => e.preventDefault()),
+    onClick: fn(e => {
+      e.preventDefault();
+      e.stopPropagation();
+    }),
     'data-test-id': TEST_IDS.root,
   },
   render: args => (
@@ -28,7 +31,13 @@ export const InteractionTest: Story = {
       <DemoPanel>
         <DemoTitle>InteractionTest</DemoTitle>
         <DemoHint>Клик по заголовку вызывает onClick один раз.</DemoHint>
-        <DemoActions align='center'>
+        <DemoActions
+          align='center'
+          onClickCapture={e => {
+            const anchor = (e.target as HTMLElement).closest('a');
+            if (anchor) e.preventDefault();
+          }}
+        >
           <TitleClickable {...args} />
         </DemoActions>
       </DemoPanel>

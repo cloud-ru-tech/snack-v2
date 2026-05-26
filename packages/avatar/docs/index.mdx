@@ -12,6 +12,8 @@ import { WithImage } from '../demos/examples/WithImage'
 import WithImageSrc from '../demos/examples/WithImage.tsx?raw'
 import { Sizes } from '../demos/examples/Sizes'
 import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { CustomBadge } from '../demos/examples/CustomBadge'
+import CustomBadgeSrc from '../demos/examples/CustomBadge.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -39,10 +41,19 @@ import { figmaNode } from '#docs/lib/figma'
 Размерный ряд аватара: `xs`/`s` — для плотных списков и тулбаров, `m` — дефолт в рядах, `l` — карточки пользователей, `3xl`/`6xl`/`10xl` — крупные профили и пустые состояния.
 
 ### Shape
-Форма контейнера: `round` — круглый (по умолчанию для людей), `square` — со скруглёнными углами (команды, организации, боты).
+Форма контейнера: `rounded` — круглый (по умолчанию для людей), `squared` — со скруглёнными углами (команды, организации, боты).
 
 ### Appearance
 Цвет фона под инициалами. Помимо нейтральных `neutral`/`primary` есть декоративные `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink` — используются для стабильной окраски по id пользователя, не несут семантики.
+
+### Badge
+Слот для микро-индикатора в правом-нижнем углу аватара. Принимает любой `ReactNode`:
+
+- `StatusIndicator` — задаётся коротким пропом `status` (компонент сам подбирает размер).
+- `Counter` — счётчик уведомлений.
+- Иконка-«verified» / собственный микро-компонент — через `badge={<...>}`.
+
+Для визуальной парности с дефолтным `StatusIndicator` бери размер из публичной карты `AVATAR_TO_STATUS_INDICATOR_SIZE[size]`.
 
 ## Установка
 ```bash
@@ -65,6 +76,14 @@ import { Avatar, APPEARANCE, SHAPE, SIZE } from '@ds/avatar'
 
 <Example title='Разные размеры' description='Размерный ряд от `xs` до `10xl`.' code={SizesSrc}>
   <Sizes client:visible />
+</Example>
+
+<Example
+  title='Кастомный badge-слот'
+  description='Counter, иконка-«verified», `status` и ручной `StatusIndicator` в одном слоте.'
+  code={CustomBadgeSrc}
+>
+  <CustomBadge client:visible />
 </Example>
 
 ## Props

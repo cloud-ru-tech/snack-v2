@@ -1,4 +1,5 @@
 import { Avatar, AvatarProps, TEST_IDS } from '@ds/avatar';
+import { APPEARANCE as STATUS_APPEARANCE } from '@ds/status';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, waitFor, within } from 'storybook/test';
 
@@ -9,6 +10,10 @@ const STORY_TEST_IDS = {
   twoSymbols: 'avatar-two-symbols',
   longName: 'avatar-long-name',
   imageFallback: 'avatar-image-fallback',
+  withStatus: 'avatar-with-status',
+  withBadge: 'avatar-with-badge',
+  badgeOverridesStatus: 'avatar-badge-overrides-status',
+  customBadge: 'avatar-custom-badge',
 } as const;
 
 const meta: Meta<AvatarProps> = {
@@ -35,6 +40,25 @@ export const InteractionTest: Story = {
             data-test-id={STORY_TEST_IDS.imageFallback}
             name='John Doe'
             src='https://invalid-url.example/broken-image.jpg'
+          />
+          <Avatar
+            data-test-id={STORY_TEST_IDS.withStatus}
+            name='John Doe'
+            size='10xl'
+            status={STATUS_APPEARANCE.Green}
+          />
+          <Avatar
+            data-test-id={STORY_TEST_IDS.withBadge}
+            name='John Doe'
+            size='10xl'
+            badge={<span data-test-id={STORY_TEST_IDS.customBadge}>★</span>}
+          />
+          <Avatar
+            data-test-id={STORY_TEST_IDS.badgeOverridesStatus}
+            name='John Doe'
+            size='10xl'
+            status={STATUS_APPEARANCE.Red}
+            badge={<span data-test-id={STORY_TEST_IDS.customBadge}>!</span>}
           />
         </DemoActions>
       </DemoPanel>
@@ -72,6 +96,33 @@ export const InteractionTest: Story = {
         const abbreviation = within(root).getByTestId(TEST_IDS.abbreviation);
         expect(abbreviation).toBeVisible();
       });
+    });
+
+    await step('status: renders default StatusIndicator with mapped appearance', async () => {
+      const root = canvas.getByTestId(STORY_TEST_IDS.withStatus);
+      const badge = within(root).getByTestId(TEST_IDS.badge);
+      const indicator = within(badge).getByTestId(TEST_IDS.statusIndicator);
+      await expect(indicator).toBeVisible();
+      await expect(indicator).toHaveAttribute('data-appearance', STATUS_APPEARANCE.Green);
+      // size=10xl → indicator size=s (см. AVATAR_TO_STATUS_INDICATOR_SIZE)
+      await expect(indicator).toHaveAttribute('data-size', 's');
+    });
+
+    await step('badge: arbitrary ReactNode renders in slot', async () => {
+      const root = canvas.getByTestId(STORY_TEST_IDS.withBadge);
+      const badge = within(root).getByTestId(TEST_IDS.badge);
+      const custom = within(badge).getByTestId(STORY_TEST_IDS.customBadge);
+      await expect(custom).toBeVisible();
+      await expect(custom).toHaveTextContent('★');
+      // status indicator must NOT render when badge is set
+      expect(within(root).queryByTestId(TEST_IDS.statusIndicator)).toBeNull();
+    });
+
+    await step('badge: takes precedence over status', async () => {
+      const root = canvas.getByTestId(STORY_TEST_IDS.badgeOverridesStatus);
+      const badge = within(root).getByTestId(TEST_IDS.badge);
+      await expect(within(badge).getByTestId(STORY_TEST_IDS.customBadge)).toHaveTextContent('!');
+      expect(within(root).queryByTestId(TEST_IDS.statusIndicator)).toBeNull();
     });
   },
 };

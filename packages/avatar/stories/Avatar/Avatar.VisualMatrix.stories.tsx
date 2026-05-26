@@ -1,9 +1,10 @@
 import { APPEARANCE, Avatar, SHAPE, SIZE } from '@ds/avatar';
+import { APPEARANCE as STATUS_APPEARANCE } from '@ds/status';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import portrait from './assets/portrait.svg';
+import placeholder from './assets/placeholder.png';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof Avatar> = {
@@ -17,40 +18,69 @@ type Story = StoryObj<typeof Avatar>;
 
 const allSizes = Object.values(SIZE);
 const keyAppearances = Object.values(APPEARANCE);
-const keyShapes = [SHAPE.Round, SHAPE.Square] as const;
-// `portrait` импортируется loader'ом как opaque-объект (SvgComponent & ImageMetadata);
+const sampleAppearances = [APPEARANCE.Neutral, APPEARANCE.Primary, APPEARANCE.Red] as const;
+// `placeholder` импортируется loader'ом как opaque-объект (ImageMetadata);
 // в runtime — это url-строка. Двойной cast — единственный путь, тип loader'а с
 // `string` напрямую не совместим.
-const portraitSrc = portrait as unknown as string;
+const placeholderSrc = placeholder as unknown as string;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (
     <div className={styles.matrix}>
-      {keyShapes.map(shape => (
-        <StoryTable
-          key={shape}
-          sectionTitle={`Shape — ${shape} · all sizes`}
-          firstColumnHeader='Appearance'
-          columnHeaders={allSizes.map(size => size.toUpperCase())}
-          rows={keyAppearances.map(appearance => ({
-            variantLabel: appearance,
-            cells: allSizes.map(size => (
-              <Avatar key={size} name='John Doe' size={size} shape={shape} appearance={appearance} />
-            )),
-          }))}
-        />
-      ))}
       <StoryTable
-        sectionTitle='Image src — all sizes × shape'
-        firstColumnHeader='Shape'
+        sectionTitle='Shape — rounded · all appearances × sizes'
+        firstColumnHeader='Appearance'
         columnHeaders={allSizes.map(size => size.toUpperCase())}
-        rows={keyShapes.map(shape => ({
-          variantLabel: shape,
+        rows={keyAppearances.map(appearance => ({
+          variantLabel: appearance,
           cells: allSizes.map(size => (
-            <Avatar key={size} name='Jane Roe' size={size} shape={shape} src={portraitSrc} />
+            <Avatar key={size} name='John Doe' size={size} shape={SHAPE.Rounded} appearance={appearance} />
           )),
         }))}
+      />
+      <StoryTable
+        sectionTitle='Shape — squared · sample appearances × sizes'
+        firstColumnHeader='Appearance'
+        columnHeaders={allSizes.map(size => size.toUpperCase())}
+        rows={sampleAppearances.map(appearance => ({
+          variantLabel: appearance,
+          cells: allSizes.map(size => (
+            <Avatar key={size} name='John Doe' size={size} shape={SHAPE.Squared} appearance={appearance} />
+          )),
+        }))}
+      />
+      <StoryTable
+        sectionTitle='Image src × badge slot — all sizes'
+        firstColumnHeader='Variant'
+        columnHeaders={allSizes.map(size => size.toUpperCase())}
+        rows={[
+          {
+            variantLabel: 'rounded',
+            cells: allSizes.map(size => (
+              <Avatar key={size} name='Jane Roe' size={size} shape={SHAPE.Rounded} src={placeholderSrc} />
+            )),
+          },
+          {
+            variantLabel: 'squared',
+            cells: allSizes.map(size => (
+              <Avatar key={size} name='Jane Roe' size={size} shape={SHAPE.Squared} src={placeholderSrc} />
+            )),
+          },
+          {
+            variantLabel: 'rounded + badge',
+            cells: allSizes.map(size => (
+              <Avatar
+                key={size}
+                name='Jane Roe'
+                size={size}
+                shape={SHAPE.Rounded}
+                src={placeholderSrc}
+                status={STATUS_APPEARANCE.Green}
+              />
+            )),
+          },
+        ]}
       />
     </div>
   ),

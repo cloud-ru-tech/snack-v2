@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border: base.$sn-primitive-strokeWeight-strokeBold solid base.$sn-theme-color-neutral-background1Level;
+  border-radius: 50%;
+
+  color: base.$sn-theme-color-neutral-background1Level;
+
+  background-color: base.$sn-theme-color-primary-accent;
+}

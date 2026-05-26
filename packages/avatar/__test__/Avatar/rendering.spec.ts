@@ -13,9 +13,9 @@ const KEY_COMBOS: ReadonlyArray<{
   shape: (typeof SHAPE)[keyof typeof SHAPE];
   appearance: (typeof APPEARANCE)[keyof typeof APPEARANCE];
 }> = [
-  { size: SIZE.Xs, shape: SHAPE.Round, appearance: APPEARANCE.Neutral },
-  { size: SIZE.M, shape: SHAPE.Square, appearance: APPEARANCE.Primary },
-  { size: SIZE.L, shape: SHAPE.Round, appearance: APPEARANCE.Red },
+  { size: SIZE.Xs, shape: SHAPE.Rounded, appearance: APPEARANCE.Neutral },
+  { size: SIZE.M, shape: SHAPE.Squared, appearance: APPEARANCE.Primary },
+  { size: SIZE.L, shape: SHAPE.Rounded, appearance: APPEARANCE.Red },
 ];
 
 test.describe('Avatar — rendering', () => {

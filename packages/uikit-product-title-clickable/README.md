@@ -177,14 +177,16 @@ export function WithAvatar() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид (цвет) |
+| `badge` | `ReactNode` | — | Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`. |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
-| `shape` | `"round"` \| `"square"` | — | Форма: круглая или квадратная |
+| `shape` | `"rounded"` \| `"squared"` | — | Форма: круглая или квадратная |
 | `showTwoSymbols` | `boolean` | — | Отображение двух заглавных символов имени вместо одного |
 | `size` | `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | — | Размер |
 | `src` | `string` | — | URL изображения аватара |
+| `status` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер <br/> индикатора подбирается из `size` аватара автоматически. Полностью <br/> настроить значок можно через слот `badge`, который перекрывает `status`. |
 | `subtitle` | `string` | — | Подпись под именем (e-mail, роль и т.п.). |
 
 ## TitleClickableIcon

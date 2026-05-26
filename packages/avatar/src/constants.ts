@@ -21,8 +21,8 @@ export const SIZE = {
 } as const;
 
 export const SHAPE = {
-  Round: 'round',
-  Square: 'square',
+  Rounded: 'rounded',
+  Squared: 'squared',
 } as const;
 
 export const TEST_IDS = {
@@ -30,4 +30,6 @@ export const TEST_IDS = {
   image: 'avatar__image',
   abbreviation: 'avatar__abbreviation',
   border: 'avatar__border',
+  badge: 'avatar__badge',
+  statusIndicator: 'avatar__status-indicator',
 } as const;

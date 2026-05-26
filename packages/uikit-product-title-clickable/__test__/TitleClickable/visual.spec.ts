@@ -21,7 +21,7 @@ test.describe('TitleClickable — visual regression', () => {
   });
 
   test('interaction states (default × hover × focus)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions({ fullWidth: false }));
     await waitForFonts();
 
     await assertInteractionStatesSnapshot(page, {

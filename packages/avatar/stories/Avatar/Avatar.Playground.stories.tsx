@@ -1,4 +1,5 @@
 import { APPEARANCE, Avatar, SHAPE, SIZE } from '@ds/avatar';
+import { APPEARANCE as STATUS_APPEARANCE } from '@ds/status';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -24,7 +25,7 @@ const meta: Meta<typeof Avatar> = {
   args: {
     name: 'John Doe',
     size: SIZE.S,
-    shape: SHAPE.Round,
+    shape: SHAPE.Rounded,
     appearance: APPEARANCE.Neutral,
     showTwoSymbols: false,
     className: '',
@@ -41,6 +42,12 @@ const meta: Meta<typeof Avatar> = {
       description: 'Цветовая схема',
     },
     showTwoSymbols: { control: 'boolean', description: 'Показать две заглавные буквы' },
+    status: {
+      control: 'select',
+      options: [undefined, ...Object.values(STATUS_APPEARANCE)],
+      description: 'Appearance дефолтного StatusIndicator в правом-нижнем углу',
+    },
+    badge: { table: { disable: true } },
     className: { table: { disable: true } },
     'data-test-id': { table: { disable: true } },
   },

@@ -17,10 +17,19 @@
 Размерный ряд аватара: `xs`/`s` — для плотных списков и тулбаров, `m` — дефолт в рядах, `l` — карточки пользователей, `3xl`/`6xl`/`10xl` — крупные профили и пустые состояния.
 
 ### Shape
-Форма контейнера: `round` — круглый (по умолчанию для людей), `square` — со скруглёнными углами (команды, организации, боты).
+Форма контейнера: `rounded` — круглый (по умолчанию для людей), `squared` — со скруглёнными углами (команды, организации, боты).
 
 ### Appearance
 Цвет фона под инициалами. Помимо нейтральных `neutral`/`primary` есть декоративные `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink` — используются для стабильной окраски по id пользователя, не несут семантики.
+
+### Badge
+Слот для микро-индикатора в правом-нижнем углу аватара. Принимает любой `ReactNode`:
+
+- `StatusIndicator` — задаётся коротким пропом `status` (компонент сам подбирает размер).
+- `Counter` — счётчик уведомлений.
+- Иконка-«verified» / собственный микро-компонент — через `badge={<...>}`.
+
+Для визуальной парности с дефолтным `StatusIndicator` бери размер из публичной карты `AVATAR_TO_STATUS_INDICATOR_SIZE[size]`.
 
 ## Установка
 ```bash
@@ -75,26 +84,81 @@ export function Sizes() {
 }
 ```
 
+### Кастомный badge-слот
+
+Counter, иконка-«verified», `status` и ручной `StatusIndicator` в одном слоте.
+
+```tsx
+import { Avatar, AVATAR_TO_STATUS_INDICATOR_SIZE, SIZE } from '@ds/avatar';
+import { Counter, SIZE as COUNTER_SIZE } from '@ds/counter';
+import { CheckSVG } from '@ds/icons';
+import { APPEARANCE as STATUS_APPEARANCE, StatusIndicator } from '@ds/status';
+
+import styles from './CustomBadge.module.scss';
+
+export function CustomBadge() {
+  return (
+    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Avatar
+        name='John Doe'
+        size={SIZE['6Xl']}
+        src='https://i.pravatar.cc/120?img=12'
+        badge={<Counter value={5} size={COUNTER_SIZE.S} />}
+      />
+
+      <Avatar
+        name='Jane Roe'
+        size={SIZE['6Xl']}
+        src='https://i.pravatar.cc/120?img=47'
+        badge={
+          <span className={styles.verified}>
+            <CheckSVG size={16} />
+          </span>
+        }
+      />
+
+      <Avatar
+        name='Alex Roe'
+        size={SIZE['6Xl']}
+        src='https://i.pravatar.cc/120?img=8'
+        status={STATUS_APPEARANCE.Green}
+      />
+
+      <Avatar
+        name='Mia Roe'
+        size={SIZE['6Xl']}
+        src='https://i.pravatar.cc/120?img=20'
+        badge={
+          <StatusIndicator size={AVATAR_TO_STATUS_INDICATOR_SIZE[SIZE['6Xl']]} appearance={STATUS_APPEARANCE.Red} />
+        }
+      />
+    </div>
+  );
+}
+```
+
 ## Props
 **AvatarProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цвет) |
+| `badge` | `ReactNode` | — | Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`. |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
-| `shape` | `"round"` \| `"square"` | `round` | Форма: круглая или квадратная |
+| `shape` | `"rounded"` \| `"squared"` | `rounded` | Форма: круглая или квадратная |
 | `showTwoSymbols` | `boolean` | `false` | Отображение двух заглавных символов имени вместо одного |
 | `size` | `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
 | `src` | `string` | — | URL изображения аватара |
+| `status` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер <br/> индикатора подбирается из `size` аватара автоматически. Полностью <br/> настроить значок можно через слот `badge`, который перекрывает `status`. |
 
 #### Related types
 
 - `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-- `Shape` = `"round"` \| `"square"`
+- `Shape` = `"rounded"` \| `"squared"`
 
 - `Size` = `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"`
 

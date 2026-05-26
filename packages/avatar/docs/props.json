@@ -2,7 +2,7 @@
   "Avatar": {
     "displayName": "Avatar",
     "propsTypeName": "AvatarProps",
-    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (round) или квадратная (square)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink",
+    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (rounded) или квадратная (squared)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink\n- Слот `badge` (любой ReactNode) и шорткат `status` для дефолтного `StatusIndicator`",
     "props": {
       "appearance": {
         "type": "enum",
@@ -23,6 +23,11 @@
         "typeRefs": [
           "Appearance"
         ]
+      },
+      "badge": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`."
       },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -46,10 +51,10 @@
         "type": "enum",
         "required": false,
         "values": [
-          "round",
-          "square"
+          "rounded",
+          "squared"
         ],
-        "defaultValue": "round",
+        "defaultValue": "rounded",
         "description": "Форма: круглая или квадратная",
         "typeRefs": [
           "Shape"
@@ -83,6 +88,24 @@
         "type": "string",
         "required": false,
         "description": "URL изображения аватара"
+      },
+      "status": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "description": "Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер\nиндикатора подбирается из `size` аватара автоматически. Полностью\nнастроить значок можно через слот `badge`, который перекрывает `status`.",
+        "typeRefs": [
+          "StatusAppearance"
+        ]
       }
     },
     "relatedTypes": {
@@ -104,8 +127,8 @@
       "Shape": {
         "kind": "union",
         "values": [
-          "round",
-          "square"
+          "rounded",
+          "squared"
         ],
         "own": true
       },
