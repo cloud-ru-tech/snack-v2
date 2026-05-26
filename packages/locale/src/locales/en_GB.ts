@@ -77,4 +77,9 @@ export const en_GB = {
     v: 'Value',
     alpha: 'Alpha',
   },
+  AvatarDetail: {
+    copy: 'Copy',
+    copied: 'Copied',
+    copyContactData: 'Copy contact data',
+  },
 } satisfies Dictionary;

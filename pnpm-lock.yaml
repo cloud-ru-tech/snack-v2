@@ -420,6 +420,9 @@ importers:
       '@ds/typography':
         specifier: workspace:*
         version: link:../../packages/typography
+      '@ds/uikit-product-avatar-detail':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-avatar-detail
       '@ds/uikit-product-copy':
         specifier: workspace:*
         version: link:../../packages/uikit-product-copy
@@ -1417,6 +1420,33 @@ importers:
 
   packages/typography:
     dependencies:
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-avatar-detail:
+    dependencies:
+      '@ds/avatar':
+        specifier: workspace:*
+        version: link:../avatar
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
       classnames:
         specifier: 'catalog:'
         version: 2.5.1

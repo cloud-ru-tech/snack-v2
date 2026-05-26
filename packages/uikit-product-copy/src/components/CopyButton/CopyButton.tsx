@@ -1,9 +1,7 @@
 import { Button, ButtonProps } from '@ds/button';
 import { CheckSVG, CopySVG } from '@ds/icons';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useCopyToClipboard, WithSupportProps } from '@ds/utils';
 import { MouseEventHandler } from 'react';
-
-import { useCopyToClipboard } from '../../hooks';
 
 export type CopyButtonProps = WithSupportProps<{
   /** Значение для копирования в буфер. */

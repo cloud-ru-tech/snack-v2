@@ -186,6 +186,9 @@
     },
     {
       "path": "./ai-card/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-avatar-detail/tsconfig.cjs.json"
     }
   ]
 }

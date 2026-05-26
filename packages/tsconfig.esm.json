@@ -152,7 +152,7 @@
     {
       "path": "./accordion/tsconfig.esm.json"
     },
-        {
+    {
       "path": "./segment-control/tsconfig.esm.json"
     },
     {
@@ -184,6 +184,9 @@
     },
     {
       "path": "./ai-card/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-avatar-detail/tsconfig.esm.json"
     }
   ]
 }

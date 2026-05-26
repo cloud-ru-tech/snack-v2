@@ -77,4 +77,9 @@ export const ru_RU: typeof en_GB = {
     v: 'Яркость',
     alpha: 'Прозрачность',
   },
+  AvatarDetail: {
+    copy: 'Скопировать',
+    copied: 'Скопировано',
+    copyContactData: 'Скопировать контактные данные',
+  },
 };

@@ -5,6 +5,8 @@ import { buildStoryOptions, TEST_IDS } from './helpers';
 // Browser-specific: real clipboard read via navigator.clipboard. Behavioral click/keyboard
 // (focus, Enter, Space, onClick fires) is covered in tests/CopyLine.InteractionTest.stories.tsx::play.
 test.describe('CopyLine — interaction (browser clipboard)', () => {
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Clipboard permissions are only supported in Chromium');
+
   test.beforeEach(async ({ context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   });

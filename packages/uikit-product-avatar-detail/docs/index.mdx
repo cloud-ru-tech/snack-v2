@@ -1,0 +1,90 @@
+---
+title: AvatarDetail
+package: '@ds/uikit-product-avatar-detail'
+description: 'Типовой пользовательский блок из продуктового UI Kit: аватар с необязательным статус индикатором, имя, контактные данные для копирования и вторичное описание.'
+order: 1
+---
+
+import { AvatarDetailDemo } from '../demos/AvatarDetailDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithContactData } from '../demos/examples/WithContactData'
+import WithContactDataSrc from '../demos/examples/WithContactData.tsx?raw'
+import { WithDescription } from '../demos/examples/WithDescription'
+import WithDescriptionSrc from '../demos/examples/WithDescription.tsx?raw'
+import { WithCustomAvatar } from '../demos/examples/WithCustomAvatar'
+import WithCustomAvatarSrc from '../demos/examples/WithCustomAvatar.tsx?raw'
+import { Full } from '../demos/examples/Full'
+import FullSrc from '../demos/examples/Full.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# AvatarDetail
+
+Типовой пользовательский блок из продуктового UI Kit: аватар с необязательным статус индикатором, имя, контактные данные для копирования и вторичное описание.
+
+## Демо
+
+<AvatarDetailDemo client:visible />
+
+## Когда использовать
+
+- В профильных карточках, где нужно компактно показать аватар, имя и email/логин для копирования.
+- В списках участников, владельцев ресурсов или ответственных, где важна быстрая идентификация пользователя.
+
+## Анатомия
+
+### Слоты
+
+- `name` — обязательное имя пользователя; отображается рядом с аватаром, обрезается при переполнении.
+- `contactData` — опциональные контактные данные (email, логин); при клике копируются в буфер.
+- `description` — опциональное описание под основной строкой (роль, должность).
+- `avatar` — пропсы аватара (`appearance`, `status`, `src` и др.) без `name` (берётся из корневого пропа).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-avatar-detail
+```
+
+```ts
+import { AvatarDetail, AvatarDetailProps } from '@ds/uikit-product-avatar-detail'
+```
+
+## Примеры использования
+
+<Example title='Базовый' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='С контактными данными' description='Кнопка с email копирует значение в буфер обмена.' code={WithContactDataSrc}>
+  <WithContactData client:visible />
+</Example>
+
+<Example title='С описанием' code={WithDescriptionSrc}>
+  <WithDescription client:visible />
+</Example>
+
+<Example title='Кастомный аватар' description='Цвет и статус-индикатор передаются через проп avatar.' code={WithCustomAvatarSrc}>
+  <WithCustomAvatar client:visible />
+</Example>
+
+<Example title='Полный набор пропсов' code={FullSrc}>
+  <Full client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={doc.AvatarDetail} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-avatar-detail--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-avatar-detail')} />

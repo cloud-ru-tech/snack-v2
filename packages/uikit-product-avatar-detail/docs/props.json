@@ -1,0 +1,168 @@
+{
+  "AvatarDetail": {
+    "displayName": "AvatarDetail",
+    "propsTypeName": "AvatarDetailProps",
+    "props": {
+      "avatar": {
+        "type": "Omit<AvatarProps, \"data-test-id\" | \"name\">",
+        "required": false,
+        "description": "Аватар пропсы",
+        "typeRefs": [
+          "AvatarProps"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "contactData": {
+        "type": "string",
+        "required": false,
+        "description": "Контактные данные для отображения и копирования"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительное описание под основной строкой"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "description": "Имя пользователя"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "AvatarProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид (цвет)",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "badge": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Имя пользователя для генерации аббревиатуры"
+          },
+          "shape": {
+            "type": "Shape | undefined",
+            "required": false,
+            "values": [
+              "rounded",
+              "squared"
+            ],
+            "description": "Форма: круглая или квадратная",
+            "typeRefs": [
+              "Shape"
+            ]
+          },
+          "showTwoSymbols": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение двух заглавных символов имени вместо одного"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "10xl",
+              "3xl",
+              "6xl",
+              "l",
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "src": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "URL изображения аватара"
+          },
+          "status": {
+            "type": "StatusAppearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер\nиндикатора подбирается из `size` аватара автоматически. Полностью\nнастроить значок можно через слот `badge`, который перекрывает `status`.",
+            "typeRefs": [
+              "StatusAppearance"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Shape": {
+        "kind": "union",
+        "values": [
+          "rounded",
+          "squared"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      }
+    }
+  }
+}

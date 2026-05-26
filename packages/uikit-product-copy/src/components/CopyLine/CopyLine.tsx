@@ -1,12 +1,11 @@
 import { Button } from '@ds/button';
 import { CheckSVG, CopySVG } from '@ds/icons';
 import { TruncateString } from '@ds/truncate-string';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useCopyToClipboard, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, MouseEventHandler, ReactNode } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { useCopyToClipboard } from '../../hooks';
 import { isStringOrNumber } from '../../utils';
 import { COPY_BUTTON_HIDE_STRATEGY } from './constants';
 import styles from './styles.module.scss';
