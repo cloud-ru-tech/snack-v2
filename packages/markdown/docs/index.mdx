@@ -1,0 +1,25 @@
+---
+title: Markdown
+package: '@ds/markdown'
+description: Просмотр и редактирование markdown — рендер GFM и WYSIWYG-редактор на TipTap.
+order: 0
+---
+
+# Markdown
+
+Пакет `@ds/markdown` даёт две независимые сущности:
+
+- [**Markdown**](/components/markdown/markdown) — рендер markdown-строки в безопасный HTML: GFM, таблицы, подсветка кода с копированием. Презентационный компонент только для чтения.
+- [**MarkdownEditor**](/components/markdown/markdown-editor) — WYSIWYG-редактор на TipTap с тулбаром, preview-тоглом и загрузкой картинок. Работает в controlled и uncontrolled режимах.
+
+## Установка
+
+```bash
+pnpm add @ds/markdown
+```
+
+```ts
+import { Markdown, MarkdownEditor, TOOLBAR_ITEM } from '@ds/markdown'
+```
+
+Редактор использует порталы (тултипы, выпадающие меню) — оборачивайте его в `PortalContextProvider` из `@ds/portal-context`.

@@ -1,0 +1,121 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+
+// Общие стили markdown-контента: типографика блоков и top-spacing'и.
+// Подключаются и во viewer (`Markdown`), и в editor (`MarkdownEditor` → .ProseMirror),
+// чтобы блоки выглядели одинаково в обоих режимах и правились в одном месте.
+
+// Композитные typography-роли заголовков: один токен разворачивается в font-* через composite-var.
+$headings: (
+  'h1': base.$sn-regular-headline-l,
+  'h2': base.$sn-regular-headline-m,
+  'h3': base.$sn-regular-headline-s,
+  'h4': base.$sn-regular-title-l,
+  'h5': base.$sn-regular-title-m,
+);
+
+// Top-spacing на каждый блок (paddingTop при наличии предыдущего соседа).
+$block-top-spacings: (
+  'h1': md.$sn-markdown-anatomy-size-syntax-headings-h1-paddingTop,
+  'h2': md.$sn-markdown-anatomy-size-syntax-headings-h2-paddingTop,
+  'h3': md.$sn-markdown-anatomy-size-syntax-headings-h3-paddingTop,
+  'h4': md.$sn-markdown-anatomy-size-syntax-headings-h4-paddingTop,
+  'h5': md.$sn-markdown-anatomy-size-syntax-headings-h5-paddingTop,
+  'blockquote': md.$sn-markdown-anatomy-size-syntax-quote-paddingTop,
+  'pre': md.$sn-markdown-anatomy-size-syntax-codeEditor-paddingTop,
+  'table': md.$sn-markdown-anatomy-size-syntax-table-paddingTop,
+  'img': md.$sn-markdown-anatomy-size-syntax-image-paddingTop,
+  'hr': md.$sn-markdown-anatomy-size-syntax-divider-paddingTop,
+);
+
+@mixin markdown-content {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  ul,
+  ol,
+  blockquote,
+  pre,
+  table,
+  hr,
+  img {
+    margin: 0;
+  }
+
+  @each $tag, $token in $headings {
+    #{$tag} {
+      @include base.composite-var($headings, $tag);
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: base.$sn-primitive-dimension-24;
+  }
+
+  blockquote {
+    min-height: md.$sn-markdown-anatomy-size-syntax-quote-wrapper-minHeight;
+    padding: md.$sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical
+      md.$sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal;
+    border-left: md.$sn-markdown-anatomy-size-syntax-quote-wrapper-borderWidth solid
+      md.$sn-theme-color-available-borderColor;
+    color: md.$sn-theme-color-available-version-textSecondary;
+  }
+
+  code {
+    min-height: md.$sn-markdown-anatomy-size-syntax-inlineCode-minHeight;
+    padding: 0 md.$sn-markdown-anatomy-size-syntax-inlineCode-paddingHorizontal;
+    border-radius: md.$sn-markdown-anatomy-size-syntax-inlineCode-borderRadius;
+
+    font-family: md.$sn-brand-font-fontFamily-mono-body;
+
+    background: md.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  a {
+    color: md.$sn-theme-color-neutral-accent;
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    min-height: md.$sn-markdown-anatomy-size-syntax-table-tableCell-minHeight;
+    padding: md.$sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical
+      md.$sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal;
+    border: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
+    text-align: left;
+  }
+
+  th {
+    font-weight: 600;
+    background: md.$sn-theme-color-neutral-background2Level;
+  }
+}
+
+// Top-spacings: каждый блок имеет свой paddingTop.
+// Default — paragraph; конкретные блоки переопределяют.
+@mixin markdown-block-spacings {
+  > *:not(:first-child) {
+    margin-top: md.$sn-markdown-anatomy-size-syntax-paragraphs-paddingTop;
+  }
+
+  // Списки делят один токен — задаём отдельно от карты блоков.
+  > ul:not(:first-child),
+  > ol:not(:first-child) {
+    margin-top: md.$sn-markdown-anatomy-size-syntax-list-paddingTop;
+  }
+
+  @each $tag, $padding-top in $block-top-spacings {
+    > #{$tag}:not(:first-child) {
+      margin-top: $padding-top;
+    }
+  }
+}

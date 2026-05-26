@@ -1,0 +1,194 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+@use '@sbercloud/figma-variables/build/scss/components/scroll.module' as scroll;
+@use '../../mixins' as mx;
+
+// Внутренние отступы контента поверх паддинга fieldContainer (его задаёт FieldShell):
+// повторяют contentWrapper.verticalPadding + inputLine.horizontalPadding из field-токенов.
+$content-padding-vertical: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding;
+$content-padding-horizontal: field.$sn-field-anatomy-size-m-fieldContainer-paddingRight;
+$min-height: field.$sn-field-anatomy-size-m-fieldContainer-multiLine-minHeight;
+$scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 's', 'width');
+$button-slot: field.$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight;
+$input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: md.$sn-markdown-anatomy-size-container-gap;
+}
+
+// Шапка (headlineWrapper) — вне поля: тогл Preview слева, подпись справа.
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: md.$sn-brand-font-fontFamily-regular-body;
+  font-size: md.$sn-density-typography-roleBody-fontSizeS;
+  line-height: md.$sn-density-typography-roleBody-lineHeightS;
+  color: md.$sn-theme-color-available-version-textSecondary;
+}
+
+.previewToggle {
+  cursor: pointer;
+  user-select: none;
+
+  display: inline-flex;
+  gap: md.$sn-markdown-anatomy-size-container-headlineWrapper-headline-gap;
+  align-items: center;
+}
+
+.previewToggleLabel {
+  color: md.$sn-theme-color-available-version-textMain;
+}
+
+.label {
+  color: md.$sn-theme-color-available-version-textSecondary;
+}
+
+// Слот тулбара в header-слоте оболочки: растягивается на всю ширину и даёт тулбару
+// сжиматься (Toolbar-root имеет flex-shrink: 0), иначе overflow в More не срабатывает.
+.toolbarSlot {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+// Контентная область поля: общий контейнер для textarea (raw) и EditorContent (preview).
+// position: relative — якорь для overlay-кнопки очистки.
+.contentArea {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: $content-padding-vertical $content-padding-horizontal;
+}
+
+// Общий resize-бокс: один и тот же DOM-узел в обоих режимах, поэтому заданная ресайзом
+// высота сохраняется при переключении preview. Потомок (textarea/EditorContent) скроллится
+// внутри (native overflow), бокс лишь задаёт высоту.
+.resizeBox {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: $min-height;
+}
+
+// При resizable — вертикальный CSS-resize со стартовой высотой min-height (иначе resize
+// не от чего отсчитывать); overflow != visible нужен, чтобы появился resize-handle.
+.resizeBoxResizable {
+  resize: vertical;
+  overflow: hidden;
+  height: $min-height;
+}
+
+.postfix {
+  $square: field.$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight;
+  $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding;
+  $line-height: base.$sn-regular-body-m-lineHeight;
+  $vertical-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding;
+
+  position: absolute;
+
+  // Кнопка центрируется по первой строке текста: verticalPadding (отступ контента сверху)
+  // + центровка слота в line-height. Так 32px-кнопка верхним краем садится ровно на
+  // внутреннюю границу поля (Figma), а не выступает над ней.
+  top: calc(#{$vertical-padding} + (#{$line-height} - #{$square}) / 2);
+  right: calc(#{$scrollbar-width} + #{$input-line-padding});
+
+  display: grid;
+  grid-auto-rows: $square;
+
+  // Единственный явный column-track шириной с контейнер: без него implicit-колонка
+  // растягивается (auto) под кнопку, и кнопка перестаёт центрироваться по слоту.
+  grid-template-columns: 100%;
+  row-gap: base.$sn-primitive-dimension-2;
+  place-items: center center;
+
+  width: $square;
+}
+
+.rawInputWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+// raw-режим: «сырой» markdown в textarea. Native-скролл при переполнении resize-бокса.
+.rawInput {
+  resize: none;
+
+  overflow-y: auto;
+  flex: 1 1 auto;
+
+  min-height: 0;
+  padding: 0;
+  padding-right: calc(#{$button-slot} + #{$scrollbar-width} + #{$input-line-padding});
+  border: none;
+
+  font-family: md.$sn-brand-font-fontFamily-regular-body;
+  font-size: md.$sn-density-typography-roleBody-fontSizeM;
+  line-height: md.$sn-density-typography-roleBody-lineHeightM;
+  color: md.$sn-theme-color-available-version-textMain;
+
+  background: transparent;
+  outline: none;
+
+  &::placeholder {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+}
+
+// preview-режим: WYSIWYG (EditorContent). Заполняет resize-бокс, скроллится при переполнении.
+.content {
+  overflow-y: auto;
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  font-family: md.$sn-brand-font-fontFamily-regular-body;
+  font-size: md.$sn-density-typography-roleBody-fontSizeM;
+  line-height: md.$sn-density-typography-roleBody-lineHeightM;
+  color: md.$sn-theme-color-available-version-textMain;
+
+  :global(.ProseMirror) {
+    min-height: 100%;
+    padding-right: calc(#{$button-slot} + #{$scrollbar-width} + #{$input-line-padding});
+    outline: none;
+
+    @include mx.markdown-content;
+    @include mx.markdown-block-spacings;
+
+    pre {
+      overflow-x: auto;
+      padding: base.$sn-primitive-dimension-12;
+      border-radius: md.$sn-density-radius-2xs;
+      background: md.$sn-theme-color-neutral-background2Level;
+
+      code {
+        min-height: 0;
+        padding: 0;
+        background: transparent;
+      }
+    }
+
+    :global(p.is-editor-empty:first-child)::before {
+      pointer-events: none;
+      content: attr(data-placeholder);
+
+      float: left;
+
+      height: 0;
+
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

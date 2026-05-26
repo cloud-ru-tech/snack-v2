@@ -1,0 +1,360 @@
+{
+  "ButtonHeading": {
+    "displayName": "ButtonHeading",
+    "propsTypeName": null,
+    "props": {
+      "api": {
+        "type": "ToolbarApi",
+        "required": true,
+        "description": "Бэкенд команд тулбара (WYSIWYG либо raw markdown)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Buttons": {
+    "displayName": "Buttons",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "ButtonsGroup": {
+    "displayName": "ButtonsGroup",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "CodeBlock": {
+    "displayName": "CodeBlock",
+    "propsTypeName": null,
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "`<code>`-элемент с подсветкой, который react-markdown передаёт внутрь `pre`."
+      },
+      "onCopyClick": {
+        "type": "((code: string) => void)",
+        "required": false,
+        "description": "Колбэк на копирование. Получает сырой код блока."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CustomizeTableModal": {
+    "displayName": "CustomizeTableModal",
+    "propsTypeName": null,
+    "props": {
+      "onClose": {
+        "type": "() => void",
+        "required": true
+      },
+      "onSubmit": {
+        "type": "(rows: number, cols: number) => void",
+        "required": true,
+        "description": "Вставить таблицу заданного размера."
+      },
+      "open": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ImageModal": {
+    "displayName": "ImageModal",
+    "propsTypeName": null,
+    "props": {
+      "onClose": {
+        "type": "() => void",
+        "required": true
+      },
+      "onSubmit": {
+        "type": "(url: string, alt: string) => void",
+        "required": true
+      },
+      "open": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "LinkModal": {
+    "displayName": "LinkModal",
+    "propsTypeName": null,
+    "props": {
+      "initial": {
+        "type": "LinkProps",
+        "required": false,
+        "description": "Текущий href (для редактирования существующей ссылки)."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true
+      },
+      "onSubmit": {
+        "type": "(props: LinkProps) => void",
+        "required": true
+      },
+      "open": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Markdown": {
+    "displayName": "Markdown",
+    "propsTypeName": "MarkdownProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "components": {
+        "type": "Components",
+        "required": false,
+        "description": "Override рендера элементов"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "markdown"
+      },
+      "onCodeCopyClick": {
+        "type": "((code: string) => void)",
+        "required": false,
+        "description": "Колбэк кнопки Copy на code-блоке"
+      },
+      "rehypePlugins": {
+        "type": "PluggableList",
+        "required": false,
+        "description": "Доп. rehype-плагины"
+      },
+      "remarkPlugins": {
+        "type": "PluggableList",
+        "required": false,
+        "description": "Доп. remark-плагины"
+      },
+      "skipHtml": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "По умолчанию true — сырой HTML вырезается"
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Markdown-исходник"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MarkdownEditor": {
+    "displayName": "MarkdownEditor",
+    "propsTypeName": "MarkdownEditorProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "markdown-editor"
+      },
+      "defaultPreview": {
+        "type": "boolean",
+        "required": false,
+        "description": "Uncontrolled"
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "description": "Uncontrolled"
+      },
+      "hideHeader": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Скрыть шапку с тоглом Preview и подписью"
+      },
+      "label": {
+        "type": "string | false",
+        "required": false,
+        "defaultValue": "Markdown field",
+        "description": "Подпись в шапке справа. По умолчанию — `Markdown field`. `false` — без подписи."
+      },
+      "onChange": {
+        "type": "((markdown: string) => void)",
+        "required": false,
+        "description": "Колбэк изменения markdown. Вызывается с дебаунсом `ON_CHANGE_DEBOUNCE_MS` после остановки ввода."
+      },
+      "onPreviewChange": {
+        "type": "((preview: boolean) => void)",
+        "required": false,
+        "description": "Колбэк переключения Preview-тогла в шапке"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Placeholder пустого редактора."
+      },
+      "preview": {
+        "type": "boolean",
+        "required": false,
+        "description": "Controlled preview-режим: показывает форматированный WYSIWYG с активным тулбаром. Выключен — редактирование «сырого» markdown-текста в textarea"
+      },
+      "previewLabel": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "Preview",
+        "description": "Текст тогла Preview в шапке. По умолчанию `Preview`."
+      },
+      "resizable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Может ли пользователь менять размеры поля перетаскиванием уголка. По умолчанию `true`."
+      },
+      "spellCheck": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Нативная проверка орфографии (`spellcheck`). По умолчанию `true`."
+      },
+      "toolbar": {
+        "type": "false | ToolbarItemId[]",
+        "required": false,
+        "description": "Какие кнопки тулбара показать. false — без тулбара",
+        "typeRefs": [
+          "ToolbarItemId"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Controlled markdown"
+      }
+    },
+    "relatedTypes": {
+      "ToolbarItemId": {
+        "kind": "union",
+        "values": [
+          "block-code",
+          "block-quote",
+          "bold",
+          "bullet-list",
+          "heading",
+          "image",
+          "inline-code",
+          "italic",
+          "link",
+          "ordered-list",
+          "strikethrough",
+          "table"
+        ],
+        "own": true
+      }
+    }
+  },
+  "PrivateButton": {
+    "displayName": "PrivateButton",
+    "propsTypeName": null,
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "active/selected состояние"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": true
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Внешний ref, без forwardRef (см. component-api-surface.md)."
+      },
+      "tip": {
+        "type": "TipContentProps",
+        "required": false
+      },
+      "withChevron": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TableSelectItem": {
+    "displayName": "TableSelectItem",
+    "propsTypeName": null,
+    "props": {
+      "aria-label": {
+        "type": "string",
+        "required": false
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Будет ли ячейка попадать в выбранный диапазон."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "hovered": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Hover-состояние (управляется родителем по mouseEnter)."
+      },
+      "onClick": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onMouseEnter": {
+        "type": "(() => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TableSelectSettingsGrid": {
+    "displayName": "TableSelectSettingsGrid",
+    "propsTypeName": null,
+    "props": {
+      "onPick": {
+        "type": "(rows: number, cols: number) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Toolbar": {
+    "displayName": "Toolbar",
+    "propsTypeName": null,
+    "props": {
+      "api": {
+        "type": "ToolbarApi",
+        "required": true,
+        "description": "Бэкенд команд: WYSIWYG (TipTap) в preview-режиме либо markdown-исходник (textarea) в raw-режиме."
+      },
+      "items": {
+        "type": "ToolbarItemId[]",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  }
+}

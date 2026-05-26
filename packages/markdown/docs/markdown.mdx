@@ -1,0 +1,97 @@
+---
+title: Markdown
+package: '@ds/markdown'
+description: Рендер markdown-строки в безопасный HTML — GFM, таблицы, зачёркивание, подсветка кода с кнопкой копирования.
+order: 1
+---
+
+import { Viewer } from '../demos/examples/Viewer'
+import ViewerSrc from '../demos/examples/Viewer.tsx?raw'
+import { ViewerCodeCopy } from '../demos/examples/ViewerCodeCopy'
+import ViewerCodeCopySrc from '../demos/examples/ViewerCodeCopy.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import markdownDoc from './props.json'
+
+# Markdown
+
+Презентационный компонент: принимает `value` со строкой markdown и рендерит её в безопасный HTML. Поддерживает GitHub Flavored Markdown, подсветку кода и копирование code-блоков. Только для чтения — для ввода используйте [`MarkdownEditor`](/components/markdown/markdown-editor).
+
+## Когда использовать
+
+- Отображение пользовательского markdown: описания, комментарии, документация, release notes.
+- Показ форматированного текста, сохранённого редактором, в публичной части интерфейса.
+
+Когда **не** нужен:
+
+- Для простого многострочного текста без форматирования:
+  - нативный `textarea` или поле ввода из `@ds/fields`.
+- Для подсветки изолированного фрагмента кода без markdown:
+  - отдельный code-viewer.
+
+## Анатомия
+
+### View — рендер
+
+Принимает `value` со строкой markdown и рендерит:
+
+- заголовки `h1–h5`, параграфы, списки (маркированные, нумерованные, вложенные);
+- цитаты, горизонтальные разделители, ссылки;
+- таблицы GFM, зачёркивание, инлайн-код;
+- code-блоки с подсветкой синтаксиса, нумерацией строк и кнопкой копирования.
+
+### skipHtml (default `true`)
+
+Контроль над сырым HTML внутри markdown:
+
+- `true` (по умолчанию) — теги вырезаются, рендерится только markdown-разметка (безопасно для пользовательского ввода).
+- `false` — сырой HTML пропускается в вывод. Включайте только для доверенного контента.
+
+### Расширение рендера
+
+- `components` — override отдельных HTML-элементов своими React-компонентами.
+- `remarkPlugins` / `rehypePlugins` — дополнительные плагины пайплайна `react-markdown`.
+- `onCodeCopyClick` — колбэк кнопки Copy на code-блоке, получает сырой текст блока.
+
+## Установка
+
+```bash
+pnpm add @ds/markdown
+```
+
+```ts
+import { Markdown } from '@ds/markdown'
+```
+
+## Примеры использования
+
+<Example
+  title='Рендер markdown'
+  description='GFM-таблица, зачёркивание и code-блок с копированием'
+  code={ViewerSrc}
+>
+  <Viewer client:visible />
+</Example>
+
+<Example
+  title='Копирование code-блока'
+  description='onCodeCopyClick получает сырой текст блока'
+  code={ViewerCodeCopySrc}
+>
+  <ViewerCodeCopy client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={markdownDoc.Markdown} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-markdown-markdown--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('markdown', 'syntax-example')} />

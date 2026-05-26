@@ -1,0 +1,122 @@
+---
+title: MarkdownEditor
+package: '@ds/markdown'
+description: WYSIWYG-редактор markdown на TipTap — тулбар форматирования, preview-тогл, загрузка картинок, controlled и uncontrolled режимы.
+order: 2
+---
+
+import { EditorUncontrolled } from '../demos/examples/EditorUncontrolled'
+import EditorUncontrolledSrc from '../demos/examples/EditorUncontrolled.tsx?raw'
+import { EditorControlled } from '../demos/examples/EditorControlled'
+import EditorControlledSrc from '../demos/examples/EditorControlled.tsx?raw'
+import { EditorCustomToolbar } from '../demos/examples/EditorCustomToolbar'
+import EditorCustomToolbarSrc from '../demos/examples/EditorCustomToolbar.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import markdownDoc from './props.json'
+
+# MarkdownEditor
+
+WYSIWYG-редактор на TipTap с тулбаром форматирования и preview-тоглом. Работает в controlled (`value` / `onChange`) и uncontrolled (`defaultValue`) режимах. Готовый результат показывайте через [`Markdown`](/components/markdown/markdown).
+
+## Когда использовать
+
+- Поле ввода форматированного текста с тулбаром и предпросмотром: описания, комментарии, заметки.
+- Редактирование markdown, который потом сохраняется и рендерится в публичной части.
+
+Когда **не** нужен:
+
+- Для простого многострочного текста без форматирования:
+  - нативный `textarea` или поле ввода из `@ds/fields`.
+- Для показа готового markdown без редактирования:
+  - компонент [`Markdown`](/components/markdown/markdown).
+
+## Анатомия
+
+Редактор состоит из:
+
+- `header` — тогл `Preview` слева и подпись (`label`) справа.
+- `toolbar` — кнопки форматирования, сгруппированные по смыслу; лишние сворачиваются в меню «Ещё».
+- `content` — редактируемая область с кнопкой очистки.
+
+### Preview (default `false`)
+
+Переключает форму редактирования (обе редактируемы, тулбар работает в обеих):
+
+- `false` (по умолчанию) — редактирование «сырого» markdown-текста в textarea. Кнопки тулбара вставляют markdown-разметку (`**жирный**`, `# заголовок`, `- список`) в исходник.
+- `true` — форматированный WYSIWYG-редактор; те же кнопки применяют форматирование к rich-узлам.
+
+Управляется тоглом в шапке либо пропами `preview` / `defaultPreview` / `onPreviewChange`.
+
+### Toolbar (default — полный набор)
+
+Какие кнопки показать:
+
+- `toolbar={[...]}` — массив значений `TOOLBAR_ITEM` (показываются только перечисленные кнопки).
+- `toolbar={false}` — без тулбара.
+- не указан — полный набор кнопок.
+
+### Header (default — виден)
+
+Шапка с тоглом Preview и подписью:
+
+- `label` — подпись справа. `false` — без подписи.
+- `previewLabel` — текст тогла Preview.
+- `hideHeader` — скрыть шапку целиком.
+
+### Resizable (default `true`)
+
+Может ли пользователь менять размеры поля перетаскиванием уголка.
+
+## Установка
+
+```bash
+pnpm add @ds/markdown
+```
+
+```ts
+import { MarkdownEditor, TOOLBAR_ITEM } from '@ds/markdown'
+```
+
+Редактор использует порталы (тултипы, выпадающие меню) — оборачивайте его в `PortalContextProvider` из `@ds/portal-context`.
+
+## Примеры использования
+
+<Example
+  title='Редактор (uncontrolled)'
+  description='defaultValue + onChange с дебаунсом'
+  code={EditorUncontrolledSrc}
+>
+  <EditorUncontrolled client:visible />
+</Example>
+
+<Example
+  title='Редактор (controlled) + Preview'
+  description='value/onChange и preview/onPreviewChange во внешнем стейте'
+  code={EditorControlledSrc}
+>
+  <EditorControlled client:visible />
+</Example>
+
+<Example
+  title='Свой набор кнопок тулбара'
+  description='toolbar={[...]} оставляет только нужные действия'
+  code={EditorCustomToolbarSrc}
+>
+  <EditorCustomToolbar client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={markdownDoc.MarkdownEditor} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-markdown-markdowneditor--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('markdown', 'editor')} />

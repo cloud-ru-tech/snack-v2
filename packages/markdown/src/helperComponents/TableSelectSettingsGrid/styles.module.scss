@@ -1,0 +1,62 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: md.$sn-markdown-anatomy-size-tableSelect-container-gap;
+  padding: md.$sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal
+    md.$sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal
+    md.$sn-markdown-anatomy-size-tableSelect-container-paddingBottom;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8, md.$sn-markdown-anatomy-size-tableSelect-container-item-size);
+  gap: md.$sn-markdown-anatomy-size-tableSelect-container-grid-gap;
+}
+
+.label {
+  font-size: md.$sn-density-typography-roleBody-fontSizeS;
+  line-height: md.$sn-density-typography-roleBody-lineHeightS;
+  color: md.$sn-theme-color-available-version-textSecondary;
+  text-align: center;
+}
+
+.customize {
+  cursor: pointer;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-12;
+  border: none;
+
+  font-family: md.$sn-brand-font-fontFamily-regular-body;
+  font-size: md.$sn-density-typography-roleBody-fontSizeM;
+  line-height: md.$sn-density-typography-roleBody-lineHeightM;
+  color: md.$sn-theme-color-available-version-textMain;
+  text-align: left;
+
+  background: transparent;
+
+  &:hover {
+    background: md.$sn-theme-color-neutral-background2Level;
+  }
+}
+
+.customizeLabel {
+  flex: 1 1 auto;
+}
+
+.customizeChevron {
+  flex: 0 0 auto;
+  color: md.$sn-theme-color-available-version-textSecondary;
+}

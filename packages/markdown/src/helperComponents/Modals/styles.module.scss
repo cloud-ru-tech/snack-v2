@@ -1,0 +1,21 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Два FieldStepper (столбцы/строки) в ряд, gap 16.
+.fields {
+  display: flex;
+  gap: base.$sn-primitive-dimension-16;
+
+  &[data-column] {
+    flex-direction: column;
+  }
+}
+
+.field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.buttons {
+  justify-content: flex-end;
+  width: 100%;
+}

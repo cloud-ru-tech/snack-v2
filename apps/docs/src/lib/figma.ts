@@ -141,6 +141,11 @@ export const FIGMA_NODES = {
     'item-search': { ...LIST_STATES, nodeId: '13022-546' }, // list/item-search → ListItemSearch
   },
   loader: { ...SNACK, nodeId: '2918-21302' }, // loader → loader
+  markdown: {
+    _: { ...SNACK, nodeId: '9201-2412' }, // markdown → canvas
+    editor: { ...SNACK, nodeId: '9271-51617' }, // markdown/editor → markdownEditor
+    'syntax-example': { ...SNACK, nodeId: '9271-55434' }, // markdown/syntax-example → syntaxExample
+  },
   modal: { ...SNACK, nodeId: '2291-117' }, // modal → modal
   pagination: { ...SNACK, nodeId: '4896-67' }, // pagination → pagination
   popover: { ...SNACK, nodeId: '2250-4278' }, // popover → popover

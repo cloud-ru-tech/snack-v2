@@ -1,0 +1,25 @@
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+@use '@ds/materials' as m;
+
+.stateLayer {
+  pointer-events: none;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  width: md.$sn-markdown-anatomy-size-tableSelect-container-item-size;
+  height: md.$sn-markdown-anatomy-size-tableSelect-container-item-size;
+  padding: 0;
+  border: md.$sn-markdown-anatomy-size-tableSelect-container-item-borderWidth solid
+    md.$sn-theme-color-available-borderColor;
+  border-radius: md.$sn-markdown-anatomy-size-tableSelect-container-item-borderRadius;
+
+  &[data-checked] {
+    border-color: md.$sn-theme-color-primary-accent;
+  }
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}

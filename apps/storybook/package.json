@@ -47,6 +47,7 @@
     "@ds/list": "workspace:*",
     "@ds/loader": "workspace:*",
     "@ds/locale": "workspace:*",
+    "@ds/markdown": "workspace:*",
     "@ds/materials": "workspace:*",
     "@ds/modal": "workspace:*",
     "@ds/pagination": "workspace:*",

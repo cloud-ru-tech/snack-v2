@@ -372,5 +372,190 @@
         "own": false
       }
     }
+  },
+  "WithTooltip": {
+    "displayName": "WithTooltip",
+    "propsTypeName": "WithTooltipProps",
+    "props": {
+      "children": {
+        "type": "ReactNode | ChildrenFunction",
+        "required": true,
+        "description": "Триггер поповера (подробнее в TooltipProps)",
+        "typeRefs": [
+          "ChildrenFunction",
+          "TooltipProps"
+        ]
+      },
+      "tooltip": {
+        "type": "Omit<TooltipProps, \"children\">",
+        "required": false,
+        "description": "Настройки для тултипа",
+        "typeRefs": [
+          "TooltipProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": true
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      }
+    }
   }
 }

@@ -1,0 +1,76 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as button;
+@use '@ds/materials' as m;
+
+// `stateLayer` нужен оставленным определённым над .root — миксин ниже его потребляет.
+.stateLayer {
+  visibility: initial;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  min-width: button.$sn-button-anatomy-size-s-container-iconOnly-minWidth;
+  height: button.$sn-button-anatomy-size-s-container-minHeight;
+  padding: 0;
+  border: 0;
+  border-radius: button.$sn-button-anatomy-size-s-container-borderRadius;
+
+  color: md.$sn-theme-color-neutral-text;
+
+  background: transparent;
+
+  &:has(.chevron) {
+    gap: md.$sn-markdown-anatomy-size-buttons-button-gap;
+    padding-right: md.$sn-markdown-anatomy-size-buttons-button-paddingRight;
+  }
+
+  svg {
+    flex: 0 0 auto;
+    stroke-width: md.$sn-density-size-icon-strokeWeight-s;
+
+    &:not(.chevron) {
+      width: md.$sn-density-size-icon-s;
+      height: md.$sn-density-size-icon-s;
+    }
+  }
+
+  &:focus-visible {
+    outline: md.$sn-primitive-strokeWeight-strokeMedium solid md.$sn-theme-color-available-complementary;
+    outline-offset: calc(-1 * #{md.$sn-primitive-strokeWeight-strokeMedium});
+  }
+
+  &[data-checked] {
+    color: md.$sn-theme-color-primary-accent;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    color: md.$sn-theme-color-available-version-textDisabled;
+  }
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}
+
+.tooltipTrigger {
+  display: inline-flex;
+}
+
+.tipTitle {
+  color: base.$sn-theme-color-invertNeutral-text;
+  text-align: center;
+}
+
+.tipCaption {
+  color: base.$sn-theme-color-invertNeutral-text;
+  text-align: center;
+  opacity: 0.64;
+}

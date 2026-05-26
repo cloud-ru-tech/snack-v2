@@ -201,6 +201,9 @@
       "path": "./fields/tsconfig.esm.json"
     },
     {
+      "path": "./markdown/tsconfig.esm.json"
+    },
+    {
       "path": "./toaster/tsconfig.esm.json"
     },
     {

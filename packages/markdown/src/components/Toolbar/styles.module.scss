@@ -1,0 +1,27 @@
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+// Wrapper: размещает `Buttons` + опциональный `More`-кнопку справа.
+// Gap и дивайдеры строки кнопок живут в helperComponents/Buttons.
+.root {
+  overflow: hidden;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  // Padding строки — на обёртке, а не на helper
+  // `Buttons`, чтобы More-кнопка справа не прилипала к краю fieldWrapper'а.
+  padding: md.$sn-markdown-anatomy-size-buttons-paddingTop md.$sn-markdown-anatomy-size-buttons-paddingHorizontal
+    md.$sn-markdown-anatomy-size-buttons-paddingBottom;
+}
+
+// Trigger-обёртка Tooltip — inline span; без inline-flex кнопки в строке
+// выравниваются по baseline текста и «прыгают» по вертикали.
+.tooltipTrigger {
+  display: inline-flex;
+}
+
+.tableCustomizeOption {
+  align-items: flex-start;
+  align-self: center;
+}

@@ -203,6 +203,9 @@
       "path": "./fields/tsconfig.cjs.json"
     },
     {
+      "path": "./markdown/tsconfig.cjs.json"
+    },
+    {
       "path": "./toaster/tsconfig.cjs.json"
     },
     {

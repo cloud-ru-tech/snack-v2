@@ -1,0 +1,54 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Подсветка кода поверх highlight.js / lowlight.
+// `@sbercloud/figma-variables` не содержит syntax-токенов, поэтому маппим на семантические theme-цвета.
+// Светлая тема — по умолчанию. Тёмная — через :global([data-theme='dark']).
+
+.syntax {
+  :global(.hljs-comment),
+  :global(.hljs-quote) {
+    font-style: italic;
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+
+  :global(.hljs-keyword),
+  :global(.hljs-selector-tag),
+  :global(.hljs-built_in),
+  :global(.hljs-name),
+  :global(.hljs-tag) {
+    color: base.$sn-theme-color-blue-text;
+  }
+
+  :global(.hljs-string),
+  :global(.hljs-title),
+  :global(.hljs-section),
+  :global(.hljs-attribute),
+  :global(.hljs-literal),
+  :global(.hljs-template-tag),
+  :global(.hljs-template-variable),
+  :global(.hljs-type),
+  :global(.hljs-addition) {
+    color: base.$sn-theme-color-green-text;
+  }
+
+  :global(.hljs-number),
+  :global(.hljs-symbol),
+  :global(.hljs-bullet),
+  :global(.hljs-link),
+  :global(.hljs-meta),
+  :global(.hljs-selector-id),
+  :global(.hljs-selector-class) {
+    color: base.$sn-theme-color-blue-accent;
+  }
+
+  :global(.hljs-deletion),
+  :global(.hljs-regexp),
+  :global(.hljs-variable),
+  :global(.hljs-template-variable) {
+    color: base.$sn-theme-color-red-text;
+  }
+
+  :global(.hljs-emphasis) { font-style: italic; }
+  :global(.hljs-strong) { font-weight: 600; }
+  :global(.hljs-link) { text-decoration: underline; }
+}

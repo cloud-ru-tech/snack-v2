@@ -1,0 +1,104 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+@use '../../mixins' as mx;
+
+.root {
+  max-width: 100%;
+
+  font-family: md.$sn-brand-font-fontFamily-regular-body;
+  font-size: md.$sn-density-typography-roleBody-fontSizeM;
+  line-height: md.$sn-density-typography-roleBody-lineHeightM;
+  color: md.$sn-theme-color-available-version-textMain;
+
+  @include mx.markdown-content;
+  @include mx.markdown-block-spacings;
+
+  // Code-блок: заголовок (язык + copy) + тело (нумерация строк + код).
+  // Структуру задаёт компонент CodeBlock, подсветку — .syntax (hljs).
+  .codeBlock {
+    overflow: hidden;
+    border: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
+    border-radius: md.$sn-density-radius-2xs;
+    background: md.$sn-theme-color-neutral-background2Level;
+  }
+
+  .codeHeader {
+    display: flex;
+    gap: base.$sn-primitive-dimension-8;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: base.$sn-primitive-dimension-6 base.$sn-primitive-dimension-12;
+    border-bottom: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
+  }
+
+  .codeLang {
+    font-family: md.$sn-brand-font-fontFamily-mono-body;
+    font-size: md.$sn-density-typography-roleBody-fontSizeS;
+    line-height: md.$sn-density-typography-roleBody-lineHeightS;
+    color: md.$sn-theme-color-available-version-textSecondary;
+    text-transform: lowercase;
+  }
+
+  // Кнопка копирования — Button (view=function, appearance=neutral) из @ds/button;
+  // здесь только success-состояние «скопировано».
+  .codeCopy[data-copied] {
+    color: md.$sn-theme-color-green-text;
+  }
+
+  .codeBody {
+    display: flex;
+    max-width: 100%;
+  }
+
+  .codeGutter {
+    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    padding: base.$sn-primitive-dimension-12 0;
+    border-right: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
+
+    font-family: md.$sn-brand-font-fontFamily-mono-body;
+    font-size: md.$sn-density-typography-roleBody-fontSizeM;
+    line-height: md.$sn-density-typography-roleBody-lineHeightM;
+    color: md.$sn-theme-color-available-version-textTertiary;
+    text-align: right;
+  }
+
+  .codeLineNo {
+    padding: 0 base.$sn-primitive-dimension-12;
+  }
+
+  .codeScroll {
+    flex: 1;
+    margin: 0;
+  }
+
+  .codePre {
+    margin: 0;
+    padding: base.$sn-primitive-dimension-12;
+  }
+
+  .codeContent {
+    min-height: 0;
+    padding: 0;
+
+    font-size: md.$sn-density-typography-roleBody-fontSizeM;
+    line-height: md.$sn-density-typography-roleBody-lineHeightM;
+
+    background: transparent;
+  }
+
+  hr {
+    border: 0;
+    border-top: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

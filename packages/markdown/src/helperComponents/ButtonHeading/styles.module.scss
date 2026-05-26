@@ -1,0 +1,5 @@
+// Trigger-обёртка Droplist — inline span; без inline-flex кнопка в строке тулбара
+// выравнивается по baseline текста и «прыгает» по вертикали.
+.trigger {
+  display: inline-flex;
+}
