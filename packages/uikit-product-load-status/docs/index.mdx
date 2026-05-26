@@ -1,0 +1,108 @@
+---
+title: LoadStatus
+package: '@ds/uikit-product-load-status'
+description: Строка статуса загрузки с линейным progress bar, заголовком и подсказкой — по макету Figma loadStatus.
+order: 100
+---
+
+import { WithPercent } from '../demos/examples/WithPercent'
+import WithPercentSrc from '../demos/examples/WithPercent.tsx?raw'
+import { WithAppearance } from '../demos/examples/WithAppearance'
+import WithAppearanceSrc from '../demos/examples/WithAppearance.tsx?raw'
+import { WithHintError } from '../demos/examples/WithHintError'
+import WithHintErrorSrc from '../demos/examples/WithHintError.tsx?raw'
+import { Thresholds } from '../demos/examples/Thresholds'
+import ThresholdsSrc from '../demos/examples/Thresholds.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import loadStatusDoc from './props.json'
+
+# LoadStatus
+
+Строка загрузки: опциональный заголовок (метка, значение, процент), линейный [`ProgressBar`](/components/progress-bar/progress-bar) и подсказка снизу. Цвет полосы — через `appearanceByProgress`; ошибка — `showError` (полоса `red`).
+
+## Когда использовать
+
+- В карточках и формах, где нужно показать прогресс операции с поясняющим текстом.
+- Когда нужны пороги заполнения или фиксированный цвет полосы (`appearanceByProgress`).
+- Когда операция завершилась с ошибкой (`showError`).
+
+Когда **не** нужен `LoadStatus`:
+
+- Только индикатор без подписей — используйте [`ProgressBar`](/components/progress-bar/progress-bar).
+- Неопределённая загрузка страницы — [`ProgressBarPage`](/components/progress-bar/progress-bar-page).
+
+## Анатомия
+
+### Size (default `s`)
+
+Ось Figma `size`, прокидывается в `@ds/progress-bar`:
+
+- `s` — основной размер в формах и карточках.
+- `xs` — компактные списки и плотные layout'ы.
+
+### appearanceByProgress (default `DEFAULT_APPEARANCE_BY_PROGRESS`)
+
+Цвет полосы: список правил `{ condition, limit, appearance }` (`eq` / `gt` / `gte` / `lt` / `lte`). Первое сработавшее правило задаёт цвет. Значения `appearance` — из `@ds/progress-bar`: `primary`, `neutral`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink`, `red`.
+
+Дефолт — зелёный / жёлтый / красный по порогам 70 / 90 / 100. Фиксированный цвет из макета (ось Figma `appearance`) — одно правило, например `lte: 100` с нужным `appearance`.
+
+### showError (default `false`)
+
+Ось Figma `showError`:
+
+- `false` — цвет полосы из `appearanceByProgress`.
+- `true` — полоса всегда `red`, перекрывает `appearanceByProgress`. В hint обычно показывают иконку (`showErrorIcon`).
+
+### Контент
+
+Видимость блоков — по truthiness props (boolean-оси `showLabel` / `showValue` / `showHint` / `showPercent` в Figma только для Dev Mode):
+
+- `label` — основной текст слева в заголовке.
+- `value` — дополнение рядом с `label`.
+- `valueType` — `none` или `percent`; при `percent` справа выводится `{progress}%` (два текстовых слоя в макете: число и `%`).
+- `hint` — подпись под полосой; при `showErrorIcon` слева — `NotifierCriticalFilled` 16px.
+- `progress` — значение 0–100 для полосы и процента в заголовке.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-load-status
+```
+
+```ts
+import { LoadStatus } from '@ds/uikit-product-load-status'
+```
+
+## Примеры использования
+
+<Example title='Процент в заголовке' code={WithPercentSrc}>
+  <WithPercent client:visible />
+</Example>
+
+<Example title='Фиксированный цвет полосы' description='Одно правило в `appearanceByProgress` (`lte: 100`) — цвет не зависит от progress.' code={WithAppearanceSrc}>
+  <WithAppearance client:visible />
+</Example>
+
+<Example title='Ошибка (showError)' description='Красная полоса и иконка в hint — нужны `showError`, `showErrorIcon` и непустой `hint`.' code={WithHintErrorSrc}>
+  <WithHintError client:visible />
+</Example>
+
+<Example title='Пороги progress' description='Цвет полосы по умолчанию меняется через `appearanceByProgress`.' code={ThresholdsSrc}>
+  <Thresholds client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={loadStatusDoc.LoadStatus} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-loadstatus--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-load-status')} height={480} title='loadStatus в Figma' />

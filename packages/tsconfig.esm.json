@@ -162,6 +162,9 @@
       "path": "./uikit-product-switch-row/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-load-status/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-info-row/tsconfig.esm.json"
     },
     {

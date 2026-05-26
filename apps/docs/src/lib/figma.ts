@@ -130,6 +130,7 @@ export const FIGMA_NODES = {
   },
   'uikit-product-info-row': { ...PRODUCT, nodeId: '3040-21176' }, // uikit-product-info-row → InfoRow
   'uikit-product-switch-row': { ...PRODUCT, nodeId: '3019:5599' }, // uikit-product-switch-row → SwitchRow
+  'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
   'uikit-product-avatar-detail': { ...PRODUCT, nodeId: '2157:3642' }, // uikit-product-avatar-detail → AvatarDetail
   icons: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons → Interfaces icons (отдельный файл)

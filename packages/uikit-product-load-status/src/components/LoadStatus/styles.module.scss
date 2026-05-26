@@ -1,0 +1,53 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.loadStatus {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.labelRow {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.labelValue {
+  margin-left: base.$sn-primitive-dimension-4;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.valueSymbol {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  flex-shrink: 0;
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.hintWrapper {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-red-accent;
+}
+
+.hint {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

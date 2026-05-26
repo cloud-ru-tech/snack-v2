@@ -65,6 +65,7 @@
     "@ds/uikit-product-info-row": "workspace:*",
     "@ds/uikit-product-copy": "workspace:*",
     "@ds/uikit-product-switch-row": "workspace:*",
+    "@ds/uikit-product-load-status": "workspace:*",
     "@ds/segment-control": "workspace:*",
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
