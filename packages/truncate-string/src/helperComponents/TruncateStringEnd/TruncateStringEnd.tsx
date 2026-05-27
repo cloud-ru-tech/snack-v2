@@ -66,9 +66,7 @@ export function TruncateStringEnd({
   const textElement = (
     <span
       ref={textElementRef}
-      className={cn(maxLines > 1 ? styles.text2AndMoreLines : styles.text1Line, className, {
-        [styles.ellipsis]: !textElementRef.current || showTooltip,
-      })}
+      className={cn(maxLines > 1 ? styles.text2AndMoreLines : styles.text1Line, className)}
       style={{ '--max-lines': maxLines } as CSSProperties}
       {...extractSupportProps(rest)}
     >

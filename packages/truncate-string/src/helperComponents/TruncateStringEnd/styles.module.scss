@@ -1,15 +1,16 @@
+// `text-overflow: ellipsis` держим всегда. Без overflow свойство ничего не делает,
+// поэтому переключать его JS-замером бессмысленно — но опасно: если scrollWidth ===
+// clientWidth (текст «впритык»), JS снимает ellipsis, а реальный clip от родителя
+// всё равно случается → видим обрезку без «…». Семантический флаг overflow (для
+// показа tooltip с полным текстом) хранится в React-state, а не в CSS-классе.
 .text1Line {
   overflow: hidden;
   display: block;
 
   max-width: 100%;
 
-  text-overflow: initial;
-  white-space: nowrap;
-}
-
-.ellipsis {
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .text2AndMoreLines {
