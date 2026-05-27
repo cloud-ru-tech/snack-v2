@@ -1,0 +1,101 @@
+---
+title: Attachment
+package: '@ds/attachment'
+description: Горизонтальный айтем прикреплённого файла с превью/иконкой, заголовком, описанием, ошибкой и actions (download/delete/retry).
+order: 1
+---
+
+import { BasicAttachment } from '../demos/examples/BasicAttachment'
+import BasicAttachmentSrc from '../demos/examples/BasicAttachment.tsx?raw'
+import { AttachmentWithImage } from '../demos/examples/AttachmentWithImage'
+import AttachmentWithImageSrc from '../demos/examples/AttachmentWithImage.tsx?raw'
+import { AttachmentLoading } from '../demos/examples/AttachmentLoading'
+import AttachmentLoadingSrc from '../demos/examples/AttachmentLoading.tsx?raw'
+import { AttachmentError } from '../demos/examples/AttachmentError'
+import AttachmentErrorSrc from '../demos/examples/AttachmentError.tsx?raw'
+import { AttachmentSelectable } from '../demos/examples/AttachmentSelectable'
+import AttachmentSelectableSrc from '../demos/examples/AttachmentSelectable.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import attachmentDoc from './props.json'
+
+# Attachment
+
+Горизонтальный айтем прикреплённого файла. Слева — иконка типа файла или превью (если `file` — изображение), в середине — заголовок и описание (или сообщение об ошибке), справа — actions (`download` / `delete`, или `retry` в состоянии ошибки).
+
+## Когда использовать
+
+- В списках прикреплённых файлов с возможностью скачать/удалить.
+- Когда у вас есть `File`-объект — заголовок и расширение проставляются автоматически.
+
+Когда **не** нужен `Attachment`:
+
+- Для галерей превью — используйте `AttachmentSquare`.
+- Для drag&drop загрузки — используйте `Dropzone`.
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — компактная строка, высота 48px (emblem 32 + 2×8 padding).
+- `m` — увеличенная строка, высота 56px (emblem 40 + 2×8 padding).
+
+Высота строки content-driven: задаётся размером emblem'а и вертикальным padding'ом Card-корня (8px фиксированно). Токены `attachment.anatomy.size.*.container.height` относятся к [`AttachmentSquare`](./attachment-square.mdx), а не к строке.
+
+### State
+
+Состояния выражаются через смежные пропы (а не через одну ось):
+
+- `loading` — спиннер вместо иконки, actions скрыты.
+- `disabled` — карточка не реагирует на клик; actions всё равно доступны если passed `onDelete`/`onDownload`.
+- `error` — показывается ошибочное сообщение, action `retry` заменяет `download`; фон карточки переключается на `red/background`.
+- `checked` — accent-border `primary/accent` + accent-state-layer (`activated/default/filled`, на hover — `activated/hovered/filled`) поверх фона + check-badge в левом верхнем углу.
+
+Внутри использует `Card` с `view='outline'`; реакция на курсор (`cursor: pointer`, focus-ring) подключается только если задан `onClick`.
+
+## Установка
+
+```bash
+pnpm add @ds/attachment
+```
+
+```ts
+import { Attachment } from '@ds/attachment'
+```
+
+## Примеры использования
+
+<Example title='Базовый Attachment' description='File с автозаголовком и onDownload' code={BasicAttachmentSrc}>
+  <BasicAttachment client:visible />
+</Example>
+
+<Example title='С изображением' description='Превью автоматически из image-файла через useImage' code={AttachmentWithImageSrc}>
+  <AttachmentWithImage client:visible />
+</Example>
+
+<Example title='Loading' description='Спиннер вместо иконки, actions скрыты' code={AttachmentLoadingSrc}>
+  <AttachmentLoading client:visible />
+</Example>
+
+<Example title='Ошибка с retry' description='error заменяет description; retry button заменяет download' code={AttachmentErrorSrc}>
+  <AttachmentError client:visible />
+</Example>
+
+<Example title='Выбираемый (controlled)' description='checked + onClick — типичный паттерн multiSelect' code={AttachmentSelectableSrc}>
+  <AttachmentSelectable client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={attachmentDoc.Attachment} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-attachment-attachment--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('attachment')} height={480} title='Attachment в Figma (Snack UI Kit)' />

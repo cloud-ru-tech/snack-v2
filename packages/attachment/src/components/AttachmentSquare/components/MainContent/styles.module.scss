@@ -1,0 +1,44 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/attachment.module' as att;
+
+$sizes: 's', 'm';
+
+.composition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+// Не `space-between` — иначе текст прижимается к верху и съезжает под check-badge Card.
+.iconMode {
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      padding: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'padding');
+    }
+  }
+}
+
+.iconSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  padding: 0;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

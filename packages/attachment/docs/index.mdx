@@ -1,0 +1,48 @@
+---
+title: Attachment
+package: '@ds/attachment'
+description: Пакет компонентов для отображения прикреплённых файлов — Attachment (горизонтальный) и AttachmentSquare (квадратный).
+order: 0
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Attachment
+
+Пакет `@ds/attachment` предоставляет два компонента для отображения прикреплённых файлов:
+
+- [**Attachment**](/components/attachment/attachment) — горизонтальный список-айтем с иконкой/превью, заголовком, описанием и actions.
+- [**AttachmentSquare**](/components/attachment/attachment-square) — квадратный тайл с hover-оверлеем; удобен для галерей превью.
+
+Оба используют общие токены `s` / `m`, поддерживают `loading`/`error`/`disabled`/`checked` (множественный выбор) и автоматически показывают image-превью, если `file` — изображение.
+
+## Когда использовать
+
+- В списках прикреплённых файлов с возможностью скачать/удалить — `Attachment`.
+- В галереях превью со state `hovered`-overlay — `AttachmentSquare`.
+
+Когда **не** нужен пакет: для drag&drop-загрузки — `Dropzone`; для одиночных preview-карточек без actions — `Card`.
+
+## Анатомия
+
+Оба компонента строятся вокруг трёх слотов: превью (иконка или image из `file`), текстовый блок (заголовок + описание / сообщение об ошибке), панель actions (`download` / `delete`, или `retry` при error).
+
+## Установка
+
+```bash
+pnpm add @ds/attachment
+```
+
+```ts
+import { Attachment, AttachmentSquare } from '@ds/attachment'
+```
+
+## Storybook
+
+<StorybookEmbed storyId='components-attachment-attachment--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('attachment')} height={480} title='Attachment в Figma (Snack UI Kit)' />

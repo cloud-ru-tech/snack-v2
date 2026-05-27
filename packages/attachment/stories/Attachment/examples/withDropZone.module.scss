@@ -1,0 +1,13 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}

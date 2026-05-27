@@ -1,0 +1,21 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+// Figma master: size=s 256×48, size=m 256×72. Без фиксированной ширины ячейка
+// StoryTable растягивает Attachment под колонку, и текст-truncate / actions
+// рендерятся шире спецификации Figma — сравнение визуального снимка ломается.
+.cell {
+  display: flex;
+  flex: 0 0 auto;
+  width: 256px;
+
+  // Attachment.root по умолчанию `width: fit-content` — фиксируем 256px,
+  // чтобы соответствовать Figma-фрейму.
+  > :first-child {
+    width: 100%;
+  }
+}

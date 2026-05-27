@@ -1,0 +1,98 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/attachment.module' as att;
+
+$sizes: 's', 'm';
+
+.root {
+  isolation: isolate;
+  display: inline-flex;
+  flex-direction: column;
+
+  // Card получает Transparent, иначе acrylic-suspended темы проседают до 0.7 opacity.
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @each $size in $sizes {
+    &:has(> div > [data-size='#{$size}']) {
+      width: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'width');
+      height: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'height');
+    }
+  }
+
+  // Card.content — full-bleed image/иконке нужна вся высота. Card-корень рендерит
+  // ровно один div-ребёнок (`.content`); остальные дети (`acrylic`, `stateLayer`,
+  // `outlineBorder`, `checkWrapper`) — span. `:last-child` использовать нельзя:
+  // outlineBorder/checkWrapper идут в DOM после content'а ради paint order'а
+  // (см. Card.tsx комменты).
+  > div {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+.composition {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  position: absolute;
+  inset: 0;
+}
+
+.hover {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+/* stylelint-disable no-descending-specificity -- независимые правила раскрытия hover-оверлея. */
+.hasFocusedActions .hover,
+.composition:hover .hover[data-mode='image'],
+.composition[data-has-actions]:hover .hover,
+.root:focus-visible .hover[data-mode='image'],
+.root:focus-visible .composition[data-has-actions] .hover {
+  opacity: 1;
+}
+
+// Error-state overlay (RedBackground + hint) показываем всегда, даже без actions.
+.composition[data-error] .hover {
+  opacity: 1;
+}
+
+// pointer-events на .hover оставляем none по умолчанию, иначе оверлей перехватывает
+// события у TextBlock из MainContent в icon-mode (TruncateString-тултип перестаёт
+// срабатывать). Сами actions внутри overlay'я нативно интерактивны через свой
+// data-атрибут.
+.hover [data-attachment-actions] {
+  pointer-events: auto;
+}
+
+// Image-mode и error-state рендерят собственный TextBlock внутри overlay'я — на
+// нём нужен hover, чтобы сработал тултип TruncateString. Underlying слой в этих
+// режимах — `<img>` или RedBackground без текста, перекрытие безопасно. Icon-mode
+// остаётся pointer-events: none, чтобы события доходили до TextBlock в MainContent.
+.hover[data-mode='image'],
+.hover[data-error] {
+  pointer-events: auto;
+}
+
+// Иконка скрывается на hover/focus, потому что её место занимает Actions из HoverContent.
+// В disabled HoverContent не рендерится (actions отключены) — без `:not([data-disabled])`
+// hover скрывал бы иконку и оставлял пустой слот вместо неё.
+.root:not([data-disabled]) .composition[data-has-actions]:hover [data-attachment-icon-slot],
+.root:not([data-disabled]) .hasFocusedActions [data-attachment-icon-slot],
+.root:not([data-disabled]):focus-visible .composition[data-has-actions] [data-attachment-icon-slot] {
+  opacity: 0;
+}
+
+// Image-mode: на hover/focus убираем `<img>` из визуала, чтобы под HoverContent'ом
+// просвечивал Card.stateLayer (regular-hovered-filled / activated-hovered-filled
+// для selected). Без этого overlay рисовался с белым фоном и stateLayer прятался.
+.root:not([data-disabled]) .composition:hover [data-attachment-image],
+.root:not([data-disabled]) .hasFocusedActions [data-attachment-image],
+.root:not([data-disabled]):focus-visible .composition [data-attachment-image] {
+  display: none;
+}
+/* stylelint-enable no-descending-specificity */

@@ -1,0 +1,34 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/attachment.module' as att;
+
+$sizes: 's', 'm';
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  // Overlay прозрачный во всех режимах: image-mode скрывает `<img>` на hover (см.
+  // AttachmentSquare/styles.module.scss) и под HoverContent'ом просвечивает
+  // Card.stateLayer; icon-mode никогда не закрывает MainContent; error-mode
+  // показывает RedBackground от Card.
+  background-color: transparent;
+
+  // Icon-mode: MainContent держит текст наверху, overlay подменяет иконку Actions'ами в нижнем слоте.
+  &[data-mode='icon']:not([data-error]) {
+    justify-content: flex-end;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      padding: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'padding');
+    }
+  }
+}

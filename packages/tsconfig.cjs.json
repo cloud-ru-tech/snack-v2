@@ -177,6 +177,9 @@
     },
     {
       "path": "./code-editor/tsconfig.cjs.json"
+    },
+    {
+      "path": "./attachment/tsconfig.cjs.json"
     }
   ]
 }

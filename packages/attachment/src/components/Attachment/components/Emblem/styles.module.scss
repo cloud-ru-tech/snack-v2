@@ -1,0 +1,34 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/attachment.module' as att;
+
+$sizes: 's', 'm';
+
+.loader {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      width: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'image', 'width');
+      height: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'image', 'height');
+    }
+  }
+}
+
+.image {
+  display: block;
+  flex-shrink: 0;
+  object-fit: cover;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      width: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'image', 'width');
+      height: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'image', 'height');
+      border-radius: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'image', 'border-radius');
+    }
+  }
+}

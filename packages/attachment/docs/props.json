@@ -1,0 +1,574 @@
+{
+  "Actions": {
+    "displayName": "Actions",
+    "propsTypeName": null,
+    "props": {
+      "hideDelete": {
+        "type": "boolean",
+        "required": false
+      },
+      "hideDownload": {
+        "type": "boolean",
+        "required": false
+      },
+      "hideRetry": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Attachment": {
+    "displayName": "Attachment",
+    "propsTypeName": "AttachmentProps",
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние «выбран» (множественный выбор)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileExtension",
+        "description": "Описание"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Заблокировано"
+      },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Сообщение об ошибке"
+      },
+      "file": {
+        "type": "File",
+        "required": false,
+        "description": "Файл"
+      },
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+        "required": false,
+        "description": "Иконка для файла\n@defaultIcon FileSVG",
+        "typeRefs": [
+          "IconPredefinedProps"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управление состоянием загрузки"
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLDivElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Клик по карточке"
+      },
+      "onDelete": {
+        "type": "((file?: File) => void)",
+        "required": false,
+        "description": "Колбек на клик по кнопке удаления"
+      },
+      "onDownload": {
+        "type": "((file?: File) => void)",
+        "required": false,
+        "description": "Колбек на клик по кнопке скачивания"
+      },
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек на клик по кнопке повторения"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileName",
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; description?: number; error?: number | undefined; } | undefined",
+        "required": false
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине",
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "AttachmentSquare": {
+    "displayName": "AttachmentSquare",
+    "propsTypeName": "AttachmentSquareProps",
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние «выбран» (множественный выбор)"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileExtension",
+        "description": "Описание"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Заблокировано"
+      },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Сообщение об ошибке"
+      },
+      "file": {
+        "type": "File",
+        "required": false,
+        "description": "Файл"
+      },
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+        "required": false,
+        "description": "Иконка для файла\n@defaultIcon FileSVG",
+        "typeRefs": [
+          "IconPredefinedProps"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управление состоянием загрузки"
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLDivElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Клик по карточке"
+      },
+      "onDelete": {
+        "type": "((file?: File) => void)",
+        "required": false,
+        "description": "Колбек на клик по кнопке удаления"
+      },
+      "onDownload": {
+        "type": "((file?: File) => void)",
+        "required": false,
+        "description": "Колбек на клик по кнопке скачивания"
+      },
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек на клик по кнопке повторения"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileName",
+        "description": "Заголовок"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине",
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "Emblem": {
+    "displayName": "Emblem",
+    "propsTypeName": null,
+    "props": {
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+        "required": false,
+        "description": "Иконка для файла\n@defaultIcon FileSVG"
+      },
+      "imageData": {
+        "type": "string",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управление состоянием загрузки"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileName",
+        "description": "Заголовок"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "HoverContent": {
+    "displayName": "HoverContent",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileExtension",
+        "description": "Описание"
+      },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Сообщение об ошибке"
+      },
+      "hasImage": {
+        "type": "boolean",
+        "required": false,
+        "description": "image-mode → overlay даёт title/description/actions поверх `<img>`; icon-mode → только actions поверх иконки."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileName",
+        "description": "Заголовок"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MainContent": {
+    "displayName": "MainContent",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "description": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+        "required": false,
+        "description": "Иконка для файла\n@defaultIcon FileSVG"
+      },
+      "imageData": {
+        "type": "string",
+        "required": false
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileName",
+        "description": "Заголовок"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Text": {
+    "displayName": "Text",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-size": {
+        "type": "string",
+        "required": false,
+        "description": "Только на wrapper-div для typography token-mapping; в TruncateString не пробрасывается."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "maxLines": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "1"
+      },
+      "text": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TextBlock": {
+    "displayName": "TextBlock",
+    "propsTypeName": null,
+    "props": {
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "center",
+          "left"
+        ],
+        "defaultValue": "left"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileExtension",
+        "description": "Описание"
+      },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Сообщение об ошибке"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "fileName",
+        "description": "Заголовок"
+      }
+    },
+    "relatedTypes": {}
+  }
+}

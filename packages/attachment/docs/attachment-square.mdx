@@ -1,0 +1,76 @@
+---
+title: AttachmentSquare
+package: '@ds/attachment'
+description: Квадратный тайл прикреплённого файла с hover-оверлеем — для галерей превью и компактных списков.
+order: 2
+---
+
+import { AttachmentSquareBasic } from '../demos/examples/AttachmentSquareBasic'
+import AttachmentSquareBasicSrc from '../demos/examples/AttachmentSquareBasic.tsx?raw'
+import { AttachmentSquareImage } from '../demos/examples/AttachmentSquareImage'
+import AttachmentSquareImageSrc from '../demos/examples/AttachmentSquareImage.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import attachmentDoc from './props.json'
+
+# AttachmentSquare
+
+Квадратный тайл прикреплённого файла. По умолчанию показывает превью или иконку; при hover (или фокусе на actions) поверх появляется overlay с заголовком/описанием и actions.
+
+## Когда использовать
+
+- В галереях превью и сетках, где у файлов есть визуальный смысл.
+- Когда важна плотность — `s` (80×80) и `m` (100×100).
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — 80×80.
+- `m` — 100×100.
+
+### Hover-overlay
+
+При hover и при фокусе на любой action-кнопке (`download`/`delete`/`retry`) над основным контентом появляется overlay с заголовком/описанием и actions. В **image-mode** overlay плотный (solid `neutral/background1Level`) и перекрывает превью; в **icon-mode** — прозрачный, текст MainContent проступает сквозь, а Actions подменяют слот иконки. Состояние «фокус удерживает overlay» реализовано через внутренний контекст `AttachmentFocusActionsContext`.
+
+### State
+
+- `loading` — спиннер вместо превью, actions скрыты, hover-overlay отключён.
+- `disabled` — карточка не реагирует на клик, opacity снижается до `effect/opacity/disabled`.
+- `error` — фон тайла переключается на `red/background`, action `retry` заменяет `download`; в error-режиме overlay прозрачный, чтобы красная заливка пропускалась.
+- `checked` — accent-border + собственный `checkedOverlay` поверх MainContent с токенами `activated/default/filled` → `activated/hovered/filled` (Card-овский state-layer закрыт full-bleed image, поэтому overlay рендерится отдельным слоем). Check-badge в верхнем левом углу.
+
+## Установка
+
+```bash
+pnpm add @ds/attachment
+```
+
+```ts
+import { AttachmentSquare } from '@ds/attachment'
+```
+
+## Примеры использования
+
+<Example title='Базовый' description='Файл с иконкой и кнопками' code={AttachmentSquareBasicSrc}>
+  <AttachmentSquareBasic client:visible />
+</Example>
+
+<Example title='С изображением (size m)' description='Превью автоматически из image-файла' code={AttachmentSquareImageSrc}>
+  <AttachmentSquareImage client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={attachmentDoc.AttachmentSquare} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-attachment-attachmentsquare--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('attachment', 'attachment-square')} height={480} title='AttachmentSquare в Figma (Snack UI Kit)' />

@@ -1,0 +1,13 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.composition {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-neutral-text;
+}

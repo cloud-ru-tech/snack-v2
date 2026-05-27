@@ -1,0 +1,39 @@
+{
+  "name": "@ds/attachment",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/card": "workspace:*",
+    "@ds/icon-predefined": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/portal-context": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

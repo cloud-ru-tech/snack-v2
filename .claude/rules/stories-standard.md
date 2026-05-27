@@ -271,7 +271,8 @@ play: async ({ canvasElement }) => {
 
 - Имя экспорта: `Playground`.
 - Содержит `meta` с `title`, `component`, `parameters`, `args`. `argTypes` — **только при необходимости** (см. ниже).
-- Без кастомного `render` по умолчанию. URL-args (`gotoStory(buildStoryOptions(args))`) должны передаваться 1:1 в компонент — это контракт для `rendering.spec.ts`. Кастомный `render` с локальным `useState` нарушает этот контракт; не делай его без очень специфичной причины.
+- **`parameters.layout: 'fullscreen'`** — обязательно. `<DemoPage>` сама центрирует содержимое; `'centered'` ломает её сетку.
+- **Render обязательно оборачивает компонент в `<DemoPage>` / `<DemoPanel>`** из `#storybook/components` — это сквозная конвенция всех stories (Playground, examples, tests), не только trigger-based. Скелет см. в §«Demo-host» ниже. URL-args (`gotoStory(buildStoryOptions(args))`) по-прежнему передаются 1:1 — `render: args => <DemoPage>...<Comp {...args} /></DemoPage>` контракт не нарушает. Кастомный `render` с локальным `useState` поверх DemoPage — только если в API есть пара controlled/uncontrolled и без локального state Playground не работает.
 - **`argTypes` строятся автоматически** из TS-типов + JSDoc через `react-docgen-typescript` (см. `apps/storybook/.storybook/main.ts`). Все публичные пропсы видны в Controls с правильными контролами и описанием **без** ручного перечисления. Детали и исключения — в [storybook-args-conventions.md](./storybook-args-conventions.md).
 - Прописывай `argTypes.<prop>` в meta **только** в этих случаях: `mapping` (slot/ReactNode), `table.disable` (скрыть проп), `if:` (условная видимость), принудительный override контрола, `options` для нерасрезолвенных union'ов. **Не пиши `description` руками** — он живёт в JSDoc на пропе.
 - Если в API компонента есть пара `value`/`defaultValue` (или `checked`/`defaultChecked`) — оставь в args **только** `defaultValue`/`defaultChecked`, а сами `value`/`checked` спрячь через `argTypes: { value: { table: { disable: true } } }`. URL-args по-прежнему достанут эти пропсы для тестов; в панели не будет «контрол ничего не делает».
@@ -377,22 +378,36 @@ Wrapper `<div className={styles.grid}>` — только класс из `styles
 - В `meta.title` — `Components/<…>/<Component>/Tests/<Scenario>`.
 - Теги: `['test', 'dev']` — `dev` оставляем, чтобы story была кликабельна в Storybook (подпапка `Tests/` сама сигнализирует «это тест»). Tag `fixture` **не использовать**.
 - Имя файла и экспорта совпадает со сценарием: `<Name>.InteractionTest.stories.tsx` + `export const InteractionTest`. Клик и клавиатура объединяются в один экспорт через `step()`. Отдельные `ClickTest` / `KeyboardTest` запрещены.
-- `parameters: { controls: { disable: true } }` в `meta` — args фиксированы, панель Controls не нужна.
+- `parameters: { layout: 'fullscreen', controls: { disable: true } }` в `meta` — args фиксированы, панель Controls не нужна; `layout: 'fullscreen'` обязателен, потому что `<DemoPage>` сама центрирует содержимое и `layout: 'centered'` ломает её сетку (двойное центрирование).
+- **Render обязательно оборачивает story в `<DemoPage>` / `<DemoPanel>`** из `#storybook/components` (см. ниже «Demo-host»). Конвенция действует для **всех** Tests-stories (не только trigger-based) — общая обвязка делает сцену тестов читаемой в Storybook'е, даёт место под `<DemoTitle>` / `<DemoHint>` и нормализует позиционирование между пакетами.
 - Для мока callback — `fn()` из `storybook/test`, передавать через `args`.
 - Заводи test-story **только** если assertion нельзя поставить в play Playground'а: специфичная последовательность действий, фокус-менеджмент, long-running await, контролируемый state.
 
 ```tsx
 // stories/Component/tests/Component.InteractionTest.stories.tsx
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components'
+
 const meta: Meta<typeof Component> = {
   title: 'Components/Component/Tests/Interaction',
   component: Component,
-  parameters: { layout: 'centered', controls: { disable: true } },
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: { onClick: fn(), 'data-test-id': 'component' },
 }
 export default meta
 
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
+  render: args => (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>InteractionTest</DemoTitle>
+        <DemoHint>Что проверяет play-функция (одно предложение).</DemoHint>
+        <DemoActions align='center'>
+          <Component {...args} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement)
     const root = canvas.getByTestId('component')
@@ -415,6 +430,21 @@ export const InteractionTest: Story = {
   },
 }
 ```
+
+### Demo-host: `<DemoPage>` / `<DemoPanel>` — обязательны для Tests
+
+Импорт: `import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, DemoWarning } from '#storybook/components'`.
+
+| Слот | Назначение |
+|------|------------|
+| `<DemoPage>` | Корневой контейнер, центрирует контент во фрейме Storybook'а. Совместим только с `layout: 'fullscreen'`. |
+| `<DemoPanel>` | Карточка-host для одной сцены. Атрибут `width: 'narrow' \| 'default' \| 'wide'`. |
+| `<DemoTitle>` | Заголовок сцены — короткое имя story / её сути. |
+| `<DemoHint>` | Одно предложение про сцену: что проверяет play, что должно произойти при действии. |
+| `<DemoActions>` | Слот для самого компонента. `align: 'start' \| 'center'`. |
+| `<DemoWarning>` | Опционально — предупреждение о требованиях окружения (e.g. «требуется `PortalContextProvider` снаружи»). |
+
+Не клади голый компонент в корень render-функции test-story без `<DemoPage>`-обвязки. Не используй `layout: 'centered'` для Tests — он конфликтует с собственным центрированием `<DemoPage>`. Для trigger-based компонентов (modal/drawer/popover/…) дополнительные правила — в [trigger-based-stories.md](./trigger-based-stories.md).
 
 Play-функции исполняются в синтетической среде (`storybook/test`). Часть низкоуровневых browser-API не симулируется в полном объёме, а сторонние библиотеки могут читать события не так, как ожидает testing-library. Ассертируй то, что обещает **твой публичный API**, не нативные browser side-effects: пиши play вокруг callback'ов из `args`, focus-management по своим `data-test-id`, и т.п. Если play стабильно падает на одном и том же шаге keyboard/click, который «должен работать по природе браузера», — вынеси его в Playwright (там реальная среда), а в play оставь то, что гарантирует компонент. Каталог типовых случаев — в [test-environment-pitfalls.md](./test-environment-pitfalls.md).
 
@@ -487,6 +517,8 @@ import styles from './Button.VisualMatrix.module.scss'
 - Делать висящий `/Tests` или `/Examples` в title без сценария.
 - Дублировать одну и ту же story между `examples/` и `tests/`.
 - Забывать `parameters: { controls: { disable: true } }` в VisualMatrix и `InteractionTest`.
+- Класть голый компонент в render Tests-story без обвязки `<DemoPage>` / `<DemoPanel>`. Обязательно для всех Tests, не только trigger-based.
+- Использовать `layout: 'centered'` в Tests-story — конфликтует с центрированием `<DemoPage>`. Только `layout: 'fullscreen'`.
 - Использовать `getByRole`/`getByText`/`getByLabelText`/`getByPlaceholderText` в play-функциях. Только `getByTestId`.
 - Забывать `data-test-id` в `args` Playground'а и use-case stories.
 - Пустых `export const X: Story = {}`.
@@ -511,6 +543,7 @@ import styles from './Button.VisualMatrix.module.scss'
 - [ ] CSF3, `StoryObj<typeof Component>`
 - [ ] VisualMatrix использует `StoryTable` из `#storybook/components`
 - [ ] У VisualMatrix и `InteractionTest` стоит `parameters: { controls: { disable: true } }`
+- [ ] Tests-story (`stories/<Name>/tests/*`) обёрнут в `<DemoPage>` / `<DemoPanel>` с `<DemoTitle>` / `<DemoHint>` / `<DemoActions>` из `#storybook/components`; `parameters.layout = 'fullscreen'` (не `'centered'`)
 - [ ] Интеракционные сценарии — один экспорт `InteractionTest` (а не `ClickTest` + `KeyboardTest`)
 - [ ] Playground без custom `render` (URL-args передаются в компонент 1:1); пары controlled/uncontrolled (`value`/`defaultValue`, `checked`/`defaultChecked`) спрятаны из панели через `argTypes.<prop>.table.disable`
 - [ ] Каждый публичный проп имеет JSDoc (`/** ... */`) в `src/types.ts` или в типе компонента — docgen подтянет его в Controls

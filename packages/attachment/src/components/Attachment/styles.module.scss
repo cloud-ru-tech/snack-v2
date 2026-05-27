@@ -1,0 +1,33 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/attachment.module' as att;
+
+$sizes: 's', 'm';
+
+// Card получает Transparent, иначе acrylic-suspended темы проседают до 0.7 opacity.
+.root {
+  isolation: isolate;
+
+  display: inline-block;
+
+  width: fit-content;
+  max-width: 100%;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.composition {
+  display: flex;
+  // При 2 строках текста / error emblem остаётся вверху, не уезжает к вертикальному центру.
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'gap');
+      padding: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'content', 'padding');
+    }
+  }
+}

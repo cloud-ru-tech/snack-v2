@@ -56,6 +56,10 @@ const INTERFACES_ICONS = {
 export const FIGMA_NODES = {
   accordion: { ...SNACK, nodeId: '6045-114' }, // accordion → accordion
   alert: { ...SNACK, nodeId: '3222-166' }, // alert → alert
+  attachment: {
+    _: { ...SNACK, nodeId: '5778-49181' },
+    'attachment-square': { ...SNACK, nodeId: '5781-59628' },
+  }, // attachment → attachment + attachmentSquare
   avatar: { ...SNACK, nodeId: '3910-70' }, // avatar → avatar
   block: { ...SNACK, nodeId: '10940-24646' }, // block → block
   breadcrumbs: { ...SNACK, nodeId: '7422-10279' }, // breadcrumbs → breadcrumbs

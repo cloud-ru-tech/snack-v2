@@ -175,6 +175,9 @@
     },
     {
       "path": "./code-editor/tsconfig.esm.json"
+    },
+    {
+      "path": "./attachment/tsconfig.esm.json"
     }
   ]
 }

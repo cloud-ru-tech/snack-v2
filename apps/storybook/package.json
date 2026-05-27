@@ -13,6 +13,7 @@
   "dependencies": {
     "@ds/accordion": "workspace:*",
     "@ds/alert": "workspace:*",
+    "@ds/attachment": "workspace:*",
     "@ds/avatar": "workspace:*",
     "@ds/block": "workspace:*",
     "@ds/breadcrumbs": "workspace:*",

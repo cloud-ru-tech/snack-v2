@@ -270,6 +270,9 @@ importers:
       '@ds/alert':
         specifier: workspace:*
         version: link:../../packages/alert
+      '@ds/attachment':
+        specifier: workspace:*
+        version: link:../../packages/attachment
       '@ds/avatar':
         specifier: workspace:*
         version: link:../../packages/avatar
@@ -526,6 +529,39 @@ importers:
       '@ds/materials':
         specifier: workspace:*
         version: link:../materials
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/attachment:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/card':
+        specifier: workspace:*
+        version: link:../card
+      '@ds/icon-predefined':
+        specifier: workspace:*
+        version: link:../icon-predefined
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/loader':
+        specifier: workspace:*
+        version: link:../loader
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/portal-context':
+        specifier: workspace:*
+        version: link:../portal-context
       '@ds/truncate-string':
         specifier: workspace:*
         version: link:../truncate-string

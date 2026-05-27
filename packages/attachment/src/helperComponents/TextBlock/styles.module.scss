@@ -1,0 +1,84 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+$sizes: 's', 'm';
+$title-typo: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+);
+$body-typo: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-m,
+);
+
+// width:100% + min-width:0 — без них в column-flex с `align-items: center` (Square overlay)
+// TruncateString берёт натуральную ширину текста и обходит truncate.
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+
+  &[data-align='center'] {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.title {
+  width: 100%;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($title-typo, $size);
+    }
+  }
+}
+
+.description {
+  width: 100%;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($body-typo, $size);
+    }
+  }
+}
+
+.error {
+  display: flex;
+  gap: field.$sn-field-anatomy-size-s-hintWrapper-hintContent-gap;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+
+  color: base.$sn-theme-color-red-text;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($body-typo, $size);
+    }
+  }
+
+  // Truncate срабатывает только если родитель flex:1 + min-width:0 + overflow:hidden.
+  // Без overflow:hidden текст выходит за границы flex-cell'а и TruncateString
+  // считает, что «всё поместилось» — ellipsis не появляется, текст просто клипится Card'ом.
+  > div:last-child {
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-red-accent;
+}
