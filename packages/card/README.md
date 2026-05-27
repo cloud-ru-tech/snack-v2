@@ -2,7 +2,7 @@
 
 `@ds/card` — Корневая карточка с осями radius, view и слоем backgroundPredefined + acrylic.
 
-`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, state layer и контекстом `radius` для вложенного контента. Реэкспорт **`setNonce`** — из `@ds/tag`. Корневой фокус (`tabIndex={0}`) задан для согласованности с легаси; сценарии клика и навигации дорабатываются на стороне продукта.
+`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'shadow'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
 
 ## Когда использовать
 
@@ -35,9 +35,9 @@
 
 Визуальный режим обводки и тени:
 
-- `simple` — базовая заливка без контура и тени.
-- `outline` — контур по бордеру.
-- `shadow` — приподнятая тень.
+- `simple` — плоская карточка без контура и тени; на hover поднимается через `elevation-level3`.
+- `outline` — контур по бордеру `regular/default/borderColor`; на hover темнеет до `regular/hovered/borderColor`, тень не добавляется.
+- `shadow` — приподнятая тень `elevation-level2`; на hover повышается до `elevation-level3`.
 
 | Значение  | Токен        |
 | --------- | ------------ |
@@ -48,6 +48,23 @@
 ### Background predefined (default `neutralBackground1Level`)
 
 Слой `backgroundPredefined` мапится на пару `data-acrylic-appearance` / `data-acrylic-level` (см. `BACKGROUND_PREDEFINED_FILL` и `_acrylic.scss` в `@ds/materials`). Меняет цвет акцента подложки, не разметку контента.
+
+### Checked (default `false`)
+
+Активирует accent-state-layer (`material/stateLayer/activated/default/filled`) поверх фона, меняет цвет бордера на `primary/accent` и — при `multiSelect={true}` — рисует check-badge в верхнем левом углу. На hover state-layer переключается на `activated/hovered/filled` (35% opacity).
+
+Без `checked` state-layer не рендерится — hover в unchecked-состоянии показывается только через изменение elevation/border (см. `View`).
+
+### Interactive (default `true`)
+
+Управляет реакцией карточки на курсор и клавиатуру:
+
+- `true` — `cursor: pointer`, `tabIndex={0}`, активен focus-ring (`outline complementary 2px`), hover-эффекты для view (elevation / border-color).
+- `false` — `cursor: default`, `tabIndex={-1}`, без focus-ring и hover-эффектов. Для презентационных карточек, которые показывают данные, но не реагируют на курсор.
+
+### Padding
+
+Внутренний padding не зашит в стили — расставляйте отступы сами на дочернем контейнере. Это даёт свободу: разные части карточки (image edge-to-edge, текстовая зона с отступом) спокойно сосуществуют без переопределений.
 
 ## Установка
 
@@ -70,13 +87,13 @@ export function RadiusValues() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
       <Card view={VIEW.Outline} radius={RADIUS.S}>
-        radius S
+        <div style={{ padding: 8 }}>radius S</div>
       </Card>
       <Card view={VIEW.Outline} radius={RADIUS.M}>
-        radius M
+        <div style={{ padding: 8 }}>radius M</div>
       </Card>
       <Card view={VIEW.Outline} radius={RADIUS.L}>
-        radius L
+        <div style={{ padding: 8 }}>radius L</div>
       </Card>
     </div>
   );
@@ -91,9 +108,15 @@ import { Card, VIEW } from '@ds/card';
 export function ViewValues() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <Card view={VIEW.Simple}>simple</Card>
-      <Card view={VIEW.Outline}>outline</Card>
-      <Card view={VIEW.Shadow}>shadow</Card>
+      <Card view={VIEW.Simple}>
+        <div style={{ padding: 8 }}>simple</div>
+      </Card>
+      <Card view={VIEW.Outline}>
+        <div style={{ padding: 8 }}>outline</div>
+      </Card>
+      <Card view={VIEW.Shadow}>
+        <div style={{ padding: 8 }}>shadow</div>
+      </Card>
     </div>
   );
 }
@@ -108,9 +131,15 @@ import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 export function BackgroundFills() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <Card backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}>neutralBackground1Level</Card>
-      <Card backgroundPredefined={BACKGROUND_PREDEFINED_FILL.PrimaryBackground}>primaryBackground</Card>
-      <Card backgroundPredefined={BACKGROUND_PREDEFINED_FILL.VioletBackground}>violetBackground</Card>
+      <Card backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}>
+        <div style={{ padding: 8 }}>neutralBackground1Level</div>
+      </Card>
+      <Card backgroundPredefined={BACKGROUND_PREDEFINED_FILL.PrimaryBackground}>
+        <div style={{ padding: 8 }}>primaryBackground</div>
+      </Card>
+      <Card backgroundPredefined={BACKGROUND_PREDEFINED_FILL.VioletBackground}>
+        <div style={{ padding: 8 }}>violetBackground</div>
+      </Card>
     </div>
   );
 }
@@ -130,7 +159,7 @@ export function SelectionToggle() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
       <Card checked={checked} multiSelect>
-        Множественный выбор (иконка при checked)
+        <div style={{ padding: 8 }}>Множественный выбор (иконка при checked)</div>
       </Card>
       <button type='button' onClick={() => setChecked(v => !v)}>
         {checked ? 'Снять выбор' : 'Выбрать'}
@@ -146,7 +175,11 @@ export function SelectionToggle() {
 import { Card } from '@ds/card';
 
 export function DisabledCard() {
-  return <Card disabled>Состояние disabled — без hover/focus визуала интеракции</Card>;
+  return (
+    <Card disabled>
+      <div style={{ padding: 8 }}>Состояние disabled — без hover/focus визуала интеракции</div>
+    </Card>
+  );
 }
 ```
 
@@ -156,17 +189,21 @@ export function DisabledCard() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `as` | `T` | — |  |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
-| `checked` | `boolean` | — |  |
+| `checked` | `boolean` | — | Выбран (для multiSelect — показывает чек-бэйдж в углу). |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
-| `data-test-id` | `string` | — |  |
-| `disabled` | `boolean` | `false` |  |
-| `multiSelect` | `boolean` | `false` | Показ чекбокса для режима множественного выбора |
-| `radius` | `"l"` \| `"m"` \| `"s"` | `m` | Радиус контейнера |
-| `view` | `"outline"` \| `"shadow"` \| `"simple"` | `simple` | Визуальный режим карточки |
+| `disabled` | `boolean` | `false` | Заблокированный режим: интерактив отключён, opacity снижен. |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `interactive` | `boolean` | `true` | Включает интерактивные эффекты (hover/press state layer, cursor: pointer, focus-ring). <br/> Установи `false` для презентационной карточки без отклика на курсор. |
+| `multiSelect` | `boolean` | `false` | Режим множественного выбора — добавляет чек-бэйдж в углу при `checked`. |
+| `radius` | `"l"` \| `"m"` \| `"s"` | `m` | Радиус контейнера. |
+| `view` | `"outline"` \| `"shadow"` \| `"simple"` | `simple` | Визуальный режим карточки. |
 
 #### Related types
+
+- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
 - `Radius` = `"l"` \| `"m"` \| `"s"`
 

@@ -79,11 +79,6 @@ export function Transparent() {
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `children` | `ReactNode` | — | Содержимое |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
+| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `size` | `"l"` \| `"m"` \| `"s"` | `l` | Размер |
 | `variant` | `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |
-
-#### Related types
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `Variant` = `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"`

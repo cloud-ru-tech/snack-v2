@@ -1,7 +1,3 @@
-/**
- * Корень Card: внешний blur слоя backgroundPredefined, acrylic по `data-acrylic-*`
- * (проп `backgroundPredefined` → `@ds/materials`), state layer, контент. View / radius — card.module.
- */
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
 @use '@ds/materials' as m;
@@ -50,15 +46,29 @@ $radius-to-badge-box-border-width: (
   border-radius: inherit;
 }
 
+.outlineBorder {
+  // Слой рисуется поверх .content за счёт порядка узлов в JSX (см. Card.tsx) —
+  // z-index не нужен: среди позиционированных братьев с z-index:auto более поздний
+  // в DOM рисуется поверх.
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-style: solid;
+  border-radius: inherit;
+}
+
 .stateLayer {
   visibility: initial;
 }
 
 .checkWrapper {
+  // Чек-бейдж — последний узел в JSX, поэтому рисуется поверх outlineBorder/content
+  // без z-index (порядок DOM решает).
   pointer-events: none;
-
   position: absolute;
-  z-index: 2;
   top: 0;
   left: 0;
 }
@@ -89,25 +99,73 @@ $radius-to-badge-box-border-width: (
   max-width: 100%;
   margin: 0;
   padding: 0;
-  border-color: transparent;
-  border-style: solid;
 
   background: transparent;
   outline: none;
+
+  &[data-interactive]:not([data-disabled]) {
+    cursor: pointer;
+  }
 
   &[data-disabled] {
     cursor: not-allowed;
     opacity: base.$sn-theme-effect-opacity-disabled;
   }
 
-  &:focus-visible {
+  &[data-interactive]:focus-visible {
     outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
     outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 
+  &[data-view='simple'],
+  &[data-view='outline'] {
+    box-shadow: none;
+  }
+
+  &[data-view='shadow'] {
+    box-shadow: base.$sn-boxShadow-elevation-level2;
+  }
+
+  &[data-interactive]:not([data-disabled]):active {
+    &[data-view='simple'],
+    &[data-view='outline'] {
+      box-shadow: none;
+    }
+
+    &[data-view='shadow'] {
+      box-shadow: base.$sn-boxShadow-elevation-level2;
+    }
+  }
+
+  &[data-checked] .outlineBorder {
+    border-color: base.$sn-theme-color-primary-accent;
+  }
+
+  @each $r in $radii {
+    &[data-view='outline'][data-radius='#{$r}'] .outlineBorder,
+    &[data-checked][data-radius='#{$r}'] .outlineBorder {
+      border-width: base.simple-var($radius-to-border-width, $r);
+    }
+  }
+
+  @media (hover: hover) {
+    &[data-interactive]:not([data-disabled]):hover {
+      &[data-view='simple'] {
+        box-shadow: base.$sn-boxShadow-elevation-level3;
+      }
+
+      &[data-view='outline']:not([data-checked]) .outlineBorder {
+        border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+      }
+
+      &[data-view='shadow'] {
+        box-shadow: base.$sn-boxShadow-elevation-level3;
+      }
+    }
+  }
+
   @each $r in $radii {
     &[data-radius='#{$r}'] {
-      border-width: base.simple-var($radius-to-border-width, $r);
       border-radius: base.simple-var($radius-to-border-radius, $r);
 
       .checkWrapper {
@@ -126,45 +184,16 @@ $radius-to-badge-box-border-width: (
 
   @include m.with-material('acrylic', 'acrylic');
   @include m.has-state-layer-as-child('stateLayer');
-
-  /* view=simple — плоская подложка, без тени */
-  &[data-view='simple'] {
-    box-shadow: none;
-  }
-
-  /* view=outline — видимая обводка (токен бордера из анатомии + цвет) */
-  &[data-view='outline'] {
-    border-color: base.$sn-theme-color-available-borderColor;
-    box-shadow: none;
-  }
-
-  /* view=shadow — elevation по радиусу (как block shadow) */
-  &[data-view='shadow'] {
-    border-color: transparent;
-
-    &[data-radius='l'] {
-      box-shadow: base.$sn-boxShadow-elevation-level3;
-    }
-
-    &[data-radius='m'],
-    &[data-radius='s'] {
-      box-shadow: base.$sn-boxShadow-elevation-level2;
-    }
-  }
-
-  /* checked: обводка primary/accent, одинаковая для default/hover и всех view */
-  &[data-checked] {
-    border-color: base.$sn-theme-color-primary-accent;
-  }
 }
 
 .content {
+  // position: relative нужен, чтобы content участвовал в painting'е как
+  // позиционированный брат (paint order: acrylic → stateLayer → content → outlineBorder).
+  // z-index не задаём — порядок узлов в JSX (см. Card.tsx) сам определяет stacking.
   position: relative;
-  z-index: 1;
 
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: base.$sn-primitive-dimension-8;
   border-radius: inherit;
 }

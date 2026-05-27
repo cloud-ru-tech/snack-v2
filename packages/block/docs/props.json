@@ -21,10 +21,7 @@
           "yellowBackground"
         ],
         "defaultValue": "neutralBackground1Level",
-        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`.",
-        "typeRefs": [
-          "BackgroundPredefinedFill"
-        ]
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`."
       },
       "children": {
         "type": "ReactNode",
@@ -36,6 +33,11 @@
         "required": false,
         "description": "Стабильный идентификатор для e2e/tests"
       },
+      "description": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false,
+        "description": "Подзаголовок"
+      },
       "size": {
         "type": "enum",
         "required": false,
@@ -45,10 +47,7 @@
           "s"
         ],
         "defaultValue": "l",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
+        "description": "Размер"
       },
       "variant": {
         "type": "enum",
@@ -60,49 +59,9 @@
           "transparent"
         ],
         "defaultValue": "simple",
-        "description": "Вариант",
-        "typeRefs": [
-          "Variant"
-        ]
+        "description": "Вариант"
       }
     },
-    "relatedTypes": {
-      "BackgroundPredefinedFill": {
-        "kind": "union",
-        "values": [
-          "blueBackground",
-          "decorTransparent",
-          "greenBackground",
-          "neutralBackground1Level",
-          "orangeBackground",
-          "pinkBackground",
-          "primaryBackground",
-          "redBackground",
-          "transparent",
-          "violetBackground",
-          "yellowBackground"
-        ],
-        "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "l",
-          "m",
-          "s"
-        ],
-        "own": true
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "outline",
-          "shadow",
-          "simple",
-          "transparent"
-        ],
-        "own": true
-      }
-    }
+    "relatedTypes": {}
   }
 }

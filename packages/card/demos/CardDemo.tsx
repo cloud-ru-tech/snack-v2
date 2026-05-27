@@ -18,7 +18,8 @@ export function CardDemo() {
         view: 'simple',
         disabled: false,
         backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
-        children: 'Card content',
+        children: <div style={{ padding: 8 }}>Card content</div>,
+        interactive: true,
       }}
       controls={{
         radius: { type: 'select', options: ['s', 'm', 'l'] },
@@ -27,6 +28,7 @@ export function CardDemo() {
         disabled: { type: 'boolean' },
         checked: { type: 'boolean' },
         multiSelect: { type: 'boolean' },
+        interactive: { type: 'boolean' },
       }}
       excludeProps={['className']}
     />

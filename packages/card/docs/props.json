@@ -3,6 +3,13 @@
     "displayName": "Card",
     "propsTypeName": "CardProps",
     "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "typeRefs": [
+          "T"
+        ]
+      },
       "backgroundPredefined": {
         "type": "enum",
         "required": false,
@@ -27,7 +34,8 @@
       },
       "checked": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Выбран (для multiSelect — показывает чек-бэйдж в углу)."
       },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -37,20 +45,32 @@
         "type": "string",
         "required": false
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
       "disabled": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "description": "Заблокированный режим: интерактив отключён, opacity снижен."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "interactive": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает интерактивные эффекты (hover/press state layer, cursor: pointer, focus-ring).\nУстанови `false` для презентационной карточки без отклика на курсор."
       },
       "multiSelect": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Показ чекбокса для режима множественного выбора"
+        "description": "Режим множественного выбора — добавляет чек-бэйдж в углу при `checked`."
       },
       "radius": {
         "type": "enum",
@@ -61,7 +81,7 @@
           "s"
         ],
         "defaultValue": "m",
-        "description": "Радиус контейнера",
+        "description": "Радиус контейнера.",
         "typeRefs": [
           "Radius"
         ]
@@ -75,7 +95,7 @@
           "simple"
         ],
         "defaultValue": "simple",
-        "description": "Визуальный режим карточки",
+        "description": "Визуальный режим карточки.",
         "typeRefs": [
           "View"
         ]
@@ -98,6 +118,11 @@
           "yellowBackground"
         ],
         "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
       },
       "Radius": {
         "kind": "union",

@@ -14,7 +14,7 @@ import { TEST_IDS } from './testIds';
 function CardPlaygroundExampleContent() {
   return (
     <div className={styles.playgroundExample}>
-      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Primary} size={ICON_SIZE.L} shape='round' />
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Primary} size={ICON_SIZE.M} shape='round' />
       <div className={styles.playgroundExampleText}>
         <Typography variant={VARIANT.title} size={SIZE.s}>
           Title text
@@ -41,6 +41,7 @@ const meta: Meta<typeof Card> = {
     disabled: false,
     checked: false,
     multiSelect: false,
+    interactive: true,
     children: <CardPlaygroundExampleContent />,
     className: '',
     'data-test-id': TEST_IDS.root,
@@ -64,6 +65,10 @@ const meta: Meta<typeof Card> = {
     disabled: { control: 'boolean' },
     checked: { control: 'boolean' },
     multiSelect: { control: 'boolean', description: 'Показ галочки в checked состоянии' },
+    interactive: {
+      control: 'boolean',
+      description: 'Включает hover/press state layer и focus-ring. `false` — презентационная карточка.',
+    },
     children: {
       table: { disable: true },
       description: 'По умолчанию — пример с иконкой и тремя строками текста; можно переопределить через args.',
@@ -82,7 +87,7 @@ export const Playground: Story = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Карточка-контейнер с радиусом, фоном и опциональным selected-состоянием.</DemoHint>
         <DemoActions align='center'>
-          <Card {...args} className={[args.className, styles.fullWidth].filter(Boolean).join(' ')} />
+          <Card {...args} />
         </DemoActions>
       </DemoPanel>
     </DemoPage>

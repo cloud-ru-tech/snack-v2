@@ -25,7 +25,7 @@ import cardDoc from './props.json'
 
 # Card
 
-`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, state layer и контекстом `radius` для вложенного контента. Реэкспорт **`setNonce`** — из `@ds/tag`. Корневой фокус (`tabIndex={0}`) задан для согласованности с легаси; сценарии клика и навигации дорабатываются на стороне продукта.
+`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'shadow'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
 
 ## Демо
 
@@ -62,9 +62,9 @@ import cardDoc from './props.json'
 
 Визуальный режим обводки и тени:
 
-- `simple` — базовая заливка без контура и тени.
-- `outline` — контур по бордеру.
-- `shadow` — приподнятая тень.
+- `simple` — плоская карточка без контура и тени; на hover поднимается через `elevation-level3`.
+- `outline` — контур по бордеру `regular/default/borderColor`; на hover темнеет до `regular/hovered/borderColor`, тень не добавляется.
+- `shadow` — приподнятая тень `elevation-level2`; на hover повышается до `elevation-level3`.
 
 | Значение  | Токен        |
 | --------- | ------------ |
@@ -75,6 +75,23 @@ import cardDoc from './props.json'
 ### Background predefined (default `neutralBackground1Level`)
 
 Слой `backgroundPredefined` мапится на пару `data-acrylic-appearance` / `data-acrylic-level` (см. `BACKGROUND_PREDEFINED_FILL` и `_acrylic.scss` в `@ds/materials`). Меняет цвет акцента подложки, не разметку контента.
+
+### Checked (default `false`)
+
+Активирует accent-state-layer (`material/stateLayer/activated/default/filled`) поверх фона, меняет цвет бордера на `primary/accent` и — при `multiSelect={true}` — рисует check-badge в верхнем левом углу. На hover state-layer переключается на `activated/hovered/filled` (35% opacity).
+
+Без `checked` state-layer не рендерится — hover в unchecked-состоянии показывается только через изменение elevation/border (см. `View`).
+
+### Interactive (default `true`)
+
+Управляет реакцией карточки на курсор и клавиатуру:
+
+- `true` — `cursor: pointer`, `tabIndex={0}`, активен focus-ring (`outline complementary 2px`), hover-эффекты для view (elevation / border-color).
+- `false` — `cursor: default`, `tabIndex={-1}`, без focus-ring и hover-эффектов. Для презентационных карточек, которые показывают данные, но не реагируют на курсор.
+
+### Padding
+
+Внутренний padding не зашит в стили — расставляйте отступы сами на дочернем контейнере. Это даёт свободу: разные части карточки (image edge-to-edge, текстовая зона с отступом) спокойно сосуществуют без переопределений.
 
 ## Установка
 

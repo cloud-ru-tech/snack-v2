@@ -7,7 +7,7 @@ export function SelectionToggle() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
       <Card checked={checked} multiSelect>
-        Множественный выбор (иконка при checked)
+        <div style={{ padding: 8 }}>Множественный выбор (иконка при checked)</div>
       </Card>
       <button type='button' onClick={() => setChecked(v => !v)}>
         {checked ? 'Снять выбор' : 'Выбрать'}

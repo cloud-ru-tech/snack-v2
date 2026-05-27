@@ -1,5 +1,9 @@
 import { Card } from '@ds/card';
 
 export function DisabledCard() {
-  return <Card disabled>Состояние disabled — без hover/focus визуала интеракции</Card>;
+  return (
+    <Card disabled>
+      <div style={{ padding: 8 }}>Состояние disabled — без hover/focus визуала интеракции</div>
+    </Card>
+  );
 }
