@@ -1,4 +1,4 @@
-import { figmaDesignUrl, figmaEmbedUrl, FigmaNodeRef } from '../lib/figma';
+import { figmaDesignUrl, figmaEmbedUrl, type FigmaNodeRef } from '../lib/figma';
 import styles from './StorybookEmbed.module.scss';
 
 type FigmaEmbedProps = {

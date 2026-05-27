@@ -1,6 +1,6 @@
 import { Ref } from 'react';
 
-import { Tag } from '../../components';
+import { Tag } from '../../components/Tag';
 import { SIZE } from '../../constants';
 import { Size, TagRowItemInner } from '../../types';
 import styles from './styles.module.scss';

@@ -74,6 +74,7 @@ const config: StorybookConfig = {
       // `displayName` / `__docgenInfo`. Эти ключи всплывают в `Object.values(...)`
       // в stories → улетают в компонент как невалидный enum-литерал → краш VM.
       include: ['../../packages/*/src/**/*.tsx'],
+      exclude: ['../../packages/icons/**'],
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
       propFilter: prop => !prop.parent || !prop.parent.fileName.includes('node_modules'),

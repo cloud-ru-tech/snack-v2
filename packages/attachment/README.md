@@ -74,11 +74,21 @@ File с автозаголовком и onDownload
 
 ```tsx
 import { Attachment } from '@ds/attachment';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef } from 'react';
 
 import { PDF_FILE } from './sample';
 
 export function BasicAttachment() {
-  return <Attachment file={PDF_FILE} onDownload={file => console.info('download', file?.name)} />;
+  const hostRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <Attachment file={PDF_FILE} onDownload={file => console.info('download', file?.name)} />
+      </div>
+    </PortalContextProvider>
+  );
 }
 ```
 
@@ -88,11 +98,13 @@ export function BasicAttachment() {
 
 ```tsx
 import { Attachment } from '@ds/attachment';
-import { useEffect, useState } from 'react';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useEffect, useRef, useState } from 'react';
 
 import pictureUrl from './picture.jpg';
 
 export function AttachmentWithImage() {
+  const hostRef = useRef<HTMLDivElement>(null);
   const [file, setFile] = useState<File>();
 
   useEffect(() => {
@@ -102,13 +114,17 @@ export function AttachmentWithImage() {
   }, []);
 
   return (
-    <Attachment
-      file={file}
-      title='Скриншот'
-      description='JPG'
-      onDownload={f => console.info('download', f?.name)}
-      onDelete={f => console.info('delete', f?.name)}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <Attachment
+          file={file}
+          title='Скриншот'
+          description='JPG'
+          onDownload={f => console.info('download', f?.name)}
+          onDelete={f => console.info('delete', f?.name)}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```
@@ -119,11 +135,21 @@ export function AttachmentWithImage() {
 
 ```tsx
 import { Attachment } from '@ds/attachment';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef } from 'react';
 
 import { PDF_FILE } from './sample';
 
 export function AttachmentLoading() {
-  return <Attachment file={PDF_FILE} loading />;
+  const hostRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <Attachment file={PDF_FILE} loading />
+      </div>
+    </PortalContextProvider>
+  );
 }
 ```
 
@@ -133,20 +159,26 @@ error заменяет description; retry button заменяет download
 
 ```tsx
 import { Attachment } from '@ds/attachment';
-import { useState } from 'react';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
 import { PDF_FILE } from './sample';
 
 export function AttachmentError() {
+  const hostRef = useRef<HTMLDivElement>(null);
   const [retries, setRetries] = useState(0);
 
   return (
-    <Attachment
-      file={PDF_FILE}
-      error={`Не удалось загрузить (попыток: ${retries})`}
-      onRetry={() => setRetries(n => n + 1)}
-      onDelete={file => console.info('delete', file?.name)}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <Attachment
+          file={PDF_FILE}
+          error={`Не удалось загрузить (попыток: ${retries})`}
+          onRetry={() => setRetries(n => n + 1)}
+          onDelete={file => console.info('delete', file?.name)}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```
@@ -157,20 +189,26 @@ checked + onClick — типичный паттерн multiSelect
 
 ```tsx
 import { Attachment } from '@ds/attachment';
-import { useState } from 'react';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef, useState } from 'react';
 
 import { PDF_FILE } from './sample';
 
 export function AttachmentSelectable() {
+  const hostRef = useRef<HTMLDivElement>(null);
   const [checked, setChecked] = useState(false);
 
   return (
-    <Attachment
-      file={PDF_FILE}
-      checked={checked}
-      onClick={() => setChecked(v => !v)}
-      onDelete={file => console.info('delete', file?.name)}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <Attachment
+          file={PDF_FILE}
+          checked={checked}
+          onClick={() => setChecked(v => !v)}
+          onDelete={file => console.info('delete', file?.name)}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```
@@ -240,16 +278,24 @@ export function AttachmentSelectable() {
 
 ```tsx
 import { AttachmentSquare } from '@ds/attachment';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useRef } from 'react';
 
 import { PDF_FILE } from './sample';
 
 export function AttachmentSquareBasic() {
+  const hostRef = useRef<HTMLDivElement>(null);
+
   return (
-    <AttachmentSquare
-      file={PDF_FILE}
-      onDownload={file => console.info('download', file?.name)}
-      onDelete={file => console.info('delete', file?.name)}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <AttachmentSquare
+          file={PDF_FILE}
+          onDownload={file => console.info('download', file?.name)}
+          onDelete={file => console.info('delete', file?.name)}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```
@@ -260,11 +306,13 @@ export function AttachmentSquareBasic() {
 
 ```tsx
 import { AttachmentSquare } from '@ds/attachment';
-import { useEffect, useState } from 'react';
+import { PortalContextProvider } from '@ds/portal-context';
+import { useEffect, useRef, useState } from 'react';
 
 import pictureUrl from './picture.jpg';
 
 export function AttachmentSquareImage() {
+  const hostRef = useRef<HTMLDivElement>(null);
   const [file, setFile] = useState<File>();
 
   useEffect(() => {
@@ -274,12 +322,16 @@ export function AttachmentSquareImage() {
   }, []);
 
   return (
-    <AttachmentSquare
-      size='m'
-      file={file}
-      onDownload={f => console.info('download', f?.name)}
-      onDelete={f => console.info('delete', f?.name)}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <AttachmentSquare
+          size='m'
+          file={file}
+          onDownload={f => console.info('download', f?.name)}
+          onDelete={f => console.info('delete', f?.name)}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```
