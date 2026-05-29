@@ -453,6 +453,9 @@ importers:
       '@ds/uikit-product-load-status':
         specifier: workspace:*
         version: link:../../packages/uikit-product-load-status
+      '@ds/uikit-product-quota':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-quota
       '@ds/uikit-product-switch-row':
         specifier: workspace:*
         version: link:../../packages/uikit-product-switch-row
@@ -1670,6 +1673,57 @@ importers:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
+
+  packages/uikit-product-quota:
+    dependencies:
+      '@ds/accordion':
+        specifier: workspace:*
+        version: link:../accordion
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/counter':
+        specifier: workspace:*
+        version: link:../counter
+      '@ds/divider':
+        specifier: workspace:*
+        version: link:../divider
+      '@ds/dropdown':
+        specifier: workspace:*
+        version: link:../dropdown
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/info-block':
+        specifier: workspace:*
+        version: link:../info-block
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/progress-bar':
+        specifier: workspace:*
+        version: link:../progress-bar
+      '@ds/scroll':
+        specifier: workspace:*
+        version: link:../scroll
+      '@ds/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@ds/uikit-product-title-clickable':
+        specifier: workspace:*
+        version: link:../uikit-product-title-clickable
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
 
   packages/uikit-product-switch-row:
     dependencies:

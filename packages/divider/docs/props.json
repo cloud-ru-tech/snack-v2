@@ -2,8 +2,21 @@
   "Divider": {
     "displayName": "Divider",
     "propsTypeName": "DividerProps",
-    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation",
+    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Два варианта цвета: default (обычный фон) и onComplementary (инвертированный фон)\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation",
     "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "onComplementary"
+        ],
+        "defaultValue": "default",
+        "description": "Цвет линии: default — на обычном фоне, onComplementary — на инвертированном. По умолчанию: default",
+        "typeRefs": [
+          "DividerAppearance"
+        ]
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -41,6 +54,14 @@
       }
     },
     "relatedTypes": {
+      "DividerAppearance": {
+        "kind": "union",
+        "values": [
+          "default",
+          "onComplementary"
+        ],
+        "own": true
+      },
       "DividerOrientation": {
         "kind": "union",
         "values": [

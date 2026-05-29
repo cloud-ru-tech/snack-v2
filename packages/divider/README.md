@@ -25,7 +25,7 @@ pnpm add @ds/divider
 ```
 
 ```ts
-import { Divider, ORIENTATION, VARIANT } from '@ds/divider'
+import { APPEARANCE, Divider, ORIENTATION, VARIANT } from '@ds/divider'
 ```
 
 ## Примеры использования
@@ -76,12 +76,15 @@ export function VerticalInRow() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `appearance` | `"default"` \| `"onComplementary"` | `default` | Цвет линии: default — на обычном фоне, onComplementary — на инвертированном. По умолчанию: default |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal |
 | `variant` | `"regular"` \| `"thin"` | `regular` | Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular |
 
 #### Related types
+
+- `DividerAppearance` = `"default"` \| `"onComplementary"`
 
 - `DividerOrientation` = `"horizontal"` \| `"vertical"`
 

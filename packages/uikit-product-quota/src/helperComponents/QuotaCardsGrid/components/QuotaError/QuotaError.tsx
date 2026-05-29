@@ -1,0 +1,30 @@
+import { Button } from '@ds/button';
+import { CrossSVG, UpdateSVG } from '@ds/icons';
+import { InfoBlock } from '@ds/info-block';
+import { useLocale } from '@ds/locale';
+
+type QuotaErrorProps = {
+  onRefresh: () => void;
+};
+
+export function QuotaError({ onRefresh }: QuotaErrorProps) {
+  const { t } = useLocale('Quota');
+
+  return (
+    <InfoBlock
+      size='m'
+      align='vertical'
+      description={t('errorText')}
+      icon={{ icon: CrossSVG, appearance: 'neutral', decor: true }}
+      footer={
+        <Button
+          appearance='neutral'
+          size='m'
+          label={t('errorButton')}
+          icon={<UpdateSVG size={24} />}
+          onClick={onRefresh}
+        />
+      }
+    />
+  );
+}

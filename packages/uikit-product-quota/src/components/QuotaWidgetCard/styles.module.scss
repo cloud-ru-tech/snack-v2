@@ -1,0 +1,91 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
+
+.tooltip {
+  display: inline-flex;
+  max-width: 100%;
+}
+
+/* figma-selected-block: quotaCard root (node 2921:16397) */
+.card {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-4;
+
+  box-sizing: border-box;
+  width: 288px;
+  min-width: 256px;
+  max-width: 100%;
+  padding: base.$sn-primitive-dimension-8;
+  border-radius: card.$sn-card-anatomy-radius-s-container-borderRadius;
+
+  background-color: base.$sn-theme-color-neutral-decorTransparent;
+  backdrop-filter: blur(calc(base.$sn-acrylic-blurBackground1Level / 2));
+
+  &[data-exhausted='true'] {
+    background-color: base.simple-var(base.$sn-theme, 'color', 'red', 'background');
+  }
+}
+
+/* figma-selected-block: title row */
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.title {
+  flex: 1 1 0;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.percent {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 'm');
+
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.progressBar {
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-2;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.label {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 's');
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.value {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 'l');
+
+  color: base.$sn-theme-color-available-version-textMain;
+  white-space: nowrap;
+}
+
+.unit {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 'l');
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

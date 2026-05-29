@@ -31,6 +31,10 @@ $variants: 'regular', 'thin';
   margin: auto;
   background-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
 
+  .root[data-appearance='onComplementary'] & {
+    background-color: base.$sn-theme-color-available-onComplementary;
+  }
+
   @each $variant in $variants {
     .root[data-orientation='horizontal'][data-variant='#{$variant}'] & {
       width: 100%;

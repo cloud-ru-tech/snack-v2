@@ -1,0 +1,30 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-4;
+  align-items: stretch;
+}
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-4;
+}
+
+.row {
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rowLabel,
+.rowValue {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}
+
+.rowValue {
+  text-align: right;
+}

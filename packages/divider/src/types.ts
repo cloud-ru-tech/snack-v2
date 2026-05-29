@@ -1,6 +1,8 @@
 import { ValueOf } from '@ds/utils';
 
-import { ORIENTATION, VARIANT } from './constants';
+import { APPEARANCE, ORIENTATION, VARIANT } from './constants';
+
+export type DividerAppearance = ValueOf<typeof APPEARANCE>;
 
 export type DividerVariant = ValueOf<typeof VARIANT>;
 

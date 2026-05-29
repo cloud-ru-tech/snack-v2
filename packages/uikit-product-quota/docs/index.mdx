@@ -1,0 +1,61 @@
+---
+title: Quota
+package: '@ds/uikit-product-quota'
+description: Виджеты квот проекта — dropdown, accordion и карточка с прогрессом, loading/error и tooltip.
+order: 1
+---
+
+import { QuotaWidgetDemo } from '../demos/QuotaWidgetDemo'
+import { QuotaWidgetMiniDemo } from '../demos/QuotaWidgetMiniDemo'
+import { QuotaWidgetCardDemo } from '../demos/QuotaWidgetCardDemo'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# Quota
+
+Пакет виджетов квот для продуктовых экранов: выпадающий виджет (`QuotaWidget`), компактный аккордеон (`QuotaWidgetMini`) и карточка одной квоты (`QuotaWidgetCard`).
+
+## Компоненты
+
+### QuotaWidget
+
+<QuotaWidgetDemo client:visible />
+
+<PropsTable data={doc.QuotaWidget} />
+
+<StorybookEmbed storyId='uikit-product-quota-quotawidget--playground' />
+
+<FigmaEmbed node={figmaNode('uikit-product-quota', 'quota-widget')} />
+
+### QuotaWidgetMini
+
+<QuotaWidgetMiniDemo client:visible />
+
+<PropsTable data={doc.QuotaWidgetMini} />
+
+<StorybookEmbed storyId='uikit-product-quota-quotawidgetmini--playground' />
+
+<FigmaEmbed node={figmaNode('uikit-product-quota', 'quota-widget-mini')} />
+
+### QuotaWidgetCard
+
+<QuotaWidgetCardDemo client:visible />
+
+<PropsTable data={doc.QuotaWidgetCard} />
+
+<StorybookEmbed storyId='uikit-product-quota-quotawidgetcard--playground' />
+
+<FigmaEmbed node={figmaNode('uikit-product-quota', 'quota-widget-card')} />
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-quota
+```
+
+```ts
+import { QuotaWidget, QuotaWidgetMini, QuotaWidgetCard } from '@ds/uikit-product-quota'
+```

@@ -1,0 +1,15 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
+
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-4;
+
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-8;
+  border-radius: card.$sn-card-anatomy-radius-s-container-borderRadius;
+
+  background-color: base.$sn-theme-color-neutral-decorTransparent;
+}

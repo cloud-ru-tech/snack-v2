@@ -1,3 +1,8 @@
+export const APPEARANCE = {
+  Default: 'default',
+  OnComplementary: 'onComplementary',
+} as const;
+
 export const VARIANT = {
   Regular: 'regular',
   Thin: 'thin',

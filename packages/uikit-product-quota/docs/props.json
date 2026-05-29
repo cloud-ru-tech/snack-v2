@@ -1,0 +1,755 @@
+{
+  "Grid": {
+    "displayName": "Grid",
+    "propsTypeName": null,
+    "props": {
+      "disableSorting": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Флаг отключения сортировки квот"
+      },
+      "isAccordion": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "isLoading": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг загрузки квот"
+      },
+      "quotas": {
+        "type": "QuotaItem[]",
+        "required": true,
+        "description": "Список квот для отображения"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ProjectHeader": {
+    "displayName": "ProjectHeader",
+    "propsTypeName": null,
+    "props": {
+      "canEditQuota": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг наличия прав на редактирование квот"
+      },
+      "hideIncreaseQuotaButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг скрытия кнопки увеличения квоты"
+      },
+      "isError": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
+      "onIncreaseQuotaClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек нажатия на кнопку увеличения квот"
+      },
+      "onQuotasUrlClick": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "projectName": {
+        "type": "string",
+        "required": true,
+        "description": "Название проекта, по которому отображаются квоты"
+      },
+      "quotasUrl": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "QuotaCardsGrid": {
+    "displayName": "QuotaCardsGrid",
+    "propsTypeName": null,
+    "props": {
+      "disableSorting": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Флаг отключения сортировки квот"
+      },
+      "isAccordion": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "isError": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
+      "isLoading": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг загрузки квот"
+      },
+      "onRefresh": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбек на обновление списка квот при ошибке"
+      },
+      "quotas": {
+        "type": "QuotaItem[]",
+        "required": true,
+        "description": "Список квот для отображения"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "QuotaError": {
+    "displayName": "QuotaError",
+    "propsTypeName": null,
+    "props": {
+      "onRefresh": {
+        "type": "() => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "QuotaTooltip": {
+    "displayName": "QuotaTooltip",
+    "propsTypeName": null,
+    "props": {
+      "quota": {
+        "type": "QuotaItem",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "QuotaWidget": {
+    "displayName": "QuotaWidget",
+    "propsTypeName": "QuotaWidgetProps",
+    "props": {
+      "buttonProps": {
+        "type": "Pick<ButtonProps, \"label\" | \"appearance\" | \"size\" | \"disabled\" | \"fullWidth\" | \"className\">",
+        "required": false,
+        "description": "Свойства кнопки открытия виджета",
+        "typeRefs": [
+          "BaseButtonProps",
+          "ButtonProps"
+        ]
+      },
+      "canEditQuota": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг наличия прав на редактирование квот"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSorting": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отключения сортировки квот"
+      },
+      "hideIncreaseQuotaButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг скрытия кнопки увеличения квоты"
+      },
+      "isError": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
+      "isLoading": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг загрузки квот"
+      },
+      "onIncreaseQuotaClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек нажатия на кнопку увеличения квот"
+      },
+      "onQuotasUrlClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек клика по ссылке на страницу квот по проекту"
+      },
+      "onRefresh": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбек на обновление списка квот при ошибке"
+      },
+      "onWidgetOpen": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек открытия виджета квот"
+      },
+      "projectName": {
+        "type": "string",
+        "required": true,
+        "description": "Название проекта, по которому отображаются квоты"
+      },
+      "quotas": {
+        "type": "QuotaItem[]",
+        "required": true,
+        "description": "Список квот для отображения",
+        "typeRefs": [
+          "QuotaItem"
+        ]
+      },
+      "quotasUrl": {
+        "type": "string",
+        "required": true,
+        "description": "Ссылка на страницу квот по проекту"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "BaseButtonProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ButtonProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "QuotaItem": {
+        "kind": "interface",
+        "props": {
+          "limit": {
+            "type": "number",
+            "required": true,
+            "description": "Лимит квоты"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Название квоты"
+          },
+          "remains": {
+            "type": "number",
+            "required": true,
+            "description": "Остаток квоты"
+          },
+          "unitDisplayName": {
+            "type": "string",
+            "required": true,
+            "description": "Единица измерения квоты"
+          },
+          "usage": {
+            "type": "number",
+            "required": true,
+            "description": "Потребление квоты"
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
+      }
+    }
+  },
+  "QuotaWidgetCard": {
+    "displayName": "QuotaWidgetCard",
+    "propsTypeName": "QuotaWidgetCardProps",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки (Figma: loading=true)"
+      },
+      "noData": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние «не удалось загрузить данные» (Figma: noData=true)"
+      },
+      "onRefresh": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек кнопки «Обновить» в состоянии noData"
+      },
+      "quota": {
+        "type": "QuotaItem",
+        "required": true,
+        "description": "Отображаемая квота",
+        "typeRefs": [
+          "QuotaItem"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "QuotaItem": {
+        "kind": "interface",
+        "props": {
+          "limit": {
+            "type": "number",
+            "required": true,
+            "description": "Лимит квоты"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Название квоты"
+          },
+          "remains": {
+            "type": "number",
+            "required": true,
+            "description": "Остаток квоты"
+          },
+          "unitDisplayName": {
+            "type": "string",
+            "required": true,
+            "description": "Единица измерения квоты"
+          },
+          "usage": {
+            "type": "number",
+            "required": true,
+            "description": "Потребление квоты"
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "QuotaWidgetCardsSkeleton": {
+    "displayName": "QuotaWidgetCardsSkeleton",
+    "propsTypeName": null,
+    "props": {
+      "isLoading": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "QuotaWidgetMini": {
+    "displayName": "QuotaWidgetMini",
+    "propsTypeName": "QuotaWidgetMiniProps",
+    "props": {
+      "canEditQuota": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг наличия прав на редактирование квот"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSorting": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отключения сортировки квот"
+      },
+      "hideIncreaseQuotaButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг скрытия кнопки увеличения квоты"
+      },
+      "isError": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
+      "isExpandedDefault": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг раскрытия аккордиона по умолчанию"
+      },
+      "isLoading": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг загрузки квот"
+      },
+      "onIncreaseQuotaClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек нажатия на кнопку увеличения квот"
+      },
+      "onRefresh": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбек на обновление списка квот при ошибке"
+      },
+      "onWidgetOpen": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек открытия виджета квот"
+      },
+      "projectName": {
+        "type": "string",
+        "required": true,
+        "description": "Название проекта, по которому отображаются квоты"
+      },
+      "quotas": {
+        "type": "QuotaItem[]",
+        "required": true,
+        "description": "Список квот для отображения",
+        "typeRefs": [
+          "QuotaItem"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "QuotaItem": {
+        "kind": "interface",
+        "props": {
+          "limit": {
+            "type": "number",
+            "required": true,
+            "description": "Лимит квоты"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Название квоты"
+          },
+          "remains": {
+            "type": "number",
+            "required": true,
+            "description": "Остаток квоты"
+          },
+          "unitDisplayName": {
+            "type": "string",
+            "required": true,
+            "description": "Единица измерения квоты"
+          },
+          "usage": {
+            "type": "number",
+            "required": true,
+            "description": "Потребление квоты"
+          }
+        },
+        "own": true
+      }
+    }
+  }
+}

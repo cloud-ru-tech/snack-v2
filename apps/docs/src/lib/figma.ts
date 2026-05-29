@@ -160,6 +160,12 @@ export const FIGMA_NODES = {
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
   'uikit-product-avatar-detail': { ...PRODUCT, nodeId: '2157:3642' }, // uikit-product-avatar-detail → AvatarDetail
+  'uikit-product-quota': {
+    _: { ...PRODUCT, nodeId: '2917-49' }, // quota canvas
+    'quota-widget': { ...PRODUCT, nodeId: '2934-13857' }, // quotaDropdown
+    'quota-widget-mini': { ...PRODUCT, nodeId: '2950-5077' }, // quotaMini
+    'quota-widget-card': { ...PRODUCT, nodeId: '2921-16397' }, // quotaCard
+  },
   'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
   icons: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons → Interfaces icons (отдельный файл)
   materials: { ...SNACK, nodeId: '2014-81002' }, // materials → material

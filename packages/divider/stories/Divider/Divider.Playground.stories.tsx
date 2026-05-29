@@ -1,4 +1,4 @@
-import { Divider, ORIENTATION, VARIANT } from '@ds/divider';
+import { APPEARANCE, Divider, ORIENTATION, VARIANT } from '@ds/divider';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -12,12 +12,18 @@ const meta: Meta<typeof Divider> = {
   component: Divider,
   parameters: { layout: 'fullscreen' },
   args: {
+    appearance: APPEARANCE.Default,
     variant: VARIANT.Regular,
     orientation: ORIENTATION.Horizontal,
     className: '',
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
+    appearance: {
+      control: 'radio',
+      options: Object.values(APPEARANCE),
+      description: 'Цвет линии: default — на обычном фоне, onComplementary — на инвертированном',
+    },
     variant: {
       control: 'radio',
       options: Object.values(VARIANT),

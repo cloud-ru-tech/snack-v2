@@ -90,4 +90,25 @@ export const en_GB = {
     clear: 'Clear',
     addButtonDisabledTip: 'No filters available to add',
   },
+  Quota: {
+    quotas: 'Quotas',
+    widgetTitle: {
+      withoutProject: 'Project quotas',
+      quotes: 'Project quotas «{{project}}»',
+      noQuotes: 'Project quotas {{project}}',
+    },
+    widgetSubtitle: 'Current quota balance',
+    increaseQuota: 'Increase quota',
+    cardAvailable: 'Available',
+    cardRemaining: 'Remaining',
+    tooltipAvailable: 'Available',
+    tooltipUsed: 'Used',
+    tooltipRemaining: 'Remaining',
+    tooltipExhaustedHint: {
+      first: 'Quota exhausted.',
+      second: 'To increase the quota, contact the quota or organization administrator.',
+    },
+    errorText: 'Failed to load data',
+    errorButton: 'Refresh',
+  },
 } satisfies Dictionary;

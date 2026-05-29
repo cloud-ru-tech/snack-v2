@@ -1,0 +1,9 @@
+.wrapper {
+  width: 100%;
+  height: auto;
+  max-height: 382px;
+
+  &[data-accordion='true'] {
+    max-height: 400px;
+  }
+}

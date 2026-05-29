@@ -1,6 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { ORIENTATION, VARIANT } from '../../src/constants';
+import { APPEARANCE, ORIENTATION, VARIANT } from '../../src/constants';
 import { buildStoryOptions, TEST_IDS } from './helpers';
 
 const KEY_COMBOS = [
@@ -40,5 +40,11 @@ test.describe('Divider — rendering', () => {
         await expect(divider).toHaveAttribute('aria-orientation', orientation);
       });
     }
+
+    test('appearance=onComplementary', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ appearance: APPEARANCE.OnComplementary }));
+
+      await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-appearance', APPEARANCE.OnComplementary);
+    });
   });
 });

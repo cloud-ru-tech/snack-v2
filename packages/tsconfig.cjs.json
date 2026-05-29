@@ -204,6 +204,9 @@
     },
     {
       "path": "./uikit-product-title-clickable/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-quota/tsconfig.cjs.json"
     }
   ]
 }
