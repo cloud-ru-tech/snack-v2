@@ -24,7 +24,7 @@
   "dependencies": {
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
-    "@snack-uikit/list": "0.32.16",
+    "@snack-uikit/list": "catalog:",
     "classnames": "catalog:",
     "lodash.debounce": "catalog:"
   },
