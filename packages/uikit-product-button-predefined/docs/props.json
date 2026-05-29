@@ -1,0 +1,732 @@
+{
+  "AdaptiveDroplist": {
+    "displayName": "AdaptiveDroplist",
+    "propsTypeName": null,
+    "props": {
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "description": "Настройки раскрытия элементов"
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "listRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент выпадающего списка"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвещающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать ли маркер у выбранного жлемента списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии результатов поиска или фильтров"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "pinBottom": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Элементы списка, закрепленные снизу"
+      },
+      "pinTop": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Элементы списка, закрепленные сверху"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки"
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер списка"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br> - `click` - открывать по клику\n<br> - `hover` - открывать по ховеру\n<br> - `focusVisible` - открывать по focus-visible\n<br> - `focus` - открывать по фокусу\n<br> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerElemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент-триггер для дроплиста"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления шириной контейнера поповера\n<br> - `auto` - соответствует ширине контента,\n<br> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br> - `eq` - Equal, строго равен ширине таргета."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ButtonDropdown": {
+    "displayName": "ButtonDropdown",
+    "propsTypeName": "ButtonDropdownProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "description": "Вариант оформления",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "as": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "button"
+        ],
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс\nCSS-класс"
+      },
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "description": "Настройки раскрытия элементов"
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "counter": {
+        "type": "Omit<CounterProps, \"size\" | \"appearance\">",
+        "required": false,
+        "description": "Пропсы для counter",
+        "typeRefs": [
+          "CounterProps"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключена"
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "На всю ширину"
+      },
+      "innerRef": {
+        "type": "((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст кнопки"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ],
+        "typeRefs": [
+          "LayoutType"
+        ]
+      },
+      "listRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент выпадающего списка"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать ли маркер у выбранного жлемента списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии результатов поиска или фильтров"
+      },
+      "onOpenChange": {
+        "type": "(((open: boolean) => void) & ((isOpen: boolean) => void))",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "onScroll": {
+        "type": "(UIEventHandler<HTMLButtonElement> & ((event?: Event) => void)) | undefined",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "pinBottom": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Элементы списка, закрепленные снизу"
+      },
+      "pinTop": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Элементы списка, закрепленные сверху"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки"
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "typeRefs": [
+          "ButtonDropdownSize"
+        ]
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br> - `click` - открывать по клику\n<br> - `hover` - открывать по ховеру\n<br> - `focusVisible` - открывать по focus-visible\n<br> - `focus` - открывать по фокусу\n<br> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerElemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент-триггер для дроплиста"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления шириной контейнера поповера\n<br> - `auto` - соответствует ширине контента,\n<br> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br> - `eq` - Equal, строго равен ширине таргета."
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "ButtonDropdownSize": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
+      },
+      "Color": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "LayoutType": {
+        "kind": "union",
+        "values": [
+          "desktop",
+          "mobile"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "count",
+          "count-k",
+          "count-plus"
+        ],
+        "own": false
+      }
+    }
+  },
+  "MobileDroplist": {
+    "displayName": "MobileDroplist",
+    "propsTypeName": null,
+    "props": {
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  }
+}

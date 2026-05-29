@@ -1,0 +1,88 @@
+---
+title: PriceSummarySmall
+package: '@ds/uikit-product-price-summary'
+description: Компактный блок итога с ссылкой на стоимость.
+order: 2
+---
+
+import { PriceSummarySmallDemo } from '../demos/PriceSummarySmallDemo'
+import PriceSummarySmallDemoSrc from '../demos/PriceSummarySmallDemo.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import priceSummaryDoc from './props.json'
+
+# PriceSummarySmall
+
+Компактный вариант Figma `price-summary-small`: метка «Итого», сумма и опциональная function-ссылка. Без выбора периода, скидок и аккордеона invoice.
+
+## Демо
+
+{/* client:only — @cloud-ru/ft-formatters не для SSR */}
+<PriceSummarySmallDemo client:only="react" />
+
+## Когда использовать
+
+- Узкая колонка или карточка, где нужен только итог и ссылка «Стоимость» / «Подробнее».
+- Состояния `loading` и `dataError` с `onRetry` — как у полного `PriceSummary`, но без детализации.
+
+Когда **не** подходит:
+
+- Нужен период, скидки или раскрываемый заказ — [`PriceSummary`](/components/uikit-product-price-summary/price-summary).
+
+## Анатомия
+
+### Заголовок
+
+Текст `total` из locale («Итого»).
+
+### Сумма
+
+`Typography` headline + `formatCurrency(value)`.
+
+### docsLink
+
+Опциональная `Button` `view='function'` со ссылкой (`docsLink.href`, `docsLink.text` или locale `costLink`).
+
+### ContentBlock
+
+Те же `loading` / `dataError` / `onRetry`, что и у `PriceSummary`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-price-summary
+```
+
+```ts
+import { PriceSummarySmall } from '@ds/uikit-product-price-summary'
+```
+
+### Базовый пример
+
+```tsx
+<PriceSummarySmall
+  value={9_999_999.99}
+  docsLink={{ href: 'https://example.com/pricing', text: 'Подробнее о стоимости' }}
+/>
+```
+
+## Примеры использования
+
+<Example title='Default' description='Итог и ссылка на стоимость.' code={PriceSummarySmallDemoSrc}>
+  <PriceSummarySmallDemo client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={priceSummaryDoc.PriceSummarySmall} />
+
+## Storybook
+
+<StorybookEmbed packageName='@ds/uikit-product-price-summary' storyId='uikit-product-pricesummary-pricesummarysmall--playground' height={280} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-price-summary', 'price-summary-small')} />

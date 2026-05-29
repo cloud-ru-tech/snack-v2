@@ -158,6 +158,15 @@ export const FIGMA_NODES = {
   'uikit-product-info-row': { ...PRODUCT, nodeId: '3040-21176' }, // uikit-product-info-row → InfoRow
   'uikit-product-switch-row': { ...PRODUCT, nodeId: '3019:5599' }, // uikit-product-switch-row → SwitchRow
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
+  'uikit-product-button-predefined': {
+    _: { ...PRODUCT, nodeId: '3060-29186' }, // button-dropdown → ButtonDropdown
+    'button-dropdown': { ...PRODUCT, nodeId: '3060-29186' },
+  },
+  'uikit-product-price-summary': {
+    _: { ...PRODUCT, nodeId: '2909-6589' },
+    'price-summary': { ...PRODUCT, nodeId: '2909-5733' },
+    'price-summary-small': { ...PRODUCT, nodeId: '2909-8947' },
+  },
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
   'uikit-product-widget': { ...PRODUCT, nodeId: '3024:759' }, // uikit-product-widget → widget
   'uikit-product-avatar-detail': { ...PRODUCT, nodeId: '2157:3642' }, // uikit-product-avatar-detail → AvatarDetail

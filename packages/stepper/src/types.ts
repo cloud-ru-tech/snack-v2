@@ -1,11 +1,9 @@
 import { ValueOf } from '@ds/utils';
 import { ReactElement } from 'react';
 
-import { LAYOUT_TYPE, STEP_STATE } from './constants';
+import { STEP_STATE } from './constants';
 
 export type StepState = ValueOf<typeof STEP_STATE>;
-
-export type LayoutType = ValueOf<typeof LAYOUT_TYPE>;
 
 export type StepsValidator = (prevStepIndex: number, newStepIndex: number) => Promise<boolean>;
 

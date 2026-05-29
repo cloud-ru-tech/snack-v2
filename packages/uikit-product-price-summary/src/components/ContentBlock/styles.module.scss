@@ -1,0 +1,14 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.loadingBlock {
+  display: flex;
+  justify-content: center;
+  padding: base.$sn-primitive-dimension-4;
+}
+
+.dataErrorBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

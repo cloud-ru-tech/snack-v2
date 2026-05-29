@@ -51,6 +51,7 @@
     "test:e2e:visual": "find packages -path '*/__test__/*/visual.spec.ts' -print0 | xargs -0 playwright test --project=chrome",
     "test:e2e:visual:update": "find packages -path '*/__test__/*/visual.spec.ts' -print0 | xargs -0 playwright test --project=chrome --update-snapshots=changed",
     "test:e2e:docs": "pnpm --filter @ds/tests test",
+    "test:e2e:audit": "tsx scripts/e2e-standard-audit.mts",
     "test": "pnpm test:stories && pnpm test:e2e",
     "test:unit": "vitest run",
     "version:packages": "lerna version",

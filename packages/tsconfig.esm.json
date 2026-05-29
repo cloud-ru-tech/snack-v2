@@ -186,6 +186,9 @@
       "path": "./uikit-product-avatar-detail/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-button-predefined/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-copy/tsconfig.esm.json"
     },
     {
@@ -196,6 +199,9 @@
     },
     {
       "path": "./uikit-product-load-status/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-price-summary/tsconfig.esm.json"
     },
     {
       "path": "./uikit-product-switch-row/tsconfig.esm.json"

@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.cjs.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/cjs"
+  },
+  "include": ["./src", "../../types"],
+  "exclude": ["./dist", "./stories", "./__tests__", "./__test__", "./docs", "./demos", "node_modules"],
+  "references": [
+    { "path": "../utils/tsconfig.cjs.json" },
+    { "path": "../icons/tsconfig.cjs.json" },
+    { "path": "../button/tsconfig.cjs.json" },
+    { "path": "../modal/tsconfig.cjs.json" },
+    { "path": "../popover-private/tsconfig.cjs.json" }
+  ]
+}

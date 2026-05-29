@@ -78,14 +78,42 @@ export default defineConfig({
         '@snack-uikit/scroll',
         '@snack-uikit/search-private',
         '@snack-uikit/input-private',
+        '@sbercloud/snack-v2-list',
+        '@sbercloud/snack-v2-dropdown',
+        '@sbercloud/snack-v2-button',
+        '@sbercloud/snack-v2-counter',
+        '@sbercloud/snack-v2-utils',
+        '@sbercloud/snack-v2-loader',
+        '@sbercloud/snack-v2-divider',
+        '@sbercloud/snack-v2-icons',
+        '@sbercloud/snack-v2-info-block',
+        '@sbercloud/snack-v2-icon-predefined',
+        '@sbercloud/snack-v2-locale',
+        '@sbercloud/snack-v2-popover-private',
+        '@sbercloud/snack-v2-portal-context',
+        '@sbercloud/snack-v2-truncate-string',
+        '@sbercloud/snack-v2-tooltip',
+        '@sbercloud/snack-v2-toggles',
+        '@sbercloud/snack-v2-scroll',
+        '@sbercloud/snack-v2-search-private',
+        '@sbercloud/snack-v2-input-private',
       ],
     },
     resolve: {
       alias: {
         // #docs points to apps/docs/src — used by package demos to import Canvas etc.
         '#docs': resolve(dir, 'src'),
+        // Barrel dist/esm/index.js re-exports ./formatters/* without .js — SSR/prebundle fail.
+        '@cloud-ru/ft-formatters': resolve(
+          root,
+          'node_modules/@cloud-ru/ft-formatters/dist/esm/formatters/formatNumber.js',
+        ),
         ...dsWorkspaceSourceAliases(),
       },
+    },
+    optimizeDeps: {
+      // Alias points at a single .js file; prebundling under package id breaks client hydration.
+      exclude: ['@cloud-ru/ft-formatters'],
     },
     css: {
       modules: { localsConvention: 'camelCaseOnly' },

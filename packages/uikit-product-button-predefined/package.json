@@ -1,0 +1,35 @@
+{
+  "name": "@ds/uikit-product-button-predefined",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/dropdown": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/modal": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "@sbercloud/snack-v2-list": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -6,11 +6,6 @@ export const STEP_STATE = {
   Rejected: 'rejected',
 } as const;
 
-export const LAYOUT_TYPE = {
-  Desktop: 'desktop',
-  Mobile: 'mobile',
-} as const;
-
 export const TEST_IDS = {
   root: 'stepper',
   stepSuffix: '_element-step',

@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.discountGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: base.$sn-primitive-dimension-8;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.priceCell {
+  justify-self: end;
+}
+
+.discountCell {
+  justify-self: end;
+  color: base.$sn-theme-color-red-text;
+}

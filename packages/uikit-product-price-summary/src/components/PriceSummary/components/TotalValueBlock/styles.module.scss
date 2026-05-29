@@ -1,0 +1,54 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$text-appearance-colors: (
+  'userError': base.$sn-theme-color-red-text,
+  'warning': base.$sn-theme-color-yellow-text,
+  'systemError': base.$sn-theme-color-available-version-textDisabled,
+);
+
+$icon-appearance-colors: (
+  'default': base.$sn-theme-color-neutral-accent,
+  'userError': base.$sn-theme-color-red-accent,
+  'warning': base.$sn-theme-color-yellow-accent,
+  'systemError': base.$sn-theme-color-available-version-textDisabled,
+);
+
+.content {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+
+  @each $appearance, $color in $text-appearance-colors {
+    &[data-appearance='#{$appearance}'] {
+      color: $color;
+    }
+  }
+}
+
+.hint {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  @each $appearance, $color in $text-appearance-colors {
+    &[data-appearance='#{$appearance}'] {
+      color: $color;
+    }
+  }
+}
+
+.hintIcon {
+  flex-shrink: 0;
+  box-sizing: content-box;
+
+  @each $appearance, $color in $icon-appearance-colors {
+    &[data-appearance='#{$appearance}'] {
+      color: $color;
+    }
+  }
+}
+
+.valueDelta {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

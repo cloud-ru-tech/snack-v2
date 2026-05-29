@@ -1,0 +1,25 @@
+{
+  "extends": "../tsconfig.esm.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/esm"
+  },
+  "include": ["./src", "../../types"],
+  "exclude": ["./dist", "./stories", "./__tests__", "./__test__", "./docs", "./demos", "node_modules"],
+  "references": [
+    { "path": "../utils/tsconfig.esm.json" },
+    { "path": "../icons/tsconfig.esm.json" },
+    { "path": "../button/tsconfig.esm.json" },
+    { "path": "../link/tsconfig.esm.json" },
+    { "path": "../loader/tsconfig.esm.json" },
+    { "path": "../locale/tsconfig.esm.json" },
+    { "path": "../materials/tsconfig.esm.json" },
+    { "path": "../typography/tsconfig.esm.json" },
+    { "path": "../tooltip/tsconfig.esm.json" },
+    { "path": "../accordion/tsconfig.esm.json" },
+    { "path": "../promo-tag/tsconfig.esm.json" },
+    { "path": "../truncate-string/tsconfig.esm.json" },
+    { "path": "../popover-private/tsconfig.esm.json" },
+    { "path": "../uikit-product-button-predefined/tsconfig.esm.json" }
+  ]
+}

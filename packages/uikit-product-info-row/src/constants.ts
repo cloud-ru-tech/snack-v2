@@ -1,9 +1,3 @@
-/** В публичном API используем desktop/mobile, независимо от именования в Figma. */
-export const LAYOUT_TYPE = {
-  Desktop: 'desktop',
-  Mobile: 'mobile',
-} as const;
-
 /** Позиция строки в списке (мобильный `MobileInfoRow`): влияет на padding и разделители. */
 export const POSITION = {
   Inner: 'inner',

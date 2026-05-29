@@ -1,0 +1,28 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 360px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 360px;
+}
+
+.figmaSurface {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 360px;
+  padding: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}

@@ -5,6 +5,7 @@ packages:
 
 catalog:
   '@snack-uikit/list': 0.33.1
+  '@sbercloud/snack-v2-list': 0.0.1-preview-004d5c66.0
   '@types/react': 18.3.28
   '@types/react-dom': 18.3.7
   classnames: 2.5.1

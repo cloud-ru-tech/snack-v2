@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.itemGrid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: base.$sn-primitive-dimension-8;
+
+  &[data-discount='true'] {
+    margin-bottom: base.$sn-primitive-dimension-4;
+  }
+}
+
+.labelCell {
+  overflow: hidden;
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.priceCell {
+  justify-self: end;
+
+  &[data-price-color='changed'] {
+    color: base.$sn-theme-color-green-accent;
+  }
+}
+
+.labelCell,
+.priceCell,
+.percentCell {
+  &[data-secondary='true'] {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+}
+
+.discountCell {
+  justify-self: end;
+  color: base.$sn-theme-color-red-accent;
+
+  &[data-secondary='true'] {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+}

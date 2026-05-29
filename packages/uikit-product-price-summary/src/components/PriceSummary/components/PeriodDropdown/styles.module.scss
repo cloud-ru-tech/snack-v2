@@ -1,0 +1,19 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Figma: titleWrapper itemSpacing 8
+.period {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  &[data-single] {
+    gap: base.$sn-primitive-dimension-4;
+  }
+}
+
+.single {
+  display: flex;
+  align-items: center;
+  min-height: base.$sn-primitive-dimension-32;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

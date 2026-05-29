@@ -1,0 +1,7 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.percentCell {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+}

@@ -1,0 +1,8 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.divider {
+  width: 100%;
+  height: 0;
+  margin: base.$sn-primitive-dimension-4 0;
+  border-top: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+}

@@ -1,7 +1,7 @@
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, LAYOUT_TYPE, type LayoutType } from '@ds/utils';
 
-import { LAYOUT_TYPE, POSITION } from '../../constants';
-import { LayoutType, Position } from '../../types';
+import { POSITION } from '../../constants';
+import { Position } from '../../types';
 import { InfoRow } from '../InfoRow';
 import { InfoRowProps } from '../InfoRow/types';
 import { MobileInfoRow } from '../MobileInfoRow';

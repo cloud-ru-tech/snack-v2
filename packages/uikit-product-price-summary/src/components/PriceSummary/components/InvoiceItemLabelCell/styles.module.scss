@@ -1,0 +1,16 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.labelCell {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+}
+
+.label {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.quantity {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}

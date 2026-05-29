@@ -1,0 +1,107 @@
+---
+title: ButtonDropdown
+package: '@ds/uikit-product-button-predefined'
+description: Function-кнопка с выпадающим списком (desktop) или modal (mobile).
+order: 100
+---
+
+import { DesktopBasic } from '../demos/examples/DesktopBasic'
+import DesktopBasicSrc from '../demos/examples/DesktopBasic.tsx?raw'
+import { DesktopOpen } from '../demos/examples/DesktopOpen'
+import DesktopOpenSrc from '../demos/examples/DesktopOpen.tsx?raw'
+import { MobileLayout } from '../demos/examples/MobileLayout'
+import MobileLayoutSrc from '../demos/examples/MobileLayout.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import buttonPredefinedDoc from './props.json'
+
+# ButtonDropdown
+
+Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `@sbercloud/snack-v2-list` `Droplist`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в [`PriceSummary`](/components/uikit-product-price-summary/price-summary) для выбора периода биллинга.
+
+## Когда использовать
+
+- Нужен выбор одного значения из короткого списка (период, валюта, режим) без отдельного поля формы.
+- На desktop достаточно выпадающего списка у триггера; на mobile — полноэкранный modal со списком.
+
+Когда **не** нужен `ButtonDropdown`:
+
+- Произвольный контент в overlay без списка — [`Dropdown`](/components/dropdown).
+- Одиночное действие без меню — [`Button`](/components/button/button) `view='function'`.
+
+## Анатомия
+
+### Trigger
+
+`Button` `view='function'` `appearance='neutral'` (как `buttonFunctionNeutral` в Figma) с `label` и chevron up/down. При `open={true}` на триггер вешается `data-pressed` — в макете это `stateLayer/text/opacity` (прозрачность label/icon через `@ds/materials`).
+
+### AdaptiveDroplist
+
+- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@sbercloud/snack-v2-list`, позиционирование через popover.
+- **`layoutType='mobile'`** — `ModalCustom` + `List`; пункты из `items`.
+
+### items
+
+Массив пунктов `Droplist` (`content.option`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
+
+### Size
+
+`xs` | `s` | `m` | `l` — для `xs` кнопка рендерится как `s`, droplist остаётся `s`.
+
+### open / onOpenChange
+
+Controlled API через `useValueControl` (как у `@ds/utils`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-button-predefined
+```
+
+```ts
+import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
+```
+
+### Базовый пример
+
+```tsx
+<ButtonDropdown
+  label='Period'
+  size='s'
+  layoutType='desktop'
+  closeDroplistOnItemClick
+  items={[
+    { id: 'month', content: { option: 'Month' }, onClick: () => setPeriod('month') },
+    { id: 'year', content: { option: 'Year' }, onClick: () => setPeriod('year') },
+  ]}
+/>
+```
+
+## Примеры использования
+
+<Example title='Desktop basic' description='Базовый dropdown для выбора одного значения.' code={DesktopBasicSrc}>
+  <DesktopBasic client:only="react" />
+</Example>
+
+<Example title='Desktop open state' description='Открытое состояние dropdown (portal).' code={DesktopOpenSrc}>
+  <DesktopOpen client:only="react" />
+</Example>
+
+<Example title='Mobile layout' description='layoutType=mobile открывает modal со списком.' code={MobileLayoutSrc}>
+  <MobileLayout client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={buttonPredefinedDoc.ButtonDropdown} />
+
+## Storybook
+
+<StorybookEmbed packageName='@ds/uikit-product-button-predefined' storyId='uikit-product-buttonpredefined-buttondropdown--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-button-predefined', 'button-dropdown')} />

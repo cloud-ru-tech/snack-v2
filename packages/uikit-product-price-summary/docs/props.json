@@ -1,0 +1,929 @@
+{
+  "AdaptiveQuestionTooltip": {
+    "displayName": "AdaptiveQuestionTooltip",
+    "propsTypeName": null,
+    "props": {
+      "children": {
+        "type": "ReactNode | ChildrenFunction",
+        "required": false,
+        "description": "Триггер поповера (подробнее читайте ниже)"
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableMaxWidth": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключение ограничения ширины тултипа"
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "s",
+          "xs"
+        ],
+        "defaultValue": "xs",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Tab index для кнопки-триггера"
+      },
+      "tip": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Содержимое тултипа (текст или разметка)"
+      },
+      "tooltipClassname": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера подсказки"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Доступное имя для иконки-триггера"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ContentBlock": {
+    "displayName": "ContentBlock",
+    "propsTypeName": null,
+    "props": {
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CoveredByGrantLabel": {
+    "displayName": "CoveredByGrantLabel",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "covered": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DiscountBlock": {
+    "displayName": "DiscountBlock",
+    "propsTypeName": null,
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "value": {
+        "type": "DiscountDetails",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DiscountPercentCell": {
+    "displayName": "DiscountPercentCell",
+    "propsTypeName": null,
+    "props": {
+      "discount": {
+        "type": "DiscountItem",
+        "required": true
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "HeaderBlock": {
+    "displayName": "HeaderBlock",
+    "propsTypeName": null,
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "onPeriodChanged": {
+        "type": "((period: PricePeriod) => void)",
+        "required": false
+      },
+      "period": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "day",
+          "hour",
+          "minute",
+          "month",
+          "year"
+        ]
+      },
+      "periodOptions": {
+        "type": "PricePeriod[]",
+        "required": true
+      },
+      "promoBadge": {
+        "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "InvoiceBlock": {
+    "displayName": "InvoiceBlock",
+    "propsTypeName": null,
+    "props": {
+      "invoice": {
+        "type": "InvoiceDetails[]",
+        "required": true
+      },
+      "invoiceExpandedDefault": {
+        "type": "boolean",
+        "required": false
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "InvoiceDetailsBlock": {
+    "displayName": "InvoiceDetailsBlock",
+    "propsTypeName": null,
+    "props": {
+      "invoice": {
+        "type": "InvoiceDetails",
+        "required": true
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "InvoiceItemBlock": {
+    "displayName": "InvoiceItemBlock",
+    "propsTypeName": null,
+    "props": {
+      "index": {
+        "type": "number",
+        "required": true
+      },
+      "item": {
+        "type": "InvoiceItem",
+        "required": true
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "showCoveredByGrantLabel": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "InvoiceItemLabelCell": {
+    "displayName": "InvoiceItemLabelCell",
+    "propsTypeName": null,
+    "props": {
+      "item": {
+        "type": "InvoiceItem",
+        "required": true
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PeriodDropdown": {
+    "displayName": "PeriodDropdown",
+    "propsTypeName": null,
+    "props": {
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "onPeriodChanged": {
+        "type": "((period: PricePeriod) => void)",
+        "required": false,
+        "defaultValue": "() => {}"
+      },
+      "period": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "day",
+          "hour",
+          "minute",
+          "month",
+          "year"
+        ]
+      },
+      "periodOptions": {
+        "type": "PricePeriod[]",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PriceSummary": {
+    "displayName": "PriceSummary",
+    "propsTypeName": "PriceSummaryProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "discount": {
+        "type": "DiscountDetails",
+        "required": false,
+        "typeRefs": [
+          "DiscountDetails"
+        ]
+      },
+      "docsLink": {
+        "type": "{ href?: string; text?: string; } | undefined",
+        "required": false,
+        "typeRefs": [
+          "LinkProps"
+        ]
+      },
+      "hint": {
+        "type": "string",
+        "required": false
+      },
+      "hintAppearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "systemError",
+          "userError",
+          "warning"
+        ],
+        "typeRefs": [
+          "AppearanceState"
+        ]
+      },
+      "hintLink": {
+        "type": "{ href?: string; text: string; }",
+        "required": false
+      },
+      "hintTooltipText": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "invoice": {
+        "type": "InvoiceDetails[]",
+        "required": false,
+        "typeRefs": [
+          "InvoiceDetails"
+        ]
+      },
+      "invoiceExpandedDefault": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ],
+        "typeRefs": [
+          "LayoutType"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "onPeriodChanged": {
+        "type": "((period: PricePeriod) => void)",
+        "required": false,
+        "typeRefs": [
+          "PricePeriod"
+        ]
+      },
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "period": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "day",
+          "hour",
+          "minute",
+          "month",
+          "year"
+        ],
+        "typeRefs": [
+          "Day",
+          "Hour",
+          "Minute",
+          "Month",
+          "PricePeriod",
+          "Year"
+        ]
+      },
+      "periodOptions": {
+        "type": "PricePeriod[]",
+        "required": true,
+        "typeRefs": [
+          "Day",
+          "Hour",
+          "Minute",
+          "Month",
+          "PricePeriod",
+          "Year"
+        ]
+      },
+      "promoBadge": {
+        "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
+        "required": false,
+        "typeRefs": [
+          "PromoTagProps"
+        ]
+      },
+      "showHintLink": {
+        "type": "boolean",
+        "required": false
+      },
+      "showHintTooltip": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "totalSumType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "equal",
+          "from"
+        ],
+        "typeRefs": [
+          "TotalSumType"
+        ]
+      },
+      "value": {
+        "type": "number",
+        "required": false
+      },
+      "valueDelta": {
+        "type": "PriceDeltaDetails",
+        "required": false,
+        "typeRefs": [
+          "PriceDeltaDetails"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "AppearanceState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "systemError",
+          "userError",
+          "warning"
+        ],
+        "own": true
+      },
+      "DiscountDetails": {
+        "kind": "interface",
+        "props": {
+          "discounts": {
+            "type": "DiscountItem[]",
+            "required": true,
+            "typeRefs": [
+              "DiscountItem"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "DiscountInvoiceItem": {
+        "kind": "interface",
+        "props": {
+          "discount": {
+            "type": "{ value: number; percent?: number; tooltip?: QuestionTooltipProps[\"tip\"]; }",
+            "required": true,
+            "typeRefs": [
+              "DiscountItem"
+            ]
+          }
+        },
+        "own": true
+      },
+      "DiscountItem": {
+        "kind": "interface",
+        "props": {
+          "percent": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "tooltip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "InvoiceDetails": {
+        "kind": "interface",
+        "props": {
+          "items": {
+            "type": "InvoiceItem[]",
+            "required": true,
+            "typeRefs": [
+              "DiscountInvoiceItem",
+              "InvoiceItem",
+              "PriceInvoiceItem"
+            ]
+          },
+          "price": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "quantity": {
+            "type": "string | number | undefined",
+            "required": false
+          },
+          "title": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "InvoiceItem": {
+        "kind": "alias",
+        "type": "PrimaryInvoiceItem | SecondaryInvoiceItem",
+        "own": true
+      },
+      "LayoutType": {
+        "kind": "union",
+        "values": [
+          "desktop",
+          "mobile"
+        ],
+        "own": true
+      },
+      "LinkProps": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
+            "required": false
+          },
+          "target": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "PriceDeltaDetails": {
+        "kind": "interface",
+        "props": {
+          "type": {
+            "type": "\"increased\" | \"decreased\"",
+            "required": true,
+            "values": [
+              "decreased",
+              "increased"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "PriceInvoiceItem": {
+        "kind": "interface",
+        "props": {
+          "discount": {
+            "type": "DiscountItem | undefined",
+            "required": false,
+            "typeRefs": [
+              "DiscountItem"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "PromoTagProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "TotalSumType": {
+        "kind": "union",
+        "values": [
+          "equal",
+          "from"
+        ],
+        "own": true
+      }
+    }
+  },
+  "PriceSummarySmall": {
+    "displayName": "PriceSummarySmall",
+    "propsTypeName": "PriceSummarySmallProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "docsLink": {
+        "type": "{ href?: string; text?: string; } | undefined",
+        "required": false,
+        "typeRefs": [
+          "LinkProps"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "value": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0"
+      }
+    },
+    "relatedTypes": {
+      "LinkProps": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
+            "required": false
+          },
+          "target": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      }
+    }
+  },
+  "TotalValueBlock": {
+    "displayName": "TotalValueBlock",
+    "propsTypeName": null,
+    "props": {
+      "hint": {
+        "type": "string",
+        "required": false
+      },
+      "hintAppearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "systemError",
+          "userError",
+          "warning"
+        ],
+        "defaultValue": "default"
+      },
+      "hintLink": {
+        "type": "{ href?: string; text: string; }",
+        "required": false
+      },
+      "hintTooltipText": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "showHintLink": {
+        "type": "boolean",
+        "required": false
+      },
+      "showHintTooltip": {
+        "type": "boolean",
+        "required": false
+      },
+      "totalSumType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "equal",
+          "from"
+        ],
+        "defaultValue": "equal"
+      },
+      "value": {
+        "type": "number",
+        "required": false
+      },
+      "valueDelta": {
+        "type": "PriceDeltaDetails",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  }
+}

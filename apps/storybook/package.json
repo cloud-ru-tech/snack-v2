@@ -70,6 +70,8 @@
     "@ds/uikit-product-copy": "workspace:*",
     "@ds/uikit-product-info-row": "workspace:*",
     "@ds/uikit-product-load-status": "workspace:*",
+    "@ds/uikit-product-button-predefined": "workspace:*",
+    "@ds/uikit-product-price-summary": "workspace:*",
     "@ds/uikit-product-quota": "workspace:*",
     "@ds/uikit-product-switch-row": "workspace:*",
     "@ds/uikit-product-title-clickable": "workspace:*",

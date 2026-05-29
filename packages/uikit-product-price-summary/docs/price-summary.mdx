@@ -1,0 +1,128 @@
+---
+title: PriceSummary
+package: '@ds/uikit-product-price-summary'
+description: Блок итоговой цены с периодом, скидками, детализацией заказа и ссылкой на расчёт.
+order: 1
+---
+
+import { PriceSummaryDemo } from '../demos/PriceSummaryDemo'
+import { WithDiscount } from '../demos/examples/WithDiscount'
+import WithDiscountSrc from '../demos/examples/WithDiscount.tsx?raw'
+import { WithInvoice } from '../demos/examples/WithInvoice'
+import WithInvoiceSrc from '../demos/examples/WithInvoice.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import priceSummaryDoc from './props.json'
+
+# PriceSummary
+
+Итоговая цена для checkout и конфигураторов: заголовок с периодом (`ButtonDropdown`), базовая сумма, скидки, аккордеон деталей заказа, состояния `loading` / `dataError` и ссылка на расчёт.
+
+## Демо
+
+{/* client:only — @cloud-ru/ft-formatters не для SSR */}
+<PriceSummaryDemo client:only="react" />
+
+## Когда использовать
+
+- Страница заказа или боковая панель с полной детализацией цены.
+- Нужен выбор периода биллинга (`period` + `periodOptions`) и callback `onPeriodChanged`.
+- Требуется раскрываемый список позиций заказа (`invoice`) со скидками по строкам.
+
+Когда **не** нужен `PriceSummary`:
+
+- Достаточно одной строки «Итого» без аккордеона и периода — [`PriceSummarySmall`](/components/uikit-product-price-summary/price-summary-small).
+- Только выпадающий список периода без блока цены — [`ButtonDropdown`](/components/uikit-product-button-predefined).
+
+## Анатомия
+
+Корневой контейнер с acrylic-фоном (`@ds/materials`) и внутренними секциями:
+
+### HeaderBlock
+
+Строка «Итого» + период. При нескольких `periodOptions` рендерится `ButtonDropdown` (desktop — `Droplist`, mobile — modal). При одном периоде — статический текст.
+
+### ContentBlock
+
+Обёртка контента с состояниями:
+
+- `loading` — спиннер вместо контента.
+- `dataError` — сообщение и кнопка retry (`onRetry`).
+- иначе — дочерние блоки ниже.
+
+### DiscountBlock
+
+Опционально при `discount`: базовая цена и строки скидок с процентами.
+
+### TotalValueBlock
+
+Крупная сумма (`value`), префикс `totalSumType='from'`, подсказки (`hint`, `hintTooltipText`), дельта (`valueDelta`).
+
+### InvoiceBlock
+
+Опционально при `invoice`: аккордеон «Детали заказа» с секциями и позициями.
+
+### docsLink
+
+Function-ссылка внизу блока (по умолчанию текст из locale).
+
+### layoutType
+
+`desktop` | `mobile` — пробрасывается в период, invoice и вложенные ячейки.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-price-summary
+```
+
+```ts
+import { PRICE_PERIOD, PriceSummary } from '@ds/uikit-product-price-summary'
+```
+
+### Базовый пример
+
+```tsx
+<PriceSummary
+  value={9_999_999.99}
+  period={PRICE_PERIOD.Month}
+  periodOptions={[PRICE_PERIOD.Month, PRICE_PERIOD.Year]}
+  onPeriodChanged={setPeriod}
+  promoBadge={{ text: '−9%' }}
+  discount={{
+    price: 9_999_999.99,
+    discounts: [
+      { value: 1000, percent: 9 },
+      { value: 1000, percent: 9 },
+    ],
+  }}
+  hint='Дополнительная информация'
+  invoice={/* …секции детализации… */}
+  docsLink={{ href: 'https://example.com', text: 'Подробнее о тарифах и ценах' }}
+/>
+```
+
+## Примеры использования
+
+<Example title='Со скидкой' description='Базовая цена и строки скидок.' code={WithDiscountSrc}>
+  <WithDiscount client:only="react" />
+</Example>
+
+<Example title='С детализацией заказа' description='Аккордеон с invoice-секциями.' code={WithInvoiceSrc}>
+  <WithInvoice client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={priceSummaryDoc.PriceSummary} />
+
+## Storybook
+
+<StorybookEmbed packageName='@ds/uikit-product-price-summary' storyId='uikit-product-pricesummary-pricesummary--playground' height={720} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-price-summary', 'price-summary')} />

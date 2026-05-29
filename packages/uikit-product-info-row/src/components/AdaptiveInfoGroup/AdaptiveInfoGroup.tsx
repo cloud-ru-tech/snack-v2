@@ -1,5 +1,5 @@
-import { LAYOUT_TYPE } from '../../constants';
-import { LayoutType } from '../../types';
+import { LAYOUT_TYPE, type LayoutType } from '@ds/utils';
+
 import { InfoGroup } from '../InfoGroup';
 import { InfoGroupProps } from '../InfoGroup/types';
 import { DataType } from '../InfoRow';

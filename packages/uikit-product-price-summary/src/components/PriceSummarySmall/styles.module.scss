@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/block.module' as block;
+@use '@ds/materials' as m;
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.priceSummarySmall {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @include base.composite-var(block.$block, 'anatomy', 'm');
+  @include m.with-material('acrylic', #{acrylic});
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.value {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.docLink {
+  align-self: flex-start;
+}

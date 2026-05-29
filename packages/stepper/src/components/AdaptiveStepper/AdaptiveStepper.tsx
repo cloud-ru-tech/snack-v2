@@ -1,4 +1,5 @@
-import { LayoutType } from '../../types';
+import { LayoutType } from '@ds/utils';
+
 import { MobileStepper } from '../MobileStepper';
 import { Stepper, StepperProps } from '../Stepper';
 

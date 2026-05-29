@@ -95,13 +95,14 @@ pnpm --filter @ds/tests exec playwright install
 
 ## Тесты
 
-| Команда                          | Что делает                                                                                                    |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `pnpm test:stories`              | Запускает play-функции сторис через `@storybook/test-runner`                                                  |
-| `pnpm test:e2e`                  | Playwright по всем проектам (chrome+firefox+safari+mobile)                                                    |
-| `pnpm test:e2e:chrome`           | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>` |
-| `pnpm test:e2e:ui`               | Playwright в интерактивном UI-режиме                                                                          |
-| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only)                                                                    |
+| Команда                          | Что делает                                                                                                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm test:stories`              | Запускает play-функции сторис через `@storybook/test-runner`                                                                                                                                |
+| `pnpm test:e2e`                  | Playwright по всем проектам (chrome+firefox+safari+mobile)                                                                                                                                  |
+| `pnpm test:e2e:chrome`           | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>`                                                                             |
+| `pnpm test:e2e:ui`               | Playwright в интерактивном UI-режиме                                                                                                                                                        |
+| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only)                                                                                                                                                  |
+| `pnpm test:e2e:audit`            | Статический аудит Playwright spec'ов на соответствие [e2e-testing-standard.md](./.claude/rules/e2e-testing-standard.md). Опционально — фильтр по пакету: `pnpm test:e2e:audit button`         |
 
 Селективные команды для итеративной работы над одним пакетом — см. [`.claude/rules/fast-build-commands.md`](./.claude/rules/fast-build-commands.md).
 
@@ -127,6 +128,7 @@ pnpm add-package                    # создаёт packages/<pkg>/ и подк
 pnpm dev:storybook                  # в отдельном терминале
 pnpm test:e2e:update-snapshots packages/<pkg>   # снять baselines (chrome-only)
 /add-tests <pkg>                    # Playwright spec'и по rules
+/test-coverage <pkg>                # отчёт coverage + аудит E2E перед PR
 /add-docs <pkg>                     # docs/index.mdx + demos/
 pnpm gen:props && pnpm gen:readme   # автоген артефактов
 /make-commit                        # conventional commit из staged diff

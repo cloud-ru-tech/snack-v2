@@ -188,6 +188,9 @@
       "path": "./uikit-product-avatar-detail/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-button-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-copy/tsconfig.cjs.json"
     },
     {
@@ -198,6 +201,9 @@
     },
     {
       "path": "./uikit-product-load-status/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-price-summary/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-switch-row/tsconfig.cjs.json"

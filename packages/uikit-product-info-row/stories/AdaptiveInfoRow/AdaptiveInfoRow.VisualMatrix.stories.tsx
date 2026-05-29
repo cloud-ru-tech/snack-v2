@@ -1,8 +1,9 @@
+import { LAYOUT_TYPE } from '@ds/utils';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { AdaptiveInfoRow, AdaptiveInfoRowProps, LAYOUT_TYPE, POSITION } from '../../src';
+import { AdaptiveInfoRow, AdaptiveInfoRowProps, POSITION } from '../../src';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<AdaptiveInfoRowProps> = {

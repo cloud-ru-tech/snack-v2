@@ -1,0 +1,15 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.accordion {
+  --space-accordion-collapse-block-secondary-horizontal-padding: 0;
+  --space-accordion-collapse-block-secondary-vertical-padding: #{base.$sn-primitive-dimension-8};
+  --space-accordion-collapse-block-secondary-gap: #{base.$sn-primitive-dimension-8};
+  --border-width-accordion-collapse-block-secondary: 0;
+  --accordion-header-padding-vertical: 0;
+}
+
+.accordionContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}

@@ -1,0 +1,35 @@
+---
+title: Price summary
+package: '@ds/uikit-product-price-summary'
+description: Блоки итоговой цены для checkout и конфигураторов — полный PriceSummary и компактный PriceSummarySmall.
+order: 0
+---
+
+# Price summary
+
+Пакет `@ds/uikit-product-price-summary` — итоговая стоимость заказа с периодом биллинга, скидками, детализацией позиций и состояниями загрузки/ошибки. Использует `@ds/uikit-product-button-predefined` для выбора периода и токены Product UI Kit.
+
+## Состав пакета
+
+- [**PriceSummary**](/components/uikit-product-price-summary/price-summary) — полный блок: период (`ButtonDropdown`), сумма, скидки, аккордеон деталей заказа, ссылка на расчёт.
+- [**PriceSummarySmall**](/components/uikit-product-price-summary/price-summary-small) — компактный итог (`size=small` в Figma): метка, сумма, опциональная function-ссылка.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-price-summary
+```
+
+`ButtonDropdown` для периода входит в пакет через зависимость `@ds/uikit-product-button-predefined` — отдельно ставить не нужно.
+
+```ts
+import { PricePeriod, PriceSummary, PriceSummarySmall } from '@ds/uikit-product-price-summary'
+```
+
+## Когда какой использовать
+
+| Задача | Компонент |
+|--------|-----------|
+| Боковая панель / checkout с периодом, скидками и раскрываемым invoice | `PriceSummary` |
+| Компактная строка «Итого» без аккордеона и выбора периода | `PriceSummarySmall` |
+| Выбор периода отдельно от блока цены | [`ButtonDropdown`](/components/uikit-product-button-predefined) |

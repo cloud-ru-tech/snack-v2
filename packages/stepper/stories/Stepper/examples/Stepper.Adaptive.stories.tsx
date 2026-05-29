@@ -1,5 +1,6 @@
 import { Button } from '@ds/button';
-import { AdaptiveStepper, LAYOUT_TYPE, LayoutType } from '@ds/stepper';
+import { AdaptiveStepper } from '@ds/stepper';
+import { LAYOUT_TYPE, type LayoutType } from '@ds/utils';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 

@@ -1,0 +1,38 @@
+{
+  "name": "@ds/uikit-product-price-summary",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@cloud-ru/ft-formatters": "1.0.1",
+    "@ds/accordion": "workspace:*",
+    "@ds/button": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/link": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/locale": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/popover-private": "workspace:*",
+    "@ds/portal-context": "workspace:*",
+    "@ds/promo-tag": "workspace:*",
+    "@ds/tooltip": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/typography": "workspace:*",
+    "@ds/uikit-product-button-predefined": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:"
+  },
+  "publishConfig": { "access": "public" }
+}

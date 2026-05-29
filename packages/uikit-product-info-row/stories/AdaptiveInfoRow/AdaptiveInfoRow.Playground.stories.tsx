@@ -1,10 +1,11 @@
 import { PlaceholderSVG } from '@ds/icons';
+import { LAYOUT_TYPE } from '@ds/utils';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-import { AdaptiveInfoRow, AdaptiveInfoRowProps, LAYOUT_TYPE, POSITION } from '../../src';
+import { AdaptiveInfoRow, AdaptiveInfoRowProps, POSITION } from '../../src';
 import { TEST_IDS } from '../testIds';
 
 type Args = AdaptiveInfoRowProps;
