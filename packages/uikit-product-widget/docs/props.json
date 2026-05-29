@@ -1,0 +1,1260 @@
+{
+  "ActionList": {
+    "displayName": "ActionList",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "closeOnItemClick": {
+        "type": "boolean",
+        "required": false
+      },
+      "items": {
+        "type": "WidgetActionListEntry[]",
+        "required": true
+      },
+      "onItemClick": {
+        "type": "(() => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ActionView": {
+    "displayName": "ActionView",
+    "propsTypeName": null,
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "description": "Вариант оформления"
+      },
+      "as": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "button"
+        ],
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
+      },
+      "button": {
+        "type": "Omit<ButtonProps<\"button\">, \"icon\" | \"label\" | \"view\"> | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
+      "commonProps": {
+        "type": "{ className?: string; size?: \"s\" | \"m\" | \"l\"; fullWidth?: boolean | undefined; } | undefined",
+        "required": false
+      },
+      "counter": {
+        "type": "Omit<CounterProps, \"appearance\" | \"size\">",
+        "required": false,
+        "description": "Пропсы для counter"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключена"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "На всю ширину"
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть действие без удаления из массива."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "iconPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Позиция иконки относительно текста"
+      },
+      "innerRef": {
+        "type": "((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст кнопки"
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "list": {
+        "type": "WidgetActionListProps",
+        "required": true
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      },
+      "tooltip": {
+        "type": "TooltipProps",
+        "required": false,
+        "description": "Tooltip вокруг кнопки действия."
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "droplist",
+          "filled",
+          "function",
+          "kebab",
+          "outline",
+          "simple",
+          "tonal"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Actions": {
+    "displayName": "Actions",
+    "propsTypeName": null,
+    "props": {
+      "actions": {
+        "type": "Action[]",
+        "required": false
+      },
+      "actionsChildren": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "fullWidthPrimaryAction": {
+        "type": "boolean",
+        "required": false
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "showOverflowActions": {
+        "type": "boolean",
+        "required": false
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ]
+      },
+      "wide": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ButtonDroplist": {
+    "displayName": "ButtonDroplist",
+    "propsTypeName": null,
+    "props": {
+      "button": {
+        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"icon\" | \"view\" | \"iconPosition\" | \"appearance\"> & { ...; })",
+        "required": true
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "list": {
+        "type": "WidgetActionListProps",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ButtonKebab": {
+    "displayName": "ButtonKebab",
+    "propsTypeName": null,
+    "props": {
+      "button": {
+        "type": "Omit<ButtonProps<\"button\">, \"icon\" | \"label\" | \"view\">",
+        "required": false
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "list": {
+        "type": "WidgetActionListProps",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Content": {
+    "displayName": "Content",
+    "propsTypeName": null,
+    "props": {
+      "errorState": {
+        "type": "WidgetErrorStateProps",
+        "required": false
+      },
+      "loadingState": {
+        "type": "WidgetLoadingStateProps",
+        "required": false
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ]
+      },
+      "wide": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ControlBlock": {
+    "displayName": "ControlBlock",
+    "propsTypeName": null,
+    "props": {
+      "actions": {
+        "type": "Action[]",
+        "required": false
+      },
+      "actionsChildren": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "segmentControl": {
+        "type": "SegmentControlProps",
+        "required": false
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ]
+      },
+      "wide": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Widget": {
+    "displayName": "Widget",
+    "propsTypeName": "WidgetProps",
+    "props": {
+      "actions": {
+        "type": "Action[]",
+        "required": false,
+        "description": "Действия в шапке/footer.",
+        "typeRefs": [
+          "Action",
+          "BaseAction",
+          "BaseButtonProps",
+          "ButtonDroplistProps",
+          "ButtonKebabProps"
+        ]
+      },
+      "actionsChildren": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дополнительный слот рядом с действиями."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Контент виджета."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "errorState": {
+        "type": "WidgetErrorStateProps",
+        "required": false,
+        "description": "Настройки error-состояния.",
+        "typeRefs": [
+          "WidgetErrorStateProps"
+        ]
+      },
+      "header": {
+        "type": "WidgetHeaderProps",
+        "required": true,
+        "description": "Пропсы кликабельного заголовка.",
+        "typeRefs": [
+          "WidgetHeaderProps"
+        ]
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "mobile"
+        ],
+        "typeRefs": [
+          "WidgetLayoutType"
+        ]
+      },
+      "loadingState": {
+        "type": "WidgetLoadingStateProps",
+        "required": false,
+        "description": "Настройки loading-состояния.",
+        "typeRefs": [
+          "WidgetLoadingStateProps"
+        ]
+      },
+      "segmentControl": {
+        "type": "SegmentControlProps",
+        "required": false,
+        "description": "Пропсы SegmentControl в шапке.",
+        "typeRefs": [
+          "SegmentControlProps"
+        ]
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ],
+        "description": "Состояние виджета.",
+        "typeRefs": [
+          "WidgetState"
+        ]
+      },
+      "wide": {
+        "type": "boolean",
+        "required": false,
+        "description": "Desktop wide-layout. На mobile принудительно выключается."
+      }
+    },
+    "relatedTypes": {
+      "Action": {
+        "kind": "alias",
+        "type": "ButtonAction | OutlineAction | TonalAction | FunctionAction | SimpleAction | KebabAction | DroplistAction",
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "AvatarProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид (цвет)",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "badge": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Имя пользователя для генерации аббревиатуры"
+          },
+          "shape": {
+            "type": "Shape | undefined",
+            "required": false,
+            "values": [
+              "rounded",
+              "squared"
+            ],
+            "description": "Форма: круглая или квадратная",
+            "typeRefs": [
+              "Shape"
+            ]
+          },
+          "showTwoSymbols": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение двух заглавных символов имени вместо одного"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "10xl",
+              "3xl",
+              "6xl",
+              "l",
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "src": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "URL изображения аватара"
+          },
+          "status": {
+            "type": "StatusAppearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер\nиндикатора подбирается из `size` аватара автоматически. Полностью\nнастроить значок можно через слот `badge`, который перекрывает `status`.",
+            "typeRefs": [
+              "StatusAppearance"
+            ]
+          }
+        },
+        "own": false
+      },
+      "BaseAction": {
+        "kind": "interface",
+        "props": {
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть действие без удаления из массива."
+          },
+          "tooltip": {
+            "type": "TooltipProps | undefined",
+            "required": false,
+            "description": "Tooltip вокруг кнопки действия.",
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "BaseButtonProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ButtonDroplistProps": {
+        "kind": "interface",
+        "props": {
+          "button": {
+            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"iconPosition\" | \"appearance\"> & { buttonType?: \"function\"; })",
+            "required": true,
+            "typeRefs": [
+              "BaseButtonProps",
+              "ButtonProps"
+            ]
+          },
+          "list": {
+            "type": "{ items: WidgetActionListEntry[]; closeDroplistOnItemClick?: boolean; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; }",
+            "required": true,
+            "typeRefs": [
+              "WidgetActionListProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ButtonKebabProps": {
+        "kind": "interface",
+        "props": {
+          "button": {
+            "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\"> | undefined",
+            "required": false,
+            "typeRefs": [
+              "BaseButtonProps",
+              "ButtonProps"
+            ]
+          },
+          "list": {
+            "type": "{ items: WidgetActionListEntry[]; closeDroplistOnItemClick?: boolean; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; }",
+            "required": true,
+            "typeRefs": [
+              "WidgetActionListProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ButtonProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
+      "Segment": {
+        "kind": "interface",
+        "props": {
+          "counter": {
+            "type": "string | number | undefined",
+            "required": false,
+            "description": "Счётчик в сегменте (отображается после лейбла)."
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние активности сегмента."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка сегмента."
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно лейбла.",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текстовый заголовок сегмента."
+          },
+          "renderWrapSegment": {
+            "type": "((segment: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Render-обёртка над сегментом."
+          },
+          "value": {
+            "type": "Value",
+            "required": true,
+            "description": "Идентификатор сегмента.",
+            "typeRefs": [
+              "Value"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SegmentControlProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "defaultValue": {
+            "type": "Value | undefined",
+            "required": false,
+            "description": "ID выбранного по умолчанию сегмента (uncontrolled).",
+            "typeRefs": [
+              "Value"
+            ]
+          },
+          "items": {
+            "type": "SegmentType<Value>[]",
+            "required": true,
+            "description": "Набор сегментов.",
+            "typeRefs": [
+              "Segment",
+              "SegmentType",
+              "Value"
+            ]
+          },
+          "name": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Имя поля (hidden input для формы)."
+          },
+          "onChange": {
+            "type": "((value: Value) => void) | undefined",
+            "required": false,
+            "description": "Колбек смены выбранного сегмента.",
+            "typeRefs": [
+              "Value"
+            ]
+          },
+          "outline": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Обводка."
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер компонента.",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "Value | undefined",
+            "required": false,
+            "description": "Value выбранного сегмента.",
+            "typeRefs": [
+              "Value"
+            ]
+          },
+          "width": {
+            "type": "Width | undefined",
+            "required": false,
+            "values": [
+              "auto",
+              "full"
+            ],
+            "description": "Управление шириной компонента.",
+            "typeRefs": [
+              "Width"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "Value": {
+        "kind": "union",
+        "values": [
+          "0%",
+          "100%",
+          "50%"
+        ],
+        "own": false
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
+      },
+      "WidgetActionListProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeDroplistOnItemClick": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "items": {
+            "type": "WidgetActionListEntry[]",
+            "required": true,
+            "typeRefs": [
+              "WidgetActionListEntry",
+              "WidgetActionListGroup",
+              "WidgetActionListItem"
+            ]
+          },
+          "onOpenChange": {
+            "type": "((open: boolean) => void) | undefined",
+            "required": false
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "WidgetHeaderProps": {
+        "kind": "interface",
+        "props": {
+          "avatar": {
+            "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance; size?: Size; shape?: Shape; showTwoSymbols?: boolean; badge?: ReactNode; status?: Appearance; className?: string; } & HTMLAttributes<HTMLDivElement> & { subtitle: string; }) | undefined",
+            "required": false,
+            "typeRefs": [
+              "AvatarProps"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомное содержимое вместо title/before"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Занимает ли всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "title": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Заголовок"
+          },
+          "titleTag": {
+            "type": "ElementType | undefined",
+            "required": false,
+            "description": "Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`)"
+          }
+        },
+        "own": true
+      },
+      "WidgetState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ],
+        "own": true
+      },
+      "Width": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "full"
+        ],
+        "own": false
+      }
+    }
+  }
+}

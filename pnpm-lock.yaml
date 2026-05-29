@@ -462,6 +462,9 @@ importers:
       '@ds/uikit-product-title-clickable':
         specifier: workspace:*
         version: link:../../packages/uikit-product-title-clickable
+      '@ds/uikit-product-widget':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-widget
       '@ds/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -1766,6 +1769,45 @@ importers:
       '@ds/typography':
         specifier: workspace:*
         version: link:../typography
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-widget:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/dropdown':
+        specifier: workspace:*
+        version: link:../dropdown
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/info-block':
+        specifier: workspace:*
+        version: link:../info-block
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/segment-control':
+        specifier: workspace:*
+        version: link:../segment-control
+      '@ds/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@ds/uikit-product-title-clickable':
+        specifier: workspace:*
+        version: link:../uikit-product-title-clickable
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils

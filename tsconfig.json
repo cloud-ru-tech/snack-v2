@@ -10,14 +10,30 @@
       "dom-close-watcher"
     ],
     "paths": {
-      "#storybook/components": ["apps/storybook/.storybook/components"],
-      "#storybook/components/*": ["apps/storybook/.storybook/components/*"],
-      "#storybook/hooks": ["apps/storybook/.storybook/hooks"],
-      "#storybook/hooks/*": ["apps/storybook/.storybook/hooks/*"],
-      "@ds/*": ["./packages/*/src"],
-      "#docs/*": ["apps/docs/src/*"],
-      "@playwright-tooling": ["./playwright"],
-      "#playwright-tooling/*": ["./playwright/*"]
+      "#storybook/components": [
+        "apps/storybook/.storybook/components"
+      ],
+      "#storybook/components/*": [
+        "apps/storybook/.storybook/components/*"
+      ],
+      "#storybook/hooks": [
+        "apps/storybook/.storybook/hooks"
+      ],
+      "#storybook/hooks/*": [
+        "apps/storybook/.storybook/hooks/*"
+      ],
+      "@ds/*": [
+        "./packages/*/src"
+      ],
+      "#docs/*": [
+        "apps/docs/src/*"
+      ],
+      "@playwright-tooling": [
+        "./playwright"
+      ],
+      "#playwright-tooling/*": [
+        "./playwright/*"
+      ]
     }
   },
   "include": [

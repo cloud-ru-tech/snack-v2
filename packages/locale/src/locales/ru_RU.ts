@@ -82,6 +82,11 @@ export const ru_RU: typeof en_GB = {
     copied: 'Скопировано',
     copyContactData: 'Скопировать контактные данные',
   },
+  Widget: {
+    dataErrorTitle: 'Не удалось получить данные',
+    dataErrorDescription: 'Попробуйте обновить виджет',
+    updateButtonLabel: 'Обновить',
+  },
   Chips: {
     allLabel: 'Все',
     apply: 'Применить',

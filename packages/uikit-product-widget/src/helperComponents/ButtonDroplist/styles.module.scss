@@ -1,0 +1,37 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  min-width: calc(2 * #{base.$sn-primitive-dimension-100});
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  &[data-divider] {
+    margin-top: base.$sn-primitive-dimension-4;
+    padding-top: base.$sn-primitive-dimension-8;
+    border-top: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-available-borderColor;
+  }
+}
+
+.groupLabel {
+  padding: 0 base.$sn-primitive-dimension-8;
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.item {
+  justify-content: flex-start;
+}

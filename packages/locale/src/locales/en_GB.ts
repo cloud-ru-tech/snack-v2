@@ -82,6 +82,11 @@ export const en_GB = {
     copied: 'Copied',
     copyContactData: 'Copy contact data',
   },
+  Widget: {
+    dataErrorTitle: 'Could not load data',
+    dataErrorDescription: 'Try to refresh the widget',
+    updateButtonLabel: 'Update',
+  },
   Chips: {
     allLabel: 'All',
     apply: 'Apply',

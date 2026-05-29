@@ -1,0 +1,26 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.skeletonContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.errorWrapper {
+  display: flex;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding-block: base.$sn-primitive-dimension-8;
+
+  &[data-wide] {
+    padding-block: base.$sn-primitive-dimension-16;
+  }
+}
+
+.infoBlock {
+  justify-content: center;
+  width: 100%;
+  max-width: calc(9 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive-dimension-48});
+}

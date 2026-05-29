@@ -159,6 +159,7 @@ export const FIGMA_NODES = {
   'uikit-product-switch-row': { ...PRODUCT, nodeId: '3019:5599' }, // uikit-product-switch-row → SwitchRow
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
+  'uikit-product-widget': { ...PRODUCT, nodeId: '3024:759' }, // uikit-product-widget → widget
   'uikit-product-avatar-detail': { ...PRODUCT, nodeId: '2157:3642' }, // uikit-product-avatar-detail → AvatarDetail
   'uikit-product-quota': {
     _: { ...PRODUCT, nodeId: '2917-49' }, // quota canvas

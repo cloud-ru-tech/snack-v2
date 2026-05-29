@@ -73,6 +73,7 @@
     "@ds/uikit-product-quota": "workspace:*",
     "@ds/uikit-product-switch-row": "workspace:*",
     "@ds/uikit-product-title-clickable": "workspace:*",
+    "@ds/uikit-product-widget": "workspace:*",
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
     "marked": "14.1.4",

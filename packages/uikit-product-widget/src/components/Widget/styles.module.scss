@@ -1,0 +1,93 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
+@use '@ds/materials' as m;
+
+.widget {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-16;
+  border-radius: card.$sn-card-anatomy-radius-l-container-borderRadius;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  @include m.with-material('acrylic', #{acrylic});
+
+  &[data-state='loading'][data-wide] {
+    gap: base.$sn-primitive-dimension-16;
+  }
+}
+
+.widgetHeader {
+  display: flex;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 0;
+
+  &[data-mobile] {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &[data-loading] {
+    gap: base.$sn-primitive-dimension-12;
+  }
+}
+
+.headerMain {
+  display: flex;
+  flex: 0 1 auto;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 0;
+  max-width: 100%;
+}
+
+.widgetHeader[data-mobile] .headerMain {
+  width: 100%;
+}
+
+.titleClickable {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.widgetContent {
+  min-height: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}
+
+.skeletonHeader {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.button {
+  white-space: nowrap;
+
+  &[data-full-width]:not([data-variant='icon-only']) {
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  &[data-variant='icon-only'] {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}

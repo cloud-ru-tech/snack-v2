@@ -1,0 +1,158 @@
+---
+title: Widget
+package: '@ds/uikit-product-widget'
+description: Карточка продуктового виджета с кликабельным заголовком, SegmentControl, действиями и состояниями loading/error.
+order: 1
+---
+
+import { DefaultContent } from '../demos/examples/DefaultContent'
+import DefaultContentSrc from '../demos/examples/DefaultContent.tsx?raw'
+import { WithActions } from '../demos/examples/WithActions'
+import WithActionsSrc from '../demos/examples/WithActions.tsx?raw'
+import { MobileLayout } from '../demos/examples/MobileLayout'
+import MobileLayoutSrc from '../demos/examples/MobileLayout.tsx?raw'
+import { LoadingState } from '../demos/examples/LoadingState'
+import LoadingStateSrc from '../demos/examples/LoadingState.tsx?raw'
+import { ErrorState } from '../demos/examples/ErrorState'
+import ErrorStateSrc from '../demos/examples/ErrorState.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import widgetDoc from './props.json'
+
+# Widget
+
+`Widget` — контейнер продуктовой карточки: [`TitleClickable`](/components/uikit-product-title-clickable) в шапке, опциональный [`SegmentControl`](/components/segment-control), слот управления, массив действий (`Button`, kebab/droplist) и body с состояниями `default` / `loading` / `error`.
+
+## Когда использовать
+
+- Компактные блоки на dashboard и overview-страницах: заголовок-ссылка, переключатель вкладок, действия и контент в одной карточке.
+- Нужны единые состояния загрузки и ошибки с `InfoBlock` и кнопкой повтора без ручной вёрстки.
+- Действия должны адаптироваться по ширине: primary в шапке (wide desktop), overflow в kebab, на узком layout — кнопки в footer.
+
+Когда **не** нужен `Widget`:
+
+- Простая карточка без шапки и действий:
+  - используйте [`@ds/block`](/components/block) или [`@ds/card`](/components/card).
+- Только кликабельный заголовок без оболочки:
+  - используйте [`TitleClickable`](/components/uikit-product-title-clickable).
+- Сложная таблица или список с сортировкой и пагинацией:
+  - используйте отдельный data-компонент, не оборачивайте в виджет.
+
+- ✅ Передавайте `errorState.onClickUpdate` и переключайте `state` обратно в `default` после успешного retry.
+- ❌ Оставлять `state='error'` без обработчика повтора — кнопка в `InfoBlock` не сможет восстановить контент.
+
+- ✅ На desktop с несколькими действиями включайте `wide`, чтобы primary и kebab жили в шапке.
+- ❌ Ожидать wide-layout на `layoutType='mobile'` — флаг принудительно отключается.
+
+- ✅ Оборачивайте демо и страницу с kebab/droplist в `PortalContextProvider`, если порталы рендерятся вне корня приложения.
+- ❌ Полагаться на глобальный portal-context из layout docs-сайта — каждый `client:visible`-островок изолирован.
+
+- ✅ Скрывайте лишние действия через `hidden: true`, не удаляя элемент из массива.
+- ❌ Дублировать один и тот же primary CTA в `actions` и в `children` — достаточно одного места.
+
+## Анатомия
+
+### State (default `default`)
+
+Состояние из `WIDGET_STATE`:
+
+- `default` — рендерит `children` в body.
+- `loading` — skeleton в шапке; body — `loadingState.loadingContent` или skeleton при `loadingState.showSkeleton`.
+- `error` — `InfoBlock` с `errorState` и кнопкой `onClickUpdate`; видимые `actions` остаются в шапке для retry/навигации.
+
+### Wide (default `false`)
+
+- `false` — legacy layout: overflow-действия в kebab шапки, primary-кнопки на всю ширину под контентом (кроме `error`).
+- `true` — primary и kebab в одной строке шапки рядом с `SegmentControl` / `actionsChildren`. На `layoutType='mobile'` игнорируется.
+
+### LayoutType (default `desktop`)
+
+- `desktop` — учитывает `wide` и динамическое схлопывание действий в kebab по ширине контейнера.
+- `mobile` — принудительно узкий режим: `wide` выключен, footer-кнопки для primary.
+
+### Action variant
+
+Элемент `actions[i]` — discriminated union по `variant` (default — filled `Button`):
+
+- `filled` / `outline` / `tonal` / `function` / `simple` — пропсы `@ds/button` + опциональный `tooltip`.
+- `kebab` — `ButtonKebab` + `list.items` (группы и пункты меню).
+- `droplist` — кнопка-триггер + выпадающий `ActionList`.
+
+Общие поля: `hidden`, `tooltip`. Для списков: `closeDroplistOnItemClick`, controlled `open` / `onOpenChange`.
+
+### Slots
+
+- `header` — пропсы [`TitleClickable`](/components/uikit-product-title-clickable): `title`, `href`, `icon`, `avatar`, `onClick`, …
+- `children` — основной контент body.
+- `segmentControl` — пропсы [`SegmentControl`](/components/segment-control) в шапке (часто `width: full` на desktop).
+- `actionsChildren` — произвольный узел слева от кнопок (фильтр, badge, …).
+- `loadingState` / `errorState` — настройки соответствующих состояний.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-widget
+```
+
+```ts
+import { Widget, BUTTON_TYPE, WIDGET_STATE } from '@ds/uikit-product-widget'
+```
+
+## Примеры использования
+
+<Example
+  title='Контент и SegmentControl'
+  description='Uncontrolled сегменты через defaultValue'
+  code={DefaultContentSrc}
+>
+  <DefaultContent client:visible />
+</Example>
+
+<Example
+  title='Wide desktop и действия'
+  description='Primary в шапке, overflow в kebab; PortalContextProvider для dropdown'
+  code={WithActionsSrc}
+>
+  <WithActions client:visible />
+</Example>
+
+<Example
+  title='Mobile layout'
+  description='wide игнорируется, primary уезжает в footer'
+  code={MobileLayoutSrc}
+>
+  <MobileLayout client:visible />
+</Example>
+
+<Example title='Loading' code={LoadingStateSrc}>
+  <LoadingState client:visible />
+</Example>
+
+<Example
+  title='Error и повтор'
+  description='onClickUpdate переключает state обратно в default'
+  code={ErrorStateSrc}
+>
+  <ErrorState client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={widgetDoc.Widget} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-widget--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-widget')} height={480} title='Widget в Figma (Product UI Kit)' />
+
+## Смотри также
+
+- [`TitleClickable`](/components/uikit-product-title-clickable) — заголовок-ссылка в шапке виджета.
+- [`SegmentControl`](/components/segment-control) — переключатель вкладок в шапке.
+- [`InfoBlock`](/components/info-block) — блок ошибки внутри `state='error'`.

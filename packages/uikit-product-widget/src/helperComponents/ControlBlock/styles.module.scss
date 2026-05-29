@@ -1,0 +1,16 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.controlWrapper {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  &[data-mobile] {
+    width: 100%;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
