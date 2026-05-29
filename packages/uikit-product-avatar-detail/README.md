@@ -45,10 +45,20 @@ export function Basic() {
 Кнопка с email копирует значение в буфер обмена.
 
 ```tsx
+import { PortalContextProvider } from '@ds/portal-context';
 import { AvatarDetail } from '@ds/uikit-product-avatar-detail';
+import { useRef } from 'react';
 
 export function WithContactData() {
-  return <AvatarDetail name='Петрова Мария' contactData='petrova@example.com' />;
+  const hostRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <AvatarDetail name='Петрова Мария' contactData='petrova@example.com' />
+      </div>
+    </PortalContextProvider>
+  );
 }
 ```
 
@@ -67,15 +77,23 @@ export function WithDescription() {
 Цвет и статус-индикатор передаются через проп avatar.
 
 ```tsx
+import { PortalContextProvider } from '@ds/portal-context';
 import { AvatarDetail } from '@ds/uikit-product-avatar-detail';
+import { useRef } from 'react';
 
 export function WithCustomAvatar() {
+  const hostRef = useRef<HTMLDivElement>(null);
+
   return (
-    <AvatarDetail
-      name='Козлова Анна'
-      contactData='kozlova@example.com'
-      avatar={{ appearance: 'violet', status: 'green' }}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <AvatarDetail
+          name='Козлова Анна'
+          contactData='kozlova@example.com'
+          avatar={{ appearance: 'violet', status: 'green' }}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```
@@ -83,16 +101,24 @@ export function WithCustomAvatar() {
 ### Полный набор пропсов
 
 ```tsx
+import { PortalContextProvider } from '@ds/portal-context';
 import { AvatarDetail } from '@ds/uikit-product-avatar-detail';
+import { useRef } from 'react';
 
 export function Full() {
+  const hostRef = useRef<HTMLDivElement>(null);
+
   return (
-    <AvatarDetail
-      name='Новиков Дмитрий'
-      contactData='novikov@example.com'
-      description='DevOps-инженер, Cloud Platform'
-      avatar={{ appearance: 'green', status: 'green' }}
-    />
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <AvatarDetail
+          name='Новиков Дмитрий'
+          contactData='novikov@example.com'
+          description='DevOps-инженер, Cloud Platform'
+          avatar={{ appearance: 'green', status: 'green' }}
+        />
+      </div>
+    </PortalContextProvider>
   );
 }
 ```

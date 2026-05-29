@@ -112,7 +112,7 @@ export function CustomSeparator() {
 | `icon` | `JSXElementConstructor<{ size: number; }> \| undefined` | — |  |
 | `id` | `string` | — |  |
 | `label` | `string` | — |  |
-| `onClick` | `MouseEventHandler<HTMLAnchorElement \| HTMLButtonElement> \| undefined` | — |  |
+| `onClick` | `MouseEventHandler<HTMLButtonElement \| HTMLAnchorElement> \| undefined` | — |  |
 | `shortLabel` | `string \| undefined` | — |  |
 
 - `Size` = `"s"` \| `"xs"`

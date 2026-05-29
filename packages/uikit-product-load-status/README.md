@@ -71,7 +71,7 @@ export function WithPercent() {
 
 ### Фиксированный цвет полосы
 
-Одно правило в `appearanceByProgress` — цвет не зависит от `progress` (0–100).
+Одно правило в `appearanceByProgress` (`lte: 100`) — цвет не зависит от progress.
 
 ```tsx
 import { APPEARANCE } from '@ds/progress-bar';
@@ -84,9 +84,7 @@ export function WithAppearance() {
       progress={65}
       valueType='percent'
       hint='Статичный цвет полосы'
-      appearanceByProgress={[
-        { condition: PROGRESS_LIMIT_CONDITION.Lte, limit: 100, appearance: APPEARANCE.Green },
-      ]}
+      appearanceByProgress={[{ condition: PROGRESS_LIMIT_CONDITION.Lte, limit: 100, appearance: APPEARANCE.Green }]}
     />
   );
 }
@@ -144,8 +142,8 @@ export function Thresholds() {
 | `hint` | `string` | — | Подсказка под полосой прогресса |
 | `label` | `string` | — | Заголовок строки загрузки |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
-| `showError` | `boolean` | — | Ошибка: полоса `red` (ось Figma `showError`) |
-| `showErrorIcon` | `boolean` | — | Иконка в hint; показывается при `hint` и вместе с `showError` по макету |
+| `showError` | `boolean` | — | Ошибка: полоса `red` |
+| `showErrorIcon` | `boolean` | — | Иконка в hint; показывается при `hint` и вместе с `showError` |
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `value` | `string` | — | Дополнительный текст в заголовке (рядом с label) |
 | `valueType` | `"none"` \| `"percent"` | `none` | Формат значения в заголовке: без процента (`none`) или с процентом (`percent`) |

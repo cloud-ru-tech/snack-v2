@@ -385,7 +385,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"as\" | \"ref\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "BaseButtonProps",
@@ -890,7 +890,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"as\" | \"ref\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "BaseButtonProps",
@@ -1300,7 +1300,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"as\" | \"ref\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "BaseButtonProps",
@@ -1773,7 +1773,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"as\" | \"ref\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "BaseButtonProps",
@@ -1929,7 +1929,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"as\" | \"ref\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "BaseButtonProps",
@@ -2298,7 +2298,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"as\" | \"ref\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "BaseButtonProps",
