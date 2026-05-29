@@ -1,0 +1,55 @@
+.expandableTreeNode {
+  position: relative;
+  width: 100%;
+}
+
+.expandableContent {
+  // overflow-y клиппирует во время slide-анимации высоты; -x оставляем visible,
+  // иначе срезается тень elevated-кнопок (kebab-actions) по правому краю.
+  overflow: visible hidden;
+  display: flex;
+  gap: var(--tree-item-gap);
+
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+
+  visibility: hidden;
+
+  transition: visibility 200ms;
+}
+
+.expandableWrap {
+  overflow: visible hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  transition: grid-template-rows 200ms;
+
+  &[data-expanded='true'] {
+    overflow: unset;
+    grid-template-rows: 1fr;
+
+    .expandableContent {
+      // После раскрытия снимаем вертикальный клип — иначе режет focus-outline
+      // и shadow elevated-кнопок у вложенных строк (тень/outline выходит за bbox).
+      overflow: unset;
+      visibility: visible;
+    }
+  }
+}
+
+.expandableNested {
+  // Deep-leaf клипуется корневым `.tree { overflow-x: hidden }`. Локальный
+  // `overflow-x: clip` сюда ставить нельзя: горизонтальный L-bend каждой
+  // строки — `::after` псевдоэлемент, который выезжает влево на
+  // `--tree-line-width / 2 + gap`, чтобы дотянуться до trunk'а в соседнем
+  // `.expandableContent`-столбце. Клип режет эту левую часть → L-bend
+  // визуально не доходит до trunk'а.
+  width: 100%;
+  min-width: 0;
+}
+

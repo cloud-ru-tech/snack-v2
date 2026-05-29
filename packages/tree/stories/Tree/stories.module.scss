@@ -1,0 +1,42 @@
+.story {
+  width: 320px;
+}
+
+.matrix {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.figmaRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.figmaMatrix {
+  display: grid;
+  gap: 2rem;
+}
+
+.figmaSizeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.figmaSizeTitle {
+  font: var(--sn-medium-label-l);
+  color: var(--sn-theme-color-neutral-text);
+}
+
+.figmaCell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.figmaCellTitle {
+  font: var(--sn-regular-label-s);
+  color: var(--sn-theme-color-neutral-text);
+}
+

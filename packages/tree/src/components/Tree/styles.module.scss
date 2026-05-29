@@ -1,0 +1,22 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tree.module' as tree;
+
+$sizes: ('s', 'm', 'l');
+
+.tree {
+  // Корневого clip'а нет: он резал elevated-тень и `:focus-visible` outline
+  // у kebab'а на правом краю строки. Контроль ширины держится через
+  // `min-width: 0` + TruncateString на title — глубоко вложенные ряды
+  // обрезают заголовок с «…», kebab остаётся видимым на правом краю строки.
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+
+  // --tree-line-width на корне: trunk и L-bend должны совпасть с центром шеврона.
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      --tree-line-width: #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'centeredWrapper', 'width')};
+      --tree-item-gap: #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'gap')};
+    }
+  }
+}

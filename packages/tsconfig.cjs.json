@@ -189,6 +189,9 @@
     },
     {
       "path": "./uikit-product-avatar-detail/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tree/tsconfig.cjs.json"
     }
   ]
 }

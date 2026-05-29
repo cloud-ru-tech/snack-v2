@@ -128,6 +128,7 @@ export const FIGMA_NODES = {
     favourite: { ...SNACK, nodeId: '2834-25294' }, // toggles/favourite → Favourite
   },
   tooltip: { ...SNACK, nodeId: '2254-443' }, // tooltip → tooltip
+  tree: { ...SNACK, nodeId: '6457-5611' }, // tree → tree
   'uikit-product-copy': {
     _: { ...PRODUCT, nodeId: '2184:2737' }, // uikit-product-copy → Copy
     'copy-button': { ...PRODUCT, nodeId: '2212:613' }, // uikit-product-copy/copy-button → CopyButton

@@ -1,0 +1,254 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tree.module' as tree;
+@use '@ds/materials' as m;
+
+$sizes: ('s', 'm', 'l');
+
+.treeNode {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.treeNodeIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  color: base.$sn-theme-color-neutral-accent;
+}
+
+.treeNodeTitle {
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-width: 0;
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.treeNodeActions {
+  // Absolute по правому краю строки: в Figma kebab лежит поверх
+  // contentWrapper'а и не сдвигает текст. Если оставить во flex-потоке
+  // (даже с `visibility: hidden`), он резервирует ширину и title-ellipsis
+  // срабатывает раньше реального правого края контейнера.
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: flex;
+  visibility: hidden;
+
+  // Растягиваем <button> на всю высоту строки.
+  > button {
+    align-self: stretch;
+    height: auto;
+  }
+
+  &:focus-visible,
+  &[data-focused] {
+    visibility: visible;
+  }
+}
+
+.treeNodeContent {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &:hover .treeNodeActions,
+  &[data-droplist-active] .treeNodeActions {
+    visibility: visible;
+  }
+
+  // Когда у строки открыт дроплист или фокус на kebab — держим hover-фон,
+  // чтобы было видно, какая строка управляется action-меню. Hover-стиль
+  // state-layer-а задаёт миксин `has-state-layer-as-child` только под
+  // `:hover`; здесь повторяем тот же фон под `[data-droplist-active]`.
+  &[data-droplist-active] .stateLayer[data-state='regularFilled'] {
+    background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+  }
+
+  &[data-droplist-active] .stateLayer[data-state='activatedFilled'] {
+    background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+  }
+
+  &[data-multiselect] {
+    cursor: default;
+  }
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .treeNodeTitle,
+    .treeNodeIcon {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+  }
+}
+
+.stateLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.treeNodeCheckboxWrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+.treeNodeExpandButton {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  border-radius: base.$sn-brand-anatomy-radius-button-s;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: transparent;
+
+  @include m.has-state-layer-as-child(#{treeNodeExpandButtonStateLayer});
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &[data-expanded] svg {
+    transform: rotate(90deg);
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+  }
+}
+
+.treeNodeExpandButtonStateLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+// Колонка chevron-а: stretch на высоту строки, chevron по центру, TreeLine ниже.
+.treeNodeExpandButtonWrapper {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: stretch;
+  justify-content: center;
+}
+
+.treeNodeExpandButtonWrapper > :last-child:not(.treeNodeExpandButton) {
+  // TreeLine absolute — чтобы не сдвигать chevron из центра. Занимает зазор низ-шеврона → низ-строки.
+  pointer-events: none;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: calc(50% - var(--tree-chevron-size, 24px) / 2);
+}
+
+.treeNodeLink {
+  display: block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+$icon-size-by-size: (
+  's': base.$sn-density-size-icon-xs,
+  'm': base.$sn-density-size-icon-s,
+  'l': base.$sn-density-size-icon-s,
+);
+
+@each $size in $sizes {
+  .treeNode[data-size='#{$size}'] {
+    $centered-width: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'centeredWrapper', 'width');
+    $icon-size: base.simple-var($icon-size-by-size, $size);
+
+    --tree-chevron-size: #{$centered-width};
+
+    .treeNodeContent {
+      @include base.composite-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem');
+      @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', $size);
+    }
+
+    .treeNodeCheckboxWrap,
+    .treeNodeExpandButtonWrapper {
+      width: $centered-width;
+    }
+
+    .treeNodeExpandButton {
+      width: $centered-width;
+      height: $centered-width;
+
+      // Размер иконки шеврона/спиннера задаём через CSS, чтобы не прокидывать
+      // size в JSX каждой иконки (см. паттерн в @ds/button).
+      > svg {
+        width: $icon-size;
+        height: $icon-size;
+      }
+    }
+
+    .treeNodeIcon svg {
+      width: $icon-size;
+      height: $icon-size;
+    }
+
+    // Row-actions: гасим padding контейнера отрицательными margin'ами, чтобы
+    // elevated-кнопка тянулась на всю высоту строки и упиралась в правый край
+    // (иначе остаётся `padding-right` пустой полосы справа от kebab'а).
+    .treeNodeActions {
+      $padding-right: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'padding-right');
+      $padding-top: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'padding-top');
+      $padding-bottom: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'padding-bottom');
+
+      margin-top: calc(-1 * #{$padding-top});
+      margin-right: calc(-1 * #{$padding-right});
+      margin-bottom: calc(-1 * #{$padding-bottom});
+    }
+  }
+}

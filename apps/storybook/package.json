@@ -61,6 +61,7 @@
     "@ds/toaster": "workspace:*",
     "@ds/toggles": "workspace:*",
     "@ds/tooltip": "workspace:*",
+    "@ds/tree": "workspace:*",
     "@ds/truncate-string": "workspace:*",
     "@ds/typography": "workspace:*",
     "@ds/uikit-product-avatar-detail": "workspace:*",

@@ -1,0 +1,56 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Ширина дорожки = ширина шевронной колонки; прокидывается через --tree-line-width от [data-size].
+$line-width: var(--tree-line-width, #{base.$sn-density-size-icon-s});
+
+.treeLine {
+  pointer-events: none;
+
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: $line-width;
+
+  visibility: hidden;
+
+  &[data-visible] {
+    visibility: visible;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: base.$sn-primitive-strokeWeight-strokeRegular;
+      height: 100%;
+
+      background: base.$sn-theme-color-neutral-decor;
+    }
+  }
+
+  &[data-horizontal] {
+    box-sizing: border-box;
+
+    &::after {
+      top: 50%;
+      left: calc(-50% - var(--tree-item-gap, 0px));
+      transform: translateY(-50%);
+
+      width: calc(150% + var(--tree-item-gap, 0px));
+      height: base.$sn-primitive-strokeWeight-strokeRegular;
+    }
+
+    &[data-half-width] {
+      width: 0;
+
+      &::after {
+        left: calc(0px - #{$line-width} / 2 - var(--tree-item-gap, 0px));
+        width: calc(#{$line-width} / 2 + var(--tree-item-gap, 0px));
+      }
+    }
+  }
+}

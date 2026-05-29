@@ -1,0 +1,44 @@
+{
+  "name": "@ds/tree",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/portal-context": "workspace:*",
+    "@ds/toggles": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/typography": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "@snack-uikit/list": "catalog:",
+    "cancelable-promise": "4.3.1",
+    "classnames": "catalog:",
+    "queue-fifo": "0.2.6",
+    "react-transition-state": "2.1.1",
+    "uncontrollable": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

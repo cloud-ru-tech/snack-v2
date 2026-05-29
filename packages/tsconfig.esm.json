@@ -187,6 +187,9 @@
     },
     {
       "path": "./uikit-product-avatar-detail/tsconfig.esm.json"
+    },
+    {
+      "path": "./tree/tsconfig.esm.json"
     }
   ]
 }

@@ -1,0 +1,117 @@
+---
+title: Tree
+package: '@ds/tree'
+description: Иерархический список с раскрывающимися узлами, выбором (single/multi), кастомными иконками, контекстными действиями и асинхронной подгрузкой потомков.
+order: 0
+---
+
+import { AsyncLoad } from '../demos/examples/AsyncLoad'
+import AsyncLoadSrc from '../demos/examples/AsyncLoad.tsx?raw'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { MultiSelect } from '../demos/examples/MultiSelect'
+import MultiSelectSrc from '../demos/examples/MultiSelect.tsx?raw'
+import { SingleSelect } from '../demos/examples/SingleSelect'
+import SingleSelectSrc from '../demos/examples/SingleSelect.tsx?raw'
+import { WithActions } from '../demos/examples/WithActions'
+import WithActionsSrc from '../demos/examples/WithActions.tsx?raw'
+import { WithIcons } from '../demos/examples/WithIcons'
+import WithIconsSrc from '../demos/examples/WithIcons.tsx?raw'
+
+import { Example } from '#docs/components/Example'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import treeDoc from './props.json'
+
+# Tree
+
+Дерево с раскрывающимися узлами для навигации по иерархии (файлы, регионы, теги, ACL). Поддерживает одиночный и множественный выбор, кастомные иконки и асинхронную подгрузку.
+
+## Когда использовать
+
+- Реальная иерархия с переменной глубиной (≥ 3 уровней): файловая система, dataset-навигация, организационные структуры.
+- Нужно одновременно видеть несколько уровней, а не цепочку breadcrumb'ов.
+- Большие наборы лениво подгружаются — `onDataLoad` доставляет потомков по раскрытию.
+
+Когда **не** нужен:
+
+- Плоский список 5–20 элементов:
+  - используйте `List` или `Select`.
+- Фиксированные 2–7 разделов одного уровня:
+  - используйте `Tabs`.
+- Пошаговый процесс:
+  - используйте `Stepper`.
+
+## Анатомия
+
+### Selection mode (default — без выбора)
+
+- `undefined` — read-only режим, узлы только раскрываются.
+- `'single'` — один выбранный узел, рендерится `Radio` (если `showToggle`) либо подсвечивается строка.
+- `'multi'` — множественный выбор через `Checkbox` на каждом узле; родитель показывает indeterminate-состояние от детей.
+
+### Size (default `m`)
+
+- `s` — плотные списки, sidebar-навигация (16px-иконки).
+- `m` — стандартная плотность для админок.
+- `l` — крупные посадочные/landing-страницы.
+
+Текущая ось `size` соответствует **только compact-плотности** Figma-мастера (`compact/S=24px`, `compact/M=32px`, `compact/L=40px` row-h). Альтернативная density `comfort` (40/48/56px row-h из Figma-узла `26653:105451`) **не реализована** — в публичном API нет пропа `density`. Если потребитель просит «comfort»-плотность, на текущей версии её получить нельзя. Track: расширить `constants.ts` осью `DENSITY` и пересчитать токены `density-size-icon-*` на обе плотности.
+
+### Show lines (default `false`)
+
+Полосы вложенности `└─`, соединяющие родителя с его детьми. Включай для глубоких структур (3+ уровней) — без них теряется визуальная иерархия.
+
+### Show icons (default `true`)
+
+Folder/file-иконки слева от названия. Отключай, если узел сам по себе уже визуально отличим (например, цветной чип-роль).
+
+## Установка
+
+```bash
+pnpm add @ds/tree
+```
+
+```ts
+import { SELECTION_MODE, SIZE, Tree } from '@ds/tree'
+```
+
+## Примеры использования
+
+<Example title='Базовый просмотр' description='Read-only дерево с раскрытием через onExpand' code={BasicSrc}>
+  <Basic client:only="react" />
+</Example>
+
+<Example title='Одиночный выбор' description='selectionMode=single + showToggle: один Radio на дерево' code={SingleSelectSrc}>
+  <SingleSelect client:only="react" />
+</Example>
+
+<Example title='Множественный выбор' description='selectionMode=multi: Checkbox на каждом узле, у родителя — indeterminate' code={MultiSelectSrc}>
+  <MultiSelect client:only="react" />
+</Example>
+
+<Example title='Кастомные иконки' description='icon у листа, expandedIcon/collapsedIcon у папки' code={WithIconsSrc}>
+  <WithIcons client:only="react" />
+</Example>
+
+<Example title='Контекстные действия' description='nodeActions возвращает массив пунктов меню — открывается по hover/focus' code={WithActionsSrc}>
+  <WithActions client:only="react" />
+</Example>
+
+<Example title='Асинхронная подгрузка' description='onDataLoad подтягивает детей при первом раскрытии' code={AsyncLoadSrc}>
+  <AsyncLoad client:only="react" />
+</Example>
+
+## Props
+
+<PropsTable data={treeDoc.Tree} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-tree--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('tree')} height={520} title='Tree в Figma (Snack UI Kit)' />

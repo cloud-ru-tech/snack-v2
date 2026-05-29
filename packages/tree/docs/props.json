@@ -1,0 +1,353 @@
+{
+  "ExpandableTreeNode": {
+    "displayName": "ExpandableTreeNode",
+    "propsTypeName": null,
+    "props": {
+      "node": {
+        "type": "TreeNodeProps",
+        "required": true
+      },
+      "parentNode": {
+        "type": "(Pick<TreeNodeProps, \"id\" | \"nested\"> & { parentNode?: ParentNode; } & { parentNode?: ParentNode; }) | undefined",
+        "required": false
+      },
+      "tabIndexAvailable": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Tree": {
+    "displayName": "Tree",
+    "propsTypeName": "TreeProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data": {
+        "type": "TreeNodeProps[]",
+        "required": true,
+        "description": "Данные для отрисовки",
+        "typeRefs": [
+          "TreeNodeProps"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "expandedNodes": {
+        "type": "string[]",
+        "required": false,
+        "description": "Состояние для раскрытых элементов",
+        "typeRefs": [
+          "TreeNodeId"
+        ]
+      },
+      "nodeActions": {
+        "type": "((node: TreeNodeProps) => Item[])",
+        "required": false,
+        "description": "Дополнительные действия для элемента-потомка"
+      },
+      "onDataLoad": {
+        "type": "((node: TreeNodeProps) => Promise<unknown>)",
+        "required": false,
+        "description": "Колбэк для асинхронной загрузки данных при раскрытии дерева"
+      },
+      "onExpand": {
+        "type": "((expandedKeys: string[], node: TreeNodeProps) => void)",
+        "required": false,
+        "description": "Колбэк при раскрытии/закрытии элементов"
+      },
+      "onNodeClick": {
+        "type": "OnNodeClick",
+        "required": false,
+        "description": "Обработчик клика по элементу дерева",
+        "typeRefs": [
+          "OnNodeClick"
+        ]
+      },
+      "onSelect": {
+        "type": "((selectedKeys: string[], node: TreeNodeProps) => void) | ((selectedKey: string, node: TreeNodeProps) => void)",
+        "required": false,
+        "description": "Колбэк при изменении выбраных элементов:\n<br> - При <strong>selectionMode</strong>=`Multi` - возвращает массив строк\n<br> - При <strong>selectionMode</strong>=`Single` - возвращает строку"
+      },
+      "parentActions": {
+        "type": "((node: TreeNodeProps) => Item[])",
+        "required": false,
+        "description": "Дополнительные действия для элемента-родителя"
+      },
+      "selected": {
+        "type": "string | string[]",
+        "required": false,
+        "description": "Состояние для выбраных элементов:\n<br> - При <strong>selectionMode</strong>=`Multi` - принимает массив строк\n<br> - При <strong>selectionMode</strong>=`Single` - принимает строку"
+      },
+      "selectionMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "multi",
+          "single"
+        ],
+        "description": "Режим выбора элементов:\n<br> - `Single` - одиночный выбор\n<br> - `Multi` - множественный выбор\n<br> - `undefined` - без выбора"
+      },
+      "showIcons": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Флаг отвечающий за отображение иконок у элементов дерева"
+      },
+      "showLines": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Флаг отвечающий за отображение линий вложенности"
+      },
+      "showToggle": {
+        "type": "boolean",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер строк дерева (Figma variant `size`).",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "OnNodeClick": {
+        "kind": "alias",
+        "type": "(node: TreeNodeProps, e: MouseEvent) => void",
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TreeNodeId": {
+        "kind": "alias",
+        "type": "string",
+        "own": true
+      },
+      "TreeNodeProps": {
+        "kind": "alias",
+        "type": "ChildTreeNode | ParentTreeNode",
+        "own": true
+      }
+    }
+  },
+  "TreeContextProvider": {
+    "displayName": "TreeContextProvider",
+    "propsTypeName": null,
+    "props": {
+      "value": {
+        "type": "TreeContextBaseProps",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TreeItem": {
+    "displayName": "TreeItem",
+    "propsTypeName": null,
+    "props": {
+      "node": {
+        "type": "TreeNodeProps",
+        "required": true
+      },
+      "parentNode": {
+        "type": "ParentNode",
+        "required": false
+      },
+      "tabIndexAvailable": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TreeLine": {
+    "displayName": "TreeLine",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "halfWidth": {
+        "type": "boolean",
+        "required": false
+      },
+      "horizontal": {
+        "type": "boolean",
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Доп. инлайн-стили для контейнера (height/width передаются здесь, а не отдельными пропами)."
+      },
+      "visible": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TreeNode": {
+    "displayName": "TreeNode",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "collapsedIcon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка элемента-родителя в закрытом состоянии"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Является ли элемент деактивированным"
+      },
+      "expandedIcon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка элемента-родителя в открытом состоянии"
+      },
+      "href": {
+        "type": "string",
+        "required": false,
+        "description": "Ссылка на элемент"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка дочернего элемента"
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Идентификатор элемента"
+      },
+      "isLoading": {
+        "type": "boolean",
+        "required": false
+      },
+      "nested": {
+        "type": "(ChildTreeNode | ParentTreeNode)[]",
+        "required": false,
+        "description": "Вложенные элементы дерева"
+      },
+      "onChevronClick": {
+        "type": "MouseEventHandler<HTMLElement>",
+        "required": false
+      },
+      "onClick": {
+        "type": "MouseEventHandler",
+        "required": false,
+        "description": "Обработчик клика по элементу"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLElement>",
+        "required": false
+      },
+      "parentNode": {
+        "type": "ParentNode",
+        "required": false
+      },
+      "tabIndexAvailable": {
+        "type": "boolean",
+        "required": false
+      },
+      "title": {
+        "type": "((value: Pick<BaseTreeNode, \"id\" | \"disabled\">) => ReactNode) | ((string | ((value: Pick<BaseTreeNode, \"id\" | \"disabled\">) => ReactNode)) & (string | ((value: Pick<...>) => ReactNode)))",
+        "required": true,
+        "description": "Имя элемента\nИмя элемента-родителя (расширяет вариант из `BaseTreeNode` — в callback приходят также `nested`-узлы)"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TreeNodeActions": {
+    "displayName": "TreeNodeActions",
+    "propsTypeName": null,
+    "props": {
+      "focusNode": {
+        "type": "() => void",
+        "required": true
+      },
+      "getNodeActions": {
+        "type": "(node: Omit<TreeNodeProps, \"href\">) => Item[]",
+        "required": true
+      },
+      "isDroplistOpen": {
+        "type": "boolean",
+        "required": true
+      },
+      "isDroplistTriggerFocused": {
+        "type": "boolean",
+        "required": true
+      },
+      "node": {
+        "type": "Omit<TreeNodeProps, \"href\">",
+        "required": true
+      },
+      "onBlurActions": {
+        "type": "() => void",
+        "required": true
+      },
+      "setDroplistOpen": {
+        "type": "Dispatch<SetStateAction<boolean>>",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TreeNodeHref": {
+    "displayName": "TreeNodeHref",
+    "propsTypeName": null,
+    "props": {
+      "href": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLAnchorElement>",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  }
+}
