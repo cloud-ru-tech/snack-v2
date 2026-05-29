@@ -111,7 +111,10 @@ export const AsAnchorDisabled: StoryObj<AnchorStoryArgs> = {
 
     await step('click on disabled anchor: preventDefault fired (no navigation), onClick still called', async () => {
       let defaultPrevented = false;
-      card.addEventListener(
+      // Слушаем на `document`: делегированный React-обработчик на корневом контейнере
+      // вызовет preventDefault раньше bubble до document. Listener на самой `card`
+      // прочитал бы defaultPrevented до React и увидел false.
+      document.addEventListener(
         'click',
         e => {
           defaultPrevented = e.defaultPrevented;
@@ -167,13 +170,20 @@ export const AsCustomLink: StoryObj<CustomLinkStoryArgs> = {
 
     await step("custom 'to' prop reached MockLink → href='/profile/42'", async () => {
       await expect(card).toHaveAttribute('href', '/profile/42');
-      const tag = await card.evaluate(el => el.tagName.toLowerCase());
-      expect(tag).toBe('a');
+      expect(card.tagName.toLowerCase()).toBe('a');
     });
 
     await step('click fires onClick passed via args', async () => {
-      await userEvent.click(card);
-      expect(args.onClick).toHaveBeenCalledTimes(1);
+      // MockLink — реальный `<a href>`: без перехвата клик увёл бы страницу и оборвал
+      // browser-сессию. Capture-listener гасит навигацию, onClick при этом отрабатывает.
+      const preventNavigation = (e: Event) => e.preventDefault();
+      document.addEventListener('click', preventNavigation, { capture: true });
+      try {
+        await userEvent.click(card);
+        expect(args.onClick).toHaveBeenCalledTimes(1);
+      } finally {
+        document.removeEventListener('click', preventNavigation, { capture: true });
+      }
     });
   },
 };
