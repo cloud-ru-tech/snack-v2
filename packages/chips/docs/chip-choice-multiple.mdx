@@ -1,0 +1,66 @@
+---
+title: ChipChoice.Multiple
+package: '@ds/chips'
+description: ChipChoice для множественного выбора значений из списка.
+order: 32
+---
+
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import chipsDoc from './props.json';
+
+# ChipChoice.Multiple
+
+Множественный выбор значений из списка. По умолчанию показывает `All`, одно выбранное значение или счётчик выбранных элементов.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipchoice-multiple--playground' title='ChipChoice.Multiple Playground' />
+
+## Когда использовать
+
+- Когда фильтр допускает несколько активных значений.
+- Когда список значений длиннее набора независимых `ChipToggle`.
+- Когда нужно отложенное применение через `autoApply={false}` и footer с кнопками.
+
+## Установка
+
+```ts
+import { ChipChoice } from '@ds/chips';
+```
+
+## Пример использования
+
+```tsx
+<ChipChoice.Multiple
+  label='Category'
+  options={[
+    { value: 'compute', label: 'Compute' },
+    { value: 'storage', label: 'Storage' },
+  ]}
+  defaultValue={['compute']}
+  onChange={values => console.log(values)}
+/>
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipChoiceMultiple} />
+
+## Storybook
+
+<StorybookEmbed
+  storyId='components-chips-chipchoice-multiple--visual-matrix'
+  title='ChipChoice.Multiple VisualMatrix'
+/>
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-multiple')} height={420} title='ChipChoice.Multiple в Figma' />
+
+## Смотри также
+
+- [Chips](/components/chips) — обзор пакета.
+- [ChipChoice.Single](/components/chips/chip-choice-single) — одиночный выбор.

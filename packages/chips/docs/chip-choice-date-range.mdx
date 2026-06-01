@@ -1,0 +1,62 @@
+---
+title: ChipChoice.DateRange
+package: '@ds/chips'
+description: ChipChoice для выбора диапазона дат через календарь.
+order: 34
+---
+
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import chipsDoc from './props.json';
+
+# ChipChoice.DateRange
+
+Выбор диапазона дат через календарь. Отображает выбранные даты в compact-формате внутри чипа.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipchoice-daterange--playground' title='ChipChoice.DateRange Playground' />
+
+## Когда использовать
+
+- Для фильтрации по периоду.
+- Для отчётов, логов и списков событий.
+- Когда пользователю нужно задать начало и конец диапазона.
+
+## Установка
+
+```ts
+import { ChipChoice } from '@ds/chips';
+```
+
+## Пример использования
+
+```tsx
+<ChipChoice.DateRange
+  label='Period'
+  defaultValue={[new Date('2026-01-01'), new Date('2026-01-31')]}
+  onChange={range => console.log(range)}
+/>
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipChoiceDateRange} />
+
+## Storybook
+
+<StorybookEmbed
+  storyId='components-chips-chipchoice-daterange--visual-matrix'
+  title='ChipChoice.DateRange VisualMatrix'
+/>
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-date-range')} height={420} title='ChipChoice.DateRange в Figma' />
+
+## Смотри также
+
+- [Chips](/components/chips) — обзор пакета.
+- [Calendar](/components/calendar) — календарь, используемый внутри.

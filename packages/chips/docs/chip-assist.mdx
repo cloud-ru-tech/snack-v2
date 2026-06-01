@@ -1,0 +1,72 @@
+---
+title: ChipAssist
+package: '@ds/chips'
+description: Кликабельный чип для инициации действия — с иконкой, лейблом и состояниями disabled/loading.
+order: 1
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
+
+# ChipAssist
+
+Кликабельный чип-кнопка. Используется для инициации действий в контексте фильтров, тегов и быстрых команд.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipassist--playground' title='ChipAssist Playground' />
+
+## Когда использовать
+
+- Для inline-действий в плоском списке (добавить тег, применить команду).
+- Когда действие визуально должно восприниматься как выбираемый элемент, а не классическая кнопка.
+- Для набора коротких quick-action-команд рядом с контентом.
+
+Когда **не** нужен ChipAssist: для основного CTA используйте `Button`; для переключения состояния — `ChipToggle`.
+
+## Анатомия
+
+### Size
+Три размера: `s` / `m` / `l`.
+
+### Состояния
+`disabled` отключает взаимодействие; `loading` показывает спиннер `Sun` вместо иконки.
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-assist')} height={420} title='ChipAssist в Figma' />
+
+## Установка
+
+```ts
+import { ChipAssist } from '@ds/chips'
+```
+
+## Примеры использования
+
+```tsx
+// Базовый
+<ChipAssist label='Action' onClick={() => {}} />
+
+// С иконкой
+<ChipAssist label='Add' icon={<PlusSVG />} size='m' onClick={() => {}} />
+
+// Disabled
+<ChipAssist label='Action' disabled onClick={() => {}} />
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipAssist} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-chips-chipassist--visual-matrix' title='ChipAssist VisualMatrix' />
+
+## Смотри также
+
+- [ChipToggle](/components/chips/chip-toggle) — чип с состоянием выбора.
+- [Button](/components/button/button) — основные кнопки действий.

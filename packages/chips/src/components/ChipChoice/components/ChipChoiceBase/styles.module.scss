@@ -1,0 +1,148 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/chip.module' as chip;
+@use '@ds/materials' as m;
+
+$sizes: (
+  's': 's',
+  'm': 'm',
+  'l': 'l',
+);
+
+$label-typography: (
+  's': base.$sn-thin-label-m,
+  'm': base.$sn-thin-label-l,
+  'l': base.$sn-thin-label-l,
+);
+
+$value-typography: (
+  's': base.$sn-regular-label-m,
+  'm': base.$sn-regular-label-l,
+  'l': base.$sn-regular-label-l,
+);
+
+// Standalone selectors must precede higher-specificity component rules
+.icon,
+.spinner {
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  > svg {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.labelLayout {
+  position: relative;
+
+  overflow: hidden;
+  display: inline-flex;
+  gap: base.$sn-density-spacing-control-wrapper-horizontal-s;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.label {
+  flex-shrink: 0;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.value {
+  overflow: hidden;
+
+  min-width: 0;
+
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stateLayer {
+  pointer-events: none;
+}
+
+.choiceChip {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-color: base.$sn-theme-color-available-borderColor;
+  border-style: solid;
+
+  text-decoration: none;
+  text-transform: none;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+  outline: 0;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  .label,
+  .icon,
+  .spinner {
+    color: base.$sn-theme-color-neutral-text;
+  }
+
+  .value {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .label,
+    .value {
+      color: base.$sn-theme-color-available-version-textMain;
+    }
+  }
+
+  &[data-loading] {
+    cursor: progress;
+  }
+
+  @each $size, $tokenSize in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(chip.$chip, 'anatomy', 'size', $tokenSize, 'container');
+
+      .labelLayout {
+        @include base.composite-var(chip.$chip, 'anatomy', 'size', $tokenSize, 'container', 'textWrapper');
+      }
+
+      .label {
+        @include base.composite-var($label-typography, $size);
+      }
+
+      .value {
+        @include base.composite-var($value-typography, $size);
+      }
+
+      .icon,
+      .icon svg,
+      .spinner {
+        @include base.composite-var(chip.$chip, 'anatomy', 'size', $tokenSize, 'centeredWrapper');
+      }
+    }
+  }
+}

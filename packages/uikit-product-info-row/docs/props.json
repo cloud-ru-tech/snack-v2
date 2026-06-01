@@ -130,7 +130,7 @@
             "description": "Максимальное число строк метки (TruncateString)"
           },
           "labelWidth": {
-            "type": "\"fixed\" | \"auto\" | undefined",
+            "type": "\"auto\" | \"fixed\" | undefined",
             "required": false,
             "values": [
               "auto",
@@ -1053,7 +1053,7 @@
             "description": "Максимальное число строк метки (TruncateString)"
           },
           "labelWidth": {
-            "type": "\"fixed\" | \"auto\" | undefined",
+            "type": "\"auto\" | \"fixed\" | undefined",
             "required": false,
             "values": [
               "auto",

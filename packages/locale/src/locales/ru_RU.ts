@@ -82,4 +82,12 @@ export const ru_RU: typeof en_GB = {
     copied: 'Скопировано',
     copyContactData: 'Скопировать контактные данные',
   },
+  Chips: {
+    allLabel: 'Все',
+    apply: 'Применить',
+    cancel: 'Отмена',
+    add: 'Добавить',
+    clear: 'Сбросить',
+    addButtonDisabledTip: 'Нет фильтров для добавления',
+  },
 };

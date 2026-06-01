@@ -198,6 +198,9 @@
     },
     {
       "path": "./uikit-product-title-clickable/tsconfig.cjs.json"
+    },
+    {
+      "path": "./chips/tsconfig.cjs.json"
     }
   ]
 }

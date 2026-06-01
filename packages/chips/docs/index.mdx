@@ -1,0 +1,41 @@
+---
+title: Chips
+package: '@ds/chips'
+description: Пакет чипов дизайн-системы — ChipAssist, ChipToggle, ChipChoice и ChipChoiceRow для фильтрации и выбора.
+order: 0
+---
+
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+
+# Chips
+
+Пакет `@ds/chips` предоставляет четыре компонента-чипа для фильтрации данных и пользовательского выбора.
+
+- [**ChipAssist**](/components/chips/chip-assist) — кликабельный чип для инициации действия.
+- [**ChipToggle**](/components/chips/chip-toggle) — чип с состоянием выбран/не выбран.
+- **ChipChoice** — семейство чип-фильтров с выпадающим списком:
+  [Single](/components/chips/chip-choice-single), [Multiple](/components/chips/chip-choice-multiple), [Date](/components/chips/chip-choice-date), [DateRange](/components/chips/chip-choice-date-range), [Time](/components/chips/chip-choice-time), [Custom](/components/chips/chip-choice-custom).
+- [**ChipChoiceRow**](/components/chips/chip-choice-row) — строка из нескольких ChipChoice-фильтров с кнопками добавить/сбросить.
+
+## Установка
+
+```bash
+pnpm add @ds/chips
+```
+
+```ts
+import { ChipAssist, ChipToggle, ChipChoice, ChipChoiceRow } from '@ds/chips';
+```
+
+## Figma
+
+Все компоненты следуют одному мастер-файлу Figma «chips - Matrix». Ссылки на конкретные узлы — на страницах компонентов.
+
+<FigmaEmbed node={figmaNode('chips')} height={420} title='Chips в Figma' />
+
+## Смотри также
+
+- [`@ds/button`](/components/button) — кнопки для основных действий.
+- [`@ds/dropdown`](/components/dropdown) — выпадающие меню (используются внутри ChipChoice).
+- [`@ds/calendar`](/components/calendar) — календари для ChipChoiceDate / ChipChoiceDateRange / ChipChoiceTime.

@@ -1,0 +1,49 @@
+{
+  "name": "@ds/chips",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/calendar": "workspace:*",
+    "@ds/divider": "workspace:*",
+    "@ds/dropdown": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/locale": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/tooltip": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "@sbercloud/snack-v2-list": "0.0.1-preview-004d5c66.0",
+    "classnames": "catalog:",
+    "fuzzy-search": "3.2.1",
+    "merge-refs": "catalog:",
+    "uncontrollable": "catalog:"
+  },
+  "devDependencies": {
+    "@types/fuzzy-search": "2.1.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

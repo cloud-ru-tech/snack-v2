@@ -82,4 +82,12 @@ export const en_GB = {
     copied: 'Copied',
     copyContactData: 'Copy contact data',
   },
+  Chips: {
+    allLabel: 'All',
+    apply: 'Apply',
+    cancel: 'Cancel',
+    add: 'Add',
+    clear: 'Clear',
+    addButtonDisabledTip: 'No filters available to add',
+  },
 } satisfies Dictionary;

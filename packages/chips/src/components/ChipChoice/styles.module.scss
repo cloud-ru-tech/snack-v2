@@ -1,0 +1,10 @@
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as button;
+
+.choiceChipFooter {
+  display: flex;
+  gap: button.$sn-button-anatomy-buttonGroup-container-gap;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}

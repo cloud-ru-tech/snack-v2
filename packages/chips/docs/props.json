@@ -1,0 +1,1978 @@
+{
+  "ButtonClearValue": {
+    "displayName": "ButtonClearValue",
+    "propsTypeName": null,
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": true
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLButtonElement>",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s"
+        ]
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "-1"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipAssist": {
+    "displayName": "ChipAssist",
+    "propsTypeName": "ChipAssistProps",
+    "description": "Чип с лейблом",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": true,
+        "description": "Колбек обработки клика"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "middle",
+        "description": "Вариант обрезания строки",
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "ChipChoiceBase": {
+    "displayName": "ChipChoiceBase",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLDivElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиш"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "middle",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "unknown",
+        "required": false,
+        "description": "Фактическое значение. Используется для отображения кнопки очистки"
+      },
+      "valueToRender": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Отображаемое значение"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipChoiceCustom": {
+    "displayName": "ChipChoiceCustom",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "((props: CustomContentRenderProps<any>) => ReactNode)",
+        "required": false,
+        "description": "Контент выпадающего меню"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onChange": {
+        "type": "((value: any) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Расположение выпадающего меню"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "any",
+        "required": false,
+        "description": "Фактическое значение"
+      },
+      "valueRender": {
+        "type": "((value: any) => ReactNode)",
+        "required": false,
+        "description": "Отображаемое значение"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipChoiceDate": {
+    "displayName": "ChipChoiceDate",
+    "propsTypeName": null,
+    "props": {
+      "buildCalendarCellProps": {
+        "type": "BuildCellPropsFunction",
+        "required": false,
+        "description": "Колбек свойств для управления ячейками календаря"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Date",
+        "required": false,
+        "description": "Значение компонента по-умолчанию"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "date",
+          "date-time",
+          "month",
+          "year"
+        ],
+        "defaultValue": "date",
+        "description": "Режим выбора календаря"
+      },
+      "onChange": {
+        "type": "((value: Date) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "description": "Расположение выпадающего меню"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать секунды в режиме date-time"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "Date",
+        "required": false,
+        "description": "Значение компонента"
+      },
+      "valueRender": {
+        "type": "((value?: Date) => ReactNode)",
+        "required": false,
+        "description": "Колбек формирующий строковое представление выбранного значения"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipChoiceDateRange": {
+    "displayName": "ChipChoiceDateRange",
+    "propsTypeName": null,
+    "props": {
+      "buildCalendarCellProps": {
+        "type": "BuildCellPropsFunction",
+        "required": false,
+        "description": "Колбек свойств для управления ячейками календаря"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Range",
+        "required": false,
+        "description": "Значение компонента по умолчанию"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onChange": {
+        "type": "((value: Range) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "description": "Расположение выпадающего меню"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "Range",
+        "required": false,
+        "description": "Значение компонента"
+      },
+      "valueRender": {
+        "type": "((value?: Range) => ReactNode)",
+        "required": false,
+        "description": "Колбек формирующий строковое представление выбранного значения"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipChoiceMultiple": {
+    "displayName": "ChipChoiceMultiple",
+    "propsTypeName": null,
+    "props": {
+      "autoApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Флаг, отвечающий за применение выбранного значения по умолчанию"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "contentRender": {
+        "type": "((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => ReactNode) | undefined",
+        "required": false,
+        "description": "Кастомный рендер контента опции"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "ItemId[]",
+        "required": false,
+        "description": "Начальное состояние"
+      },
+      "disableFuzzySearch": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает Fuzzy Search"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "filterFn": {
+        "type": "((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => boolean) | undefined",
+        "required": false,
+        "description": "Функция фильтрации опций"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии результатов поиска или фильтров"
+      },
+      "onApprove": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек основной кнопки"
+      },
+      "onCancel": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек кнопки отмены"
+      },
+      "onChange": {
+        "type": "OnChangeHandler<any>",
+        "required": false,
+        "description": "Controlled обработчик измения состояния"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "options": {
+        "type": "FilterOption<T>[]",
+        "required": true,
+        "description": "Массив опций"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "description": "Расположение выпадающего меню"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+      },
+      "searchable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать строку поиска в дроплисте"
+      },
+      "selection": {
+        "type": "SelectionMultipleState | SelectionSingleState",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "ItemId[]",
+        "required": false,
+        "description": "Controlled состояние"
+      },
+      "valueRender": {
+        "type": "((option?: BaseOption<T>[]) => ReactNode)",
+        "required": false,
+        "description": "Колбек формирующий отображение выбранного значения"
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipChoiceRow": {
+    "displayName": "ChipChoiceRow",
+    "propsTypeName": "ChipChoiceRowProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Partial<TState>",
+        "required": false,
+        "description": "Начальное состояние фильтров",
+        "typeRefs": [
+          "TState"
+        ]
+      },
+      "filters": {
+        "type": "ChipChoiceRowFilter[]",
+        "required": true,
+        "description": "Массив чипов",
+        "typeRefs": [
+          "BaseChipProps",
+          "ChipChoiceRowFilter",
+          "DropdownBridgeProps"
+        ]
+      },
+      "onChange": {
+        "type": "((filters: TState) => void)",
+        "required": false,
+        "description": "Колбек изменения состояния фильтров"
+      },
+      "onVisibleFiltersChange": {
+        "type": "((value: string[]) => void)",
+        "required": false,
+        "description": "Коллбек на изменение видимых фильтров"
+      },
+      "showAddButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Скрыть/показать кнопку добавления фильров"
+      },
+      "showClearButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Скрыть/показать кнопку очиски фильтров"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "ChipChoiceRowSize"
+        ]
+      },
+      "value": {
+        "type": "FiltersState",
+        "required": false,
+        "description": "Состояние фильтров",
+        "typeRefs": [
+          "TState"
+        ]
+      },
+      "visibleFilters": {
+        "type": "string[]",
+        "required": false,
+        "description": "Состояние для видимых фильтров"
+      }
+    },
+    "relatedTypes": {
+      "BaseChipProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключён"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст чипа"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Индекс в порядке фокусировки"
+          },
+          "truncateVariant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Вариант обрезания строки",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ChipChoiceRowFilter": {
+        "kind": "alias",
+        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
+        "own": true
+      },
+      "ChipChoiceRowSize": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "DropdownBridgeProps": {
+        "kind": "interface",
+        "props": {
+          "closeOnEscapeKey": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли по нажатию на кнопку `Esc`"
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "outsideClick": {
+            "type": "boolean | OutsideClickHandler | undefined",
+            "required": false,
+            "description": "Закрывать ли при клике вне поповера",
+            "typeRefs": [
+              "OutsideClickHandler"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerClickByKeys": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "OutsideClickHandler": {
+        "kind": "alias",
+        "type": "(event: MouseEvent) => boolean",
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "ChipChoiceSingle": {
+    "displayName": "ChipChoiceSingle",
+    "propsTypeName": null,
+    "props": {
+      "autoApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Флаг, отвечающий за применение выбранного значения по умолчанию"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "contentRender": {
+        "type": "((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => ReactNode) | undefined",
+        "required": false,
+        "description": "Кастомный рендер контента опции"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Начальное состояние"
+      },
+      "disableFuzzySearch": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает Fuzzy Search"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "filterFn": {
+        "type": "((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => boolean) | undefined",
+        "required": false,
+        "description": "Функция фильтрации опций"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии результатов поиска или фильтров"
+      },
+      "onApprove": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек основной кнопки"
+      },
+      "onCancel": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек кнопки отмены"
+      },
+      "onChange": {
+        "type": "OnChangeHandler<any>",
+        "required": false,
+        "description": "Controlled обработчик измения состояния"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "options": {
+        "type": "FilterOption<T>[]",
+        "required": true,
+        "description": "Массив опций"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "description": "Расположение выпадающего меню"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+      },
+      "searchable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать строку поиска в дроплисте"
+      },
+      "selection": {
+        "type": "SelectionMultipleState | SelectionSingleState",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Controlled состояние"
+      },
+      "valueRender": {
+        "type": "((option?: BaseOption<T>) => ReactNode)",
+        "required": false,
+        "description": "Колбек формирующий отображение выбранного значения"
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipChoiceTime": {
+    "displayName": "ChipChoiceTime",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled."
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onChange": {
+        "type": "((value: TimeValue) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "description": "Расположение выпадающего меню"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли секунды"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "value": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Выбранное значение."
+      },
+      "valueRender": {
+        "type": "((value?: TimeValue) => ReactNode)",
+        "required": false,
+        "description": "Колбек формирующий строковое представление выбранного значения"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipToggle": {
+    "displayName": "ChipToggle",
+    "propsTypeName": "ChipToggleProps",
+    "description": "Чип с состоянием выбран/не выбран",
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "required": true,
+        "description": "Отмечен ли компонент"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onChange": {
+        "type": "(checked: boolean, e: ChangeEvent<HTMLInputElement>) => void",
+        "required": true,
+        "description": "Колбек смены значения"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "middle",
+        "description": "Вариант обрезания строки",
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "ForwardedChipChoice": {
+    "displayName": "ForwardedChipChoice",
+    "propsTypeName": null,
+    "props": {
+      "autoApply": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за применение выбранного значения по умолчанию"
+      },
+      "buildCalendarCellProps": {
+        "type": "BuildCellPropsFunction",
+        "required": false,
+        "description": "Колбек свойств для управления ячейками календаря"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "((props: CustomContentRenderProps<any>) => ReactNode)",
+        "required": false,
+        "description": "Контент выпадающего меню"
+      },
+      "contentRender": {
+        "type": "((option: { label: ItemId; value?: ItemId; contentRenderProps?: ContentRenderProps; }) => ReactNode) | undefined",
+        "required": false,
+        "description": "Кастомный рендер контента опции"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Date | Range | ItemId | ItemId[] | TimeValue",
+        "required": false,
+        "description": "Начальное состояние\nЗначение компонента по-умолчанию\nЗначение по-умолчанию для uncontrolled.\nЗначение компонента по умолчанию"
+      },
+      "disableFuzzySearch": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает Fuzzy Search"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключён"
+      },
+      "dropDownClassName": {
+        "type": "string",
+        "required": false
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "filterFn": {
+        "type": "((option: { label: ItemId; value?: ItemId; contentRenderProps?: ContentRenderProps; }) => boolean) | undefined",
+        "required": false,
+        "description": "Функция фильтрации опций"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "id": {
+        "type": "string",
+        "required": true
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст чипа"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "date",
+          "date-time",
+          "month",
+          "year"
+        ],
+        "description": "Режим выбора календаря"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отстутствии результатов поиска или фильтров"
+      },
+      "onApprove": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек основной кнопки"
+      },
+      "onCancel": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек кнопки отмены"
+      },
+      "onChange": {
+        "type": "((value: any) => void) | ((value: Date) => void) | ((value: Range) => void) | OnChangeHandler<any> | ((value: TimeValue) => void)",
+        "required": false,
+        "description": "Controlled обработчик измения состояния\nКолбек смены значения"
+      },
+      "onClearButtonClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false,
+        "description": "Колбек для клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан"
+      },
+      "options": {
+        "type": "FilterOption<ContentRenderProps>[]",
+        "required": true,
+        "description": "Массив опций"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "description": "Расположение выпадающего меню"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+      },
+      "searchable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать строку поиска в дроплисте"
+      },
+      "selection": {
+        "type": "SelectionMultipleState | SelectionSingleState",
+        "required": false
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать секунды в режиме date-time\nПоказывать ли секунды"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс в порядке фокусировки"
+      },
+      "truncateVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "end",
+          "middle"
+        ],
+        "defaultValue": "'middle'",
+        "description": "Вариант обрезания строки\nВариант обрезания значения"
+      },
+      "type": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "custom",
+          "date",
+          "date-range",
+          "date-time",
+          "multiple",
+          "single",
+          "time"
+        ]
+      },
+      "value": {
+        "type": "any",
+        "required": false,
+        "description": "Controlled состояние\nЗначение компонента\nВыбранное значение.\nФактическое значение"
+      },
+      "valueRender": {
+        "type": "((value: any) => ReactNode) | ((value?: Date) => ReactNode) | ((value?: Range) => ReactNode) | ((value?: TimeValue | undefined) => ReactNode) | ((option?: BaseOption<...>[] | undefined) => ReactNode) | ((option?: BaseOption<...> | undefined) => ReactNode) | undefined",
+        "required": false,
+        "description": "Колбек формирующий отображение выбранного значения\nКолбек формирующий строковое представление выбранного значения\nОтображаемое значение"
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useAutoApply": {
+    "displayName": "useAutoApply",
+    "propsTypeName": null,
+    "props": {
+      "autoApply": {
+        "type": "boolean",
+        "required": true
+      },
+      "onApprove": {
+        "type": "() => void",
+        "required": true
+      },
+      "onCancel": {
+        "type": "() => void",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useHandleOnKeyDown": {
+    "displayName": "useHandleOnKeyDown",
+    "propsTypeName": null,
+    "props": {
+      "setOpen": {
+        "type": "(open: boolean) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useOptionSearch": {
+    "displayName": "useOptionSearch",
+    "propsTypeName": null,
+    "description": "Нечеткий поиск среди айтемов по полям 'content.option', 'content.caption', 'content.description', 'label'",
+    "props": {
+      "disableFuzzySearch": {
+        "type": "boolean",
+        "required": false
+      },
+      "flatMapOptions": {
+        "type": "(BaseOption<T> | AccordionOption<T> | NestListOption<T>)[]",
+        "required": true
+      },
+      "minSearchInputLength": {
+        "type": "number",
+        "required": false
+      },
+      "options": {
+        "type": "FilterOption<T>[]",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  }
+}

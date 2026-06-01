@@ -21,6 +21,7 @@
     "@ds/button": "workspace:*",
     "@ds/calendar": "workspace:*",
     "@ds/card": "workspace:*",
+    "@ds/chips": "workspace:*",
     "@ds/carousel": "workspace:*",
     "@ds/code-editor": "workspace:*",
     "@ds/color-picker": "workspace:*",

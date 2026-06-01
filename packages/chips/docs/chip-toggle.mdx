@@ -1,0 +1,67 @@
+---
+title: ChipToggle
+package: '@ds/chips'
+description: Чип с состоянием выбран/не выбран — управляемый и неуправляемый режим, иконка, disabled/loading.
+order: 2
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
+
+# ChipToggle
+
+Чип-переключатель с двумя состояниями: выбран / не выбран. Рендерится как `<label>` + скрытый `<input type="checkbox">` для нативной семантики.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chiptoggle--playground' title='ChipToggle Playground' />
+
+## Когда использовать
+
+- Для множественной фильтрации по категориям (несколько независимых тоглов).
+- Для включения/выключения одной опции без модального контекста.
+- Как альтернатива Checkbox в более компактном, pill-образном виде.
+
+## Анатомия
+
+### Size
+Три размера: `s` / `m` / `l`.
+
+### Состояния
+`checked`, `disabled`, `loading`. При `checked` на корневом элементе ставится `data-checked='true'`.
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-toggle')} height={420} title='ChipToggle в Figma' />
+
+## Установка
+
+```ts
+import { ChipToggle } from '@ds/chips'
+```
+
+## Примеры использования
+
+```tsx
+// Неуправляемый
+<ChipToggle label='Category' checked={false} onChange={(checked) => console.log(checked)} />
+
+// С иконкой
+<ChipToggle label='Filter' icon={<SettingsSVG />} size='m' checked={true} onChange={() => {}} />
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipToggle} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-chips-chiptoggle--visual-matrix' title='ChipToggle VisualMatrix' />
+
+## Смотри также
+
+- [ChipAssist](/components/chips/chip-assist) — кликабельный чип-кнопка.
+- [ChipChoice.Single](/components/chips/chip-choice-single) — чип с выпадающим выбором значения.

@@ -1,0 +1,55 @@
+---
+title: ChipChoice.Date
+package: '@ds/chips'
+description: ChipChoice для выбора одной даты через календарь.
+order: 33
+---
+
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import chipsDoc from './props.json';
+
+# ChipChoice.Date
+
+Выбор одной даты через `@ds/calendar`. Поддерживает режимы `date`, `date-time`, `month` и `year`.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipchoice-date--playground' title='ChipChoice.Date Playground' />
+
+## Когда использовать
+
+- Для фильтрации по конкретной дате.
+- Для выбора месяца или года без отдельного поля ввода.
+- Когда значение должно отображаться прямо в чипе после выбора.
+
+## Установка
+
+```ts
+import { ChipChoice } from '@ds/chips';
+```
+
+## Пример использования
+
+```tsx
+<ChipChoice.Date label='Created at' defaultValue={new Date()} onChange={date => console.log(date)} />
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipChoiceDate} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-chips-chipchoice-date--visual-matrix' title='ChipChoice.Date VisualMatrix' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-date')} height={420} title='ChipChoice.Date в Figma' />
+
+## Смотри также
+
+- [Chips](/components/chips) — обзор пакета.
+- [Calendar](/components/calendar) — календарь, используемый внутри.

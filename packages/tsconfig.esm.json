@@ -196,6 +196,9 @@
     },
     {
       "path": "./uikit-product-title-clickable/tsconfig.esm.json"
+    },
+    {
+      "path": "./chips/tsconfig.esm.json"
     }
   ]
 }

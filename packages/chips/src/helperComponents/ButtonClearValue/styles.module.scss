@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/components/chip.module' as chip;
+
+$sizes: (
+  's': 's',
+  'm': 'm',
+  'l': 'l',
+);
+
+.clearButton {
+  @each $size, $tokenSize in $sizes {
+    &[data-size='#{$size}'] {
+      // Нужно сделать отрицательный margin, чтобы компенсировать padding у ChipChoiceBase
+      margin-right: calc(
+        0px - chip.simple-var(chip.$chip, 'anatomy', 'size', $tokenSize, 'container', 'padding-right')
+      );
+    }
+  }
+}

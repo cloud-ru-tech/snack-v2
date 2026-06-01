@@ -1,0 +1,64 @@
+---
+title: ChipChoice.Single
+package: '@ds/chips'
+description: ChipChoice для одиночного выбора значения из списка.
+order: 31
+---
+
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import chipsDoc from './props.json';
+
+# ChipChoice.Single
+
+Одиночный выбор значения из списка. Подходит для фильтров, где активным может быть только одно значение.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipchoice-single--playground' title='ChipChoice.Single Playground' />
+
+## Когда использовать
+
+- Для статуса, категории, владельца или другого одиночного атрибута.
+- Когда пользователь должен выбрать ровно одно значение из списка.
+- Когда нужен `autoApply`: выбор сразу применяется и закрывает droplist.
+
+## Установка
+
+```ts
+import { ChipChoice } from '@ds/chips';
+```
+
+## Пример использования
+
+```tsx
+<ChipChoice.Single
+  label='Status'
+  options={[
+    { value: 'active', label: 'Active' },
+    { value: 'inactive', label: 'Inactive' },
+  ]}
+  defaultValue='active'
+  autoApply
+  onChange={value => console.log(value)}
+/>
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipChoiceSingle} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-chips-chipchoice-single--visual-matrix' title='ChipChoice.Single VisualMatrix' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-single')} height={420} title='ChipChoice.Single в Figma' />
+
+## Смотри также
+
+- [Chips](/components/chips) — обзор пакета.
+- [ChipChoice.Multiple](/components/chips/chip-choice-multiple) — множественный выбор.

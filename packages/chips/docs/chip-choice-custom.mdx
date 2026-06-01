@@ -1,0 +1,70 @@
+---
+title: ChipChoice.Custom
+package: '@ds/chips'
+description: ChipChoice с произвольным содержимым выпадающего меню.
+order: 36
+---
+
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import chipsDoc from './props.json';
+
+# ChipChoice.Custom
+
+Вариант для случаев, когда стандартного списка, календаря или time picker недостаточно. Содержимое dropdown задаётся через `content`.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipchoice-custom--playground' title='ChipChoice.Custom Playground' />
+
+## Когда использовать
+
+- Для нестандартных фильтров с кастомной разметкой.
+- Для компактных форм внутри dropdown.
+- Когда значение и отображение нужно полностью контролировать снаружи.
+
+## Установка
+
+```ts
+import { ChipChoice } from '@ds/chips';
+```
+
+## Пример использования
+
+```tsx
+<ChipChoice.Custom
+  label='Custom'
+  value='Alpha'
+  valueRender={value => value}
+  content={({ closeDroplist, onChange }) => (
+    <button
+      type='button'
+      onClick={() => {
+        onChange?.('Beta');
+        closeDroplist();
+      }}
+    >
+      Beta
+    </button>
+  )}
+/>
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipChoiceCustom} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-chips-chipchoice-custom--visual-matrix' title='ChipChoice.Custom VisualMatrix' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-custom')} height={420} title='ChipChoice.Custom в Figma' />
+
+## Смотри также
+
+- [Chips](/components/chips) — обзор пакета.
+- [Dropdown](/components/dropdown) — базовый dropdown-контейнер.

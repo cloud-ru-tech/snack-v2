@@ -55,10 +55,22 @@ const AI_COMPONENTS = {
  * }
  * ```
  */
-
 // Формат комментариев: `// <pkg-or-sub> → <figma-node-name>`.
 export const FIGMA_NODES = {
   accordion: { ...SNACK, nodeId: '6045-114' }, // accordion → accordion
+  chips: {
+    _: { ...SNACK, nodeId: '28137-1776436' }, // chips → chips - Matrix (canvas)
+    'chip-assist': { ...SNACK, nodeId: '6437-16196' }, // chips/chip-assist → ChipAssist
+    'chip-toggle': { ...SNACK, nodeId: '6424-65754' }, // chips/chip-toggle → chipToggles
+    'chip-choice': { ...SNACK, nodeId: '6388-14835' }, // chips/chip-choice → chipChoiceSingle (legacy alias)
+    'chip-choice-single': { ...SNACK, nodeId: '6388-14835' }, // chips/chip-choice-single → chipChoiceSingle
+    'chip-choice-multiple': { ...SNACK, nodeId: '6458-14139' }, // chips/chip-choice-multiple → chipChoiceMultiple
+    'chip-choice-date': { ...SNACK, nodeId: '6458-14855' }, // chips/chip-choice-date → chipChoiceDate
+    'chip-choice-date-range': { ...SNACK, nodeId: '6437-64484' }, // chips/chip-choice-date-range → chipChoiceDateRange
+    'chip-choice-time': { ...SNACK, nodeId: '6437-97451' }, // chips/chip-choice-time → chipChoiceTime
+    'chip-choice-custom': { ...SNACK, nodeId: '6388-14835' }, // chips/chip-choice-custom → chips Matrix (no dedicated custom node)
+    'chip-choice-row': { ...SNACK, nodeId: '6446-4036' }, // chips/chip-choice-row → chipChoiceRow
+  },
   'ai-card': { ...AI_COMPONENTS, nodeId: '6081-3818' }, // ai-card → Card / Generative
   'ai-suggestion': {
     _: { ...AI_COMPONENTS, nodeId: '6450-3666' }, // ai-suggestion → Suggestion / Simple

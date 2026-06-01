@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$chips-gap: (
+  's': base.$sn-density-spacing-control-wrapper-horizontal-m,
+  'm': base.$sn-density-spacing-control-wrapper-horizontal-l,
+);
+
+.chipChoiceRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.pinnedItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.controlWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  padding-left: base.$sn-primitive-dimension-8;
+}
+
+.divider {
+  &[data-orientation] {
+    align-self: stretch;
+    height: auto;
+  }
+}
+
+.inlineFlex {
+  display: inline-flex;
+}

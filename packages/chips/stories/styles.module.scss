@@ -1,0 +1,9 @@
+.resizableWrapper {
+  resize: horizontal;
+
+  overflow: auto;
+
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 6px;
+}

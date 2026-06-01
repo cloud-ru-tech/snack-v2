@@ -1,0 +1,60 @@
+---
+title: ChipChoice.Time
+package: '@ds/chips'
+description: ChipChoice для выбора времени.
+order: 35
+---
+
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import chipsDoc from './props.json';
+
+# ChipChoice.Time
+
+Выбор времени через `TimePicker`. Может отображать секунды или только часы и минуты.
+
+## Демо
+
+<StorybookEmbed storyId='components-chips-chipchoice-time--playground' title='ChipChoice.Time Playground' />
+
+## Когда использовать
+
+- Для фильтрации событий по времени.
+- Для настройки расписаний и временных окон.
+- Когда дата не нужна, а значение должно быть компактно показано в чипе.
+
+## Установка
+
+```ts
+import { ChipChoice } from '@ds/chips';
+```
+
+## Пример использования
+
+```tsx
+<ChipChoice.Time
+  label='Time'
+  defaultValue={{ hours: 12, minutes: 30 }}
+  showSeconds={false}
+  onChange={time => console.log(time)}
+/>
+```
+
+## Props
+
+<PropsTable data={chipsDoc.ChipChoiceTime} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-chips-chipchoice-time--visual-matrix' title='ChipChoice.Time VisualMatrix' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-time')} height={420} title='ChipChoice.Time в Figma' />
+
+## Смотри также
+
+- [Chips](/components/chips) — обзор пакета.
+- [Calendar](/components/calendar) — пакет с `TimePicker`.
