@@ -176,9 +176,9 @@ pnpm dev:storybook
 
 ```tsx
 // packages/<pkg>/stories/<Name>/<Name>.Playground.stories.tsx
-import { Meta, StoryObj } from '@storybook/react'
-import { expect, within } from 'storybook/test'
-import { APPEARANCE, Button, SIZE } from '@ds/button'
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from 'storybook/test';
+import { APPEARANCE, Button, SIZE } from '@ds/button';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -194,21 +194,21 @@ const meta: Meta<typeof Button> = {
     appearance: { control: 'radio', options: Object.values(APPEARANCE) },
     size: { control: 'select', options: Object.values(SIZE) },
   },
-}
-export default meta
-type Story = StoryObj<typeof Button>
+};
+export default meta;
+type Story = StoryObj<typeof Button>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId('button')).toBeVisible()
+    await expect(within(canvasElement).getByTestId('button')).toBeVisible();
   },
-}
+};
 ```
 
 ```tsx
 // packages/<pkg>/stories/<Name>/<Name>.VisualMatrix.stories.tsx
-import { StoryTable } from '#storybook/components'
+import { StoryTable } from '#storybook/components';
 // ...
 ```
 
@@ -240,33 +240,33 @@ Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / p
 
 Портал (`apps/docs/`) собирается на Astro и автоподтягивает MDX из двух источников:
 
-| Источник | URL |
-|----------|-----|
-| `packages/*/docs/*.mdx` | `/components/<pkg>/<filename>` |
-| `apps/docs/src/content/patterns/*.mdx` | `/patterns/<filename>` |
+| Источник                               | URL                            |
+| -------------------------------------- | ------------------------------ |
+| `packages/*/docs/*.mdx`                | `/components/<pkg>/<filename>` |
+| `apps/docs/src/content/patterns/*.mdx` | `/patterns/<filename>`         |
 
 ### Доменная группировка пакетов
 
 Главная страница и сайдбар группируют пакеты по **префиксу имени**. Конфиг — [`apps/docs/src/config/domains.ts`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/apps/docs/src/config/domains.ts):
 
-| Префикс пакета | Домен в портале и Storybook |
-|----------------|------------------------------|
-| `uikit-product-*` | Uikit Product |
-| `ai-*` | AI |
-| `admin-*` | Admin |
-| (остальное) | Components |
+| Префикс пакета    | Домен в портале и Storybook |
+| ----------------- | --------------------------- |
+| `uikit-product-*` | Uikit Product               |
+| `ai-*`            | AI                          |
+| `admin-*`         | Admin                       |
+| (остальное)       | Components                  |
 
 Резолвер `resolveDomain(pkg)` идёт по списку `DOMAINS` сверху вниз, первое попадание по `prefix` выигрывает. Порядок в массиве задаёт порядок секций на главной и групп в сайдбаре. Чтобы завести новый домен — добавить блок `{ id, label, storybookLabel, description, prefix }` и подобрать правильный префикс пакета. `description` показывается абзацем под заголовком секции на главной и внутри `QuestionTooltip` рядом с заголовком группы в сайдбаре.
 
 ### Canvas, PropsTable, StorybookEmbed, FigmaEmbed
 
 ```mdx
-import { ButtonDemo } from '../demos/ButtonDemo'
-import { PropsTable } from '#docs/components/PropsTable'
-import { StorybookEmbed } from '#docs/components/StorybookEmbed'
-import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { figmaNode } from '#docs/lib/figma'
-import buttonDoc from './props.json'
+import { ButtonDemo } from '../demos/ButtonDemo';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import buttonDoc from './props.json';
 
 <ButtonDemo client:visible />
 <StorybookEmbed storyId='components-button-button--playground' />
@@ -308,11 +308,11 @@ pnpm dev:docs
 
 Тесты живут в **трёх слоях** ([`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md)). Каждый слой решает свою задачу и не дублирует другие.
 
-| Слой | Что проверяет | Где живёт |
-|------|---------------|-----------|
-| **1. Storybook play** | Behavioral: click, keyboard, focus, controlled-state, callback assertions, ARIA-state-after-action | `stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play` — валидируется командой `pnpm test:stories` |
-| **2. Playwright `rendering.spec.ts`** | Smoke render + props propagation в `data-*` для ключевых значений осей | `packages/<pkg>/__test__/<ParentComponent>/rendering.spec.ts` |
-| **3. Playwright `interaction.spec.ts` / `keyboard.spec.ts` / `polymorphism.spec.ts` / `visual.spec.ts`** | Только то, что Storybook play не может: browser-specific API, focus-trap, скриншоты | там же, отдельные spec-файлы |
+| Слой                                                                                                     | Что проверяет                                                                                      | Где живёт                                                                                                   |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **1. Storybook play**                                                                                    | Behavioral: click, keyboard, focus, controlled-state, callback assertions, ARIA-state-after-action | `stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play` — валидируется командой `pnpm test:stories` |
+| **2. Playwright `rendering.spec.ts`**                                                                    | Smoke render + props propagation в `data-*` для ключевых значений осей                             | `packages/<pkg>/__test__/<ParentComponent>/rendering.spec.ts`                                               |
+| **3. Playwright `interaction.spec.ts` / `keyboard.spec.ts` / `polymorphism.spec.ts` / `visual.spec.ts`** | Только то, что Storybook play не может: browser-specific API, focus-trap, скриншоты                | там же, отдельные spec-файлы                                                                                |
 
 Каждый дополнительный артефакт обязан проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md): (1) проверяет что-то новое из публичной поверхности, (2) не выражается через `args`/StoryTable/play, (3) не дублирует другой слой.
 
@@ -331,14 +331,14 @@ Behavioral assertion'ы пишутся **только здесь** — в Playwr
 
 ```ts
 // packages/button/__test__/Button/rendering.spec.ts
-import { expect, test } from '#playwright-tooling/fixtures'
+import { expect, test } from '#playwright-tooling/fixtures';
 
-import { BUTTON_STORIES, BUTTON_TEST_ID, buildStoryOptions } from './helpers'
+import { BUTTON_STORIES, BUTTON_TEST_ID, buildStoryOptions } from './helpers';
 
 test('renders', async ({ gotoStory, getByTestId }) => {
-  await gotoStory(buildStoryOptions({ appearance: 'critical', size: 'l' }, BUTTON_STORIES.playground))
-  await expect(getByTestId(BUTTON_TEST_ID)).toBeVisible()
-})
+  await gotoStory(buildStoryOptions({ appearance: 'critical', size: 'l' }, BUTTON_STORIES.playground));
+  await expect(getByTestId(BUTTON_TEST_ID)).toBeVisible();
+});
 ```
 
 Импорт fixtures и utils — только через TS-алиас `#playwright-tooling/*`, относительные пути (`'../../../../playwright/...'`) запрещены. Канонический вызов `gotoStory` в spec'ах — только через `buildStoryOptions(args?, storyRef?)`; id-строковая форма устарела.
@@ -470,7 +470,10 @@ pnpm release                       # lerna publish from-package
 ## Figma-интеграция
 
 **Источник дизайна — Snack Ui Kit variables:**
-<br />[Открыть файл в Figma](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2438-94227&p=f&m=dev)
+
+<br />
+[Открыть файл в
+Figma](https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables?node-id=2438-94227&p=f&m=dev)
 
 - `fileKey`: `aNPU3MHwRJiEwbk5F82zux`
 - `fileName`: `Snack-Ui-Kit-variables`
@@ -481,11 +484,11 @@ pnpm release                       # lerna publish from-package
 export const FIGMA_NODES = {
   button: { ...SNACK, nodeId: '2507-25203' },
   toggles: {
-    _: { ...SNACK, nodeId: '2815-30903' },        // корневой узел пакета
+    _: { ...SNACK, nodeId: '2815-30903' }, // корневой узел пакета
     checkbox: { ...SNACK, nodeId: '2834-25233' }, // субкомпонент
     radio: { ...SNACK, nodeId: '7587-163964' },
   },
-} as const satisfies Record<string, NodeOrSub>
+} as const satisfies Record<string, NodeOrSub>;
 ```
 
 Использование в MDX:
@@ -500,13 +503,24 @@ export const FIGMA_NODES = {
 ### Плагин для просмотра пропсов
 
 В Figma удобно смотреть API компонентов через плагин:
-<br /><a href='https://www.figma.com/community/plugin/1600446810191317919' target='_blank' rel='noopener noreferrer'>Figma community plugin</a>
+
+<br />
+<a href='https://www.figma.com/community/plugin/1600446810191317919' target='_blank' rel='noopener noreferrer'>
+  Figma community plugin
+</a>
 
 Плагин показывает variant axes выбранного компонента в виде таблицы пропсов — это быстрый способ сверить Figma-оси с `constants.ts` и с `argTypes` Playground'а.
 
 ### Figma MCP
 
-В `figma-remote-mcp` доступны (при настроенном MCP):
+#### Как подключить
+
+1. Скачайте и авторизуйтесь в приложении [Figma Desktop](https://desktop.figma.com/mac-installer/Figma.dmg).
+2. Запустите приложение, откройте нужный файл и в панели справа найдите раздел "MCP Server".
+   ![Раздел MCP Server в Figma Desktop](./assets/figma-mcp-server.png)
+3. Включите локальный MCP-сервер для фигмы, нажав кнопку "Enable desktop MCP Server".
+
+#### В `figma-remote-mcp` доступны (при настроенном MCP):
 
 - `get_metadata` — структура Frame/Component/Variant (работает по `nodeId`, без выделения в Figma Desktop).
 - `get_design_context` — React+Tailwind референс + токены (требует выделения в Figma Desktop).
@@ -525,11 +539,11 @@ export const FIGMA_NODES = {
 
 Три механизма Claude Code решают разные задачи. Главное отличие — **кто и когда их активирует**.
 
-| Механизм | Где лежит | Когда применяется | Что внутри |
-|----------|-----------|-------------------|------------|
-| **Rules** | `.claude/rules/*.md` | **Всегда** — как фоновый контекст ко всем действиям агента в репо | Стандарты («как делать»): структура пакета, формат stories, правила импортов, запреты |
-| **Skills** | `.claude/skills/*.md` | Агент **сам решает** активировать, когда задача соответствует описанию | Пошаговые workflows со своим контекстом и подзадачами |
-| **Commands** | `.claude/commands/*.md` | Только когда **пользователь** вызвал `/<имя>` | Прямой триггер конкретного действия с аргументами |
+| Механизм     | Где лежит               | Когда применяется                                                      | Что внутри                                                                            |
+| ------------ | ----------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Rules**    | `.claude/rules/*.md`    | **Всегда** — как фоновый контекст ко всем действиям агента в репо      | Стандарты («как делать»): структура пакета, формат stories, правила импортов, запреты |
+| **Skills**   | `.claude/skills/*.md`   | Агент **сам решает** активировать, когда задача соответствует описанию | Пошаговые workflows со своим контекстом и подзадачами                                 |
+| **Commands** | `.claude/commands/*.md` | Только когда **пользователь** вызвал `/<имя>`                          | Прямой триггер конкретного действия с аргументами                                     |
 
 Правило большого пальца:
 
@@ -539,50 +553,50 @@ export const FIGMA_NODES = {
 
 ### Rules — правила уровня репо (`.claude/rules/`)
 
-| Файл | О чём |
-|------|-------|
-| `packages-deps.md` | Строгие версии, без `react`/`react-dom` в пакетах |
-| `package-src-structure.md` | Flat vs nested раскладка `src/` |
-| `react-types.md` | Типы из `'react'`, без `React.*` |
-| `imports-exports.md` | Без `import type` / `export type`, `export *` |
-| `stories-standard.md` | Playground + VisualMatrix, `data-test-id`, `StoryTable` |
-| `reference-package-anatomy.md` | Анатомия эталонного пакета (`@ds/button`) |
-| `complexity-tiers.md` | Tier XS/S/M/L/XL — набор артефактов |
-| `component-api-surface.md` | `constants.ts` + `types.ts` + JSDoc |
-| `e2e-testing-standard.md` | Playwright specs по tier'у |
-| `visual-regression-standard.md` | Снимки, стабилизация, baselines |
-| `docs-structure.md` | Шаблон MDX, обязательные секции |
-| `figma-integration.md` | Карта variants ↔ props, `FIGMA_NODES[pkg]` |
-| `figma-to-code.md` | Перенос Figma-слоёв в DOM/SCSS |
-| `dont-do-that.md` | Общий свод запретов |
+| Файл                            | О чём                                                   |
+| ------------------------------- | ------------------------------------------------------- |
+| `packages-deps.md`              | Строгие версии, без `react`/`react-dom` в пакетах       |
+| `package-src-structure.md`      | Flat vs nested раскладка `src/`                         |
+| `react-types.md`                | Типы из `'react'`, без `React.*`                        |
+| `imports-exports.md`            | Без `import type` / `export type`, `export *`           |
+| `stories-standard.md`           | Playground + VisualMatrix, `data-test-id`, `StoryTable` |
+| `reference-package-anatomy.md`  | Анатомия эталонного пакета (`@ds/button`)               |
+| `complexity-tiers.md`           | Tier XS/S/M/L/XL — набор артефактов                     |
+| `component-api-surface.md`      | `constants.ts` + `types.ts` + JSDoc                     |
+| `e2e-testing-standard.md`       | Playwright specs по tier'у                              |
+| `visual-regression-standard.md` | Снимки, стабилизация, baselines                         |
+| `docs-structure.md`             | Шаблон MDX, обязательные секции                         |
+| `figma-integration.md`          | Карта variants ↔ props, `FIGMA_NODES[pkg]`              |
+| `figma-to-code.md`              | Перенос Figma-слоёв в DOM/SCSS                          |
+| `dont-do-that.md`               | Общий свод запретов                                     |
 
 ### Skills — пошаговые workflows (`.claude/skills/`)
 
-| Skill | Когда вызывать |
-|-------|----------------|
-| `new-component-package` | «добавить компонент», «новый пакет», «портировать из storybook/» |
-| `component-story-set` | «написать stories», «покрыть состояния», «обновить baselines» |
-| `component-e2e-tests` | «написать e2e», «playwright» |
-| `component-docs` | «написать docs», «страница пакета», «Storybook embed» |
-| `figma-component-import` | Пользователь дал Figma URL / nodeId |
-| `figma-to-code` | Перенос Figma-слоёв в React + SCSS Modules |
-| `scss-styles-audit` | «проверь SCSS», аудит хардкода и axis-копипаста в стилях |
-| `component-tier-audit` | «проверь эталонность», «аудит пакета» |
-| `component-validation-loop` | «проверь готовность компонента» (сквозной цикл) |
-| `mr-comments` | Работа с комментариями GitLab MR через `scripts/mr-comments/*` |
-| `figma-selected-block` | Получить SCSS стили выделенного слоя из Figma-ноды |
+| Skill                       | Когда вызывать                                                   |
+| --------------------------- | ---------------------------------------------------------------- |
+| `new-component-package`     | «добавить компонент», «новый пакет», «портировать из storybook/» |
+| `component-story-set`       | «написать stories», «покрыть состояния», «обновить baselines»    |
+| `component-e2e-tests`       | «написать e2e», «playwright»                                     |
+| `component-docs`            | «написать docs», «страница пакета», «Storybook embed»            |
+| `figma-component-import`    | Пользователь дал Figma URL / nodeId                              |
+| `figma-to-code`             | Перенос Figma-слоёв в React + SCSS Modules                       |
+| `scss-styles-audit`         | «проверь SCSS», аудит хардкода и axis-копипаста в стилях         |
+| `component-tier-audit`      | «проверь эталонность», «аудит пакета»                            |
+| `component-validation-loop` | «проверь готовность компонента» (сквозной цикл)                  |
+| `mr-comments`               | Работа с комментариями GitLab MR через `scripts/mr-comments/*`   |
+| `figma-selected-block`      | Получить SCSS стили выделенного слоя из Figma-ноды               |
 
 ### Commands — слэш-команды (`.claude/commands/`)
 
-| Команда | Что делает |
-|---------|------------|
-| `/make-commit` | Conventional-commit из staged diff |
-| `/up-cloud-deps` | Обновить `@snack-uikit/*` / `@cloud-ru/*` до актуальных версий |
-| `/migrate-to-v2` | План миграции компонента (есть legacy-источник `--ref`) в `.claude/plan/<pkg>.md` |
+| Команда              | Что делает                                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `/make-commit`       | Conventional-commit из staged diff                                                                          |
+| `/up-cloud-deps`     | Обновить `@snack-uikit/*` / `@cloud-ru/*` до актуальных версий                                              |
+| `/migrate-to-v2`     | План миграции компонента (есть legacy-источник `--ref`) в `.claude/plan/<pkg>.md`                           |
 | `/create-from-figma` | План нового пакета из одной только Figma-ноды (API проектируется по variant-осям) в `.claude/plan/<pkg>.md` |
-| `/add-stories <pkg>` | Playground + VisualMatrix (+ оправданные доп. stories) в `packages/<pkg>/stories/<Name>/` |
-| `/add-tests <pkg>` | Набор Playwright E2E specs в `packages/<pkg>/__test__/<Name>/` по tier'у |
-| `/add-docs <pkg>` | `docs/index.mdx` + demos для `packages/<pkg>` (role-based структура) |
+| `/add-stories <pkg>` | Playground + VisualMatrix (+ оправданные доп. stories) в `packages/<pkg>/stories/<Name>/`                   |
+| `/add-tests <pkg>`   | Набор Playwright E2E specs в `packages/<pkg>/__test__/<Name>/` по tier'у                                    |
+| `/add-docs <pkg>`    | `docs/index.mdx` + demos для `packages/<pkg>` (role-based структура)                                        |
 
 Все три команды-обёртки `/add-*` принимают имя пакета или путь:
 
@@ -673,13 +687,13 @@ pnpm gen:props && pnpm gen:readme
 
 ## Связанные ресурсы
 
-| Ресурс | URL |
-|--------|-----|
-| Стенд документации (snack-v2) | https://frontend.cp.sbercloud.tech/snack-v2/ |
-| Стенд Storybook | https://frontend.cp.sbercloud.tech/snack-v2/storybook/ |
-| Snack Ui Kit — Figma | https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables |
-| Product UI Kit — Figma | https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables- |
-| Репозиторий токенов (`@sbercloud/figma-variables`) | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook |
-| Figma-плагин и CLI tokens-helper | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/figma-helper-plugin |
-| PR на ревью (тегать `@ff`, `@dd_design`) | https://mm.sbercloud.tech/default/channels/front-review |
-| Поддержка по ходу разработки | https://mm.sbercloud.tech/default/channels/ff-support |
+| Ресурс                                             | URL                                                                                        |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Стенд документации (snack-v2)                      | https://frontend.cp.sbercloud.tech/snack-v2/                                               |
+| Стенд Storybook                                    | https://frontend.cp.sbercloud.tech/snack-v2/storybook/                                     |
+| Snack Ui Kit — Figma                               | https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables                 |
+| Product UI Kit — Figma                             | https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-             |
+| Репозиторий токенов (`@sbercloud/figma-variables`) | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook           |
+| Figma-плагин и CLI tokens-helper                   | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/figma-helper-plugin |
+| PR на ревью (тегать `@ff`, `@dd_design`)           | https://mm.sbercloud.tech/default/channels/front-review                                    |
+| Поддержка по ходу разработки                       | https://mm.sbercloud.tech/default/channels/ff-support                                      |

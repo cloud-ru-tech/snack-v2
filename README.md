@@ -80,28 +80,28 @@ pnpm --filter @ds/tests exec playwright install
 
 ## Команды разработки
 
-| Команда | Что делает |
-|---------|------------|
-| `pnpm dev:storybook` | Запускает Storybook на `localhost:6006` |
-| `pnpm dev:docs` | Запускает документационный портал на `localhost:4321` |
-| `pnpm dev` | Параллельный запуск Storybook (`localhost:6006`) и docs (`localhost:4321`) |
-| `pnpm build` | Собирает пакеты, затем Storybook и docs |
-| `pnpm build:packages` | Только пакеты: TS (ESM+CJS) + CSS + CJS css-modules |
+| Команда                         | Что делает                                                                                                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev:storybook`            | Запускает Storybook на `localhost:6006`                                                                                                           |
+| `pnpm dev:docs`                 | Запускает документационный портал на `localhost:4321`                                                                                             |
+| `pnpm dev`                      | Параллельный запуск Storybook (`localhost:6006`) и docs (`localhost:4321`)                                                                        |
+| `pnpm build`                    | Собирает пакеты, затем Storybook и docs                                                                                                           |
+| `pnpm build:packages`           | Только пакеты: TS (ESM+CJS) + CSS + CJS css-modules                                                                                               |
 | `pnpm build:pkg <pkg>[,<pkg2>]` | Селективная инкрементальная сборка одного пакета (`scripts/build-pkg.mts`) — на порядки быстрее `build:packages` при работе над одним компонентом |
-| `pnpm build:fast` | `build:packages` + `build:docs:fast` (без Storybook static) |
-| `pnpm gen:props` | Генерирует `docs/props.json` для каждого пакета из TypeScript-типов |
-| `pnpm gen:readme` | Генерирует `README.md` для каждого пакета из docs/index.mdx + props.json |
-| `pnpm gen` | Запускает `gen:props` + `gen:readme` (полная регенерация) |
+| `pnpm build:fast`               | `build:packages` + `build:docs:fast` (без Storybook static)                                                                                       |
+| `pnpm gen:props`                | Генерирует `docs/props.json` для каждого пакета из TypeScript-типов                                                                               |
+| `pnpm gen:readme`               | Генерирует `README.md` для каждого пакета из docs/index.mdx + props.json                                                                          |
+| `pnpm gen`                      | Запускает `gen:props` + `gen:readme` (полная регенерация)                                                                                         |
 
 ## Тесты
 
-| Команда | Что делает |
-|---------|------------|
-| `pnpm test:stories` | Запускает play-функции сторис через `@storybook/test-runner` |
-| `pnpm test:e2e` | Playwright по всем проектам (chrome+firefox+safari+mobile) |
-| `pnpm test:e2e:chrome` | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>` |
-| `pnpm test:e2e:ui` | Playwright в интерактивном UI-режиме |
-| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only) |
+| Команда                          | Что делает                                                                                                    |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `pnpm test:stories`              | Запускает play-функции сторис через `@storybook/test-runner`                                                  |
+| `pnpm test:e2e`                  | Playwright по всем проектам (chrome+firefox+safari+mobile)                                                    |
+| `pnpm test:e2e:chrome`           | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>` |
+| `pnpm test:e2e:ui`               | Playwright в интерактивном UI-режиме                                                                          |
+| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only)                                                                    |
 
 Селективные команды для итеративной работы над одним пакетом — см. [`.claude/rules/fast-build-commands.md`](./.claude/rules/fast-build-commands.md).
 
@@ -117,7 +117,7 @@ pnpm release
 
 ## Как добавить новый компонент
 
-Подробное руководство — в [Contribution Guide](/patterns/contribution-guide) документационного портала.
+Подробное руководство — в [Contribution Guide](/apps/docs/src/content/patterns/contribution-guide.mdx) документационного портала.
 
 Базовый поток через Claude Code (`/<slash-command>` работают и в Claude Code, и в Cursor):
 
@@ -138,23 +138,23 @@ pnpm gen:props && pnpm gen:readme   # автоген артефактов
 
 Главная страница и сайдбар docs группируют пакеты по **префиксу имени** через конфиг `apps/docs/src/config/domains.ts`:
 
-| Префикс пакета | Домен в портале и Storybook |
-|----------------|------------------------------|
-| `uikit-product-*` | Uikit Product |
-| `ai-*` | AI |
-| `admin-*` | Admin |
-| (всё остальное) | Components |
+| Префикс пакета    | Домен в портале и Storybook |
+| ----------------- | --------------------------- |
+| `uikit-product-*` | Uikit Product               |
+| `ai-*`            | AI                          |
+| `admin-*`         | Admin                       |
+| (всё остальное)   | Components                  |
 
 Чтобы завести новый домен — добавить блок в `DOMAINS` массив и убедиться, что префикс пакета совпадает с `prefix`. Никаких ручных вписываний пакета по доменам не нужно.
 
 ## Технологии
 
-| Роль | Инструмент |
-|------|-----------|
-| Пакетный менеджер | pnpm workspaces |
-| Версионирование и публикация | Lerna |
-| Сборка компонентов | TypeScript (`tspc` + project references), ts-patch |
-| Стили | SCSS → CSS (sass + postcss), CSS Modules |
-| Документационный портал | Astro + MDX |
-| Среда разработки компонентов | Storybook 10 |
-| E2E-тесты | Playwright |
+| Роль                         | Инструмент                                         |
+| ---------------------------- | -------------------------------------------------- |
+| Пакетный менеджер            | pnpm workspaces                                    |
+| Версионирование и публикация | Lerna                                              |
+| Сборка компонентов           | TypeScript (`tspc` + project references), ts-patch |
+| Стили                        | SCSS → CSS (sass + postcss), CSS Modules           |
+| Документационный портал      | Astro + MDX                                        |
+| Среда разработки компонентов | Storybook 10                                       |
+| E2E-тесты                    | Playwright                                         |
