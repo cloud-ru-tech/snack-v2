@@ -12,11 +12,18 @@
       "#storybook/hooks/*": ["apps/storybook/.storybook/hooks/*"],
       "@ds/*": ["./packages/*/src"],
       "#docs/*": ["apps/docs/src/*"],
-      "@playwright-tooling": ["./playwright"],
       "#playwright-tooling/*": ["./playwright/*"]
     }
   },
-  "include": ["packages", "apps", "apps/docs/.astro/types.d.ts", "apps/docs/.astro/content.d.ts", "scripts", "storybook", "types"],
+  "include": [
+    "packages",
+    "apps",
+    "apps/docs/.astro/types.d.ts",
+    "apps/docs/.astro/content.d.ts",
+    "scripts",
+    "storybook",
+    "types"
+  ],
   "exclude": [
     "node_modules",
     "dist",

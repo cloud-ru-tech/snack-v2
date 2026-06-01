@@ -9,9 +9,17 @@
       "#storybook/components/*": [".storybook/components/*"],
       "#storybook/hooks": [".storybook/hooks/index.ts"],
       "#storybook/hooks/*": [".storybook/hooks/*"],
-      "#docs/lib/figma": ["../docs/src/lib/figma.ts"]
+      "#docs/lib/figma": ["../docs/src/lib/figma.ts"],
+      "@ds/*": ["../../packages/*/src"]
     }
   },
-  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "../../types/**/*.d.ts", "../docs/src/lib/figma.ts"],
+  "include": [
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "../../types/**/*.d.ts",
+    "../docs/src/lib/figma.ts",
+    "../../packages/*/src/**/*.ts",
+    "../../packages/*/src/**/*.tsx"
+  ],
   "exclude": ["node_modules", "storybook-static"]
 }

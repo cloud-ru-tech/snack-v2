@@ -69,6 +69,7 @@ const preview: Preview = {
 
     // Сортировка stories
     options: {
+      // @ts-expect-error storybook не парсит TS-типы и ломается
       storySort: (a, b) => {
         const TOP_ORDER = ['Introduction', 'Documentation', 'Materials', 'Icons', 'Utils', 'Components'];
         const STORY_PRIORITY = {
@@ -97,7 +98,9 @@ const preview: Preview = {
         }
 
         // 3. Same title — Playground first, Visual Matrix second, остальное alphabet
+        // @ts-expect-error storybook не парсит TS-типы и ломается
         const aP = STORY_PRIORITY[a.name] ?? 99;
+        // @ts-expect-error storybook не парсит TS-типы и ломается
         const bP = STORY_PRIORITY[b.name] ?? 99;
         if (aP !== bP) return aP - bP;
         return a.name.localeCompare(b.name);
