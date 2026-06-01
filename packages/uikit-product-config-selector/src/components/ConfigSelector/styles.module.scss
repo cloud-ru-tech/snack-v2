@@ -1,0 +1,114 @@
+/**
+ * ConfigSelector — chip-toggle на скрытом `<input type=checkbox>`.
+ * Анатомия — Figma configSelectorItem (3036:14250): min-height 32px, radius 2xs, padding horizontal/l.
+ * Hover/pressed — @ds/materials state-layer (fill + border).
+ * Focus — `:focus-visible` на скрытом input + соседний `.content`.
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/chip.module' as chip;
+@use '@ds/materials' as m;
+
+.root {
+  position: relative;
+
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  outline: 0;
+
+  .input {
+    pointer-events: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    opacity: 0;
+  }
+
+  .stateLayer,
+  .borderLayer {
+    pointer-events: none;
+  }
+
+  .labelLayout {
+    @include base.composite-var(chip.$chip, 'anatomy', 'size', 's', 'container', 'textWrapper');
+
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+
+    min-width: 0;
+  }
+
+  .label {
+    @include base.composite-var(base.$sn-regular-label-l);
+  }
+
+  .content {
+    @include base.composite-var(chip.$chip, 'anatomy', 'size', 's', 'container');
+
+    cursor: pointer;
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    min-width: base.$sn-primitive-dimension-40;
+    max-width: 100%;
+    min-height: base.$sn-density-size-m;
+    margin: 0;
+    border: none;
+    border-radius: base.$sn-density-radius-2xs;
+
+    color: base.$sn-theme-color-neutral-text;
+    text-decoration: none;
+    text-transform: none;
+
+    background-color: transparent;
+    outline: 0;
+
+    @include m.has-state-layer-as-child(#{stateLayer});
+    @include m.has-state-layer-as-child(#{borderLayer});
+  }
+
+  // data-* на корневом <label> — единый источник для тестов и стилей.
+  &[data-checked] .content {
+    color: base.$sn-theme-color-primary-text;
+  }
+
+  // Figma: material/stateLayer/activated/default/borderColor — в sn-сборке нет SCSS-токена, цвет = primary-accent (#389f74).
+  // borderLayer без data-state (checked/available) — миксин не задаёт layout, позиционируем явно.
+  &[data-checked] .borderLayer,
+  &[data-available] .borderLayer {
+    position: absolute;
+    inset: 0;
+
+    border-color: base.$sn-theme-color-primary-accent;
+    border-style: solid;
+    border-width: base.$sn-primitive-strokeWeight-strokeRegular;
+    border-radius: inherit;
+  }
+
+  &[data-disabled] .content {
+    cursor: not-allowed;
+    color: base.$sn-theme-color-available-version-textDisabled;
+    background-color: base.$sn-theme-color-neutral-decor;
+  }
+
+  .input:focus-visible + .content {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: base.$sn-primitive-dimension-2;
+  }
+}

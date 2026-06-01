@@ -256,6 +256,9 @@
       "path": "./uikit-product-card-predefined/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-config-selector/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-copy/tsconfig.esm.json"
     },
     {

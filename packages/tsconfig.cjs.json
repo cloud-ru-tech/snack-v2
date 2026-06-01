@@ -251,6 +251,9 @@
       "path": "./uikit-product-card-predefined/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-config-selector/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-copy/tsconfig.cjs.json"
     },
     {

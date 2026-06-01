@@ -493,6 +493,7 @@ import styles from './Button.VisualMatrix.module.scss'
 | --------- | ------------------------------------------------------------------------------------------- |
 | `dev`     | Показывать в sidebar Storybook                                                              |
 | `test`    | Включать в Test Runner / Playwright                                                         |
+| `no-a11y` | Помечает story как исключённую из a11y-прогона. На статичных `VisualMatrix` (матрица состояний без интерактивного фокуса) — a11y проверяется на `Playground`/`InteractionTest`. Сейчас тег **инертен** (`@storybook/addon-a11y` не установлен), но проставляется заранее как декларация намерения и активируется автоматически при подключении аддона. |
 
 Тег `autodocs` не используем: автодокументация отключена, описания живут в `docs/*.mdx`.
 
@@ -501,7 +502,7 @@ import styles from './Button.VisualMatrix.module.scss'
 Типовые комбинации (порядок тегов внутри массива на работу не влияет, существующий разнобой — стилистический):
 
 - Playground: `['dev', 'test']`
-- VisualMatrix: `['test', 'dev']`
+- VisualMatrix: `['test', 'dev']` (опц. `'no-a11y'` — статичная матрица без интерактивного фокуса)
 - Examples/* (включая `Controlled`, `Polymorphic`, `Composition`): `['dev', 'test']`
 - Tests/* (включая `InteractionTest`): `['test', 'dev']`
 

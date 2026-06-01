@@ -1,0 +1,60 @@
+{
+  "ConfigSelector": {
+    "displayName": "ConfigSelector",
+    "propsTypeName": "ConfigSelectorProps",
+    "description": "ConfigSelector — chip-toggle на скрытом `<input type=checkbox>`: выбор одной опции конфигурации.\nКорень кликабелен целиком (`<label>`), tooltip проксируется поверх доступной/отключённой опции.",
+    "props": {
+      "available": {
+        "type": "boolean",
+        "required": false,
+        "description": "Доступна ли опция"
+      },
+      "availableTip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Тултип для доступной опции"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": true,
+        "description": "Отмечен ли компонент"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Деактивирован ли компонент"
+      },
+      "disabledTip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Тултип для деактивированного компонента"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Лейбл"
+      },
+      "onChange": {
+        "type": "(checked: boolean, e: ChangeEvent<HTMLInputElement>) => void",
+        "required": true,
+        "description": "Колбек смены значения"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "HTML tab index"
+      }
+    },
+    "relatedTypes": {}
+  }
+}

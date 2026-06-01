@@ -1,0 +1,97 @@
+---
+title: ConfigSelector
+package: '@ds/uikit-product-config-selector'
+description: Chip-toggle для выбора одной опции конфигурации — кликабельный chip с состояниями checked / available / disabled и tooltip-подсказками.
+order: 100
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Available } from '../demos/examples/Available'
+import AvailableSrc from '../demos/examples/Available.tsx?raw'
+import { Disabled } from '../demos/examples/Disabled'
+import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+import { Group } from '../demos/examples/Group'
+import GroupSrc from '../demos/examples/Group.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import configSelectorDoc from './props.json'
+
+# ConfigSelector
+
+Chip-toggle для выбора опции конфигурации. Под капотом — скрытый `<input type=checkbox>` в `<label>`: chip кликабелен целиком, поддерживает фокус с клавиатуры и tooltip-подсказки. Компонент **controlled** — состояние `checked` хранится снаружи.
+
+## Когда использовать
+
+- Выбор одного значения из набора equal-weight опций конфигурации (тариф, размер инстанса, регион), когда их удобно показать рядом как chips.
+- Когда у опции нужно подсветить «рекомендованность» (`available`) или объяснить недоступность (`disabled`) через tooltip.
+
+Когда **не** нужен `ConfigSelector`:
+
+- Бинарная настройка с заголовком и описанием:
+  - используйте [`SwitchRow`](/components/uikit-product-switch-row).
+- Множественный выбор тегов/фильтров:
+  - используйте `Chip` / `Tag`.
+
+## Анатомия
+
+### Состояния
+
+- `checked` — выбранная опция: светло-зелёный tint (activated state-layer), accent-обводка, тёмно-зелёный текст. Управляется через `checked` + `onChange(checked, e)`.
+- `available` — accent-обводка для рекомендуемой опции. Опционально `availableTip` — tooltip, который показывается, пока опция не выбрана.
+- `disabled` — клики игнорируются. Опционально `disabledTip` — tooltip-объяснение.
+
+### Слоты
+
+- `label` — обязательный текст chip. Длинный лейбл обрезается многоточием.
+
+## Доступность
+
+Компонент основан на скрытом checkbox — это корректно для одиночного toggle (независимое вкл/выкл).
+
+Для группового single-select (несколько `ConfigSelector` с `checked` ровно у одного, см. пример «Группа с single-select») семантика остаётся checkbox: скринридер озвучивает каждый chip как «checkbox» без контекста «1 из N». Checkbox-семантика выбрана осознанно — компонент переиспользуется в обоих сценариях и не навязывает radio-группу.
+
+Если групповой контекст для скринридера обязателен, набор chip оборачивается в контейнер с `role='radiogroup'` и доступным именем (`aria-label` / `aria-labelledby`); ARIA-роль элементов при этом остаётся на стороне потребителя.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-config-selector
+```
+
+```ts
+import { ConfigSelector } from '@ds/uikit-product-config-selector'
+```
+
+## Примеры использования
+
+<Example title='Базовый ConfigSelector' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Рекомендуемая опция (available + tooltip)' code={AvailableSrc}>
+  <Available client:visible />
+</Example>
+
+<Example title='Disabled с tooltip-объяснением' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+<Example title='Группа с single-select' description='Несколько chip’ов, где выбран ровно один.' code={GroupSrc}>
+  <Group client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={configSelectorDoc.ConfigSelector} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-configselector--playground' height={320} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-config-selector')} height={480} title='ConfigSelector в Figma' />
