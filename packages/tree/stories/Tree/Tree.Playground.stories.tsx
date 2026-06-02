@@ -1,6 +1,6 @@
-import { SELECTION_MODE, SIZE, Tree, TreeBaseProps, TreeNodeId } from '@ds/tree';
+import { SELECTION_MODE, SelectionMode, SIZE, Size, Tree, TreeCommonProps, TreeNodeId } from '@ds/tree';
 import { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { ComponentType, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
 import { SAMPLE_TREE } from './fixtures';
@@ -9,7 +9,17 @@ import { TEST_IDS } from './testIds';
 
 const rowActions = () => [{ id: 'more', content: { option: 'Action' }, onClick: () => undefined }];
 
-type StoryArgs = TreeBaseProps & {
+// StoryArgs не наследуется от discriminated union `TreeBaseProps` (View / Single /
+// Multi): после Omit или intersection distributive-ветви теряют поля вроде
+// `showToggle`, а `parentActions`/`nodeActions` как boolean становятся не
+// присваиваемыми. Собираем плоский тип на базе общих опций + явные controls.
+type StoryArgs = Omit<TreeCommonProps, 'parentActions' | 'nodeActions' | 'size'> & {
+  'data-test-id'?: string;
+  size?: Size;
+  selectionMode?: SelectionMode;
+  showToggle?: boolean;
+  selected?: string | string[];
+  onSelect?(...args: unknown[]): void;
   parentActions?: boolean;
   nodeActions?: boolean;
 };
@@ -19,7 +29,7 @@ function PlaygroundRender({ parentActions, nodeActions, expandedNodes, onExpand,
   return (
     <div className={styles.story}>
       <Tree
-        {...args}
+        {...(args as Parameters<typeof Tree>[0])}
         expandedNodes={expanded}
         onExpand={(nodes, node) => {
           setExpanded(nodes);
@@ -34,7 +44,7 @@ function PlaygroundRender({ parentActions, nodeActions, expandedNodes, onExpand,
 
 const meta: Meta<StoryArgs> = {
   title: 'Components/Tree',
-  component: Tree,
+  component: Tree as ComponentType<StoryArgs>,
   parameters: {
     layout: 'padded',
   },
