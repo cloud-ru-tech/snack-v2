@@ -5,11 +5,30 @@
   "packages": ["packages/*"],
   "command": {
     "publish": {
-      "conventionalCommits": true,
       "message": "[ci skip] Version bump",
+      "ignoreChanges": [
+        "**/*.md",
+        "**/*.MD",
+        "**/*.mdx",
+        "**/*.MDX",
+        "**/CHANGELOG.md"
+      ]
     },
     "version": {
-      "conventionalCommits": true
+      "changelogPreset": "@cloud-ru/ft-conventional-changelog-old",
+      "ignoreChanges": [
+        "**/*.md",
+        "**/*.MD",
+        "**/*.mdx",
+        "**/*.MDX",
+        "**/CHANGELOG.md",
+        "./scripts/**/*",
+        "packages/*/stories/**/*.*",
+        "packages/*/__test__/**/*.*",
+        "packages/*/__tests__/**/*.*",
+        "packages/*/demos/**/*.*",
+        "packages/*/docs/**/*.*"
+      ]
     }
   }
 }
