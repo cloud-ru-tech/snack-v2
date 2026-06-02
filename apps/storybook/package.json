@@ -85,7 +85,7 @@
     "@vitest/browser": "4.1.4",
     "@vitest/browser-playwright": "4.1.4",
     "@vitest/coverage-istanbul": "4.1.4",
-    "vite-plugin-istanbul": "6.0.2",
+    "vite-plugin-istanbul": "9.0.1",
     "playwright": "1.59.1",
     "react": "catalog:",
     "react-dom": "catalog:",

@@ -105,11 +105,15 @@ const config: StorybookConfig = {
         ...(config.plugins ?? []),
         istanbul({
           cwd: root,
-          include: ['packages/*/src/**/*.{ts,tsx}'],
+          // test-exclude (v9) сравнивает relative-from-cwd через minimatch,
+          // абсолютные globs не работают.
+          include: ['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'],
           exclude: [
-            'node_modules',
-            '**/*.stories.{ts,tsx}',
-            '**/*.test.{ts,tsx}',
+            '**/node_modules/**',
+            '**/*.stories.ts',
+            '**/*.stories.tsx',
+            '**/*.test.ts',
+            '**/*.test.tsx',
             '**/__test__/**',
             '**/*.d.ts',
             // Барели и type-only — не несут runtime-кода, всегда 0% и
