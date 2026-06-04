@@ -3,8 +3,8 @@ import cn from 'classnames';
 type ThemeClassnames = {
   theme?: 'light' | 'dark';
   brand?: 'brandA' | 'brandB' | 'brandC';
-  brandRole?: 'main' | 'alter';
-  density?: 'comfort' | 'compact';
+  brandRole?: 'main' | 'alter' | 'alter2' | 'alter3' | 'alter4';
+  density?: 'comfort' | 'compact' | 'spacious';
 };
 
 const DEFAULT_THEME_CLASSNAMES: Required<ThemeClassnames> = {

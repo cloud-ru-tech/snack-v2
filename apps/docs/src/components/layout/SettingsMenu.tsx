@@ -10,9 +10,9 @@ import styles from './SettingsMenu.module.scss';
 const { LaptopSVG, MobilePhoneSVG } = ProductIcons;
 
 type Theme = 'light' | 'dark';
-type Brand = 'brandA' | 'brandB';
-type BrandRole = 'main' | 'alter';
-type Density = 'compact' | 'comfort';
+type Brand = 'brandA' | 'brandB' | 'brandC';
+type BrandRole = 'main' | 'alter' | 'alter2' | 'alter3' | 'alter4';
+type Density = 'compact' | 'comfort' | 'spacious';
 
 type Settings = {
   theme: Theme;
@@ -43,6 +43,7 @@ const THEME_ITEMS = [
 const BRAND_ITEMS = [
   { value: 'brandA' as const, label: 'A' },
   { value: 'brandB' as const, label: 'B' },
+  { value: 'brandC' as const, label: 'C' },
 ];
 
 function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {
@@ -56,16 +57,50 @@ function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {
 const BRAND_ROLE_ITEMS = [
   { value: 'main' as const, label: 'Main', icon: <BrandRoleRing strokeWidth={2.5} />, iconPosition: 'before' as const },
   { value: 'alter' as const, label: 'Alter', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' as const },
+  {
+    value: 'alter2' as const,
+    label: 'Alter 2',
+    icon: <BrandRoleRing strokeWidth={1} />,
+    iconPosition: 'before' as const,
+  },
+  {
+    value: 'alter3' as const,
+    label: 'Alter 3',
+    icon: <BrandRoleRing strokeWidth={1} />,
+    iconPosition: 'before' as const,
+  },
+  {
+    value: 'alter4' as const,
+    label: 'Alter 4',
+    icon: <BrandRoleRing strokeWidth={1} />,
+    iconPosition: 'before' as const,
+  },
 ];
 
 const DENSITY_ITEMS = [
   { value: 'compact' as const, label: 'Compact', icon: <LaptopSVG />, iconPosition: 'before' as const },
   { value: 'comfort' as const, label: 'Comfort', icon: <MobilePhoneSVG />, iconPosition: 'before' as const },
+  { value: 'spacious' as const, label: 'Spacious', icon: <LaptopSVG />, iconPosition: 'before' as const },
 ];
 
 function readBrand(cls: DOMTokenList): Brand {
+  if (cls.contains('sn-brandC')) return 'brandC';
   if (cls.contains('sn-brandB')) return 'brandB';
   return 'brandA';
+}
+
+function readBrandRole(cls: DOMTokenList): BrandRole {
+  if (cls.contains('sn-alter2')) return 'alter2';
+  if (cls.contains('sn-alter3')) return 'alter3';
+  if (cls.contains('sn-alter4')) return 'alter4';
+  if (cls.contains('sn-alter')) return 'alter';
+  return 'main';
+}
+
+function readDensity(cls: DOMTokenList): Density {
+  if (cls.contains('sn-spacious')) return 'spacious';
+  if (cls.contains('sn-comfort')) return 'comfort';
+  return 'compact';
 }
 
 function readSettings(): Settings {
@@ -73,8 +108,8 @@ function readSettings(): Settings {
   return {
     theme: cls.contains('sn-dark') ? 'dark' : 'light',
     brand: readBrand(cls),
-    brandRole: cls.contains('sn-alter') ? 'alter' : 'main',
-    density: cls.contains('sn-comfort') ? 'comfort' : 'compact',
+    brandRole: readBrandRole(cls),
+    density: readDensity(cls),
   };
 }
 
@@ -84,10 +119,15 @@ function applySettings(settings: Settings) {
   cls.toggle('sn-light', settings.theme === 'light');
   cls.toggle('sn-brandA', settings.brand === 'brandA');
   cls.toggle('sn-brandB', settings.brand === 'brandB');
+  cls.toggle('sn-brandC', settings.brand === 'brandC');
   cls.toggle('sn-main', settings.brandRole === 'main');
   cls.toggle('sn-alter', settings.brandRole === 'alter');
+  cls.toggle('sn-alter2', settings.brandRole === 'alter2');
+  cls.toggle('sn-alter3', settings.brandRole === 'alter3');
+  cls.toggle('sn-alter4', settings.brandRole === 'alter4');
   cls.toggle('sn-compact', settings.density === 'compact');
   cls.toggle('sn-comfort', settings.density === 'comfort');
+  cls.toggle('sn-spacious', settings.density === 'spacious');
 }
 
 function isStorybookFrame(frame: HTMLIFrameElement): boolean {

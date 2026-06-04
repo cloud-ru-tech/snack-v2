@@ -28,16 +28,21 @@ export const THEME_OPTIONS = [
 export const BRAND_OPTIONS = [
   { value: 'brandA', label: 'Brand A' },
   { value: 'brandB', label: 'Brand B' },
+  { value: 'brandC', label: 'Brand C' },
 ] as const;
 
 export const BRAND_ROLE_OPTIONS = [
   { value: 'main', label: 'Main' },
   { value: 'alter', label: 'Alter' },
+  { value: 'alter2', label: 'Alter 2' },
+  { value: 'alter3', label: 'Alter 3' },
+  { value: 'alter4', label: 'Alter 4' },
 ] as const;
 
 export const DENSITY_OPTIONS = [
   { value: 'compact', label: 'Compact' },
   { value: 'comfort', label: 'Comfort' },
+  { value: 'spacious', label: 'Spacious' },
 ] as const;
 
 export const ACRYLIC_OPTIONS = [

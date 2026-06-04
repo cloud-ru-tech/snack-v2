@@ -1,7 +1,7 @@
 export type Theme = 'light' | 'dark';
-export type Brand = 'brandA' | 'brandB';
-export type BrandRole = 'main' | 'alter';
-export type Density = 'compact' | 'comfort';
+export type Brand = 'brandA' | 'brandB' | 'brandC';
+export type BrandRole = 'main' | 'alter' | 'alter2' | 'alter3' | 'alter4';
+export type Density = 'compact' | 'comfort' | 'spacious';
 export type Language = 'en-GB' | 'ru-RU';
 export type Acrylic = 'enabled' | 'disabled';
 

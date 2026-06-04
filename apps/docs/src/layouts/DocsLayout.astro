@@ -92,14 +92,19 @@ const base = import.meta.env.BASE_URL
           const brand = localStorage.getItem('ds-brand') ?? 'brandA'
           cls.toggle('sn-brandA', brand === 'brandA')
           cls.toggle('sn-brandB', brand === 'brandB')
+          cls.toggle('sn-brandC', brand === 'brandC')
 
           const brandRole = localStorage.getItem('ds-brandRole') ?? 'main'
           cls.toggle('sn-main', brandRole === 'main')
           cls.toggle('sn-alter', brandRole === 'alter')
+          cls.toggle('sn-alter2', brandRole === 'alter2')
+          cls.toggle('sn-alter3', brandRole === 'alter3')
+          cls.toggle('sn-alter4', brandRole === 'alter4')
 
           const density = localStorage.getItem('ds-density') ?? 'compact'
           cls.toggle('sn-compact', density === 'compact')
           cls.toggle('sn-comfort', density === 'comfort')
+          cls.toggle('sn-spacious', density === 'spacious')
         }
         apply()
         document.addEventListener('astro:after-swap', apply)

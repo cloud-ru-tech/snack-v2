@@ -59,7 +59,7 @@ function BrandRoleIcon({ variant }: { variant: BrandRole }) {
   return (
     <span style={iconStyle} aria-hidden>
       <svg width={iconSize} height={iconSize} viewBox='0 0 14 14' fill='none' style={{ display: 'block' }}>
-        <circle cx='7' cy='7' r='5' fill='none' stroke='currentColor' strokeWidth={variant === 'alter' ? 1 : 2.5} />
+        <circle cx='7' cy='7' r='5' fill='none' stroke='currentColor' strokeWidth={variant === 'main' ? 2.5 : 1} />
       </svg>
     </span>
   );
@@ -68,6 +68,12 @@ function BrandRoleIcon({ variant }: { variant: BrandRole }) {
 function PlatformIcon({ density }: { density: Density }) {
   return <SvgIcon d={density === 'comfort' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
 }
+
+const DENSITY_TO_PATH: Record<Density, string> = {
+  compact: LAPTOP_PATH,
+  comfort: MOBILE_PHONE_PATH,
+  spacious: LAPTOP_PATH,
+};
 
 function LanguageIcon({ language }: { language: Language }) {
   return <span aria-hidden>{LANGUAGE_TO_EMOJI_MAP[language]}</span>;
@@ -81,16 +87,21 @@ const themeOptionsWithIcons: SelectOption[] = [
 const brandOptionsWithIcons: SelectOption[] = [
   { value: 'brandA', title: BRAND_OPTIONS[0].label, icon: <BrandColorDot color={BRAND_COLOR.brandA} /> },
   { value: 'brandB', title: BRAND_OPTIONS[1].label, icon: <BrandColorDot color={BRAND_COLOR.brandB} /> },
+  { value: 'brandC', title: BRAND_OPTIONS[2].label, icon: <BrandColorDot color={BRAND_COLOR.brandC} /> },
 ];
 
 const brandRoleOptionsWithIcons: SelectOption[] = [
   { value: 'main', title: BRAND_ROLE_OPTIONS[0].label, icon: <BrandRoleIcon variant='main' /> },
   { value: 'alter', title: BRAND_ROLE_OPTIONS[1].label, icon: <BrandRoleIcon variant='alter' /> },
+  { value: 'alter2', title: BRAND_ROLE_OPTIONS[2].label, icon: <BrandRoleIcon variant='alter2' /> },
+  { value: 'alter3', title: BRAND_ROLE_OPTIONS[3].label, icon: <BrandRoleIcon variant='alter3' /> },
+  { value: 'alter4', title: BRAND_ROLE_OPTIONS[4].label, icon: <BrandRoleIcon variant='alter4' /> },
 ];
 
 const platformOptionsWithIcons: SelectOption[] = [
-  { value: 'compact', title: DENSITY_OPTIONS[0].label, icon: <SvgIcon d={LAPTOP_PATH} /> },
-  { value: 'comfort', title: DENSITY_OPTIONS[1].label, icon: <SvgIcon d={MOBILE_PHONE_PATH} /> },
+  { value: 'compact', title: DENSITY_OPTIONS[0].label, icon: <SvgIcon d={DENSITY_TO_PATH.compact} /> },
+  { value: 'comfort', title: DENSITY_OPTIONS[1].label, icon: <SvgIcon d={DENSITY_TO_PATH.comfort} /> },
+  { value: 'spacious', title: DENSITY_OPTIONS[2].label, icon: <SvgIcon d={DENSITY_TO_PATH.spacious} /> },
 ];
 
 const languageOptionsWithIcons: SelectOption[] = [
