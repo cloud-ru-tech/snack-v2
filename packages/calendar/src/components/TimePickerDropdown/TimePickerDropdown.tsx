@@ -88,6 +88,7 @@ export function TimePickerDropdown({
   const [internalValue, setInternalValue] = useState<Range | undefined>();
   const [focus, setFocus] = useState<string | undefined>(undefined);
   const today = useMemo(() => (typeof todayProp === 'number' ? new Date(todayProp) : todayProp), [todayProp]);
+  const previousValueRef = useRef(value);
 
   useEffect(() => {
     if (!internalValue?.[0]) {
@@ -117,6 +118,13 @@ export function TimePickerDropdown({
   } = useDateAndTime({ showSeconds, value });
 
   useEffect(() => {
+    const wasValueCleared = value === undefined && previousValueRef.current !== undefined;
+    previousValueRef.current = value;
+
+    if (wasValueCleared) {
+      return;
+    }
+
     if (!isTimePortionComplete(dateAndTime, showSeconds)) {
       return;
     }
