@@ -46,12 +46,7 @@ export type AnimatedTriggerWrapProps = {
 
 export function AnimatedTriggerWrap({ children }: AnimatedTriggerWrapProps) {
   return (
-    <motion.div
-      layout='position'
-      transition={{ layout: layoutSpring }}
-      className={styles.triggerWrap}
-      style={{ marginRight: GAP_PX }}
-    >
+    <motion.div layout='position' transition={{ layout: layoutSpring }} className={styles.triggerWrap}>
       {children}
     </motion.div>
   );

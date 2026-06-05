@@ -40,6 +40,7 @@ $chevron-transition-activated: transform $parent-transition-duration cubic-bezie
 .root {
   display: flex;
   flex-wrap: wrap;
+  row-gap: base.$sn-primitive-dimension-4;
   align-items: center;
 
   min-width: 0;

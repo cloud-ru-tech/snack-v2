@@ -1,3 +1,5 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
 .outerChip {
   contain: layout;
   display: inline-flex;
@@ -19,4 +21,5 @@
 .triggerWrap {
   display: inline-flex;
   flex-shrink: 0;
+  margin-right: base.$sn-primitive-dimension-4;
 }

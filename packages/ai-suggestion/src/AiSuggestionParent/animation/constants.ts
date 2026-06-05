@@ -32,7 +32,7 @@ export const STAGGER_FORWARD_OPACITY_S = 0.06;
 export const STAGGER_BACKWARD_OPACITY_S = 0.08;
 export const MAX_STAGGER_WINDOW_S = 0.5;
 
-export const GAP_PX = 8;
+export const GAP_PX = 4;
 
 export const layoutSpring: Transition = {
   type: 'spring',

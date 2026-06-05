@@ -8,7 +8,6 @@ import { APPEARANCE, SIZE } from '../AiSuggestionSimple/constants';
 import { Size } from '../AiSuggestionSimple/types';
 import { AiSuggestionParentChip } from './AiSuggestionParentChip';
 import { AnimatedExpandableItem, AnimatedTriggerWrap } from './animation/AnimatedExpandableItem';
-import { GAP_PX } from './animation/constants';
 import { TEST_IDS } from './constants';
 import { AiSuggestionParentGroupProvider, useAiSuggestionParentGroup } from './context/AiSuggestionParentGroupContext';
 import styles from './styles.module.scss';
@@ -241,13 +240,7 @@ export function AiSuggestionParent({
   };
 
   return (
-    <div
-      className={cn(styles.root, className)}
-      {...extractSupportProps(rest)}
-      data-flatten
-      data-test-id={rootTestId}
-      style={{ rowGap: GAP_PX }}
-    >
+    <div className={cn(styles.root, className)} {...extractSupportProps(rest)} data-flatten data-test-id={rootTestId}>
       <AnimatedTriggerWrap>
         <AiSuggestionParentChip
           label={label}
