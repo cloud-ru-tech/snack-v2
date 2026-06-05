@@ -40,6 +40,15 @@ const compositions: Array<{ key: string; props: ButtonPropsForMatrix }> = [
       counter: { value: 5 },
     },
   },
+  {
+    key: 'iconOnlyCounterAfter',
+    props: {
+      icon: <SettingsSVG />,
+      iconPosition: ICON_POSITION.After,
+      counter: { value: 5 },
+      'aria-label': 'Settings',
+    },
+  },
 ];
 
 const states: Array<{ key: string; extra: Partial<ButtonPropsForMatrix> }> = [

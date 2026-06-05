@@ -139,7 +139,9 @@ $appearance-to-theme: (
   }
 }
 
-.content {
+.content {  
+  position: relative;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -150,19 +152,12 @@ $appearance-to-theme: (
   color: inherit;
 }
 
-// Обёртка иконки с бейджем: position relative для абсолютного counter
-.iconWithCounter {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
 // Counter инлайн: в потоке контента после label/иконки, когда нет иконки после текста (iconPosition=before или без icon)
 .counterSlot {
   display: inline-flex;
   align-items: center;
 
-  // Counter как бейдж: абсолютно относительно иконки при iconPosition=after (внутри .iconWithCounter)
+  // Counter как бейдж: абсолютно относительно иконки (внутри .iconWithCounter — elementWrapper в Figma)
   &[data-absolute] {
     pointer-events: none;
 
