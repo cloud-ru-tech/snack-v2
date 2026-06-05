@@ -32,7 +32,13 @@
       "path": "./utils/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-button-chevron/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-card/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-icon-giga/tsconfig.cjs.json"
     },
     {
       "path": "./ai-suggestion/tsconfig.cjs.json"

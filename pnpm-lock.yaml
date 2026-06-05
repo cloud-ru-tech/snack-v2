@@ -285,9 +285,15 @@ importers:
       '@ds/accordion':
         specifier: workspace:*
         version: link:../../packages/accordion
+      '@ds/ai-button-chevron':
+        specifier: workspace:*
+        version: link:../../packages/ai-button-chevron
       '@ds/ai-card':
         specifier: workspace:*
         version: link:../../packages/ai-card
+      '@ds/ai-icon-giga':
+        specifier: workspace:*
+        version: link:../../packages/ai-icon-giga
       '@ds/ai-suggestion':
         specifier: workspace:*
         version: link:../../packages/ai-suggestion
@@ -572,7 +578,28 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
 
+  packages/ai-button-chevron:
+    dependencies:
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
   packages/ai-card:
+    dependencies:
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-icon-giga:
     dependencies:
       '@ds/utils':
         specifier: workspace:*

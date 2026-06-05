@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@ds/accordion": "workspace:*",
+    "@ds/ai-button-chevron": "workspace:*",
     "@ds/ai-card": "workspace:*",
+    "@ds/ai-icon-giga": "workspace:*",
     "@ds/ai-suggestion": "workspace:*",
     "@ds/alert": "workspace:*",
     "@ds/attachment": "workspace:*",

@@ -30,7 +30,13 @@
       "path": "./utils/tsconfig.esm.json"
     },
     {
+      "path": "./ai-button-chevron/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-card/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-icon-giga/tsconfig.esm.json"
     },
     {
       "path": "./ai-suggestion/tsconfig.esm.json"

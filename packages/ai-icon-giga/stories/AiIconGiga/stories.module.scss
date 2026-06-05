@@ -1,0 +1,8 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.darkCell {
+  display: inline-flex;
+  padding: base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-m;
+  background: base.$sn-theme-color-invertNeutral-background;
+}

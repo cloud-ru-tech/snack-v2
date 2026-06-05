@@ -1,4 +1,4 @@
-import { AiCard, AiCardProps } from '@ds/ai-card';
+import { AiButtonChevron, AiButtonChevronProps } from '@ds/ai-button-chevron';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
@@ -7,30 +7,27 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from './testIds';
 
-const meta: Meta<typeof AiCard> = {
-  title: 'AI/Card',
-  component: AiCard,
+const meta: Meta<typeof AiButtonChevron> = {
+  title: 'AI/ButtonChevron',
+  component: AiButtonChevron,
   parameters: { layout: 'fullscreen' },
   args: {
-    title: 'Card title',
-    children: 'Default content',
-    checked: false,
+    opened: false,
     disabled: false,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    onChange: { table: { disable: true } },
     onClick: { table: { disable: true } },
   },
-  render: function Render(args: AiCardProps) {
-    const [{ checked }, updateArgs] = useArgs<AiCardProps>();
+  render: function Render(args: AiButtonChevronProps) {
+    const [{ opened }, updateArgs] = useArgs<AiButtonChevronProps>();
     return (
       <DemoPage>
         <DemoPanel>
           <DemoTitle>Playground</DemoTitle>
-          <DemoHint>Выбираемая AI-карточка — клик / Enter / Space переключают checked.</DemoHint>
+          <DemoHint>Кнопка-шеврон для раскрытия / сворачивания — клик переключает направление.</DemoHint>
           <DemoActions align='center'>
-            <AiCard {...args} checked={checked} onChange={(next: boolean) => updateArgs({ checked: next })} />
+            <AiButtonChevron {...args} opened={opened} onClick={() => updateArgs({ opened: !opened })} />
           </DemoActions>
         </DemoPanel>
       </DemoPage>
@@ -39,7 +36,7 @@ const meta: Meta<typeof AiCard> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof AiCard>;
+type Story = StoryObj<typeof AiButtonChevron>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

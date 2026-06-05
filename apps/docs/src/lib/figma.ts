@@ -62,6 +62,7 @@ const HR_PORTAL = {
 // Формат комментариев: `// <pkg-or-sub> → <figma-node-name>`.
 export const FIGMA_NODES = {
   accordion: { ...SNACK, nodeId: '6045-114' }, // accordion → accordion
+  'ai-button-chevron': { ...AI_COMPONENTS, nodeId: '7247-7715' }, // ai-button-chevron → ButtonChevron
   chips: {
     _: { ...SNACK, nodeId: '28137-1776436' }, // chips → chips - Matrix (canvas)
     'chip-assist': { ...SNACK, nodeId: '6437-16196' }, // chips/chip-assist → ChipAssist
@@ -76,6 +77,7 @@ export const FIGMA_NODES = {
     'chip-choice-row': { ...SNACK, nodeId: '6446-4036' }, // chips/chip-choice-row → chipChoiceRow
   },
   'ai-card': { ...AI_COMPONENTS, nodeId: '6081-3818' }, // ai-card → Card / Generative
+  'ai-icon-giga': { ...AI_COMPONENTS, nodeId: '7404-40182' }, // ai-icon-giga → Icon Giga
   'ai-suggestion': {
     _: { ...AI_COMPONENTS, nodeId: '6450-3666' }, // ai-suggestion → Suggestion / Simple
     'ai-suggestion': { ...AI_COMPONENTS, nodeId: '6450-3666' },

@@ -1,0 +1,84 @@
+---
+title: AiIconGiga
+package: '@ds/ai-icon-giga'
+description: Иконка-логотип GigaChat в монохроме и брендовых градиентах для тёмного и светлого фона.
+order: 3
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiIconGigaDoc from './props.json'
+
+import { Neutral } from '../demos/examples/Neutral'
+import NeutralSrc from '../demos/examples/Neutral.tsx?raw'
+import { Branded } from '../demos/examples/Branded'
+import BrandedSrc from '../demos/examples/Branded.tsx?raw'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+
+# AiIconGiga
+
+`AiIconGiga` — иконка-логотип GigaChat из набора AI Components. Рендерится как `<svg>` и переиспользуется в составных компонентах стриминга. Поддерживает монохромный вариант (`neutral`) и два брендовых градиента — для тёмного и светлого фона.
+
+## Когда использовать
+
+- Маркировка GigaChat-сценариев в стриминг-компонентах (заголовки чатов, превью генераций, аватары ассистента).
+- Брендовый акцент рядом с AI-функциональностью.
+
+### Когда не нужен
+
+- Произвольная интерфейсная иконка:
+  - используйте `@ds/icons`.
+- Кликабельный триггер:
+  - оборачивайте `AiIconGiga` в `@ds/button` или ставьте обработчик на родителя.
+
+## Анатомия
+
+### Variant (default `neutral`)
+
+- `neutral` — монохром через `currentColor` (по умолчанию вторичный текстовый токен). Цвет наследуется от родителя.
+- `logoDark` — брендовый зелёно-голубой градиент, рассчитанный на тёмный фон.
+- `logoLight` — брендовый градиент, рассчитанный на светлый фон.
+
+### Size (default `80`)
+
+Квадратный размер в пикселях. Глиф логотипа центрирован с отступом 12.5% от размера бокса.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-icon-giga
+```
+
+```ts
+import { AiIconGiga } from '@ds/ai-icon-giga'
+```
+
+## Примеры использования
+
+<Example title='Neutral' description='Монохром через currentColor' code={NeutralSrc}>
+  <Neutral client:visible />
+</Example>
+
+<Example title='Branded' description='Брендовые градиенты logoLight / logoDark' code={BrandedSrc}>
+  <Branded client:visible />
+</Example>
+
+<Example title='Sizes' description='Настраиваемый размер через `size`' code={SizesSrc}>
+  <Sizes client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiIconGigaDoc.AiIconGiga} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-icongiga--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-icon-giga')} />

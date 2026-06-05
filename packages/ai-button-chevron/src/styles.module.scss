@@ -1,0 +1,44 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  border-radius: base.$sn-density-radius-2xs;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: 0;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-disabled]) {
+      color: base.$sn-theme-color-available-version-textSecondary;
+    }
+  }
+}
+
+.icon {
+  transition: transform 0.15s ease-in-out;
+}
+
+.root[data-opened] .icon {
+  transform: rotate(180deg);
+}

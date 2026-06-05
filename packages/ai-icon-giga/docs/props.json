@@ -1,0 +1,49 @@
+{
+  "AiIconGiga": {
+    "displayName": "AiIconGiga",
+    "propsTypeName": "AiIconGigaProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-icon-giga"
+      },
+      "size": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "80",
+        "description": "Размер иконки в px (квадрат). По умолчанию `80`."
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "logoDark",
+          "logoLight",
+          "neutral"
+        ],
+        "defaultValue": "neutral",
+        "description": "Вариант логотипа GigaChat:\n- `neutral` — монохром (`currentColor`, по умолчанию вторичный текстовый токен);\n- `logoDark` — брендовый градиент для тёмного фона;\n- `logoLight` — брендовый градиент для светлого фона.\nПо умолчанию `neutral`.",
+        "typeRefs": [
+          "AiIconGigaVariant"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiIconGigaVariant": {
+        "kind": "union",
+        "values": [
+          "logoDark",
+          "logoLight",
+          "neutral"
+        ],
+        "own": true
+      }
+    }
+  }
+}

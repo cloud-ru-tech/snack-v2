@@ -1,0 +1,36 @@
+{
+  "AiButtonChevron": {
+    "displayName": "AiButtonChevron",
+    "propsTypeName": "AiButtonChevronProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-button-chevron"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Disabled-состояние: opacity, нативная блокировка кликов и клавиатуры."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нативный обработчик клика. Не вызывается для disabled-кнопки."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Раскрытое состояние: `true` — шеврон смотрит вверх, `false` — вниз. По умолчанию `false`."
+      }
+    },
+    "relatedTypes": {}
+  }
+}
