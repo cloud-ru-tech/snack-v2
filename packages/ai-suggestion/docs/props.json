@@ -1,4 +1,256 @@
 {
+  "AiSuggestionParent": {
+    "displayName": "AiSuggestionParent",
+    "propsTypeName": "AiSuggestionParentInternalProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultExpanded": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Uncontrolled — initial expanded"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Блокирует взаимодействие"
+      },
+      "expanded": {
+        "type": "boolean",
+        "required": false,
+        "description": "Controlled — раскрыт (Figma: Activated=On)"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка слева от текста"
+      },
+      "items": {
+        "type": "AiSuggestionParentItem[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Вложенные подсказки и группы",
+        "typeRefs": [
+          "AiSuggestionParentItem",
+          "AiSuggestionParentNestedItem",
+          "AiSuggestionParentSuggestionItem"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "Label text",
+        "description": "Текст на триггере"
+      },
+      "onExpandedChange": {
+        "type": "((expanded: boolean) => void)",
+        "required": false,
+        "description": "Колбэк toggle (controlled и uncontrolled)"
+      },
+      "onItemClick": {
+        "type": "((index: number, event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по вложенной подсказке"
+      },
+      "shown": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Родительская группа раскрыта — управляет видимостью вложенной ветки"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер (Figma: Mobile Off → `s`, Mobile On → `m`)",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiSuggestionParentItem": {
+        "kind": "alias",
+        "type": "AiSuggestionParentSuggestionItem | AiSuggestionParentNestedItem",
+        "own": true
+      },
+      "AiSuggestionParentNestedItem": {
+        "kind": "interface",
+        "props": {
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "items": {
+            "type": "AiSuggestionParentItem[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "AiSuggestionParentItem",
+              "AiSuggestionParentNestedItem",
+              "AiSuggestionParentSuggestionItem"
+            ]
+          },
+          "key": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "type": {
+            "type": "\"parent\" | undefined",
+            "required": false,
+            "values": [
+              "parent"
+            ]
+          }
+        },
+        "own": true
+      },
+      "AiSuggestionParentSuggestionItem": {
+        "kind": "interface",
+        "props": {
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "items": {
+            "type": "undefined",
+            "required": false
+          },
+          "key": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false
+          },
+          "type": {
+            "type": "\"suggestion\" | undefined",
+            "required": false,
+            "values": [
+              "suggestion"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiSuggestionParentChip": {
+    "displayName": "AiSuggestionParentChip",
+    "propsTypeName": "AiSuggestionParentChipProps",
+    "props": {
+      "chevron": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "expanded": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "Label text"
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false
+      },
+      "onExpandedChange": {
+        "type": "((expanded: boolean) => void)",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiSuggestionParentGroupProvider": {
+    "displayName": "AiSuggestionParentGroupProvider",
+    "propsTypeName": null,
+    "props": {
+      "initialExpandedKey": {
+        "type": "string | null",
+        "required": false,
+        "defaultValue": "null"
+      }
+    },
+    "relatedTypes": {}
+  },
   "AiSuggestionSimple": {
     "displayName": "AiSuggestionSimple",
     "propsTypeName": "AiSuggestionSimpleProps",
@@ -42,11 +294,6 @@
         "defaultValue": "Label text",
         "description": "Текст подсказки"
       },
-      "onClick": {
-        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
-        "required": false,
-        "description": "Колбэк при выборе подсказки"
-      },
       "size": {
         "type": "enum",
         "required": false,
@@ -80,88 +327,29 @@
       }
     }
   },
-  "AiSuggestionParent": {
-    "displayName": "AiSuggestionParent",
-    "propsTypeName": "AiSuggestionParentProps",
+  "AnimatedExpandableItem": {
+    "displayName": "AnimatedExpandableItem",
+    "propsTypeName": null,
     "props": {
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "Дополнительный CSS-класс контейнера"
+      "index": {
+        "type": "number",
+        "required": true
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "disabled": {
+      "shown": {
         "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Блокирует взаимодействие"
+        "required": true
       },
-      "expanded": {
-        "type": "boolean",
-        "required": false,
-        "description": "Раскрыт (Figma: Activated=On)"
-      },
-      "icon": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Иконка слева от текста"
-      },
-      "items": {
-        "type": "AiSuggestionParentItem[]",
-        "required": false,
-        "defaultValue": "[]",
-        "description": "Вложенные подсказки и группы",
-        "typeRefs": [
-          "AiSuggestionParentItem"
-        ]
-      },
-      "label": {
-        "type": "string",
-        "required": false,
-        "defaultValue": "Label text",
-        "description": "Текст на триггере"
-      },
-      "onExpandedChange": {
-        "type": "((expanded: boolean) => void)",
-        "required": false,
-        "description": "Колбэк смены раскрытия"
-      },
-      "onItemClick": {
-        "type": "((index: number, event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
-        "required": false,
-        "description": "Колбэк клика по вложенной подсказке"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "m",
-          "s"
-        ],
-        "defaultValue": "s",
-        "description": "Размер (Figma: Mobile Off → `s`, Mobile On → `m`)",
-        "typeRefs": [
-          "Size"
-        ]
+      "total": {
+        "type": "number",
+        "required": true
       }
     },
-    "relatedTypes": {
-      "AiSuggestionParentItem": {
-        "kind": "alias",
-        "type": "({ type?: typeof CHILD_TYPE.Suggestion; key?: string; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; size?: Size; disabled?: boolean; onClick?(event: MouseEvent<HTMLButtonElement>): void; className?: string; }) | ({ type: typeof CHILD_TYPE.Parent; key?: string; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; size?: Size; disabled?: boolean; expanded?: boolean; onExpandedChange?(expanded: boolean): void; items?: AiSuggestionParentItem[]; onItemClick?(index: number, event: MouseEvent<HTMLButtonElement>): void; className?: string; })",
-        "own": true
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "m",
-          "s"
-        ],
-        "own": true
-      }
-    }
+    "relatedTypes": {}
+  },
+  "AnimatedTriggerWrap": {
+    "displayName": "AnimatedTriggerWrap",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
   }
 }
