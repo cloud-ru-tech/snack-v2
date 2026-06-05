@@ -1,0 +1,26 @@
+{
+  "name": "@ds/ai-field-banner",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@ds/alert": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:"
+  },
+  "publishConfig": { "access": "public" }
+}

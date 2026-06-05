@@ -87,6 +87,7 @@ export const FIGMA_NODES = {
     'ai-suggestion': { ...AI_COMPONENTS, nodeId: '6450-3666' },
     'ai-suggestion-parent': { ...AI_COMPONENTS, nodeId: '6467-21511' }, // Suggestion / Parent
   },
+  'ai-field-banner': { ...AI_COMPONENTS, nodeId: '7335-6317' }, // ai-field-banner → Field Banner
   alert: { ...SNACK, nodeId: '3222-166' }, // alert → alert
   attachment: {
     _: { ...SNACK, nodeId: '5778-49181' },

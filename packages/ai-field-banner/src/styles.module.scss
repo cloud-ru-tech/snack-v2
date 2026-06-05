@@ -1,0 +1,152 @@
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm';
+$types: 'information', 'security', 'critical', 'help', 'warning', 'agentic';
+
+$type-background-token: (
+  'information': 'decorTransparent',
+  'security': 'decorTransparent',
+  'critical': 'decor',
+  'help': 'decorTransparent',
+  'warning': 'decor',
+  'agentic': 'decorTransparent',
+);
+
+$type-theme-color: (
+  'information': 'neutral',
+  'security': 'blue',
+  'critical': 'red',
+  'help': 'primary',
+  'warning': 'yellow',
+  'agentic': 'orange',
+);
+
+$description-typography: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-m,
+);
+
+.advice {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0 0 calc(-1 * #{base.$sn-primitive-dimension-12}) 0;
+
+  border-radius: base.$sn-density-radius-2xs base.$sn-density-radius-2xs 0 0;
+
+  backdrop-filter: blur(base.$sn-primitive-dimension-32);
+
+  @each $type in $types {
+    .root[data-type='#{$type}'] & {
+      $token: map.get($type-background-token, $type);
+      $color: map.get($type-theme-color, $type);
+
+      background-color: base.simple-var(base.$sn-theme, 'color', $color, $token);
+    }
+  }
+}
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+
+  &[data-size='s'] {
+    min-height: base.$sn-primitive-dimension-48;
+    padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8
+      base.$sn-primitive-dimension-8;
+    border-radius: base.$sn-density-radius-2xs base.$sn-density-radius-2xs 0 0;
+  }
+
+  &[data-size='m'] {
+    min-height: base.$sn-primitive-dimension-60;
+    padding: base.$sn-primitive-dimension-8;
+    border-radius: base.$sn-density-radius-3xs base.$sn-density-radius-3xs 0 0;
+  }
+
+  &[data-size='s'][data-has-additional='true'] {
+    min-height: base.$sn-primitive-dimension-72;
+  }
+
+  &[data-size='m'][data-has-additional='true'] {
+    min-height: base.$sn-primitive-dimension-84;
+  }
+
+  @each $type in $types {
+    &[data-type='#{$type}'] {
+      $token: map.get($type-background-token, $type);
+      $color: map.get($type-theme-color, $type);
+
+      background-color: base.simple-var(base.$sn-theme, 'color', $color, $token);
+    }
+  }
+}
+
+.mainLine {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.content {
+  display: flex;
+  flex: 1 1 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  @each $size, $icon-size in ('s': base.$sn-primitive-dimension-16, 'm': base.$sn-primitive-dimension-24) {
+    &[data-size='#{$size}'] > svg {
+      width: $icon-size !important;
+      height: $icon-size !important;
+    }
+  }
+}
+
+.description {
+  overflow: hidden;
+  flex: 1 1 0;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: anywhere;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($description-typography, $size);
+    }
+  }
+}
+
+.additional {
+  width: 100%;
+  padding-bottom: base.$sn-primitive-dimension-4;
+}
+
+.action {
+  flex-shrink: 0;
+  white-space: nowrap;
+}

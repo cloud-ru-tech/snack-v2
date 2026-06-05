@@ -44,6 +44,12 @@
       "path": "./ai-suggestion/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-field-banner/tsconfig.cjs.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.cjs.json"
+    },
+    {
       "path": "./counter/tsconfig.cjs.json"
     },
     {
