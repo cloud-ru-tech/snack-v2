@@ -62,6 +62,7 @@
     "@ds/timeline": "workspace:*",
     "@ds/toaster": "workspace:*",
     "@ds/toggles": "workspace:*",
+    "@ds/toolbar": "workspace:*",
     "@ds/tooltip": "workspace:*",
     "@ds/tree": "workspace:*",
     "@ds/truncate-string": "workspace:*",

@@ -87,6 +87,7 @@ const config: StorybookConfig = {
       alias: {
         ...config.resolve?.alias,
         ...collectDsAliases(),
+        '@sbercloud/snack-v2-locale': join(root, 'packages/locale/src/index.ts'),
         '#storybook/components': join(__dirname, 'components/index.ts'),
         '#storybook/hooks/useDraggable': join(__dirname, 'hooks/useDraggable.ts'),
         '#storybook/hooks': join(__dirname, 'hooks/index.ts'),

@@ -185,6 +185,9 @@
       "path": "./toaster/tsconfig.cjs.json"
     },
     {
+      "path": "./toolbar/tsconfig.cjs.json"
+    },
+    {
       "path": "./tree/tsconfig.cjs.json"
     },
     {

@@ -1,0 +1,89 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Демо-обвязка для docs: имитация экрана телефона, в рамках которого живёт mobile-toolbar.
+// Жёсткие размеры здесь — mock-up телефонной рамки, не дизайн-параметры компонента.
+
+.page {
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+}
+
+.frame {
+  position: relative;
+
+  overflow: hidden;
+  flex-shrink: 0;
+
+  width: 320px;
+  height: 480px;
+  border: 6px solid #1a1a1a;
+  border-radius: base.$sn-primitive-dimension-36;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.notch {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-20;
+  border-radius: 0 0 14px 14px;
+
+  background: #1a1a1a;
+}
+
+.statusBar {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: base.$sn-primitive-dimension-32;
+  padding: 0 base.$sn-primitive-dimension-16;
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+// Safe-area = portal-контейнер bottom-sheet'а. `transform: translateZ(0)` создаёт
+// containing block для `position: fixed` дочернего sheet'а — он живёт внутри рамки,
+// а не на всём вьюпорте.
+.safeArea {
+  position: absolute;
+  inset: base.$sn-primitive-dimension-44 0 0 0;
+  transform: translateZ(0);
+  overflow: hidden;
+}
+
+.appContent {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.homeIndicator {
+  position: absolute;
+  z-index: 1;
+  bottom: base.$sn-primitive-dimension-8;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-primitive-dimension-2;
+
+  opacity: 0.6;
+  background: base.$sn-theme-color-neutral-text;
+}

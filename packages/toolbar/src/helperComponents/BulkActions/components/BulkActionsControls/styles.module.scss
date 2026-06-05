@@ -1,0 +1,43 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toolbar.module' as toolbar;
+@use '@sbercloud/figma-variables/build/scss/components/toggles.module' as toggles;
+
+$action-focus-padding: calc(2 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+
+.actionsArea {
+  display: flex;
+  flex: 1 1 0;
+  gap: toolbar.$sn-toolbar-anatomy-container-tool-bulkAction-gap;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+.bulkActions {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.moreActionButton {
+  flex-shrink: 0;
+}
+
+.action {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.sheetActions {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.triggerClassName {
+  display: inline-flex;
+}

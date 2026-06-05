@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.separatorWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  align-self: stretch;
+}
+
+.separator {
+  flex: 1 1 auto;
+  align-self: stretch;
+
+  box-sizing: border-box;
+  width: base.$sn-primitive-strokeWeight-strokeRegular;
+
+  background-color: base.$sn-theme-color-available-borderColor;
+}

@@ -1,0 +1,116 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toolbar.module' as toolbar;
+@use '@ds/materials' as m;
+
+.containerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: toolbar.$sn-toolbar-anatomy-container-gap;
+  width: 100%;
+}
+
+.acrylic {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  border-radius: inherit;
+}
+
+.border {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+
+  box-sizing: border-box;
+  border: toolbar.$sn-toolbar-anatomy-container-tool-borderWidth solid base.$sn-theme-color-available-borderColor;
+  border-radius: inherit;
+}
+
+.container {
+  @include m.with-material('acrylic', #{acrylic});
+
+  isolation: isolate;
+  position: relative;
+  z-index: 0;
+
+  overflow: auto hidden;
+  display: flex;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: toolbar.$sn-toolbar-anatomy-container-tool-minHeight;
+  padding-inline: toolbar.$sn-toolbar-anatomy-container-tool-paddingHorizontal;
+  border-radius: toolbar.$sn-toolbar-anatomy-container-tool-borderRadius;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: toolbar.$sn-toolbar-anatomy-container-tool-gap;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: min-content;
+  min-height: toolbar.$sn-toolbar-anatomy-container-tool-minHeight;
+}
+
+.searchWrapper {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.updateButton {
+  flex-shrink: 0;
+
+  svg {
+    transform: rotate(360deg);
+    transition: transform 0.5s;
+  }
+
+  &:active {
+    svg {
+      transform: rotate(0deg);
+      transition-duration: 0s;
+    }
+  }
+}
+
+.beforeSearch {
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+.slot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+$filterDropDownMinWidthGridSteps: 25;
+$filter-dropDown-minWidth: calc(#{$filterDropDownMinWidthGridSteps} * #{base.$sn-primitive-dimension-8});
+
+.list {
+  min-width: $filter-dropDown-minWidth;
+}

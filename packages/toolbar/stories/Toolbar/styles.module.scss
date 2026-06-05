@@ -1,0 +1,66 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.resizableWrapper {
+  resize: horizontal;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.playgroundWrapper {
+  // toolbar + 2 строки чипов + bulk-actions
+  min-height: 240px;
+}
+
+.containerPlayground,
+.containerMatrix,
+.containerMobile,
+.containerAdaptive {
+  width: 100%;
+  max-width: 720px;
+}
+
+.containerMatrixMobile,
+.containerMobile,
+.containerAdaptiveMobile {
+  width: 100%;
+  max-width: 360px;
+}
+
+.adaptiveBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.adaptiveLabel {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.mobileSelectionControl {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  margin-bottom: base.$sn-primitive-dimension-16;
+}
+
+.mobileSelectionControlLabel {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.matrixRoot {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.matrixSection {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+}

@@ -1,0 +1,45 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/chip.module' as chip;
+
+.selectionLabel {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: chip.$sn-chip-anatomy-size-s-container-textWrapper-gap;
+  align-items: center;
+
+  padding-inline: chip.$sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal;
+
+  white-space: nowrap;
+}
+
+.selectionLabelPrefix {
+  @include base.composite-var(base.$sn-thin-label-m);
+
+  color: base.$sn-theme-color-available-version-textDisabled;
+}
+
+.selectionLabelValue {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.selectionLabel:not([data-has-selection]) .selectionLabelValue {
+  color: base.$sn-theme-color-available-version-textDisabled;
+}
+
+.headlinePlacement {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+
+  width: 100%;
+  min-width: 0;
+}
+
+// TODO: slotAfterHeadline должен расширяться на всю ширину, а section-label уходить вправо
+:global([data-test-id='bottom-sheet__slot-after-headline']:has([data-headline-selection-label])) {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}

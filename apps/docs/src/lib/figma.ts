@@ -135,6 +135,11 @@ export const FIGMA_NODES = {
   },
   tabs: { ...SNACK, nodeId: '8671-2412' }, // tabs → tabs
   tag: { ...SNACK, nodeId: '3733-11265' }, // tag → tag
+  toolbar: {
+    _: { ...SNACK, nodeId: '7231-2277' }, // toolbar → canvas toolbar
+    'mobile-bulk-bottom-sheet': { ...SNACK, nodeId: '7788-21915' }, // toolbar → bulkActionsBottomSheet
+    'mobile-more-bulk-bottom-sheet': { ...SNACK, nodeId: '7546-10980' }, // toolbar → moreBulkActionsDropdownAsButtomSheet
+  },
   timeline: { ...SNACK, nodeId: '8658-114' }, // timeline → timeline
   toaster: {
     _: { ...SNACK, nodeId: '6847-810' }, // toaster → canvas

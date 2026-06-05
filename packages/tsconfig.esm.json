@@ -183,6 +183,9 @@
       "path": "./toaster/tsconfig.esm.json"
     },
     {
+      "path": "./toolbar/tsconfig.esm.json"
+    },
+    {
       "path": "./tree/tsconfig.esm.json"
     },
     {

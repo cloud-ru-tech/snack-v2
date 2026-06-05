@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/components/bottomSheet.module' as bottomSheet;
+
+.listWrapper {
+  flex: 1 1 auto;
+
+  box-sizing: border-box;
+  width: calc(
+    100% + 2 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal}
+  );
+  min-height: 16px;
+  margin-block: calc(-1 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop})
+    calc(-1 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom});
+  margin-inline: calc(-1 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal});
+
+  &[data-virtualized] {
+    height: 100%;
+  }
+}

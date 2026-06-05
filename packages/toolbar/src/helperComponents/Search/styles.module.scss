@@ -1,0 +1,33 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/toolbar.module' as toolbar;
+
+.root {
+  position: relative;
+  width: 100%;
+  min-width: 96px;
+}
+
+.focusFrame {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 0;
+  inset: calc(-1 * #{base.$sn-brand-anatomy-focusLine-control-strokeWeight});
+
+  display: none;
+
+  border: base.$sn-brand-anatomy-focusLine-control-strokeWeight solid base.$sn-theme-color-available-complementary;
+  border-radius: toolbar.$sn-toolbar-anatomy-container-tool-search-borderRadius;
+}
+
+.search {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.root:not([data-loading='true'])[data-focusvisible='true'] {
+  .focusFrame {
+    display: block;
+  }
+}

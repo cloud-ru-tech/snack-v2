@@ -140,4 +140,31 @@ export const ru_RU: typeof en_GB = {
     errorText: 'Не удалось загрузить данные',
     errorButton: 'Обновить',
   },
+  List: {
+    noData: {
+      description: 'Нет данных',
+    },
+    noResults: {
+      description: 'Не найдено',
+    },
+    errorData: {
+      description: 'Ошибка загрузки данных',
+    },
+    groupSelectButton: {
+      reset: 'Сбросить все',
+      select: 'Выбрать все',
+    },
+  },
+  Toolbar: {
+    showFilters: 'Показать фильтры',
+    hideFilters: 'Скрыть фильтры',
+    selected: 'Выбрано: {{count}}',
+    selectedOf: 'Выбрано: {{count}} из {{total}}',
+    selectedPrefix: 'Выбрано:',
+    selectedCount: '{{count}}',
+    selectedCountOf: '{{count}} из {{total}}',
+    multipleActions: 'Массовые действия',
+    refresh: 'Обновить',
+    more: 'Ещё',
+  },
 };

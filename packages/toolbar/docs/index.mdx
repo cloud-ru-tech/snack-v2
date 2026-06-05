@@ -1,0 +1,126 @@
+---
+title: Toolbar
+package: '@ds/toolbar'
+description: Панель инструментов списков и таблиц — поиск, фильтры, массовые действия, меню «Ещё».
+order: 1
+---
+
+import { Basic } from '../demos/examples/Basic';
+import BasicSrc from '../demos/examples/Basic.tsx?raw';
+import { WithFilters } from '../demos/examples/WithFilters';
+import WithFiltersSrc from '../demos/examples/WithFilters.tsx?raw';
+import { BulkActions } from '../demos/examples/BulkActions';
+import BulkActionsSrc from '../demos/examples/BulkActions.tsx?raw';
+import { MobileLayout } from '../demos/examples/MobileLayout';
+import MobileLayoutSrc from '../demos/examples/MobileLayout.tsx?raw';
+import { WithDataView } from '../demos/examples/WithDataView';
+import WithDataViewSrc from '../demos/examples/WithDataView.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import toolbarDoc from './props.json';
+
+# Toolbar
+
+`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Режим `layoutType` переключает desktop- и mobile-поведение (Droplist vs BottomSheet, размер чипов фильтров).
+
+## Когда использовать
+
+- Над таблицей или списком с поиском, фильтрами и действиями над выбранными строками.
+- Когда нужно сохранять состояние фильтров и поиска в URL или `localStorage` (`persist`).
+
+Когда **не** нужен:
+
+- Для одиночного поля поиска без остальных слотов — [`Search`](/components/search) или [`SearchPrivate`](/components/search-private).
+- Для переключения вкладок раздела — [`Tabs`](/components/tabs).
+- Для произвольного меню действий без контекста списка — [`Dropdown`](/components/dropdown).
+
+### Рекомендации
+
+- ✅ Один `Toolbar` на экран над данными.
+- ❌ Дублировать поиск и фильтры в header и в теле страницы.
+- ✅ Controlled `search` через `value` + `onChange`.
+- ❌ No-op `onChange` — строка поиска не реагирует на ввод.
+- ✅ `layoutType="mobile"` на узких viewport и в Storybook mobile-сценариях.
+- ❌ Desktop overflow «⋯» на мобильном без смены `layoutType`.
+- ✅ Уникальный `persist.id` на каждый инстанс.
+- ❌ Один `id` на несколько тулбаров — состояние фильтров смешается.
+
+## Анатомия
+
+Слоты сверху вниз:
+
+- **Строка панели** — `onRefresh`, `search`, `after`, `dataView`, кнопка фильтров, `moreActions`.
+- **Строка фильтров** — `ChipChoiceRow` / `MobileChipChoiceRow` при `filterRow`.
+- **Bulk-панель** — чекбокс, счётчик выбранных, tonal-кнопки; не влезшие действия — в «⋯».
+
+### Layout (default `desktop`)
+
+- `desktop` — overflow «⋯» в Droplist, чипы фильтров size `s`, bulk-действия в строке под чипами.
+- `mobile` — overflow в BottomSheet, чипы size `s`, bulk-действия в sheet без backdrop при активном выборе.
+
+### Outline (default `false`)
+
+- `true` — внешний бордер через отдельный слой `border` на контейнере.
+- `false` — панель без внешнего бордера.
+
+## Установка
+
+```bash
+pnpm add @ds/toolbar
+```
+
+```ts
+import { Toolbar, LAYOUT_TYPE } from '@ds/toolbar';
+```
+
+## Примеры использования
+
+{/* client:only — Droplist/BottomSheet из @sbercloud/snack-v2-* не резолвятся при SSR (ESM dir-import) */}
+
+<Example title='Базовый desktop' description='Поиск, обновление и меню «⋯»' code={BasicSrc}>
+  <Basic client:only='react' />
+</Example>
+
+<Example title='Фильтры' description='Кнопка фильтров и строка ChipChoiceRow' code={WithFiltersSrc}>
+  <WithFilters client:only='react' />
+</Example>
+
+<Example
+  title='Массовые действия'
+  description='Bulk-панель под фильтрами с чекбоксом и tonal-кнопками'
+  code={BulkActionsSrc}
+>
+  <BulkActions client:only='react' />
+</Example>
+
+<Example
+  title='Mobile layout'
+  description='layoutType mobile — включите чекбокс, чтобы открыть bulk-панель в BottomSheet внутри рамки'
+  code={MobileLayoutSrc}
+>
+  <MobileLayout client:only='react' />
+</Example>
+
+<Example title='Слоты after и dataView' description='Дополнительная кнопка и SegmentControl' code={WithDataViewSrc}>
+  <WithDataView client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={toolbarDoc.Toolbar} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-toolbar--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('toolbar')} height={480} title='Toolbar в Figma (Snack UI Kit)' />
+
+## Смотри также
+
+- [`Search`](/components/search) — поле поиска внутри тулбара (`background={false}`).
+- [`SegmentControl`](/components/segment-control) — типичный контент слота `dataView`.

@@ -1,0 +1,81 @@
+import { CheckSVG, CrossSVG } from '@ds/icons';
+import { Checkbox } from '@ds/toggles';
+import { LAYOUT_TYPE, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
+import { Meta, StoryObj } from '@storybook/react';
+import { useId, useState } from 'react';
+import { expect, within } from 'storybook/test';
+
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+
+import styles from '../styles.module.scss';
+import { TEST_IDS } from '../testIds';
+
+function MobileExample() {
+  const selectionToggleId = useId();
+  const [search, setSearch] = useState('');
+  const [checked, setChecked] = useState(true);
+
+  return (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Mobile</DemoTitle>
+        <DemoHint>
+          Mobile: bulk-действия в BottomSheet без затемнения фона (пока есть выбор); overflow «⋯» — отдельный
+          BottomSheet с backdrop.
+        </DemoHint>
+        <DemoActions block>
+          <label className={styles.mobileSelectionControl} htmlFor={selectionToggleId}>
+            <Checkbox
+              id={selectionToggleId}
+              size='s'
+              checked={checked}
+              onChange={setChecked}
+              data-test-id={TEST_IDS.mobileSelectionToggle}
+            />
+            <span className={styles.mobileSelectionControlLabel}>Есть выбранные строки таблицы</span>
+          </label>
+          <div className={styles.containerMobile}>
+            <Toolbar
+              layoutType={LAYOUT_TYPE.Mobile}
+              data-test-id={TEST_IDS.mobile}
+              search={{ value: search, onChange: setSearch }}
+              onRefresh={() => undefined}
+              moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+              checked={checked}
+              onCheck={() => setChecked(v => !v)}
+              selectedCount={checked ? 12 : 0}
+              totalCount={100}
+              bulkActions={[
+                { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
+                { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+              ]}
+            />
+          </div>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
+}
+
+const meta: Meta<typeof MobileExample> = {
+  title: 'Components/Toolbar/Examples/Mobile',
+  component: MobileExample,
+  parameters: { layout: 'fullscreen' },
+};
+
+export default meta;
+type Story = StoryObj<typeof MobileExample>;
+
+export const Mobile: Story = {
+  tags: ['dev', 'test'],
+  globals: {
+    density: 'comfort',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await expect(canvas.getByTestId(TEST_IDS.mobile)).toBeVisible();
+    await expect(canvas.getByTestId(TEST_IDS.mobileSelectionToggle)).toBeVisible();
+    await expect(canvas.getByTestId(TOOLBAR_TEST_IDS.checkbox)).toBeVisible();
+  },
+};

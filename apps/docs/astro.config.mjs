@@ -51,65 +51,29 @@ export default defineConfig({
     ...(process.env.SKIP_PAGEFIND ? [] : [pagefind()]),
   ],
   vite: {
-    // @snack-uikit/list ESM entry re-exports `./components` (directory); Node SSR
-    // rejects that unless Vite bundles the package.
     ssr: {
       noExternal: [
-        // @sbercloud/snack-v2-list ESM entry re-exports `./components` (directory);
-        // same Node-SSR dir-import problem as @snack-uikit/list. Used by @ds/chips.
-        '@sbercloud/snack-v2-list',
-        '@snack-uikit/list',
-        '@snack-uikit/dropdown',
-        '@snack-uikit/popover-private',
-        '@snack-uikit/popover',
-        '@snack-uikit/utils',
-        '@snack-uikit/button',
-        '@snack-uikit/counter',
-        '@snack-uikit/loaders',
-        '@snack-uikit/divider',
-        '@snack-uikit/locale',
-        '@snack-uikit/truncate-string',
-        '@snack-uikit/tooltip',
-        '@snack-uikit/icons',
-        '@snack-uikit/info-block',
-        '@snack-uikit/icon-predefined',
-        '@snack-uikit/typography',
-        '@snack-uikit/toggles',
-        '@snack-uikit/scroll',
-        '@snack-uikit/search-private',
-        '@snack-uikit/input-private',
-        '@sbercloud/snack-v2-list',
-        '@sbercloud/snack-v2-dropdown',
-        '@sbercloud/snack-v2-button',
-        '@sbercloud/snack-v2-counter',
-        '@sbercloud/snack-v2-utils',
-        '@sbercloud/snack-v2-loader',
-        '@sbercloud/snack-v2-divider',
-        '@sbercloud/snack-v2-icons',
-        '@sbercloud/snack-v2-info-block',
-        '@sbercloud/snack-v2-icon-predefined',
-        '@sbercloud/snack-v2-locale',
-        '@sbercloud/snack-v2-popover-private',
-        '@sbercloud/snack-v2-portal-context',
-        '@sbercloud/snack-v2-truncate-string',
-        '@sbercloud/snack-v2-tooltip',
-        '@sbercloud/snack-v2-toggles',
-        '@sbercloud/snack-v2-scroll',
-        '@sbercloud/snack-v2-search-private',
-        '@sbercloud/snack-v2-input-private',
+        // Legacy ESM with extensionless imports (breadcrumbs/calendar/tree → @snack-uikit/list).
+        /^@snack-uikit\//,
+        // Toolbar persist → @cloud-ru/ft-request-payload-transform.
+        /^@cloud-ru\/ft-/,
+        // Toolbar → @sbercloud/snack-v2-* (chips, list, bottom-sheet, …).
+        /^@sbercloud\/snack-v2-/,
+        'uncontrollable',
       ],
     },
     resolve: {
-      alias: {
-        // #docs points to apps/docs/src — used by package demos to import Canvas etc.
-        '#docs': resolve(dir, 'src'),
-        // Barrel dist/esm/index.js re-exports ./formatters/* without .js — SSR/prebundle fail.
+      alias: [
+        ...Object.entries({
+          '#docs': resolve(dir, 'src'),
+          '@sbercloud/snack-v2-locale': resolve(root, 'packages/locale/src/index.ts'),
+          // Barrel dist/esm/index.js re-exports ./formatters/* without .js — SSR/prebundle fail.
         '@cloud-ru/ft-formatters': resolve(
           root,
           'node_modules/@cloud-ru/ft-formatters/dist/esm/formatters/formatNumber.js',
-        ),
-        ...dsWorkspaceSourceAliases(),
-      },
+        ),...dsWorkspaceSourceAliases(),
+        }).map(([find, replacement]) => ({ find, replacement })),
+      ],
     },
     optimizeDeps: {
       // Alias points at a single .js file; prebundling under package id breaks client hydration.

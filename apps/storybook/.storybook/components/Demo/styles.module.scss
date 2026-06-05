@@ -28,6 +28,7 @@
   gap: base.$sn-primitive-dimension-16;
 
   width: 100%;
+  min-width: 0;
   max-width: 720px;
   padding: base.$sn-primitive-dimension-24;
   border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;

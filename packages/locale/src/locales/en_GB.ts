@@ -140,4 +140,31 @@ export const en_GB = {
     errorText: 'Failed to load data',
     errorButton: 'Refresh',
   },
+  List: {
+    noData: {
+      description: 'No data',
+    },
+    noResults: {
+      description: 'Nothing found',
+    },
+    errorData: {
+      description: 'Error loading data',
+    },
+    groupSelectButton: {
+      reset: 'Reset all',
+      select: 'Select all',
+    },
+  },
+  Toolbar: {
+    showFilters: 'Show filters',
+    hideFilters: 'Hide filters',
+    selected: 'Selected: {{count}}',
+    selectedOf: 'Selected: {{count}} of {{total}}',
+    selectedPrefix: 'Selected:',
+    selectedCount: '{{count}}',
+    selectedCountOf: '{{count}} of {{total}}',
+    multipleActions: 'Multiple actions',
+    refresh: 'Refresh',
+    more: 'More',
+  },
 } satisfies Dictionary;
