@@ -7,7 +7,6 @@
     "build": "storybook build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "dev:coverage": "INSTRUMENT=true storybook dev -p 6006",
     "clean": "rm -rf storybook-static"
   },
   "dependencies": {
@@ -85,7 +84,6 @@
     "@vitest/browser": "4.1.4",
     "@vitest/browser-playwright": "4.1.4",
     "@vitest/coverage-istanbul": "4.1.4",
-    "vite-plugin-istanbul": "9.0.1",
     "playwright": "1.59.1",
     "react": "catalog:",
     "react-dom": "catalog:",

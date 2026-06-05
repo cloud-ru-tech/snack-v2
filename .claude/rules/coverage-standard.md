@@ -1,6 +1,6 @@
 # Coverage — стандарт
 
-**Область действия:** `packages/*/src/**/*.{ts,tsx}` и инструментирование Storybook через `vite-plugin-istanbul`. Правило действует всегда.
+**Область действия:** `packages/*/src/**/*.{ts,tsx}` и сбор coverage через runtime V8 (Playwright/CDP) с маппингом по sourcemaps. Правило действует всегда.
 
 ## Принцип
 
@@ -23,19 +23,23 @@ pnpm exec vitest run packages/<pkg> --coverage  # отдельно unit; доб�
 pnpm coverage:merge                   # пересобрать отчёт после добавления vitest
 ```
 
-Для сбора coverage от harvester'а Storybook должен быть запущен с инструментацией:
+Coverage снимается **рантаймом** (V8/CDP через Playwright), без пред-инструментации
+бандла. Storybook собирается чистым **с sourcemaps** (`build.sourcemap: true` в
+`apps/storybook/.storybook/main.ts`); фикстура `collectCoverage`
+(`playwright/fixtures.ts`) вызывает `page.coverage.startJSCoverage` /
+`stopJSCoverage`, конвертит V8-формат в istanbul через `v8-to-istanbul` по
+sourcemaps и пишет в `coverage/raw/playwright/`. Один и тот же чистый билд идёт
+и в деплой, и в тесты — на MR и на master одинаково (никакого `INSTRUMENT`).
+
+Для локального прогона нужен собранный и поднятый storybook-static (с sourcemaps):
 
 ```bash
-INSTRUMENT=true pnpm --filter @ds/storybook dev
-# или
-pnpm --filter @ds/storybook dev:coverage
+pnpm exec tsx scripts/coverage-serve.mts &   # build static + http-server :6006
 ```
-
-Без `INSTRUMENT=true` `window.__coverage__` отсутствует и harvester соберёт нули. См. `apps/storybook/.storybook/main.ts` (плагин `vite-plugin-istanbul`).
 
 ### vitest unit-source приоритетен
 
-Для файлов, покрытых **vitest unit-тестом**, данные из storybook/playwright **игнорируются** на стадии merge (`scripts/coverage-merge.mts`). Причина: vitest istanbul и vite-plugin-istanbul инструментируют один и тот же файл с разными `statementMap` (разные позиции/количество statement'ов). При обычном merge istanbul берёт **union** statement'ов, totals раздуваются, и реально полностью покрытый файл показывает 60-70%.
+Для файлов, покрытых **vitest unit-тестом**, данные из storybook/playwright **игнорируются** на стадии merge (`scripts/coverage-merge.mts`). Причина: vitest istanbul и V8-конвертация (v8-to-istanbul) дают для одного файла разные `statementMap` (разные позиции/количество statement'ов). При обычном merge istanbul берёт **union** statement'ов, totals раздуваются, и реально полностью покрытый файл показывает 60-70%.
 
 Из этого следует **правило**: для файла либо есть unit-тест (тогда он = единственный источник правды), либо нет (тогда покрытие — только через play/e2e). **Не смешивай покрытие одного файла из двух источников**: написал unit-тест на `partitionFiles` → этот файл целиком должен покрываться unit'ом, не try-через-сторю-and-unit.
 
@@ -59,27 +63,23 @@ pnpm exec tsx scripts/coverage-gate.mts \
   <pkg>
 ```
 
-## Что инструментируется
+## Что учитывается в coverage
 
-Истанбул в `apps/storybook/.storybook/main.ts` инструментирует **только** runtime-код пакетов:
+Фикстура `collectCoverage` (`playwright/fixtures.ts`) фильтрует исходники из
+V8-coverage функцией `isCoverableSource` — учитывает **только** runtime-код
+пакетов, отбрасывая остальное (паритет с прежними istanbul include/exclude):
 
 ```ts
-include: ['packages/*/src/**/*.{ts,tsx}'],
-exclude: [
-  'node_modules',
-  '**/*.stories.{ts,tsx}',
-  '**/*.test.{ts,tsx}',
-  '**/__test__/**',
-  '**/*.d.ts',
-  'packages/*/src/**/index.ts',  // барели
-  'packages/*/src/**/types.ts',  // type-only
-  'packages/*/src/types.ts',
-]
+// учитываем: packages/<pkg>/src/**/*.{ts,tsx}
+// отбрасываем:
+//   /node_modules/, /__test__/
+//   *.stories.{ts,tsx}, *.test.{ts,tsx}, *.d.ts
+//   index.ts (барели), types.ts (type-only)
 ```
 
 `index.ts` / `types.ts` исключены потому что:
 - Барели (`export * from './...'`) не несут runtime-логики; Istanbul считает их `0%` и тянет per-пакет метрику вниз без сигнала о реальных проблемах.
-- Type-only файлы вырезаются TypeScript'ом до инструментирования; в SWC/Vite pipeline они могут остаться пустыми модулями — `0%` бессмыслен.
+- Type-only файлы вырезаются TypeScript'ом при сборке; в бандле от них ничего не остаётся — `0%` бессмыслен.
 
 Если файл назван `index.ts` или `types.ts`, но содержит runtime-код, который ты хочешь покрыть — переименуй файл (например, `helpers.ts`, `factory.ts`) либо вынеси код в отдельный модуль рядом и оставь `index.ts` чистым барелем.
 
@@ -189,7 +189,7 @@ Warm-up: один последовательный прогон harvester'а с 
 - [ ] Любая story в `tests/` имеет тег `['test', 'dev']` (иначе harvester пропустит)
 - [ ] Новые stories попали в `playwright/coverage/.stories.json` (запускается `coverage-prefetch-stories.mts` автоматически из `coverage-pkg.mts`)
 - [ ] Если коммитишь fixture-стори — есть JSDoc с пояснением и ссылкой на `coverage-standard.md`
-- [ ] Не отключал инструментирование `index.ts`/`types.ts` локально под конкретный пакет (исключения — глобальные в `main.ts`)
+- [ ] Не расширял `isCoverableSource` (`playwright/fixtures.ts`) под конкретный пакет, чтобы затащить `index.ts`/`types.ts` в coverage
 - [ ] Один файл — один источник coverage: не пишешь и unit-тест, и play на одну и ту же функцию (vitest приоритетен → второй источник всё равно отвалится в merge)
 
 ## Что запрещено

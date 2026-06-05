@@ -1,12 +1,13 @@
 /**
- * CI helper: собирает инструментированный storybook static и поднимает http-server.
+ * CI helper: собирает storybook static (с sourcemaps) и поднимает http-server.
  * Возвращается после того, как :6006/index.json отвечает 200.
+ *
+ * Билд чистый — coverage снимается рантаймом (V8/CDP) в playwright и маппится
+ * на packages/*\/src по sourcemaps этого static'а (см. playwright/fixtures.ts).
  *
  * Usage (CI):
  *   pnpm exec tsx scripts/coverage-serve.mts &
  *   pnpm exec tsx scripts/coverage-serve.mts --wait-only   # пропустить билд
- *
- * Локально предпочитать `pnpm --filter @ds/storybook dev:coverage`.
  */
 import { spawn, spawnSync } from 'child_process';
 import { existsSync, writeFileSync } from 'fs';
@@ -30,10 +31,9 @@ async function waitReady(): Promise<void> {
 
 if (!waitOnly) {
   if (!existsSync(STATIC_DIR)) {
-    console.log('[coverage-serve] building instrumented storybook static …');
+    console.log('[coverage-serve] building storybook static (with sourcemaps) …');
     const build = spawnSync('pnpm', ['--filter', '@ds/storybook', 'exec', 'storybook', 'build'], {
       stdio: 'inherit',
-      env: { ...process.env, INSTRUMENT: 'true' },
     });
     if (build.status !== 0) {
       console.error('[coverage-serve] storybook build failed');

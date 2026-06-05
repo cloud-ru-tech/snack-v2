@@ -12,8 +12,13 @@
  *      - `name`: `<from>/<pkg>` → `<to>/<prefix><pkg>`
  *      - `dependencies` / `devDependencies` / `peerDependencies` /
  *        `optionalDependencies` keys: `<from>/<x>` → `<to>/<prefix><x>`
- *        (values, including `workspace:*`, are kept verbatim; lerna resolves
- *        `workspace:*` to concrete versions during `publish from-package`).
+ *      - dep values: `workspace:*` / `workspace:^` / `workspace:~` and
+ *        `catalog:` / `catalog:<alias>` are resolved to the concrete version
+ *        (from the sibling package.json / `pnpm-workspace.yaml::catalog`).
+ *        After the scope rename the packages are no longer workspace members
+ *        for pnpm, so neither `pnpm publish` nor `lerna publish` would resolve
+ *        these protocols — we resolve them here so the published package.json
+ *        are self-contained.
  *
  *   2. `packages/<pkg>/dist/**` (`.js`, `.mjs`, `.cjs`, `.d.ts`, `.d.mts`,
  *      `.d.cts`, `.map`): replaces every occurrence of `<from>/<x>` with

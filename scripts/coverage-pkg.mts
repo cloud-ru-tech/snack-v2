@@ -6,8 +6,9 @@
  *   pnpm test:coverage:pkg button drawer
  *   pnpm test:coverage:pkg uikit-product-info-row
  *
- * Требование: storybook на :6006 поднят с инструментацией:
- *   pnpm --filter @ds/storybook dev:coverage
+ * Требование: storybook-static (с sourcemaps) собран и поднят на :6006 —
+ * coverage снимается рантаймом (V8/CDP) и маппится по sourcemaps:
+ *   pnpm exec tsx scripts/coverage-serve.mts &
  */
 import { execSync, spawnSync } from 'child_process';
 import { existsSync, readFileSync, rmSync } from 'fs';

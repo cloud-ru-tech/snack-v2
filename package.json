@@ -37,7 +37,6 @@
     "clean": "pnpm run clean:dist && pnpm run clean:buildinfo && pnpm -r --filter './apps/*' --filter './packages/*' run clean",
     "test:stories": "pnpm --filter @ds/storybook test",
     "test:coverage": "COVERAGE=true playwright test --project=chrome",
-    "test:coverage:changed-pkgs": "tsx scripts/coverage-changed-pkgs.mts",
     "test:coverage:pkg": "tsx scripts/coverage-pkg.mts",
     "test:coverage:mr": "tsx scripts/coverage-mr.mts",
     "coverage:merge": "tsx scripts/coverage-merge.mts",
@@ -114,6 +113,7 @@
     "tsx": "4.21.0",
     "typescript": "catalog:",
     "typescript-plugin-css-modules": "5.2.0",
+    "v8-to-istanbul": "9.3.0",
     "vitest": "4.1.4"
   }
 }

@@ -1,15 +1,32 @@
 import { randomUUID } from 'crypto';
-import { mkdirSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
+import v8toIstanbul from 'v8-to-istanbul';
 
 import { expect as playwrightExpect, Locator, test as base } from '@playwright/test';
 
 import { dataTestIdSelector, getStorybookUrl, getStorybookUrlById, StorybookUrlOptions, waitForFonts } from './utils';
 
 const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
-const COVERAGE_DIR = resolve(process.cwd(), 'coverage', 'raw', 'playwright');
+const REPO_ROOT = resolve(process.cwd());
+const COVERAGE_DIR = resolve(REPO_ROOT, 'coverage', 'raw', 'playwright');
+// Тесты бегут против собранного storybook-static (его поднимает http-server на
+// :6006). Served URL `/<p>` → файл на диске `apps/storybook/storybook-static/<p>` —
+// нужен, чтобы v8-to-istanbul нашёл соседний `.map` для исходного маппинга.
+const STORYBOOK_STATIC_DIR = resolve(REPO_ROOT, 'apps', 'storybook', 'storybook-static');
 if (COVERAGE_ENABLED) {
   mkdirSync(COVERAGE_DIR, { recursive: true });
+}
+
+// Какие original-источники учитываем в coverage: только `packages/<pkg>/src`,
+// без барелей (`index.ts`), type-only (`types.ts`), `.d.ts`, stories и тестов.
+// Паритет с прежними istanbul include/exclude — см. coverage-standard.md.
+function isCoverableSource(file: string): boolean {
+  if (!file.includes('/packages/') || !file.includes('/src/')) return false;
+  if (file.includes('/node_modules/') || file.includes('/__test__/')) return false;
+  if (/\.d\.ts$/.test(file) || /\.(stories|test)\.[jt]sx?$/.test(file)) return false;
+  const basename = file.slice(file.lastIndexOf('/') + 1);
+  return basename !== 'index.ts' && basename !== 'types.ts';
 }
 
 type DragOptions = {
@@ -38,17 +55,58 @@ type PlaywrightFixtures = {
 export const test = base.extend<PlaywrightFixtures>({
   collectCoverage: [
     async ({ page }, customUse) => {
+      // Runtime V8 coverage через CDP — без пред-инструментации бандла. Поэтому
+      // storybook собирается чистым (один билд и для деплоя, и для тестов),
+      // а INSTRUMENT/istanbul-плагин больше не нужны. resetOnNavigation: false —
+      // gotoStory навигирует, покрытие должно копиться сквозь переход.
+      // page.coverage есть только в chromium; coverage-прогон идёт на --project=chrome.
+      const collecting = COVERAGE_ENABLED && typeof page.coverage?.startJSCoverage === 'function';
+      if (collecting) {
+        await page.coverage.startJSCoverage({ resetOnNavigation: false });
+      }
+
       await customUse();
-      if (!COVERAGE_ENABLED) return;
+
+      if (!collecting) return;
+      let entries: Awaited<ReturnType<typeof page.coverage.stopJSCoverage>>;
       try {
-        const coverage = await page.evaluate(
-          () => (window as unknown as { __coverage__?: unknown }).__coverage__ ?? null,
-        );
-        if (coverage) {
-          writeFileSync(resolve(COVERAGE_DIR, `${randomUUID()}.json`), JSON.stringify(coverage));
-        }
+        entries = await page.coverage.stopJSCoverage();
       } catch {
-        // page may already be closed — ignore
+        return; // page may already be closed
+      }
+
+      const merged: Record<string, unknown> = {};
+      for (const entry of entries) {
+        if (!entry.url || !entry.source) continue;
+        let pathname: string;
+        try {
+          pathname = new URL(entry.url).pathname;
+        } catch {
+          continue; // anonymous / data: scripts
+        }
+        // Файл на диске рядом с .map — нужен v8-to-istanbul для резолва sourcemap.
+        const diskPath = resolve(STORYBOOK_STATIC_DIR, `.${pathname}`);
+        if (!existsSync(diskPath)) continue; // не ассет собранного storybook
+        const converter = v8toIstanbul(diskPath, 0, { source: entry.source }, path => !isCoverableSource(path));
+        try {
+          await converter.load();
+          converter.applyCoverage(entry.functions);
+        } catch {
+          continue; // нет/битый sourcemap у чанка — пропускаем
+        }
+        for (const [key, data] of Object.entries(converter.toIstanbul())) {
+          if (!isCoverableSource(key)) continue;
+          // Нормализуем ключ к `<repoRoot>/packages/<pkg>/src/...` независимо от
+          // того, как vite-sourcemap разрешил относительный путь источника —
+          // gate/merge матчат пакет по подстроке `/packages/`.
+          const normalized = resolve(REPO_ROOT, `.${key.slice(key.indexOf('/packages/'))}`);
+          (data as { path: string }).path = normalized;
+          merged[normalized] = data;
+        }
+      }
+
+      if (Object.keys(merged).length > 0) {
+        writeFileSync(resolve(COVERAGE_DIR, `${randomUUID()}.json`), JSON.stringify(merged));
       }
     },
     { auto: true },

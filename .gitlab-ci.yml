@@ -1,4 +1,4 @@
 include:
   - project: sbercloud-ui/cicd
-    ref: FF-8488
+    ref: master
     file: /gitlab-ci-uikit-snack-v2.yml

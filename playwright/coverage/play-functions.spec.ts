@@ -2,7 +2,8 @@
  * Coverage harvester: для каждой story с тегом `test` создаётся отдельный
  * playwright-тест, который грузит iframe.html?id=<storyId>, ждёт
  * `currentRender.phase === 'finished'` (момент после play-функции), и
- * fixture `collectCoverage` дампит window.__coverage__.
+ * fixture `collectCoverage` снимает runtime V8-coverage (CDP) и маппит его на
+ * packages/*\/src по sourcemaps (см. playwright/fixtures.ts).
  *
  * Параллелится через playwright workers + --shard в CI (см. test-harvester
  * в gitlab-ci-uikit-snack-v2.yml).

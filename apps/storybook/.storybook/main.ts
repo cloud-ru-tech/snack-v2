@@ -3,12 +3,6 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import type { StorybookConfig } from '@storybook/react-vite';
-import istanbul from 'vite-plugin-istanbul';
-
-// Включается только для playwright-dev-сервера (`INSTRUMENT=true storybook dev`).
-// В vitest НЕ ставим — там coverage-istanbul провайдер инструментирует сам,
-// иначе получается двойная инструментация и пустой coverage-final.json.
-const COVERAGE_ENABLED = process.env.INSTRUMENT === 'true';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..', '..', '..');
@@ -100,34 +94,15 @@ const config: StorybookConfig = {
       },
     };
 
-    if (COVERAGE_ENABLED) {
-      config.plugins = [
-        ...(config.plugins ?? []),
-        istanbul({
-          cwd: root,
-          // test-exclude (v9) сравнивает relative-from-cwd через minimatch,
-          // абсолютные globs не работают.
-          include: ['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'],
-          exclude: [
-            '**/node_modules/**',
-            '**/*.stories.ts',
-            '**/*.stories.tsx',
-            '**/*.test.ts',
-            '**/*.test.tsx',
-            '**/__test__/**',
-            '**/*.d.ts',
-            // Барели и type-only — не несут runtime-кода, всегда 0% и
-            // искажают per-пакет метрику. См. .claude/rules/coverage-standard.md.
-            'packages/*/src/**/index.ts',
-            'packages/*/src/**/types.ts',
-            'packages/*/src/types.ts',
-          ],
-          extension: ['.ts', '.tsx'],
-          forceBuildInstrument: true,
-          requireEnv: false,
-        }),
-      ];
-    }
+    // Sourcemaps (внешние .map рядом с чанками) нужны для runtime V8-coverage:
+    // playwright собирает покрытие по собранному бандлу и маппит его обратно на
+    // packages/*/src через эти .map (см. playwright/fixtures.ts → collectCoverage).
+    // Билд остаётся чистым (без инструментации), поэтому один и тот же артефакт
+    // идёт и в деплой, и в тесты — на MR и на master одинаково.
+    config.build = {
+      ...config.build,
+      sourcemap: true,
+    };
 
     config.css = {
       ...config.css,
