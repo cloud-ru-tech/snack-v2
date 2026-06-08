@@ -1,0 +1,61 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: base.$sn-primitive-dimension-24;
+  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-6;
+  border-top-left-radius: base.$sn-density-radius-3xs;
+  border-top-right-radius: base.$sn-density-radius-3xs;
+
+  background-color: base.$sn-theme-color-neutral-decorTransparent;
+
+  &[data-state='error'] {
+    background-color: base.$sn-theme-color-red-decorTransparent;
+  }
+}
+
+.label {
+  @include m.mono-font;
+
+  flex: 1 0 0;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+  overflow-wrap: break-word;
+
+  .root[data-state='error'] & {
+    color: base.$sn-theme-color-red-text;
+  }
+}
+
+.secret {
+  cursor: pointer;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  padding: base.$sn-primitive-dimension-0;
+  border: none;
+  border-radius: base.$sn-density-radius-3xs;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: 0;
+  }
+
+  .root[data-state='error'] & {
+    color: base.$sn-theme-color-red-text;
+  }
+}

@@ -1,0 +1,63 @@
+---
+title: AiToolObject
+package: '@ds/ai-tool'
+description: Узел дерева аргументов — complex (сворачиваемый, с вложенными детьми) или string (инлайн пара имя-значение).
+order: 5
+---
+
+import { ToolCallTree } from '../demos/examples/ToolCallTree'
+import ToolCallTreeSrc from '../demos/examples/ToolCallTree.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolObject
+
+Узел дерева аргументов или результата инструмента. Раскрытие controlled: `opened` + `onToggle`.
+
+## Когда использовать
+
+- Сворачиваемый объект с вложенными полями.
+- Инлайн пара имя-значение в составе дерева.
+
+## Анатомия
+
+### Variant (default `complex`)
+
+- `complex` — сворачиваемый узел с chevron'ом и вложенными детьми (`opened` + `onToggle`). Принимает любой вложенный контент: `AiToolText`, `AiToolKeyValue`, вложенные `AiToolObject` и `AiToolArray`.
+- `string` — инлайн пара имя-значение.
+
+### Mono / Error
+
+Наследуются из `AiToolDetails` и каскадом передаются во вложенные узлы; либо задаются пропом явно.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolObject } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Дерево вызова инструмента' description='Object + KeyValue + Array' code={ToolCallTreeSrc}>
+  <ToolCallTree client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolObject} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-content-aitoolobject--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

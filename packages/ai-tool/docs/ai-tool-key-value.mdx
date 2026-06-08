@@ -1,0 +1,63 @@
+---
+title: AiToolKeyValue
+package: '@ds/ai-tool'
+description: Пара «ключ — значение» с раскладкой line или column; mono и error наследуются из AiToolDetails или задаются пропом.
+order: 4
+---
+
+import { KeyValuePair } from '../demos/examples/KeyValuePair'
+import KeyValuePairSrc from '../demos/examples/KeyValuePair.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolKeyValue
+
+Пара «ключ — значение» для содержимого инструмента. Собрана из `AiToolText`, поэтому поддерживает `mono` и `error`.
+
+## Когда использовать
+
+- Вывод полей результата инструмента (region, status, id).
+- Строка в составе `AiToolObject` или `AiToolArray`.
+
+## Анатомия
+
+### Variant (default `line`)
+
+- `line` — ключ слева, значение справа.
+- `column` — значение под ключом.
+
+### Mono / Error
+
+Наследуются из контекста `AiToolDetails` (внутри карточки — всегда mono, в состоянии error — красный) либо задаются пропом явно.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolKeyValue } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Раскладки' description='line и column' code={KeyValuePairSrc}>
+  <KeyValuePair client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolKeyValue} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-content-aitoolkeyvalue--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

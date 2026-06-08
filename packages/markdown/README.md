@@ -125,7 +125,7 @@ export function ViewerCodeCopy() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс корневого элемента. |
-| `components` | `any` | — | Override рендера элементов |
+| `components` | `Components` | — | Override рендера элементов |
 | `data-test-id` | `string` | `markdown` |  |
 | `onCodeCopyClick` | `((code: string) => void)` | — | Колбэк кнопки Copy на code-блоке |
 | `rehypePlugins` | `PluggableList` | — | Доп. rehype-плагины |

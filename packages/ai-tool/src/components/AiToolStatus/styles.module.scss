@@ -1,0 +1,53 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/hotSpot.module' as hotspot;
+
+$state-to-color: (
+  'success': 'primary',
+  'error': 'red',
+  'loading': 'blue',
+);
+
+.root {
+  @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+
+  @each $state, $color in $state-to-color {
+    &[data-state='#{$state}'] {
+      background-color: base.simple-var(base.$sn-theme, 'color', $color, 'accent');
+    }
+  }
+
+  &[data-state='pending'] {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular
+      base.simple-var(base.$sn-theme, 'color', 'neutral', 'accent');
+  }
+
+  &[data-state='loading']::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    background-color: base.simple-var(base.$sn-theme, 'color', 'blue', 'accent');
+
+    animation: pulse 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}

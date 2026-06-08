@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+  width: 100%;
+
+  &[data-variant='column'] {
+    flex-direction: column;
+    gap: base.$sn-primitive-dimension-0;
+  }
+}
+
+.key,
+.value {
+  @include m.label-font;
+
+  flex: 1 0 0;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: break-word;
+}
+
+.root[data-variant='line'] .value {
+  text-align: right;
+}
+
+.root[data-mono] {
+  .key,
+  .value {
+    @include m.mono-font;
+  }
+}
+
+.root[data-error] {
+  .key,
+  .value {
+    color: base.$sn-theme-color-red-text;
+  }
+}

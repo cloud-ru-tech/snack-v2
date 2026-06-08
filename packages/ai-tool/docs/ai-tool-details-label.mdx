@@ -1,0 +1,63 @@
+---
+title: AiToolDetailsLabel
+package: '@ds/ai-tool'
+description: Заголовок-чип части блока деталей (Запрос / Ответ) с кнопкой-«глаз» для показа секретных значений в теле.
+order: 9
+---
+
+import { DetailsLabelSecret } from '../demos/examples/DetailsLabelSecret'
+import DetailsLabelSecretSrc from '../demos/examples/DetailsLabelSecret.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolDetailsLabel
+
+Заголовок-чип части блока деталей — обычно «Запрос» или «Ответ». Опциональная кнопка-«глаз» (`showSecret` + `onToggleSecret`) переключает показ секретных значений в теле блока.
+
+## Когда использовать
+
+- Подзаголовок секции внутри `AiToolDetails`.
+- Переключатель показа секретов (токены, пароли) в результате инструмента.
+
+## Анатомия
+
+### State (default `default`)
+
+- `default` — нейтральный фон и текст.
+- `error` — красный.
+
+### Secret
+
+`showSecret` добавляет кнопку-«глаз». Видимое состояние — `secretRevealed` (источник истины — родитель): зачёркнутый глаз — секреты скрыты, открытый — показаны.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolDetailsLabel } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Переключение секрета' description='Кнопка-«глаз» меняет состояние secretRevealed' code={DetailsLabelSecretSrc}>
+  <DetailsLabelSecret client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolDetailsLabel} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-atoms-aitooldetailslabel--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

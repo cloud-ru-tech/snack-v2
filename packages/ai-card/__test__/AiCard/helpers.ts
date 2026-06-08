@@ -10,8 +10,8 @@ export const TEST_IDS = {
 } as const;
 
 export const AI_CARD_STORIES = {
-  playground: { name: 'card', story: 'playground' },
-  visualMatrix: { name: 'card', story: 'visual-matrix' },
+  playground: { name: 'aicard', story: 'playground' },
+  visualMatrix: { name: 'aicard', story: 'visual-matrix' },
 } as const satisfies Record<string, StoryRef>;
 
 export type AiCardStoryProps = Record<string, unknown>;

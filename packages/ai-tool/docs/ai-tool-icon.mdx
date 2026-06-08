@@ -1,0 +1,63 @@
+---
+title: AiToolIcon
+package: '@ds/ai-tool'
+description: Иконка типа инструмента (reasoning, search, read, act, security, wait), 16×16, цвет наследуется через currentColor.
+order: 1
+---
+
+import { IconSet } from '../demos/examples/IconSet'
+import IconSetSrc from '../demos/examples/IconSet.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolIcon
+
+Иконка 16×16, обозначающая тип шага инструмента. Цвет наследуется через `currentColor` — по умолчанию приглушённый `textTertiary`.
+
+## Когда использовать
+
+- Маркер типа шага в строке вызова инструмента (рассуждение, поиск, чтение, действие).
+- Рядом с заголовком блока деталей или в статус-строке.
+
+## Анатомия
+
+### Variant
+
+- `reasoning` — рассуждение модели.
+- `search` — поиск.
+- `read` — чтение.
+- `act` — действие.
+- `security` — проверка безопасности.
+- `wait` — ожидание.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolIcon } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Типы инструментов' description='Все значения variant в ряд' code={IconSetSrc}>
+  <IconSet client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolIcon} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-atoms-aitoolicon--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

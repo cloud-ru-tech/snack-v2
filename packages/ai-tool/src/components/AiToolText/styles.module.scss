@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  @include m.label-font;
+
+  display: block;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: break-word;
+
+  &[data-mono] {
+    @include m.mono-font;
+  }
+
+  &[data-error] {
+    color: base.$sn-theme-color-red-text;
+  }
+}

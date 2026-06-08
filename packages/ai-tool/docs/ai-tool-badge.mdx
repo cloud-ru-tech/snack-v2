@@ -1,0 +1,59 @@
+---
+title: AiToolBadge
+package: '@ds/ai-tool'
+description: Бейдж-пилюля ресурса с иконкой по badgeType (cloud-ru / other); полиморфен через as.
+order: 7
+---
+
+import { Badges } from '../demos/examples/Badges'
+import BadgesSrc from '../demos/examples/Badges.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolBadge
+
+Бейдж-пилюля ресурса со встроенной иконкой и текстом. Полиморфен через `as` — например `as='a'` для ссылки на ресурс.
+
+## Когда использовать
+
+- Отметка ресурса, к которому обращается инструмент (проект, сервис, документ).
+- Кликабельная ссылка на ресурс (`as='a'`).
+
+## Анатомия
+
+### BadgeType (default `other`)
+
+- `cloud-ru` — логотип Cloud.ru.
+- `other` — нейтральный ромб.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolBadge } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Бейджи ресурсов' description='Cloud.ru, нейтральный и ссылочный бейдж' code={BadgesSrc}>
+  <Badges client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolBadge} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-atoms-aitoolbadge--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

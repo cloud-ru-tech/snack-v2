@@ -50,6 +50,12 @@
       "path": "./ai-suggestion/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-tool/tsconfig.cjs.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.cjs.json"
+    },
+    {
       "path": "./counter/tsconfig.cjs.json"
     },
     {

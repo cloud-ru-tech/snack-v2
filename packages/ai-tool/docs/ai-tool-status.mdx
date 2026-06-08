@@ -1,0 +1,61 @@
+---
+title: AiToolStatus
+package: '@ds/ai-tool'
+description: Точка-индикатор состояния шага инструмента — success, error, loading (пульс) и pending (полое кольцо).
+order: 2
+---
+
+import { StatusRow } from '../demos/examples/StatusRow'
+import StatusRowSrc from '../demos/examples/StatusRow.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolStatus
+
+Точка-индикатор состояния выполнения шага инструмента.
+
+## Когда использовать
+
+- Пошаговое отображение прогресса инструмента: pending → loading → success / error.
+- Маркер состояния рядом с названием шага или ресурса.
+
+## Анатомия
+
+### State
+
+- `success` — зелёная заливка.
+- `error` — красная заливка.
+- `loading` — синяя заливка с пульсом.
+- `pending` — полое нейтральное кольцо.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolStatus } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Состояния статуса' description='pending · loading · success · error' code={StatusRowSrc}>
+  <StatusRow client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolStatus} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-atoms-aitoolstatus--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

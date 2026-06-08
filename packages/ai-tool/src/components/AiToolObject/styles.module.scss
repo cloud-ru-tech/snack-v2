@@ -1,0 +1,75 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: flex-start;
+
+  width: 100%;
+
+  &[data-variant='string'] {
+    flex-direction: row;
+    gap: base.$sn-primitive-dimension-2;
+    align-items: flex-start;
+  }
+}
+
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  width: 100%;
+}
+
+.name {
+  @include m.label-font;
+
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: break-word;
+}
+
+.value {
+  @include m.label-font;
+
+  flex: 1 0 0;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+
+.chevron {
+  flex-shrink: 0;
+}
+
+.root[data-mono] {
+  > .name,
+  > .value,
+  > .header > .name {
+    @include m.mono-font;
+  }
+}
+
+.root[data-error] {
+  > .name,
+  > .value,
+  > .header > .name {
+    color: base.$sn-theme-color-red-text;
+  }
+}
+
+.nested {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: flex-start;
+
+  width: 100%;
+  padding-left: base.$sn-primitive-dimension-16;
+  border-left: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+}

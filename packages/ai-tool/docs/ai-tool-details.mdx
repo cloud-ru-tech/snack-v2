@@ -1,0 +1,65 @@
+---
+title: AiToolDetails
+package: '@ds/ai-tool'
+description: Карточка деталей инструмента — заголовок-лейбл поверх скроллируемого тела; задаёт mono и (в state error) error для всего вложенного контента.
+order: 8
+---
+
+import { DetailsCard } from '../demos/examples/DetailsCard'
+import DetailsCardSrc from '../demos/examples/DetailsCard.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolDetails
+
+Карточка деталей инструмента: заголовок-лейбл (`AiToolDetailsLabel`) поверх скроллируемого тела.
+
+Весь текстовый контент внутри карточки автоматически становится моноширинным; в состоянии `error` — ещё и красным. Это прокидывается во вложенные `AiToolText`, `AiToolKeyValue`, `AiToolObject`, `AiToolArray` без ручной простановки пропсов.
+
+## Когда использовать
+
+- Блок с аргументами или результатом одного вызова инструмента.
+- Контейнер для дерева данных с фиксированной высотой и скроллом.
+
+## Анатомия
+
+### State (default `default`)
+
+- `default` — нейтральная рамка и заголовок.
+- `error` — красная рамка и заголовок; вложенный контент становится mono + error.
+
+### Scroll (default `true`)
+
+Ограничивает высоту тела и включает вертикальный скролл. При `false` карточка растягивается по контенту.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolDetails } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Блок деталей' description='AiToolDetails с моноширинным контентом' code={DetailsCardSrc}>
+  <DetailsCard client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolDetails} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-atoms-aitooldetails--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

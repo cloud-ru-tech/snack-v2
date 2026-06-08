@@ -1,0 +1,66 @@
+---
+title: AiToolArray
+package: '@ds/ai-tool'
+description: Сворачиваемый список со счётчиком элементов; принимает любые вложенные узлы, включая массив объектов.
+order: 6
+---
+
+import { ArrayList } from '../demos/examples/ArrayList'
+import ArrayListSrc from '../demos/examples/ArrayList.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolArray
+
+Сворачиваемый список однотипных элементов: имя, счётчик (`count` + `unit`) и chevron. Раскрытие controlled: `opened` + `onToggle`.
+
+## Когда использовать
+
+- Массив элементов в результате инструмента.
+- Список объектов с вложенными полями.
+
+## Анатомия
+
+### Count + Unit
+
+Счётчик рендерится как `[ N ]` или `[ N unit ]` (например `[ 2 шт. ]`).
+
+### Вложенный контент
+
+В элементы можно вкладывать любой контент: `AiToolText`, `AiToolKeyValue`, `AiToolObject` (включая массив объектов) и вложенные `AiToolArray`.
+
+### Mono / Error
+
+Наследуются из `AiToolDetails` и каскадом передаются во вложенные узлы; либо задаются пропом явно.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolArray } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Массив объектов' description='Array с вложенными Object' code={ArrayListSrc}>
+  <ArrayList client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolArray} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-content-aitoolarray--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

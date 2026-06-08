@@ -1,0 +1,63 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  width: 100%;
+}
+
+.name {
+  @include m.label-font;
+
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  white-space: nowrap;
+}
+
+.counter {
+  @include m.label-font;
+
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  white-space: nowrap;
+}
+
+.chevron {
+  flex-shrink: 0;
+}
+
+.root[data-mono] > .header {
+  .name,
+  .counter {
+    @include m.mono-font;
+  }
+}
+
+.root[data-error] > .header {
+  .name,
+  .counter {
+    color: base.$sn-theme-color-red-text;
+  }
+}
+
+.nested {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: flex-start;
+
+  width: 100%;
+  padding-left: base.$sn-primitive-dimension-16;
+  border-left: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+}

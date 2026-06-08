@@ -19,6 +19,7 @@
     "@ds/ai-queue": "workspace:*",
     "@ds/ai-shimmer": "workspace:*",
     "@ds/ai-suggestion": "workspace:*",
+    "@ds/ai-tool": "workspace:*",
     "@ds/alert": "workspace:*",
     "@ds/attachment": "workspace:*",
     "@ds/avatar": "workspace:*",

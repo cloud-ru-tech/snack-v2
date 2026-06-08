@@ -8,7 +8,7 @@ import styles from './stories.module.scss';
 import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof AiCard> = {
-  title: 'AI/Card',
+  title: 'AI/AiCard',
   component: AiCard,
   parameters: { layout: 'padded' },
 };

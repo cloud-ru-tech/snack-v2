@@ -1,0 +1,43 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-2 base.$sn-primitive-dimension-4;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decorTransparent;
+  border-radius: base.$sn-density-radius-2xs;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-decoration: none;
+
+  background: transparent;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: base.$sn-theme-color-neutral-decorTransparent;
+    }
+  }
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.label {
+  @include m.label-font;
+
+  overflow: hidden;
+
+  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-2;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

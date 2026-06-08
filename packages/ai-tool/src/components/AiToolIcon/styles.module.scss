@@ -1,0 +1,12 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.glyph {
+  display: block;
+}

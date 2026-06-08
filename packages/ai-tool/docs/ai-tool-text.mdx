@@ -1,0 +1,62 @@
+---
+title: AiToolText
+package: '@ds/ai-tool'
+description: Текстовый блок содержимого инструмента с режимами mono (моноширинный) и error (красный); внутри AiToolDetails наследуется автоматически.
+order: 3
+---
+
+import { TextBlock } from '../demos/examples/TextBlock'
+import TextBlockSrc from '../demos/examples/TextBlock.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolText
+
+Текстовый блок содержимого инструмента. Базовый строительный элемент: из него собираются `AiToolKeyValue`, `AiToolObject` и `AiToolArray`.
+
+## Когда использовать
+
+- Вывод текстового результата или аргумента инструмента.
+- Моноширинный вывод JSON-подобных данных (`mono`).
+
+## Анатомия
+
+### Mono (default `false`)
+
+Переключает шрифт на моноширинный. Внутри `AiToolDetails` включается автоматически.
+
+### Error (default `false`)
+
+Окрашивает текст в красный. Внутри `AiToolDetails` в состоянии `error` включается автоматически.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolText } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Режимы текста' description='Обычный, mono, error и mono+error' code={TextBlockSrc}>
+  <TextBlock client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolText} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitoolelements-content-aitooltext--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

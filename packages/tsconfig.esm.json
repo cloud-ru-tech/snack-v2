@@ -48,6 +48,12 @@
       "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {
+      "path": "./ai-tool/tsconfig.esm.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.esm.json"
+    },
+    {
       "path": "./counter/tsconfig.esm.json"
     },
     {

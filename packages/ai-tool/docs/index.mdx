@@ -1,0 +1,59 @@
+---
+title: AiTool
+package: '@ds/ai-tool'
+description: Базовые презентационные элементы для сборки AI-компонентов Tool и Tool Simple — иконки, статус, текст, key-value, дерево, бейджи и блок деталей.
+order: 0
+---
+
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# AiTool
+
+`@ds/ai-tool` — набор презентационных элементов для отображения вызова инструмента (tool call) в AI-сценариях стриминга. Из них собираются составные компоненты `Tool` (VibeOps) и `Tool Simple` (Гига-помощник): тип инструмента, статус выполнения, текст, дерево аргументов и результата, бейджи ресурсов.
+
+Все элементы — тонкие presentational-компоненты: состояние (раскрытие узлов, секрет) живёт в родителе, данные передаются через слоты `ReactNode`. Компоненты ничего не запоминают сами.
+
+## Когда использовать
+
+- Рендер аргументов и результата вызова инструмента в чате AI-ассистента.
+- Пошаговое отображение статуса инструмента (pending → loading → success / error).
+- Сворачиваемое дерево JSON-подобных данных (объекты, массивы, ключ-значение).
+
+### Когда не нужен
+
+- Готовый высокоуровневый компонент вызова инструмента:
+  - используйте `Tool` / `Tool Simple` (собраны из этих элементов).
+- Обычный контент-блок без семантики инструмента:
+  - используйте `@ds/card` или типографику `@ds/typography`.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolIcon, AiToolObject, AiToolStatus } from '@ds/ai-tool'
+```
+
+## Компоненты
+
+### Content — наполнение контентом
+
+- [AiToolText](/components/ai-tool/ai-tool-text) — текстовый блок (mono / error).
+- [AiToolKeyValue](/components/ai-tool/ai-tool-key-value) — пара «ключ — значение».
+- [AiToolObject](/components/ai-tool/ai-tool-object) — узел дерева (complex / string).
+- [AiToolArray](/components/ai-tool/ai-tool-array) — сворачиваемый список со счётчиком.
+
+### Atoms — каркасные элементы
+
+- [AiToolIcon](/components/ai-tool/ai-tool-icon) — иконка типа инструмента.
+- [AiToolStatus](/components/ai-tool/ai-tool-status) — индикатор состояния шага.
+- [AiToolBadge](/components/ai-tool/ai-tool-badge) — бейдж ресурса.
+- [AiToolDetails](/components/ai-tool/ai-tool-details) — карточка деталей.
+- [AiToolDetailsLabel](/components/ai-tool/ai-tool-details-label) — заголовок части блока деталей.
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool')} />

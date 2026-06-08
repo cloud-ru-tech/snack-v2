@@ -10,7 +10,7 @@ import { TEST_IDS } from '../testIds';
 const onChangeDisabled = fn();
 
 const meta: Meta<typeof AiCard> = {
-  title: 'AI/Card/Tests/Interaction',
+  title: 'AI/AiCard/Tests/Interaction',
   component: AiCard,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {

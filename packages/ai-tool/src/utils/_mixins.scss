@@ -1,0 +1,9 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+@mixin label-font {
+  @include base.composite-var(('label': base.$sn-thin-label-s), 'label');
+}
+
+@mixin mono-font {
+  @include base.composite-var(('mono': base.$sn-mono-body-s), 'mono');
+}

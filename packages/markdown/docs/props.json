@@ -113,7 +113,7 @@
         "description": "CSS-класс корневого элемента."
       },
       "components": {
-        "type": "any",
+        "type": "Components",
         "required": false,
         "description": "Override рендера элементов"
       },

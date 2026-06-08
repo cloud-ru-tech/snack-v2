@@ -1,0 +1,528 @@
+{
+  "AiToolArray": {
+    "displayName": "AiToolArray",
+    "propsTypeName": "AiToolArrayProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вложенные элементы (при раскрытии)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "count": {
+        "type": "number",
+        "required": false,
+        "description": "Количество элементов — рендерится как `[ N ]` (или `[ N unit ]`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-array"
+      },
+      "error": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние ошибки: имя и счётчик красные. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "mono": {
+        "type": "boolean",
+        "required": false,
+        "description": "Моноширинный режим имени и счётчика. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "name": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Имя узла (`Key[ArrayName]`)."
+      },
+      "onToggle": {
+        "type": "((opened: boolean) => void)",
+        "required": false,
+        "description": "Переключение раскрытия. Получает новое значение `opened`."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Раскрытое состояние. Источник истины — родитель."
+      },
+      "unit": {
+        "type": "string",
+        "required": false,
+        "description": "Единица измерения после количества (например `шт.`)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiToolBadge": {
+    "displayName": "AiToolBadge",
+    "propsTypeName": "AiToolBadgeProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня (`'a'` для ссылки и т.д.). По умолчанию `'span'`.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "badgeType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "cloud-ru",
+          "other"
+        ],
+        "description": "Тип бейджа — определяет встроенную иконку (`cloud-ru` / `other`). Без него иконка не рендерится.",
+        "typeRefs": [
+          "AiToolBadgeType"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-badge"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент (вместо `forwardRef`).",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "label": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст бейджа (одна строка с ellipsis)."
+      }
+    },
+    "relatedTypes": {
+      "AiToolBadgeType": {
+        "kind": "union",
+        "values": [
+          "cloud-ru",
+          "other"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      }
+    }
+  },
+  "AiToolDetails": {
+    "displayName": "AiToolDetails",
+    "propsTypeName": "AiToolDetailsProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент блока деталей (текст, key-value, дерево)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-details"
+      },
+      "label": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст заголовка-лейбла."
+      },
+      "onToggleSecret": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Клик по кнопке-«глаз» заголовка."
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Ограничить высоту контента и включить вертикальный скролл. По умолчанию `true`."
+      },
+      "secretRevealed": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Секрет раскрыт. Источник истины — родитель."
+      },
+      "showSecret": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показать кнопку-«глаз» в заголовке для раскрытия секрета."
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error"
+        ],
+        "defaultValue": "default",
+        "description": "Состояние: `default` — нейтральный, `error` — красная рамка и лейбл.",
+        "typeRefs": [
+          "AiToolDetailsState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolDetailsState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiToolDetailsLabel": {
+    "displayName": "AiToolDetailsLabel",
+    "propsTypeName": "AiToolDetailsLabelProps",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-details-label"
+      },
+      "label": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст лейбла (заголовок блока деталей)."
+      },
+      "onToggleSecret": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Клик по кнопке-«глаз». Не вызывается, если `showSecret` не задан."
+      },
+      "secretRevealed": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель."
+      },
+      "showSecret": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показать кнопку-«глаз» для раскрытия секретного значения."
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error"
+        ],
+        "defaultValue": "default",
+        "description": "Состояние: `default` — нейтральный, `error` — красный.",
+        "typeRefs": [
+          "AiToolDetailsState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolDetailsState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiToolIcon": {
+    "displayName": "AiToolIcon",
+    "propsTypeName": "AiToolIconProps",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-icon"
+      },
+      "variant": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "act",
+          "read",
+          "reasoning",
+          "search",
+          "security",
+          "wait"
+        ],
+        "description": "Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait).",
+        "typeRefs": [
+          "AiToolIconType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolIconType": {
+        "kind": "union",
+        "values": [
+          "act",
+          "read",
+          "reasoning",
+          "search",
+          "security",
+          "wait"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiToolKeyValue": {
+    "displayName": "AiToolKeyValue",
+    "propsTypeName": "AiToolKeyValueProps",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-key-value"
+      },
+      "error": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние ошибки: ключ и значение красные. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "label": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Ключ (левая / верхняя часть пары)."
+      },
+      "mono": {
+        "type": "boolean",
+        "required": false,
+        "description": "Моноширинный режим ключа и значения. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "value": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Значение (правая / нижняя часть пары)."
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "column",
+          "line"
+        ],
+        "defaultValue": "line",
+        "description": "Раскладка пары: `line` — ключ и значение в строку, `column` — стопкой.",
+        "typeRefs": [
+          "AiToolKeyValueType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolKeyValueType": {
+        "kind": "union",
+        "values": [
+          "column",
+          "line"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiToolObject": {
+    "displayName": "AiToolObject",
+    "propsTypeName": "AiToolObjectProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Вложенное дерево (только для раскрытого `complex`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-object"
+      },
+      "error": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние ошибки: имя и значение красные. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "mono": {
+        "type": "boolean",
+        "required": false,
+        "description": "Моноширинный режим имени и значения. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "name": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Имя узла (`Key[ObjectName]`)."
+      },
+      "onToggle": {
+        "type": "((opened: boolean) => void)",
+        "required": false,
+        "description": "Переключение раскрытия (только для `complex`). Получает новое значение `opened`."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Раскрытое состояние (только для `complex`). Источник истины — родитель."
+      },
+      "value": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Значение для типа `string` (инлайн рядом с именем)."
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "complex",
+          "string"
+        ],
+        "defaultValue": "complex",
+        "description": "Тип узла: `complex` — сворачиваемое дерево, `string` — инлайн ключ-значение.",
+        "typeRefs": [
+          "AiToolObjectType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolObjectType": {
+        "kind": "union",
+        "values": [
+          "complex",
+          "string"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiToolStatus": {
+    "displayName": "AiToolStatus",
+    "propsTypeName": "AiToolStatusProps",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-status"
+      },
+      "state": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "error",
+          "loading",
+          "pending",
+          "success"
+        ],
+        "description": "Состояние выполнения инструмента: success / error / loading / pending.",
+        "typeRefs": [
+          "AiToolStatusState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolStatusState": {
+        "kind": "union",
+        "values": [
+          "error",
+          "loading",
+          "pending",
+          "success"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiToolText": {
+    "displayName": "AiToolText",
+    "propsTypeName": "AiToolTextProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст блока."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-text"
+      },
+      "error": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние ошибки: текст красный. По умолчанию наследуется от `AiToolDetails`."
+      },
+      "mono": {
+        "type": "boolean",
+        "required": false,
+        "description": "Моноширинный режим: шрифт mono/body вместо label. По умолчанию наследуется от `AiToolDetails`."
+      }
+    },
+    "relatedTypes": {}
+  }
+}
