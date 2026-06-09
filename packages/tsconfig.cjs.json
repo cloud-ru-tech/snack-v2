@@ -116,6 +116,9 @@
       "path": "./search/tsconfig.cjs.json"
     },
     {
+      "path": "./site-card-vacancy/tsconfig.cjs.json"
+    },
+    {
       "path": "./skeleton/tsconfig.cjs.json"
     },
     {
@@ -180,9 +183,6 @@
     },
     {
       "path": "./tree/tsconfig.cjs.json"
-    },
-    {
-      "path": "./site-card-vacancy/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-avatar-detail/tsconfig.cjs.json"

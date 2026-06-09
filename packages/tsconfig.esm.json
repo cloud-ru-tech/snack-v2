@@ -114,6 +114,9 @@
       "path": "./search/tsconfig.esm.json"
     },
     {
+      "path": "./site-card-vacancy/tsconfig.esm.json"
+    },
+    {
       "path": "./skeleton/tsconfig.esm.json"
     },
     {
@@ -178,9 +181,6 @@
     },
     {
       "path": "./tree/tsconfig.esm.json"
-    },
-    {
-      "path": "./site-card-vacancy/tsconfig.esm.json"
     },
     {
       "path": "./uikit-product-avatar-detail/tsconfig.esm.json"
