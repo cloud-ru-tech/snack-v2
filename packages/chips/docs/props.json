@@ -398,7 +398,7 @@
           "year"
         ],
         "defaultValue": "date",
-        "description": "Режим выбора календаря"
+        "description": "Режим выбора даты\nРежим выбора даты и времени\nРежим выбора даты без времени"
       },
       "onChange": {
         "type": "((value: Date) => void)",
@@ -447,8 +447,7 @@
       "showSeconds": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true",
-        "description": "Показывать секунды в режиме date-time"
+        "description": "Показывать секунды в выборе и отображении времени"
       },
       "size": {
         "type": "enum",
@@ -667,11 +666,13 @@
       },
       "dataError": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
       },
       "dataFiltered": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
       },
       "defaultValue": {
         "type": "ItemId[]",
@@ -726,17 +727,17 @@
       "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+        "description": "Состояние загрузки\nФлаг, отвечающий за состояние загрузки списка"
       },
       "noDataState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии данных"
+        "description": "Экран при отсутствии данных"
       },
       "noResultsState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии результатов поиска или фильтров"
+        "description": "Экран при отсутствии результатов поиска или фильтров"
       },
       "onApprove": {
         "type": "(() => void)",
@@ -749,9 +750,9 @@
         "description": "Колбек кнопки отмены"
       },
       "onChange": {
-        "type": "OnChangeHandler<any>",
+        "type": "OnChangeHandler<ItemId[]>",
         "required": false,
-        "description": "Controlled обработчик измения состояния"
+        "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`"
       },
       "onClearButtonClick": {
         "type": "MouseEventHandler<HTMLButtonElement>",
@@ -810,7 +811,7 @@
       "scrollToSelectedItem": {
         "type": "boolean",
         "required": false,
-        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
       },
       "searchable": {
         "type": "boolean",
@@ -819,7 +820,8 @@
       },
       "selection": {
         "type": "SelectionMultipleState | SelectionSingleState",
-        "required": false
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
       "size": {
         "type": "enum",
@@ -903,6 +905,7 @@
         "description": "Массив чипов",
         "typeRefs": [
           "BaseChipProps",
+          "ChipChoiceDateWithSeconds",
           "ChipChoiceRowFilter",
           "DropdownBridgeProps"
         ]
@@ -1002,6 +1005,25 @@
             "typeRefs": [
               "TruncateStringProps"
             ]
+          }
+        },
+        "own": true
+      },
+      "ChipChoiceDateWithSeconds": {
+        "kind": "interface",
+        "props": {
+          "mode": {
+            "type": "\"date-time\" | undefined",
+            "required": false,
+            "values": [
+              "date-time"
+            ],
+            "description": "Режим выбора даты и времени"
+          },
+          "showSeconds": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать секунды в выборе и отображении времени"
           }
         },
         "own": true
@@ -1200,11 +1222,13 @@
       },
       "dataError": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
       },
       "dataFiltered": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
       },
       "defaultValue": {
         "type": "ItemId",
@@ -1259,17 +1283,17 @@
       "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+        "description": "Состояние загрузки\nФлаг, отвечающий за состояние загрузки списка"
       },
       "noDataState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии данных"
+        "description": "Экран при отсутствии данных"
       },
       "noResultsState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии результатов поиска или фильтров"
+        "description": "Экран при отсутствии результатов поиска или фильтров"
       },
       "onApprove": {
         "type": "(() => void)",
@@ -1282,9 +1306,9 @@
         "description": "Колбек кнопки отмены"
       },
       "onChange": {
-        "type": "OnChangeHandler<any>",
+        "type": "OnChangeHandler<ItemId>",
         "required": false,
-        "description": "Controlled обработчик измения состояния"
+        "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`"
       },
       "onClearButtonClick": {
         "type": "MouseEventHandler<HTMLButtonElement>",
@@ -1343,7 +1367,7 @@
       "scrollToSelectedItem": {
         "type": "boolean",
         "required": false,
-        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
       },
       "searchable": {
         "type": "boolean",
@@ -1352,7 +1376,8 @@
       },
       "selection": {
         "type": "SelectionMultipleState | SelectionSingleState",
-        "required": false
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
       "size": {
         "type": "enum",
@@ -1670,11 +1695,13 @@
       },
       "dataError": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
       },
       "dataFiltered": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
       },
       "defaultValue": {
         "type": "Date | Range | ItemId | ItemId[] | TimeValue",
@@ -1733,7 +1760,7 @@
       "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
+        "description": "Состояние загрузки\nФлаг, отвечающий за состояние загрузки списка"
       },
       "mode": {
         "type": "enum",
@@ -1744,17 +1771,17 @@
           "month",
           "year"
         ],
-        "description": "Режим выбора календаря"
+        "description": "Режим выбора даты\nРежим выбора даты и времени\nРежим выбора даты без времени"
       },
       "noDataState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии данных"
+        "description": "Экран при отсутствии данных"
       },
       "noResultsState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии результатов поиска или фильтров"
+        "description": "Экран при отсутствии результатов поиска или фильтров"
       },
       "onApprove": {
         "type": "(() => void)",
@@ -1767,9 +1794,9 @@
         "description": "Колбек кнопки отмены"
       },
       "onChange": {
-        "type": "((value: any) => void) | ((value: Date) => void) | ((value: Range) => void) | OnChangeHandler<any> | ((value: TimeValue) => void)",
+        "type": "((value: any) => void) | ((value: Date) => void) | ((value: Range) => void) | OnChangeHandler<ItemId[]> | OnChangeHandler<ItemId> | ((value: TimeValue) => void)",
         "required": false,
-        "description": "Controlled обработчик измения состояния\nКолбек смены значения"
+        "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`\nControlled обработчик изменения состояния — получает выбранный `ItemId`\nКолбек смены значения"
       },
       "onClearButtonClick": {
         "type": "MouseEventHandler<HTMLButtonElement>",
@@ -1828,7 +1855,7 @@
       "scrollToSelectedItem": {
         "type": "boolean",
         "required": false,
-        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
       },
       "searchable": {
         "type": "boolean",
@@ -1837,13 +1864,13 @@
       },
       "selection": {
         "type": "SelectionMultipleState | SelectionSingleState",
-        "required": false
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
       "showSeconds": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true",
-        "description": "Показывать секунды в режиме date-time\nПоказывать ли секунды"
+        "description": "Показывать секунды в выборе и отображении времени\nПоказывать ли секунды"
       },
       "size": {
         "type": "enum",
@@ -1936,41 +1963,6 @@
           "m",
           "s"
         ]
-      }
-    },
-    "relatedTypes": {}
-  },
-  "useHandleOnKeyDown": {
-    "displayName": "useHandleOnKeyDown",
-    "propsTypeName": null,
-    "props": {
-      "setOpen": {
-        "type": "(open: boolean) => void",
-        "required": true
-      }
-    },
-    "relatedTypes": {}
-  },
-  "useOptionSearch": {
-    "displayName": "useOptionSearch",
-    "propsTypeName": null,
-    "description": "Нечеткий поиск среди айтемов по полям 'content.option', 'content.caption', 'content.description', 'label'",
-    "props": {
-      "disableFuzzySearch": {
-        "type": "boolean",
-        "required": false
-      },
-      "flatMapOptions": {
-        "type": "(BaseOption<T> | AccordionOption<T> | NestListOption<T>)[]",
-        "required": true
-      },
-      "minSearchInputLength": {
-        "type": "number",
-        "required": false
-      },
-      "options": {
-        "type": "FilterOption<T>[]",
-        "required": true
       }
     },
     "relatedTypes": {}

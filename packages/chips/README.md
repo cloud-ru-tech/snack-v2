@@ -17,7 +17,7 @@ pnpm add @ds/chips
 ```
 
 ```ts
-import { ChipAssist, ChipToggle, ChipChoice, ChipChoiceRow } from '@ds/chips'
+import { ChipAssist, ChipToggle, ChipChoice, ChipChoiceRow } from '@ds/chips';
 ```
 
 ## Figma
@@ -168,8 +168,8 @@ ChipChoice для одиночного выбора значения из спи
 | `className` | `string` | — | CSS-класс |
 | `contentRender` | `((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => ReactNode) \| undefined` | — | Кастомный рендер контента опции |
 | `data-test-id` | `string` | — |  |
-| `dataError` | `boolean` | — |  |
-| `dataFiltered` | `boolean` | — |  |
+| `dataError` | `boolean` | — | Загрузка данных завершилась ошибкой: показывается `errorDataState` |
+| `dataFiltered` | `boolean` | — | Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState` |
 | `defaultValue` | `ItemId` | — | Начальное состояние |
 | `disableFuzzySearch` | `boolean` | `false` | Отключает Fuzzy Search |
 | `disabled` | `boolean` | — | Отключён |
@@ -180,12 +180,12 @@ ChipChoice для одиночного выбора значения из спи
 | `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
 | `icon` | `ReactNode` | — | Иконка |
 | `label` | `string` | — | Текст чипа |
-| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвещающий за состояние загрузки списка |
-| `noDataState` | `EmptyStateProps` | — | Экран при отстутствии данных |
-| `noResultsState` | `EmptyStateProps` | — | Экран при отстутствии результатов поиска или фильтров |
+| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
+| `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
+| `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `onApprove` | `(() => void)` | — | Колбек основной кнопки |
 | `onCancel` | `(() => void)` | — | Колбек кнопки отмены |
-| `onChange` | `OnChangeHandler<any>` | — | Controlled обработчик измения состояния |
+| `onChange` | `OnChangeHandler<ItemId>` | — | Controlled обработчик изменения состояния — получает выбранный `ItemId` |
 | `onClearButtonClick` | `MouseEventHandler<HTMLButtonElement>` | — | Колбек для клика по кнопке очистки |
 | `onClick` | `MouseEventHandler<HTMLButtonElement \| HTMLDivElement>` | — | Колбек обработки клика |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента |
@@ -194,9 +194,9 @@ ChipChoice для одиночного выбора значения из спи
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
 | `scrollContainerRef` | `Ref<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
-| `scrollToSelectedItem` | `boolean` | — | Флаг, отвещающий за прокручивание до выбранного элемента |
+| `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `searchable` | `boolean` | — | Показывать строку поиска в дроплисте |
-| `selection` | `SelectionMultipleState \| SelectionSingleState` | — |  |
+| `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
@@ -244,8 +244,8 @@ ChipChoice для множественного выбора значений и�
 | `className` | `string` | — | CSS-класс |
 | `contentRender` | `((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => ReactNode) \| undefined` | — | Кастомный рендер контента опции |
 | `data-test-id` | `string` | — |  |
-| `dataError` | `boolean` | — |  |
-| `dataFiltered` | `boolean` | — |  |
+| `dataError` | `boolean` | — | Загрузка данных завершилась ошибкой: показывается `errorDataState` |
+| `dataFiltered` | `boolean` | — | Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState` |
 | `defaultValue` | `ItemId[]` | — | Начальное состояние |
 | `disableFuzzySearch` | `boolean` | `false` | Отключает Fuzzy Search |
 | `disabled` | `boolean` | — | Отключён |
@@ -256,12 +256,12 @@ ChipChoice для множественного выбора значений и�
 | `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
 | `icon` | `ReactNode` | — | Иконка |
 | `label` | `string` | — | Текст чипа |
-| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвещающий за состояние загрузки списка |
-| `noDataState` | `EmptyStateProps` | — | Экран при отстутствии данных |
-| `noResultsState` | `EmptyStateProps` | — | Экран при отстутствии результатов поиска или фильтров |
+| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
+| `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
+| `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `onApprove` | `(() => void)` | — | Колбек основной кнопки |
 | `onCancel` | `(() => void)` | — | Колбек кнопки отмены |
-| `onChange` | `OnChangeHandler<any>` | — | Controlled обработчик измения состояния |
+| `onChange` | `OnChangeHandler<ItemId[]>` | — | Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]` |
 | `onClearButtonClick` | `MouseEventHandler<HTMLButtonElement>` | — | Колбек для клика по кнопке очистки |
 | `onClick` | `MouseEventHandler<HTMLButtonElement \| HTMLDivElement>` | — | Колбек обработки клика |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента |
@@ -270,9 +270,9 @@ ChipChoice для множественного выбора значений и�
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
 | `scrollContainerRef` | `Ref<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
-| `scrollToSelectedItem` | `boolean` | — | Флаг, отвещающий за прокручивание до выбранного элемента |
+| `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `searchable` | `boolean` | — | Показывать строку поиска в дроплисте |
-| `selection` | `SelectionMultipleState \| SelectionSingleState` | — |  |
+| `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
@@ -324,14 +324,14 @@ ChipChoice для выбора одной даты через календарь
 | `icon` | `ReactNode` | — | Иконка |
 | `label` | `string` | — | Текст чипа |
 | `loading` | `boolean` | — | Состояние загрузки |
-| `mode` | `"date"` \| `"date-time"` \| `"month"` \| `"year"` | `date` | Режим выбора календаря |
+| `mode` | `"date"` \| `"date-time"` \| `"month"` \| `"year"` | `date` | Режим выбора даты <br/> Режим выбора даты и времени <br/> Режим выбора даты без времени |
 | `onChange` | `((value: Date) => void)` | — | Колбек смены значения |
 | `onClearButtonClick` | `MouseEventHandler<HTMLButtonElement>` | — | Колбек для клика по кнопке очистки |
 | `onClick` | `MouseEventHandler<HTMLButtonElement \| HTMLDivElement>` | — | Колбек обработки клика |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
-| `showSeconds` | `boolean` | `true` | Показывать секунды в режиме date-time |
+| `showSeconds` | `boolean` | — | Показывать секунды в выборе и отображении времени |
 | `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
@@ -602,7 +602,7 @@ const FILTERS = [
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `TState` | — | Начальное состояние фильтров |
-| `filters` | `BaseChipProps` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` | — | Массив чипов |
+| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` | — | Массив чипов |
 | `onChange` | `((filters: TState) => void)` | — | Колбек изменения состояния фильтров |
 | `onVisibleFiltersChange` | `((value: string[]) => void)` | — | Коллбек на изменение видимых фильтров |
 | `showAddButton` | `boolean` | `true` | Скрыть/показать кнопку добавления фильров |
@@ -624,6 +624,13 @@ const FILTERS = [
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `tabIndex` | `number \| undefined` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки |
+
+**ChipChoiceDateWithSeconds**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `mode` | `"date-time"` | — | Режим выбора даты и времени |
+| `showSeconds` | `boolean \| undefined` | — | Показывать секунды в выборе и отображении времени |
 
 - `ChipChoiceRowFilter` = `OmitBetter<ChipChoiceProps, "value" | "defaultValue" | "onChange" | "size"> & { pinned?: boolean; }`
 
@@ -682,8 +689,8 @@ const FILTERS = [
 | `content` | `((props: CustomContentRenderProps<any>) => ReactNode)` | — | Контент выпадающего меню |
 | `contentRender` | `((option: { label: ItemId; value?: ItemId; contentRenderProps?: ContentRenderProps; }) => ReactNode) \| undefined` | — | Кастомный рендер контента опции |
 | `data-test-id` | `string` | — |  |
-| `dataError` | `boolean` | — |  |
-| `dataFiltered` | `boolean` | — |  |
+| `dataError` | `boolean` | — | Загрузка данных завершилась ошибкой: показывается `errorDataState` |
+| `dataFiltered` | `boolean` | — | Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState` |
 | `defaultValue` | `Date \| Range \| ItemId \| ItemId[] \| TimeValue` | — | Начальное состояние <br/> Значение компонента по-умолчанию <br/> Значение по-умолчанию для uncontrolled. <br/> Значение компонента по умолчанию |
 | `disableFuzzySearch` | `boolean` | `false` | Отключает Fuzzy Search |
 | `disabled` | `boolean` | — | Отключён |
@@ -695,13 +702,13 @@ const FILTERS = [
 | `icon` | `ReactNode` | — | Иконка |
 | `id` | `string` | — |  |
 | `label` | `string` | — | Текст чипа |
-| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвещающий за состояние загрузки списка |
-| `mode` | `"date"` \| `"date-time"` \| `"month"` \| `"year"` | — | Режим выбора календаря |
-| `noDataState` | `EmptyStateProps` | — | Экран при отстутствии данных |
-| `noResultsState` | `EmptyStateProps` | — | Экран при отстутствии результатов поиска или фильтров |
+| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
+| `mode` | `"date"` \| `"date-time"` \| `"month"` \| `"year"` | — | Режим выбора даты <br/> Режим выбора даты и времени <br/> Режим выбора даты без времени |
+| `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
+| `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `onApprove` | `(() => void)` | — | Колбек основной кнопки |
 | `onCancel` | `(() => void)` | — | Колбек кнопки отмены |
-| `onChange` | `((value: any) => void) \| ((value: Date) => void) \| ((value: Range) => void) \| OnChangeHandler<any> \| ((value: TimeValue) => void)` | — | Controlled обработчик измения состояния <br/> Колбек смены значения |
+| `onChange` | `((value: any) => void) \| ((value: Date) => void) \| ((value: Range) => void) \| OnChangeHandler<ItemId[]> \| OnChangeHandler<ItemId> \| ((value: TimeValue) => void)` | — | Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]` <br/> Controlled обработчик изменения состояния — получает выбранный `ItemId` <br/> Колбек смены значения |
 | `onClearButtonClick` | `MouseEventHandler<HTMLButtonElement>` | — | Колбек для клика по кнопке очистки |
 | `onClick` | `MouseEventHandler<HTMLButtonElement \| HTMLDivElement>` | — | Колбек обработки клика |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента |
@@ -710,10 +717,10 @@ const FILTERS = [
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
 | `scrollContainerRef` | `Ref<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
-| `scrollToSelectedItem` | `boolean` | — | Флаг, отвещающий за прокручивание до выбранного элемента |
+| `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `searchable` | `boolean` | — | Показывать строку поиска в дроплисте |
-| `selection` | `SelectionMultipleState \| SelectionSingleState` | — |  |
-| `showSeconds` | `boolean` | `true` | Показывать секунды в режиме date-time <br/> Показывать ли секунды |
+| `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
+| `showSeconds` | `boolean` | — | Показывать секунды в выборе и отображении времени <br/> Показывать ли секунды |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
@@ -733,22 +740,3 @@ const FILTERS = [
 | `onApprove` | `() => void` | — |  |
 | `onCancel` | `() => void` | — |  |
 | `size` | `"l"` \| `"m"` \| `"s"` | — |  |
-
-## useHandleOnKeyDown
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `setOpen` | `(open: boolean) => void` | — |  |
-
-## useOptionSearch
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `disableFuzzySearch` | `boolean` | — |  |
-| `flatMapOptions` | `(BaseOption<T> \| AccordionOption<T> \| NestListOption<T>)[]` | — |  |
-| `minSearchInputLength` | `number` | — |  |
-| `options` | `FilterOption<T>[]` | — |  |
