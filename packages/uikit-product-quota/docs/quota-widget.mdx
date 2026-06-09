@@ -1,0 +1,101 @@
+---
+title: QuotaWidget
+package: '@ds/uikit-product-quota'
+description: Кнопка-триггер с выпадающим списком карточек квот проекта — counter исчерпанных квот, ссылка на страницу квот и кнопка увеличения.
+order: 1
+---
+
+import { QuotaWidgetBasic } from '../demos/examples/QuotaWidgetBasic'
+import QuotaWidgetBasicSrc from '../demos/examples/QuotaWidgetBasic.tsx?raw'
+import { QuotaWidgetError } from '../demos/examples/QuotaWidgetError'
+import QuotaWidgetErrorSrc from '../demos/examples/QuotaWidgetError.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# QuotaWidget
+
+Кнопка «Квоты» с counter'ом исчерпанных квот, по клику открывающая [`Dropdown`](/components/dropdown) с шапкой проекта и сеткой карточек [`QuotaWidgetCard`](/components/uikit-product-quota/quota-widget-card). Шапка содержит название проекта, ссылку на страницу квот (`quotasUrl`) и кнопку «Увеличить квоты» (при `canEditQuota`).
+
+## Когда использовать
+
+- Шапка продуктовой страницы или toolbar, где квоты — вторичная информация и раскрываются по требованию.
+- Нужен индикатор исчерпанных квот без постоянного места под список.
+- Узкий сайдбар, где список квот должен быть виден без портала:
+  - используйте [`QuotaWidgetMini`](/components/uikit-product-quota/quota-widget-mini).
+- Одна конкретная квота на странице ресурса:
+  - используйте [`QuotaWidgetCard`](/components/uikit-product-quota/quota-widget-card).
+
+- ✅ Оборачивайте страницу в `PortalContextProvider` — контент рендерится в портал `Dropdown`.
+- ❌ Рендерить виджет без portal-контекста — выпадающий список не появится.
+
+- ✅ Переключайте `isError` обратно после успешного `onRefresh` — кнопка повтора в состоянии ошибки.
+- ❌ Оставлять `isError` без рабочего `onRefresh` — пользователь не сможет восстановить список.
+
+## Анатомия
+
+### Триггер
+
+`Button view='function'` с label «Квоты» и chevron-иконкой; counter показывает число исчерпанных квот (`remains <= 0`). Внешний вид настраивается через `buttonProps` (`size`, `appearance`, `label`, `fullWidth`, `disabled`, `className`).
+
+### Шапка проекта
+
+- `projectName` — название проекта.
+- `quotasUrl` + `onQuotasUrlClick` — ссылка на страницу квот.
+- `canEditQuota` + `onIncreaseQuotaClick` — кнопка «Увеличить квоты»; скрывается `hideIncreaseQuotaButton`.
+
+### Список квот
+
+Сетка карточек `QuotaWidgetCard`. Исчерпанные квоты поднимаются в начало (отключается `disableSorting`). Состояния:
+
+- `isLoading` — skeleton-карточки.
+- `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-quota
+```
+
+```ts
+import { QuotaWidget } from '@ds/uikit-product-quota'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовый случай'
+  description='Counter исчерпанных квот на триггере, сетка карточек в dropdown'
+  code={QuotaWidgetBasicSrc}
+>
+  <QuotaWidgetBasic client:visible />
+</Example>
+
+<Example
+  title='Ошибка загрузки и повтор'
+  description='isError показывает блок ошибки; onRefresh переключает в loading и восстанавливает список'
+  code={QuotaWidgetErrorSrc}
+>
+  <QuotaWidgetError client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.QuotaWidget} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-quota-quotawidget--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-quota', 'quota-widget')} height={480} title='QuotaWidget в Figma (Product UI Kit)' />
+
+## Смотри также
+
+- [QuotaWidgetMini](/components/uikit-product-quota/quota-widget-mini) — тот же список в аккордеоне без портала.
+- [QuotaWidgetCard](/components/uikit-product-quota/quota-widget-card) — карточка одной квоты.
+- [Dropdown](/components/dropdown) — нижележащий портальный примитив.

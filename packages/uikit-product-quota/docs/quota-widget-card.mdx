@@ -1,0 +1,98 @@
+---
+title: QuotaWidgetCard
+package: '@ds/uikit-product-quota'
+description: Карточка одной квоты — прогресс-бар потребления с цветовыми порогами, tooltip-расшифровка и состояния loading/noData.
+order: 3
+---
+
+import { QuotaCardLevels } from '../demos/examples/QuotaCardLevels'
+import QuotaCardLevelsSrc from '../demos/examples/QuotaCardLevels.tsx?raw'
+import { QuotaCardLoading } from '../demos/examples/QuotaCardLoading'
+import QuotaCardLoadingSrc from '../demos/examples/QuotaCardLoading.tsx?raw'
+import { QuotaCardNoData } from '../demos/examples/QuotaCardNoData'
+import QuotaCardNoDataSrc from '../demos/examples/QuotaCardNoData.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# QuotaWidgetCard
+
+Карточка одной квоты `QuotaItem`: название, остаток в единицах измерения, [`ProgressBar`](/components/progress-bar) потребления и [`Tooltip`](/components/tooltip) с расшифровкой «лимит / потреблено / остаток». Используется внутри [`QuotaWidget`](/components/uikit-product-quota/quota-widget) и [`QuotaWidgetMini`](/components/uikit-product-quota/quota-widget-mini), но доступна и отдельно.
+
+## Когда использовать
+
+- Страница ресурса или дашборд, где нужно показать одну конкретную квоту.
+- Собственная раскладка квот, не покрываемая `QuotaWidget` / `QuotaWidgetMini`.
+- Список квот проекта целиком:
+  - используйте [`QuotaWidget`](/components/uikit-product-quota/quota-widget) или [`QuotaWidgetMini`](/components/uikit-product-quota/quota-widget-mini).
+
+- ✅ Оборачивайте карточку в `PortalContextProvider` — tooltip рендерится в портал.
+- ❌ Передавать `noData` без `onRefresh` — состояние ошибки останется без кнопки восстановления.
+
+## Анатомия
+
+### Прогресс потребления
+
+Цвет `ProgressBar` зависит от процента потребления (`usage / limit`):
+
+- `< 70%` — зелёный.
+- `70–90%` — жёлтый.
+- `>= 90%` — красный; при `remains <= 0` квота считается исчерпанной.
+
+### Состояния
+
+- `loading` — skeleton вместо значений.
+- `noData` — `InfoBlock` с текстом ошибки и кнопкой «Обновить» (`onRefresh`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-quota
+```
+
+```ts
+import { QuotaWidgetCard } from '@ds/uikit-product-quota'
+```
+
+## Примеры использования
+
+<Example
+  title='Уровни потребления'
+  description='Зелёный, жёлтый, красный пороги и исчерпанная квота'
+  code={QuotaCardLevelsSrc}
+>
+  <QuotaCardLevels client:visible />
+</Example>
+
+<Example title='Loading' code={QuotaCardLoadingSrc}>
+  <QuotaCardLoading client:visible />
+</Example>
+
+<Example
+  title='Нет данных и повтор'
+  description='noData показывает InfoBlock; onRefresh возвращает карточку к данным'
+  code={QuotaCardNoDataSrc}
+>
+  <QuotaCardNoData client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.QuotaWidgetCard} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-quota-quotawidgetcard--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-quota', 'quota-widget-card')} height={480} title='QuotaWidgetCard в Figma (Product UI Kit)' />
+
+## Смотри также
+
+- [QuotaWidget](/components/uikit-product-quota/quota-widget) — выпадающий список карточек.
+- [QuotaWidgetMini](/components/uikit-product-quota/quota-widget-mini) — аккордеон с карточками.
+- [ProgressBar](/components/progress-bar) — нижележащий индикатор потребления.

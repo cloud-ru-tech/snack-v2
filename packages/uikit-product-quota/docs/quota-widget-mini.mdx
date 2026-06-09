@@ -1,0 +1,79 @@
+---
+title: QuotaWidgetMini
+package: '@ds/uikit-product-quota'
+description: Компактный аккордеон со списком квот проекта — counter исчерпанных квот в заголовке и кнопка увеличения квот.
+order: 2
+---
+
+import { QuotaWidgetMiniExpanded } from '../demos/examples/QuotaWidgetMiniExpanded'
+import QuotaWidgetMiniExpandedSrc from '../demos/examples/QuotaWidgetMiniExpanded.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# QuotaWidgetMini
+
+Сворачиваемый блок на базе [`Accordion`](/components/accordion): заголовок «Квоты» с counter'ом исчерпанных квот и названием проекта в подзаголовке, внутри — вертикальный список карточек [`QuotaWidgetCard`](/components/uikit-product-quota/quota-widget-card) и кнопка «Увеличить квоты». Портал не используется — контент раскрывается в потоке документа.
+
+## Когда использовать
+
+- Сайдбары и узкие панели, где список квот должен раскрываться на месте, без overlay.
+- Mobile / adaptive layout'ы — аккордеон не требует позиционирования портала.
+- Шапка широкой страницы с раскрытием по клику:
+  - используйте [`QuotaWidget`](/components/uikit-product-quota/quota-widget).
+
+- ✅ Используйте `isExpandedDefault`, если квоты — ключевой контент экрана и должны быть видны сразу.
+- ❌ Контролировать раскрытие снаружи — аккордеон uncontrolled, публичного controlled-API нет.
+
+## Анатомия
+
+### Заголовок
+
+`Accordion.CollapseBlockSecondary`: title «Квоты», после него `Counter appearance='critical'` с числом исчерпанных квот (скрыт при `isLoading` / `isError`), в подзаголовке — `projectName` с truncate.
+
+### Содержимое
+
+- Вертикальный список `QuotaWidgetCard`; исчерпанные квоты поднимаются в начало (`disableSorting` отключает).
+- `isLoading` — skeleton-карточки; `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
+- Кнопка «Увеличить квоты» (`canEditQuota`, `onIncreaseQuotaClick`, скрывается `hideIncreaseQuotaButton`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-quota
+```
+
+```ts
+import { QuotaWidgetMini } from '@ds/uikit-product-quota'
+```
+
+## Примеры использования
+
+<Example
+  title='Раскрыт по умолчанию'
+  description='isExpandedDefault + counter исчерпанной квоты в заголовке'
+  code={QuotaWidgetMiniExpandedSrc}
+>
+  <QuotaWidgetMiniExpanded client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.QuotaWidgetMini} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-quota-quotawidgetmini--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-quota', 'quota-widget-mini')} height={480} title='QuotaWidgetMini в Figma (Product UI Kit)' />
+
+## Смотри также
+
+- [QuotaWidget](/components/uikit-product-quota/quota-widget) — выпадающий вариант для шапки страницы.
+- [QuotaWidgetCard](/components/uikit-product-quota/quota-widget-card) — карточка одной квоты.
+- [Accordion](/components/accordion) — нижележащий примитив раскрытия.
