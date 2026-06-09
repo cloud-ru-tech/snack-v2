@@ -30,7 +30,7 @@ export function buildChipToggleStory(props?: ChipStoryProps, story = 'playground
 }
 
 export function buildChipChoiceStory(props?: ChipStoryProps, story = 'playground'): StorybookUrlOptions {
-  return build('chipchoice', story, TEST_IDS.chipChoice.root, props);
+  return build('chipchoice-single', story, TEST_IDS.chipChoice.root, props);
 }
 
 export function buildChipChoiceVariantStory(

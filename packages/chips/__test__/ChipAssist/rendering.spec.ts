@@ -32,7 +32,7 @@ test.describe('ChipAssist — rendering', () => {
   });
 
   test('icon renders when icon provided', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildChipAssistStory({ icon: 'settings', size: SIZE.S }));
+    await gotoStory(buildChipAssistStory({ showElementBefore: true, size: SIZE.S }));
     await expect(getByTestId(TEST_IDS.chipAssist.root)).toHaveAttribute('data-icon', 'true');
   });
 

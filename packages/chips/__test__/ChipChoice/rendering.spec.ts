@@ -32,8 +32,8 @@ test.describe('ChipChoice — rendering', () => {
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.label)).toBeVisible();
   });
 
-  test('clear button shown when onClearButtonClick provided', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildChipChoiceStory({ defaultValue: 'opt1', onClearButtonClick: '() => {}' }));
+  test('clear button shown when value set and showButtonClear', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildChipChoiceStory({ value: 'opt1', showButtonClear: true }));
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.clearButton)).toBeVisible();
   });
 });
