@@ -21,6 +21,10 @@ const AI_COMPONENTS = {
   fileKey: 'tCbbB5RUGyJeBRtjF3dt4d',
   fileName: 'AI-COMPONENTS',
 } as const;
+const HR_PORTAL = {
+  fileKey: 'OWs2qGFYto945j5TEJmQgV',
+  fileName: 'HR-Portal-Renovate',
+} as const;
 
 /**
  * Карта Figma-узлов по имени пакета (`packages/<pkg>`).
@@ -156,6 +160,7 @@ export const FIGMA_NODES = {
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
   'uikit-product-avatar-detail': { ...PRODUCT, nodeId: '2157:3642' }, // uikit-product-avatar-detail → AvatarDetail
+  'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
   icons: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons → Interfaces icons (отдельный файл)
   materials: { ...SNACK, nodeId: '2014-81002' }, // materials → material
   typography: { ...SNACK, nodeId: '2461-23501' }, // typography → variables & styles

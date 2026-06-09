@@ -399,6 +399,9 @@ importers:
       '@ds/segment-control':
         specifier: workspace:*
         version: link:../../packages/segment-control
+      '@ds/site-card-vacancy':
+        specifier: workspace:*
+        version: link:../../packages/site-card-vacancy
       '@ds/skeleton':
         specifier: workspace:*
         version: link:../../packages/skeleton
@@ -1297,6 +1300,21 @@ importers:
       uncontrollable:
         specifier: 'catalog:'
         version: 9.0.0(react@18.3.1)
+
+  packages/site-card-vacancy:
+    dependencies:
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
 
   packages/skeleton:
     dependencies:

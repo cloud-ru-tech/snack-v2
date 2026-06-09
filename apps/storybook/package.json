@@ -65,6 +65,7 @@
     "@ds/tree": "workspace:*",
     "@ds/truncate-string": "workspace:*",
     "@ds/typography": "workspace:*",
+    "@ds/site-card-vacancy": "workspace:*",
     "@ds/uikit-product-avatar-detail": "workspace:*",
     "@ds/uikit-product-copy": "workspace:*",
     "@ds/uikit-product-info-row": "workspace:*",

@@ -180,6 +180,9 @@
       "path": "./tree/tsconfig.esm.json"
     },
     {
+      "path": "./site-card-vacancy/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-avatar-detail/tsconfig.esm.json"
     },
     {

@@ -1,0 +1,139 @@
+---
+title: CardVacancy
+package: '@ds/site-card-vacancy'
+description: Карточка-ссылка вакансии с заголовком и описанием, нейтральным или акцентным фоном, hover/pressed-состояниями и фокусом.
+order: 0
+---
+
+import { CardVacancy } from '@ds/site-card-vacancy'
+import { Neutral } from '../demos/examples/Neutral'
+import NeutralSrc from '../demos/examples/Neutral.tsx?raw'
+import { Primary } from '../demos/examples/Primary'
+import PrimarySrc from '../demos/examples/Primary.tsx?raw'
+import { Mobile } from '../demos/examples/Mobile'
+import MobileSrc from '../demos/examples/Mobile.tsx?raw'
+import { External } from '../demos/examples/External'
+import ExternalSrc from '../demos/examples/External.tsx?raw'
+import { Polymorphic } from '../demos/examples/Polymorphic'
+import PolymorphicSrc from '../demos/examples/Polymorphic.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import cardVacancyDoc from './props.json'
+
+# CardVacancy
+
+Карточка вакансии — интерактивный блок (по умолчанию нативный `<a>`) с заголовком и описанием. Используется в списках вакансий HR-портала: клик ведёт на детальную страницу. Заголовок и описание усекаются многоточием, фон задаётся через `appearance`, состояния hover/pressed реализованы через state-layer, фокус — через `:focus-visible`.
+
+## Когда использовать
+- Элемент списка вакансий, ведущий на детальную страницу.
+- Промо-блок вакансии с акцентным фоном (`appearance='primary'`).
+- Компактная карточка в мобильной раскладке (`mobile`).
+
+Когда **не** нужен:
+
+- Inline-ссылка в тексте:
+  - используйте [`@ds/link`](/components/link).
+- Кнопка-действие без перехода:
+  - используйте [`@ds/button`](/components/button/button).
+- Строка списка «лейбл — значение»:
+  - используйте [`@ds/uikit-product-info-row`](/components/uikit-product-info-row).
+
+## Анатомия
+
+Карточка собрана слоями (как в `@ds/button`):
+
+- `background` — фон по `appearance`.
+- `stateLayer` — overlay hover/pressed на токенах `material/stateLayer`.
+- `content` — колонка с заголовком сверху и описанием снизу.
+
+### Appearance (default `neutral`)
+
+- `neutral` — нейтральный полупрозрачный фон (`neutral/decorTransparent`), тёмный заголовок и приглушённое описание.
+- `primary` — акцентный фон `primary/accent` с декоративным паттерном концентрических колец, заголовок и описание цветом `onAccent`.
+
+### Mobile (default `false`)
+
+Компактная мобильная версия. Меняются высота и типографика:
+
+- высота — 160 (desktop) → 120 (mobile);
+- заголовок — `title/l` (desktop) → `title/m` (mobile);
+- описание — `body/m` (desktop) → `body/s` (mobile).
+
+Внутренний отступ фиксированный — `primitive/dimension/24` (24px).
+
+### Slots
+
+- `title` — заголовок вакансии (`Typography variant='title'`), однострочное усечение.
+- `description` — описание под заголовком (`Typography variant='body'`), однострочное усечение.
+
+### Полиморфизм
+
+Корень полиморфен через `as` (default `'a'`):
+
+- `as='a'` — карточка-ссылка; при `target='_blank'` автоматически проставляется `rel='noopener noreferrer'`.
+- `as='button'` — карточка-кнопка для онклик-сценариев.
+- `as={Link}` — роутерный компонент (react-router и т.п.).
+
+Ref пробрасывается через `innerRef`.
+
+## Установка
+```bash
+pnpm add @ds/site-card-vacancy
+```
+
+```ts
+import { CardVacancy } from '@ds/site-card-vacancy'
+```
+
+## Примеры использования
+<Example
+  title='Нейтральная карточка'
+  description='appearance="neutral" (по умолчанию): href + title + description'
+  code={NeutralSrc}
+>
+  <Neutral client:visible />
+</Example>
+
+<Example
+  title='Акцентная карточка'
+  description='appearance="primary": акцентный фон с декоративным паттерном'
+  code={PrimarySrc}
+>
+  <Primary client:visible />
+</Example>
+
+<Example
+  title='Мобильная версия'
+  description='mobile: компактнее — меньше высота и типографика'
+  code={MobileSrc}
+>
+  <Mobile client:visible />
+</Example>
+
+<Example
+  title='Внешняя ссылка'
+  description="target='_blank' → rel='noopener noreferrer' автоматически"
+  code={ExternalSrc}
+>
+  <External client:visible />
+</Example>
+
+<Example
+  title='Как кнопка (полиморфизм)'
+  description="as='button' с onClick — для онклик-сценариев без перехода"
+  code={PolymorphicSrc}
+>
+  <Polymorphic client:visible />
+</Example>
+
+## Props
+<PropsTable data={cardVacancyDoc.CardVacancy} />
+
+## Storybook
+<StorybookEmbed storyId='site-cardvacancy--playground' height={320} />
+
+## Figma
+<FigmaEmbed node={figmaNode('site-card-vacancy')} />

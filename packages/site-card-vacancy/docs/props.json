@@ -1,0 +1,78 @@
+{
+  "CardVacancy": {
+    "displayName": "CardVacancy",
+    "propsTypeName": "CardVacancyProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "defaultValue": "neutral",
+        "description": "Визуальный вид карточки:\n\n- `neutral` — нейтральный полупрозрачный фон, тёмный заголовок.\n- `primary` — акцентный фон `primary` с декоративным паттерном, текст `onAccent`.",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня — `'a'` по умолчанию (карточка-ссылка), либо роутерный `Link` / `'button'` / `'div'`.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Описание под заголовком. Обрезается многоточием, если не помещается в одну строку."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "mobile": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Компактная мобильная версия — меньшая высота и более мелкая типографика."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок вакансии. Обрезается многоточием, если не помещается в одну строку."
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.background {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+}
+
+.stateLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  min-width: 0;
+
+  overflow-wrap: break-word;
+}
+
+.title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  width: 100%;
+  min-width: 0;
+
+  text-overflow: ellipsis;
+}
+
+.description {
+  overflow: hidden;
+
+  width: 100%;
+  min-width: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardVacancy {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 160px;
+  margin: 0;
+  padding: base.$sn-primitive-dimension-24;
+  border: none;
+
+  font-family: inherit;
+  text-align: left;
+  text-decoration: none;
+
+  background: transparent;
+  outline: 0;
+  outline-offset: 0;
+
+  &[data-mobile] {
+    min-height: 120px;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(#{base.$sn-primitive-strokeWeight-strokeSemiBold} * -1);
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &[data-appearance='neutral'] {
+    color: base.$sn-theme-color-available-version-textMain;
+
+    .background {
+      background-color: base.$sn-theme-color-neutral-decorTransparent;
+    }
+
+    .description {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+  }
+
+  &[data-appearance='primary'] {
+    color: base.$sn-theme-color-primary-onAccent;
+
+    .background {
+      background-color: base.$sn-theme-color-primary-accent;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: repeating-radial-gradient(
+          circle at 0% calc(100% + #{base.$sn-primitive-dimension-24}),
+          transparent 0,
+          transparent calc(#{base.$sn-primitive-dimension-32} - #{base.$sn-primitive-strokeWeight-strokeBold}),
+          base.$sn-theme-color-primary-text
+            calc(#{base.$sn-primitive-dimension-32} - #{base.$sn-primitive-strokeWeight-strokeBold}),
+          base.$sn-theme-color-primary-text base.$sn-primitive-dimension-32
+        );
+      }
+    }
+  }
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}
