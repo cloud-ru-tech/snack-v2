@@ -72,7 +72,7 @@
           "desktop",
           "mobile"
         ],
-        "own": true
+        "own": false
       },
       "StepData": {
         "kind": "interface",

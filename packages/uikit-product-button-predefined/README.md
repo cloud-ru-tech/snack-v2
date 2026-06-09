@@ -4,10 +4,6 @@
 
 Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `@sbercloud/snack-v2-list` `Droplist`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в **`PriceSummary`** для выбора периода биллинга.
 
-## Демо
-
-{/* client:only — @sbercloud/snack-v2-list Droplist не резолвится при SSR */}
-
 ## Когда использовать
 
 - Нужен выбор одного значения из короткого списка (период, валюта, режим) без отдельного поля формы.
@@ -33,9 +29,20 @@
 
 Массив пунктов `Droplist` (`content.option`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
 
-### Size
+### Size (default `s`)
 
-`xs` | `s` | `m` | `l` — для `xs` кнопка рендерится как `s`, droplist остаётся `s`.
+- `xs` — кнопка и droplist рендерятся в размере `s` (алиас).
+- `s` — компактный размер.
+- `m` — средний размер.
+- `l` — крупный размер.
+
+### Appearance (default `neutral`)
+
+Тон триггерной кнопки — те же значения, что у `Button` `view='function'`:
+
+- `neutral` — нейтральный, основной вариант.
+- `primary` — акцентный.
+- `critical` — критическое действие.
 
 ### open / onOpenChange
 
@@ -68,6 +75,76 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 
 ## Примеры использования
 
+{/* client:only — @sbercloud/snack-v2-list не резолвится в SSR (directory import в ESM) */}
+
+### Desktop basic
+
+Базовый dropdown для выбора одного значения.
+
+```tsx
+import { PortalContextProvider } from '@ds/portal-context';
+import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
+import { useRef, useState } from 'react';
+
+const periods = [
+  { id: 'month', label: 'Month' },
+  { id: 'year', label: 'Year' },
+];
+
+export function DesktopBasic() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [period, setPeriod] = useState(periods[0]);
+
+  const items = periods.map(option => ({
+    id: option.id,
+    content: { option: option.label },
+    onClick: () => setPeriod(option),
+  }));
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <ButtonDropdown label={period.label} size='s' layoutType='desktop' items={items} closeDroplistOnItemClick />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+### Desktop open state
+
+Открытое состояние dropdown (portal).
+
+```tsx
+import { PortalContextProvider } from '@ds/portal-context';
+import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
+import { useRef, useState } from 'react';
+
+const periods = [
+  { id: 'month', label: 'Month' },
+  { id: 'year', label: 'Year' },
+];
+
+export function DesktopOpen() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [period, setPeriod] = useState(periods[0]);
+
+  const items = periods.map(option => ({
+    id: option.id,
+    content: { option: option.label },
+    onClick: () => setPeriod(option),
+  }));
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <ButtonDropdown label={period.label} size='m' layoutType='desktop' open items={items} />
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
 ### Mobile layout
 
 layoutType=mobile открывает modal со списком.
@@ -75,20 +152,27 @@ layoutType=mobile открывает modal со списком.
 ```tsx
 import { PortalContextProvider } from '@ds/portal-context';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
-const items = [
-  { id: 'month', content: { option: 'Month' }, onClick: () => undefined },
-  { id: 'year', content: { option: 'Year' }, onClick: () => undefined },
+const periods = [
+  { id: 'month', label: 'Month' },
+  { id: 'year', label: 'Year' },
 ];
 
 export function MobileLayout() {
   const hostRef = useRef<HTMLDivElement>(null);
+  const [period, setPeriod] = useState(periods[0]);
+
+  const items = periods.map(option => ({
+    id: option.id,
+    content: { option: option.label },
+    onClick: () => setPeriod(option),
+  }));
 
   return (
     <PortalContextProvider root={hostRef}>
       <div ref={hostRef} style={{ position: 'relative' }}>
-        <ButtonDropdown label='Period' size='s' layoutType='mobile' closeDroplistOnItemClick items={items} />
+        <ButtonDropdown label={period.label} size='s' layoutType='mobile' closeDroplistOnItemClick items={items} />
       </div>
     </PortalContextProvider>
   );
@@ -101,56 +185,27 @@ export function MobileLayout() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
+| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `neutral` | Вариант оформления |
 | `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
-| `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | — | Управление скрытием скролл баров: <br/> <br> - `Never` - показывать всегда <br/> <br> - `Leave` - скрывать когда курсор покидает компонент <br/> <br> - `Scroll` - показывать только когда происходит скроллинг <br/> <br> - `Move` - показывать при движении курсора над компонентом |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
-| `className` | `string` | — | Дополнительный класс <br/> CSS-класс |
+| `className` | `string` | — | Дополнительный класс <br/> Класс триггерной кнопки. |
 | `closeDroplistOnItemClick` | `boolean` | `false` | Закрывать выпадающий список после клика на базовый айтем. <br/> Работает в режимах selection: 'none' \| 'single' |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
-| `collapse` | `CollapseState` | — | Настройки раскрытия элементов |
-| `contentRender` | `((props: ContentRenderProps) => ReactNode)` | — | Рендер функция основного контента айтема |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `counter` | `CounterProps` | — | Пропсы для counter |
 | `data-test-id` | `string` | — |  |
-| `dataError` | `boolean` | — |  |
-| `dataFiltered` | `boolean` | — |  |
 | `disabled` | `boolean` | — | Отключена |
-| `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
-| `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
-| `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
 | `fullWidth` | `boolean` | — | На всю ширину |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-| `items` | `Item[]` | — |  |
+| `items` | `Item[]` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
 | `layoutType` | `"desktop"` \| `"mobile"` | — |  |
-| `listRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент выпадающего списка |
-| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвещающий за состояние загрузки списка |
-| `marker` | `boolean` | — | Отображать ли маркер у выбранного жлемента списка |
-| `noDataState` | `EmptyStateProps` | — | Экран при отстутствии данных |
-| `noResultsState` | `EmptyStateProps` | — | Экран при отстутствии результатов поиска или фильтров |
-| `onOpenChange` | `(((open: boolean) => void) & ((isOpen: boolean) => void))` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| `onScroll` | `(UIEventHandler<HTMLButtonElement> & ((event?: Event) => void)) \| undefined` | — | Колбек на скролл прокручиваемого списка |
-| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
-| `pinBottom` | `Item[]` | — | Элементы списка, закрепленные снизу |
-| `pinTop` | `Item[]` | — | Элементы списка, закрепленные сверху |
+| `loading` | `boolean` | — | Состояние загрузки |
+| `onOpenChange` | `((open: boolean) => void)` | — | Колбэк изменения раскрытия. |
+| `open` | `boolean` | — | Контролируемое состояние раскрытия. |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
-| `scroll` | `boolean` | — | Включить ли скролл для основной части списка |
-| `scrollContainerClassName` | `string` | — | CSS-класс для scroll обертки основного списка айтемов |
-| `scrollContainerRef` | `Ref<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
-| `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
-| `scrollToSelectedItem` | `boolean` | — | Флаг, отвещающий за прокручивание до выбранного элемента |
-| `search` | `SearchState` | — | Настройки поисковой строки |
-| `selection` | `SelectionSingleState \| SelectionMultipleState` | — |  |
-| `size` | `"l"` \| `"m"` \| `"s"` \| `"xs"` | `s` |  |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> <br> - `click` - открывать по клику <br/> <br> - `hover` - открывать по ховеру <br/> <br> - `focusVisible` - открывать по focus-visible <br/> <br> - `focus` - открывать по фокусу <br/> <br> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> <br> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> <br> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `size` | `"l"` \| `"m"` \| `"s"` \| `"xs"` | `s` | Размер триггера; для `xs` применяется кнопка `s`. |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
-| `triggerElemRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент-триггер для дроплиста |
-| `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
-| `virtualized` | `boolean` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
-| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `auto` | Стратегия управления шириной контейнера поповера <br/> <br> - `auto` - соответствует ширине контента, <br/> <br> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> <br> - `eq` - Equal, строго равен ширине таргета. |
 
 #### Related types
 
 - `ButtonDropdownSize` = `"l"` \| `"m"` \| `"s"` \| `"xs"`
-
-- `LayoutType` = `"desktop"` \| `"mobile"`

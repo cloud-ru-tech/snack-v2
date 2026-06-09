@@ -84,6 +84,8 @@ Function-ссылка внизу блока (по умолчанию текст 
 
 ### Примеры использования
 
+{/* client:only — @cloud-ru/ft-formatters не для SSR */}
+
 #### Со скидкой
 
 Базовая цена и строки скидок.
@@ -161,23 +163,23 @@ export function WithInvoice() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `className` | `string` | — |  |
+| `className` | `string` | — | Дополнительный класс корневого контейнера. |
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — |  |
-| `discount` | `DiscountDetails` | — |  |
-| `docsLink` | `LinkProps` | — |  |
+| `discount` | `DiscountDetails` | — | Блок базовой цены и скидок. |
+| `docsLink` | `LinkProps` | — | Ссылка «Подробнее о расчёте». |
 | `hint` | `string` | — |  |
 | `hintAppearance` | `"default"` \| `"systemError"` \| `"userError"` \| `"warning"` | — |  |
 | `hintLink` | `{ href?: string; text: string; }` | — |  |
 | `hintTooltipText` | `ReactNode` | — |  |
-| `invoice` | `InvoiceDetails` | — |  |
-| `invoiceExpandedDefault` | `boolean` | `true` |  |
+| `invoice` | `InvoiceDetails` | — | Секции детализации заказа в аккордеоне. |
+| `invoiceExpandedDefault` | `boolean` | `true` | Начальное состояние раскрытия аккордеона invoice. |
 | `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loading` | `boolean` | — |  |
 | `onPeriodChanged` | `PricePeriod` | — |  |
 | `onRetry` | `(() => void)` | — |  |
 | `period` | `"day"` \| `"hour"` \| `"minute"` \| `"month"` \| `"year"` | — |  |
-| `periodOptions` | `Day` \| `Hour` \| `Minute` \| `Month` \| `PricePeriod` \| `Year` | — |  |
+| `periodOptions` | `PricePeriod` | — |  |
 | `promoBadge` | `PromoTagProps` | — |  |
 | `showHintLink` | `boolean` | — |  |
 | `showHintTooltip` | `boolean` | `false` |  |
@@ -193,49 +195,49 @@ export function WithInvoice() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `discounts` | `DiscountItem` | — |  |
-| `price` | `number` | — |  |
+| `discounts` | `DiscountItem` | — | Список применённых скидок. |
+| `price` | `number` | — | Базовая цена до применения скидок. |
 
 **DiscountInvoiceItem**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `discount` | `DiscountItem` | — |  |
+| `discount` | `DiscountItem` | — | Скидка без собственной цены. |
 
 **DiscountItem**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `percent` | `number \| undefined` | — |  |
-| `tooltip` | `QuestionTooltipProps` | — |  |
-| `value` | `number` | — |  |
+| `percent` | `number \| undefined` | — | Процент скидки для бейджа `−N%`. |
+| `tooltip` | `QuestionTooltipProps` | — | Контент тултипа-пояснения к скидке. |
+| `value` | `number` | — | Сумма скидки в валюте (в UI выводится со знаком «−»). |
 
 **InvoiceDetails**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `DiscountInvoiceItem` \| `InvoiceItem` \| `PriceInvoiceItem` | — |  |
-| `price` | `number \| undefined` | — |  |
-| `quantity` | `string \| number \| undefined` | — |  |
-| `title` | `string \| undefined` | — |  |
+| `items` | `DiscountInvoiceItem` \| `InvoiceItem` \| `PriceInvoiceItem` | — | Строки секции детализации. |
+| `price` | `number \| undefined` | — | Цена секции детализации. |
+| `quantity` | `string \| number \| undefined` | — | Количество рядом с заголовком секции. |
+| `title` | `string \| undefined` | — | Заголовок секции детализации. |
 
 - `InvoiceItem` = `PrimaryInvoiceItem | SecondaryInvoiceItem`
-
-- `LayoutType` = `"desktop"` \| `"mobile"`
 
 **PriceDeltaDetails**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `type` | `"decreased"` \| `"increased"` | — |  |
-| `value` | `number` | — |  |
+| `type` | `"decreased"` \| `"increased"` | — | Тип изменения: повышение или снижение. |
+| `value` | `number` | — | Величина изменения цены. |
 
 **PriceInvoiceItem**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `discount` | `DiscountItem` | — |  |
-| `label` | `string` | — |  |
+| `discount` | `DiscountItem` | — | Скидка для строки с ценой. |
+| `label` | `string` | — | Подпись строки детализации. |
+
+- `PricePeriod` = `"day"` \| `"hour"` \| `"minute"` \| `"month"` \| `"year"`
 
 - `TotalSumType` = `"equal"` \| `"from"`
 
@@ -278,7 +280,9 @@ export function WithInvoice() {
 
 ### Примеры использования
 
-#### Default
+{/* client:only — @cloud-ru/ft-formatters не для SSR */}
+
+#### Итог со ссылкой
 
 Итог и ссылка на стоимость.
 
@@ -305,16 +309,80 @@ export function PriceSummarySmallDemo() {
 }
 ```
 
+#### Загрузка
+
+Состояние loading — skeleton вместо суммы.
+
+```tsx
+import { PortalContextProvider } from '@ds/portal-context';
+import { PriceSummarySmall } from '@ds/uikit-product-price-summary';
+import { useRef } from 'react';
+
+import styles from '../demoSurface.module.scss';
+
+export function SmallLoading() {
+  const hostRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <div className={styles.surface}>
+          <PriceSummarySmall value={undefined} loading />
+        </div>
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
+#### Ошибка данных
+
+dataError с onRetry: повторный запрос показывает loading и затем сумму.
+
+```tsx
+import { PortalContextProvider } from '@ds/portal-context';
+import { PriceSummarySmall } from '@ds/uikit-product-price-summary';
+import { useRef, useState } from 'react';
+
+import styles from '../demoSurface.module.scss';
+
+export function SmallError() {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [dataError, setDataError] = useState(true);
+
+  const handleRetry = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setDataError(false);
+    }, 800);
+  };
+
+  return (
+    <PortalContextProvider root={hostRef}>
+      <div ref={hostRef} style={{ position: 'relative' }}>
+        <div className={styles.surface}>
+          <PriceSummarySmall value={10800} loading={loading} dataError={dataError} onRetry={handleRetry} />
+        </div>
+      </div>
+    </PortalContextProvider>
+  );
+}
+```
+
 ### Props
 
 **PriceSummarySmallProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `className` | `string` | — |  |
+| `className` | `string` | — | Дополнительный класс корневого контейнера. |
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — |  |
-| `docsLink` | `LinkProps` | — |  |
+| `docsLink` | `LinkProps` | — | Function-ссылка внизу блока. |
+| `hintTooltipText` | `ReactNode` | — | Контент подсказки для иконки рядом с итоговой суммой. |
 | `loading` | `boolean` | — |  |
 | `onRetry` | `(() => void)` | — |  |
-| `value` | `number` | `0` |  |
+| `value` | `number` | `0` | Итоговая сумма. |

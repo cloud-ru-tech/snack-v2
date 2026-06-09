@@ -268,7 +268,16 @@ export function MobileFlow() {
 ### Анатомия
 
 #### Step state
-Состояние шага: `completed`, `current`, `loading`, `waiting`, `rejected`. Раскладка (desktop/mobile) выбирается автоматически по ширине контейнера.
+
+Состояние шага:
+
+- `completed` — шаг завершён.
+- `current` — текущий шаг.
+- `loading` — шаг в процессе выполнения.
+- `waiting` — шаг ещё не начат.
+- `rejected` — шаг завершён с ошибкой.
+
+Раскладка (desktop/mobile) задаётся пропом `layoutType` — компонент не определяет её сам; значение передаётся снаружи (например, из media-query-хука приложения).
 
 ### Примеры использования
 
@@ -341,8 +350,6 @@ export function AdaptiveFlow() {
 | `validator` | `StepsValidator` | — | Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. Возвращает Promise<boolean>: false → шаг помечается как Rejected. |
 
 ##### Related types
-
-- `LayoutType` = `"desktop"` \| `"mobile"`
 
 **StepData**
 

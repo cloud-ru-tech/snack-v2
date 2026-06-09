@@ -7,6 +7,10 @@ order: 2
 
 import { PriceSummarySmallDemo } from '../demos/PriceSummarySmallDemo'
 import PriceSummarySmallDemoSrc from '../demos/PriceSummarySmallDemo.tsx?raw'
+import { SmallLoading } from '../demos/examples/SmallLoading'
+import SmallLoadingSrc from '../demos/examples/SmallLoading.tsx?raw'
+import { SmallError } from '../demos/examples/SmallError'
+import SmallErrorSrc from '../demos/examples/SmallError.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -71,8 +75,18 @@ import { PriceSummarySmall } from '@ds/uikit-product-price-summary'
 
 ## Примеры использования
 
-<Example title='Default' description='Итог и ссылка на стоимость.' code={PriceSummarySmallDemoSrc}>
+{/* client:only — @cloud-ru/ft-formatters не для SSR */}
+
+<Example title='Итог со ссылкой' description='Итог и ссылка на стоимость.' code={PriceSummarySmallDemoSrc}>
   <PriceSummarySmallDemo client:only="react" />
+</Example>
+
+<Example title='Загрузка' description='Состояние loading — skeleton вместо суммы.' code={SmallLoadingSrc}>
+  <SmallLoading client:only="react" />
+</Example>
+
+<Example title='Ошибка данных' description='dataError с onRetry: повторный запрос показывает loading и затем сумму.' code={SmallErrorSrc}>
+  <SmallError client:only="react" />
 </Example>
 
 ## Props

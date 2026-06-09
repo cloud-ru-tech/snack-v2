@@ -228,7 +228,7 @@
           "desktop",
           "mobile"
         ],
-        "own": true
+        "own": false
       },
       "QuestionTooltipProps": {
         "kind": "interface",
@@ -693,7 +693,7 @@
           "desktop",
           "mobile"
         ],
-        "own": true
+        "own": false
       },
       "Placement": {
         "kind": "union",

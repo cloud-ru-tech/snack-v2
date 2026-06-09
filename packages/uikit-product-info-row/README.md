@@ -16,10 +16,10 @@ import {
   AdaptiveInfoRow,
   InfoGroup,
   InfoRow,
-  LAYOUT_TYPE,
   NO_DATA_PLACEHOLDER,
   useGetContent,
 } from '@ds/uikit-product-info-row'
+import { LAYOUT_TYPE } from '@ds/utils'
 import '@ds/uikit-product-info-row/style.css'
 ```
 

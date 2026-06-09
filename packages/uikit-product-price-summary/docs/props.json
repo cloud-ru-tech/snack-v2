@@ -387,7 +387,8 @@
     "props": {
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "Дополнительный класс корневого контейнера."
       },
       "data-test-id": {
         "type": "string",
@@ -400,6 +401,7 @@
       "discount": {
         "type": "DiscountDetails",
         "required": false,
+        "description": "Блок базовой цены и скидок.",
         "typeRefs": [
           "DiscountDetails"
         ]
@@ -407,6 +409,7 @@
       "docsLink": {
         "type": "{ href?: string; text?: string; } | undefined",
         "required": false,
+        "description": "Ссылка «Подробнее о расчёте».",
         "typeRefs": [
           "LinkProps"
         ]
@@ -439,6 +442,7 @@
       "invoice": {
         "type": "InvoiceDetails[]",
         "required": false,
+        "description": "Секции детализации заказа в аккордеоне.",
         "typeRefs": [
           "InvoiceDetails"
         ]
@@ -446,7 +450,8 @@
       "invoiceExpandedDefault": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true"
+        "defaultValue": "true",
+        "description": "Начальное состояние раскрытия аккордеона invoice."
       },
       "layoutType": {
         "type": "enum",
@@ -485,24 +490,14 @@
           "year"
         ],
         "typeRefs": [
-          "Day",
-          "Hour",
-          "Minute",
-          "Month",
-          "PricePeriod",
-          "Year"
+          "PricePeriod"
         ]
       },
       "periodOptions": {
         "type": "PricePeriod[]",
         "required": true,
         "typeRefs": [
-          "Day",
-          "Hour",
-          "Minute",
-          "Month",
-          "PricePeriod",
-          "Year"
+          "PricePeriod"
         ]
       },
       "promoBadge": {
@@ -570,13 +565,15 @@
           "discounts": {
             "type": "DiscountItem[]",
             "required": true,
+            "description": "Список применённых скидок.",
             "typeRefs": [
               "DiscountItem"
             ]
           },
           "price": {
             "type": "number",
-            "required": true
+            "required": true,
+            "description": "Базовая цена до применения скидок."
           }
         },
         "own": true
@@ -587,6 +584,7 @@
           "discount": {
             "type": "{ value: number; percent?: number; tooltip?: QuestionTooltipProps[\"tip\"]; }",
             "required": true,
+            "description": "Скидка без собственной цены.",
             "typeRefs": [
               "DiscountItem"
             ]
@@ -599,18 +597,21 @@
         "props": {
           "percent": {
             "type": "number | undefined",
-            "required": false
+            "required": false,
+            "description": "Процент скидки для бейджа `−N%`."
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
+            "description": "Контент тултипа-пояснения к скидке.",
             "typeRefs": [
               "QuestionTooltipProps"
             ]
           },
           "value": {
             "type": "number",
-            "required": true
+            "required": true,
+            "description": "Сумма скидки в валюте (в UI выводится со знаком «−»)."
           }
         },
         "own": true
@@ -621,6 +622,7 @@
           "items": {
             "type": "InvoiceItem[]",
             "required": true,
+            "description": "Строки секции детализации.",
             "typeRefs": [
               "DiscountInvoiceItem",
               "InvoiceItem",
@@ -629,15 +631,18 @@
           },
           "price": {
             "type": "number | undefined",
-            "required": false
+            "required": false,
+            "description": "Цена секции детализации."
           },
           "quantity": {
             "type": "string | number | undefined",
-            "required": false
+            "required": false,
+            "description": "Количество рядом с заголовком секции."
           },
           "title": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Заголовок секции детализации."
           }
         },
         "own": true
@@ -653,7 +658,7 @@
           "desktop",
           "mobile"
         ],
-        "own": true
+        "own": false
       },
       "LinkProps": {
         "kind": "interface",
@@ -682,11 +687,13 @@
             "values": [
               "decreased",
               "increased"
-            ]
+            ],
+            "description": "Тип изменения: повышение или снижение."
           },
           "value": {
             "type": "number",
-            "required": true
+            "required": true,
+            "description": "Величина изменения цены."
           }
         },
         "own": true
@@ -697,15 +704,28 @@
           "discount": {
             "type": "DiscountItem | undefined",
             "required": false,
+            "description": "Скидка для строки с ценой.",
             "typeRefs": [
               "DiscountItem"
             ]
           },
           "label": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Подпись строки детализации."
           }
         },
+        "own": true
+      },
+      "PricePeriod": {
+        "kind": "union",
+        "values": [
+          "day",
+          "hour",
+          "minute",
+          "month",
+          "year"
+        ],
         "own": true
       },
       "PromoTagProps": {
@@ -819,7 +839,8 @@
     "props": {
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "Дополнительный класс корневого контейнера."
       },
       "data-test-id": {
         "type": "string",
@@ -832,9 +853,15 @@
       "docsLink": {
         "type": "{ href?: string; text?: string; } | undefined",
         "required": false,
+        "description": "Function-ссылка внизу блока.",
         "typeRefs": [
           "LinkProps"
         ]
+      },
+      "hintTooltipText": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент подсказки для иконки рядом с итоговой суммой."
       },
       "loading": {
         "type": "boolean",
@@ -847,7 +874,8 @@
       "value": {
         "type": "number",
         "required": false,
-        "defaultValue": "0"
+        "defaultValue": "0",
+        "description": "Итоговая сумма."
       }
     },
     "relatedTypes": {

@@ -28,7 +28,7 @@
       "closeOnPopstate": {
         "type": "boolean",
         "required": false,
-        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+        "description": "Закрывать ли поповер при переходе по истории браузера"
       },
       "collapse": {
         "type": "CollapseState",
@@ -46,11 +46,13 @@
       },
       "dataError": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
       },
       "dataFiltered": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
       },
       "errorDataState": {
         "type": "EmptyStateProps",
@@ -67,6 +69,21 @@
         "required": false,
         "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
       },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
+      "header": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
       "items": {
         "type": "Item[]",
         "required": true,
@@ -80,6 +97,11 @@
           "mobile"
         ]
       },
+      "limitedScrollHeight": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+      },
       "listRef": {
         "type": "RefObject<HTMLElement>",
         "required": false,
@@ -88,22 +110,22 @@
       "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Флаг, отвещающий за состояние загрузки списка"
+        "description": "Флаг, отвечающий за состояние загрузки списка"
       },
       "marker": {
         "type": "boolean",
         "required": false,
-        "description": "Отображать ли маркер у выбранного жлемента списка"
+        "description": "Отображать ли маркер у выбранного элемента списка"
       },
       "noDataState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии данных"
+        "description": "Экран при отсутствии данных"
       },
       "noResultsState": {
         "type": "EmptyStateProps",
         "required": false,
-        "description": "Экран при отстутствии результатов поиска или фильтров"
+        "description": "Экран при отсутствии результатов поиска или фильтров"
       },
       "onOpenChange": {
         "type": "((isOpen: boolean) => void)",
@@ -173,7 +195,7 @@
       "scrollToSelectedItem": {
         "type": "boolean",
         "required": false,
-        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
       },
       "search": {
         "type": "SearchState",
@@ -182,7 +204,8 @@
       },
       "selection": {
         "type": "SelectionSingleState | SelectionMultipleState",
-        "required": false
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
       "size": {
         "type": "enum",
@@ -206,7 +229,7 @@
           "hoverAndFocus",
           "hoverAndFocusVisible"
         ],
-        "description": "Условие отображения поповера:\n<br> - `click` - открывать по клику\n<br> - `hover` - открывать по ховеру\n<br> - `focusVisible` - открывать по focus-visible\n<br> - `focus` - открывать по фокусу\n<br> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
       },
       "triggerClassName": {
         "type": "string",
@@ -237,7 +260,7 @@
           "gte"
         ],
         "defaultValue": "auto",
-        "description": "Стратегия управления шириной контейнера поповера\n<br> - `auto` - соответствует ширине контента,\n<br> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br> - `eq` - Equal, строго равен ширине таргета."
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
       }
     },
     "relatedTypes": {}
@@ -254,6 +277,7 @@
           "neutral",
           "primary"
         ],
+        "defaultValue": "neutral",
         "description": "Вариант оформления",
         "typeRefs": [
           "Appearance"
@@ -270,17 +294,6 @@
           "T"
         ]
       },
-      "barHideStrategy": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "leave",
-          "move",
-          "never",
-          "scroll"
-        ],
-        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
-      },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
         "required": false
@@ -288,7 +301,7 @@
       "className": {
         "type": "string",
         "required": false,
-        "description": "Дополнительный класс\nCSS-класс"
+        "description": "Дополнительный класс\nКласс триггерной кнопки."
       },
       "closeDroplistOnItemClick": {
         "type": "boolean",
@@ -299,17 +312,7 @@
       "closeOnPopstate": {
         "type": "boolean",
         "required": false,
-        "description": "Закрывать ли поповер при пекреходе по истории браузера"
-      },
-      "collapse": {
-        "type": "CollapseState",
-        "required": false,
-        "description": "Настройки раскрытия элементов"
-      },
-      "contentRender": {
-        "type": "((props: ContentRenderProps) => ReactNode)",
-        "required": false,
-        "description": "Рендер функция основного контента айтема"
+        "description": "Закрывать ли поповер при переходе по истории браузера"
       },
       "counter": {
         "type": "Omit<CounterProps, \"size\" | \"appearance\">",
@@ -323,33 +326,10 @@
         "type": "string",
         "required": false
       },
-      "dataError": {
-        "type": "boolean",
-        "required": false
-      },
-      "dataFiltered": {
-        "type": "boolean",
-        "required": false
-      },
       "disabled": {
         "type": "boolean",
         "required": false,
         "description": "Отключена"
-      },
-      "errorDataState": {
-        "type": "EmptyStateProps",
-        "required": false,
-        "description": "Экран при ошибке запроса"
-      },
-      "footer": {
-        "type": "ReactNode ;",
-        "required": false,
-        "description": "Кастомизируемый элемент в конце списка"
-      },
-      "footerActiveElementsRefs": {
-        "type": "RefObject<HTMLElement>[]",
-        "required": false,
-        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
       },
       "fullWidth": {
         "type": "boolean",
@@ -367,7 +347,8 @@
       },
       "items": {
         "type": "Item[]",
-        "required": true
+        "required": true,
+        "description": "Основные элементы списка"
       },
       "label": {
         "type": "string",
@@ -385,55 +366,20 @@
           "LayoutType"
         ]
       },
-      "listRef": {
-        "type": "RefObject<HTMLElement>",
-        "required": false,
-        "description": "Ссылка на элемент выпадающего списка"
-      },
       "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Состояние загрузки\nФлаг, отвещающий за состояние загрузки списка"
-      },
-      "marker": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отображать ли маркер у выбранного жлемента списка"
-      },
-      "noDataState": {
-        "type": "EmptyStateProps",
-        "required": false,
-        "description": "Экран при отстутствии данных"
-      },
-      "noResultsState": {
-        "type": "EmptyStateProps",
-        "required": false,
-        "description": "Экран при отстутствии результатов поиска или фильтров"
+        "description": "Состояние загрузки"
       },
       "onOpenChange": {
-        "type": "(((open: boolean) => void) & ((isOpen: boolean) => void))",
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-      },
-      "onScroll": {
-        "type": "(UIEventHandler<HTMLButtonElement> & ((event?: Event) => void)) | undefined",
-        "required": false,
-        "description": "Колбек на скролл прокручиваемого списка"
+        "description": "Колбэк изменения раскрытия."
       },
       "open": {
         "type": "boolean",
         "required": false,
-        "description": "Управляет состоянием показан/не показан."
-      },
-      "pinBottom": {
-        "type": "Item[]",
-        "required": false,
-        "description": "Элементы списка, закрепленные снизу"
-      },
-      "pinTop": {
-        "type": "Item[]",
-        "required": false,
-        "description": "Элементы списка, закрепленные сверху"
+        "description": "Контролируемое состояние раскрытия."
       },
       "placement": {
         "type": "enum",
@@ -455,40 +401,6 @@
         "defaultValue": "top",
         "description": "Положение поповера относительно своего триггера (children)."
       },
-      "scroll": {
-        "type": "boolean",
-        "required": false,
-        "description": "Включить ли скролл для основной части списка"
-      },
-      "scrollContainerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для scroll обертки основного списка айтемов"
-      },
-      "scrollContainerRef": {
-        "type": "Ref<HTMLElement>",
-        "required": false,
-        "description": "Ссылка на контейнер, который скроллится"
-      },
-      "scrollRef": {
-        "type": "Ref<HTMLElement>",
-        "required": false,
-        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
-      },
-      "scrollToSelectedItem": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг, отвещающий за прокручивание до выбранного элемента"
-      },
-      "search": {
-        "type": "SearchState",
-        "required": false,
-        "description": "Настройки поисковой строки"
-      },
-      "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
-        "required": false
-      },
       "size": {
         "type": "enum",
         "required": false,
@@ -499,54 +411,15 @@
           "xs"
         ],
         "defaultValue": "s",
+        "description": "Размер триггера; для `xs` применяется кнопка `s`.",
         "typeRefs": [
           "ButtonDropdownSize"
         ]
-      },
-      "trigger": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "click",
-          "clickAndFocusVisible",
-          "focus",
-          "focusVisible",
-          "hover",
-          "hoverAndFocus",
-          "hoverAndFocusVisible"
-        ],
-        "description": "Условие отображения поповера:\n<br> - `click` - открывать по клику\n<br> - `hover` - открывать по ховеру\n<br> - `focusVisible` - открывать по focus-visible\n<br> - `focus` - открывать по фокусу\n<br> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br> - `clickAndFocusVisible` - открывать по клику и focus-visible"
       },
       "triggerClassName": {
         "type": "string",
         "required": false,
         "description": "CSS-класс триггера"
-      },
-      "triggerElemRef": {
-        "type": "RefObject<HTMLElement>",
-        "required": false,
-        "description": "Ссылка на элемент-триггер для дроплиста"
-      },
-      "untouchableScrollbars": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
-      },
-      "virtualized": {
-        "type": "boolean",
-        "required": false,
-        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
-      },
-      "widthStrategy": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "auto",
-          "eq",
-          "gte"
-        ],
-        "defaultValue": "auto",
-        "description": "Стратегия управления шириной контейнера поповера\n<br> - `auto` - соответствует ширине контента,\n<br> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br> - `eq` - Equal, строго равен ширине таргета."
       }
     },
     "relatedTypes": {
@@ -658,7 +531,7 @@
           "desktop",
           "mobile"
         ],
-        "own": true
+        "own": false
       },
       "PolymorphicRef": {
         "kind": "alias",
@@ -683,6 +556,75 @@
         "own": false
       }
     }
+  },
+  "DesktopDroplist": {
+    "displayName": "DesktopDroplist",
+    "propsTypeName": null,
+    "props": {
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер списка"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      }
+    },
+    "relatedTypes": {}
   },
   "MobileDroplist": {
     "displayName": "MobileDroplist",

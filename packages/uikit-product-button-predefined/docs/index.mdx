@@ -47,9 +47,20 @@ import buttonPredefinedDoc from './props.json'
 
 Массив пунктов `Droplist` (`content.option`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
 
-### Size
+### Size (default `s`)
 
-`xs` | `s` | `m` | `l` — для `xs` кнопка рендерится как `s`, droplist остаётся `s`.
+- `xs` — кнопка и droplist рендерятся в размере `s` (алиас).
+- `s` — компактный размер.
+- `m` — средний размер.
+- `l` — крупный размер.
+
+### Appearance (default `neutral`)
+
+Тон триггерной кнопки — те же значения, что у `Button` `view='function'`:
+
+- `neutral` — нейтральный, основной вариант.
+- `primary` — акцентный.
+- `critical` — критическое действие.
 
 ### open / onOpenChange
 
@@ -81,6 +92,8 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 ```
 
 ## Примеры использования
+
+{/* client:only — @sbercloud/snack-v2-list не резолвится в SSR (directory import в ESM) */}
 
 <Example title='Desktop basic' description='Базовый dropdown для выбора одного значения.' code={DesktopBasicSrc}>
   <DesktopBasic client:only="react" />

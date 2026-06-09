@@ -52,7 +52,16 @@ import { AdaptiveStepper } from '@ds/stepper'
 ## Анатомия
 
 ### Step state
-Состояние шага: `completed`, `current`, `loading`, `waiting`, `rejected`. Раскладка (desktop/mobile) выбирается автоматически по ширине контейнера.
+
+Состояние шага:
+
+- `completed` — шаг завершён.
+- `current` — текущий шаг.
+- `loading` — шаг в процессе выполнения.
+- `waiting` — шаг ещё не начат.
+- `rejected` — шаг завершён с ошибкой.
+
+Раскладка (desktop/mobile) задаётся пропом `layoutType` — компонент не определяет её сам; значение передаётся снаружи (например, из media-query-хука приложения).
 
 ## Figma
 <FigmaEmbed node={figmaNode('stepper')} height={480} title='AdaptiveStepper в Figma (Snack UI Kit)' />
