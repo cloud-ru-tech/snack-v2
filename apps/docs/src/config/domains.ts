@@ -46,6 +46,14 @@ export const DOMAINS: readonly Domain[] = [
     description: 'Компоненты для админских/служебных интерфейсов. Не для пользовательских продуктов.',
     prefix: 'admin-',
   },
+  {
+    id: 'site',
+    label: 'Site',
+    storybookLabel: 'Site',
+    description:
+      'Компоненты для публичных сайтов и порталов: карточки контента, лендинговые блоки, HR- и маркетинговые интерфейсы.',
+    prefix: 'site-',
+  },
 ];
 
 // Validate prefixes at module load: order in DOMAINS is significant because
