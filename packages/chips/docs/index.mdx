@@ -1,22 +1,27 @@
 ---
 title: Chips
 package: '@ds/chips'
-description: Пакет чипов дизайн-системы — ChipAssist, ChipToggle, ChipChoice и ChipChoiceRow для фильтрации и выбора.
+description: Пакет чипов дизайн-системы — ChipAssist, ChipToggle, семейство ChipChoice и ChipChoiceRow для действий, переключения и фильтрации.
 order: 0
 ---
 
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
 
 # Chips
 
-Пакет `@ds/chips` предоставляет четыре компонента-чипа для фильтрации данных и пользовательского выбора.
+Пакет `@ds/chips` предоставляет компактные элементы управления — чипы. Они закрывают три задачи: инициировать действие, переключать бинарное состояние и фильтровать данные через выпадающий список.
 
-- [**ChipAssist**](/components/chips/chip-assist) — кликабельный чип для инициации действия.
-- [**ChipToggle**](/components/chips/chip-toggle) — чип с состоянием выбран/не выбран.
-- **ChipChoice** — семейство чип-фильтров с выпадающим списком:
-  [Single](/components/chips/chip-choice-single), [Multiple](/components/chips/chip-choice-multiple), [Date](/components/chips/chip-choice-date), [DateRange](/components/chips/chip-choice-date-range), [Time](/components/chips/chip-choice-time), [Custom](/components/chips/chip-choice-custom).
-- [**ChipChoiceRow**](/components/chips/chip-choice-row) — строка из нескольких ChipChoice-фильтров с кнопками добавить/сбросить.
+- [**ChipAssist**](/components/chips/chip-assist) — кликабельный чип-кнопка для inline-действия с иконкой, лейблом и состояниями `disabled` / `loading`.
+- [**ChipToggle**](/components/chips/chip-toggle) — чип с состоянием выбран / не выбран (controlled через `checked` + `onChange`).
+- **ChipChoice** — семейство чип-фильтров с выпадающим списком. Экспортируется как namespace:
+  - [`ChipChoice.Single`](/components/chips/chip-choice-single) — одиночный выбор.
+  - [`ChipChoice.Multiple`](/components/chips/chip-choice-multiple) — множественный выбор.
+  - [`ChipChoice.Date`](/components/chips/chip-choice-date) — выбор даты (`date` / `date-time` / `month` / `year`).
+  - [`ChipChoice.DateRange`](/components/chips/chip-choice-date-range) — выбор периода.
+  - [`ChipChoice.Time`](/components/chips/chip-choice-time) — выбор времени.
+  - [`ChipChoice.Custom`](/components/chips/chip-choice-custom) — произвольный контент выпадающего меню.
+- [**ChipChoiceRow**](/components/chips/chip-choice-row) — строка из нескольких ChipChoice-фильтров с кнопками добавить / сбросить и pinned-чипами.
 
 ## Установка
 
@@ -25,12 +30,26 @@ pnpm add @ds/chips
 ```
 
 ```ts
-import { ChipAssist, ChipToggle, ChipChoice, ChipChoiceRow } from '@ds/chips';
+import { ChipAssist, ChipToggle, ChipChoice, ChipChoiceRow } from '@ds/chips'
 ```
+
+`ChipChoice` — namespace: варианты доступны как `ChipChoice.Single`, `ChipChoice.Multiple`, `ChipChoice.Date`, `ChipChoice.DateRange`, `ChipChoice.Time`, `ChipChoice.Custom`.
+
+Компоненты с выпадающим списком (всё семейство `ChipChoice`) требуют `PortalContextProvider` из `@ds/portal-context` где-то выше по дереву — иначе выпадающее меню рендерится в `null`-root.
+
+## Анатомия
+
+### Size (default `s`)
+
+Все компоненты пакета разделяют один размерный ряд:
+
+- `s` — для плотных поверхностей: тулбары, строки фильтров, таблицы.
+- `m` — стандартный размер для форм.
+- `l` — для крупных форм и акцентных фильтров.
 
 ## Figma
 
-Все компоненты следуют одному мастер-файлу Figma «chips - Matrix». Ссылки на конкретные узлы — на страницах компонентов.
+Все компоненты следуют одному мастер-файлу Figma «chips — Matrix». Ссылки на конкретные узлы — на страницах компонентов.
 
 <FigmaEmbed node={figmaNode('chips')} height={420} title='Chips в Figma' />
 
@@ -38,4 +57,4 @@ import { ChipAssist, ChipToggle, ChipChoice, ChipChoiceRow } from '@ds/chips';
 
 - [`@ds/button`](/components/button) — кнопки для основных действий.
 - [`@ds/dropdown`](/components/dropdown) — выпадающие меню (используются внутри ChipChoice).
-- [`@ds/calendar`](/components/calendar) — календари для ChipChoiceDate / ChipChoiceDateRange / ChipChoiceTime.
+- [`@ds/calendar`](/components/calendar) — календари для `ChipChoice.Date` / `DateRange` / `Time`.

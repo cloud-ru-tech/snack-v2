@@ -1,46 +1,80 @@
 ---
 title: ChipChoice.Time
 package: '@ds/chips'
-description: ChipChoice для выбора времени.
+description: Чип-фильтр с выбором времени — значение в виде объекта { hours, minutes, seconds }, опциональные секунды, размеры s/m/l и состояния disabled/loading.
 order: 35
 ---
 
-import { PropsTable } from '#docs/components/PropsTable';
-import { StorybookEmbed } from '#docs/components/StorybookEmbed';
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
-import chipsDoc from './props.json';
+import { ChoiceTimeBasic } from '../demos/examples/ChoiceTimeBasic'
+import ChoiceTimeBasicSrc from '../demos/examples/ChoiceTimeBasic.tsx?raw'
+import { ChoiceTimeSeconds } from '../demos/examples/ChoiceTimeSeconds'
+import ChoiceTimeSecondsSrc from '../demos/examples/ChoiceTimeSeconds.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
 
 # ChipChoice.Time
 
-Выбор времени через `TimePicker`. Может отображать секунды или только часы и минуты.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoice-time--playground' title='ChipChoice.Time Playground' />
+Чип-фильтр с выбором времени. Значение — объект `{ hours, minutes, seconds }`. Секунды отображаются опционально через `showSeconds`.
 
 ## Когда использовать
 
-- Для фильтрации событий по времени.
-- Для настройки расписаний и временных окон.
-- Когда дата не нужна, а значение должно быть компактно показано в чипе.
+- Для фильтрации по времени суток в ряду чипов-фильтров.
+- Когда нужно выбрать часы и минуты (опционально секунды) компактным контролом.
+
+Когда **не** нужен ChipChoice.Time:
+
+- Для выбора даты или даты со временем — используйте [`ChipChoice.Date`](/components/chips/chip-choice-date).
+- Для выбора периода дат — используйте [`ChipChoice.DateRange`](/components/chips/chip-choice-date-range).
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — для плотных тулбаров и строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Seconds (default `false`)
+
+Проп `showSeconds` управляет отображением секунд:
+
+- `false` — выбор только часов и минут.
+- `true` — добавляет поле секунд; поле `seconds` объекта значения становится значимым.
+
+Текст внутри чипа настраивается через `valueRender(value)` — функция получает текущий объект `{ hours, minutes, seconds }` и возвращает узел для отображения.
+
+### Состояния
+
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер и блокирует открытие выпадающего списка времени.
 
 ## Установка
 
+```bash
+pnpm add @ds/chips
+```
+
 ```ts
-import { ChipChoice } from '@ds/chips';
+import { ChipChoice } from '@ds/chips'
 ```
 
-## Пример использования
+## Примеры использования
 
-```tsx
-<ChipChoice.Time
-  label='Time'
-  defaultValue={{ hours: 12, minutes: 30 }}
-  showSeconds={false}
-  onChange={time => console.log(time)}
-/>
-```
+<Example
+  title='Выбор времени'
+  description='Часы и минуты, контролируемое значение'
+  code={ChoiceTimeBasicSrc}
+>
+  <ChoiceTimeBasic client:only='react' />
+</Example>
+
+<Example title='С секундами' description='showSeconds добавляет поле секунд' code={ChoiceTimeSecondsSrc}>
+  <ChoiceTimeSeconds client:only='react' />
+</Example>
 
 ## Props
 
@@ -48,7 +82,7 @@ import { ChipChoice } from '@ds/chips';
 
 ## Storybook
 
-<StorybookEmbed storyId='components-chips-chipchoice-time--visual-matrix' title='ChipChoice.Time VisualMatrix' />
+<StorybookEmbed storyId='components-chips-chipchoice-time--playground' height={360} />
 
 ## Figma
 
@@ -56,5 +90,6 @@ import { ChipChoice } from '@ds/chips';
 
 ## Смотри также
 
-- [Chips](/components/chips) — обзор пакета.
-- [Calendar](/components/calendar) — пакет с `TimePicker`.
+- [ChipChoice.Date](/components/chips/chip-choice-date) — выбор даты.
+- [ChipChoice.DateRange](/components/chips/chip-choice-date-range) — выбор диапазона дат.
+- [ChipChoice.Single](/components/chips/chip-choice) — выбор одного значения из списка.

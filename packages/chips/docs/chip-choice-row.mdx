@@ -1,10 +1,15 @@
 ---
 title: ChipChoiceRow
 package: '@ds/chips'
-description: Строка фильтров из нескольких ChipChoice с кнопками добавить и сбросить все.
-order: 40
+description: Строка из нескольких ChipChoice-фильтров с pinned-чипами и кнопками добавить/сбросить.
+order: 3
 ---
 
+import { ChoiceRowBasic } from '../demos/examples/ChoiceRowBasic'
+import ChoiceRowBasicSrc from '../demos/examples/ChoiceRowBasic.tsx?raw'
+import { ChoiceRowPinned } from '../demos/examples/ChoiceRowPinned'
+import ChoiceRowPinnedSrc from '../demos/examples/ChoiceRowPinned.tsx?raw'
+import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
@@ -13,93 +18,77 @@ import chipsDoc from './props.json'
 
 # ChipChoiceRow
 
-Контейнер строки фильтров, управляющий группой `ChipChoice`-чипов. Поддерживает закреплённые фильтры (`pinned`), кнопку «Добавить фильтр» с выпадающим списком незакреплённых, кнопку «Сбросить всё» и управляемый/неуправляемый режим значений.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoicerow--playground' title='ChipChoiceRow Playground' />
+Контейнер, который собирает несколько `ChipChoice`-фильтров в одну строку и управляет их общим состоянием. Добавляет кнопку выбора фильтров и кнопку сброса.
 
 ## Когда использовать
 
-- Для страниц с комплексной фильтрацией таблиц/списков (несколько независимых фильтров).
-- Когда набор фильтров может меняться (пользователь добавляет/скрывает через «Добавить»).
-- Когда нужна кнопка сброса всех активных фильтров за один клик.
+- Для панели фильтров над таблицей или списком, где фильтров несколько и они меняются вместе.
+- Когда часть фильтров должна быть закреплена (`pinned`), а остальные — добавляться пользователем по необходимости.
+
+Когда **не** нужен ChipChoiceRow:
+
+- Для одного фильтра — используйте нужный `ChipChoice.*` напрямую.
+- Для действий, а не фильтрации — [`ChipAssist`](/components/chips/chip-assist).
 
 ## Анатомия
 
-### Pinned-фильтры
-Фильтры с `pinned: true` всегда видны в строке и не убираются через меню «Добавить».
+### Size (default `s`)
 
-### Visible-фильтры
-Фильтры без `pinned`, добавленные пользователем через кнопку «Добавить», рендерятся после pinned. Управляются через `visibleFilters` (контролируемый режим) или `defaultVisibleFilters` (неуправляемый).
+Размер применяется ко всем чипам строки: `s` / `m` / `l`.
 
-### Типы фильтров
-`CHIP_CHOICE_TYPE.Single`, `Multiple`, `Date`, `DateRange`, `Time`, `Custom` — соответствуют типам `ChipChoice.*`.
+### Filters
 
-### Кнопка «Добавить»
-Показывается если `showAddButton !== false`. Становится disabled, когда все незакреплённые фильтры уже видны.
+Проп `filters` — массив описаний фильтров. Каждый элемент задаёт:
 
-### Кнопка «Сбросить»
-Показывается при `showClearButton` только тогда, когда хотя бы один фильтр имеет значение.
+- `id` — уникальный ключ фильтра в состоянии.
+- `type` — тип чипа из `CHIP_CHOICE_TYPE`:
+  - `Single` — одиночный выбор.
+  - `Multiple` — множественный выбор.
+  - `Date` — дата.
+  - `DateRange` — период.
+  - `Time` — время.
+  - `Custom` — произвольный контент.
+- `label` — подпись чипа.
+- `options` — список значений (для `Single` / `Multiple`).
 
-## Figma
+### Pinned
 
-<FigmaEmbed node={figmaNode('chips', 'chip-choice-row')} height={420} title='ChipChoiceRow в Figma' />
+Фильтр с `pinned: true` всегда виден в строке и не убирается из неё. Остальные фильтры пользователь добавляет через кнопку добавления.
+
+### Add / Clear buttons
+
+- `showAddButton` (default `true`) — кнопка выбора дополнительных фильтров.
+- `showClearButton` (default `true`) — кнопка сброса всех значений.
 
 ## Установка
+
+```bash
+pnpm add @ds/chips
+```
 
 ```ts
 import { ChipChoiceRow, CHIP_CHOICE_TYPE } from '@ds/chips'
 ```
 
+`ChipChoiceRow` использует портал для выпадающих меню фильтров — оберните дерево в `PortalContextProvider` из `@ds/portal-context`.
+
 ## Примеры использования
 
-```tsx
-const FILTERS = [
-  {
-    id: 'status',
-    type: CHIP_CHOICE_TYPE.Single,
-    label: 'Status',
-    pinned: true,
-    options: [
-      { value: 'active', label: 'Active' },
-      { value: 'inactive', label: 'Inactive' },
-    ],
-  },
-  {
-    id: 'category',
-    type: CHIP_CHOICE_TYPE.Multiple,
-    label: 'Category',
-    options: [
-      { value: 'cat1', label: 'Category 1' },
-      { value: 'cat2', label: 'Category 2' },
-    ],
-  },
-  {
-    id: 'createdAt',
-    type: CHIP_CHOICE_TYPE.Date,
-    label: 'Created at',
-    options: [],
-  },
-]
+<Example
+  title='Строка фильтров'
+  description='Single + Multiple + Date с кнопками добавления и сброса'
+  code={ChoiceRowBasicSrc}
+>
+  <ChoiceRowBasic client:only='react' />
+</Example>
 
-// Неуправляемый режим
-<ChipChoiceRow
-  filters={FILTERS}
-  showClearButton
-  showAddButton
-/>
-
-// Управляемый режим
-<ChipChoiceRow
-  filters={FILTERS}
-  value={{ status: 'active' }}
-  visibleFilters={['category']}
-  showClearButton
-  onChange={(value) => console.log(value)}
-  onVisibleFiltersChange={(ids) => console.log(ids)}
-/>
-```
+<Example
+  title='Закреплённый фильтр'
+  description='pinned: true держит чип в строке, остальные добавляются по кнопке'
+  code={ChoiceRowPinnedSrc}
+>
+  <ChoiceRowPinned client:only='react' />
+</Example>
 
 ## Props
 
@@ -107,13 +96,13 @@ const FILTERS = [
 
 ## Storybook
 
-<StorybookEmbed storyId='components-chips-chipchoicerow--visual-matrix' title='ChipChoiceRow VisualMatrix' />
+<StorybookEmbed storyId='components-chips-chipchoicerow--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-choice-row')} height={420} title='ChipChoiceRow в Figma' />
 
 ## Смотри также
 
-- [ChipChoice.Single](/components/chips/chip-choice-single) — одиночный выбор.
-- [ChipChoice.Multiple](/components/chips/chip-choice-multiple) — множественный выбор.
-- [ChipChoice.Date](/components/chips/chip-choice-date) — выбор даты.
-- [ChipChoice.DateRange](/components/chips/chip-choice-date-range) — выбор диапазона дат.
-- [ChipChoice.Time](/components/chips/chip-choice-time) — выбор времени.
-- [ChipChoice.Custom](/components/chips/chip-choice-custom) — произвольный фильтр.
+- [ChipChoice.Single](/components/chips/chip-choice-single) — одиночный фильтр.
+- [Chips](/components/chips) — обзор пакета.

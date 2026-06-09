@@ -161,6 +161,9 @@
       "path": "./attachment/tsconfig.cjs.json"
     },
     {
+      "path": "./chips/tsconfig.cjs.json"
+    },
+    {
       "path": "./link/tsconfig.cjs.json"
     },
     {
@@ -198,9 +201,6 @@
     },
     {
       "path": "./uikit-product-title-clickable/tsconfig.cjs.json"
-    },
-    {
-      "path": "./chips/tsconfig.cjs.json"
     }
   ]
 }

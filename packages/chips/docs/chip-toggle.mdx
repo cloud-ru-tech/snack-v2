@@ -1,10 +1,17 @@
 ---
 title: ChipToggle
 package: '@ds/chips'
-description: Чип с состоянием выбран/не выбран — управляемый и неуправляемый режим, иконка, disabled/loading.
+description: Чип с бинарным состоянием выбора — controlled-компонент с иконкой, лейблом, размерами s/m/l и состояниями disabled/loading.
 order: 2
 ---
 
+import { ToggleBasic } from '../demos/examples/ToggleBasic'
+import ToggleBasicSrc from '../demos/examples/ToggleBasic.tsx?raw'
+import { ToggleGroup } from '../demos/examples/ToggleGroup'
+import ToggleGroupSrc from '../demos/examples/ToggleGroup.tsx?raw'
+import { ToggleStates } from '../demos/examples/ToggleStates'
+import ToggleStatesSrc from '../demos/examples/ToggleStates.tsx?raw'
+import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
@@ -13,31 +20,42 @@ import chipsDoc from './props.json'
 
 # ChipToggle
 
-Чип-переключатель с двумя состояниями: выбран / не выбран. Рендерится как `<label>` + скрытый `<input type="checkbox">` для нативной семантики.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chiptoggle--playground' title='ChipToggle Playground' />
+Чип с состоянием выбора. Переключает бинарное значение — выбран или нет — и подходит для мультивыбора в строках фильтров. Компонент controlled: значение `checked` и обработчик `onChange` обязательны.
 
 ## Когда использовать
 
-- Для множественной фильтрации по категориям (несколько независимых тоглов).
-- Для включения/выключения одной опции без модального контекста.
-- Как альтернатива Checkbox в более компактном, pill-образном виде.
+- Для мультивыбора в наборе фильтров: каждый чип независимо включается и выключается.
+- Когда нужно показать активное состояние выбора прямо на чипе, без отдельного индикатора.
+
+Когда **не** нужен ChipToggle:
+
+- Для одиночного действия без состояния — используйте [`ChipAssist`](/components/chips/chip-assist).
+- Для выбора одного варианта из взаимоисключающего набора — используйте [`ChipChoice.Single`](/components/chips/chip-choice-single).
 
 ## Анатомия
 
-### Size
-Три размера: `s` / `m` / `l`.
+### Size (default `s`)
+
+- `s` — для плотных тулбаров и строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Icon
+
+Опциональная иконка перед лейблом через проп `icon`. При `loading` иконка заменяется спиннером.
 
 ### Состояния
-`checked`, `disabled`, `loading`. При `checked` на корневом элементе ставится `data-checked='true'`.
 
-## Figma
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер вместо иконки и блокирует переключение.
 
-<FigmaEmbed node={figmaNode('chips', 'chip-toggle')} height={420} title='ChipToggle в Figma' />
+Компонент controlled: текущее значение передаётся в `checked`, а изменение приходит в `onChange(checked, event)`. Хранить состояние и обновлять его при `onChange` — обязанность потребителя.
 
 ## Установка
+
+```bash
+pnpm add @ds/chips
+```
 
 ```ts
 import { ChipToggle } from '@ds/chips'
@@ -45,13 +63,29 @@ import { ChipToggle } from '@ds/chips'
 
 ## Примеры использования
 
-```tsx
-// Неуправляемый
-<ChipToggle label='Category' checked={false} onChange={(checked) => console.log(checked)} />
+<Example
+  title='Базовый переключатель'
+  description='checked в локальном useState, обновляется в onChange'
+  code={ToggleBasicSrc}
+>
+  <ToggleBasic client:only='react' />
+</Example>
 
-// С иконкой
-<ChipToggle label='Filter' icon={<SettingsSVG />} size='m' checked={true} onChange={() => {}} />
-```
+<Example
+  title='Набор фильтров'
+  description='Мультивыбор — каждый чип со своим состоянием'
+  code={ToggleGroupSrc}
+>
+  <ToggleGroup client:only='react' />
+</Example>
+
+<Example
+  title='Состояния'
+  description='active, disabled и loading'
+  code={ToggleStatesSrc}
+>
+  <ToggleStates client:only='react' />
+</Example>
 
 ## Props
 
@@ -59,9 +93,13 @@ import { ChipToggle } from '@ds/chips'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-chips-chiptoggle--visual-matrix' title='ChipToggle VisualMatrix' />
+<StorybookEmbed storyId='components-chips-chiptoggle--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('chips', 'chip-toggle')} height={420} title='ChipToggle в Figma' />
 
 ## Смотри также
 
-- [ChipAssist](/components/chips/chip-assist) — кликабельный чип-кнопка.
-- [ChipChoice.Single](/components/chips/chip-choice-single) — чип с выпадающим выбором значения.
+- [ChipAssist](/components/chips/chip-assist) — чип-кнопка для inline-действия.
+- [ChipChoice.Single](/components/chips/chip-choice-single) — выбор одного варианта из набора.

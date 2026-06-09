@@ -1,49 +1,97 @@
 ---
 title: ChipChoice.Multiple
 package: '@ds/chips'
-description: ChipChoice для множественного выбора значений из списка.
+description: Чип-селектор с множественным выбором из списка опций — с поиском, режимом моментального или ручного применения и состояниями disabled/loading.
 order: 32
 ---
 
-import { PropsTable } from '#docs/components/PropsTable';
-import { StorybookEmbed } from '#docs/components/StorybookEmbed';
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
-import chipsDoc from './props.json';
+import { ChoiceMultipleBasic } from '../demos/examples/ChoiceMultipleBasic'
+import ChoiceMultipleBasicSrc from '../demos/examples/ChoiceMultipleBasic.tsx?raw'
+import { ChoiceMultipleSearchable } from '../demos/examples/ChoiceMultipleSearchable'
+import ChoiceMultipleSearchableSrc from '../demos/examples/ChoiceMultipleSearchable.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
 
 # ChipChoice.Multiple
 
-Множественный выбор значений из списка. По умолчанию показывает `All`, одно выбранное значение или счётчик выбранных элементов.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoice-multiple--playground' title='ChipChoice.Multiple Playground' />
+Чип с выпадающим списком опций и множественным выбором. Значение — массив выбранных опций; список открывается кликом и рендерится через портал.
 
 ## Когда использовать
 
-- Когда фильтр допускает несколько активных значений.
-- Когда список значений длиннее набора независимых `ChipToggle`.
-- Когда нужно отложенное применение через `autoApply={false}` и footer с кнопками.
+- Для фильтрации по нескольким значениям сразу: категории, теги, статусы.
+- Когда выбор должен выглядеть как компактный чип в ряду фильтров.
+- Когда списку нужен поиск по опциям — через проп `searchable`.
+
+Когда **не** нужен ChipChoice.Multiple:
+
+- Нужно выбрать ровно одно значение:
+  - используйте [`ChipChoice.Single`](/components/chips/chip-choice-single).
+- Нужно inline-действие без выбора:
+  - используйте [`ChipAssist`](/components/chips/chip-assist).
+- Нужна классическая кнопка действия:
+  - используйте [`Button`](/components/button/button).
+
+## Анатомия
+
+### Value display
+
+`value` и `defaultValue` — массивы значений `(string | number)[]`. В лейбле чипа отображается сводка по выбранным опциям; при множественном выборе показывается счётчик или перечисление через `valueRender`.
+
+### Size (default `s`)
+
+- `s` — для плотных тулбаров и строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Apply mode
+
+Режим применения выбора управляется пропом `autoApply`.
+
+- `autoApply` (default `true`) — каждое изменение выбора применяется сразу.
+- `autoApply={false}` — внизу списка появляется футер с кнопками Apply/Cancel; подтверждение — через `onApprove`, отмена — через `onCancel`.
+
+### Searchable
+
+- `searchable` — добавляет поле поиска в выпадающий список, опции фильтруются по введённому тексту.
+
+Уместно для списков от 6–7 опций, где скролл становится неудобным.
+
+### Состояния
+
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер и блокирует открытие списка.
 
 ## Установка
 
+```bash
+pnpm add @ds/chips
+```
+
 ```ts
-import { ChipChoice } from '@ds/chips';
+import { ChipChoice } from '@ds/chips'
 ```
 
-## Пример использования
+## Примеры использования
 
-```tsx
-<ChipChoice.Multiple
-  label='Category'
-  options={[
-    { value: 'compute', label: 'Compute' },
-    { value: 'storage', label: 'Storage' },
-  ]}
-  defaultValue={['compute']}
-  onChange={values => console.log(values)}
-/>
-```
+<Example
+  title='Множественный выбор'
+  description='Контролируемый массив значений через useState'
+  code={ChoiceMultipleBasicSrc}
+>
+  <ChoiceMultipleBasic client:only='react' />
+</Example>
+
+<Example
+  title='С поиском'
+  description='searchable добавляет поле поиска по опциям'
+  code={ChoiceMultipleSearchableSrc}
+>
+  <ChoiceMultipleSearchable client:only='react' />
+</Example>
 
 ## Props
 
@@ -51,10 +99,7 @@ import { ChipChoice } from '@ds/chips';
 
 ## Storybook
 
-<StorybookEmbed
-  storyId='components-chips-chipchoice-multiple--visual-matrix'
-  title='ChipChoice.Multiple VisualMatrix'
-/>
+<StorybookEmbed storyId='components-chips-chipchoice-multiple--playground' height={360} />
 
 ## Figma
 
@@ -62,5 +107,5 @@ import { ChipChoice } from '@ds/chips';
 
 ## Смотри также
 
-- [Chips](/components/chips) — обзор пакета.
-- [ChipChoice.Single](/components/chips/chip-choice-single) — одиночный выбор.
+- [ChipChoice.Single](/components/chips/chip-choice-single) — чип-селектор с одиночным выбором.
+- [Chips](/components/chips) — обзор семейства чипов.

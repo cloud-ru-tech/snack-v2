@@ -1,50 +1,103 @@
 ---
 title: ChipChoice.Single
 package: '@ds/chips'
-description: ChipChoice для одиночного выбора значения из списка.
+description: Чип-селектор с одиночным выбором из списка опций — с поиском, режимом моментального или ручного применения и состояниями disabled/loading.
 order: 31
 ---
 
-import { PropsTable } from '#docs/components/PropsTable';
-import { StorybookEmbed } from '#docs/components/StorybookEmbed';
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
-import chipsDoc from './props.json';
+import { ChoiceSingleBasic } from '../demos/examples/ChoiceSingleBasic'
+import ChoiceSingleBasicSrc from '../demos/examples/ChoiceSingleBasic.tsx?raw'
+import { ChoiceSingleSearchable } from '../demos/examples/ChoiceSingleSearchable'
+import ChoiceSingleSearchableSrc from '../demos/examples/ChoiceSingleSearchable.tsx?raw'
+import { ChoiceSingleManualApply } from '../demos/examples/ChoiceSingleManualApply'
+import ChoiceSingleManualApplySrc from '../demos/examples/ChoiceSingleManualApply.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
 
 # ChipChoice.Single
 
-Одиночный выбор значения из списка. Подходит для фильтров, где активным может быть только одно значение.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoice-single--playground' title='ChipChoice.Single Playground' />
+Чип с выпадающим списком опций и одиночным выбором. Текущее значение отображается в лейбле чипа, список открывается кликом и рендерится через портал.
 
 ## Когда использовать
 
-- Для статуса, категории, владельца или другого одиночного атрибута.
-- Когда пользователь должен выбрать ровно одно значение из списка.
-- Когда нужен `autoApply`: выбор сразу применяется и закрывает droplist.
+- Для выбора одного значения из набора прямо в ряду фильтров: статус, владелец, категория.
+- Когда выбор должен выглядеть как компактный чип, а не полноценный `Select` в форме.
+- Когда списку нужен поиск по опциям — через проп `searchable`.
+
+Когда **не** нужен ChipChoice.Single:
+
+- Нужно выбрать несколько значений одновременно:
+  - используйте [`ChipChoice.Multiple`](/components/chips/chip-choice-multiple).
+- Нужно inline-действие без выбора:
+  - используйте [`ChipAssist`](/components/chips/chip-assist).
+- Нужна классическая кнопка действия:
+  - используйте [`Button`](/components/button/button).
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — для плотных тулбаров и строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Apply mode
+
+Режим применения выбора управляется пропом `autoApply`.
+
+- `autoApply` (default `true`) — выбор опции применяется сразу и закрывает список.
+- `autoApply={false}` — внизу списка появляется футер с кнопками Apply/Cancel; изменение фиксируется через `onApprove`, отмена — через `onCancel`.
+
+### Searchable
+
+- `searchable` — добавляет поле поиска в выпадающий список, опции фильтруются по введённому тексту.
+
+Уместно для списков от 6–7 опций, где скролл становится неудобным.
+
+### Состояния
+
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер и блокирует открытие списка.
 
 ## Установка
 
+```bash
+pnpm add @ds/chips
+```
+
 ```ts
-import { ChipChoice } from '@ds/chips';
+import { ChipChoice } from '@ds/chips'
 ```
 
-## Пример использования
+## Примеры использования
 
-```tsx
-<ChipChoice.Single
-  label='Status'
-  options={[
-    { value: 'active', label: 'Active' },
-    { value: 'inactive', label: 'Inactive' },
-  ]}
-  defaultValue='active'
-  autoApply
-  onChange={value => console.log(value)}
-/>
-```
+<Example
+  title='Одиночный выбор'
+  description='Контролируемое значение через useState'
+  code={ChoiceSingleBasicSrc}
+>
+  <ChoiceSingleBasic client:only='react' />
+</Example>
+
+<Example
+  title='С поиском'
+  description='searchable добавляет поле поиска по опциям'
+  code={ChoiceSingleSearchableSrc}
+>
+  <ChoiceSingleSearchable client:only='react' />
+</Example>
+
+<Example
+  title='Ручное применение'
+  description='autoApply={false} — футер с Apply/Cancel'
+  code={ChoiceSingleManualApplySrc}
+>
+  <ChoiceSingleManualApply client:only='react' />
+</Example>
 
 ## Props
 
@@ -52,7 +105,7 @@ import { ChipChoice } from '@ds/chips';
 
 ## Storybook
 
-<StorybookEmbed storyId='components-chips-chipchoice-single--visual-matrix' title='ChipChoice.Single VisualMatrix' />
+<StorybookEmbed storyId='components-chips-chipchoice-single--playground' height={360} />
 
 ## Figma
 
@@ -60,5 +113,5 @@ import { ChipChoice } from '@ds/chips';
 
 ## Смотри также
 
-- [Chips](/components/chips) — обзор пакета.
-- [ChipChoice.Multiple](/components/chips/chip-choice-multiple) — множественный выбор.
+- [ChipChoice.Multiple](/components/chips/chip-choice-multiple) — чип-селектор с множественным выбором.
+- [Chips](/components/chips) — обзор семейства чипов.

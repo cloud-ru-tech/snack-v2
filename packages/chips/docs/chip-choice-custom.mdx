@@ -1,56 +1,77 @@
 ---
 title: ChipChoice.Custom
 package: '@ds/chips'
-description: ChipChoice с произвольным содержимым выпадающего меню.
+description: Чип-фильтр с произвольным контентом выпадающего меню — для нестандартных сценариев выбора.
 order: 36
 ---
 
-import { PropsTable } from '#docs/components/PropsTable';
-import { StorybookEmbed } from '#docs/components/StorybookEmbed';
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
-import chipsDoc from './props.json';
+import { ChoiceCustomBasic } from '../demos/examples/ChoiceCustomBasic'
+import ChoiceCustomBasicSrc from '../demos/examples/ChoiceCustomBasic.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
 
 # ChipChoice.Custom
 
-Вариант для случаев, когда стандартного списка, календаря или time picker недостаточно. Содержимое dropdown задаётся через `content`.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoice-custom--playground' title='ChipChoice.Custom Playground' />
+Чип-фильтр, в выпадающем меню которого рендерится произвольный контент через проп `content`. Подходит для сценариев, которые не покрываются готовыми вариантами `Single` / `Multiple` / `Date` / `Time`.
 
 ## Когда использовать
 
-- Для нестандартных фильтров с кастомной разметкой.
-- Для компактных форм внутри dropdown.
-- Когда значение и отображение нужно полностью контролировать снаружи.
+- Когда контент выпадающего меню — нестандартный: вложенная форма, слайдер диапазона, кастомный список с группировкой.
+- Когда нужно полностью контролировать разметку и логику выбора значения.
+
+Когда **не** нужен ChipChoice.Custom:
+
+- Для одиночного или множественного выбора из списка — используйте [`Single`](/components/chips/chip-choice-single) / [`Multiple`](/components/chips/chip-choice-multiple).
+- Для дат и времени — [`Date`](/components/chips/chip-choice-date) / [`DateRange`](/components/chips/chip-choice-date-range) / [`Time`](/components/chips/chip-choice-time).
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — для плотных строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Content
+
+Проп `content` получает объект `CustomContentRenderProps` и возвращает контент выпадающего меню:
+
+- `value` — текущее значение компонента.
+- `onChange(value)` — применить новое значение.
+- `closeDroplist()` — закрыть меню и вернуть фокус на чип.
+
+Отображение выбранного значения в самом чипе задаёт `valueRender(value)`.
+
+### Состояния
+
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер вместо иконки.
 
 ## Установка
 
+```bash
+pnpm add @ds/chips
+```
+
 ```ts
-import { ChipChoice } from '@ds/chips';
+import { ChipChoice } from '@ds/chips'
 ```
 
-## Пример использования
+`ChipChoice` использует портал для выпадающего меню — оберните дерево в `PortalContextProvider` из `@ds/portal-context`.
 
-```tsx
-<ChipChoice.Custom
-  label='Custom'
-  value='Alpha'
-  valueRender={value => value}
-  content={({ closeDroplist, onChange }) => (
-    <button
-      type='button'
-      onClick={() => {
-        onChange?.('Beta');
-        closeDroplist();
-      }}
-    >
-      Beta
-    </button>
-  )}
-/>
-```
+## Примеры использования
+
+<Example
+  title='Произвольное меню'
+  description='content рендерит свой список, onChange + closeDroplist применяют выбор'
+  code={ChoiceCustomBasicSrc}
+>
+  <ChoiceCustomBasic client:only='react' />
+</Example>
 
 ## Props
 
@@ -58,7 +79,7 @@ import { ChipChoice } from '@ds/chips';
 
 ## Storybook
 
-<StorybookEmbed storyId='components-chips-chipchoice-custom--visual-matrix' title='ChipChoice.Custom VisualMatrix' />
+<StorybookEmbed storyId='components-chips-chipchoice-custom--playground' height={360} />
 
 ## Figma
 
@@ -66,5 +87,5 @@ import { ChipChoice } from '@ds/chips';
 
 ## Смотри также
 
+- [ChipChoice.Single](/components/chips/chip-choice-single) — одиночный выбор из списка.
 - [Chips](/components/chips) — обзор пакета.
-- [Dropdown](/components/dropdown) — базовый dropdown-контейнер.

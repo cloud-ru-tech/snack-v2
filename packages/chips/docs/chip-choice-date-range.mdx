@@ -1,45 +1,84 @@
 ---
 title: ChipChoice.DateRange
 package: '@ds/chips'
-description: ChipChoice для выбора диапазона дат через календарь.
+description: Чип-фильтр с выбором диапазона дат через календарь — значение в виде кортежа [Date, Date], размеры s/m/l и состояния disabled/loading.
 order: 34
 ---
 
-import { PropsTable } from '#docs/components/PropsTable';
-import { StorybookEmbed } from '#docs/components/StorybookEmbed';
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
-import chipsDoc from './props.json';
+import { ChoiceDateRangeBasic } from '../demos/examples/ChoiceDateRangeBasic'
+import ChoiceDateRangeBasicSrc from '../demos/examples/ChoiceDateRangeBasic.tsx?raw'
+import { ChoiceDateRangeUncontrolled } from '../demos/examples/ChoiceDateRangeUncontrolled'
+import ChoiceDateRangeUncontrolledSrc from '../demos/examples/ChoiceDateRangeUncontrolled.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
 
 # ChipChoice.DateRange
 
-Выбор диапазона дат через календарь. Отображает выбранные даты в compact-формате внутри чипа.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoice-daterange--playground' title='ChipChoice.DateRange Playground' />
+Чип-фильтр с выбором диапазона дат. Открывает календарь в поповере, значение — кортеж `[Date, Date]` с начальной и конечной датой периода.
 
 ## Когда использовать
 
-- Для фильтрации по периоду.
-- Для отчётов, логов и списков событий.
-- Когда пользователю нужно задать начало и конец диапазона.
+- Для фильтрации списка или таблицы по периоду «с — по» в ряду чипов-фильтров.
+- Когда нужно выбрать интервал дат компактным контролом без отдельной формы.
+
+Когда **не** нужен ChipChoice.DateRange:
+
+- Для выбора одной даты — используйте [`ChipChoice.Date`](/components/chips/chip-choice-date).
+- Для выбора только времени — используйте [`ChipChoice.Time`](/components/chips/chip-choice-time).
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — для плотных тулбаров и строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Value — период
+
+Значение — кортеж из двух дат `[Date, Date]`:
+
+- первый элемент — начало периода.
+- второй элемент — конец периода.
+
+Текст внутри чипа настраивается через `valueRender(value)` — функция получает текущий кортеж `[Date, Date]` и возвращает узел для отображения.
+
+### Состояния
+
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер и блокирует открытие календаря.
 
 ## Установка
 
+```bash
+pnpm add @ds/chips
+```
+
 ```ts
-import { ChipChoice } from '@ds/chips';
+import { ChipChoice } from '@ds/chips'
 ```
 
-## Пример использования
+## Примеры использования
 
-```tsx
-<ChipChoice.DateRange
-  label='Period'
-  defaultValue={[new Date('2026-01-01'), new Date('2026-01-31')]}
-  onChange={range => console.log(range)}
-/>
-```
+<Example
+  title='Выбор периода'
+  description='Контролируемое значение через value и onChange'
+  code={ChoiceDateRangeBasicSrc}
+>
+  <ChoiceDateRangeBasic client:only='react' />
+</Example>
+
+<Example
+  title='Неконтролируемый режим'
+  description='Начальный период через defaultValue'
+  code={ChoiceDateRangeUncontrolledSrc}
+>
+  <ChoiceDateRangeUncontrolled client:only='react' />
+</Example>
 
 ## Props
 
@@ -47,10 +86,7 @@ import { ChipChoice } from '@ds/chips';
 
 ## Storybook
 
-<StorybookEmbed
-  storyId='components-chips-chipchoice-daterange--visual-matrix'
-  title='ChipChoice.DateRange VisualMatrix'
-/>
+<StorybookEmbed storyId='components-chips-chipchoice-daterange--playground' height={360} />
 
 ## Figma
 
@@ -58,5 +94,6 @@ import { ChipChoice } from '@ds/chips';
 
 ## Смотри также
 
-- [Chips](/components/chips) — обзор пакета.
-- [Calendar](/components/calendar) — календарь, используемый внутри.
+- [ChipChoice.Date](/components/chips/chip-choice-date) — выбор одной даты.
+- [ChipChoice.Time](/components/chips/chip-choice-time) — выбор времени.
+- [ChipChoice.Single](/components/chips/chip-choice) — выбор одного значения из списка.

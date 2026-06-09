@@ -1,41 +1,93 @@
 ---
 title: ChipChoice.Date
 package: '@ds/chips'
-description: ChipChoice для выбора одной даты через календарь.
+description: Чип-фильтр с выбором даты через календарь — режимы date, date-time, month, year, размеры s/m/l и состояния disabled/loading.
 order: 33
 ---
 
-import { PropsTable } from '#docs/components/PropsTable';
-import { StorybookEmbed } from '#docs/components/StorybookEmbed';
-import { FigmaEmbed } from '#docs/components/FigmaEmbed';
-import { figmaNode } from '#docs/lib/figma';
-import chipsDoc from './props.json';
+import { ChoiceDateBasic } from '../demos/examples/ChoiceDateBasic'
+import ChoiceDateBasicSrc from '../demos/examples/ChoiceDateBasic.tsx?raw'
+import { ChoiceDateTime } from '../demos/examples/ChoiceDateTime'
+import ChoiceDateTimeSrc from '../demos/examples/ChoiceDateTime.tsx?raw'
+import { ChoiceDateMonth } from '../demos/examples/ChoiceDateMonth'
+import ChoiceDateMonthSrc from '../demos/examples/ChoiceDateMonth.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import chipsDoc from './props.json'
 
 # ChipChoice.Date
 
-Выбор одной даты через `@ds/calendar`. Поддерживает режимы `date`, `date-time`, `month` и `year`.
-
-## Демо
-
-<StorybookEmbed storyId='components-chips-chipchoice-date--playground' title='ChipChoice.Date Playground' />
+Чип-фильтр с выбором даты. Открывает календарь в поповере, значение — объект `Date`. Поддерживает выбор даты, даты со временем, месяца и года через проп `mode`.
 
 ## Когда использовать
 
-- Для фильтрации по конкретной дате.
-- Для выбора месяца или года без отдельного поля ввода.
-- Когда значение должно отображаться прямо в чипе после выбора.
+- Для фильтрации списка или таблицы по дате в ряду чипов-фильтров.
+- Когда нужно выбрать конкретный день, месяц, год или дату со временем компактным контролом.
+
+Когда **не** нужен ChipChoice.Date:
+
+- Для выбора диапазона дат — используйте [`ChipChoice.DateRange`](/components/chips/chip-choice-date-range).
+- Для выбора только времени без даты — используйте [`ChipChoice.Time`](/components/chips/chip-choice-time).
+- Для выбора из произвольного списка значений — используйте [`ChipChoice.Single`](/components/chips/chip-choice).
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — для плотных тулбаров и строк фильтров.
+- `m` — стандартный размер.
+- `l` — для крупных форм.
+
+### Mode
+
+Режим выбора задаётся пропом `mode` (default `date`):
+
+- `date` — выбор конкретного дня.
+- `date-time` — выбор дня и времени; вместе с ним доступен `showSeconds` для отображения секунд.
+- `month` — выбор месяца.
+- `year` — выбор года.
+
+Текст внутри чипа настраивается через `valueRender(value)` — функция получает текущий `Date` и возвращает узел для отображения.
+
+### Состояния
+
+- `disabled` — отключает взаимодействие.
+- `loading` — показывает спиннер и блокирует открытие календаря.
 
 ## Установка
 
+```bash
+pnpm add @ds/chips
+```
+
 ```ts
-import { ChipChoice } from '@ds/chips';
+import { ChipChoice } from '@ds/chips'
 ```
 
-## Пример использования
+## Примеры использования
 
-```tsx
-<ChipChoice.Date label='Created at' defaultValue={new Date()} onChange={date => console.log(date)} />
-```
+<Example
+  title='Выбор даты'
+  description='Контролируемое значение через value и onChange'
+  code={ChoiceDateBasicSrc}
+>
+  <ChoiceDateBasic client:only='react' />
+</Example>
+
+<Example
+  title='Дата и время'
+  description="mode='date-time' с отображением секунд"
+  code={ChoiceDateTimeSrc}
+>
+  <ChoiceDateTime client:only='react' />
+</Example>
+
+<Example title='Выбор месяца' description="mode='month'" code={ChoiceDateMonthSrc}>
+  <ChoiceDateMonth client:only='react' />
+</Example>
 
 ## Props
 
@@ -43,7 +95,7 @@ import { ChipChoice } from '@ds/chips';
 
 ## Storybook
 
-<StorybookEmbed storyId='components-chips-chipchoice-date--visual-matrix' title='ChipChoice.Date VisualMatrix' />
+<StorybookEmbed storyId='components-chips-chipchoice-date--playground' height={360} />
 
 ## Figma
 
@@ -51,5 +103,6 @@ import { ChipChoice } from '@ds/chips';
 
 ## Смотри также
 
-- [Chips](/components/chips) — обзор пакета.
-- [Calendar](/components/calendar) — календарь, используемый внутри.
+- [ChipChoice.DateRange](/components/chips/chip-choice-date-range) — выбор диапазона дат.
+- [ChipChoice.Time](/components/chips/chip-choice-time) — выбор времени.
+- [ChipChoice.Single](/components/chips/chip-choice) — выбор одного значения из списка.

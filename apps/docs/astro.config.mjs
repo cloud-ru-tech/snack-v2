@@ -1,7 +1,7 @@
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import pagefind from 'astro-pagefind';
 import { defineConfig } from 'astro/config';
+import pagefind from 'astro-pagefind';
 import fs from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -55,6 +55,9 @@ export default defineConfig({
     // rejects that unless Vite bundles the package.
     ssr: {
       noExternal: [
+        // @sbercloud/snack-v2-list ESM entry re-exports `./components` (directory);
+        // same Node-SSR dir-import problem as @snack-uikit/list. Used by @ds/chips.
+        '@sbercloud/snack-v2-list',
         '@snack-uikit/list',
         '@snack-uikit/dropdown',
         '@snack-uikit/popover-private',
