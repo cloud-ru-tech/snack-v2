@@ -1,0 +1,120 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../utils/mixins' as m;
+
+.root {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: stretch;
+}
+
+.stepper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+
+  padding-top: base.$sn-primitive-dimension-8;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+}
+
+.connector {
+  position: absolute;
+
+  // линия по центру статус-контейнера (16px), стык с соседним AiTool в таймлайне
+  top: base.$sn-primitive-dimension-32;
+  bottom: calc(-1 * base.$sn-primitive-dimension-8);
+  left: calc(base.$sn-primitive-dimension-8 - base.$sn-primitive-strokeWeight-strokeRegular / 2);
+
+  width: base.$sn-primitive-strokeWeight-strokeRegular;
+
+  background-color: base.$sn-theme-color-available-borderColor;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  box-sizing: border-box;
+  min-width: base.$sn-primitive-dimension-0;
+  padding: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decorTransparent;
+  border-radius: base.$sn-density-radius-s;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  width: 100%;
+
+  // .name / .duration наследуют; иконка и chevron задают свой цвет сами (то же значение)
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.name {
+  @include m.mono-font;
+
+  overflow: hidden;
+  flex: 1;
+
+  min-width: base.$sn-primitive-dimension-0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.duration {
+  @include m.mono-font;
+
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  white-space: nowrap;
+}
+
+.durationSegment {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+}
+
+.chevron {
+  flex-shrink: 0;
+}
+
+.root[data-state='loading'] .header {
+  color: base.$sn-theme-color-available-version-textMain;
+
+  .icon,
+  .chevron {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  width: 100%;
+}

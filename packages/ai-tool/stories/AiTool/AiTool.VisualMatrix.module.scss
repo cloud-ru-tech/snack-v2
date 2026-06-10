@@ -1,0 +1,16 @@
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.cell {
+  width: 364px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  // 8px — связка с connector'ом, который уходит на 8px ниже корня AiTool
+  gap: 8px;
+  width: 364px;
+}

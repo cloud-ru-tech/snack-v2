@@ -31,6 +31,10 @@ import { AiToolIcon, AiToolObject, AiToolStatus } from '@ds/ai-tool'
 
 ## Компоненты
 
+### Composites — готовые компоненты
+
+- **AiTool** — полный инструмент (VibeOps): статус, иконка, имя, длительность и раскрываемые блоки запроса и ответа.
+
 ### Content — наполнение контентом
 
 - **AiToolText** — текстовый блок (mono / error).
@@ -45,6 +49,129 @@ import { AiToolIcon, AiToolObject, AiToolStatus } from '@ds/ai-tool'
 - **AiToolBadge** — бейдж ресурса.
 - **AiToolDetails** — карточка деталей.
 - **AiToolDetailsLabel** — заголовок части блока деталей.
+
+## AiTool
+
+Полный инструмент AI-стриминга (VibeOps) — статус-точка, иконка типа, имя, длительность и раскрываемые блоки запроса и ответа.
+
+Составной инструмент AI-стриминга (VibeOps): заголовок (статус-точка, иконка типа, имя, длительность, chevron) и раскрываемые блоки запроса и ответа. Собран из элементов пакета. Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+
+### Когда использовать
+
+- Готовый вызов инструмента в чате AI-ассистента (VibeOps).
+- Пошаговый таймлайн инструментов: несколько `AiTool` подряд с `connector`.
+
+#### Когда не нужен
+
+- Компактный инструмент для Гига-помощника:
+  - используйте **AiToolSimple**.
+- Кастомный рендер вызова инструмента:
+  - собирайте из элементов (`AiToolObject`, `AiToolKeyValue`, `AiToolDetails`, …).
+
+### Анатомия
+
+- **Stepper** — статус-точка `AiToolStatus` и опциональная линия-коннектор (`connector`) к следующему инструменту в таймлайне.
+- **Header** — иконка типа (`icon`), имя (`name`, обрезается ellipsis), длительность (`duration` в секундах — компонент форматирует в д/ч/м/с) и chevron-кнопка раскрытия.
+- **Details** — раскрываемые блоки запроса (`call`) и ответа (`result`) на базе `AiToolDetails`; заголовки настраиваются через `callLabel` / `resultLabel`.
+
+#### State (default `pending`)
+
+- `pending` — в очереди.
+- `loading` — выполняется: точка пульсирует, заголовок переключается с приглушённого на основной цвет текста.
+- `success` — завершён.
+- `error` — завершён с ошибкой: блок ответа подсвечивается красным.
+
+### Примеры использования
+
+#### Таймлайн инструментов
+
+AiTool с connector: завершённый и выполняющийся шаг
+
+```tsx
+import { AI_TOOL_ICON_TYPE, AI_TOOL_STATUS_STATE, AiTool, AiToolKeyValue, AiToolText } from '@ds/ai-tool';
+
+export function ToolTimeline() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: 364 }}>
+      <AiTool
+        name='search_documents'
+        icon={AI_TOOL_ICON_TYPE.Search}
+        state={AI_TOOL_STATUS_STATE.Success}
+        duration={3}
+        connector
+        call={<AiToolText mono>{'{ "query": "instance status" }'}</AiToolText>}
+        result={
+          <>
+            <AiToolKeyValue label='found' value='12' />
+            <AiToolKeyValue label='top_score' value='0.92' />
+          </>
+        }
+      />
+      <AiTool
+        name='status_for_users'
+        icon={AI_TOOL_ICON_TYPE.Act}
+        state={AI_TOOL_STATUS_STATE.Loading}
+        duration={9}
+        defaultOpened
+        call={<AiToolText mono>{'{ "user_id": 42 }'}</AiToolText>}
+      />
+    </div>
+  );
+}
+```
+
+#### Дерево вызова инструмента
+
+Сборка результата из Object + KeyValue + Array
+
+```tsx
+import { AiToolArray, AiToolKeyValue, AiToolObject } from '@ds/ai-tool';
+import { useState } from 'react';
+
+export function ToolCallTree() {
+  const [openRoot, setOpenRoot] = useState(true);
+  const [openZones, setOpenZones] = useState(true);
+
+  return (
+    <AiToolObject variant='complex' name='result' opened={openRoot} onToggle={setOpenRoot}>
+      <AiToolKeyValue label='region' value='ru-central1' />
+      <AiToolKeyValue label='status' value='running' />
+      <AiToolArray name='zones' count={2} unit='шт.' opened={openZones} onToggle={setOpenZones}>
+        <AiToolObject variant='string' name='[0]' value='ru-central1-a' />
+        <AiToolObject variant='string' name='[1]' value='ru-central1-b' />
+      </AiToolArray>
+    </AiToolObject>
+  );
+}
+```
+
+### Props
+
+**AiToolProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `call` | `ReactNode` | — | Содержимое блока запроса. Блок рендерится только при переданном значении. |
+| `callLabel` | `ReactNode` | `Запрос` | Заголовок блока запроса. |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `className` | `string` | — | Доп. класс корня. |
+| `connector` | `boolean` | `false` | Линия-коннектор к следующему инструменту в таймлайне. Линия выходит <br/> на 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`. |
+| `data-test-id` | `string` | `ai-tool` |  |
+| `defaultOpened` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
+| `duration` | `number` | — | Длительность выполнения в секундах. Форматируется компонентом в д/ч/м/с <br/> (ведущие нулевые единицы опускаются, секунды показываются всегда). |
+| `icon` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — глиф `AiToolIcon` в заголовке. |
+| `name` | `ReactNode` | — | Имя инструмента — моноширинная строка заголовка, обрезается ellipsis. |
+| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `opened`. |
+| `opened` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. |
+| `result` | `ReactNode` | — | Содержимое блока ответа. Блок рендерится только при переданном значении. |
+| `resultLabel` | `ReactNode` | `Ответ` | Заголовок блока ответа. |
+| `state` | `"error"` \| `"loading"` \| `"pending"` \| `"success"` | `pending` | Состояние выполнения инструмента: `loading` — выполняется (синяя <br/> пульсирующая точка, заголовок основным цветом текста вместо <br/> приглушённого), `success` — завершён, `error` — завершён с ошибкой <br/> (блок ответа подсвечивается красным), `pending` — в очереди. |
+
+##### Related types
+
+- `AiToolIconType` = `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"`
+
+- `AiToolStatusState` = `"error"` \| `"loading"` \| `"pending"` \| `"success"`
 
 ## AiToolIcon
 

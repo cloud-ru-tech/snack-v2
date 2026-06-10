@@ -1,4 +1,133 @@
 {
+  "AiTool": {
+    "displayName": "AiTool",
+    "propsTypeName": "AiToolProps",
+    "props": {
+      "call": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое блока запроса. Блок рендерится только при переданном значении."
+      },
+      "callLabel": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Запрос",
+        "description": "Заголовок блока запроса."
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "connector": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Линия-коннектор к следующему инструменту в таймлайне. Линия выходит\nна 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool"
+      },
+      "defaultOpened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Начальное раскрытое состояние (uncontrolled)."
+      },
+      "duration": {
+        "type": "number",
+        "required": false,
+        "description": "Длительность выполнения в секундах. Форматируется компонентом в д/ч/м/с\n(ведущие нулевые единицы опускаются, секунды показываются всегда)."
+      },
+      "icon": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "act",
+          "read",
+          "reasoning",
+          "search",
+          "security",
+          "wait"
+        ],
+        "description": "Тип инструмента — глиф `AiToolIcon` в заголовке.",
+        "typeRefs": [
+          "AiToolIconType"
+        ]
+      },
+      "name": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Имя инструмента — моноширинная строка заголовка, обрезается ellipsis."
+      },
+      "onToggle": {
+        "type": "((opened: boolean) => void)",
+        "required": false,
+        "description": "Переключение раскрытия. Получает новое значение `opened`."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`."
+      },
+      "result": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое блока ответа. Блок рендерится только при переданном значении."
+      },
+      "resultLabel": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Ответ",
+        "description": "Заголовок блока ответа."
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "loading",
+          "pending",
+          "success"
+        ],
+        "defaultValue": "pending",
+        "description": "Состояние выполнения инструмента: `loading` — выполняется (синяя\nпульсирующая точка, заголовок основным цветом текста вместо\nприглушённого), `success` — завершён, `error` — завершён с ошибкой\n(блок ответа подсвечивается красным), `pending` — в очереди.",
+        "typeRefs": [
+          "AiToolStatusState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolIconType": {
+        "kind": "union",
+        "values": [
+          "act",
+          "read",
+          "reasoning",
+          "search",
+          "security",
+          "wait"
+        ],
+        "own": true
+      },
+      "AiToolStatusState": {
+        "kind": "union",
+        "values": [
+          "error",
+          "loading",
+          "pending",
+          "success"
+        ],
+        "own": true
+      }
+    }
+  },
   "AiToolArray": {
     "displayName": "AiToolArray",
     "propsTypeName": "AiToolArrayProps",

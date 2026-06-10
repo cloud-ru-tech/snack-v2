@@ -35,6 +35,16 @@ export const AI_TOOL_DETAILS_STATE = {
 } as const;
 
 export const TEST_IDS = {
+  tool: 'ai-tool',
+  toolStatus: 'ai-tool__status',
+  toolConnector: 'ai-tool__connector',
+  toolHeader: 'ai-tool__header',
+  toolIcon: 'ai-tool__icon',
+  toolName: 'ai-tool__name',
+  toolDuration: 'ai-tool__duration',
+  toolChevron: 'ai-tool__chevron',
+  toolCall: 'ai-tool__call',
+  toolResult: 'ai-tool__result',
   icon: 'ai-tool-icon',
   status: 'ai-tool-status',
   text: 'ai-tool-text',

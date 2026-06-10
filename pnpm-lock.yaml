@@ -733,6 +733,9 @@ importers:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
+      uncontrollable:
+        specifier: 'catalog:'
+        version: 9.0.0(react@18.3.1)
 
   packages/alert:
     dependencies:

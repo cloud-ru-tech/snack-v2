@@ -1,0 +1,78 @@
+---
+title: AiTool
+package: '@ds/ai-tool'
+description: Полный инструмент AI-стриминга (VibeOps) — статус-точка, иконка типа, имя, длительность и раскрываемые блоки запроса и ответа.
+order: 1
+---
+
+import { ToolTimeline } from '../demos/examples/ToolTimeline'
+import ToolTimelineSrc from '../demos/examples/ToolTimeline.tsx?raw'
+import { ToolCallTree } from '../demos/examples/ToolCallTree'
+import ToolCallTreeSrc from '../demos/examples/ToolCallTree.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiTool
+
+Составной инструмент AI-стриминга (VibeOps): заголовок (статус-точка, иконка типа, имя, длительность, chevron) и раскрываемые блоки запроса и ответа. Собран из элементов пакета. Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+
+## Когда использовать
+
+- Готовый вызов инструмента в чате AI-ассистента (VibeOps).
+- Пошаговый таймлайн инструментов: несколько `AiTool` подряд с `connector`.
+
+### Когда не нужен
+
+- Компактный инструмент для Гига-помощника:
+  - используйте [AiToolSimple](/components/ai-tool/ai-tool-simple).
+- Кастомный рендер вызова инструмента:
+  - собирайте из элементов (`AiToolObject`, `AiToolKeyValue`, `AiToolDetails`, …).
+
+## Анатомия
+
+- **Stepper** — статус-точка `AiToolStatus` и опциональная линия-коннектор (`connector`) к следующему инструменту в таймлайне.
+- **Header** — иконка типа (`icon`), имя (`name`, обрезается ellipsis), длительность (`duration` в секундах — компонент форматирует в д/ч/м/с) и chevron-кнопка раскрытия.
+- **Details** — раскрываемые блоки запроса (`call`) и ответа (`result`) на базе `AiToolDetails`; заголовки настраиваются через `callLabel` / `resultLabel`.
+
+### State (default `pending`)
+
+- `pending` — в очереди.
+- `loading` — выполняется: точка пульсирует, заголовок переключается с приглушённого на основной цвет текста.
+- `success` — завершён.
+- `error` — завершён с ошибкой: блок ответа подсвечивается красным.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiTool } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Таймлайн инструментов' description='AiTool с connector: завершённый и выполняющийся шаг' code={ToolTimelineSrc}>
+  <ToolTimeline client:visible />
+</Example>
+
+<Example title='Дерево вызова инструмента' description='Сборка результата из Object + KeyValue + Array' code={ToolCallTreeSrc}>
+  <ToolCallTree client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiTool} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitool-aitool--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool', 'ai-tool')} />

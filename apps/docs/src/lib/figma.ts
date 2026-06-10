@@ -21,6 +21,7 @@ const AI_COMPONENTS = {
   fileKey: 'tCbbB5RUGyJeBRtjF3dt4d',
   fileName: 'AI-COMPONENTS',
 } as const;
+const TOOL_ELEMENTS = { ...AI_COMPONENTS, nodeId: '7217-4865' } as const;
 const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
   fileName: 'HR-Portal-Renovate',
@@ -91,7 +92,20 @@ export const FIGMA_NODES = {
     'ai-suggestion-parent': { ...AI_COMPONENTS, nodeId: '6467-21511' }, // Suggestion / Parent
   },
   'ai-field-banner': { ...AI_COMPONENTS, nodeId: '7335-6317' }, // ai-field-banner → Field Banner
-  'ai-tool': { ...AI_COMPONENTS, nodeId: '7217-4865' }, // ai-tool → Tool Elements
+  'ai-tool': {
+    _: { ...AI_COMPONENTS, nodeId: '7099-3606' }, // ai-tool → Tool (component set)
+    'ai-tool': { ...AI_COMPONENTS, nodeId: '7099-3606' }, // AiTool → Tool
+    'ai-tool-simple': { ...AI_COMPONENTS, nodeId: '7247-11350' }, // AiToolSimple → Tool Simple
+    'ai-tool-array': TOOL_ELEMENTS,
+    'ai-tool-badge': TOOL_ELEMENTS,
+    'ai-tool-details': TOOL_ELEMENTS,
+    'ai-tool-details-label': TOOL_ELEMENTS,
+    'ai-tool-icon': TOOL_ELEMENTS,
+    'ai-tool-key-value': TOOL_ELEMENTS,
+    'ai-tool-object': TOOL_ELEMENTS,
+    'ai-tool-status': TOOL_ELEMENTS,
+    'ai-tool-text': TOOL_ELEMENTS,
+  },
   alert: { ...SNACK, nodeId: '3222-166' }, // alert → alert
   attachment: {
     _: { ...SNACK, nodeId: '5778-49181' },
