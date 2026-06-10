@@ -6,6 +6,7 @@ $sizes: 's', 'm', 'l';
 .container {
   position: relative;
 
+  overflow: hidden;
   display: inline-flex;
   flex-direction: row;
   align-items: stretch;
@@ -18,13 +19,53 @@ $sizes: 's', 'm', 'l';
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      padding: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'container', 'border-width');
-      border-radius: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'container', 'border-radius');
+      height: base.simple-var(
+        segmentControl.$segmentControl,
+        'anatomy',
+        'size',
+        $size,
+        'segment',
+        'container',
+        'height'
+      );
+      border-radius: base.simple-var(
+        segmentControl.$segmentControl,
+        'anatomy',
+        'size',
+        $size,
+        'container',
+        'border-radius'
+      );
     }
   }
 
   &[data-outline] {
-    border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+    &::after {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+
+      box-sizing: border-box;
+      border-color: base.$sn-theme-color-available-borderColor;
+      border-style: solid;
+      border-radius: inherit;
+    }
+
+    @each $size in $sizes {
+      &[data-size='#{$size}']::after {
+        border-width: base.simple-var(
+          segmentControl.$segmentControl,
+          'anatomy',
+          'size',
+          $size,
+          'container',
+          'border-width'
+        );
+      }
+    }
   }
 
   &[data-width='full'] {
@@ -66,7 +107,26 @@ $sizes: 's', 'm', 'l';
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      border-radius: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'container', 'border-radius');
+      border: base.simple-var(
+          segmentControl.$segmentControl,
+          'anatomy',
+          'size',
+          $size,
+          'segment',
+          'container',
+          'border-width'
+        )
+        solid
+        base.$sn-theme-color-neutral-background;
+      border-radius: base.simple-var(
+        segmentControl.$segmentControl,
+        'anatomy',
+        'size',
+        $size,
+        'segment',
+        'container',
+        'border-radius'
+      );
     }
   }
 }
