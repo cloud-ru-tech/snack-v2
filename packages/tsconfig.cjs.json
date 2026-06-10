@@ -113,6 +113,9 @@
       "path": "./scroll/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-queue/tsconfig.cjs.json"
+    },
+    {
       "path": "./drawer/tsconfig.cjs.json"
     },
     {

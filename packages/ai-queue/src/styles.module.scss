@@ -1,0 +1,146 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 0;
+  align-items: stretch;
+
+  width: 100%;
+  max-width: 400px;
+  padding-top: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-density-radius-2xs;
+}
+
+.root[data-open] {
+  row-gap: base.$sn-primitive-dimension-8;
+}
+
+.trigger {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 's');
+
+  cursor: pointer;
+
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: base.$sn-density-radius-2xs;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-align: left;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    outline-offset: 0;
+  }
+}
+
+.summary {
+  overflow: hidden;
+  display: inline-flex;
+  column-gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.content {
+  max-height: 140px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-8;
+  align-items: stretch;
+
+  padding-right: base.$sn-primitive-dimension-8;
+}
+
+.step {
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.stepStatus {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+}
+
+.stepStatusIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.stepStatusSuccess {
+  color: base.$sn-theme-color-primary-accent;
+}
+
+.stepStatusError {
+  color: base.$sn-theme-color-red-accent;
+}
+
+.stepStatusProgress {
+  color: base.$sn-theme-color-blue-accent;
+}
+
+.stepStatusPending {
+  box-sizing: border-box;
+  width: base.$sn-primitive-dimension-8;
+  height: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-density-radius-2xs;
+}
+
+.stepLabel {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 's');
+
+  overflow: hidden;
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.step[data-state='progress'] .stepLabel {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+}
+
+.step[data-state='error'] .stepLabel,
+.step[data-state='done'] .stepLabel {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.step[data-state='done'] .stepLabel {
+  text-decoration: line-through;
+}

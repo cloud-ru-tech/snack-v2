@@ -15,7 +15,7 @@ export function AiReasoning({
   'data-test-id': dataTestId = TEST_IDS.root,
   ...rest
 }: AiReasoningProps): ReactElement {
-  const showConnector = stepperLine && connector;
+  const showConnector = connector ?? stepperLine;
 
   return (
     <div
@@ -29,13 +29,9 @@ export function AiReasoning({
           <DotSmallSVG size={16} />
         </span>
 
-        {stepperLine && (
-          <>
-            <span className={styles.divider} data-test-id={TEST_IDS.divider} aria-hidden />
+        {stepperLine && <span className={styles.divider} data-test-id={TEST_IDS.divider} aria-hidden />}
 
-            {showConnector && <span className={styles.connector} data-test-id={TEST_IDS.connector} aria-hidden />}
-          </>
-        )}
+        {showConnector && <span className={styles.connector} data-test-id={TEST_IDS.connector} aria-hidden />}
       </div>
 
       <div className={styles.container}>

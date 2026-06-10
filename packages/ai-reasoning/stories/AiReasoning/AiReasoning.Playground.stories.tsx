@@ -19,7 +19,6 @@ const meta: Meta<typeof AiReasoning> = {
   args: {
     description: 'Tool is reasoning about the next action',
     stepperLine: true,
-    connector: true,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {

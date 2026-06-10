@@ -111,6 +111,9 @@
       "path": "./scroll/tsconfig.esm.json"
     },
     {
+      "path": "./ai-queue/tsconfig.esm.json"
+    },
+    {
       "path": "./drawer/tsconfig.esm.json"
     },
     {
