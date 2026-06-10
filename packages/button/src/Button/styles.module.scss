@@ -139,7 +139,7 @@ $appearance-to-theme: (
   }
 }
 
-.content {  
+.content {
   position: relative;
 
   display: inline-flex;
@@ -312,9 +312,10 @@ $appearance-to-theme: (
   }
 
   @each $appearance in $appearances {
-    $token: base.simple-var($appearance-to-theme, $appearance);
+    $appearance-token: base.simple-var($appearance-to-theme, $appearance);
+
     &[data-appearance='#{$appearance}'] {
-      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'accent'));
+      @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $appearance-token, 'text'));
     }
 
     &:disabled,
@@ -325,6 +326,6 @@ $appearance-to-theme: (
 
   &:focus-visible {
     outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
-    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+    outline-offset: calc(0px - #{base.$sn-primitive-strokeWeight-strokeSemiBold});
   }
 }
