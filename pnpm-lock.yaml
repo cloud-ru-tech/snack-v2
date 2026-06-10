@@ -486,6 +486,9 @@ importers:
       '@ds/uikit-product-copy':
         specifier: workspace:*
         version: link:../../packages/uikit-product-copy
+      '@ds/uikit-product-flex':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-flex
       '@ds/uikit-product-info-row':
         specifier: workspace:*
         version: link:../../packages/uikit-product-info-row
@@ -2075,6 +2078,15 @@ importers:
         version: link:../utils
       classnames:
         specifier: 2.5.1
+        version: 2.5.1
+
+  packages/uikit-product-flex:
+    dependencies:
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
         version: 2.5.1
 
   packages/uikit-product-info-row:

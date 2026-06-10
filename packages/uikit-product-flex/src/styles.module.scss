@@ -1,0 +1,112 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Закрытые оси (Extract из CSSProperties) → data-* + SCSS, без инлайн-стилей.
+$directions: 'row', 'row-reverse', 'column', 'column-reverse';
+$justifies: 'flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly', 'stretch';
+$aligns: 'flex-start', 'center', 'flex-end', 'self-start', 'self-end', 'baseline', 'stretch';
+$align-contents: 'flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly', 'stretch', 'baseline';
+$wraps: 'nowrap', 'wrap', 'wrap-reverse';
+$overflows: 'visible', 'hidden', 'clip', 'scroll', 'auto';
+
+// Keyword-размеры (ElementSize) → data-*; произвольные числа/строки идут в инлайн-style.
+$element-sizes: 'max-content', 'min-content', 'fit-content', 'auto', 'inherit', 'initial', 'unset';
+
+// Модульная шкала gap → dimension-токены DS.
+$gaps: (
+  '025m': base.$sn-primitive-dimension-2,
+  '050m': base.$sn-primitive-dimension-4,
+  '1m': base.$sn-primitive-dimension-8,
+  '2m': base.$sn-primitive-dimension-16,
+  '3m': base.$sn-primitive-dimension-24,
+  '4m': base.$sn-primitive-dimension-32,
+  '5m': base.$sn-primitive-dimension-40,
+  '6m': base.$sn-primitive-dimension-48,
+  '7m': base.$sn-primitive-dimension-56,
+  '8m': base.$sn-primitive-dimension-64,
+  '9m': base.$sn-primitive-dimension-72,
+  '10m': base.$sn-primitive-dimension-80,
+);
+
+.root {
+  display: flex;
+
+  @each $value in $directions {
+    &[data-direction='#{$value}'] {
+      flex-direction: #{$value};
+    }
+  }
+
+  @each $value in $justifies {
+    &[data-justify='#{$value}'] {
+      justify-content: #{$value};
+    }
+  }
+
+  @each $value in $aligns {
+    &[data-align='#{$value}'] {
+      align-items: #{$value};
+    }
+  }
+
+  @each $value in $align-contents {
+    &[data-align-content='#{$value}'] {
+      align-content: #{$value};
+    }
+  }
+
+  @each $value in $wraps {
+    &[data-wrap='#{$value}'] {
+      flex-wrap: #{$value};
+    }
+  }
+
+  @each $value in $overflows {
+    &[data-overflow='#{$value}'] {
+      overflow: #{$value};
+    }
+
+    &[data-overflow-x='#{$value}'] {
+      overflow-x: #{$value};
+    }
+
+    &[data-overflow-y='#{$value}'] {
+      overflow-y: #{$value};
+    }
+  }
+
+  @each $value in $element-sizes {
+    &[data-width='#{$value}'] {
+      width: #{$value};
+    }
+
+    &[data-height='#{$value}'] {
+      height: #{$value};
+    }
+
+    &[data-flex='#{$value}'] {
+      flex: #{$value};
+    }
+  }
+
+  @each $value, $token in $gaps {
+    &[data-gap='#{$value}'] {
+      gap: $token;
+    }
+  }
+
+  @each $value, $token in $gaps {
+    &[data-column-gap='#{$value}'] {
+      column-gap: $token;
+    }
+  }
+
+  @each $value, $token in $gaps {
+    &[data-row-gap='#{$value}'] {
+      row-gap: $token;
+    }
+  }
+
+  &[data-full-width] {
+    width: 100%;
+  }
+}

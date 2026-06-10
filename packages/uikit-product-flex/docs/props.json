@@ -1,0 +1,361 @@
+{
+  "Flex": {
+    "displayName": "Flex",
+    "propsTypeName": "FlexProps",
+    "description": "Контейнер для flex-раскладки. Управляет направлением (`direction`),\nвыравниванием (`justify` / `align` / `alignContent`), переносом (`wrap`),\nпереполнением (`overflow`) и отступами между детьми (`gap` / `columnGap` /\n`rowGap`). Полиморфен через `as`.\n\nОси с закрытым набором значений, токены отступов и keyword-размеры применяются\nчерез `data-*` атрибуты (маппинг в SCSS), а не инлайн-стилем. Инлайн-`style`\nостаётся только для произвольных `width` / `height` / `flex` и пользовательского\n`style`.",
+    "props": {
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "baseline",
+          "center",
+          "flex-end",
+          "flex-start",
+          "self-end",
+          "self-start",
+          "stretch"
+        ],
+        "description": "Выравнивание по поперечной оси (`align-items`).",
+        "typeRefs": [
+          "Align"
+        ]
+      },
+      "alignContent": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "baseline",
+          "center",
+          "flex-end",
+          "flex-start",
+          "space-around",
+          "space-between",
+          "space-evenly",
+          "stretch"
+        ],
+        "description": "Выравнивание строк многострочного flex (`align-content`, работает при `wrap`).",
+        "typeRefs": [
+          "AlignContent"
+        ]
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера. По умолчанию `div`.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое контейнера."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс."
+      },
+      "columnGap": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "025m",
+          "050m",
+          "10m",
+          "1m",
+          "2m",
+          "3m",
+          "4m",
+          "5m",
+          "6m",
+          "7m",
+          "8m",
+          "9m"
+        ],
+        "description": "Отступ между колонками (CSS `column-gap`). Только токен модульной шкалы (см. `gap`).",
+        "typeRefs": [
+          "GapToken"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Стабильный идентификатор для e2e/tests."
+      },
+      "direction": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "column",
+          "column-reverse",
+          "row",
+          "row-reverse"
+        ],
+        "description": "Направление главной оси (`flex-direction`). По умолчанию `row`.",
+        "typeRefs": [
+          "Direction"
+        ]
+      },
+      "flex": {
+        "type": "Size",
+        "required": false,
+        "description": "Значение CSS-свойства `flex`. Keyword (`ElementSize` — `auto` / `max-content` / … →\nчерез `data-*`), число (`flex-grow`) или shorthand-строка (`'1 1 auto'`).",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Растянуть контейнер на всю ширину родителя (`width: 100%`)."
+      },
+      "gap": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "025m",
+          "050m",
+          "10m",
+          "1m",
+          "2m",
+          "3m",
+          "4m",
+          "5m",
+          "6m",
+          "7m",
+          "8m",
+          "9m"
+        ],
+        "description": "Отступ между детьми (CSS `gap`). Только токен модульной шкалы (привязан к\ndimension-токенам DS).\n<pre>\n025m - 2px\n050m - 4px\n1m - 8px\n2m - 16px\n3m - 24px\n4m - 32px\n5m - 40px\n6m - 48px\n7m - 56px\n8m - 64px\n9m - 72px\n10m - 80px\n</pre>",
+        "typeRefs": [
+          "GapToken"
+        ]
+      },
+      "height": {
+        "type": "Size",
+        "required": false,
+        "description": "Высота контейнера. Keyword (`ElementSize`), число (px) или CSS-строка (`'50%'`).",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "justify": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "center",
+          "flex-end",
+          "flex-start",
+          "space-around",
+          "space-between",
+          "space-evenly",
+          "stretch"
+        ],
+        "description": "Выравнивание по главной оси (`justify-content`).",
+        "typeRefs": [
+          "Justify"
+        ]
+      },
+      "overflow": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "clip",
+          "hidden",
+          "scroll",
+          "visible"
+        ],
+        "description": "Переполнение по обеим осям (`overflow`).",
+        "typeRefs": [
+          "Overflow"
+        ]
+      },
+      "overflowX": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "clip",
+          "hidden",
+          "scroll",
+          "visible"
+        ],
+        "description": "Переполнение по горизонтали (`overflow-x`).",
+        "typeRefs": [
+          "Overflow"
+        ]
+      },
+      "overflowY": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "clip",
+          "hidden",
+          "scroll",
+          "visible"
+        ],
+        "description": "Переполнение по вертикали (`overflow-y`).",
+        "typeRefs": [
+          "Overflow"
+        ]
+      },
+      "rowGap": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "025m",
+          "050m",
+          "10m",
+          "1m",
+          "2m",
+          "3m",
+          "4m",
+          "5m",
+          "6m",
+          "7m",
+          "8m",
+          "9m"
+        ],
+        "description": "Отступ между строками (CSS `row-gap`). Только токен модульной шкалы (см. `gap`).",
+        "typeRefs": [
+          "GapToken"
+        ]
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Инлайн-стили, домешиваются последними и перекрывают `width`/`height`/`flex`."
+      },
+      "width": {
+        "type": "Size",
+        "required": false,
+        "description": "Ширина контейнера. Keyword (`ElementSize`), число (px) или CSS-строка (`'50%'`).",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "wrap": {
+        "type": "boolean | Wrap",
+        "required": false,
+        "description": "Перенос детей (`flex-wrap`). `true` → `wrap`, `false` → `nowrap`,\nлибо явное значение `nowrap` | `wrap` | `wrap-reverse`.",
+        "typeRefs": [
+          "Wrap"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Align": {
+        "kind": "union",
+        "values": [
+          "baseline",
+          "center",
+          "flex-end",
+          "flex-start",
+          "self-end",
+          "self-start",
+          "stretch"
+        ],
+        "own": true
+      },
+      "AlignContent": {
+        "kind": "union",
+        "values": [
+          "baseline",
+          "center",
+          "flex-end",
+          "flex-start",
+          "space-around",
+          "space-between",
+          "space-evenly",
+          "stretch"
+        ],
+        "own": true
+      },
+      "Direction": {
+        "kind": "union",
+        "values": [
+          "column",
+          "column-reverse",
+          "row",
+          "row-reverse"
+        ],
+        "own": true
+      },
+      "GapToken": {
+        "kind": "union",
+        "values": [
+          "025m",
+          "050m",
+          "10m",
+          "1m",
+          "2m",
+          "3m",
+          "4m",
+          "5m",
+          "6m",
+          "7m",
+          "8m",
+          "9m"
+        ],
+        "own": true
+      },
+      "Justify": {
+        "kind": "union",
+        "values": [
+          "center",
+          "flex-end",
+          "flex-start",
+          "space-around",
+          "space-between",
+          "space-evenly",
+          "stretch"
+        ],
+        "own": true
+      },
+      "Overflow": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "clip",
+          "hidden",
+          "scroll",
+          "visible"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      },
+      "Size": {
+        "kind": "alias",
+        "type": "number | (string & {}) | ElementSize",
+        "own": true
+      },
+      "Wrap": {
+        "kind": "union",
+        "values": [
+          "nowrap",
+          "wrap",
+          "wrap-reverse"
+        ],
+        "own": true
+      }
+    }
+  }
+}

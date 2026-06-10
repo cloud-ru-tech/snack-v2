@@ -1,0 +1,68 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}
+
+.boxTall {
+  height: 64px;
+}
+
+/* Рамка с фиксированной шириной — чтобы было видно justify-content. */
+.mainAxisFrame {
+  width: 260px;
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}
+
+/* Рамка с фиксированной высотой — чтобы было видно align-items. */
+.crossAxisFrame {
+  width: 200px;
+  height: 96px;
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}
+
+/* Узкая рамка — чтобы было видно перенос (wrap). */
+.wrapFrame {
+  width: 140px;
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}
+
+/* Узкая высокая рамка — чтобы был запас по поперечной оси для align-content. */
+.alignContentFrame {
+  width: 148px;
+  height: 180px;
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}
+
+/* Сам Flex выступает контейнером overflow — рамка по его границе. */
+.overflowHost {
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}
+
+/* Контент крупнее рамки, не сжимается — чтобы overflow было заметно. */
+.overflowContent {
+  flex: 0 0 auto;
+
+  width: 200px;
+  height: 120px;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
+}

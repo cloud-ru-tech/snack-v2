@@ -78,6 +78,7 @@
     "@ds/site-card-vacancy": "workspace:*",
     "@ds/uikit-product-avatar-detail": "workspace:*",
     "@ds/uikit-product-copy": "workspace:*",
+    "@ds/uikit-product-flex": "workspace:*",
     "@ds/uikit-product-info-row": "workspace:*",
     "@ds/uikit-product-load-status": "workspace:*",
     "@ds/uikit-product-button-predefined": "workspace:*",

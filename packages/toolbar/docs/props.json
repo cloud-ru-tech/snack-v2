@@ -865,7 +865,7 @@
         "description": "Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br>\nНа mobile (`layoutType=\"mobile\"`) не рендерится в строке — кнопки переносятся в меню «⋯»\n(`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки\nили элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`."
       },
       "api": {
-        "type": "{ focus(): void; isActive(id: ToolbarItemId): boolean; isHeadingActive(level: HeadingLevel): boolean; toggle(id: ToolbarItemId): void; toggleHeading(level: HeadingLevel): void; setParagraph(): void; getLinkHref(): string | undefined; getLinkTitle(): string | undefined; setLink(props: LinkProps): void; insertImage(src: string, alt: string): void; insertTable(rows: number, cols: number): void; subscribe(callback: () => void): () => void; }",
+        "type": "{ mode: \"wysiwyg\" | \"raw\"; focus(): void; isActive(id: ToolbarItemId): boolean; isHeadingActive(level: HeadingLevel): boolean; toggle(id: ToolbarItemId): void; toggleHeading(level: HeadingLevel): void; setParagraph(): void; getLinkHref(): string | undefined; getLinkTitle(): string | undefined; setLink(props: LinkProps): void; insertImage(src: string, alt: string): void; insertTable(rows: number, cols: number): void; subscribe(callback: () => void): () => void; }",
         "required": true,
         "description": "Бэкенд команд: WYSIWYG (TipTap) в preview-режиме либо markdown-исходник (textarea) в raw-режиме.",
         "typeRefs": [
@@ -1003,6 +1003,15 @@
             "type": "(level: HeadingLevel) => boolean",
             "required": true,
             "description": "Активен ли заголовок уровня `level` на текущей строке. В raw-режиме — false."
+          },
+          "mode": {
+            "type": "\"wysiwyg\" | \"raw\"",
+            "required": true,
+            "values": [
+              "raw",
+              "wysiwyg"
+            ],
+            "description": "Режим бэкенда: `wysiwyg` (TipTap, preview) либо `raw` (markdown-исходник в textarea)."
           },
           "setLink": {
             "type": "(props: LinkProps) => void",
