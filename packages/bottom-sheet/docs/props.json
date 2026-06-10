@@ -1,0 +1,812 @@
+{
+  "Body": {
+    "displayName": "Body",
+    "propsTypeName": null,
+    "description": "Контейнер основного содержимого bottom-sheet'а. Принимает `content` или `children`.",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера body."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "BottomSheet": {
+    "displayName": "BottomSheet",
+    "propsTypeName": "BottomSheetProps",
+    "description": "Высокоуровневая обёртка `@ds/bottom-sheet` с готовой анатомией:\nmedia + header + body + footer + safeArea + dividers.\n\nДля ручной композиции используйте `BottomSheetCustom` с children и\nnamespace-компонентами `.Header` / `.Body` / `.Footer`.",
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Action-кнопка справа в шапке (любой ReactNode — обычно `Button view='function'`)."
+      },
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка — объект пропсов `Button` (по умолчанию `view='simple'`,\n`appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка действия — объект пропсов `Button` (по умолчанию `view='filled'`,\n`appearance='primary'`). Ширина зависит от `footerActionsOrientation` и числа кнопок.",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину (edge-to-edge) — для карт,\nизображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс самого sheet-контейнера."
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать sheet при `popstate` (browser-back на mobile)."
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Основное содержимое (рендерится в `BottomSheetCustom.Body`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultSnapIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`."
+      },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Произвольный футер. Если задан — имеет приоритет над\n`approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация кнопок футера, собранных из `approveButton` / `cancelButton` / `additionalButton`.\nПрименяется **только при ровно двух** кнопках (canonical cancel/confirm):\n\n- `'horizontal'` — кнопки в ряд через space-between: secondary слева, primary справа,\n  ширина по контенту. Точное соответствие Figma `bottomBar.buttonGroup`.\n- `'vertical'`   — кнопки в столбик, full-width (primary сверху).\n\nОдна кнопка всегда рендерится full-width (одиночный CTA); три кнопки не помещаются в ряд на\nmobile-вьюпорте и всегда идут в столбик — для них значение игнорируется.\n\nИгнорируется при заданном `footer` (произвольная разметка футера).",
+        "typeRefs": [
+          "FooterActionsOrientation"
+        ]
+      },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница\nпод sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с\nкоторым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`."
+      },
+      "media": {
+        "type": "ReactNode | BottomSheetMediaProps",
+        "required": false,
+        "description": "Media-блок над шапкой: изображение / иконка либо произвольный `ReactNode`.",
+        "typeRefs": [
+          "BottomSheetMediaProps"
+        ]
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а рендерит ArrowLeft-кнопку."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back)."
+      },
+      "onSnapIndexChange": {
+        "type": "((snapIndex: number) => void)",
+        "required": false,
+        "description": "Callback изменения активного snap'а (пересечение swipe-границы или click по UI).\nНе вызывается при программной смене controlled `snapIndex`."
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан / не показан."
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента portal'а."
+      },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+      },
+      "showBackdrop": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge."
+      },
+      "snapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е;\nswipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен\nпередать новое значение."
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+        "typeRefs": [
+          "SnapPoint"
+        ]
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой — типично `SearchBar`, `SegmentControl`."
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке."
+      },
+      "withDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а,\nчтобы разграничить sticky-header / footer от плывущего контента."
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "BottomSheetActionButton": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "\"button\" | undefined",
+            "required": false,
+            "values": [
+              "button"
+            ],
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": true
+      },
+      "BottomSheetMediaProps": {
+        "kind": "interface",
+        "props": {
+          "alt": {
+            "type": "string",
+            "required": true,
+            "description": "Альтернативный текст (a11y)."
+          },
+          "kind": {
+            "type": "MediaKind | undefined",
+            "required": false,
+            "values": [
+              "icon",
+              "image"
+            ],
+            "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`.",
+            "typeRefs": [
+              "MediaKind"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "required": true,
+            "description": "URL изображения / иконки."
+          }
+        },
+        "own": true
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "FooterActionsOrientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
+      "MediaKind": {
+        "kind": "union",
+        "values": [
+          "icon",
+          "image"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
+      }
+    }
+  },
+  "BottomSheetCustom": {
+    "displayName": "BottomSheetCustom",
+    "propsTypeName": "BottomSheetCustomProps",
+    "description": "Низкоуровневая обёртка bottom-sheet'а: portal + backdrop + slide-up motion + focus-trap +\nPointer-Events swipe / snap-engine. Рендеримся через `createPortal` напрямую; transition-фазами\nуправляет `useTransitionPhase`.\n\nМобильная корректность:\n - `react-remove-scroll` лочит скролл фона и гасит pull-to-refresh / overscroll-bleed на iOS;\n - `touch-action` на слоях (см. `styles.module.scss`) убирает нативные жесты на поверхности sheet'а;\n - drag-движок (`useDragEngine`) отдаёт жест нативному скроллу, пока вложенный контент не упёрся\n   в край — поэтому контент скроллится, а sheet не «дёргается».\n\nВысокоуровневая обёртка с готовой анатомией (header / body / media / footer) — `BottomSheet`.",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс самого sheet-контейнера."
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать sheet при `popstate` (browser-back на mobile)."
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultSnapIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`."
+      },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница\nпод sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с\nкоторым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back)."
+      },
+      "onSnapIndexChange": {
+        "type": "((snapIndex: number) => void)",
+        "required": false,
+        "description": "Callback изменения активного snap'а (пересечение swipe-границы или click по UI).\nНе вызывается при программной смене controlled `snapIndex`."
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан / не показан."
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента portal'а."
+      },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+      },
+      "showBackdrop": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
+      },
+      "snapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е;\nswipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен\nпередать новое значение."
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+        "typeRefs": [
+          "SnapPoint"
+        ]
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+      }
+    },
+    "relatedTypes": {
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": true
+      }
+    }
+  },
+  "BottomSheetCustom.Body": {
+    "displayName": "BottomSheetCustom.Body",
+    "propsTypeName": null,
+    "description": "Контейнер основного содержимого bottom-sheet'а. Принимает `content` или `children`.",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера body."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "BottomSheetCustom.Footer": {
+    "displayName": "BottomSheetCustom.Footer",
+    "propsTypeName": null,
+    "description": "Нижняя action-зона bottom-sheet'а (рендерит `children` в `bottomBar`-секции).",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера footer'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "BottomSheetCustom.Handle": {
+    "displayName": "BottomSheetCustom.Handle",
+    "propsTypeName": null,
+    "description": "Drag-индикатор сверху bottom-sheet'а (32×4px). Декоративный — `aria-hidden`.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "BottomSheetCustom.Header": {
+    "displayName": "BottomSheetCustom.Header",
+    "propsTypeName": null,
+    "description": "Header bottom-sheet'а: back-button + headline + slotAfterHeadline + actionButton + subHeadline.",
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера header'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "BottomSheetCustom.Media": {
+    "displayName": "BottomSheetCustom.Media",
+    "propsTypeName": null,
+    "description": "Media-блок над headline:\n - `kind='image'` (по умолчанию) — изображение во всю ширину, высота 184px.\n - `kind='icon'`  — иконка с `padding-top: 24px`.",
+    "props": {
+      "alt": {
+        "type": "string",
+        "required": true,
+        "description": "Альтернативный текст (a11y)."
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "kind": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "icon",
+          "image"
+        ],
+        "defaultValue": "image",
+        "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`."
+      },
+      "src": {
+        "type": "string",
+        "required": true,
+        "description": "URL изображения / иконки."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Footer": {
+    "displayName": "Footer",
+    "propsTypeName": null,
+    "description": "Нижняя action-зона bottom-sheet'а (рендерит `children` в `bottomBar`-секции).",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера footer'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Handle": {
+    "displayName": "Handle",
+    "propsTypeName": null,
+    "description": "Drag-индикатор сверху bottom-sheet'а (32×4px). Декоративный — `aria-hidden`.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "Header": {
+    "displayName": "Header",
+    "propsTypeName": null,
+    "description": "Header bottom-sheet'а: back-button + headline + slotAfterHeadline + actionButton + subHeadline.",
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера header'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Media": {
+    "displayName": "Media",
+    "propsTypeName": null,
+    "description": "Media-блок над headline:\n - `kind='image'` (по умолчанию) — изображение во всю ширину, высота 184px.\n - `kind='icon'`  — иконка с `padding-top: 24px`.",
+    "props": {
+      "alt": {
+        "type": "string",
+        "required": true,
+        "description": "Альтернативный текст (a11y)."
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "kind": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "icon",
+          "image"
+        ],
+        "defaultValue": "image",
+        "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`."
+      },
+      "src": {
+        "type": "string",
+        "required": true,
+        "description": "URL изображения / иконки."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

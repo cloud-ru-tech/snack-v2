@@ -33,6 +33,6 @@
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
     "rc-drawer": "6.4.1",
-    "tabbable": "6.4.0"
+    "tabbable": "catalog:"
   }
 }

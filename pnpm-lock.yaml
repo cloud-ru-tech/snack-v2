@@ -36,9 +36,15 @@ catalogs:
     react-dom:
       specifier: 18.3.1
       version: 18.3.1
+    react-remove-scroll:
+      specifier: 2.7.2
+      version: 2.7.2
     sass:
       specifier: 1.99.0
       version: 1.99.0
+    tabbable:
+      specifier: 6.4.0
+      version: 6.4.0
     typescript:
       specifier: 5.9.3
       version: 5.9.3
@@ -297,6 +303,9 @@ importers:
       '@ds/block':
         specifier: workspace:*
         version: link:../../packages/block
+      '@ds/bottom-sheet':
+        specifier: workspace:*
+        version: link:../../packages/bottom-sheet
       '@ds/breadcrumbs':
         specifier: workspace:*
         version: link:../../packages/breadcrumbs
@@ -665,6 +674,33 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
 
+  packages/bottom-sheet:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/portal-context':
+        specifier: workspace:*
+        version: link:../portal-context
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      react-remove-scroll:
+        specifier: 'catalog:'
+        version: 2.7.2(@types/react@18.3.28)(react@18.3.1)
+      tabbable:
+        specifier: 'catalog:'
+        version: 6.4.0
+
   packages/breadcrumbs:
     dependencies:
       '@ds/typography':
@@ -943,7 +979,7 @@ importers:
         specifier: 6.4.1
         version: 6.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tabbable:
-        specifier: 6.4.0
+        specifier: 'catalog:'
         version: 6.4.0
 
   packages/dropdown:
@@ -1121,10 +1157,10 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
       react-remove-scroll:
-        specifier: 2.7.2
+        specifier: 'catalog:'
         version: 2.7.2(@types/react@18.3.28)(react@18.3.1)
       tabbable:
-        specifier: 6.4.0
+        specifier: 'catalog:'
         version: 6.4.0
 
   packages/pagination:

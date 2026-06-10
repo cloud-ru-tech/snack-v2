@@ -1,0 +1,42 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/bottomSheet.module' as bottomSheet;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  height: 100%;
+  min-height: 0;
+}
+
+// safeArea теперь — env-паддинг на `.content` (BottomSheetCustom/styles.module.scss), без spacer-дивов.
+
+// Divider использует `available/borderColor` (rgba(0,0,0,0.1)) — соответствует Figma
+// `dividerWrapper.divider.line.bg`. Не путать с `neutral/decor` (#c3c8d5) который
+// применяется к handle / outline-кнопкам.
+.divider {
+  flex-shrink: 0;
+  height: base.$sn-primitive-strokeWeight-strokeRegular;
+  background-color: base.$sn-theme-color-available-borderColor;
+}
+
+.contentBlock {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  min-height: 0;
+  padding-top: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'padding-top');
+}
+
+.contentBlockNoTopPadding {
+  padding-top: 0;
+}
+
+.disclaimer {
+  @include base.composite-var(base.$sn-regular, 'label', 's');
+
+  color: base.$sn-theme-color-neutral-text;
+  text-align: center;
+}

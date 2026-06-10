@@ -1,0 +1,65 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Раскладка слотов в Figma-композициях bottom-sheet'а (Filters / SelectionList / TagPicker).
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.switchRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkRow {
+  // Это <label> — вся строка кликабельна (клик по тексту переключает чекбокс).
+  cursor: pointer;
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+// Фоновая «страница» для non-modal демо: один блочный контейнер на всю ширину (иначе flex-раскладка
+// .appContent в MobilePreview раскидала бы заголовок и абзацы в строку).
+.nonModalPage {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  width: 100%;
+}
+
+.tagGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: base.$sn-primitive-dimension-4;
+}
+
+.menuItem {
+  cursor: pointer;
+
+  width: 100%;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-align: left;
+
+  background: transparent;
+}

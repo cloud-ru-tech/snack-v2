@@ -1,0 +1,24 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/bottomSheet.module' as bottomSheet;
+
+.root {
+  // Свой scroll-container: браузер владеет вертикальным скроллом (момент-скролл, инерция),
+  // а `overscroll-behavior: contain` не даёт скроллу утечь в фон / вызвать pull-to-refresh.
+  touch-action: pan-y;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex: 1 1 auto;
+
+  min-height: 0;
+  padding: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-top') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-right') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-bottom') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-left');
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+// Figma-ось `padding=false`: горизонтальные паддинги убираются, контент во всю ширину
+// (slotContent растягивается на 360px вместо 328) — для карт / изображений / edge-to-edge списков.
+.root[data-no-padding] {
+  padding-right: 0;
+  padding-left: 0;
+}

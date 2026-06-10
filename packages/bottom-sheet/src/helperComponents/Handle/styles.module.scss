@@ -1,0 +1,25 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/bottomSheet.module' as bottomSheet;
+
+.wrapper {
+  // Drag-зона: браузер не панорамирует/не делает pull-to-refresh здесь, жестом владеет pointer-движок.
+  touch-action: none;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'badgeHandle', 'height');
+}
+
+.handle {
+  display: block;
+
+  width: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'badgeHandle', 'handle', 'width');
+  min-height: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'badgeHandle', 'handle', 'min-height');
+  border-radius: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'badgeHandle', 'handle', 'border-radius');
+
+  background-color: base.$sn-theme-color-neutral-decor;
+}

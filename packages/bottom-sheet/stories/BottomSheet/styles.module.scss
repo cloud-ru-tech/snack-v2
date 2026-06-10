@@ -1,0 +1,185 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Жёстко зафиксированные размеры здесь — story-level mock-up phone frame.
+// Не дизайн-параметры компонента; toкенного эквивалента не имеют.
+
+.nestedActions {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+// ===== Figma-композиции (examples) =====
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.switchRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Это <label> — вся строка кликабельна.
+.checkRow {
+  cursor: pointer;
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.tagGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: base.$sn-primitive-dimension-4;
+}
+
+.menuItem {
+  cursor: pointer;
+
+  width: 100%;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-align: left;
+
+  background: transparent;
+}
+
+// ===== Mobile composition — две колонки: контролы слева, телефон справа =====
+.phonePage {
+  display: flex;
+  gap: base.$sn-primitive-dimension-32;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+// `transform: translateZ(0)` на safe-area делает её containing block
+// для `position: fixed` дочернего bottom-sheet'а — sheet живёт внутри
+// рамки, а не на всём вьюпорте Storybook.
+.phoneFrame {
+  position: relative;
+
+  overflow: hidden;
+  flex-shrink: 0;
+
+  border: 7px solid #1a1a1a;
+  // Демо-радиус крупного скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-36;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.phoneSizeSm {
+  width: 360px;
+  height: 640px;
+}
+
+.phoneSizeMd {
+  width: 390px;
+  height: 720px;
+}
+
+.phoneSizeLg {
+  width: 430px;
+  height: 800px;
+}
+
+.phoneNotch {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-20;
+  border-radius: 0 0 14px 14px;
+
+  background: #1a1a1a;
+}
+
+// Safe-area: абсолютно-позиционированная зона с padding'ами для notch'а сверху
+// и home-indicator снизу. `transform: translateZ(0)` создаёт containing block
+// для `position: fixed` bottom-sheet'а внутри.
+.phoneSafeArea {
+  position: absolute;
+  inset: base.$sn-primitive-dimension-44 0 base.$sn-primitive-dimension-32 0;
+  transform: translateZ(0);
+
+  // contain: layout style — изолирует bottom-sheet'овский overflow scroll
+  // от containing block phone-frame'а.
+  overflow: hidden;
+}
+
+.phoneStatusBar {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: base.$sn-primitive-dimension-32;
+  padding: 0 base.$sn-primitive-dimension-16;
+
+  color: base.$sn-theme-color-neutral-text;
+}
+
+.phoneHomeIndicator {
+  position: absolute;
+  z-index: 1;
+  bottom: base.$sn-primitive-dimension-8;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-primitive-dimension-2;
+
+  opacity: 0.6;
+  background: base.$sn-theme-color-neutral-text;
+}
+
+// ===== Demo controls column =====
+.controlsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.controlsRow {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.controlsActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+}

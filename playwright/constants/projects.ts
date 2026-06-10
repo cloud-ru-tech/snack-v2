@@ -35,6 +35,18 @@ export const PROJECTS: NonNullable<PlaywrightTestConfig['projects']> = [
       ...devices['Pixel 7'],
     },
   },
+  {
+    name: 'mobile-android',
+    use: {
+      ...devices['Pixel 7'],
+    },
+  },
+  {
+    name: 'mobile-ios',
+    use: {
+      ...devices['iPhone 14'],
+    },
+  },
 ];
 
 export const VISUAL_BASELINE_PROJECT = 'chrome';

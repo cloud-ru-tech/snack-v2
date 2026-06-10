@@ -1,0 +1,238 @@
+---
+title: BottomSheet
+package: '@ds/bottom-sheet'
+description: Mobile-first overlay-контейнер с drag-handle и swipe-down для диалогов, выпадающих списков и фильтров. Поддерживает snap-points (раскрытие на половину → full).
+order: 0
+---
+
+import { BottomSheet } from '@ds/bottom-sheet'
+import { Alert } from '@ds/alert'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithMedia } from '../demos/examples/WithMedia'
+import WithMediaSrc from '../demos/examples/WithMedia.tsx?raw'
+import { WithSubHeadline } from '../demos/examples/WithSubHeadline'
+import WithSubHeadlineSrc from '../demos/examples/WithSubHeadline.tsx?raw'
+import { WithActionButton } from '../demos/examples/WithActionButton'
+import WithActionButtonSrc from '../demos/examples/WithActionButton.tsx?raw'
+import { Scrollable } from '../demos/examples/Scrollable'
+import ScrollableSrc from '../demos/examples/Scrollable.tsx?raw'
+import { Expandable } from '../demos/examples/Expandable'
+import ExpandableSrc from '../demos/examples/Expandable.tsx?raw'
+import { Filters } from '../demos/examples/Filters'
+import FiltersSrc from '../demos/examples/Filters.tsx?raw'
+import { SelectionList } from '../demos/examples/SelectionList'
+import SelectionListSrc from '../demos/examples/SelectionList.tsx?raw'
+import { TagPicker } from '../demos/examples/TagPicker'
+import TagPickerSrc from '../demos/examples/TagPicker.tsx?raw'
+import { FooterActions } from '../demos/examples/FooterActions'
+import FooterActionsSrc from '../demos/examples/FooterActions.tsx?raw'
+import { NonModal } from '../demos/examples/NonModal'
+import NonModalSrc from '../demos/examples/NonModal.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import bottomSheetDoc from './props.json'
+
+# BottomSheet
+
+Mobile-first bottom-sheet — overlay-контейнер, выезжающий снизу. Используется как базовый layer для диалогов, выпадающих списков, фильтров и любых полу-полно-экранных UI на мобильных устройствах.
+
+<Alert
+  client:visible
+  appearance='warning'
+  title='Только для мобильной версии браузера'
+  description='Компонент рассчитан на мобильный браузер. На desktop поведение (swipe-down, snap-points, scroll-lock тела страницы) может быть некорректным — для desktop используйте Modal или Drawer.'
+/>
+
+## Когда использовать
+
+- Полу-полно-экранный диалог на мобильном устройстве.
+- Action-sheet («Выбрать действие»: фото, удалить, отменить).
+- Multi-step flow с back-кнопкой в шапке.
+- Контейнер для выпадающего списка / фильтров на мобильном.
+
+## Когда не нужен
+
+- На desktop'е — используйте [Modal](/components/modal) или [Drawer](/components/drawer).
+- Для коротких подтверждений на одну строку — Toaster.
+- Для контента, который должен перекрыть весь экран без возможности dismiss — это новый screen, не bottom-sheet.
+
+## Анатомия
+
+### Handle
+Drag-индикатор 32×4px сверху — визуальная подсказка для swipe-down. Показывается, когда включён свайп; при `swipeEnabled={false}` его нет (нет жеста — нет намёка на него).
+
+### Backdrop (default `showBackdrop=true`)
+Полупрозрачная подложка. Click по backdrop'у вызывает `onClose`. При `showBackdrop={false}` фон не затемняется и click-outside не закрывает sheet.
+
+### Non-modal (default `lockScroll=true`)
+По умолчанию sheet — модальный: фон затемнён и заблокирован для скролла. Для non-modal сценария (sheet поверх контента, с которым продолжают работать) передайте `lockScroll={false}` (страница под sheet'ом скроллится) — обычно вместе с `showBackdrop={false}`.
+
+### Header
+- `title` — заголовок.
+- `slotAfterHeadline` — slot справа от title (QuestionTooltip, badge).
+- `onBackButtonClick` — авто-рендерит back-кнопку слева.
+- `actionButton` — кастомный slot справа.
+- `subHeadline` — slot под headline-строкой (SearchBar / SegmentControl).
+
+### Media
+- `kind='image'` — full-bleed image, min-height 184px; прижато к шапке (убирает верхний отступ контент-блока). Горизонтальные паддинги body не меняются — для edge-to-edge body передайте `bodyPadding={false}`.
+- `kind='icon'` — иконка с `padding-top: 24px`.
+- Произвольный `ReactNode` — если нужен свой media-блок (видео, карта, кастомная разметка).
+
+### Body padding (default `bodyPadding=true`)
+Горизонтальные паддинги тела. При `bodyPadding={false}` контент идёт во всю ширину (edge-to-edge) —
+для карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`.
+
+### Footer actions (default orientation `horizontal`)
+Высокоуровневый footer собирается из объектов пропсов `Button` — кнопки рендерятся через `ButtonGroup`:
+
+- `approveButton` — основное действие (по умолчанию `view='filled'`, `appearance='primary'`).
+- `cancelButton` — отмена (по умолчанию `view='outline'`, `appearance='neutral'`).
+- `additionalButton` — третье действие (по умолчанию `view='simple'`, `appearance='neutral'`).
+- `disclaimer` — мелкий центрированный текст под кнопками.
+
+`footerActionsOrientation` управляет раскладкой **пары** cancel/confirm:
+
+- `'horizontal'` — ряд через space-between (secondary слева, primary справа), ширина по контенту.
+  Дефолт — точное соответствие Figma `bottomBar.buttonGroup`.
+- `'vertical'` — кнопки в столбик, full-width.
+
+Одна кнопка всегда рендерится full-width (одиночный CTA); три кнопки не помещаются в ряд на
+mobile-вьюпорте и всегда идут в столбик.
+
+Для произвольной разметки — `footer: ReactNode` (имеет приоритет над `approveButton` / `cancelButton`
+/ `additionalButton` / `disclaimer`).
+
+### Dividers (default `withDividers=false`)
+Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а.
+
+### SafeArea (default `safeArea=true`)
+Блоки сверху/снизу, резервирующие место под iOS notch / home-indicator и Android nav-bar через
+`env(safe-area-inset-*)` (с 32px-фолбэком для embedded webview, который не отдаёт inset'ы). Figma-артборд
+эти блоки скрывает; на реальном устройстве они нужны, чтобы футер не уходил под home-indicator. Передайте
+`safeArea={false}`, если рамку safe-area обеспечивает окружение (например, нативная оболочка webview).
+
+### Snap points (default `undefined` → height auto)
+По дефолту sheet `height: auto` (один snap по высоте контента). Когда задан `snapPoints`-массив, sheet поддерживает несколько фиксированных позиций (iOS-detents-аналог):
+
+```tsx
+<BottomSheet
+  open={open}
+  onClose={onClose}
+  snapPoints={[0.5, 1]}
+  defaultSnapIndex={0}
+  title='Меню'
+  content={<List />}
+/>
+```
+
+**Формат** — `number ∈ (0, 1] | 'Npx' | 'N%' | 'Ndvh' | 'Nsvh' | 'Nlvh' | 'fit-content'`. Порядок массива — от меньшей позиции к большей. Drag вверх → следующий snap; drag вниз ниже первого snap'а — закрытие.
+
+- **Controlled snap** — задайте `snapIndex` + `onSnapIndexChange`. В этом режиме swipe вызывает `onSnapIndexChange`, но позицию не двигает: потребитель сам передаёт новое значение обратно.
+- **`swipeEnabled` (default `true`)** — `false` отключает swipe-жесты; переключить snap можно только программно через `snapIndex`.
+- **`closeOnPopstate` (default `true`)** — закрытие по browser-back (`popstate`). Полезно на mobile, чтобы аппаратная кнопка «назад» закрывала sheet вместо ухода со страницы.
+
+## Доступность
+
+- **Роль и имя.** Sheet — `role='dialog'` + `aria-modal='true'`. Высокоуровневый `BottomSheet`
+  автоматически связывает `title` с dialog'ом через `aria-labelledby` (accessible name). Если `title`
+  нет (icon-/media-only sheet) или вы используете низкоуровневый `BottomSheetCustom` — задайте
+  `aria-label` сами (прокидывается на dialog).
+- **Клавиатура.** `Esc` закрывает sheet (верхний слой при вложенных). Фокус переносится внутрь при
+  открытии, зациклен по `Tab` / `Shift+Tab` и возвращается на триггер после закрытия.
+- **Motion.** Slide / fade / height-анимации гасятся при `prefers-reduced-motion: reduce`.
+- **Media.** Для `media` всегда задавайте осмысленный `alt` (он обязателен в типе `BottomSheetMediaProps`).
+- **Non-modal.** При `showBackdrop={false}` + `lockScroll={false}` sheet немодальный: `aria-modal` не выставляется, фокус не запирается (Tab уходит на фон), Esc закрывает даже когда фокус снаружи.
+- **Dismiss-контрол.** Своей кнопки «закрыть» у sheet'а нет (dismiss — Esc / клик по backdrop / swipe-down). Если у sheet'а нет ни back-кнопки, ни footer-«Отмена», добавьте явный in-sheet dismiss для keyboard/SR-пользователей.
+- **Snap-точки и клавиатура.** Переключение detent'ов (`snapPoints`) — это pointer-жест (swipe); клавиатурой detent не меняется. Контент ниже фолда доступен через скролл body + Tab. Для клавиатурного управления detent'ом используйте controlled `snapIndex` со своим контролом.
+- **Pinch-zoom.** В модальном режиме фон-скролл лочится `react-remove-scroll` — на iOS это также блокирует pinch-to-zoom, пока sheet открыт (DS-wide, как у Modal/Drawer).
+
+## Установка
+
+```bash
+pnpm add @ds/bottom-sheet
+```
+
+```ts
+import { BottomSheet, BottomSheetCustom, TEST_IDS } from '@ds/bottom-sheet'
+```
+
+## Примеры использования
+
+<Example title='Базовый сценарий' description='title + content + одиночная full-width кнопка' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Кнопки футера + дисклеймер'
+  description='approve + cancel + additional + disclaimer — три действия собираются в вертикальный full-width ButtonGroup'
+  code={FooterActionsSrc}
+>
+  <FooterActions client:visible />
+</Example>
+
+<Example title='С media-блоком' description='kind=image — full-bleed картинка над контентом' code={WithMediaSrc}>
+  <WithMedia client:visible />
+</Example>
+
+<Example title='С subHeadline' description='SearchBar / SegmentControl под headline-строкой' code={WithSubHeadlineSrc}>
+  <WithSubHeadline client:visible />
+</Example>
+
+<Example title='С back- и action-кнопкой' description='onBackButtonClick авто-рендерит back-кнопку; actionButton — справа в шапке' code={WithActionButtonSrc}>
+  <WithActionButton client:visible />
+</Example>
+
+<Example title='Scrollable + dividers' description='Длинный контент: тонкие линии разделяют header / footer от плывущего тела' code={ScrollableSrc}>
+  <Scrollable client:visible />
+</Example>
+
+<Example title='Expandable: половина → full' description='snapPoints={[0.5, 1]} — drag вверх раскрывает' code={ExpandableSrc}>
+  <Expandable client:visible />
+</Example>
+
+<Example title='Фильтры' description='Back-кнопка + подсказка, chips в subHeadline, SegmentControl и переключатели, «Применить / Сбросить»' code={FiltersSrc}>
+  <Filters client:visible />
+</Example>
+
+<Example title='Выбор из списка' description='Чекбоксы с «Выбрать все» (indeterminate) и счётчиком выбранного в действии' code={SelectionListSrc}>
+  <SelectionList client:visible />
+</Example>
+
+<Example title='Picker тегов' description='Поиск в subHeadline фильтрует сетку тегов; клик переключает выбор' code={TagPickerSrc}>
+  <TagPicker client:visible />
+</Example>
+
+<Example
+  title='Non-modal'
+  description='showBackdrop={false} + lockScroll={false} — фон не затемнён и остаётся прокручиваемым'
+  code={NonModalSrc}
+>
+  <NonModal client:visible />
+</Example>
+
+Для ручной сборки разметки из `Header / Body / Footer` — см. [BottomSheetCustom](/components/bottom-sheet/bottom-sheet-custom).
+
+## Props
+
+<PropsTable data={bottomSheetDoc.BottomSheet} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-bottomsheet--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('bottom-sheet')} />
+
+## Смотри также
+
+- [BottomSheetCustom](/components/bottom-sheet/bottom-sheet-custom) — низкоуровневая ручная композиция.
+- [Drawer](/components/drawer) — выезжающая боковая панель (desktop / мульти-position).
+- [Modal](/components/modal) — модальное окно по центру.
+- [Toaster](/components/toaster) — короткие mobile-уведомления.
+- [Popover](/components/popover) — компактный поповер у триггера.

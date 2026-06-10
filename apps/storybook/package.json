@@ -17,6 +17,7 @@
     "@ds/attachment": "workspace:*",
     "@ds/avatar": "workspace:*",
     "@ds/block": "workspace:*",
+    "@ds/bottom-sheet": "workspace:*",
     "@ds/breadcrumbs": "workspace:*",
     "@ds/button": "workspace:*",
     "@ds/calendar": "workspace:*",

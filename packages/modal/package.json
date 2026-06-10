@@ -31,8 +31,8 @@
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
-    "react-remove-scroll": "2.7.2",
-    "tabbable": "6.4.0"
+    "react-remove-scroll": "catalog:",
+    "tabbable": "catalog:"
   },
   "publishConfig": {
     "access": "public"

@@ -88,6 +88,7 @@ export const FIGMA_NODES = {
   }, // attachment → attachment + attachmentSquare
   avatar: { ...SNACK, nodeId: '3910-70' }, // avatar → avatar
   block: { ...SNACK, nodeId: '10940-24646' }, // block → block
+  'bottom-sheet': { ...SNACK, nodeId: '12833-171561' }, // bottom-sheet → bottomSheet
   breadcrumbs: { ...SNACK, nodeId: '7422-10279' }, // breadcrumbs → breadcrumbs
   button: { ...SNACK, nodeId: '2507-25203' }, // button → button
   card: { ...SNACK, nodeId: '5044-22704' }, // card → card

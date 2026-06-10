@@ -81,6 +81,9 @@
       "path": "./portal-context/tsconfig.esm.json"
     },
     {
+      "path": "./bottom-sheet/tsconfig.esm.json"
+    },
+    {
       "path": "./popover-private/tsconfig.esm.json"
     },
     {

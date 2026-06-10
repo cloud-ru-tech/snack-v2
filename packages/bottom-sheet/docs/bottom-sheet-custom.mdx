@@ -1,0 +1,102 @@
+---
+title: BottomSheetCustom
+package: '@ds/bottom-sheet'
+description: Низкоуровневая сборка bottom-sheet — полный контроль над разметкой через Header / Body / Footer субкомпоненты.
+order: 1
+---
+
+import { CustomComposition } from '../demos/examples/CustomComposition'
+import CustomCompositionSrc from '../demos/examples/CustomComposition.tsx?raw'
+import { CustomSnapPoints } from '../demos/examples/CustomSnapPoints'
+import CustomSnapPointsSrc from '../demos/examples/CustomSnapPoints.tsx?raw'
+import { CustomScrollable } from '../demos/examples/CustomScrollable'
+import CustomScrollableSrc from '../demos/examples/CustomScrollable.tsx?raw'
+import { Alert } from '@ds/alert'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import bottomSheetDoc from './props.json'
+
+# BottomSheetCustom
+
+`BottomSheetCustom` — низкоуровневая версия `BottomSheet`, которая не диктует структуру содержимого. Потребитель сам компонует шапку, тело и футер из субкомпонентов `BottomSheetCustom.Header`, `.Body`, `.Footer` или собственной разметки.
+
+Сам компонент берёт на себя portal, backdrop, slide-up-motion, focus-trap и swipe / snap-движок. Готовая анатомия (media-блок, dividers, авто-рендер back-кнопки) есть только у высокоуровневого `BottomSheet`.
+
+<Alert
+  client:visible
+  appearance='warning'
+  title='Только для мобильной версии браузера'
+  description='Компонент рассчитан на мобильный браузер. На desktop поведение (swipe-down, snap-points, scroll-lock тела страницы) может быть некорректным — для desktop используйте Modal или Drawer.'
+/>
+
+## Когда использовать
+
+- Стандартной шапки / футера из `BottomSheet` недостаточно — нужна своя разметка.
+- Сложная раскладка нескольких секций внутри одного sheet'а.
+- Кастомные слоты (например, фиксированный поиск между шапкой и телом).
+
+Во всех остальных случаях предпочтительнее `BottomSheet` — он дешевле в поддержке и даёт консистентные отступы.
+
+## Установка
+
+```bash
+pnpm add @ds/bottom-sheet
+```
+
+```ts
+import { BottomSheetCustom } from '@ds/bottom-sheet'
+```
+
+## Анатомия
+
+### Header
+Слот `BottomSheetCustom.Header` — `title`, `slotAfterHeadline`, `subHeadline`, `onBackButtonClick`, `actionButton`.
+
+> **Accessible name.** В отличие от высокоуровневого `BottomSheet`, низкоуровневый `BottomSheetCustom` не связывает `Header.title` с dialog'ом автоматически — задайте имя сами: `aria-label` (или `aria-labelledby` на узел заголовка) прямо на `BottomSheetCustom`. Без него screen reader озвучит просто «dialog».
+
+### Non-modal / dismissal
+`showBackdrop={false}` + `lockScroll={false}` дают non-modal sheet — фон не затемнён и остаётся прокручиваемым (sheet поверх живого контента). `closeOnPopstate` (default `true`) закрывает sheet по browser-back на mobile.
+
+### Body
+Слот `BottomSheetCustom.Body` — основное содержимое (через `children` или `content`). Скроллится независимо от sheet'а.
+
+### Footer
+Слот `BottomSheetCustom.Footer` — нижняя action-зона (обычно `Button` или их композиция).
+
+### Snap points (default `undefined` → height auto)
+`snapPoints` принимает массив фиксированных позиций (`number ∈ (0, 1] | 'Npx' | 'N%' | 'Ndvh' | 'Nsvh' | 'Nlvh' | 'fit-content'`) от меньшей к большей. Активный snap управляется через `defaultSnapIndex` (uncontrolled) либо `snapIndex` + `onSnapIndexChange` (controlled). В controlled-режиме swipe вызывает `onSnapIndexChange`, но позицию не двигает — потребитель сам передаёт новое значение.
+
+## Примеры использования
+
+<Example title='Ручная композиция' description='Header + Body + Footer собираются вручную.' code={CustomCompositionSrc}>
+  <CustomComposition client:visible />
+</Example>
+
+<Example title='Snap points: половина → full' description='snapPoints={[0.5, 1]} + controlled snapIndex' code={CustomSnapPointsSrc}>
+  <CustomSnapPoints client:visible />
+</Example>
+
+<Example title='Scrollable body' description='Длинный список скроллится внутри Body, header / footer фиксированы' code={CustomScrollableSrc}>
+  <CustomScrollable client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={bottomSheetDoc.BottomSheetCustom} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-bottomsheet-examples-customcomposition--custom-composition' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('bottom-sheet')} />
+
+## Смотри также
+
+- [BottomSheet](/components/bottom-sheet) — высокоуровневая обёртка с готовой анатомией.
+- [Drawer](/components/drawer) — выезжающая боковая панель (desktop / мульти-position).
+- [Modal](/components/modal) — модальное окно по центру.
