@@ -3,13 +3,22 @@ import { SIZE, Typography, VARIANT } from '@ds/typography';
 
 import { priceSummaryLocale } from '../../../../locale';
 import { PeriodDropdown, PeriodDropdownProps } from '../PeriodDropdown';
+import { VAT_TYPE } from './constants';
 import styles from './styles.module.scss';
+import { VatType } from './types';
 
 export type HeaderBlockProps = PeriodDropdownProps & {
+  vatType?: VatType;
   promoBadge?: Pick<PromoTagProps, 'text' | 'appearance'> | string;
 };
 
-export function HeaderBlock({ period, onPeriodChanged, periodOptions, promoBadge }: HeaderBlockProps) {
+export function HeaderBlock({
+  period,
+  onPeriodChanged,
+  periodOptions,
+  promoBadge,
+  vatType = VAT_TYPE.Including,
+}: HeaderBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   return (
@@ -24,7 +33,7 @@ export function HeaderBlock({ period, onPeriodChanged, periodOptions, promoBadge
         <PeriodDropdown period={period} onPeriodChanged={onPeriodChanged} periodOptions={periodOptions} />
 
         <Typography variant={VARIANT.body} size={SIZE.m} className={styles.vat}>
-          {t('vat')}
+          {t(vatType === VAT_TYPE.Including ? 'vat' : 'vatExcluded')}
         </Typography>
       </div>
     </>

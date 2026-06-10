@@ -4,6 +4,7 @@ const PRICE_SUMMARY_MESSAGES = defineMessages({
   'en-GB': {
     total: 'Total',
     vat: 'VAT included',
+    vatExcluded: 'VAT excluded',
     docsLink: 'Calculation details',
     costLink: 'Cost',
     dataError: 'Failed to load data',
@@ -28,6 +29,7 @@ const PRICE_SUMMARY_MESSAGES = defineMessages({
   'ru-RU': {
     total: 'Итого',
     vat: 'с НДС',
+    vatExcluded: 'без НДС',
     docsLink: 'Подробнее о расчёте',
     costLink: 'Стоимость',
     dataError: 'Не удалось загрузить данные',

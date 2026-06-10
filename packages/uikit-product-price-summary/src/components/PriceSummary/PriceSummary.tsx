@@ -56,6 +56,7 @@ export function PriceSummary({
   hintLink,
   showHintLink,
   valueDelta,
+  vatType,
   ...rest
 }: PriceSummaryProps) {
   const { t } = priceSummaryLocale.useTranslations();
@@ -76,6 +77,7 @@ export function PriceSummary({
           onPeriodChanged={onPeriodChanged}
           periodOptions={periodOptions}
           promoBadge={promoBadge}
+          vatType={vatType}
         />
 
         <ContentBlock loading={loading} dataError={dataError} onRetry={onRetry}>

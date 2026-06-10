@@ -81,6 +81,15 @@
       "promoBadge": {
         "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
         "required": false
+      },
+      "vatType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "excluding",
+          "including"
+        ],
+        "defaultValue": "including"
       }
     },
     "relatedTypes": {}
@@ -310,6 +319,17 @@
         "required": false,
         "typeRefs": [
           "PriceDeltaDetails"
+        ]
+      },
+      "vatType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "excluding",
+          "including"
+        ],
+        "typeRefs": [
+          "VatType"
         ]
       }
     },
@@ -697,6 +717,14 @@
         "values": [
           "equal",
           "from"
+        ],
+        "own": true
+      },
+      "VatType": {
+        "kind": "union",
+        "values": [
+          "excluding",
+          "including"
         ],
         "own": true
       }

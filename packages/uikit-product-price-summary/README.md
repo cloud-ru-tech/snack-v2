@@ -165,6 +165,7 @@ export function WithInvoice() {
 | `totalSumType` | `"equal"` \| `"from"` | — |  |
 | `value` | `number` | — |  |
 | `valueDelta` | `PriceDeltaDetails` | — |  |
+| `vatType` | `"excluding"` \| `"including"` | — |  |
 
 ##### Related types
 
@@ -219,6 +220,8 @@ export function WithInvoice() {
 - `PricePeriod` = `"day"` \| `"hour"` \| `"minute"` \| `"month"` \| `"year"`
 
 - `TotalSumType` = `"equal"` \| `"from"`
+
+- `VatType` = `"excluding"` \| `"including"`
 
 ### Адаптивность
 
