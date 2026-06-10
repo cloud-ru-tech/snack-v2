@@ -7,3 +7,51 @@
 @mixin mono-font {
   @include base.composite-var(('mono': base.$sn-mono-body-s), 'mono');
 }
+
+$tool-timeline-gap: base.$sn-primitive-dimension-8;
+
+
+@mixin tool-root {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: stretch;
+}
+
+@mixin tool-stepper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+
+  padding-top: base.$sn-primitive-dimension-8;
+}
+
+@mixin tool-connector {
+  position: absolute;
+  top: base.$sn-primitive-dimension-32;
+  bottom: calc(-1 * $tool-timeline-gap);
+  left: calc(base.$sn-primitive-dimension-8 - base.$sn-primitive-strokeWeight-strokeRegular / 2);
+
+  width: base.$sn-primitive-strokeWeight-strokeRegular;
+
+  background-color: base.$sn-theme-color-available-borderColor;
+}
+
+@mixin tool-header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+@mixin tool-name-truncate {
+  overflow: hidden;
+  flex: 1;
+
+  min-width: base.$sn-primitive-dimension-0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

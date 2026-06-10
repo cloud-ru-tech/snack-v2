@@ -1,4 +1,5 @@
 export * from './AiTool';
+export * from './AiToolSimple';
 export * from './AiToolIcon';
 export * from './AiToolStatus';
 export * from './AiToolText';

@@ -34,6 +34,7 @@ import { AiToolIcon, AiToolObject, AiToolStatus } from '@ds/ai-tool'
 ### Composites — готовые компоненты
 
 - **AiTool** — полный инструмент (VibeOps): статус, иконка, имя, длительность и раскрываемые блоки запроса и ответа.
+- **AiToolSimple** — компактный инструмент (Гига-помощник): иконка, имя, описание и бейджи ресурсов.
 
 ### Content — наполнение контентом
 
@@ -166,6 +167,94 @@ export function ToolCallTree() {
 | `result` | `ReactNode` | — | Содержимое блока ответа. Блок рендерится только при переданном значении. |
 | `resultLabel` | `ReactNode` | `Ответ` | Заголовок блока ответа. |
 | `state` | `"error"` \| `"loading"` \| `"pending"` \| `"success"` | `pending` | Состояние выполнения инструмента: `loading` — выполняется (синяя <br/> пульсирующая точка, заголовок основным цветом текста вместо <br/> приглушённого), `success` — завершён, `error` — завершён с ошибкой <br/> (блок ответа подсвечивается красным), `pending` — в очереди. |
+
+##### Related types
+
+- `AiToolIconType` = `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"`
+
+- `AiToolStatusState` = `"error"` \| `"loading"` \| `"pending"` \| `"success"`
+
+## AiToolSimple
+
+Компактный инструмент AI-стриминга (Гига-помощник) — иконка типа, имя, описание и бейджи ресурсов, без статус-точки и фона-карточки.
+
+Компактный инструмент AI-стриминга (Гига-помощник): иконка типа, имя и chevron в заголовке; в раскрытом состоянии — текстовое описание и контент (обычно бейджи ресурсов). В отличие от **AiTool** — без статус-точки, длительности и фона-карточки.
+
+### Когда использовать
+
+- Готовый компактный вызов инструмента в Гига-помощнике.
+- Пошаговый таймлайн: несколько `AiToolSimple` подряд с `connector`.
+
+#### Когда не нужен
+
+- Полный инструмент со статусом и блоками запроса/ответа (VibeOps):
+  - используйте **AiTool**.
+- Обычный контент-блок без семантики инструмента:
+  - используйте `@ds/card` или типографику `@ds/typography`.
+
+### Анатомия
+
+- **Stepper** — иконка типа (`icon`) или, в состоянии `loading`, пульсирующий `AiToolStatus`; опциональная линия-коннектор (`connector`).
+- **Header** — имя (`name`) и chevron-кнопка раскрытия (рендерится только когда есть `description` или `children`).
+- **Контент раскрытия** — текстовое описание (`description`) и `children` (обычно ряд `AiToolBadge`, выкладывается с переносом).
+
+#### State (default `pending`)
+
+В состоянии `loading` тип инструмента ещё неизвестен, поэтому слева вместо иконки показывается пульсирующая точка `AiToolStatus`, а заголовок подсвечивается основным цветом текста. В остальных состояниях (`pending` / `success` / `error`) слева — иконка типа (`icon`). Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+
+### Примеры использования
+
+#### Компактный инструмент с бейджами
+
+AiToolSimple: описание + ресурсы, loading-состояние
+
+```tsx
+import { AI_TOOL_BADGE_TYPE, AI_TOOL_ICON_TYPE, AI_TOOL_STATUS_STATE, AiToolBadge, AiToolSimple } from '@ds/ai-tool';
+
+export function ToolSimpleBadges() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <AiToolSimple
+        name='search_documents'
+        icon={AI_TOOL_ICON_TYPE.Search}
+        connector
+        description='Ищет документы по запросу пользователя.'
+      >
+        <AiToolBadge badgeType={AI_TOOL_BADGE_TYPE.CloudRu} label='docs-service' />
+        <AiToolBadge badgeType={AI_TOOL_BADGE_TYPE.Other} label='search-index' />
+      </AiToolSimple>
+      <AiToolSimple
+        name='status_for_users'
+        icon={AI_TOOL_ICON_TYPE.Act}
+        state={AI_TOOL_STATUS_STATE.Loading}
+        defaultOpened
+        description='Запрашивает статусы пользователей и агрегирует результат.'
+      >
+        <AiToolBadge badgeType={AI_TOOL_BADGE_TYPE.CloudRu} label='users-service' />
+        <AiToolBadge badgeType={AI_TOOL_BADGE_TYPE.Other} label='audit-log' />
+      </AiToolSimple>
+    </div>
+  );
+}
+```
+
+### Props
+
+**AiToolSimpleProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Контент раскрытия под описанием — например, ряд `AiToolBadge` <br/> с задействованными ресурсами. Выкладывается в строку с переносом. |
+| `className` | `string` | — | Доп. класс корня. |
+| `connector` | `boolean` | `false` | Линия-коннектор к следующему инструменту в таймлайне. Линия выходит <br/> на 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`. |
+| `data-test-id` | `string` | `ai-tool-simple` |  |
+| `defaultOpened` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
+| `description` | `ReactNode` | — | Текстовое описание под заголовком в раскрытом состоянии. |
+| `icon` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — глиф `AiToolIcon` слева от заголовка. |
+| `name` | `ReactNode` | — | Имя инструмента — строка заголовка; в свёрнутом состоянии обрезается ellipsis. |
+| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `opened`. |
+| `opened` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. |
+| `state` | `"error"` \| `"loading"` \| `"pending"` \| `"success"` | `pending` | Состояние выполнения. В `loading` тип инструмента ещё неизвестен, <br/> поэтому вместо иконки показывается пульсирующая точка `AiToolStatus`, <br/> а заголовок подсвечивается основным цветом текста. В остальных <br/> состояниях слева рендерится иконка типа (`icon`). |
 
 ##### Related types
 

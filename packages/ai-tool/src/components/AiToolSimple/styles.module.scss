@@ -9,6 +9,10 @@
   @include m.tool-stepper;
 }
 
+.icon {
+  flex-shrink: 0;
+}
+
 .statusContainer {
   display: flex;
   align-items: center;
@@ -31,40 +35,20 @@
   box-sizing: border-box;
   min-width: base.$sn-primitive-dimension-0;
   padding: base.$sn-primitive-dimension-8;
-  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decorTransparent;
-  border-radius: base.$sn-density-radius-s;
-
-  background-color: base.$sn-theme-color-neutral-background2Level;
 }
 
 .header {
   @include m.tool-header;
 }
 
-.icon {
-  flex-shrink: 0;
-}
-
 .name {
-  @include m.mono-font;
+  @include m.label-font;
   @include m.tool-name-truncate;
 }
 
-.duration {
-  @include m.mono-font;
-
-  display: flex;
-  flex-shrink: 0;
-  gap: base.$sn-primitive-dimension-4;
-  align-items: center;
-
-  white-space: nowrap;
-}
-
-.durationSegment {
-  display: flex;
-  gap: base.$sn-primitive-dimension-2;
-  align-items: center;
+.root[data-opened] .name {
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .chevron {
@@ -74,7 +58,6 @@
 .root[data-state='loading'] .header {
   color: base.$sn-theme-color-available-version-textMain;
 
-  .icon,
   .chevron {
     color: base.$sn-theme-color-available-version-textMain;
   }
@@ -83,5 +66,18 @@
 .details {
   display: flex;
   flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.description {
+  @include m.label-font;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
   gap: base.$sn-primitive-dimension-4;
+  align-items: center;
 }

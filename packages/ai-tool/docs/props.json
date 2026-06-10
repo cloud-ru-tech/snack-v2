@@ -576,6 +576,114 @@
       }
     }
   },
+  "AiToolSimple": {
+    "displayName": "AiToolSimple",
+    "propsTypeName": "AiToolSimpleProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент раскрытия под описанием — например, ряд `AiToolBadge`\nс задействованными ресурсами. Выкладывается в строку с переносом."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "connector": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Линия-коннектор к следующему инструменту в таймлайне. Линия выходит\nна 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-tool-simple"
+      },
+      "defaultOpened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Начальное раскрытое состояние (uncontrolled)."
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текстовое описание под заголовком в раскрытом состоянии."
+      },
+      "icon": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "act",
+          "read",
+          "reasoning",
+          "search",
+          "security",
+          "wait"
+        ],
+        "description": "Тип инструмента — глиф `AiToolIcon` слева от заголовка.",
+        "typeRefs": [
+          "AiToolIconType"
+        ]
+      },
+      "name": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Имя инструмента — строка заголовка; в свёрнутом состоянии обрезается ellipsis."
+      },
+      "onToggle": {
+        "type": "((opened: boolean) => void)",
+        "required": false,
+        "description": "Переключение раскрытия. Получает новое значение `opened`."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`."
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "error",
+          "loading",
+          "pending",
+          "success"
+        ],
+        "defaultValue": "pending",
+        "description": "Состояние выполнения. В `loading` тип инструмента ещё неизвестен,\nпоэтому вместо иконки показывается пульсирующая точка `AiToolStatus`,\nа заголовок подсвечивается основным цветом текста. В остальных\nсостояниях слева рендерится иконка типа (`icon`).",
+        "typeRefs": [
+          "AiToolStatusState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiToolIconType": {
+        "kind": "union",
+        "values": [
+          "act",
+          "read",
+          "reasoning",
+          "search",
+          "security",
+          "wait"
+        ],
+        "own": true
+      },
+      "AiToolStatusState": {
+        "kind": "union",
+        "values": [
+          "error",
+          "loading",
+          "pending",
+          "success"
+        ],
+        "own": true
+      }
+    }
+  },
   "AiToolStatus": {
     "displayName": "AiToolStatus",
     "propsTypeName": "AiToolStatusProps",

@@ -1,0 +1,69 @@
+---
+title: AiToolSimple
+package: '@ds/ai-tool'
+description: Компактный инструмент AI-стриминга (Гига-помощник) — иконка типа, имя, описание и бейджи ресурсов, без статус-точки и фона-карточки.
+order: 2
+---
+
+import { ToolSimpleBadges } from '../demos/examples/ToolSimpleBadges'
+import ToolSimpleBadgesSrc from '../demos/examples/ToolSimpleBadges.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiToolDoc from './props.json'
+
+# AiToolSimple
+
+Компактный инструмент AI-стриминга (Гига-помощник): иконка типа, имя и chevron в заголовке; в раскрытом состоянии — текстовое описание и контент (обычно бейджи ресурсов). В отличие от [AiTool](/components/ai-tool/ai-tool) — без статус-точки, длительности и фона-карточки.
+
+## Когда использовать
+
+- Готовый компактный вызов инструмента в Гига-помощнике.
+- Пошаговый таймлайн: несколько `AiToolSimple` подряд с `connector`.
+
+### Когда не нужен
+
+- Полный инструмент со статусом и блоками запроса/ответа (VibeOps):
+  - используйте [AiTool](/components/ai-tool/ai-tool).
+- Обычный контент-блок без семантики инструмента:
+  - используйте `@ds/card` или типографику `@ds/typography`.
+
+## Анатомия
+
+- **Stepper** — иконка типа (`icon`) или, в состоянии `loading`, пульсирующий `AiToolStatus`; опциональная линия-коннектор (`connector`).
+- **Header** — имя (`name`) и chevron-кнопка раскрытия (рендерится только когда есть `description` или `children`).
+- **Контент раскрытия** — текстовое описание (`description`) и `children` (обычно ряд `AiToolBadge`, выкладывается с переносом).
+
+### State (default `pending`)
+
+В состоянии `loading` тип инструмента ещё неизвестен, поэтому слева вместо иконки показывается пульсирующая точка `AiToolStatus`, а заголовок подсвечивается основным цветом текста. В остальных состояниях (`pending` / `success` / `error`) слева — иконка типа (`icon`). Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+
+## Установка
+
+```bash
+pnpm add @ds/ai-tool
+```
+
+```ts
+import { AiToolSimple } from '@ds/ai-tool'
+```
+
+## Примеры использования
+
+<Example title='Компактный инструмент с бейджами' description='AiToolSimple: описание + ресурсы, loading-состояние' code={ToolSimpleBadgesSrc}>
+  <ToolSimpleBadges client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiToolDoc.AiToolSimple} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aitool-aitoolsimple--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-tool', 'ai-tool-simple')} />

@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
+import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
-import styles from './AiTool.VisualMatrix.module.scss';
 import { callPreset, resultPreset, TOOL_DURATION, TOOL_NAME } from './presets';
 
 const meta: Meta<typeof AiTool> = {

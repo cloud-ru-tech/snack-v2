@@ -1,12 +1,13 @@
 import { AiButtonChevron } from '@ds/ai-button-chevron';
 import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { ComponentPropsWithoutRef, ReactElement, ReactNode, useId } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
+import { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
 
 import { AI_TOOL_DETAILS_STATE, AI_TOOL_STATUS_STATE, TEST_IDS } from '../../constants';
+import { useToolDisclosure } from '../../hooks';
 import { AiToolIconType, AiToolStatusState } from '../../types';
 import { formatDuration } from '../../utils/duration';
+import { isSlotFilled } from '../../utils/slots';
 import { AiToolDetails } from '../AiToolDetails';
 import { AiToolIcon } from '../AiToolIcon';
 import { AiToolStatus } from '../AiToolStatus';
@@ -64,12 +65,6 @@ export type AiToolProps = WithSupportProps<
   AiToolOwnProps & Omit<ComponentPropsWithoutRef<'div'>, keyof AiToolOwnProps>
 >;
 
-// Booleans / '' / null / undefined рендерятся в null — блок с пустым телом не заводим
-// (паттерн `call={cond && node}` не должен давать пустую карточку с лейблом).
-function isSlotFilled(node: ReactNode): boolean {
-  return node != null && typeof node !== 'boolean' && node !== '';
-}
-
 export function AiTool({
   name,
   icon,
@@ -87,13 +82,16 @@ export function AiTool({
   'data-test-id': dataTestId = TEST_IDS.tool,
   ...rest
 }: AiToolProps): ReactElement {
-  const [opened, setOpened] = useUncontrolledProp(openedProp, defaultOpened, onToggle);
-  const detailsId = useId();
   const hasCall = isSlotFilled(call);
   const hasResult = isSlotFilled(result);
   const hasDetails = hasCall || hasResult;
   const durationSegments = duration ? formatDuration(duration) : [];
-  const showDetails = opened && hasDetails;
+  const { opened, toggle, detailsId, ariaControls, showDetails } = useToolDisclosure({
+    opened: openedProp,
+    defaultOpened,
+    onToggle,
+    hasDetails,
+  });
 
   return (
     <div
@@ -129,10 +127,8 @@ export function AiTool({
             <AiButtonChevron
               className={styles.chevron}
               opened={opened}
-              // details-контейнер монтируется только в раскрытом состоянии — в свёрнутом
-              // ссылка вела бы на несуществующий id (axe: aria-valid-attr-value)
-              aria-controls={showDetails ? detailsId : undefined}
-              onClick={() => setOpened(!opened)}
+              aria-controls={ariaControls}
+              onClick={toggle}
               data-test-id={TEST_IDS.toolChevron}
             />
           )}
