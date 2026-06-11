@@ -218,6 +218,13 @@ export const FIGMA_NODES = {
     'quota-widget-card': { ...PRODUCT, nodeId: '2921-16397' }, // quotaCard
   },
   'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
+  'uikit-product-notification': {
+    _: { ...PRODUCT, nodeId: '2924:49' }, // canvas: notification
+    'notification-card': { ...PRODUCT, nodeId: '2924:6367' }, // notificationCard (status variants)
+    'notification-panel': { ...PRODUCT, nodeId: '2924:6572' }, // контент панели (content=data)
+    'notification-drawer': { ...PRODUCT, nodeId: '3165:4972' }, // обёртка: notificationDrawer (desktop)
+    'notification-bottom-sheet': { ...PRODUCT, nodeId: '3166:6162' }, // notificationBottomSheet (mobile)
+  },
   icons: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons → Interfaces icons (отдельный файл)
   materials: { ...SNACK, nodeId: '2014-81002' }, // materials → material
   typography: { ...SNACK, nodeId: '2461-23501' }, // typography → variables & styles

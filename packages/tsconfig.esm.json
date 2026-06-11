@@ -243,6 +243,9 @@
       "path": "./uikit-product-load-status/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-notification/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-price-summary/tsconfig.esm.json"
     },
     {

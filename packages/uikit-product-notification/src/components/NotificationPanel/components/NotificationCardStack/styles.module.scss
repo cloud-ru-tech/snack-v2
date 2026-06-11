@@ -1,0 +1,90 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$duration: var(--snack-notification-stack-animation-duration);
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  cursor: default;
+  flex: 1 1 auto;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.right {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.first {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+// Контейнер реальной стопки. В открытом состоянии высота `auto`, в закрытом
+// схлопывается до высоты «корешка» хвоста (8px / 4px), в которую плавно
+// уезжает StackTail. `step-end` держит высоту на большем значении до конца
+// перехода, чтобы карточки не обрезались, пока проигрывается сдвиг/затухание
+// внутреннего `.animationContainer`. `allow-discrete` разрешает переход в/из
+// дискретных значений (`auto`, `hidden`).
+.stack {
+  position: relative;
+  overflow: visible;
+  height: auto;
+  transition: overflow $duration allow-discrete step-end;
+
+  &:not([data-open]) {
+    overflow: hidden;
+    transition: height $duration allow-discrete step-end;
+
+    &[data-tail-size] {
+      height: base.$sn-primitive-dimension-8;
+    }
+
+    &[data-tail-size='1'] {
+      height: base.$sn-primitive-dimension-4;
+    }
+  }
+}
+
+.animationContainer {
+  translate: 0 -100%;
+  scale: 0.98;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  margin-top: base.$sn-primitive-dimension-8;
+
+  opacity: 0;
+
+  transition:
+    translate $duration,
+    scale $duration,
+    opacity $duration;
+
+  [data-open] & {
+    translate: 0 0;
+    scale: 1;
+    opacity: 1;
+  }
+}

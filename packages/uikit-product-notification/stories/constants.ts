@@ -1,0 +1,33 @@
+import { NotificationCardProps, NotificationPanelProps } from '@ds/uikit-product-notification';
+import { fn } from 'storybook/test';
+
+export const BASE_PROPS: Pick<NotificationCardProps, 'id' | 'title' | 'content' | 'date' | 'link' | 'label'> = {
+  label: ['Category', 'Subcategory'].join('・'),
+  id: 'card',
+  title: 'Title truncate two line',
+  content: `Demo content.
+
+For replacement, use Property: ◆ProdContent. Replace this element with your local component with the original content.`,
+  link: {
+    text: 'Link to detailed information',
+    href: '#',
+  },
+  date: 'DD.MM.YYYY HH:MM',
+};
+
+export const BUTTONS_PROPS: Pick<NotificationCardProps, 'primaryButton' | 'secondaryButton'> = {
+  primaryButton: { label: 'Primary Button', onClick: fn() },
+  secondaryButton: { label: 'Secondary Button', onClick: fn() },
+};
+
+export const ACTIONS: NotificationCardProps['actions'] = [
+  { content: { option: 'action 1' }, onClick: fn() },
+  { content: { option: 'action 2' }, onClick: fn() },
+];
+
+export const NOTIFICATION_PANEL_PROPS_MOCK: NotificationPanelProps = {
+  title: 'Уведомления',
+  loading: false,
+  readAllButton: { onClick: fn() },
+  settings: { button: { as: 'a', href: '#' } },
+};

@@ -245,6 +245,9 @@
       "path": "./uikit-product-load-status/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-notification/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-price-summary/tsconfig.cjs.json"
     },
     {

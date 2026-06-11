@@ -1,0 +1,47 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+// Дата группы (Figma `notificationDate`) — центрированная sticky-пилюля, залипающая
+// у верха при прокрутке группы.
+.title {
+  pointer-events: none;
+
+  position: sticky;
+  z-index: 1;
+  top: base.$sn-primitive-dimension-4;
+
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  pointer-events: initial;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: base.$sn-primitive-dimension-20;
+
+  color: base.$sn-theme-color-available-version-textDisabled;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  // повышаем специфичность селектора, чтобы не создавать лишнюю обертку
+  &[data-size][data-weight][data-variant] {
+    padding-inline: base.$sn-primitive-dimension-8;
+    border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decorTransparent;
+    border-radius: base.$sn-density-radius-xl;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}

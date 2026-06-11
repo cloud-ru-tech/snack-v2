@@ -1,0 +1,85 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Хвост анимируется за половину общей длительности — он успевает уйти, пока
+// реальные карточки стопки выезжают на его место.
+$halfDuration: calc(var(--snack-notification-stack-animation-duration) / 2);
+
+// Высота «корешка» — заглушка под клип: видна только нижняя кромка, реальная
+// высота не важна. Сдвиг — насколько корешки уезжают вниз при раскрытии, чтобы
+// освободить место выезжающей стопке (значения подобраны как в snack-uikit).
+$tail-card-height: 200px;
+$tail-slide-distance: 416px;
+
+.container {
+  position: relative;
+  height: 0;
+}
+
+.animationContainer {
+  position: absolute;
+  top: 0;
+  bottom: calc(-1 * #{base.$sn-primitive-dimension-8});
+
+  overflow: hidden;
+
+  width: 100%;
+
+  // На схлопывании корешки возвращаются с небольшой задержкой — появляются уже
+  // после того, как стопка уехала вверх.
+  transition: bottom $halfDuration calc(#{$halfDuration} / 1.7) ease-out;
+
+  [data-open] & {
+    bottom: calc(-1 * #{$tail-slide-distance});
+    transition: bottom $halfDuration ease-out;
+  }
+}
+
+.card {
+  position: absolute;
+
+  overflow: hidden;
+
+  height: $tail-card-height;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  // На схлопывании корешки разъезжаются обратно к своим отступам с задержкой,
+  // догоняя вернувшийся контейнер.
+  transition:
+    right $halfDuration $halfDuration ease,
+    left $halfDuration $halfDuration ease,
+    opacity $halfDuration $halfDuration ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  &[data-level='2'] {
+    right: base.$sn-primitive-dimension-4;
+    bottom: 50%;
+    left: base.$sn-primitive-dimension-4;
+  }
+
+  &[data-level='3'] {
+    right: base.$sn-primitive-dimension-8;
+    bottom: 0;
+    left: base.$sn-primitive-dimension-8;
+  }
+
+  // На раскрытии корешки разъезжаются на всю ширину и затухают (без задержки),
+  // визуально «превращаясь» в выезжающие карточки стопки.
+  [data-open] & {
+    right: 0;
+    left: 0;
+    opacity: 0;
+    transition:
+      right $halfDuration ease,
+      left $halfDuration ease,
+      opacity $halfDuration ease;
+  }
+}

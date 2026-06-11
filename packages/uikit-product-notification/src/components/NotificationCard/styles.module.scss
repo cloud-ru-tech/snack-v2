@@ -1,0 +1,165 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+$appearance-icon-colors: (
+  'default': base.$sn-theme-color-neutral-accent,
+  'error': base.$sn-theme-color-red-accent,
+  'warning': base.$sn-theme-color-yellow-accent,
+  'success': base.$sn-theme-color-green-accent,
+);
+
+$appearance-unread-bg: (
+  'default': base.$sn-theme-color-neutral-decorTransparent,
+  'error': base.$sn-theme-color-red-decorTransparent,
+  'warning': base.$sn-theme-color-yellow-decorTransparent,
+  'success': base.$sn-theme-color-green-decorTransparent,
+);
+
+.stateLayer {
+  pointer-events: none;
+  visibility: initial;
+}
+
+.notificationCardTitleIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-20;
+  height: base.$sn-primitive-dimension-20;
+}
+
+.notificationCardFunction {
+  pointer-events: none;
+
+  position: absolute;
+  top: base.$sn-primitive-dimension-8;
+  right: base.$sn-primitive-dimension-8;
+
+  opacity: 0;
+}
+
+.notificationCard {
+  cursor: default;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  padding: base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: transparent;
+  outline: none;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &[data-clickable] {
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: 0;
+  }
+
+  &[data-droplist-open],
+  &:hover,
+  &:focus-visible,
+  &:focus-within:not(:focus) {
+    .notificationCardFunction {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  @each $appearance, $color in $appearance-icon-colors {
+    &[data-appearance='#{$appearance}'] .notificationCardTitleIcon {
+      color: $color;
+    }
+  }
+
+  @each $appearance, $color in $appearance-unread-bg {
+    &[data-appearance='#{$appearance}'][data-unread] {
+      background-color: $color;
+    }
+  }
+}
+
+.notificationCardLabel {
+  display: block;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.notificationCardTitle {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.notificationCardTitleText {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.notificationCardContent {
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+}
+
+.notificationCardButtons {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  justify-content: flex-end;
+}
+
+.notificationCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.notificationCardDate {
+  display: flex;
+  flex: 1 1 auto;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  justify-content: flex-end;
+
+  min-width: 0;
+
+  white-space: nowrap;
+}
+
+// Скоупим под `.notificationCard`, чтобы правило позиционирования выигрывало у
+// одноимённого класса `.statusIndicator` из `@ds/status` (равная специфичность →
+// в production-сборке порядок CSS может перевернуться, индикатор теряет
+// `position: absolute` и растягивается на всю ширину карточки).
+.notificationCard .statusIndicator {
+  pointer-events: none;
+  position: absolute;
+  top: base.$sn-primitive-dimension-4;
+  right: base.$sn-primitive-dimension-4;
+}
+
+.visuallyHidden {
+  pointer-events: none;
+
+  position: absolute;
+
+  overflow: hidden;
+
+  width: base.$sn-primitive-dimension-1;
+  height: base.$sn-primitive-dimension-1;
+
+  white-space: nowrap;
+
+  clip-path: inset(50%);
+}

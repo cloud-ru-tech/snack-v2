@@ -51,6 +51,10 @@ export default defineConfig({
     ...(process.env.SKIP_PAGEFIND ? [] : [pagefind()]),
   ],
   vite: {
+    // @snack-uikit/* ESM пакеты re-exports `./components` (директория без extensions).
+    // Node native ESM этого не любит, vite SSR должен пребандлить весь скоуп.
+    // На astro build prerender ssr.noExternal не применяется (астра грузит модули через
+    // Node native loader) — там компоненты с legacy-deps помечаются `client:only='react'`.
     ssr: {
       noExternal: [
         // Toolbar persist → @cloud-ru/ft-request-payload-transform.

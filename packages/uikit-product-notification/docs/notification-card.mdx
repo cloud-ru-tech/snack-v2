@@ -1,0 +1,111 @@
+---
+title: NotificationCard
+package: '@ds/uikit-product-notification'
+description: Карточка одного уведомления — тип (appearance), состояние unread, лейбл, ссылка, дата, кнопки главного и второстепенного действия и меню действий.
+order: 110
+---
+
+import { BasicCard } from '../demos/examples/BasicCard'
+import BasicCardSrc from '../demos/examples/BasicCard.tsx?raw'
+import { UnreadCard } from '../demos/examples/UnreadCard'
+import UnreadCardSrc from '../demos/examples/UnreadCard.tsx?raw'
+import { IncidentCard } from '../demos/examples/IncidentCard'
+import IncidentCardSrc from '../demos/examples/IncidentCard.tsx?raw'
+import { DeployFailureCard } from '../demos/examples/DeployFailureCard'
+import DeployFailureCardSrc from '../demos/examples/DeployFailureCard.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import notificationDoc from './props.json'
+
+# NotificationCard
+
+Карточка одного уведомления. Тип задаёт иконку статуса и цвет, состояние `unread` подсвечивает непрочитанное и шлёт `onVisible` при попадании во вьюпорт, опциональные слоты — лейбл, ссылка, дата, кнопки действий и меню.
+
+## Когда использовать
+
+- Элемент ленты внутри [`NotificationPanel`](/components/uikit-product-notification/notification-panel).
+- Отдельная карточка статуса операции (деплой, бэкап, инцидент) в произвольном контейнере.
+
+## Анатомия
+
+### Appearance (default `default`)
+
+Тип уведомления — задаёт иконку статуса и её цвет.
+
+- `default` — нейтральное событие (упоминание, информация).
+- `error` — ошибка или инцидент.
+- `warning` — предупреждение (лимит, деградация).
+- `success` — успешное завершение операции.
+
+### Состояние unread (default `false`)
+
+`unread` подсвечивает карточку как непрочитанную и показывает индикатор. Когда карточка попадает во вьюпорт на 80%, один раз срабатывает `onVisible(id)` — потребитель помечает её прочитанной.
+
+### Слоты
+
+- `label` — короткий лейбл перед заголовком (категория, ID).
+- `link` — ссылка в подвале, рендерится через `@ds/link`.
+- `date` — дата/время в подвале.
+- `primaryButton` — кнопка главного действия (`Button view='tonal'`).
+- `secondaryButton` — кнопка второстепенного действия (`Button view='simple'`).
+- `actions` — меню дополнительных действий (kebab-кнопка с droplist).
+- `onClick` — делает карточку кликабельной (`role='button'`, фокус с клавиатуры). Вложенные кнопки, ссылка и меню активируются независимо.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-notification
+```
+
+```ts
+import { NotificationCard } from '@ds/uikit-product-notification'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовая карточка'
+  description='Минимальный набор: тип success, лейбл, заголовок, контент и дата.'
+  code={BasicCardSrc}
+>
+  <BasicCard client:visible />
+</Example>
+
+<Example
+  title='Непрочитанные с onVisible'
+  description='unread + onVisible помечает карточку прочитанной при попадании во вьюпорт.'
+  code={UnreadCardSrc}
+>
+  <UnreadCard client:visible />
+</Example>
+
+<Example
+  title='Инцидент со ссылкой'
+  description='appearance=error, лейбл-ID, ссылка на инцидент в подвале.'
+  code={IncidentCardSrc}
+>
+  <IncidentCard client:visible />
+</Example>
+
+<Example
+  title='Действия и состояние'
+  description='primaryButton с loading, secondaryButton и меню actions — живой сценарий повтора деплоя на useState.'
+  code={DeployFailureCardSrc}
+>
+  <DeployFailureCard client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={notificationDoc.NotificationCard} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-notification-notificationcard--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-notification', 'notification-card')} />

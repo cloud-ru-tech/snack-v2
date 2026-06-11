@@ -1,0 +1,15 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.notificationPanelDrawer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+// BottomSheet сам ограничивает высоту (max-height вьюпорта) и держит `.content`
+// как flex-колонку с min-height:0 — панель внутри (`.wrapper` height:100%) получает
+// ограниченную высоту, поэтому её внутренний `Scroll` работает.
+.notificationPanelSheet {
+  display: flex;
+  flex-direction: column;
+}
