@@ -7,25 +7,13 @@ type ThemeClassnames = {
   density?: 'comfort' | 'compact' | 'spacious';
 };
 
-const DEFAULT_THEME_CLASSNAMES: Required<ThemeClassnames> = {
-  brand: 'brandA',
-  brandRole: 'main',
-  density: 'comfort',
-  theme: 'light',
-};
-
 export function getThemeClassnames(props: ThemeClassnames = {}): string {
-  const { density, theme, brand, brandRole } = { ...DEFAULT_THEME_CLASSNAMES, ...props };
+  const { density, theme, brand, brandRole } = props;
 
-  return cn(
-    'sn-primitive',
-    'sn-base-styles',
-    'sn-figmaStyles',
-    'sn-components',
-    `sn-${density}`,
-    `sn-${theme}`,
-    `sn-${brand}`,
-    `sn-${brandRole}`,
-    'sn-no',
-  );
+  return cn('sn-primitive', 'sn-base-styles', 'sn-figmaStyles', 'sn-components', 'sn-no', {
+    [`sn-${density}`]: density,
+    [`sn-${theme}`]: theme,
+    [`sn-${brand}`]: brand,
+    [`sn-${brandRole}`]: brandRole,
+  });
 }
