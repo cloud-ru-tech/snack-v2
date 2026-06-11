@@ -1,0 +1,40 @@
+{
+  "AiReasoning": {
+    "displayName": "AiReasoning",
+    "propsTypeName": "AiReasoningProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Дополнительный контент под описанием (например, карточка с деталями)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневого контейнера."
+      },
+      "connector": {
+        "type": "boolean",
+        "required": false,
+        "description": "Явно управляет нижним коннектором. Если не передан, совпадает с `stepperLine`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-reasoning"
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текстовый контент блока reasoning."
+      },
+      "stepperLine": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывает продолжение степпера вниз (для промежуточного шага)."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

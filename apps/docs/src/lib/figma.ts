@@ -82,6 +82,7 @@ export const FIGMA_NODES = {
   },
   'ai-card': { ...AI_COMPONENTS, nodeId: '6081-3818' }, // ai-card → Card / Generative
   'ai-icon-giga': { ...AI_COMPONENTS, nodeId: '7404-40182' }, // ai-icon-giga → Icon Giga
+  'ai-reasoning': { ...AI_COMPONENTS, nodeId: '7250-14770' }, // ai-reasoning → Reasoning
   'ai-suggestion': {
     _: { ...AI_COMPONENTS, nodeId: '6450-3666' }, // ai-suggestion → Suggestion / Simple
     'ai-suggestion': { ...AI_COMPONENTS, nodeId: '6450-3666' },

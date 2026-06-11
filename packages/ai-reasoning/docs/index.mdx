@@ -1,0 +1,71 @@
+---
+title: AiReasoning
+package: '@ds/ai-reasoning'
+description: Строка reasoning в AI-цепочке со степпер-линией, иконкой и текстовым описанием шага.
+order: 2
+---
+
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+import { Default } from '../demos/examples/Default'
+import DefaultSrc from '../demos/examples/Default.tsx?raw'
+
+# AiReasoning
+
+`AiReasoning` — презентационный элемент для показа промежуточного шага reasoning в AI-цепочке: иконка, вертикальная степпер-линия и краткое описание текущего шага.
+
+## Когда использовать
+
+- В timeline/chain-of-thought интерфейсах, где нужно компактно показать служебный reasoning-шаг.
+- Перед или между блоками выполнения tool-вызовов.
+
+## Анатомия
+
+### Description + Children
+
+`description` рендерится верхней строкой, а `children` можно прокинуть как вложенный контент ниже (например карточку с деталями запроса/ответа).  
+Высота шага вычисляется по всему контенту, поэтому линия степпера растягивается вместе с `children`.
+
+### Icon
+
+Иконка шага фиксированная: `ProductIcons.DotSmallSVG`.
+
+### Stepper line (default `true`)
+
+- `true` — показывает продолжение степпера вниз (промежуточный шаг).
+- `false` — скрывает продолжение (последний шаг цепочки).
+
+### Connector (default `stepperLine`)
+
+`connector` позволяет явно переопределить видимость нижнего коннектора:
+
+- `true` — коннектор виден всегда.
+- `false` — коннектор скрыт даже при `stepperLine=true`.
+- не передан — поведение наследуется от `stepperLine`.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-reasoning
+```
+
+```ts
+import { AiReasoning } from '@ds/ai-reasoning'
+```
+
+## Примеры использования
+
+<Example title='Default' description='Базовый reasoning шаг' code={DefaultSrc}>
+  <Default client:visible />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aireasoning--playground' height={300} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-reasoning')} />

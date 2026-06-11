@@ -39,13 +39,10 @@
       "path": "./ai-icon-giga/tsconfig.esm.json"
     },
     {
+      "path": "./ai-reasoning/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-suggestion/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-field-banner/tsconfig.esm.json"
-    },
-    {
-      "path": "./breadcrumbs/tsconfig.esm.json"
     },
     {
       "path": "./counter/tsconfig.esm.json"
@@ -166,6 +163,9 @@
     },
     {
       "path": "./alert/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-field-banner/tsconfig.esm.json"
     },
     {
       "path": "./attachment/tsconfig.esm.json"

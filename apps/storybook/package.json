@@ -15,6 +15,7 @@
     "@ds/ai-card": "workspace:*",
     "@ds/ai-icon-giga": "workspace:*",
     "@ds/ai-field-banner": "workspace:*",
+    "@ds/ai-reasoning": "workspace:*",
     "@ds/ai-suggestion": "workspace:*",
     "@ds/alert": "workspace:*",
     "@ds/attachment": "workspace:*",
