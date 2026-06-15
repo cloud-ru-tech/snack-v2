@@ -30,6 +30,8 @@ Storybook автоматически выводит `argTypes` из типов �
 
 Если контрол enum-like (`select` / `radio`) и у пропа есть состояние «не задано» (`undefined`) — **не добавлять `undefined` в `options`**. Storybook сам поднимет пустую опцию («Choose Option» / «—»), когда `args.<prop>` не выставлено или сброшено.
 
+То же касается **искусственных ключей-сентинелов**: не вводи в `options` (и в константы для story-контролов) значение `none` / `empty` / `off`, означающее «не задано». «Не задано» — это `undefined`: опцию не добавляем, в `args` проп либо не указываем, либо явно ставим `undefined`, а render-логика story проверяет `prop === undefined`, не `prop === 'none'`. Исключение — `mapping` slot-пресетов, где ключ `none: undefined` допустим (см. «mapping»).
+
 ```ts
 // ❌ Плохо — `undefined` среди options
 theme: {
@@ -215,7 +217,7 @@ args: { label: 'Главное', secondaryLabel: 'Доп. описание' }
 
 - [ ] Каждый публичный проп имеет JSDoc-комментарий в `src/types.ts` / в типе компонента. Не пиши `description` в `argTypes`.
 - [ ] `argTypes` в meta пуст или содержит **только** заточенные случаи: `mapping`, `table.disable`, `if:`, принудительный override контрола, `options` для нерасрезолвенных union'ов.
-- [ ] Нет `undefined` / `null` в `options` — Storybook сам показывает «не задано».
+- [ ] Нет `undefined` / `null` в `options` — Storybook сам показывает «не задано». Нет и сентинел-опций `none`/`empty` — «не задано» выражается `undefined` (кроме ключей `mapping`).
 - [ ] Где задаёшь `options` руками: `radio` для ≤ 4 значений без `undefined`, иначе `select`.
 - [ ] Если задаёшь `options` руками — подключение через `Object.values(CONST)` из той же const'ы пакета, на которую ссылается тип.
 - [ ] `mapping` — только для slot/ReactNode-пресетов с осмысленными ключами; не для переименования.
@@ -223,6 +225,8 @@ args: { label: 'Главное', secondaryLabel: 'Доп. описание' }
 - [ ] Внутренние пропсы (refs, callbacks, technical-only) спрятаны через `table.disable`, не через `control: false`.
 - [ ] Controlled-партнёры (`value`/`checked`) спрятаны через `table.disable`, в `args` — только `defaultValue`/`defaultChecked`.
 - [ ] Парные пропсы заполнены **обоими** разными дефолтами в `args`.
+- [ ] Массивы значений оси в `render`/`argTypes`/VisualMatrix — через `Object.values(CONST)`, не хардкод `['s', 'm', 'l']`. Это касается и `examples/`-сторей, не только основного Playground.
+- [ ] Каждый видимый контрол имеет осмысленный дефолт в `args`; stateful-фичи и слоты (selection / virtualized / noData / errorState / loading) раскрыты `[Story]: show*`-контролами + демо-контентом, чтобы переключение визуально влияло на рендер.
 
 ## Связанное
 

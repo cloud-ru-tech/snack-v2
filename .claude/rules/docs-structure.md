@@ -159,6 +159,18 @@ import { figmaNode } from '#docs/lib/figma'
 import <name>Doc from './props.json'
 ```
 
+`props.json` — это **map по имени компонента** (`{ "<ComponentName>": ComponentDoc, … }`), поэтому в `<PropsTable>` передаётся **конкретный компонент по ключу**, а не весь файл:
+
+```mdx
+import <name>Doc from './props.json'
+
+<PropsTable data={<name>Doc.<ComponentName>} />
+```
+
+- Проп называется `data` (тип `ComponentDoc`), **не** `props` / `componentDoc` / `doc`.
+- Индексируй по имени компонента: `buttonDoc.Button`, `togglesDoc.Checkbox`, `listDoc.ItemContent`. Передать весь `<name>Doc` без `.<ComponentName>` — ошибка (это map, а не `ComponentDoc`).
+- Опционально `include={['propA', 'propB']}` — показать только перечисленные пропсы.
+
 `<PropsTable>` рендерится SSR. Related-типы (unions / aliases / interfaces), на которые ссылаются пропсы, выводятся под основной таблицей и попадают в правый TOC как H3-якоря — плагин `remark-props-table-headings` на билде читает `./props.json` и инжектит скрытые H3-заголовки по именам related-типов.
 
 ### `<Example>` — preview + code
@@ -222,15 +234,20 @@ packages/<pkg>/demos/examples/
 В том же блоке показываем код сценария в ```tsx блоке — читатель видит и живое поведение, и источник.
 
 ### `<StorybookEmbed>`
-- Iframe к локальному storybook (`http://localhost:6006`) или `PUBLIC_STORYBOOK_URL` в проде.
-- Sandbox: `allow-scripts allow-same-origin allow-popups`.
-- `height` обычно 360–480.
+
+```mdx
+<StorybookEmbed storyId='components-<pkg>--playground' height={420} />
+```
+
+- Проп называется `storyId` (строка), **не** `id` / `story` / `kind`. Значение — актуальный story id (kebab-case от `title` + экспорт, см. [stories-standard.md](./stories-standard.md) «Title — nesting»); сверяй с `http://localhost:6006/index.json`.
+- `height?: number` (опц.) — обычно 360–480. `args?` (опц.) — URL-args для стартового состояния.
+- Iframe к локальному storybook (`http://localhost:6006`) или `PUBLIC_STORYBOOK_URL` в проде. Sandbox: `allow-scripts allow-same-origin allow-popups`.
 - **Без `client:*`** — чистый iframe, React-гидрация не нужна. Рендерится SSR.
 
 ### `<FigmaEmbed>`
 - Встраивает `embed.figma.com/design/<fileKey>/<fileName>?node-id=<id>&embed-host=ds-docs`.
 - Узлы пакетов живут в `apps/docs/src/lib/figma.ts` в map'е `FIGMA_NODES` по имени пакета — см. [figma-integration.md](./figma-integration.md).
-- Достаются через хелпер `figmaNode(pkg, sub?)`. Использование:
+- Достаются через хелпер `figmaNode(pkg, sub?)`. Проп называется `node` (тип `FigmaNodeRef | undefined`), **не** `fileKey` / `nodeId` / отдельная константа `FIGMA_<PKG>` (таких нет — все узлы в map'е `FIGMA_NODES`). Использование:
   ```mdx
   <FigmaEmbed node={figmaNode('button')} />
   <FigmaEmbed node={figmaNode('toggles', 'checkbox')} />

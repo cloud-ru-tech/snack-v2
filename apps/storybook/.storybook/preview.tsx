@@ -5,7 +5,7 @@ import './global.scss';
 import { LocaleProvider } from '@ds/locale';
 import { PortalContextProvider } from '@ds/portal-context';
 import type { Preview } from '@storybook/react';
-import { useRef } from 'react';
+import { useMemo, useState } from 'react';
 import { configure } from 'storybook/test';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
@@ -19,7 +19,13 @@ configure({ testIdAttribute: 'data-test-id' });
 const preview: Preview = {
   decorators: [
     (Story, context) => {
-      const storyWrapperRef = useRef<HTMLDivElement>(null);
+      // Ref через state, а не useRef, + отложенный рендер story (ниже): стори с initially-open
+      // порталом (tests/Open, visual-спеки) создают FloatingPortal на первом рендере, когда
+      // `current` ещё null — floating-ui в этом случае монтирует портал в `body` мимо
+      // theme-классов (sn-compact/sn-light) и НЕ пересоздаёт его при появлении root
+      // (guard `portalNodeRef.current`). Контент портала терял density/цветовые токены.
+      const [storyWrapperEl, setStoryWrapperEl] = useState<HTMLDivElement | null>(null);
+      const storyWrapperRef = useMemo(() => ({ current: storyWrapperEl }), [storyWrapperEl]);
       const g = context.globals ?? {};
       const theme = (g[GLOBAL_KEYS.THEME] as Theme) ?? INITIAL_GLOBALS[GLOBAL_KEYS.THEME];
       const brand = (g[GLOBAL_KEYS.BRAND] as Brand) ?? INITIAL_GLOBALS[GLOBAL_KEYS.BRAND];
@@ -33,14 +39,16 @@ const preview: Preview = {
           <PortalContextProvider root={storyWrapperRef}>
             <LocaleProvider lang={language}>
               <StoryWrapper
-                ref={storyWrapperRef}
+                ref={setStoryWrapperEl}
                 theme={theme}
                 brand={brand}
                 brandRole={brandRole}
                 density={density}
                 acrylic={acrylic}
               >
-                <Story />
+                {/* Story монтируется только после появления wrapper-элемента — гарантия,
+                    что порталы создаются уже с корректным root внутри theme-обёртки. */}
+                {storyWrapperEl ? <Story /> : null}
               </StoryWrapper>
             </LocaleProvider>
           </PortalContextProvider>

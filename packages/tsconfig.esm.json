@@ -171,10 +171,13 @@
       "path": "./attachment/tsconfig.esm.json"
     },
     {
-      "path": "./chips/tsconfig.esm.json"
+      "path": "./link/tsconfig.esm.json"
     },
     {
-      "path": "./link/tsconfig.esm.json"
+      "path": "./list/tsconfig.esm.json"
+    },
+    {
+      "path": "./chips/tsconfig.esm.json"
     },
     {
       "path": "./modal/tsconfig.esm.json"
@@ -184,6 +187,9 @@
     },
     {
       "path": "./color-picker/tsconfig.esm.json"
+    },
+    {
+      "path": "./fields/tsconfig.esm.json"
     },
     {
       "path": "./toaster/tsconfig.esm.json"

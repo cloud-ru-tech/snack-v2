@@ -6,12 +6,6 @@ settings:
 
 catalogs:
   default:
-    '@sbercloud/snack-v2-list':
-      specifier: 0.0.1-preview-004d5c66.0
-      version: 0.0.1-preview-004d5c66.0
-    '@snack-uikit/list':
-      specifier: 0.33.1
-      version: 0.33.1
     '@types/react':
       specifier: 18.3.28
       version: 18.3.28
@@ -39,6 +33,9 @@ catalogs:
     react-remove-scroll:
       specifier: 2.7.2
       version: 2.7.2
+    react-textarea-autosize:
+      specifier: 8.5.9
+      version: 8.5.9
     sass:
       specifier: 1.99.0
       version: 1.99.0
@@ -351,6 +348,9 @@ importers:
       '@ds/dropzone':
         specifier: workspace:*
         version: link:../../packages/dropzone
+      '@ds/fields':
+        specifier: workspace:*
+        version: link:../../packages/fields
       '@ds/fonts':
         specifier: workspace:*
         version: link:../../packages/fonts
@@ -372,6 +372,9 @@ importers:
       '@ds/link':
         specifier: workspace:*
         version: link:../../packages/link
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../../packages/list
       '@ds/loader':
         specifier: workspace:*
         version: link:../../packages/loader
@@ -733,15 +736,15 @@ importers:
 
   packages/breadcrumbs:
     dependencies:
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
       '@ds/typography':
         specifier: workspace:*
         version: link:../typography
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
-      '@snack-uikit/list':
-        specifier: 'catalog:'
-        version: 0.33.1(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -781,6 +784,9 @@ importers:
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
       '@ds/locale':
         specifier: workspace:*
         version: link:../locale
@@ -790,9 +796,6 @@ importers:
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
-      '@snack-uikit/list':
-        specifier: 'catalog:'
-        version: 0.33.1(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -865,6 +868,9 @@ importers:
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
       '@ds/loader':
         specifier: workspace:*
         version: link:../loader
@@ -883,9 +889,6 @@ importers:
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
-      '@sbercloud/snack-v2-list':
-        specifier: 0.0.1-preview-004d5c66.0
-        version: 0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1017,6 +1020,9 @@ importers:
       '@ds/button':
         specifier: workspace:*
         version: link:../button
+      '@ds/divider':
+        specifier: workspace:*
+        version: link:../divider
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
@@ -1056,6 +1062,69 @@ importers:
       lodash.debounce:
         specifier: 'catalog:'
         version: 4.0.8
+
+  packages/fields:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/calendar':
+        specifier: workspace:*
+        version: link:../calendar
+      '@ds/color-picker':
+        specifier: workspace:*
+        version: link:../color-picker
+      '@ds/divider':
+        specifier: workspace:*
+        version: link:../divider
+      '@ds/dropdown':
+        specifier: workspace:*
+        version: link:../dropdown
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/input-private':
+        specifier: workspace:*
+        version: link:../input-private
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
+      '@ds/loader':
+        specifier: workspace:*
+        version: link:../loader
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/scroll':
+        specifier: workspace:*
+        version: link:../scroll
+      '@ds/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
+      '@ds/slider':
+        specifier: workspace:*
+        version: link:../slider
+      '@ds/tag':
+        specifier: workspace:*
+        version: link:../tag
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      copy-to-clipboard:
+        specifier: 3.3.3
+        version: 3.3.3
+      merge-refs:
+        specifier: 'catalog:'
+        version: 2.0.0(@types/react@18.3.28)
+      react-textarea-autosize:
+        specifier: 'catalog:'
+        version: 8.5.9(@types/react@18.3.28)(react@18.3.1)
 
   packages/fonts: {}
 
@@ -1126,6 +1195,60 @@ importers:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
+
+  packages/list:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/divider':
+        specifier: workspace:*
+        version: link:../divider
+      '@ds/dropdown':
+        specifier: workspace:*
+        version: link:../dropdown
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/info-block':
+        specifier: workspace:*
+        version: link:../info-block
+      '@ds/loader':
+        specifier: workspace:*
+        version: link:../loader
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@ds/scroll':
+        specifier: workspace:*
+        version: link:../scroll
+      '@ds/search-private':
+        specifier: workspace:*
+        version: link:../search-private
+      '@ds/toggles':
+        specifier: workspace:*
+        version: link:../toggles
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@tanstack/react-virtual':
+        specifier: 3.11.2
+        version: 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      merge-refs:
+        specifier: 'catalog:'
+        version: 2.0.0(@types/react@18.3.28)
 
   packages/loader:
     dependencies:
@@ -1585,6 +1708,9 @@ importers:
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
       '@ds/locale':
         specifier: workspace:*
         version: link:../locale
@@ -1612,9 +1738,6 @@ importers:
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
-      '@sbercloud/snack-v2-list':
-        specifier: 0.0.1-preview-004d5c66.0
-        version: 0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1648,6 +1771,9 @@ importers:
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
       '@ds/loader':
         specifier: workspace:*
         version: link:../loader
@@ -1669,9 +1795,6 @@ importers:
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
-      '@snack-uikit/list':
-        specifier: 'catalog:'
-        version: 0.33.1(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       cancelable-promise:
         specifier: 4.3.1
         version: 4.3.1
@@ -1751,15 +1874,15 @@ importers:
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
+      '@ds/list':
+        specifier: workspace:*
+        version: link:../list
       '@ds/modal':
         specifier: workspace:*
         version: link:../modal
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
-      '@sbercloud/snack-v2-list':
-        specifier: 'catalog:'
-        version: 0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   packages/uikit-product-copy:
     dependencies:
@@ -2488,12 +2611,6 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/react@0.26.24':
-    resolution: {integrity: sha512-2ly0pCkZIGEQUq5H8bBK0XJmc1xIK/RM3tvVzY3GBER7IOD1UgmC2Y2tjj4AuS+TC+vTE1KJv2053290jua0Sw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-
   '@floating-ui/react@0.27.17':
     resolution: {integrity: sha512-LGVZKHwmWGg6MRHjLLgsfyaX2y2aCNgnD1zT/E6B+/h+vxg+nIJUqHPAlTzsHDyqdgEpJ1Np5kxWuFEErXzoGg==}
     peerDependencies:
@@ -2557,89 +2674,105 @@ packages:
     resolution: {integrity: sha512-excjX8DfsIcJ10x1Kzr4RcWe1edC9PquDRRPx3YVCvQv+U5p7Yin2s32ftzikXojb1PIFc/9Mt28/y+iRklkrw==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-arm@1.2.4':
     resolution: {integrity: sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-ppc64@1.2.4':
     resolution: {integrity: sha512-FMuvGijLDYG6lW+b/UvyilUWu5Ayu+3r2d1S8notiGCIyYU/76eig1UfMmkZ7vwgOrzKzlQbFSuQfgm7GYUPpA==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-riscv64@1.2.4':
     resolution: {integrity: sha512-oVDbcR4zUC0ce82teubSm+x6ETixtKZBh/qbREIOcI3cULzDyb18Sr/Wcyx7NRQeQzOiHTNbZFF1UwPS2scyGA==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-s390x@1.2.4':
     resolution: {integrity: sha512-qmp9VrzgPgMoGZyPvrQHqk02uyjA0/QrTO26Tqk6l4ZV0MPWIW6LTkqOIov+J1yEu7MbFQaDpwdwJKhbJvuRxQ==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-x64@1.2.4':
     resolution: {integrity: sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linuxmusl-arm64@1.2.4':
     resolution: {integrity: sha512-FVQHuwx1IIuNow9QAbYUzJ+En8KcVm9Lk5+uGUQJHaZmMECZmOlix9HnH7n1TRkXMS0pGxIJokIVB9SuqZGGXw==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-libvips-linuxmusl-x64@1.2.4':
     resolution: {integrity: sha512-+LpyBk7L44ZIXwz/VYfglaX/okxezESc6UxDSoyo2Ks6Jxc4Y7sGjpgU9s4PMgqgjj1gZCylTieNamqA1MF7Dg==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-linux-arm64@0.34.5':
     resolution: {integrity: sha512-bKQzaJRY/bkPOXyKx5EVup7qkaojECG6NLYswgktOZjaXecSAeCWiZwwiFf3/Y+O1HrauiE3FVsGxFg8c24rZg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-arm@0.34.5':
     resolution: {integrity: sha512-9dLqsvwtg1uuXBGZKsxem9595+ujv0sJ6Vi8wcTANSFpwV/GONat5eCkzQo/1O6zRIkh0m/8+5BjrRr7jDUSZw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-ppc64@0.34.5':
     resolution: {integrity: sha512-7zznwNaqW6YtsfrGGDA6BRkISKAAE1Jo0QdpNYXNMHu2+0dTrPflTLNkpc8l7MUP5M16ZJcUvysVWWrMefZquA==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-riscv64@0.34.5':
     resolution: {integrity: sha512-51gJuLPTKa7piYPaVs8GmByo7/U7/7TZOq+cnXJIHZKavIRHAP77e3N2HEl3dgiqdD/w0yUfiJnII77PuDDFdw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-s390x@0.34.5':
     resolution: {integrity: sha512-nQtCk0PdKfho3eC5MrbQoigJ2gd1CgddUMkabUj+rBevs8tZ2cULOx46E7oyX+04WGfABgIwmMC0VqieTiR4jg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-x64@0.34.5':
     resolution: {integrity: sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linuxmusl-arm64@0.34.5':
     resolution: {integrity: sha512-fprJR6GtRsMt6Kyfq44IsChVZeGN97gTD331weR1ex1c1rypDEABN6Tm2xa1wE6lYb5DdEnk03NZPqA7Id21yg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-linuxmusl-x64@0.34.5':
     resolution: {integrity: sha512-Jg8wNT1MUzIvhBFxViqrEhWDGzqymo3sV7z7ZsaWbZNDLXRJZoRGrjulp60YYtV4wfY8VIKcWidjojlLcWrd8Q==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-wasm32@0.34.5':
     resolution: {integrity: sha512-OdWTEiVkY2PHwqkbBI8frFxQQFekHaSSkUIJkwzclWZe64O1X4UlUjqqqLaPbUpMOQk6FBu/HtlGXNblIs0huw==}
@@ -3074,42 +3207,49 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-arm64-musl@1.1.1':
     resolution: {integrity: sha512-+2Rzdb3nTIYZ0YJF43qf2twhqOCkiSrHx2Pg6DJaCPYhhaxbLcdlV8hCRMHghQ+EtZQWGNcS2xF4KxBhSGeutg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@napi-rs/nice-linux-ppc64-gnu@1.1.1':
     resolution: {integrity: sha512-4FS8oc0GeHpwvv4tKciKkw3Y4jKsL7FRhaOeiPei0X9T4Jd619wHNe4xCLmN2EMgZoeGg+Q7GY7BsvwKpL22Tg==}
     engines: {node: '>= 10'}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-riscv64-gnu@1.1.1':
     resolution: {integrity: sha512-HU0nw9uD4FO/oGCCk409tCi5IzIZpH2agE6nN4fqpwVlCn5BOq0MS1dXGjXaG17JaAvrlpV5ZeyZwSon10XOXw==}
     engines: {node: '>= 10'}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-s390x-gnu@1.1.1':
     resolution: {integrity: sha512-2YqKJWWl24EwrX0DzCQgPLKQBxYDdBxOHot1KWEq7aY2uYeX+Uvtv4I8xFVVygJDgf6/92h9N3Y43WPx8+PAgQ==}
     engines: {node: '>= 10'}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-x64-gnu@1.1.1':
     resolution: {integrity: sha512-/gaNz3R92t+dcrfCw/96pDopcmec7oCcAQ3l/M+Zxr82KT4DljD37CpgrnXV+pJC263JkW572pdbP3hP+KjcIg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-x64-musl@1.1.1':
     resolution: {integrity: sha512-xScCGnyj/oppsNPMnevsBe3pvNaoK7FGvMjT35riz9YdhB2WtTG47ZlbxtOLpjeO9SqqQ2J2igCmz6IJOD5JYw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@napi-rs/nice-openharmony-arm64@1.1.1':
     resolution: {integrity: sha512-6uJPRVwVCLDeoOaNyeiW0gp2kFIM4r7PL2MczdZQHkFi9gVlgm+Vn+V6nTWRcu856mJ2WjYJiumEajfSm7arPQ==}
@@ -3255,24 +3395,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@nx/nx-linux-arm64-musl@20.8.4':
     resolution: {integrity: sha512-AlZZFolS/S0FahRKG7rJ0Z9CgmIkyzHgGaoy3qNEMDEjFhR3jt2ZZSLp90W7zjgrxojOo90ajNMrg2UmtcQRDA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@nx/nx-linux-x64-gnu@20.8.4':
     resolution: {integrity: sha512-MSu+xVNdR95tuuO+eL/a/ZeMlhfrZ627On5xaCZXnJ+lFxNg/S4nlKZQk0Eq5hYALCd/GKgFGasRdlRdOtvGPg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@nx/nx-linux-x64-musl@20.8.4':
     resolution: {integrity: sha512-KxpQpyLCgIIHWZ4iRSUN9ohCwn1ZSDASbuFCdG3mohryzCy8WrPkuPcb+68J3wuQhmA5w//Xpp/dL0hHoit9zQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@nx/nx-win32-arm64-msvc@20.8.4':
     resolution: {integrity: sha512-ffLBrxM9ibk+eWSY995kiFFRTSRb9HkD5T1s/uZyxV6jfxYPaZDBAWAETDneyBXps7WtaOMu+kVZlXQ3X+TfIA==}
@@ -3391,48 +3535,56 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-arm64-musl@0.127.0':
     resolution: {integrity: sha512-EoTCZneNFU/P2qrpEM+RHmQwt+CvDkyGESG6qhr7KaegXLZwePfbrkCDfAk8/rhxbDUVGsZILX+2tqPzFtoFWA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-parser/binding-linux-ppc64-gnu@0.127.0':
     resolution: {integrity: sha512-zALjmZYgxFLHjXeudcDF0xFGNydTAtkAeXAr2EuC17ywCyFxcmQra4w0BMde0Yi/re4Bi4iwEoEXtYN7l6eBLQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-riscv64-gnu@0.127.0':
     resolution: {integrity: sha512-fPP8M6zQLS7Jz7o9d5ArUSuAuSK3e+WCYVrCpdzeCOejidtZExJ9tjhDrAd3HEPqARBCPmdpqxESPFqy44vkBQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-riscv64-musl@0.127.0':
     resolution: {integrity: sha512-7IcC4Ao02oGpfnjt+X/oF4U2mllo2qoSkw5xxiXNKL9MCTsTiAC6616beOuehdxGcnz1bRoPC1RQ2f1GQDdN+g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-parser/binding-linux-s390x-gnu@0.127.0':
     resolution: {integrity: sha512-pbXIhiNFHoqWeqDNLiJ9JkpHz1IM9k4DXa66x+1GTWMG7iLxtkXgE53iiuKSXwmk3zIYmaPVfBvgcAhS583K4Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-x64-gnu@0.127.0':
     resolution: {integrity: sha512-MYCguB9RvBvlSd6gbuNI7QwiLoCCAlGnlRJFPrzLI6U1/9wkC/WK6LtBAUln55H1Ctqw45PWmqrobKoMhsYQzQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-x64-musl@0.127.0':
     resolution: {integrity: sha512-5eY0B/bxf1xIUxb4NOTvOI3KWtBQfPWYyKAzgcrCt0mDibSZygVpO1Pz8bkeiSZ5Jj9+M09dkggG3H8I5d0Uyg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-parser/binding-openharmony-arm64@0.127.0':
     resolution: {integrity: sha512-Gld0ajrFTUXNtdw20fVBuTQx66FA75nIVg+//pPfR3sXkuABB4mTBhl3r9JNzrJpgW//qiwxf0nWXUWGJSL3UQ==}
@@ -3505,41 +3657,49 @@ packages:
     resolution: {integrity: sha512-heV2+jmXyYnUrpUXSPugqWDRpnsQcDm2AX4wzTuvgdlZfoNYO0O3W2AVpJYaDn9AG4JdM6Kxom8+foE7/BcSig==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-arm64-musl@11.19.1':
     resolution: {integrity: sha512-jvo2Pjs1c9KPxMuMPIeQsgu0mOJF9rEb3y3TdpsrqwxRM+AN6/nDDwv45n5ZrUnQMsdBy5gIabioMKnQfWo9ew==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-resolver/binding-linux-ppc64-gnu@11.19.1':
     resolution: {integrity: sha512-vLmdNxWCdN7Uo5suays6A/+ywBby2PWBBPXctWPg5V0+eVuzsJxgAn6MMB4mPlshskYbppjpN2Zg83ArHze9gQ==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-riscv64-gnu@11.19.1':
     resolution: {integrity: sha512-/b+WgR+VTSBxzgOhDO7TlMXC1ufPIMR6Vj1zN+/x+MnyXGW7prTLzU9eW85Aj7Th7CCEG9ArCbTeqxCzFWdg2w==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-riscv64-musl@11.19.1':
     resolution: {integrity: sha512-YlRdeWb9j42p29ROh+h4eg/OQ3dTJlpHSa+84pUM9+p6i3djtPz1q55yLJhgW9XfDch7FN1pQ/Vd6YP+xfRIuw==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-resolver/binding-linux-s390x-gnu@11.19.1':
     resolution: {integrity: sha512-EDpafVOQWF8/MJynsjOGFThcqhRHy417sRyLfQmeiamJ8qVhSKAn2Dn2VVKUGCjVB9C46VGjhNo7nOPUi1x6uA==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-x64-gnu@11.19.1':
     resolution: {integrity: sha512-NxjZe+rqWhr+RT8/Ik+5ptA3oz7tUw361Wa5RWQXKnfqwSSHdHyrw6IdcTfYuml9dM856AlKWZIUXDmA9kkiBQ==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-x64-musl@11.19.1':
     resolution: {integrity: sha512-cM/hQwsO3ReJg5kR+SpI69DMfvNCp+A/eVR4b4YClE5bVZwz8rh2Nh05InhwI5HR/9cArbEkzMjcKgTHS6UaNw==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-resolver/binding-openharmony-arm64@11.19.1':
     resolution: {integrity: sha512-QF080IowFB0+9Rh6RcD19bdgh49BpQHUW5TajG1qvWHvmrQznTZZjYlgE2ltLXyKY+qs4F/v5xuX1XS7Is+3qA==}
@@ -3633,36 +3793,42 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm-musl@2.5.6':
     resolution: {integrity: sha512-Ve3gUCG57nuUUSyjBq/MAM0CzArtuIOxsBdQ+ftz6ho8n7s1i9E1Nmk/xmP323r2YL0SONs1EuwqBp2u1k5fxg==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-arm64-glibc@2.5.6':
     resolution: {integrity: sha512-f2g/DT3NhGPdBmMWYoxixqYr3v/UXcmLOYy16Bx0TM20Tchduwr4EaCbmxh1321TABqPGDpS8D/ggOTaljijOA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm64-musl@2.5.6':
     resolution: {integrity: sha512-qb6naMDGlbCwdhLj6hgoVKJl2odL34z2sqkC7Z6kzir8b5W65WYDpLB6R06KabvZdgoHI/zxke4b3zR0wAbDTA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-x64-glibc@2.5.6':
     resolution: {integrity: sha512-kbT5wvNQlx7NaGjzPFu8nVIW1rWqV780O7ZtkjuWaPUgpv2NMFpjYERVi0UYj1msZNyCzGlaCWEtzc+exjMGbQ==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-x64-musl@2.5.6':
     resolution: {integrity: sha512-1JRFeC+h7RdXwldHzTsmdtYR/Ku8SylLgTU/reMuqdVD7CtLwf0VR1FqeprZ0eHQkO0vqsbvFLXUmYm/uNKJBg==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-win32-arm64@2.5.6':
     resolution: {integrity: sha512-3ukyebjc6eGlw9yRt678DxVF7rjXatWiHvTXqphZLvo7aC5NdEgFufVwjFfY51ijYEWpXbqF5jtrK275z52D4Q==}
@@ -3744,24 +3910,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@resvg/resvg-js-linux-arm64-musl@2.6.2':
     resolution: {integrity: sha512-3h3dLPWNgSsD4lQBJPb4f+kvdOSJHa5PjTYVsWHxLUzH4IFTJUAnmuWpw4KqyQ3NA5QCyhw4TWgxk3jRkQxEKg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@resvg/resvg-js-linux-x64-gnu@2.6.2':
     resolution: {integrity: sha512-IVUe+ckIerA7xMZ50duAZzwf1U7khQe2E0QpUxu5MBJNao5RqC0zwV/Zm965vw6D3gGFUl7j4m+oJjubBVoftw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@resvg/resvg-js-linux-x64-musl@2.6.2':
     resolution: {integrity: sha512-UOf83vqTzoYQO9SZ0fPl2ZIFtNIz/Rr/y+7X8XRX1ZnBYsQ/tTb+cj9TE+KHOdmlTFBxhYzVkP2lRByCzqi4jQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@resvg/resvg-js-win32-arm64-msvc@2.6.2':
     resolution: {integrity: sha512-7C/RSgCa+7vqZ7qAbItfiaAWhyRSoD4l4BQAbVDqRRsRgY+S+hgS3in0Rxr7IorKUpGE69X48q6/nOAuTJQxeQ==}
@@ -3831,66 +4001,79 @@ packages:
     resolution: {integrity: sha512-2QxQrM+KQ7DAW4o22j+XZ6RKdxjLD7BOWTP0Bv0tmjdyhXSsr2Ul1oJDQqh9Zf5qOwTuTc7Ek83mOFaKnodPjg==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.60.2':
     resolution: {integrity: sha512-TbziEu2DVsTEOPif2mKWkMeDMLoYjx95oESa9fkQQK7r/Orta0gnkcDpzwufEcAO2BLBsD7mZkXGFqEdMRRwfw==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.60.2':
     resolution: {integrity: sha512-bO/rVDiDUuM2YfuCUwZ1t1cP+/yqjqz+Xf2VtkdppefuOFS2OSeAfgafaHNkFn0t02hEyXngZkxtGqXcXwO8Rg==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.60.2':
     resolution: {integrity: sha512-hr26p7e93Rl0Za+JwW7EAnwAvKkehh12BU1Llm9Ykiibg4uIr2rbpxG9WCf56GuvidlTG9KiiQT/TXT1yAWxTA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loong64-gnu@4.60.2':
     resolution: {integrity: sha512-pOjB/uSIyDt+ow3k/RcLvUAOGpysT2phDn7TTUB3n75SlIgZzM6NKAqlErPhoFU+npgY3/n+2HYIQVbF70P9/A==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-loong64-musl@4.60.2':
     resolution: {integrity: sha512-2/w+q8jszv9Ww1c+6uJT3OwqhdmGP2/4T17cu8WuwyUuuaCDDJ2ojdyYwZzCxx0GcsZBhzi3HmH+J5pZNXnd+Q==}
     cpu: [loong64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-ppc64-gnu@4.60.2':
     resolution: {integrity: sha512-11+aL5vKheYgczxtPVVRhdptAM2H7fcDR5Gw4/bTcteuZBlH4oP9f5s9zYO9aGZvoGeBpqXI/9TZZihZ609wKw==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-ppc64-musl@4.60.2':
     resolution: {integrity: sha512-i16fokAGK46IVZuV8LIIwMdtqhin9hfYkCh8pf8iC3QU3LpwL+1FSFGej+O7l3E/AoknL6Dclh2oTdnRMpTzFQ==}
     cpu: [ppc64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-riscv64-gnu@4.60.2':
     resolution: {integrity: sha512-49FkKS6RGQoriDSK/6E2GkAsAuU5kETFCh7pG4yD/ylj9rKhTmO3elsnmBvRD4PgJPds5W2PkhC82aVwmUcJ7A==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-musl@4.60.2':
     resolution: {integrity: sha512-mjYNkHPfGpUR00DuM1ZZIgs64Hpf4bWcz9Z41+4Q+pgDx73UwWdAYyf6EG/lRFldmdHHzgrYyge5akFUW0D3mQ==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-s390x-gnu@4.60.2':
     resolution: {integrity: sha512-ALyvJz965BQk8E9Al/JDKKDLH2kfKFLTGMlgkAbbYtZuJt9LU8DW3ZoDMCtQpXAltZxwBHevXz5u+gf0yA0YoA==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.60.2':
     resolution: {integrity: sha512-UQjrkIdWrKI626Du8lCQ6MJp/6V1LAo2bOK9OTu4mSn8GGXIkPXk/Vsp4bLHCd9Z9Iz2OTEaokUE90VweJgIYQ==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.60.2':
     resolution: {integrity: sha512-bTsRGj6VlSdn/XD4CGyzMnzaBs9bsRxy79eTqTCBsA8TMIEky7qg48aPkvJvFe1HyzQ5oMZdg7AnVlWQSKLTnw==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-openbsd-x64@4.60.2':
     resolution: {integrity: sha512-6d4Z3534xitaA1FcMWP7mQPq5zGwBmGbhphh2DwaA1aNIXUu3KTOfwrWpbwI4/Gr0uANo7NTtaykFyO2hPuFLg==}
@@ -3943,75 +4126,6 @@ packages:
 
   '@sbercloud/figma-variables@3.1.1':
     resolution: {integrity: sha512-BEhpDpG0GGH9fZphnpoA/bTyUMPGyBONyZvk929IB3ukAlFgRtJURLUO/YK/1RavOpYa5J3JvdjCAFJtZlkf5w==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-3.1.1.tgz}
-
-  '@sbercloud/snack-v2-button@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-d5JLDTJzq+BopMlO5uFmGimSyAL0vazR+D+19oloea4E1z4zrEIMXZ6AvYnyMv0v12Ilru12BcravR2aQ4erKQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-button/-/@sbercloud/snack-v2-button-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-counter@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-fi9gHFKLYUtUHtrahcbqynM5Zr7hCc39CqqQgBuFf1hSPJ1ANs48OuQbkdxXFNdAnsIl8HxmoJ73f0iCJE1y7Q==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-counter/-/@sbercloud/snack-v2-counter-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-divider@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-7YOqDQ2J/ZvH2TRbbY5Vehog5cR8hFMuwl8VSc33VjGZqm6gezzvXHDBZUka5ehEwj1oWmJVZ2uRPmMSfgkFUQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-divider/-/@sbercloud/snack-v2-divider-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-dropdown@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-hyKBW9RTz0m4Fi6GjeQfanJrdhGiBh+mpGTbIXROsAXo3YKS+koj5vPcekHNyUTo83fP3cYpu5/zAZOFpsVn7A==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-dropdown/-/@sbercloud/snack-v2-dropdown-0.0.1-preview-004d5c66.0.tgz}
-    peerDependencies:
-      '@sbercloud/snack-v2-locale': 0.0.1-preview-004d5c66.0
-
-  '@sbercloud/snack-v2-icon-predefined@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-BZfq0VPel2x4wGbxuinA4wExKi/ioNibBAmvSPmir3LJJ+L74dDrtI1sw96OqBIT2ZRnq0mIu74QE+7O2EGqiA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-icon-predefined/-/@sbercloud/snack-v2-icon-predefined-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-icons@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-DoH1VdVsOiZLNho38CxJniI4SVsv0X35fGex9w6Hz+jLAhALoyQA+MXivwTxuN66Z+TB7fdaaOgR/ZElQkz92Q==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-icons/-/@sbercloud/snack-v2-icons-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-info-block@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-T4noyZ3pbEoh//CedKM0bitV1OZZ+MA3XQXBLNbRkIXJrd9py5hnvJE7r627kM1xr6aOtAFjuN4kVTkecqB4tg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-info-block/-/@sbercloud/snack-v2-info-block-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-input-private@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-sqkBjtBL0FLEZ1M8l3wQvb44MjT2gKDqbMsOjd1Q+1nYX8js4t9jY5FKD6A08qVg/LcT64LDCYeVi0/4hSynJg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-input-private/-/@sbercloud/snack-v2-input-private-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-list@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-a0qss+HgpqXdDo0/FRTB4mgCU65mpHCEYtixnb1kckk6Iy3+vNt0Hg6qTdWM1AkGSOSeAGbUncOlr7SYnYmjdw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-list/-/@sbercloud/snack-v2-list-0.0.1-preview-004d5c66.0.tgz}
-    peerDependencies:
-      '@sbercloud/snack-v2-locale': 0.0.1-preview-004d5c66.0
-
-  '@sbercloud/snack-v2-loader@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-yDE/4RODbawcGivhtQ2R22efPS8bXWoIuhI7MaKzF6GTsCrttFgij7RxVXb8gbv6tEyjGj9g5+bOT+I+1/m8nQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-loader/-/@sbercloud/snack-v2-loader-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-109aK6IgabHeOWVIpHb7AqVeMrrEjYDp9RbicOAMPOKplFJMuWb+YiXO9bH5xxUfQCCkx93zgNl5P3UeijfQJA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-locale/-/@sbercloud/snack-v2-locale-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-materials@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-6fDiBG/mj0eM8B4w1NRr2Vf9886xyKtJaSB/o18bYpZ3KSX1oO9KDtWs67gnFuAyhwyg/gUqoADZGGTU58mUyQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-materials/-/@sbercloud/snack-v2-materials-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-popover-private@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-Sfv4ixDczT5VacesdZ5R9U8hJjConVqJ/vIqZMOCdDbPUSFI5KQlL6qF29gxLwtkMORU9hjS2JGEKJJhRvvG1Q==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-popover-private/-/@sbercloud/snack-v2-popover-private-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-portal-context@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-YtELuTOAeLAk8WGc45k7ADJ5yomxU7KNWBB3eDitzKcJDRLUJvoQbTeq7LtUka7wlwSHW3IseUu0Hb+OUa3Bmg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-portal-context/-/@sbercloud/snack-v2-portal-context-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-scroll@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-pICIeIlf8rMXLrirgXlIYtQrq7VNJ+BOTGEdnOLdKfw9+H9jUyMnpQQ4rtEBnacjF6Xv7SLIXpv4ReFbrGk2gQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-scroll/-/@sbercloud/snack-v2-scroll-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-search-private@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-wMKfR5A6kTmTlDIBHPorc8v81Ht1BL8z4I18C1IfTt7Qy9cRHpPpSDO1UUDdQwMMn+0xqlUjFvIRW+5or6qmAw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-search-private/-/@sbercloud/snack-v2-search-private-0.0.1-preview-004d5c66.0.tgz}
-    peerDependencies:
-      '@sbercloud/snack-v2-locale': 0.0.1-preview-004d5c66.0
-
-  '@sbercloud/snack-v2-toggles@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-dWUQk6oorEq8gW5DCuPReJWas7T8xxqs7o7UOiqgLKowvgmxcA5QAVvAkh/uwq6rwYbSXa4eY/HzSUINHrc0Cg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-toggles/-/@sbercloud/snack-v2-toggles-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-tooltip@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-8KFTqWyd2RN1qNCx/2K8QKPRR8/KVKP9JiW4qNz3pNejJihQzUUmCS2GFCke2edqgvTxF2D7Fg9welYl0Gk0/g==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-tooltip/-/@sbercloud/snack-v2-tooltip-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-truncate-string@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-Iz3xeHY2teIAniM9oqY9PexeCyHXacQV4+s2cSnyca3RkG87XdUQRpuiPUYcU5SrIXsAwuytTmOLYgNcrvZHow==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-truncate-string/-/@sbercloud/snack-v2-truncate-string-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-typography@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-fJ8bWOwwIwqW9acUh6fB7K+J83GKY6/8nsTE6VZlYwBN/nXLpO5cJz8nCrH8hLrR7sOIryivQkYWn88kTUjLKw==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-typography/-/@sbercloud/snack-v2-typography-0.0.1-preview-004d5c66.0.tgz}
-
-  '@sbercloud/snack-v2-utils@0.0.1-preview-004d5c66.0':
-    resolution: {integrity: sha512-Oyr3TdPs6SjjzhiszZskwia0bhhajifqTJvq3n5N0XAdbWICRGCimiWCVUWAyh3MDVPQETbJDGcgtnZJlnLeGg==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/snack-v2-utils/-/@sbercloud/snack-v2-utils-0.0.1-preview-004d5c66.0.tgz}
 
   '@shikijs/core@3.23.0':
     resolution: {integrity: sha512-NSWQz0riNb67xthdm5br6lAkvpDJRTgB36fxlo37ZzM2yq0PQFFzbd8psqC2XMPgCzo1fW6cVi18+ArJ44wqgA==}
@@ -4089,66 +4203,8 @@ packages:
   '@sinclair/typebox@0.27.10':
     resolution: {integrity: sha512-MTBk/3jGLNB2tVxv6uLlFh1iu64iYOQ2PbdOSK3NW8JZsmlaOh2q6sdtKowBhfw8QFLmYNzTW4/oK4uATIi6ZA==}
 
-  '@snack-uikit/button@0.19.18':
-    resolution: {integrity: sha512-qteZv9D7L6KFZq1c03dmcXqPIaTHIjoq9Oexhq0sv7DHJv9GvKn/rklus4+joM/bKZbaDLIHiBtbzR/kwk6ABQ==}
-
-  '@snack-uikit/counter@0.8.12':
-    resolution: {integrity: sha512-zgW5IF9KyfAmB5NHizPLSk0hDLPqwONyxq19BV6kgRBv79kzTMvnBwhH+jbMyHBBYbTKDDKc1V4wWVHa1Boe4g==}
-
-  '@snack-uikit/divider@3.2.12':
-    resolution: {integrity: sha512-71Mj17gExzdtcNw1aW132oo0btaQi+qkjS9m9cb4OGNVws7UDO2soT6k4OHg6xVVPFdZw+TZGjBJHKQWAPUsog==}
-
-  '@snack-uikit/dropdown@0.5.6':
-    resolution: {integrity: sha512-3+YrArTGodiK5QpcxrIS/WKJEwcIjvivNKDVVyliUtRZJGm74uYKXx1VY+rIjZLGBT1ACil1eNNW7Mv26CyANA==}
-
-  '@snack-uikit/icon-predefined@0.7.12':
-    resolution: {integrity: sha512-cKGCaTLk8yv7lBDjJor9x8dBnRCoaIVCnXAhIs8MjiS3l89AZ5A02mCbuNURDGrwkKVdqCXmxjwQP8TDZXLcqg==}
-
-  '@snack-uikit/icons@0.27.7':
-    resolution: {integrity: sha512-IMXoOc4hkrvI4OqiWwRL5yQ0wvG5I+bJAvTtCiyxDG4y7fNnpmtUiN7dXAkWzESr/mt84JTDfJ6VD+KVoYtbMA==}
-
-  '@snack-uikit/info-block@0.6.41':
-    resolution: {integrity: sha512-yd1GvZTLrdWQ6CXIb5QONLOplR5OjlB219Vv+P8CybB9JGrV4jwjg9ofTOS34L35ZJkX0uQebefrzrBD4FaBqA==}
-
-  '@snack-uikit/input-private@4.8.9':
-    resolution: {integrity: sha512-bTJOCxwhileTTlTe+YsJfwof0EqRpjUtyiaV0XuPQb3kN1uTOdVTo5PJfaGTzws1STx18YzhhxZYAZ/L80fJdw==}
-
-  '@snack-uikit/list@0.33.1':
-    resolution: {integrity: sha512-/mv6zP/KT3yFdObr6SKNd1TfXWR8aCRHD6UPdpfuBmdqxGGD0csKj8AvIiTYd/za8TOP8Oxq/zZ31DoGNQZqmA==}
-    peerDependencies:
-      '@snack-uikit/locale': '*'
-
-  '@snack-uikit/loaders@0.9.11':
-    resolution: {integrity: sha512-JWik6756Y+kcJzNc9yO8pJMk6CGOzuUi9ANM9r9J0H6o+yoVb5HGPcM+WVo3n+7DRBLzFswWjZ1HVoISXbyHhQ==}
-
   '@snack-uikit/locale@0.15.5':
     resolution: {integrity: sha512-Qt1KUliMYPUxZ/Fzce2HDvidRrFoxeQgKCxjw2D8LoPzmI262+dSNbjmB8ZHYANIBX90cbu++k+Osv9w8kykWw==}
-
-  '@snack-uikit/popover-private@0.15.6':
-    resolution: {integrity: sha512-iA6qDYTV5FANNKKMirwXTtyi8/s3VAhf9UIH3cR/vJCOjlaWLOENVMYlJNQx650PKbGj/ZcmycYKDuz+0BhOJg==}
-
-  '@snack-uikit/scroll@0.11.0':
-    resolution: {integrity: sha512-GCKsL98Nr6ht0EIsx7w0jpByRBEgrByxjSxejtd87GRrmMdCLQHewkEyvb3whK0g0oN2XYae/NIzbeGTX/7eFQ==}
-
-  '@snack-uikit/search-private@0.4.37':
-    resolution: {integrity: sha512-iZdIExjTFkb11q945MGOuCWy6MP6O7d/3ZaUu173Bjq7e4x3jCbksI+CMbIj/OXAZLO+NGeCGJYWx3SoqFpGEA==}
-    peerDependencies:
-      '@snack-uikit/locale': '*'
-
-  '@snack-uikit/toggles@0.13.27':
-    resolution: {integrity: sha512-Uloxitf1khwYHqVz4vTXZ38lcbaRZtH0MK2AzE7UAi6N4bSsztUZGpKWp5p4l1ZG7N4nXlA7973CfjKWqL8Ciw==}
-
-  '@snack-uikit/tooltip@0.18.13':
-    resolution: {integrity: sha512-9klC0WyxGMhSGreJyEhFQa82zNhPvQu07/QMLX7V4ICnE6sxWb3eKUledxRpfxv4NbbsXvRGvvRif6a3jBTK4w==}
-
-  '@snack-uikit/truncate-string@0.7.12':
-    resolution: {integrity: sha512-ntMtSciA7x2pxv2NhTGKqw+ZthSGj2fRLvXOND/mGXb6FniS9feKUVHxJ+mWlcT5M/xeWEWn/eblnmQXFyX1gQ==}
-
-  '@snack-uikit/typography@0.8.13':
-    resolution: {integrity: sha512-63ALaKVNqcPpybMIcoeycXVWRLW9oPXNdPoiQsA3VDI8oO2u/U+GeBCgBD5qPH9bM0oUfPf6Lqtv/hJGXzqoMg==}
-
-  '@snack-uikit/utils@4.0.2':
-    resolution: {integrity: sha512-t2EL7ohgv+YtSCrFaQ9AQPDTrQNZJ6ezDqNo0ANv3Fu5ANduHi6JKcI0a7HYxW7xDz7yf8HwhKU8wGkl3vnlxQ==}
 
   '@so-ric/colorspace@1.1.6':
     resolution: {integrity: sha512-/KiKkpHNOBgkFJwu9sh48LkHSMYGyuTcSFK/qMBdnOAlrRJzRSXAOFB5qwzaVQuDl8wAvHVMkaASQDReTahxuw==}
@@ -4354,36 +4410,42 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.15.26':
     resolution: {integrity: sha512-iNlbvTIo425rkKzDLLWFJGnFXr3myETUdIDHcjuiPNZE8b0ogmcAuilC4yEJX7FSHGbnlsoJcCT2xf4b3VJmmQ==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-linux-ppc64-gnu@1.15.26':
     resolution: {integrity: sha512-AuuEOtG+YXKIjIUup4RsxYNklx6XVB3WKWfhxG6hnfPrn7vp89RNOLbbyyprgj6Sk7k9ulwGVTJElEvmBNPSCA==}
     engines: {node: '>=10'}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-s390x-gnu@1.15.26':
     resolution: {integrity: sha512-JcMDWQvW1BchUyRg8E0jHiTx7CQYpUr5uDEL1dnPDECrEjBEGG2ynmJ3XX70sWXql0JagqR1t3VpANYFWdUnqA==}
     engines: {node: '>=10'}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-gnu@1.15.26':
     resolution: {integrity: sha512-FW7V7Mbpq4+PA7BiAq76LJs8MdNuUSylyuRVfQRkhIyeWadFroZ+KOPgjku8Z/fXzngxBRvsk+PGGB0t8mGcjA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.15.26':
     resolution: {integrity: sha512-w8erqMHsVcdGwUfJxF6LaiTuPoKnyLOcUbhLcxiXrlLt5MLjtlgcIeUY/NWK/oPoyqkgH+/i8pOJnMTxvl83ZQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.15.26':
     resolution: {integrity: sha512-uDCWCNpUiqkbvPmsuPUTn/P7ag9SqNXD2JT/W3dUu7yZ2krzN+nmmoQ2xRX63/J6RYiHI7aT4jo7Z++lsljlPA==}
@@ -4779,41 +4841,49 @@ packages:
     resolution: {integrity: sha512-34gw7PjDGB9JgePJEmhEqBhWvCiiWCuXsL9hYphDF7crW7UgI05gyBAi6MF58uGcMOiOqSJ2ybEeCvHcq0BCmQ==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-arm64-musl@1.11.1':
     resolution: {integrity: sha512-RyMIx6Uf53hhOtJDIamSbTskA99sPHS96wxVE/bJtePJJtpdKGXO1wY90oRdXuYOGOTuqjT8ACccMc4K6QmT3w==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@unrs/resolver-binding-linux-ppc64-gnu@1.11.1':
     resolution: {integrity: sha512-D8Vae74A4/a+mZH0FbOkFJL9DSK2R6TFPC9M+jCWYia/q2einCubX10pecpDiTmkJVUH+y8K3BZClycD8nCShA==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-riscv64-gnu@1.11.1':
     resolution: {integrity: sha512-frxL4OrzOWVVsOc96+V3aqTIQl1O2TjgExV4EKgRY09AJ9leZpEg8Ak9phadbuX0BA4k8U5qtvMSQQGGmaJqcQ==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-riscv64-musl@1.11.1':
     resolution: {integrity: sha512-mJ5vuDaIZ+l/acv01sHoXfpnyrNKOk/3aDoEdLO/Xtn9HuZlDD6jKxHlkN8ZhWyLJsRBxfv9GYM2utQ1SChKew==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@unrs/resolver-binding-linux-s390x-gnu@1.11.1':
     resolution: {integrity: sha512-kELo8ebBVtb9sA7rMe1Cph4QHreByhaZ2QEADd9NzIQsYNQpt9UkM9iqr2lhGr5afh885d/cB5QeTXSbZHTYPg==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-x64-gnu@1.11.1':
     resolution: {integrity: sha512-C3ZAHugKgovV5YvAMsxhq0gtXuwESUKc5MhEtjBpLoHPLYM+iuwSj3lflFwK3DPm68660rZ7G8BMcwSro7hD5w==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-x64-musl@1.11.1':
     resolution: {integrity: sha512-rV0YSoyhK2nZ4vEswT/QwqzqQXw5I6CjoaYMOX0TqBlWhojUf8P94mvI7nuJTeaCkkds3QE4+zS8Ko+GdXuZtA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@unrs/resolver-binding-wasm32-wasi@1.11.1':
     resolution: {integrity: sha512-5u4RkfxJm+Ng7IWgkzi3qrFOvLvQYnPBmjmZQ8+szTK/b31fQCnleNl1GgEt7nIsZRIf5PLhPwT0WM+q45x/UQ==}
@@ -5647,6 +5717,9 @@ packages:
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
+
+  copy-to-clipboard@3.3.3:
+    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -7457,24 +7530,28 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.32.0:
     resolution: {integrity: sha512-UpQkoenr4UJEzgVIYpI80lDFvRmPVg6oqboNHfoH4CQIfNA+HOrZ7Mo7KZP02dC6LjghPQJeBsvXhJod/wnIBg==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.32.0:
     resolution: {integrity: sha512-V7Qr52IhZmdKPVr+Vtw8o+WLsQJYCTd8loIfpDaMRWGUZfBOYEJeyJIkqGIDMZPwPx24pUMfwSxxI8phr/MbOA==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.32.0:
     resolution: {integrity: sha512-bYcLp+Vb0awsiXg/80uCRezCYHNg1/l3mt0gzHnWV9XP1W5sKa5/TCdGWaR/zBM2PeF/HbsQv/j2URNOiVuxWg==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.32.0:
     resolution: {integrity: sha512-8SbC8BR40pS6baCM8sbtYDSwEVQd4JlFTOlaD3gWGHfThTcABnNDBda6eTZeqbofalIJhFx0qKzgHJmcPTnGdw==}
@@ -7829,14 +7906,6 @@ packages:
   meow@8.1.2:
     resolution: {integrity: sha512-r85E3NdZ+mpYk1C6RjPFEMSE+s1iZMuHtsHAqY0DT3jZczl0diWUZ8g6oU7h0M9cD2EL+PzaYghhCLzR0ZNn5Q==}
     engines: {node: '>=10'}
-
-  merge-refs@1.3.0:
-    resolution: {integrity: sha512-nqXPXbso+1dcKDpPCXvwZyJILz+vSLqGGOnDrYHQYE+B8n9JTCekVLC65AfCpR4ggVyA/45Y0iR9LDyS2iI+zA==}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   merge-refs@2.0.0:
     resolution: {integrity: sha512-3+B21mYK2IqUWnd2EivABLT7ueDhb0b8/dGK8LoFQPrU61YITeCMn14F7y7qZafWNZhUEKb24cJdiT5Wxs3prg==}
@@ -8385,9 +8454,6 @@ packages:
     peerDependencies:
       overlayscrollbars: ^2.0.0
       react: '>=16.8.0'
-
-  overlayscrollbars@2.11.1:
-    resolution: {integrity: sha512-kogaNaBTIizRenQ2GTzt2cpkEH9B0nUBXseRxqQblH/YicJ3TaWuvn8E5TXPPfJCVoHYSgBYZzzva40kCERKHg==}
 
   overlayscrollbars@2.14.0:
     resolution: {integrity: sha512-RjV0pqc79kYhQLC3vTcLRb5GLpI1n6qh0Oua3g+bGH4EgNOJHVBGP7u0zZtxoAa0dkHlAqTTSYRb9MMmxNLjig==}
@@ -8988,9 +9054,6 @@ packages:
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  react-is@18.2.0:
-    resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
-
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
@@ -9035,6 +9098,12 @@ packages:
     resolution: {integrity: sha512-v1Qx1l+aC2fdxKa9aKJiaU/ZxmJ5o98RMoFwUqAAzVWUcxgfHFXDDruCKXhw6zIYXm6V64JiHgP9f6mlME5l8w==}
     peerDependencies:
       react: ^16.8.3 || ^17 || ^18 || ^19.0.0 || ^19.0.0-rc
+
+  react-textarea-autosize@8.5.9:
+    resolution: {integrity: sha512-U1DGlIQN5AwgjTyOEnI1oCcMuEr1pv1qOtklB2l4nyMGbHzWrI0eFsYK0zos2YWqAolJyG0IWJaqWmWj5ETh0A==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-transition-state@2.1.1:
     resolution: {integrity: sha512-kQx5g1FVu9knoz1T1WkapjUgFz08qQ/g1OmuWGi3/AoEFfS0kStxrPlZx81urjCXdz2d+1DqLpU6TyLW/Ro04Q==}
@@ -9867,6 +9936,9 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
+  toggle-selection@1.0.6:
+    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
+
   token-types@4.2.1:
     resolution: {integrity: sha512-6udB24Q737UD/SDsKAHI9FCRP7Bqc9D/MQUV02ORQg5iskjtLJlZJNdN4kKtcdtwCeWIwIHDGaUsTsCCAa8sFQ==}
     engines: {node: '>=10'}
@@ -10176,6 +10248,33 @@ packages:
     peerDependencies:
       '@types/react': '*'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  use-composed-ref@1.4.0:
+    resolution: {integrity: sha512-djviaxuOOh7wkj0paeO1Q/4wMZ8Zrnag5H6yBvzN7AKKe8beOaED9SF5/ByLqsku8NP4zQqsvM2u3ew/tJK8/w==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  use-isomorphic-layout-effect@1.2.1:
+    resolution: {integrity: sha512-tpZZ+EX0gaghDAiFR37hj5MgY6ZN55kLiPkJsKxBMZ6GZdOSPJXiOzPM984oPYZ5AnehYx5WQp1+ME8I/P/pRA==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  use-latest@1.3.0:
+    resolution: {integrity: sha512-mhg3xdm9NaM8q+gLT8KryJPnRFOz1/5XPBhmDEVZK1webPzDjrPk7f/mbpeLqTgB9msytYWANxgALOCJKnLvcQ==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -11087,14 +11186,6 @@ snapshots:
       '@floating-ui/dom': 1.7.6
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-
-  '@floating-ui/react@0.26.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@floating-ui/react-dom': 2.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@floating-ui/utils': 0.2.11
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tabbable: 6.4.0
 
   '@floating-ui/react@0.27.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -12479,201 +12570,6 @@ snapshots:
 
   '@sbercloud/figma-variables@3.1.1': {}
 
-  '@sbercloud/snack-v2-button@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-counter': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-loader': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-materials': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-counter@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-divider@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-dropdown@0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-button': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-divider': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-info-block': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-loader': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-locale': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-popover-private': 0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@sbercloud/snack-v2-icon-predefined@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-icons@0.0.1-preview-004d5c66.0': {}
-
-  '@sbercloud/snack-v2-info-block@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-button': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-icon-predefined': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-input-private@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-button': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-list@0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-button': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-divider': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-dropdown': 0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-info-block': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-loader': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-locale': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-materials': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-scroll': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-search-private': 0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(@types/react@18.3.28)(react@18.3.1)
-      '@sbercloud/snack-v2-toggles': 0.0.1-preview-004d5c66.0(@types/react@18.3.28)(react@18.3.1)
-      '@sbercloud/snack-v2-truncate-string': 0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sbercloud/snack-v2-typography': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@tanstack/react-virtual': 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      classnames: 2.5.1
-      merge-refs: 2.0.0(@types/react@18.3.28)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-      - react-dom
-
-  '@sbercloud/snack-v2-loader@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0':
-    dependencies:
-      '@types/lodash.merge': 4.6.9
-      classnames: 2.5.1
-      lodash.merge: 4.6.2
-
-  '@sbercloud/snack-v2-materials@0.0.1-preview-004d5c66.0': {}
-
-  '@sbercloud/snack-v2-popover-private@0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@floating-ui/react': 0.27.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sbercloud/snack-v2-portal-context': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@types/react-is': 19.2.0
-      classnames: 2.5.1
-      react-is: 19.2.4
-      uncontrollable: 9.0.0(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@sbercloud/snack-v2-portal-context@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-scroll@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-materials': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-      overlayscrollbars: 2.14.0
-      overlayscrollbars-react: 0.5.6(overlayscrollbars@2.14.0)(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-
-  '@sbercloud/snack-v2-search-private@0.0.1-preview-004d5c66.0(@sbercloud/snack-v2-locale@0.0.1-preview-004d5c66.0)(@types/react@18.3.28)(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-input-private': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-loader': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-locale': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-      merge-refs: 2.0.0(@types/react@18.3.28)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@sbercloud/snack-v2-toggles@0.0.1-preview-004d5c66.0(@types/react@18.3.28)(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-loader': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      '@sbercloud/snack-v2-materials': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-      merge-refs: 2.0.0(@types/react@18.3.28)
-      uncontrollable: 9.0.0(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@sbercloud/snack-v2-tooltip@0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-icons': 0.0.1-preview-004d5c66.0
-      '@sbercloud/snack-v2-popover-private': 0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-      uncontrollable: 9.0.0(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@sbercloud/snack-v2-truncate-string@0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@sbercloud/snack-v2-tooltip': 0.0.1-preview-004d5c66.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sbercloud/snack-v2-utils': 0.0.1-preview-004d5c66.0(react@18.3.1)
-      classnames: 2.5.1
-      lodash.throttle: 4.1.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@sbercloud/snack-v2-typography@0.0.1-preview-004d5c66.0':
-    dependencies:
-      classnames: 2.5.1
-
-  '@sbercloud/snack-v2-utils@0.0.1-preview-004d5c66.0(react@18.3.1)':
-    dependencies:
-      classnames: 2.5.1
-      react-swipeable: 7.0.2(react@18.3.1)
-      uncontrollable: 9.0.0(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-
   '@shikijs/core@3.23.0':
     dependencies:
       '@shikijs/types': 3.23.0
@@ -12779,178 +12675,9 @@ snapshots:
 
   '@sinclair/typebox@0.27.10': {}
 
-  '@snack-uikit/button@0.19.18(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/counter': 0.8.12(react@18.3.1)
-      '@snack-uikit/loaders': 0.9.11(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/counter@0.8.12(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/divider@3.2.12(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/dropdown@0.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/popover-private': 0.15.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/icon-predefined@0.7.12(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/icons@0.27.7': {}
-
-  '@snack-uikit/info-block@0.6.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/button': 0.19.18(react@18.3.1)
-      '@snack-uikit/icon-predefined': 0.7.12(react@18.3.1)
-      '@snack-uikit/tooltip': 0.18.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/typography': 0.8.13(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/input-private@4.8.9(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/icons': 0.27.7
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/list@0.33.1(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/button': 0.19.18(react@18.3.1)
-      '@snack-uikit/divider': 3.2.12(react@18.3.1)
-      '@snack-uikit/dropdown': 0.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/icons': 0.27.7
-      '@snack-uikit/info-block': 0.6.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/loaders': 0.9.11(react@18.3.1)
-      '@snack-uikit/locale': 0.15.5
-      '@snack-uikit/scroll': 0.11.0(react@18.3.1)
-      '@snack-uikit/search-private': 0.4.37(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react@18.3.1)
-      '@snack-uikit/toggles': 0.13.27(@types/react@18.3.28)(react@18.3.1)
-      '@snack-uikit/truncate-string': 0.7.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      '@tanstack/react-virtual': 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      classnames: 2.5.1
-      merge-refs: 1.3.0(@types/react@18.3.28)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-      - react-dom
-
-  '@snack-uikit/loaders@0.9.11(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
   '@snack-uikit/locale@0.15.5':
     dependencies:
       lodash.merge: 4.6.2
-
-  '@snack-uikit/popover-private@0.15.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@floating-ui/react': 0.26.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-      react-is: 18.2.0
-      uncontrollable: 8.0.4(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/scroll@0.11.0(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-      overlayscrollbars: 2.11.1
-      overlayscrollbars-react: 0.5.6(overlayscrollbars@2.11.1)(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/search-private@0.4.37(@snack-uikit/locale@0.15.5)(@types/react@18.3.28)(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/icons': 0.27.7
-      '@snack-uikit/input-private': 4.8.9(react@18.3.1)
-      '@snack-uikit/loaders': 0.9.11(react@18.3.1)
-      '@snack-uikit/locale': 0.15.5
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-      merge-refs: 1.3.0(@types/react@18.3.28)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@snack-uikit/toggles@0.13.27(@types/react@18.3.28)(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/icons': 0.27.7
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-      merge-refs: 1.3.0(@types/react@18.3.28)
-      uncontrollable: 8.0.4(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@snack-uikit/tooltip@0.18.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/icons': 0.27.7
-      '@snack-uikit/popover-private': 0.15.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-      uncontrollable: 8.0.4(react@18.3.1)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/truncate-string@0.7.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/tooltip': 0.18.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-      lodash.throttle: 4.1.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
-  '@snack-uikit/typography@0.8.13(react@18.3.1)':
-    dependencies:
-      '@snack-uikit/utils': 4.0.2(react@18.3.1)
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - react
-
-  '@snack-uikit/utils@4.0.2(react@18.3.1)':
-    dependencies:
-      react-swipeable: 7.0.2(react@18.3.1)
-      uncontrollable: 8.0.4(react@18.3.1)
-    transitivePeerDependencies:
-      - react
 
   '@so-ric/colorspace@1.1.6':
     dependencies:
@@ -14624,6 +14351,10 @@ snapshots:
   copy-anything@3.0.5:
     dependencies:
       is-what: 4.1.16
+
+  copy-to-clipboard@3.3.3:
+    dependencies:
+      toggle-selection: 1.0.6
 
   core-util-is@1.0.3: {}
 
@@ -17276,10 +17007,6 @@ snapshots:
       type-fest: 0.18.1
       yargs-parser: 20.2.9
 
-  merge-refs@1.3.0(@types/react@18.3.28):
-    optionalDependencies:
-      '@types/react': 18.3.28
-
   merge-refs@2.0.0(@types/react@18.3.28):
     optionalDependencies:
       '@types/react': 18.3.28
@@ -18089,17 +17816,10 @@ snapshots:
       domino: 2.1.7
       validator: 13.15.35
 
-  overlayscrollbars-react@0.5.6(overlayscrollbars@2.11.1)(react@18.3.1):
-    dependencies:
-      overlayscrollbars: 2.11.1
-      react: 18.3.1
-
   overlayscrollbars-react@0.5.6(overlayscrollbars@2.14.0)(react@18.3.1):
     dependencies:
       overlayscrollbars: 2.14.0
       react: 18.3.1
-
-  overlayscrollbars@2.11.1: {}
 
   overlayscrollbars@2.14.0: {}
 
@@ -18719,8 +18439,6 @@ snapshots:
 
   react-is@17.0.2: {}
 
-  react-is@18.2.0: {}
-
   react-is@18.3.1: {}
 
   react-is@19.2.4: {}
@@ -18757,6 +18475,15 @@ snapshots:
   react-swipeable@7.0.2(react@18.3.1):
     dependencies:
       react: 18.3.1
+
+  react-textarea-autosize@8.5.9(@types/react@18.3.28)(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.29.2
+      react: 18.3.1
+      use-composed-ref: 1.4.0(@types/react@18.3.28)(react@18.3.1)
+      use-latest: 1.3.0(@types/react@18.3.28)(react@18.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
 
   react-transition-state@2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -19884,6 +19611,8 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
+  toggle-selection@1.0.6: {}
+
   token-types@4.2.1:
     dependencies:
       '@tokenizer/token': 0.3.0
@@ -20214,6 +19943,25 @@ snapshots:
     dependencies:
       react: 18.3.1
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 18.3.28
+
+  use-composed-ref@1.4.0(@types/react@18.3.28)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.28
+
+  use-isomorphic-layout-effect@1.2.1(@types/react@18.3.28)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.28
+
+  use-latest@1.3.0(@types/react@18.3.28)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      use-isomorphic-layout-effect: 1.2.1(@types/react@18.3.28)(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.3.28
 

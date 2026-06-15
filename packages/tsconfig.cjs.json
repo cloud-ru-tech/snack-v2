@@ -173,10 +173,13 @@
       "path": "./attachment/tsconfig.cjs.json"
     },
     {
-      "path": "./chips/tsconfig.cjs.json"
+      "path": "./link/tsconfig.cjs.json"
     },
     {
-      "path": "./link/tsconfig.cjs.json"
+      "path": "./list/tsconfig.cjs.json"
+    },
+    {
+      "path": "./chips/tsconfig.cjs.json"
     },
     {
       "path": "./modal/tsconfig.cjs.json"
@@ -186,6 +189,9 @@
     },
     {
       "path": "./color-picker/tsconfig.cjs.json"
+    },
+    {
+      "path": "./fields/tsconfig.cjs.json"
     },
     {
       "path": "./toaster/tsconfig.cjs.json"

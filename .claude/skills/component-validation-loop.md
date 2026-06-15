@@ -22,7 +22,7 @@
 
 - Путь к пакету `packages/<pkg>` и его tier (XS/S/M/L/XL — см. [complexity-tiers.md](../rules/complexity-tiers.md)).
 - План миграции `.claude/plan/<pkg>.md` (если пакет пришёл из `/migrate-to-v2`) — берётся как источник истины по scope и decisions.
-- Figma nodeId'ы (master + ключевые variants + mobile, если есть) и константа `FIGMA_<PKG>` в `apps/docs/src/lib/figma.ts`.
+- Figma nodeId'ы (master + ключевые variants + mobile, если есть) и ключ `'<pkg>'` в map'е `FIGMA_NODES` в `apps/docs/src/lib/figma.ts` (отдельных констант `FIGMA_<PKG>` нет).
 - (опционально) путь к legacy-источнику из `.claude/plan/<pkg>.md` секция «Legacy источники».
 
 ## 5 стадий
@@ -59,7 +59,7 @@
 - [ ] Все variant-оси узла → есть в `constants.ts` (`as const`) + тип в `types.ts` (`ValueOf<typeof …>`). См. [component-api-surface.md](../rules/component-api-surface.md).
 - [ ] Все оси покрыты в `VisualMatrix.stories.tsx` как строки/колонки `StoryTable`. См. [stories-standard.md](../rules/stories-standard.md).
 - [ ] Figma-typos (`iconAfrer`, …) → каноническое имя в `constants.ts` + сноска `// Figma variant: <typo>`.
-- [ ] `FIGMA_<PKG>` + нужные суб-константы добавлены в `apps/docs/src/lib/figma.ts`.
+- [ ] Ключ `'<pkg>'` добавлен в map `FIGMA_NODES` в `apps/docs/src/lib/figma.ts` (для нескольких публичных компонентов — объект `{ _: <root>, '<sub>': <ref> }`); достаётся хелпером `figmaNode('<pkg>', sub?)`. Отдельных `FIGMA_<PKG>` констант не заводим (см. [figma-integration.md](../rules/figma-integration.md)).
 
 Если критических расхождений >3 — остановиться, отправить в [figma-component-import](./figma-component-import.md) или [figma-to-code](./figma-to-code.md), повторить стадию.
 
@@ -96,7 +96,7 @@
 
 - [ ] `<PropsTable data={pkgDoc.<ComponentName>} />` — prop называется `data`, не `componentDoc`.
 - [ ] `<StorybookEmbed storyId='components-<pkg>--<story>' />` — prop `storyId`, не `id`; story id совпадает с актуальным `title` stories ([stories-standard.md](../rules/stories-standard.md) раздел «Title — nesting»).
-- [ ] `<FigmaEmbed node={FIGMA_<PKG>} />` работает (константа существует, `loading='lazy'` на iframe — по умолчанию).
+- [ ] `<FigmaEmbed node={figmaNode('<pkg>')} />` — узел достаётся хелпером `figmaNode(pkg, sub?)` из `#docs/lib/figma`, **не** отдельной константой `FIGMA_<PKG>` (таких нет — всё в map'е `FIGMA_NODES`, см. [figma-integration.md](../rules/figma-integration.md)). Для субкомпонента — `figmaNode('<pkg>', '<sub>')`. Если узла нет — `figmaNode` вернёт `undefined`, `<FigmaEmbed>` отрендерит `null`.
 - [ ] Каждый `<Example>` с React-пропсами, содержащими JSX (иконки, children-как-элементы), вынесен в `demos/examples/<Name>.tsx` и подключён через `import <Name>Src from '../demos/examples/<Name>.tsx?raw'` — иначе Astro MDX скомпилит JSX-проп в `astro:jsx` и React-компонент упадёт (см. [docs-structure.md](../rules/docs-structure.md)).
 - [ ] Для render-prop компонентов demo не использует `<Canvas component={...} />` — обёртывает живой сценарий (`return <BasicFlow />`).
 - [ ] `docs/props.json` свежий: `pnpm gen:props`.
@@ -115,7 +115,7 @@
 - [ ] `packages/tsconfig.esm.json` + `packages/tsconfig.cjs.json` — `references` на пакет.
 - [ ] `apps/storybook/.storybook/main.ts` — alias `@ds/<pkg>` подхватывается автоматически (`collectDsAliases()` сканирует `packages/*/src/index.ts`). Ручной правки не требуется.
 - [ ] `apps/storybook/package.json` — dep `"@ds/<pkg>": "workspace:*"`.
-- [ ] `apps/docs/src/lib/figma.ts` — `FIGMA_<PKG>` (+ суб-константы для субкомпонентов).
+- [ ] `apps/docs/src/lib/figma.ts` — ключ `'<pkg>'` в map'е `FIGMA_NODES` (для субкомпонентов — объект `{ _: <root>, '<sub>': <ref> }`), не отдельные `FIGMA_<PKG>` константы.
 - [ ] `packages/<pkg>/package.json` — строгие версии, без `react` / `react-dom` / `@types/react*`, повторяемые deps — через `catalog:` (см. [packages-deps.md](../rules/packages-deps.md)). `@design-system/materials` — добавлена, если используется state-layer / material / focused.
 - [ ] Корневой `tsconfig.json` — noEmit-профиль, пакеты не перечисляет; typecheck идёт через `include`.
 
