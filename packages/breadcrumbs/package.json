@@ -22,9 +22,9 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/list": "workspace:*",
     "@ds/typography": "workspace:*",
     "@ds/utils": "workspace:*",
-    "@snack-uikit/list": "catalog:",
     "classnames": "catalog:",
     "lodash.debounce": "catalog:"
   },

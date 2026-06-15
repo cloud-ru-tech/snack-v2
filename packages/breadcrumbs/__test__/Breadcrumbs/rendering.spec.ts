@@ -14,25 +14,34 @@ test.describe('Breadcrumbs — rendering', () => {
     test('renders all items in full mode by default', async ({ gotoStory, page }) => {
       await gotoStory(buildStoryOptions());
 
-      expect(await getTextView(page)).toEqual(
-        '[FULL: Литература]›[FULL: Стихи]›[FULL: Золотой век русской поэзии]›[FULL: Михаил Лермонтов]›[FULL: Тема "Одиночество"]›[FULL: Парус]',
-      );
+      // Раскладка breadcrumbs пересчитывается через debounce + ResizeObserver,
+      // поэтому читаем DOM с ретраями (web-first assertion), а не одним снимком.
+      await expect
+        .poll(() => getTextView(page))
+        .toEqual(
+          '[FULL: Литература]›[FULL: Стихи]›[FULL: Золотой век русской поэзии]›[FULL: Михаил Лермонтов]›[FULL: Тема "Одиночество"]›[FULL: Парус]',
+        );
     });
 
     test('respects custom separator', async ({ gotoStory, page }) => {
       await gotoStory(buildStoryOptions({ separator: '-' }));
 
-      expect(await getTextView(page)).toEqual(
-        '[FULL: Литература]-[FULL: Стихи]-[FULL: Золотой век русской поэзии]-[FULL: Михаил Лермонтов]-[FULL: Тема "Одиночество"]-[FULL: Парус]',
-      );
+      await expect
+        .poll(() => getTextView(page))
+        .toEqual(
+          '[FULL: Литература]-[FULL: Стихи]-[FULL: Золотой век русской поэзии]-[FULL: Михаил Лермонтов]-[FULL: Тема "Одиночество"]-[FULL: Парус]',
+        );
     });
 
     test('shortens items in narrower container', async ({ gotoStory, page }) => {
       await gotoStory(buildStoryOptions({ storyContainerWidth: '680px' }));
 
-      expect(await getTextView(page)).toEqual(
-        '[FULL: Литература]›[FULL: Стихи]›[SHORTLABEL: Золотой век]›[FULL: Михаил Лермонтов]›[FULL: Тема "Одиночество"]›[FULL: Парус]',
-      );
+      // shortLabel применяется только после debounce-пересчёта ширины — ретраим до стабилизации.
+      await expect
+        .poll(() => getTextView(page))
+        .toEqual(
+          '[FULL: Литература]›[FULL: Стихи]›[SHORTLABEL: Золотой век]›[FULL: Михаил Лермонтов]›[FULL: Тема "Одиночество"]›[FULL: Парус]',
+        );
     });
   });
 

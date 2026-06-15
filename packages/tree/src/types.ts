@@ -1,7 +1,6 @@
+import { ItemProps } from '@ds/list';
 import { ValueOf, WithSupportProps } from '@ds/utils';
 import { MouseEvent, MouseEventHandler, ReactNode } from 'react';
-
-import { ItemProps } from '@snack-uikit/list';
 
 import { SELECTION_MODE, SIZE } from './constants';
 

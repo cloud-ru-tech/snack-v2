@@ -1,8 +1,7 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons';
+import { Droplist, ItemProps } from '@ds/list';
 import { Dispatch, KeyboardEventHandler, SetStateAction, useEffect, useRef } from 'react';
-
-import { Droplist, ItemProps } from '@snack-uikit/list';
 
 import { TEST_IDS } from '../../../constants';
 import { Size, TreeNodeProps } from '../../../types';

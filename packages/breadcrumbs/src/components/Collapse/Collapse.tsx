@@ -1,8 +1,7 @@
+// TODO: replace with @ds/list when ready
+import { Droplist, DroplistProps } from '@ds/list';
 import cn from 'classnames';
 import { RefObject, useContext, useRef } from 'react';
-
-// TODO: replace with @ds/list when ready
-import { Droplist, DroplistProps } from '@snack-uikit/list';
 
 import { ELEMENT_TYPE, ITEM_RENDER_MODE } from '../../constants';
 import { BreadcrumbsContext } from '../../context';
