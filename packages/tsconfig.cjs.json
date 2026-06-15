@@ -44,9 +44,6 @@
       "path": "./ai-suggestion/tsconfig.cjs.json"
     },
     {
-      "path": "./breadcrumbs/tsconfig.cjs.json"
-    },
-    {
       "path": "./counter/tsconfig.cjs.json"
     },
     {
@@ -96,9 +93,6 @@
     },
     {
       "path": "./dropdown/tsconfig.cjs.json"
-    },
-    {
-      "path": "./calendar/tsconfig.cjs.json"
     },
     {
       "path": "./popover/tsconfig.cjs.json"
@@ -177,6 +171,12 @@
     },
     {
       "path": "./list/tsconfig.cjs.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.cjs.json"
+    },
+    {
+      "path": "./calendar/tsconfig.cjs.json"
     },
     {
       "path": "./chips/tsconfig.cjs.json"

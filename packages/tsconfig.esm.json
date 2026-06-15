@@ -42,9 +42,6 @@
       "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {
-      "path": "./breadcrumbs/tsconfig.esm.json"
-    },
-    {
       "path": "./counter/tsconfig.esm.json"
     },
     {
@@ -94,9 +91,6 @@
     },
     {
       "path": "./dropdown/tsconfig.esm.json"
-    },
-    {
-      "path": "./calendar/tsconfig.esm.json"
     },
     {
       "path": "./popover/tsconfig.esm.json"
@@ -175,6 +169,12 @@
     },
     {
       "path": "./list/tsconfig.esm.json"
+    },
+    {
+      "path": "./breadcrumbs/tsconfig.esm.json"
+    },
+    {
+      "path": "./calendar/tsconfig.esm.json"
     },
     {
       "path": "./chips/tsconfig.esm.json"
