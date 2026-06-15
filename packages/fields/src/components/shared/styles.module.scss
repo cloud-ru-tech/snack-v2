@@ -266,16 +266,16 @@ $sizes: 's', 'm', 'l';
       .postfixButtonsSlot {
         // Кнопки clear/copy — иконный квадрат (паритет с легаси ButtonClearValue: 16px при s,
         // 24px при m/l), а не полноразмерная function-кнопка 32px. Те же icon-токены, что у .iconSlot.
-        $iconSquare: base.$sn-density-size-icon-s;
-
-        @if $size == 's' {
-          $iconSquare: base.$sn-density-size-icon-xs;
-        }
-
         // @ds/button читает min-height и iconOnly-minWidth через var() (figma-variables
         // button.module.scss) — локальный override сжимает кнопку до иконного квадрата без
         // правки @ds/button. BUTTON_SIZE_MAP (@ds/input-private): field s → button s, m/l → m.
-        $btnSize: if($size == 's', 's', 'm');
+        $iconSquare: base.$sn-density-size-icon-s;
+        $btnSize: 'm';
+
+        @if $size == 's' {
+          $iconSquare: base.$sn-density-size-icon-xs;
+          $btnSize: 's';
+        }
 
         --sn-button-anatomy-size-#{$btnSize}-container-minHeight: #{$iconSquare};
         --sn-button-anatomy-size-#{$btnSize}-container-iconOnly-minWidth: #{$iconSquare};
