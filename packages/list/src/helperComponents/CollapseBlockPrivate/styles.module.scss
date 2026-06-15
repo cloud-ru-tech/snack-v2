@@ -1,0 +1,32 @@
+$duration: 300ms;
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: gap $duration;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &[aria-expanded='false'] {
+    gap: 0;
+  }
+}
+
+.content {
+  position: relative;
+  display: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.contentWrapper {
+  box-sizing: border-box;
+  width: 100%;
+
+  &[aria-hidden='false'] > .content {
+    display: block;
+  }
+}

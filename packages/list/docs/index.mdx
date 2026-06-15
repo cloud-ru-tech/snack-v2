@@ -1,0 +1,55 @@
+---
+title: List
+package: '@ds/list'
+description: Списочный UI — компонент List для плоских/вложенных списков с выбором, группами и поиском и Droplist — тот же список в поповере.
+order: 0
+---
+
+# List
+
+Пакет `@ds/list` собирает списочный UI дизайн-системы: плоские и вложенные списки, списки с выбором (single / multiple), группы с раскрытием, поиск, закреплённые элементы, виртуализацию и Droplist — тот же список в popover.
+
+## Состав пакета
+
+- [**List**](/components/list/list) — основной компонент. Принимает `items` (+ `pinTop` / `pinBottom` / `footer`), управляет выбором через `selection`, раскрытием групп через `collapse`, поиском через `search`. Поддерживает виртуализацию для 1000+ элементов.
+- [**Droplist**](/components/list/droplist) — тот же список в popover. Оборачивает `children`-триггер и открывает список рядом с ним. Передаёт почти все пропсы `List`.
+- [**ItemContent**](/components/list/item-content) — каноничная разметка содержимого item: `option` (заголовок), `caption` (мета справа), `description` (подпись снизу). Используется как значение `item.content`.
+
+## Установка
+
+```bash
+pnpm add @ds/list
+```
+
+```ts
+import { List, Droplist, ItemContent } from '@ds/list'
+import '@ds/list/style.css'
+```
+
+## Когда использовать
+
+| Задача | Как решить |
+|--------|------------|
+| Навигация/меню/settings sidebar | `List` с `items` |
+| Выбор из коллекции (радио-группа/чекбоксы) | `List` + `selection={{ mode: 'single' \| 'multiple', ... }}` |
+| Выпадашка-селектор у кнопки/поля | `Droplist` с `children`-триггером |
+| Группы с раскрытием (inbox/starred/folders) | `items` типа `{ type: 'collapse', items: [...] }` + `collapse` |
+| Длинный список (1k+) | `virtualized` на `List` |
+| Закреплённые действия сверху/снизу | `pinTop` / `pinBottom` |
+
+Когда **не** нужен `List`:
+
+- Простой набор из 2–4 кнопок — используйте [`Button`](/components/button/button) + layout.
+- Табличные данные с сортировкой/фильтрацией — используйте `Table`.
+- Многошаговая форма — используйте `Stepper`.
+
+## Общие принципы
+
+- **Contract первый, стайлинг второй.** Элементы описываются как данные (`items: Item[]`), а не как JSX. Это даёт стабильную клавиатурную навигацию, selection и поиск «из коробки».
+- **ItemContent — единый слот контента.** Разметку внутри элемента задаёт не потребитель, а `ItemContent` — чтобы заголовок / caption / description выравнивались одинаково во всех пакетах.
+- **Controlled/uncontrolled симметричны.** У `selection`, `collapse` и `search` одинаковая форма: `defaultValue` / `value` + `onChange`. Выбирайте по тому, где должен жить state.
+- **Виртуализация — осознанный выбор.** Включайте `virtualized` только при 1k+ элементов. На коротких списках виртуализация ломает layout-assumptions (динамическая высота, focus-into-view).
+
+## Figma
+
+Все три компонента живут в одном Figma-файле «Состояния для list / tab / toggles». Ссылки на конкретные узлы — на страницах компонентов.

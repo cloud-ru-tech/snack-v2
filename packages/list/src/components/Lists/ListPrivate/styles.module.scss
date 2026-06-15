@@ -1,0 +1,94 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/dropdown.module' as dropdown;
+
+$sizes: 's', 'm', 'l';
+
+$loader-height: (
+  's': base.$sn-primitive-dimension-24,
+  'm': base.$sn-primitive-dimension-32,
+  'l': base.$sn-primitive-dimension-40,
+);
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      height: base.simple-var($loader-height, $size);
+
+      &[data-no-items] {
+        $no-items-loading-height: calc(3 * base.simple-var($loader-height, $size));
+
+        min-width: calc(2 * $no-items-loading-height);
+        height: $no-items-loading-height;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+}
+
+.scrollStub {
+  height: base.$sn-primitive-dimension-1;
+  margin-top: calc(0px - base.$sn-primitive-dimension-1);
+  background: transparent;
+}
+
+// Обёртка вложенного списка рендерится как <li role='menuitem'> — снимаем нативный маркер списка.
+.nestedItem {
+  list-style-type: none;
+}
+
+// Figma `dropdown.anatomy.container.bottomBar` — padding-top=8, padding-bottom=4, padding-h=8.
+// Divider над футером (Figma `dividerWrapper` между body и bottomBar) — opt-in через [data-divider].
+.footer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: dropdown.$sn-dropdown-anatomy-container-bottomBar-paddingTop dropdown.$sn-dropdown-anatomy-container-bottomBar-paddingHorizontal
+    dropdown.$sn-dropdown-anatomy-container-bottomBar-paddingBottom;
+
+  &[data-divider] {
+    border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  }
+}
+
+// Figma `dropdown.anatomy.container.topBar` — padding-h (через headlineWrapper)=8, gap=4,
+// родительский topBar/gap=8 (между headlineWrapper и body).
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: dropdown.$sn-dropdown-anatomy-container-topBar-headlineWrapper-gap;
+
+  box-sizing: border-box;
+  padding: 0 dropdown.$sn-dropdown-anatomy-container-topBar-headlineWrapper-paddingHorizontal
+    dropdown.$sn-dropdown-anatomy-container-topBar-gap;
+
+  &[data-divider] {
+    margin-bottom: dropdown.$sn-dropdown-anatomy-container-topBar-gap;
+    padding-bottom: dropdown.$sn-dropdown-anatomy-container-topBar-headlineWrapper-paddingHorizontal;
+    border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  }
+}
+
+.content {
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.virtualizedContainer {
+  position: relative;
+  width: 100%;
+}
+
+.virtualizedPositionBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

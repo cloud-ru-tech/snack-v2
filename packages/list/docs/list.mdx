@@ -1,0 +1,256 @@
+---
+title: List
+package: '@ds/list'
+description: Основной компонент списка. Управляет items, выбором, раскрытием групп, поиском, виртуализацией и закреплёнными элементами.
+order: 1
+---
+
+import { BasicList } from '../demos/examples/BasicList'
+import BasicListSrc from '../demos/examples/BasicList.tsx?raw'
+import { SingleSelection } from '../demos/examples/SingleSelection'
+import SingleSelectionSrc from '../demos/examples/SingleSelection.tsx?raw'
+import { MultipleSelection } from '../demos/examples/MultipleSelection'
+import MultipleSelectionSrc from '../demos/examples/MultipleSelection.tsx?raw'
+import { GroupsCollapsible } from '../demos/examples/GroupsCollapsible'
+import GroupsCollapsibleSrc from '../demos/examples/GroupsCollapsible.tsx?raw'
+import { WithSearch } from '../demos/examples/WithSearch'
+import WithSearchSrc from '../demos/examples/WithSearch.tsx?raw'
+import { NestedLevels } from '../demos/examples/NestedLevels'
+import NestedLevelsSrc from '../demos/examples/NestedLevels.tsx?raw'
+import { PinnedItems } from '../demos/examples/PinnedItems'
+import PinnedItemsSrc from '../demos/examples/PinnedItems.tsx?raw'
+import { Virtualized } from '../demos/examples/Virtualized'
+import VirtualizedSrc from '../demos/examples/Virtualized.tsx?raw'
+import { LinkItems } from '../demos/examples/LinkItems'
+import LinkItemsSrc from '../demos/examples/LinkItems.tsx?raw'
+import { EmptyState } from '../demos/examples/EmptyState'
+import EmptyStateSrc from '../demos/examples/EmptyState.tsx?raw'
+import { ListItemWrap } from '../demos/examples/ListItemWrap'
+import ListItemWrapSrc from '../demos/examples/ListItemWrap.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import listDoc from './props.json'
+
+# List
+
+Плоский или вложенный список элементов с клавиатурной навигацией, выбором, раскрытием групп и поиском. Элементы задаются декларативно через `items`, `pinTop`, `pinBottom` — компонент сам строит DOM, управляет фокусом и эмитит изменения выбора.
+
+## Когда использовать
+
+- Навигация (sidebar, меню аккаунта, breadcrumbs popover).
+- Селектор-значение (часовой пояс, валюта, язык) — чаще всего вместе с [Droplist](/components/list/droplist).
+- Список объектов с действиями: письма, файлы, задачи.
+- Иерархия с раскрытием (folders, workspace → projects → tasks).
+- Длинные списки (1k+) через `virtualized`.
+
+Когда **не** нужен:
+
+- Таблицы с колонками — `Table`.
+- Короткий набор действий (≤ 4) — кнопки.
+
+## Анатомия
+
+### Size (default `s`)
+
+- `s` — компактный, дефолт. Droplist'ы, плотные sidebar'ы, настройки.
+- `m` — средний. Основные списки объектов (письма, задачи).
+- `l` — крупный. Mobile, списки с описаниями, главные навигационные меню.
+
+### Selection (default off)
+
+- Без `selection` — клик = `onClick` элемента, состояния «выбран» нет. Подходит для навигации.
+- `selection={{ mode: 'single' }}` — один выбранный элемент, `value: ItemId`. Селектор значения (валюта, регион).
+- `selection={{ mode: 'multiple' }}` — множественный выбор, `value: ItemId[]`. Фильтры, настройки, права доступа.
+
+Visual signal: marker (вертикальная полоса) + фоновая заливка. `marker` можно отключить (`marker={false}`), если родительский layout уже подсвечивает активный элемент.
+
+### Switch-презентация выбора
+
+У `BaseItem` есть проп `switch`. При `switch: true` элемент рисует на правом краю `Switch` вместо чекбокса/маркера, а `isChecked` управляет положением тумблера. Применяется в списках настроек, где «выбор» — это включение функции (уведомления, доступы, интеграции), а не пометка элемента.
+
+- `switch` работает вместе с `selection` (`mode: 'multiple'` или `'single'`) — состояние тумблера берётся из выбора.
+- При `switch: true` маркер и заливка не рисуются: единственный носитель состояния — сам тумблер.
+- `showSwitchIcon` — флаг иконки внутри тумблера (на момент Phase 5 не передаётся в `@ds/toggles`, зарезервирован).
+
+### Group variant (default `subtitleTertiary`)
+
+Тип `group` / `group-select` принимает `groupVariant` — оформление заголовка группы:
+
+- `subtitle` — заголовок-подзаголовок: контрастный текст, акцент на названии секции.
+- `subtitleTertiary` — приглушённый третичный текст, для второстепенных группировок.
+
+Дополнительно `divider: true` рисует разделитель над группой.
+
+### Item shape
+
+Один элемент = одна строка данных. Слоты:
+
+- `option` — заголовок (обязателен).
+- `caption` — мета справа (счётчик, дата, badge).
+- `description` — подпись под заголовком (1–2 строки).
+- `beforeContent` — иконка / аватар слева.
+- `afterContent` — слот справа. Иконка рендерится в квадрате размера иконки; произвольный контент (счётчик, badge, tag) — в натуральном размере, без обрезки до иконочного квадрата.
+
+Truncate управляется через `truncate` на `ItemContent` — см. страницу [ItemContent](/components/list/item-content).
+
+### States
+
+- `loading` — показывает skeleton вместо items.
+- `dataFiltered` — флаг, что текущий пустой массив — результат фильтра/поиска. Компонент покажет `noResultsState`.
+- `dataError` — ошибка загрузки, рендерится `errorDataState`.
+- `noDataState` / `noResultsState` / `errorDataState` — конфигурация empty-state (`description`, `icon`, `footer`).
+
+## Установка
+
+```bash
+pnpm add @ds/list
+```
+
+```ts
+import { List } from '@ds/list'
+import '@ds/list/style.css'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовый плоский список'
+  description='items — массив объектов с id и content.'
+  code={BasicListSrc}
+>
+  <BasicList client:visible />
+</Example>
+
+<Example
+  title='Single selection'
+  description="selection={{ mode: 'single', value, onChange }} — контролируемый выбор одного элемента."
+  code={SingleSelectionSrc}
+>
+  <SingleSelection client:visible />
+</Example>
+
+<Example
+  title='Multiple selection'
+  description='В режиме multiple value — массив ItemId.'
+  code={MultipleSelectionSrc}
+>
+  <MultipleSelection client:visible />
+</Example>
+
+<Example
+  title='Группы с раскрытием'
+  description="type: 'collapse' + collapse.defaultValue. Подходит для folders / workspace / sidebar-групп."
+  code={GroupsCollapsibleSrc}
+>
+  <GroupsCollapsible client:visible />
+</Example>
+
+<Example
+  title='Три уровня вложенности'
+  description='Группы внутри групп — подходит для каталогов, файловых деревьев.'
+  code={NestedLevelsSrc}
+>
+  <NestedLevels client:visible />
+</Example>
+
+<Example
+  title='Поиск внутри списка'
+  description='search={{ value, onChange }} — встроенная строка поиска. Фильтрация items — на стороне потребителя.'
+  code={WithSearchSrc}
+>
+  <WithSearch client:visible />
+</Example>
+
+<Example
+  title='Закреплённые элементы'
+  description='pinTop / pinBottom — списки, которые не участвуют в scroll основного массива.'
+  code={PinnedItemsSrc}
+>
+  <PinnedItems client:visible />
+</Example>
+
+<Example
+  title='Виртуализация'
+  description='virtualized — рендерит только видимые строки. Включайте при 1000+ элементов.'
+  code={VirtualizedSrc}
+>
+  <Virtualized client:visible />
+</Example>
+
+<Example
+  title='Элементы-ссылки'
+  description='itemWrapRender оборачивает item в <a>. Полезно для роутера / SPA-навигации.'
+  code={LinkItemsSrc}
+>
+  <LinkItems client:visible />
+</Example>
+
+<Example
+  title='Empty state'
+  description='dataFiltered + noResultsState — контролируемое сообщение при пустом результате поиска.'
+  code={EmptyStateSrc}
+>
+  <EmptyState client:visible />
+</Example>
+
+<Example
+  title='Обёртка айтема и неактивный элемент'
+  description='itemWrapRender оборачивает item в Tooltip; inactive выводит элемент из навигации и selection, оставляя его видимым.'
+  code={ListItemWrapSrc}
+>
+  <ListItemWrap client:visible />
+</Example>
+
+## Item types
+
+- `BaseItem` — обычный элемент с `content` / `beforeContent` / `afterContent`; опционально `switch: true` для тумблер-презентации выбора.
+- `{ type: 'collapse', items }` — группа, раскрывается кликом по заголовку; управление — через `collapse`.
+- `{ type: 'next-list', items, placement }` — раскрытие в соседний popover (для каскадных меню).
+- `{ type: 'group', items, groupVariant }` / `{ type: 'group-select', items, groupVariant }` — визуальная группа с label, `groupVariant` (`subtitle` / `subtitleTertiary`), опциональным `divider` и «выбрать всё» (`group-select`).
+
+Типы экспортируются из пакета: `BaseItemProps`, `AccordionItemProps`, `NextListItemProps`, `GroupItemProps`, `GroupSelectItemProps`. Дискриминаторы — `isBaseItemProps`, `isAccordionItemProps` и пр.
+
+## Controlled vs uncontrolled
+
+`selection`, `collapse` и `search` принимают одинаковую форму:
+
+- **Uncontrolled** — передавайте `defaultValue`. Компонент хранит state сам, пригодно для форм/настроек, где значения потом читаются через `onChange`.
+- **Controlled** — `value` + `onChange`. Нужен, когда state живёт в URL / query / внешнем сторе, или когда требуется программно менять выбор/раскрытие.
+
+## Виртуализация
+
+- Включайте `virtualized` при размере `items` от ~1000 элементов.
+- Виртуализация несовместима со `scrollToSelectedItem` — фокусирование строки в большом списке делайте вручную через `keyboardNavigationRef.current?.focusItem(id)`.
+- Внутри `Droplist` виртуализация работает так же — проп `virtualized` доступен и там.
+
+## Доступность
+
+- Контейнер имеет роль `menu`, элементы — `menuitem`. Это согласовано с использованием списка внутри dropdown/menu-сценариев.
+- Клавиатура: `ArrowDown` / `ArrowUp` переходят между элементами (без wrap-around, пропуская `disabled`), `ArrowRight` раскрывает группу или next-list, `ArrowLeft` сворачивает, `Tab` уводит фокус с item на корневой контейнер и далее из списка. `Enter` / `Space` на сфокусированном элементе выбирают его.
+- Первый `ArrowDown` от корневого контейнера переводит фокус на первый элемент; дальше навигация идёт по элементам.
+- Marker и фоновая заливка выбранного элемента — два независимых носителя смысла, состояние понятно без цвета.
+- Disabled-элементы не попадают в цепочку табуляции и не реагируют на клавиатуру.
+
+## Props
+
+<PropsTable data={listDoc.List} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-list-list--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('list')} height={520} title='List в Figma' />
+
+<FigmaEmbed node={figmaNode('list', 'item')} height={320} title='List Item в Figma' />
+
+<FigmaEmbed node={figmaNode('list', 'item-group')} height={320} title='List Item Group в Figma' />
+
+## Смотри также
+
+- [Droplist](/components/list/droplist) — этот список в popover.
+- [ItemContent](/components/list/item-content) — каноничная разметка item.

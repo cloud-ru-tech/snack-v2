@@ -1,0 +1,2138 @@
+{
+  "AccordionItem": {
+    "displayName": "AccordionItem",
+    "propsTypeName": null,
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "allChildIds": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляемое состояние выбранности айтема"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode | ItemContentProps",
+        "required": false,
+        "description": "Основной контент айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг неактивности элемента"
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Уникальный идентификатор"
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на DOM-элемент айтема"
+      },
+      "itemWrapRender": {
+        "type": "((item: ReactNode) => ReactNode)",
+        "required": false,
+        "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+      },
+      "items": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "onBlur": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки блюра"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки фокуса"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиши"
+      },
+      "onMouseDown": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "showSwitchIcon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения иконки у чекбоксов"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "BaseItem": {
+    "displayName": "BaseItem",
+    "propsTypeName": null,
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляемое состояние выбранности айтема"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode | ItemContentProps",
+        "required": false,
+        "description": "Основной контент айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг неактивности элемента"
+      },
+      "expandIcon": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Уникальный идентификатор"
+      },
+      "inactive": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТак же элемент пропадает из навигации с клавиатуры, и не может быть выбран (selection)"
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "required": false
+      },
+      "isParentNode": {
+        "type": "boolean",
+        "required": false
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на DOM-элемент айтема"
+      },
+      "itemWrapRender": {
+        "type": "((item: ReactNode) => ReactNode)",
+        "required": false,
+        "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+      },
+      "onBlur": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки блюра"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки фокуса"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиши"
+      },
+      "onMouseDown": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "onOpenNestedList": {
+        "type": "((e?: KeyboardEvent<HTMLElement>) => void)",
+        "required": false
+      },
+      "onSelect": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "showSwitchIcon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения иконки у чекбоксов"
+      },
+      "switch": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения состояния выбранного элемента через switch"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CollapseBlockPrivate": {
+    "displayName": "CollapseBlockPrivate",
+    "propsTypeName": "CollapseBlockPrivateProps",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "expanded": {
+        "type": "boolean",
+        "required": true
+      },
+      "header": {
+        "type": "ReactNode",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Droplist": {
+    "displayName": "Droplist",
+    "propsTypeName": "DroplistProps",
+    "props": {
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+        "typeRefs": [
+          "OriginalScrollProps"
+        ]
+      },
+      "children": {
+        "type": "ReactNode | ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хендлер ввода, для поддержки управления с клавиатуры",
+        "required": true,
+        "description": "Триггер для дроплиста"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "defaultValue": "{}",
+        "description": "Настройки раскрытия элементов",
+        "typeRefs": [
+          "CollapseState"
+        ]
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого дроплиста\n(по аналогии с `container` у Modal/Drawer). По умолчанию — из `PortalContextProvider`."
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса",
+        "typeRefs": [
+          "EmptyStateProps"
+        ]
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
+      "header": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка",
+        "typeRefs": [
+          "BaseItemWithoutNonGroup",
+          "CommonGroupItem",
+          "Item",
+          "ScrollProps"
+        ]
+      },
+      "limitedScrollHeight": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+      },
+      "listRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент выпадающего списка"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображать ли маркер у выбранного элемента списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии данных",
+        "typeRefs": [
+          "EmptyStateProps"
+        ]
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии результатов поиска или фильтров",
+        "typeRefs": [
+          "EmptyStateProps"
+        ]
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка",
+        "typeRefs": [
+          "OriginalScrollProps"
+        ]
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "pinBottom": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Элементы списка, закрепленные снизу",
+        "typeRefs": [
+          "BaseItemWithoutNonGroup",
+          "CommonGroupItem",
+          "Item",
+          "ScrollProps"
+        ]
+      },
+      "pinTop": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Элементы списка, закрепленные сверху",
+        "typeRefs": [
+          "BaseItemWithoutNonGroup",
+          "CommonGroupItem",
+          "Item",
+          "ScrollProps"
+        ]
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки",
+        "typeRefs": [
+          "SearchState"
+        ]
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+        "typeRefs": [
+          "SelectionMultipleState",
+          "SelectionSingleState"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер списка",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+        "typeRefs": [
+          "Trigger"
+        ]
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerElemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент-триггер для дроплиста"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
+        "typeRefs": [
+          "PopoverWidthStrategy"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "BaseItemWithoutNonGroup": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот после основного контента"
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот до основного контента"
+          },
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляемое состояние выбранности айтема"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+          },
+          "id": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Уникальный идентификатор",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "itemRef": {
+            "type": "RefObject<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на DOM-элемент айтема"
+          },
+          "itemWrapRender": {
+            "type": "((item: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+          },
+          "onBlur": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки блюра"
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "onFocus": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки фокуса"
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия клавиши"
+          },
+          "onMouseDown": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия кнопки мыши"
+          },
+          "showSwitchIcon": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения иконки у чекбоксов"
+          }
+        },
+        "own": true
+      },
+      "CollapseState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "onChange": {
+            "type": "((value?: ItemId[]) => void) | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": true
+      },
+      "CommonGroupItem": {
+        "kind": "interface",
+        "props": {
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+          },
+          "divider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать разделитель над группой"
+          },
+          "groupVariant": {
+            "type": "\"subtitle\" | \"subtitleTertiary\" | undefined",
+            "required": false,
+            "values": [
+              "subtitle",
+              "subtitleTertiary"
+            ],
+            "description": "Визуальный стиль заголовка группы"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть группу из списка"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Заголовок группы"
+          },
+          "truncate": {
+            "type": "{ variant?: TruncateStringProps[\"variant\"]; } | undefined",
+            "required": false,
+            "description": "Настройки усечения длинного заголовка группы",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "EmptyStateProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок"
+          },
+          "footer": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Вложенный контент (например ButtonGroup)"
+          },
+          "icon": {
+            "type": "IconPredefinedProps | undefined",
+            "required": false,
+            "description": "Иконка",
+            "typeRefs": [
+              "IconPredefinedProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Item": {
+        "kind": "alias",
+        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
+        "own": true
+      },
+      "ItemContent": {
+        "kind": "interface",
+        "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "option": {
+            "type": "string | number",
+            "required": true
+          },
+          "truncate": {
+            "type": "TruncateProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TruncateProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": true
+      },
+      "OnChangeHandler": {
+        "kind": "alias",
+        "type": "(value: T) => void",
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "PopoverWidthStrategy": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": true
+      },
+      "SearchState": {
+        "kind": "interface",
+        "props": {
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onChange": {
+            "type": "(value: string, e?: ChangeEvent<HTMLInputElement>) => void",
+            "required": true
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          },
+          "placeholder": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "SelectionMultipleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"multiple\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId[]> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": true
+      },
+      "SelectionSingleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"single\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "GroupSelectItem": {
+    "displayName": "GroupSelectItem",
+    "propsTypeName": null,
+    "props": {
+      "allChildIds": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "beforeContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+      },
+      "divider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показать разделитель над группой"
+      },
+      "groupVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "subtitle",
+          "subtitleTertiary"
+        ],
+        "description": "Визуальный стиль заголовка группы"
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть группу из списка"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false
+      },
+      "items": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок группы"
+      },
+      "selectButtonLabel": {
+        "type": "string",
+        "required": false
+      },
+      "truncate": {
+        "type": "{ variant?: \"middle\" | \"end\"; }",
+        "required": false,
+        "description": "Настройки усечения длинного заголовка группы"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "HiddenTabButton": {
+    "displayName": "HiddenTabButton",
+    "propsTypeName": "HiddenTabButtonProps",
+    "props": {
+      "listRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": true
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ItemContent": {
+    "displayName": "ItemContent",
+    "propsTypeName": "ItemContentProps",
+    "props": {
+      "caption": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "option": {
+        "type": "string | number",
+        "required": true
+      },
+      "truncate": {
+        "type": "TruncateProps",
+        "required": false,
+        "typeRefs": [
+          "TruncateProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "TruncateProps": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "option": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "variant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "List": {
+    "displayName": "List",
+    "propsTypeName": null,
+    "props": {
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "defaultValue": "{}",
+        "description": "Настройки раскрытия элементов"
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
+      "hasListInFocusChain": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Флаг, отвечающий за включение самого родительского контейнера листа в цепочку фокусирующихся элементов"
+      },
+      "header": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Основные элементы списка"
+      },
+      "keyboardNavigationRef": {
+        "type": "RefObject<{ focusItem(id: ItemId): void; }>",
+        "required": false,
+        "description": "Ссылка на управление навигацией листа с клавиатуры"
+      },
+      "limitedScrollHeight": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображать ли маркер у выбранного элемента списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии результатов поиска или фильтров"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Обработчик события по нажатию клавиш"
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "pinBottom": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Элементы списка, закрепленные снизу"
+      },
+      "pinTop": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Элементы списка, закрепленные сверху"
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки"
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер списка"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "`tabIndex` корневого элемента списка (для управления порядком фокуса)"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ListEmptyState": {
+    "displayName": "ListEmptyState",
+    "propsTypeName": "ListEmptyState",
+    "props": {
+      "dataError": {
+        "type": "boolean",
+        "required": false
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false
+      },
+      "emptyStates": {
+        "type": "{ noDataState: EmptyStateProps; noResultsState: EmptyStateProps; errorDataState: EmptyStateProps; }",
+        "required": true
+      },
+      "hasNoItems": {
+        "type": "boolean",
+        "required": true
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s",
+          "undefined"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ListPrivate": {
+    "displayName": "ListPrivate",
+    "propsTypeName": null,
+    "props": {
+      "active": {
+        "type": "boolean",
+        "required": false
+      },
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "defaultValue": "never",
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "description": "Настройки раскрытия элементов"
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
+      "header": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "items": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "keyboardNavigationRef": {
+        "type": "RefObject<{ focusItem(id: ItemId): void; }>",
+        "required": false,
+        "description": "Ссылка на управление навигацией листа с клавиатуры"
+      },
+      "limitedScrollHeight": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать ли маркер у выбранного элемента списка"
+      },
+      "nested": {
+        "type": "boolean",
+        "required": false
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии результатов поиска или фильтров"
+      },
+      "onBlur": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false
+      },
+      "onKeyDown": {
+        "type": "(((e: KeyboardEvent<HTMLElement>) => void) & ((e: KeyboardEvent<HTMLElement>) => void))",
+        "required": false,
+        "description": "Обработчик события по нажатию клавиш"
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "pinBottom": {
+        "type": "ItemId[]",
+        "required": false
+      },
+      "pinTop": {
+        "type": "ItemId[]",
+        "required": false
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки"
+      },
+      "searchItem": {
+        "type": "FlattenBaseItem",
+        "required": false
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер списка"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "`tabIndex` корневого элемента списка (для управления порядком фокуса)"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NewListContextProvider": {
+    "displayName": "NewListContextProvider",
+    "propsTypeName": null,
+    "props": {
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "firstItemId": {
+        "type": "ItemId",
+        "required": false
+      },
+      "flattenItems": {
+        "type": "Record<string, FlattenItem>",
+        "required": true
+      },
+      "focusFlattenItems": {
+        "type": "Record<string, FocusFlattenItem>",
+        "required": true
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать ли маркер у выбранного элемента списка"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер списка"
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NextListItem": {
+    "displayName": "NextListItem",
+    "propsTypeName": null,
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "allChildIds": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляемое состояние выбранности айтема"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode | ItemContentProps",
+        "required": false,
+        "description": "Основной контент айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Загрузка вложенного списка завершилась ошибкой — показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Вложенный список отфильтрован — пустой результат показывает `noResultsState`, а не `noDataState`"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг неактивности элемента"
+      },
+      "focusId": {
+        "type": "ItemId",
+        "required": false
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Уникальный идентификатор"
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на DOM-элемент айтема"
+      },
+      "itemWrapRender": {
+        "type": "((item: ReactNode) => ReactNode)",
+        "required": false,
+        "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+      },
+      "items": {
+        "type": "ItemId[]",
+        "required": true
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки вложенного списка — показывается спиннер вместо элементов"
+      },
+      "onBlur": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки блюра"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки фокуса"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиши"
+      },
+      "onMouseDown": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "onSublistOpenChanged": {
+        "type": "((open: boolean, id?: ItemId) => void)",
+        "required": false,
+        "description": "Колбек смены состояния вложенного списка (открыт/закрыт)"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start"
+        ],
+        "defaultValue": "right-start",
+        "description": "Сторона, с которой раскрывается вложенный список относительно элемента"
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "showSwitchIcon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения иконки у чекбоксов"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PinBottomGroupItem": {
+    "displayName": "PinBottomGroupItem",
+    "propsTypeName": "__type",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "PinTopGroupItem": {
+    "displayName": "PinTopGroupItem",
+    "propsTypeName": "__type",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "SearchItem": {
+    "displayName": "SearchItem",
+    "propsTypeName": "SearchItemProps",
+    "props": {
+      "inTopBar": {
+        "type": "boolean",
+        "required": false,
+        "description": "Рендер для шапки dropdown — без `.listItem`-обёртки."
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLInputElement, Element>) => void)",
+        "required": false,
+        "description": "onFocus поля (синхронизация активного item, когда search вне `<ul>`)."
+      },
+      "onNavKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Доп. обработчик клавиш навигации по списку. Нужен, когда поле поиска вынесено\nиз `<ul>` в шапку dropdown (topBar) и события клавиатуры больше не всплывают\nна `<ul>`-onKeyDown — DropList передаёт сюда `handleListKeyDown` (factory)."
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "typeRefs": [
+          "SearchState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "SearchState": {
+        "kind": "interface",
+        "props": {
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onChange": {
+            "type": "(value: string, e?: ChangeEvent<HTMLInputElement>) => void",
+            "required": true
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          },
+          "placeholder": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "SelectionProvider": {
+    "displayName": "SelectionProvider",
+    "propsTypeName": null,
+    "props": {
+      "defaultValue": {
+        "type": "ItemId | ItemId[]",
+        "required": false,
+        "description": "Начальное состояние"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "multiple",
+          "none",
+          "single"
+        ],
+        "description": "Режим выбора"
+      },
+      "onChange": {
+        "type": "OnChangeHandler<ItemId> | OnChangeHandler<ItemId[]>",
+        "required": false,
+        "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`\nControlled обработчик изменения состояния — получает массив выбранных `ItemId[]`"
+      },
+      "value": {
+        "type": "ItemId | ItemId[]",
+        "required": false,
+        "description": "Controlled состояние"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Separator": {
+    "displayName": "Separator",
+    "propsTypeName": "SeparatorProps",
+    "props": {
+      "beforeContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+      },
+      "divider": {
+        "type": "boolean",
+        "required": false
+      },
+      "groupVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "subtitle",
+          "subtitleTertiary"
+        ],
+        "defaultValue": "subtitleTertiary"
+      },
+      "label": {
+        "type": "string",
+        "required": false
+      },
+      "selectButton": {
+        "type": "{ onClick?(e: MouseEvent<HTMLElement, MouseEvent>): void; indeterminate?: boolean; checked?: boolean; itemRef?: ForwardedRef<...> | undefined; label?: string | undefined; } | undefined",
+        "required": false
+      },
+      "truncate": {
+        "type": "{ variant?: \"middle\" | \"end\"; }",
+        "required": false,
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
+  },
+  "isSelectionMultipleProps": {
+    "displayName": "isSelectionMultipleProps",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "isSelectionSingleProps": {
+    "displayName": "isSelectionSingleProps",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useCreateBaseItems": {
+    "displayName": "useCreateBaseItems",
+    "propsTypeName": "UseCreateBaseItemsProps",
+    "props": {
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false
+      },
+      "search": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useGroupItemSelection": {
+    "displayName": "useGroupItemSelection",
+    "propsTypeName": "UseGroupItemSelectionProps",
+    "props": {
+      "allChildIds": {
+        "type": "ItemId[]",
+        "required": true,
+        "typeRefs": [
+          "ItemId"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "id": {
+        "type": "ItemId",
+        "required": true,
+        "typeRefs": [
+          "ItemId"
+        ]
+      },
+      "items": {
+        "type": "ItemId[]",
+        "required": true,
+        "typeRefs": [
+          "ItemId"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": true
+      }
+    }
+  },
+  "useRenderItems": {
+    "displayName": "useRenderItems",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  }
+}

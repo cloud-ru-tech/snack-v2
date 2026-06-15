@@ -1,0 +1,228 @@
+/* stylelint-disable at-rule-empty-line-before */
+/* stylelint-disable scss/operator-no-newline-after */
+
+@use '@ds/materials' as m;
+@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../../iconSizes' as icons;
+
+$sizes: 's', 'm', 'l';
+
+// Слот чекбокса использует ту же модель центрирования, что и beforeContent icon
+// (Figma listItem 27862:48137): строка выровнена по flex-start, контрол центрируется
+// внутри centeredWrapper по высоте первой строки текста. Размер контейнера/паддинги —
+// per-size в `.droplistItem[data-size]` ниже.
+.checkbox {
+  display: inline-flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: content-box;
+}
+
+.beforeContent,
+.afterContent {
+  display: inline-flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: content-box;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.afterContent {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.expandableIcon {
+  display: flex;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  fill: currentcolor;
+}
+
+// Figma listItem marker (2940:5769):
+// markerWrapper: padding-horizontal=0, padding-vertical=8, ширина = marker.max-width (4px),
+// ::before — покрашенная полоса, заполняющая content-box wrapper'а (с учётом vertical padding),
+// border-radius = 0 / 2 / 2 / 0 (top-left / top-right / bottom-right / bottom-left).
+.markerContainer {
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  box-sizing: border-box;
+  height: 100%;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+$level: var(--level, 0);
+
+.droplistItem {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      // Figma token bridge: для size=s ключ слоя — `levellWrapper` (опечатка в Figma:
+      // nestingLevel.levellWrapper.padding-left=8). Для m/l — корректный `levelWrapper` (12px).
+      // Перейдём на единое имя после фикса в @sbercloud/figma-variables.
+      $levelWrapperKey: 'levelWrapper';
+      // @if $size == 's' {
+      //   $levelWrapperKey: 'levellWrapper';
+      // }
+      $nestingLevelOffset: base.simple-var(
+        list.$list,
+        'anatomy',
+        'size',
+        $size,
+        'listItem',
+        'nestingLevel',
+        $levelWrapperKey,
+        'padding-left'
+      );
+      $itemPaddingLeft: list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
+      $itemGap: list.$sn-list-anatomy-size-s-listItem-gap;
+
+      @if $size == 'm' {
+        $itemPaddingLeft: list.$sn-list-anatomy-size-m-listItem-paddingHorizontal;
+        $itemGap: list.$sn-list-anatomy-size-m-listItem-gap;
+      }
+
+      @if $size == 'l' {
+        $itemPaddingLeft: list.$sn-list-anatomy-size-l-listItem-paddingHorizontal;
+        $itemGap: list.$sn-list-anatomy-size-l-listItem-gap;
+      }
+
+      &[data-level-one] {
+        padding-left: calc($itemPaddingLeft + $itemGap);
+      }
+
+      &[data-level-more-one] {
+        // Шаг отступа на уровень = $nestingLevelOffset (nestingLevel.levelWrapper.padding-left,
+        // 8/12/12 для s/m/l). Сверено по Figma design-context узла nestingLevel2 (32761:65080):
+        // вложенный `level`-враппер сдвигает контент через padding-left, а НЕ через
+        // `level.padding-right` (12/16/20) — последний к горизонтальному отступу контента не
+        // применяется. Поэтому paddingRight-гипотеза отброшена, левый offset — корректный токен.
+        padding-left: calc($itemPaddingLeft + $itemGap + ($level - 1) * $nestingLevelOffset);
+      }
+
+      // Чекбокс: тот же centeredWrapper, что у иконки — контейнер = icon-сетке (16/24/24),
+      // контрол центрируется внутри, верх контейнера совпадает с первой строкой текста.
+      .checkbox {
+        width: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
+        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
+        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+      }
+
+      .beforeContent {
+        width: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
+
+        // centeredWrapper.padding-vertical центрирует иконку по сетке textWrapper
+        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
+        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+      }
+
+      // afterContent — слот произвольного контента (иконка, counter, tag). Иконка центрируется
+      // по icon-сетке, но не-иконочный контент (counter/badge) не зажимается в квадрат: min-* вместо
+      // фиксированного width/height (легаси рендерил слот «как есть»).
+      .afterContent {
+        min-width: base.simple-var(icons.$iconSizeMap, $size);
+        min-height: base.simple-var(icons.$iconSizeMap, $size);
+        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
+        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+      }
+
+      .expandableIcon {
+        width: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
+      }
+
+      .markerContainer {
+        @include base.composite-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'markerWrapper');
+
+        width: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'max-width');
+
+        &::before {
+          border-radius: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-top-left-radius')
+            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-top-right-radius')
+            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-bottom-right-radius')
+            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-bottom-left-radius');
+        }
+      }
+
+      // Phase 5: токен dropList item.<size>.headline composite ещё не выгружен из Figma —
+      // типографика headline пока покрывается стилями ItemContent. Пустое правило не заводим.
+    }
+  }
+
+  &[data-non-pointer] {
+    cursor: inherit;
+  }
+}
+
+.innerWrapper {
+  &[data-disabled] {
+    .expandableIcon {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+
+    .beforeContent {
+      // TODO Phase 5 token missing: $opacity-a064 (аналог — effect-opacity-disabled 0.4)
+      opacity: base.$sn-theme-effect-opacity-disabled;
+    }
+
+    .droplistItem {
+      cursor: not-allowed;
+    }
+  }
+
+  &[data-has-checked],
+  &[data-checked] {
+    // Фон checked-single теперь отрисовывается .stateLayer[data-state='activatedFilled']
+    // (переключение data-state делается в BaseItem.tsx).
+
+    .markerContainer::before {
+      background-color: base.$sn-theme-color-primary-accent;
+    }
+
+    .droplistItem:focus-visible {
+      &[data-variant='single'] {
+        outline-color: base.$sn-theme-color-primary-accent;
+      }
+    }
+
+    &[data-disabled] {
+      .markerContainer::before {
+        background-color: base.$sn-theme-color-available-version-textDisabled;
+      }
+    }
+  }
+}
+
+.content {
+  overflow: hidden;
+  flex-grow: 1;
+  flex-shrink: 1;
+  box-sizing: border-box;
+}

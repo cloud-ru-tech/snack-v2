@@ -1,0 +1,41 @@
+@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm', 'l';
+
+// Token-набор не содержит composites dropList item.<size>.content-pin-top / content-pin-bottom,
+// поэтому для пин-групп берём горизонтальный отступ из listItem.padding-left
+// (чтобы pinTop/pinBottom не прилипали к левому краю).
+.pinTopItem {
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      padding: 0 base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
+    }
+  }
+
+  display: flex;
+  flex-direction: column;
+  border: none;
+
+  li,
+  ul {
+    list-style-type: none;
+  }
+}
+
+.pinBottomItem {
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      padding: 0 base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
+    }
+  }
+
+  display: flex;
+  flex-direction: column;
+  border: none;
+
+  li,
+  ul {
+    list-style-type: none;
+  }
+}

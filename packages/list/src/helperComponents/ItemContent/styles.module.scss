@@ -1,0 +1,98 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
+
+$sizes: 's', 'm', 'l';
+
+$label-size-map: (
+  's': 's',
+  'm': 'm',
+  'l': 'l',
+);
+
+$caption-size-map: (
+  's': 's',
+  'm': 's',
+  'l': 'm',
+);
+
+$description-size-map: (
+  's': 's',
+  'm': 's',
+  'l': 'm',
+);
+
+.headline {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  overflow: hidden;
+  flex: 1;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.caption {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.content {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  box-sizing: border-box;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+
+      // textContent.gap — вертикальный зазор headline ↔ description. s/m = 0, l = 2.
+      gap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'gap');
+      // textWrapper: vertical padding вокруг строки контента, textContent: horizontal padding.
+      padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-top')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-right')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-bottom')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-left');
+
+      .headline {
+        gap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'headline', 'gap');
+        min-height: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'headline', 'min-height');
+      }
+
+      .label {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', base.simple-var($label-size-map, $size));
+
+        display: flex;
+        align-items: center;
+      }
+
+      .caption {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', base.simple-var($caption-size-map, $size));
+      }
+
+      .description {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', base.simple-var($description-size-map, $size));
+      }
+    }
+  }
+
+  &[data-disabled] {
+    .label,
+    .description,
+    .caption {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+  }
+}

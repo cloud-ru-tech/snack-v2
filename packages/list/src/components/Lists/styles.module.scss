@@ -1,0 +1,72 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  &:focus-visible {
+    border: none;
+    outline: none;
+
+    &[data-active] {
+      outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+      outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+
+      * {
+        cursor: inherit;
+      }
+    }
+  }
+
+  li,
+  ul {
+    list-style-type: none;
+  }
+}
+
+// Список задаёт собственные паддинги айтемов + вертикальный паддинг контейнера dropdown'а
+// (anatomy.container.paddingVertical). Горизонтального паддинга у body быть не должно —
+// обнуляем дефолтный bodyWrapper-паддинг @ds/dropdown (Figma: bodyWrapper заполняет контейнер).
+.droplistBody {
+  padding: 0;
+}
+
+.wrapper {
+  position: relative;
+
+  overflow: hidden;
+  display: block;
+
+  box-sizing: border-box;
+  height: 100%;
+
+  &:has(.listContainer:focus-visible) {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+
+  li,
+  ul {
+    list-style-type: none;
+  }
+}
+
+// scrollContainer heights: исходно 256/320/384px (kратные 8 * 32/40/48)
+.scrollContainerS {
+  height: auto;
+  max-height: calc(base.$sn-primitive-dimension-8 * 32); // 256px
+}
+
+.scrollContainerM {
+  height: auto;
+  max-height: calc(base.$sn-primitive-dimension-8 * 40); // 320px
+}
+
+.scrollContainerL {
+  height: auto;
+  max-height: calc(base.$sn-primitive-dimension-8 * 48); // 384px
+}

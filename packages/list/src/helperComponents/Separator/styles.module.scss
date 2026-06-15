@@ -1,0 +1,167 @@
+@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../iconSizes' as icons;
+
+$sizes: 's', 'm', 'l';
+
+// Typography map (legacy separator primary = sans-label/title, secondary = light-label/title)
+$subtitle-typography-map: (
+  's': ('weight': 'regular', 'role': 'label', 'size': 'm'),
+  'm': ('weight': 'regular', 'role': 'label', 'size': 'l'),
+  'l': ('weight': 'regular', 'role': 'title', 'size': 'm'),
+);
+
+// 'light' weight в base-styles отсутствует — используем 'regular', subtitleTertiary
+// отличаем цветом (см. .label[data-group-variant='subtitleTertiary']).
+$subtitle-tertiary-typography-map: (
+  's': ('weight': 'regular', 'role': 'label', 'size': 'm'),
+  'm': ('weight': 'regular', 'role': 'label', 'size': 'l'),
+  'l': ('weight': 'regular', 'role': 'title', 'size': 'm'),
+);
+
+$level: var(--level, 0);
+
+// Composites dropList item.<size>.container-separator(-subheader) в токен-наборе отсутствуют —
+// приближаем через list anatomy.size.<size>.listItem.padding-*.
+// Figma listItemGroup (2945:7298): root flex, align-items: flex-start, gap=listItem.gap,
+// padding-top=subtitle.paddingTop, padding-bottom=listItem.paddingVertical,
+// padding-horizontal=listItem.paddingHorizontal. Иконка и label — на одной линии по центру (textWrapper).
+
+// Figma centeredWrapper (list.listItem.centeredWrapper): padding-vertical вокруг иконки.
+// Размер иконочного слота — общий с listItem (см. icons.$iconSizeMap).
+// Используем content-box, чтобы padding не зажимал SVG.
+.beforeContent {
+  display: inline-flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: content-box;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Figma listItemGroup (0:5323): nestingLevel (16×29 indicator scale per level) + focusedFrameRegular/inside (outline при focus-visible).
+// nestingLevel рендерится тем же механизмом, что и в BaseItem: padding-left на родительском узле, шаг —
+// list.anatomy.size.<size>.listItem.nestingLevel.levelWrapper.padding-left (для s — `levellWrapper`, опечатка в Figma).
+.separatorWithLabel {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 100%;
+
+  // focusedFrameRegular/inside — клавиатурный focus на group-заголовке (через bulkSelectButton).
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      $subtitle: base.simple-var($subtitle-typography-map, $size);
+      $subtitleTertiary: base.simple-var($subtitle-tertiary-typography-map, $size);
+      // Figma `listItem.nestingLevel.levelWrapper.padding-left` (s=8, m/l=12).
+      $levelWrapperKey: 'levelWrapper';
+      $nestingLevelOffset: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'nestingLevel', $levelWrapperKey, 'padding-left');
+      $itemPaddingLeft: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
+      $itemGap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'gap');
+
+      gap: $itemGap;
+      padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'subtitle', 'padding-top') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-right') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-bottom') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
+
+      // nestingLevel — индентация заголовка группы, если она вложена внутрь другой группы.
+      // Идентичный механизм используется на BaseItem.droplistItem (см. BaseItem/styles.module.scss).
+      &[data-level-one] {
+        padding-left: calc($itemPaddingLeft + $itemGap);
+      }
+
+      &[data-level-more-one] {
+        padding-left: calc($itemPaddingLeft + $itemGap + ($level - 1) * $nestingLevelOffset);
+      }
+
+      .beforeContent {
+        width: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
+        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
+        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+      }
+
+      .label {
+        padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-top')
+          base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-right')
+          base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-bottom')
+          base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-left');
+
+        &[data-group-variant='subtitle'] {
+          @include base.composite-var(
+            base.$base-styles,
+            'sn',
+            base.simple-var($subtitle, 'weight'),
+            base.simple-var($subtitle, 'role'),
+            base.simple-var($subtitle, 'size')
+          );
+        }
+
+        &[data-group-variant='subtitleTertiary'] {
+          @include base.composite-var(
+            base.$base-styles,
+            'sn',
+            base.simple-var($subtitleTertiary, 'weight'),
+            base.simple-var($subtitleTertiary, 'role'),
+            base.simple-var($subtitleTertiary, 'size')
+          );
+        }
+      }
+    }
+  }
+}
+
+.separatorWithoutLabel {
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+.label {
+  overflow: hidden;
+  flex-shrink: 1;
+
+  &[data-group-variant='subtitle'] {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  &[data-group-variant='subtitleTertiary'] {
+    color: base.$sn-theme-color-available-version-textSecondary;
+  }
+}
+
+.divider {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+}
+
+.labelEnd {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.selectButton {
+  display: flex;
+  justify-content: flex-end;
+}

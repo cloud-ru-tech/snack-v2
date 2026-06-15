@@ -1,0 +1,11 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.listEmptyStateWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-8;
+}

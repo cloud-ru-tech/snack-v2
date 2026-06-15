@@ -1,0 +1,126 @@
+---
+title: ItemContent
+package: '@ds/list'
+description: Каноничная разметка содержимого элемента списка — option / caption / description с единым truncate-поведением.
+order: 3
+---
+
+import { BasicList } from '../demos/examples/BasicList'
+import BasicListSrc from '../demos/examples/BasicList.tsx?raw'
+import { ItemContentSlots } from '../demos/examples/ItemContentSlots'
+import ItemContentSlotsSrc from '../demos/examples/ItemContentSlots.tsx?raw'
+import { ItemContentDescription } from '../demos/examples/ItemContentDescription'
+import ItemContentDescriptionSrc from '../demos/examples/ItemContentDescription.tsx?raw'
+import { ItemContentTruncate } from '../demos/examples/ItemContentTruncate'
+import ItemContentTruncateSrc from '../demos/examples/ItemContentTruncate.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import listDoc from './props.json'
+
+# ItemContent
+
+`ItemContent` — каноничная разметка основного контента item'а: заголовок (`option`), мета справа (`caption`), подпись снизу (`description`). Используется как значение поля `item.content`, а также экспортируется отдельно для кастомного рендеринга внутри `contentRender`.
+
+## Когда использовать
+
+- Всегда, когда элемент списка можно описать как «заголовок + мета-подпись + короткое описание».
+- Когда нужен одинаковый truncate-алгоритм во всех списках пакета.
+- Когда `content` задаётся как объект в `items` — ровно это и есть `ItemContent` под капотом.
+
+Когда **не** нужен:
+
+- Совсем кастомный layout внутри item — передавайте в `content` свой `ReactNode`, но тогда единый visual-signal и truncate ложатся на вас.
+- Элемент с одной иконкой без текста — передавайте `beforeContent` / `afterContent` и оставьте `content` пустым.
+
+## Анатомия
+
+### Slots
+
+- `option` *(required)* — заголовок item'а (имя файла, название валюты, email-адрес).
+- `caption` — короткая мета справа (счётчик, дата, badge, shortcut).
+- `description` — подпись под заголовком (хвост описания, короткая справка, секундный статус).
+
+Вне `ItemContent`, но рядом (поля item'а):
+
+- `beforeContent` — иконка / аватар слева.
+- `afterContent` — слот справа: чеврон / trailing-иконка в иконочном квадрате; произвольный контент (счётчик, badge, tag) рендерится в натуральном размере без обрезки.
+- `switch: true` — заменяет чекбокс/маркер на `Switch` справа; состояние тумблера берётся из `selection`. Для списков-настроек, где выбор = включение функции. `showSwitchIcon` зарезервирован под иконку тумблера.
+
+### Group variant
+
+У групповых item'ов (`type: 'group'` / `'group-select'`) заголовок оформляется `ItemContent`-независимо, через `groupVariant`:
+
+- `subtitle` — контрастный подзаголовок секции.
+- `subtitleTertiary` *(default)* — приглушённый третичный текст.
+
+### Truncate
+
+- Дефолт: `option` — 1 строка, `description` — 2 строки, вариант обрезки — `end` (многоточие в конце).
+- Переопределяется через `truncate.option`, `truncate.description`, `truncate.variant` (`end` / `middle`).
+
+## Установка
+
+`ItemContent` поставляется вместе с `@ds/list`:
+
+```ts
+import { ItemContent } from '@ds/list'
+```
+
+## Примеры использования
+
+99% случаев — `content` передаётся как объект, компонент сам строит `<ItemContent />` под капотом:
+
+<Example
+  title='content как объект'
+  description='item.content = { option, caption, description } — List оборачивает в ItemContent сам.'
+  code={BasicListSrc}
+>
+  <BasicList client:visible />
+</Example>
+
+<Example
+  title='Слоты beforeContent / afterContent'
+  description='Иконка слева, caption-счётчик справа от заголовка и trailing-иконка в afterContent.'
+  code={ItemContentSlotsSrc}
+>
+  <ItemContentSlots client:visible />
+</Example>
+
+<Example
+  title='Заголовок, caption и description вместе'
+  description='option + caption (мета справа) + description (подпись снизу) в одном item.'
+  code={ItemContentDescriptionSrc}
+>
+  <ItemContentDescription client:visible />
+</Example>
+
+<Example
+  title='Обрезка текста (truncate)'
+  description='truncate.option/description задают число строк, variant — место многоточия (end/middle). В узком контейнере длинный текст обрезается.'
+  code={ItemContentTruncateSrc}
+>
+  <ItemContentTruncate client:visible />
+</Example>
+
+Если нужен кастомный слот (бейдж, превью, аватар) поверх стандартной разметки — используйте `contentRender` на `List`. Внутри возвращайте `<ItemContent {...props} />` плюс свои дополнения. Это сохраняет типографику и truncate.
+
+## Доступность
+
+- `option` остаётся текстовым заголовком — ассистивные технологии прочитают его как основное имя элемента.
+- `caption` и `description` находятся в том же DOM-узле и читаются следом за заголовком.
+- Визуальные truncate-поведения реализованы через CSS `-webkit-line-clamp`, текст не вырезается из DOM и остаётся доступен скринридеру целиком.
+- Disabled-элементы получают уменьшенный контраст + `data-disabled`, но цвет не единственный сигнал: интерактивность выключается и на уровне родительского item'а.
+
+## Props
+
+<PropsTable data={listDoc.ItemContent} />
+
+## Storybook
+
+`ItemContent` живёт внутри `List`, отдельной истории нет — все сценарии видны в [List playground](/components/list/list).
+
+## Figma
+
+<FigmaEmbed node={figmaNode('list', 'item')} height={320} title='List Item (ItemContent) в Figma' />

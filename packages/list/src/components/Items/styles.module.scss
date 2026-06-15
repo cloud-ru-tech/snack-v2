@@ -1,0 +1,88 @@
+@use '@ds/materials' as m;
+@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm', 'l';
+
+.stateLayer {
+  visibility: initial;
+}
+
+.itemWrapper {
+  position: relative;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  // Hover/pressed/focus через @ds/materials state-layer (регулярный фон + активированный для selected single).
+  // data-state переключается в BaseItem.tsx: regularFilled ↔ activatedFilled.
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &[data-disabled],
+  &:disabled {
+    cursor: not-allowed;
+    background-color: transparent;
+    outline: none;
+  }
+
+  &:not([data-inactive], [data-disabled]) {
+    &[data-open],
+    &[data-focused] {
+      .stateLayer[data-state='regularFilled'] {
+        background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+      }
+
+      .stateLayer[data-state='activatedFilled'] {
+        background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
+      }
+    }
+
+    &:active {
+      .stateLayer[data-state='regularFilled'] {
+        background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+      }
+
+      .stateLayer[data-state='activatedFilled'] {
+        background: base.$sn-theme-color-material-stateLayer-activated-pressed-filled;
+      }
+    }
+  }
+}
+
+.listItem {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-align: start;
+
+  appearance: unset;
+  background-color: transparent;
+  outline: none;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(list.$list, 'anatomy', 'size', $size, 'listItem');
+    }
+  }
+
+  &:not([data-inactive], [data-disabled]) {
+    &[data-focused],
+    &:focus-visible {
+      outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+      outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+    }
+  }
+}

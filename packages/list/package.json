@@ -1,0 +1,48 @@
+{
+  "name": "@ds/list",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/divider": "workspace:*",
+    "@ds/dropdown": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/info-block": "workspace:*",
+    "@ds/loader": "workspace:*",
+    "@ds/materials": "workspace:*",
+    "@ds/scroll": "workspace:*",
+    "@ds/search-private": "workspace:*",
+    "@ds/toggles": "workspace:*",
+    "@ds/truncate-string": "workspace:*",
+    "@ds/typography": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "@tanstack/react-virtual": "3.11.2",
+    "classnames": "catalog:",
+    "merge-refs": "catalog:"
+  },
+  "peerDependencies": {
+    "@ds/locale": "workspace:*"
+  }
+}

@@ -1,0 +1,26 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+// Поиск в списке/дроплисте — это field размера `s` (Figma list-матрица 27832:59174:
+// search во всех колонках s/m/l зафиксирован на fieldContainer.size.s). SearchPrivate даёт
+// только inputLine (gap/padding контента); сам field-бокс (min-height + padding) задаёт
+// потребитель — здесь, по аналогии с `.fieldContainer` в @ds/search.
+.searchItem {
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: base.simple-var(field.$field, 'anatomy', 'size', 's', 'fieldContainer', 'min-height');
+  padding: base.simple-var(field.$field, 'anatomy', 'size', 's', 'fieldContainer', 'padding-top')
+    base.simple-var(field.$field, 'anatomy', 'size', 's', 'fieldContainer', 'padding-right')
+    base.simple-var(field.$field, 'anatomy', 'size', 's', 'fieldContainer', 'padding-bottom')
+    base.simple-var(field.$field, 'anatomy', 'size', 's', 'fieldContainer', 'padding-left');
+
+  &:focus-within,
+  &:focus-visible {
+    max-width: 100%;
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+}

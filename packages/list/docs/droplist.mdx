@@ -1,0 +1,194 @@
+---
+title: Droplist
+package: '@ds/list'
+description: List в popover. Оборачивает триггер (кнопку / поле) и показывает список рядом с ним. Принимает почти все пропсы List.
+order: 2
+---
+
+import { BasicDroplist } from '../demos/examples/BasicDroplist'
+import BasicDroplistSrc from '../demos/examples/BasicDroplist.tsx?raw'
+import { DroplistMultiple } from '../demos/examples/DroplistMultiple'
+import DroplistMultipleSrc from '../demos/examples/DroplistMultiple.tsx?raw'
+import { DroplistWithSearch } from '../demos/examples/DroplistWithSearch'
+import DroplistWithSearchSrc from '../demos/examples/DroplistWithSearch.tsx?raw'
+import { DroplistAsFormSelect } from '../demos/examples/DroplistAsFormSelect'
+import DroplistAsFormSelectSrc from '../demos/examples/DroplistAsFormSelect.tsx?raw'
+import { DroplistWithHeader } from '../demos/examples/DroplistWithHeader'
+import DroplistWithHeaderSrc from '../demos/examples/DroplistWithHeader.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import listDoc from './props.json'
+
+# Droplist
+
+Тот же `List` в popover. `Droplist` оборачивает `children`-триггер, сам управляет открытием/закрытием и показывает список рядом с триггером. Почти все пропсы `List` (`items`, `selection`, `collapse`, `search`, `virtualized`, `pinTop` / `pinBottom`) доступны здесь напрямую.
+
+## Когда использовать
+
+- Селектор-значение у кнопки/поля (валюта, язык, регион, сортировка).
+- Меню действий (у toolbar-кнопки, у строки таблицы).
+- Вторичная навигация, которую не хочется держать на странице постоянно.
+
+Когда **не** нужен Droplist:
+
+- Простое меню из 2–3 действий — проще держать inline.
+- Список должен быть виден всегда (sidebar) — используйте [List](/components/list/list).
+- Сложная форма с несколькими полями — используйте [Popover](/components/popover/popover) + свой layout.
+
+## Droplist vs List
+
+| Ситуация | Компонент |
+|----------|-----------|
+| Список всегда виден на странице | `List` |
+| Список открывается по клику / фокусу | `Droplist` |
+| Список нужно вставить в форму как селект | `Droplist` + триггер-кнопка или `FieldSelect` |
+| Mobile — полноэкранный выбор | `List` в собственном sheet / drawer |
+
+## Анатомия
+
+### Size (default `s`)
+
+Размер задаёт высоту строки списка (Figma `listItem`): `s` = 40px, `m` = 52px, `l` = 66px. Совпадает с `size` у [List](/components/list/list).
+
+- `s` — дефолт. Компактные селекторы у кнопок toolbar/header.
+- `m` — списки объектов с описанием.
+- `l` — крупные меню, mobile.
+
+### Selection mode (default off)
+
+Режим выбора идентичен [List](/components/list/list):
+
+- без `selection` — клик = навигация/действие, состояния «выбран» нет.
+- `selection={{ mode: 'single' }}` — один выбранный элемент (`value: ItemId`); обычно с `closeDroplistOnItemClick`.
+- `selection={{ mode: 'multiple' }}` — множественный выбор (`value: ItemId[]`); popover не закрывается на клик.
+
+### Placement (default `bottom-start`)
+
+- `bottom-start` — дефолт. Для списков у кнопки в header/toolbar, анкорится по левому краю триггера.
+- `bottom-end` — если триггер прижат к правому краю контейнера.
+- `top-*` — намеренно ставьте только когда триггер физически у нижнего края страницы. У нижнего края viewport fallback отработает автоматически.
+
+### Trigger event (default `click`)
+
+- `click` — дефолт. Предсказуемо, работает на touch, доступнее для клавиатуры.
+- `hover` — допустимо только для навигационных меню без чувствительных действий. Не используйте для селекторов и действий с последствиями.
+
+### Width strategy (default `auto`)
+
+- `widthStrategy='auto'` — дефолт. Ширина popover'а по контенту.
+- `widthStrategy='eq'` — popover ровно по ширине триггера. Идеально для селектов в форме.
+- `widthStrategy='gte'` — popover не уже триггера, но может быть шире по контенту.
+
+### Header / Footer
+
+Шапка и подвал popover'а — кастомные слоты вокруг тела списка (Figma `dropdownContainer.topBar` / `bottomBar`):
+
+- `header` — `ReactNode` над списком (и над полем поиска, если оно есть). Заголовок раздела, справочный блок.
+- `headerDivider` — рисует разделитель между `header` (вместе с полем поиска) и телом списка.
+- `footer` — `ReactNode` под списком. Сводка, ссылка на полный список.
+- `footerDivider` — рисует разделитель между телом списка и `footer`.
+
+Разделители включаются только вместе с соответствующим слотом: `headerDivider` без `header` ничего не рисует.
+
+### Close after selection
+
+- В `single` + навигация → `closeDroplistOnItemClick` обычно `true`.
+- В `multiple` → всегда `false` (по умолчанию), иначе пользователь не сможет проставить несколько галочек.
+
+## Установка
+
+```bash
+pnpm add @ds/list
+```
+
+```ts
+import { Droplist } from '@ds/list'
+import '@ds/list/style.css'
+```
+
+## Примеры использования
+
+<Example
+  title='Селектор-кнопка'
+  description='Кнопка-триггер + Droplist с single selection и закрытием после выбора.'
+  code={BasicDroplistSrc}
+>
+  <BasicDroplist client:visible />
+</Example>
+
+<Example
+  title='Multiple selection'
+  description='Несколько отметок без закрытия. closeDroplistOnItemClick по умолчанию false.'
+  code={DroplistMultipleSrc}
+>
+  <DroplistMultiple client:visible />
+</Example>
+
+<Example
+  title='Поиск внутри Droplist'
+  description='search + фильтрация items на стороне потребителя — поведение идентично List.'
+  code={DroplistWithSearchSrc}
+>
+  <DroplistWithSearch client:visible />
+</Example>
+
+<Example
+  title='Form select (widthStrategy="eq")'
+  description='Popover ровно по ширине триггера — поведение нативного select.'
+  code={DroplistAsFormSelectSrc}
+>
+  <DroplistAsFormSelect client:visible />
+</Example>
+
+<Example
+  title='Шапка и подвал с разделителями'
+  description='header / footer — слоты над и под списком; headerDivider / footerDivider рисуют разделители.'
+  code={DroplistWithHeaderSrc}
+>
+  <DroplistWithHeader client:visible />
+</Example>
+
+## Trigger
+
+`children` — сам триггер. Поддерживаются две формы:
+
+- `ReactNode` — просто вложенный элемент (кнопка / поле). Droplist навешивает на него open/close.
+- `({ onKeyDown }) => ReactNode` — render-prop с `onKeyDown`-хендлером, который нужно передать на триггер для клавиатуры. Используйте, если триггер — кастомный компонент без привычной клавиатурной поддержки.
+
+## Открытие и контроль
+
+- **Uncontrolled** — компонент сам управляет `open`, ничего передавать не нужно.
+- **Controlled** — `open` + `onOpenChange`. Нужен для программного открытия (например, по keyboard shortcut) или синхронизации с URL.
+- `closeOnPopstate` автоматически закрывает popover при `popstate`-событии — полезно в SPA с router'ом.
+
+## Selection и collapse
+
+Всё, что относится к содержимому списка (`items`, `pinTop`, `pinBottom`, `selection`, `collapse`, `search`, `footer`, `virtualized`, `marker`, `size`, `contentRender`), работает так же, как в [List](/components/list/list).
+
+## Доступность
+
+- Триггер получает `aria-expanded` и `aria-haspopup='listbox'` автоматически (через `Dropdown`).
+- При открытии фокус переходит внутрь списка, при закрытии — возвращается к триггеру.
+- `Escape` закрывает popover, `Tab` переключает на следующий focusable элемент страницы.
+- Стрелки, `Home` / `End`, `Enter` / `Space` работают так же, как в List.
+- Цвет не единственный индикатор выбранного значения: используется marker и фоновая заливка.
+
+## Props
+
+<PropsTable data={listDoc.Droplist} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-list-droplist--playground' height={520} />
+
+## Figma
+
+{/* Droplist делит Figma-файл с List — отдельного droplist/dropdownContainer-узла в FIGMA_NODES нет.
+    Это допустимый fallback (см. figma-integration.md): показываем общий list-узел и item-search. */}
+
+<FigmaEmbed node={figmaNode('list')} height={480} title='List в Figma (тот же файл)' />
+
+<FigmaEmbed node={figmaNode('list', 'item-search')} height={320} title='List item search в Figma' />
