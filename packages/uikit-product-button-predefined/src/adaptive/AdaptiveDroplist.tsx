@@ -1,6 +1,5 @@
-// TODO: replace with @ds/list when ready
+import { DroplistProps } from '@ds/list';
 import { WithLayoutType } from '@ds/utils';
-import { DroplistProps } from '@sbercloud/snack-v2-list';
 
 import { DesktopDroplist } from './DesktopDroplist';
 import { MobileDroplist, MobileDroplistProps } from './MobileDroplist';

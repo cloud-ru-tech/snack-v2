@@ -2,7 +2,7 @@
 
 `@ds/uikit-product-button-predefined` — Function-кнопка с выпадающим списком (desktop) или modal (mobile).
 
-Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `@sbercloud/snack-v2-list` `Droplist`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в **`PriceSummary`** для выбора периода биллинга.
+Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `Droplist` из `@ds/list`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в **`PriceSummary`** для выбора периода биллинга.
 
 ## Когда использовать
 
@@ -22,7 +22,7 @@
 
 ### AdaptiveDroplist
 
-- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@sbercloud/snack-v2-list`, позиционирование через popover.
+- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@ds/list`, позиционирование через popover.
 - **`layoutType='mobile'`** — `ModalCustom` + `List`; пункты из `items`.
 
 ### items
@@ -75,7 +75,7 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 
 ## Примеры использования
 
-{/* client:only — @sbercloud/snack-v2-list не резолвится в SSR (directory import в ESM) */}
+{/* client:only — Droplist рендерит контент в портал, который не резолвится при SSR */}
 
 ### Desktop basic
 
@@ -196,7 +196,7 @@ export function MobileLayout() {
 | `disabled` | `boolean` | — | Отключена |
 | `fullWidth` | `boolean` | — | На всю ширину |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-| `items` | `Item[]` | — | Основные элементы списка |
+| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
 | `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loading` | `boolean` | — | Состояние загрузки |

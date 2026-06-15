@@ -1,7 +1,6 @@
+import { DroplistProps, List } from '@ds/list';
 import { ModalCustom } from '@ds/modal';
 import { useValueControl, WithLayoutType } from '@ds/utils';
-// TODO: replace with @ds/list when ready
-import { DroplistProps, List } from '@sbercloud/snack-v2-list';
 import { cloneElement, isValidElement, MouseEvent, PropsWithChildren, useCallback, useMemo } from 'react';
 
 import { TEST_IDS } from '../constants';

@@ -1,4 +1,4 @@
-import { BaseItemProps, DroplistProps } from '@sbercloud/snack-v2-list';
+import { BaseItemProps, DroplistProps } from '@ds/list';
 
 export function wrapDroplistItemsWithClose(items: DroplistProps['items'], onClose: () => void): DroplistProps['items'] {
   return items.map(item => {

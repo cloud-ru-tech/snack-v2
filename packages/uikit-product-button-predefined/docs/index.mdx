@@ -20,7 +20,7 @@ import buttonPredefinedDoc from './props.json'
 
 # ButtonDropdown
 
-Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `@sbercloud/snack-v2-list` `Droplist`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в [`PriceSummary`](/components/uikit-product-price-summary/price-summary) для выбора периода биллинга.
+Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `Droplist` из `@ds/list`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в [`PriceSummary`](/components/uikit-product-price-summary/price-summary) для выбора периода биллинга.
 
 ## Когда использовать
 
@@ -40,7 +40,7 @@ import buttonPredefinedDoc from './props.json'
 
 ### AdaptiveDroplist
 
-- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@sbercloud/snack-v2-list`, позиционирование через popover.
+- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@ds/list`, позиционирование через popover.
 - **`layoutType='mobile'`** — `ModalCustom` + `List`; пункты из `items`.
 
 ### items
@@ -93,7 +93,7 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 
 ## Примеры использования
 
-{/* client:only — @sbercloud/snack-v2-list не резолвится в SSR (directory import в ESM) */}
+{/* client:only — Droplist рендерит контент в портал, который не резолвится при SSR */}
 
 <Example title='Desktop basic' description='Базовый dropdown для выбора одного значения.' code={DesktopBasicSrc}>
   <DesktopBasic client:only="react" />

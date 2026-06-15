@@ -1,6 +1,5 @@
 import { Dropdown } from '@ds/dropdown';
-// TODO: replace with @ds/list when ready
-import { DroplistProps, List } from '@sbercloud/snack-v2-list';
+import { DroplistProps, List } from '@ds/list';
 import { PropsWithChildren } from 'react';
 
 import { TEST_IDS } from '../constants';

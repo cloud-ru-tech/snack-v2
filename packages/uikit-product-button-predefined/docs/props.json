@@ -35,6 +35,11 @@
         "required": false,
         "description": "Настройки раскрытия элементов"
       },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого дроплиста\n(по аналогии с `container` у Modal/Drawer). По умолчанию — из `PortalContextProvider`."
+      },
       "contentRender": {
         "type": "((props: ContentRenderProps) => ReactNode)",
         "required": false,
@@ -348,7 +353,13 @@
       "items": {
         "type": "Item[]",
         "required": true,
-        "description": "Основные элементы списка"
+        "description": "Основные элементы списка",
+        "typeRefs": [
+          "BaseItemWithoutNonGroup",
+          "CommonGroupItem",
+          "Item",
+          "ScrollProps"
+        ]
       },
       "label": {
         "type": "string",
@@ -399,7 +410,10 @@
           "top-start"
         ],
         "defaultValue": "top",
-        "description": "Положение поповера относительно своего триггера (children)."
+        "description": "Положение поповера относительно своего триггера (children).",
+        "typeRefs": [
+          "Placement"
+        ]
       },
       "size": {
         "type": "enum",
@@ -432,6 +446,120 @@
         ],
         "own": false
       },
+      "AutoscrollTo": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "right"
+        ],
+        "own": false
+      },
+      "BarHideStrategy": {
+        "kind": "union",
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "own": false
+      },
+      "BaseItemWithoutNonGroup": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот после основного контента"
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот до основного контента"
+          },
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляемое состояние выбранности айтема"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+          },
+          "id": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Уникальный идентификатор",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "itemRef": {
+            "type": "RefObject<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на DOM-элемент айтема"
+          },
+          "itemWrapRender": {
+            "type": "((item: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+          },
+          "onBlur": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки блюра"
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "onFocus": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки фокуса"
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия клавиши"
+          },
+          "onMouseDown": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия кнопки мыши"
+          },
+          "showSwitchIcon": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения иконки у чекбоксов"
+          }
+        },
+        "own": false
+      },
       "ButtonDropdownSize": {
         "kind": "union",
         "values": [
@@ -448,6 +576,49 @@
           "accent",
           "decor"
         ],
+        "own": false
+      },
+      "CommonGroupItem": {
+        "kind": "interface",
+        "props": {
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+          },
+          "divider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать разделитель над группой"
+          },
+          "groupVariant": {
+            "type": "\"subtitle\" | \"subtitleTertiary\" | undefined",
+            "required": false,
+            "values": [
+              "subtitle",
+              "subtitleTertiary"
+            ],
+            "description": "Визуальный стиль заголовка группы"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть группу из списка"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Заголовок группы"
+          },
+          "truncate": {
+            "type": "{ variant?: TruncateStringProps[\"variant\"]; } | undefined",
+            "required": false,
+            "description": "Настройки усечения длинного заголовка группы",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          }
+        },
         "own": false
       },
       "CounterProps": {
@@ -525,6 +696,78 @@
         },
         "own": false
       },
+      "Item": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "JSXElementConstructor<{ size: number; }> | undefined",
+            "required": false
+          },
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> | undefined",
+            "required": false
+          },
+          "shortLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "ItemContent": {
+        "kind": "interface",
+        "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "option": {
+            "type": "string | number",
+            "required": true
+          },
+          "truncate": {
+            "type": "TruncateProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TruncateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": false
+      },
       "LayoutType": {
         "kind": "union",
         "values": [
@@ -533,9 +776,137 @@
         ],
         "own": false
       },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
       "PolymorphicRef": {
         "kind": "alias",
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "Resize": {
+        "kind": "union",
+        "values": [
+          "both",
+          "horizontal",
+          "none",
+          "vertical"
+        ],
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "right"
+            ],
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
+            "typeRefs": [
+              "AutoscrollTo"
+            ]
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "clickScrolling": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скролить ли по клику в скроллбар."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onInitialized": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+            "typeRefs": [
+              "Resize"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
         "own": false
       },
       "Size": {
@@ -544,6 +915,11 @@
           "s",
           "xs"
         ],
+        "own": false
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
         "own": false
       },
       "Variant": {

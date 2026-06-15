@@ -25,9 +25,9 @@
     "@ds/button": "workspace:*",
     "@ds/dropdown": "workspace:*",
     "@ds/icons": "workspace:*",
+    "@ds/list": "workspace:*",
     "@ds/modal": "workspace:*",
-    "@ds/utils": "workspace:*",
-    "@sbercloud/snack-v2-list": "catalog:"
+    "@ds/utils": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
