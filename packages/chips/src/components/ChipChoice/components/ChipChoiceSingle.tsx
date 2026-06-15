@@ -1,6 +1,6 @@
+import { Droplist, SelectionSingleValueType } from '@ds/list';
 import { useLocale } from '@ds/locale';
 import { useValueControl } from '@ds/utils';
-import { Droplist, SelectionSingleValueType } from '@sbercloud/snack-v2-list';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 

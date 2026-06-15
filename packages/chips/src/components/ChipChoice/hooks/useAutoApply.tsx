@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
+import { DroplistProps } from '@ds/list';
 import { useLocale } from '@ds/locale';
-import { DroplistProps } from '@sbercloud/snack-v2-list';
 import { useCallback } from 'react';
 
 import { CHIP_CHOICE_TEST_IDS } from '../../../constants';

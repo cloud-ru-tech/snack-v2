@@ -1,4 +1,4 @@
-import { ItemId } from '@sbercloud/snack-v2-list';
+import { ItemId } from '@ds/list';
 import { ReactNode } from 'react';
 
 import { ContentRenderProps, FilterOption } from '../types';

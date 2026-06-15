@@ -1,6 +1,6 @@
 import { ButtonProps } from '@ds/button';
 import { CalendarProps, TimePickerProps } from '@ds/calendar';
-import { DroplistProps } from '@sbercloud/snack-v2-list';
+import { DroplistProps } from '@ds/list';
 
 import { BUTTON_SIZE, SIZE } from '../../constants';
 import { ButtonSize, Size } from '../../types';

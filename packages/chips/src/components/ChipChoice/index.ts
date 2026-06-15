@@ -12,7 +12,7 @@ import {
   CustomContentRenderProps,
 } from './components';
 
-export { setNonce } from '@sbercloud/snack-v2-list';
+export { setNonce } from '@ds/list';
 export { CHIP_CHOICE_TYPE } from './constants';
 
 export type { FilterOption, ChipChoiceMultipleProps, ChipChoiceSingleProps, ContentRenderProps } from './types';

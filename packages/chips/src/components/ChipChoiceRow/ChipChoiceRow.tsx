@@ -1,11 +1,11 @@
 import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { CrossCircleSVG, PlusSVG } from '@ds/icons';
+import { Droplist, DroplistProps } from '@ds/list';
 import { useLocale } from '@ds/locale';
 import { SIZE } from '@ds/toggles';
 import { Tooltip } from '@ds/tooltip';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
-import { Droplist, DroplistProps } from '@sbercloud/snack-v2-list';
 import cn from 'classnames';
 import { useCallback, useMemo, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';

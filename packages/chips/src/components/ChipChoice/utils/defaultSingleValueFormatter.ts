@@ -1,4 +1,4 @@
-import { ItemId } from '@sbercloud/snack-v2-list';
+import { ItemId } from '@ds/list';
 
 type ChipChoiceSingleValueFormatterProps = {
   label?: ItemId;

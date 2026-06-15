@@ -1,4 +1,4 @@
-import { ItemId } from '@sbercloud/snack-v2-list';
+import { ItemId } from '@ds/list';
 import FuzzySearch from 'fuzzy-search';
 import { useCallback } from 'react';
 

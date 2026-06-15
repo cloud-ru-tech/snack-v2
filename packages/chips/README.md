@@ -444,7 +444,7 @@ export function ChoiceRowPinned() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `TState` | — | Начальное состояние фильтров |
-| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` | — | Массив чипов |
+| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
 | `onChange` | `((filters: TState) => void)` | — | Колбек изменения состояния фильтров |
 | `onVisibleFiltersChange` | `((value: string[]) => void)` | — | Коллбек на изменение видимых фильтров |
 | `showAddButton` | `boolean` | `true` | Скрыть/показать кнопку добавления фильров |
@@ -477,6 +477,8 @@ export function ChoiceRowPinned() {
 - `ChipChoiceRowFilter` = `OmitBetter<ChipChoiceProps, "value" | "defaultValue" | "onChange" | "size"> & { pinned?: boolean; }`
 
 - `ChipChoiceRowSize` = `"l"` \| `"m"` \| `"s"`
+
+- `Size` = `"l"` \| `"m"` \| `"s"`
 
 ### Смотри также
 

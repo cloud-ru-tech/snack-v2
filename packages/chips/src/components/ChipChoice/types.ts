@@ -1,6 +1,4 @@
 import { DropdownProps } from '@ds/dropdown';
-import { TruncateStringProps } from '@ds/truncate-string';
-import { WithSupportProps } from '@ds/utils';
 import {
   BaseItemProps,
   DroplistProps,
@@ -11,7 +9,9 @@ import {
   NextListItemProps,
   SelectionMultipleState,
   SelectionSingleState,
-} from '@sbercloud/snack-v2-list';
+} from '@ds/list';
+import { TruncateStringProps } from '@ds/truncate-string';
+import { WithSupportProps } from '@ds/utils';
 import { MouseEventHandler, ReactNode } from 'react';
 
 import { BaseChipProps, Size } from '../../types';
