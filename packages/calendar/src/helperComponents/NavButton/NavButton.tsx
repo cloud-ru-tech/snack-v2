@@ -1,5 +1,11 @@
 import { Button } from '@ds/button';
-import { extractSupportProps, useLayoutEffect, WithSupportProps } from '@ds/utils';
+import {
+  extractSupportProps,
+  focusWithoutScroll,
+  preventScrollOnArrowKeys,
+  useLayoutEffect,
+  WithSupportProps,
+} from '@ds/utils';
 import { JSX, KeyboardEvent, useCallback, useImperativeHandle, useRef } from 'react';
 
 import { useCalendarContext } from '../../hooks';
@@ -36,12 +42,16 @@ export function NavButton({
 
   useLayoutEffect(() => {
     if (focus && focus === focusName) {
-      ref.current?.focus();
+      focusWithoutScroll(ref.current);
     }
   }, [focus, focusName]);
 
   const onKeyDownHandler = useCallback(
     (e: KeyboardEvent<HTMLButtonElement>) => {
+      // Стрелки навигации по календарю гасим: иначе нативное поведение прокручивает страницу
+      // (фокус на header-кнопке, событие уходит за календарь).
+      preventScrollOnArrowKeys(e);
+
       switch (e.key) {
         case 'ArrowLeft':
           onLeftArrowKeyDown?.();
@@ -71,7 +81,7 @@ export function NavButton({
     useNavigationStartRef && navigationStartRef ? navigationStartRef : null,
     () => ({
       focus: () => {
-        ref.current?.focus();
+        focusWithoutScroll(ref.current);
       },
     }),
     [],

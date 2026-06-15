@@ -1,3 +1,4 @@
+import { preventScrollOnArrowKeys } from '@ds/utils';
 import { KeyboardEvent, KeyboardEventHandler, useCallback } from 'react';
 
 import { CALENDAR_MODE, GRID_SIZE, VIEW_MODE } from '../../constants';
@@ -44,6 +45,10 @@ export function useKeyboardFocus({ address: [row, column], onKeyDown, enabled = 
       if (!enabled) {
         return;
       }
+
+      // Стрелки навигации по сетке гасим: без preventDefault нативное поведение прокручивает
+      // страницу (фокус в ячейке-кнопке, событие иначе уходит за календарь).
+      preventScrollOnArrowKeys(e);
 
       switch (e.key) {
         case 'ArrowLeft':

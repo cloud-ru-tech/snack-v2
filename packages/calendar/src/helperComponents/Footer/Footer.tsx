@@ -1,9 +1,8 @@
 import { ButtonGroup } from '@ds/button';
 import { Divider } from '@ds/divider';
+import { getDefaultItemId } from '@ds/list';
 import { useLocale } from '@ds/locale';
 import { KeyboardEventHandler, RefObject } from 'react';
-
-import { getDefaultItemId } from '@snack-uikit/list';
 
 import { CALENDAR_MODE } from '../../constants';
 import { useCalendarContext } from '../../hooks';

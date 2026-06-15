@@ -1,6 +1,5 @@
+import { List, ListProps } from '@ds/list';
 import { useMemo } from 'react';
-
-import { List, ListProps } from '@snack-uikit/list';
 
 import { useCalendarContext } from '../../hooks';
 import { PresetItem, Range } from '../../types';

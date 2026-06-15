@@ -74,6 +74,17 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
         background-color: transparent;
       }
     }
+
+    // Cap'ы диапазона (start/end/start-end), попавшие на ячейку соседнего месяца, тоже
+    // заливаются accent'ом, чтобы период визуально продолжался за границу месяца. In-range
+    // соседнего месяца остаётся прозрачным — подсветку рисует state-layer (см. Item.tsx).
+    &[data-another][data-checked] {
+      &[data-range-position='start'],
+      &[data-range-position='end'],
+      &[data-range-position='start-end'] {
+        background-color: base.$sn-theme-color-primary-accent;
+      }
+    }
   }
 }
 
@@ -82,6 +93,11 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
 
   &[data-another] {
     color: base.$sn-theme-color-available-version-textTertiary;
+
+    // Cap диапазона на ячейке соседнего месяца залит accent'ом — текст белый для контраста.
+    &[data-checked]:not([data-range-position='in'], [data-range-position='out']) {
+      color: base.$sn-theme-color-available-onComplementary;
+    }
   }
 
   &[data-disabled] {

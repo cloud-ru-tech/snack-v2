@@ -1,4 +1,4 @@
-import { useLayoutEffect } from '@ds/utils';
+import { focusWithoutScroll, useLayoutEffect } from '@ds/utils';
 import cn from 'classnames';
 import { useRef } from 'react';
 
@@ -69,7 +69,9 @@ export function Item({
       return;
     }
     if (stringifyAddress(address) === focus) {
-      ref.current?.focus();
+      // preventScroll: ячейка всегда видна в открытом календаре; без него браузер при
+      // программном focus прокручивает страницу к ячейке (виден как «скролл от стрелок»).
+      focusWithoutScroll(ref.current);
     }
   }, [focus, address]);
 
@@ -78,7 +80,7 @@ export function Item({
       return;
     }
     if (tabIndex === 0 && focus === AUTOFOCUS) {
-      ref.current?.focus();
+      focusWithoutScroll(ref.current);
     }
   }, [focus, tabIndex, address]);
 
@@ -133,7 +135,15 @@ export function Item({
         {...(dataTestId ? { 'data-test-id': dataTestId } : {})}
         tabIndex={tabIndex}
       >
-        <div className={styles.stateLayer} data-state={checked && !another ? 'activatedFilled' : 'regularFilled'} />
+        {/* Ячейки соседнего месяца (`another`), попавшие в выбранный период, тоже получают
+            activated-заливку — иначе полоса диапазона обрывается на границе месяца. Одиночный
+            выбор (rangePosition='out') у соседнего месяца остаётся без заливки, как прежде. */}
+        <div
+          className={styles.stateLayer}
+          data-state={
+            checked && (!another || rangePosition !== RANGE_POSITION.Out) ? 'activatedFilled' : 'regularFilled'
+          }
+        />
         <div className={styles.labelWrapper}>
           <span
             className={styles.label}

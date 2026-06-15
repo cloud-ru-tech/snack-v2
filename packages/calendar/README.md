@@ -524,7 +524,7 @@ export function TimePickerDropdownPlacement() {
 | `className` | `string` | — | CSS-класс контейнера |
 | `closeOnApply` | `boolean` | `false` | Закрыть dropdown после нажатия кнопки Apply |
 | `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `TimeValue` | — | Значение по-умолчанию для uncontrolled. |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |

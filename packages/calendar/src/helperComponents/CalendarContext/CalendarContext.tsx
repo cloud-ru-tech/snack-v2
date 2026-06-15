@@ -1,6 +1,5 @@
+import { ListProps } from '@ds/list';
 import { createContext, MutableRefObject, RefObject } from 'react';
-
-import { ListProps } from '@snack-uikit/list';
 
 import { CALENDAR_MODE, SIZE, VIEW_MODE } from '../../constants';
 import {

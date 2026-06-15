@@ -1,8 +1,7 @@
 import { Divider } from '@ds/divider';
+import { getDefaultItemId } from '@ds/list';
 import cn from 'classnames';
 import { useCallback, useMemo } from 'react';
-
-import { getDefaultItemId } from '@snack-uikit/list';
 
 import { AUTOFOCUS, HOURS, MINUTES, SECONDS } from '../../constants';
 import { useCalendarContext } from '../../hooks';

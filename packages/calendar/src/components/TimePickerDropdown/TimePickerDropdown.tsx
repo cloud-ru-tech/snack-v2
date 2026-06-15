@@ -1,11 +1,10 @@
 import { Dropdown, DropdownProps } from '@ds/dropdown';
+import { ListProps } from '@ds/list';
 import { useLocale } from '@ds/locale';
 import { useEventHandler, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
-
-import { ListProps } from '@snack-uikit/list';
 
 import { SIZE } from '../../constants';
 import { CalendarContext, CalendarContextType, Footer, TimePickerBase } from '../../helperComponents';
@@ -117,9 +116,21 @@ export function TimePickerDropdown({
     isDateAndTimeFilled,
   } = useDateAndTime({ showSeconds, value });
 
+  // Этот эффект распространяет правки времени из пикера (dateAndTime) → value. Внешнее изменение
+  // `value` синхронизируется в dateAndTime ОТДЕЛЬНЫМ эффектом (useDateAndTime), который отрабатывает
+  // на рендер позже. Без guard'а в цикле внешней смены value этот эффект видит УСТАРЕВШИЙ dateAndTime
+  // и эмитит его обратно, откатывая внешнее значение → бесконечный ре-рендер. Поэтому в цикл, где
+  // value изменился извне, эмит пропускаем и даём dateAndTime догнаться.
+  const lastValueKeyRef = useRef<string | null>(null);
   useEffect(() => {
     const wasValueCleared = value === undefined && previousValueRef.current !== undefined;
     previousValueRef.current = value;
+
+    // Ключ внешнего value: если он изменился с прошлого рендера, значит value пришёл извне,
+    // а dateAndTime ещё не догнался — эмит в этом цикле пропускаем.
+    const valueKey = value ? `${value.hours}:${value.minutes}:${value.seconds}` : null;
+    const externalValueChanged = valueKey !== lastValueKeyRef.current;
+    lastValueKeyRef.current = valueKey;
 
     if (wasValueCleared) {
       return;
@@ -135,7 +146,7 @@ export function TimePickerDropdown({
       seconds: dateAndTime.seconds ?? 0,
     };
 
-    if (timeValuesEqual(value, next)) {
+    if (timeValuesEqual(value, next) || externalValueChanged) {
       return;
     }
 

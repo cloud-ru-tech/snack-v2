@@ -1,7 +1,6 @@
+import { BaseItemProps, getDefaultItemId, ItemProps, List, ListProps } from '@ds/list';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { createRef, RefObject, useImperativeHandle, useMemo } from 'react';
-
-import { BaseItemProps, getDefaultItemId, ItemProps, List, ListProps } from '@snack-uikit/list';
 
 import { useCalendarContext } from '../../hooks';
 import { OnKeyDownGetter } from '../../types';
@@ -58,14 +57,13 @@ export function TimeList({
   );
 
   return (
-    // TODO: replace with @ds/list
     <List
       {...extractSupportProps(rest)}
       size={size}
       items={items}
       scroll
       keyboardNavigationRef={keyboardNavigationRef}
-      selection={{ mode: 'single', value, onChange }}
+      selection={{ mode: 'single', value, onChange: id => onChange(Number(id)) }}
       className={className}
       hasListInFocusChain={false}
       scrollToSelectedItem

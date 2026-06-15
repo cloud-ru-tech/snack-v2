@@ -1,6 +1,5 @@
+import { getDefaultItemId } from '@ds/list';
 import { KeyboardEventHandler, useCallback, useEffect, useRef } from 'react';
-
-import { getDefaultItemId } from '@snack-uikit/list';
 
 import { CALENDAR_MODE } from '../../constants';
 import { useCalendarContext, useGrid } from '../../hooks';

@@ -10,6 +10,13 @@ $sizes: 's', 'm', 'l';
 .footer {
   display: flex;
   flex-direction: column;
+
+  // Футер — отдельный регион `bottomBar` (Figma): тянется на всю ширину дропдауна
+  // и выходит за паддинг `bodyWrapper`, который задаёт контентная обёртка Dropdown.
+  // Собственные отступы кнопок задаёт `.buttonGroup` (bottomBar 8/8/4).
+  margin:
+    0 calc(-1 * #{dropdown.$sn-dropdown-anatomy-container-bodyWrapper-padding})
+    calc(-1 * #{dropdown.$sn-dropdown-anatomy-container-bodyWrapper-padding});
 }
 
 .buttonGroup {

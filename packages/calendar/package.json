@@ -33,10 +33,10 @@
     "@ds/divider": "workspace:*",
     "@ds/dropdown": "workspace:*",
     "@ds/icons": "workspace:*",
+    "@ds/list": "workspace:*",
     "@ds/locale": "workspace:*",
     "@ds/materials": "workspace:*",
     "@ds/utils": "workspace:*",
-    "@snack-uikit/list": "catalog:",
     "classnames": "catalog:",
     "uncontrollable": "catalog:",
     "weekstart": "2.0.0"

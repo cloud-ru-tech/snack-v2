@@ -1,10 +1,9 @@
+import { ListProps } from '@ds/list';
 import { useLocale } from '@ds/locale';
 import { useEventHandler, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
-
-import { ListProps } from '@snack-uikit/list';
 
 import { SIZE } from '../../constants';
 import { CalendarContext, CalendarContextType, TimePickerBase } from '../../helperComponents';
