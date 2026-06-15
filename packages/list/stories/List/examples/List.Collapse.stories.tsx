@@ -1,7 +1,7 @@
 import { ItemProps as Item, List, TEST_IDS as INTERNAL_TEST_IDS } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { userEvent, within } from 'storybook/test';
+import { expect, userEvent, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
@@ -71,7 +71,7 @@ function CollapseScenario() {
     <DemoPage>
       <DemoPanel width='narrow'>
         <DemoTitle>Collapse</DemoTitle>
-        <DemoHint>Controlled expand: click accordion items to toggle. Includes a group → collapse branch.</DemoHint>
+        <DemoHint>Controlled expand: click the chevron trigger to toggle. Includes a group → collapse branch.</DemoHint>
         <DemoActions align='center'>
           <div className={styles.listFrame}>
             <List
@@ -93,12 +93,23 @@ export const Collapse: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const root = canvas.getByTestId(TEST_IDS.list.collapseScenario);
-    const accordions = root.querySelectorAll(`[data-test-id^="${INTERNAL_TEST_IDS.accordionItem}"]`);
+    // Раскрытие переключает явная кнопка-триггер `groupIndicator` (шеврон), а не клик по строке.
+    // Тогглим billing открыть→закрыть: проверяем триггер и возвращаем стори в исходное
+    // состояние (general/workspace раскрыты, billing свёрнут) — на него опираются e2e-спеки,
+    // которые грузят эту же стори (play выполняется при загрузке).
+    const billingTrigger = () =>
+      root.querySelector(
+        `[data-test-id="${INTERNAL_TEST_IDS.accordionItem}-billing"] [data-test-id="${INTERNAL_TEST_IDS.groupIndicator}"]`,
+      ) as HTMLElement;
 
-    await step('toggle each accordion item (open/close branches)', async () => {
-      for (const el of Array.from(accordions)) {
-        await userEvent.click(el as HTMLElement);
-      }
+    await step('chevron trigger opens the collapse branch', async () => {
+      await userEvent.click(billingTrigger());
+      await expect(canvas.getByTestId(`${INTERNAL_TEST_IDS.baseItem}_billing-invoices`)).toBeVisible();
+    });
+
+    await step('chevron trigger closes it back (restores initial state)', async () => {
+      await userEvent.click(billingTrigger());
+      await expect(canvas.queryByTestId(`${INTERNAL_TEST_IDS.baseItem}_billing-invoices`)).toBeNull();
     });
   },
 };

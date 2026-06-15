@@ -24,6 +24,12 @@ type AllBaseItemProps = FlattenBaseItem & {
   onSelect?(): void;
   isParentNode?: boolean;
   onOpenNestedList?(e?: KeyboardEvent<HTMLElement>): void;
+  /**
+   * Клик по явной кнопке-триггеру `groupIndicator` (шеврон справа), открывающей/закрывающей
+   * вложенный список. Если передан — шеврон рендерится как отдельная интерактивная кнопка
+   * со своим state-layer'ом, а клик по телу строки больше не переключает раскрытие.
+   */
+  onExpandIconClick?(e: MouseEvent<HTMLElement>): void;
 };
 
 export function BaseItem({
@@ -44,6 +50,7 @@ export function BaseItem({
   checked: checkedProp,
   onSelect,
   onOpenNestedList,
+  onExpandIconClick,
   isParentNode,
   className,
   inactive,
@@ -134,6 +141,18 @@ export function BaseItem({
     }
   };
 
+  const handleExpandIconClick = (e: MouseEvent<HTMLElement>) => {
+    if (disabled) {
+      return;
+    }
+
+    // Триггер раскрытия изолирован от клика по строке: всплытие останавливаем,
+    // чтобы клик по шеврону не активировал выбор/навигацию пункта.
+    e.stopPropagation();
+    e.preventDefault();
+    onExpandIconClick?.(e);
+  };
+
   const props = extractSupportProps(rest);
 
   const stateLayerState =
@@ -204,7 +223,26 @@ export function BaseItem({
           />
         )}
 
-        {!switchProp && expandIcon && <span className={styles.expandableIcon}>{expandIcon}</span>}
+        {!switchProp &&
+          expandIcon &&
+          (onExpandIconClick ? (
+            <button
+              type='button'
+              className={styles.groupIndicator}
+              data-size={size}
+              data-open={open || undefined}
+              data-test-id={TEST_IDS.groupIndicator}
+              tabIndex={-1}
+              disabled={disabled}
+              onClick={handleExpandIconClick}
+              onMouseDown={e => e.stopPropagation()}
+            >
+              <span className={styles.groupIndicatorState} aria-hidden />
+              {expandIcon}
+            </button>
+          ) : (
+            <span className={styles.expandableIcon}>{expandIcon}</span>
+          ))}
       </li>
     </div>
   );

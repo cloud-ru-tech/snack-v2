@@ -26,6 +26,22 @@
   ul {
     list-style-type: none;
   }
+
+  // Сброс нативных стилей ссылки для полиморфных item'ов (itemWrapRender → <a>):
+  // строка-ссылка наследует вид пункта списка, без link-цвета и подчёркивания.
+  // text-decoration сбрасываем на самом <a> — потомок не может убрать подчёркивание предка.
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
 }
 
 // Список задаёт собственные паддинги айтемов + вертикальный паддинг контейнера dropdown'а

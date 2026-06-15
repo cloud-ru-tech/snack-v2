@@ -98,6 +98,13 @@ export function NextListItem({
 
   const listRef = useRef<HTMLElement>(null);
 
+  const openSublist = useCallback(() => {
+    setOpen(true);
+    setTimeout(() => {
+      listRef.current?.focus();
+    }, 0);
+  }, []);
+
   return (
     <Dropdown
       outsideClick={handleOutsideClick}
@@ -136,18 +143,14 @@ export function NextListItem({
       <BaseItem
         {...option}
         disabled={disabled}
-        open={open}
+        open={isOpen || open}
         expandIcon={<ChevronRightSVG />}
         id={id}
         isParentNode
         indeterminate={indeterminate}
         checked={checked}
-        onOpenNestedList={() => {
-          setOpen(true);
-          setTimeout(() => {
-            listRef.current?.focus();
-          }, 0);
-        }}
+        onOpenNestedList={openSublist}
+        onExpandIconClick={openSublist}
         onSelect={handleOnSelect}
       />
     </Dropdown>

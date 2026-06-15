@@ -1,5 +1,5 @@
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
-import { MouseEvent, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { TEST_IDS } from '../../../constants';
 import { CollapseBlockPrivate } from '../../../helperComponents';
@@ -45,9 +45,12 @@ export function AccordionItem({ id, disabled, allChildIds, items, ...option }: A
 
   const itemsJSX = useRenderItems(items);
 
-  const handleItemClick = (e: MouseEvent<HTMLElement>) => {
+  // Раскрытие привязано к явной кнопке-триггеру `groupIndicator` (шеврон справа) и
+  // ТОЛЬКО переключает collapse — `option.onClick` сюда не зовём, иначе у потребителя,
+  // который вешает на onClick собственный toggle, выходит двойное переключение.
+  // Клик по телу строки (выбор/навигация) идёт через `option.onClick` в BaseItem.
+  const handleExpandIconClick = () => {
     toggleOpenCollapseItem?.(id ?? '');
-    option.onClick?.(e);
   };
 
   return (
@@ -57,8 +60,9 @@ export function AccordionItem({ id, disabled, allChildIds, items, ...option }: A
           {...option}
           id={id}
           disabled={disabled}
+          open={isOpen}
           expandIcon={isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
-          onClick={handleItemClick}
+          onExpandIconClick={handleExpandIconClick}
           isParentNode
           onOpenNestedList={handleKeyDown}
           checked={checked}

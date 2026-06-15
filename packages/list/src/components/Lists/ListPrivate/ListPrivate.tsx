@@ -231,6 +231,24 @@ export const ListPrivate = forwardRef(
       }));
     }, [scrollState, selectedItem, isTargetPresentInDom, selectedItemIndex]);
 
+    // Non-virtualized: центрируем выбранный элемент в собственном scroll-контейнере при смене
+    // `selection` (на первом маунте это делает `onScrollInitialized`). Виртуализованный путь
+    // ведут эффекты выше через виртуализатор, поэтому здесь только `!virtualized`. Хелпер тот
+    // же `centerItemInScrollContainer` — обычному листу отдельный виртуализатор не нужен.
+    useEffect(() => {
+      if (virtualized || !scroll || !scrollToSelectedItem || !scrollElementReady) {
+        return;
+      }
+
+      const container = innerScrollRef.current;
+      const item = selectedItem?.itemRef?.current ?? null;
+      if (!container || !item) {
+        return;
+      }
+
+      centerItemInScrollContainer(container, item);
+    }, [virtualized, scroll, scrollToSelectedItem, scrollElementReady, selectedItem]);
+
     const loadingJSX = useMemo(
       () =>
         loading && (

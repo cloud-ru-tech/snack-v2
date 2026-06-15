@@ -43,4 +43,5 @@ export const TEST_IDS = {
   pinTopGroupItem: 'list__pin-top-group-item',
   pinBottomGroupItem: 'list__pin-bottom-group-item',
   accordionItem: 'list__accordion-item',
+  groupIndicator: 'list__group-indicator',
 } as const;

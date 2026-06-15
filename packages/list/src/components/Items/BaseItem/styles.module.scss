@@ -51,6 +51,64 @@ $sizes: 's', 'm', 'l';
   fill: currentcolor;
 }
 
+// Явная кнопка-триггер раскрытия (Figma `groupIndicator`): шеврон в квадрате со своим
+// state-layer'ом (hover/pressed/open). Размер контейнера — per-size icon-сетка, иконка 16px.
+.groupIndicator {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: none;
+
+  // Token bridge: list/groupIndicator/cornerRadius (8) ещё не выгружен scss-композитом
+  // из @sbercloud/figma-variables — берём примитив dimension-8 напрямую.
+  border-radius: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  svg {
+    position: relative;
+    z-index: 1;
+    width: base.$sn-density-size-icon-xs;
+    height: base.$sn-density-size-icon-xs;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+}
+
+.groupIndicatorState {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background: transparent;
+}
+
+.groupIndicator:hover > .groupIndicatorState {
+  background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+}
+
+.groupIndicator:active > .groupIndicatorState,
+.groupIndicator[data-open] > .groupIndicatorState {
+  background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+}
+
 // Figma listItem marker:
 // markerWrapper: padding-horizontal=0, padding-vertical=8, ширина = marker.max-width (4px),
 // ::before — покрашенная полоса, заполняющая content-box wrapper'а (с учётом vertical padding),
@@ -155,6 +213,11 @@ $level: var(--level, 0);
         height: base.simple-var(icons.$iconSizeMap, $size);
       }
 
+      .groupIndicator {
+        width: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
+      }
+
       .markerContainer {
         @include base.composite-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'markerWrapper');
 
@@ -181,6 +244,11 @@ $level: var(--level, 0);
 .innerWrapper {
   &[data-disabled] {
     .expandableIcon {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+
+    .groupIndicator {
+      cursor: not-allowed;
       color: base.$sn-theme-color-available-version-textDisabled;
     }
 
