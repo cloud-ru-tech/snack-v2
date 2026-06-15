@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@ds/button": "workspace:*",
+    "@ds/divider": "workspace:*",
     "@ds/icons": "workspace:*",
     "@ds/info-block": "workspace:*",
     "@ds/loader": "workspace:*",

@@ -91,7 +91,8 @@ export function Placement() {
 | `children` | `ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 | `className` | `string` | — |  |
 | `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
+| `container` | `RefObject<HTMLElement \| null>` | — | Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса — <br/> по аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`. |
 | `content` | `ReactNode` | — | Контент поповера (отображается внутри контейнера по макету) |
 | `data-test-id` | `string` | — |  |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |

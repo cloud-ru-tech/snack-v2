@@ -1,4 +1,5 @@
 import { ButtonGroup } from '@ds/button';
+import { Divider } from '@ds/divider';
 import { UpdateSVG } from '@ds/icons';
 import { InfoBlock } from '@ds/info-block';
 import { Spinner } from '@ds/loader';
@@ -14,12 +15,30 @@ import { DropdownState } from './types';
 
 export type DropdownProps = WithSupportProps<
   PropsWithChildren<{
-    /** Содержимое внутри поповера */
+    /** Содержимое внутри поповера (body) */
     content: ReactNode;
+    /** Заголовок в шапке (topBar) */
+    headline?: ReactNode;
+    /** Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) */
+    headlineHint?: ReactNode;
+    /** Слот поиска в шапке (topBar) */
+    search?: ReactNode;
+    /** Слот футера (bottomBar) */
+    footer?: ReactNode;
+    /** Divider между шапкой и body */
+    headerDivider?: boolean;
+    /** Divider между body и футером */
+    footerDivider?: boolean;
     /** Состояние */
     state?: DropdownState;
     /** CSS-класс */
     className?: string;
+    /**
+     * CSS-класс контентной обёртки (bodyWrapper). Позволяет потребителю переопределить
+     * паддинги body — например, список (`@ds/list`) задаёт собственные паддинги айтемов
+     * и обнуляет паддинг bodyWrapper.
+     */
+    contentClassName?: string;
   }> &
     Pick<
       PopoverPrivateProps,
@@ -37,11 +56,16 @@ export type DropdownProps = WithSupportProps<
       | 'fallbackPlacements'
       | 'disableSpanWrapper'
       | 'closeOnPopstate'
+      | 'container'
     > &
     Partial<Pick<PopoverPrivateProps, 'trigger' | 'placement'>>
 >;
 
-function DropdownContent({ state, children }: Pick<DropdownProps, 'children' | 'state'>) {
+function DropdownBody({
+  state,
+  children,
+  contentClassName,
+}: Pick<DropdownProps, 'children' | 'state' | 'contentClassName'>) {
   const { t } = useLocale('Dropdown');
 
   switch (state?.type) {
@@ -120,7 +144,7 @@ function DropdownContent({ state, children }: Pick<DropdownProps, 'children' | '
       );
 
     default:
-      return children;
+      return <div className={cn(styles.bodyWrapper, contentClassName)}>{children}</div>;
   }
 }
 
@@ -131,7 +155,14 @@ export function Dropdown({
   className,
   children,
   content,
+  headline,
+  headlineHint,
+  search,
+  footer,
+  headerDivider,
+  footerDivider,
   state,
+  contentClassName,
   trigger = 'click',
   placement = 'bottom-start',
   triggerRef,
@@ -143,6 +174,8 @@ export function Dropdown({
     return null;
   }
 
+  const hasTopBar = Boolean(headline || headlineHint || search);
+
   return (
     <PopoverPrivate
       placement={placement}
@@ -151,11 +184,27 @@ export function Dropdown({
           className={cn(styles.root, className)}
           {...extractSupportProps(rest)}
           data-acrylic-appearance='neutral'
-          data-acrylic-level='1Level'
+          data-acrylic-level='2Level'
         >
           <div className={styles.acrylic} />
           <div className={styles.dropdownContent}>
-            <DropdownContent state={state}>{content}</DropdownContent>
+            {hasTopBar && (
+              <div className={styles.topBar}>
+                {(headline || headlineHint) && (
+                  <div className={styles.headlineWrapper}>
+                    {headline}
+                    {headlineHint}
+                  </div>
+                )}
+                {search}
+              </div>
+            )}
+            {hasTopBar && headerDivider && <Divider className={styles.dividerWrapper} />}
+            <DropdownBody state={state} contentClassName={contentClassName}>
+              {content}
+            </DropdownBody>
+            {footer && footerDivider && <Divider className={styles.dividerWrapper} />}
+            {footer && <div className={styles.bottomBar}>{footer}</div>}
           </div>
         </div>
       }

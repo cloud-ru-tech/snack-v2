@@ -22,12 +22,22 @@
       "closeOnPopstate": {
         "type": "boolean",
         "required": false,
-        "description": "Закрывать ли поповер при пекреходе по истории браузера"
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса —\nпо аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`."
       },
       "content": {
         "type": "ReactNode",
         "required": true,
-        "description": "Содержимое внутри поповера"
+        "description": "Содержимое внутри поповера (body)"
+      },
+      "contentClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контентной обёртки (bodyWrapper). Позволяет потребителю переопределить\nпаддинги body — например, список (`@ds/list`) задаёт собственные паддинги айтемов\nи обнуляет паддинг bodyWrapper."
       },
       "data-test-id": {
         "type": "string",
@@ -45,6 +55,31 @@
         "typeRefs": [
           "Placement"
         ]
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот футера (bottomBar)"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Divider между body и футером"
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Divider между шапкой и body"
+      },
+      "headline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке (topBar)"
+      },
+      "headlineHint": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
       },
       "hoverDelayClose": {
         "type": "number",
@@ -102,6 +137,11 @@
         "typeRefs": [
           "Placement"
         ]
+      },
+      "search": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот поиска в шапке (topBar)"
       },
       "state": {
         "type": "DropdownState",

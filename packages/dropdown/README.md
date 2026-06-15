@@ -104,11 +104,18 @@ export function NotFound() {
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
-| `content` | `ReactNode` | — | Содержимое внутри поповера |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
+| `container` | `RefObject<HTMLElement \| null>` | — | Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса — <br/> по аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`. |
+| `content` | `ReactNode` | — | Содержимое внутри поповера (body) |
+| `contentClassName` | `string` | — | CSS-класс контентной обёртки (bodyWrapper). Позволяет потребителю переопределить <br/> паддинги body — например, список (`@ds/list`) задаёт собственные паддинги айтемов <br/> и обнуляет паддинг bodyWrapper. |
 | `data-test-id` | `string` | — |  |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
 | `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
+| `footer` | `ReactNode` | — | Слот футера (bottomBar) |
+| `footerDivider` | `boolean` | — | Divider между body и футером |
+| `headerDivider` | `boolean` | — | Divider между шапкой и body |
+| `headline` | `ReactNode` | — | Заголовок в шапке (topBar) |
+| `headlineHint` | `ReactNode` | — | Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
 | `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
@@ -116,6 +123,7 @@ export function NotFound() {
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
 | `outsideClick` | `OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `bottom-start` | Положение поповера относительно своего триггера (children). |
+| `search` | `ReactNode` | — | Слот поиска в шапке (topBar) |
 | `state` | `ActionButtonProps` \| `BlockProps` \| `BlockPropsWithIcon` \| `DropdownState` | — | Состояние |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `click` | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |

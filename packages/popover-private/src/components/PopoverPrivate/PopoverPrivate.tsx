@@ -23,7 +23,7 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import cn from 'classnames';
-import { ForwardedRef, ReactNode, useCallback, useEffect, useRef } from 'react';
+import { ForwardedRef, ReactNode, RefObject, useCallback, useEffect, useRef } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import {
@@ -68,6 +68,11 @@ export type PopoverPrivateProps = WithSupportProps<
      * @default top
      */
     placement: Placement;
+    /**
+     * Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса —
+     * по аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`.
+     */
+    container?: RefObject<HTMLElement | null>;
     className?: string;
     /** CSS-класс триггера */
     triggerClassName?: string;
@@ -137,7 +142,7 @@ export type PopoverPrivateProps = WithSupportProps<
      */
     disableSpanWrapper?: boolean;
     /**
-     * Закрывать ли поповер при пекреходе по истории браузера
+     * Закрывать ли поповер при переходе по истории браузера
      */
     closeOnPopstate?: boolean;
   } & (
@@ -180,10 +185,12 @@ function PopoverPrivateComponent({
   arrowElementClassName,
   disableSpanWrapper = false,
   closeOnPopstate,
+  container,
   ...rest
 }: PopoverPrivateProps) {
   const arrowRef = useRef<HTMLDivElement | null>(null);
-  const portalRoot = usePortalContext();
+  const portalContextRoot = usePortalContext();
+  const portalRoot = container ?? portalContextRoot;
 
   const [isOpen, setIsOpen] = useUncontrolledProp(openProp, false, onOpenChange);
 

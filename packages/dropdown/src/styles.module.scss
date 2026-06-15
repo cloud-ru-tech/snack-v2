@@ -44,3 +44,33 @@
 .dropdownContent {
   position: relative;
 }
+
+.bodyWrapper {
+  padding: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bodyWrapper', 'padding');
+}
+
+.topBar {
+  display: flex;
+  flex-direction: column;
+  gap: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'gap');
+}
+
+// Горизонтальный паддинг — это паддинг headlineWrapper'а (по имени токена), а не всего topBar.
+// Поэтому держим его здесь: заголовок получает отступ, а слот поиска (прямой ребёнок topBar)
+// растягивается на всю ширину — как айтемы списка (Figma listItemSearch — full-bleed строка).
+.headlineWrapper {
+  display: flex;
+  gap: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'gap');
+  align-items: center;
+  padding:
+    0 base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'padding-right') 0
+    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'padding-left');
+}
+
+.bottomBar {
+  padding:
+    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-top')
+    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-right')
+    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-bottom')
+    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-left');
+}
