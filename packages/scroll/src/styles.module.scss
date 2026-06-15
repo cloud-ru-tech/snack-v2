@@ -66,6 +66,8 @@ $scrollbar-slider-active-zone: 12px;
         pointer-events: none;
         overflow: hidden;
 
+        // По макету у скролла нет жёлоба-рельсы — виден только handle (thumb)
+        // c neutral-decorTransparent (стилизуется ниже). Трек остаётся прозрачным.
         & > .os-scrollbar-track > .os-scrollbar-handle {
           border-radius: scroll.simple-var(scroll.$scroll, 'anatomy', 'slider', 'size', $size, 'border-radius');
 
