@@ -1,0 +1,12 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+// Фиксированная ширина ячейки матрицы: при intrinsic-ширине prefix/postfix + значение
+// обрезаются («₽ 1…шт»). Растягиваем поле, чтобы слоты и значение помещались целиком.
+.stepper {
+  width: 280px;
+}

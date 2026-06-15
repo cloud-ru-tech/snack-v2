@@ -1,0 +1,116 @@
+---
+title: FieldColor
+package: '@ds/fields'
+description: Поле выбора цвета со swatch-превью, инпутом значения и палитрой ColorPicker в дропдауне.
+order: 39
+---
+
+import { ColorBasic } from '../demos/examples/ColorBasic'
+import ColorBasicSrc from '../demos/examples/ColorBasic.tsx?raw'
+import { ColorWithAlpha } from '../demos/examples/ColorWithAlpha'
+import ColorWithAlphaSrc from '../demos/examples/ColorWithAlpha.tsx?raw'
+import { ColorModes } from '../demos/examples/ColorModes'
+import ColorModesSrc from '../demos/examples/ColorModes.tsx?raw'
+import { ColorReadonly } from '../demos/examples/ColorReadonly'
+import ColorReadonlySrc from '../demos/examples/ColorReadonly.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldColor
+
+Поле выбора цвета. Базируется на `FieldDecorator` и `@ds/input-private`, а палитру открывает через `@ds/dropdown` + `@ds/color-picker`. Слева — swatch с текущим цветом, справа — шеврон открытия палитры. Значение редактируется напрямую в инпуте (hex/rgb-строка) или в палитре.
+
+## Когда использовать
+
+- Настройка цвета в редакторах тем, брендинга, диаграмм.
+- Поле формы, где значение — цвет в HEX/RGB/HSV.
+- Для статичного показа значения цвета используйте `readonly` с автоматической кнопкой копирования.
+
+## Анатомия
+
+### Swatch и шеврон
+
+Поле собирается из:
+
+- `swatch` — квадрат-превью текущего цвета слева от инпута. Пустое значение даёт прозрачный swatch.
+- `input` — текстовое значение цвета (hex/rgb-строка), редактируется напрямую.
+- `chevron` — индикатор открытия палитры справа. Смотрит вниз в закрытом состоянии и вверх — когда палитра открыта. В `readonly` шеврон скрыт.
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Плотные таблицы, inline-редактирование |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Лендинги, primary-формы |
+
+### ValidationState (default `default`)
+
+Управляет тонировкой acrylic-фона и иконкой подсказки. Проп `error` форсит `error`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации, нейтральный фон |
+| `valid` | Проверка пройдена, но без акцента — нейтральный baseline (не зелёный) |
+| `error` | Поле не прошло валидацию, красная тонировка фона |
+| `warning` | Предупреждение, ввод допустим, жёлтая тонировка фона |
+| `success` | Подтверждение успешного ввода, зелёная тонировка фона |
+
+### Background (default `true`)
+
+Включает acrylic-фон поля (тонируемый по `validationState`).
+
+- `true` — поле с acrylic-оболочкой и состояниями hover/focus.
+- `false` — без фона, для встраивания в плотные/кастомные контейнеры.
+
+### AvailableModes (default `['hex', 'rgb', 'hsv']`)
+
+Ограничивает набор цветовых моделей в переключателе палитры.
+
+- `hex` — `#rrggbb` / `#rrggbbaa`.
+- `rgb` — каналы R/G/B.
+- `hsv` — тон, насыщенность, яркость.
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldColor } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='Базовое поле' description='Controlled FieldColor с палитрой в дропдауне.' code={ColorBasicSrc}>
+  <ColorBasic client:visible />
+</Example>
+
+<Example title='Прозрачность' description='withAlpha включает слайдер и поле Alpha в палитре, hex принимает #rrggbbaa.' code={ColorWithAlphaSrc}>
+  <ColorWithAlpha client:visible />
+</Example>
+
+<Example title='Ограниченные модели' description='availableModes оставляет только HEX и RGB; autoApply применяет цвет без кнопки Apply.' code={ColorModesSrc}>
+  <ColorModes client:visible />
+</Example>
+
+<Example title='Readonly с копированием' description='Readonly FieldColor скрывает шеврон и показывает кнопку копирования значения в буфер.' code={ColorReadonlySrc}>
+  <ColorReadonly client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldColor} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldcolor--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-color')} />

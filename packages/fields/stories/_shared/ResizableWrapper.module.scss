@@ -1,0 +1,12 @@
+.wrapper {
+  resize: horizontal;
+
+  overflow: auto;
+
+  width: 256px;
+  min-width: 120px;
+  max-width: 100%;
+  padding: 8px;
+  border: 1px dashed rgb(127 127 127 / 40%);
+  border-radius: 4px;
+}

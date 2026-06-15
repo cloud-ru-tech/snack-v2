@@ -1,0 +1,16 @@
+import { FieldText } from '@ds/fields';
+import { QuestionSVG } from '@ds/icons';
+import { useState } from 'react';
+
+export function IconAfter() {
+  const [value, setValue] = useState('user@example.com');
+  return (
+    <FieldText
+      label='Email'
+      placeholder='user@example.com'
+      iconAfter={<QuestionSVG />}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}

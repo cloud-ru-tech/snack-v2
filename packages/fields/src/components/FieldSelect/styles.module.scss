@@ -1,0 +1,104 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+$sizes: 's', 'm', 'l';
+
+// FieldSelect size → tag size (Figma fieldSelectMultiple chips): s→xs, m→xs, l→s.
+$chip-sizes: (
+  's': 'xs',
+  'm': 'xs',
+  'l': 's',
+);
+
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  transition: transform 0.15s ease-in-out;
+
+  &[data-open='true'] {
+    transform: rotate(180deg);
+  }
+}
+
+.trigger {
+  cursor: text;
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  &[data-readonly='true'] {
+    cursor: default;
+  }
+}
+
+.readonlyCursor {
+  cursor: pointer;
+}
+
+// Контейнер «чипы + поисковый input» (паритет с легаси FieldSelect .contentWrapper):
+// занимает всю доступную ширину строки, чипы и input переносятся вместе одним потоком.
+.chipsRow {
+  display: flex;
+  flex: 1 0 0;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+
+  min-width: 0;
+
+  @each $size, $tagSize in $chip-sizes {
+    [data-size='#{$size}'] & {
+      // gap = tag.tagRow.gap по mapped tag size (Figma fieldSelectMultiple chips: 2 для xs/s) —
+      // одновременно column- и row-gap при flex-wrap (отступ между чипами и между рядами).
+      gap: base.simple-var(tag.$tag, 'anatomy', 'size', $tagSize, 'tagRow', 'gap');
+      // Вертикальные отступы строк чипов (Figma fieldContainer.contentWrapper.verticalPadding) —
+      // shared-поле их не применяет (single-line центрируется), а мультиселекту они нужны, чтобы
+      // ряды чипов не липли к краям контейнера (пропавшие отступы по макету).
+      padding-top: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'padding-top');
+      padding-bottom: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'padding-bottom');
+    }
+  }
+}
+
+// Поисковый input внутри чип-контейнера: течёт за последним чипом (inline-flex), переносится
+// на новую строку при длинном вводе. min-width задаётся инлайном из замера плага (см. FieldSelect.tsx);
+// базовый — крошечный, чтобы пустой input прижимался к последнему чипу (флоу как в легаси).
+.inputWrapper {
+  position: relative;
+  display: inline-flex;
+  // flex-basis: 0 — иначе content-based база (intrinsic-ширина <input>) уводит input на новую
+  // строку. Перенос управляется inline-minWidth (ширина введённого текста): пока текст влезает в
+  // остаток строки — input рядом с чипами, перерос — flex-wrap уносит его на новую строку.
+  flex: 1 1 0;
+  min-width: base.$sn-primitive-dimension-4;
+}
+
+// Скрытый замерочный плаг: рендерит введённый текст той же типографикой, что input, и отдаёт
+// его натуральную ширину через clientWidth. Вне потока (absolute, height 0) — на layout не влияет.
+.inputPlug {
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  width: fit-content;
+  max-width: 100%;
+  height: 0;
+
+  white-space: pre;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      @include base.composite-var(base.$sn-regular, 'body', $size);
+    }
+  }
+}

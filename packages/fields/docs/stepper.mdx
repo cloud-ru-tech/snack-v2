@@ -1,0 +1,137 @@
+---
+title: FieldStepper
+package: '@ds/fields'
+description: Числовое поле с кнопками −/+ для пошагового изменения значения с поддержкой min/max и дробного шага.
+order: 35
+---
+
+import { Stepper } from '../demos/examples/Stepper'
+import StepperSrc from '../demos/examples/Stepper.tsx?raw'
+import { StepperUncontrolled } from '../demos/examples/StepperUncontrolled'
+import StepperUncontrolledSrc from '../demos/examples/StepperUncontrolled.tsx?raw'
+import { StepperWithPostfix } from '../demos/examples/StepperWithPostfix'
+import StepperWithPostfixSrc from '../demos/examples/StepperWithPostfix.tsx?raw'
+import { StepperLimits } from '../demos/examples/StepperLimits'
+import StepperLimitsSrc from '../demos/examples/StepperLimits.tsx?raw'
+import { StepperFractional } from '../demos/examples/StepperFractional'
+import StepperFractionalSrc from '../demos/examples/StepperFractional.tsx?raw'
+import { StepperTooltips } from '../demos/examples/StepperTooltips'
+import StepperTooltipsSrc from '../demos/examples/StepperTooltips.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldStepper
+
+Числовое поле для выбора значения шагами через кнопки `−` / `+` и/или прямой ввод. Базируется на `FieldDecorator` поверх `<input type="number">` без нативных стрелочек. Кнопки `−` и `+` — buttonField-слоты по краям поля, отделённые от значения вертикальными разделителями; фон (acrylic) общий для кнопок и инпута.
+
+## Когда использовать
+
+- Количество товара в корзине, кол-во гостей, штучные параметры.
+- Числовые настройки с понятным шагом (вес, объём, время в минутах).
+- Когда дискретные значения уместнее ползунка `Slider` (есть осмысленный «один тик»).
+
+## Анатомия
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Inline-формы и таблицы |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Лендинги, primary-формы |
+
+### ValidationState (default `default`)
+
+Через проп `error` форсится `error`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации |
+| `valid` | Значение валидно — нейтральный baseline без подсветки и иконки (визуально как `default`); зелёный сигнал даёт только `success` |
+| `error` | Не прошло валидацию |
+| `warning` | Предупреждение |
+| `success` | Подтверждение |
+
+### Кнопки −/+
+
+Кнопки шага — buttonField-слоты по краям поля, а не отдельные элементы вне инпута.
+
+- `−` — слот слева, отделён от значения вертикальным `Divider`.
+- `+` — слот справа, отделён от значения вертикальным `Divider`.
+
+Кнопки не участвуют в табуляции (`tabIndex={-1}`) — фокус принимает сам инпут. Фон (acrylic) общий для кнопок, разделителей и инпута: на hover/focus подсвечивается единым слоем.
+
+### Поведение
+
+| Проп | Поведение |
+|------|-----------|
+| `min` / `max` | Ограничивают кнопки `−` / `+`; кнопки становятся `disabled` на границе |
+| `step` | Шаг изменения (default `1`); поддерживает дробные значения через fixed-precision |
+| `allowMoreThanLimits` | `false` — клампит значение к `min`/`max` на blur после ручного ввода |
+| `prefix` / `postfix` | Произвольная нода рядом со значением (валюта, единица измерения) |
+
+### Тултипы
+
+- `minusButtonTooltip` / `plusButtonTooltip` — `TooltipProps` для подсказки над соответствующей кнопкой шага.
+- `clampTooltipText` — тексты тултипа клампа. Показывается на 2 секунды после blur, когда вручную введённое значение вышло за `min` (`clampTooltipText.min(value)`) или `max` (`clampTooltipText.max(value)`) при `allowMoreThanLimits={false}`. По умолчанию (совпадает с легаси `@snack-uikit/fields`) — `Значение должно быть больше либо равно {value}` для нижней границы и `Значение должно быть меньше либо равно {value}` для верхней.
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldStepper } from '@ds/fields'
+```
+
+## Controlled vs uncontrolled
+
+FieldStepper работает в двух режимах:
+
+- **Controlled** — передаётся `value` + `onChange`. Состояние держит потребитель, компонент только отображает текущее значение.
+- **Uncontrolled** — передаётся `defaultValue` (или ничего; тогда начальное значение выводится из `min`/`max`). Компонент держит состояние внутри, `onChange` остаётся опциональным для наблюдения.
+
+Не смешивайте режимы: либо `value`, либо `defaultValue`.
+
+## Примеры использования
+
+<Example title='Базовый stepper' description='Controlled FieldStepper с шагом 1, без ограничений.' code={StepperSrc}>
+  <Stepper client:visible />
+</Example>
+
+<Example title='Uncontrolled' description='defaultValue задаёт начальное значение; состояние держит сам компонент.' code={StepperUncontrolledSrc}>
+  <StepperUncontrolled client:visible />
+</Example>
+
+<Example title='С единицей измерения' description='postfix отображается прямо у значения.' code={StepperWithPostfixSrc}>
+  <StepperWithPostfix client:visible />
+</Example>
+
+<Example title='Min/Max с клампом' description='allowMoreThanLimits=false клампит вручную введённое значение на blur.' code={StepperLimitsSrc}>
+  <StepperLimits client:visible />
+</Example>
+
+<Example title='Дробный шаг' description='step=0.5 для веса/объёма; внутри используется fixed-precision.' code={StepperFractionalSrc}>
+  <StepperFractional client:visible />
+</Example>
+
+<Example title='Тултипы кнопок и клампа' description='minusButtonTooltip/plusButtonTooltip над кнопками; clampTooltipText показывается на blur при выходе за границы.' code={StepperTooltipsSrc}>
+  <StepperTooltips client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldStepper} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldstepper--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-stepper')} />

@@ -1,0 +1,42 @@
+---
+title: Fields
+package: '@ds/fields'
+description: Поля ввода с единой обёрткой label/caption/hint/error и общими осями size/validationState — текст, пароль, число, ползунок, дата, время, выбор, цвет.
+order: 30
+---
+
+# Fields
+
+Пакет `@ds/fields` объединяет поля ввода с общими осями `size` (`s`/`m`/`l`) и `validationState` (`default`/`error`/`warning`/`success`/`valid`) и единой обёрткой label/caption/hint/error.
+
+- [`FieldDecorator`](/components/fields/decorator) — структурная обёртка с label/caption/hint/error/length для нестандартных input'ов.
+- [`FieldText`](/components/fields/text) — однострочное текстовое поле.
+- [`FieldSecure`](/components/fields/secure) — поле для паролей и токенов с переключателем видимости.
+- [`FieldTextArea`](/components/fields/textarea) — многострочное поле с опциональным resize.
+- [`FieldStepper`](/components/fields/stepper) — числовое поле с кнопками −/+.
+- [`FieldSlider`](/components/fields/slider) — поле с ползунком + связанным input'ом.
+- [`FieldSelect`](/components/fields/select) — выпадающий список с одиночным и множественным выбором.
+- [`FieldDate`](/components/fields/date) — поле выбора даты/даты-времени с календарём и маской ввода.
+- [`FieldTime`](/components/fields/time) — поле выбора времени с пикером и маской.
+- [`FieldColor`](/components/fields/color) — поле выбора цвета с ColorPicker в дропдауне.
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import {
+  FieldDecorator,
+  FieldText,
+  FieldSecure,
+  FieldTextArea,
+  FieldStepper,
+  FieldSlider,
+  FieldSelect,
+  FieldDate,
+  FieldTime,
+  FieldColor,
+} from '@ds/fields'
+```

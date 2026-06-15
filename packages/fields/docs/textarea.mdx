@@ -1,0 +1,123 @@
+---
+title: FieldTextArea
+package: '@ds/fields'
+description: Многострочное поле для длинного текста — комментарии, описания, bio. С поддержкой ручного resize и счётчика длины.
+order: 34
+---
+
+import { TextArea } from '../demos/examples/TextArea'
+import TextAreaSrc from '../demos/examples/TextArea.tsx?raw'
+import { TextAreaResizable } from '../demos/examples/TextAreaResizable'
+import TextAreaResizableSrc from '../demos/examples/TextAreaResizable.tsx?raw'
+import { TextAreaWithLength } from '../demos/examples/TextAreaWithLength'
+import TextAreaWithLengthSrc from '../demos/examples/TextAreaWithLength.tsx?raw'
+import { TextAreaUncontrolled } from '../demos/examples/TextAreaUncontrolled'
+import TextAreaUncontrolledSrc from '../demos/examples/TextAreaUncontrolled.tsx?raw'
+import { TextAreaReadonly } from '../demos/examples/TextAreaReadonly'
+import TextAreaReadonlySrc from '../demos/examples/TextAreaReadonly.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldTextArea
+
+Многострочное текстовое поле. Базируется на `FieldDecorator` поверх нативного `<textarea>` с авто-resize (`react-textarea-autosize`). Поддерживает высоту по `minRows`/`maxRows`, опциональный ручной resize за нижний правый угол, кнопки очистки и копирования, слот `footer` под полем. Фон `acrylic` общий с остальными полями `@ds/fields`.
+
+## Когда использовать
+
+- Длинные тексты: комментарии, описания, отзывы, сообщения.
+- Bio/about-форм поля с лимитом символов (`maxLength` + автоматический счётчик).
+- Read-only многострочное значение с кнопкой копирования (логи, сгенерированные тексты).
+- Поддерживает controlled (`value` + `onChange`) и uncontrolled (`defaultValue`) режимы.
+
+## Анатомия
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Inline-формы, плотные таблицы |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Лендинги, primary-формы |
+
+### ValidationState (default `default`)
+
+Через проп `error` форсится `error`. Иконка слева от подсказки появляется при `showHintIcon`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации — нейтральный фон |
+| `error` | Не прошло валидацию — красная тонировка фона + иконка |
+| `warning` | Предупреждение, ввод допустим — жёлтая тонировка фона + иконка |
+| `success` | Подтверждение успешного ввода — зелёная тонировка фона + иконка |
+| `valid` | Нейтральный baseline без цвета и иконки (`textTertiary`) — мягкое подтверждение, визуально эквивалентно `default`. Зелёный — только у `success` |
+
+### Высота
+
+Поле растёт под контент автоматически — от `minRows` строк и до `maxRows`, после чего включается вертикальный скролл.
+
+| Проп | Поведение |
+|------|-----------|
+| `minRows` | Стартовая высота в строках (default `3`) |
+| `maxRows` | Максимум до появления вертикального скролла (default `1000` — фактически без потолка) |
+| `resizable` | Ручка ресайза в правом нижнем углу — пользователь меняет высоту мышью. Игнорируется при `disabled`/`readonly` (default `false`) |
+
+### Кнопки очистки и копирования
+
+В postfix-колонке поля рендерятся служебные кнопки. Управляются `showClearButton` / `showCopyButton`.
+
+- `showClearButton` — кнопка очистки. Видна при непустом `value` и `!readonly && !disabled` (default `true`).
+- `showCopyButton` — кнопка копирования значения в буфер. Видна при непустом `value` в режиме `readonly` (и `!disabled`, default `true`). После нажатия кратко показывает галочку-подтверждение.
+
+Кнопки попадают в Tab-навигацию через postfix-стрелки, как у `FieldText`.
+
+### Footer
+
+Слот `footer` рендерится отдельной строкой под `<textarea>` внутри границы поля — для действий, плагинов-счётчиков или подсказок, привязанных к самому полю (в отличие от `hint`/`caption`, которые живут в `FieldDecorator` снаружи).
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldTextArea } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='Базовое поле' description='Controlled FieldTextArea с минимальной высотой 3 строки и потолком 8 строк (дальше скролл).' code={TextAreaSrc}>
+  <TextArea client:visible />
+</Example>
+
+<Example title='Изменяемый размер' description='resizable={true} даёт ручку в правом нижнем углу.' code={TextAreaResizableSrc}>
+  <TextAreaResizable client:visible />
+</Example>
+
+<Example title='Счётчик длины' description='maxLength автоматически рисует счётчик «текущая/максимум».' code={TextAreaWithLengthSrc}>
+  <TextAreaWithLength client:visible />
+</Example>
+
+<Example title='Uncontrolled' description='Без value/onChange: начальное значение задаётся через defaultValue, дальше поле управляет состоянием само.' code={TextAreaUncontrolledSrc}>
+  <TextAreaUncontrolled client:visible />
+</Example>
+
+<Example title='Readonly с копированием' description='readonly показывает кнопку копирования значения в буфер; текст приглушён.' code={TextAreaReadonlySrc}>
+  <TextAreaReadonly client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldTextArea} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldtextarea--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-textarea')} />

@@ -1,0 +1,108 @@
+---
+title: FieldSecure
+package: '@ds/fields'
+description: Поле для паролей и токенов с переключателем видимости и опциональной кнопкой копирования в readonly.
+order: 32
+---
+
+import { Secure } from '../demos/examples/Secure'
+import SecureSrc from '../demos/examples/Secure.tsx?raw'
+import { SecureControlledVisibility } from '../demos/examples/SecureControlledVisibility'
+import SecureControlledVisibilitySrc from '../demos/examples/SecureControlledVisibility.tsx?raw'
+import { SecureReadonly } from '../demos/examples/SecureReadonly'
+import SecureReadonlySrc from '../demos/examples/SecureReadonly.tsx?raw'
+import { SecureAsync } from '../demos/examples/SecureAsync'
+import SecureAsyncSrc from '../demos/examples/SecureAsync.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldSecure
+
+Поле для секретов: пароли, токены, API-ключи. Базируется на `FieldDecorator` и `@ds/input-private`. Кнопка «глаз» переключает `<input type>` между `password` и `text`. В режиме `readonly` дополнительно появляется кнопка копирования.
+
+## Когда использовать
+
+- Логин/регистрация: ввод и подтверждение пароля.
+- Настройки безопасности: смена пароля, выдача API-ключей.
+- Отображение access-token / API key (`readonly` + копирование).
+
+## Анатомия
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Inline-поля и плотные формы |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Primary-формы регистрации/логина |
+
+### ValidationState (default `default`)
+
+Через проп `error` форсится `error`. Иконка слева от подсказки появляется при `showHintIcon`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации |
+| `error` | Не прошло валидацию |
+| `warning` | Слабый пароль, ввод допустим |
+| `success` | Пароль соответствует требованиям |
+| `valid` | Нейтральный baseline пройденной проверки: подсказка отрисована вторичным текстом (`textTertiary`), фон и иконка остаются нейтральными. Цвет (зелёный) даёт только `success`. |
+
+### Видимость значения (default `hidden`)
+
+Кнопка «глаз» переключает `<input type>` между `password` и `text`.
+
+- Uncontrolled — `hidden` не задан, компонент сам хранит состояние маскирования, по умолчанию значение скрыто.
+- Controlled — `hidden` + `onHiddenChange` под управлением потребителя.
+
+После переключения фокус и каретка возвращаются в поле ввода (каретка — в конец значения), чтобы редактирование продолжалось без лишнего клика.
+
+### Слоты и кнопки
+
+- `showHideButton` (default `true`) — кнопка «глаз». Скрывается, когда `readonly` и значение пустое.
+- `showCopyButton` (default `true`) — кнопка копирования. Видна только при `readonly` и непустом значении; после копирования иконка кратковременно меняется на галочку.
+- `asyncValueGetter` — ленивая загрузка секрета. Вызывается перед первым раскрытием или копированием; во время запроса показан `Skeleton`, результат передаётся через `onChange`. После успешной загрузки значение считается полученным и повторно не запрашивается.
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldSecure } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='Базовое поле пароля' description='Controlled FieldSecure. Переключатель «глаз» меняет видимость значения, по умолчанию скрыто.' code={SecureSrc}>
+  <Secure client:visible />
+</Example>
+
+<Example title='Управляемая видимость' description='hidden + onHiddenChange под управлением потребителя — состояние маскирования живёт во внешнем state.' code={SecureControlledVisibilitySrc}>
+  <SecureControlledVisibility client:visible />
+</Example>
+
+<Example title='Readonly + копирование' description='Readonly показывает кнопку копирования значения. «Глаз» остаётся доступен.' code={SecureReadonlySrc}>
+  <SecureReadonly client:visible />
+</Example>
+
+<Example title='Async-загрузка значения' description='asyncValueGetter подгружает токен при первом клике «глаз» или «копировать». Во время запроса показан Skeleton.' code={SecureAsyncSrc}>
+  <SecureAsync client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldSecure} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldsecure--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-secure')} />

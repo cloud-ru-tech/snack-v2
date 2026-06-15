@@ -1,0 +1,64 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/colorPicker.module' as colorPicker;
+
+// FieldColor size → colorPicker previewColor size (Figma fieldSelectColor 5597:23777):
+// s → colorPicker s (16px / radius 4), m → colorPicker m (24px / radius 8),
+// l → colorPicker m (24px / radius 8) — в макете L-поле референсит m-токен previewColor,
+// swatch не увеличивается до 32 (узлы 5928:86716 / 5928:86770).
+$swatch-sizes: (
+  's': 's',
+  'm': 'm',
+  'l': 'm',
+);
+
+.trigger {
+  cursor: pointer;
+}
+
+.swatch {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  background-color: var(--field-color-swatch-color, transparent);
+
+  // Шахматка прозрачности — визуальная конвенция alpha-канала, у геометрии клеток нет
+  // дизайн-токена; литералы 8px/4px намеренные (паритет с легаси color-picker swatch).
+  background-image:
+    linear-gradient(45deg, base.$sn-theme-color-available-borderColor 25%, transparent 25%),
+    linear-gradient(-45deg, base.$sn-theme-color-available-borderColor 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, base.$sn-theme-color-available-borderColor 75%),
+    linear-gradient(-45deg, transparent 75%, base.$sn-theme-color-available-borderColor 75%);
+  background-position:
+    0 0,
+    0 4px,
+    4px -4px,
+    -4px 0;
+  background-size: 8px 8px;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    background-color: var(--field-color-swatch-color, transparent);
+  }
+}
+
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+@each $size, $tokenSize in $swatch-sizes {
+  .trigger[data-size='#{$size}'] .swatch {
+    width: base.simple-var(colorPicker.$colorPicker, 'anatomy', 'size', $tokenSize, 'previewColor', 'width');
+    height: base.simple-var(colorPicker.$colorPicker, 'anatomy', 'size', $tokenSize, 'previewColor', 'height');
+    border-radius: base.simple-var(colorPicker.$colorPicker, 'anatomy', 'size', $tokenSize, 'previewColor', 'border-radius');
+  }
+}

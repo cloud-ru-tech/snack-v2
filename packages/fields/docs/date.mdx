@@ -1,0 +1,122 @@
+---
+title: FieldDate
+package: '@ds/fields'
+description: Поле выбора даты с маской ввода и календарём в popover — режимы date, date-time и date-range.
+order: 36
+---
+
+import { DateBasic } from '../demos/examples/DateBasic'
+import DateBasicSrc from '../demos/examples/DateBasic.tsx?raw'
+import { DateRange } from '../demos/examples/DateRange'
+import DateRangeSrc from '../demos/examples/DateRange.tsx?raw'
+import { DateTimeWithSeconds } from '../demos/examples/DateTimeWithSeconds'
+import DateTimeWithSecondsSrc from '../demos/examples/DateTimeWithSeconds.tsx?raw'
+import { DateReadonly } from '../demos/examples/DateReadonly'
+import DateReadonlySrc from '../demos/examples/DateReadonly.tsx?raw'
+import { DatePresets } from '../demos/examples/DatePresets'
+import DatePresetsSrc from '../demos/examples/DatePresets.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldDate
+
+Поле выбора даты. Базируется на `FieldDecorator` и `CalendarDropdown` из `@ds/calendar`. Триггер совмещает текстовый ввод с маской и кнопку календаря; календарь открывается в popover. Поддерживает три режима выбора, кнопки очистки и копирования.
+
+## Когда использовать
+
+- Ввод одной даты в формах и фильтрах (`mode='date'`).
+- Ввод даты вместе со временем (`mode='date-time'`); секунды управляются пропом `showSeconds`.
+- Выбор периода из двух дат (`mode='date-range'`) — два связанных поля с разделителем.
+- Только время без даты — используйте `FieldTime`, не FieldDate.
+
+## Анатомия
+
+Триггер собирается из:
+
+- `iconBefore` — иконка перед текстом ввода (по умолчанию контекст календаря несёт кнопка справа).
+- input(ы) с маской — одно поле в режимах `date`/`date-time`, два связанных в `date-range`.
+- кнопка очистки (`showClearButton`) — крестик, активна при непустом значении и не `disabled`/`readonly`.
+- кнопка копирования (`showCopyButton`) — копирует значение в буфер, видна только в `readonly` при непустом значении.
+- кнопка календаря — открывает popover с `CalendarDropdown`.
+
+### Сегментный ввод с клавиатуры
+
+В режимах `date` и `date-time` поле редактируется посегментно: фокус (или клик) выделяет сегмент (`ДД`, `ММ`, `ГГГГ`, …), цифры заполняют его с автопереходом к следующему, `←`/`→` двигают по сегментам, `Backspace` очищает сегмент до плейсхолдера, `ArrowDown` открывает календарь. Невалидные значения зажимаются к допустимым. Режим `date-range` использует обычный ввод по маске.
+
+### Mode (default `date`)
+
+- `date` — одна дата, маска `ДД.ММ.ГГГГ`.
+- `date-time` — дата и время, маска `ДД.ММ.ГГГГ, чч:мм:сс` (секунды зависят от `showSeconds`).
+- `date-range` — период из двух дат, два поля через разделитель.
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Плотные таблицы, inline-редактирование |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Лендинги, primary-формы |
+
+### ValidationState (default `default`)
+
+Управляет цветом рамки и иконкой подсказки. Проп `error` форсит `error`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации |
+| `valid` | Проверка пройдена — нейтральный baseline (рамка без цвета, без иконки подсказки) |
+| `error` | Поле не прошло валидацию |
+| `warning` | Предупреждение, ввод допустим |
+| `success` | Подтверждение успешного ввода |
+
+### ShowSeconds (default `true`)
+
+Действует только в режиме `date-time`. При `true` маска и календарь включают секунды (`чч:мм:сс`), при `false` — только часы и минуты (`чч:мм`).
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldDate } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='Базовое поле' description='Controlled FieldDate в режиме date с маской и календарём.' code={DateBasicSrc}>
+  <DateBasic client:only='react' />
+</Example>
+
+<Example title='Выбор периода' description='mode=date-range — два связанных поля начала и конца периода.' code={DateRangeSrc}>
+  <DateRange client:only='react' />
+</Example>
+
+<Example title='Дата и время с секундами' description='mode=date-time + showSeconds — маска и календарь включают секунды.' code={DateTimeWithSecondsSrc}>
+  <DateTimeWithSeconds client:only='react' />
+</Example>
+
+<Example title='Readonly с копированием' description='Readonly FieldDate показывает кнопку копирования значения в буфер вместо очистки.' code={DateReadonlySrc}>
+  <DateReadonly client:only='react' />
+</Example>
+
+<Example title='Быстрые диапазоны и выходные' description='mode=date-range + presets — пресеты периода в шапке календаря, showHolidays подсвечивает субботу и воскресенье.' code={DatePresetsSrc}>
+  <DatePresets client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldDate} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fielddate--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-date')} />

@@ -1,0 +1,93 @@
+---
+title: FieldTime
+package: '@ds/fields'
+description: Поле выбора времени с маской чч:мм:сс, time-picker дропдауном и кнопками очистки/копирования.
+order: 38
+---
+
+import { TimeBasic } from '../demos/examples/TimeBasic'
+import TimeBasicSrc from '../demos/examples/TimeBasic.tsx?raw'
+import { TimeShowSeconds } from '../demos/examples/TimeShowSeconds'
+import TimeShowSecondsSrc from '../demos/examples/TimeShowSeconds.tsx?raw'
+import { TimeReadonly } from '../demos/examples/TimeReadonly'
+import TimeReadonlySrc from '../demos/examples/TimeReadonly.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldTime
+
+Поле выбора времени. Базируется на `FieldDecorator` и `@ds/input-private`, в качестве picker'а использует `TimePickerDropdown` из `@ds/calendar`. Значение — объект `TimeValue` (`{ hours, minutes, seconds }`). Ввод идёт по сегментной маске `чч:мм:сс` (`inputMode='numeric'`), выбор — через дропдаун с барабанами времени.
+
+## Когда использовать
+
+- Ввод точного времени в формах: расписание, дедлайны, окна обслуживания.
+- Когда нужны и клавиатурный ввод по маске, и выбор мышью из дропдауна.
+- Для ввода только часов и минут отключите секунды через `showSeconds={false}` — маска станет `чч:мм`.
+- Для выбора даты используйте `FieldDate`, для даты со временем — соответствующее поле, не FieldTime.
+
+## Анатомия
+
+### Сегментный ввод с клавиатуры
+
+Поле редактируется посегментно: фокус (или клик) выделяет сегмент (`чч`, `мм`, `сс`), цифры заполняют его с автопереходом к следующему, `←`/`→` двигают по сегментам, `Backspace` очищает сегмент до плейсхолдера, `ArrowDown` открывает picker и переводит фокус на барабаны времени. Значения сегментов зажимаются к допустимым (часы ≤ 23, минуты/секунды ≤ 59).
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Плотные таблицы, inline-редактирование |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Лендинги, primary-формы |
+
+### ValidationState (default `default`)
+
+Управляет тонировкой acrylic-фона поля и иконкой подсказки. Проп `error` форсит `error`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации — нейтральный фон |
+| `error` | Поле не прошло валидацию — красная тонировка фона |
+| `warning` | Предупреждение, ввод допустим — жёлтая тонировка фона |
+| `success` | Подтверждение успешного ввода — зелёная тонировка фона |
+| `valid` | Нейтральный baseline: текст подсказки `textTertiary`, без цвета и иконки валидации — мягкое подтверждение, не акцентирует внимание. Не путать с `success` (единственный «зелёный» state) |
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldTime } from '@ds/fields'
+import { TimeValue } from '@ds/calendar'
+```
+
+## Примеры использования
+
+<Example title='Базовое поле' description='Controlled FieldTime с сегментной маской чч:мм:сс. ArrowDown открывает picker и переводит фокус на барабаны времени, Escape закрывает.' code={TimeBasicSrc}>
+  <TimeBasic client:only='react' />
+</Example>
+
+<Example title='Без секунд' description='showSeconds=false убирает секунды из маски (чч:мм) и из picker.' code={TimeShowSecondsSrc}>
+  <TimeShowSeconds client:only='react' />
+</Example>
+
+<Example title='Readonly с копированием' description='Readonly FieldTime показывает кнопку копирования значения в буфер, ввод и picker недоступны.' code={TimeReadonlySrc}>
+  <TimeReadonly client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldTime} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldtime--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-time')} />

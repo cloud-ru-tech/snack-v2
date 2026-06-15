@@ -1,0 +1,47 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+$sizes: 's', 'm', 'l';
+
+.fieldSlider {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: stretch;
+
+  width: 100%;
+}
+
+.sliderWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      padding-right: base.simple-var(field.$field, 'anatomy', 'size', $size, 'sliderWrapper', 'lineWrapper', 'padding-right');
+      padding-left: base.simple-var(field.$field, 'anatomy', 'size', $size, 'sliderWrapper', 'lineWrapper', 'padding-left');
+    }
+  }
+}
+
+.slider {
+  width: 100%;
+}
+
+.postfixIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+// Copy-кнопка (readonly) центрируется в строке значения.
+.copyButton {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}

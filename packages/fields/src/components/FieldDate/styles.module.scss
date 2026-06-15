@@ -1,0 +1,57 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+
+$sizes: 's', 'm', 'l';
+
+.trigger {
+  cursor: pointer;
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  &[data-readonly='true'] {
+    cursor: default;
+  }
+}
+
+.rangeInputs {
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 0;
+
+  // gap = inputLine.gap per-size (Figma `fieldContainer.contentWrapper.inputLine.gap`: 2/4/6)
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      gap: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'inputLine', 'gap');
+    }
+  }
+}
+
+// From-инпут периода прижат к первой дате слева, разделитель идёт сразу за ним,
+// to-инпут (flex: 1 1 0) забирает остаток.
+// Fallback: ширина резервируется по длине маски (--field-date-mask-ch — длина placeholderMask,
+// пробрасывается компонентом на .rangeInputs) в ch (масштабируется со шрифтом, без px-хардкода).
+// ch считается по моноширинному `0`, а реальные цифры/точки уже → остаётся небольшой хвост справа,
+// но ввод идёт слева направо (естественно).
+.rangeInputFrom {
+  flex: 0 0 auto;
+  width: calc(var(--field-date-mask-ch, 10) * 1ch);
+  text-align: start;
+}
+
+// Где поддерживается field-sizing — инпут сам ужимается ровно по контенту: хвоста нет,
+// разделитель прижат к дате, ввод по-прежнему слева направо. max-width страхует от переполнения.
+@supports (field-sizing: content) {
+  .rangeInputFrom {
+    field-sizing: content;
+    width: auto;
+    max-width: calc(var(--field-date-mask-ch, 10) * 1ch);
+  }
+}
+
+.rangeSeparator {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

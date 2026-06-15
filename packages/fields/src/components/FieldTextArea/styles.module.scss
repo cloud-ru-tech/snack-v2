@@ -1,0 +1,214 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+@use '@sbercloud/figma-variables/build/scss/components/scroll.module' as scroll;
+
+$sizes: 's', 'm', 'l';
+
+// Ширина вертикального скроллбара @ds/scroll (в компоненте он всегда size=s).
+$scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 's', 'width');
+
+// Контейнер скролла (@ds/scroll) вокруг textarea: minRows/maxRows клампят его высоту
+// через CSS-переменные (выставляются компонентом на shell), autosize-textarea растёт внутри,
+// скроллбар — кастомный DS, не нативный. Resize-handle (CSS resize) живёт на этом контейнере.
+.scrollContainer {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: calc(var(--field-textarea-min-rows, 3) * var(--field-textarea-row-height));
+  max-height: calc(var(--field-textarea-max-rows, 1000) * var(--field-textarea-row-height));
+
+  // Высота строки = line-height DS-типографики body соответствующего size.
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      --field-textarea-row-height: #{base.simple-var(base.$sn-regular, 'body', $size, 'line-height')};
+    }
+  }
+}
+
+// При resizable стартовая высота фиксируется на minRows — иначе CSS resize
+// не от чего отсчитывать (контейнер с auto-высотой схлопывается обратно).
+.scrollContainerResizable {
+  height: calc(var(--field-textarea-min-rows, 3) * var(--field-textarea-row-height));
+}
+
+.textarea {
+  resize: none;
+
+  // Нативный скроллбар не показывается никогда — скролл рисует обёртка @ds/scroll.
+  overflow: hidden;
+
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  background: transparent;
+  outline: none;
+
+  &::placeholder {
+    color: base.$sn-theme-color-available-version-textDisabled;
+    opacity: 1;
+  }
+
+  // disabled: плейсхолдер скрыт — паритет с .fieldInput::placeholder в FieldText
+  // (общий shell, но textarea рендерит свой класс, не .fieldInput).
+  &:disabled::placeholder {
+    visibility: hidden;
+  }
+
+  // readonly текст приглушается так же, как .fieldInput в FieldText
+  // (общий shell, но textarea рендерит свой класс, не .fieldInput).
+  &:read-only {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+
+  // DS-типографика + min-height multiLine из field-токенов per-size.
+  // Без этого textarea наследует Nunito Sans 16/24 от Storybook root и не имеет минимальной высоты.
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+
+      // Резерв справа под колонку clear/copy-кнопок (квадрат centeredWrapper) + скроллбар
+      // + горизонтальный паддинг inputLine (отступ слота кнопок от скроллбара по Figma):
+      // кнопки позиционируются абсолютно поверх скролл-области (см. .postfixColumn).
+      $button-slot: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'centeredWrapper',
+        'max-height'
+      );
+      $input-line-padding: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'inputLine',
+        'padding-right'
+      );
+
+      min-height: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'multiLine',
+        'min-height'
+      );
+      padding-right: calc(#{$button-slot} + #{$scrollbar-width} + #{$input-line-padding});
+
+      @include base.composite-var(base.$sn-regular, 'body', $size);
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  margin-bottom: base.$sn-primitive-dimension-8;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  margin-top: base.$sn-primitive-dimension-8;
+}
+
+// Якорь для абсолютного позиционирования кнопок: скролл-контейнер занимает всю ширину
+// контента (скроллбар — у правого края поля, по Figma), кнопки накладываются поверх.
+// verticalPadding (Figma contentWrapper py) опускает первую строку текста на свой отступ —
+// без него текст (и центрированная по нему кнопка) прижимается к верхней рамке, и 32px-кнопка
+// выступает за верхний край поля.
+.contentArea {
+  position: relative;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      padding-top: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'padding-top'
+      );
+      padding-bottom: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'padding-bottom'
+      );
+    }
+  }
+}
+
+// Кнопки clear/copy — поверх скролл-области, левее скроллбара (паритет с Figma и легаси:
+// порядок справа налево — край поля, скроллбар, inputLine-паддинг, кнопки). Место под них
+// резервирует padding-right textarea выше. Grid-ячейки клампят слот каждой кнопки до
+// centeredWrapper-квадрата: сама кнопка крупнее слота и симметрично выступает за него
+// (тот же приём, что .postfixButtonsSlot в shared/styles для FieldText), первый слот
+// центрируется по первой строке текста.
+.postfixColumn {
+  position: absolute;
+
+  display: grid;
+
+  // Единственный явный column-track шириной с контейнер: без него implicit-колонка
+  // растягивается (auto) под кнопку, и кнопка перестаёт центрироваться по слоту.
+  grid-template-columns: 100%;
+  row-gap: base.$sn-primitive-dimension-2;
+  place-items: center center;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      $square: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'centeredWrapper',
+        'max-height'
+      );
+      $input-line-padding: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'inputLine',
+        'padding-right'
+      );
+      $line-height: base.simple-var(base.$sn-regular, 'body', $size, 'line-height');
+      $vertical-padding: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'padding-top'
+      );
+
+      // Кнопка центрируется по первой строке текста: verticalPadding (отступ контента сверху)
+      // + центровка слота в line-height. Так 32px-кнопка верхним краем садится ровно на
+      // внутреннюю границу поля (Figma), а не выступает над ней.
+      top: calc(#{$vertical-padding} + (#{$line-height} - #{$square}) / 2);
+      right: calc(#{$scrollbar-width} + #{$input-line-padding});
+      grid-auto-rows: $square;
+      width: $square;
+    }
+  }
+}

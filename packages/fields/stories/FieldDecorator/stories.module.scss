@@ -1,0 +1,16 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.narrow {
+  width: 320px;
+}
+
+// Узкий контейнер для демонстрации усечения/переноса: ширина выбрана так, чтобы
+// label и caption конкурировали за место (уже `.narrow`, форсирует ellipsis/line-clamp/word-break).
+.truncate {
+  width: 180px;
+}

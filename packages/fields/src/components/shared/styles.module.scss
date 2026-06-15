@@ -1,0 +1,376 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+@use '@ds/materials' as m;
+
+$sizes: 's', 'm', 'l';
+
+.materialLayer {
+  @include m.with-material('acrylic', #{acrylicBg});
+
+  width: 100%;
+  height: 100%;
+}
+
+.acrylicBg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.borderStateLayer {
+  width: 100%;
+  height: 100%;
+}
+
+.lineWrapper {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin borderRadius($size) {
+  $borderTopLeftRadius: base.simple-var(
+    field.$field,
+    'anatomy',
+    'size',
+    $size,
+    'fieldContainer',
+    'border-top-left-radius'
+  );
+  $borderTopRightRadius: base.simple-var(
+    field.$field,
+    'anatomy',
+    'size',
+    $size,
+    'fieldContainer',
+    'border-top-right-radius'
+  );
+  $borderBottomRightRadius: base.simple-var(
+    field.$field,
+    'anatomy',
+    'size',
+    $size,
+    'fieldContainer',
+    'border-bottom-right-radius'
+  );
+  $borderBottomLeftRadius: base.simple-var(
+    field.$field,
+    'anatomy',
+    'size',
+    $size,
+    'fieldContainer',
+    'border-bottom-left-radius'
+  );
+
+  border-radius: $borderTopLeftRadius $borderTopRightRadius $borderBottomRightRadius $borderBottomLeftRadius;
+}
+
+.focusLayer {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: field.$sn-field-effect-focusedFrame-opacity;
+  // Рамка-свечение рисуется снаружи поля (паритет с Figma focusedFrame). outline-offset: 0 —
+  // обводка ложится по внешнему краю, а не затягивается внутрь (был отрицательный сдвиг).
+  outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
+  outline-offset: 0;
+}
+
+// Цвет рамки-свечения тонируется accent'ом валидации (паритет с Figma: focusedFrame
+// референсит red/yellow/green/primary accent — узлы 5927:84267/84461/84581/84701).
+.fieldWrapper[data-validation-state='error'] .focusLayer {
+  outline-color: base.$sn-theme-color-red-accent;
+}
+
+.fieldWrapper[data-validation-state='warning'] .focusLayer {
+  outline-color: base.$sn-theme-color-yellow-accent;
+}
+
+.fieldWrapper[data-validation-state='success'] .focusLayer {
+  outline-color: base.$sn-theme-color-green-accent;
+}
+
+.fieldInput {
+  flex: 1 1 0;
+  align-self: stretch;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  &::placeholder {
+    color: base.$sn-theme-color-available-version-textDisabled;
+    opacity: 1;
+  }
+}
+
+.clearButtonSlot,
+.postfixButtonsSlot {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputLine {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  min-width: 0;
+}
+
+.prefix,
+.postfix {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.postfix {
+  text-align: right;
+}
+
+.inputArea {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  min-width: 0;
+}
+
+.iconSlot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+}
+
+.elementWrapperBefore,
+.elementWrapperAfter {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+
+  // Droplist оборачивает кнопку-слот в trigger-span (block, естественная высота) —
+  // растягиваем обёртку и кнопку на всю высоту сегмента, чтобы statelayer
+  // заливал buttonField до рамки поля (Figma: fill flush к border).
+  > * {
+    display: flex;
+    align-items: stretch;
+  }
+}
+
+.fieldWrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  width: 100%;
+
+  @include m.has-state-layer-as-child(#{borderStateLayer});
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      .lineWrapper {
+        display: none;
+        width: 0;
+        padding: 0;
+      }
+
+      .focusLayer {
+        @include borderRadius($size);
+      }
+
+      .borderStateLayer,
+      .materialLayer {
+        @include borderRadius($size);
+      }
+
+      .fieldContainer {
+        $paddingTop: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-top');
+        $paddingRight: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-right');
+        $paddingBottom: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-bottom');
+        $paddingLeft: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-left');
+
+        min-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'min-height');
+        padding: $paddingTop $paddingRight $paddingBottom $paddingLeft;
+      }
+
+      .inputLine {
+        @include base.composite-var(
+          field.$field,
+          'anatomy',
+          'size',
+          $size,
+          'fieldContainer',
+          'contentWrapper',
+          'inputLine'
+        );
+      }
+
+      .prefix,
+      .postfix,
+      .fieldInput {
+        @include base.composite-var(base.$sn-regular, 'body', $size);
+      }
+
+      .iconSlot {
+        max-height: base.simple-var(
+          field.$field,
+          'anatomy',
+          'size',
+          $size,
+          'fieldContainer',
+          'centeredWrapper',
+          'max-height'
+        );
+
+        // Иконки полей (iconBefore/iconAfter + декоративные chevron/calendar/watch) масштабируются
+        // по размеру поля: s → icon-xs (16), m/l → icon-s (24). max-* (а не width/height) — тот же
+        // приём, что в @ds/button: @ds/icons задают инлайн `style="width:24"`, который перебивает
+        // обычный width, но не max-width, поэтому svg клампится к нужному размеру без JS-пропа.
+        svg {
+          $iconSlotSize: base.$sn-density-size-icon-s;
+
+          @if $size == 's' {
+            $iconSlotSize: base.$sn-density-size-icon-xs;
+          }
+
+          max-width: $iconSlotSize;
+          max-height: $iconSlotSize;
+        }
+      }
+
+      .clearButtonSlot,
+      .postfixButtonsSlot {
+        // Кнопки clear/copy — иконный квадрат (паритет с легаси ButtonClearValue: 16px при s,
+        // 24px при m/l), а не полноразмерная function-кнопка 32px. Те же icon-токены, что у .iconSlot.
+        $iconSquare: base.$sn-density-size-icon-s;
+
+        @if $size == 's' {
+          $iconSquare: base.$sn-density-size-icon-xs;
+        }
+
+        // @ds/button читает min-height и iconOnly-minWidth через var() (figma-variables
+        // button.module.scss) — локальный override сжимает кнопку до иконного квадрата без
+        // правки @ds/button. BUTTON_SIZE_MAP (@ds/input-private): field s → button s, m/l → m.
+        $btnSize: if($size == 's', 's', 'm');
+
+        --sn-button-anatomy-size-#{$btnSize}-container-minHeight: #{$iconSquare};
+        --sn-button-anatomy-size-#{$btnSize}-container-iconOnly-minWidth: #{$iconSquare};
+
+        max-width: $iconSquare;
+        max-height: $iconSquare;
+
+        // Иконки @ds/icons инлайнят style width:24 — без max-* кнопка при field s не сожмётся до 16.
+        svg {
+          max-width: $iconSquare;
+          max-height: $iconSquare;
+        }
+      }
+
+      &[data-withbackground='true'] {
+        .backgroundWrapper {
+          @include borderRadius($size);
+
+          display: initial;
+        }
+
+        .lineWrapper {
+          &[data-outline='true'] {
+            display: initial;
+          }
+        }
+
+        [data-acrylic-background] {
+          @include borderRadius($size);
+        }
+
+        // Фокус: рамка-свечение (focusedFrame) показывается во всех состояниях валидации —
+        // паритет с Figma, где focused-вариант есть и на error/warning/success.
+        &:not([data-disabled='true'])[data-focusvisible='true'] {
+          .focusLayer {
+            display: initial;
+          }
+
+          // Акцентная рамка по фокусу — только в нейтральном состоянии (default/valid);
+          // в error/warning/success рамка остаётся нейтральной, сигнал валидации — тонированный фон.
+          &:not([data-validation-state='error'], [data-validation-state='warning'], [data-validation-state='success']) {
+            & > .backgroundWrapper > .borderStateLayer[data-state='regularBorder'] {
+              border-color: base.$sn-theme-color-primary-accent;
+              border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Состояния валидации (error/warning/success) сигнализируются тонировкой acrylic-фона
+  // (см. getAcrylicProps) + цветом подсказки/иконки в FieldDecorator. Рамка остаётся нейтральной —
+  // паритет с Figma (border не перекрашивается на валидации).
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .fieldInput::placeholder {
+      visibility: hidden;
+    }
+  }
+
+  &[data-readonly='true']:not([data-disabled='true']) {
+    cursor: default;
+
+    .fieldInput {
+      color: base.$sn-theme-color-available-version-textTertiary;
+    }
+
+    &:active {
+      .borderStateLayer[data-state='regularBorder'] {
+        border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        .borderStateLayer[data-state='regularBorder'] {
+          border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+        }
+      }
+    }
+  }
+}
+
+.fieldContainer {
+  position: relative;
+
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  min-width: 0;
+}

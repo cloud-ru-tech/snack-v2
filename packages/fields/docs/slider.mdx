@@ -1,0 +1,103 @@
+---
+title: FieldSlider
+package: '@ds/fields'
+description: Поле с ползунком + связанным числовым input'ом для выбора значения из непрерывного или дискретного диапазона.
+order: 36
+---
+
+import { SliderWithMarks } from '../demos/examples/SliderWithMarks'
+import SliderWithMarksSrc from '../demos/examples/SliderWithMarks.tsx?raw'
+import { SliderWithFormatter } from '../demos/examples/SliderWithFormatter'
+import SliderWithFormatterSrc from '../demos/examples/SliderWithFormatter.tsx?raw'
+import { SliderRange } from '../demos/examples/SliderRange'
+import SliderRangeSrc from '../demos/examples/SliderRange.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldSlider
+
+Поле для непрерывной/дискретной шкалы. Связывает текстовый input (наверху) и slider (`@ds/slider`) — изменение в любом синхронизирует второй. По умолчанию ввод в input снэпит к ближайшей точке шкалы; режим `unbindInputFromMarks` отключает это.
+
+## Когда использовать
+
+- Громкость, яркость, прозрачность — диапазоны без жёстких меток.
+- Качество сжатия, уровень детализации — снэп к набору меток (`marks` + `step={null}`).
+- Read-only прогресс/использование (`readonly`) — отображает значение без интеракции.
+
+## Анатомия
+
+### Size (default `m`)
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Inline-формы и таблицы |
+| `m` | Стандартные формы (по умолчанию) |
+| `l` | Лендинги, primary-формы |
+
+### ValidationState (default `default`)
+
+Тонирует фон поля (acrylic) по Figma-модели и управляет иконкой подсказки. Проп `error` форсит `error` поверх любого значения. Иконка слева от подсказки появляется при `showHintIcon`.
+
+- `default` — нейтральный фон, нет валидации.
+- `error` — красная тонировка фона, поле не прошло валидацию.
+- `warning` — жёлтая тонировка фона, предупреждение (ввод допустим).
+- `success` — зелёная тонировка фона, подтверждение успешного ввода.
+- `valid` — нейтральный baseline без цвета и иконки (`textTertiary`): мягкое «всё в порядке», не акцентирует внимание. Зелёный — только у `success`.
+
+### Поведение
+
+| Проп | Поведение |
+|------|-----------|
+| `min` / `max` / `step` | Обязательны. `step={null}` снэпит только к меткам |
+| `marks` | Метки на шкале: `{ 0: '0%', 50: '50%', 100: '100%' }` или `{ 50: { label: 'half' } }` |
+| `showScaleBar` | Скрывает метки на шкале без потери snap-логики (default `true`) |
+| `unbindInputFromMarks` | `true` — текстовый input принимает любые числа в `min..max`, не снэпя к меткам |
+| `textInputFormatter` | Форматирование значения в input'е (`v => v + '%'`) |
+| `prefix` / `postfix` / `postfixIcon` | Дополнения справа/слева от значения |
+
+## Controlled vs uncontrolled
+
+- **Controlled** — передаются `value` и `onChange`; значением владеет родитель. Ползунок и input синхронизируются через ваш state.
+- **Uncontrolled** — передаётся `defaultValue` (начальное значение, по умолчанию `min`, либо `[min, max]` при `range`). Компонент держит значение сам; `onChange` остаётся доступным для наблюдения за изменениями.
+
+Текстовый input принимает только числовой ввод: нечисловой keystroke отклоняется и не попадает в поле. Значение фиксируется (снэп к шкале/меткам и `onChange`) при потере фокуса (`blur`) или нажатии `Enter`.
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldSlider } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='С метками' description='step=null + marks — ввод снэпит к ближайшей метке.' code={SliderWithMarksSrc}>
+  <SliderWithMarks client:only='react' />
+</Example>
+
+<Example title='Кастомный formatter' description='textInputFormatter форматирует значение в input.' code={SliderWithFormatterSrc}>
+  <SliderWithFormatter client:only='react' />
+</Example>
+
+<Example title='Range (диапазон)' description='range={true} даёт две ручки. Текстовое поле в этом режиме readonly и показывает min – max.' code={SliderRangeSrc}>
+  <SliderRange client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldSlider} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldslider--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-slider')} />

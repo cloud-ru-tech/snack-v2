@@ -1,0 +1,154 @@
+---
+title: FieldSelect
+package: '@ds/fields'
+description: Поле выбора из списка с выпадающим Droplist, режимами single/multiple, чипами, поиском и кнопками очистки/копирования.
+order: 35
+---
+
+import { Select } from '../demos/examples/Select'
+import SelectSrc from '../demos/examples/Select.tsx?raw'
+import { SelectMultiple } from '../demos/examples/SelectMultiple'
+import SelectMultipleSrc from '../demos/examples/SelectMultiple.tsx?raw'
+import { SelectSearchable } from '../demos/examples/SelectSearchable'
+import SelectSearchableSrc from '../demos/examples/SelectSearchable.tsx?raw'
+import { SelectReadonly } from '../demos/examples/SelectReadonly'
+import SelectReadonlySrc from '../demos/examples/SelectReadonly.tsx?raw'
+import { SelectDisabledChips } from '../demos/examples/SelectDisabledChips'
+import SelectDisabledChipsSrc from '../demos/examples/SelectDisabledChips.tsx?raw'
+import { SelectAutocomplete } from '../demos/examples/SelectAutocomplete'
+import SelectAutocompleteSrc from '../demos/examples/SelectAutocomplete.tsx?raw'
+import { SelectCreatable } from '../demos/examples/SelectCreatable'
+import SelectCreatableSrc from '../demos/examples/SelectCreatable.tsx?raw'
+import { SelectPinned } from '../demos/examples/SelectPinned'
+import SelectPinnedSrc from '../demos/examples/SelectPinned.tsx?raw'
+import { SelectRichContent } from '../demos/examples/SelectRichContent'
+import SelectRichContentSrc from '../demos/examples/SelectRichContent.tsx?raw'
+import { SelectItemWrapRender } from '../demos/examples/SelectItemWrapRender'
+import SelectItemWrapRenderSrc from '../demos/examples/SelectItemWrapRender.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldSelect
+
+Поле выбора из списка. Базируется на `FieldDecorator` и `Droplist` из `@ds/list`. Поддерживает выбор одного значения или нескольких (с чипами), поиск по списку, кнопки очистки и копирования (последняя — только в `readonly`).
+
+## Когда использовать
+
+- Выбор одного значения из фиксированного списка (размер инстанса, образ ОС, валюта).
+- Выбор нескольких значений с отображением чипов (`selection='multiple'`).
+- Когда список длинный и нужен поиск по подстроке или нечёткий поиск (`searchable`, `enableFuzzySearch`).
+- Для свободного ввода с подсказками (suggest, recent) используйте `@ds/search`, не FieldSelect.
+
+## Анатомия
+
+### Size (default `m`)
+
+Высота поля задаётся размером: `s` — 40px, `m` — 52px, `l` — 66px.
+
+| Значение | Когда |
+|----------|-------|
+| `s` | Плотные таблицы, inline-редактирование (высота 40px) |
+| `m` | Стандартные формы, по умолчанию (высота 52px) |
+| `l` | Лендинги, primary-формы (высота 66px) |
+
+### ValidationState (default `default`)
+
+Управляет тонировкой фона и иконкой подсказки. Проп `error` форсит `error`.
+
+| Значение | Когда |
+|----------|-------|
+| `default` | Нет валидации |
+| `error` | Поле не прошло валидацию (красная тонировка) |
+| `warning` | Предупреждение, выбор допустим (жёлтая тонировка) |
+| `success` | Подтверждение успешного выбора (зелёная тонировка) |
+| `valid` | Нейтральный baseline после успешной валидации — без иконки и тонировки (отличается от `success`: не зелёный) |
+
+### Selection (default `single`)
+
+| Значение | Когда |
+|----------|-------|
+| `single` | Одно значение, поле показывает его лейбл (по умолчанию) |
+| `multiple` | Несколько значений; при `chips=true` — чипы внутри поля, иначе строка через `, ` |
+
+### Поведение
+
+| Проп | Поведение |
+|------|-----------|
+| `searchable` | Включает ввод в поле; список фильтруется по лейблу (default `true`) |
+| `enableFuzzySearch` | Нечёткий поиск — символы запроса в любом порядке (default `true`); `false` — substring |
+| `search` | Управляемая строка поиска (`{ value, defaultValue, onChange }`) — для серверного поиска вместе с `autocomplete` |
+| `autocomplete` | Не фильтровать список на клиенте: фильтрацию обеспечивает потребитель (серверный поиск), default `false` |
+| `addOptionByEnter` | По `Enter` зафиксировать введённый текст как новый выбор (создание опции «на лету»), default `false` |
+| `resetSearchOnOptionSelection` | Сбрасывать строку поиска к выбранному значению после выбора (default `true`); `false` — при асинхронной подгрузке |
+| `showClearButton` | Кнопка очистки (✕) при выбранном значении и активном поле (default `true`) |
+| `showCopyButton` | Кнопка копирования значения — только в `readonly` при непустом значении (default `true`) |
+| `removeByBackspace` | В `multiple` + `chips` удаляет последний чип по `Backspace` при пустом вводе (default `true`) |
+| `disabled`-айтем | Чип отключённого значения не получает кнопку удаления и не сбрасывается при очистке |
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldSelect } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='Выбор одного значения' description='Controlled FieldSelect с single selection, label и placeholder.' code={SelectSrc}>
+  <Select client:visible />
+</Example>
+
+<Example title='Множественный выбор с чипами' description='selection=multiple + chips: выбранные значения отображаются как удаляемые чипы.' code={SelectMultipleSrc}>
+  <SelectMultiple client:visible />
+</Example>
+
+<Example title='Поиск по списку' description='searchable + enableFuzzySearch: ввод фильтрует список по лейблу.' code={SelectSearchableSrc}>
+  <SelectSearchable client:visible />
+</Example>
+
+<Example title='Readonly с копированием' description='Readonly FieldSelect показывает кнопку копирования лейбла в буфер.' code={SelectReadonlySrc}>
+  <SelectReadonly client:visible />
+</Example>
+
+<Example title='Защита отключённых чипов' description='Айтем с disabled остаётся чипом без кнопки удаления и не сбрасывается кнопкой очистки.' code={SelectDisabledChipsSrc}>
+  <SelectDisabledChips client:visible />
+</Example>
+
+<Example title='Серверный поиск (autocomplete)' description='autocomplete + search: фильтрацию выполняет потребитель, строка поиска управляется снаружи.' code={SelectAutocompleteSrc}>
+  <SelectAutocomplete client:visible />
+</Example>
+
+<Example title='Создание значения по Enter' description='addOptionByEnter: введённый текст по Enter становится новым выбранным значением.' code={SelectCreatableSrc}>
+  <SelectCreatable client:visible />
+</Example>
+
+<Example title='Закреплённые опции' description='pinTop/pinBottom закрепляют опции над и под основным списком — они не участвуют в поиске и всегда видны.' code={SelectPinnedSrc}>
+  <SelectPinned client:visible />
+</Example>
+
+<Example title='Опции с описанием' description='Айтемы списка поддерживают caption и description (формат @ds/list ItemContent); поиск матчит по всем трём полям.' code={SelectRichContentSrc}>
+  <SelectRichContent client:visible />
+</Example>
+
+<Example title='Обёртка айтема (itemWrapRender)' description='itemWrapRender оборачивает отрендеренный айтем в произвольный узел — например, навигационную ссылку.' code={SelectItemWrapRenderSrc}>
+  <SelectItemWrapRender client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldSelect} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldselect--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-select')} />
