@@ -1,7 +1,7 @@
 import { BottomSheet } from '@ds/bottom-sheet';
+import { DroplistProps, ItemId, List, OnChangeHandler } from '@ds/list';
 import { usePortalContext } from '@ds/portal-context';
 import { useValueControl } from '@ds/utils';
-import { DroplistProps, ItemId, List, OnChangeHandler } from '@sbercloud/snack-v2-list';
 import { cloneElement, isValidElement, MouseEvent, ReactNode, useMemo, useRef } from 'react';
 
 import styles from './styles.module.scss';

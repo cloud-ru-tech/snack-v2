@@ -289,7 +289,7 @@ export function WithDataView() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `content` | `ReactNode \| ItemContentProps` | — | Основной контент айтема |
+| `content` | `ItemContent` | — | Основной контент айтема |
 | `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Флаг неактивности элемента |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
@@ -337,7 +337,7 @@ export function WithDataView() {
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — | CSS-класс |
 | `defaultValue` | `TState` | — | Начальное состояние фильтров |
-| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` | — | Массив чипов |
+| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
 | `initialOpen` | `boolean \| undefined` | — | Начальное состояние filter-row (mobile) |
 | `onChange` | `((filters: TState) => void) \| undefined` | — | Колбек изменения состояния фильтров |
 | `onOpenChange` | `((isOpen: boolean) => void) \| undefined` | — |  |
@@ -355,15 +355,6 @@ export function WithDataView() {
 | `data-test-id` | `string \| undefined` | — |  |
 | `layoutType` | `"desktop"` \| `"mobile"` | — | Режим отображения: desktop (по умолчанию) или mobile |
 | `moreActions` | `Action` | — | Элементы выпадающего списка кнопки с действиями |
-
-**PersistedFilterState**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `filter` | `T` | — |  |
-| `ordering` | `FieldSort[] \| undefined` | — |  |
-| `pagination` | `PaginationParams \| undefined` | — |  |
-| `search` | `string \| undefined` | — |  |
 
 **SearchProps**
 
@@ -385,18 +376,6 @@ export function WithDataView() {
 | `onChange` | `((value: DataViewValue) => void) \| undefined` | — |  |
 | `show` | `boolean \| undefined` | — | Показать переключатель вида. Если `dataView` не передан — равносильно `show: false` |
 | `value` | `"compact"` \| `"list"` | — |  |
-
-**ToolbarPersistConfig**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `filterQueryKey` | `string \| undefined` | — | Ключ для queryParams |
-| `id` | `string \| undefined` | — | Уникальный id для текущего инстанса компонента |
-| `onLoad` | `((state: PersistedFilterState<T>) => void) \| undefined` | — | Колбэк при первом рендере для получения сохраненных данных и установки их в стейт |
-| `parser` | `((value: string) => PersistedFilterState<T>) \| undefined` | — | Custom-парсер queryParams для преобразования в данные состояния |
-| `serializer` | `((value: PersistedFilterState<T>) => string) \| undefined` | — | Custom-сериализация состояния перед сохранением в queryParams |
-| `state` | `PersistedFilterState` \| `T` | — | Состояние для сохранения |
-| `validateData` | `((value: unknown) => value is PersistedFilterState<T>) \| undefined` | — | Валидатор сохраненных |
 
 ## Смотри также
 

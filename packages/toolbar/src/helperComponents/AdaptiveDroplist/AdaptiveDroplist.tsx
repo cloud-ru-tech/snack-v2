@@ -1,5 +1,5 @@
+import { Droplist, DroplistProps } from '@ds/list';
 import { extractSupportProps, LAYOUT_TYPE, WithSupportProps } from '@ds/utils';
-import { Droplist, DroplistProps } from '@sbercloud/snack-v2-list';
 import { ReactNode } from 'react';
 
 import { LayoutType } from '../../types';

@@ -36,7 +36,7 @@
     "@ds/tooltip": "workspace:*",
     "@ds/utils": "workspace:*",
     "@ds/bottom-sheet": "workspace:*",
-    "@sbercloud/snack-v2-list": "0.0.1-preview-004d5c66.0",
+    "@ds/list": "workspace:*",
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },

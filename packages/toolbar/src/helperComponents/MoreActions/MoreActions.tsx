@@ -1,8 +1,8 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons';
+import { BaseItem } from '@ds/list';
 import { Tag } from '@ds/tag';
 import { extractSupportProps, LAYOUT_TYPE, WithSupportProps } from '@ds/utils';
-import { BaseItem } from '@sbercloud/snack-v2-list';
 import { MouseEvent, ReactNode, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../testIds';
