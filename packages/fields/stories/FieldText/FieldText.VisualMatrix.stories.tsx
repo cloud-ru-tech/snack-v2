@@ -228,8 +228,8 @@ export const VisualMatrix: Story = {
             ],
           },
           {
-            // Полная композиция всех слотов — набор и порядок по Figma-мастеру
-            // (node 5128:157258, design context): elementBefore (buttonField: action + chevron
+            // Полная композиция всех слотов — набор и порядок по Figma-мастеру:
+            // elementBefore (buttonField: action + chevron
             // через withDropdownList) | iconBefore | prefix | value + clear | postfix | iconAfter |
             // elementAfter (action + chevron). Тексты prefix/postfix/value — иллюстративные.
             variantLabel: 'all slots (Figma master)',

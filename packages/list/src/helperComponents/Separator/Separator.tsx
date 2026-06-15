@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 export type SeparatorProps = {
   label?: string;
-  /** Слот иконки слева от label (Figma listItemGroup 2945:7298). */
+  /** Слот иконки слева от label. */
   beforeContent?: ReactNode;
   truncate?: {
     variant?: TruncateStringProps['variant'];

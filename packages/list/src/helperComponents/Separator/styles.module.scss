@@ -23,7 +23,7 @@ $level: var(--level, 0);
 
 // Composites dropList item.<size>.container-separator(-subheader) в токен-наборе отсутствуют —
 // приближаем через list anatomy.size.<size>.listItem.padding-*.
-// Figma listItemGroup (2945:7298): root flex, align-items: flex-start, gap=listItem.gap,
+// Figma listItemGroup: root flex, align-items: flex-start, gap=listItem.gap,
 // padding-top=subtitle.paddingTop, padding-bottom=listItem.paddingVertical,
 // padding-horizontal=listItem.paddingHorizontal. Иконка и label — на одной линии по центру (textWrapper).
 

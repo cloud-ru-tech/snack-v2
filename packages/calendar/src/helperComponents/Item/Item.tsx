@@ -16,7 +16,7 @@ export type CalendarItemProps = RequiredCellProps &
   OptionalCellProps & {
     /**
      * Сегмент для `data-test-id` (`getTestId(segment)`). По умолчанию `item`;
-     * подписи дней недели в `WeekRow` используют `header-item` (как в migration E2E).
+     * подписи дней недели в `WeekRow` используют `header-item`.
      */
     testIdSegment?: string;
     /** Размер */
@@ -137,7 +137,7 @@ export function Item({
       >
         {/* Ячейки соседнего месяца (`another`), попавшие в выбранный период, тоже получают
             activated-заливку — иначе полоса диапазона обрывается на границе месяца. Одиночный
-            выбор (rangePosition='out') у соседнего месяца остаётся без заливки, как прежде. */}
+            выбор (rangePosition='out') у соседнего месяца остаётся без заливки. */}
         <div
           className={styles.stateLayer}
           data-state={

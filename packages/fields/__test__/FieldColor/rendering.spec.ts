@@ -46,7 +46,7 @@ test.describe('FieldColor — rendering', () => {
     await gotoStory(buildStoryOptions());
     await expect(getByTestId(TEST_IDS.fieldColorChevron)).toBeVisible();
 
-    // Figma readonly-варианты fieldSelectColor (5597:24018 и др.) показывают chevron-down
+    // Figma readonly-варианты fieldSelectColor показывают chevron-down
     // рядом с copy — в readonly он остаётся видимым.
     await gotoStory(buildStoryOptions({ readonly: true }));
     await expect(getByTestId(TEST_IDS.fieldColorChevron)).toBeVisible();

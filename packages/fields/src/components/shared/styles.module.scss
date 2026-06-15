@@ -84,13 +84,13 @@ $sizes: 's', 'm', 'l';
 
   opacity: field.$sn-field-effect-focusedFrame-opacity;
   // Рамка-свечение рисуется снаружи поля (паритет с Figma focusedFrame). outline-offset: 0 —
-  // обводка ложится по внешнему краю, а не затягивается внутрь (был отрицательный сдвиг).
+  // обводка ложится по внешнему краю, а не затягивается внутрь.
   outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
   outline-offset: 0;
 }
 
 // Цвет рамки-свечения тонируется accent'ом валидации (паритет с Figma: focusedFrame
-// референсит red/yellow/green/primary accent — узлы 5927:84267/84461/84581/84701).
+// референсит red/yellow/green/primary accent).
 .fieldWrapper[data-validation-state='error'] .focusLayer {
   outline-color: base.$sn-theme-color-red-accent;
 }

@@ -97,7 +97,7 @@ export type NextListItem = BaseItemWithoutNonGroup &
 type CommonGroupItem = {
   /** Заголовок группы */
   label?: string;
-  /** Слот иконки слева от label (Figma listItemGroup 2945:7298). */
+  /** Слот иконки слева от label. */
   beforeContent?: ReactNode;
   /** Настройки усечения длинного заголовка группы */
   truncate?: {

@@ -1,8 +1,8 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
 
-// Поиск в списке/дроплисте — это field размера `s` (Figma list-матрица 27832:59174:
-// search во всех колонках s/m/l зафиксирован на fieldContainer.size.s). SearchPrivate даёт
+// Поиск в списке/дроплисте — это field размера `s` (в Figma list-матрице search
+// во всех колонках s/m/l зафиксирован на fieldContainer.size.s). SearchPrivate даёт
 // только inputLine (gap/padding контента); сам field-бокс (min-height + padding) задаёт
 // потребитель — здесь, по аналогии с `.fieldContainer` в @ds/search.
 .searchItem {

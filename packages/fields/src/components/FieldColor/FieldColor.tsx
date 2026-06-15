@@ -295,7 +295,7 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
             </div>
           </div>
           {/* Chevron присутствует во всех состояниях, включая readonly — паритет с Figma
-              (readonly-варианты 5927:84325 / 84351 показывают chevron-down рядом с copy). */}
+              readonly-варианты тоже показывают chevron-down рядом с copy). */}
           <div className={fieldStyles.iconSlot}>
             <span className={styles.chevron} data-test-id={TEST_IDS.fieldColorChevron} aria-hidden>
               {showOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}

@@ -33,7 +33,7 @@ const withDisabled: Item[] = [
   { id: 'c', content: { option: 'Settings' } },
 ];
 
-// Figma listItem demo (11472:64763). Статические состояния: default, checked, disabled
+// Figma listItem demo. Статические состояния: default, checked, disabled
 // (hover/pressed зависят от псевдоклассов — снимаются в visual.spec.ts).
 const singleItems: Item[] = [
   { id: 'a', content: { option: 'Default', description: 'Description text' } },
@@ -157,7 +157,7 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='Selection mode × State (static — Figma 11472:64763)'
+        sectionTitle='Selection mode × State (static)'
         firstColumnHeader='Selection'
         columnHeaders={['default', 'checked', 'disabled']}
         rows={[
@@ -311,7 +311,7 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='Separator (Figma listItemGroup 2945:7297) × size'
+        sectionTitle='Separator (listItemGroup) × size'
         firstColumnHeader='Size'
         columnHeaders={['subtitle', 'subtitleTertiary', 'subtitle + divider', 'divider only', 'long label (truncate)']}
         rows={keySizes.map(size => ({
@@ -391,7 +391,7 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='Chrome — header / footer / dividers (Figma dropdownContainer 27832:59174)'
+        sectionTitle='Chrome — header / footer / dividers'
         firstColumnHeader='Chrome'
         columnHeaders={['header only', 'header + divider', 'footer only', 'footer + divider', 'all + dividers']}
         rows={[

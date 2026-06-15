@@ -51,8 +51,7 @@ $sizes: 's', 'm', 'l';
   }
 
   // Рамка-свечение фокуса — паритет с @ds/fields (shared `.focusLayer`): solid accent-outline
-  // на псевдоэлементе под `focusedFrame-opacity` даёт мягкое свечение, а не резкую обводку
-  // (раньше был outline цветом `decorTransparent` прямо на контейнере).
+  // на псевдоэлементе под `focusedFrame-opacity` даёт мягкое свечение, а не резкую обводку.
   &:focus-within::after,
   &[data-focused]::after {
     pointer-events: none;

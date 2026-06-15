@@ -9,7 +9,7 @@
 $sizes: 's', 'm', 'l';
 
 // Слот чекбокса использует ту же модель центрирования, что и beforeContent icon
-// (Figma listItem 27862:48137): строка выровнена по flex-start, контрол центрируется
+// (Figma listItem): строка выровнена по flex-start, контрол центрируется
 // внутри centeredWrapper по высоте первой строки текста. Размер контейнера/паддинги —
 // per-size в `.droplistItem[data-size]` ниже.
 .checkbox {
@@ -51,7 +51,7 @@ $sizes: 's', 'm', 'l';
   fill: currentcolor;
 }
 
-// Figma listItem marker (2940:5769):
+// Figma listItem marker:
 // markerWrapper: padding-horizontal=0, padding-vertical=8, ширина = marker.max-width (4px),
 // ::before — покрашенная полоса, заполняющая content-box wrapper'а (с учётом vertical padding),
 // border-radius = 0 / 2 / 2 / 0 (top-left / top-right / bottom-right / bottom-left).
@@ -86,9 +86,6 @@ $level: var(--level, 0);
       // nestingLevel.levellWrapper.padding-left=8). Для m/l — корректный `levelWrapper` (12px).
       // Перейдём на единое имя после фикса в @sbercloud/figma-variables.
       $levelWrapperKey: 'levelWrapper';
-      // @if $size == 's' {
-      //   $levelWrapperKey: 'levellWrapper';
-      // }
       $nestingLevelOffset: base.simple-var(
         list.$list,
         'anatomy',
@@ -118,7 +115,7 @@ $level: var(--level, 0);
 
       &[data-level-more-one] {
         // Шаг отступа на уровень = $nestingLevelOffset (nestingLevel.levelWrapper.padding-left,
-        // 8/12/12 для s/m/l). Сверено по Figma design-context узла nestingLevel2 (32761:65080):
+        // 8/12/12 для s/m/l). Сверено по Figma design-context узла nestingLevel2:
         // вложенный `level`-враппер сдвигает контент через padding-left, а НЕ через
         // `level.padding-right` (12/16/20) — последний к горизонтальному отступу контента не
         // применяется. Поэтому paddingRight-гипотеза отброшена, левый offset — корректный токен.
@@ -145,7 +142,7 @@ $level: var(--level, 0);
 
       // afterContent — слот произвольного контента (иконка, counter, tag). Иконка центрируется
       // по icon-сетке, но не-иконочный контент (counter/badge) не зажимается в квадрат: min-* вместо
-      // фиксированного width/height (легаси рендерил слот «как есть»).
+      // фиксированного width/height.
       .afterContent {
         min-width: base.simple-var(icons.$iconSizeMap, $size);
         min-height: base.simple-var(icons.$iconSizeMap, $size);
@@ -199,9 +196,6 @@ $level: var(--level, 0);
 
   &[data-has-checked],
   &[data-checked] {
-    // Фон checked-single теперь отрисовывается .stateLayer[data-state='activatedFilled']
-    // (переключение data-state делается в BaseItem.tsx).
-
     .markerContainer::before {
       background-color: base.$sn-theme-color-primary-accent;
     }

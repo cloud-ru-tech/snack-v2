@@ -300,7 +300,7 @@ export const ListPrivate = forwardRef(
     );
 
     const onScrollInitialized = useCallback(() => {
-      // OverlayScrollbars готов — его ref теперь указывает на viewport. Поднимаем флаг,
+      // OverlayScrollbars инициализирован — ref указывает на viewport. Поднимаем флаг,
       // чтобы виртуализатор перечитал scroll-элемент и сделал первый корректный замер.
       setScrollElementReady(true);
 
