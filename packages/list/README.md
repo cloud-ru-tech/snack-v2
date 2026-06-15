@@ -937,7 +937,7 @@ export function DroplistWithHeader() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `beforeContent` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Слот иконки слева от label (Figma listItemGroup 2945:7298). |
+| `beforeContent` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Слот иконки слева от label. |
 | `divider` | `boolean \| undefined` | — | Показать разделитель над группой |
 | `groupVariant` | `"subtitle"` \| `"subtitleTertiary"` | — | Визуальный стиль заголовка группы |
 | `hidden` | `boolean \| undefined` | — | Скрыть группу из списка |

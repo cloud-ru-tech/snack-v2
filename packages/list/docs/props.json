@@ -183,6 +183,11 @@
         "required": false,
         "description": "Колбек обработки клика"
       },
+      "onExpandIconClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Клик по явной кнопке-триггеру `groupIndicator` (шеврон справа), открывающей/закрывающей\nвложенный список. Если передан — шеврон рендерится как отдельная интерактивная кнопка\nсо своим state-layer'ом, а клик по телу строки больше не переключает раскрытие."
+      },
       "onFocus": {
         "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
         "required": false,
@@ -705,7 +710,7 @@
           "beforeContent": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+            "description": "Слот иконки слева от label."
           },
           "divider": {
             "type": "boolean | undefined",
@@ -1106,7 +1111,7 @@
       "beforeContent": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+        "description": "Слот иконки слева от label."
       },
       "divider": {
         "type": "boolean",
@@ -2025,7 +2030,7 @@
       "beforeContent": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+        "description": "Слот иконки слева от label."
       },
       "divider": {
         "type": "boolean",

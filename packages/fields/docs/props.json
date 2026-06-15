@@ -2708,7 +2708,7 @@
           "beforeContent": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Слот иконки слева от label (Figma listItemGroup 2945:7298)."
+            "description": "Слот иконки слева от label."
           },
           "divider": {
             "type": "boolean | undefined",

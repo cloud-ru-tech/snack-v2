@@ -813,7 +813,7 @@
       "testIdSegment": {
         "type": "string",
         "required": false,
-        "description": "Сегмент для `data-test-id` (`getTestId(segment)`). По умолчанию `item`;\nподписи дней недели в `WeekRow` используют `header-item` (как в migration E2E)."
+        "description": "Сегмент для `data-test-id` (`getTestId(segment)`). По умолчанию `item`;\nподписи дней недели в `WeekRow` используют `header-item`."
       },
       "visible": {
         "type": "boolean",
