@@ -25,6 +25,10 @@ const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
   fileName: 'HR-Portal-Renovate',
 } as const;
+const LIST_STATES = {
+  fileKey: 'BnDZww7tvszWBemlYQS1Pg',
+  fileName: 'Sostoyaniya-dlya-list--tab--toggles--FF-8135-',
+} as const;
 
 /**
  * Карта Figma-узлов по имени пакета (`packages/<pkg>`).
@@ -110,10 +114,29 @@ export const FIGMA_NODES = {
   drawer: { ...SNACK, nodeId: '2438-94227' }, // drawer → drawer
   dropdown: { ...SNACK, nodeId: '2254-442' }, // dropdown → dropdown
   dropzone: { ...SNACK, nodeId: '4971-205' }, // dropzone → dropzone
+  fields: {
+    _: { ...SNACK, nodeId: '3059-4284' }, // fields → fields (umbrella)
+    'field-text': { ...SNACK, nodeId: '3119-6096' }, // fields/field-text → fieldText
+    'field-textarea': { ...SNACK, nodeId: '3299-13122' }, // fields/field-textarea → fieldTextArea
+    'field-secure': { ...SNACK, nodeId: '3434-192001' }, // fields/field-secure → fieldSecure
+    'field-stepper': { ...SNACK, nodeId: '3438-222637' }, // fields/field-stepper → fieldStepper
+    'field-slider': { ...SNACK, nodeId: '3486-19477' }, // fields/field-slider → fieldSlider
+    'field-select': { ...SNACK, nodeId: '5824-192430' }, // fields/field-select → fieldSelect
+    'field-date': { ...SNACK, nodeId: '3755-87731' }, // fields/field-date → fieldDate
+    'field-decorator': { ...SNACK, nodeId: '28132-1626178' }, // fields/field-decorator → field - Matrix
+    'field-color': { ...SNACK, nodeId: '5597-23777' }, // fields/field-color → fieldSelectColor
+    'field-time': { ...SNACK, nodeId: '5597-32852' }, // fields/field-time → fieldTime
+  },
   'hot-spot': { ...SNACK, nodeId: '8965-552893' }, // hot-spot → hotSpot
   'icon-predefined': { ...SNACK, nodeId: '5237-157234' }, // icon-predefined → iconPredefined
   'info-block': { ...SNACK, nodeId: '5828-3470' }, // info-block → infoBlock
   link: { ...SNACK, nodeId: '6913-5372' }, // link → link
+  list: {
+    _: { ...LIST_STATES, nodeId: '2663-475758' }, // list → list
+    item: { ...LIST_STATES, nodeId: '2940-5717' }, // list/item → ListItem
+    'item-group': { ...LIST_STATES, nodeId: '2945-7297' }, // list/item-group → ListItemGroup
+    'item-search': { ...LIST_STATES, nodeId: '13022-546' }, // list/item-search → ListItemSearch
+  },
   loader: { ...SNACK, nodeId: '2918-21302' }, // loader → loader
   modal: { ...SNACK, nodeId: '2291-117' }, // modal → modal
   pagination: { ...SNACK, nodeId: '4896-67' }, // pagination → pagination

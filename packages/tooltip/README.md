@@ -78,7 +78,7 @@ export function ClickTrigger() {
 |------|------|---------|-------------|
 | `children` | `ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 | `className` | `string` | — |  |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
@@ -143,7 +143,7 @@ export function Question() {
 |------|------|---------|-------------|
 | `children` | `ChildrenFunction` | — | Триггер поповера (подробнее читайте ниже) |
 | `className` | `string` | — |  |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при пекреходе по истории браузера |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |

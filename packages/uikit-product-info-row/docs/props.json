@@ -248,7 +248,7 @@
           "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",
@@ -740,7 +740,7 @@
           "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",
@@ -1163,7 +1163,7 @@
           "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",
@@ -1623,7 +1623,7 @@
           "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",
@@ -1974,7 +1974,7 @@
           "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",
@@ -2361,7 +2361,7 @@
           "closeOnPopstate": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Закрывать ли поповер при пекреходе по истории браузера"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",

@@ -53,13 +53,13 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: [
-        // Legacy ESM with extensionless imports (breadcrumbs/calendar/tree → @snack-uikit/list).
-        /^@snack-uikit\//,
         // Toolbar persist → @cloud-ru/ft-request-payload-transform.
         /^@cloud-ru\/ft-/,
-        // Toolbar → @sbercloud/snack-v2-* (chips, list, bottom-sheet, …).
+        // Toolbar → @sbercloud/snack-v2-* (chips, bottom-sheet, …).
         /^@sbercloud\/snack-v2-/,
         'uncontrollable',
+        // CJS (UMD main) with named exports (cancelable) — tree hooks; bundle for SSR interop.
+        'cancelable-promise',
       ],
     },
     resolve: {
