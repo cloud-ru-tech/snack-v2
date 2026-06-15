@@ -6,7 +6,8 @@ import { assertVisualMatrixSnapshot, screenshotRegion } from '#playwright-toolin
 import { buildStoryOptions, TEST_IDS, WIDGET_STORIES } from './helpers';
 
 test.describe('Widget — visual regression', () => {
-  test.beforeEach((_, testInfo) => {
+  // eslint-disable-next-line no-empty-pattern
+  test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== VISUAL_BASELINE_PROJECT,
       `Visual baselines are ${VISUAL_BASELINE_PROJECT}-only`,
