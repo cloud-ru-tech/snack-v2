@@ -240,6 +240,9 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const handleOpenChange = useCallback(
     (next: boolean) => {
+      // Дроплист открывается кликом по полю (Droplist дёргает onOpenChange(true)).
+      // readonly/disabled поле открывать нельзя — блокируем открытие, закрытие разрешаем.
+      if (next && (disabled || readOnly)) return;
       if (openProp === undefined) {
         setOpenLocal(next);
       }
@@ -254,7 +257,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         }
       }
     },
-    [openProp, onOpenChange, resetSearchOnOptionSelection, setInputValue, selectedLabel],
+    [openProp, onOpenChange, disabled, readOnly, resetSearchOnOptionSelection, setInputValue, selectedLabel],
   );
 
   const handleSingleChange = (next: ItemId | undefined) => {

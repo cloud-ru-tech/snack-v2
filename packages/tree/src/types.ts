@@ -131,7 +131,7 @@ export type TreeBaseProps = TreeView | TreeMultiSelect | TreeSingleSelect;
  */
 export type ExtendedTreeNodeProps = TreeNodeProps & {
   /** Возвращает строковый ключ узла для сравнения/поиска, когда `title` — ReactNode. */
-  getTitle?(): void;
+  getTitle?(): string;
 };
 
 export type PreloadNodeHandler<TTreeNode extends TreeNodeProps> = (

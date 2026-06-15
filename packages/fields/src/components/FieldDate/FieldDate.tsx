@@ -144,10 +144,13 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
 
   const handleOpenChange = useCallback(
     (next: boolean) => {
+      // Календарь открывается кликом по полю (CalendarDropdown дёргает onOpenChange(true)).
+      // readonly/disabled поле открывать нельзя — блокируем открытие, закрытие разрешаем.
+      if (next && (disabled || readOnly)) return;
       if (openProp === undefined) setOpenLocal(next);
       onOpenChange?.(next);
     },
-    [openProp, onOpenChange],
+    [openProp, onOpenChange, disabled, readOnly],
   );
 
   const commitSingle = useCallback(
@@ -229,10 +232,9 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
 
   const handleCalendarSingleChange = useCallback(
     (next: DateValue) => {
-      if (range) return;
+      if (range || disabled || readOnly) return;
       commitSingle(next);
-      // Sync-эффект пропускает обновление сфокусированного input'а — обновляем строку сами
-      // (легаси handleSelectDate писал в input.value напрямую перед фокусом).
+      // Sync-эффект пропускает обновление сфокусированного input'а — обновляем строку сами.
       const nextStr = next ? dateToMaskString(next, maskMode, showSeconds) : '';
       setSingleInputValue(nextStr);
       // Императивно кладём строку в DOM ДО focus(): клик по дате блюрит input → handleBlur движка
@@ -249,12 +251,12 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
       fromInputRef.current?.focus();
       handleOpenChange(false);
     },
-    [range, commitSingle, maskMode, showSeconds, handleOpenChange],
+    [range, disabled, readOnly, commitSingle, maskMode, showSeconds, handleOpenChange],
   );
 
   const handleCalendarRangeChange = useCallback(
     (next: DateRangeValue) => {
-      if (!range) return;
+      if (!range || disabled || readOnly) return;
       commitRange(next);
       // Закрываем только когда выбраны оба конца периода (календарь эмитит полный Range).
       if (next[0] && next[1]) {
@@ -266,7 +268,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
         handleOpenChange(false);
       }
     },
-    [range, commitRange, maskMode, showSeconds, handleOpenChange],
+    [range, disabled, readOnly, commitRange, maskMode, showSeconds, handleOpenChange],
   );
 
   // Общие input-обработчики range-инпутов (`inputCommon` ниже). Открытие календаря — за
