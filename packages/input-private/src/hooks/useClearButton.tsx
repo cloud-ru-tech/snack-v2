@@ -14,6 +14,8 @@ type UseClearButtonProps = {
   onDown?: MouseEventHandler<HTMLButtonElement>;
   size: Size;
   disabled?: boolean;
+  /** data-test-id кнопки. Переопределяется полем, когда у него свой публичный id слота. */
+  dataTestId?: string;
 };
 
 /**
@@ -27,6 +29,7 @@ export function useClearButton({
   onDown,
   size,
   disabled,
+  dataTestId = 'button-clear-value',
 }: UseClearButtonProps): ButtonProps {
   const clearEventHandler = useEventHandler(onClear);
   const onDownEventHandler = useEventHandler(onDown ?? (() => {}));
@@ -58,11 +61,11 @@ export function useClearButton({
             tabIndex={tabIndex}
             onKeyDown={onKeyDown}
             onMouseDown={onDownEventHandler}
-            data-test-id='button-clear-value'
+            data-test-id={dataTestId}
           />
         );
       },
     }),
-    [clearButtonRef, clearEventHandler, disabled, onDownEventHandler, showClearButton, size],
+    [clearButtonRef, clearEventHandler, dataTestId, disabled, onDownEventHandler, showClearButton, size],
   );
 }

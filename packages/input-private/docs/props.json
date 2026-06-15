@@ -239,7 +239,7 @@
       "setInputFocus": {
         "type": "(() => void)",
         "required": false,
-        "defaultValue": "() => inputRef.current?.focus()"
+        "defaultValue": "() => focusWithoutScroll(inputRef.current)"
       },
       "submitKeys": {
         "type": "string[]",
@@ -318,6 +318,12 @@
       "clearButtonRef": {
         "type": "RefObject<HTMLButtonElement | null>",
         "required": true
+      },
+      "dataTestId": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "button-clear-value",
+        "description": "data-test-id кнопки. Переопределяется полем, когда у него свой публичный id слота."
       },
       "disabled": {
         "type": "boolean",

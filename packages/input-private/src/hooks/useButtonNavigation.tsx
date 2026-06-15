@@ -1,4 +1,4 @@
-import { useEventHandler } from '@ds/utils';
+import { focusWithoutScroll, preventScrollOnArrowKeys, useEventHandler } from '@ds/utils';
 import { KeyboardEventHandler, MouseEventHandler, RefObject, useCallback, useState } from 'react';
 
 import { isCursorInTheBeginning, isCursorInTheEnd, runAfterRerender, selectAll } from '../helpers';
@@ -14,15 +14,19 @@ type UseButtonNavigationProps<T extends HTMLInputElement | HTMLTextAreaElement> 
   submitKeys: string[];
 };
 
+// Модульная константа вместо инлайн-дефолта `= []`: новый массив на каждый рендер
+// ломал мемоизацию зависимых useCallback/useState-инициализаторов (MR!101).
+const NO_BUTTONS: ButtonProps[] = [];
+
 /**
  * Позволяет использовать клавиатуру для навигации по элементам управления
  * @function hook
  */
 export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaElement>({
   inputRef,
-  setInputFocus = () => inputRef.current?.focus(),
+  setInputFocus = () => focusWithoutScroll(inputRef.current),
   postfixButtons,
-  prefixButtons = [],
+  prefixButtons = NO_BUTTONS,
   onButtonKeyDown = () => {},
   readonly,
   submitKeys,
@@ -86,7 +90,7 @@ export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaEle
       setPostfixButtonTabIndices(getInitialPostfixButtonTabIndices);
 
       if (prefixButtons[index]?.active) {
-        prefixButtons[index].ref.current?.focus();
+        focusWithoutScroll(prefixButtons[index].ref.current);
       }
     },
     [getInitialPostfixButtonTabIndices, prefixButtons],
@@ -99,7 +103,7 @@ export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaEle
       setPostfixButtonTabIndices(tabIndices => tabIndices.map((_, i) => (i === index ? 0 : -1)));
 
       if (postfixButtons[index]?.active) {
-        postfixButtons[index].ref.current?.focus();
+        focusWithoutScroll(postfixButtons[index].ref.current);
       }
     },
     [getInitialPrefixButtonTabIndices, postfixButtons],
@@ -112,6 +116,9 @@ export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaEle
       if (event.key === 'ArrowRight' && (readonly || isCursorInTheEnd(inputRef.current))) {
         const index = findVisiblePostfixButton(-1, event.key);
         if (index >= 0) {
+          // Каретка уже в конце — двигать нечего; уводим фокус на postfix-кнопку и гасим
+          // нативный скролл страницы (горизонтальный, если он есть).
+          event.preventDefault();
           focusPostfixButton(index);
         }
       }
@@ -119,6 +126,8 @@ export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaEle
       if (event.key === 'ArrowLeft' && (readonly || isCursorInTheBeginning(inputRef.current))) {
         const index = findVisiblePrefixButton(prefixButtons.length, event.key);
         if (index >= 0) {
+          // Каретка в начале — уводим фокус на prefix-кнопку, гасим нативный скролл.
+          event.preventDefault();
           focusPrefixButton(index);
         }
       }
@@ -138,10 +147,12 @@ export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaEle
   const handlePrefixButtonKeyDown = useCallback(
     (index: number): KeyboardEventHandler<HTMLButtonElement> =>
       event => {
+        // Кнопка (не текст) — стрелки только перемещают фокус; гасим их нативный скролл страницы.
+        preventScrollOnArrowKeys(event);
+
         if (event.key === 'ArrowRight') {
           const nextIndex = findVisiblePrefixButton(index, event.key);
           if (index === nextIndex) {
-            event.preventDefault();
             focusInput();
 
             if (readonly) {
@@ -180,10 +191,12 @@ export function useButtonNavigation<T extends HTMLInputElement | HTMLTextAreaEle
   const handlePostfixButtonKeyDown = useCallback(
     (index: number): KeyboardEventHandler<HTMLButtonElement> =>
       event => {
+        // Кнопка (не текст) — стрелки только перемещают фокус; гасим их нативный скролл страницы.
+        preventScrollOnArrowKeys(event);
+
         if (event.key === 'ArrowLeft') {
           const nextIndex = findVisiblePostfixButton(index, event.key);
           if (index === nextIndex) {
-            event.preventDefault();
             focusInput();
 
             if (readonly) {

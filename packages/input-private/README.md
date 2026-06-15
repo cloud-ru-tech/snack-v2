@@ -73,7 +73,7 @@ import { InputPrivate, useClearButton, useButtonNavigation } from '@ds/input-pri
 | `postfixButtons` | `ActiveItem` \| `ButtonProps` \| `InactiveItem` | — |  |
 | `prefixButtons` | `ActiveItem` \| `ButtonProps` \| `InactiveItem` | `[]` |  |
 | `readonly` | `boolean` | — |  |
-| `setInputFocus` | `(() => void)` | `() => inputRef.current?.focus()` |  |
+| `setInputFocus` | `(() => void)` | `() => focusWithoutScroll(inputRef.current)` |  |
 | `submitKeys` | `string[]` | — |  |
 
 #### Related types
@@ -108,6 +108,7 @@ import { InputPrivate, useClearButton, useButtonNavigation } from '@ds/input-pri
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `clearButtonRef` | `RefObject<HTMLButtonElement \| null>` | — |  |
+| `dataTestId` | `string` | `button-clear-value` | data-test-id кнопки. Переопределяется полем, когда у него свой публичный id слота. |
 | `disabled` | `boolean` | — |  |
 | `onClear` | `MouseEventHandler<HTMLButtonElement>` | — |  |
 | `onDown` | `MouseEventHandler<HTMLButtonElement>` | — |  |
