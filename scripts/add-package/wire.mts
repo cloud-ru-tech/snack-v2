@@ -32,22 +32,13 @@ function insertJsonReference(
   cfg.references = refs
 
   if (dryRun) {
-    console.log(`  [dry-run] ${label}: add reference "${newRef.path}"`)
+    console.info(`  [dry-run] ${label}: add reference "${newRef.path}"`)
     return
   }
   writeJson(filePath, cfg)
 }
 
 export function wireTsconfig(pkgName: string, dryRun = false): void {
-  const tsconfigPath = join(ROOT, 'tsconfig.json')
-  insertJsonReference(
-    tsconfigPath,
-    { path: `./packages/${pkgName}` },
-    './packages/',
-    dryRun,
-    'tsconfig.json',
-  )
-
   const esmSolution = join(ROOT, 'packages', 'tsconfig.esm.json')
   insertJsonReference(
     esmSolution,
@@ -79,7 +70,7 @@ export function wireStorybookDep(pkgName: string, dryRun = false): void {
   pkg.dependencies = Object.fromEntries(Object.entries(deps).sort())
 
   if (dryRun) {
-    console.log(`  [dry-run] apps/storybook/package.json: add "${dep}": "workspace:*"`)
+    console.info(`  [dry-run] apps/storybook/package.json: add "${dep}": "workspace:*"`)
     return
   }
   writeJson(pkgPath, pkg)

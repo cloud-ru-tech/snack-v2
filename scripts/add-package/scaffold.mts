@@ -1,6 +1,7 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from 'fs'
-import { join, dirname } from 'path'
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync,writeFileSync } from 'fs'
+import { dirname,join } from 'path'
 import { fileURLToPath } from 'url'
+
 import { render, type TokenMap } from './render.mts'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -8,7 +9,7 @@ const ROOT = join(__filename, '..', '..', '..')
 const TEMPLATES = join(__filename, '..', '..', 'templates', 'package')
 const TMP_DIR = join(ROOT, 'scripts', '.add-package-tmp')
 
-export interface ScaffoldOptions {
+export type ScaffoldOptions = {
   pkgName: string
   componentName: string
   componentKebab: string
@@ -19,7 +20,7 @@ export interface ScaffoldOptions {
   dryRun?: boolean
 }
 
-export interface ScaffoldResult {
+export type ScaffoldResult = {
   packageDir: string
   e2eSpecPath: string | null
 }
@@ -27,7 +28,7 @@ export interface ScaffoldResult {
 function writeRendered(src: string, dest: string, vars: TokenMap, dryRun: boolean): void {
   const content = render(readFileSync(src, 'utf8'), vars)
   if (dryRun) {
-    console.log(`  [dry-run] write ${dest.replace(ROOT + '/', '')}`)
+    console.info(`  [dry-run] write ${dest.replace(ROOT + '/', '')}`)
     return
   }
   mkdirSync(dirname(dest), { recursive: true })
@@ -36,7 +37,7 @@ function writeRendered(src: string, dest: string, vars: TokenMap, dryRun: boolea
 
 function copyVerbatim(src: string, dest: string, dryRun: boolean): void {
   if (dryRun) {
-    console.log(`  [dry-run] copy  ${dest.replace(ROOT + '/', '')}`)
+    console.info(`  [dry-run] copy  ${dest.replace(ROOT + '/', '')}`)
     return
   }
   mkdirSync(dirname(dest), { recursive: true })
@@ -82,7 +83,6 @@ export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
   try {
     // package metadata + tsconfigs
     writeRendered(tpl('package.json'), out('package.json'), vars, opts.dryRun ?? false)
-    copyVerbatim(tpl('tsconfig.json'), out('tsconfig.json'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.esm.json'), out('tsconfig.esm.json'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.cjs.json'), out('tsconfig.cjs.json'), opts.dryRun ?? false)
 
