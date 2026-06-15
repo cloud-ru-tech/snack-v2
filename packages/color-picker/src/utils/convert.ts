@@ -202,6 +202,27 @@ export function colorToHex(value: Color): string {
   return value;
 }
 
+/**
+ * Собирает `RawColor` из авторитетного `hsva` без round-trip через hex.
+ * Все остальные модели (rgba/hex/hsla) выводятся из одного `hsva` напрямую,
+ * поэтому при последовательных правках hsva-каналы не «снапаются».
+ */
+export function hsvaToRawValue(hsva: HsvaColor): RawColor {
+  const rounded = roundHsva(hsva);
+  const rgba = hsvaToRgba(rounded);
+  const hsla = hsvaToHsla(rounded);
+
+  return {
+    hex: rgbaToHex(rgba),
+    rgb: rgbaToRgb(rgba),
+    rgba,
+    hsv: hsvaToHsv(rounded),
+    hsva: rounded,
+    hsl: hslaToHsl(hsla),
+    hsla,
+  };
+}
+
 export function colorToRawValue(value: Color): RawColor {
   const hexColor = colorToHex(value);
   const rgba = hexToRgba(hexColor);

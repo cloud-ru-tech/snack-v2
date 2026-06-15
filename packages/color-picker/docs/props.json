@@ -65,13 +65,13 @@
       "autoApply": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Применять изменения автоматически. Если `false` — появляются кнопки Cancel/Apply."
+        "defaultValue": "true",
+        "description": "Применять изменения автоматически. Если `false` — появляются кнопки Cancel/Apply.\nПо умолчанию `true` — без футера (паритет с Figma colorPicker, где Cancel/Apply нет)."
       },
       "availableModes": {
         "type": "ColorMode[]",
         "required": false,
-        "defaultValue": "['hex', 'rgb', 'hsv']",
+        "defaultValue": "['hex', 'hsv', 'rgb']",
         "description": "Какие цветовые модели доступны переключателю.",
         "typeRefs": [
           "ColorMode"

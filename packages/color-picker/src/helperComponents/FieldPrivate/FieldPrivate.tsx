@@ -3,6 +3,7 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
+import { NATIVE_INPUT_SUFFIX } from '../../constants';
 import { Size } from '../../types';
 import styles from './styles.module.scss';
 
@@ -29,29 +30,36 @@ export function FieldPrivate({
   error,
   size = 's',
   'aria-label': ariaLabel,
+  'data-test-id': dataTestId,
   ...rest
 }: FieldPrivateProps) {
   const [rawValue, setRawValue] = useState<string>(String(value));
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleBlur = () => {
+  // Живой коммит на ввод (а не на blur): значение применяется сразу при вводе, чтобы
+  // правка hex/rgb/hsv мгновенно отражалась на цвете (ревью MR!101). Поле показывает
+  // ровно набранное (`rawValue`), наружу эмитим нормализованное значение.
+  const handleInput = (next: string) => {
+    setRawValue(next);
+
     if (inputType === 'number') {
-      const rawNumberValue = Number(rawValue) || 0;
-      const clamped = String(Math.min(Math.max(min, rawNumberValue), max));
-
-      if (clamped !== rawValue) setRawValue(clamped);
+      // Пустое поле в процессе ввода не коммитим (даём очистить и набрать заново).
+      if (next === '') return;
+      const clamped = String(Math.min(Math.max(min, Number(next) || 0), max));
       if (clamped !== String(value)) onChange?.(clamped);
-
       return;
     }
 
-    if (rawValue !== String(value)) {
-      onChange?.(rawValue);
-      // Если parent отклонил значение (например, невалидный hex) — value не сменится,
-      // useEffect ниже не сработает по deps. Возвращаем поле к актуальному `value` руками,
-      // чтобы поле не «залипало» в невалидном состоянии.
-      setRawValue(String(value));
-    }
+    if (next !== String(value)) onChange?.(next);
+  };
+
+  // Test-id для адресации нативного <input> в play/e2e: `<field-id>-native-input`.
+  const inputTestId = dataTestId ? `${dataTestId}${NATIVE_INPUT_SUFFIX}` : undefined;
+
+  const handleBlur = () => {
+    // Коммит уже произошёл на вводе — на blur только нормализуем отображение к актуальному
+    // `value`: clamp числа, откат частичного/невалидного hex, синхронизация после внешних правок.
+    setRawValue(String(value));
   };
 
   useEffect(() => {
@@ -66,16 +74,18 @@ export function FieldPrivate({
       data-validation={error ? 'error' : undefined}
       data-disabled={disabled || undefined}
       data-size={size}
+      data-test-id={dataTestId}
       {...extractSupportProps(rest)}
     >
       <InputPrivate
         ref={inputRef}
         value={rawValue}
-        onChange={setRawValue}
+        onChange={handleInput}
         onBlur={handleBlur}
         type={inputType === 'number' ? 'number' : 'text'}
         disabled={disabled}
         aria-label={ariaLabel}
+        data-test-id={inputTestId}
         {...(inputType === 'number' ? { min, max } : {})}
       />
     </label>

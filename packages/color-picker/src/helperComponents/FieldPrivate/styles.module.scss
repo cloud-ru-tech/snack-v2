@@ -6,6 +6,8 @@ $sizes: 's', 'm', 'l';
 .container {
   cursor: text;
 
+  position: relative;
+
   display: flex;
   align-items: center;
 
@@ -46,7 +48,23 @@ $sizes: 's', 'm', 'l';
   &:focus-within,
   &[data-focused] {
     border-color: base.$sn-theme-color-primary-accent;
-    outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-decorTransparent;
+  }
+
+  // Рамка-свечение фокуса — паритет с @ds/fields (shared `.focusLayer`): solid accent-outline
+  // на псевдоэлементе под `focusedFrame-opacity` даёт мягкое свечение, а не резкую обводку
+  // (раньше был outline цветом `decorTransparent` прямо на контейнере).
+  &:focus-within::after,
+  &[data-focused]::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    opacity: f.$sn-field-effect-focusedFrame-opacity;
+    outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
     outline-offset: 0;
   }
 
@@ -56,7 +74,11 @@ $sizes: 's', 'm', 'l';
     &:focus-within,
     &[data-focused] {
       border-color: base.$sn-theme-color-red-accent;
-      outline-color: base.$sn-theme-color-red-decorTransparent;
+    }
+
+    &:focus-within::after,
+    &[data-focused]::after {
+      outline-color: base.$sn-theme-color-red-accent;
     }
   }
 

@@ -10,7 +10,8 @@ export const COLOR_MODE_LABEL: Record<string, string> = {
   [COLOR_MODE.Hsv]: 'HSV',
 };
 
-export const DEFAULT_AVAILABLE_MODES = [COLOR_MODE.Hex, COLOR_MODE.Rgb, COLOR_MODE.Hsv] as const;
+// Порядок сегментов переключателя моделей — как в Figma colorPicker: HEX · HSV · RGB.
+export const DEFAULT_AVAILABLE_MODES = [COLOR_MODE.Hex, COLOR_MODE.Hsv, COLOR_MODE.Rgb] as const;
 
 export const DEFAULT_COLOR = '#000000';
 
@@ -19,6 +20,9 @@ export const SIZE = {
   M: 'm',
   L: 'l',
 } as const;
+
+/** Суффикс test-id нативного `<input>` внутри полей. */
+export const NATIVE_INPUT_SUFFIX = '-native-input';
 
 export const TEST_IDS = {
   root: 'color-picker',

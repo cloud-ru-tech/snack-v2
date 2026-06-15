@@ -24,9 +24,9 @@ const meta: Meta<typeof ColorPicker> = {
   args: {
     size: SIZE.M,
     withAlpha: true,
-    autoApply: false,
+    autoApply: true,
     value: '#389f74',
-    availableModes: [COLOR_MODE.Hex, COLOR_MODE.Rgb, COLOR_MODE.Hsv],
+    availableModes: [COLOR_MODE.Hex, COLOR_MODE.Hsv, COLOR_MODE.Rgb],
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {

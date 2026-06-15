@@ -29,15 +29,12 @@ test.describe('ColorPicker — visual regression', () => {
     await gotoStory(buildStoryOptions({ autoApply: true }));
     await waitForFonts();
 
-    // Снимаем весь color-picker (видны saturation/hue/value и соседние fields для
-    // контекста), state-изменения целимся в hex-field.
     const field = getByTestId(TEST_IDS.fieldHex);
     await assertInteractionStatesSnapshot(page, {
       target: getByTestId(TEST_IDS.root),
       hoverTarget: field,
       focusAction: async () => {
-        // У компонента Field нет отдельного TEST_IDS на нативный <input>; используем
-        // единственный input внутри fieldHex.
+        // Field не имеет TEST_IDS на нативном <input> — берём единственный input внутри fieldHex.
         await field
           .locator('input')
           .first()

@@ -15,6 +15,7 @@ export default meta;
 type Story = StoryObj<typeof ColorPicker>;
 
 const sizes = [SIZE.S, SIZE.M, SIZE.L] as const;
+const allModes = [COLOR_MODE.Hex, COLOR_MODE.Rgb, COLOR_MODE.Hsv] as const;
 const modes = [
   { key: COLOR_MODE.Hex, available: [COLOR_MODE.Hex] },
   { key: COLOR_MODE.Rgb, available: [COLOR_MODE.Rgb] },
@@ -90,9 +91,30 @@ export const VisualMatrix: Story = {
           },
           {
             variantLabel: 'manual',
-            cells: [<ColorPicker key='manual' size='m' value='#ff0000' availableModes={[COLOR_MODE.Hex]} />],
+            cells: [
+              <ColorPicker key='manual' size='m' autoApply={false} value='#ff0000' availableModes={[COLOR_MODE.Hex]} />,
+            ],
           },
         ]}
+      />
+
+      <StoryTable
+        sectionTitle='Full switcher (all modes, size × active mode)'
+        firstColumnHeader='Active mode'
+        columnHeaders={sizes.map(s => s.toUpperCase())}
+        rows={allModes.map(active => ({
+          variantLabel: active,
+          cells: sizes.map(size => (
+            <ColorPicker
+              key={`full-${active}-${size}`}
+              size={size}
+              autoApply
+              withAlpha
+              value='#ff0000cc'
+              availableModes={[active, ...allModes.filter(mode => mode !== active)]}
+            />
+          )),
+        }))}
       />
     </div>
   ),

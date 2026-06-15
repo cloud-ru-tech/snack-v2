@@ -115,8 +115,8 @@ export function WithoutAlpha() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `autoApply` | `boolean` | `false` | Применять изменения автоматически. Если `false` — появляются кнопки Cancel/Apply. |
-| `availableModes` | `ColorMode` | `['hex', 'rgb', 'hsv']` | Какие цветовые модели доступны переключателю. |
+| `autoApply` | `boolean` | `true` | Применять изменения автоматически. Если `false` — появляются кнопки Cancel/Apply. <br/> По умолчанию `true` — без футера (паритет с Figma colorPicker, где Cancel/Apply нет). |
+| `availableModes` | `ColorMode` | `['hex', 'hsv', 'rgb']` | Какие цветовые модели доступны переключателю. |
 | `className` | `string` | — | CSS-класс корневого элемента. |
 | `data-test-id` | `string` | — |  |
 | `onChange` | `((rawColor: RawColor) => void)` | — | Колбек на изменение значения. Вызывается на каждое изменение если `autoApply`, иначе только по нажатию Apply. |

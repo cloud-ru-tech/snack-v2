@@ -28,11 +28,3 @@ export function buildStoryOptions(
 }
 
 export const KEY_SIZES = [SIZE.S, SIZE.M, SIZE.L] as const;
-
-// Локальная копия `segmentTestId` из `@ds/segment-control/src/constants` —
-// кросс-пакетный импорт в spec'ах запрещён (entry-point тянет CSS-модули,
-// которые ломают playwright-compile). Если convention сменится — синхронизируй
-// руками; контракт фиксированный (см. segment-control/src/constants.ts).
-export function segmentTestId(value: string | number): string {
-  return `section-${value}`;
-}
