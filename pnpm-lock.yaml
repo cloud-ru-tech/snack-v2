@@ -519,6 +519,9 @@ importers:
       '@ds/uikit-product-title-clickable':
         specifier: workspace:*
         version: link:../../packages/uikit-product-title-clickable
+      '@ds/uikit-product-upload-files':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-upload-files
       '@ds/uikit-product-widget':
         specifier: workspace:*
         version: link:../../packages/uikit-product-widget
@@ -2418,6 +2421,39 @@ importers:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
+
+  packages/uikit-product-upload-files:
+    dependencies:
+      '@ds/attachment':
+        specifier: workspace:*
+        version: link:../attachment
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/dropzone':
+        specifier: workspace:*
+        version: link:../dropzone
+      '@ds/fields':
+        specifier: workspace:*
+        version: link:../fields
+      '@ds/icon-predefined':
+        specifier: workspace:*
+        version: link:../icon-predefined
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      merge-refs:
+        specifier: 'catalog:'
+        version: 2.0.0(@types/react@18.3.28)
 
   packages/uikit-product-widget:
     dependencies:

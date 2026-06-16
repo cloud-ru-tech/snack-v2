@@ -8,3 +8,5 @@ export { default as FolderAddOutlineSpriteSVG } from './FolderAddOutline';
 export { default as FolderUploadFilledSpriteSVG } from './FolderUploadFilled';
 export { default as FolderUploadOutlineSpriteSVG } from './FolderUploadOutline';
 export { default as LogsSpriteSVG } from './Logs';
+export { default as PdfSpriteSVG } from './Pdf';
+export { default as TxtSpriteSVG } from './Txt';

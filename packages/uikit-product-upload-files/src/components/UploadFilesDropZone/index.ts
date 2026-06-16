@@ -1,0 +1,1 @@
+export { UploadFilesDropZone } from './UploadFilesDropZone';

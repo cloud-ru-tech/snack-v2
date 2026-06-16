@@ -1,0 +1,121 @@
+---
+title: UploadFiles
+package: '@ds/uikit-product-upload-files'
+description: Поле загрузки файлов с drag-and-drop, валидацией по формату/размеру/количеству и кастомной функцией upload.
+order: 1
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { CustomFormats } from '../demos/examples/CustomFormats'
+import CustomFormatsSrc from '../demos/examples/CustomFormats.tsx?raw'
+import { FormField } from '../demos/examples/FormField'
+import FormFieldSrc from '../demos/examples/FormField.tsx?raw'
+import { Disabled } from '../demos/examples/Disabled'
+import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import doc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# UploadFiles
+
+Поле загрузки файлов с поддержкой drag-and-drop и клика. Валидирует выбранные файлы по формату, размеру и количеству, показывает прогресс и ошибки по каждому вложению и загружает их через переданную функцию `upload`. Компонент управляет только UI и состоянием вложений — сетевой запрос остаётся за потребителем.
+
+## Когда использовать
+
+- Загрузка вложений в форме (договоры, изображения, отчёты) с превью и удалением.
+- Когда нужна валидация формата/размера/количества файлов на клиенте до отправки.
+- Когда загрузка идёт на ваш бэкенд через кастомный запрос — он передаётся в `upload`.
+
+Когда **не** нужен:
+
+- Для одиночного триггера-кнопки без зоны перетаскивания — используйте `FileUpload` из [@ds/dropzone](/components/dropzone/file-upload).
+- Для скрытой оверлей-зоны над произвольным контентом — `HiddenDropZone` из [@ds/dropzone](/components/dropzone/hidden-drop-zone).
+
+## Анатомия
+
+### Accept (по умолчанию — любые файлы)
+
+`accept` — массив допустимых типов файлов. По умолчанию `[{ extention: '*' }]` — принимаются файлы любого формата без иконок и подписей. Каждый элемент описывает:
+
+- `extention` — расширение файла (например `.pdf`, либо `*` для всех типов), попадает в нативный атрибут `accept` диалога выбора.
+- `displayExtension` — человекочитаемое имя формата для подписи и текста ошибки (например `PDF`).
+- `icon` — иконка вложения для файлов этого типа.
+
+### Лимит файлов (default `3`)
+
+`maxFiles` ограничивает количество вложений. При превышении поле показывает сводную ошибку и счётчик `текущее/максимум`.
+
+### Размер файла (default `5 МБ`)
+
+`maxSize` (в байтах) ограничивает размер одного файла. Файл больше лимита попадает во вложения как ошибочный, с подписью о превышении размера.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-upload-files
+```
+
+```ts
+import { UploadFiles } from '@ds/uikit-product-upload-files'
+```
+
+## Примеры использования
+
+<Example
+  title='1. Базовое поле'
+  description='Любые файлы, до 3 файлов, до 5 МБ. Загрузка через кастомную функцию upload'
+  code={BasicSrc}
+>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='2. Свои форматы и лимиты'
+  description='accept, maxFiles и maxSize настраивают допустимые типы и ограничения'
+  code={CustomFormatsSrc}
+>
+  <CustomFormats client:visible />
+</Example>
+
+<Example
+  title='3. Обязательное поле формы'
+  description="optional=false + error: ошибка показывается, пока ни один файл не загружен"
+  code={FormFieldSrc}
+>
+  <FormField client:visible />
+</Example>
+
+<Example
+  title='4. Заблокировано'
+  description='disabled блокирует выбор и удаление, сохраняя уже загруженные вложения'
+  code={DisabledSrc}
+>
+  <Disabled client:visible />
+</Example>
+
+## Do / Don't
+
+- ✅ Передавайте реальный сетевой запрос в `upload`, возвращая промис с результатом загрузки.
+- ❌ Не делайте `upload` no-op — без промиса вложение зависнет в статусе загрузки.
+- ✅ Описывайте `accept` через `displayExtension` — формат попадёт в подсказку и текст ошибки.
+- ❌ Не дублируйте ограничения текстом в `hint`, если они уже заданы через `maxFiles` / `maxSize` — описание дропзоны соберётся автоматически.
+- ✅ Используйте `error` для ошибок уровня формы (например required из react-hook-form).
+- ❌ Не используйте `error` для ошибок отдельных файлов — формат и размер компонент валидирует и показывает на вложениях сам.
+- ✅ Прерывайте загрузку через `ctx.signal` (`AbortSignal`) внутри `upload` — компонент отменяет запрос при удалении и размонтировании.
+- ❌ Не игнорируйте `signal` — отменённые запросы продолжат расходовать сеть.
+
+## Props
+
+<PropsTable data={doc.UploadFiles} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-uploadfiles--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-upload-files')} height={480} title='UploadFiles в Figma' />

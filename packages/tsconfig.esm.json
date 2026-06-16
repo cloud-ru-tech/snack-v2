@@ -258,6 +258,9 @@
       "path": "./uikit-product-quota/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-upload-files/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-widget/tsconfig.esm.json"
     }
   ]

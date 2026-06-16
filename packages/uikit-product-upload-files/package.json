@@ -1,0 +1,31 @@
+{
+  "name": "@ds/uikit-product-upload-files",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@ds/attachment": "workspace:*",
+    "@ds/button": "workspace:*",
+    "@ds/dropzone": "workspace:*",
+    "@ds/fields": "workspace:*",
+    "@ds/icon-predefined": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/locale": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:",
+    "merge-refs": "catalog:"
+  },
+  "publishConfig": { "access": "public" }
+}

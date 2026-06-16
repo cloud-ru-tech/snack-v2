@@ -1,0 +1,52 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-s;
+  width: 100%;
+}
+
+.dropzoneSection {
+  width: 100%;
+}
+
+.dropzoneContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-s;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.attachments {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-xs;
+  width: 100%;
+
+  // Увеличиваем с 16 до 24. Селектор намеренно специфичнее
+  // правила с !important из @ds/icon-predefined.
+  [data-test-id='attachment__icon'] svg[data-size][data-appearance] {
+    width: base.$sn-density-size-icon-s !important;
+    height: base.$sn-density-size-icon-s !important;
+  }
+}
+
+// Обёртка для role="listitem": display:contents не создаёт бокс,
+// поэтому вложение остаётся прямым flex-элементом списка и раскладка не меняется.
+.attachmentItem {
+  display: contents;
+}
+
+.attachment {
+  &[data-acrylic-appearance] {
+    width: 100%;
+  }
+}
+
+.dropzoneDescription {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

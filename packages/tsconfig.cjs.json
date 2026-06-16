@@ -260,6 +260,9 @@
       "path": "./uikit-product-quota/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-upload-files/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
     }
   ]
