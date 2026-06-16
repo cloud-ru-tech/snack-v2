@@ -3,6 +3,11 @@
     "displayName": "AdaptiveStepper",
     "propsTypeName": "AdaptiveStepperProps",
     "props": {
+      "allowFreeNavigation": {
+        "type": "boolean",
+        "required": false,
+        "description": "Позволяет свободно переключаться между разными шагами без валидации"
+      },
       "children": {
         "type": "(params: StepperApi) => ReactElement<any, string | JSXElementConstructor<any>>",
         "required": true,
@@ -184,6 +189,12 @@
     "displayName": "MobileStepper",
     "propsTypeName": "MobileStepperProps",
     "props": {
+      "allowFreeNavigation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Позволяет свободно переключаться между разными шагами без валидации"
+      },
       "children": {
         "type": "(params: StepperApi) => ReactElement<any, string | JSXElementConstructor<any>>",
         "required": true,
@@ -331,6 +342,12 @@
     "displayName": "Stepper",
     "propsTypeName": "StepperProps",
     "props": {
+      "allowFreeNavigation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Позволяет свободно переключаться между разными шагами без валидации"
+      },
       "children": {
         "type": "(params: StepperApi) => ReactElement<any, string | JSXElementConstructor<any>>",
         "required": true,

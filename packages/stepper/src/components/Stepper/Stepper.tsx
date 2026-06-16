@@ -28,6 +28,8 @@ export type StepperProps = {
   onCompleteChange?: (isCompleted: boolean) => void;
   /** data-test-id */
   'data-test-id'?: string;
+  /** Позволяет свободно переключаться между разными шагами без валидации */
+  allowFreeNavigation?: boolean;
 };
 
 export function Stepper({
@@ -39,6 +41,7 @@ export function Stepper({
   defaultCurrentStepIndex = 0,
   validator,
   'data-test-id': testId,
+  allowFreeNavigation = false,
 }: StepperProps) {
   const { stepsView, currentStepIndex, isCompleted, stepCount, goNext, goPrev, resetValidation, setValidator } =
     useStepperController({
@@ -47,6 +50,7 @@ export function Stepper({
       validator,
       onChangeCurrentStep,
       onCompleteChange,
+      allowFreeNavigation,
     });
 
   const stepper = (

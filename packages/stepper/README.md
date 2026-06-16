@@ -115,6 +115,7 @@ export function WithValidator() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `allowFreeNavigation` | `boolean` | `false` | Позволяет свободно переключаться между разными шагами без валидации |
 | `children` | `StepperApi` | — | Render function. Принимает `stepper` — JSX-элемент степпера, а также api: <br/> `goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`, <br/> `currentStepIndex`, `stepCount`. |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — | data-test-id |
@@ -219,6 +220,7 @@ export function MobileFlow() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `allowFreeNavigation` | `boolean` | `false` | Позволяет свободно переключаться между разными шагами без валидации |
 | `children` | `StepperApi` | — | Render function. Принимает `stepper` и api: <br/> `goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`, <br/> `currentStepIndex`, `stepCount`. |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — | data-test-id |
@@ -339,6 +341,7 @@ export function AdaptiveFlow() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `allowFreeNavigation` | `boolean` | — | Позволяет свободно переключаться между разными шагами без валидации |
 | `children` | `StepperApi` | — | Render function. Принимает `stepper` — JSX-элемент степпера, а также api: <br/> `goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`, <br/> `currentStepIndex`, `stepCount`. |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — | data-test-id |

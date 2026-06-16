@@ -30,6 +30,8 @@ export type MobileStepperProps = {
   onCompleteChange?: (isCompleted: boolean) => void;
   /** data-test-id */
   'data-test-id'?: string;
+  /** Позволяет свободно переключаться между разными шагами без валидации */
+  allowFreeNavigation?: boolean;
 };
 
 export function MobileStepper({
@@ -40,6 +42,7 @@ export function MobileStepper({
   onCompleteChange,
   defaultCurrentStepIndex = 0,
   validator,
+  allowFreeNavigation = false,
   'data-test-id': testId,
 }: MobileStepperProps) {
   const { stepsView, currentStepIndex, isCompleted, stepCount, goNext, goPrev, resetValidation, setValidator } =
@@ -49,6 +52,7 @@ export function MobileStepper({
       validator,
       onChangeCurrentStep,
       onCompleteChange,
+      allowFreeNavigation,
     });
 
   const currentStep = stepsView[currentStepIndex];

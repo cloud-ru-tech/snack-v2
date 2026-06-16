@@ -78,9 +78,15 @@
       "Appearance": {
         "kind": "union",
         "values": [
-          "critical",
+          "blue",
+          "green",
           "neutral",
-          "primary"
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
         ],
         "own": false
       },
@@ -321,9 +327,15 @@
       "Appearance": {
         "kind": "union",
         "values": [
-          "critical",
+          "blue",
+          "green",
           "neutral",
-          "primary"
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
         ],
         "own": false
       },

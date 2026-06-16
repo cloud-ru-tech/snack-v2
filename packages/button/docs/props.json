@@ -145,9 +145,15 @@
             "type": "Appearance | undefined",
             "required": false,
             "values": [
-              "critical",
+              "blue",
+              "green",
               "neutral",
-              "primary"
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
             ],
             "description": "Внешний вид",
             "typeRefs": [
@@ -562,9 +568,15 @@
             "type": "Appearance | undefined",
             "required": false,
             "values": [
-              "critical",
+              "blue",
+              "green",
               "neutral",
-              "primary"
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
             ],
             "description": "Внешний вид",
             "typeRefs": [
