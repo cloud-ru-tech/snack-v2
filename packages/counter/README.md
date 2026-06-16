@@ -13,8 +13,18 @@
 
 ## Анатомия
 
-### Appearance
-Семантическая роль счётчика: `primary` — акцентный (непрочитанные, новые), `neutral` — нейтральный, `critical` — для подсветки ошибок или срочных элементов.
+### Appearance (default `primary`)
+Цветовая схема счётчика. Значение совпадает с именем семантической палитры темы:
+
+- `primary` — акцентный (непрочитанные, новые).
+- `neutral` — нейтральный.
+- `red` — ошибки, срочные элементы.
+- `orange` — предупреждения.
+- `yellow` — внимание.
+- `green` — успех, положительный статус.
+- `blue` — информационный.
+- `violet` — дополнительный акцент.
+- `pink` — дополнительный акцент.
 
 ### Variant
 Формат отображения числа: `count` — число как есть, `count-plus` — сокращение с плюсом после лимита (`10+`, `99+`), `count-k` — сокращение в тысячах (`1K`, `12K`).
@@ -65,13 +75,13 @@ export function ThousandsK() {
 }
 ```
 
-### Critical состояние
+### Red — ошибки и срочные элементы
 
 ```tsx
 import { Counter } from '@ds/counter';
 
-export function Critical() {
-  return <Counter value={3} appearance='critical' />;
+export function Red() {
+  return <Counter value={3} appearance='red' />;
 }
 ```
 
@@ -80,7 +90,7 @@ export function Critical() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `primary` | Внешний вид |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
 | `className` | `string` | — | Дополнительный CSS-класс |
 | `color` | `"accent"` \| `"decor"` | `accent` | Семантический цвет |
 | `data-test-id` | `string` | — |  |
@@ -91,7 +101,7 @@ export function Critical() {
 
 #### Related types
 
-- `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
 - `Color` = `"accent"` \| `"decor"`
 

@@ -12,8 +12,8 @@ import { PlusThreshold } from '../demos/examples/PlusThreshold'
 import PlusThresholdSrc from '../demos/examples/PlusThreshold.tsx?raw'
 import { ThousandsK } from '../demos/examples/ThousandsK'
 import ThousandsKSrc from '../demos/examples/ThousandsK.tsx?raw'
-import { Critical } from '../demos/examples/Critical'
-import CriticalSrc from '../demos/examples/Critical.tsx?raw'
+import { Red } from '../demos/examples/Red'
+import RedSrc from '../demos/examples/Red.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -37,8 +37,18 @@ import { figmaNode } from '#docs/lib/figma'
 
 ## Анатомия
 
-### Appearance
-Семантическая роль счётчика: `primary` — акцентный (непрочитанные, новые), `neutral` — нейтральный, `critical` — для подсветки ошибок или срочных элементов.
+### Appearance (default `primary`)
+Цветовая схема счётчика. Значение совпадает с именем семантической палитры темы:
+
+- `primary` — акцентный (непрочитанные, новые).
+- `neutral` — нейтральный.
+- `red` — ошибки, срочные элементы.
+- `orange` — предупреждения.
+- `yellow` — внимание.
+- `green` — успех, положительный статус.
+- `blue` — информационный.
+- `violet` — дополнительный акцент.
+- `pink` — дополнительный акцент.
 
 ### Variant
 Формат отображения числа: `count` — число как есть, `count-plus` — сокращение с плюсом после лимита (`10+`, `99+`), `count-k` — сокращение в тысячах (`1K`, `12K`).
@@ -71,8 +81,8 @@ import { Counter, APPEARANCE, VARIANT, SIZE } from '@ds/counter'
   <ThousandsK client:visible />
 </Example>
 
-<Example title='Critical состояние' code={CriticalSrc}>
-  <Critical client:visible />
+<Example title='Red — ошибки и срочные элементы' code={RedSrc}>
+  <Red client:visible />
 </Example>
 
 ## Props

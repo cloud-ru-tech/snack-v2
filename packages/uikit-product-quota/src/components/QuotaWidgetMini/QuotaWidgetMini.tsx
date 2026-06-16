@@ -59,7 +59,7 @@ export function QuotaWidgetMini({
           title={t('quotas')}
           afterTitle={
             !isError && !isLoading && exhaustedCount > 0 ? (
-              <Counter value={exhaustedCount} size='xs' appearance='critical' />
+              <Counter value={exhaustedCount} size='xs' appearance='red' />
             ) : undefined
           }
           subTitle={<TruncateString maxLines={1} text={projectName} />}

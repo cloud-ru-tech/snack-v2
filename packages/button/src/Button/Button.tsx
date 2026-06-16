@@ -59,9 +59,14 @@ export function Button<T extends ElementType = 'button'>({
   }
   const showCounterAsBadge = counter && icon && iconPosition === ICON_POSITION.After;
 
+  // appearance кнопки 'critical' соответствует appearance счётчика 'red'
+  // (Counter переименовал critical → red); остальные значения совпадают.
+  const mappedCounterAppearance = appearance === 'critical' ? 'red' : appearance;
+  const counterAppearance = disabled ? 'neutral' : mappedCounterAppearance;
+
   const counterNode = counter && !loading && (
     <span className={styles.counterSlot} data-absolute={showCounterAsBadge || undefined} aria-hidden>
-      <Counter {...counter} size='xs' appearance={disabled ? 'neutral' : appearance} />
+      <Counter {...counter} size='xs' appearance={counterAppearance} />
     </span>
   );
 

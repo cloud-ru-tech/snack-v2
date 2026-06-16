@@ -7,9 +7,15 @@
         "type": "enum",
         "required": false,
         "values": [
-          "critical",
+          "blue",
+          "green",
           "neutral",
-          "primary"
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
         ],
         "defaultValue": "primary",
         "description": "Внешний вид",
@@ -82,9 +88,15 @@
       "Appearance": {
         "kind": "union",
         "values": [
-          "critical",
+          "blue",
+          "green",
           "neutral",
-          "primary"
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
         ],
         "own": true
       },

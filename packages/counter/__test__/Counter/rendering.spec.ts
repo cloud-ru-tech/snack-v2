@@ -6,7 +6,7 @@ import { buildStoryOptions, TEST_IDS } from './helpers';
 const KEY_COMBOS = [
   { size: SIZE.XS, appearance: APPEARANCE.Primary, variant: VARIANT.Count, color: COLOR.Accent },
   { size: SIZE.S, appearance: APPEARANCE.Neutral, variant: VARIANT.CountPlus, color: COLOR.Decor },
-  { size: SIZE.S, appearance: APPEARANCE.Critical, variant: VARIANT.CountK, color: COLOR.Accent },
+  { size: SIZE.S, appearance: APPEARANCE.Red, variant: VARIANT.CountK, color: COLOR.Accent },
 ] as const;
 
 test.describe('Counter — rendering', () => {

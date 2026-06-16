@@ -18,7 +18,10 @@ export function CounterDemo() {
       }}
       controls={{
         value: { type: 'number' },
-        appearance: { type: 'select', options: ['primary', 'neutral', 'critical'] },
+        appearance: {
+          type: 'select',
+          options: ['primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink'],
+        },
         variant: { type: 'select', options: ['count', 'count-plus', 'count-k'] },
         size: { type: 'select', options: ['xs', 's'] },
         color: { type: 'select', options: ['accent', 'decor'] },

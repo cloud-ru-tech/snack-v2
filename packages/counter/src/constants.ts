@@ -1,25 +1,31 @@
 export const APPEARANCE = {
   Primary: 'primary',
   Neutral: 'neutral',
-  Critical: 'critical',
-} as const
+  Red: 'red',
+  Orange: 'orange',
+  Yellow: 'yellow',
+  Green: 'green',
+  Blue: 'blue',
+  Violet: 'violet',
+  Pink: 'pink',
+} as const;
 
 export const VARIANT = {
   Count: 'count',
   CountPlus: 'count-plus',
   CountK: 'count-k',
-} as const
+} as const;
 
 export const SIZE = {
   XS: 'xs',
   S: 's',
-} as const
+} as const;
 
 export const COLOR = {
   Accent: 'accent',
   Decor: 'decor',
-} as const
+} as const;
 
-export const DEFAULT_PLUS_LIMIT = 10
-export const DEFAULT_KEY_LIMIT = 1000
-export const DEFAULT_KEY_POSTFIX = 'K'
+export const DEFAULT_PLUS_LIMIT = 10;
+export const DEFAULT_KEY_LIMIT = 1000;
+export const DEFAULT_KEY_POSTFIX = 'K';
