@@ -89,11 +89,12 @@ export function FieldShell({
         <div className={fieldStyles.borderStateLayer} data-state='regularBorder' />
         <div className={fieldStyles.focusLayer} />
       </div>
-      <div className={fieldStyles.fieldContainer}>
-        {header && <div className={styles.header}>{header}</div>}
-        {children}
-        {footer && <div className={styles.footer}>{footer}</div>}
-      </div>
+
+      {header && <div className={styles.header}>{header}</div>}
+
+      <div className={fieldStyles.fieldContainer}>{children}</div>
+
+      {footer && <div className={styles.footer}>{footer}</div>}
     </div>
   );
 }

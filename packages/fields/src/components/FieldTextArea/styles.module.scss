@@ -67,7 +67,6 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   // Без этого textarea наследует Nunito Sans 16/24 от Storybook root и не имеет минимальной высоты.
   @each $size in $sizes {
     [data-size='#{$size}'] & {
-
       // Резерв справа под колонку clear/copy-кнопок (квадрат centeredWrapper) + скроллбар
       // + горизонтальный паддинг inputLine (отступ слота кнопок от скроллбара по Figma):
       // кнопки позиционируются абсолютно поверх скролл-области (см. .postfixColumn).
@@ -91,15 +90,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         'padding-right'
       );
 
-      min-height: base.simple-var(
-        field.$field,
-        'anatomy',
-        'size',
-        $size,
-        'fieldContainer',
-        'multiLine',
-        'min-height'
-      );
+      min-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'multiLine', 'min-height');
       padding-right: calc(#{$button-slot} + #{$scrollbar-width} + #{$input-line-padding});
 
       @include base.composite-var(base.$sn-regular, 'body', $size);

@@ -181,11 +181,8 @@ $sizes: 's', 'm', 'l';
 
 .fieldWrapper {
   position: relative;
-
   display: flex;
-  align-items: center;
-  align-self: stretch;
-
+  flex-direction: column;
   width: 100%;
 
   @include m.has-state-layer-as-child(#{borderStateLayer});
@@ -367,7 +364,7 @@ $sizes: 's', 'm', 'l';
   position: relative;
 
   display: flex;
-  flex: 1 0 0;
+  flex: 1 1 auto;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;

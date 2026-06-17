@@ -311,28 +311,30 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
           overflow={{ x: 'hidden' }}
           data-test-id={TEST_IDS.fieldTextAreaScrollArea}
         >
-          <TextareaAutosize
-            ref={mergeRefs(ref, localRef)}
-            className={styles.textarea}
-            value={value}
-            onChange={handleChange}
-            placeholder={placeholder}
-            disabled={disabled}
-            readOnly={readOnly}
-            id={id}
-            name={name}
-            maxLength={allowMoreThanMaxLength ? undefined : maxLength}
-            autoFocus={autoFocus}
-            inputMode={inputMode}
-            spellCheck={spellCheck}
-            minRows={minRows}
-            tabIndex={inputTabIndex}
-            data-test-id={TEST_IDS.fieldTextAreaInput}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            {...extractSupportProps(rest)}
-          />
+          <div className={fieldStyles.inputLine}>
+            <TextareaAutosize
+              ref={mergeRefs(ref, localRef)}
+              className={styles.textarea}
+              value={value}
+              onChange={handleChange}
+              placeholder={placeholder}
+              disabled={disabled}
+              readOnly={readOnly}
+              id={id}
+              name={name}
+              maxLength={allowMoreThanMaxLength ? undefined : maxLength}
+              autoFocus={autoFocus}
+              inputMode={inputMode}
+              spellCheck={spellCheck}
+              minRows={minRows}
+              tabIndex={inputTabIndex}
+              data-test-id={TEST_IDS.fieldTextAreaInput}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              {...extractSupportProps(rest)}
+            />
+          </div>
         </Scroll>
         {postfixButtons && <span className={styles.postfixColumn}>{postfixButtons}</span>}
       </div>
