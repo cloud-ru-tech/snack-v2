@@ -1,3 +1,12 @@
 # 1.2.2
 pnpm gen
+
+DRIFT=$(git status --porcelain -- 'packages/*/docs/props.json' 'packages/*/README.md')
+if [ -n "$DRIFT" ]; then
+  echo ""
+  echo "✖ Сгенерированные файлы устарели — запусти 'pnpm gen' и закоммить изменения перед push:"
+  echo "$DRIFT"
+  exit 1
+fi
+
 node_modules/.bin/solidarity
