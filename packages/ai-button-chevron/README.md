@@ -94,7 +94,8 @@ export function Disabled() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | Доп. класс корня. |
-| `data-test-id` | `string` | `ai-button-chevron` |  |
+| `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | `false` | Disabled-состояние: opacity, нативная блокировка кликов и клавиатуры. |
+| `interactive` | `boolean` | `true` | Интерактивный режим: `true` — рендерится как `button`, `false` — как декоративный `span`. |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Нативный обработчик клика. Не вызывается для disabled-кнопки. |
 | `opened` | `boolean` | `false` | Раскрытое состояние: `true` — шеврон смотрит вверх, `false` — вниз. По умолчанию `false`. |

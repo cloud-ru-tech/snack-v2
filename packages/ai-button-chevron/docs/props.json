@@ -10,14 +10,19 @@
       },
       "data-test-id": {
         "type": "string",
-        "required": false,
-        "defaultValue": "ai-button-chevron"
+        "required": false
       },
       "disabled": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
         "description": "Disabled-состояние: opacity, нативная блокировка кликов и клавиатуры."
+      },
+      "interactive": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Интерактивный режим: `true` — рендерится как `button`, `false` — как декоративный `span`."
       },
       "onClick": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",

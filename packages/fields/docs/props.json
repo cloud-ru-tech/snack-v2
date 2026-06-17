@@ -541,12 +541,12 @@
       "Type": {
         "kind": "union",
         "values": [
-          "email",
-          "number",
-          "password",
-          "tel",
-          "text",
-          "url"
+          "agentic",
+          "critical",
+          "help",
+          "information",
+          "security",
+          "warning"
         ],
         "own": false
       },
@@ -5770,12 +5770,12 @@
       "Type": {
         "kind": "union",
         "values": [
-          "email",
-          "number",
-          "password",
-          "tel",
-          "text",
-          "url"
+          "agentic",
+          "critical",
+          "help",
+          "information",
+          "security",
+          "warning"
         ],
         "own": false
       },

@@ -336,12 +336,15 @@
   },
   "AlertButton": {
     "displayName": "AlertButton",
-    "propsTypeName": null,
+    "propsTypeName": "AlertButtonProps",
     "props": {
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+        "typeRefs": [
+          "T"
+        ]
       },
       "className": {
         "type": "string",
@@ -367,12 +370,19 @@
           "before"
         ],
         "defaultValue": "before",
-        "description": "Позиция иконки относительно текста"
+        "description": "Позиция иконки относительно текста",
+        "typeRefs": [
+          "IconPosition"
+        ]
       },
       "innerRef": {
         "type": "any",
         "required": false,
-        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
       },
       "invertFocusOutlineColor": {
         "type": "boolean",
@@ -398,7 +408,10 @@
           "s"
         ],
         "defaultValue": "m",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "variant": {
         "type": "enum",
@@ -408,10 +421,43 @@
           "onColor"
         ],
         "defaultValue": "onColor",
-        "description": "Вариант оформления"
+        "description": "Вариант оформления",
+        "typeRefs": [
+          "Variant"
+        ]
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "onColor"
+        ],
+        "own": true
+      }
+    }
   },
   "AlertTop": {
     "displayName": "AlertTop",

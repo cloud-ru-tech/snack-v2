@@ -1,0 +1,159 @@
+{
+  "AiQueue": {
+    "displayName": "AiQueue",
+    "propsTypeName": "AiQueueProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-queue"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Начальное состояние раскрытия в uncontrolled-режиме."
+      },
+      "labels": {
+        "type": "Partial<AiQueueLabels>",
+        "required": false,
+        "description": "Тексты счётчика в заголовке.",
+        "typeRefs": [
+          "AiQueueLabels"
+        ]
+      },
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
+        "required": false,
+        "description": "Коллбек изменения раскрытия."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Контролируемое состояние раскрытия."
+      },
+      "steps": {
+        "type": "AiQueueStep[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Шаги очереди.",
+        "typeRefs": [
+          "AiQueueStep"
+        ]
+      },
+      "summary": {
+        "type": "AiQueueSummary",
+        "required": false,
+        "description": "Принудительные счётчики в заголовке; если не заданы, считаются по `steps`.",
+        "typeRefs": [
+          "AiQueueSummary"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiQueueLabels": {
+        "kind": "interface",
+        "props": {
+          "done": {
+            "type": "string",
+            "required": true
+          },
+          "inProgress": {
+            "type": "string",
+            "required": true
+          },
+          "planned": {
+            "type": "string",
+            "required": true
+          },
+          "tasks": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "AiQueueStep": {
+        "kind": "interface",
+        "props": {
+          "id": {
+            "type": "string | number | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "state": {
+            "type": "AiQueueStepState | undefined",
+            "required": false,
+            "values": [
+              "done",
+              "error",
+              "planned",
+              "progress"
+            ],
+            "typeRefs": [
+              "AiQueueStepState"
+            ]
+          }
+        },
+        "own": true
+      },
+      "AiQueueStepState": {
+        "kind": "union",
+        "values": [
+          "done",
+          "error",
+          "planned",
+          "progress"
+        ],
+        "own": true
+      },
+      "AiQueueSummary": {
+        "kind": "interface",
+        "props": {
+          "done": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "planned": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "progress": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "total": {
+            "type": "number | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "AiQueueStepStatus": {
+    "displayName": "AiQueueStepStatus",
+    "propsTypeName": null,
+    "props": {
+      "state": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "done",
+          "error",
+          "planned",
+          "progress"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  }
+}
