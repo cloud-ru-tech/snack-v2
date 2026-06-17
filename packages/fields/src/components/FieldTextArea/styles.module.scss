@@ -107,20 +107,6 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   }
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-  margin-bottom: base.$sn-primitive-dimension-8;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-  margin-top: base.$sn-primitive-dimension-8;
-}
-
 // Якорь для абсолютного позиционирования кнопок: скролл-контейнер занимает всю ширину
 // контента (скроллбар — у правого края поля, по Figma), кнопки накладываются поверх.
 // verticalPadding (Figma contentWrapper py) опускает первую строку текста на свой отступ —

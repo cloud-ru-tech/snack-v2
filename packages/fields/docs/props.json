@@ -3720,6 +3720,130 @@
       }
     }
   },
+  "FieldShell": {
+    "displayName": "FieldShell",
+    "propsTypeName": "FieldShellProps",
+    "description": "Визуальная оболочка поля: слои material/border/focus + контейнер со слотами\nheader / content / footer. Единый source-of-truth shell'а для `FieldTextArea` и\nпотребителей с кастомным контентом (например, WYSIWYG-редактор), которым нужен\nтот же внешний вид, но не подходит нативный `<textarea>`.",
+    "props": {
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Acrylic-фон поля"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Контент поля (input / scroll / редактор). Рендерится в fieldContainer между header и footer."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс оболочки (fieldWrapper)"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Поле выключено"
+      },
+      "focusVisible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Виден ли клавиатурный фокус (управляется потребителем по `:focus-visible` контента)"
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Ряд элементов под контентом (действия, счётчик)"
+      },
+      "header": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Ряд элементов над контентом (тулбар, чипы)"
+      },
+      "hover": {
+        "type": "boolean",
+        "required": false,
+        "description": "Hover поля (управляется потребителем)"
+      },
+      "onMouseEnter": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек входа курсора в поле"
+      },
+      "onMouseLeave": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек выхода курсора из поля"
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": false,
+        "description": "Только для чтения"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер поля",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Inline-стиль оболочки (например, CSS-переменные высоты)"
+      },
+      "validationState": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "success",
+          "valid",
+          "warning"
+        ],
+        "defaultValue": "default",
+        "description": "Состояние валидации — тонирует acrylic-фон",
+        "typeRefs": [
+          "ValidationState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "ValidationState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error",
+          "success",
+          "valid",
+          "warning"
+        ],
+        "own": true
+      }
+    }
+  },
   "FieldSlider": {
     "displayName": "FieldSlider",
     "propsTypeName": "FieldSliderProps",

@@ -21,7 +21,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { TEST_IDS } from '../../constants';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
-import { copyTextToClipboard, getAcrylicProps, toInputSize, useCopyButton } from '../shared';
+import { copyTextToClipboard, FieldShell, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';
 
@@ -278,83 +278,65 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
   }, []);
 
   const shell = (
-    <div
-      className={cn(fieldStyles.fieldWrapper, fieldClassName)}
+    <FieldShell
       data-test-id={TEST_IDS.fieldTextAreaShell}
-      data-size={size}
-      data-validation-state={effectiveValidationState}
-      data-disabled={disabled || undefined}
-      data-readonly={readOnly || undefined}
-      data-withbackground={background || undefined}
-      data-focusvisible={focusVisible || undefined}
-      data-hover={!readOnly && hover ? true : undefined}
+      className={fieldClassName}
+      size={size}
+      validationState={effectiveValidationState}
+      disabled={disabled}
+      readonly={readOnly}
+      background={background}
+      focusVisible={focusVisible}
+      hover={hover}
+      header={header}
+      footer={footer}
       style={{ '--field-textarea-min-rows': minRows, '--field-textarea-max-rows': maxRows } as CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={fieldStyles.backgroundWrapper}>
-        <div
-          className={fieldStyles.materialLayer}
-          {...getAcrylicProps({
-            validationState: effectiveValidationState,
-            disabled,
-            readonly: readOnly,
-            hover,
-            focusVisible,
-          })}
+      {/* onClick лишь форвардит фокус в textarea (реальный фокусируемый/клавиатурный элемент
+          рядом) при клике в пустую зону поля — это не самостоятельный контрол, клавиатурный
+          доступ обеспечивает сама textarea, поэтому role/tabIndex здесь не нужны. */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div className={cn(fieldStyles.contentWrapper, styles.contentArea)} onClick={handleContentClick}>
+        {/* Скролл при превышении maxRows — кастомный из @ds/scroll (по Figma), не нативный
+            скроллбар textarea. maxRows задаёт max-height контейнера через CSS-переменные,
+            autosize-textarea растёт внутри, Scroll рисует DS-скроллбар. Resize-handle —
+            на scroll-контейнере (CSS resize), не на самой textarea. */}
+        <Scroll
+          className={cn(styles.scrollContainer, { [styles.scrollContainerResizable]: isResizable })}
+          size={SCROLL_SIZE.S}
+          barHideStrategy={BAR_HIDE_STRATEGY.Never}
+          resize={isResizable ? RESIZE.Vertical : RESIZE.None}
+          overflow={{ x: 'hidden' }}
+          data-test-id={TEST_IDS.fieldTextAreaScrollArea}
         >
-          <div className={fieldStyles.acrylicBg} aria-hidden />
-        </div>
-        <div className={fieldStyles.borderStateLayer} data-state='regularBorder' />
-        <div className={fieldStyles.focusLayer} />
+          <TextareaAutosize
+            ref={mergeRefs(ref, localRef)}
+            className={styles.textarea}
+            value={value}
+            onChange={handleChange}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readOnly}
+            id={id}
+            name={name}
+            maxLength={allowMoreThanMaxLength ? undefined : maxLength}
+            autoFocus={autoFocus}
+            inputMode={inputMode}
+            spellCheck={spellCheck}
+            minRows={minRows}
+            tabIndex={inputTabIndex}
+            data-test-id={TEST_IDS.fieldTextAreaInput}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            {...extractSupportProps(rest)}
+          />
+        </Scroll>
+        {postfixButtons && <span className={styles.postfixColumn}>{postfixButtons}</span>}
       </div>
-      <div className={fieldStyles.fieldContainer}>
-        {header && <div className={styles.header}>{header}</div>}
-        {/* onClick лишь форвардит фокус в textarea (реальный фокусируемый/клавиатурный элемент
-            рядом) при клике в пустую зону поля — это не самостоятельный контрол, клавиатурный
-            доступ обеспечивает сама textarea, поэтому role/tabIndex здесь не нужны. */}
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div className={cn(fieldStyles.contentWrapper, styles.contentArea)} onClick={handleContentClick}>
-          {/* Скролл при превышении maxRows — кастомный из @ds/scroll (по Figma), не нативный
-              скроллбар textarea. maxRows задаёт max-height контейнера через CSS-переменные,
-              autosize-textarea растёт внутри, Scroll рисует DS-скроллбар. Resize-handle —
-              на scroll-контейнере (CSS resize), не на самой textarea. */}
-          <Scroll
-            className={cn(styles.scrollContainer, { [styles.scrollContainerResizable]: isResizable })}
-            size={SCROLL_SIZE.S}
-            barHideStrategy={BAR_HIDE_STRATEGY.Never}
-            resize={isResizable ? RESIZE.Vertical : RESIZE.None}
-            overflow={{ x: 'hidden' }}
-            data-test-id={TEST_IDS.fieldTextAreaScrollArea}
-          >
-            <TextareaAutosize
-              ref={mergeRefs(ref, localRef)}
-              className={styles.textarea}
-              value={value}
-              onChange={handleChange}
-              placeholder={placeholder}
-              disabled={disabled}
-              readOnly={readOnly}
-              id={id}
-              name={name}
-              maxLength={allowMoreThanMaxLength ? undefined : maxLength}
-              autoFocus={autoFocus}
-              inputMode={inputMode}
-              spellCheck={spellCheck}
-              minRows={minRows}
-              tabIndex={inputTabIndex}
-              data-test-id={TEST_IDS.fieldTextAreaInput}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              onKeyDown={handleKeyDown}
-              {...extractSupportProps(rest)}
-            />
-          </Scroll>
-          {postfixButtons && <span className={styles.postfixColumn}>{postfixButtons}</span>}
-        </div>
-        {footer && <div className={styles.footer}>{footer}</div>}
-      </div>
-    </div>
+    </FieldShell>
   );
 
   return (

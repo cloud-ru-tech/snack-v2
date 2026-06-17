@@ -8,4 +8,5 @@ export * from './FieldStepper';
 export * from './FieldText';
 export * from './FieldTextArea';
 export * from './FieldTime';
-export type { FieldElementButtonProps } from './shared';
+export { FieldShell } from './shared';
+export type { FieldElementButtonProps, FieldShellProps } from './shared';
