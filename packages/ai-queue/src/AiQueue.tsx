@@ -4,11 +4,11 @@ import cn from 'classnames';
 import { ReactElement, useMemo } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { AiQueueStepStatus } from './AiQueueStepStatus.tsx';
+import { AiQueueStepStatus } from './AiQueueStepStatus';
 import { DEFAULT_LABELS, TEST_IDS } from './constants';
 import styles from './styles.module.scss';
 import { AiQueueProps } from './types';
-import { calculateSummary, resolveStepState } from './utils.ts';
+import { calculateSummary, resolveStepState } from './utils';
 
 export function AiQueue({
   className,
