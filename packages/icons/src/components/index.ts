@@ -6,4 +6,4 @@ export * as WebIcons from './web-icons';
 // product x snack: LinkSVG, LinkSpriteSVG
 // web x snack: TableSVG, TableSpriteSVG
 // product x web: CpuSVG, DataSVG, ExitSVG (+ их *SpriteSVG)
-export { DotSmallSVG } from './product-icons';
+export { DotSmallSVG, DecorCheckedSVG, DecorCheckedSpriteSVG } from './product-icons';
