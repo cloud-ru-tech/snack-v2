@@ -162,7 +162,7 @@ export function QuotaWidgetError() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `buttonProps` | `BaseButtonProps` \| `ButtonProps` | — | Свойства кнопки открытия виджета |
+| `buttonProps` | `ButtonProps` | — | Свойства кнопки открытия виджета |
 | `canEditQuota` | `boolean` | — | Флаг наличия прав на редактирование квот |
 | `data-test-id` | `string` | — |  |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |

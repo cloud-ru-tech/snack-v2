@@ -95,6 +95,10 @@
               "CounterProps"
             ]
           },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
           "disabled": {
             "type": "boolean | undefined",
             "required": false,

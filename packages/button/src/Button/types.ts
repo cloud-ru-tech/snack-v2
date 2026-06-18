@@ -1,5 +1,5 @@
 import { CounterProps } from '@ds/counter';
-import { ValueOf } from '@ds/utils';
+import { ValueOf, WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
 import { APPEARANCE, ICON_POSITION, SIZE, VIEW } from './constants';
@@ -9,7 +9,7 @@ export type IconPosition = ValueOf<typeof ICON_POSITION>;
 export type Size = ValueOf<typeof SIZE>;
 export type View = ValueOf<typeof VIEW>;
 
-export type BaseButtonProps = {
+export type BaseButtonProps = WithSupportProps<{
   /** Текст кнопки */
   label?: string;
   /** Иконка */
@@ -32,7 +32,7 @@ export type BaseButtonProps = {
   view?: View;
   /** Пропсы для counter */
   counter?: Omit<CounterProps, 'size' | 'appearance'>;
-};
+}>;
 
 export type PolymorphicRef<T extends ElementType> = ComponentPropsWithRef<T>['ref'];
 

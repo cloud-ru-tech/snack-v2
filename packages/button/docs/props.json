@@ -38,6 +38,10 @@
           "CounterProps"
         ]
       },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
       "disabled": {
         "type": "boolean",
         "required": false,
@@ -301,8 +305,7 @@
         "required": false,
         "description": "Основное действие (filled)",
         "typeRefs": [
-          "ActionProps",
-          "BaseButtonProps"
+          "ActionProps"
         ]
       },
       "secondaryAction": {
@@ -310,8 +313,7 @@
         "required": false,
         "description": "Вторичное действие (outline), опционально",
         "typeRefs": [
-          "ActionProps",
-          "BaseButtonProps"
+          "ActionProps"
         ]
       },
       "size": {
@@ -333,8 +335,7 @@
         "required": false,
         "description": "Третичное действие (simple/text-only), опционально",
         "typeRefs": [
-          "ActionProps",
-          "BaseButtonProps"
+          "ActionProps"
         ]
       },
       "vertical": {
@@ -461,104 +462,6 @@
           "neutral",
           "primary"
         ],
-        "own": true
-      },
-      "BaseButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
         "own": true
       },
       "CounterProps": {

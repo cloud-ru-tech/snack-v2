@@ -136,7 +136,6 @@
         "required": false,
         "description": "Свойства кнопки открытия виджета",
         "typeRefs": [
-          "BaseButtonProps",
           "ButtonProps"
         ]
       },
@@ -224,104 +223,6 @@
         ],
         "own": false
       },
-      "BaseButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": false
-      },
       "ButtonProps": {
         "kind": "interface",
         "props": {
@@ -358,6 +259,10 @@
             "typeRefs": [
               "CounterProps"
             ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
           "disabled": {
             "type": "boolean | undefined",

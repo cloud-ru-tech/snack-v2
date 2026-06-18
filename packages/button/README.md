@@ -216,6 +216,7 @@ export function Loading() {
 | `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string` | — | Дополнительный класс |
 | `counter` | `CounterProps` | — | Пропсы для counter |
+| `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | `false` | Отключена |
 | `fullWidth` | `boolean` | `false` | На всю ширину |
 | `icon` | `ReactNode` | — | Иконка |
@@ -369,10 +370,10 @@ export function ButtonGroupBreak() {
 | `className` | `string` | — | Дополнительный класс |
 | `data-test-id` | `string` | — |  |
 | `filled` | `boolean` | `false` | Заливка контейнера |
-| `primaryAction` | `ActionProps` \| `BaseButtonProps` | — | Основное действие (filled) |
-| `secondaryAction` | `ActionProps` \| `BaseButtonProps` | — | Вторичное действие (outline), опционально |
+| `primaryAction` | `ActionProps` | — | Основное действие (filled) |
+| `secondaryAction` | `ActionProps` | — | Вторичное действие (outline), опционально |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер кнопок |
-| `tertiaryAction` | `ActionProps` \| `BaseButtonProps` | — | Третичное действие (simple/text-only), опционально |
+| `tertiaryAction` | `ActionProps` | — | Третичное действие (simple/text-only), опционально |
 | `vertical` | `boolean` | `false` | Вертикальное расположение |
 
 ##### Related types
@@ -396,22 +397,6 @@ export function ButtonGroupBreak() {
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
 - `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`
-
-**BaseButtonProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
-| `className` | `string \| undefined` | — | Дополнительный класс |
-| `counter` | `CounterProps` | — | Пропсы для counter |
-| `disabled` | `boolean \| undefined` | — | Отключена |
-| `fullWidth` | `boolean \| undefined` | — | На всю ширину |
-| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
-| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
-| `label` | `string \| undefined` | — | Текст кнопки |
-| `loading` | `boolean \| undefined` | — | Состояние загрузки |
-| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
-| `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
 - `IconPosition` = `"after"` \| `"before"`
 
