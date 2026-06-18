@@ -1,0 +1,96 @@
+---
+title: EntitiesTable
+package: '@ds/table'
+description: 'Server-driven список сущностей: state пагинации/поиска, queryFn и product-дефолты поверх ServerTable.'
+order: 6
+---
+
+import { EntitiesTableBasic } from '../demos/examples/EntitiesTable/EntitiesTableBasic'
+import EntitiesTableBasicSrc from '../demos/examples/EntitiesTable/EntitiesTableBasic.tsx?raw'
+import { EntitiesTableWithHook } from '../demos/examples/EntitiesTable/EntitiesTableWithHook'
+import EntitiesTableWithHookSrc from '../demos/examples/EntitiesTable/EntitiesTableWithHook.tsx?raw'
+import { EntitiesTableWithFilters } from '../demos/examples/EntitiesTable/EntitiesTableWithFilters'
+import EntitiesTableWithFiltersSrc from '../demos/examples/EntitiesTable/EntitiesTableWithFilters.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import doc from './props.json'
+
+# EntitiesTable
+
+`EntitiesTable` — product-preset над [`ServerTable`](/components/table/server-table) для экранов «список сущностей с бэкенда»: локальный state (`offset`, `limit`, `search`, `sorting`), вызов `queryFn` и предустановленные дефолты (`savedState`, drag колонок, пагинация `[10, 25, 50, 100]`).
+
+## Когда использовать
+
+- Миграция с `@cloud-ru/uikit-product-entities-table` — тот же вход: `columnDefinitions` + `queryFn`.
+- Нужен единый glue для react-query (или совместимого query-хука) без ручной сборки `ServerTable` props.
+
+Когда **не** нужен:
+
+- Ручной fetch и упрощённый API (`columns`, `statusColumn`) — [`ServerAdminTable`](/components/table/server-table).
+- Клиентские данные в памяти — [`AdminTable`](/components/table/admin-table) или [`SimpleTable`](/components/table/simple-table).
+
+### EntitiesTable vs ServerAdminTable
+
+| | `EntitiesTable` | `ServerAdminTable` |
+| --- | --- | --- |
+| Вход колонок | `columnDefinitions` | `columns` + `statusColumn` / `rowActions` |
+| Данные | `queryFn` (custom hook на render) | `items` / `total` / `loading` вручную |
+| State пагинации | внутри (`useEntitiesTableState`) | снаружи |
+| `savedState` | из обязательного `id` | не задаётся preset-ом |
+| Drag колонок | включён по умолчанию | только меню настроек |
+
+Оба preset-а валидны; выбор — по входному API и способу загрузки данных.
+
+### Переход на ServerAdminTable
+
+Если экран укладывается в `columns` + `statusColumn` и вы сами управляете fetch — уберите `queryFn`, state страницы вынесите наружу, колонки упростите. `savedState` из `id` не переносится; drag — через `columnsSettings`.
+
+```tsx
+// Было
+<EntitiesTable id="entities" queryFn={useEntitiesQuery} columnDefinitions={columnDefinitions} getRowId={row => row.id} />
+
+// Стало: items/total/loading + offset/limit/search снаружи
+<ServerAdminTable
+  items={items}
+  total={total}
+  offset={offset}
+  limit={limit}
+  loading={loading}
+  columns={columns}
+  statusColumn={statusColumn}
+  getRowId={row => row.id}
+  onChangePage={(nextOffset, nextLimit) => { setOffset(nextOffset); setLimit(nextLimit); }}
+  search={{ state: search, onChange: value => { setOffset(0); setSearch(value); } }}
+  columnsSettings={{ enableDrag: true, enableSettingsMenu: true }}
+/>
+```
+
+## Примеры использования
+
+{/* client:only='react': SSR демо невозможен — @ds/table тянет toolbar с directory-imports (см. table.mdx). */}
+
+<Example title='Базовое использование' code={EntitiesTableBasicSrc}>
+  <EntitiesTableBasic client:only='react' />
+</Example>
+
+<Example title='Через useEntitiesTableState + useEntitiesTableProps' code={EntitiesTableWithHookSrc}>
+  <EntitiesTableWithHook client:only='react' />
+</Example>
+
+<Example title='С серверными фильтрами' code={EntitiesTableWithFiltersSrc}>
+  <EntitiesTableWithFilters client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={doc.EntitiesTable} />
+
+## Смотри также
+
+- [`ServerAdminTable`](/components/table/server-table) — ручной fetch и упрощённый API колонок.
+- [`ServerTable`](/components/table/server-table) — escape hatch без product-дефолтов.
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-entitiestable--playground' />

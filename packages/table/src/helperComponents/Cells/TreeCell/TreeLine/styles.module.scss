@@ -1,0 +1,68 @@
+// Линия дерева: каждый экземпляр занимает ровно один «уровень вложенности»
+// (centeredWrapper.width = 24px) и рисует тонкую линию по центру блока.
+// data-visible показывает линию, data-half-height укорачивает до 50% высоты
+// (последний потомок ветки), data-horizontal — горизонтальный отвод к узлу.
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+@use '@sbercloud/figma-variables/build/scss/components/tree.module' as tree;
+
+$level-width: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-width;
+$list-row-gap: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight;
+
+.treeLine {
+  position: relative;
+  flex-shrink: 0;
+  width: $level-width;
+  height: 100%;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: base.$sn-primitive-strokeWeight-strokeThin;
+
+    background-color: transparent;
+  }
+
+  &[data-visible]::after {
+    background-color: base.$sn-theme-color-neutral-decor;
+  }
+
+  &[data-half-height]::after {
+    bottom: 50%;
+  }
+
+  &[data-horizontal] {
+    align-self: center;
+    width: calc($level-width / 2);
+    height: base.$sn-primitive-strokeWeight-strokeThin;
+    // Горизонтальный отвод от центра вертикальной линии к узлу.
+    // Negative margin сдвигает влево на half-level так, что контейнер начинается
+    // ровно в центре (12px) предыдущего вертикального блока и заканчивается
+    // на его правой границе (24px), не занимая дополнительного flex-пространства.
+    margin-left: calc(-1 * $level-width / 2);
+
+    &::after {
+      top: 0;
+      bottom: 0;
+      // Смещаем начало на ширину вертикальной линии, чтобы два полупрозрачных
+      // ::after не накладывались в точке пересечения и не создавали тёмное пятно.
+      left: base.$sn-primitive-strokeWeight-strokeThin;
+      transform: none;
+
+      width: calc(100% - #{base.$sn-primitive-strokeWeight-strokeThin});
+    }
+
+    // У листа без chevron отвод занимает слот chevron, но заканчивается
+    // до cellToggles на величину gap — как между chevron и чекбоксом.
+    &[data-extended] {
+      width: calc($level-width / 2 + $level-width - $list-row-gap);
+      margin-right: $list-row-gap;
+    }
+  }
+}

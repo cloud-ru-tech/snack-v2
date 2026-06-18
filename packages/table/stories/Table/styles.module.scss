@@ -1,0 +1,44 @@
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.cell {
+  width: 480px;
+  max-width: 100%;
+}
+
+.cardCell {
+  width: 320px;
+  max-width: 100%;
+}
+
+// Узкий контейнер для секции pinned-колонок: горизонтальный overflow
+// делает видимыми закреплённые блоки и divider.
+.narrowCell {
+  width: 360px;
+  max-width: 100%;
+}
+
+// Широкий контейнер для секции Toolbar & chrome: полный тулбар (поиск,
+// bulk-бар, refresh, moreActions, toolbarAfter) не схлопывается в overflow.
+.wideCell {
+  width: 720px;
+  max-width: 100%;
+}
+
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+// Узкий контейнер для секции layoutType=mobile в VisualMatrix.
+.mobileCell {
+  width: 360px;
+  max-width: 100%;
+}

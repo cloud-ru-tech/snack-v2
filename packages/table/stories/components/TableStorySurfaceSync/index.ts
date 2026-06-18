@@ -1,0 +1,1 @@
+export { TableStorySurfaceSync } from './TableStorySurfaceSync';

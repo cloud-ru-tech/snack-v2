@@ -1,0 +1,8 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: base.$sn-primitive-dimension-8 0;
+}

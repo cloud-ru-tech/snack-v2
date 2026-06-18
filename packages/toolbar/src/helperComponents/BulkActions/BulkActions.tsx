@@ -20,7 +20,7 @@ export function BulkActions({
   const hasSelection = Boolean(checked || indeterminate);
   const showActions = hasSelection && actions.length > 0;
   const showInlineActions = showActions && !isMobile;
-  const showCheckboxInToolbar = showBulkCheckbox && !isMobile;
+  const showCheckboxInToolbar = showBulkCheckbox;
 
   return (
     <>

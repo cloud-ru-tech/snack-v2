@@ -1,0 +1,31 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  overflow-x: auto;
+
+  width: 100%;
+  max-width: 100%;
+  min-height: 12rem;
+  margin: base.$sn-density-spacing-interval-m 0;
+  padding: base.$sn-density-spacing-interval-m;
+  border: 1px solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  :global(svg) {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+.error {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
+
+  margin: 0;
+  color: base.$sn-theme-color-red-accent;
+}

@@ -1,0 +1,18 @@
+// Droplist настройки видимых колонок: задаёт минимальную ширину выпадающего списка.
+.columnsSettings {
+  min-width: 256px; /* TODO[token]: нет dimension-токена на 256px (макс. в наборе — primitive-dimension-136) */
+}
+
+// Mobile overflow: триггер не показываем в строке тулбара — sheet открывается из меню «⋯».
+.hiddenTrigger {
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+
+  white-space: nowrap;
+
+  clip-path: rect(0, 0, 0, 0);
+}

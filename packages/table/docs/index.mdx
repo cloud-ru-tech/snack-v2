@@ -1,0 +1,109 @@
+---
+title: Table
+package: '@ds/table'
+description: 'Таблица данных: клиентская Table, серверная ServerTable и preset-обёртки с упрощённым API.'
+order: 0
+---
+
+import { Mermaid } from '#docs/components/Mermaid';
+
+# Table
+
+Пакет `@ds/table` предоставляет таблицы поверх `@tanstack/react-table`: полнофункциональные `Table` / `ServerTable` и preset-обёртки с упрощённым API.
+
+## Архитектура пакета
+
+```mermaid
+flowchart TB
+  subgraph public [Публичный API]
+    direction LR
+    defineColumns[defineColumns]
+    statusColumn[statusColumn]
+    actionsColumn[actionsColumn]
+  end
+
+  subgraph hooks [Хуки]
+    useSimple[useSimpleTableProps]
+    useAdmin[useAdminTableProps]
+    useTree[useTreeTableProps]
+    useInfinite[useInfiniteTableProps]
+    useEntities[useEntitiesTableProps]
+  end
+
+  subgraph presets [Preset-компоненты]
+    SimpleTable
+    ServerSimpleTable
+    AdminTable
+    ServerAdminTable
+    EntitiesTable
+    TreeTable
+    InfiniteTable
+  end
+
+  subgraph core [Core]
+    direction LR
+    Table
+    ServerTable
+  end
+
+  public -.->|columnDefinitions| Table
+  useSimple --> SimpleTable
+  useAdmin --> AdminTable
+  useTree --> TreeTable
+  useInfinite --> InfiniteTable
+  useEntities --> EntitiesTable
+  SimpleTable --> Table
+  ServerSimpleTable --> ServerTable
+  AdminTable --> Table
+  ServerAdminTable --> ServerTable
+  EntitiesTable --> ServerTable
+  TreeTable --> Table
+  InfiniteTable --> Table
+  ServerTable --> Table
+```
+
+`defineColumns`, `statusColumn` и `actionsColumn` — публичные утилиты: ими собирают `columnDefinitions` для [`Table`](/components/table/table) напрямую. Preset-ы дают тот же результат через упрощённые пропсы (`columns`, `statusColumn`, `rowActions` в `AdminTable`).
+
+`ServerTable` — обёртка над `Table` для серверной пагинации, сортировки и фильтрации.
+
+## Какой сценарий выбрать
+
+### Компоненты
+
+| Сценарий                                         | Компонент                                           |
+| ------------------------------------------------ | --------------------------------------------------- |
+| Полный контроль над API                          | [`Table`](/components/table/table)                  |
+| Серверная пагинация                              | [`ServerTable`](/components/table/server-table)     |
+| Серверный список сущностей + queryFn             | [`EntitiesTable`](/components/table/entities-table) |
+| Простой список: данные + колонки + пагинация     | [`SimpleTable`](/components/table/simple-table)     |
+| Админка: поиск, фильтры, выбор, статус, действия | [`AdminTable`](/components/table/admin-table)       |
+| Иерархия (дерево)                                | [`TreeTable`](/components/table/tree-table)         |
+| Бесконечная прокрутка                            | [`InfiniteTable`](/components/table/infinite-table) |
+
+### Утилиты
+
+| Сценарий                | Утилита                                             |
+| ----------------------- | --------------------------------------------------- |
+| Декларативные колонки   | [`defineColumns`](/components/table/define-columns) |
+| Колонка статуса         | `statusColumn`                                      |
+| Колонка действий строки | `actionsColumn`                                     |
+
+Каждый preset доступен в двух формах: **компонент** (`<SimpleTable />`) и **хук** (`useSimpleTableProps()` + `<Table />`).
+
+Карточный режим (`headlineKey`, `defaultView`, `view`) — сквозная опция всех preset-ов, не отдельный компонент.
+
+## Установка
+
+```bash
+pnpm add @ds/table
+```
+
+```ts
+import { Table, ServerTable, SimpleTable, defineColumns } from '@ds/table';
+```
+
+## Смотри также
+
+- [Pagination](/components/pagination) — отдельный компонент пагинации.
+- [InfoBlock](/components/info-block) — основа пустых состояний таблицы.
+- [Card](/components/card) — самостоятельные карточки вне таблицы.

@@ -241,6 +241,9 @@
       "path": "./toolbar/tsconfig.esm.json"
     },
     {
+      "path": "./table/tsconfig.esm.json"
+    },
+    {
       "path": "./tree/tsconfig.esm.json"
     },
     {

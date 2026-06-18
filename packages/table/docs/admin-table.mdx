@@ -1,0 +1,47 @@
+---
+title: AdminTable
+package: '@ds/table'
+description: 'Админ-таблица: поиск, статус, выбор строк и действия с предустановленными дефолтами.'
+order: 3
+---
+
+import { AdminTableBasic } from '../demos/examples/AdminTable/AdminTableBasic'
+import AdminTableBasicSrc from '../demos/examples/AdminTable/AdminTableBasic.tsx?raw'
+import { AdminTableWithHook } from '../demos/examples/AdminTable/AdminTableWithHook'
+import AdminTableWithHookSrc from '../demos/examples/AdminTable/AdminTableWithHook.tsx?raw'
+import { AdminTableCardView } from '../demos/examples/AdminTable/AdminTableCardView'
+import AdminTableCardViewSrc from '../demos/examples/AdminTable/AdminTableCardView.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+
+# AdminTable
+
+`AdminTable` — preset над [`Table`](/components/table/table) для типичных админ-экранов: поиск, колонка статуса, настройки колонок, опционально фильтры, выбор строк и действия.
+
+## Когда использовать
+
+- Списки сущностей с поиском и статусом на клиенте.
+- Нужен упрощённый API вместо сборки `columnDefinitions` + toolbar-пропсов вручную.
+
+Когда **не** нужен:
+
+- Данные с бэкенда постранично — `ServerAdminTable`.
+- Простой справочник без поиска — `SimpleTable`.
+
+## Примеры использования
+
+<Example title='Базовое использование' code={AdminTableBasicSrc}>
+  <AdminTableBasic client:only='react' />
+</Example>
+
+<Example title='Через хук useAdminTableProps' code={AdminTableWithHookSrc}>
+  <AdminTableWithHook client:only='react' />
+</Example>
+
+<Example title='Карточный режим' code={AdminTableCardViewSrc}>
+  <AdminTableCardView client:only='react' />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-admintable--playground' />

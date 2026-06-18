@@ -1,0 +1,191 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+
+.tableHeaderResizeHandle {
+  cursor: ew-resize;
+
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  transform: translateX(50%);
+
+  width: base.$sn-primitive-dimension-8;
+  height: 100%;
+
+  opacity: 0;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: base.$sn-primitive-strokeWeight-strokeRegular;
+    height: 100%;
+
+    background-color: base.$sn-theme-color-neutral-decor;
+  }
+
+  &[data-resizing] {
+    opacity: 0;
+  }
+}
+
+.tableHeaderResizeIndicator {
+  cursor: col-resize;
+
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  transform: translateX(var(--offset));
+
+  width: base.$sn-primitive-strokeWeight-strokeRegular;
+  height: 100%;
+
+  background-color: base.$sn-theme-color-neutral-decor;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+
+    width: calc(100% + #{base.$sn-primitive-dimension-32});
+    height: 100%;
+  }
+}
+
+.tableHeaderCell {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: base.simple-var(table.$table, 'content', 'tableHead', 'padding-top')
+    base.simple-var(table.$table, 'content', 'tableHead', 'padding-right')
+    base.simple-var(table.$table, 'content', 'tableHead', 'padding-bottom')
+    base.simple-var(table.$table, 'content', 'tableHead', 'padding-left');
+
+  background-color: transparent;
+
+  [data-test-id='table__pinned-cells'] &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    height: base.$sn-primitive-strokeWeight-strokeRegular;
+
+    background-color: base.$sn-theme-color-available-borderColor;
+  }
+
+  &:hover .tableHeaderResizeHandle:not([data-resizing]) {
+    opacity: 1;
+  }
+
+  &[data-draggable] {
+    cursor: grab;
+  }
+
+  &[data-sortable] {
+    cursor: pointer;
+  }
+
+  &[data-no-offset]::after {
+    left: 0;
+    transform: none;
+    width: 100%;
+  }
+
+  &[data-no-padding] {
+    padding: 0;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &[data-resizing] {
+    user-select: none;
+  }
+
+  &[data-pin-position='right']:last-child {
+    overflow: hidden;
+
+    .tableHeaderResizeHandle {
+      right: 0;
+      transform: none;
+    }
+
+    .tableHeaderResizeIndicator {
+      right: calc(#{base.$sn-primitive-dimension-8} / 2);
+    }
+  }
+
+  &[data-row-auto-height] {
+    align-items: flex-end;
+  }
+
+  &:not([data-row-auto-height]) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.tableHeaderCellDragWrapper {
+  width: 100%;
+
+  &[data-dragging]:active {
+    cursor: grabbing;
+  }
+}
+
+.tableHeaderCellMain {
+  overflow: auto;
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-width: 0;
+
+  &[data-align='right'] {
+    justify-content: flex-end;
+  }
+}
+
+.tableHeaderCellName {
+  display: inline-flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-24;
+  padding-top: base.$sn-primitive-dimension-2;
+  padding-bottom: base.$sn-primitive-dimension-2;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.tableHeaderIcon {
+  display: flex;
+  box-sizing: border-box;
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  svg {
+    width: base.$sn-density-size-icon-xs !important;
+    height: base.$sn-density-size-icon-xs !important;
+  }
+}

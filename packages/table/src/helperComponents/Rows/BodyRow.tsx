@@ -1,0 +1,116 @@
+import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
+import { Row as TableRow } from '@tanstack/react-table';
+import { CSSProperties, MouseEvent, useState } from 'react';
+
+import { RowAppearance } from '../../components';
+import { COLUMN_PIN_POSITION, TEST_IDS } from '../../constants';
+import { RowContext, useTableContext } from '../../contexts';
+import { useRowCells } from '../../hooks';
+import { ColumnOrder } from '../../types';
+import { BodyCell } from '../Cells';
+import { PinnedCells } from './PinnedCells';
+import { Row, RowProps } from './Row';
+import styles from './styles.module.scss';
+
+export type RowInfo<TData> = {
+  id: string;
+  data: TData;
+  selected: boolean;
+  toggleSelected(value?: boolean): void;
+};
+
+export type RowClickHandler<TData> = (e: MouseEvent<HTMLDivElement>, row: RowInfo<TData>) => void;
+
+export type BodyRowProps<TData> = Pick<RowProps, 'rowAutoHeight'> & {
+  row: TableRow<TData>;
+  onRowClick?: RowClickHandler<TData>;
+  columnOrder: ColumnOrder;
+  enableColumnsOrderSortByDrag?: boolean;
+  disabledRowAppearance?: RowAppearance;
+};
+
+export function BodyRow<TData>({
+  row,
+  onRowClick,
+  rowAutoHeight,
+  columnOrder,
+  enableColumnsOrderSortByDrag,
+  disabledRowAppearance = RowAppearance.Disabled,
+}: BodyRowProps<TData>) {
+  const { leftPinned, rightPinned, unpinned } = useRowCells(row);
+  const [dropListOpened, setDropListOpen] = useState(false);
+  const disabled = !row.getCanSelect();
+  const { getRowBackgroundColor, columnVirtualPadding } = useTableContext();
+
+  const handleRowClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (disabled && disabledRowAppearance === RowAppearance.Disabled) {
+      return;
+    }
+
+    onRowClick?.(e, {
+      id: row.id,
+      data: row.original,
+      selected: row.getIsSelected(),
+      toggleSelected: row.toggleSelected,
+    });
+  };
+
+  const isSelected =
+    row.getIsSelected() || (row.getIsSomeSelected() && !row.getCanMultiSelect() && !row.getIsExpanded());
+  const rowBackgroundColor = getRowBackgroundColor?.(row.original);
+
+  return (
+    <RowContext.Provider value={{ dropListOpened, setDropListOpen, disabledRowAppearance }}>
+      <Row
+        onClick={handleRowClick}
+        data-clickable={Boolean(onRowClick) || undefined}
+        data-disabled={disabled || undefined}
+        data-row-appearance={disabled ? disabledRowAppearance : undefined}
+        data-selected={isSelected || undefined}
+        data-actions-opened={dropListOpened || undefined}
+        data-test-id={TEST_IDS.bodyRow}
+        data-row-id={row.id}
+        data-row-bg-appearance={rowBackgroundColor && !disabled && !isSelected ? rowBackgroundColor : undefined}
+        className={styles.bodyRow}
+        rowAutoHeight={rowAutoHeight}
+      >
+        {leftPinned && (
+          <PinnedCells position={COLUMN_PIN_POSITION.Left}>
+            {leftPinned.map(cell => (
+              <BodyCell key={cell.id} cell={cell} rowAutoHeight={rowAutoHeight} />
+            ))}
+          </PinnedCells>
+        )}
+
+        {columnVirtualPadding && columnVirtualPadding.left > 0 && (
+          <div aria-hidden style={{ width: columnVirtualPadding.left, flexShrink: 0 } as CSSProperties} />
+        )}
+        {enableColumnsOrderSortByDrag ? (
+          <SortableContext items={columnOrder} strategy={horizontalListSortingStrategy}>
+            {unpinned.map(cell => (
+              <BodyCell key={cell.id} cell={cell} rowAutoHeight={rowAutoHeight} isDraggable />
+            ))}
+          </SortableContext>
+        ) : (
+          unpinned.map(cell => <BodyCell key={cell.id} cell={cell} rowAutoHeight={rowAutoHeight} />)
+        )}
+        {columnVirtualPadding && columnVirtualPadding.right > 0 && (
+          <div aria-hidden style={{ width: columnVirtualPadding.right, flexShrink: 0 } as CSSProperties} />
+        )}
+
+        {rightPinned && (
+          <PinnedCells position={COLUMN_PIN_POSITION.Right}>
+            {rightPinned.map(cell => (
+              <BodyCell
+                key={cell.id}
+                cell={cell}
+                rowAutoHeight={rowAutoHeight}
+                isDraggable={enableColumnsOrderSortByDrag}
+              />
+            ))}
+          </PinnedCells>
+        )}
+      </Row>
+    </RowContext.Provider>
+  );
+}

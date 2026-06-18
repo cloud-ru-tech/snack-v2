@@ -1,0 +1,47 @@
+---
+title: TreeTable
+package: '@ds/table'
+description: 'Иерархическая таблица: expanding, без пагинации, с опциональным выбором строк.'
+order: 4
+---
+
+import { TreeTableBasic } from '../demos/examples/TreeTable/TreeTableBasic'
+import TreeTableBasicSrc from '../demos/examples/TreeTable/TreeTableBasic.tsx?raw'
+import { TreeTableWithHook } from '../demos/examples/TreeTable/TreeTableWithHook'
+import TreeTableWithHookSrc from '../demos/examples/TreeTable/TreeTableWithHook.tsx?raw'
+import { TreeTableWithSelection } from '../demos/examples/TreeTable/TreeTableWithSelection'
+import TreeTableWithSelectionSrc from '../demos/examples/TreeTable/TreeTableWithSelection.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+
+# TreeTable
+
+`TreeTable` — preset для иерархических данных: `getChildren`, tree-колонка через `primaryColumn`, без пагинации.
+
+## Когда использовать
+
+- Оргструктура, вложенные ресурсы, каталоги с подуровнями.
+- Нужен expand/collapse без ручной настройки `expanding` на `Table`.
+
+Когда **не** нужен:
+
+- Плоский список — `SimpleTable` / `AdminTable`.
+- Закрепление строк (`rowPinning`) — только на полном `Table`.
+
+## Примеры использования
+
+<Example title='Базовое дерево' code={TreeTableBasicSrc}>
+  <TreeTableBasic client:only='react' />
+</Example>
+
+<Example title='Через хук useTreeTableProps' code={TreeTableWithHookSrc}>
+  <TreeTableWithHook client:only='react' />
+</Example>
+
+<Example title='С выбором строк' code={TreeTableWithSelectionSrc}>
+  <TreeTableWithSelection client:only='react' />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-treetable--playground' />

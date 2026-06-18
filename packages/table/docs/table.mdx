@@ -1,0 +1,411 @@
+---
+title: Table
+package: '@ds/table'
+description: 'Клиентская таблица данных: сортировка, поиск, выбор строк, пагинация, дерево, настройка колонок, режим карточек.'
+order: 1
+---
+
+import { Basic } from '../demos/examples/Table/Basic';
+import BasicSrc from '../demos/examples/Table/Basic.tsx?raw';
+import { Sorting } from '../demos/examples/Table/Sorting';
+import SortingSrc from '../demos/examples/Table/Sorting.tsx?raw';
+import { StatusColumn } from '../demos/examples/Table/StatusColumn';
+import StatusColumnSrc from '../demos/examples/Table/StatusColumn.tsx?raw';
+import { Selection } from '../demos/examples/Table/Selection';
+import SelectionSrc from '../demos/examples/Table/Selection.tsx?raw';
+import { RowActions } from '../demos/examples/Table/RowActions';
+import RowActionsSrc from '../demos/examples/Table/RowActions.tsx?raw';
+import { Tree } from '../demos/examples/Table/Tree';
+import TreeSrc from '../demos/examples/Table/Tree.tsx?raw';
+import { ColumnSettings } from '../demos/examples/Table/ColumnSettings';
+import ColumnSettingsSrc from '../demos/examples/Table/ColumnSettings.tsx?raw';
+import { CardView } from '../demos/examples/Table/CardView';
+import CardViewSrc from '../demos/examples/Table/CardView.tsx?raw';
+import { MobileLayout } from '../demos/examples/Table/MobileLayout';
+import MobileLayoutSrc from '../demos/examples/Table/MobileLayout.tsx?raw';
+import { FullWidth } from '../demos/examples/Table/FullWidth';
+import FullWidthSrc from '../demos/examples/Table/FullWidth.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import doc from './props.json';
+
+# Table
+
+Клиентская таблица поверх `@tanstack/react-table`: данные передаются целиком, сортировка, поиск и пагинация выполняются локально. Служебные колонки — статус, выбор строки, действия, дерево — собираются готовыми фабриками.
+
+Для типовых сценариев есть preset-обёртки с упрощённым API — см. [обзор пакета](/components/table) и [`defineColumns`](/components/table/define-columns). Для постраничных данных с бэкенда — [`ServerTable`](/components/table/server-table).
+
+## Когда использовать
+
+- Структурированные данные с одинаковым набором полей у каждой записи.
+- Операции над строками: выбор, массовые действия, контекстные действия строки.
+- Сравнение записей по колонкам: сортировка, фильтры, настройка видимости колонок.
+
+Когда **не** нужен:
+
+- Данные приходят с бэкенда постранично:
+  - используйте [`ServerTable`](/components/table/server-table).
+- Простой справочник без поиска и фильтров:
+  - [`SimpleTable`](/components/table/simple-table) вместо ручной сборки `columnDefinitions`.
+- Типичный админ-экран (поиск, статус, выбор, действия):
+  - [`AdminTable`](/components/table/admin-table) вместо полного `Table`.
+- Простой список без колонок и сортировки:
+  - используйте список или карточки.
+
+Рекомендации:
+
+- ✅ Задавать `getRowId` по стабильному идентификатору данных при включённом выборе строк.
+- ❌ Полагаться на индекс строки — при сортировке и фильтрации выбор переходит на другие записи.
+
+- ✅ Для постраничных данных с бэкенда использовать [`ServerTable`](/components/table/server-table) с `onChangePage`.
+- ❌ Собирать `manualPagination` поверх `Table` вручную — это уже реализовано в `ServerTable`.
+
+- ✅ Служебные колонки создавать фабриками `getStatusColumnDef` / `getRowActionsColumnDef` / `getTreeColumnDef`.
+- ❌ Собирать закреплённую колонку статуса вручную — фабрика задаёт ширину, закрепление и отступы по дизайну.
+
+- ✅ В режиме карточек передавать `headlineId` — id колонки, чей рендер становится заголовком карточки.
+- ❌ Включать `view='cards'` без `headlineId` — карточки останутся без заголовка.
+
+- ✅ Задавать уникальный `savedState.id` для каждой таблицы приложения.
+- ❌ Использовать один id на несколько таблиц — сохранённые состояния перетирают друг друга в localStorage.
+
+## Анатомия
+
+### View (default `table`)
+
+Режим отображения данных (ось `VIEW`):
+
+- `table` — классическая сетка со строками и колонками.
+- `cards` — карточки с внешним бордером; заголовок карточки берётся из колонки `headlineId`, при множественном выборе на карточке отображается бэйдж выбора, при одиночном — radio; действия строки доступны на карточке.
+
+Управление режимом:
+
+- `defaultView` — начальный режим для uncontrolled-сценария.
+- `view` + `onViewChange` — управляемый режим.
+- Переключатель вида (сегмент-контрол в тулбаре) появляется только при задании хотя бы одного из пропов `view` / `defaultView` / `onViewChange` / `headlineId`.
+
+Поведение в режиме карточек:
+
+- `onRowClick` работает в обоих режимах — и в сетке, и на карточках.
+- `suppressHeader` скрывает подписи-заголовки полей карточки.
+- `getRowBackgroundColor` не применяется — карточки не тонируются.
+
+### Колонки (`columnDefinitions`)
+
+`ColumnDefinition` — надстройка над `ColumnDef` из `@tanstack/react-table`:
+
+- `header` — заголовок колонки (ReactNode или функция от контекста).
+- `align` / `headerAlign` — выравнивание контента ячейки и заголовка (ось `COLUMN_ALIGN`: `left` / `right`).
+- `size` — ширина колонки; меняется перетаскиванием за хэндл на границе заголовков.
+- `pinned` — закрепление колонки (ось `COLUMN_PIN_POSITION`: `left` / `right`); закреплённая колонка обязана иметь `id` и `size`.
+- `cellClassName` / `headerClassName` — CSS-классы ячеек тела и шапки.
+- `noBodyCellPadding` / `noHeaderCellPadding` — отключение паддингов ячейки.
+- `meta.skipOnExport` — пропуск колонки при экспорте.
+
+### Служебные колонки
+
+Предопределённые колонки (идентификаторы — в `DefaultColumns`) создаются фабриками:
+
+- `getStatusColumnDef` — закреплённая колонка статуса, рисуется компонентом [`Status`](/components/status) из `@ds/status` (точка-индикатор + подпись): `mapStatusToAppearance` переводит значение поля в appearance, `renderDescription` задаёт текст подписи. Без `renderDescription` отрисовывается только точка-индикатор.
+- `getSelectionCellColumnDef` — колонка с чекбоксом или radio выбора строки. В мультивыборе мастер-чекбокс «выбрать всё» рендерится в строке заголовков таблицы.
+- `getRowActionsColumnDef` — колонка с кнопкой действий строки; пункты выпадающего списка собирает `actionsGenerator` по данным строки.
+- `getTreeColumnDef` — колонка с chevron раскрытия дерева (передаётся в `expanding.expandingColumnDefinition`).
+
+Значения `STATUS_APPEARANCE` для статус-колонки:
+
+- `neutral` — нейтральный статус. `primary` — синий акцент (у `@ds/status` нет appearance `primary`, маппится на `blue`).
+- `red` — ошибка, блокировка.
+- `orange` / `yellow` — предупреждение.
+- `green` — успешное состояние.
+- `blue` / `violet` / `pink` — информационные и категорийные статусы.
+- `loading` — спиннер вместо цветового индикатора.
+
+Готовая ячейка `CopyCell` отображает значение с кнопкой копирования.
+
+### Сортировка (`sorting`)
+
+- `initialState` — начальное состояние для uncontrolled-сценария.
+- `state` + `onChange` — управляемый режим.
+
+Функция сравнения задаётся на колонке через `sortingFn` (ось `SORT_FN`):
+
+- `alphanumeric` — строки и числа.
+- `datetime` — даты.
+
+Для серверной сортировки — `manualSorting`: таблица не сортирует данные сама, только отдаёт состояние через `onChange`.
+
+### Выбор строк (`rowSelection`)
+
+- `multiRow` — множественный выбор чекбоксами; без него — одиночный выбор radio.
+- `enable` — предикат доступности выбора для конкретной строки.
+- `appearance` — вид недоступной для выбора строки (ось `RowAppearance`):
+  - `disabled` — заблокированный чекбокс;
+  - `hide-toggler` — чекбокс скрыт.
+- `initialState` / `state` + `onChange` — uncontrolled- и controlled-режимы.
+
+Bulk-бар в тулбаре (чекбокс «выбрать все» и счётчик выбранных) появляется только при `rowSelection.multiRow`:
+
+- `bulkActions` — массовые действия; `onClick` получает `selectionState` и `resetRowSelection`.
+- `toolbarCheckBoxMode` — охват чекбокса тулбара (ось `ToolbarCheckBoxMode`):
+  - `pageRows` — строки текущей страницы;
+  - `allRows` — все строки.
+
+### Поиск и фильтры
+
+- `search` — глобальный поиск: `initialState` / `state` + `onChange`, `placeholder`, `loading`.
+- `enableFuzzySearch` — нечёткий поиск вместо точного совпадения подстроки.
+- `columnFilters` — строка фильтров-чипов над таблицей (`FilterRow`; `initialOpen` раскрывает её сразу).
+- `dataFiltered` — флаг «данные отфильтрованы снаружи»: при пустых данных показывается `noResultsState`.
+- `manualFiltering` — фильтрация на сервере: таблица не фильтрует данные сама.
+
+### Пагинация (default `pageSize` 10)
+
+- `pageSize` — число строк на страницу.
+- `pagination` — `state` + `onChange` (управляемый режим), `options` (варианты числа строк на страницу), `optionsLabel`, `optionsRender`.
+- `suppressPagination` — отключение пагинации.
+- `autoResetPageIndex` — сброс на первую страницу при изменении данных, фильтров или сортировки.
+- `pageCount` — количество страниц при внешнем управлении.
+- `infiniteLoading` — режим «бесконечной» загрузки; взаимоисключающая ветка типа: вместе с ним пропы `pagination` / `suppressPagination` / `toolbarCheckBoxMode` недоступны.
+
+### Дерево (`expanding`)
+
+- `getSubRows` — функция получения дочерних строк элемента.
+- `expandingColumnDefinition` — определение колонки с chevron (создаётся `getTreeColumnDef`).
+- `state` + `onChange` — управляемый `ExpandedState`; без них раскрытие живёт во внутреннем состоянии.
+
+### Настройка колонок (`columnsSettings`)
+
+- `enableDrag` — переупорядочивание колонок перетаскиванием заголовков.
+- `enableSettingsMenu` — меню видимости колонок в тулбаре.
+
+Поведение колонки в меню задаётся на самой колонке через `columnSettings.mode` (ось `COLUMN_SETTINGS_MODE`):
+
+- `hidden` — колонки нет в меню, она всегда видима.
+- `defaultTrue` — есть в меню, по умолчанию включена.
+- `defaultFalse` — есть в меню, по умолчанию выключена.
+
+`columnSettings.label` — название колонки в меню настроек. Колонка попадает в меню только при заданном `columnSettings` (фабрики служебных колонок и [`defineColumns`](/components/table/define-columns) задают `label` автоматически; для ручных `columnDefinitions` — укажите `columnSettings` явно).
+
+`savedState` сохраняет состояние таблицы в localStorage и query-параметрах: `id` обязан быть уникальным в рамках приложения; `resize` / `columnSettings` включают сохранение ширин и видимости колонок; `serializer` / `parser` / `filterQueryKey` настраивают сериализацию фильтров.
+
+### Цвет строки
+
+`getRowBackgroundColor(data)` возвращает цвет фона строки по её данным (ось `TABLE_ROW_COLOR`) или `undefined`:
+
+- `red` / `orange` / `yellow` — ошибка и предупреждения.
+- `green` — успешное состояние.
+- `blue` / `violet` / `pink` — категорийная подсветка.
+- `neutral` — нейтральное выделение.
+
+Работает только в `view='table'` — карточки не тонируются.
+
+### Пустые состояния и загрузка
+
+- `noDataState` — экран при отсутствии данных.
+- `noResultsState` — экран при пустом результате поиска или фильтров.
+- `errorDataState` — экран при ошибке запроса.
+- Все три — `EmptyStateProps` поверх `InfoBlock`.
+- `loading` — skeleton-строки на время загрузки.
+- Флаги `dataFiltered` / `dataError` определяют, какой из экранов показывается при пустых данных.
+
+### Тулбар
+
+- `suppressToolbar` — скрыть тулбар целиком.
+- `suppressSearch` — скрыть строку поиска.
+- `suppressHeader` — скрыть шапку таблицы; в режиме карточек — подписи полей карточки.
+- `moreActions` — пункты выпадающего списка кнопки дополнительных действий.
+- `toolbarAfter` — дополнительный слот после строки поиска.
+- `onRefresh` — кнопка обновления данных.
+- `outline` — внешний бордер вокруг тулбара и таблицы.
+- `fullWidth` — растягивание на ширину контейнера (`true` по умолчанию). При `false` на desktop ширина таблицы определяется суммой колонок; на mobile всегда `true` (`TABLE_LAYOUT_PRESETS`). Лучше всего работает, когда у всех колонок задан `size`. Если нужна fluid-колонка на остаток ширины — оставьте `fullWidth={true}` и не задавайте `size` хотя бы одной колонке.
+
+## Установка
+
+```bash
+pnpm add @ds/table
+```
+
+```ts
+import { Table, getStatusColumnDef } from '@ds/table';
+```
+
+## Примеры использования
+
+{/* client:only='react': SSR демо невозможен — @ds/list использует в dist directory-imports, которые Node-ESM не резолвит (тот же паттерн, что в @ds/chips). */}
+
+<Example
+  title='Базовая таблица'
+  description='Колонки с выравниванием и форматированием, `outline`, пагинация с выбором числа строк.'
+  code={BasicSrc}
+>
+  <Basic client:only='react' />
+</Example>
+
+<Example
+  title='Управляемая сортировка'
+  description='`sorting.state` + `onChange`, начальная сортировка по убыванию суммы.'
+  code={SortingSrc}
+>
+  <Sorting client:only='react' />
+</Example>
+
+<Example
+  title='Статус-колонка и цвет строки'
+  description='`getStatusColumnDef` с подписью в тултипе и подкраска строк через `getRowBackgroundColor`.'
+  code={StatusColumnSrc}
+>
+  <StatusColumn client:only='react' />
+</Example>
+
+<Example
+  title='Выбор строк и массовые действия'
+  description='Множественный выбор, bulk-бар с действием удаления и `resetRowSelection`.'
+  code={SelectionSrc}
+>
+  <Selection client:only='react' />
+</Example>
+
+<Example
+  title='Действия строки'
+  description='`getRowActionsColumnDef` с выпадающим списком: пункты меняют данные строки.'
+  code={RowActionsSrc}
+>
+  <RowActions client:only='react' />
+</Example>
+
+<Example
+  title='Дерево'
+  description='Иерархические данные через `expanding.getSubRows` + `getTreeColumnDef`.'
+  code={TreeSrc}
+>
+  <Tree client:only='react' />
+</Example>
+
+<Example
+  title='Настройка колонок'
+  description='Перетаскивание заголовков (`enableDrag`) и меню видимости (`enableSettingsMenu`).'
+  code={ColumnSettingsSrc}
+>
+  <ColumnSettings client:only='react' />
+</Example>
+
+<Example
+  title='Режим карточек'
+  description='`defaultView="cards"` + `headlineId`; переключатель table/cards в тулбаре.'
+  code={CardViewSrc}
+>
+  <CardView client:only='react' />
+</Example>
+
+<Example
+  title='Мобильная раскладка'
+  description='`AdaptiveProvider layoutType="mobile"` + `defaultView="cards"` — список карточек; в table-виде на mobile — сетка строк. По умолчанию `stickyControls.enabled: true`, offsets `0`; отступ под sticky header документации — `layoutPresets.mobile`.'
+  code={MobileLayoutSrc}
+>
+  <MobileLayout client:only='react' />
+</Example>
+
+<Example
+  title='Ширина таблицы'
+  description='По умолчанию таблица растягивается на контейнер (`fullWidth`). При `fullWidth={false}` на desktop обводка и сетка сжимаются до суммы фиксированных колонок — удобно в модалках и узких формах. На mobile режим fit-content не применяется.'
+  code={FullWidthSrc}
+>
+  <FullWidth client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={doc.Table} />
+
+## Адаптивность
+
+`Table` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста [`@ds/adaptive`](/components/adaptive) — отдельного пропа `layoutType` нет.
+
+> **Desktop-first.** Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-дефолты применяются автоматически. Override нужен только как escape-hatch.
+
+На mobile тулбар, шапка и пагинация автоматически залипают при прокрутке (`stickyControls.enabled`); на desktop таблица прокручивается свободно.
+`offsetTop` / `offsetBottom` — дополнительный отступ chrome-контролов от краёв viewport (px), если над/под таблицей есть внешний sticky UI (app header, tab bar); работают только при `stickyControls.enabled`.
+
+| Поле `stickyControls`   | desktop                   | mobile                  |
+| ----------------------- | ------------------------- | ----------------------- |
+| `enabled`               | `false`                   | `true`                  |
+| `offsetTop`             | — (sticky выключен)       | `0`                     |
+| `offsetBottom`          | — (sticky выключен)       | `0`                     |
+| `backgroundPredefined`  | — (sticky выключен)       | `neutralBackground1Level` |
+| `fullWidth`             | `true` (явный проп)       | `true` (`TABLE_LAYOUT_PRESETS`) |
+
+Ненулевые `offsetTop` / `offsetBottom` на mobile — через `layoutPresets.mobile`. Объект `stickyControls` в пресете **заменяет** DS-дефолт целиком — передайте все нужные поля (`enabled`, offsets).
+
+```tsx
+<Table
+  stickyControls={{ enabled: true, offsetTop: 64 }}
+  layoutPresets={{
+    mobile: { stickyControls: { enabled: true, offsetTop: 48, offsetBottom: 56 } },
+  }}
+/>
+```
+
+Источник mobile-дефолтов — экспортируемая константа `TABLE_LAYOUT_PRESETS`.
+
+### Как переопределить
+
+**Desktop-first:** перенос пропа из desktop-макета не ломает mobile. Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `TABLE_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { Table } from '@ds/table'
+
+// 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся enabled=true (mobile не ломается)
+<Table stickyControls={{ enabled: true }} columnDefinitions={[]} data={[]} />
+
+// 2. layoutPresets.mobile — единственный способ отключить sticky на mobile (явно)
+<Table layoutPresets={{ mobile: { stickyControls: { enabled: false } } }} columnDefinitions={[]} data={[]} />
+
+// 2b. layoutPresets.desktop — включить sticky только на desktop, mobile-адаптив сохранён
+<Table layoutPresets={{ desktop: { stickyControls: { enabled: true } } }} columnDefinitions={[]} data={[]} />
+```
+
+DS-пресет (`TABLE_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
+
+### Как форсировать раскладку
+
+Раскладка переключается только контекстом, не пропом:
+
+```tsx
+import { AdaptiveProvider, withLayoutType } from '@ds/adaptive';
+import { Table } from '@ds/table';
+
+// поддерево — вложенный провайдер
+<AdaptiveProvider layoutType='mobile'>
+  <Table columnDefinitions={[]} data={[]} />
+</AdaptiveProvider>;
+
+// компонент/секция — HOC (module-scope, не в рендере)
+const MobileTable = withLayoutType(Table, 'mobile');
+```
+
+Подробнее о модели раскладки — в [`@ds/adaptive`](/components/adaptive).
+
+<StorybookEmbed storyId='components-table-table-examples-mobilelayout--mobile-layout' height={480} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-table--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('table')} height={480} title='Table в Figma (Snack UI Kit)' />
+
+## Смотри также
+
+- [Обзор пакета](/components/table) — архитектура, выбор компонента, preset-ы.
+- [`defineColumns`](/components/table/define-columns) — декларативные колонки для preset-ов и escape hatch.
+- [SimpleTable](/components/table/simple-table) — минимальный клиентский preset.
+- [AdminTable](/components/table/admin-table) — админ-экран на клиенте.
+- [TreeTable](/components/table/tree-table) — иерархические данные.
+- [InfiniteTable](/components/table/infinite-table) — бесконечная прокрутка.
+- [ServerTable](/components/table/server-table) — постраничные данные с бэкенда.
+- [Pagination](/components/pagination) — отдельный компонент пагинации.
+- [InfoBlock](/components/info-block) — основа пустых состояний таблицы.

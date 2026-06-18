@@ -1,0 +1,13 @@
+// Mobile overflow: триггер не показываем в строке тулбара — sheet открывается из меню «⋯».
+.hiddenTrigger {
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+
+  white-space: nowrap;
+
+  clip-path: rect(0, 0, 0, 0);
+}

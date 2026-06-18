@@ -10,6 +10,7 @@ import { collectPackages, generateLlmsFiles, renderIndex, renderPackage } from '
 import { remarkExampleCode } from './src/plugins/remark-example-code.mjs';
 import { remarkExampleHeadings } from './src/plugins/remark-example-headings.mjs';
 import { remarkInternalBaseUrl } from './src/plugins/remark-internal-base-url.mjs';
+import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
 import { remarkPropsTableHeadings } from './src/plugins/remark-props-table-headings.mjs';
 import { remarkSectionOrder } from './src/plugins/remark-section-order.mjs';
 
@@ -90,6 +91,7 @@ export default defineConfig({
         remarkInternalBaseUrl,
         remarkExampleHeadings,
         remarkPropsTableHeadings,
+        remarkMermaid,
         remarkSectionOrder,
       ],
     }),
@@ -102,12 +104,29 @@ export default defineConfig({
     // Node native ESM этого не любит, vite SSR должен пребандлить весь скоуп.
     // На astro build prerender ssr.noExternal не применяется (астра грузит модули через
     // Node native loader) — там компоненты с legacy-deps помечаются `client:only='react'`.
+    plugins: [
+      // @cloud-ru/uikit-product-icons (транзитивно через @sbercloud/snack-v2-toolbar в @ds/table)
+      // ESM-экспортирует sprite-system.symbol.svg; у корневого <svg> спрайта нет width/height,
+      // и astro:assets падает на imageMetadata. Спрайт в доке не рендерится — заглушаем url-стабом.
+      {
+        name: 'stub-symbol-sprite-svg',
+        enforce: 'pre',
+        resolveId(source) {
+          if (source.endsWith('.symbol.svg')) return '\0stub-symbol-sprite-svg';
+        },
+        load(id) {
+          if (id === '\0stub-symbol-sprite-svg') return 'export default ""';
+        },
+      },
+    ],
     ssr: {
       noExternal: [
         // Toolbar persist → @cloud-ru/ft-request-payload-transform.
         /^@cloud-ru\/ft-/,
         // Toolbar → @sbercloud/snack-v2-* (chips, bottom-sheet, …).
         /^@sbercloud\/snack-v2-/,
+        // @ds/table → snack-v2-toolbar → @cloud-ru/uikit-product-* (тот же dir-import паттерн).
+        /^@cloud-ru\/uikit-product-/,
         'uncontrollable',
         // CJS (UMD main) with named exports (cancelable) — tree hooks; bundle for SSR interop.
         'cancelable-promise',

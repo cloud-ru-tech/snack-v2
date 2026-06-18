@@ -1,0 +1,1 @@
+export { withTableStorySurface } from './withTableStorySurface';

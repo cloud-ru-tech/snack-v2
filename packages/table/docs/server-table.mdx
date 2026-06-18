@@ -1,0 +1,117 @@
+---
+title: ServerTable
+package: '@ds/table'
+description: 'Таблица для серверных данных: постраничная загрузка items/total/limit/offset, controlled-поиск и серверная сортировка.'
+order: 2
+---
+
+import { ServerDriven } from '../demos/examples/ServerTable/ServerDriven'
+import ServerDrivenSrc from '../demos/examples/ServerTable/ServerDriven.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# ServerTable
+
+`ServerTable` — обёртка над [`Table`](/components/table/table) для постраничных данных с бэкенда. Страница данных приходит снаружи (`items` / `total` / `limit` / `offset`), смена страницы, поиск и сортировка делегируются серверу: компонент вызывает `onChangePage`, `search.onChange` и `sorting.onChange`, а отрисовывает то, что передано в пропсах.
+
+Для типовых серверных сценариев есть preset-ы `ServerSimpleTable` и `ServerAdminTable` (см. [обзор пакета](/components/table)) — они маппят упрощённый API в `ServerTable`, как `SimpleTable` / `AdminTable` маппят в `Table`.
+
+## Когда использовать
+
+- Данные приходят с бэкенда постранично, известно общее количество строк (`total`).
+- Поиск и сортировка выполняются на сервере, а не на клиенте.
+- Объём данных слишком велик для загрузки на клиент целиком.
+
+Когда **не** нужен:
+
+- Данные загружены на клиент целиком:
+  - используйте [`Table`](/components/table/table) или [`SimpleTable`](/components/table/simple-table) — пагинация, поиск и сортировка работают локально.
+
+Рекомендации по выбору API:
+
+- Простой серверный список (колонки + пагинация) — `ServerSimpleTable`.
+- Админ-экран с поиском, статусом, выбором и действиями — `ServerAdminTable`.
+- Нестандартные колонки, фильтры или поведение тулбара — `ServerTable` напрямую.
+
+## Анатомия
+
+### Постраничная загрузка (default `limit` 10, `offset` 0)
+
+- `items` — строки текущей страницы.
+- `total` — общее количество строк; по нему рассчитывается число страниц.
+- `limit` / `offset` — размер страницы и смещение текущей страницы.
+- `onChangePage(offset, limit)` — вызывается при смене страницы или размера страницы; здесь выполняется запрос новой страницы.
+- `pagination.options` / `pagination.optionsLabel` — варианты числа строк на страницу и подпись к ним.
+
+### Поиск (controlled)
+
+- `search.state` и `search.onChange` обязательны — значение поиска хранится снаружи, в отличие от `Table`.
+- `search.loading` — индикатор загрузки в строке поиска.
+- `search.initialValue` — начальное значение.
+- Ввод дебаунсится внутри компонента (500 мс, отдельный таймер на каждый инстанс) — `onChange` получает значение после паузы ввода. При смене запроса обычно сбрасывают `offset` в `0`.
+
+### Серверная сортировка
+
+- По умолчанию включён `manualSorting` — таблица не сортирует `items` на клиенте.
+- Передайте управляемый `sorting.state` + `sorting.onChange`; при смене сортировки запросите новую страницу и сбросьте `offset` в `0`.
+- Колонки с `enableSorting: true` отображают индикатор сортировки; фактическое упорядочивание выполняет бэкенд.
+
+### Интеграция с бэкендом
+
+Типичный контракт на стороне приложения:
+
+1. Хранить `items`, `total`, `loading`, `offset`, `limit`, `search`, `sorting` в state.
+2. В `useEffect` (или data-fetch хуке) запрашивать страницу при изменении `offset` / `limit` / `search` / `sorting`.
+3. В `onChangePage` обновлять `offset` и `limit`; в `search.onChange` и `sorting.onChange` — сбрасывать `offset` в `0`.
+4. При параллельных запросах отбрасывать устаревшие ответы (счётчик `requestId` / `AbortController`) — иначе медленный ответ может перезаписать актуальные данные.
+5. Пробрасывать `loading` в `ServerTable` и в `search.loading` на время запроса.
+
+### Отличия от Table
+
+- Данные передаются через `items` (вместо `data`) — только текущая страница.
+- Вырезаны `pageSize`, `pageCount`, `pagination.state`, `toolbarCheckBoxMode` — пагинацией управляет бэкенд через `limit` / `offset` / `total`.
+- Серверная сортировка — `manualSorting` + управляемый `sorting.state` / `onChange`.
+- Остальное API — колонки, служебные колонки, выбор строк, дерево, режим карточек, тулбар — наследуется от `Table`.
+
+## Установка
+
+```bash
+pnpm add @ds/table
+```
+
+```ts
+import { ServerTable } from '@ds/table'
+```
+
+## Примеры использования
+
+{/* client:only='react': SSR демо невозможен — @ds/list использует в dist directory-imports, которые Node-ESM не резолвит (тот же паттерн, что в @ds/chips). */}
+
+<Example title='Серверный сценарий'
+  description='Имитация бэкенда: `onChangePage`, controlled-поиск и сортировка с `manualSorting`, сброс `offset` при фильтрах, отмена устаревших ответов через `requestId`.'
+  code={ServerDrivenSrc}>
+  <ServerDriven client:only='react' />
+</Example>
+
+## Props
+
+<PropsTable data={doc.ServerTable} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-servertable--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('table')} height={480} title='Table в Figma (Snack UI Kit)' />
+
+## Смотри также
+
+- [Обзор пакета](/components/table) — `ServerSimpleTable`, `ServerAdminTable` и выбор компонента.
+- [Table](/components/table/table) — клиентская таблица для данных, загруженных целиком.
+- [SimpleTable](/components/table/simple-table) — клиентский аналог `ServerSimpleTable`.
+- [AdminTable](/components/table/admin-table) — клиентский аналог `ServerAdminTable`.

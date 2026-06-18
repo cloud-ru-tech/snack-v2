@@ -188,6 +188,15 @@ export const FIGMA_NODES = {
     step: { ...SNACK, nodeId: '7502-225' }, // stepper/step → Step
     example: { ...SNACK, nodeId: '11487-86709' }, // stepper/example → StepperExample
   },
+  table: {
+    _: { ...SNACK, nodeId: '19012-223476' }, // table → component set (content × asCard)
+    canvas: { ...SNACK, nodeId: '7164-114' }, // table → canvas page
+    'private-elements': { ...SNACK, nodeId: '7184-521' }, // tableLine, tableCell, tableHead, sorting, …
+    'property-matrix': { ...SNACK, nodeId: '17238-40336' }, // ComponentTable - Property Matrix
+    'column-settings-bottom-sheet': { ...SNACK, nodeId: '22607-108364' },
+    card: { ...SNACK, nodeId: '25274-100876' }, // table/card → card view
+    examples: { ...SNACK, nodeId: '11487-110626' },
+  },
   tabs: { ...SNACK, nodeId: '8671-2412' }, // tabs → tabs
   tag: { ...SNACK, nodeId: '3733-11265' }, // tag → tag
   toolbar: {

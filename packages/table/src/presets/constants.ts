@@ -1,0 +1,5 @@
+export const DEFAULT_PRESET_PAGE_SIZE = 10;
+
+export const DEFAULT_PRESET_PAGINATION_OPTIONS = [10, 25, 50] as const;
+
+export const ENTITIES_PRESET_PAGINATION_OPTIONS = [10, 25, 50, 100] as const;

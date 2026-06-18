@@ -144,6 +144,22 @@
           "xs"
         ],
         "own": true
+      },
+      "StatusAppearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "loading",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
       }
     }
   }

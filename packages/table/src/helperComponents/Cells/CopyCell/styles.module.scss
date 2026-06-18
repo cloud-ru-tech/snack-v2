@@ -1,0 +1,52 @@
+// Ячейка с кнопкой копирования значения: кнопка скрыта по умолчанию,
+// появляется при наведении сразу после текста (absolute относительно .content).
+// .content — inline-block по ширине текста (в карточке кнопка рядом со значением);
+// кнопка вне потока — высота поля не прыгает при hover.
+// При hover max-width .content уменьшается на ширину кнопки + gap, чтобы кнопка
+// не выходила за границу ячейки таблицы; overflow: hidden — страховка от bleed.
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$copy-button-slot: calc(#{base.$sn-primitive-dimension-32} + #{base.$sn-primitive-dimension-4});
+
+.copyCell {
+  cursor: pointer;
+
+  overflow: hidden;
+  display: flex;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.content {
+  position: relative;
+  display: inline-block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.text {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.copyButton {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+
+  display: none;
+
+  margin-left: base.$sn-primitive-dimension-4;
+}
+
+.copyCell:hover .content {
+  max-width: calc(100% - #{$copy-button-slot});
+}
+
+.copyCell:hover .copyButton {
+  display: inline-flex;
+}

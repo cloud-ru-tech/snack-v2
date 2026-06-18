@@ -65,17 +65,31 @@
 }
 
 // scrollContainer heights: исходно 256/320/384px (kратные 8 * 32/40/48)
+// Специфичность выше, чем у `.scroll { height: 100% }` из @ds/scroll — иначе max-height
+// не срабатывает и дроплист растягивается на всю высоту контента.
+.scrollContainerS,
+.scrollContainerM,
+.scrollContainerL {
+  &:global(.osThemeSnack) {
+    height: auto;
+    min-height: 0;
+  }
+}
+
 .scrollContainerS {
-  height: auto;
-  max-height: calc(base.$sn-primitive-dimension-8 * 32); // 256px
+  &:global(.osThemeSnack) {
+    max-height: calc(base.$sn-primitive-dimension-8 * 32); // 256px
+  }
 }
 
 .scrollContainerM {
-  height: auto;
-  max-height: calc(base.$sn-primitive-dimension-8 * 40); // 320px
+  &:global(.osThemeSnack) {
+    max-height: calc(base.$sn-primitive-dimension-8 * 40); // 320px
+  }
 }
 
 .scrollContainerL {
-  height: auto;
-  max-height: calc(base.$sn-primitive-dimension-8 * 48); // 384px
+  &:global(.osThemeSnack) {
+    max-height: calc(base.$sn-primitive-dimension-8 * 48); // 384px
+  }
 }

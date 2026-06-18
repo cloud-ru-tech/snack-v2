@@ -1,0 +1,21 @@
+@use '@ds/materials' as m;
+
+.surface {
+  isolation: isolate;
+  min-height: 100dvh;
+  background-color: transparent !important;
+
+  @include m.with-material('acrylic', #{acrylic});
+
+  > :not(.acrylic) {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+}

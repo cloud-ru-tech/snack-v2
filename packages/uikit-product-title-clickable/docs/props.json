@@ -211,6 +211,22 @@
           "xs"
         ],
         "own": false
+      },
+      "StatusAppearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "loading",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
       }
     }
   },
@@ -352,6 +368,22 @@
         "values": [
           "s",
           "xs"
+        ],
+        "own": false
+      },
+      "StatusAppearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "loading",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
         ],
         "own": false
       }

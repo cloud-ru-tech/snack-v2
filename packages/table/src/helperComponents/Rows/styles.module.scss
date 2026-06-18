@@ -1,0 +1,300 @@
+// Строка таблицы (view='line'): header- и body-строки.
+// `.tableRow` — базовый layout строки (flex, фиксированная высота, фон, верх/низ бордеры);
+// `.bodyRow` / `.tableHeader` — className-надстройки над `.tableRow` (см. Row.tsx, HeaderRow.tsx).
+// `.rowPinnedCells` — sticky-блок закреплённых колонок с вертикальным разделителем.
+// Hover/selected тонировка строки в Figma — state-layer (`stateLayer/regular/filled`,
+// `stateLayer/activated/filled`). Применить `m.has-state-layer-as-child` напрямую нельзя:
+// Row рендерит плоский <div> без дочернего <span data-state-layer>, добавление узла —
+// вне зоны этого файла. Поэтому слой воспроизведён двухслойным background'ом:
+// linear-gradient из полупрозрачного state-layer-токена поверх фона строки — точное
+// альфа-наложение как в Figma (color-mix без процентов смешивал бы 50/50 и вдвое
+// ослаблял слой: 15% → 7.5%).
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+
+// Базовый фон строки. Хранится в CSS-переменной, потому что selected/hover накладывают
+// поверх него state-layer, а accent-тон строки (data-row-bg-appearance) подмешивается color-mix'ом.
+$row-background: base.$sn-theme-color-neutral-background1Level;
+
+// Точное альфа-наложение state-layer поверх фона строки (см. комментарий в шапке файла).
+@mixin row-state-layer($layer) {
+  background: linear-gradient($layer, $layer), var(--table-row-background);
+}
+
+// Толщина строковых бордеров.
+$border-top-bottom: base.simple-var(
+  table.$table,
+  'content',
+  'tableLine',
+  'background',
+  'interaction',
+  'width'
+); // strokeRegular
+$divider-width: base.simple-var(
+  table.$table,
+  'content',
+  'tableLine',
+  'background',
+  'regular',
+  'width'
+); // strokeThin (0.5px)
+$pinned-border: base.simple-var(
+  table.$table,
+  'content',
+  'tableLine',
+  'background',
+  'interaction',
+  'width'
+); // strokeRegular
+
+// Высота строки.
+$row-height: base.simple-var(table.$table, 'content', 'tableCell', 'min-height'); // 40px
+
+// Карта accent-тонов фона строки (data-row-bg-appearance).
+$row-bg-appearances: (
+  'red': base.$sn-theme-color-red-accent,
+  'orange': base.$sn-theme-color-orange-accent,
+  'yellow': base.$sn-theme-color-yellow-accent,
+  'green': base.$sn-theme-color-green-accent,
+  'blue': base.$sn-theme-color-blue-accent,
+  'violet': base.$sn-theme-color-violet-accent,
+  'pink': base.$sn-theme-color-pink-accent,
+  'neutral': base.$sn-theme-color-neutral-accent,
+);
+
+.tableRow[data-fit-content] {
+  width: fit-content;
+}
+
+.tableRow {
+  --table-row-background: #{$row-background};
+
+  position: relative;
+
+  display: flex;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: $row-height;
+  min-height: $row-height;
+  border-color: transparent;
+  border-style: solid none;
+  border-top-width: $border-top-bottom;
+  border-bottom-width: $border-top-bottom;
+
+  background-color: var(--table-row-background);
+}
+
+.tableRow[data-auto-height] {
+  height: auto;
+  min-height: $row-height;
+}
+
+.rowPinnedCells {
+  position: sticky;
+  z-index: 1;
+
+  display: flex;
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+  border-color: base.$sn-theme-color-available-borderColor;
+
+  background-color: var(--table-row-background);
+}
+
+.rowPinnedCells::after {
+  pointer-events: none;
+  content: '';
+
+  position: absolute;
+  top: calc(0px - #{$border-top-bottom});
+  bottom: calc(0px - #{$border-top-bottom});
+
+  box-sizing: border-box;
+  width: $pinned-border;
+}
+
+.rowPinnedCells[data-position='left'] {
+  left: 0;
+}
+
+.rowPinnedCells[data-position='left']::after {
+  right: 0;
+  border-color: inherit;
+  border-right: $pinned-border solid base.$sn-theme-color-available-borderColor;
+}
+
+.rowPinnedCells[data-position='right'] {
+  right: 0;
+  margin-left: auto;
+}
+
+.rowPinnedCells[data-position='right']::after {
+  left: 0;
+  border-color: inherit;
+  border-left: $pinned-border solid base.$sn-theme-color-available-borderColor;
+}
+
+// Разделитель между body-строками: тонкая линия (strokeThin) поверх стыка двух строк.
+.bodyRow ~ .bodyRow::before {
+  content: '';
+
+  position: absolute;
+  z-index: 2;
+  top: calc(-1 * #{$border-top-bottom});
+  left: 0;
+
+  width: 100%;
+  height: $divider-width;
+
+  background-color: base.$sn-theme-color-available-borderColor;
+}
+
+// TODO[token]: нет opacity-токена 0.08 для accent-тона строки.
+$row-bg-accent-amount: 8%;
+
+// Accent-тон фона строки (мягкая заливка), тонируется поверх нейтрального фона.
+@each $appearance, $accent in $row-bg-appearances {
+  .bodyRow[data-row-bg-appearance='#{$appearance}'],
+  .tableHeader[data-row-bg-appearance='#{$appearance}'] {
+    --table-row-background: #{color-mix(in srgb, $accent $row-bg-accent-amount, #{$row-background})};
+  }
+}
+
+// Шапка в Figma тонирована decorTransparent поверх background1Level. Тонировка идёт
+// background-image'ем (не shorthand'ом), чтобы не трогать каскад background-color;
+// та же тонировка продублирована на .tableHeaderCell (HeaderCell/styles.module.scss),
+// потому что его `background-color: inherit` перекрывает градиент строки опак-фоном.
+.tableHeader {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  border: none;
+
+  // Единая нижняя линия на всю ширину строки, включая пространство правее последней
+  // колонки. Ячейки рисуют ::after только в пределах своей ширины — линия не доходила
+  // до правого края таблицы. Pseudo-element на строке растянут на 100% и перекрывает
+  // ::after ячеек визуально (одинаковые цвет/высота/позиция = одна полоска).
+  // Высота — strokeThin (0.5px): в Figma все разделители таблицы используют
+  // tableline/background/regular/borderbottomwidth = 0.5px.
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: $border-top-bottom;
+
+    background-color: base.$sn-theme-color-available-borderColor;
+  }
+}
+
+.tableHeaderStatic {
+  position: static;
+  top: auto;
+}
+
+// stickyControls + header вне Scroll: pinned слева/справа фиксированы, center — mirror horizontal scroll body.
+.tableHeaderMirrored {
+  overflow: hidden;
+  align-items: stretch;
+  width: 100%;
+  background-image: none;
+
+  .rowPinnedCells[data-position='left'],
+  .rowPinnedCells[data-position='right'] {
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+
+  .rowPinnedCells[data-position='right'] {
+    margin-left: 0;
+  }
+}
+
+.headerScrollRegion {
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 auto;
+  align-self: stretch;
+
+  min-width: 0;
+}
+
+.headerScrollTrack {
+  transform: translate3d(calc(-1 * var(--table-header-scroll-left, 0px)), 0, 0);
+
+  display: flex;
+  align-items: stretch;
+
+  min-width: max-content;
+  min-height: 100%;
+}
+
+.bodyRow[data-row-appearance='disabled'] {
+  cursor: not-allowed;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.bodyRow[data-row-appearance='disabled'] .rowPinnedCells {
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// Selected: activated state-layer (primary) поверх фона строки.
+// Вертикальный pinned-divider (border-color на .rowPinnedCells) не перекрашивается —
+// остаётся available-borderColor из базового правила.
+.bodyRow[data-selected] {
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-default-filled);
+}
+
+.bodyRow[data-selected] .rowPinnedCells {
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-default-filled);
+}
+
+.bodyRow[data-selected]:hover,
+.bodyRow[data-selected][data-actions-opened] {
+  border-color: base.$sn-theme-color-primary-accent;
+
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-hovered-filled);
+}
+
+.bodyRow[data-selected]:hover .rowPinnedCells,
+.bodyRow[data-selected][data-actions-opened] .rowPinnedCells {
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-hovered-filled);
+}
+
+.bodyRow[data-clickable] {
+  cursor: pointer;
+}
+
+.bodyRow[data-clickable]:focus-visible {
+  outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+  outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+}
+
+.bodyRow:not([data-row-appearance='disabled']):hover::before {
+  height: 0;
+}
+
+// Hover/actions-opened неселектнутой строки: regular state-layer (нейтральный).
+.bodyRow:not([data-row-appearance='disabled'], [data-selected]):hover,
+.bodyRow:not([data-row-appearance='disabled'], [data-selected])[data-actions-opened] {
+  border-color: base.$sn-theme-color-available-borderColor;
+
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-regular-hovered-filled);
+}
+
+.bodyRow:not([data-row-appearance='disabled'], [data-selected]):hover .rowPinnedCells,
+.bodyRow:not([data-row-appearance='disabled'], [data-selected])[data-actions-opened] .rowPinnedCells {
+  border-color: inherit;
+
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-regular-hovered-filled);
+}
+
+.bodyRow:not([data-row-appearance='disabled']):hover + .bodyRow::before {
+  height: 0;
+}

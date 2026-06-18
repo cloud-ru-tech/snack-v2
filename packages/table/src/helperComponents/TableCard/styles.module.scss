@@ -1,0 +1,65 @@
+// Карточный вид строки таблицы (view='cards').
+// Оболочку (фон, бордер, focus, selected-state, чек-бэйдж) даёт <Card> из '@ds/card' —
+// здесь только ВНУТРЕННЯЯ раскладка карточки: секции, типографика, позиционирование
+// selection-controller'а и actions-кнопки.
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-16;
+}
+
+.content {
+  position: relative;
+}
+
+.headline {
+  @include base.composite-var(base.$sn-regular-title-m);
+
+  padding-right: base.$sn-primitive-dimension-32;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.cardRow {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.cardRowHeader {
+  color: base.$sn-theme-color-available-version-textTertiary;
+  overflow-wrap: break-word;
+}
+
+.cardRowContent {
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
+}
+
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 0;
+
+  // Row-actions cell is sized for table grid; in card view use intrinsic button size only.
+  [data-row-actions-wrap] {
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+}

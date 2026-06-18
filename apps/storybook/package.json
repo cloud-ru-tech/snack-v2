@@ -72,6 +72,7 @@
     "@ds/slider": "workspace:*",
     "@ds/status": "workspace:*",
     "@ds/stepper": "workspace:*",
+    "@ds/table": "workspace:*",
     "@ds/tabs": "workspace:*",
     "@ds/tag": "workspace:*",
     "@ds/theme": "workspace:*",

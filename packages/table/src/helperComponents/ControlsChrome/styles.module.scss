@@ -1,0 +1,25 @@
+// Подложка chrome-контролов таблицы: backgroundPredefined + acrylic (аналог @ds/card).
+@use '@ds/materials' as m;
+
+.surface {
+  isolation: isolate;
+  position: relative;
+  background-color: transparent;
+
+  @include m.with-material('acrylic', #{acrylic});
+
+  > :not(.acrylic) {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.acrylic {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  border-radius: inherit;
+}

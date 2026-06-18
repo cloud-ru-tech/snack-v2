@@ -1,0 +1,48 @@
+---
+title: defineColumns
+package: '@ds/table'
+description: 'Декларативное описание колонок: SimpleColumnDef → ColumnDefinition для Table и preset-ов.'
+order: 1
+---
+
+import { DefineColumnsBasic } from '../demos/examples/defineColumns/DefineColumnsBasic';
+import DefineColumnsBasicSrc from '../demos/examples/defineColumns/DefineColumnsBasic.tsx?raw';
+import { DefineColumnsEscapeHatch } from '../demos/examples/defineColumns/DefineColumnsEscapeHatch';
+import DefineColumnsEscapeHatchSrc from '../demos/examples/defineColumns/DefineColumnsEscapeHatch.tsx?raw';
+import { DefineColumnsWithStatus } from '../demos/examples/defineColumns/DefineColumnsWithStatus';
+import DefineColumnsWithStatusSrc from '../demos/examples/defineColumns/DefineColumnsWithStatus.tsx?raw';
+import { Example } from '#docs/components/Example';
+
+# defineColumns
+
+`defineColumns` преобразует декларативный массив `SimpleColumnDef<T>[]` в `ColumnDefinition<T>[]` для [`Table`](/components/table/table) и всех preset-ов (`SimpleTable`, `AdminTable`, …).
+
+Всегда задаёт `id = key` — это нужно для resize и `savedState`.
+
+## Когда использовать
+
+- Обычные колонки с `header`, `sortable`, `width`, `format`.
+- Не хотите вручную собирать `ColumnDefinition` для каждого поля.
+
+Когда **не** нужен:
+
+- Сложная кастомная ячейка — передайте полный `column` через escape hatch или используйте `getStatusColumnDef` / `getRowActionsColumnDef` напрямую.
+
+## Примеры использования
+
+<Example title='Декларативные колонки в SimpleTable' code={DefineColumnsBasicSrc}>
+  <DefineColumnsBasic client:only='react' />
+</Example>
+
+<Example title='Escape hatch: column' code={DefineColumnsEscapeHatchSrc}>
+  <DefineColumnsEscapeHatch client:only='react' />
+</Example>
+
+<Example title='Со statusColumn' code={DefineColumnsWithStatusSrc}>
+  <DefineColumnsWithStatus client:only='react' />
+</Example>
+
+## Смотри также
+
+- [`SimpleTable`](/components/table/simple-table) — preset, который принимает `columns: SimpleColumnDef[]`.
+- [`statusColumn`](/components/table/table) — обёртка над статус-колонкой (см. `Table` docs).

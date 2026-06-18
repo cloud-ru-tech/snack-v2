@@ -1,0 +1,47 @@
+---
+title: InfiniteTable
+package: '@ds/table'
+description: 'Таблица с бесконечной прокруткой: infiniteLoading и scrollRef из коробки.'
+order: 5
+---
+
+import { InfiniteTableBasic } from '../demos/examples/InfiniteTable/InfiniteTableBasic'
+import InfiniteTableBasicSrc from '../demos/examples/InfiniteTable/InfiniteTableBasic.tsx?raw'
+import { InfiniteTableWithHook } from '../demos/examples/InfiniteTable/InfiniteTableWithHook'
+import InfiniteTableWithHookSrc from '../demos/examples/InfiniteTable/InfiniteTableWithHook.tsx?raw'
+import { InfiniteTableStatic } from '../demos/examples/InfiniteTable/InfiniteTableStatic'
+import InfiniteTableStaticSrc from '../demos/examples/InfiniteTable/InfiniteTableStatic.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+
+# InfiniteTable
+
+`InfiniteTable` — preset для длинных списков без пагинации: включает `infiniteLoading`, подключает `scrollRef` и `IntersectionObserver` через `onLoadMore` / `hasMore`.
+
+## Когда использовать
+
+- Лента записей с подгрузкой при скролле.
+- Не нужна постраничная навигация.
+
+Когда **не** нужен:
+
+- Классическая пагинация — `SimpleTable` / `ServerTable`.
+- Виртуализация больших датасетов — полный `Table` с `virtualization`.
+
+## Примеры использования
+
+<Example title='Подгрузка при скролле' code={InfiniteTableBasicSrc}>
+  <InfiniteTableBasic client:only='react' />
+</Example>
+
+<Example title='Через хук useInfiniteTableProps' code={InfiniteTableWithHookSrc}>
+  <InfiniteTableWithHook client:only='react' />
+</Example>
+
+<Example title='Без подгрузки (hasMore: false)' code={InfiniteTableStaticSrc}>
+  <InfiniteTableStatic client:only='react' />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-infinitetable--playground' />

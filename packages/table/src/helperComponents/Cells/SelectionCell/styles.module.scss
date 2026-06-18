@@ -1,0 +1,36 @@
+// Ячейка выбора строки: квадрат по высоте строки с чек-боксом/радио по центру.
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+
+.selectionCell {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: base.simple-var(
+    table.$table,
+    'content',
+    'tableLine',
+    'pinnedWrapper',
+    'elementWrapper',
+    'cellToggles',
+    'width'
+  );
+  height: 100%;
+  padding-left: base.simple-var(
+    table.$table,
+    'content',
+    'tableLine',
+    'pinnedWrapper',
+    'elementWrapper',
+    'cellToggles',
+    'padding-left'
+  );
+}
+
+.selectionCellHeader {
+  padding: 0;
+}

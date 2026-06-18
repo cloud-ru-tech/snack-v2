@@ -1,7 +1,8 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
 .root {
-  overflow: hidden;
+  // Не clip'аем preview: droplist'ы и popover'ы в демо должны быть видны целиком.
+  overflow: visible;
 
   margin: 0 0 base.$sn-density-spacing-interval-xl;
   border: 1px solid base.$sn-theme-color-neutral-decor;

@@ -1,0 +1,35 @@
+// Ячейка статуса. В новом дизайне полосатого индикатора у края строки нет — легаси-хелпер
+// `getStatusColumnDef` рендерит компонент <Status> из '@ds/status' (точка-индикатор + подпись).
+// Здесь только раскладка ячейки: вертикальное центрирование и горизонтальные отступы.
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+
+.statusCell {
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding-right: base.simple-var(table.$table, 'content', 'tableCell', 'padding-right');
+  padding-left: base.simple-var(table.$table, 'content', 'tableCell', 'padding-left');
+
+  // Indicator-only вариант (без подписи): точка по центру ячейки, минимальные отступы.
+  &[data-no-label] {
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  // В карточке статус — поле label/value: table-cell padding не нужен, фон даёт Status.
+  &[data-card-field] {
+    width: auto;
+    height: auto;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.status {
+  min-width: 0;
+}

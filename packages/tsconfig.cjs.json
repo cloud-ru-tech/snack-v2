@@ -236,6 +236,9 @@
       "path": "./toolbar/tsconfig.cjs.json"
     },
     {
+      "path": "./table/tsconfig.cjs.json"
+    },
+    {
       "path": "./tree/tsconfig.cjs.json"
     },
     {

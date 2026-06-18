@@ -1,0 +1,50 @@
+---
+title: SimpleTable
+package: '@ds/table'
+description: 'Минимальная клиентская таблица: данные, колонки и пагинация с предустановленными дефолтами.'
+order: 2
+---
+
+import { SimpleTableBasic } from '../demos/examples/SimpleTable/SimpleTableBasic'
+import SimpleTableBasicSrc from '../demos/examples/SimpleTable/SimpleTableBasic.tsx?raw'
+import { SimpleTableWithHook } from '../demos/examples/SimpleTable/SimpleTableWithHook'
+import SimpleTableWithHookSrc from '../demos/examples/SimpleTable/SimpleTableWithHook.tsx?raw'
+import { SimpleTableCardView } from '../demos/examples/SimpleTable/SimpleTableCardView'
+import SimpleTableCardViewSrc from '../demos/examples/SimpleTable/SimpleTableCardView.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+
+# SimpleTable
+
+`SimpleTable` — preset-обёртка над [`Table`](/components/table/table) для простых списков: декларативные колонки через `defineColumns`, пагинация и `outline` включены по умолчанию.
+
+## Когда использовать
+
+- Справочники, настройки, демо-экраны — данные целиком на клиенте, без поиска и фильтров.
+- Нужен минимальный API вместо полного `Table`.
+- Компактная таблица в модалке или боковой панели — `fullWidth={false}` при фиксированных колонках.
+
+Когда **не** нужен:
+
+- Поиск, фильтры, выбор строк — используйте `AdminTable`.
+- Данные с бэкенда постранично — `ServerSimpleTable` или `ServerTable`.
+
+## Примеры использования
+
+{/* client:only='react': SSR демо невозможен — @ds/table тянет toolbar с directory-imports (см. table.mdx). */}
+
+<Example title='Базовое использование' code={SimpleTableBasicSrc}>
+  <SimpleTableBasic client:only='react' />
+</Example>
+
+<Example title='Через хук useSimpleTableProps' code={SimpleTableWithHookSrc}>
+  <SimpleTableWithHook client:only='react' />
+</Example>
+
+<Example title='Карточный режим' code={SimpleTableCardViewSrc}>
+  <SimpleTableCardView client:only='react' />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='components-table-simpletable--playground' />

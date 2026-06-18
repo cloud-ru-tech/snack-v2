@@ -1,0 +1,21 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+
+.tableBodyCell {
+  gap: base.simple-var(table.$table, 'content', 'tableCell', 'contentWrapper', 'slot', 'gap');
+  padding: base.simple-var(table.$table, 'content', 'tableCell', 'padding-top') base.simple-var(table.$table, 'content', 'tableCell', 'padding-right') base.simple-var(table.$table, 'content', 'tableCell', 'padding-bottom') base.simple-var(table.$table, 'content', 'tableCell', 'padding-left');
+  color: base.$sn-theme-color-available-version-textMain;
+
+  &[data-align='right'] {
+    justify-content: flex-end;
+  }
+
+  &[data-no-padding] {
+    padding: 0;
+  }
+
+  &:not([data-row-auto-height]) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

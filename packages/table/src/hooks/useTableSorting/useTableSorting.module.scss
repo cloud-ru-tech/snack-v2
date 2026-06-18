@@ -1,0 +1,8 @@
+// Стили droplist-айтема «Сбросить сортировку» (тулбар в view='cards').
+// Сам айтем и его layout рисует <Droplist> из '@ds/list';
+// здесь — только тонировка иконки в disabled-состоянии айтема.
+@use '../../../../../node_modules/@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.clearSortItem[data-disabled='true'] svg {
+  color: base.$sn-theme-color-available-version-textDisabled;
+}
