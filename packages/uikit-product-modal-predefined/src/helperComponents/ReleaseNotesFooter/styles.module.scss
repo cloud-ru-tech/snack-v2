@@ -1,0 +1,25 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.counter {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+  white-space: nowrap;
+}

@@ -1,0 +1,43 @@
+---
+title: RecallModal
+package: '@ds/uikit-product-modal-predefined'
+description: Preset-модалка отзыва действия с опциональным confirmable состоянием.
+order: 2
+---
+
+import { RecallBasic } from '../demos/examples/RecallBasic'
+import RecallBasicSrc from '../demos/examples/RecallBasic.tsx?raw'
+import { RecallConfirmable } from '../demos/examples/RecallConfirmable'
+import RecallConfirmableSrc from '../demos/examples/RecallConfirmable.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# RecallModal
+
+`RecallModal` — готовый сценарий отзыва действия. Визуальная ось `confirmable` соответствует макету `recallModalConfirmable`.
+
+## Примеры использования
+
+<Example title='Базовый отзыв' code={RecallBasicSrc}>
+  <RecallBasic client:visible />
+</Example>
+
+<Example title='Отзыв с подтверждением' code={RecallConfirmableSrc}>
+  <RecallConfirmable client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.RecallModal} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-modalpredefined-recallmodal--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-modal-predefined', 'recall-modal')} height={480} title='RecallModal в Figma (Product UI Kit)' />

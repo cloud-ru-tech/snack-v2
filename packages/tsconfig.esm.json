@@ -293,6 +293,9 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-modal-predefined/tsconfig.esm.json"
     }
   ]
 }

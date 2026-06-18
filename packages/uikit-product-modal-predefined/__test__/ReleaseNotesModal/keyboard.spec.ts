@@ -1,0 +1,15 @@
+import { expect, test } from '#playwright-tooling/fixtures';
+
+import { TEST_IDS } from '../../src/constants';
+import { buildStoryOptions, STORY_TEST_IDS } from './helpers';
+
+test.describe('ReleaseNotesModal — keyboard', () => {
+  test('Escape closes modal', async ({ page, gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ contentState: 'data' }));
+    await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+    await expect(getByTestId(TEST_IDS.releaseNotesModal)).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(TEST_IDS.releaseNotesModal)).not.toBeVisible();
+  });
+});

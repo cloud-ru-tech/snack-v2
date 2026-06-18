@@ -523,6 +523,9 @@ importers:
       '@ds/uikit-product-load-status':
         specifier: workspace:*
         version: link:../../packages/uikit-product-load-status
+      '@ds/uikit-product-modal-predefined':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-modal-predefined
       '@ds/uikit-product-notification':
         specifier: workspace:*
         version: link:../../packages/uikit-product-notification
@@ -2403,6 +2406,60 @@ importers:
         version: link:../typography
       '@ds/utils':
         specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-modal-predefined:
+    dependencies:
+      '@ds/bottom-sheet':
+        specifier: workspace:*
+        version: link:../bottom-sheet
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/carousel':
+        specifier: workspace:*
+        version: link:../carousel
+      '@ds/fields':
+        specifier: workspace:*
+        version: link:../fields
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/info-block':
+        specifier: workspace:*
+        version: link:../info-block
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/markdown':
+        specifier: workspace:*
+        version: link:../markdown
+      '@ds/modal':
+        specifier: workspace:*
+        version: link:../modal
+      '@ds/pagination':
+        specifier: workspace:*
+        version: link:../pagination
+      '@ds/scroll':
+        specifier: workspace:*
+        version: link:../scroll
+      '@ds/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
+      '@ds/truncate-string':
+        specifier: workspace:*
+        version: link:../truncate-string
+      '@ds/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@ds/uikit-product-copy':
+        specifier: workspace:*
+        version: link:../uikit-product-copy
+      '@ds/utils':
+        specifier: workspace:*
         version: link:../utils
       classnames:
         specifier: 'catalog:'

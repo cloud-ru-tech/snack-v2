@@ -1,0 +1,43 @@
+---
+title: DeleteModal
+package: '@ds/uikit-product-modal-predefined'
+description: Preset-модалка удаления с Figma-first состоянием confirmable.
+order: 1
+---
+
+import { DeleteBasic } from '../demos/examples/DeleteBasic'
+import DeleteBasicSrc from '../demos/examples/DeleteBasic.tsx?raw'
+import { DeleteConfirmable } from '../demos/examples/DeleteConfirmable'
+import DeleteConfirmableSrc from '../demos/examples/DeleteConfirmable.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# DeleteModal
+
+`DeleteModal` — готовый сценарий удаления объекта. Для варианта из макета `deleteModalConfirmable` используйте `confirmable` и `confirmText`.
+
+## Примеры использования
+
+<Example title='Базовое удаление' code={DeleteBasicSrc}>
+  <DeleteBasic client:visible />
+</Example>
+
+<Example title='Удаление с подтверждением' code={DeleteConfirmableSrc}>
+  <DeleteConfirmable client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.DeleteModal} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-modalpredefined-deletemodal--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-modal-predefined', 'delete-modal')} height={480} title='DeleteModal в Figma (Product UI Kit)' />

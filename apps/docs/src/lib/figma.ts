@@ -236,6 +236,15 @@ export const FIGMA_NODES = {
     _: { ...PRODUCT, nodeId: '3060-29186' }, // button-dropdown → ButtonDropdown
     'button-dropdown': { ...PRODUCT, nodeId: '3060-29186' },
   },
+  'uikit-product-modal-predefined': {
+    _: { ...PRODUCT, nodeId: '3179:1987' }, // modalPredefined
+    'delete-modal': { ...PRODUCT, nodeId: '3179:9134' }, // deleteModal
+    'recall-modal': { ...PRODUCT, nodeId: '3179:9389' }, // recallModal
+    'delete-modal-confirmable': { ...PRODUCT, nodeId: '3179:9135' }, // deleteModalConfirmable
+    'recall-modal-confirmable': { ...PRODUCT, nodeId: '3179:9390' }, // recallModalConfirmable
+    'release-notes-modal': { ...PRODUCT, nodeId: '3181:10621' }, // releaseNotesModal
+    'release-notes-bottom-sheet': { ...PRODUCT, nodeId: '3181:14803' }, // releaseNotesBottomSheet
+  },
   'uikit-product-price-summary': {
     _: { ...PRODUCT, nodeId: '2909-6589' },
     'price-summary': { ...PRODUCT, nodeId: '2909-5733' },

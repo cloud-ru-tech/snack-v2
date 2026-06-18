@@ -1,0 +1,54 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: base.$sn-primitive-dimension-24;
+  min-height: calc(5 * #{base.$sn-primitive-dimension-64});
+
+  &[data-surface='bottomSheet'] {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: base.$sn-primitive-dimension-16;
+    min-height: 0;
+  }
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: base.$sn-primitive-dimension-16;
+}
+
+.image,
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoSkeleton {
+  position: absolute;
+  inset: 0;
+  background-color: var(--sys-neutral-background2-level);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-12;
+  min-width: 0;
+}
+
+.description {
+  min-height: 0;
+}
+
+.root[data-surface='modal'] .content {
+  order: 1;
+}
+
+.root[data-surface='modal'] .media {
+  order: 2;
+}

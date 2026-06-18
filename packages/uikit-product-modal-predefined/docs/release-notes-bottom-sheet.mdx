@@ -1,0 +1,37 @@
+---
+title: ReleaseNotesBottomSheet
+package: '@ds/uikit-product-modal-predefined'
+description: Mobile release notes preset на базе BottomSheet.
+order: 4
+---
+
+import { ReleaseNotesBottomSheet } from '../demos/examples/ReleaseNotesBottomSheet'
+import ReleaseNotesBottomSheetSrc from '../demos/examples/ReleaseNotesBottomSheet.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# ReleaseNotesBottomSheet
+
+`ReleaseNotesBottomSheet` — mobile surface для release notes по макету `releaseNotesBottomSheet`. API совпадает с `ReleaseNotesModal` по данным и состояниям контента.
+
+## Примеры использования
+
+<Example title='Mobile release notes' code={ReleaseNotesBottomSheetSrc}>
+  <ReleaseNotesBottomSheet client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.ReleaseNotesBottomSheet} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-modalpredefined-releasenotesbottomsheet--playground' height={560} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-modal-predefined', 'release-notes-bottom-sheet')} height={560} title='ReleaseNotesBottomSheet в Figma (Product UI Kit)' />

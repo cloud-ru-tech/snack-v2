@@ -1,0 +1,29 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-8;
+}
+
+.confirmText {
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.confirmText[data-align='start'] {
+  column-gap: base.$sn-primitive-dimension-4;
+  justify-content: flex-start;
+}
+
+.confirmLabel {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.confirmValue {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}

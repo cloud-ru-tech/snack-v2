@@ -1,0 +1,45 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.$sn-primitive-dimension-16;
+}
+
+.modal {
+  min-width: calc(11 * #{base.$sn-primitive-dimension-64});
+}
+
+.bottomSheet {
+  min-width: 0;
+}
+
+.carousel {
+  min-width: 0;
+}
+
+.stateWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  &[data-surface='modal'] {
+    height: calc(7 * #{base.$sn-primitive-dimension-64} - #{base.$sn-primitive-dimension-4});
+  }
+
+  &[data-surface='bottomSheet'] {
+    min-height: calc(7 * #{base.$sn-primitive-dimension-64});
+  }
+}
+
+.state {
+  width: 100%;
+  max-width: calc(9 * #{base.$sn-primitive-dimension-64} + 3 * #{base.$sn-primitive-dimension-16});
+}
+
+.loading {
+  height: calc(5 * #{base.$sn-primitive-dimension-64});
+}

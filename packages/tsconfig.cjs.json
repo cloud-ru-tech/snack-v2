@@ -288,6 +288,9 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-modal-predefined/tsconfig.cjs.json"
     }
   ]
 }

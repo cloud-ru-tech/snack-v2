@@ -1,0 +1,964 @@
+{
+  "DeleteModal": {
+    "displayName": "DeleteModal",
+    "propsTypeName": "DeleteModalProps",
+    "props": {
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "confirmText": {
+        "type": "string",
+        "required": false,
+        "description": "Текст, который нужно ввести для подтверждения"
+      },
+      "confirmTextVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "name",
+          "text"
+        ],
+        "defaultValue": "name",
+        "description": "Тип текста подтверждения",
+        "typeRefs": [
+          "ConfirmTextVariant"
+        ]
+      },
+      "confirmable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние с подтверждением через ввод текста"
+      },
+      "container": {
+        "type": "ModalContainer",
+        "required": false,
+        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "deleting": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки кнопки удаления"
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Описание"
+      },
+      "hideConfirmCopyButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть кнопку копирования текста подтверждения"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "MODE.Regular",
+        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "typeRefs": [
+          "ModalMode"
+        ]
+      },
+      "objectType": {
+        "type": "string",
+        "required": false,
+        "description": "Тип удаляемого объекта, отображается в заголовке"
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onDelete": {
+        "type": "(onClose: () => void) => void",
+        "required": true,
+        "description": "Колбэк подтверждения удаления"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "titleTooltip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка рядом с заголовком"
+      }
+    },
+    "relatedTypes": {
+      "ConfirmTextVariant": {
+        "kind": "union",
+        "values": [
+          "name",
+          "text"
+        ],
+        "own": true
+      },
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": false
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": false
+      }
+    }
+  },
+  "InputConfirm": {
+    "displayName": "InputConfirm",
+    "propsTypeName": null,
+    "props": {
+      "confirmLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Инструкция над текстом подтверждения"
+      },
+      "confirmText": {
+        "type": "string",
+        "required": true,
+        "description": "Текст, который нужно ввести для подтверждения"
+      },
+      "copyLineAlign": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "space-between",
+          "start"
+        ],
+        "defaultValue": "space-between",
+        "description": "Выравнивание copy-line"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Текст ошибки"
+      },
+      "hideConfirmCopyButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть кнопку копирования"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Label поля"
+      },
+      "onChange": {
+        "type": "(value: string) => void",
+        "required": true,
+        "description": "Колбэк изменения значения"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": true,
+        "description": "Placeholder поля"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер поля"
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Значение поля"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NoteItem": {
+    "displayName": "NoteItem",
+    "propsTypeName": null,
+    "props": {
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание новости в markdown"
+      },
+      "image": {
+        "type": "{ src: string; alt: string; }",
+        "required": true,
+        "description": "Иллюстрация"
+      },
+      "surface": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottomSheet",
+          "modal"
+        ],
+        "defaultValue": "modal"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок новости"
+      },
+      "video": {
+        "type": "string",
+        "required": false,
+        "description": "Видео вместо статичной иллюстрации"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "RecallModal": {
+    "displayName": "RecallModal",
+    "propsTypeName": "RecallModalProps",
+    "props": {
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "confirmText": {
+        "type": "string",
+        "required": false,
+        "description": "Текст, который нужно ввести для подтверждения"
+      },
+      "confirmable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние с подтверждением через ввод текста"
+      },
+      "container": {
+        "type": "ModalContainer",
+        "required": false,
+        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Описание"
+      },
+      "hideConfirmCopyButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть кнопку копирования текста подтверждения"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки кнопки отзыва"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "MODE.Regular",
+        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "typeRefs": [
+          "ModalMode"
+        ]
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onRecall": {
+        "type": "(onClose: () => void) => void",
+        "required": true,
+        "description": "Колбэк подтверждения отзыва"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан"
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "titleTooltip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка рядом с заголовком"
+      }
+    },
+    "relatedTypes": {
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": false
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": false
+      }
+    }
+  },
+  "ReleaseNotesBottomSheet": {
+    "displayName": "ReleaseNotesBottomSheet",
+    "propsTypeName": "ReleaseNotesBottomSheetProps",
+    "props": {
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать sheet при `popstate` (browser-back на mobile)."
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`."
+      },
+      "contentState": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "defaultValue": "data",
+        "description": "Визуальное состояние контента по Figma",
+        "typeRefs": [
+          "ReleaseNotesContentState"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "NoteItemProps[]",
+        "required": true,
+        "description": "Массив новостей",
+        "typeRefs": [
+          "NoteItemProps"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки контента"
+      },
+      "onClose": {
+        "type": "(() => void) & (() => void)",
+        "required": true,
+        "description": "Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back).\nКолбэк закрытия"
+      },
+      "onDataErrorRetryClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие перезагрузки на экране ошибки"
+      },
+      "onReadLaterClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие \"Ознакомиться позже\""
+      },
+      "onSlideChange": {
+        "type": "((slide: number) => void)",
+        "required": false,
+        "description": "Действие при смене слайда"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан / не показан.\nУправление состоянием показан/не показан"
+      },
+      "readLaterButtonProps": {
+        "type": "Partial<ButtonProps>",
+        "required": false,
+        "description": "Дополнительные пропсы action-кнопки \"Ознакомиться позже\"",
+        "typeRefs": [
+          "ButtonProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "ButtonProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
+      "NoteItemProps": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string",
+            "required": true,
+            "description": "Описание новости в markdown"
+          },
+          "image": {
+            "type": "{ src: string; alt: string; }",
+            "required": true,
+            "description": "Иллюстрация"
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок новости"
+          },
+          "video": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Видео вместо статичной иллюстрации"
+          }
+        },
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "ReleaseNotesContentState": {
+        "kind": "union",
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
+      }
+    }
+  },
+  "ReleaseNotesContent": {
+    "displayName": "ReleaseNotesContent",
+    "propsTypeName": null,
+    "props": {
+      "contentState": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "description": "Визуальное состояние"
+      },
+      "errorDescription": {
+        "type": "string",
+        "required": true,
+        "description": "Описание ошибки"
+      },
+      "errorTitle": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок ошибки"
+      },
+      "items": {
+        "type": "NoteItemProps[]",
+        "required": true,
+        "description": "Новости"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "noDataDescription": {
+        "type": "string",
+        "required": true,
+        "description": "Описание no-data"
+      },
+      "noDataTitle": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок no-data"
+      },
+      "onDataErrorRetryClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Повторная загрузка"
+      },
+      "onPageChange": {
+        "type": "(pageIndex: number) => void",
+        "required": true,
+        "description": "Смена страницы"
+      },
+      "pageIndex": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая страница, zero-based"
+      },
+      "retryLabel": {
+        "type": "string",
+        "required": true,
+        "description": "Label retry-кнопки"
+      },
+      "surface": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottomSheet",
+          "modal"
+        ],
+        "description": "Поверхность"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ReleaseNotesFooter": {
+    "displayName": "ReleaseNotesFooter",
+    "propsTypeName": null,
+    "props": {
+      "counterLabel": {
+        "type": "string",
+        "required": true,
+        "description": "Текст счётчика «1 из N» (используется на bottomSheet)"
+      },
+      "onNextPageClick": {
+        "type": "() => void",
+        "required": true,
+        "description": "Следующая страница"
+      },
+      "onPrevPageClick": {
+        "type": "() => void",
+        "required": true,
+        "description": "Предыдущая страница"
+      },
+      "onReadLaterClick": {
+        "type": "(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+        "required": true,
+        "description": "Действие «Ознакомиться позже»"
+      },
+      "pageIndex": {
+        "type": "number",
+        "required": true,
+        "description": "Текущая страница, zero-based"
+      },
+      "readLaterButtonProps": {
+        "type": "Partial<ButtonProps>",
+        "required": false,
+        "description": "Дополнительные пропсы кнопки «Ознакомиться позже»"
+      },
+      "readLaterLabel": {
+        "type": "string",
+        "required": true,
+        "description": "Label кнопки «Ознакомиться позже»"
+      },
+      "readablePageNumber": {
+        "type": "number",
+        "required": true,
+        "description": "Номер страницы для отображения"
+      },
+      "surface": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottomSheet",
+          "modal"
+        ],
+        "description": "Поверхность отображения"
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Количество страниц"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ReleaseNotesModal": {
+    "displayName": "ReleaseNotesModal",
+    "propsTypeName": "ReleaseNotesModalProps",
+    "props": {
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "container": {
+        "type": "ModalContainer",
+        "required": false,
+        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
+      },
+      "contentState": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "defaultValue": "data",
+        "description": "Визуальное состояние контента по Figma",
+        "typeRefs": [
+          "ReleaseNotesContentState"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "NoteItemProps[]",
+        "required": true,
+        "description": "Массив новостей",
+        "typeRefs": [
+          "NoteItemProps"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки контента"
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onDataErrorRetryClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие перезагрузки на экране ошибки"
+      },
+      "onReadLaterClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие \"Ознакомиться позже\""
+      },
+      "onSlideChange": {
+        "type": "((slide: number) => void)",
+        "required": false,
+        "description": "Действие при смене слайда"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан"
+      }
+    },
+    "relatedTypes": {
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": false
+      },
+      "NoteItemProps": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string",
+            "required": true,
+            "description": "Описание новости в markdown"
+          },
+          "image": {
+            "type": "{ src: string; alt: string; }",
+            "required": true,
+            "description": "Иллюстрация"
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок новости"
+          },
+          "video": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Видео вместо статичной иллюстрации"
+          }
+        },
+        "own": true
+      },
+      "ReleaseNotesContentState": {
+        "kind": "union",
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "own": true
+      }
+    }
+  }
+}
