@@ -84,6 +84,7 @@ export const FIGMA_NODES = {
   'ai-icon-giga': { ...AI_COMPONENTS, nodeId: '7404-40182' }, // ai-icon-giga → Icon Giga
   'ai-reasoning': { ...AI_COMPONENTS, nodeId: '7250-14770' }, // ai-reasoning → Reasoning
   'ai-queue': { ...AI_COMPONENTS, nodeId: '7099-4119' }, // ai-queue → Queue
+  'ai-shimmer': { ...AI_COMPONENTS, nodeId: '7466-4447' }, // ai-shimmer → Shimmer
   'ai-suggestion': {
     _: { ...AI_COMPONENTS, nodeId: '6450-3666' }, // ai-suggestion → Suggestion / Simple
     'ai-suggestion': { ...AI_COMPONENTS, nodeId: '6450-3666' },

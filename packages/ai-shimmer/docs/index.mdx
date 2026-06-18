@@ -1,0 +1,99 @@
+---
+title: AiShimmer
+package: '@ds/ai-shimmer'
+description: Анимированный shimmer-блок для AI-сценариев с типографикой как в `@ds/typography`.
+order: 0
+---
+
+import { AiShimmerDemo } from '../demos/AiShimmerDemo'
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Multiline } from '../demos/examples/Multiline'
+import MultilineSrc from '../demos/examples/Multiline.tsx?raw'
+import { CustomSize } from '../demos/examples/CustomSize'
+import CustomSizeSrc from '../demos/examples/CustomSize.tsx?raw'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { Example } from '#docs/components/Example'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# AiShimmer
+
+`AiShimmer` — декоративный shimmer-лоадер из набора AI Components. Shimmer-проход ограничен формой текста через `background-clip: text` на дублирующем текстовом слое; ширина контейнера и размер шрифта задают layout автоматически.
+
+## Демо
+
+<AiShimmerDemo client:visible />
+
+## Когда использовать
+
+- При загрузке AI-ответа, где нужен акцентный движущийся shimmer по тексту.
+- В placeholder-сценариях, когда обычного `Skeleton` визуально недостаточно.
+
+### Когда не нужен
+
+- Для нейтральной индикации загрузки без текста — используйте `@ds/skeleton`.
+- Для спиннера поверх модального окна — используйте `@ds/loader`.
+
+## Анатомия
+
+### Animation
+
+AiShimmer всегда рендерится в анимированном режиме, повторяя shimmer-проход из Figma. Градиентный слой анимируется горизонтально и обрезается по контуру текста через `background-clip: text`.
+
+### Text
+
+Текст shimmer задаётся через проп `text`. Переносы строк поддерживаются символом `\n`. Многострочный текст автоматически переносится по ширине контейнера. Высота shimmer-слоя синхронизируется с layout через `ResizeObserver` и `document.fonts.ready`.
+
+### Typography
+
+Типографика задаётся пропами `variant`, `size` и `weight` — те же значения, что и в `@ds/typography`. По умолчанию `body` / `m` / `regular`. Константы `VARIANT`, `SIZE`, `WEIGHT` и дефолты экспортируются из пакета.
+
+```ts
+import { AiShimmer, DEFAULT_SIZE, DEFAULT_VARIANT, DEFAULT_WEIGHT } from '@ds/ai-shimmer'
+
+<AiShimmer
+  text='Generating...'
+  variant={DEFAULT_VARIANT}
+  size={DEFAULT_SIZE}
+  weight={DEFAULT_WEIGHT}
+/>
+```
+
+## Установка
+
+```bash
+pnpm add @ds/ai-shimmer
+```
+
+```ts
+import { AiShimmer, DEFAULT_SIZE } from '@ds/ai-shimmer'
+```
+
+## Примеры использования
+
+<Example title='Базовый' description='Однострочный shimmer с текстом по умолчанию' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Многострочный текст' description='Переносы через `\n` и автоматический wrap по ширине контейнера' code={MultilineSrc}>
+  <Multiline client:visible />
+</Example>
+
+<Example title='Размер шрифта' description='Проп `size` принимает `s`, `m` или `l` — те же размеры, что и в `@ds/typography`' code={CustomSizeSrc}>
+  <CustomSize client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={doc.AiShimmer} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aishimmer--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-shimmer')} />

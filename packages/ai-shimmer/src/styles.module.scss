@@ -1,0 +1,115 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$weights: 'regular', 'thin', 'mono';
+$variants: 'display', 'headline', 'title', 'label', 'body';
+$sizes: 's', 'm', 'l';
+
+$spread-width: 108px;
+$spread-start-left: -124px;
+$spread-end-left: calc(100% + 124px);
+
+.root {
+  position: relative;
+
+  display: block;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.text {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+@each $weight in $weights {
+  .root[data-weight='#{$weight}'] {
+    @each $variant in $variants {
+      &[data-variant='#{$variant}'] {
+        @each $size in $sizes {
+          &[data-size='#{$size}'] .text {
+            @include base.composite-var(base.$base-styles, 'sn', $weight, $variant, $size);
+          }
+        }
+      }
+    }
+  }
+}
+
+.textGhost {
+  color: transparent;
+}
+
+.shimmer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.shimmerText {
+  color: transparent;
+
+  background-image:
+    radial-gradient(
+      ellipse at 66% 22%,
+      rgb(51 140 235 / 100%) 15%,
+      rgb(59 174 209 / 100%) 30%,
+      rgb(67 208 183 / 100%) 45%,
+      rgb(52 203 151 / 100%) 55%,
+      rgb(36 198 118 / 100%) 65%,
+      rgb(36 198 118 / 0%) 100%
+    ),
+    linear-gradient(
+      base.$sn-theme-color-available-version-textSecondary,
+      base.$sn-theme-color-available-version-textSecondary
+    );
+  background-repeat: no-repeat;
+  background-position:
+    $spread-start-left 0,
+    0 0;
+  background-clip: text;
+  background-origin: border-box;
+  background-size:
+    $spread-width var(--ai-shimmer-spread-start-height),
+    100% 100%;
+
+  animation: shimmer-text-move 3.75s linear infinite;
+}
+
+@keyframes shimmer-text-move {
+  0% {
+    background-position:
+      $spread-start-left 0,
+      0 0;
+    background-size:
+      $spread-width var(--ai-shimmer-spread-start-height),
+      100% 100%;
+  }
+
+  50% {
+    background-position:
+      $spread-end-left 0,
+      0 0;
+    background-size:
+      $spread-width var(--ai-shimmer-spread-end-height),
+      100% 100%;
+  }
+
+  100% {
+    background-position:
+      $spread-end-left 0,
+      0 0;
+    background-size:
+      $spread-width var(--ai-shimmer-spread-end-height),
+      100% 100%;
+  }
+}

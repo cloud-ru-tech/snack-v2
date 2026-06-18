@@ -300,6 +300,9 @@ importers:
       '@ds/ai-reasoning':
         specifier: workspace:*
         version: link:../../packages/ai-reasoning
+      '@ds/ai-shimmer':
+        specifier: workspace:*
+        version: link:../../packages/ai-shimmer
       '@ds/ai-suggestion':
         specifier: workspace:*
         version: link:../../packages/ai-suggestion
@@ -673,6 +676,15 @@ importers:
       '@ds/icons':
         specifier: workspace:*
         version: link:../icons
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-shimmer:
+    dependencies:
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils

@@ -17,6 +17,7 @@
     "@ds/ai-field-banner": "workspace:*",
     "@ds/ai-reasoning": "workspace:*",
     "@ds/ai-queue": "workspace:*",
+    "@ds/ai-shimmer": "workspace:*",
     "@ds/ai-suggestion": "workspace:*",
     "@ds/alert": "workspace:*",
     "@ds/attachment": "workspace:*",

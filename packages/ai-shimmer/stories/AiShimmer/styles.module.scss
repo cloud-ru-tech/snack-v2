@@ -1,0 +1,14 @@
+.preview {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.matrixCell {
+  width: 400px;
+}
+
+.matrixCellNarrow {
+  width: 120px;
+}

@@ -1,0 +1,98 @@
+{
+  "AiShimmer": {
+    "displayName": "AiShimmer",
+    "propsTypeName": "AiShimmerProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корневого контейнера."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-shimmer"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "SIZE.m",
+        "description": "Размер типографики (`s`, `m`, `l`), как в `@ds/typography`.\nЗадаёт `data-size` и шкалу шрифта для текста shimmer.",
+        "typeRefs": [
+          "AiShimmerSize"
+        ]
+      },
+      "text": {
+        "type": "string",
+        "required": true,
+        "description": "Текст, по которому рендерится shimmer. Поддерживает переносы строк через `\\n`."
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "body",
+          "display",
+          "headline",
+          "label",
+          "title"
+        ],
+        "defaultValue": "VARIANT.body",
+        "description": "Вариант типографики, как в `@ds/typography`. Задаёт `data-variant` и шкалу шрифта.",
+        "typeRefs": [
+          "AiShimmerVariant"
+        ]
+      },
+      "weight": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "mono",
+          "regular",
+          "thin"
+        ],
+        "defaultValue": "WEIGHT.regular",
+        "description": "Начертание шрифта, как в `@ds/typography`. Задаёт `data-weight`.",
+        "typeRefs": [
+          "AiShimmerWeight"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiShimmerSize": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "AiShimmerVariant": {
+        "kind": "union",
+        "values": [
+          "body",
+          "display",
+          "headline",
+          "label",
+          "title"
+        ],
+        "own": true
+      },
+      "AiShimmerWeight": {
+        "kind": "union",
+        "values": [
+          "mono",
+          "regular",
+          "thin"
+        ],
+        "own": true
+      }
+    }
+  }
+}

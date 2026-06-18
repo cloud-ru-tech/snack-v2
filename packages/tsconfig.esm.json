@@ -42,6 +42,9 @@
       "path": "./ai-reasoning/tsconfig.esm.json"
     },
     {
+      "path": "./ai-shimmer/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {
