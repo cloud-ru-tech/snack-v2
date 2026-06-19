@@ -102,10 +102,40 @@ grep -rniE "пекреход|преставление|отбражени|кол�
 
 JSDoc читается react-docgen'ом в Storybook-контролах и попадает в `props.json`/`README.md` → опечатка расползается по всем пакетам-потребителям. Чини в **исходном** JSDoc, затем `pnpm gen:props && pnpm gen:readme`.
 
+### K. Колбэк-проп стрелкой вместо method-signature ([component-api-surface.md](../rules/component-api-surface.md))
+
+```bash
+# onX?: (...) => ... в типах пропсов — должно быть onX?(...): ...
+grep -rnE "on[A-Z][A-Za-z]*\??:\s*\(.*\)\s*=>" packages/$PKG/src --include="*.ts" --include="*.tsx"
+```
+
+Разворачивай в method-signature: `onChange?(v: string): void`. Готовый тип-алиас (`onClick?: MouseEventHandler<…>`) — оставляй, это исключение.
+
+### L. Стейл-рефы после rename/remove публичного API ([docs-structure.md](../rules/docs-structure.md), [figma-integration.md](../rules/figma-integration.md))
+
+Переименование/удаление публичного компонента или пропа оставляет хвосты в нескольких слоях сразу. Подставь `OLD=<старое имя>` (компонент / проп / TEST_ID / figma-ключ) и прогони по всем местам:
+
+```bash
+OLD='<OldNameOrProp>'
+grep -rn "$OLD" packages/$PKG/{src,stories,demos,docs,__test__} apps/docs/src/lib/figma.ts
+```
+
+Чек-лист мест, где обычно остаётся ссылка (проверь каждое):
+
+- `demos/examples/*.tsx` — удалённый проп в примере (`error={...}` после удаления `error`).
+- `docs/*.mdx` — текст Анатомии, `### <Component>` + `<PropsTable data={…Doc.<Component>}>` (краш билда, см. [docs-structure.md](../rules/docs-structure.md)), `figmaNode(pkg, '<sub>')` (молча пустой эмбед при рассинхроне ключа), `storyId='…'` в `<StorybookEmbed>`.
+- `README.md` — перегенерить `pnpm gen:readme` (не править руками).
+- `apps/docs/src/lib/figma.ts` — sub-ключ должен совпадать со строкой в `figmaNode(...)` MDX.
+- `stories/testIds.ts` — стейл-строки test-id (`…-drawer__trigger` после rename в popover).
+- `src/constants.ts` — мёртвые ключи в `TEST_IDS` для удалённых слотов.
+- `__test__/**/rendering.spec.ts` — тест на удалённый проп/слот или селектор по съехавшему `data-test-id`/`aria-*`.
+
+После правок: `pnpm gen:props && pnpm gen:readme`, затем `pnpm build:docs:fast` (ловит MDX-краши, которые `build:storybook` пропускает) и `pnpm test:e2e:chrome packages/$PKG`.
+
 ## После аудита
 
 1. Почини находки по соответствующим рулам.
-2. Повтори скан до пустого вывода по A–J.
+2. Повтори скан до пустого вывода по A–L.
 3. Если правил JSDoc/пропсы — `pnpm gen:props && pnpm gen:readme`.
 4. Селективная сверка: `pnpm exec eslint --fix packages/$PKG`, `pnpm build:pkg $PKG`, `pnpm typecheck`.
 

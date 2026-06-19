@@ -17,6 +17,7 @@
 
 2. **Найти хардкод числовых литералов** в каждом файле:
    - Регэксп для пиксельных литералов в значениях свойств: `:\s*[^;]*\b\d+(\.\d+)?px\b`. Исключить: внутри `var(...)`, внутри `calc(...)` где это часть формулы со спейсингом-токеном.
+   - Регэксп для `rem`/`em` литералов: `:\s*[^;]*\b\d+(\.\d+)?(rem|em)\b`. Размеры/отступы/радиусы/gap'ы в `rem`/`em` — тот же хардкод, что и `px`; заменить на размерный токен. Исключить безразмерный `line-height`.
    - Регэксп для hex/rgba: `#[0-9a-fA-F]{3,8}\b`, `rgba?\(`. Допустимо только `transparent`.
    - Литеральный `opacity:\s*0?\.\d+` для disabled.
    - Литеральные `border-radius:\s*\d+px`.
@@ -33,8 +34,9 @@
    | hex/rgba | `base.$sn-theme-color-*` (через `get_variable_defs` Figma либо ручной поиск в `node_modules/@sbercloud/figma-variables/build/scss/styles/styles.module.scss`) |
    | `border-radius: <px>` | `base.simple-var(<component>.$<component>, 'anatomy', …, 'border-radius')` или `base.$sn-brand-anatomy-radius-*` |
    | `opacity: 0.4` (disabled) | `base.$sn-theme-effect-opacity-disabled` |
+   | `<n>rem` / `<n>em` (size/padding/gap/radius/inset) | размерный токен `base.$sn-primitive-dimension-*` / `base.simple-var(...)` / `base.$sn-brand-anatomy-*` |
 
-   Допустимые литералы оставить: `0`, `100%`, `inherit`, `transparent`, durations/timings, `z-index: 0|1`.
+   Допустимые литералы оставить: `0`, `100%`, `inherit`, `transparent`, durations/timings, `z-index: 0|1`, безразмерный `line-height`. `rem`/`em` под исключения **не** попадают.
 
 3. **Найти копипаст по `data-<axis>`**:
    - Сгруппировать селекторы вида `&[data-<axis>='<value>'] { … }` внутри одного блока.

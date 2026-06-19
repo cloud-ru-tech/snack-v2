@@ -20,6 +20,7 @@
 
 - **НЕ** используй типы через `React.*` (`React.ReactNode`, `React.CSSProperties`, `React.FC`, `React.HTMLAttributes`, `React.ElementType` и т.д.). Импортируй именованные типы из `'react'`. См. [react-types.md](./react-types.md).
 - **НЕ** применяй `React.FC` / `React.FunctionComponent`. Типизируй пропсы явным объектным типом.
+- **НЕ** типизируй колбэк-пропы стрелкой-property (`onChange?: (v: string) => void`) — только method-signature (`onChange?(v: string): void`). Исключение — готовый тип-алиас (`MouseEventHandler<…>`). См. [component-api-surface.md](./component-api-surface.md).
 - **НЕ** импортируй мобильные компоненты напрямую — используй адаптивные обёртки, если они есть.
 - **НЕ** создавай компоненты без продуманных loading/error/empty состояний.
 

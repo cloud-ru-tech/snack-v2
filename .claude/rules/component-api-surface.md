@@ -77,6 +77,18 @@ export type BaseButtonProps = {
 - JSDoc на каждом поле (`/** Текст кнопки */`) — единственный источник описания пропа. Эти строки попадают одновременно в: (1) IDE на hover/autocomplete, (2) `docs/props.json` через `pnpm gen:props`, (3) Storybook Controls «Description» через `react-docgen-typescript` плагин, (4) автогенерируемый `README.md`. **Не дублируй JSDoc в `argTypes.<prop>.description`** — это создаёт второй источник правды. Подробности в [storybook-args-conventions.md](./storybook-args-conventions.md).
 - Булевы пропсы называются утверждающе: `disabled`, `loading`, `fullWidth`. Избегай отрицательных `notDisabled`.
 - Коллбэки — `onClick`, `onChange`, `onOpen`. Не `handleClick`.
+- **Колбэк-пропы типизируй method-signature, а не arrow-property**: `onOpenChanged?(open: boolean): void`, не `onOpenChanged?: (open: boolean) => void`. Единственное исключение — готовый тип-алиас (`onClick?: MouseEventHandler<HTMLDivElement>`): алиас оставляем как есть, в стрелку его не разворачиваем.
+
+```ts
+// ❌ Плохо — arrow-property
+onOpenChanged?: (open: boolean) => void;
+onChange?: (checked: boolean) => void;
+
+// ✅ Хорошо — method-signature
+onOpenChanged?(open: boolean): void;
+onChange?(checked: boolean): void;
+onClick?: MouseEventHandler<HTMLDivElement>; // алиас — исключение, не разворачиваем
+```
 
 ## Полиморфизм (`as` + `innerRef`)
 

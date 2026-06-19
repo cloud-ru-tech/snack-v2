@@ -17,12 +17,13 @@
 В `*.module.scss` запрещены:
 
 - `1px`, `2px`, `0.5px`, `1.5px`, `3px` и любые другие пиксельные литералы для `border-width` / `outline-width` / `stroke-width`. Используй `base.$sn-primitive-strokeWeight-stroke{Thin,Regular,Medium,SemiBold,Bold}`.
+- **`rem` / `em` литералы для размеров, отступов, радиусов, gap'ов** (`gap: 0.5rem`, `padding: 1rem`, `inset: 0.25rem`, `top: 1.5rem`, `border-radius: 0.75rem`, `width: 2em`). Это тот же хардкод, что и `px` — обходит дизайн-токены и привязывает раскладку к `font-size` корня вместо шкалы DS. Любую размерную величину бери из токенов: `base.$sn-primitive-dimension-*`, `base.simple-var(...)`, `base.$sn-brand-anatomy-*`. Если кажется, что подходящего токена нет — уточни у дизайнера, не подставляй «на глаз» `rem`.
 - Литеральные радиусы (`border-radius: 8px`). Используй `base.simple-var(<component>.$<component>, 'anatomy', …, 'border-radius')` либо `base.$sn-brand-anatomy-radius-*`.
 - Сырые цвета (`#fff`, `rgba(0,0,0,.5)`). Используй `base.$sn-theme-color-*`.
 - Литеральные spacing/padding/gap. Используй токены `base.simple-var(...)` пакета или `base.$sn-brand-anatomy-*`.
 - Литеральные opacity для disabled (`opacity: 0.4`). Используй `base.$sn-theme-effect-opacity-disabled`.
 
-Допустимые числовые литералы — только то, что не имеет токена и не является дизайн-параметром: `0`, `100%`, `inherit`, `transparent`, durations/timings (`0.15s`, `ease-in-out`), `z-index: 0|1`.
+Допустимые числовые литералы — только то, что не имеет токена и не является дизайн-параметром: `0`, `100%`, `inherit`, `transparent`, durations/timings (`0.15s`, `ease-in-out`), `z-index: 0|1`. Безразмерные `line-height` (`1.5`) и `1fr`/`auto` в grid — тоже ок; `rem`/`em` под исключения **не** попадают.
 
 ```scss
 // ❌ Плохо
@@ -130,6 +131,7 @@ $typography: (
 ## Чек-лист перед коммитом SCSS
 
 - [ ] Нет литералов `1px` / `2px` / `0.5px` / `1.5px` / `3px` — заменены на `base.$sn-primitive-strokeWeight-stroke*`.
+- [ ] Нет `rem` / `em` литералов в размерах/отступах/радиусах/gap'ах — через `base.$sn-primitive-dimension-*` / `base.simple-var(...)` / `base.$sn-brand-anatomy-*`.
 - [ ] Нет hex/rgba — заменены на `base.$sn-theme-color-*`.
 - [ ] Нет литеральных `border-radius` / `padding` / `gap` — через `base.simple-var(...)` или `base.$sn-brand-anatomy-*`.
 - [ ] Нет литерального `opacity` для disabled — `base.$sn-theme-effect-opacity-disabled`.

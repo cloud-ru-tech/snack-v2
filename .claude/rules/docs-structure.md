@@ -173,6 +173,8 @@ import <name>Doc from './props.json'
 
 `<PropsTable>` рендерится SSR. Related-типы (unions / aliases / interfaces), на которые ссылаются пропсы, выводятся под основной таблицей и попадают в правый TOC как H3-якоря — плагин `remark-props-table-headings` на билде читает `./props.json` и инжектит скрытые H3-заголовки по именам related-типов.
 
+**`<PropsTable data={<name>Doc.<Component>} />` с несуществующим ключом — жёсткий краш билда.** Если `<Component>` нет в `props.json` (компонент удалён/переименован, либо `props.json` не перегенерён), `<name>Doc.<Component>` === `undefined`, и SSR падает с `TypeError: Cannot read properties of undefined (reading 'props')` — рушится **весь** `build:docs`. В отличие от `<FigmaEmbed node={figmaNode(...)} />`, который при отсутствии узла безопасно рендерит `null`, пропущенный ключ `PropsTable` краш**ит**. При удалении/переименовании публичного компонента **обязательно**: (1) убери его секцию `### <Component>` + `<PropsTable>` из MDX, (2) перегенери `pnpm gen:props`. Проверяй рендер через `pnpm build:docs:fast` — `build:storybook` эту ошибку **не ловит** (Vite не SSR-рендерит docs-страницы).
+
 ### `<Example>` — preview + code
 
 Отображает живой компонент (children) + форматированный код + кнопку Copy.
