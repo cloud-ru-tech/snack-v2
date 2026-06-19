@@ -260,7 +260,7 @@ export function ErrorState() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `Action` \| `BaseAction` \| `BaseButtonProps` \| `ButtonDroplistProps` \| `ButtonKebabProps` | — | Действия в шапке/footer. |
+| `actions` | `Action` \| `BaseAction` \| `ButtonDroplistProps` \| `ButtonKebabProps` | — | Действия в шапке/footer. |
 | `actionsChildren` | `ReactNode` | — | Дополнительный слот рядом с действиями. |
 | `children` | `ReactNode` | — | Контент виджета. |
 | `className` | `string` | — | Дополнительный CSS-класс. |
@@ -288,14 +288,14 @@ export function ErrorState() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `button` | `BaseButtonProps` \| `ButtonProps` | — |  |
+| `button` | `ButtonProps` | — |  |
 | `list` | `WidgetActionListProps` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `button` | `BaseButtonProps` \| `ButtonProps` | — |  |
+| `button` | `ButtonProps` | — |  |
 | `list` | `WidgetActionListProps` | — |  |
 
 **WidgetActionListProps**
@@ -308,6 +308,16 @@ export function ErrorState() {
 | `onOpenChange` | `((open: boolean) => void) \| undefined` | — |  |
 | `open` | `boolean \| undefined` | — |  |
 
+**WidgetErrorStateProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `errorDescription` | `string \| undefined` | — | Описание ошибки. |
+| `errorIcon` | `InfoBlockProps` | — | Иконка InfoBlock. |
+| `errorTitle` | `string \| undefined` | — | Заголовок ошибки. |
+| `onClickUpdate` | `(event: MouseEvent<HTMLElement, MouseEvent>) => void` | — | Клик по кнопке повтора. |
+| `updateButtonLabel` | `string \| undefined` | — | Текст кнопки повтора. |
+
 **WidgetHeaderProps**
 
 | Prop | Type | Default | Description |
@@ -319,6 +329,15 @@ export function ErrorState() {
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `title` | `string \| undefined` | — | Заголовок |
 | `titleTag` | `ElementType \| undefined` | — | Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) |
+
+- `WidgetLayoutType` = `"desktop"` \| `"mobile"`
+
+**WidgetLoadingStateProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `loadingContent` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомный контент для состояния загрузки. |
+| `showSkeleton` | `boolean \| undefined` | — | Показывать skeleton-заглушку в body. |
 
 - `WidgetState` = `"default"` \| `"error"` \| `"loading"`
 
