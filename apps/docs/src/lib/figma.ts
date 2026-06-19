@@ -213,6 +213,13 @@ export const FIGMA_NODES = {
   'uikit-product-info-row': { ...PRODUCT, nodeId: '3040-21176' }, // uikit-product-info-row → InfoRow
   'uikit-product-switch-row': { ...PRODUCT, nodeId: '3019:5599' }, // uikit-product-switch-row → SwitchRow
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
+  'uikit-product-promo-tag-predefined': {
+    _: { ...PRODUCT, nodeId: '2853-49' }, // promoTagPredefined canvas
+    'preview-service': { ...PRODUCT, nodeId: '2861-787' },
+    'preview-functional': { ...PRODUCT, nodeId: '2861-1054' },
+    connecting: { ...PRODUCT, nodeId: '2861-672' },
+    partner: { ...PRODUCT, nodeId: '2853-990' }, // Figma layer misnamed "connecting"
+  },
   'uikit-product-button-predefined': {
     _: { ...PRODUCT, nodeId: '3060-29186' }, // button-dropdown → ButtonDropdown
     'button-dropdown': { ...PRODUCT, nodeId: '3060-29186' },

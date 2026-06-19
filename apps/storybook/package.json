@@ -83,6 +83,7 @@
     "@ds/uikit-product-flex": "workspace:*",
     "@ds/uikit-product-info-row": "workspace:*",
     "@ds/uikit-product-load-status": "workspace:*",
+    "@ds/uikit-product-promo-tag-predefined": "workspace:*",
     "@ds/uikit-product-button-predefined": "workspace:*",
     "@ds/uikit-product-notification": "workspace:*",
     "@ds/uikit-product-price-summary": "workspace:*",

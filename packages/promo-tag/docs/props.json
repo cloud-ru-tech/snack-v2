@@ -2,7 +2,6 @@
   "PromoTag": {
     "displayName": "PromoTag",
     "propsTypeName": "PromoTagProps",
-    "description": "Компонент Promo Tag",
     "props": {
       "afterContent": {
         "type": "ReactNode",
@@ -30,6 +29,14 @@
           "Appearance"
         ]
       },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
+        "typeRefs": [
+          "T"
+        ]
+      },
       "beforeContent": {
         "type": "ReactNode",
         "required": false,
@@ -45,8 +52,17 @@
         "type": "string",
         "required": false
       },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
       "onClick": {
-        "type": "((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "type": "MouseEventHandler<HTMLElement>",
         "required": false,
         "description": "Колбэк для обработки клика на тег"
       },
@@ -97,6 +113,11 @@
           "violet",
           "yellow"
         ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
         "own": true
       },
       "RoleAppearance": {

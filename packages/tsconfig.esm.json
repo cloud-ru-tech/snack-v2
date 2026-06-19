@@ -48,12 +48,6 @@
       "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {
-      "path": "./ai-tool/tsconfig.esm.json"
-    },
-    {
-      "path": "./breadcrumbs/tsconfig.esm.json"
-    },
-    {
       "path": "./counter/tsconfig.esm.json"
     },
     {
@@ -121,6 +115,9 @@
     },
     {
       "path": "./ai-queue/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-tool/tsconfig.esm.json"
     },
     {
       "path": "./drawer/tsconfig.esm.json"
@@ -247,6 +244,9 @@
     },
     {
       "path": "./uikit-product-price-summary/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-promo-tag-predefined/tsconfig.esm.json"
     },
     {
       "path": "./uikit-product-switch-row/tsconfig.esm.json"

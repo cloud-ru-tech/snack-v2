@@ -8,6 +8,7 @@ export { TEST_IDS };
 export const PROMO_TAG_STORIES = {
   playground: { name: 'promotag', story: 'playground' },
   visualMatrix: { name: 'promotag', story: 'visual-matrix' },
+  polymorphic: { name: 'promotag-examples-polymorphic', story: 'polymorphic' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(

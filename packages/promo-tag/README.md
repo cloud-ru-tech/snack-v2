@@ -2,7 +2,7 @@
 
 `@ds/promo-tag` — Промо-тег — цветной лейбл для маркетинговых акцентов, выделения категорий и статусных ярлыков. Опционально кликабельный.
 
-Компактный цветной тег для маркетинговых подписей (`NEW`, `SALE`, `BETA`), категорий и акцентных меток. Рендерится как `<div>` — или как `<button>`, если передан `onClick`.
+Компактный цветной тег для маркетинговых подписей (`NEW`, `SALE`, `BETA`), категорий и акцентных меток. По умолчанию — `<div>`; при `onClick` — `<button>`; при `as='a'` или `as={Link}` — ссылка с пробросом `href` / `to`.
 
 ## Когда использовать
 - Пометка карточки товара/услуги — новинка, скидка, хит.
@@ -62,6 +62,46 @@ export function Colors() {
 }
 ```
 
+### Polymorphic
+
+as=&apos;a&apos; с href или as={Link} с to — для react-router-dom и внешних ссылок.
+
+```tsx
+import { APPEARANCE, PromoTag, ROLE_APPEARANCE } from '@ds/promo-tag';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
+
+type MockLinkProps = Omit<ComponentPropsWithoutRef<'a'>, 'href'> & { to: string };
+
+const MockLink = forwardRef<HTMLAnchorElement, MockLinkProps>(({ to, onClick, children, ...rest }, ref) => (
+  <a ref={ref} href={to} onClick={onClick} {...rest}>
+    {children}
+  </a>
+));
+MockLink.displayName = 'MockLink';
+
+export function Polymorphic() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <PromoTag
+        as='a'
+        href='https://example.com'
+        target='_blank'
+        text='External promo'
+        appearance={APPEARANCE.Blue}
+        role={ROLE_APPEARANCE.Decor}
+      />
+      <PromoTag
+        as={MockLink}
+        to='https://example.com'
+        text='Preview link'
+        appearance={APPEARANCE.Primary}
+        role={ROLE_APPEARANCE.Accent}
+      />
+    </div>
+  );
+}
+```
+
 ## Props
 **PromoTagProps**
 
@@ -69,10 +109,12 @@ export function Colors() {
 |------|------|---------|-------------|
 | `afterContent` | `ReactNode` | `null` | Контент после текста |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
+| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| Link из react-router-dom и т.п. |
 | `beforeContent` | `ReactNode` | `null` | Контент перед текстом |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `onClick` | `((e: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбэк для обработки клика на тег |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Явный проп вместо forwardRef — как в Button и AiToolBadge. |
+| `onClick` | `MouseEventHandler<HTMLElement>` | — | Колбэк для обработки клика на тег |
 | `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
 | `size` | `"m"` \| `"s"` \| `"xs"` | `xs` | Размер |
 | `text` | `string` | — | Текст компонента |
@@ -80,6 +122,8 @@ export function Colors() {
 #### Related types
 
 - `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
 - `RoleAppearance` = `"accent"` \| `"decor"`
 

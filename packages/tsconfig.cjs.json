@@ -50,12 +50,6 @@
       "path": "./ai-suggestion/tsconfig.cjs.json"
     },
     {
-      "path": "./ai-tool/tsconfig.cjs.json"
-    },
-    {
-      "path": "./breadcrumbs/tsconfig.cjs.json"
-    },
-    {
       "path": "./counter/tsconfig.cjs.json"
     },
     {
@@ -123,6 +117,9 @@
     },
     {
       "path": "./ai-queue/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-tool/tsconfig.cjs.json"
     },
     {
       "path": "./drawer/tsconfig.cjs.json"
@@ -249,6 +246,9 @@
     },
     {
       "path": "./uikit-product-price-summary/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-promo-tag-predefined/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-switch-row/tsconfig.cjs.json"

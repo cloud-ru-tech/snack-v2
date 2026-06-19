@@ -180,7 +180,7 @@ export function WithInvoice() {
 | `onRetry` | `(() => void)` | — |  |
 | `period` | `"day"` \| `"hour"` \| `"minute"` \| `"month"` \| `"year"` | — |  |
 | `periodOptions` | `PricePeriod` | — |  |
-| `promoBadge` | `PromoTagProps` | — |  |
+| `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — |  |
 | `showHintLink` | `boolean` | — |  |
 | `showHintTooltip` | `boolean` | `false` |  |
 | `totalSumType` | `"equal"` \| `"from"` | — |  |

@@ -504,6 +504,7 @@
         "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
         "required": false,
         "typeRefs": [
+          "PromoTagOwnProps",
           "PromoTagProps"
         ]
       },
@@ -684,6 +685,11 @@
         },
         "own": false
       },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
       "PriceDeltaDetails": {
         "kind": "interface",
         "props": {
@@ -734,7 +740,7 @@
         ],
         "own": true
       },
-      "PromoTagProps": {
+      "PromoTagOwnProps": {
         "kind": "interface",
         "props": {
           "afterContent": {
@@ -771,12 +777,104 @@
             "required": false,
             "description": "CSS-класс"
           },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "PromoTagProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
           },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
           "onClick": {
-            "type": "((e: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "type": "MouseEventHandler<HTMLElement> | undefined",
             "required": false,
             "description": "Колбэк для обработки клика на тег"
           },

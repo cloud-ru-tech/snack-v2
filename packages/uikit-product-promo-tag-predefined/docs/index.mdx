@@ -1,0 +1,105 @@
+---
+title: PromoTagPredefined
+package: '@ds/uikit-product-promo-tag-predefined'
+description: Предопределённый промо-тег продукта с локализованным текстом и tooltip — preview, connecting, partner.
+order: 100
+---
+
+import { PromoTagPredefinedDemo } from '../demos/PromoTagPredefinedDemo'
+import { PreviewService } from '../demos/examples/PreviewService'
+import PreviewServiceSrc from '../demos/examples/PreviewService.tsx?raw'
+import { PreviewFunctional } from '../demos/examples/PreviewFunctional'
+import PreviewFunctionalSrc from '../demos/examples/PreviewFunctional.tsx?raw'
+import { Connecting } from '../demos/examples/Connecting'
+import ConnectingSrc from '../demos/examples/Connecting.tsx?raw'
+import { Partner } from '../demos/examples/Partner'
+import PartnerSrc from '../demos/examples/Partner.tsx?raw'
+import { Polymorphic } from '../demos/examples/Polymorphic'
+import PolymorphicSrc from '../demos/examples/Polymorphic.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import promoTagPredefinedDoc from './props.json'
+
+# PromoTagPredefined
+
+Один компонент с преднастроенными пресетами промо-тега: [`PromoTag`](/components/promo-tag/promo-tag) + [`Tooltip`](/components/tooltip/tooltip). Текст и подсказка локализуются через `@ds/locale`.
+
+## Когда использовать
+
+- Нужен стандартный product-тег Preview / Connecting / Partner без ручной сборки текста и tooltip.
+- В карточках сервисов, виджетах и списках продуктов Cloud.ru.
+
+Когда **не** нужен `PromoTagPredefined`:
+
+- Произвольный текст и цвет — используйте [`PromoTag`](/components/promo-tag/promo-tag) напрямую.
+
+## Анатомия
+
+### variant (обязательный)
+
+- `preview` — синий тег «Preview»; tooltip зависит от `context`.
+- `connecting` — neutral «Подключается».
+- `partner` — orange «Partner».
+
+### context (default `service`, только для `variant='preview'`)
+
+- `service` — tooltip про сервис в Preview.
+- `functional` — tooltip про функциональность в Preview.
+
+### tooltip
+
+- `placement` — позиция tooltip (default `top`).
+- `trigger` — `hover` (default) или `click` (ось Figma `tooltipTrigger`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-promo-tag-predefined
+```
+
+```ts
+import { PromoTagPredefined } from '@ds/uikit-product-promo-tag-predefined'
+```
+
+## Примеры использования
+
+<PromoTagPredefinedDemo client:visible />
+
+<Example title='Preview (service)' code={PreviewServiceSrc}>
+  <PreviewService client:visible />
+</Example>
+
+<Example title='Preview (functional)' code={PreviewFunctionalSrc}>
+  <PreviewFunctional client:visible />
+</Example>
+
+<Example title='Connecting' code={ConnectingSrc}>
+  <Connecting client:visible />
+</Example>
+
+<Example title='Partner' code={PartnerSrc}>
+  <Partner client:visible />
+</Example>
+
+<Example
+  title='Polymorphic'
+  description='PromoTagPredefined как ссылка: as={Link} и to для react-router-dom.'
+  code={PolymorphicSrc}
+>
+  <Polymorphic client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={promoTagPredefinedDoc.PromoTagPredefined} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-promotagpredefined--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-promo-tag-predefined')} height={480} title='promoTagPredefined в Figma' />

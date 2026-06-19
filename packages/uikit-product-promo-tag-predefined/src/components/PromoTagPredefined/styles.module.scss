@@ -1,0 +1,9 @@
+@use '@sbercloud/figma-variables/build/scss/components/tooltip.module' as tooltip;
+
+.trigger {
+  display: inline-flex;
+}
+
+.tooltip {
+  max-width: tooltip.$sn-tooltip-anatomy-container-maxWidth;
+}

@@ -12,6 +12,8 @@ import { Colors } from '../demos/examples/Colors'
 import ColorsSrc from '../demos/examples/Colors.tsx?raw'
 import { Clickable } from '../demos/examples/Clickable'
 import ClickableSrc from '../demos/examples/Clickable.tsx?raw'
+import { Polymorphic } from '../demos/examples/Polymorphic'
+import PolymorphicSrc from '../demos/examples/Polymorphic.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -21,7 +23,7 @@ import { figmaNode } from '#docs/lib/figma'
 
 # PromoTag
 
-Компактный цветной тег для маркетинговых подписей (`NEW`, `SALE`, `BETA`), категорий и акцентных меток. Рендерится как `<div>` — или как `<button>`, если передан `onClick`.
+Компактный цветной тег для маркетинговых подписей (`NEW`, `SALE`, `BETA`), категорий и акцентных меток. По умолчанию — `<div>`; при `onClick` — `<button>`; при `as='a'` или `as={Link}` — ссылка с пробросом `href` / `to`.
 
 ## Демо
 <PromoTagDemo client:visible />
@@ -68,6 +70,14 @@ import { PromoTag } from '@ds/promo-tag'
   code={ClickableSrc}
 >
   <Clickable client:visible />
+</Example>
+
+<Example
+  title='Polymorphic'
+  description='as=&apos;a&apos; с href или as={Link} с to — для react-router-dom и внешних ссылок.'
+  code={PolymorphicSrc}
+>
+  <Polymorphic client:visible />
 </Example>
 
 ## Props

@@ -119,6 +119,19 @@ export const ru_RU: typeof en_GB = {
     coveredByGrantTooltip: 'Сумма покрыта грантом',
     notCoveredByGrantTooltip: 'Сумма не покрыта грантом',
   },
+  PromoTagPredefined: {
+    connecting: 'Подключается',
+    partner: 'Partner',
+    preview: 'Preview',
+    tooltipConnecting:
+      'Сервис подключается и скоро будет доступен. Если это происходит слишком долго, обратитесь в поддержку.',
+    tooltipPartner:
+      'Сервис вендора-партнера. Для него действуют уникальные условия тарификации, партнер определяет SLA сервиса и поддержки.',
+    tooltipPreviewService:
+      'Сервис находится в стадии Preview. Для него недоступно увеличение квоты и не действуют условия тарификации, SLA сервиса и поддержки.',
+    tooltipPreviewFunctional:
+      'Функциональность находится в стадии Preview. Для нее не действуют условия тарификации, SLA сервиса и поддержки.',
+  },
   Quota: {
     quotas: 'Квоты',
     widgetTitle: {

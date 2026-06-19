@@ -119,6 +119,19 @@ export const en_GB = {
     coveredByGrantTooltip: 'Amount is covered by grant',
     notCoveredByGrantTooltip: 'Amount is not covered by grant',
   },
+  PromoTagPredefined: {
+    connecting: 'Connecting',
+    partner: 'Partner',
+    preview: 'Preview',
+    tooltipConnecting:
+      'The service is connecting and will be available soon. If it takes too long, please contact support.',
+    tooltipPartner:
+      'A vendor partner service. It is subject to unique pricing conditions, the partner defines the service and support SLA.',
+    tooltipPreviewService:
+      'The service is in the Preview stage. It cannot be increased by quota and the pricing conditions, service and support SLA do not apply.',
+    tooltipPreviewFunctional:
+      'The functionality is in the Preview stage. It is not subject to pricing conditions, service and support SLA.',
+  },
   Quota: {
     quotas: 'Quotas',
     widgetTitle: {

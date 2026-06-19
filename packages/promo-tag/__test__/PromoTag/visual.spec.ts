@@ -1,8 +1,8 @@
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
+import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, PROMO_TAG_STORIES } from './helpers';
+import { buildStoryOptions, PROMO_TAG_STORIES, TEST_IDS } from './helpers';
 
 test.describe('PromoTag — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -18,5 +18,16 @@ test.describe('PromoTag — visual regression', () => {
     await waitForFonts();
 
     await assertVisualMatrixSnapshot(page);
+  });
+
+  test('interaction-states', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions());
+    await waitForFonts();
+
+    await assertInteractionStatesSnapshot(page, {
+      target: getByTestId(TEST_IDS.root),
+      includePressed: true,
+      padding: 8,
+    });
   });
 });

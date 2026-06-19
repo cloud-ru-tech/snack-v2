@@ -507,6 +507,9 @@ importers:
       '@ds/uikit-product-price-summary':
         specifier: workspace:*
         version: link:../../packages/uikit-product-price-summary
+      '@ds/uikit-product-promo-tag-predefined':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-promo-tag-predefined
       '@ds/uikit-product-quota':
         specifier: workspace:*
         version: link:../../packages/uikit-product-quota
@@ -2292,6 +2295,24 @@ importers:
       '@ds/uikit-product-button-predefined':
         specifier: workspace:*
         version: link:../uikit-product-button-predefined
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-promo-tag-predefined:
+    dependencies:
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/promo-tag':
+        specifier: workspace:*
+        version: link:../promo-tag
+      '@ds/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
       '@ds/utils':
         specifier: workspace:*
         version: link:../utils
