@@ -207,6 +207,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
             {...supportProps}
             {...(swipeEnabled ? dragHandlers : {})}
           >
+            {swipeEnabled && <Handle />}
             {children}
           </div>
         </div>
@@ -219,9 +220,6 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
 BottomSheetCustom.Header = Header;
 BottomSheetCustom.Body = Body;
 BottomSheetCustom.Footer = Footer;
-// Handle / Media — чтобы swipeable custom-композиция могла поставить стандартный drag-индикатор и
-// media-блок, а не переизобретать разметку (низкоуровневый API не рендерит их сам).
-BottomSheetCustom.Handle = Handle;
 BottomSheetCustom.Media = Media;
 
 export namespace BottomSheetCustom {

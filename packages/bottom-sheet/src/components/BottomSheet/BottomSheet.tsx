@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { isValidElement, ReactNode, useId } from 'react';
 
 import { FOOTER_ACTIONS_ORIENTATION, TEST_IDS } from '../../constants';
-import { Handle, Media } from '../../helperComponents';
+import { Media } from '../../helperComponents';
 import { BottomSheetMediaProps, BottomSheetProps } from '../../types';
 import { BottomSheetCustom } from '../BottomSheetCustom';
 import styles from './styles.module.scss';
@@ -115,9 +115,7 @@ export function BottomSheet({
     >
       {/* safeArea (env-паддинг под notch / home-indicator) живёт на `.content` в BottomSheetCustom —
           проп `safeArea` уходит туда через `...rest`. */}
-      {/* Drag-индикатор показываем при включённом свайпе — он намекает на жест. */}
-      {swipeEnabled && <Handle />}
-
+      {/* Drag-индикатор (Handle) рендерит сам BottomSheetCustom при включённом свайпе. */}
       <div className={styles.root}>
         {hasMedia &&
           (isMediaProps(media) ? (

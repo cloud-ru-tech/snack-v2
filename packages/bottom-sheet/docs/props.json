@@ -269,6 +269,10 @@
               "CounterProps"
             ]
           },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
           "disabled": {
             "type": "boolean | undefined",
             "required": false,
@@ -630,13 +634,6 @@
         "required": false
       }
     },
-    "relatedTypes": {}
-  },
-  "BottomSheetCustom.Handle": {
-    "displayName": "BottomSheetCustom.Handle",
-    "propsTypeName": null,
-    "description": "Drag-индикатор сверху bottom-sheet'а (32×4px). Декоративный — `aria-hidden`.",
-    "props": {},
     "relatedTypes": {}
   },
   "BottomSheetCustom.Header": {

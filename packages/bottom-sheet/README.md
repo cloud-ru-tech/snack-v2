@@ -701,6 +701,7 @@ export function NonModal() {
 | `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string \| undefined` | — | Дополнительный класс |
 | `counter` | `CounterProps` | — | Пропсы для counter |
+| `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Отключена |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
@@ -801,7 +802,7 @@ import { MobilePreview } from '../MobilePreview';
 
 /**
  * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (handle / header / media / body / footer и их порядок) потребитель
+ * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
  * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
  */
 export function CustomComposition() {
@@ -811,7 +812,6 @@ export function CustomComposition() {
     <MobilePreview>
       <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
       <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Handle />
         <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
@@ -958,7 +958,7 @@ import { MobilePreview } from '../MobilePreview';
 
 /**
  * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (handle / header / media / body / footer и их порядок) потребитель
+ * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
  * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
  */
 export function CustomComposition() {
@@ -968,7 +968,6 @@ export function CustomComposition() {
     <MobilePreview>
       <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
       <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Handle />
         <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
@@ -1002,7 +1001,7 @@ import { MobilePreview } from '../MobilePreview';
 
 /**
  * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (handle / header / media / body / footer и их порядок) потребитель
+ * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
  * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
  */
 export function CustomComposition() {
@@ -1012,7 +1011,6 @@ export function CustomComposition() {
     <MobilePreview>
       <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
       <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Handle />
         <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
@@ -1044,7 +1042,7 @@ import { MobilePreview } from '../MobilePreview';
 
 /**
  * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (handle / header / media / body / footer и их порядок) потребитель
+ * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
  * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
  */
 export function CustomComposition() {
@@ -1054,7 +1052,6 @@ export function CustomComposition() {
     <MobilePreview>
       <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
       <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Handle />
         <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
@@ -1084,7 +1081,7 @@ import { MobilePreview } from '../MobilePreview';
 
 /**
  * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (handle / header / media / body / footer и их порядок) потребитель
+ * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
  * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
  */
 export function CustomComposition() {
@@ -1094,7 +1091,6 @@ export function CustomComposition() {
     <MobilePreview>
       <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
       <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Handle />
         <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
@@ -1132,7 +1128,7 @@ import { MobilePreview } from '../MobilePreview';
 
 /**
  * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (handle / header / media / body / footer и их порядок) потребитель
+ * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
  * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
  */
 export function CustomComposition() {
@@ -1142,7 +1138,6 @@ export function CustomComposition() {
     <MobilePreview>
       <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
       <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Handle />
         <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
