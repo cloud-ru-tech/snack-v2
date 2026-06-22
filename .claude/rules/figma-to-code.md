@@ -32,13 +32,6 @@ DOM-структура компонента практически повтор�
 
 ## Минимальный чеклист перед коммитом
 
-- [ ] Hex/rgba переведены в токены через `base.simple-var(...)` / `base.composite-var(...)`
-- [ ] Focus frame → `:focus-visible`, а не DOM-нода
-- [ ] На интерактивном корне с миксинами есть `position: relative`
-- [ ] `data-state` — только из допустимого списка, camelCase
-- [ ] `.stateLayer` / `.acrylic` / `.acrylicEffect` имеют `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`
-- [ ] Нет `React.FC`/`React.ReactNode`/`any`/`@ts-ignore`
-- [ ] В `packages/<pkg>/package.json` нет `react`/`react-dom`, версии точные
-- [ ] В meta story указан `parameters.design.url` на Figma-ноду
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 Worked example (Button), мини-примеры (Acrylic `5004:102`, Switch `2834:25184`), список gotchas и подробности по миксинам — в `docs/figma-to-code.md`.

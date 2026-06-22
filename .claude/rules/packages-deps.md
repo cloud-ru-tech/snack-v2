@@ -1,59 +1,12 @@
-# Зависимости пакетов в `packages/`
+# Зависимости пакетов (`packages/*/package.json`)
 
-**Область действия:** `packages/*/package.json` в этом репозитории. Правило действует всегда.
-
-## Версии зависимостей
-
-Все зависимости — **только строгие версии**. Никаких `^`, `~`, `>=`, `*` или других диапазонов. Повторяющиеся в 2+ пакетах внешние зависимости берутся через `catalog:` — версия живёт в `pnpm-workspace.yaml` в секции `catalog`.
+- **Только строгие версии.** Никаких `^ ~ >= *` или других диапазонов. Повторяющиеся в 2+ пакетах внешние deps — через `catalog:` (версия живёт в `pnpm-workspace.yaml::catalog`).
+- `workspace:*` (внутренние `@ds/*`) и `catalog:` — это протоколы pnpm, не версии; они допустимы.
+- **Не объявляй `react` / `react-dom` / `@types/react*`** ни в `dependencies`, ни в `peerDependencies`, ни в `devDependencies`. React и его типы даёт корневой workspace (сборка/тесты) и потребитель пакета.
 
 ```json
-// ❌ Плохо
-"dependencies": {
-  "classnames": "^2.5.1",
-  "uncontrollable": "~8.0.4"
-}
-
-// ✅ Хорошо
-"dependencies": {
-  "classnames": "2.5.1",
-  "uncontrollable": "8.0.4"
-}
+// ❌ "classnames": "^2.5.1"   |   "dependencies": { "react": "18.3.1" }   |   "peerDependencies": { "react": ">=18" }
+// ✅
+{ "dependencies": { "@ds/utils": "workspace:*", "classnames": "catalog:" },
+  "devDependencies": { "sass": "catalog:", "typescript": "catalog:" } }
 ```
-
-Workspace-ссылки допускаются как `"workspace:*"` — это не версия, а специальный протокол pnpm. `"catalog:"` — второй специальный протокол, версия резолвится из `pnpm-workspace.yaml::catalog`.
-
-## React и React DOM
-
-В пакетах из `packages/` **не объявляй** зависимости от `react` и `react-dom` — ни в `dependencies`, ни в `peerDependencies`, ни в `devDependencies`.
-
-- React подставляется корневым workspace'ом при сборке и тестах.
-- Потребители пакета обеспечивают React сами на своём уровне.
-
-```json
-// ❌ Плохо — любой из этих блоков запрещён
-{
-  "dependencies": { "react": "18.3.1" },
-  "peerDependencies": { "react": ">=18" },
-  "devDependencies": { "react": "18.3.1", "@types/react": "18.3.20" }
-}
-
-// ✅ Хорошо — пакет не упоминает react вообще
-{
-  "dependencies": {
-    "@ds/utils": "workspace:*",
-    "classnames": "catalog:"
-  },
-  "devDependencies": {
-    "sass": "catalog:",
-    "typescript": "catalog:"
-  }
-}
-```
-
-Типы React (`@types/react`, `@types/react-dom`) — тоже не объявляй в пакете. Они доступны транзитивно из корня.
-
-## Итог
-
-- Только строгие версии зависимостей.
-- Никаких `react`/`react-dom`/`@types/react*` в пакетах `packages/*`.
-- `workspace:*` — допустимо для внутренних `@ds/*`.

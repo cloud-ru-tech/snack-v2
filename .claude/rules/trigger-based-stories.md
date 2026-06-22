@@ -203,15 +203,7 @@ export const Playground: Story = {
 
 ## Чек-лист
 
-- [ ] `open` отсутствует в `args`; `argTypes.open / onClose / onOpenChange` — `table.disable`.
-- [ ] Open живёт в `useState` внутри render, а не в args.
-- [ ] Скелет — `<DemoPage><DemoPanel><DemoTitle>+<DemoHint>+(<DemoWarning>)+<DemoActions>…</DemoPanel></DemoPage>`.
-- [ ] Триггер — `Button` из `@ds/button` с `data-test-id={TEST_IDS.triggerOpen}` (`view='outline'`, `appearance='neutral'` — дефолт).
-- [ ] `parameters.layout: 'fullscreen'`.
-- [ ] Кросс-args конфликты — рантайм-резолв + `<DemoWarning>`, не `if:`.
-- [ ] `if:` остаётся только для технических односторонних зависимостей.
-- [ ] Slot-toggle'ы — `[Stories]: show*` категория.
-- [ ] `play` — `toBeVisible` на `TEST_IDS.triggerOpen`. Поведение — в `tests/InteractionTest`.
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 ## Связанное
 

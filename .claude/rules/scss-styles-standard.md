@@ -1,6 +1,6 @@
 # SCSS — стандарт стилей компонента
 
-**Область действия:** `packages/*/src/**/*.module.scss`. Правило действует всегда.
+**Область действия:** `packages/*/src/**/*.module.scss`.
 
 Эталоны:
 
@@ -130,14 +130,7 @@ $typography: (
 
 ## Чек-лист перед коммитом SCSS
 
-- [ ] Нет литералов `1px` / `2px` / `0.5px` / `1.5px` / `3px` — заменены на `base.$sn-primitive-strokeWeight-stroke*`.
-- [ ] Нет `rem` / `em` литералов в размерах/отступах/радиусах/gap'ах — через `base.$sn-primitive-dimension-*` / `base.simple-var(...)` / `base.$sn-brand-anatomy-*`.
-- [ ] Нет hex/rgba — заменены на `base.$sn-theme-color-*`.
-- [ ] Нет литеральных `border-radius` / `padding` / `gap` — через `base.simple-var(...)` или `base.$sn-brand-anatomy-*`.
-- [ ] Нет литерального `opacity` для disabled — `base.$sn-theme-effect-opacity-disabled`.
-- [ ] Нет 2+ одинаковых по форме блоков `&[data-axis='…']` — свёрнуты в `@each` по карте.
-- [ ] Карта значений оси соответствует `constants.ts` пакета (включая алиасы вроде `xs` → токены `s`).
-- [ ] `composite-var` / `simple-var` пути совпадают с реальной структурой токенов в `node_modules/@sbercloud/figma-variables/build/scss/components/<component>.module.scss`.
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 ## Связанное
 

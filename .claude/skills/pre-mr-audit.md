@@ -132,6 +132,81 @@ grep -rn "$OLD" packages/$PKG/{src,stories,demos,docs,__test__} apps/docs/src/li
 
 После правок: `pnpm gen:props && pnpm gen:readme`, затем `pnpm build:docs:fast` (ловит MDX-краши, которые `build:storybook` пропускает) и `pnpm test:e2e:chrome packages/$PKG`.
 
+## Финальные чек-листы (по доменам)
+
+Перенесены сюда из `.claude/rules/*` (раньше дублировали тело каждого правила, грузились в контекст каждую сессию). Это **gate перед MR**; при расхождении формулировок источник истины — соответствующий рул. Прогоняй только блоки, релевантные тому, что менял.
+
+### Сборка / гейты (любой пакет) — reference-package-anatomy, coverage, e2e
+- [ ] `pnpm typecheck` зелёный
+- [ ] `pnpm exec eslint packages/<pkg>` / `pnpm exec stylelint "packages/<pkg>/**/*.scss"` чистые (полные `lint`/`stylelint` — перед PR)
+- [ ] `pnpm build:pkg <pkg>` зелёный (полный `build:packages` — только при правках shared/wire-точек)
+- [ ] `docs/props.json` непустой (`pnpm gen:props`); `README.md` актуален (`pnpm gen:readme`, не руками)
+- [ ] Storybook рендерит все новые stories без ошибок в консоли
+- [ ] `pnpm test:stories` зелёный (play-функции)
+- [ ] `pnpm test:e2e:chrome packages/<pkg>` зелёный (полный `test:e2e` — финальная сверка перед PR); visual baselines осмысленны (ручной review diff)
+
+### Coverage — coverage-standard
+- [ ] `pnpm test:coverage:pkg <pkg>` зелёный; gate 80/80/75/70 пройден (`scripts/coverage-gate.mts <pkg>`)
+- [ ] Есть `__tests__/*.test.ts` → прогнан `vitest run packages/<pkg> --coverage` + `coverage:merge`
+- [ ] Чистые утилиты (`src/utils.ts`, не вызываемые из JSX) покрыты unit-тестом, не через play
+- [ ] Один файл — один источник coverage (не unit + play на одну функцию; vitest приоритетен)
+- [ ] story в `tests/` имеет тег `['test','dev']`; новые stories попали в `playwright/coverage/.stories.json`
+- [ ] fixture-стори имеет JSDoc со ссылкой на coverage-standard.md
+- [ ] `isCoverableSource` не расширялся под пакет ради `index.ts`/`types.ts`
+
+### Stories + Args (Playground/VisualMatrix/examples/tests) — stories-standard, storybook-args-conventions
+- [ ] Есть `Playground` (все публичные пропсы в Controls через docgen) и `VisualMatrix` (все оси в `StoryTable` из `#storybook/components`)
+- [ ] CSF3, `StoryObj<typeof Component>`; в каждом файле свой `export default meta`
+- [ ] Каждая story в `examples/`/`tests/` обоснована (нельзя выразить через `args` Playground или строку/колонку StoryTable); дубли между `examples/` и `tests/` отсутствуют; раскладка и `/Examples/`-`/Tests/`-сегмент title корректны; тег `fixture` не используется
+- [ ] `data-test-id` есть в `args` Playground и use-case stories (kebab-case; слоты — `<component>-<slot>`); внутренние слоты — через `src/constants.ts::TEST_IDS`; повторяющиеся id — в `testIds.ts` единым объектом; инлайн-строк `data-test-id='…'` в `.tsx` нет
+- [ ] Play-функции — только `getByTestId` (нет `getByRole`/`getByText`/`getByLabelText`)
+- [ ] У `VisualMatrix` и `InteractionTest` — `parameters: { controls: { disable: true } }`; Tests-story обёрнута в `<DemoPage>/<DemoPanel>` (`layout: 'fullscreen'`, не `'centered'`)
+- [ ] Интеракция — один `InteractionTest` со step'ами (не `ClickTest`+`KeyboardTest`)
+- [ ] Playground без custom `render`; controlled/uncontrolled пары (`value`/`defaultValue`, `checked`/`defaultChecked`) скрыты через `argTypes.<prop>.table.disable`
+- [ ] Каждый публичный проп имеет JSDoc; в meta нет ручных `argTypes.<prop>.description`; ручные `argTypes` — только `mapping`/`table.disable`/`if:`/override контрола/`options` для нерасрезолвенных union'ов
+- [ ] `options` руками: `radio` для ≤4 без `undefined`, иначе `select`; нет `undefined`/`null`/сентинелов (`none`/`empty`) в `options`; значения через `Object.values(CONST)` (включая `examples/`)
+- [ ] `mapping` — только slot/ReactNode-пресеты; зависимые пропсы — `if: { arg, eq|neq }`, не «мёртвые»; внутренние пропсы скрыты `table.disable`, не `control: false`
+- [ ] Смежные/парные пропсы заполнены оба разными дефолтами; VisualMatrix-ячейки с контейнер-зависимым поведением обёрнуты в контейнер фикс-размера из `styles.module.scss`
+- [ ] Нет `autodocs`/`parameters.docs.description.*`; нет inline-`style={{}}`; нет `React.*`/`import type`; имена английские PascalCase без `Basic`/`Default`
+- [ ] При переезде stories обновлены story IDs в `__test__/<Component>/helpers.ts`
+
+### Trigger-based stories (modal/drawer/popover/…) — trigger-based-stories
+- [ ] `open` нет в `args`; `argTypes.open/onClose/onOpenChange` — `table.disable`; open в `useState` внутри render
+- [ ] Скелет `<DemoPage><DemoPanel><DemoTitle>+<DemoHint>+(<DemoWarning>)+<DemoActions></DemoPanel></DemoPage>`; `layout: 'fullscreen'`
+- [ ] Триггер — `Button` из `@ds/button` с `data-test-id={TEST_IDS.triggerOpen}`
+- [ ] Кросс-args конфликты — рантайм-резолв + `<DemoWarning>`, не `if:`; `if:` только для технических односторонних зависимостей; slot-toggle'ы — `[Stories]: show*`
+- [ ] `play` — `toBeVisible` на `TEST_IDS.triggerOpen`; поведение — в `tests/InteractionTest`
+
+### Tests / E2E (Playwright) — e2e-testing-standard
+- [ ] Поведенческие assertion'ы — в `tests/<Name>.InteractionTest.stories.tsx::play`, не в Playwright
+- [ ] `rendering.spec.ts` без axis-per-test loop (каждый тест — уникальное свойство API)
+- [ ] `interaction.spec.ts`/`keyboard.spec.ts` — только при browser-specific assertion'ах, не покрываемых play
+- [ ] Папка `__test__/<Parent>/` одна на parent; варианты сабкомпонентов — через args
+- [ ] `helpers.ts` — StoryRef-объекты для всех story IDs (нет хардкод-строк); импорты только через `#playwright-tooling/*`
+- [ ] `visual.spec.ts` без per-view × per-state cartesian (каждый снимок — уникальный сигнал)
+
+### SCSS — scss-styles-standard
+- [ ] Нет пиксельных литералов strok'и (`1px`/`2px`/`0.5px`/…) → `base.$sn-primitive-strokeWeight-stroke*`
+- [ ] Нет `rem`/`em` в размерах/отступах/радиусах/gap'ах → `base.$sn-primitive-dimension-*`/`simple-var`/`$sn-brand-anatomy-*`
+- [ ] Нет hex/rgba → `base.$sn-theme-color-*`; нет литеральных `border-radius`/`padding`/`gap` → `simple-var`/`$sn-brand-anatomy-*`; нет литерального `opacity` disabled → `base.$sn-theme-effect-opacity-disabled`
+- [ ] Нет 2+ одинаковых по форме `&[data-axis='…']` → свёрнуты в `@each` по карте; карта оси соответствует `constants.ts` (включая алиасы вроде `xs`→`s`)
+- [ ] `composite-var`/`simple-var` пути совпадают со структурой токенов в `@sbercloud/figma-variables`
+
+### Тело компонента / API — component-internals, component-api-surface
+Покрыто греп-блоками **A–E, I** выше (инлайн-обработчики, чистые функции, импорт из пира, `helpers.ts`, инлайн-union осей, дубли типов). Дополнительно глазами:
+- [ ] Нет голых легаси-TODO без тикета/маркера фазы (блок **H**)
+- [ ] Колбэк-пропы — method-signature, не arrow-property (блок **K**; алиас `MouseEventHandler` — исключение)
+
+### Figma → код — figma-to-code
+- [ ] Hex/rgba → токены (`simple-var`/`composite-var`); focus frame → `:focus-visible`, не DOM-нода
+- [ ] На интерактивном корне с миксинами есть `position: relative`; `data-state` — из допустимого списка, camelCase
+- [ ] `.stateLayer`/`.acrylic`/`.acrylicEffect` имеют `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`
+- [ ] Нет `React.FC`/`React.ReactNode`/`any`/`@ts-ignore`; в `package.json` нет `react`/`react-dom`, версии точные; в meta story указан `parameters.design.url`
+
+### Текст / JSDoc — writing-style
+- [ ] Нет жаргона/разговорных глаголов, уменьшительно-ласкательных, авторских «мы»/«я», маркетинговых эпитетов («просто»/«легко»/«удобно»), слов-наполнителей («очевидно»/«в данный момент»)
+- [ ] Транслитерация англ. терминов — только при отсутствии оригинала (в дефолте латиница); длинные предложения разбиты
+
 ## После аудита
 
 1. Почини находки по соответствующим рулам.

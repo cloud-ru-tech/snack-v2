@@ -1,6 +1,6 @@
 # Анатомия эталонного пакета
 
-**Область действия:** все пакеты в `packages/*`. Правило действует всегда. Эталон — [`packages/button`](../../packages/button/REFERENCE.md).
+**Область действия:** все пакеты в `packages/*`. Эталон — [`packages/button`](../../packages/button/REFERENCE.md).
 
 ## Обязательные файлы и папки
 
@@ -86,16 +86,7 @@ Docs-тесты живут отдельно в `tests/docs/` (их запуск�
 
 ## Чек-лист перед PR
 
-- [ ] `pnpm typecheck` зелёный
-- [ ] `pnpm exec eslint packages/<pkg>` / `pnpm exec stylelint "packages/<pkg>/**/*.scss"` чистые (полные `pnpm lint` / `pnpm stylelint` — перед PR)
-- [ ] `pnpm build:pkg <pkg>` зелёный (полный `pnpm build:packages` — только если правки затронули shared-пакеты/wire-точки; см. [fast-build-commands.md](./fast-build-commands.md))
-- [ ] `docs/props.json` непустой — `pnpm gen:props`
-- [ ] `README.md` актуален — `pnpm gen:readme`
-- [ ] Storybook отрисовывает все новые stories без ошибок в консоли
-- [ ] `pnpm test:stories` зелёный (play-функции)
-- [ ] `pnpm test:e2e:chrome packages/<pkg>` зелёный (полный `pnpm test:e2e` по всем проектам — финальная сверка перед PR)
-- [ ] Visual baselines осмысленные (ручной review diff перед коммитом)
-- [ ] REFERENCE.md пакета не нужен — его заменяет это правило + [complexity-tiers.md](./complexity-tiers.md)
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 ## Что запрещено
 

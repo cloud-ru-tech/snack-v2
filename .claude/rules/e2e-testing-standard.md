@@ -1,6 +1,6 @@
 # E2E тесты — стандарт
 
-**Область действия:** `packages/*/__test__/**/*.spec.ts`. Правило действует всегда. Эталон — [`packages/button/__test__/Button/`](../../packages/button/__test__/Button).
+**Область действия:** `packages/*/__test__/**/*.spec.ts`. Эталон — [`packages/button/__test__/Button/`](../../packages/button/__test__/Button).
 
 ## Принцип
 
@@ -257,16 +257,7 @@ import { buildStoryOptions, COMPONENT_STORIES, COMPONENT_TEST_ID } from './helpe
 
 ## Чеклист перед коммитом
 
-- [ ] Поведенческие assertion'ы (`click`, `keyboard`, `focus`, `onChange` callback) живут в `stories/<Name>/tests/<Component>.InteractionTest.stories.tsx::play`, а не в Playwright.
-- [ ] В `rendering.spec.ts` нет axis-per-test loop; каждый тест проверяет уникальное свойство API (превышение tier-ориентира допустимо, если оправдано поверхностью API).
-- [ ] `interaction.spec.ts` / `keyboard.spec.ts` существуют **только** если есть browser-specific assertion'ы, не покрываемые play.
-- [ ] Папка `__test__/<Parent>/` одна на parent-компонент; варианты сабкомпонентов — через args.
-- [ ] `helpers.ts` использует StoryRef-объекты для всех story IDs; нет хардкод-строк `components-<...>--<scenario>` в spec'ах.
-- [ ] Все импорты `#playwright-tooling/*` — никаких относительных `../../../../playwright/`.
-- [ ] В `visual.spec.ts` нет per-view × per-state cartesian; каждый снимок несёт уникальный визуальный сигнал (превышение tier-ориентира допустимо при оправданном покрытии API).
-- [ ] `pnpm test:stories` проходит локально (play-функции зелёные).
-- [ ] `pnpm test:e2e:chrome packages/<pkg>` зелёный.
-- [ ] Visual baselines пересняты осмысленно (ручной review diff'а).
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 ## Связанные правила
 

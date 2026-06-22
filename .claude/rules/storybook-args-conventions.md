@@ -1,6 +1,6 @@
 # Storybook `args` / `argTypes` — конвенции
 
-**Область действия:** `packages/*/stories/**/*.stories.@(ts|tsx)`, поля `args` / `argTypes` в meta и в отдельных stories. Правило действует всегда. Дополняет [stories-standard.md](./stories-standard.md) (там общий каркас Playground'а), здесь — детали по конкретным полям.
+**Область действия:** `packages/*/stories/**/*.stories.@(ts|tsx)`, поля `args` / `argTypes` в meta и в отдельных stories. Дополняет [stories-standard.md](./stories-standard.md) (там общий каркас Playground'а), здесь — детали по конкретным полям.
 
 ## Главное
 
@@ -215,18 +215,7 @@ args: { label: 'Главное', secondaryLabel: 'Доп. описание' }
 
 ## Чек-лист перед коммитом story
 
-- [ ] Каждый публичный проп имеет JSDoc-комментарий в `src/types.ts` / в типе компонента. Не пиши `description` в `argTypes`.
-- [ ] `argTypes` в meta пуст или содержит **только** заточенные случаи: `mapping`, `table.disable`, `if:`, принудительный override контрола, `options` для нерасрезолвенных union'ов.
-- [ ] Нет `undefined` / `null` в `options` — Storybook сам показывает «не задано». Нет и сентинел-опций `none`/`empty` — «не задано» выражается `undefined` (кроме ключей `mapping`).
-- [ ] Где задаёшь `options` руками: `radio` для ≤ 4 значений без `undefined`, иначе `select`.
-- [ ] Если задаёшь `options` руками — подключение через `Object.values(CONST)` из той же const'ы пакета, на которую ссылается тип.
-- [ ] `mapping` — только для slot/ReactNode-пресетов с осмысленными ключами; не для переименования.
-- [ ] Зависимые пропсы используют `if: { arg, eq | neq }`, а не оставлены «мёртвыми» контролами.
-- [ ] Внутренние пропсы (refs, callbacks, technical-only) спрятаны через `table.disable`, не через `control: false`.
-- [ ] Controlled-партнёры (`value`/`checked`) спрятаны через `table.disable`, в `args` — только `defaultValue`/`defaultChecked`.
-- [ ] Парные пропсы заполнены **обоими** разными дефолтами в `args`.
-- [ ] Массивы значений оси в `render`/`argTypes`/VisualMatrix — через `Object.values(CONST)`, не хардкод `['s', 'm', 'l']`. Это касается и `examples/`-сторей, не только основного Playground.
-- [ ] Каждый видимый контрол имеет осмысленный дефолт в `args`; stateful-фичи и слоты (selection / virtualized / noData / errorState / loading) раскрыты `[Story]: show*`-контролами + демо-контентом, чтобы переключение визуально влияло на рендер.
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 ## Связанное
 

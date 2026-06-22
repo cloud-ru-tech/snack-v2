@@ -1,6 +1,6 @@
 # Stories — стандарт
 
-**Область действия:** `packages/*/stories/**/*.stories.@(ts|tsx)`. Правило действует всегда.
+**Область действия:** `packages/*/stories/**/*.stories.@(ts|tsx)`.
 
 ## Принцип
 
@@ -531,29 +531,5 @@ import styles from './Button.VisualMatrix.module.scss'
 
 ## Чеклист перед коммитом story
 
-- [ ] Есть `Playground` (все публичные пропсы доступны в Controls через автоматический docgen) и `VisualMatrix` (все оси в `StoryTable`)
-- [ ] Каждая story в `examples/` и `tests/` обоснована: кейс **нельзя** получить через `args` Playground или строку/колонку StoryTable. Дубликаты между `examples/` и `tests/` отсутствуют
-- [ ] Stories из `examples/` лежат в `stories/<Name>/examples/`, title с сегментом `/Examples/<Scenario>`
-- [ ] Stories из `tests/` лежат в `stories/<Name>/tests/`, title с сегментом `/Tests/<Scenario>`. Тег `fixture` не используется
-- [ ] В `args` Playground и use-case stories есть `data-test-id` (kebab-case от ComponentName; для слотов — `<component>-<slot>`)
-- [ ] Все `data-test-id`, которые компонент ставит сам себе на внутренние слоты, — в `src/constants.ts::TEST_IDS` (реэкспорт через `src/index.ts`); инлайн-строк `data-test-id='...'` в `.tsx` нет
-- [ ] Повторяющиеся в 2+ файлах id вынесены в `stories/testIds.ts` (multi-component пакет) или `stories/<ComponentName>/testIds.ts` (single-component); единый объект `TEST_IDS`, не россыпь `<NAME>_TEST_ID` const'ов; инлайн-строки только для уникальных
-- [ ] Play-функции используют только `getByTestId`, нет `getByRole`/`getByText`/`getByLabelText`
-- [ ] Каждый файл имеет собственный `export default meta`
-- [ ] CSF3, `StoryObj<typeof Component>`
-- [ ] VisualMatrix использует `StoryTable` из `#storybook/components`
-- [ ] У VisualMatrix и `InteractionTest` стоит `parameters: { controls: { disable: true } }`
-- [ ] Tests-story (`stories/<Name>/tests/*`) обёрнут в `<DemoPage>` / `<DemoPanel>` с `<DemoTitle>` / `<DemoHint>` / `<DemoActions>` из `#storybook/components`; `parameters.layout = 'fullscreen'` (не `'centered'`)
-- [ ] Интеракционные сценарии — один экспорт `InteractionTest` (а не `ClickTest` + `KeyboardTest`)
-- [ ] Playground без custom `render` (URL-args передаются в компонент 1:1); пары controlled/uncontrolled (`value`/`defaultValue`, `checked`/`defaultChecked`) спрятаны из панели через `argTypes.<prop>.table.disable`
-- [ ] Каждый публичный проп имеет JSDoc (`/** ... */`) в `src/types.ts` или в типе компонента — docgen подтянет его в Controls
-- [ ] В meta нет ручных `argTypes.<prop>.description` (это дубль JSDoc); ручные `argTypes` оставлены только для `mapping` / `table.disable` / `if:` / override контрола
-- [ ] При ручном `options` — `radio` для ≤ 4 значений без `undefined`, иначе `select`; значения через `Object.values(CONST)`
-- [ ] `argTypes.mapping` — только для slot/ReactNode-пропов с пресетами
-- [ ] Смежные/парные пропсы заполнены в `args` оба, дефолты различимы
-- [ ] VisualMatrix-ячейки, демонстрирующие поведение, зависящее от размеров контейнера, обёрнуты в контейнер с явным размером из `styles.module.scss`
-- [ ] Нет тегов `autodocs` и блоков `parameters.docs.description.*`
-- [ ] Названия на английском, PascalCase, без `Basic`/`Default`
-- [ ] Нет `React.*`-типов, нет `import type`
-- [ ] Нет inline-стилей `style={{ ... }}` в разметке stories
-- [ ] При переезде stories между корнем и `examples/`/`tests/` обновлены story IDs в `packages/<pkg>/__test__/<Component>/helpers.ts`
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
+

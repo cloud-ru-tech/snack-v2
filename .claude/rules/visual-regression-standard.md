@@ -1,6 +1,6 @@
 # Visual regression — стандарт
 
-**Область действия:** `packages/*/__test__/<Component>/visual.spec.ts` и baseline'ы в `__snapshots__/`. Правило действует всегда.
+**Область действия:** `packages/*/__test__/<Component>/visual.spec.ts` и baseline'ы в `__snapshots__/`.
 
 > **Канонический эталон в репо** — [`packages/button/__test__/Button/visual.spec.ts`](../../packages/button/__test__/Button/visual.spec.ts). Используй его как живой пример, но при расхождении правила и эталона приоритет — у правила (эталон может отставать).
 
@@ -57,13 +57,9 @@
 
 ## Локаторы — только через `TEST_IDS`
 
-Любой селектор в visual.spec / interaction.spec — **только** `getByTestId(TEST_IDS.<...>)`. Запрещены:
+Любой селектор в visual.spec / interaction.spec — **только** `getByTestId(TEST_IDS.<...>)`. Полный запрет (`getByRole`/`getByText`/`getByLabelText`, CSS-селекторы, nested chain'ы) и его обоснование — в [stories-standard.md](./stories-standard.md) §«data-test-id».
 
-- `locator('button[aria-label="Copy"]')` / `locator('css-selector')` — хрупкие, перестают работать при i18n и косметических правках DOM.
-- `getByRole('button')`, `getByText('Скопировать')` — то же (см. [stories-standard.md](./stories-standard.md), раздел «data-test-id»).
-- Nested chain'ы вроде `root.locator('.someClass > button')` — выдают, что у компонента нет публичного слота под этот узел.
-
-Если spec'у нужен селектор на внутренний слот, для которого нет `TEST_IDS.<...>` — **расширь `TEST_IDS`** в `packages/<pkg>/src/constants.ts` и проставь `data-test-id` в компоненте на этом слоте. Так получает потребитель (e2e в app-слое) + тест ds-пакета один источник истины. Для «комплексных» story-сценариев — передавай test-id через `args` story (см. [stories-standard.md](./stories-standard.md), «DRY — повторяющиеся id в stories…»). Никаких ad-hoc CSS-селекторов в spec'ах.
+Если spec'у нужен селектор на слот без `TEST_IDS.<...>` — **расширь `TEST_IDS`** в `packages/<pkg>/src/constants.ts` и проставь `data-test-id` в компоненте; для story-сценариев передавай id через `args` story. Один источник истины для потребителя (app-слой e2e) и теста ds-пакета.
 
 **Исключение — runtime-атрибутные assertion'ы в `polymorphism.spec.ts`**: `expect(getByTestId(ROOT)).toHaveAttribute('href' | 'rel' | 'target' | 'aria-disabled', ...)` — это assertion на атрибуте конкретного узла, а не локатор по роли/тексту. Запрет на `getByRole/...` его не касается. См. [e2e-testing-standard.md](./e2e-testing-standard.md) §«polymorphism.spec.ts — когда заводим».
 

@@ -1,6 +1,6 @@
 # Coverage — стандарт
 
-**Область действия:** `packages/*/src/**/*.{ts,tsx}` и сбор coverage через runtime V8 (Playwright/CDP) с маппингом по sourcemaps. Правило действует всегда.
+**Область действия:** `packages/*/src/**/*.{ts,tsx}` и сбор coverage через runtime V8 (Playwright/CDP) с маппингом по sourcemaps.
 
 ## Принцип
 
@@ -182,15 +182,7 @@ Warm-up: один последовательный прогон harvester'а с 
 
 ## Чек-лист перед PR (для нового/изменённого пакета)
 
-- [ ] `pnpm test:coverage:pkg <pkg>` зелёный (тесты прошли, coverage собран)
-- [ ] Если в пакете есть `__tests__/*.test.ts` — прогнан `pnpm exec vitest run packages/<pkg> --coverage` + `pnpm coverage:merge`
-- [ ] `pnpm exec tsx scripts/coverage-gate.mts <pkg>` зелёный (gate 80/80/75/70 пройден)
-- [ ] Чистые утилиты (`src/utils.ts`, экспортируемые потребителям и не вызываемые из JSX) покрыты unit-тестом, не пытаются дёрнуться через play
-- [ ] Любая story в `tests/` имеет тег `['test', 'dev']` (иначе harvester пропустит)
-- [ ] Новые stories попали в `playwright/coverage/.stories.json` (запускается `coverage-prefetch-stories.mts` автоматически из `coverage-pkg.mts`)
-- [ ] Если коммитишь fixture-стори — есть JSDoc с пояснением и ссылкой на `coverage-standard.md`
-- [ ] Не расширял `isCoverableSource` (`playwright/fixtures.ts`) под конкретный пакет, чтобы затащить `index.ts`/`types.ts` в coverage
-- [ ] Один файл — один источник coverage: не пишешь и unit-тест, и play на одну и ту же функцию (vitest приоритетен → второй источник всё равно отвалится в merge)
+Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
 ## Что запрещено
 
