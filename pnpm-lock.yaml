@@ -1607,6 +1607,9 @@ importers:
 
   packages/portal-context:
     dependencies:
+      '@ds/context-kit':
+        specifier: workspace:^
+        version: link:../context-kit
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

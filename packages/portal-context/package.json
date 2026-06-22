@@ -22,6 +22,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/context-kit": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

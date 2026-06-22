@@ -1,10 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-// Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
-// (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
-// дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
-// маппится на dimension/strokeWeight/radius токены, уже переписано.
-
 .page {
   display: flex;
   flex-direction: column;
@@ -20,15 +15,13 @@
 
 .sectionTitle {
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
+
+  @include base.composite-var(base.$sn-regular-title-s);
 }
 
 .container {
   min-height: base.$sn-primitive-dimension-100;
   padding: base.$sn-primitive-dimension-16;
-  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
-  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
 }
 
@@ -46,8 +39,9 @@
 
 .description {
   margin: 0;
-  font-size: 14px;
   color: base.$sn-theme-color-available-version-textSecondary;
+
+  @include base.composite-var(base.$sn-regular-body-s);
 }
 
 .portalContent {
@@ -57,18 +51,17 @@
 
   margin-top: base.$sn-primitive-dimension-8;
   padding: base.$sn-primitive-dimension-12;
-  // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
-  // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
 
   color: base.$sn-theme-color-available-inversion-textMain;
 
   background: base.$sn-theme-color-invertNeutral-background;
-  box-shadow: 0 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-12 rgb(0 0 0 / 15%);
+  box-shadow: base.$sn-boxShadow-elevation-level3;
 }
 
 .hint {
   margin: 0;
-  font-size: 13px;
   color: base.$sn-theme-color-available-version-textTertiary;
+
+  @include base.composite-var(base.$sn-regular-body-s);
 }
