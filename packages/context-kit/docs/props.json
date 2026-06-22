@@ -1,0 +1,37 @@
+{
+  "createSharedContext": {
+    "displayName": "createSharedContext",
+    "propsTypeName": "CreateSharedContextOptions",
+    "description": "Обёртка над `createSharedStoreContext` для **статических** провайдеров, у которых значение\nприходит пропом (тема, локаль, portal-root), а не из внешнего реактивного стора. Оборачивает\n`value` в `staticStore` (с мемоизацией по ссылке value), чтобы каждый провайдер не повторял это\nвручную. MFE/SSR-свойства те же, что у `createSharedStoreContext`.\n\n```tsx\nconst { Provider, useValue } = createSharedContext({\n  key: providerKey('theme', 1),\n  defaultValue: DEFAULT_THEME,\n});\n```",
+    "props": {
+      "defaultValue": {
+        "type": "T",
+        "required": true,
+        "description": "Значение по умолчанию (SSR-baseline / когда провайдера нет в дереве).",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "key": {
+        "type": "string",
+        "required": true,
+        "description": "Ключ реестра — собирай через `providerKey('<domain>', <contractVersion>)`."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "createSharedStoreContext": {
+    "displayName": "createSharedStoreContext",
+    "propsTypeName": null,
+    "description": "Фабрика общего реактивного контекста. Создаёт React-контекст-синглтон (через реестр\n`Symbol.for`, чтобы он был общим для всех версий пакета — см. ниже), хранящий внешний стор,\nа не само значение. Консьюмеры читают значение через `useSyncExternalStore`, поэтому:\n- в браузере (single-spa) обновление внешнего стора реактивно передаётся всем компонентам\n  во всех микрофронтах, подписанных на тот же стор, без перерендера провайдера;\n- на сервере (Next SSR) `getServerSnapshot` отдаёт request-scoped значение, без утечки между\n  запросами (на `globalThis` хранится только иммутабельный объект контекста, не значение).\n\nСинглтон через `Symbol.for(registryKey)`: при нескольких копиях пакета (разные версии или\nнеполный dedupe) каждая копия иначе создала бы свой объект контекста, и провайдер из одной версии\nне был бы виден консьюмеру из другой. Общий ключ реестра гарантирует один объект на весь\nJS-контекст (один `globalThis`).\n\n`registryKey` строится через `providerKey('<domain>', <contractVersion>)` — версия контракта\nповышается только при несовместимой смене формы значения.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "staticStore": {
+    "displayName": "staticStore",
+    "propsTypeName": "T",
+    "description": "Статический стор из фиксированного значения: подписка — no-op, snapshot стабилен по ссылке.",
+    "props": {},
+    "relatedTypes": {}
+  }
+}
