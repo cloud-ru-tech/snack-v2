@@ -188,6 +188,9 @@
       "path": "./ai-field-banner/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-field-notice/tsconfig.cjs.json"
+    },
+    {
       "path": "./attachment/tsconfig.cjs.json"
     },
     {

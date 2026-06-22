@@ -1,0 +1,275 @@
+{
+  "AiFieldNotice": {
+    "displayName": "AiFieldNotice",
+    "propsTypeName": "AiFieldNoticeProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onActionClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Обработчик клика по кнопке действия. Не используется при `variant='queue'`."
+      },
+      "queue": {
+        "type": "AiQueueProps",
+        "required": true,
+        "description": "Пропсы `AiQueue`. Только при `variant='queue'`."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "description": "Размер баннера.",
+        "typeRefs": [
+          "AiFieldBannerProps"
+        ]
+      },
+      "variant": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "password",
+          "queue",
+          "ssh",
+          "support",
+          "vmAgent"
+        ],
+        "description": "Предзашитый сценарий: password, ssh, vmAgent, support или queue. Набор пропсов зависит от значения."
+      },
+      "vmIp": {
+        "type": "string",
+        "required": true,
+        "description": "IP-адрес виртуальной машины для второго кадра описания. Только при `variant='vmAgent'`."
+      },
+      "vmName": {
+        "type": "string",
+        "required": true,
+        "description": "Имя виртуальной машины для второго кадра описания. Только при `variant='vmAgent'`."
+      }
+    },
+    "relatedTypes": {
+      "AiFieldBannerProps": {
+        "kind": "interface",
+        "props": {
+          "actionLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Подпись кнопки действия справа. Кнопка не рендерится, если не задана."
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Дополнительный слот под основной строкой. Не рендерится, если не задан."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доп. класс корня."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Текст или контент основной строки. Не рендерится, если не задан."
+          },
+          "hasAdditional": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Принудительно добавляет высоту компонента на 12px, даже если `children` не задан."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка слева от текста"
+          },
+          "onActionClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Обработчик клика по кнопке действия."
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер: без `children` — `s` 400×48, `m` 400×60; с `children` — `s` 400×72, `m` 400×84.",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "variant": {
+            "type": "Type | undefined",
+            "required": false,
+            "values": [
+              "agentic",
+              "critical",
+              "help",
+              "information",
+              "security",
+              "warning"
+            ],
+            "description": "Семантический вариант баннера (ось `Type` в Figma). По умолчанию `information`.",
+            "typeRefs": [
+              "Type"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "Type": {
+        "kind": "union",
+        "values": [
+          "agentic",
+          "critical",
+          "help",
+          "information",
+          "security",
+          "warning"
+        ],
+        "own": false
+      }
+    }
+  },
+  "AiFieldNoticeAnimatedDescription": {
+    "displayName": "AiFieldNoticeAnimatedDescription",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "readonly AiFieldNoticeDescriptionListItem[]",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s",
+          "undefined"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiFieldNoticeDescription": {
+    "displayName": "AiFieldNoticeDescription",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "hoverIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс кадра при hover. По умолчанию — `1` или последний для коротких списков."
+      },
+      "messages": {
+        "type": "readonly string[]",
+        "required": true,
+        "description": "Сообщения ротирующего описания."
+      },
+      "restingIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс кадра после авто-цикла. По умолчанию — последний элемент `messages`."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s",
+          "undefined"
+        ]
+      },
+      "state": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "defaultMessage",
+          "firstMessage",
+          "hoverMessage",
+          "secondMessage"
+        ],
+        "description": "Видимое состояние для visual matrix и тестов."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiFieldNoticeVmInfo": {
+    "displayName": "AiFieldNoticeVmInfo",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s",
+          "undefined"
+        ]
+      },
+      "vmIp": {
+        "type": "string",
+        "required": true,
+        "description": "IP-адрес виртуальной машины."
+      },
+      "vmName": {
+        "type": "string",
+        "required": true,
+        "description": "Имя виртуальной машины."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AnimatedItem": {
+    "displayName": "AnimatedItem",
+    "propsTypeName": null,
+    "props": {
+      "content": {
+        "type": "ReactNode",
+        "required": true
+      },
+      "currentIndex": {
+        "type": "number",
+        "required": true
+      },
+      "itemIndex": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  }
+}

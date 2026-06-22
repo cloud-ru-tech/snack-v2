@@ -1,0 +1,188 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.noticeCell {
+  width: 400px;
+}
+
+.playgroundPlain {
+  width: 400px;
+}
+
+.playgroundStage {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 100%;
+  max-width: 480px;
+  min-height: 360px;
+  padding: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  &[data-show-silhouettes] {
+    overflow: hidden;
+  }
+}
+
+.silhouettes {
+  pointer-events: none;
+
+  position: absolute;
+  inset: base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16 120px;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.silhouetteRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.silhouetteRowReverse {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.silhouetteAvatar {
+  flex-shrink: 0;
+
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border-radius: base.$sn-density-radius-full;
+
+  opacity: 0.75;
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.chatRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.chatRowReverse {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.chatAvatar {
+  flex-shrink: 0;
+
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border-radius: base.$sn-density-radius-full;
+
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.chatBubble {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  max-width: 88%;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.chatBubbleWide {
+  max-width: 88%;
+}
+
+.chatBubbleNarrow {
+  max-width: 72%;
+}
+
+.chatBubbleAlignEnd {
+  margin-left: auto;
+}
+
+.silhouetteBubble {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-6;
+
+  max-width: 72%;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  opacity: 0.85;
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.silhouetteBubbleWide {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-6;
+
+  max-width: 88%;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  opacity: 0.85;
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.silhouetteLine {
+  height: base.$sn-primitive-dimension-8;
+  border-radius: base.$sn-density-radius-2xs;
+  opacity: 0.55;
+  background-color: base.$sn-theme-color-neutral-decor;
+
+  &[data-width='short'] {
+    width: 42%;
+  }
+
+  &[data-width='medium'] {
+    width: 68%;
+  }
+
+  &[data-width='full'] {
+    width: 100%;
+  }
+}
+
+.silhouetteCodeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-6;
+
+  padding: base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  opacity: 0.35;
+  background-color: base.$sn-theme-color-primary-accent;
+}
+
+.noticeAnchor {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.noticeStack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-32;
+}

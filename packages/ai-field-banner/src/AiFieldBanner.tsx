@@ -31,6 +31,7 @@ export function AiFieldBanner({
       data-has-additional={hasAdditional ? 'true' : 'false'}
       data-test-id={dataTestId}
     >
+      <div className={styles.advice} data-size={size} data-type={variant} data-test-id={TEST_IDS.advice} aria-hidden />
       {showMainLine && (
         <div className={styles.mainLine} data-test-id={TEST_IDS.mainLine}>
           {(icon || description) && (

@@ -5,6 +5,7 @@ import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
+import styles from './stories.module.scss';
 import { TEST_IDS } from './testIds';
 
 const ICON_OPTIONS = {
@@ -52,7 +53,7 @@ const meta: Meta<typeof AiFieldBanner> = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Инлайн-баннер для поля ввода: тип, описание, действие и доп. слот.</DemoHint>
         <DemoActions align='start'>
-          <AiFieldBanner {...args} onActionClick={fn()} />
+          <AiFieldBanner {...args} className={styles.bannerCell} onActionClick={fn()} />
         </DemoActions>
       </DemoPanel>
     </DemoPage>

@@ -1,0 +1,62 @@
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm';
+
+$description-typography: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-m,
+);
+
+$icon-size: (
+  's': base.$sn-primitive-dimension-16,
+  'm': base.$sn-primitive-dimension-24,
+);
+
+.root {
+  display: flex;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($description-typography, $size);
+    }
+  }
+}
+
+.item {
+  display: flex;
+  flex-shrink: 1;
+  gap: base.$sn-primitive-dimension-6;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & > svg {
+      width: map.get($icon-size, $size) !important;
+      height: map.get($icon-size, $size) !important;
+    }
+  }
+}
+
+.label {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

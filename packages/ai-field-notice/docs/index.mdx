@@ -1,0 +1,141 @@
+---
+title: AiFieldNotice
+package: '@ds/ai-field-notice'
+description: Композиция AiFieldBanner и AiQueue для контекстных уведомлений над AI-полем.
+order: 0
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiFieldNoticeDoc from './props.json'
+
+import { Password } from '../demos/examples/Password'
+import PasswordSrc from '../demos/examples/Password.tsx?raw'
+import { Ssh } from '../demos/examples/Ssh'
+import SshSrc from '../demos/examples/Ssh.tsx?raw'
+import { Support } from '../demos/examples/Support'
+import SupportSrc from '../demos/examples/Support.tsx?raw'
+import { VmAgent } from '../demos/examples/VmAgent'
+import VmAgentSrc from '../demos/examples/VmAgent.tsx?raw'
+import { Queue } from '../demos/examples/Queue'
+import QueueSrc from '../demos/examples/Queue.tsx?raw'
+
+# AiFieldNotice
+
+`AiFieldNotice` — композиция над `AiFieldBanner` и `AiQueue` для AI-полей. Один корневой компонент, один баннер на экран: сценарий выбирается через `variant`, текст, иконка и тип баннера предзашиты.
+
+Мастер-ширина — 400px. Размеры наследуются от `AiFieldBanner`: `s` — desktop, `m` — mobile.
+
+## Когда использовать
+
+- Контекстное уведомление над AI-полем ввода — password, SSH, управление ВМ, поддержка или очередь задач.
+- Нужен готовый сценарий из Figma Field Notice без ручной сборки `AiFieldBanner`.
+
+### Когда не нужен
+
+- Универсальный баннер с произвольным текстом и типом:
+  - используйте `@ds/ai-field-banner` напрямую.
+- Inline-alert в контенте страницы:
+  - используйте `@ds/alert`.
+
+## Анатомия
+
+### Variant
+
+`variant` — discriminated union: набор пропсов зависит от значения. В каждый момент рендерится **один** баннер.
+
+- `password` — безопасный ввод пароля. Баннер `security`, иконка `PasswordLock`. Ротирующее описание с hover на «Гига не получит ваши данные».
+- `ssh` — безопасный ввод SSH-ключа. Баннер `security`, иконка `PasswordLock`. Та же анимация описания, финальный кадр — «Введите SSH-ключ».
+- `vmAgent` — управление виртуальной машиной. Баннер `agentic`, без иконки. Ротация между заголовком и строкой `vmName` / `vmIp`. Обязательны `vmName` и `vmIp`.
+- `support` — чат с инженером. Баннер `help`, иконка `Headphones`, статичное описание.
+- `queue` — очередь задач агента. Information-баннер с `AiQueue` внутри. Обязателен проп `queue` (`AiQueueProps`). `onActionClick` не используется.
+
+```ts
+<AiFieldNotice variant='password' onActionClick={handleCancel} />
+
+<AiFieldNotice
+  variant='vmAgent'
+  vmName='my-lovely-vm'
+  vmIp='93.7.94.11'
+  onActionClick={handleNewSession}
+/>
+
+<AiFieldNotice variant='queue' queue={{ steps, defaultOpen: true }} />
+```
+
+### Size (default `s`)
+
+Общий `size` на корне — передаётся в `AiFieldBanner` и внутренние части описания.
+
+- `s` — desktop (Mobile Off).
+- `m` — mobile (Mobile On).
+
+### Action
+
+Для `password`, `ssh`, `support`, `vmAgent` — текстовая кнопка справа с предзашитой подписью (`VARIANT_ACTION_LABELS`) и обработчиком `onActionClick`.
+
+При `variant='queue'` action-слот не используется — управление очередью через пропсы `queue`.
+
+### Animated description
+
+Для `password` и `ssh` — `AiFieldNoticeAnimatedDescription`: автосмена кадров до финального промпта («Введите пароль» / «Введите SSH-ключ»), затем при hover на баннер — кадр «Гига не получит ваши данные».
+
+Для `vmAgent` — ротация между заголовком и блоком `vmName` / `vmIp` без hover-кадра.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-field-notice
+```
+
+```ts
+import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice'
+```
+
+## Примеры использования
+
+<Example title='Password' description='Безопасный режим с ротирующим описанием' code={PasswordSrc}>
+  <Password client:visible />
+</Example>
+
+<Example title='SSH' description='Безопасный режим для SSH-ключа' code={SshSrc}>
+  <Ssh client:visible />
+</Example>
+
+<Example title='Support' description='Чат с инженером' code={SupportSrc}>
+  <Support client:visible />
+</Example>
+
+<Example title='VM Agent' description='Режим управления ВМ с vmName и vmIp' code={VmAgentSrc}>
+  <VmAgent client:visible />
+</Example>
+
+<Example title='Queue' description='Очередь задач агента в information-баннере' code={QueueSrc}>
+  <Queue client:visible />
+</Example>
+
+## Props
+
+`AiFieldNoticeProps` — discriminated union по `variant`:
+
+- `queue` — только при `variant='queue'`.
+- `vmName`, `vmIp` — только при `variant='vmAgent'`.
+- `onActionClick` — для остальных variant, кроме `queue`.
+
+<PropsTable data={aiFieldNoticeDoc.AiFieldNotice} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aifieldnotice--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-field-notice')} />
+
+## Смотри также
+
+- [`@ds/ai-field-banner`](/packages/ai-field-banner) — базовый баннер под полем ввода.
+- [`@ds/ai-queue`](/packages/ai-queue) — очередь задач для `variant='queue'`.

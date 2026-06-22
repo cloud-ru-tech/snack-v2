@@ -33,11 +33,7 @@ const longAdditionalContent =
   'This is longer additional content in the children slot that wraps across several lines within the banner width to show how multiline slot content behaves alongside the description and action.';
 
 function renderCell(props: Parameters<typeof AiFieldBanner>[0], testId: string): ReactElement {
-  return (
-    <div className={styles.bannerCell}>
-      <AiFieldBanner {...props} data-test-id={testId} />
-    </div>
-  );
+  return <AiFieldBanner {...props} className={styles.bannerCell} data-test-id={testId} />;
 }
 
 export const VisualMatrixTypeSize: Story = {

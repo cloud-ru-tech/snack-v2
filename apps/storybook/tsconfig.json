@@ -20,7 +20,9 @@
     "../../types/**/*.d.ts",
     "../docs/src/lib/figma.ts",
     "../../packages/*/src/**/*.ts",
-    "../../packages/*/src/**/*.tsx"
+    "../../packages/*/src/**/*.tsx",
+    "../../packages/*/stories/**/*.ts",
+    "../../packages/*/stories/**/*.tsx"
   ],
   "exclude": ["node_modules", "storybook-static"]
 }

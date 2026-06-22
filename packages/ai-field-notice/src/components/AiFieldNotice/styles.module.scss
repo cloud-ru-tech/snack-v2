@@ -1,0 +1,28 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.queueBanner {
+  flex-shrink: 0;
+  gap: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  width: 100%;
+
+  &[data-content-only][data-has-additional][data-size='s'],
+  &[data-content-only][data-has-additional][data-size='m'] {
+    min-height: 0;
+  }
+}
+
+.queue {
+  width: 100%;
+  padding-top: 0;
+  border-radius: 0;
+}

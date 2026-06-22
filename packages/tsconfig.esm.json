@@ -193,6 +193,9 @@
       "path": "./ai-field-banner/tsconfig.esm.json"
     },
     {
+      "path": "./ai-field-notice/tsconfig.esm.json"
+    },
+    {
       "path": "./attachment/tsconfig.esm.json"
     },
     {

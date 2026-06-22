@@ -1,0 +1,57 @@
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm';
+
+$description-line-height: (
+  's': base.$sn-density-typography-roleBody-lineHeightS,
+  'm': base.$sn-density-typography-roleBody-lineHeightM,
+);
+
+$description-typography: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-m,
+);
+
+.root {
+  overflow: hidden;
+  flex: 1 1 0;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      height: map.get($description-line-height, $size);
+    }
+  }
+}
+
+.track {
+  --active-index: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  transition: transform 0.2s ease-in-out;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      transform: translateY(
+        calc(var(--active-index) * (map.get($description-line-height, $size) + base.$sn-primitive-dimension-8) * -1)
+      );
+    }
+  }
+}
+
+.message {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @each $size in $sizes {
+    .root[data-size='#{$size}'] & {
+      @include base.composite-var($description-typography, $size);
+    }
+  }
+}

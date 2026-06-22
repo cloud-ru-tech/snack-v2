@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
 
+import styles from '../stories.module.scss';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof AiFieldBanner> = {
@@ -26,6 +27,7 @@ export const InteractionTest: Story = {
             description='Description'
             actionLabel='Label text'
             icon={<PlaceholderSVG />}
+            className={styles.bannerCell}
             data-test-id={TEST_IDS.root}
           />
         </DemoActions>
@@ -40,7 +42,12 @@ export const WithoutIcon: Story = {
     <DemoPage>
       <DemoPanel>
         <DemoActions align='start'>
-          <AiFieldBanner description='Description' actionLabel='Label text' data-test-id={TEST_IDS.root} />
+          <AiFieldBanner
+            description='Description'
+            actionLabel='Label text'
+            className={styles.bannerCell}
+            data-test-id={TEST_IDS.root}
+          />
         </DemoActions>
       </DemoPanel>
     </DemoPage>
@@ -53,7 +60,12 @@ export const WithoutAction: Story = {
     <DemoPage>
       <DemoPanel>
         <DemoActions align='start'>
-          <AiFieldBanner description='Description' icon={<PlaceholderSVG />} data-test-id={TEST_IDS.root} />
+          <AiFieldBanner
+            description='Description'
+            icon={<PlaceholderSVG />}
+            className={styles.bannerCell}
+            data-test-id={TEST_IDS.root}
+          />
         </DemoActions>
       </DemoPanel>
     </DemoPage>
