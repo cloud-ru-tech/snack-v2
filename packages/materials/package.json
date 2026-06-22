@@ -22,7 +22,7 @@
   ],
   "devDependencies": {
     "classnames": "catalog:",
-    "@ds/utils": "workspace:*"
+    "@ds/utils": "workspace:^"
   },
   "sideEffects": [
     "**/*.scss"

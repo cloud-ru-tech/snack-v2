@@ -17,14 +17,14 @@
   "sideEffects": ["*.css", "**/*.css"],
   "publishConfig": { "access": "public" },
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/divider": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/popover-private": "workspace:*",
-    "@ds/skeleton": "workspace:*",
-    "@ds/tooltip": "workspace:*",
-    "@ds/truncate-string": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/divider": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/popover-private": "workspace:^",
+    "@ds/skeleton": "workspace:^",
+    "@ds/tooltip": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   }
 }

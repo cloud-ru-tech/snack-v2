@@ -17,15 +17,15 @@
   "sideEffects": ["*.css", "*.scss", "**/*.css", "**/*.scss"],
   "publishConfig": { "access": "public" },
   "dependencies": {
-    "@ds/icons": "workspace:*",
-    "@ds/link": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/locale": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/portal-context": "workspace:*",
-    "@ds/scroll": "workspace:*",
-    "@ds/truncate-string": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/icons": "workspace:^",
+    "@ds/link": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/portal-context": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   }
 }

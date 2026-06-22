@@ -23,8 +23,8 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@ds/tooltip": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/tooltip": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "rc-slider": "11.1.9"
   },

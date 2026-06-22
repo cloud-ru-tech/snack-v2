@@ -29,14 +29,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/divider": "workspace:*",
-    "@ds/dropdown": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/list": "workspace:*",
-    "@ds/locale": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/divider": "workspace:^",
+    "@ds/dropdown": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "uncontrollable": "catalog:",
     "weekstart": "2.0.0"

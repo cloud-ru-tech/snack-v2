@@ -22,8 +22,8 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/portal-context": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/portal-context": "workspace:^",
+    "@ds/utils": "workspace:^",
     "@floating-ui/react": "0.27.17",
     "@types/react-is": "19.2.0",
     "classnames": "catalog:",

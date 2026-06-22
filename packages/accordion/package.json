@@ -25,13 +25,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/toggles": "workspace:*",
-    "@ds/truncate-string": "workspace:*",
-    "@ds/typography": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/toggles": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   }
 }

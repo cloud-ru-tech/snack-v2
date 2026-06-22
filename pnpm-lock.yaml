@@ -6,12 +6,6 @@ settings:
 
 catalogs:
   default:
-    '@types/react':
-      specifier: 18.3.28
-      version: 18.3.28
-    '@types/react-dom':
-      specifier: 18.3.7
-      version: 18.3.7
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -21,15 +15,9 @@ catalogs:
     merge-refs:
       specifier: 2.0.0
       version: 2.0.0
-    react:
-      specifier: 18.3.1
-      version: 18.3.1
     react-colorful:
       specifier: 5.6.1
       version: 5.6.1
-    react-dom:
-      specifier: 18.3.1
-      version: 18.3.1
     react-remove-scroll:
       specifier: 2.7.2
       version: 2.7.2
@@ -48,6 +36,13 @@ catalogs:
     uncontrollable:
       specifier: 9.0.0
       version: 9.0.0
+
+overrides:
+  react: 18.3.1
+  react-dom: 18.3.1
+  '@types/react': 18.3.28
+  '@types/react-dom': 18.3.7
+  '@ds/theme@0.1.0>@ds/context-kit': workspace:^
 
 importers:
 
@@ -114,10 +109,10 @@ importers:
         specifier: 6.15.1
         version: 6.15.1
       '@types/react':
-        specifier: 'catalog:'
+        specifier: 18.3.28
         version: 18.3.28
       '@types/react-dom':
-        specifier: 'catalog:'
+        specifier: 18.3.7
         version: 18.3.7(@types/react@18.3.28)
       '@types/svg-sprite':
         specifier: 0.0.39
@@ -174,13 +169,13 @@ importers:
         specifier: 6.15.1
         version: 6.15.1
       react:
-        specifier: 'catalog:'
+        specifier: 18.3.1
         version: 18.3.1
       react-docgen-typescript:
         specifier: 2.4.0
         version: 2.4.0(typescript@5.9.3)
       react-dom:
-        specifier: 'catalog:'
+        specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
       rimraf:
         specifier: 6.1.3
@@ -243,10 +238,10 @@ importers:
         specifier: 6.3.3
         version: 6.3.3(@types/node@22.19.17)(less@4.6.4)(lightningcss@1.32.0)(rollup@4.60.2)(sass@1.99.0)(stylus@0.62.0)(tsx@4.21.0)(yaml@2.8.3)
       react:
-        specifier: 'catalog:'
+        specifier: 18.3.1
         version: 18.3.1
       react-dom:
-        specifier: 'catalog:'
+        specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
       sass:
         specifier: 'catalog:'
@@ -259,10 +254,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/fonts
       '@types/react':
-        specifier: 'catalog:'
+        specifier: 18.3.28
         version: 18.3.28
       '@types/react-dom':
-        specifier: 'catalog:'
+        specifier: 18.3.7
         version: 18.3.7(@types/react@18.3.28)
       astro-pagefind:
         specifier: 2.0.0
@@ -548,10 +543,10 @@ importers:
         specifier: 10.4.0
         version: 10.4.0(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(esbuild@0.27.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.60.2)(storybook@10.4.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.0)(@types/react@18.3.28)(prettier@3.8.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(vite@7.3.2(@types/node@22.19.17)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.62.0)(tsx@4.21.0)(yaml@2.8.3))
       '@types/react':
-        specifier: 'catalog:'
+        specifier: 18.3.28
         version: 18.3.28
       '@types/react-dom':
-        specifier: 'catalog:'
+        specifier: 18.3.7
         version: 18.3.7(@types/react@18.3.28)
       '@vitest/browser':
         specifier: 4.1.4
@@ -566,10 +561,10 @@ importers:
         specifier: 1.59.1
         version: 1.59.1
       react:
-        specifier: 'catalog:'
+        specifier: 18.3.1
         version: 18.3.1
       react-dom:
-        specifier: 'catalog:'
+        specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
       sass:
         specifier: 'catalog:'
@@ -587,25 +582,25 @@ importers:
   packages/accordion:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -614,10 +609,10 @@ importers:
   packages/ai-button-chevron:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -626,7 +621,7 @@ importers:
   packages/ai-card:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -635,16 +630,16 @@ importers:
   packages/ai-field-banner:
     dependencies:
       '@ds/alert':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../alert
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -653,7 +648,7 @@ importers:
   packages/ai-icon-giga:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -662,19 +657,19 @@ importers:
   packages/ai-queue:
     dependencies:
       '@ds/ai-button-chevron':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../ai-button-chevron
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -686,10 +681,10 @@ importers:
   packages/ai-reasoning:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -698,7 +693,7 @@ importers:
   packages/ai-shimmer:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -707,10 +702,10 @@ importers:
   packages/ai-suggestion:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -725,16 +720,16 @@ importers:
   packages/ai-tool:
     dependencies:
       '@ds/ai-button-chevron':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../ai-button-chevron
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -746,19 +741,19 @@ importers:
   packages/alert:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -767,31 +762,31 @@ importers:
   packages/attachment:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/card':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../card
       '@ds/icon-predefined':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icon-predefined
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -800,10 +795,10 @@ importers:
   packages/avatar:
     dependencies:
       '@ds/status':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../status
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -812,10 +807,10 @@ importers:
   packages/block:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -824,19 +819,19 @@ importers:
   packages/bottom-sheet:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -851,13 +846,13 @@ importers:
   packages/breadcrumbs:
     dependencies:
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -869,16 +864,16 @@ importers:
   packages/button:
     dependencies:
       '@ds/counter':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../counter
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -887,28 +882,28 @@ importers:
   packages/calendar:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -923,16 +918,16 @@ importers:
   packages/card:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tag
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -941,16 +936,16 @@ importers:
   packages/carousel:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/pagination':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../pagination
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -968,40 +963,40 @@ importers:
   packages/chips:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/calendar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../calendar
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1023,19 +1018,19 @@ importers:
   packages/code-editor:
     dependencies:
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/uikit-product-copy':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../uikit-product-copy
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       '@monaco-editor/react':
         specifier: 4.7.0
@@ -1057,22 +1052,22 @@ importers:
   packages/color-picker:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/input-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../input-private
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/segment-control':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../segment-control
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1084,7 +1079,7 @@ importers:
   packages/counter:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1093,7 +1088,7 @@ importers:
   packages/divider:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1102,22 +1097,22 @@ importers:
   packages/drawer:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1132,28 +1127,28 @@ importers:
   packages/dropdown:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../info-block
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/popover-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../popover-private
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1162,10 +1157,10 @@ importers:
   packages/dropzone:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       '@types/lodash.debounce':
         specifier: 4.0.9
@@ -1180,52 +1175,52 @@ importers:
   packages/fields:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/calendar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../calendar
       '@ds/color-picker':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../color-picker
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/input-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../input-private
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/skeleton':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../skeleton
       '@ds/slider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../slider
       '@ds/tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tag
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1245,7 +1240,7 @@ importers:
   packages/hot-spot:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1254,7 +1249,7 @@ importers:
   packages/icon-predefined:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1265,16 +1260,16 @@ importers:
   packages/info-block:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icon-predefined':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icon-predefined
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1283,13 +1278,13 @@ importers:
   packages/input-private:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1298,13 +1293,13 @@ importers:
   packages/link:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1313,46 +1308,46 @@ importers:
   packages/list:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../info-block
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/search-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../search-private
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       '@tanstack/react-virtual':
         specifier: 3.11.2
@@ -1367,7 +1362,7 @@ importers:
   packages/loader:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1391,43 +1386,43 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/fields':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../fields
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/modal':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../modal
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       '@tiptap/core':
         specifier: 3.23.6
@@ -1497,7 +1492,7 @@ importers:
   packages/materials:
     devDependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1506,28 +1501,28 @@ importers:
   packages/modal:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1542,25 +1537,25 @@ importers:
   packages/pagination:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
 
   packages/popover:
     dependencies:
       '@ds/popover-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../popover-private
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       classnames:
         specifier: 'catalog:'
@@ -1569,10 +1564,10 @@ importers:
   packages/popover-private:
     dependencies:
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       '@floating-ui/react':
         specifier: 0.27.17
@@ -1593,7 +1588,7 @@ importers:
   packages/portal-context:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1602,7 +1597,7 @@ importers:
   packages/progress-bar:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       '@tanem/react-nprogress':
         specifier: 5.0.60
@@ -1614,13 +1609,13 @@ importers:
   packages/promo-tag:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1629,10 +1624,10 @@ importers:
   packages/rating:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1644,10 +1639,10 @@ importers:
   packages/scroll:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1662,22 +1657,22 @@ importers:
   packages/search:
     dependencies:
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/search-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../search-private
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1686,19 +1681,19 @@ importers:
   packages/search-private:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/input-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../input-private
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1710,16 +1705,16 @@ importers:
   packages/segment-control:
     dependencies:
       '@ds/counter':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../counter
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1731,13 +1726,13 @@ importers:
   packages/site-card-vacancy:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1746,7 +1741,7 @@ importers:
   packages/skeleton:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1755,10 +1750,10 @@ importers:
   packages/slider:
     dependencies:
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1770,13 +1765,13 @@ importers:
   packages/status:
     dependencies:
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/progress-bar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../progress-bar
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1785,19 +1780,19 @@ importers:
   packages/stepper:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1806,22 +1801,22 @@ importers:
   packages/tabs:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/counter':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../counter
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1833,16 +1828,16 @@ importers:
   packages/tag:
     dependencies:
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1851,7 +1846,7 @@ importers:
   packages/timeline:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1860,31 +1855,31 @@ importers:
   packages/toaster:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/link':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../link
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1893,16 +1888,16 @@ importers:
   packages/toggles:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1920,46 +1915,46 @@ importers:
         specifier: 0.3.0
         version: 0.3.0
       '@ds/bottom-sheet':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../bottom-sheet
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/chips':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../chips
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/search':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../search
       '@ds/segment-control':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../segment-control
       '@ds/tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tag
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1971,13 +1966,13 @@ importers:
   packages/tooltip:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/popover-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../popover-private
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -1989,34 +1984,34 @@ importers:
   packages/tree:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       cancelable-promise:
         specifier: 4.3.1
@@ -2037,10 +2032,10 @@ importers:
   packages/truncate-string:
     dependencies:
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2062,25 +2057,25 @@ importers:
   packages/uikit-product-avatar-detail:
     dependencies:
       '@ds/avatar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../avatar
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2089,37 +2084,37 @@ importers:
   packages/uikit-product-button-predefined:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/modal':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../modal
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
 
   packages/uikit-product-copy:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 2.5.1
@@ -2128,7 +2123,7 @@ importers:
   packages/uikit-product-flex:
     dependencies:
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2137,28 +2132,28 @@ importers:
   packages/uikit-product-info-row:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/popover-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../popover-private
       '@ds/skeleton':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../skeleton
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2167,16 +2162,16 @@ importers:
   packages/uikit-product-load-status:
     dependencies:
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/progress-bar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../progress-bar
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2185,64 +2180,64 @@ importers:
   packages/uikit-product-notification:
     dependencies:
       '@ds/bottom-sheet':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../bottom-sheet
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/chips':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../chips
       '@ds/drawer':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../drawer
       '@ds/icon-predefined':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icon-predefined
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../info-block
       '@ds/link':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../link
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/segment-control':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../segment-control
       '@ds/skeleton':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../skeleton
       '@ds/status':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../status
       '@ds/tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tag
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2257,49 +2252,49 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@ds/accordion':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../accordion
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/link':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../link
       '@ds/loader':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../loader
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/popover-private':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../popover-private
       '@ds/portal-context':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../portal-context
       '@ds/promo-tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../promo-tag
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/uikit-product-button-predefined':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../uikit-product-button-predefined
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2308,16 +2303,16 @@ importers:
   packages/uikit-product-promo-tag-predefined:
     dependencies:
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/promo-tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../promo-tag
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2326,70 +2321,70 @@ importers:
   packages/uikit-product-quota:
     dependencies:
       '@ds/accordion':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../accordion
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/counter':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../counter
       '@ds/divider':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../divider
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../info-block
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/progress-bar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../progress-bar
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/skeleton':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../skeleton
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/uikit-product-title-clickable':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../uikit-product-title-clickable
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
 
   packages/uikit-product-switch-row:
     dependencies:
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 2.5.1
@@ -2401,22 +2396,22 @@ importers:
   packages/uikit-product-title-clickable:
     dependencies:
       '@ds/avatar':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../avatar
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2425,28 +2420,28 @@ importers:
   packages/uikit-product-upload-files:
     dependencies:
       '@ds/attachment':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../attachment
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/dropzone':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropzone
       '@ds/fields':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../fields
       '@ds/icon-predefined':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icon-predefined
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2458,37 +2453,37 @@ importers:
   packages/uikit-product-widget:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/dropdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../dropdown
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../info-block
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/materials':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../materials
       '@ds/segment-control':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../segment-control
       '@ds/skeleton':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../skeleton
       '@ds/tooltip':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tooltip
       '@ds/uikit-product-title-clickable':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../uikit-product-title-clickable
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
@@ -2537,10 +2532,10 @@ packages:
     resolution: {integrity: sha512-5jSFDqWqLdEyp7CEVD66A7AQEEuwLkCGR25NJ4FR5EjziZQqZTGc7hJOFZ97qb98BiU6vElrS70R8iI+HhufGQ==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
-      '@types/react': ^17.0.50 || ^18.0.21 || ^19.0.0
-      '@types/react-dom': ^17.0.17 || ^18.0.6 || ^19.0.0
-      react: ^17.0.2 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.2 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
+      '@types/react-dom': 18.3.7
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@astrojs/telemetry@3.3.2':
     resolution: {integrity: sha512-j8DNruA8ors99Al39RYZPJK4DC1bKkoNm93mAMuBhY9TCNC4R8n1q7ovFnJ5qhGh5Lsh7pa1gpQVpYpsJPeTHQ==}
@@ -2963,14 +2958,14 @@ packages:
   '@floating-ui/react-dom@2.1.8':
     resolution: {integrity: sha512-cC52bHwM/n/CxS87FH0yWdngEZrjdtLW/qVruo68qg+prK7ZQ4YGdut2GyDVpoGeAYe/h899rVeOVm6Oi40k2A==}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@floating-ui/react@0.27.17':
     resolution: {integrity: sha512-LGVZKHwmWGg6MRHjLLgsfyaX2y2aCNgnD1zT/E6B+/h+vxg+nIJUqHPAlTzsHDyqdgEpJ1Np5kxWuFEErXzoGg==}
     peerDependencies:
-      react: '>=17.0.0'
-      react-dom: '>=17.0.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
@@ -3029,89 +3024,105 @@ packages:
     resolution: {integrity: sha512-excjX8DfsIcJ10x1Kzr4RcWe1edC9PquDRRPx3YVCvQv+U5p7Yin2s32ftzikXojb1PIFc/9Mt28/y+iRklkrw==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-arm@1.2.4':
     resolution: {integrity: sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-ppc64@1.2.4':
     resolution: {integrity: sha512-FMuvGijLDYG6lW+b/UvyilUWu5Ayu+3r2d1S8notiGCIyYU/76eig1UfMmkZ7vwgOrzKzlQbFSuQfgm7GYUPpA==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-riscv64@1.2.4':
     resolution: {integrity: sha512-oVDbcR4zUC0ce82teubSm+x6ETixtKZBh/qbREIOcI3cULzDyb18Sr/Wcyx7NRQeQzOiHTNbZFF1UwPS2scyGA==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-s390x@1.2.4':
     resolution: {integrity: sha512-qmp9VrzgPgMoGZyPvrQHqk02uyjA0/QrTO26Tqk6l4ZV0MPWIW6LTkqOIov+J1yEu7MbFQaDpwdwJKhbJvuRxQ==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-x64@1.2.4':
     resolution: {integrity: sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linuxmusl-arm64@1.2.4':
     resolution: {integrity: sha512-FVQHuwx1IIuNow9QAbYUzJ+En8KcVm9Lk5+uGUQJHaZmMECZmOlix9HnH7n1TRkXMS0pGxIJokIVB9SuqZGGXw==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-libvips-linuxmusl-x64@1.2.4':
     resolution: {integrity: sha512-+LpyBk7L44ZIXwz/VYfglaX/okxezESc6UxDSoyo2Ks6Jxc4Y7sGjpgU9s4PMgqgjj1gZCylTieNamqA1MF7Dg==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-linux-arm64@0.34.5':
     resolution: {integrity: sha512-bKQzaJRY/bkPOXyKx5EVup7qkaojECG6NLYswgktOZjaXecSAeCWiZwwiFf3/Y+O1HrauiE3FVsGxFg8c24rZg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-arm@0.34.5':
     resolution: {integrity: sha512-9dLqsvwtg1uuXBGZKsxem9595+ujv0sJ6Vi8wcTANSFpwV/GONat5eCkzQo/1O6zRIkh0m/8+5BjrRr7jDUSZw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-ppc64@0.34.5':
     resolution: {integrity: sha512-7zznwNaqW6YtsfrGGDA6BRkISKAAE1Jo0QdpNYXNMHu2+0dTrPflTLNkpc8l7MUP5M16ZJcUvysVWWrMefZquA==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-riscv64@0.34.5':
     resolution: {integrity: sha512-51gJuLPTKa7piYPaVs8GmByo7/U7/7TZOq+cnXJIHZKavIRHAP77e3N2HEl3dgiqdD/w0yUfiJnII77PuDDFdw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-s390x@0.34.5':
     resolution: {integrity: sha512-nQtCk0PdKfho3eC5MrbQoigJ2gd1CgddUMkabUj+rBevs8tZ2cULOx46E7oyX+04WGfABgIwmMC0VqieTiR4jg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-x64@0.34.5':
     resolution: {integrity: sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linuxmusl-arm64@0.34.5':
     resolution: {integrity: sha512-fprJR6GtRsMt6Kyfq44IsChVZeGN97gTD331weR1ex1c1rypDEABN6Tm2xa1wE6lYb5DdEnk03NZPqA7Id21yg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-linuxmusl-x64@0.34.5':
     resolution: {integrity: sha512-Jg8wNT1MUzIvhBFxViqrEhWDGzqymo3sV7z7ZsaWbZNDLXRJZoRGrjulp60YYtV4wfY8VIKcWidjojlLcWrd8Q==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-wasm32@0.34.5':
     resolution: {integrity: sha512-OdWTEiVkY2PHwqkbBI8frFxQQFekHaSSkUIJkwzclWZe64O1X4UlUjqqqLaPbUpMOQk6FBu/HtlGXNblIs0huw==}
@@ -3490,6 +3501,7 @@ packages:
   '@lerna/create@8.2.4':
     resolution: {integrity: sha512-A8AlzetnS2WIuhijdAzKUyFpR5YbLLfV3luQ4lzBgIBgRfuoBDZeF+RSZPhra+7A6/zTUlrbhKZIOi/MNhqgvQ==}
     engines: {node: '>=18.0.0'}
+    deprecated: This package is an implementation detail of Lerna and is no longer published separately.
 
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
@@ -3501,8 +3513,8 @@ packages:
     resolution: {integrity: sha512-cyzXQCtO47ydzxpQtCGSQGOC8Gk3ZUeBXFAxD+CWXYFo5OqZyZUonFl0DwUlTyAfRHntBfw2p3w4s9R6oe1eCA==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@napi-rs/nice-android-arm-eabi@1.1.1':
     resolution: {integrity: sha512-kjirL3N6TnRPv5iuHw36wnucNqXAO46dzK9oPb0wj076R5Xm8PfUVA9nAFB5ZNMmfJQJVKACAPd/Z2KYMppthw==}
@@ -3545,42 +3557,49 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-arm64-musl@1.1.1':
     resolution: {integrity: sha512-+2Rzdb3nTIYZ0YJF43qf2twhqOCkiSrHx2Pg6DJaCPYhhaxbLcdlV8hCRMHghQ+EtZQWGNcS2xF4KxBhSGeutg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@napi-rs/nice-linux-ppc64-gnu@1.1.1':
     resolution: {integrity: sha512-4FS8oc0GeHpwvv4tKciKkw3Y4jKsL7FRhaOeiPei0X9T4Jd619wHNe4xCLmN2EMgZoeGg+Q7GY7BsvwKpL22Tg==}
     engines: {node: '>= 10'}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-riscv64-gnu@1.1.1':
     resolution: {integrity: sha512-HU0nw9uD4FO/oGCCk409tCi5IzIZpH2agE6nN4fqpwVlCn5BOq0MS1dXGjXaG17JaAvrlpV5ZeyZwSon10XOXw==}
     engines: {node: '>= 10'}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-s390x-gnu@1.1.1':
     resolution: {integrity: sha512-2YqKJWWl24EwrX0DzCQgPLKQBxYDdBxOHot1KWEq7aY2uYeX+Uvtv4I8xFVVygJDgf6/92h9N3Y43WPx8+PAgQ==}
     engines: {node: '>= 10'}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-x64-gnu@1.1.1':
     resolution: {integrity: sha512-/gaNz3R92t+dcrfCw/96pDopcmec7oCcAQ3l/M+Zxr82KT4DljD37CpgrnXV+pJC263JkW572pdbP3hP+KjcIg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@napi-rs/nice-linux-x64-musl@1.1.1':
     resolution: {integrity: sha512-xScCGnyj/oppsNPMnevsBe3pvNaoK7FGvMjT35riz9YdhB2WtTG47ZlbxtOLpjeO9SqqQ2J2igCmz6IJOD5JYw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@napi-rs/nice-openharmony-arm64@1.1.1':
     resolution: {integrity: sha512-6uJPRVwVCLDeoOaNyeiW0gp2kFIM4r7PL2MczdZQHkFi9gVlgm+Vn+V6nTWRcu856mJ2WjYJiumEajfSm7arPQ==}
@@ -3726,24 +3745,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@nx/nx-linux-arm64-musl@20.8.4':
     resolution: {integrity: sha512-AlZZFolS/S0FahRKG7rJ0Z9CgmIkyzHgGaoy3qNEMDEjFhR3jt2ZZSLp90W7zjgrxojOo90ajNMrg2UmtcQRDA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@nx/nx-linux-x64-gnu@20.8.4':
     resolution: {integrity: sha512-MSu+xVNdR95tuuO+eL/a/ZeMlhfrZ627On5xaCZXnJ+lFxNg/S4nlKZQk0Eq5hYALCd/GKgFGasRdlRdOtvGPg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@nx/nx-linux-x64-musl@20.8.4':
     resolution: {integrity: sha512-KxpQpyLCgIIHWZ4iRSUN9ohCwn1ZSDASbuFCdG3mohryzCy8WrPkuPcb+68J3wuQhmA5w//Xpp/dL0hHoit9zQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@nx/nx-win32-arm64-msvc@20.8.4':
     resolution: {integrity: sha512-ffLBrxM9ibk+eWSY995kiFFRTSRb9HkD5T1s/uZyxV6jfxYPaZDBAWAETDneyBXps7WtaOMu+kVZlXQ3X+TfIA==}
@@ -3862,48 +3885,56 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-arm64-musl@0.127.0':
     resolution: {integrity: sha512-EoTCZneNFU/P2qrpEM+RHmQwt+CvDkyGESG6qhr7KaegXLZwePfbrkCDfAk8/rhxbDUVGsZILX+2tqPzFtoFWA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-parser/binding-linux-ppc64-gnu@0.127.0':
     resolution: {integrity: sha512-zALjmZYgxFLHjXeudcDF0xFGNydTAtkAeXAr2EuC17ywCyFxcmQra4w0BMde0Yi/re4Bi4iwEoEXtYN7l6eBLQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-riscv64-gnu@0.127.0':
     resolution: {integrity: sha512-fPP8M6zQLS7Jz7o9d5ArUSuAuSK3e+WCYVrCpdzeCOejidtZExJ9tjhDrAd3HEPqARBCPmdpqxESPFqy44vkBQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-riscv64-musl@0.127.0':
     resolution: {integrity: sha512-7IcC4Ao02oGpfnjt+X/oF4U2mllo2qoSkw5xxiXNKL9MCTsTiAC6616beOuehdxGcnz1bRoPC1RQ2f1GQDdN+g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-parser/binding-linux-s390x-gnu@0.127.0':
     resolution: {integrity: sha512-pbXIhiNFHoqWeqDNLiJ9JkpHz1IM9k4DXa66x+1GTWMG7iLxtkXgE53iiuKSXwmk3zIYmaPVfBvgcAhS583K4Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-x64-gnu@0.127.0':
     resolution: {integrity: sha512-MYCguB9RvBvlSd6gbuNI7QwiLoCCAlGnlRJFPrzLI6U1/9wkC/WK6LtBAUln55H1Ctqw45PWmqrobKoMhsYQzQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-parser/binding-linux-x64-musl@0.127.0':
     resolution: {integrity: sha512-5eY0B/bxf1xIUxb4NOTvOI3KWtBQfPWYyKAzgcrCt0mDibSZygVpO1Pz8bkeiSZ5Jj9+M09dkggG3H8I5d0Uyg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-parser/binding-openharmony-arm64@0.127.0':
     resolution: {integrity: sha512-Gld0ajrFTUXNtdw20fVBuTQx66FA75nIVg+//pPfR3sXkuABB4mTBhl3r9JNzrJpgW//qiwxf0nWXUWGJSL3UQ==}
@@ -3976,41 +4007,49 @@ packages:
     resolution: {integrity: sha512-heV2+jmXyYnUrpUXSPugqWDRpnsQcDm2AX4wzTuvgdlZfoNYO0O3W2AVpJYaDn9AG4JdM6Kxom8+foE7/BcSig==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-arm64-musl@11.19.1':
     resolution: {integrity: sha512-jvo2Pjs1c9KPxMuMPIeQsgu0mOJF9rEb3y3TdpsrqwxRM+AN6/nDDwv45n5ZrUnQMsdBy5gIabioMKnQfWo9ew==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-resolver/binding-linux-ppc64-gnu@11.19.1':
     resolution: {integrity: sha512-vLmdNxWCdN7Uo5suays6A/+ywBby2PWBBPXctWPg5V0+eVuzsJxgAn6MMB4mPlshskYbppjpN2Zg83ArHze9gQ==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-riscv64-gnu@11.19.1':
     resolution: {integrity: sha512-/b+WgR+VTSBxzgOhDO7TlMXC1ufPIMR6Vj1zN+/x+MnyXGW7prTLzU9eW85Aj7Th7CCEG9ArCbTeqxCzFWdg2w==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-riscv64-musl@11.19.1':
     resolution: {integrity: sha512-YlRdeWb9j42p29ROh+h4eg/OQ3dTJlpHSa+84pUM9+p6i3djtPz1q55yLJhgW9XfDch7FN1pQ/Vd6YP+xfRIuw==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-resolver/binding-linux-s390x-gnu@11.19.1':
     resolution: {integrity: sha512-EDpafVOQWF8/MJynsjOGFThcqhRHy417sRyLfQmeiamJ8qVhSKAn2Dn2VVKUGCjVB9C46VGjhNo7nOPUi1x6uA==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-x64-gnu@11.19.1':
     resolution: {integrity: sha512-NxjZe+rqWhr+RT8/Ik+5ptA3oz7tUw361Wa5RWQXKnfqwSSHdHyrw6IdcTfYuml9dM856AlKWZIUXDmA9kkiBQ==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@oxc-resolver/binding-linux-x64-musl@11.19.1':
     resolution: {integrity: sha512-cM/hQwsO3ReJg5kR+SpI69DMfvNCp+A/eVR4b4YClE5bVZwz8rh2Nh05InhwI5HR/9cArbEkzMjcKgTHS6UaNw==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@oxc-resolver/binding-openharmony-arm64@11.19.1':
     resolution: {integrity: sha512-QF080IowFB0+9Rh6RcD19bdgh49BpQHUW5TajG1qvWHvmrQznTZZjYlgE2ltLXyKY+qs4F/v5xuX1XS7Is+3qA==}
@@ -4104,36 +4143,42 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm-musl@2.5.6':
     resolution: {integrity: sha512-Ve3gUCG57nuUUSyjBq/MAM0CzArtuIOxsBdQ+ftz6ho8n7s1i9E1Nmk/xmP323r2YL0SONs1EuwqBp2u1k5fxg==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-arm64-glibc@2.5.6':
     resolution: {integrity: sha512-f2g/DT3NhGPdBmMWYoxixqYr3v/UXcmLOYy16Bx0TM20Tchduwr4EaCbmxh1321TABqPGDpS8D/ggOTaljijOA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm64-musl@2.5.6':
     resolution: {integrity: sha512-qb6naMDGlbCwdhLj6hgoVKJl2odL34z2sqkC7Z6kzir8b5W65WYDpLB6R06KabvZdgoHI/zxke4b3zR0wAbDTA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-x64-glibc@2.5.6':
     resolution: {integrity: sha512-kbT5wvNQlx7NaGjzPFu8nVIW1rWqV780O7ZtkjuWaPUgpv2NMFpjYERVi0UYj1msZNyCzGlaCWEtzc+exjMGbQ==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-x64-musl@2.5.6':
     resolution: {integrity: sha512-1JRFeC+h7RdXwldHzTsmdtYR/Ku8SylLgTU/reMuqdVD7CtLwf0VR1FqeprZ0eHQkO0vqsbvFLXUmYm/uNKJBg==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-win32-arm64@2.5.6':
     resolution: {integrity: sha512-3ukyebjc6eGlw9yRt678DxVF7rjXatWiHvTXqphZLvo7aC5NdEgFufVwjFfY51ijYEWpXbqF5jtrK275z52D4Q==}
@@ -4177,8 +4222,8 @@ packages:
     resolution: {integrity: sha512-6f813C0IsasTZms08kfA8kPAGxbbkYToa8ALaiDIGGECU4i9hj8Plgbx0sNJDrey3EtHO30hmdaxtT0138xZcg==}
     engines: {node: '>=8.x'}
     peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@resvg/resvg-js-android-arm-eabi@2.6.2':
     resolution: {integrity: sha512-FrJibrAk6v29eabIPgcTUMPXiEz8ssrAk7TXxsiZzww9UTQ1Z5KAbFJs+Z0Ez+VZTYgnE5IQJqBcoSiMebtPHA==}
@@ -4215,24 +4260,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@resvg/resvg-js-linux-arm64-musl@2.6.2':
     resolution: {integrity: sha512-3h3dLPWNgSsD4lQBJPb4f+kvdOSJHa5PjTYVsWHxLUzH4IFTJUAnmuWpw4KqyQ3NA5QCyhw4TWgxk3jRkQxEKg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@resvg/resvg-js-linux-x64-gnu@2.6.2':
     resolution: {integrity: sha512-IVUe+ckIerA7xMZ50duAZzwf1U7khQe2E0QpUxu5MBJNao5RqC0zwV/Zm965vw6D3gGFUl7j4m+oJjubBVoftw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@resvg/resvg-js-linux-x64-musl@2.6.2':
     resolution: {integrity: sha512-UOf83vqTzoYQO9SZ0fPl2ZIFtNIz/Rr/y+7X8XRX1ZnBYsQ/tTb+cj9TE+KHOdmlTFBxhYzVkP2lRByCzqi4jQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@resvg/resvg-js-win32-arm64-msvc@2.6.2':
     resolution: {integrity: sha512-7C/RSgCa+7vqZ7qAbItfiaAWhyRSoD4l4BQAbVDqRRsRgY+S+hgS3in0Rxr7IorKUpGE69X48q6/nOAuTJQxeQ==}
@@ -4302,66 +4351,79 @@ packages:
     resolution: {integrity: sha512-2QxQrM+KQ7DAW4o22j+XZ6RKdxjLD7BOWTP0Bv0tmjdyhXSsr2Ul1oJDQqh9Zf5qOwTuTc7Ek83mOFaKnodPjg==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.60.2':
     resolution: {integrity: sha512-TbziEu2DVsTEOPif2mKWkMeDMLoYjx95oESa9fkQQK7r/Orta0gnkcDpzwufEcAO2BLBsD7mZkXGFqEdMRRwfw==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.60.2':
     resolution: {integrity: sha512-bO/rVDiDUuM2YfuCUwZ1t1cP+/yqjqz+Xf2VtkdppefuOFS2OSeAfgafaHNkFn0t02hEyXngZkxtGqXcXwO8Rg==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.60.2':
     resolution: {integrity: sha512-hr26p7e93Rl0Za+JwW7EAnwAvKkehh12BU1Llm9Ykiibg4uIr2rbpxG9WCf56GuvidlTG9KiiQT/TXT1yAWxTA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loong64-gnu@4.60.2':
     resolution: {integrity: sha512-pOjB/uSIyDt+ow3k/RcLvUAOGpysT2phDn7TTUB3n75SlIgZzM6NKAqlErPhoFU+npgY3/n+2HYIQVbF70P9/A==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-loong64-musl@4.60.2':
     resolution: {integrity: sha512-2/w+q8jszv9Ww1c+6uJT3OwqhdmGP2/4T17cu8WuwyUuuaCDDJ2ojdyYwZzCxx0GcsZBhzi3HmH+J5pZNXnd+Q==}
     cpu: [loong64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-ppc64-gnu@4.60.2':
     resolution: {integrity: sha512-11+aL5vKheYgczxtPVVRhdptAM2H7fcDR5Gw4/bTcteuZBlH4oP9f5s9zYO9aGZvoGeBpqXI/9TZZihZ609wKw==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-ppc64-musl@4.60.2':
     resolution: {integrity: sha512-i16fokAGK46IVZuV8LIIwMdtqhin9hfYkCh8pf8iC3QU3LpwL+1FSFGej+O7l3E/AoknL6Dclh2oTdnRMpTzFQ==}
     cpu: [ppc64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-riscv64-gnu@4.60.2':
     resolution: {integrity: sha512-49FkKS6RGQoriDSK/6E2GkAsAuU5kETFCh7pG4yD/ylj9rKhTmO3elsnmBvRD4PgJPds5W2PkhC82aVwmUcJ7A==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-musl@4.60.2':
     resolution: {integrity: sha512-mjYNkHPfGpUR00DuM1ZZIgs64Hpf4bWcz9Z41+4Q+pgDx73UwWdAYyf6EG/lRFldmdHHzgrYyge5akFUW0D3mQ==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-s390x-gnu@4.60.2':
     resolution: {integrity: sha512-ALyvJz965BQk8E9Al/JDKKDLH2kfKFLTGMlgkAbbYtZuJt9LU8DW3ZoDMCtQpXAltZxwBHevXz5u+gf0yA0YoA==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.60.2':
     resolution: {integrity: sha512-UQjrkIdWrKI626Du8lCQ6MJp/6V1LAo2bOK9OTu4mSn8GGXIkPXk/Vsp4bLHCd9Z9Iz2OTEaokUE90VweJgIYQ==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.60.2':
     resolution: {integrity: sha512-bTsRGj6VlSdn/XD4CGyzMnzaBs9bsRxy79eTqTCBsA8TMIEky7qg48aPkvJvFe1HyzQ5oMZdg7AnVlWQSKLTnw==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-openbsd-x64@4.60.2':
     resolution: {integrity: sha512-6d4Z3534xitaA1FcMWP7mQPq5zGwBmGbhphh2DwaA1aNIXUu3KTOfwrWpbwI4/Gr0uANo7NTtaykFyO2hPuFLg==}
@@ -4548,16 +4610,16 @@ packages:
   '@storybook/icons@2.0.2':
     resolution: {integrity: sha512-KZBCpXsshAIjczYNXR/rlxEtCUX/eAbpFNwKi8bcOomrLA4t/SyPz5RF+lVPO2oZBUE4sAkt43mfJUevQDSEEw==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@storybook/react-dom-shim@10.4.0':
     resolution: {integrity: sha512-dcYWzdPaJEHVlyOyyz0/0v3QJXmcnK2sjw4YiFwU9IVJhoJrBlE9lMtmbO3QqIbq4qA0hElYtGkKO7tMLSKDGw==}
     peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      '@types/react-dom': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
+      '@types/react-dom': 18.3.7
+      react: 18.3.1
+      react-dom: 18.3.1
       storybook: ^10.4.0
     peerDependenciesMeta:
       '@types/react':
@@ -4568,18 +4630,18 @@ packages:
   '@storybook/react-vite@10.4.0':
     resolution: {integrity: sha512-k7Lt5Pm9x2N2m56e+99fMo/hMzmiOpmwmxYALGzA0phZCTYalEQRB953TdpVIOQ0V5tlYRhe2VSpVe64/9RcTA==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
       storybook: ^10.4.0
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
   '@storybook/react@10.4.0':
     resolution: {integrity: sha512-M1pFs4WywzKAlrBR38h8H6Q1VOca7V7tgBD3/pJGEY8z+8smRE7+Y8Gq7wZ3K0j8/0rWPxXMBD44V/1ZUV4OdA==}
     peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      '@types/react-dom': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
+      '@types/react-dom': 18.3.7
+      react: 18.3.1
+      react-dom: 18.3.1
       storybook: ^10.4.0
       typescript: '>= 4.9.x'
     peerDependenciesMeta:
@@ -4698,36 +4760,42 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.15.26':
     resolution: {integrity: sha512-iNlbvTIo425rkKzDLLWFJGnFXr3myETUdIDHcjuiPNZE8b0ogmcAuilC4yEJX7FSHGbnlsoJcCT2xf4b3VJmmQ==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-linux-ppc64-gnu@1.15.26':
     resolution: {integrity: sha512-AuuEOtG+YXKIjIUup4RsxYNklx6XVB3WKWfhxG6hnfPrn7vp89RNOLbbyyprgj6Sk7k9ulwGVTJElEvmBNPSCA==}
     engines: {node: '>=10'}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-s390x-gnu@1.15.26':
     resolution: {integrity: sha512-JcMDWQvW1BchUyRg8E0jHiTx7CQYpUr5uDEL1dnPDECrEjBEGG2ynmJ3XX70sWXql0JagqR1t3VpANYFWdUnqA==}
     engines: {node: '>=10'}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-gnu@1.15.26':
     resolution: {integrity: sha512-FW7V7Mbpq4+PA7BiAq76LJs8MdNuUSylyuRVfQRkhIyeWadFroZ+KOPgjku8Z/fXzngxBRvsk+PGGB0t8mGcjA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.15.26':
     resolution: {integrity: sha512-w8erqMHsVcdGwUfJxF6LaiTuPoKnyLOcUbhLcxiXrlLt5MLjtlgcIeUY/NWK/oPoyqkgH+/i8pOJnMTxvl83ZQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.15.26':
     resolution: {integrity: sha512-uDCWCNpUiqkbvPmsuPUTn/P7ag9SqNXD2JT/W3dUu7yZ2krzN+nmmoQ2xRX63/J6RYiHI7aT4jo7Z++lsljlPA==}
@@ -4765,14 +4833,14 @@ packages:
   '@tanem/react-nprogress@5.0.60':
     resolution: {integrity: sha512-1eJxtcZtUexasm6rc1chS446vHfBj3vV9t22hSjxzgFbtw4f2bpdfQZlsU/vycNwh8DC63v8Ya+a3s+hoSmTew==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@tanstack/react-virtual@3.11.2':
     resolution: {integrity: sha512-OuFzMXPF4+xZgx8UzJha0AieuMihhhaWG0tCqpp6tDzlFwOmNBPYMuLOtMJ1Tr4pXLHmgjcWhG6RlknY2oNTdQ==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@tanstack/virtual-core@3.11.2':
     resolution: {integrity: sha512-vTtpNt7mKCiZ1pwU9hfKPhpdVO2sVzFQsxoVBGtOSHxlrRRzYr8iQ2TlwbAcRYCcEiZ9ECAM8kBzH0v2+VzfKw==}
@@ -4978,10 +5046,10 @@ packages:
     peerDependencies:
       '@tiptap/core': 3.23.6
       '@tiptap/pm': 3.23.6
-      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
+      '@types/react-dom': 18.3.7
+      react: 18.3.1
+      react-dom: 18.3.1
 
   '@tiptap/starter-kit@3.23.6':
     resolution: {integrity: sha512-gykwtGWrnWCmtql1hid3opac/KV8zQvOAnu3bTqIqcHrn1FusbUwKmNzavSbfGvcktHM3hFjb35W48JyVLyu/A==}
@@ -5132,7 +5200,7 @@ packages:
   '@types/react-dom@18.3.7':
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
-      '@types/react': ^18.0.0
+      '@types/react': 18.3.28
 
   '@types/react-is@19.2.0':
     resolution: {integrity: sha512-NP2xtcjZfORsOa4g2JwdseyEnF+wUCx25fTdG/J/HIY6yKga6+NozRBg2xR2gyh7kKYyd6DXndbq0YbQuTJ7Ew==}
@@ -5321,41 +5389,49 @@ packages:
     resolution: {integrity: sha512-34gw7PjDGB9JgePJEmhEqBhWvCiiWCuXsL9hYphDF7crW7UgI05gyBAi6MF58uGcMOiOqSJ2ybEeCvHcq0BCmQ==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-arm64-musl@1.11.1':
     resolution: {integrity: sha512-RyMIx6Uf53hhOtJDIamSbTskA99sPHS96wxVE/bJtePJJtpdKGXO1wY90oRdXuYOGOTuqjT8ACccMc4K6QmT3w==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@unrs/resolver-binding-linux-ppc64-gnu@1.11.1':
     resolution: {integrity: sha512-D8Vae74A4/a+mZH0FbOkFJL9DSK2R6TFPC9M+jCWYia/q2einCubX10pecpDiTmkJVUH+y8K3BZClycD8nCShA==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-riscv64-gnu@1.11.1':
     resolution: {integrity: sha512-frxL4OrzOWVVsOc96+V3aqTIQl1O2TjgExV4EKgRY09AJ9leZpEg8Ak9phadbuX0BA4k8U5qtvMSQQGGmaJqcQ==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-riscv64-musl@1.11.1':
     resolution: {integrity: sha512-mJ5vuDaIZ+l/acv01sHoXfpnyrNKOk/3aDoEdLO/Xtn9HuZlDD6jKxHlkN8ZhWyLJsRBxfv9GYM2utQ1SChKew==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@unrs/resolver-binding-linux-s390x-gnu@1.11.1':
     resolution: {integrity: sha512-kELo8ebBVtb9sA7rMe1Cph4QHreByhaZ2QEADd9NzIQsYNQpt9UkM9iqr2lhGr5afh885d/cB5QeTXSbZHTYPg==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-x64-gnu@1.11.1':
     resolution: {integrity: sha512-C3ZAHugKgovV5YvAMsxhq0gtXuwESUKc5MhEtjBpLoHPLYM+iuwSj3lflFwK3DPm68660rZ7G8BMcwSro7hD5w==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@unrs/resolver-binding-linux-x64-musl@1.11.1':
     resolution: {integrity: sha512-rV0YSoyhK2nZ4vEswT/QwqzqQXw5I6CjoaYMOX0TqBlWhojUf8P94mvI7nuJTeaCkkds3QE4+zS8Ko+GdXuZtA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@unrs/resolver-binding-wasm32-wasi@1.11.1':
     resolution: {integrity: sha512-5u4RkfxJm+Ng7IWgkzi3qrFOvLvQYnPBmjmZQ8+szTK/b31fQCnleNl1GgEt7nIsZRIf5PLhPwT0WM+q45x/UQ==}
@@ -7051,8 +7127,8 @@ packages:
     resolution: {integrity: sha512-rFYkY/pigbcswl1XQSb7q424kSTQ8q6eAC+YUsSKooHQYuLdzdHjrt6uxUC+PRAO++q5IS7+TamgIw1AphxR+g==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
     peerDependenciesMeta:
       '@emotion/is-prop-valid':
         optional: true
@@ -8013,24 +8089,28 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.32.0:
     resolution: {integrity: sha512-UpQkoenr4UJEzgVIYpI80lDFvRmPVg6oqboNHfoH4CQIfNA+HOrZ7Mo7KZP02dC6LjghPQJeBsvXhJod/wnIBg==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.32.0:
     resolution: {integrity: sha512-V7Qr52IhZmdKPVr+Vtw8o+WLsQJYCTd8loIfpDaMRWGUZfBOYEJeyJIkqGIDMZPwPx24pUMfwSxxI8phr/MbOA==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.32.0:
     resolution: {integrity: sha512-bYcLp+Vb0awsiXg/80uCRezCYHNg1/l3mt0gzHnWV9XP1W5sKa5/TCdGWaR/zBM2PeF/HbsQv/j2URNOiVuxWg==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.32.0:
     resolution: {integrity: sha512-8SbC8BR40pS6baCM8sbtYDSwEVQd4JlFTOlaD3gWGHfThTcABnNDBda6eTZeqbofalIJhFx0qKzgHJmcPTnGdw==}
@@ -8400,7 +8480,7 @@ packages:
   merge-refs@2.0.0:
     resolution: {integrity: sha512-3+B21mYK2IqUWnd2EivABLT7ueDhb0b8/dGK8LoFQPrU61YITeCMn14F7y7qZafWNZhUEKb24cJdiT5Wxs3prg==}
     peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -8946,7 +9026,7 @@ packages:
     resolution: {integrity: sha512-E5To04bL5brn9GVCZ36SnfGanxa2I2MDkWoa4Cjo5wol7l+diAgi4DBc983V7l2nOk/OLJ6Feg4kySspQEGDBw==}
     peerDependencies:
       overlayscrollbars: ^2.0.0
-      react: '>=16.8.0'
+      react: 18.3.1
 
   overlayscrollbars@2.14.0:
     resolution: {integrity: sha512-RjV0pqc79kYhQLC3vTcLRb5GLpI1n6qh0Oua3g+bGH4EgNOJHVBGP7u0zZtxoAa0dkHlAqTTSYRb9MMmxNLjig==}
@@ -9499,7 +9579,6 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
-
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qified@0.9.1:
@@ -9529,33 +9608,33 @@ packages:
   rc-drawer@6.4.1:
     resolution: {integrity: sha512-QIbNMjiZy322o9uEpJHsSZ5rS/zuxqam3lYVPDzjztoqsoDzTNNxWN77QVpOfQ0UC9/87+qu25zocJ+O9bK2Tg==}
     peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   rc-motion@2.9.5:
     resolution: {integrity: sha512-w+XTUrfh7ArbYEd2582uDrEhmBHwK1ZENJiSJVb7uRxdE7qJSYjbO2eksRXmndqyKqKoYPc9ClpPh5242mV1vA==}
     peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   rc-slider@11.1.9:
     resolution: {integrity: sha512-h8IknhzSh3FEM9u8ivkskh+Ef4Yo4JRIY2nj7MrH6GQmrwV6mcpJf5/4KgH5JaVI1H3E52yCdpOlVyGZIeph5A==}
     engines: {node: '>=8.x'}
     peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   rc-util@5.44.4:
     resolution: {integrity: sha512-resueRJzmHG9Q6rI/DfK6Kdv9/Lfls05vzMs1Sk3M2P+3cJa+MakaZyWY8IPfehVuhPJFKrIY1IK4GqbiaiY5w==}
     peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   react-colorful@5.6.1:
     resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   react-docgen-typescript@2.4.0:
     resolution: {integrity: sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg==}
@@ -9569,14 +9648,14 @@ packages:
   react-dom@18.3.1:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
-      react: ^18.3.1
+      react: 18.3.1
 
   react-indiana-drag-scroll@2.2.0:
     resolution: {integrity: sha512-+W/3B2OQV0FrbdnsoIo4dww/xpH0MUQJz6ziQb7H+oBko3OCbXuzDFYnho6v6yhGrYDNWYPuFUewb89IONEl/A==}
     engines: {node: '>=8', npm: '>=5'}
     peerDependencies:
-      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react: 18.3.1
+      react-dom: 18.3.1
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -9593,8 +9672,8 @@ packages:
   react-markdown@10.1.0:
     resolution: {integrity: sha512-qKxVopLT/TyA6BX3Ue5NwabOsAzm0Q7kAPwq6L+wWDwisYs7R8vZ0nRXqq6rkueboxpkjvLGU9fWifiX/ZZFxQ==}
     peerDependencies:
-      '@types/react': '>=18'
-      react: '>=18'
+      '@types/react': 18.3.28
+      react: 18.3.1
 
   react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
@@ -9604,8 +9683,8 @@ packages:
     resolution: {integrity: sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -9614,8 +9693,8 @@ packages:
     resolution: {integrity: sha512-Iqb9NjCCTt6Hf+vOdNIZGdTiH1QSqr27H/Ek9sv/a97gfueI/5h1s3yRi1nngzMUaOOToin5dI1dXKdXiF+u0Q==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      '@types/react': 18.3.28
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -9624,8 +9703,8 @@ packages:
     resolution: {integrity: sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      '@types/react': 18.3.28
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -9633,19 +9712,19 @@ packages:
   react-swipeable@7.0.2:
     resolution: {integrity: sha512-v1Qx1l+aC2fdxKa9aKJiaU/ZxmJ5o98RMoFwUqAAzVWUcxgfHFXDDruCKXhw6zIYXm6V64JiHgP9f6mlME5l8w==}
     peerDependencies:
-      react: ^16.8.3 || ^17 || ^18 || ^19.0.0 || ^19.0.0-rc
+      react: 18.3.1
 
   react-textarea-autosize@8.5.9:
     resolution: {integrity: sha512-U1DGlIQN5AwgjTyOEnI1oCcMuEr1pv1qOtklB2l4nyMGbHzWrI0eFsYK0zos2YWqAolJyG0IWJaqWmWj5ETh0A==}
     engines: {node: '>=10'}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
 
   react-transition-state@2.1.1:
     resolution: {integrity: sha512-kQx5g1FVu9knoz1T1WkapjUgFz08qQ/g1OmuWGi3/AoEFfS0kStxrPlZx81urjCXdz2d+1DqLpU6TyLW/Ro04Q==}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: 18.3.1
+      react-dom: 18.3.1
 
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
@@ -10155,7 +10234,7 @@ packages:
     resolution: {integrity: sha512-zrtctbVa6xEXCXuE3vsiR0At31zLOtzj8QudN/GaBJLZl0Z2DfF1rDPtTxdAbAp11M2J/7JVHaTIQKXauQPbmg==}
     hasBin: true
     peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': 18.3.28
       prettier: ^2 || ^3
       vite-plus: ^0.1.15
     peerDependenciesMeta:
@@ -10638,12 +10717,12 @@ packages:
   uncontrollable@8.0.4:
     resolution: {integrity: sha512-ulRWYWHvscPFc0QQXvyJjY6LIXU56f0h8pQFvhxiKk5V1fcI8gp9Ht9leVAhrVjzqMw0BgjspBINx9r6oyJUvQ==}
     peerDependencies:
-      react: '>=16.14.0'
+      react: 18.3.1
 
   uncontrollable@9.0.0:
     resolution: {integrity: sha512-wPScOFmvRkHdvebf7qNPn9Wog9B1TL8Dqcx0Vecz6HYTKFKMfGKP6MJHTjiKL8kwd8KTW3YfIUke7pmRDtkcRQ==}
     peerDependencies:
-      react: '>=16.14.0'
+      react: 18.3.1
 
   uncrypto@0.1.3:
     resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
@@ -10788,8 +10867,8 @@ packages:
     resolution: {integrity: sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      '@types/react': 18.3.28
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -10798,7 +10877,7 @@ packages:
     resolution: {integrity: sha512-djviaxuOOh7wkj0paeO1Q/4wMZ8Zrnag5H6yBvzN7AKKe8beOaED9SF5/ByLqsku8NP4zQqsvM2u3ew/tJK8/w==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -10807,7 +10886,7 @@ packages:
     resolution: {integrity: sha512-tpZZ+EX0gaghDAiFR37hj5MgY6ZN55kLiPkJsKxBMZ6GZdOSPJXiOzPM984oPYZ5AnehYx5WQp1+ME8I/P/pRA==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -10816,7 +10895,7 @@ packages:
     resolution: {integrity: sha512-mhg3xdm9NaM8q+gLT8KryJPnRFOz1/5XPBhmDEVZK1webPzDjrPk7f/mbpeLqTgB9msytYWANxgALOCJKnLvcQ==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -10825,8 +10904,8 @@ packages:
     resolution: {integrity: sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      '@types/react': 18.3.28
+      react: 18.3.1
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -10834,7 +10913,7 @@ packages:
   use-sync-external-store@1.6.0:
     resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 18.3.1
 
   utif2@4.1.0:
     resolution: {integrity: sha512-+oknB9FHrJ7oW7A2WZYajOcv4FcDR4CfoGB0dPNfxbi4GO05RRnFmt5oa23+9w32EanrYcSJWspUiJkLMs+37w==}

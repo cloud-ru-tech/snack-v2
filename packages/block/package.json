@@ -22,8 +22,8 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/materials": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": {

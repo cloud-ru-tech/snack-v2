@@ -22,8 +22,8 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/materials": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "overlayscrollbars": "2.14.0",
     "overlayscrollbars-react": "0.5.6"

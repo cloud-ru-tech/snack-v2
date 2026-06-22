@@ -22,8 +22,8 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/materials": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
     "@types/lodash.debounce": "4.0.9",
     "classnames": "catalog:",
     "lodash.debounce": "catalog:"

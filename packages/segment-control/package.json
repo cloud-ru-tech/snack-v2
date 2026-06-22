@@ -13,15 +13,23 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
-    "@ds/counter": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/truncate-string": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/counter": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

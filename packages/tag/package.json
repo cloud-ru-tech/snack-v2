@@ -22,10 +22,10 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/dropdown": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/scroll": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/dropdown": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": {

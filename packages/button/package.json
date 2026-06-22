@@ -22,10 +22,10 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/counter": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/counter": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": {

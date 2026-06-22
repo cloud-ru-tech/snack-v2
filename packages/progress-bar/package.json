@@ -22,7 +22,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/utils": "workspace:*",
+    "@ds/utils": "workspace:^",
     "@tanem/react-nprogress": "5.0.60",
     "classnames": "catalog:"
   },

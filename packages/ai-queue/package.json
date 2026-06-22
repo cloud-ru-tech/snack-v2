@@ -13,16 +13,24 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
-    "@ds/ai-button-chevron": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/scroll": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/ai-button-chevron": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

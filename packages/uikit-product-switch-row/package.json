@@ -13,16 +13,24 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
-    "@ds/materials": "workspace:*",
-    "@ds/toggles": "workspace:*",
-    "@ds/tooltip": "workspace:*",
-    "@ds/truncate-string": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/materials": "workspace:^",
+    "@ds/toggles": "workspace:^",
+    "@ds/tooltip": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "2.5.1",
     "uncontrollable": "8.0.4"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

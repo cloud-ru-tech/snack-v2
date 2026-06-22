@@ -22,15 +22,15 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/icons": "workspace:*",
-    "@ds/input-private": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/icons": "workspace:^",
+    "@ds/input-private": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "merge-refs": "catalog:"
   },
   "peerDependencies": {
-    "@ds/locale": "workspace:*"
+    "@ds/locale": "workspace:^"
   },
   "publishConfig": {
     "access": "public"

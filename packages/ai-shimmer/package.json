@@ -22,7 +22,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/utils": "workspace:*",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": {

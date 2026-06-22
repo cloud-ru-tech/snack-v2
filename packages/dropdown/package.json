@@ -22,17 +22,17 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/divider": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/info-block": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/popover-private": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/divider": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/info-block": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/popover-private": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "peerDependencies": {
-    "@ds/locale": "workspace:*"
+    "@ds/locale": "workspace:^"
   },
   "publishConfig": {
     "access": "public"

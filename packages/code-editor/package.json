@@ -22,11 +22,11 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/loader": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/typography": "workspace:*",
-    "@ds/uikit-product-copy": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/uikit-product-copy": "workspace:^",
+    "@ds/utils": "workspace:^",
     "@monaco-editor/react": "4.7.0",
     "classnames": "catalog:",
     "monaco-yaml": "5.5.0"

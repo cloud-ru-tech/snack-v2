@@ -22,12 +22,12 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/input-private": "workspace:*",
-    "@ds/locale": "workspace:*",
-    "@ds/segment-control": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/input-private": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/segment-control": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "react-colorful": "catalog:"
   },

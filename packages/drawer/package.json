@@ -25,12 +25,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/portal-context": "workspace:*",
-    "@ds/scroll": "workspace:*",
-    "@ds/typography": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/portal-context": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "rc-drawer": "6.4.1",
     "tabbable": "catalog:"

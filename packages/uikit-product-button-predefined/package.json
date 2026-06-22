@@ -22,12 +22,12 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/dropdown": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/list": "workspace:*",
-    "@ds/modal": "workspace:*",
-    "@ds/utils": "workspace:*"
+    "@ds/button": "workspace:^",
+    "@ds/dropdown": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/modal": "workspace:^",
+    "@ds/utils": "workspace:^"
   },
   "publishConfig": {
     "access": "public"

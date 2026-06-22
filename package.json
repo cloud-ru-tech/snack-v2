@@ -28,6 +28,8 @@
     "dev": "pnpm --parallel --stream --filter @ds/docs --filter @ds/storybook dev",
     "dev:docs": "pnpm --filter @ds/docs dev",
     "dev:storybook": "pnpm --filter @ds/storybook dev",
+    "dev:next": "pnpm --filter @ds/playground-next-ssr dev",
+    "dev:single-spa": "pnpm --filter @ds/playground-single-spa dev",
     "lint": "eslint \"packages/**/*.{ts,tsx}\" \"apps/storybook/**/*.{ts,tsx}\" \"apps/docs/src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" ",
     "stylelint": "stylelint \"**/*.css\" \"**/*.scss\" --fix",
     "typecheck": "pnpm --filter @ds/docs exec astro sync && tsc -b tsconfig.json",
@@ -116,5 +118,14 @@
     "typescript-plugin-css-modules": "5.2.0",
     "v8-to-istanbul": "9.3.0",
     "vitest": "4.1.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "catalog:",
+      "react-dom": "catalog:",
+      "@types/react": "catalog:",
+      "@types/react-dom": "catalog:",
+      "@ds/theme@0.1.0>@ds/context-kit": "workspace:^"
+    }
   }
 }

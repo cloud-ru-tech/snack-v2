@@ -22,12 +22,12 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/divider": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/search-private": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/divider": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/search-private": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": {

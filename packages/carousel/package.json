@@ -22,10 +22,10 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/pagination": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/pagination": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "lodash.debounce": "catalog:",
     "merge-refs": "catalog:",

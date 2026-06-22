@@ -22,8 +22,8 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/tooltip": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/tooltip": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "lodash.throttle": "4.1.1"
   },

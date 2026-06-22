@@ -16,10 +16,10 @@
   "files": ["dist", "src"],
   "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
-    "@ds/ai-button-chevron": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/scroll": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/ai-button-chevron": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },

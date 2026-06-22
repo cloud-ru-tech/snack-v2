@@ -22,15 +22,15 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/card": "workspace:*",
-    "@ds/icon-predefined": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/loader": "workspace:*",
-    "@ds/materials": "workspace:*",
-    "@ds/portal-context": "workspace:*",
-    "@ds/truncate-string": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/card": "workspace:^",
+    "@ds/icon-predefined": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/portal-context": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": {

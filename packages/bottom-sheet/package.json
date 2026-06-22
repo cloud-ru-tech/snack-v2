@@ -22,11 +22,11 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/portal-context": "workspace:*",
-    "@ds/typography": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/portal-context": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "react-remove-scroll": "catalog:",
     "tabbable": "catalog:"
