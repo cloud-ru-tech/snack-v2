@@ -385,10 +385,9 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           },
@@ -396,7 +395,6 @@
             "type": "RowActionButton | undefined",
             "required": false,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           }
@@ -576,104 +574,6 @@
       }
     },
     "relatedTypes": {
-      "BaseButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": false
-      },
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
@@ -890,10 +790,9 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           },
@@ -901,7 +800,6 @@
             "type": "RowActionButton | undefined",
             "required": false,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           }
@@ -1300,10 +1198,9 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           },
@@ -1311,7 +1208,6 @@
             "type": "RowActionButton | undefined",
             "required": false,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           }
@@ -1476,104 +1372,6 @@
       }
     },
     "relatedTypes": {
-      "BaseButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": false
-      },
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
@@ -1773,10 +1571,9 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           },
@@ -1784,7 +1581,6 @@
             "type": "RowActionButton | undefined",
             "required": false,
             "typeRefs": [
-              "BaseButtonProps",
               "RowActionButton"
             ]
           }
@@ -1929,10 +1725,9 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
-              "BaseButtonProps",
               "MobileRowActionButton"
             ]
           },
@@ -1940,7 +1735,6 @@
             "type": "MobileRowActionButton | undefined",
             "required": false,
             "typeRefs": [
-              "BaseButtonProps",
               "MobileRowActionButton"
             ]
           }
@@ -2178,104 +1972,6 @@
       }
     },
     "relatedTypes": {
-      "BaseButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": false
-      },
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
@@ -2298,10 +1994,9 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<BaseButtonProps & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"ref\" | \"as\" | keyof BaseButtonProps>, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
-              "BaseButtonProps",
               "MobileRowActionButton"
             ]
           },
@@ -2309,7 +2004,6 @@
             "type": "MobileRowActionButton | undefined",
             "required": false,
             "typeRefs": [
-              "BaseButtonProps",
               "MobileRowActionButton"
             ]
           }

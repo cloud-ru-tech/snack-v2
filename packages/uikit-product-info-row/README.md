@@ -108,8 +108,8 @@ export function InfoGroupBasic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `first` | `BaseButtonProps` \| `RowActionButton` | — |  |
-| `second` | `BaseButtonProps` \| `RowActionButton` | — |  |
+| `first` | `RowActionButton` | — |  |
+| `second` | `RowActionButton` | — |  |
 
 ## InfoRow
 
@@ -211,5 +211,5 @@ export function DataListExample() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `first` | `BaseButtonProps` \| `RowActionButton` | — |  |
-| `second` | `BaseButtonProps` \| `RowActionButton` | — |  |
+| `first` | `RowActionButton` | — |  |
+| `second` | `RowActionButton` | — |  |

@@ -597,6 +597,7 @@ export function PanelFull() {
 |------|------|---------|-------------|
 | `actions` | `Action` | — | Дополнительные действия панели |
 | `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
+| `size` | `"m"` \| `"s"` | — |  |
 
 #### NotificationPanel.Stack
 
@@ -726,3 +727,4 @@ export function PanelFull() {
 |------|------|---------|-------------|
 | `actions` | `Action` | — | Дополнительные действия панели |
 | `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
+| `size` | `"m"` \| `"s"` | — |  |

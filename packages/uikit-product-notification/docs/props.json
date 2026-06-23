@@ -23,15 +23,6 @@
         "type": "Dispatch<SetStateAction<boolean>>",
         "required": true
       },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "m",
-          "s"
-        ],
-        "defaultValue": "s"
-      },
       "testIds": {
         "type": "ActionsButtonTestIds",
         "required": true
@@ -808,6 +799,14 @@
             "description": "Кнопка дополнительного действия панели",
             "typeRefs": [
               "ButtonProps"
+            ]
+          },
+          "size": {
+            "type": "\"s\" | \"m\" | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
             ]
           }
         },
@@ -1697,6 +1696,14 @@
             "typeRefs": [
               "ButtonProps"
             ]
+          },
+          "size": {
+            "type": "\"s\" | \"m\" | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ]
           }
         },
         "own": true
@@ -1949,6 +1956,15 @@
         "typeRefs": [
           "ButtonProps"
         ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m"
       }
     },
     "relatedTypes": {
