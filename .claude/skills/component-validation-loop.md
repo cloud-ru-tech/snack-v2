@@ -164,7 +164,7 @@ pnpm test:e2e:chrome packages/<pkg>             2>&1 | tail -20
 | 8 | `<PropsTable componentDoc={...} />` | 4 | `data={pkgDoc.<Name>}`. |
 | 9 | `<StorybookEmbed id='...' />` | 4 | `storyId='...'`. |
 | 10 | `<Canvas component={RenderPropComponent} />` крашится | 4 | Обернуть живой пример: `return <BasicFlow />`. |
-| 11 | Пропущен `@design-system/materials` в deps после добавления state-layer | 5 | Добавить `"@design-system/materials": "workspace:*"`. |
+| 11 | Пропущен `@design-system/materials` в deps после добавления state-layer | 5 | Добавить `"@design-system/materials": "workspace:^"`. |
 | 12 | Запрещённые axis-per-file stories (`Sizes`, `Appearances`, …) | 4 | Удалить, оси живут в `StoryTable` VisualMatrix ([stories-standard.md](../rules/stories-standard.md)). |
 | 13 | Отдельный `<pkg>.url-args.spec.ts` / `.states.spec.ts` / `.dimensions.spec.ts` | 4 | Объединить в describe-блоки `rendering.spec.ts` ([e2e-testing-standard.md](../rules/e2e-testing-standard.md)). |
 | 14 | Story id в `__test__/<Name>/helpers.ts` не соответствует nesting'у title'а multi-component пакета | 4 | Обновить ids на `components-<pkg>-<component>--<story>`. |

@@ -13,7 +13,8 @@
  * What it does:
  *   1. Reads every `packages/<pkg>/package.json` that has `tsconfig.esm.json`
  *      (so private SCSS-only `@ds/fonts` is skipped — nothing to build).
- *   2. Builds a graph: pkg → its workspace:* deps (only `dependencies` and
+ *   2. Builds a graph: pkg → its workspace deps (any `workspace:` protocol,
+ *      only `dependencies` and
  *      `peerDependencies`, devDeps don't affect build order).
  *   3. Topological sort (Kahn's algorithm, ties broken alphabetically for
  *      deterministic output).
@@ -86,7 +87,8 @@ for (const { slug, name } of pkgs) {
     const block = pj[field];
     if (!block) continue;
     for (const [depName, version] of Object.entries(block)) {
-      if (version === 'workspace:*') {
+      // Match any workspace protocol (`workspace:*`, `workspace:^`, `workspace:~`).
+      if (version.startsWith('workspace:')) {
         const depSlug = nameToSlug.get(depName);
         if (depSlug) deps.add(depSlug);
       }

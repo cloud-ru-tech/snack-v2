@@ -79,7 +79,8 @@ for (const dir of dirs) {
     const block = pj[field];
     if (!block) continue;
     for (const [depName, ver] of Object.entries(block)) {
-      if (ver === 'workspace:*') deps.add(depName);
+      // Match any workspace protocol (`workspace:*`, `workspace:^`, `workspace:~`).
+      if (ver.startsWith('workspace:')) deps.add(depName);
     }
   }
   slugDeps.set(slug, [...deps]);
