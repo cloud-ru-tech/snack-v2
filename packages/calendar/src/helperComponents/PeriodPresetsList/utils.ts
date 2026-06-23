@@ -1,7 +1,7 @@
-import { useLocale } from '@ds/locale';
-
+import { calendarLocale } from '../../locale';
 import { PresetItem, Range } from '../../types';
-type TFunction = ReturnType<typeof useLocale<'Calendar'>>['t'];
+
+type TFunction = ReturnType<typeof calendarLocale.useTranslations>['t'];
 
 const dayInMs = 24 * 60 * 60 * 1000;
 

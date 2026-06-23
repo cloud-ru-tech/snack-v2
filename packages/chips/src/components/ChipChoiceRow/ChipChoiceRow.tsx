@@ -2,7 +2,6 @@ import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { CrossCircleSVG, PlusSVG } from '@ds/icons';
 import { Droplist, DroplistProps } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { SIZE } from '@ds/toggles';
 import { Tooltip } from '@ds/tooltip';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
@@ -11,6 +10,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import { CHIP_CHOICE_ROW_TEST_IDS } from '../../constants';
+import { chipsLocale } from '../../locale';
 import { ForwardedChipChoice } from './components';
 import { MAP_ROW_SIZE_TO_BUTTON_SIZE } from './constants';
 import { areValuesEqual } from './helpers';
@@ -59,7 +59,7 @@ export function ChipChoiceRow<TState extends FiltersState>({
   onVisibleFiltersChange,
   ...rest
 }: ChipChoiceRowProps<TState>) {
-  const { t } = useLocale('Chips');
+  const { t } = chipsLocale.useTranslations();
 
   const defaultValue = useMemo(() => (defaultValueProp ?? {}) as TState, [defaultValueProp]);
 

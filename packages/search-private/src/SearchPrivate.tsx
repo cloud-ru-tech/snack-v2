@@ -7,13 +7,13 @@ import {
   useClearButton,
 } from '@ds/input-private';
 import { LOADER_SIZE, Sun } from '@ds/loader';
-import { useLocale } from '@ds/locale';
 import { extractSupportProps, useValueControl, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useMemo, useRef } from 'react';
 
 import { PRIVATE_SEARCH_TEST_IDS, SIZE } from './constants';
+import { searchPrivateLocale } from './locale';
 import styles from './styles.module.scss';
 import { Size } from './types';
 import { getIconSize } from './utils';
@@ -77,7 +77,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
   const localRef = useRef<HTMLInputElement>(null);
   const clearButtonRef = useRef<HTMLButtonElement>(null);
 
-  const { t } = useLocale('SearchPrivate');
+  const { t } = searchPrivateLocale.useTranslations();
 
   const showClearButton = Boolean(showClearButtonProp && value);
 

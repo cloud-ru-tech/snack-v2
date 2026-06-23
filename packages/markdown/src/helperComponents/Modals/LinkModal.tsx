@@ -1,11 +1,11 @@
 import { ButtonGroup } from '@ds/button';
 import { FieldText } from '@ds/fields';
-import { useLocale } from '@ds/locale';
 import { Modal } from '@ds/modal';
 import { usePortalContext } from '@ds/portal-context';
 import { useEffect, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { markdownLocale } from '../../locale';
 import styles from './styles.module.scss';
 
 export type LinkProps = {
@@ -23,7 +23,7 @@ type LinkModalProps = {
 };
 
 export function LinkModal({ open, initial, onClose, onSubmit }: LinkModalProps) {
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
   const portalContext = usePortalContext();
   const [linkProps, setLinkProps] = useState<LinkProps | undefined>(initial);
 

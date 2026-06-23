@@ -1,7 +1,6 @@
 import { Button } from '@ds/button';
 import { FieldShell } from '@ds/fields';
 import { CrossCircleSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { Scroll } from '@ds/scroll';
 import { Switch } from '@ds/toggles';
 import { extractSupportProps, isBrowser, useDebounce, useValueControl } from '@ds/utils';
@@ -20,6 +19,7 @@ import { ChangeEvent, FocusEvent, MouseEvent, useCallback, useEffect, useMemo, u
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { ON_CHANGE_DEBOUNCE_MS, TEST_IDS } from '../../constants';
+import { markdownLocale } from '../../locale';
 import { lowlight } from '../../lowlight';
 import { RawEdit } from '../../rawMarkdownCommands';
 import syntaxStyles from '../../styles/syntax.module.scss';
@@ -47,7 +47,7 @@ export function MarkdownEditor({
   ...rest
 }: MarkdownEditorProps) {
   const supportProps = extractSupportProps(rest);
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
 
   // onChange не передаём в useValueControl: внутреннее значение обновляется сразу (uncontrolled
   // рендер, видимость clear), а наружу onChange уходит с дебаунсом ON_CHANGE_DEBOUNCE_MS.

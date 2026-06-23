@@ -1,10 +1,10 @@
 import { Droplist, SelectionSingleValueType } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { useValueControl } from '@ds/utils';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import { CHIP_CHOICE_TEST_IDS, SIZE } from '../../../constants';
+import { chipsLocale } from '../../../locale';
 import { DROPLIST_SIZE_MAP } from '../constants';
 import { useAutoApply, useHandleOnKeyDown, useOptionSearch } from '../hooks';
 import { ChipChoiceMultipleProps, ContentRenderProps } from '../types';
@@ -52,7 +52,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
 
   const [searchValue = '', setSearchValue] = useState<string>('');
 
-  const { t } = useLocale('Chips');
+  const { t } = chipsLocale.useTranslations();
 
   const [open, setOpen] = useUncontrolledProp(openProp, false, onOpenChange);
   const handleOnKeyDown = useHandleOnKeyDown({ setOpen });

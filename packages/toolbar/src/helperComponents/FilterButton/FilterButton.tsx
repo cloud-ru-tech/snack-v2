@@ -1,9 +1,9 @@
 import { Button } from '@ds/button';
 import { FilterSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { Tooltip } from '@ds/tooltip';
 import { WithSupportProps } from '@ds/utils';
 
+import { toolbarLocale } from '../../locale';
 import { TEST_IDS } from '../../testIds';
 import styles from './styles.module.scss';
 
@@ -19,7 +19,7 @@ type FilterButtonBaseProps = {
 export type FilterButtonProps = WithSupportProps<FilterButtonBaseProps>;
 
 export function FilterButton({ open, onOpenChange, numberOfFilters }: FilterButtonProps) {
-  const { t } = useLocale('Toolbar');
+  const { t } = toolbarLocale.useTranslations();
 
   return (
     <Tooltip tip={open ? t('hideFilters') : t('showFilters')} triggerClassName={styles.trigger}>

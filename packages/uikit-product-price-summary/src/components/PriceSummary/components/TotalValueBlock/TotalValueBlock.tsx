@@ -1,11 +1,11 @@
 import { Link, ROLE } from '@ds/link';
-import { useLocale } from '@ds/locale';
 import { Tooltip } from '@ds/tooltip';
 import { SIZE, Typography, VARIANT, WEIGHT } from '@ds/typography';
 import { ReactNode } from 'react';
 
 import { APPEARANCE_STATE } from '../../../../constants';
 import { formatCurrency } from '../../../../helpers';
+import { priceSummaryLocale } from '../../../../locale';
 import { AppearanceState, PriceDeltaDetails, TotalSumType } from '../../../../types';
 import { getAppearanceIcon } from '../../../../utils';
 import styles from './styles.module.scss';
@@ -36,7 +36,7 @@ export function TotalValueBlock({
   showHintLink,
   valueDelta,
 }: TotalValueBlockProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   const totalSumPrefix = totalSumType === 'from' ? `${t('totalSumFromPrefix')} ` : '';
 

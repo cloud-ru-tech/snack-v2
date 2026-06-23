@@ -1,9 +1,9 @@
 import { Button } from '@ds/button';
 import { DroplistProps } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { useCallback } from 'react';
 
 import { CHIP_CHOICE_TEST_IDS } from '../../../constants';
+import { chipsLocale } from '../../../locale';
 import { Size } from '../../../types';
 import { DROPLIST_FOOTER_SIZE_MAP } from '../constants';
 import styles from '../styles.module.scss';
@@ -21,7 +21,7 @@ export function useAutoApply({
   onApprove,
   onCancel,
 }: UseAutoApplyProps): () => DroplistProps['pinBottom'] {
-  const { t } = useLocale('Chips');
+  const { t } = chipsLocale.useTranslations();
 
   return useCallback(() => {
     if (autoApply) {

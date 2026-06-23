@@ -1,9 +1,9 @@
 import { Link, LinkProps } from '@ds/link';
-import { useLocale } from '@ds/locale';
 import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { extractSupportProps, WithLayoutType, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
+import { priceSummaryLocale } from '../../locale';
 import { DiscountDetails, InvoiceDetails } from '../../types';
 import { ContentBlock, ContentBlockProps } from '../ContentBlock';
 import { DiscountBlock } from './components/DiscountBlock';
@@ -59,7 +59,7 @@ export function PriceSummary({
   valueDelta,
   ...rest
 }: PriceSummaryProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
   const { appearance, level } = backgroundPredefinedFillToAcrylic(BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level);
 
   return (

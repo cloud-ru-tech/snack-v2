@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { areValuesEqual } from '../helpers';
+import { areValuesEqual } from '../src/components/ChipChoiceRow/helpers';
 
 describe('ChipChoiceRow areValuesEqual helper', () => {
   it.each([

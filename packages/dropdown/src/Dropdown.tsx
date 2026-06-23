@@ -3,13 +3,13 @@ import { Divider } from '@ds/divider';
 import { UpdateSVG } from '@ds/icons';
 import { InfoBlock } from '@ds/info-block';
 import { Spinner } from '@ds/loader';
-import { useLocale } from '@ds/locale';
 import { PopoverPrivate, PopoverPrivateProps } from '@ds/popover-private';
 import { excludeSupportProps, extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 
 import { STATE } from './constants';
+import { dropdownLocale } from './locale';
 import styles from './styles.module.scss';
 import { DropdownState } from './types';
 
@@ -66,7 +66,7 @@ function DropdownBody({
   children,
   contentClassName,
 }: Pick<DropdownProps, 'children' | 'state' | 'contentClassName'>) {
-  const { t } = useLocale('Dropdown');
+  const { t } = dropdownLocale.useTranslations();
 
   switch (state?.type) {
     case STATE.Loading:

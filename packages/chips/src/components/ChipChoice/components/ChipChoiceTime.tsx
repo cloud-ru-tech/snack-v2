@@ -1,10 +1,10 @@
 import { TimePickerDropdown, TimePickerDropdownProps } from '@ds/calendar';
-import { useLocale } from '@ds/locale';
 import { useValueControl } from '@ds/utils';
 import { ReactNode, useCallback, useMemo, useRef } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import { CHIP_CHOICE_TEST_IDS, SIZE } from '../../../constants';
+import { chipsLocale } from '../../../locale';
 import { DEFAULT_LOCALE, TIME_PICKER_SIZE_MAP } from '../constants';
 import { useHandleOnKeyDown } from '../hooks';
 import { ChipChoiceCommonProps } from '../types';
@@ -80,7 +80,7 @@ export function ChipChoiceTime({
     setTimeout(() => localRef.current?.focus(), 0);
   }, [setOpen]);
 
-  const { t } = useLocale('Chips');
+  const { t } = chipsLocale.useTranslations();
 
   const valueToRender = useMemo(() => {
     if (valueRender) {

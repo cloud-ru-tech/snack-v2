@@ -1,8 +1,8 @@
-import { useLocale } from '@ds/locale';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { WithLayoutType } from '@ds/utils';
 
 import { formatCurrency } from '../../../../helpers';
+import { priceSummaryLocale } from '../../../../locale';
 import { InvoiceItem } from '../../../../types';
 import { CoveredByGrantLabel } from '../CoveredByGrantLabel';
 import { DiscountPercentCell } from '../DiscountPercentCell';
@@ -17,7 +17,7 @@ export type InvoiceItemBlockProps = WithLayoutType<{
 }>;
 
 export function InvoiceItemBlock({ item, index, layoutType, showCoveredByGrantLabel }: InvoiceItemBlockProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
   const isEven = (index + 1) % 2 === 0;
 
   const isSecondary = item.primary === undefined ? isEven : !item.primary;

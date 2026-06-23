@@ -1,9 +1,9 @@
 import { Button } from '@ds/button';
 import { ProductIcons } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 import { TEST_IDS } from '../../../../constants';
+import { quotaLocale } from '../../../../locale';
 import { QuotaWidgetPropsBase } from '../../../../types';
 import styles from './styles.module.scss';
 
@@ -26,7 +26,7 @@ export function ProjectHeader({
   hideIncreaseQuotaButton,
   onQuotasUrlClick,
 }: ProjectHeaderProps) {
-  const { t } = useLocale('Quota');
+  const { t } = quotaLocale.useTranslations();
 
   const widgetTitle = RUSSIAN_CHARS_REGEXP.test(projectName) ? 'widgetTitle.quotes' : 'widgetTitle.noQuotes';
 

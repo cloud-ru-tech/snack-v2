@@ -1,9 +1,9 @@
-import { useLocale } from '@ds/locale';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { WithLayoutType } from '@ds/utils';
 import { Fragment } from 'react';
 
 import { formatCurrency } from '../../../../helpers';
+import { priceSummaryLocale } from '../../../../locale';
 import { DiscountDetails } from '../../../../types';
 import { DiscountPercentCell } from '../DiscountPercentCell';
 import styles from './styles.module.scss';
@@ -13,7 +13,7 @@ export type DiscountBlockProps = WithLayoutType<{
 }>;
 
 export function DiscountBlock({ value, layoutType }: DiscountBlockProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   return (
     <>

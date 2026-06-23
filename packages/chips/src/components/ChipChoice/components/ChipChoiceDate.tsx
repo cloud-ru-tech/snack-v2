@@ -1,10 +1,10 @@
 import { CalendarDropdown, CalendarDropdownProps } from '@ds/calendar';
-import { useLocale } from '@ds/locale';
 import { useValueControl } from '@ds/utils';
 import { ReactNode, useCallback, useMemo, useRef } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import { CHIP_CHOICE_TEST_IDS, SIZE } from '../../../constants';
+import { chipsLocale } from '../../../locale';
 import { CALENDAR_SIZE_MAP, DEFAULT_LOCALE } from '../constants';
 import { useHandleOnKeyDown } from '../hooks';
 import { ChipChoiceCommonProps } from '../types';
@@ -81,7 +81,7 @@ export function ChipChoiceDate({
     setTimeout(() => localRef.current?.focus(), 0);
   }, [setOpen]);
 
-  const { t } = useLocale('Chips');
+  const { t } = chipsLocale.useTranslations();
 
   const valueToRender = useMemo(() => {
     if (valueRender) {

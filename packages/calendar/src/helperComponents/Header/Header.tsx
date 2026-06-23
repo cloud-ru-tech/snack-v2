@@ -1,8 +1,8 @@
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 
 import { GRID_SIZE, SIZE, VIEW_MODE } from '../../constants';
 import { useCalendarContext } from '../../hooks';
+import { calendarLocale } from '../../locale';
 import { stringifyAddress } from '../../utils';
 import { NavButton } from '../NavButton';
 import { LEVEL_BUTTON_FOCUS_NAME, NEXT_PERIOD_BUTTON_FOCUS_NAME, PREV_PERIOD_BUTTON_FOCUS_NAME } from './constants';
@@ -57,7 +57,7 @@ export function Header() {
     firstNotDisableCell,
   } = useCalendarContext();
   const periodName = usePeriodName();
-  const { t } = useLocale('Calendar');
+  const { t } = calendarLocale.useTranslations();
 
   const prevPeriodAriaLabel = t(PERIOD_NAV_ARIA_KEYS.prev[viewMode]);
   const nextPeriodAriaLabel = t(PERIOD_NAV_ARIA_KEYS.next[viewMode]);

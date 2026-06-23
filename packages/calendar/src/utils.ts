@@ -1,4 +1,4 @@
-import { LocaleLang } from '@ds/locale';
+import { Lang } from '@ds/locale';
 import { isBrowser } from '@ds/utils';
 import { getWeekStartByLocale } from 'weekstart';
 
@@ -109,7 +109,7 @@ export const getTestIdBuilder = (testId?: string) => (prefix: string) => (testId
 
 const getNavigatorLocale = () => (isBrowser() ? (navigator?.language ?? 'ru-RU') : 'ru-RU');
 
-export const getLocale = ({ localeProp, ctxLang }: { localeProp?: Intl.Locale; ctxLang?: LocaleLang } = {}) =>
+export const getLocale = ({ localeProp, ctxLang }: { localeProp?: Intl.Locale; ctxLang?: Lang } = {}) =>
   localeProp || new Intl.Locale(ctxLang ? ctxLang.replace('_', '-') : getNavigatorLocale());
 
 export const getStartOfWeek = (locale: Intl.Locale) => getWeekStartByLocale(locale.language);

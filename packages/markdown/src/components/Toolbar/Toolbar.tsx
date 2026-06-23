@@ -1,6 +1,5 @@
 import { ChevronRightSVG, MoreSVG } from '@ds/icons';
 import { Droplist, DroplistProps, ItemProps } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { usePortalContext } from '@ds/portal-context';
 import { Tooltip } from '@ds/tooltip';
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
@@ -19,6 +18,7 @@ import {
   PrivateButtonProps,
   TableSelectSettingsGrid,
 } from '../../helperComponents';
+import { markdownLocale } from '../../locale';
 import { ToolbarApi } from '../../toolbarApi';
 import { ToolbarItemId } from '../../types';
 import { BUTTONS, GROUPS } from './constants';
@@ -33,7 +33,7 @@ type ToolbarProps = {
 
 export function Toolbar({ api, items }: ToolbarProps) {
   const portalContext = usePortalContext();
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
 
   // Overflow тулбара (сколько кнопок видно, остальные — в «Ещё») вынесен в хук.
   const { rootRef, moreButtonRef, visibleCount } = useToolbarOverflow(items);

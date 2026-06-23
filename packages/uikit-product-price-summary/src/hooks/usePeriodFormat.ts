@@ -1,7 +1,7 @@
-import { useLocale } from '@ds/locale';
 import { useCallback } from 'react';
 
 import { PRICE_PERIOD } from '../constants';
+import { priceSummaryLocale } from '../locale';
 import { PricePeriod } from '../types';
 
 type PeriodLabelKey =
@@ -24,7 +24,7 @@ export function formatPeriodLabel(t: (key: PeriodLabelKey) => string, period: Pr
 }
 
 export function usePeriodFormat() {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   return useCallback((period: PricePeriod) => formatPeriodLabel(t, period), [t]);
 }

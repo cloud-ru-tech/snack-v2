@@ -1,11 +1,11 @@
 import { Button } from '@ds/button';
 import { UpdateSVG } from '@ds/icons';
 import { Sun } from '@ds/loader';
-import { useLocale } from '@ds/locale';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { PropsWithChildren } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { priceSummaryLocale } from '../../locale';
 import styles from './styles.module.scss';
 
 export type ContentBlockProps = {
@@ -15,7 +15,7 @@ export type ContentBlockProps = {
 };
 
 export function ContentBlock({ loading, dataError, onRetry, children }: PropsWithChildren<ContentBlockProps>) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   if (loading) {
     return (

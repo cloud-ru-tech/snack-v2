@@ -16,3 +16,4 @@ export { getDefaultItemId, getFooterItemId, getItemAutoId } from './utils';
 export * from './constants';
 
 export { setNonce } from '@ds/scroll';
+export * from './locale';

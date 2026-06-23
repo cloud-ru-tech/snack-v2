@@ -1,8 +1,8 @@
 import { APPEARANCE, Divider } from '@ds/divider';
-import { useLocale } from '@ds/locale';
 import { Typography } from '@ds/typography';
 
 import { TEST_IDS } from '../../../../constants';
+import { quotaLocale } from '../../../../locale';
 import { QuotaItem } from '../../../../types';
 import { checkIsExceeded, formatNumber } from '../../../../utils';
 import styles from './styles.module.scss';
@@ -12,7 +12,7 @@ type QuotaTooltipProps = {
 };
 
 export function QuotaTooltip({ quota }: QuotaTooltipProps) {
-  const { t } = useLocale('Quota');
+  const { t } = quotaLocale.useTranslations();
 
   const rows = [
     { label: t('tooltipAvailable'), value: quota.limit },

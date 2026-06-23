@@ -1,5 +1,5 @@
 import { ListProps } from '@ds/list';
-import { useLocale } from '@ds/locale';
+import { useLang } from '@ds/locale';
 import { useEventHandler, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -127,7 +127,7 @@ export function TimePicker({
 
   const getTestId = useMemo(() => getTestIdBuilder(testId), [testId]);
 
-  const { lang: ctxLang } = useLocale();
+  const ctxLang = useLang();
 
   const locale = useMemo(() => getLocale({ localeProp: DEFAULT_LOCALE, ctxLang }), [ctxLang]);
 

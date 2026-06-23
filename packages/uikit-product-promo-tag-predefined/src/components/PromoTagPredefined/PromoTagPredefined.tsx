@@ -1,10 +1,10 @@
-import { useLocale } from '@ds/locale';
 import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { Tooltip, TooltipProps, TRIGGER } from '@ds/tooltip';
 import { WithSupportProps } from '@ds/utils';
 import { ElementType, useMemo } from 'react';
 
 import { HOVER_DELAY_OPEN_MS, PREVIEW_CONTEXT, TEST_IDS, VARIANTS } from '../../constants';
+import { promoTagPredefinedLocale } from '../../locale';
 import { PreviewContext, Variant } from '../../types';
 import styles from './styles.module.scss';
 
@@ -29,7 +29,7 @@ export function PromoTagPredefined({
   innerRef,
   ...rest
 }: PromoTagPredefinedProps) {
-  const { t } = useLocale('PromoTagPredefined');
+  const { t } = promoTagPredefinedLocale.useTranslations();
   const linkMode = Boolean(as);
 
   const { tip, text, appearance } = useMemo<{

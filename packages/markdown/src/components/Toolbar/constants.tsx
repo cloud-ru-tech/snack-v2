@@ -12,10 +12,10 @@ import {
   StrikeSVG,
   TableSVG,
 } from '@ds/icons';
-import { Dictionary, DottedTranslationKey } from '@ds/locale';
 import { ReactNode } from 'react';
 
 import { TOOLBAR_ITEM } from '../../constants';
+import { MarkdownMessages } from '../../locale';
 import { ToolbarItemId } from '../../types';
 
 // Группировка: text-style | inline | lists | blocks | media.
@@ -27,7 +27,7 @@ export const GROUPS: ToolbarItemId[][] = [
 
 type ButtonSpec = {
   icon: ReactNode;
-  nameKey: DottedTranslationKey<Dictionary, 'Markdown'>;
+  nameKey: `toolbar.${Extract<keyof MarkdownMessages['toolbar'], string>}`;
   /** Хоткей для строки в More-списке. Только реально работающие биндинги TipTap. */
   hotkey?: string;
 };

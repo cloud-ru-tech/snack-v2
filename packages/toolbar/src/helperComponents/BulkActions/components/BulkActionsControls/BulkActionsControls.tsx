@@ -1,10 +1,10 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { Tooltip } from '@ds/tooltip';
 import { LAYOUT_TYPE, useDynamicList } from '@ds/utils';
 import { RefObject, useRef, useState } from 'react';
 
+import { toolbarLocale } from '../../../../locale';
 import { TEST_IDS } from '../../../../testIds';
 import { LayoutType } from '../../../../types';
 import { AdaptiveDroplist } from '../../../AdaptiveDroplist';
@@ -43,7 +43,7 @@ export function BulkActionsControls({
   totalCount,
   hasSelection = false,
 }: BulkActionsControlsProps) {
-  const { t } = useLocale('Toolbar');
+  const { t } = toolbarLocale.useTranslations();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const actionsAreaRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);

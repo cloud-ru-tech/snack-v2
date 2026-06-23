@@ -1,9 +1,9 @@
 import { BottomSheet } from '@ds/bottom-sheet';
-import { useLocale } from '@ds/locale';
 import { usePortalContext } from '@ds/portal-context';
 import { getThemeClassnames, useLayoutEffect } from '@ds/utils';
 import { useState } from 'react';
 
+import { toolbarLocale } from '../../../../locale';
 import { TEST_IDS } from '../../../../testIds';
 import { BulkAction } from '../../types';
 import { BulkActionsControls } from '../BulkActionsControls';
@@ -34,7 +34,7 @@ export function MobileBulkActionsSheet({
   onCheck,
   showBulkCheckbox,
 }: MobileBulkActionsSheetProps) {
-  const { t } = useLocale('Toolbar');
+  const { t } = toolbarLocale.useTranslations();
   const portalContext = usePortalContext();
   const [bottomSheetKey, setBottomSheetKey] = useState('notReady');
 

@@ -11,10 +11,22 @@
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/attachment": "workspace:^",
     "@ds/button": "workspace:^",
@@ -27,5 +39,7 @@
     "classnames": "catalog:",
     "merge-refs": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

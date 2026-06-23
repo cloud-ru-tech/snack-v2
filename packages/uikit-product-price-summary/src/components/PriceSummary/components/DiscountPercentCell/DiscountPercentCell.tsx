@@ -1,10 +1,10 @@
-import { useLocale } from '@ds/locale';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { WithLayoutType } from '@ds/utils';
 
 import { formatNumber } from '@cloud-ru/ft-formatters';
 
 import { AdaptiveQuestionTooltip } from '../../../../components/AdaptiveQuestionTooltip';
+import { priceSummaryLocale } from '../../../../locale';
 import { DiscountItem } from '../../../../types';
 import styles from './styles.module.scss';
 
@@ -13,7 +13,7 @@ export type DiscountPercentCellProps = WithLayoutType<{
 }>;
 
 export function DiscountPercentCell({ discount, layoutType }: DiscountPercentCellProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   return (
     <div className={styles.percentCell}>

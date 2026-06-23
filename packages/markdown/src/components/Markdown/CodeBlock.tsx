@@ -1,6 +1,5 @@
 import { Button } from '@ds/button';
 import { CheckSVG, CopySVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { Scroll } from '@ds/scroll';
 import cn from 'classnames';
 import { Children, isValidElement, ReactNode, useRef, useState } from 'react';
@@ -8,6 +7,7 @@ import { Children, isValidElement, ReactNode, useRef, useState } from 'react';
 import { copyToClipboard } from '@cloud-ru/ft-copy-to-clipboard';
 
 import { TEST_IDS } from '../../constants';
+import { markdownLocale } from '../../locale';
 import styles from './styles.module.scss';
 
 const LANGUAGE_PATTERN = /language-([\w-]+)/;
@@ -30,7 +30,7 @@ type CodeBlockProps = {
 };
 
 export function CodeBlock({ children, onCopyClick }: CodeBlockProps) {
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
   const [copied, setCopied] = useState(false);
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 

@@ -1,6 +1,5 @@
 import { CrossSVG } from '@ds/icons';
 import { Link } from '@ds/link';
-import { useLocale } from '@ds/locale';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -10,6 +9,7 @@ import { AUTO_CLOSE_TIME, TEST_IDS, TOASTER_TYPE } from '../../constants';
 import { ToastButton } from '../../helperComponents/ToastButton';
 import { ToastButtonAction } from '../../helperComponents/ToastButtonAction';
 import { ToastSystemEventProgress } from '../../helperComponents/ToastSystemEventProgress';
+import { toasterLocale } from '../../locale';
 import { APPEARANCE_TO_LINK_APPEARANCE } from './constants';
 import styles from './styles.module.scss';
 import { ToastSystemEventProps } from './types';
@@ -32,7 +32,7 @@ export function ToastSystemEvent({
   const progressDuration =
     typeof autoClose === 'number' ? autoClose : (AUTO_CLOSE_TIME[TOASTER_TYPE.SystemEvent] as number);
   const showProgressBar = progressBar && autoClose !== false;
-  const { t } = useLocale('ToastSystemEvent');
+  const { t } = toasterLocale.useTranslations();
 
   const handleCloseClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -97,7 +97,7 @@ export function ToastSystemEvent({
               composition='iconOnly'
               onClick={handleCloseClick}
               data-test-id={TEST_IDS.systemEventButtonClose}
-              aria-label={t('closeButton')}
+              aria-label={t('systemEvent.closeButton')}
             >
               <CrossSVG />
             </ToastButton>

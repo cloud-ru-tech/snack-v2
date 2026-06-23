@@ -1,5 +1,4 @@
 import { ChevronDownSVG, ChevronUpSVG, CrossSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { TruncateString } from '@ds/truncate-string';
 import { MouseEvent } from 'react';
 
@@ -7,6 +6,7 @@ import { MAX_PROGRESS_PERCENT, progressBarAppearanceByStatus } from '../../compo
 import { ToastUploadStatus, UploadActions } from '../../components/ToastUpload/types';
 import { formatPercent } from '../../components/ToastUpload/utils';
 import { TEST_IDS } from '../../constants';
+import { toasterLocale } from '../../locale';
 import { LoadingStatus } from '../LoadingStatus';
 import { ToastButton } from '../ToastButton';
 import { ToastUploadProgress } from '../ToastUploadProgress';
@@ -37,9 +37,9 @@ export function ToastUploadTitleLine({
   generalActions,
   onCancelAll,
 }: ToastUploadTitleLineProps) {
-  const { t } = useLocale('ToastUpload');
+  const { t } = toasterLocale.useTranslations();
 
-  const showingTitle = title || t(`title.${status}`);
+  const showingTitle = title || t(`upload.title.${status}`);
 
   const progressPercent =
     progress.total > 0 ? Math.round((progress.current / progress.total) * MAX_PROGRESS_PERCENT) : 0;
@@ -54,7 +54,7 @@ export function ToastUploadTitleLine({
           <span className={styles.buttonActionWrapper}>
             <ToastButton
               composition='labelOnly'
-              label={t('cancelAll')}
+              label={t('upload.cancelAll')}
               onClick={onCancelAll}
               data-test-id={TEST_IDS.uploadCancelButton}
             />

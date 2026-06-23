@@ -1,8 +1,8 @@
 import { NotifierSuccessFilledSVG, PauseSVG, PlaySVG, UpdateSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 
 import { ToastUploadStatus, UploadActions } from '../../components/ToastUpload/types';
 import { TEST_IDS } from '../../constants';
+import { toasterLocale } from '../../locale';
 import { ToastButton } from '../ToastButton';
 import styles from './styles.module.scss';
 
@@ -16,7 +16,7 @@ export type LoadingStatusProps = {
 };
 
 export function LoadingStatus({ status, actions }: LoadingStatusProps) {
-  const { t } = useLocale('ToastUpload');
+  const { t } = toasterLocale.useTranslations();
 
   switch (status) {
     case 'loading':
@@ -25,7 +25,7 @@ export function LoadingStatus({ status, actions }: LoadingStatusProps) {
           <ToastButton
             composition='iconOnly'
             onClick={actions.onPause}
-            aria-label={t('pause')}
+            aria-label={t('upload.pause')}
             data-test-id={TEST_IDS.uploadStatusPause}
           >
             <PauseSVG />
@@ -38,7 +38,7 @@ export function LoadingStatus({ status, actions }: LoadingStatusProps) {
           <ToastButton
             composition='iconOnly'
             onClick={actions.onContinue}
-            aria-label={t('play')}
+            aria-label={t('upload.play')}
             data-test-id={TEST_IDS.uploadStatusPlay}
           >
             <PlaySVG />
@@ -54,7 +54,7 @@ export function LoadingStatus({ status, actions }: LoadingStatusProps) {
           <ToastButton
             composition='iconOnly'
             onClick={actions.onRetry}
-            aria-label={t('retry')}
+            aria-label={t('upload.retry')}
             data-test-id={TEST_IDS.uploadStatusRetry}
           >
             <UpdateSVG />

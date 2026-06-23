@@ -16,3 +16,4 @@ export * from './helperComponents/ToastUploadFileLine';
 export * from './helperComponents/ToastUploadProgress';
 
 export { dismissToast, isToastActive, openToast, toaster, updateToast } from './helpers';
+export * from './locale';

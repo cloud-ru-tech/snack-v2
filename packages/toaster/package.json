@@ -11,11 +11,27 @@
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "*.scss", "**/*.css", "**/*.scss"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@ds/icons": "workspace:^",
     "@ds/link": "workspace:^",

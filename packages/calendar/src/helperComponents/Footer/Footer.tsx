@@ -1,11 +1,11 @@
 import { ButtonGroup } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { getDefaultItemId } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { KeyboardEventHandler, RefObject } from 'react';
 
 import { CALENDAR_MODE } from '../../constants';
 import { useCalendarContext } from '../../hooks';
+import { calendarLocale } from '../../locale';
 import { getMonthShift } from '../../utils';
 import styles from './styles.module.scss';
 
@@ -39,7 +39,7 @@ export function Footer({ onApply, onCurrent }: FooterProps) {
     onFocusLeave,
   } = useCalendarContext();
 
-  const { t } = useLocale('Calendar');
+  const { t } = calendarLocale.useTranslations();
 
   if (![CALENDAR_MODE.DateTime, 'time'].includes(mode) || viewMode !== 'month') {
     return null;

@@ -1,11 +1,11 @@
 import { Button } from '@ds/button';
 import { Divider, VARIANT } from '@ds/divider';
-import { useLocale } from '@ds/locale';
 import { TruncateString, TruncateStringProps } from '@ds/truncate-string';
 import { CSSProperties, ForwardedRef, MouseEvent, ReactNode, RefObject, useMemo } from 'react';
 
 import { useCollapseLevelContext, useNewListContext } from '../../components/Lists/contexts';
 import { TEST_IDS } from '../../constants';
+import { listLocale } from '../../locale';
 import { stopPropagation } from '../../utils';
 import { SELECT_BUTTON_SIZE_MAP } from './constants';
 import styles from './styles.module.scss';
@@ -39,7 +39,7 @@ export function Separator({
   const { size = 's' } = useNewListContext();
   const { level = 0 } = useCollapseLevelContext();
 
-  const { t } = useLocale('List');
+  const { t } = listLocale.useTranslations();
 
   const selectButtonJSX = useMemo(() => {
     if (!selectButton) {

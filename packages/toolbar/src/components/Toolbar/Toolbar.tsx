@@ -1,12 +1,12 @@
 import { Button } from '@ds/button';
 import { ChipChoiceRow, FiltersState } from '@ds/chips';
 import { UpdateSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { extractSupportProps, getThemeClassnames, LAYOUT_TYPE } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo, useRef } from 'react';
 
 import { BulkActions, DataView, FilterButton, MoreActions, Search, Separator } from '../../helperComponents';
+import { toolbarLocale } from '../../locale';
 import { TEST_IDS } from '../../testIds';
 import { extractBulkActionsProps, isBulkActionsProps } from './helpers';
 import { useFilters, usePersistState } from './hooks';
@@ -27,7 +27,7 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
   persist,
   ...rest
 }: ToolbarProps<TState>) {
-  const { t } = useLocale('Toolbar');
+  const { t } = toolbarLocale.useTranslations();
   const supportProps = extractSupportProps(rest);
   const needsBulkActions = isBulkActionsProps(rest);
   const isMobile = layoutType === LAYOUT_TYPE.Mobile;

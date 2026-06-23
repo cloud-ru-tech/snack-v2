@@ -1,10 +1,10 @@
 import { Heading1SVG, Heading2SVG, Heading3SVG, Heading4SVG, Heading5SVG, HeadingSVG } from '@ds/icons';
 import { BaseItemProps, Droplist } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { usePortalContext } from '@ds/portal-context';
 import { ComponentType, useState } from 'react';
 
 import { headingOptionTestId, TEST_IDS, TOOLBAR_ITEM } from '../../constants';
+import { markdownLocale } from '../../locale';
 import { ToolbarApi } from '../../toolbarApi';
 import { HeadingLevel } from '../../types';
 import { PrivateButton } from '../PrivateButton';
@@ -29,7 +29,7 @@ export type ButtonHeadingProps = {
 
 export function ButtonHeading({ api }: ButtonHeadingProps) {
   const portalContext = usePortalContext();
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
   const [open, setOpen] = useState(false);
   const activeLevel = HEADING_LEVELS.find(lvl => api.isHeadingActive(lvl));
   const TriggerIcon = activeLevel != null ? ICON_FOR[activeLevel] : HeadingSVG;

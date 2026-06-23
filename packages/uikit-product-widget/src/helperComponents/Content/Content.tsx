@@ -1,11 +1,11 @@
 import { Button, VIEW } from '@ds/button';
 import { CrossSVG, UpdateSVG } from '@ds/icons';
 import { InfoBlock } from '@ds/info-block';
-import { useLocale } from '@ds/locale';
 import { Skeleton } from '@ds/skeleton';
 import { memo, ReactNode } from 'react';
 
 import { TEST_IDS, WIDGET_STATE } from '../../constants';
+import { widgetLocale } from '../../locale';
 import { WidgetErrorStateProps, WidgetLoadingStateProps, WidgetState } from '../../types';
 import styles from './styles.module.scss';
 
@@ -18,7 +18,7 @@ type ContentProps = {
 };
 
 function ContentComponent({ children, state, wide, loadingState, errorState }: ContentProps) {
-  const { t } = useLocale('Widget');
+  const { t } = widgetLocale.useTranslations();
   switch (state) {
     case WIDGET_STATE.Loading: {
       if (loadingState?.loadingContent) {

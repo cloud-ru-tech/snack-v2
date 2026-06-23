@@ -1,7 +1,6 @@
 import { Button } from '@ds/button';
 import { NotifierInfoFilledSVG } from '@ds/icons';
 import { LinkProps } from '@ds/link';
-import { useLocale } from '@ds/locale';
 import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
@@ -9,6 +8,7 @@ import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import { formatCurrency } from '../../helpers';
+import { priceSummaryLocale } from '../../locale';
 import { AdaptiveQuestionTooltip } from '../AdaptiveQuestionTooltip';
 import { ContentBlock, ContentBlockProps } from '../ContentBlock';
 import styles from './styles.module.scss';
@@ -39,7 +39,7 @@ export function PriceSummarySmall({
   className,
   ...rest
 }: PriceSummarySmallProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
   const { appearance, level } = backgroundPredefinedFillToAcrylic(BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level);
 
   return (

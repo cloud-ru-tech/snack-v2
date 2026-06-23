@@ -1,7 +1,7 @@
-import { useLocale } from '@ds/locale';
 import { PromoTag, PromoTagProps } from '@ds/promo-tag';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 
+import { priceSummaryLocale } from '../../../../locale';
 import { PeriodDropdown, PeriodDropdownProps } from '../PeriodDropdown';
 import styles from './styles.module.scss';
 
@@ -10,7 +10,7 @@ export type HeaderBlockProps = PeriodDropdownProps & {
 };
 
 export function HeaderBlock({ period, onPeriodChanged, periodOptions, promoBadge, layoutType }: HeaderBlockProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   return (
     <>

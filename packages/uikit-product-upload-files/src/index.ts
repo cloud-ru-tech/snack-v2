@@ -11,3 +11,4 @@ export type {
   UseUploadFilesControllerOptions,
   UseUploadFilesControllerResult,
 } from './hooks';
+export * from './locale';

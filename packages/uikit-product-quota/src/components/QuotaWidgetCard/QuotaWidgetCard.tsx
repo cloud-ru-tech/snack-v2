@@ -1,7 +1,6 @@
 import { Button } from '@ds/button';
 import { UpdateSVG } from '@ds/icons';
 import { InfoBlock } from '@ds/info-block';
-import { useLocale } from '@ds/locale';
 import { ProgressBar } from '@ds/progress-bar';
 import { SkeletonText } from '@ds/skeleton';
 import { Tooltip } from '@ds/tooltip';
@@ -9,6 +8,7 @@ import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import { WithSupportProps } from '@ds/utils';
 
+import { quotaLocale } from '../../locale';
 import { QuotaItem } from '../../types';
 import { checkIsExceeded, formatNumber, getPercent } from '../../utils';
 import { QuotaTooltip } from './components/QuotaTooltip';
@@ -41,7 +41,7 @@ function getProgressAppearance(percent: number) {
 }
 
 export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefresh, ...props }: QuotaWidgetCardProps) {
-  const { t } = useLocale('Quota');
+  const { t } = quotaLocale.useTranslations();
 
   if (noData) {
     return (

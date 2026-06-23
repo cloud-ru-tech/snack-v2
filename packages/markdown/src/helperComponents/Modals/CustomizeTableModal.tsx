@@ -1,11 +1,11 @@
 import { ButtonGroup } from '@ds/button';
 import { FieldStepper } from '@ds/fields';
-import { useLocale } from '@ds/locale';
 import { Modal } from '@ds/modal';
 import { usePortalContext } from '@ds/portal-context';
 import { useEffect, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { markdownLocale } from '../../locale';
 import styles from './styles.module.scss';
 
 type CustomizeTableModalProps = {
@@ -18,7 +18,7 @@ type CustomizeTableModalProps = {
 const DEFAULT_SIZE = 1;
 
 export function CustomizeTableModal({ open, onClose, onSubmit }: CustomizeTableModalProps) {
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
   const portalContext = usePortalContext();
   const [columns, setColumns] = useState(DEFAULT_SIZE);
   const [rows, setRows] = useState(DEFAULT_SIZE);

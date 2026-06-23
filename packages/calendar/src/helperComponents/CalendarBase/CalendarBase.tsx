@@ -2,7 +2,6 @@ import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { ChevronDownSVG } from '@ds/icons';
 import { ListProps } from '@ds/list';
-import { useLocale } from '@ds/locale';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { CSSProperties, ReactNode, RefObject, useCallback, useMemo, useRef, useState } from 'react';
@@ -10,6 +9,7 @@ import { useUncontrolledProp } from 'uncontrollable';
 
 import { AUTOFOCUS, CALENDAR_MODE, SIZE, VIEW_MODE } from '../../constants';
 import { useDateAndTime } from '../../hooks';
+import { calendarLocale } from '../../locale';
 import {
   BuildCellPropsFunction,
   CalendarMode,
@@ -92,7 +92,7 @@ export function CalendarBase({
   bottomSlot,
   ...rest
 }: CalendarBaseProps) {
-  const { t, lang: ctxLang } = useLocale('Calendar');
+  const { t, lang: ctxLang } = calendarLocale.useTranslations();
 
   const [viewMode, setViewMode] = useState<ViewMode>(CALENDAR_DEFAULT_MODE_MAP[mode]);
   const [viewShift, setViewShift] = useState<number>(0);

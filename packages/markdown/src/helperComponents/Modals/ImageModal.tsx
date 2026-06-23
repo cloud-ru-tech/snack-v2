@@ -1,11 +1,11 @@
 import { ButtonGroup } from '@ds/button';
 import { FieldText } from '@ds/fields';
-import { useLocale } from '@ds/locale';
 import { Modal } from '@ds/modal';
 import { usePortalContext } from '@ds/portal-context';
 import { useEffect, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { markdownLocale } from '../../locale';
 import styles from './styles.module.scss';
 
 // Модалка вставки изображения (вместо window.prompt): поля URL и Alt + кнопки Отмена/Добавить.
@@ -16,7 +16,7 @@ type ImageModalProps = {
 };
 
 export function ImageModal({ open, onClose, onSubmit }: ImageModalProps) {
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
   const portalContext = usePortalContext();
   const [url, setUrl] = useState('');
   const [alt, setAlt] = useState('');

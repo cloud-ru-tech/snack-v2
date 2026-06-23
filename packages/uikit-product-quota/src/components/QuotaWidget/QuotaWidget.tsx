@@ -1,12 +1,12 @@
 import { Button, ButtonProps } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { WithSupportProps } from '@ds/utils';
 import { useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
 import { QuotaCardsGrid } from '../../helperComponents/QuotaCardsGrid';
+import { quotaLocale } from '../../locale';
 import { QuotaWidgetPropsBase } from '../../types';
 import { checkIsExceeded } from '../../utils';
 import { ProjectHeader } from './components/ProjectHeader';
@@ -39,7 +39,7 @@ export function QuotaWidget({
   buttonProps,
   ...props
 }: QuotaWidgetProps) {
-  const { t } = useLocale('Quota');
+  const { t } = quotaLocale.useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const rootTestId = props['data-test-id'];
   const useMatrixTestIds = Boolean(rootTestId && rootTestId !== TEST_IDS.quotaWidget.root);

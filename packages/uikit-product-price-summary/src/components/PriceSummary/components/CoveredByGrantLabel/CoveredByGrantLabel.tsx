@@ -1,8 +1,8 @@
-import { useLocale } from '@ds/locale';
 import { PromoTag, ROLE_APPEARANCE } from '@ds/promo-tag';
 import { QuestionTooltip } from '@ds/tooltip';
 import cn from 'classnames';
 
+import { priceSummaryLocale } from '../../../../locale';
 import styles from './styles.module.scss';
 
 export type CoveredByGrantLabelProps = {
@@ -11,7 +11,7 @@ export type CoveredByGrantLabelProps = {
 };
 
 export function CoveredByGrantLabel({ covered, className }: CoveredByGrantLabelProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   return (
     <div className={cn(styles.coveredByGrant, className)}>

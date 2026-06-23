@@ -1,14 +1,15 @@
 import { Button } from '@ds/button';
 import { CrossSVG, UpdateSVG } from '@ds/icons';
 import { InfoBlock } from '@ds/info-block';
-import { useLocale } from '@ds/locale';
+
+import { quotaLocale } from '../../../../locale';
 
 type QuotaErrorProps = {
   onRefresh: () => void;
 };
 
 export function QuotaError({ onRefresh }: QuotaErrorProps) {
-  const { t } = useLocale('Quota');
+  const { t } = quotaLocale.useTranslations();
 
   return (
     <InfoBlock

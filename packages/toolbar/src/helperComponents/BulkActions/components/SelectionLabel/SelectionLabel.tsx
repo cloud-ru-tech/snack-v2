@@ -1,6 +1,6 @@
-import { useLocale } from '@ds/locale';
 import cn from 'classnames';
 
+import { toolbarLocale } from '../../../../locale';
 import styles from './styles.module.scss';
 
 type SelectionLabelProps = {
@@ -18,7 +18,7 @@ export function SelectionLabel({
   className,
   placement = 'inline',
 }: SelectionLabelProps) {
-  const { t } = useLocale('Toolbar');
+  const { t } = toolbarLocale.useTranslations();
 
   const valueLabel =
     hasSelection && totalCount != null

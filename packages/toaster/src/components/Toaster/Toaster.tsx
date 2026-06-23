@@ -1,4 +1,3 @@
-import { useLocale } from '@ds/locale';
 import { Scroll } from '@ds/scroll';
 import { useLayoutEffect } from '@ds/utils';
 import cn from 'classnames';
@@ -6,6 +5,7 @@ import { FocusEvent, MouseEvent, useCallback, useEffect, useMemo, useReducer, us
 
 import { CLOSE_ALL_THRESHOLD, POSITION_SYSTEM_EVENT, TEST_IDS, TOASTER_TYPE } from '../../constants';
 import { ToastSystemEventCloseAll } from '../../helperComponents/ToastSystemEventCloseAll';
+import { toasterLocale } from '../../locale';
 import { toasterManager } from '../../manager';
 import { ManagedToast, ToasterId } from '../../manager/types';
 import { DraggableDirection, ToasterContainerProps } from '../../types';
@@ -38,7 +38,7 @@ export function ToasterContainer(rawProps: ToasterProps) {
   const { type, position, limit, containerId, displayCloseAllButton, width, draggable } = props;
   const stacked = Boolean(props.stacked);
   const { autoClose } = rawProps;
-  const { t } = useLocale('ToasterContainer');
+  const { t } = toasterLocale.useTranslations();
 
   // Свайп по умолчанию — по оси приезда: top-/bottom-center «подъезжают» сверху/
   // снизу, остальные позиции — сбоку.
@@ -266,7 +266,7 @@ export function ToasterContainer(rawProps: ToasterProps) {
       ref={containerRef}
       className={cn(styles.container, styles[POSITION_CLASS_NAME[position]])}
       role='region'
-      aria-label={t('notificationsRegion')}
+      aria-label={t('container.notificationsRegion')}
       aria-live='polite'
       aria-relevant='additions'
       data-test-id={rawProps['data-test-id'] ?? TEST_IDS.toasterContainer}
@@ -306,11 +306,11 @@ export function ToasterContainer(rawProps: ToasterProps) {
             <div className={styles.buttonsBlock} data-stacked={stacked || undefined}>
               {stacked && (
                 <ToastSystemEventCloseAll onClick={toggleCollapsed} data-test-id={TEST_IDS.buttonCollapse}>
-                  {ui.collapsed ? t('expand') : t('collapse')}
+                  {ui.collapsed ? t('container.expand') : t('container.collapse')}
                 </ToastSystemEventCloseAll>
               )}
               <ToastSystemEventCloseAll onClick={closeAll} data-test-id={TEST_IDS.buttonCloseAll}>
-                {t('closeAll')}
+                {t('container.closeAll')}
               </ToastSystemEventCloseAll>
             </div>
           )}

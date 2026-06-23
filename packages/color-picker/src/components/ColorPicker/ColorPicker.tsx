@@ -1,5 +1,4 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { useLocale } from '@ds/locale';
 import { SegmentControl } from '@ds/segment-control';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -8,6 +7,7 @@ import { HexColorPicker, HsvColorPicker, RgbColorPicker } from 'react-colorful';
 
 import { COLOR_MODE, COLOR_MODE_LABEL, DEFAULT_AVAILABLE_MODES, DEFAULT_COLOR, SIZE, TEST_IDS } from '../../constants';
 import { ChannelSlider, FieldAlphaColor, FieldPrivate } from '../../helperComponents';
+import { colorPickerLocale } from '../../locale';
 import { Color, ColorMode, HsvaColor, RawColor, RgbaColor, Size } from '../../types';
 import { colorToRawValue, hexToRgba, hsvaToRawValue, rgbaToHex, rgbaToHsva } from '../../utils/convert';
 import {
@@ -74,7 +74,7 @@ export function ColorPicker({
   availableModes,
   ...rest
 }: ColorPickerProps) {
-  const { t } = useLocale('ColorPicker');
+  const { t } = colorPickerLocale.useTranslations();
 
   const colorModeOptions = useMemo(() => {
     const modes = availableModes && availableModes.length > 0 ? availableModes : DEFAULT_AVAILABLE_MODES;

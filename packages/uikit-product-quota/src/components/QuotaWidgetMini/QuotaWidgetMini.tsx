@@ -1,12 +1,12 @@
 import { Accordion } from '@ds/accordion';
 import { Button } from '@ds/button';
 import { Counter } from '@ds/counter';
-import { useLocale } from '@ds/locale';
 import { TruncateString } from '@ds/truncate-string';
 import { WithSupportProps } from '@ds/utils';
 
 import { TEST_IDS } from '../../constants';
 import { QuotaCardsGrid } from '../../helperComponents/QuotaCardsGrid';
+import { quotaLocale } from '../../locale';
 import { QuotaWidgetPropsBase } from '../../types';
 import { checkIsExceeded } from '../../utils';
 import styles from './styles.module.scss';
@@ -35,7 +35,7 @@ export function QuotaWidgetMini({
   'data-test-id': dataTestId,
   ...props
 }: QuotaWidgetMiniProps) {
-  const { t } = useLocale('Quota');
+  const { t } = quotaLocale.useTranslations();
 
   const exhaustedCount = quotas.filter(checkIsExceeded).length;
 

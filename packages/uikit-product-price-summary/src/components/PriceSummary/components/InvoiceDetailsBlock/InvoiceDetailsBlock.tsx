@@ -1,8 +1,8 @@
-import { useLocale } from '@ds/locale';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { WithLayoutType } from '@ds/utils';
 
 import { formatCurrency, formatQuantity } from '../../../../helpers';
+import { priceSummaryLocale } from '../../../../locale';
 import { InvoiceDetails } from '../../../../types';
 import { CoveredByGrantLabel } from '../CoveredByGrantLabel';
 import { Divider } from '../Divider';
@@ -14,7 +14,7 @@ export type InvoiceDetailsBlockProps = WithLayoutType<{
 }>;
 
 export function InvoiceDetailsBlock({ invoice, layoutType }: InvoiceDetailsBlockProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   const primaryItems = invoice.items.filter(item => item.primary);
   const firstValue = primaryItems[0]?.coveredByGrant;

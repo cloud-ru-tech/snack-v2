@@ -1,9 +1,9 @@
 import { Accordion } from '@ds/accordion';
-import { useLocale } from '@ds/locale';
 import { WithLayoutType } from '@ds/utils';
 import { useId } from 'react';
 
 import { TEST_IDS } from '../../../../constants';
+import { priceSummaryLocale } from '../../../../locale';
 import { InvoiceDetails } from '../../../../types';
 import { InvoiceDetailsBlock } from '../InvoiceDetailsBlock';
 import styles from './styles.module.scss';
@@ -14,7 +14,7 @@ export type InvoiceBlockProps = WithLayoutType<{
 }>;
 
 export function InvoiceBlock({ invoice, invoiceExpandedDefault, layoutType }: InvoiceBlockProps) {
-  const { t } = useLocale('PriceSummary');
+  const { t } = priceSummaryLocale.useTranslations();
 
   const invoiceBlockId = useId();
 

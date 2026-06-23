@@ -1,7 +1,7 @@
-import { useLocale } from '@ds/locale';
 import { useState } from 'react';
 
 import { tableCellTestId, TEST_IDS } from '../../constants';
+import { markdownLocale } from '../../locale';
 import { TableSelectItem } from '../TableSelectItem';
 import styles from './styles.module.scss';
 
@@ -12,7 +12,7 @@ export type TableSelectSettingsGridProps = {
 const MAX = 8;
 
 export function TableSelectSettingsGrid({ onPick }: TableSelectSettingsGridProps) {
-  const { t } = useLocale('Markdown');
+  const { t } = markdownLocale.useTranslations();
   const [hover, setHover] = useState<{ r: number; c: number } | null>(null);
 
   const cells: { r: number; c: number }[] = [];

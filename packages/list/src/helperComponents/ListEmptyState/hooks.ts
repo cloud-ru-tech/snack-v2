@@ -1,7 +1,7 @@
 import { CrossSVG, SearchSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { useMemo } from 'react';
 
+import { listLocale } from '../../locale';
 import { EmptyStateProps } from './ListEmptyState';
 
 export function useEmptyState({
@@ -13,7 +13,7 @@ export function useEmptyState({
   noResultsState?: EmptyStateProps;
   errorDataState?: EmptyStateProps;
 }) {
-  const { t } = useLocale('List');
+  const { t } = listLocale.useTranslations();
 
   return useMemo(() => {
     const noDataState: EmptyStateProps = {

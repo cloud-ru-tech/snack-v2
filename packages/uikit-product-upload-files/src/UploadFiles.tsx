@@ -1,6 +1,5 @@
 import { buildAcceptAttribute, Dropzone } from '@ds/dropzone';
 import { FieldDecorator, SIZE } from '@ds/fields';
-import { useLocale } from '@ds/locale';
 import { extractSupportProps, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
@@ -16,6 +15,7 @@ import {
   UPLOAD_STATUS,
 } from './constants';
 import { UploadFilesMessages, useUploadFilesController } from './hooks';
+import { uploadFilesLocale } from './locale';
 import styles from './styles.module.scss';
 import { UploadFilesProps } from './types';
 import { formatFileSize, joinWithConjunction } from './utils';
@@ -42,7 +42,7 @@ export const UploadFiles = forwardRef<HTMLDivElement, UploadFilesProps>(function
   },
   ref,
 ) {
-  const { t } = useLocale('UploadFiles');
+  const { t } = uploadFilesLocale.useTranslations();
   const localRef = useRef<HTMLDivElement>(null);
   const rootRef = mergeRefs(ref, localRef);
 
@@ -197,7 +197,14 @@ export const UploadFiles = forwardRef<HTMLDivElement, UploadFilesProps>(function
         </Dropzone>
       </FieldDecorator>
 
-      <Attachments className={attachmentClassname} items={items} accept={acceptProp} disabled={disabled} units={units} onDelete={handleDelete} />
+      <Attachments
+        className={attachmentClassname}
+        items={items}
+        accept={acceptProp}
+        disabled={disabled}
+        units={units}
+        onDelete={handleDelete}
+      />
     </div>
   );
 });
