@@ -1,0 +1,47 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  box-sizing: border-box;
+  width: 100%;
+  // Предельная ширина контентной области экрана — layout-константа без DS-токена.
+  max-width: 1200px;
+  min-height: 100%;
+}
+
+.wrapper[data-mobile='true'] {
+  // Узкая мобильная раскладка — layout-константа без DS-токена.
+  max-width: 360px;
+}
+
+.block {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.serviceName {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'headline', 'm');
+
+  display: block;
+  margin-bottom: base.$sn-primitive-dimension-24;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.description {
+  // Предельная ширина текстового блока для читаемости — layout-константа без DS-токена.
+  max-width: 500px;
+  margin-top: base.$sn-primitive-dimension-8;
+}
+
+.text {
+  display: block;
+  text-align: center;
+  white-space: break-spaces;
+}

@@ -217,6 +217,11 @@ export const FIGMA_NODES = {
     'copy-line': { ...PRODUCT, nodeId: '2212:888' }, // uikit-product-copy/copy-line → CopyLine
   },
   'uikit-product-info-row': { ...PRODUCT, nodeId: '3040-21176' }, // uikit-product-info-row → InfoRow
+  'uikit-product-layout': {
+    _: { ...PRODUCT, nodeId: '3070:32389' }, // layout canvas
+    'empty-block': { ...PRODUCT, nodeId: '3957:129' }, // layout/empty-block → EmptyBlock
+    'no-access': { ...PRODUCT, nodeId: '4267:16495' }, // layout/no-access → NoAccess
+  },
   'uikit-product-switch-row': { ...PRODUCT, nodeId: '3019:5599' }, // uikit-product-switch-row → SwitchRow
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
   'uikit-product-promo-tag-predefined': {

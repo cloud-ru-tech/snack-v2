@@ -1,0 +1,230 @@
+{
+  "EMPTY_BLOCK_LAYOUT_PRESETS": {
+    "displayName": "EMPTY_BLOCK_LAYOUT_PRESETS",
+    "propsTypeName": null,
+    "description": "DS-пресет адаптива `EmptyBlock`: на mobile — вертикальное выравнивание, desktop — горизонтальное.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "EmptyBlock": {
+    "displayName": "EmptyBlock",
+    "propsTypeName": "EmptyBlockProps",
+    "description": "Блок-заглушка для пустого состояния: иконка, заголовок, описание и опциональный\nслот действий на нейтральной подложке.",
+    "props": {
+      "align": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Выравнивание иконки и текста",
+        "typeRefs": [
+          "Align"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Описание под заголовком"
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот действий под текстом (например, `ButtonGroup`)"
+      },
+      "icon": {
+        "type": "IconPredefinedProps",
+        "required": false,
+        "description": "Иконка",
+        "typeRefs": [
+          "IconPredefinedProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<EmptyBlockLayoutDefaults>>>",
+        "required": false,
+        "description": "Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `EMPTY_BLOCK_LAYOUT_PRESETS`).\nEscape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.",
+        "typeRefs": [
+          "EmptyBlockLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      }
+    },
+    "relatedTypes": {
+      "Align": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": false
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "EmptyBlockLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "align": {
+            "type": "Align | undefined",
+            "required": false,
+            "values": [
+              "horizontal",
+              "vertical"
+            ],
+            "description": "Выравнивание иконки и текста",
+            "typeRefs": [
+              "Align"
+            ]
+          }
+        },
+        "own": true
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      }
+    }
+  },
+  "NoAccess": {
+    "displayName": "NoAccess",
+    "propsTypeName": "NoAccessProps",
+    "description": "Экран ограниченного доступа: lock-иконка и локализованное сообщение\nна нейтральной подложке, с опциональным заголовком сервиса сверху.",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "serviceName": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок над блоком (например, название сервиса)"
+      }
+    },
+    "relatedTypes": {}
+  }
+}

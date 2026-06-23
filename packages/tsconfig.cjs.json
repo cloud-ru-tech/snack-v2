@@ -257,6 +257,9 @@
       "path": "./uikit-product-info-row/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-layout/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-load-status/tsconfig.cjs.json"
     },
     {

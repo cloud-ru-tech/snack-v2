@@ -1,0 +1,134 @@
+---
+title: Layout
+package: '@ds/uikit-product-layout'
+description: Блоки-состояния продуктового экрана — заглушка пустого состояния EmptyBlock и экран ограниченного доступа NoAccess.
+order: 0
+---
+
+import { EmptyBlockDemo } from '../demos/EmptyBlockDemo';
+import { NoAccessDemo } from '../demos/NoAccessDemo';
+import { EmptyBlockWithFooter } from '../demos/examples/EmptyBlockWithFooter';
+import EmptyBlockWithFooterSrc from '../demos/examples/EmptyBlockWithFooter.tsx?raw';
+import { NoAccessBasic } from '../demos/examples/NoAccessBasic';
+import NoAccessBasicSrc from '../demos/examples/NoAccessBasic.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import layoutDoc from './props.json';
+
+# Layout
+
+Пакет `@ds/uikit-product-layout` — блоки-состояния продуктового экрана поверх `@ds/info-block` и `@ds/block`:
+
+- `EmptyBlock` — заглушка пустого состояния (иконка, заголовок, описание, опциональный слот действий).
+- `NoAccess` — экран ограниченного доступа с локализованным сообщением и lock-иконкой.
+
+## Демо
+
+### EmptyBlock
+
+<EmptyBlockDemo client:visible />
+
+### NoAccess
+
+<NoAccessDemo client:visible />
+
+## Когда использовать
+
+- `EmptyBlock`:
+  - список, таблица или экран без данных;
+  - нужна подсказка-действие («создать», «импортировать») через слот `footer`.
+- `NoAccess`:
+  - у пользователя нет прав на контент;
+  - текст сообщения берётся из локали и не задаётся вручную.
+
+## Анатомия
+
+Оба компонента строятся на `@ds/block` + `@ds/info-block`: нейтральная подложка, иконка, заголовок, описание. У `EmptyBlock` опционален слот `footer`; у `NoAccess` — опциональный `serviceName` над блоком и локализованный текст.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-layout
+```
+
+```ts
+import { EmptyBlock, NoAccess } from '@ds/uikit-product-layout';
+import '@ds/uikit-product-layout/style.css';
+```
+
+`NoAccess` берёт текст из `@ds/locale` — оберните приложение в `LocaleProvider`.
+
+## Примеры использования
+
+<Example
+  title='EmptyBlock со слотом действий'
+  description='Слот footer принимает любой контент, например ButtonGroup'
+  code={EmptyBlockWithFooterSrc}
+>
+  <EmptyBlockWithFooter client:visible />
+</Example>
+
+<Example
+  title='NoAccess с названием сервиса'
+  description='Локализованное сообщение и заголовок сервиса сверху'
+  code={NoAccessBasicSrc}
+>
+  <NoAccessBasic client:visible />
+</Example>
+
+## Props
+
+### EmptyBlock
+
+<PropsTable data={layoutDoc.EmptyBlock} />
+
+### NoAccess
+
+<PropsTable data={layoutDoc.NoAccess} />
+
+## Адаптивность
+
+Оба компонента читают раскладку из контекста [`@ds/adaptive`](/components/adaptive) — отдельного пропа `layoutType` нет. Поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поведение применяется автоматически.
+
+> **Desktop-first.** Верстайте под desktop; override нужен только как escape-hatch.
+
+### EmptyBlock
+
+`EmptyBlock` — компонент класса preset-defaults: DOM один, по раскладке меняется дефолт `align` в `InfoBlock`.
+
+| Проп    | desktop      | mobile     |
+| ------- | ------------ | ---------- |
+| `align` | `horizontal` | `vertical` |
+
+Источник mobile-дефолтов — экспортируемая константа `EMPTY_BLOCK_LAYOUT_PRESETS`.
+
+```tsx
+import { EmptyBlock } from '@ds/uikit-product-layout'
+
+// Явный проп — задаёт DESKTOP-значение; mobile остаётся vertical
+<EmptyBlock align='horizontal' title='…' description='…' />
+
+// Изменить mobile — только через layoutPresets
+<EmptyBlock layoutPresets={{ mobile: { align: 'horizontal' } }} title='…' description='…' />
+```
+
+### NoAccess
+
+На mobile контейнер сужается (`max-width: 360px`); на desktop — широкий (`max-width: 1200px`). Отдельных адаптивных пропов нет — поведение полностью определяется раскладкой из `AdaptiveProvider`.
+
+Подробнее о модели раскладки — в [`@ds/adaptive`](/components/adaptive).
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-layout-emptyblock--playground' height={420} />
+
+<StorybookEmbed storyId='uikit-product-layout-noaccess--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-layout', 'empty-block')} />
+
+<FigmaEmbed node={figmaNode('uikit-product-layout', 'no-access')} />

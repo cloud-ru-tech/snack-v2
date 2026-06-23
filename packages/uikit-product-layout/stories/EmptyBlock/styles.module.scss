@@ -1,0 +1,13 @@
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Контейнеры фиксированной ширины: mobile-раскладка проявляется только при ограниченном пространстве. */
+.cellDesktop {
+  width: 720px;
+}
+
+.cellMobile {
+  width: 360px;
+}

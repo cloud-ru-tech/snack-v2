@@ -1,0 +1,30 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/infoBlock.module' as infoBlock;
+
+.emptyBlock {
+  display: flex;
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+
+  // Block.content — растягиваем слот body (Figma: + slotBody), чтобы composition центрировал InfoBlock.
+  > :last-child {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.inner {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.infoBlock {
+  max-width: infoBlock.$sn-infoBlock-anatomy-size-l-container-maxWidth;
+}

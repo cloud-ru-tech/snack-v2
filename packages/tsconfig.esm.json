@@ -262,6 +262,9 @@
       "path": "./uikit-product-info-row/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-layout/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-load-status/tsconfig.esm.json"
     },
     {

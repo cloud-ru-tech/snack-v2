@@ -88,6 +88,7 @@
     "@ds/uikit-product-copy": "workspace:*",
     "@ds/uikit-product-flex": "workspace:*",
     "@ds/uikit-product-info-row": "workspace:*",
+    "@ds/uikit-product-layout": "workspace:*",
     "@ds/uikit-product-load-status": "workspace:*",
     "@ds/uikit-product-notification": "workspace:*",
     "@ds/uikit-product-price-summary": "workspace:*",
