@@ -1,0 +1,20 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Story-level canvas-обёртки (демо-контейнеры фиксированной ширины). Это не
+// дизайн-параметры компонента — токенного эквивалента у них нет.
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  width: 320px;
+}
+
+.panel {
+  width: 360px;
+}

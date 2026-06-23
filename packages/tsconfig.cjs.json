@@ -275,6 +275,9 @@
       "path": "./uikit-product-switch-row/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-toggles-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-title-clickable/tsconfig.cjs.json"
     },
     {

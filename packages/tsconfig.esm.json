@@ -280,6 +280,9 @@
       "path": "./uikit-product-switch-row/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-toggles-predefined/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-title-clickable/tsconfig.esm.json"
     },
     {

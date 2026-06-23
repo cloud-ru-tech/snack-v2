@@ -1,0 +1,150 @@
+/**
+ * ToggleCard — раскладка контента поверх chrome `@ds/card`.
+ * Сам card (acrylic-фон, state-layer выбора, outline, focus-ring) рендерит `@ds/card`;
+ * `.content` соответствует Figma-слою `wrapper`. `@ds/card` content-слот padding
+ * не задаёт — он целиком на этом пакете.
+ *
+ * Ось `size` (как в продуктовом ките) масштабирует анатомию карточки целиком:
+ *   size | padding | gap | title       | description
+ *   s    | 8       | 4   | title/s     | body/m
+ *   m    | 16      | 8   | title/m     | body/m
+ *   l    | 24      | 16  | title/l     | body/l
+ */
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
+@use '@sbercloud/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
+
+$paddings: (
+  's': base.$sn-density-spacing-interval-s,
+  'm': base.$sn-density-spacing-interval-m,
+  'l': base.$sn-density-spacing-interval-l,
+);
+$gaps: (
+  's': base.$sn-density-spacing-interval-xs,
+  'm': base.$sn-density-spacing-interval-s,
+  'l': base.$sn-density-spacing-interval-m,
+);
+$title-typography: (
+  's': base.$sn-regular-title-s,
+  'm': base.$sn-regular-title-m,
+  'l': base.$sn-regular-title-l,
+);
+$description-typography: (
+  's': base.$sn-regular-body-m,
+  'm': base.$sn-regular-body-m,
+  'l': base.$sn-regular-body-l,
+);
+
+$radius-to-badge-padding-top: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-paddingTop,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-paddingTop,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-paddingTop,
+);
+$radius-to-badge-padding-right: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-paddingLeft,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-paddingLeft,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-paddingLeft,
+);
+
+.card {
+  cursor: pointer;
+
+  &[data-disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.promoBadge {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+
+  display: flex;
+
+  box-sizing: border-box;
+
+  @each $size in ('s', 'm', 'l') {
+    &[data-size='#{$size}'] {
+      padding-top: map.get($radius-to-badge-padding-top, $size);
+      padding-right: map.get($radius-to-badge-padding-right, $size);
+    }
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+
+  @each $size in ('s', 'm', 'l') {
+    &[data-size='#{$size}'] {
+      gap: map.get($gaps, $size);
+      padding: map.get($paddings, $size);
+    }
+  }
+}
+
+.emblem {
+  // Слот ведущей эмблемы. Размер и цвет иконки задаёт встроенный `IconPredefined`
+  // (size выводится из размера карточки), поэтому здесь только flex-обвязка.
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.picture {
+  // `data-size` уже приведён к размеру эмблемы (m/l/5xl) в компоненте — ключуемся
+  // прямо по нему, без второго маппинга card→emblem. `rounded`-сегмент даёт
+  // border-radius (круглый бейдж, как у дефолтного IconPredefined), иначе
+  // картинка осталась бы прямоугольной и overflow:hidden ничего не обрезал бы.
+  overflow: hidden;
+  box-sizing: border-box;
+  object-fit: cover;
+
+  @each $size in ('m', 'l', '5xl') {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size);
+      @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size, 'rounded');
+    }
+  }
+}
+
+.textContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+.title {
+  // width: 100% обязателен: в колонке `align-items: flex-start` без него заголовок
+  // тянется по контенту и переполняет карточку — TruncateString не может измерить
+  // доступную ширину. С шириной 100% он считает её от textContent и обрезает.
+  width: 100%;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @each $size in ('s', 'm', 'l') {
+    .content[data-size='#{$size}'] & {
+      @include base.composite-var(map.get($title-typography, $size));
+    }
+  }
+}
+
+.description {
+  width: 100%;
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @each $size in ('s', 'm', 'l') {
+    .content[data-size='#{$size}'] & {
+      @include base.composite-var(map.get($description-typography, $size));
+    }
+  }
+}

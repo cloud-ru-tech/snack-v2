@@ -1,0 +1,28 @@
+/**
+ * ToggleGroup — grid-раскладка карточек.
+ * gap s/m/l → density spacing interval s(8)/m(16)/l(24).
+ * Горизонтальная ориентация раскладывает карточки в авто-колонки с минимальной
+ * шириной `--toggle-group-breakpoint` (px, из пропа `breakpoint`).
+ */
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$gaps: (
+  's': base.$sn-density-spacing-interval-s,
+  'm': base.$sn-density-spacing-interval-m,
+  'l': base.$sn-density-spacing-interval-l,
+);
+
+.toggleGroup {
+  display: grid;
+
+  @each $gap, $token in $gaps {
+    &[data-gap='#{$gap}'] {
+      gap: $token;
+    }
+  }
+
+  &[data-orientation='horizontal'] {
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(var(--toggle-group-breakpoint, 0), 1fr));
+  }
+}

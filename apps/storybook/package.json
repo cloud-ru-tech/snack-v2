@@ -96,6 +96,7 @@
     "@ds/uikit-product-quota": "workspace:*",
     "@ds/uikit-product-switch-row": "workspace:*",
     "@ds/uikit-product-title-clickable": "workspace:*",
+    "@ds/uikit-product-toggles-predefined": "workspace:*",
     "@ds/uikit-product-upload-files": "workspace:*",
     "@ds/uikit-product-widget": "workspace:*",
     "@ds/utils": "workspace:*",

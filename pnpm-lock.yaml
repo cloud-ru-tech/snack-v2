@@ -541,6 +541,9 @@ importers:
       '@ds/uikit-product-title-clickable':
         specifier: workspace:*
         version: link:../../packages/uikit-product-title-clickable
+      '@ds/uikit-product-toggles-predefined':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-toggles-predefined
       '@ds/uikit-product-upload-files':
         specifier: workspace:*
         version: link:../../packages/uikit-product-upload-files
@@ -2641,6 +2644,30 @@ importers:
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-toggles-predefined:
+    dependencies:
+      '@ds/card':
+        specifier: workspace:^
+        version: link:../card
+      '@ds/icon-predefined':
+        specifier: workspace:^
+        version: link:../icon-predefined
+      '@ds/promo-tag':
+        specifier: workspace:^
+        version: link:../promo-tag
+      '@ds/toggles':
+        specifier: workspace:^
+        version: link:../toggles
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -6385,6 +6412,7 @@ packages:
   conventional-changelog-core@5.0.1:
     resolution: {integrity: sha512-Rvi5pH+LvgsqGwZPZ3Cq/tz4ty7mjijhr3qR4m9IBXNbxGGYgTVVO+duXzz9aArmHxFtwZ+LRkrNIMDQzgoY4A==}
     engines: {node: '>=14'}
+    deprecated: Deprecated and no longer maintained. Please use conventional-changelog instead.
 
   conventional-changelog-preset-loader@3.0.0:
     resolution: {integrity: sha512-qy9XbdSLmVnwnvzEisjxdDiLA4OmV3o8db+Zdg4WiFw14fP3B6XNz98X0swPPpkTd/pc1K7+adKgEDM1JCUMiA==}
@@ -9732,6 +9760,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qified@0.9.1:

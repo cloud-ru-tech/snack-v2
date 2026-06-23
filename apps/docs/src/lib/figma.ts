@@ -223,6 +223,7 @@ export const FIGMA_NODES = {
     'no-access': { ...PRODUCT, nodeId: '4267:16495' }, // layout/no-access → NoAccess
   },
   'uikit-product-switch-row': { ...PRODUCT, nodeId: '3019:5599' }, // uikit-product-switch-row → SwitchRow
+  'uikit-product-toggles-predefined': { ...PRODUCT, nodeId: '2863:49' }, // uikit-product-toggles-predefined → togglesPredefined
   'uikit-product-load-status': { ...PRODUCT, nodeId: '3024-4357' }, // uikit-product-load-status → loadStatus
   'uikit-product-promo-tag-predefined': {
     _: { ...PRODUCT, nodeId: '2853-49' }, // promoTagPredefined canvas

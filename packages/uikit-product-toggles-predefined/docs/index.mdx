@@ -1,0 +1,140 @@
+---
+title: TogglesPredefined
+package: '@ds/uikit-product-toggles-predefined'
+description: Кликабельные карточки выбора (ToggleCard) и группа выбора (ToggleGroup) — предзаготовленный паттерн single/multiple-выбора на базе @ds/card.
+order: 100
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { WithIcon } from '../demos/examples/WithIcon'
+import WithIconSrc from '../demos/examples/WithIcon.tsx?raw'
+import { Multiple } from '../demos/examples/Multiple'
+import MultipleSrc from '../demos/examples/Multiple.tsx?raw'
+import { Horizontal } from '../demos/examples/Horizontal'
+import HorizontalSrc from '../demos/examples/Horizontal.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { WithPromoBadge } from '../demos/examples/WithPromoBadge'
+import WithPromoBadgeSrc from '../demos/examples/WithPromoBadge.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import togglesPredefinedDoc from './props.json'
+
+# TogglesPredefined
+
+Предзаготовленный паттерн выбора: `ToggleCard` — кликабельная карточка с иконкой, заголовком и описанием, `ToggleGroup` — провайдер выбора и grid-раскладка карточек. Визуальный chrome (фон, state-layer выбора, outline, focus-ring) приходит из [`@ds/card`](/components/card); выбор управляется контекстом `@ds/toggles`.
+
+## Когда использовать
+
+- Выбор тарифа, конфигурации, плана — когда варианты крупные и им нужны иконка + заголовок + описание.
+- Single-выбор (один вариант из набора) или multiple-выбор (несколько опций-аддонов).
+- Когда нужна увеличенная hit-area: вся карточка кликабельна и операбельна с клавиатуры.
+
+Когда **не** нужен `TogglesPredefined`:
+
+- Компактный список бинарных опций со Switch:
+  - используйте [`SwitchRow`](/components/uikit-product-switch-row).
+- Один inline-чекбокс или радио без описания:
+  - используйте [`Checkbox` / `Radio`](/components/toggles/checkbox).
+
+## Анатомия
+
+### Size (default `m`)
+
+Ось `size` масштабирует анатомию карточки целиком (как в продуктовом ките) — padding, gap, типографику заголовка/описания и радиус контейнера `@ds/card`:
+
+- `s` — padding 8, gap 4, заголовок `title/s`, описание `body/m`.
+- `m` — padding 16, gap 8, заголовок `title/m`, описание `body/m`.
+- `l` — padding 24, gap 16, заголовок `title/l`, описание `body/l`.
+
+Эмблема масштабируется вместе с карточкой автоматически: `size` встроенного `IconPredefined` выводится из `size` карточки (`s → m`, `m → l`, `l → 5xl`).
+
+### Orientation (default `vertical`)
+
+Ось раскладки `ToggleGroup`:
+
+- `vertical` — карточки в колонку.
+- `horizontal` — карточки в авто-колонки `repeat(auto-fit, minmax(breakpoint, 1fr))`.
+
+### Gap (default `s`)
+
+Расстояние между карточками — density spacing interval:
+
+- `s` — 8px.
+- `m` — 16px.
+- `l` — 24px.
+
+### SelectionMode (default `single`)
+
+Режим выбора `ToggleGroup` (из `@ds/toggles`):
+
+- `single` — выбран один вариант; карточки получают `role='radio'`.
+- `multiple` — выбрано несколько; карточки получают `role='checkbox'`.
+
+### Слоты ToggleCard
+
+- `title` — обязательный заголовок карточки.
+- `description` — опциональное описание под заголовком.
+- `emblem` — ведущая эмблема. [`IconPredefined`](/components/icon-predefined) встроен в компонент — передаются только его параметры (`icon`, `appearance`, `decor`, `shape`) либо картинка (`src` / `alt`).
+- `promoBadge` — промо-бейдж в правом верхнем углу (`string` или `{ text, appearance? }` для [`PromoTag`](/components/promo-tag/promo-tag)).
+- `truncate` — максимум строк `title` и/или `description` (по умолчанию `title: 1`, `description: 2`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-toggles-predefined
+```
+
+```ts
+import { ToggleCard, ToggleGroup, useToggleGroup } from '@ds/uikit-product-toggles-predefined'
+```
+
+## Примеры использования
+
+<Example title='Базовый single-выбор' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='С иконками' code={WithIconSrc}>
+  <WithIcon client:visible />
+</Example>
+
+<Example title='С промо-тегами' description='promoBadge — строка или объект для PromoTag в правом верхнем углу карточки.' code={WithPromoBadgeSrc}>
+  <WithPromoBadge client:visible />
+</Example>
+
+<Example title='Multiple (controlled)' description='Несколько аддонов, состояние в useState.' code={MultipleSrc}>
+  <Multiple client:visible />
+</Example>
+
+<Example title='Горизонтальная раскладка' description='orientation=horizontal + breakpoint.' code={HorizontalSrc}>
+  <Horizontal client:visible />
+</Example>
+
+<Example title='Controlled single' description='Описание реагирует на выбранный вариант.' code={ControlledSrc}>
+  <Controlled client:visible />
+</Example>
+
+## Props
+
+### ToggleCard
+
+<PropsTable data={togglesPredefinedDoc.ToggleCard} />
+
+### ToggleGroup
+
+<PropsTable data={togglesPredefinedDoc.ToggleGroup} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-togglespredefined-togglecard--playground' height={420} />
+
+<StorybookEmbed storyId='uikit-product-togglespredefined-togglegroup--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-toggles-predefined')} height={480} title='TogglesPredefined в Figma' />

@@ -1253,7 +1253,7 @@
   "MobileCalendar": {
     "displayName": "MobileCalendar",
     "propsTypeName": null,
-    "description": "Мобильная поверхность календаря в `BottomSheet`: скролл периодов (широкий диапазон), шапка-дропдаун\nпереключения уровня (month → year → decade), футер «Выбрано:» + Current/Apply. Единственный\n`CalendarContext.Provider` оборачивает sheet (контекст проходит сквозь портал), поэтому селекция\nсохраняется между экранами. Селекция/значение — общие с десктопом (`useRange`, `normalizeRangeForMode`).",
+    "description": "BottomSheet со скроллом периодов, дропдаун-шапкой уровня, футером. Один CalendarContext для всех экранов.",
     "props": {
       "buildCellProps": {
         "type": "BuildCellPropsFunction",
@@ -1351,7 +1351,7 @@
   "MobileCalendarDropdown": {
     "displayName": "MobileCalendarDropdown",
     "propsTypeName": null,
-    "description": "Mobile-поверхность CalendarDropdown'а: контент уезжает в `BottomSheet` (`MobileCalendar`).\nТриггер (`children`) клонируется для открытия; `open`/`onOpenChange` поддерживают controlled-режим.\nЗначение нормализуется в `Range` (как `Calendar`), а наружу отдаётся в форме режима (Date / Range).\nInternal — наружу не реэкспортится; рендерится адаптивным `CalendarDropdown` по контексту.",
+    "description": "Адаптер: значение нормализуется в Range (внутри), наружу отдаётся в форме режима.",
     "props": {
       "autofocus": {
         "type": "boolean",
@@ -1586,7 +1586,7 @@
   "MobileFooter": {
     "displayName": "MobileFooter",
     "propsTypeName": null,
-    "description": "Мобильный футер календаря: строка «Выбрано: <значение>» над кнопками + `Current` / `Apply`.\nРендерится для всех режимов (на десктопе футер только для date-time). Значение и режим — из контекста.",
+    "description": "Строка «Выбрано:» (для всех режимов) + Current / Apply кнопки.",
     "props": {
       "applyDisabled": {
         "type": "boolean",
@@ -1609,7 +1609,7 @@
   "MobilePeriodBlock": {
     "displayName": "MobilePeriodBlock",
     "propsTypeName": null,
-    "description": "Один период бесконечного скролла: подпись (месяц+год / год / декада) + CSS-grid ячеек.\nЯчейки соседнего периода (`another`) скрываются (`visible=false`) — каждая дата отображается ровно\nодин раз в своём блоке. Классификация (`checked`/`holiday`/`rangePosition`/`current`) — общая с\nдесктопом через `classifyCell`, селекция берётся из общего `CalendarContext`.",
+    "description": "Один период скролла: заголовок + грид ячеек. Ячейки соседних периодов скрыты.",
     "props": {
       "config": {
         "type": "LevelConfig",
@@ -1692,7 +1692,6 @@
   "MobilePresetsScreen": {
     "displayName": "MobilePresetsScreen",
     "propsTypeName": null,
-    "description": "Под-экран пресетов (date-range): список быстрого выбора периода. Тап по пресету выставляет значение\nи возвращает на экран календаря (логика возврата — в `MobileCalendar`).",
     "props": {
       "items": {
         "type": "PresetItem[]",
@@ -1708,7 +1707,7 @@
   "MobileTimePickerDropdown": {
     "displayName": "MobileTimePickerDropdown",
     "propsTypeName": null,
-    "description": "Mobile-поверхность TimePickerDropdown'а: барабанный пикер (`TimePickerDrum`) уезжает в `BottomSheet`.\nТриггер (`children`) клонируется для открытия; `open`/`onOpenChange` поддерживают controlled-режим.\nInternal — наружу не реэкспортится; рендерится адаптивным `TimePickerDropdown` по контексту.\n\nМодель «черновик + один Apply» (FF-8654, #2): скролл барабана правит локальный черновик, наружу\n(`onChangeValue`) значение коммитится ТОЛЬКО по «Применить»; закрытие/свайп = отмена. Это убирает\nпрежний непредсказуемый авто-коммит после каждого оседания скролла (быстрое закрытие терял значение).",
+    "description": "Черновик + Apply модель: правки берутся в локальный черновик, коммитятся наружу только по Apply.\nЗакрытие/свайп = отмена (убирает авто-коммит после каждого оседания).",
     "props": {
       "children": {
         "type": "ReactNode",
@@ -1895,7 +1894,6 @@
   "MobileTimeScreen": {
     "displayName": "MobileTimeScreen",
     "propsTypeName": null,
-    "description": "Под-экран времени date-time: барабан (`TimePickerDrum`) на `dateAndTime` контекста + подпись выбранного дня.",
     "props": {
       "drumRef": {
         "type": "Ref<TimePickerDrumHandle>",
