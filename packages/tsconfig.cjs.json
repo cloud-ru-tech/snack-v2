@@ -257,6 +257,9 @@
       "path": "./code-editor/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-error-pages/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-flex/tsconfig.cjs.json"
     },
     {

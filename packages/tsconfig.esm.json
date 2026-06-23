@@ -262,6 +262,9 @@
       "path": "./code-editor/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-error-pages/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-flex/tsconfig.esm.json"
     },
     {

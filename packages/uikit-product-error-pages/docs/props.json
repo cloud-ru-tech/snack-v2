@@ -1,0 +1,214 @@
+{
+  "CloudLogo": {
+    "displayName": "CloudLogo",
+    "propsTypeName": null,
+    "description": "Логотип cloud.ru. Знак — фиксированный брендовый зелёный; текст использует\n`currentColor`, поэтому перекрашивается под тему через `color` родителя\n(см. `.logo` в `ErrorPage/styles.module.scss`).\n\nTODO: SVG зашит инлайн — коллекция Logos в DS ещё не заведена. Когда появится\nпакет/коллекция с логотипами, заменить инлайн-разметку на импорт из неё и\nудалить локальную константу бренд-цвета.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "ErrorPage": {
+    "displayName": "ErrorPage",
+    "propsTypeName": "ErrorPageProps",
+    "description": "Полноэкранная error-страница: заголовок с кодом статуса, текст, набор действий\n(главная кнопка, ссылки на главную/назад, кнопка поддержки) и декоративная\nиллюстрация. Контент определяется `errorType`; для `ERROR_TYPE.Custom` берётся\nиз `custom`. Логотип над заголовком — `logoVariant` (`Cloud` / `Custom` / `None`).",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс."
+      },
+      "custom": {
+        "type": "ErrorPageCustomConfig",
+        "required": false,
+        "description": "Объект с кастомными настройками, используется только для `ERROR_TYPE.Custom`.",
+        "typeRefs": [
+          "ErrorPageCustomConfig"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "errorType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "Custom",
+          "FrontendError",
+          "Offline",
+          "PageNotFound",
+          "PageUnavailable",
+          "Redirect"
+        ],
+        "defaultValue": "FrontendError",
+        "description": "Тип ошибки — определяет заголовок, текст, код статуса и набор действий."
+      },
+      "logo": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Кастомный логотип, используется только с `LOGO_VARIANT.Custom`."
+      },
+      "logoVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "Cloud",
+          "Custom",
+          "None"
+        ],
+        "defaultValue": "None",
+        "description": "Вариант логотипа над заголовком."
+      },
+      "mainPageUrl": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "/",
+        "description": "URL главной страницы (для кнопки/ссылки «На главную»)."
+      },
+      "onSupportCenterClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Обработчик клика по кнопке «Служба поддержки». Если задан — кнопка отображается."
+      },
+      "showMainButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показать основную (filled) кнопку действия."
+      }
+    },
+    "relatedTypes": {
+      "ErrorPageCustomConfig": {
+        "kind": "interface",
+        "props": {
+          "actionWrapperClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Кастомный класс для контейнера с действиями."
+          },
+          "mainButton": {
+            "type": "MainButtonConfig | undefined",
+            "required": false,
+            "description": "Кастомные настройки основной кнопки.",
+            "typeRefs": [
+              "MainButtonConfig"
+            ]
+          },
+          "showBackLink": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Принудительно показать/скрыть ссылку «Назад».\nЕсли не задано, используется поведение по умолчанию."
+          },
+          "showMainPageLink": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Принудительно показать/скрыть ссылку на главную страницу.\nЕсли не задано, используется поведение по умолчанию."
+          },
+          "statusCode": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Кастомный код статуса."
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Кастомный текст под заголовком."
+          },
+          "title": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Кастомный заголовок."
+          }
+        },
+        "own": true
+      },
+      "MainButtonConfig": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Ссылка. Если задана — кнопка рендерится как `<a>`."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки."
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Обработчик клика."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "Illustration": {
+    "displayName": "Illustration",
+    "propsTypeName": null,
+    "description": "Декоративная иллюстрация error-страницы: окно браузера, бумажный самолётик,\nвосклицательный знак и две вращающиеся шестерёнки. Скрыта на mobile (см. `.rightSide`).\nПокраска — через CSS-переменные родителя, анимация — классы `.rotateSmall` / `.rotateBig`.",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useGetButtonPropsByErrorType": {
+    "displayName": "useGetButtonPropsByErrorType",
+    "propsTypeName": null,
+    "props": {
+      "custom": {
+        "type": "ErrorPageCustomConfig",
+        "required": false
+      },
+      "errorType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "Custom",
+          "FrontendError",
+          "Offline",
+          "PageNotFound",
+          "PageUnavailable",
+          "Redirect"
+        ]
+      },
+      "mainPageUrl": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useGetContentByErrorType": {
+    "displayName": "useGetContentByErrorType",
+    "propsTypeName": null,
+    "props": {
+      "custom": {
+        "type": "ErrorPageCustomConfig",
+        "required": false
+      },
+      "errorType": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "Custom",
+          "FrontendError",
+          "Offline",
+          "PageNotFound",
+          "PageUnavailable",
+          "Redirect"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  }
+}

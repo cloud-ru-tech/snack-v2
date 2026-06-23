@@ -1,0 +1,25 @@
+.frame {
+  display: flex;
+  width: 100%;
+  min-height: 520px;
+}
+
+// Полноэкранная сцена Playground'а: ErrorPage — full-page компонент.
+// Глобальный story-декоратор (sb-story-wrapper) оборачивает стори в серую
+// рамку с padding/border-radius. Фиксируем сцену к вьюпорту, чтобы карточка
+// занимала весь кадр без рамки и без скролла.
+.playground {
+  position: fixed;
+  inset: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.matrixCell {
+  display: block;
+  width: 720px;
+  height: 520px;
+}

@@ -520,6 +520,9 @@ importers:
       '@ds/uikit-product-copy':
         specifier: workspace:*
         version: link:../../packages/uikit-product-copy
+      '@ds/uikit-product-error-pages':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-error-pages
       '@ds/uikit-product-flex':
         specifier: workspace:*
         version: link:../../packages/uikit-product-flex
@@ -2484,6 +2487,30 @@ importers:
         version: link:../utils
       classnames:
         specifier: 2.5.1
+        version: 2.5.1
+
+  packages/uikit-product-error-pages:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:*
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@ds/link':
+        specifier: workspace:*
+        version: link:../link
+      '@ds/locale':
+        specifier: workspace:*
+        version: link:../locale
+      '@ds/tag':
+        specifier: workspace:*
+        version: link:../tag
+      '@ds/utils':
+        specifier: workspace:*
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
         version: 2.5.1
 
   packages/uikit-product-flex:

@@ -1,0 +1,187 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$breakpoint-mobile: 767px;
+$breakpoint-tablet: 1023px;
+$gear-wheel-rotation-period: 10s;
+
+// Внешний слой (Figma: errorPage) — рамка 16px и нейтральный фон вокруг карточки.
+.page {
+  display: flex;
+
+  box-sizing: border-box;
+  height: 100%;
+  padding: base.$sn-primitive-dimension-16;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// Карточка (Figma: blockPrimary) — белый фон, радиус, стэк-контент.
+.wrapper {
+  // CSS-переменные покраски декоративной иллюстрации (см. Illustration.tsx).
+  --svg-exclamation-mark: #{base.$sn-theme-color-primary-accent};
+  --svg-stroke: #{base.$sn-theme-color-neutral-decor};
+  --svg-background: #{base.$sn-theme-color-neutral-background1Level};
+
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-48;
+
+  box-sizing: border-box;
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-48;
+  border-radius: base.$sn-brand-anatomy-radius-block-l;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: base.$sn-primitive-dimension-24;
+    padding: base.$sn-primitive-dimension-24;
+  }
+}
+
+.statusCode {
+  margin-left: base.$sn-primitive-dimension-8;
+  vertical-align: top;
+}
+
+.leftSide {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+
+  @media (max-width: $breakpoint-mobile) {
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.logo {
+  display: inline-flex;
+  height: base.$sn-primitive-dimension-24;
+  margin-bottom: base.$sn-primitive-dimension-24;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  svg {
+    height: 100%;
+  }
+}
+
+// Текст + ссылки (Figma: description) — gap 4.
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+// Ссылки (Figma: links) — типографика body/m (Link наследует размер от контейнера).
+.actionsLink {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
+}
+
+.rightSide {
+  display: flex;
+  // Занимает оставшуюся по высоте часть и ужимает иллюстрацию под доступное
+  // место, чтобы стэк (контент сверху + иллюстрация снизу) не вызывал скролл.
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-end;
+  align-self: flex-end;
+  justify-content: flex-end;
+
+  width: 50%;
+  min-width: 500px;
+  max-width: 862px;
+  min-height: 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.rotateSmall {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: rotating $gear-wheel-rotation-period linear infinite;
+}
+
+.rotateBig {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: rotating $gear-wheel-rotation-period linear infinite;
+  animation-direction: reverse;
+}
+
+.button {
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+  }
+}
+
+.pic {
+  max-width: 100%;
+  // SVG ужимается под размеры rightSide, сохраняя пропорции (viewBox 863×520).
+  min-height: 0;
+  max-height: 100%;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-display-s);
+
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
+
+  @media (max-width: $breakpoint-mobile) {
+    @include base.composite-var(base.$sn-regular-headline-m);
+  }
+}
+
+// Текст описания (Figma: description text) — body/m, цвет textMain.
+.actionsTitle {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  color: base.$sn-theme-color-available-version-textMain;
+}

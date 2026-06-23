@@ -225,6 +225,7 @@ export const FIGMA_NODES = {
     'copy-button': { ...PRODUCT, nodeId: '2212:613' }, // uikit-product-copy/copy-button → CopyButton
     'copy-line': { ...PRODUCT, nodeId: '2212:888' }, // uikit-product-copy/copy-line → CopyLine
   },
+  'uikit-product-error-pages': { ...PRODUCT, nodeId: '6557:2619' }, // uikit-product-error-pages → ErrorPage
   'uikit-product-info-row': { ...PRODUCT, nodeId: '3040-21176' }, // uikit-product-info-row → InfoRow
   'uikit-product-layout': {
     _: { ...PRODUCT, nodeId: '3070:32389' }, // layout canvas

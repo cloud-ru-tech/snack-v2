@@ -88,6 +88,7 @@
     "@ds/uikit-product-button-predefined": "workspace:*",
     "@ds/uikit-product-card-predefined": "workspace:*",
     "@ds/uikit-product-copy": "workspace:*",
+    "@ds/uikit-product-error-pages": "workspace:*",
     "@ds/uikit-product-flex": "workspace:*",
     "@ds/uikit-product-info-row": "workspace:*",
     "@ds/uikit-product-layout": "workspace:*",

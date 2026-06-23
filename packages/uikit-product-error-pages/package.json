@@ -1,0 +1,28 @@
+{
+  "name": "@ds/uikit-product-error-pages",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@ds/button": "workspace:*",
+    "@ds/icons": "workspace:*",
+    "@ds/link": "workspace:*",
+    "@ds/locale": "workspace:*",
+    "@ds/tag": "workspace:*",
+    "@ds/utils": "workspace:*",
+    "classnames": "catalog:"
+  },
+  "publishConfig": { "access": "public" }
+}
