@@ -14,6 +14,8 @@ packages/<pkg>/
 │       ├── styles.module.scss
 │       ├── types.ts
 │       └── utils.ts            # если есть чистые хелперы
+│   ├── locale/                 # только если пакет показывает текст — см. locale-standard.md
+│   │   └── index.ts            # приватная const defineMessages({ 'en-GB', 'ru-RU' }) + export type <Pkg>Messages + defineLocale('@ds/<pkg>', …)
 │   └── index.ts                # корневой ре-экспорт пакета
 ├── stories/
 │   └── <Name>/
@@ -38,7 +40,6 @@ packages/<pkg>/
 │   ├── index.mdx               # обязателен, frontmatter + секции
 │   └── props.json              # автогенерация
 ├── package.json
-├── tsconfig.json
 ├── tsconfig.esm.json
 ├── tsconfig.cjs.json
 └── README.md                   # автогенерация

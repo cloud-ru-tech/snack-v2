@@ -1,3 +1,5 @@
+import { SpecialCharName } from '../constants/specialChars';
+
 type Primitive = null | undefined | string | number | boolean | symbol | bigint;
 
 type BuiltIns = Primitive | void | Date | RegExp;
@@ -56,3 +58,33 @@ export type PathsToProps<T, V> = T extends V
   : {
       [K in Extract<keyof T, string>]: Dot<K, PathsToProps<T[K], V>>;
     }[Extract<keyof T, string>];
+
+/** Все имена `{{placeholder}}` внутри строки-литерала, включая зарезервированные спецсимволы. */
+type RawPlaceholders<S> = S extends string
+  ? S extends `${string}{{${infer Name}}}${infer Rest}`
+    ? Name | RawPlaceholders<Rest>
+    : never
+  : never;
+
+/**
+ * Имена `{{placeholder}}`, которые потребитель обязан передать в `t` (union; пустой набор → `never`).
+ * Зарезервированные токены спецсимволов (`SPECIAL_CHARS`) исключены — их подставляет движок.
+ */
+export type Placeholders<S> = Exclude<RawPlaceholders<S>, SpecialCharName>;
+
+/** Литерал значения словаря по dotted-пути ключа (`'a.b.c'`). */
+export type ValueAtPath<T, K extends string> = K extends `${infer Head}.${infer Tail}`
+  ? Head extends keyof T
+    ? ValueAtPath<T[Head], Tail>
+    : never
+  : K extends keyof T
+    ? T[K]
+    : never;
+
+/**
+ * Аргумент интерполяции `t` для значения `V`: если в строке нет `{{placeholder}}` — аргумента нет;
+ * иначе обязательный объект ровно с этими ключами. Для union-ключа `V` — объединение плейсхолдеров.
+ */
+export type InterpolationArgs<V> = [Placeholders<V>] extends [never]
+  ? []
+  : [interpolation: { [P in Placeholders<V>]: string | number }];

@@ -10,6 +10,7 @@
       "#storybook/hooks": [".storybook/hooks/index.ts"],
       "#storybook/hooks/*": [".storybook/hooks/*"],
       "#docs/lib/figma": ["../docs/src/lib/figma.ts"],
+      "@ds/*/locale": ["../../packages/*/src/locale"],
       "@ds/*": ["../../packages/*/src"]
     }
   },

@@ -1372,6 +1372,9 @@ importers:
 
   packages/locale:
     dependencies:
+      '@ds/context-kit':
+        specifier: workspace:^
+        version: link:../context-kit
       '@types/lodash.merge':
         specifier: 4.6.9
         version: 4.6.9

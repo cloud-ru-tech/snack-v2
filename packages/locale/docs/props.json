@@ -1,81 +1,114 @@
 {
   "LocaleProvider": {
     "displayName": "LocaleProvider",
-    "propsTypeName": null,
+    "propsTypeName": "LocaleProviderProps",
+    "description": "Провайдер локали. **Не держит словарей** — только текущий язык, fallback и реестр оверрайдов.\nСтроки живут в самих компонентах (`defineLocale`). Язык — из пропа `lang` (static) либо `store` (MFE).\n\nПровайдер опционален: без него консьюмеры читают язык из глобального стора (`getGlobalLocaleStore`),\nкоторый кормит шелл контейнера. Монтируется в дереве, когда нужен статический язык, собственный\nреактивный источник или app-static оверрайды строк.",
     "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      },
       "fallbackLang": {
-        "type": "enum",
+        "type": "string",
         "required": false,
-        "values": [
-          "en-GB",
-          "ru-RU"
+        "description": "Язык, на который откатываемся при отсутствии перевода. По умолчанию `en-GB`.",
+        "typeRefs": [
+          "Lang"
         ]
       },
       "lang": {
         "type": "string",
-        "required": true
-      },
-      "overrideLocales": {
-        "type": "PartialObjectDeep<Record<\"en-GB\" | \"ru-RU\", LocaleDictionary<Dictionary>>>",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "createLocaleContext": {
-    "displayName": "createLocaleContext",
-    "propsTypeName": "ContextOptions",
-    "props": {
-      "defaultLanguage": {
-        "type": "enum",
         "required": false,
-        "values": [
-          "en-GB",
-          "ru-RU"
-        ],
-        "defaultValue": "en-GB",
+        "description": "Статический язык (одно-корневой app/SSR). Игнорируется, если задан `store`.",
         "typeRefs": [
-          "LocaleLang"
+          "Lang"
         ]
       },
-      "extendedDictionary": {
-        "type": "ExtendedDictionary<D>",
+      "overrides": {
+        "type": "OverrideEntry[]",
         "required": false,
+        "description": "Оверрайды/новые языки — собираются через `<locale>.extend(lang, ...)`, app-static.",
         "typeRefs": [
-          "D",
-          "ExtendedDictionary"
+          "OverrideEntry"
+        ]
+      },
+      "store": {
+        "type": "LangStore",
+        "required": false,
+        "description": "Реактивный источник языка для MFE: `getGlobalLocaleStore().store`.",
+        "typeRefs": [
+          "LangStore"
         ]
       }
     },
     "relatedTypes": {
-      "ExtendedDictionary": {
+      "Lang": {
+        "kind": "alias",
+        "type": "string",
+        "own": true
+      },
+      "LangStore": {
         "kind": "interface",
         "props": {
-          "en-GB": {
-            "type": "any",
-            "required": true
+          "getServerSnapshot": {
+            "type": "(() => LangSnapshot) | undefined",
+            "required": false,
+            "description": "Значение для SSR/гидрации. Если не задан — используется `getSnapshot`."
           },
-          "ru-RU": {
-            "type": "any",
+          "getSnapshot": {
+            "type": "() => LangSnapshot",
+            "required": true,
+            "description": "Текущее значение. Обязан возвращать стабильную (по `Object.is`) ссылку, пока значение не менялось."
+          },
+          "subscribe": {
+            "type": "(onStoreChange: () => void) => () => void",
+            "required": true,
+            "description": "Подписка на изменения; возвращает функцию отписки."
+          }
+        },
+        "own": true
+      },
+      "MessageTree": {
+        "kind": "alias",
+        "type": "{ [key: string]: string | MessageTree; }",
+        "own": true
+      },
+      "OverrideEntry": {
+        "kind": "interface",
+        "props": {
+          "lang": {
+            "type": "string",
+            "required": true,
+            "typeRefs": [
+              "Lang"
+            ]
+          },
+          "messages": {
+            "type": "{ [x: string]: string | PartialObjectDeep | undefined; }",
+            "required": true,
+            "typeRefs": [
+              "MessageTree",
+              "PartialDeep",
+              "PartialObjectDeep"
+            ]
+          },
+          "namespace": {
+            "type": "string",
             "required": true
           }
         },
         "own": true
       },
-      "LocaleLang": {
-        "kind": "union",
-        "values": [
-          "en-GB",
-          "ru-RU"
-        ],
+      "PartialDeep": {
+        "kind": "alias",
+        "type": "T extends BuiltIns | ((...arguments_: unknown[]) => unknown) | (new (...arguments_: unknown[]) => unknown) ? T : T extends Map<infer KeyType, infer ValueType> ? Map<PartialDeep<KeyType>, PartialDeep<ValueType>> : T extends Set<infer ItemType> ? Set<PartialDeep<ItemType>> : T extends ReadonlyMap<infer KeyType, infer ValueType> ? ReadonlyMap<PartialDeep<KeyType>, PartialDeep<ValueType>> : T extends ReadonlySet<infer ItemType> ? ReadonlySet<PartialDeep<ItemType>> : T extends object ? PartialObjectDeep<T> : unknown",
+        "own": true
+      },
+      "PartialObjectDeep": {
+        "kind": "alias",
+        "type": "{ [KeyType in keyof ObjectType]?: PartialDeep<ObjectType[KeyType]> | undefined; }",
         "own": true
       }
     }
-  },
-  "useLocale": {
-    "displayName": "useLocale",
-    "propsTypeName": null,
-    "props": {},
-    "relatedTypes": {}
   }
 }

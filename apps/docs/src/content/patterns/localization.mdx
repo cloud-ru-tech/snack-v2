@@ -1,0 +1,261 @@
+---
+title: Локализация — строки в пакетах
+description: Децентрализованная модель локализации @ds/locale — словарь живёт в самом компоненте, провайдер несёт только язык, сервис добавляет переводы и новые языки.
+order: 2
+---
+
+# Локализация — строки в пакетах
+
+Дизайн-система разделяет локализацию на два слоя:
+
+- **Строки — в самом компоненте.** Каждый пакет поставляет свой словарь (`en-GB`, `ru-RU`) рядом с кодом через `defineLocale`/`defineMessages`. Новый текст — это патч компонента, а не релиз `@ds/locale`.
+- **Язык — в стабильном провайдере.** `@ds/locale` несёт только текущий `lang`, `fallbackLang` и реестр оверрайдов. Его контракт не растёт с числом компонентов, поэтому он устойчив к версиям в **микрофронтах (MFE)** и безопасен для **SSR**.
+
+Поверх этого сервис может **переопределить** любой зашитый текст и **добавить язык, которого нет в дизайн-системе** (например немецкий) — не трогая код компонентов.
+
+> Это единственная действующая модель. Старый центральный словарь `LOCALES` и `useLocale` удалены — см. [Историческую справку](#историческая-справка) в конце.
+
+## TL;DR
+
+```tsx
+import { LocaleProvider, getGlobalLocaleStore } from '@ds/locale';
+import { calendarLocale } from '@ds/calendar';
+
+// Один-корневой app (SSR): язык пропом.
+<LocaleProvider lang="ru-RU">{app}</LocaleProvider>;
+
+// Микрофронты: язык из общего стора, хост-контейнер переключает его одним вызовом.
+<LocaleProvider store={getGlobalLocaleStore().store}>{mfe}</LocaleProvider>;
+getGlobalLocaleStore().setLang('en-GB');
+
+// Добавить язык / переопределить строку — на провайдере, типизированно по форме словаря компонента:
+<LocaleProvider lang="de-DE" overrides={[
+  calendarLocale.extend('de-DE', { apply: 'Anwenden', current: 'Jetzt' }),
+]}>{app}</LocaleProvider>;
+```
+
+## Как компонент объявляет словарь
+
+Строки лежат в пакете компонента, в одном файле `src/locale/index.ts`. `defineLocale` из одного словаря возвращает **и** хук переводов, **и** типизированную функцию оверрайда — оба завязаны на локальную форму словаря, поэтому ключи проверяются там же, где вызывается `t(...)`.
+
+Словарь объявляется через `defineMessages` — он на уровне типов **требует одинаковый набор ключей во всех языках** (с одинаковой вложенностью). Если ключ добавлен в один язык и пропущен в другом — компиляция завершается ошибкой прямо на языке, где ключа не хватает. Сам словарь — локальная const файла: наружу пакет отдаёт только locale-объект и тип формы словаря.
+
+```ts
+// packages/<pkg>/src/locale/index.ts
+import { defineLocale, defineMessages } from '@ds/locale';
+
+// VALUE словаря приватный — наружу не экспортируется.
+const CALENDAR_MESSAGES = defineMessages({
+  'en-GB': { apply: 'Apply', current: 'Current', defaultPresets: { lastWeek: 'Last 7 days' } },
+  'ru-RU': { apply: 'Применить', current: 'Сейчас', defaultPresets: { lastWeek: 'Последние 7 дней' } },
+});
+
+/** Форма словаря — для типизации сервисных оверрайдов/новых языков. */
+export type CalendarMessages = (typeof CALENDAR_MESSAGES)['en-GB'];
+
+export const calendarLocale = defineLocale('@ds/calendar', CALENDAR_MESSAGES);
+```
+
+```ts
+// en-GB получил newKey, ru-RU забыли — ошибка компиляции на блоке 'ru-RU':
+const CALENDAR_MESSAGES = defineMessages({
+  'en-GB': { apply: 'Apply', newKey: 'New' },
+  'ru-RU': { apply: 'Применить' }, // ❌ TS2322: Property 'newKey' is missing
+});
+```
+
+Проверяются только ключи и вложенность — значения листьев между языками, естественно, разные.
+
+Namespace — это **имя пакета** (`@ds/calendar`), а не имя компонента. Имена пакетов уникальны, поэтому
+namespace'ы не пересекаются; соответствие проверяет `pnpm check:locale-namespaces` (завершается ошибкой на
+чужом или дублирующемся namespace).
+
+```tsx
+// в компоненте
+import { calendarLocale } from '../../locale';
+
+const { t } = calendarLocale.useTranslations();
+t('apply'); // ключ типизирован по CALENDAR_MESSAGES — опечатка не скомпилируется
+t('defaultPresets.lastWeek'); // вложенный ключ через точку
+```
+
+Если компоненту нужен только тег языка (например, чтобы построить `Intl.Locale`), а не перевод — есть отдельный хук:
+
+```tsx
+import { useLang } from '@ds/locale';
+
+const lang = useLang();
+const locale = new Intl.Locale(lang);
+```
+
+## Провайдер: язык пропом или из стора
+
+`LocaleProvider` **не держит словарей** — только язык, fallback и оверрайды.
+
+```tsx
+type LocaleProviderProps = {
+  lang?: Lang;            // статический язык (одно-корневой app/SSR)
+  fallbackLang?: Lang;    // на что откатываемся при отсутствии перевода; по умолчанию en-GB
+  store?: LangStore;      // реактивный источник языка для MFE
+  overrides?: OverrideEntry[]; // оверрайды/новые языки (см. ниже)
+  children: ReactNode;
+};
+```
+
+- **Один React-корень (Next SSR)** — `lang` пропом. Значение ограничивается рендером/запросом и между запросами не утекает.
+- **Несколько корней (single-spa)** — `store={getGlobalLocaleStore().store}`. Хост-контейнер переключает язык одним вызовом `setLang`, все подписанные провайдеры во всех микрофронтах перерисовываются.
+- **Без провайдера.** `LocaleProvider` опционален: потребители читают язык из глобального стора (`getGlobalLocaleStore`), который задаёт хост-контейнер. Провайдер монтируется, когда нужен статический язык, собственный реактивный источник или статичные на уровне приложения оверрайды строк.
+
+```tsx
+// хост-контейнер, один раз при смене языка:
+getGlobalLocaleStore().setLang('de-DE');
+
+// в каждом независимом корне:
+<LocaleProvider store={getGlobalLocaleStore().store}>{root}</LocaleProvider>;
+```
+
+## Добавить язык или переопределить строку
+
+`lang` — открытый `string` (тег [BCP-47](https://www.rfc-editor.org/info/bcp47)), а не закрытое перечисление. Дизайн-система поставляет `en-GB` и `ru-RU` (`BUILTIN_LANGS`), но это не ограничение: **любой** язык можно дать на уровне сервиса.
+
+«Переопределить зашитый текст» и «добавить новый язык» — один механизм: словарь, который сервис кладёт поверх. Путь зависит от того, рендерит ли приложение сам компонент.
+
+### Приложение уже рендерит компонент
+
+Когда пакет компонента — обычная зависимость, оверрайд собирается его locale-объектом. Функция `<locale>.extend(lang, partial)` co-located с компонентом и типизирована по форме его словаря.
+
+```tsx
+import { LocaleProvider } from '@ds/locale';
+import { calendarLocale } from '@ds/calendar';
+
+<LocaleProvider lang="de-DE" overrides={[
+  // немецкого нет в DS — задаётся целиком на стороне сервиса
+  calendarLocale.extend('de-DE', {
+    apply: 'Anwenden',
+    current: 'Jetzt',
+    // непереведённые ключи откатываются на fallback (en-GB)
+  }),
+  // переопределить существующий язык — тот же extend
+  calendarLocale.extend('ru-RU', { apply: 'ОК' }),
+]}>
+  {app}
+</LocaleProvider>;
+```
+
+- Эталон для перевода — тип `CalendarMessages` (форма словаря) и `en-GB`-блок в исходнике пакета: по ним видно, какие ключи существуют.
+- Тип `CalendarMessages` даёт **проверку полноты** на этапе компиляции, если передавать полный объект; частичный (`PartialDeep`) тоже допустим — недостающее берётся из fallback.
+- Несколько `extend` для одного компонента и языка — сливаются (deep-merge).
+- Список оверрайдов на нескольких компонентах собирается через `composeOverrides(...)`.
+
+```tsx
+import { composeOverrides } from '@ds/locale';
+
+const german = composeOverrides(
+  calendarLocale.extend('de-DE', { apply: 'Anwenden' }),
+  dropdownLocale.extend('de-DE', { states: { noData: { title: 'Keine Daten' } } }),
+);
+
+<LocaleProvider lang="de-DE" overrides={german}>{app}</LocaleProvider>;
+```
+
+### Корень держит пакеты в devDependencies
+
+Корневое приложение, которое добавляет язык сразу для всех микрофронтов, сами компоненты не рендерит — ему нужны только типы словарей. Пакеты компонентов остаются в `devDependencies`, а locale-объект импортируется через `import type` из под-пути `@ds/<pkg>/locale` и стирается при компиляции: ни React-дерево компонента, ни его стили, ни строки в сборку корня не попадают.
+
+Оверрайд описывается типом `LocaleOverride<typeof <pkg>Locale>` — он выводит из типа пакета и литерал namespace, и форму словаря, поэтому строка namespace и ключи сообщений проверяются компилятором без рантайм-импорта.
+
+```tsx
+import { composeOverrides, getGlobalLocaleStore, LocaleOverride, LocaleProvider } from '@ds/locale';
+import type { calendarLocale } from '@ds/calendar/locale';
+import type { quotaLocale } from '@ds/uikit-product-quota/locale';
+
+// Немецкий сразу для нескольких пакетов: одна запись на namespace.
+const calendarDe: LocaleOverride<typeof calendarLocale> = {
+  namespace: '@ds/calendar', // сверяется с литералом из типа пакета
+  lang: 'de-DE',
+  messages: { apply: 'Anwenden', current: 'Jetzt' },
+};
+
+const quotaDe: LocaleOverride<typeof quotaLocale> = {
+  namespace: '@ds/uikit-product-quota',
+  lang: 'de-DE',
+  messages: { increaseQuota: 'Kontingent erhöhen' },
+};
+
+<LocaleProvider store={getGlobalLocaleStore().store} overrides={composeOverrides(calendarDe, quotaDe)}>
+  {app}
+</LocaleProvider>;
+```
+
+Под-путь `@ds/<pkg>/locale` отдаёт только locale-слой пакета: locale-объект и тип формы словаря (`CalendarMessages`). Для оверрайдов на корне этого достаточно — компонент импортировать не нужно. Полный справочник API — в [Locale](/components/locale).
+
+## Каскад: вложенные провайдеры
+
+Вложенный `LocaleProvider` наследует язык, fallback и оверрайды ближайшего родителя и точечно их переопределяет. Так можно зафиксировать поддерево на другом языке, сохранив сервисные оверрайды корня.
+
+```tsx
+<LocaleProvider store={getGlobalLocaleStore().store} overrides={german}>
+  {/* весь экран следует за глобальным языком */}
+  <App />
+
+  <LocaleProvider lang="en-GB">
+    {/* эта секция всегда на английском, но DE-оверрайды родителя остаются доступны */}
+    <LegalNotice />
+  </LocaleProvider>
+</LocaleProvider>;
+```
+
+## Резолв ключа
+
+Для текущего языка строится словарь и из него достаётся строка:
+
+1. оверрайд `overrides[namespace][lang]` (если задан сервисом);
+2. строки компонента для `lang`;
+3. строки компонента для `fallbackLang`;
+4. сам ключ + предупреждение в dev.
+
+Для **нового** языка (нет в словаре компонента, есть только в `overrides`) база берётся из `fallbackLang`, а оверрайд кладётся сверху — переведённые ключи на новом языке, непереведённые на fallback. Перевод можно добавлять частями.
+
+Интерполяция — типобезопасная: плейсхолдеры `{{placeholder}}` выводятся из самой строки, и `t` требует ровно их (опечатка или пропуск — ошибка компиляции).
+
+```ts
+// messages: { hello: 'Hello, {{name}}!' }
+t('hello', { name: 'Ada' }); // → Hello, Ada!
+t('hello');                   // ❌ ошибка компиляции: интерполяция обязательна
+t('apply');                   // без плейсхолдеров — второй аргумент запрещён
+```
+
+Частые типографские символы — зарезервированными токенами (`{{nbsp}}`, `{{nnbsp}}`, `{{mdash}}`,
+`{{newline}}` и др.; полный набор — в константе `SPECIAL_CHARS`). Движок подставляет их сам, в
+аргументах `t` они не требуются, а в словаре читаются явно — `{{nbsp}}` вместо невидимого символа.
+
+```ts
+// messages — токены видны в исходнике, символ появляется при выводе
+const ru = {
+  price: 'Цена:{{nbsp}}{{value}}{{nnbsp}}₽',    // 100 ₽ — число не отрывается от валюты
+  limit: 'Лимит: 10{{thinsp}}000 запросов',     // 10 000 — тонкий пробел между разрядами
+  hours: 'Пн{{ndash}}Пт',                       // Пн–Пт — диапазон через среднее тире
+  plan: 'Тариф{{nbsp}}{{mdash}}{{nbsp}}Бизнес', // Тариф — Бизнес — длинное тире с неразрывными
+  saved: 'Сохранение{{hellip}}',                // Сохранение… — многоточие одним символом
+  done: 'Готово{{newline}}Можно закрыть окно',  // перенос строки (нужен white-space: pre-line)
+};
+
+t('price', { value: 100 }); // → Цена: 100 ₽
+t('limit');                 // → Лимит: 10 000 запросов
+```
+
+## MFE и SSR
+
+- **MFE.** Контекст языка — `Symbol.for`-синглтон (`providerKey('locale', 1)`): потребитель в микрофронте читает ближайший провайдер независимо от версии пакета. Глобальный `getGlobalLocaleStore()` (тоже `Symbol.for`) даёт один источник языка на все корни. Контракт значения (`{ lang, fallbackLang, overrides }`) не растёт с числом компонентов — ключ остаётся `v1`.
+- **SSR.** `getServerSnapshot` стора отдаёт дефолтный язык (мутабельный глобал на сервере запрещён — утечёт между запросами). Стартовый язык на сервере задаёт сам app: либо `lang` пропом, либо начальное значение перед гидрацией.
+- **Строки в бандле.** Каждый компонент несёт только свои строки → потребитель платит лишь за используемые компоненты (а не за общий словарь всей DS).
+
+## Историческая справка
+
+Раньше все строки лежали в центральном словаре `LOCALES` пакета `@ds/locale`, а компоненты читали их через `useLocale('<Component>')`. Этот механизм **удалён** — все пакеты переведены на co-located `defineLocale`/`defineMessages` в `src/locale/`, описанные выше. Если в старом коде встречается `useLocale('NS')` — замените его на `<ns>Locale.useTranslations()` из locale-модуля пакета.
+
+## Частые проблемы
+
+- **Тексты дефолтные / не на том языке.** Нет `LocaleProvider` выше по дереву и язык не задан в глобальном сторе — тогда берётся `fallbackLang` (`en-GB`). Проверьте, что провайдер оборачивает компонент, либо что `getGlobalLocaleStore().setLang(...)` вызван в хост-контейнере. Несколько копий `@ds/locale` ломать локаль не должны: контекст и стор — `Symbol.for`-синглтоны, общие между копиями (при смешанных версиях — только dev-warn).
+- **Новый язык не подхватился.** `extend('<lang>', …)` должен попасть в `overrides` именно того провайдера, что оборачивает компонент, а `lang` провайдера — совпадать с тегом из `extend`.
+- **Часть строк осталась на fallback.** Это ожидаемо для частичного перевода: непереведённые ключи берутся из `fallbackLang`. Допереведите недостающие ключи в `extend`.

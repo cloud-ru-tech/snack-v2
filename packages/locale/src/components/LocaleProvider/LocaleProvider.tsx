@@ -1,152 +1,68 @@
-import merge from 'lodash.merge';
-import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
+import { staticStore } from '@ds/context-kit';
+import { ReactNode, useMemo, useSyncExternalStore } from 'react';
 
-import { LOCALES } from '../../locales';
-import {
-  Dictionary,
-  DottedTranslationKey,
-  ExtendedDictionary,
-  InterpolationObject,
-  LocaleDictionary,
-  LocaleLang,
-  Locales,
-  OverrideLocales,
-  TranslatedEntity,
-} from '../../types';
-import { interpolateTranslation } from '../../utils/interpolateTranslation';
+import { DEFAULT_LANG } from '../../constants/lang';
+import { LocaleStoreProvider, useLocaleContext } from '../../context/localeContext';
+import { LangSnapshot, LangStore } from '../../store/globalStore';
+import { Lang, LocaleContextValue, OverrideEntry } from '../../types/locale';
+import { buildOverrideRegistry, mergeRegistries } from '../../utils/resolve';
 
-export const DEFAULT_LANG = 'en-GB';
-
-export type LocaleContextType<D extends Dictionary> = {
-  lang: LocaleLang | string;
-  locales: Locales<D>;
-  localesByLang: LocaleDictionary<D>;
+// Стабильный snapshot обязателен: useSyncExternalStore зациклится, если getSnapshot отдаёт новую
+// ссылку каждый вызов. Используется, когда `store` не задан (язык приходит пропом/из родителя).
+const NOOP_SNAPSHOT: LangSnapshot = { lang: DEFAULT_LANG };
+const NOOP_STORE: LangStore = {
+  subscribe: () => () => {},
+  getSnapshot: () => NOOP_SNAPSHOT,
+  getServerSnapshot: () => NOOP_SNAPSHOT,
 };
 
-export type LocaleProviderProps<D extends Dictionary> = {
-  lang: LocaleLang | string;
-  fallbackLang?: LocaleLang;
-  overrideLocales?: OverrideLocales<D>;
+export type LocaleProviderProps = {
+  /** Статический язык (одно-корневой app/SSR). Игнорируется, если задан `store`. */
+  lang?: Lang;
+  /** Язык, на который откатываемся при отсутствии перевода. По умолчанию `en-GB`. */
+  fallbackLang?: Lang;
+  /** Реактивный источник языка для MFE: `getGlobalLocaleStore().store`. */
+  store?: LangStore;
+  /** Оверрайды/новые языки — собираются через `<locale>.extend(lang, ...)`, app-static. */
+  overrides?: OverrideEntry[];
   children: ReactNode;
 };
 
-export type ContextOptions<D extends Dictionary> = {
-  extendedDictionary?: ExtendedDictionary<D>;
-  defaultLanguage?: LocaleLang;
-};
+/**
+ * Провайдер локали. **Не держит словарей** — только текущий язык, fallback и реестр оверрайдов.
+ * Строки живут в самих компонентах (`defineLocale`). Язык — из пропа `lang` (static) либо `store` (MFE).
+ *
+ * Провайдер опционален: без него консьюмеры читают язык из глобального стора (`getGlobalLocaleStore`),
+ * который кормит шелл контейнера. Монтируется в дереве, когда нужен статический язык, собственный
+ * реактивный источник или app-static оверрайды строк.
+ */
+export function LocaleProvider({ lang, fallbackLang, store, overrides, children }: LocaleProviderProps) {
+  // Каскад: вложенный провайдер наследует язык/fallback/оверрайды ближайшего родителя и точечно их
+  // переопределяет (как ChildThemeProvider). На корне родителя нет — это `globalLocaleDefaultStore`.
+  const parent = useLocaleContext();
 
-function mergeLocaleWithExtension<D extends Dictionary>(extension?: ExtendedDictionary<D>): Locales<D> {
-  return merge({}, LOCALES, extension);
+  const effectiveStore = store ?? NOOP_STORE;
+  const snapshot = useSyncExternalStore(
+    effectiveStore.subscribe,
+    effectiveStore.getSnapshot,
+    effectiveStore.getServerSnapshot ?? effectiveStore.getSnapshot,
+  );
+
+  const effectiveLang = store ? snapshot.lang : (lang ?? parent.lang);
+  const effectiveFallback = fallbackLang ?? parent.fallbackLang ?? DEFAULT_LANG;
+  const overrideRegistry = useMemo(
+    () => mergeRegistries(parent.overrides, buildOverrideRegistry(overrides)),
+    [parent.overrides, overrides],
+  );
+
+  const value = useMemo<LocaleContextValue>(
+    () => ({ lang: effectiveLang, fallbackLang: effectiveFallback, overrides: overrideRegistry }),
+    [effectiveLang, effectiveFallback, overrideRegistry],
+  );
+
+  // Контекст хранит внешний стор; статичное вычисленное значение заворачиваем в `staticStore`
+  // (стабильный по ссылке snapshot), мемоизируя по `value`.
+  const valueStore = useMemo(() => staticStore(value), [value]);
+
+  return <LocaleStoreProvider store={valueStore}>{children}</LocaleStoreProvider>;
 }
-
-type ValueOf<T> = T[keyof T];
-
-type LocaleComponentName<D extends Dictionary> = keyof LocaleDictionary<D>;
-
-type GetLocaleText<D extends Dictionary, T extends keyof LocaleDictionary<D> | undefined = undefined> = (
-  key: DottedTranslationKey<D, T>,
-  interpolation?: InterpolationObject,
-) => string;
-
-export function createLocaleContext<D extends Dictionary>({
-  extendedDictionary,
-  defaultLanguage = DEFAULT_LANG,
-}: ContextOptions<D>) {
-  const extendedLocales = mergeLocaleWithExtension(extendedDictionary);
-
-  const LocaleContext = createContext<LocaleContextType<D>>({
-    lang: defaultLanguage,
-    locales: extendedLocales,
-    localesByLang: extendedLocales[defaultLanguage],
-  });
-
-  function LocaleProvider({ lang, fallbackLang = defaultLanguage, overrideLocales, children }: LocaleProviderProps<D>) {
-    const locales = useMemo(() => {
-      if (overrideLocales) {
-        return merge({}, extendedLocales, overrideLocales);
-      }
-
-      return extendedLocales;
-    }, [overrideLocales]);
-
-    const localesByLang = useMemo(() => {
-      let localesObj = locales[lang as LocaleLang];
-
-      if (!localesObj) {
-        console.warn(
-          `@ds/locale: localization for lang ${lang} was not found. Make sure you are using correct lang or passed proper locales to LocaleProvider. For now default language (${DEFAULT_LANG}) will be used`,
-        );
-
-        localesObj = locales[fallbackLang] as LocaleDictionary<D>;
-      }
-
-      return localesObj;
-    }, [fallbackLang, lang, locales]);
-
-    return <LocaleContext.Provider value={{ lang, locales, localesByLang }}>{children}</LocaleContext.Provider>;
-  }
-
-  /**
-   * Inner hook to use translations
-   * @function helper
-   */
-  function useLocale(): { t: GetLocaleText<D>; lang: LocaleLang };
-  function useLocale<C extends LocaleComponentName<D> = LocaleComponentName<D>>(
-    componentName: C,
-  ): { t: GetLocaleText<D, C>; lang: LocaleLang };
-  function useLocale<C extends LocaleComponentName<D> = LocaleComponentName<D>>(componentName?: C) {
-    const { localesByLang, lang } = useContext<LocaleContextType<D>>(LocaleContext);
-
-    const locales = useMemo(() => {
-      if (!componentName) {
-        return localesByLang;
-      }
-
-      return (localesByLang[componentName] || {}) as LocaleDictionary<D>[C];
-    }, [componentName, localesByLang]);
-
-    const getLocaleText: GetLocaleText<D, C> = useCallback(
-      (key, interpolation) => {
-        let translation = '';
-
-        const complexKey = key.split('.');
-
-        if (complexKey.length === 1) {
-          translation = locales[key as keyof typeof locales] as unknown as string;
-        } else {
-          translation = complexKey.reduce<
-            LocaleDictionary<D> | ValueOf<LocaleDictionary<D>> | TranslatedEntity | string
-          >((acc, cur) => {
-            if (typeof acc === 'string') {
-              return acc;
-            }
-
-            return acc[cur as keyof typeof acc];
-          }, locales) as string;
-        }
-
-        if (!translation?.length) {
-          console.warn(`@ds/locale: the '${key}' key is not found in the current locale '${lang}'.`);
-
-          return key;
-        }
-
-        return interpolateTranslation(translation, interpolation);
-      },
-      [lang, locales],
-    );
-
-    return {
-      t: getLocaleText,
-      lang,
-    };
-  }
-
-  return {
-    LocaleContext,
-    LocaleProvider,
-    useLocale,
-  };
-}
-
-export const { LocaleProvider, useLocale } = createLocaleContext({});

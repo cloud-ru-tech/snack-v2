@@ -22,6 +22,9 @@
       "#storybook/hooks/*": [
         "apps/storybook/.storybook/hooks/*"
       ],
+      "@ds/*/locale": [
+        "./packages/*/src/locale"
+      ],
       "@ds/*": [
         "./packages/*/src"
       ],

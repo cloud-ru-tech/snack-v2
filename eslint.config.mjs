@@ -38,7 +38,7 @@ export default [
     },
   },
   {
-    files: ['packages/**/__unit__/**/*.ts'],
+    files: ['packages/**/__tests__/**/*.test.ts', 'scripts/__tests__/**/*.test.ts'],
     rules: {
       'vitest/consistent-test-it': ['error', { fn: 'it' }],
       '@cloud-ru/ssr-safe-react/domApi': 'off',

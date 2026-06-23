@@ -8,6 +8,7 @@
 | `packages/*/__test__/**/*.spec.ts` | [e2e-testing-standard](.claude/rules/e2e-testing-standard.md) · [visual-regression-standard](.claude/rules/visual-regression-standard.md) · [test-environment-pitfalls](.claude/rules/test-environment-pitfalls.md) |
 | `packages/*/src/**/*.module.scss` | [scss-styles-standard](.claude/rules/scss-styles-standard.md) · [figma-to-code](.claude/rules/figma-to-code.md) |
 | `packages/*/src/**/*.{ts,tsx}` | [component-api-surface](.claude/rules/component-api-surface.md) · [component-internals](.claude/rules/component-internals.md) · [package-src-structure](.claude/rules/package-src-structure.md) · [react-types](.claude/rules/react-types.md) · [imports-exports](.claude/rules/imports-exports.md) |
+| `packages/*/src/locale/**` (строки/i18n) | [locale-standard](.claude/rules/locale-standard.md) |
 | `packages/*/docs/*.mdx` | [docs-structure](.claude/rules/docs-structure.md) · [writing-style](.claude/rules/writing-style.md) · [figma-integration](.claude/rules/figma-integration.md) |
 | `packages/*/package.json` | [packages-deps](.claude/rules/packages-deps.md) |
 | Coverage / unit-тесты | [coverage-standard](.claude/rules/coverage-standard.md) |

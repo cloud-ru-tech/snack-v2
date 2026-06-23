@@ -9,6 +9,7 @@
     "gen:props": "tsx scripts/gen-props.mts",
     "gen:readme": "tsx scripts/gen-readme.mts",
     "gen": "pnpm gen:props && pnpm gen:readme",
+    "check:locale-namespaces": "tsx scripts/check-locale-namespaces.mts",
     "build": "(pnpm run build:packages & pnpm run gen:props & wait) && pnpm run gen:readme && (pnpm run build:storybook & pnpm run build:docs & wait)",
     "build:all": "(pnpm run build:packages & pnpm run gen:props & wait) && pnpm run gen:readme && (pnpm run build:storybook & pnpm run build:docs & wait)",
     "build:packages": "pnpm run build:ts && pnpm run copy:icons-sprite-svg && pnpm run build:cjs-package-meta && pnpm run build:css && pnpm run build:cjs-css-modules",

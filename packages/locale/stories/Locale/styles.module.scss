@@ -1,0 +1,32 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.localeStack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 100%;
+}
+
+.localeSurface {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  width: 100%;
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.row {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: baseline;
+}
+
+.value {
+  font-weight: 600;
+}
