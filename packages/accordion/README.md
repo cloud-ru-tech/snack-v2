@@ -137,6 +137,12 @@ export function MultipleMode() {
 #### Chevron
 Положение шеврона-раскрытия: `before` — слева от заголовка, `after` — справа.
 
+#### showChevron (default `true`)
+Управляет наличием шеврона-раскрытия в строке заголовка.
+
+- `true` — шеврон показывается рядом с заголовком.
+- `false` — шеврон скрыт; блок по-прежнему раскрывается кликом по строке заголовка.
+
 ### Примеры использования
 
 #### Цветовые схемы
@@ -302,6 +308,7 @@ export function NestedLevels() {
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | `false` | Оставлять ли контент в DOM при сворачивании |
+| `showChevron` | `boolean` | `true` | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
@@ -350,6 +357,7 @@ export function AfterTitle() {
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
+| `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
@@ -406,6 +414,7 @@ export function ChevronBefore() {
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
+| `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
@@ -460,6 +469,7 @@ export function NestedLevels() {
 | `data-test-id` | `string` | — |  |
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
+| `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
 

@@ -21,11 +21,20 @@ const chevrons = Object.values(CHEVRON);
 
 const matrixBackgroundFills = Object.values(BACKGROUND_PREDEFINED_FILL);
 
-type MatrixCellProps = Pick<CollapseBlockSecondaryProps, 'view' | 'backgroundPredefined' | 'chevron'> & {
+type MatrixCellProps = Pick<
+  CollapseBlockSecondaryProps,
+  'view' | 'backgroundPredefined' | 'chevron' | 'showChevron'
+> & {
   id: string;
 };
 
-function CollapseBlockMatrixCell({ id, view, backgroundPredefined, chevron = CHEVRON.After }: MatrixCellProps) {
+function CollapseBlockMatrixCell({
+  id,
+  view,
+  backgroundPredefined,
+  chevron = CHEVRON.After,
+  showChevron,
+}: MatrixCellProps) {
   return (
     <Accordion>
       <Accordion.CollapseBlockSecondary
@@ -35,6 +44,7 @@ function CollapseBlockMatrixCell({ id, view, backgroundPredefined, chevron = CHE
         view={view}
         backgroundPredefined={backgroundPredefined}
         chevron={chevron}
+        showChevron={showChevron}
       >
         Content
       </Accordion.CollapseBlockSecondary>
@@ -77,6 +87,26 @@ export const VisualMatrix: Story = {
                 view={VIEW.Simple}
                 backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}
                 chevron={chevron}
+              />
+            )),
+          },
+        ]}
+      />
+
+      <StoryTable
+        sectionTitle='Chevron visibility'
+        firstColumnHeader='Variant'
+        columnHeaders={['showChevron=true', 'showChevron=false']}
+        rows={[
+          {
+            variantLabel: 'Default',
+            cells: [true, false].map(showChevron => (
+              <CollapseBlockMatrixCell
+                key={String(showChevron)}
+                id={`vm-show-chevron-${showChevron}`}
+                view={VIEW.Simple}
+                backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}
+                showChevron={showChevron}
               />
             )),
           },

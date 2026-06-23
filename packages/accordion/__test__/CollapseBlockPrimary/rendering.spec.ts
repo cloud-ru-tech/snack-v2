@@ -32,6 +32,18 @@ test.describe('CollapseBlockPrimary — rendering', () => {
       await expect(getByTestId(TEST_IDS.subTitle)).toContainText('Custom subtitle');
     });
 
+    test('renders chevron by default', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
+
+      await expect(getByTestId(TEST_IDS.chevron)).toBeVisible();
+    });
+
+    test('hides chevron when showChevron=false', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, showChevron: false }));
+
+      await expect(getByTestId(TEST_IDS.chevron)).toHaveCount(0);
+    });
+
     test('renders afterTitle slot when enabled', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ showAfterTitleSlot: true }));
 

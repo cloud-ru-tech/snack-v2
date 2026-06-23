@@ -34,6 +34,8 @@ export type CollapseBlockProps = PropsWithChildren<
     view?: View;
     /** Расположение шеврона относительно текста (`before` | `after`) */
     chevron?: Chevron;
+    /** Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) */
+    showChevron?: boolean;
     /**
      * Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).
      * По умолчанию `material/neutralBackground1Level`.
@@ -67,6 +69,7 @@ export function CollapseBlock({
   backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
   keepMounted = false,
   component,
+  showChevron = true,
   'data-test-id': dataTestId,
   ...rest
 }: CollapseBlockProps) {
@@ -129,15 +132,17 @@ export function CollapseBlock({
             </div>
           )}
         </div>
-        <div className={cn(styles.chevronWrapper, getThemeClassnames({ density: 'compact' }))}>
-          <Button
-            view='function'
-            size='m'
-            icon={isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
-            data-test-id={TEST_IDS.chevron}
-            appearance='neutral'
-          />
-        </div>
+        {showChevron && (
+          <div className={cn(styles.chevronWrapper, getThemeClassnames({ density: 'compact' }))}>
+            <Button
+              view='function'
+              size='m'
+              icon={isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
+              data-test-id={TEST_IDS.chevron}
+              appearance='neutral'
+            />
+          </div>
+        )}
       </div>
 
       <div className={styles.collapse} data-expanded={isOpen || undefined} aria-hidden={!isOpen}>

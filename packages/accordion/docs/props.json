@@ -116,6 +116,12 @@
         "defaultValue": "false",
         "description": "Оставлять ли контент в DOM при сворачивании"
       },
+      "showChevron": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
+      },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
@@ -252,6 +258,11 @@
         "required": false,
         "description": "Оставлять ли контент в DOM при сворачивании"
       },
+      "showChevron": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
+      },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
@@ -378,6 +389,11 @@
         "required": false,
         "description": "Оставлять ли контент в DOM при сворачивании"
       },
+      "showChevron": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
+      },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
@@ -482,6 +498,11 @@
         "type": "boolean",
         "required": false,
         "description": "Оставлять ли контент в DOM при сворачивании"
+      },
+      "showChevron": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
       },
       "subTitle": {
         "type": "ReactNode",

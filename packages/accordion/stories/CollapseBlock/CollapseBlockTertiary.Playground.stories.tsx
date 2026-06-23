@@ -20,6 +20,7 @@ const meta: Meta<PlaygroundArgs> = {
     subTitle: 'CollapseBlock subtitle',
     children: 'CollapseBlock content',
     chevron: 'after',
+    showChevron: true,
     keepMounted: false,
   },
   argTypes: {

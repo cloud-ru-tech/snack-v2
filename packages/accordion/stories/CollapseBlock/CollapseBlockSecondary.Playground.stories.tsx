@@ -22,6 +22,7 @@ const meta: Meta<PlaygroundArgs> = {
     children: 'CollapseBlock content',
     view: 'simple',
     chevron: 'after',
+    showChevron: true,
     backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     keepMounted: false,
   },
