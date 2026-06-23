@@ -58,6 +58,9 @@
       "path": "./ai-shimmer/tsconfig.esm.json"
     },
     {
+      "path": "./ai-chain-of-thoughts/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {

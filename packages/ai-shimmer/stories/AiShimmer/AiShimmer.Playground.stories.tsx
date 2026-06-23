@@ -1,3 +1,4 @@
+import { GIGA_MASK_IMAGE } from '@ds/ai-icon-giga';
 import { AiShimmer, DEFAULT_SIZE, DEFAULT_VARIANT, DEFAULT_WEIGHT, SIZE, VARIANT, WEIGHT } from '@ds/ai-shimmer';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -33,6 +34,11 @@ const meta: Meta<typeof AiShimmer> = {
     weight: {
       control: 'select',
       options: Object.values(WEIGHT),
+    },
+    iconMask: {
+      control: 'select',
+      options: ['none', 'giga'],
+      mapping: { none: undefined, giga: GIGA_MASK_IMAGE },
     },
   },
 };

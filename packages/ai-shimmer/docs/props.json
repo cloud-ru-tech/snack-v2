@@ -13,6 +13,17 @@
         "required": false,
         "defaultValue": "ai-shimmer"
       },
+      "iconMask": {
+        "type": "string",
+        "required": false,
+        "description": "Силуэт ведущей иконки как CSS `mask-image` (обычно `url(\"data:image/svg+xml,…\")`).\nЕсли задан — перед текстом рисуется иконка, залитая тем же бегущим градиентом,\nчто и текст: блеск проходит сплошной полосой «иконка → конец строки», как будто\nиконка — часть текста. Иконка не несёт собственного цвета, она наследует\nshimmer-покрытие (приглушённая база + блик)."
+      },
+      "iconSize": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "16",
+        "description": "Размер ведущей иконки в px (квадрат). Действует только с `iconMask`. По умолчанию `16`."
+      },
       "size": {
         "type": "enum",
         "required": false,

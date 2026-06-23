@@ -82,6 +82,10 @@ export const FIGMA_NODES = {
     'chip-choice-row': { ...SNACK, nodeId: '6446-4036' }, // chips/chip-choice-row → chipChoiceRow
   },
   'ai-card': { ...AI_COMPONENTS, nodeId: '6081-3818' }, // ai-card → Card / Generative
+  'ai-chain-of-thoughts': {
+    _: { ...AI_COMPONENTS, nodeId: '7099-3584' }, // Chain Of Thoughts
+    'ai-chain-of-thoughts-headline': { ...AI_COMPONENTS, nodeId: '7099-3365' }, // Chain Of Thoughts Headline
+  },
   'ai-icon-giga': { ...AI_COMPONENTS, nodeId: '7404-40182' }, // ai-icon-giga → Icon Giga
   'ai-reasoning': { ...AI_COMPONENTS, nodeId: '7250-14770' }, // ai-reasoning → Reasoning
   'ai-queue': { ...AI_COMPONENTS, nodeId: '7099-4119' }, // ai-queue → Queue

@@ -1,0 +1,96 @@
+---
+title: AiChainOfThoughts
+package: '@ds/ai-chain-of-thoughts'
+description: Цепочка рассуждений AI-агента (Chain of Thoughts) — сворачиваемый заголовок «Размышляю» с длительностью и список строк-инструментов.
+order: 0
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+import { Default } from '../demos/examples/Default'
+import DefaultSrc from '../demos/examples/Default.tsx?raw'
+import { Broken } from '../demos/examples/Broken'
+import BrokenSrc from '../demos/examples/Broken.tsx?raw'
+import { HeadlineStates } from '../demos/examples/HeadlineStates'
+import HeadlineStatesSrc from '../demos/examples/HeadlineStates.tsx?raw'
+
+import aiChainOfThoughtsDoc from './props.json'
+
+# AiChainOfThoughts
+
+`AiChainOfThoughts` — цепочка рассуждений AI-агента (Chain of Thoughts) для Гига-помощника: сворачиваемый заголовок «Размышляю» / «Размышлял» с длительностью и список строк-инструментов под ним.
+
+Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`). Контент цепочки передаётся слотом `children` (строки `@ds/ai-tool`), сам компонент его не запоминает.
+
+## Когда использовать
+
+- Показ процесса рассуждения агента в чате: заголовок со статусом и список выполненных шагов-инструментов.
+- Потоковое отображение размышлений (стриминг) — заголовок остаётся, контент дополняется по мере поступления шагов.
+
+### Когда не нужен
+
+- Одиночный шаг reasoning без заголовка-цепочки:
+  - используйте `@ds/ai-reasoning`.
+- Отдельный вызов инструмента вне цепочки:
+  - используйте `AiTool` / `AiToolSimple` из `@ds/ai-tool`.
+
+## Анатомия
+
+### InProgress (default `true`)
+
+- `true` — слева иконка GigaChat, подпись «Размышляю» (настоящее время) и длительность.
+- `false` — без иконки, подпись «Размышлял» (прошедшее время).
+
+### Broken (default `false`)
+
+Поток рассуждения прерван: вместо длительности и chevron'а заголовок показывает сообщение `brokenMessage`, контент-цепочка не раскрывается.
+
+### Opened (default `false`)
+
+Раскрытие контент-цепочки. Chevron в заголовке появляется только при наличии `children` и вне состояния `broken`.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-chain-of-thoughts
+```
+
+```ts
+import { AiChainOfThoughts, AiChainOfThoughtsHeadline } from '@ds/ai-chain-of-thoughts'
+```
+
+## Примеры использования
+
+<Example title='Default' description='Цепочка с раскрытым списком инструментов' code={DefaultSrc}>
+  <Default client:visible />
+</Example>
+
+<Example title='Broken' description='Прерванный поток рассуждения' code={BrokenSrc}>
+  <Broken client:visible />
+</Example>
+
+<Example title='Headline' description='Заголовок в процессе и завершённый' code={HeadlineStatesSrc}>
+  <HeadlineStates client:visible />
+</Example>
+
+## Props
+
+### AiChainOfThoughts
+
+<PropsTable data={aiChainOfThoughtsDoc.AiChainOfThoughts} />
+
+### AiChainOfThoughtsHeadline
+
+<PropsTable data={aiChainOfThoughtsDoc.AiChainOfThoughtsHeadline} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aichainofthoughts-aichainofthoughts--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-chain-of-thoughts')} />

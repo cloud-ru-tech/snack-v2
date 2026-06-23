@@ -53,6 +53,9 @@
       "path": "./ai-shimmer/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-chain-of-thoughts/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-suggestion/tsconfig.cjs.json"
     },
     {

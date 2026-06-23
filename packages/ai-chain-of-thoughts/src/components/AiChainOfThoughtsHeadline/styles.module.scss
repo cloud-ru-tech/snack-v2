@@ -1,0 +1,62 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.status {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.lead {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.shimmer {
+  display: inline-flex;
+  min-width: 0;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.label {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.duration {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.durationSegment {
+  display: flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.message {
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'body', 'm');
+
+  margin: base.$sn-primitive-dimension-0;
+  color: base.$sn-theme-color-available-version-textMain;
+}

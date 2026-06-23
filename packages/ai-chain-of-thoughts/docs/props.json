@@ -1,0 +1,128 @@
+{
+  "AiChainOfThoughts": {
+    "displayName": "AiChainOfThoughts",
+    "propsTypeName": "AiChainOfThoughtsProps",
+    "props": {
+      "broken": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Поток рассуждения прерван. Заголовок показывает сообщение `brokenMessage`,\nконтент-цепочка не раскрывается. По умолчанию `false`."
+      },
+      "brokenMessage": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст сообщения о прерванном потоке (показывается при `broken`)."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент-цепочка рассуждения — строки `AiTool` / `AiToolSimple`. Рендерится\nпод заголовком в раскрытом состоянии."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-chain-of-thoughts"
+      },
+      "defaultOpened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Начальное раскрытое состояние (uncontrolled). По умолчанию `false`."
+      },
+      "duration": {
+        "type": "number",
+        "required": false,
+        "description": "Длительность рассуждения в секундах. Форматируется в д/ч/м/с. Скрыта в\nсостоянии `broken`."
+      },
+      "inProgress": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Идёт ли рассуждение прямо сейчас. `true` — иконка GigaChat и подпись\n«Размышляю»; `false` — без иконки и «Размышлял». По умолчанию `true`."
+      },
+      "label": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подпись заголовка. По умолчанию «Размышляю» / «Размышлял» — по `inProgress`."
+      },
+      "onToggle": {
+        "type": "((opened: boolean) => void)",
+        "required": false,
+        "description": "Переключение раскрытия. Получает новое значение `opened`."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiChainOfThoughtsHeadline": {
+    "displayName": "AiChainOfThoughtsHeadline",
+    "propsTypeName": "AiChainOfThoughtsHeadlineProps",
+    "props": {
+      "broken": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Поток рассуждения прерван. Вместо длительности и chevron'а под подписью\nпоказывается сообщение `brokenMessage`. По умолчанию `false`."
+      },
+      "brokenMessage": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст сообщения о прерванном потоке (показывается при `broken`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "collapsible": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Рендерить ли chevron-кнопку раскрытия. Управляется родителем\n(`AiChainOfThoughts` ставит `true`, когда есть раскрываемый контент).\nВ состоянии `broken` chevron не рендерится. По умолчанию `false`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-chain-of-thoughts-headline"
+      },
+      "duration": {
+        "type": "number",
+        "required": false,
+        "description": "Длительность рассуждения в секундах. Форматируется в д/ч/м/с (ведущие\nнулевые единицы опускаются, секунды показываются всегда). Скрыта в\nсостоянии `broken`."
+      },
+      "inProgress": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Идёт ли рассуждение прямо сейчас. `true` — слева иконка GigaChat и подпись\n«Размышляю» (настоящее время); `false` — без иконки и «Размышлял»\n(прошедшее время). По умолчанию `true`."
+      },
+      "label": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подпись заголовка. По умолчанию «Размышляю» / «Размышлял» — по `inProgress`."
+      },
+      "onToggle": {
+        "type": "((opened: boolean) => void)",
+        "required": false,
+        "description": "Клик по chevron'у. Получает новое значение `opened`."
+      },
+      "opened": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Раскрытое состояние — задаёт направление chevron'а. По умолчанию `false`."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

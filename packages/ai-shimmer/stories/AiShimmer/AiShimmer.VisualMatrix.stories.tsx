@@ -1,3 +1,4 @@
+import { GIGA_MASK_IMAGE } from '@ds/ai-icon-giga';
 import { AiShimmer, SIZE, VARIANT, WEIGHT } from '@ds/ai-shimmer';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -84,6 +85,19 @@ export const VisualMatrix: Story = {
           cells: [
             <div className={styles.matrixCell} key={weight}>
               <AiShimmer text='Generating AI response...' weight={weight} size='m' />
+            </div>,
+          ],
+        }))}
+      />
+      <StoryTable
+        sectionTitle='With icon'
+        firstColumnHeader='Size'
+        columnHeaders={['AiShimmer + iconMask']}
+        rows={sizes.map(size => ({
+          variantLabel: size.toUpperCase(),
+          cells: [
+            <div className={styles.matrixCell} key={size}>
+              <AiShimmer text='Размышляю 365 д 09 ч 09 м 09 с' size={size} iconMask={GIGA_MASK_IMAGE} />
             </div>,
           ],
         }))}

@@ -7,6 +7,38 @@ $sizes: 's', 'm', 'l';
 $spread-width: 108px;
 $spread-start-left: -124px;
 $spread-end-left: calc(100% + 124px);
+$default-line-width: 400px;
+
+/** Бегущий брендовый радиал-блик поверх приглушённой базы `$base-color`. */
+@mixin shimmer-paint($base-color) {
+  background-image:
+    radial-gradient(
+      ellipse at 66% 22%,
+      rgb(51 140 235 / 100%) 15%,
+      rgb(59 174 209 / 100%) 30%,
+      rgb(67 208 183 / 100%) 45%,
+      rgb(52 203 151 / 100%) 55%,
+      rgb(36 198 118 / 100%) 65%,
+      rgb(36 198 118 / 0%) 100%
+    ),
+    linear-gradient($base-color, $base-color);
+  background-repeat: no-repeat;
+  background-position:
+    $spread-start-left 0,
+    0 0;
+  background-origin: border-box;
+  background-size:
+    $spread-width var(--ai-shimmer-spread-start-height),
+    100% 100%;
+
+  animation: shimmer-text-move 3.75s linear infinite;
+}
+
+@property --ai-shimmer-x {
+  inherits: true;
+  initial-value: -124px;
+  syntax: '<length>';
+}
 
 .root {
   position: relative;
@@ -56,33 +88,48 @@ $spread-end-left: calc(100% + 124px);
 }
 
 .shimmerText {
+  @include shimmer-paint(base.$sn-theme-color-available-version-textSecondary);
+
   color: transparent;
-
-  background-image:
-    radial-gradient(
-      ellipse at 66% 22%,
-      rgb(51 140 235 / 100%) 15%,
-      rgb(59 174 209 / 100%) 30%,
-      rgb(67 208 183 / 100%) 45%,
-      rgb(52 203 151 / 100%) 55%,
-      rgb(36 198 118 / 100%) 65%,
-      rgb(36 198 118 / 0%) 100%
-    ),
-    linear-gradient(
-      base.$sn-theme-color-available-version-textSecondary,
-      base.$sn-theme-color-available-version-textSecondary
-    );
-  background-repeat: no-repeat;
-  background-position:
-    $spread-start-left 0,
-    0 0;
   background-clip: text;
-  background-origin: border-box;
-  background-size:
-    $spread-width var(--ai-shimmer-spread-start-height),
-    100% 100%;
+}
 
-  animation: shimmer-text-move 3.75s linear infinite;
+/** Ведущая иконка: спейсер в ghost-слое и засвеченный силуэт в shimmer-слое. */
+.lead {
+  display: inline-block;
+
+  width: var(--ai-shimmer-icon-size, 16px);
+  height: var(--ai-shimmer-icon-size, 16px);
+  margin-right: base.$sn-primitive-dimension-4;
+
+  vertical-align: middle;
+}
+
+.shimmerIcon {
+  // Иконка на тон светлее текста — как в DS (icon = tertiary, текст = secondary).
+  @include shimmer-paint(base.$sn-theme-color-available-version-textTertiary);
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: var(--ai-shimmer-icon-size) var(--ai-shimmer-icon-size);
+}
+
+/**
+ * С ведущей иконкой блик идёт сплошняком «иконка → конец строки». Иконка и текст
+ * читают одну координату блика `--ai-shimmer-x` (в пикселях строки), поэтому полоса
+ * не перезапускается на стыке. Вертикальный рост радиала не нужен — кейс однострочный.
+ */
+.root[data-has-icon] {
+  .shimmerText,
+  .shimmerIcon {
+    background-position:
+      var(--ai-shimmer-x) 0,
+      0 0;
+    background-size:
+      $spread-width var(--ai-shimmer-spread-start-height),
+      100% 100%;
+    animation-name: shimmer-line-move;
+  }
 }
 
 @keyframes shimmer-text-move {
@@ -111,5 +158,16 @@ $spread-end-left: calc(100% + 124px);
     background-size:
       $spread-width var(--ai-shimmer-spread-end-height),
       100% 100%;
+  }
+}
+
+@keyframes shimmer-line-move {
+  0% {
+    --ai-shimmer-x: #{$spread-start-left};
+  }
+
+  50%,
+  100% {
+    --ai-shimmer-x: calc(var(--ai-shimmer-line-width, #{$default-line-width}) + 124px);
   }
 }

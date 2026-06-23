@@ -1,0 +1,34 @@
+{
+  "name": "@ds/ai-chain-of-thoughts",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "dependencies": {
+    "@ds/ai-button-chevron": "workspace:^",
+    "@ds/ai-icon-giga": "workspace:^",
+    "@ds/ai-shimmer": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:",
+    "uncontrollable": "catalog:"
+  },
+  "publishConfig": { "access": "public" }
+}

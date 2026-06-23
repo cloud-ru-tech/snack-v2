@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: stretch;
+
+  width: 100%;
+}

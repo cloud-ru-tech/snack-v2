@@ -5,6 +5,7 @@ export const TEST_IDS = {
   text: 'ai-shimmer__text',
   shimmer: 'ai-shimmer__shimmer',
   spread: 'ai-shimmer__spread',
+  icon: 'ai-shimmer__icon',
 } as const;
 
 /** Варианты типографики. */
@@ -38,6 +39,9 @@ export const DEFAULT_SIZE: AiShimmerSize = SIZE.m;
 
 /** Начертание по умолчанию — regular, как в `@ds/typography`. */
 export const DEFAULT_WEIGHT: AiShimmerWeight = WEIGHT.regular;
+
+/** Размер ведущей иконки по умолчанию (px), когда задан `iconMask`. */
+export const DEFAULT_ICON_SIZE = 16;
 
 const DEFAULT_FONT_METRICS: AiShimmerFontMetrics = {
   fontSize: 16,
