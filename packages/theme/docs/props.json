@@ -1,0 +1,370 @@
+{
+  "ChildThemeProvider": {
+    "displayName": "ChildThemeProvider",
+    "propsTypeName": "ChildThemeProviderProps",
+    "description": "Вложенный провайдер оформления (Figma-цепочка модификаторов): читает ближайшее оформление, сливает\nсвои `value`-переопределения и реэмитит полный слитый набор `sn-*` на границе. Потребители ниже\nчитают уже слитое значение. Read-only — глобальное значение менять нельзя (это умеет только\n`RootThemeProvider`/`getGlobalThemeStore`).",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс на wrapper-`<div>` (паддинги/фон). Только в wrapper-режиме (без `rootRef`)."
+      },
+      "rootRef": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Внешний элемент для полного слитого набора `sn-*`. Если не задан — провайдер оборачивает\nchildren в `<div>` с этим набором."
+      },
+      "value": {
+        "type": "Partial<ThemeAppearance>",
+        "required": true,
+        "description": "Оси, переопределяемые в поддереве. Остальные наследуются от ближайшего родителя (слияние).",
+        "typeRefs": [
+          "ThemeAppearance"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Brand": {
+        "kind": "union",
+        "values": [
+          "brandA",
+          "brandB",
+          "brandC"
+        ],
+        "own": true
+      },
+      "BrandRole": {
+        "kind": "union",
+        "values": [
+          "alter",
+          "alter2",
+          "alter3",
+          "alter4",
+          "main"
+        ],
+        "own": true
+      },
+      "ColorScheme": {
+        "kind": "union",
+        "values": [
+          "dark",
+          "light"
+        ],
+        "own": true
+      },
+      "Density": {
+        "kind": "union",
+        "values": [
+          "comfort",
+          "compact",
+          "spacious"
+        ],
+        "own": true
+      },
+      "ThemeAppearance": {
+        "kind": "interface",
+        "props": {
+          "acrylic": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`."
+          },
+          "brand": {
+            "type": "Brand | undefined",
+            "required": false,
+            "values": [
+              "brandA",
+              "brandB",
+              "brandC"
+            ],
+            "description": "Бренд — `sn-brandA` …",
+            "typeRefs": [
+              "Brand"
+            ]
+          },
+          "brandRole": {
+            "type": "BrandRole | undefined",
+            "required": false,
+            "values": [
+              "alter",
+              "alter2",
+              "alter3",
+              "alter4",
+              "main"
+            ],
+            "description": "Роль бренда (палитра) — `sn-main` …",
+            "typeRefs": [
+              "BrandRole"
+            ]
+          },
+          "colorScheme": {
+            "type": "ColorScheme | undefined",
+            "required": false,
+            "values": [
+              "dark",
+              "light"
+            ],
+            "description": "Цветовая схема — `sn-light` / `sn-dark`.",
+            "typeRefs": [
+              "ColorScheme"
+            ]
+          },
+          "density": {
+            "type": "Density | undefined",
+            "required": false,
+            "values": [
+              "comfort",
+              "compact",
+              "spacious"
+            ],
+            "description": "Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`.",
+            "typeRefs": [
+              "Density"
+            ]
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "RootThemeProvider": {
+    "displayName": "RootThemeProvider",
+    "propsTypeName": "RootThemeProviderProps",
+    "description": "Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей\n(`colorScheme`/`brand`/`brandRole`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень\n(`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),\nпоэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель\nчитает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.\n\nЭтот провайдер НЕ управляет состоянием цветовой схемы (cookie/system/cross-tab) — это `useColorScheme`;\nрезультат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс на wrapper-`<div>` (паддинги/фон). Только в wrapper-режиме (без `rootRef`)."
+      },
+      "rootRef": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Внешний элемент для полного набора `sn-*` (обычно `<html>`/`<body>`). Если не задан — провайдер\nоборачивает children в `<div>` с этим набором."
+      },
+      "store": {
+        "type": "ThemeAppearanceStore",
+        "required": false,
+        "description": "Внешний реактивный стор оформления (`getGlobalThemeStore().store`). Если задан — приоритетнее\n`value`; подписанные провайдеры обновляются при смене темы без перерендера провайдера. Так один\nглобальный стор охватывает все микрофронты. Сеттер для shell — `getGlobalThemeStore().setAppearance`.",
+        "typeRefs": [
+          "ThemeAppearanceStore"
+        ]
+      },
+      "value": {
+        "type": "ThemeAppearance",
+        "required": false,
+        "description": "Оформление приложения. Используется в static-режиме (один React-корень: SSR — одно значение на\nзапрос, либо CSR с собственным state, напр. `colorScheme` из `useColorScheme`). Для multi-root\n(single-spa) — см. `store`.",
+        "typeRefs": [
+          "ThemeAppearance"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Brand": {
+        "kind": "union",
+        "values": [
+          "brandA",
+          "brandB",
+          "brandC"
+        ],
+        "own": true
+      },
+      "BrandRole": {
+        "kind": "union",
+        "values": [
+          "alter",
+          "alter2",
+          "alter3",
+          "alter4",
+          "main"
+        ],
+        "own": true
+      },
+      "ColorScheme": {
+        "kind": "union",
+        "values": [
+          "dark",
+          "light"
+        ],
+        "own": true
+      },
+      "Density": {
+        "kind": "union",
+        "values": [
+          "comfort",
+          "compact",
+          "spacious"
+        ],
+        "own": true
+      },
+      "ThemeAppearance": {
+        "kind": "interface",
+        "props": {
+          "acrylic": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`."
+          },
+          "brand": {
+            "type": "Brand | undefined",
+            "required": false,
+            "values": [
+              "brandA",
+              "brandB",
+              "brandC"
+            ],
+            "description": "Бренд — `sn-brandA` …",
+            "typeRefs": [
+              "Brand"
+            ]
+          },
+          "brandRole": {
+            "type": "BrandRole | undefined",
+            "required": false,
+            "values": [
+              "alter",
+              "alter2",
+              "alter3",
+              "alter4",
+              "main"
+            ],
+            "description": "Роль бренда (палитра) — `sn-main` …",
+            "typeRefs": [
+              "BrandRole"
+            ]
+          },
+          "colorScheme": {
+            "type": "ColorScheme | undefined",
+            "required": false,
+            "values": [
+              "dark",
+              "light"
+            ],
+            "description": "Цветовая схема — `sn-light` / `sn-dark`.",
+            "typeRefs": [
+              "ColorScheme"
+            ]
+          },
+          "density": {
+            "type": "Density | undefined",
+            "required": false,
+            "values": [
+              "comfort",
+              "compact",
+              "spacious"
+            ],
+            "description": "Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`.",
+            "typeRefs": [
+              "Density"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ThemeAppearanceStore": {
+        "kind": "interface",
+        "props": {
+          "getServerSnapshot": {
+            "type": "(() => ThemeAppearanceContextValue) | undefined",
+            "required": false,
+            "description": "Значение для SSR/гидрации. Если не задан — используется `getSnapshot`."
+          },
+          "getSnapshot": {
+            "type": "() => ThemeAppearanceContextValue",
+            "required": true,
+            "description": "Текущее значение. Обязан возвращать стабильную (по `Object.is`) ссылку, пока значение не менялось."
+          },
+          "subscribe": {
+            "type": "(onStoreChange: () => void) => () => void",
+            "required": true,
+            "description": "Подписка на изменения; возвращает функцию отписки."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "StoreProvider": {
+    "displayName": "StoreProvider",
+    "propsTypeName": null,
+    "props": {
+      "store": {
+        "type": "ExternalStore<ThemeAppearanceContextValue>",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ThemeProvider": {
+    "displayName": "ThemeProvider",
+    "propsTypeName": "ThemeProviderProps",
+    "description": "Провайдер, предназначенный для работы с темами",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Дети, которые будут обёрнуты в провайдер"
+      },
+      "defaultTheme": {
+        "type": "string",
+        "required": true,
+        "description": "Значение темы по умолчанию"
+      },
+      "themeMap": {
+        "type": "Record<string, string>",
+        "required": true,
+        "description": "Объект с указанием соответсвия темы и css-класса"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ThemeScope": {
+    "displayName": "ThemeScope",
+    "propsTypeName": null,
+    "description": "Внутренний помощник Root/Child-провайдеров: читает ближайшее оформление (= собственный стор\nпровайдера, под которым отрендерен) и эмитит полный набор `sn-*`. Реактивен — при смене темы\nпересобирает и переустанавливает классы.\n\n- `rootRef` задан → классы добавляются на внешний элемент через эффект (без лишнего DOM-узла);\n  при смене набора старые классы снимаются, новые ставятся.\n- `rootRef` не задан → классы навешиваются на wrapper `<div>` (+ `className` потребителя).",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс на wrapper-`<div>` (паддинги/фон вокруг темы). Действует только в wrapper-режиме;\nпри `rootRef` игнорируется (внешним элементом владеет потребитель)."
+      },
+      "rootRef": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Внешний элемент, на который ставится полный набор `sn-*` (обычно `<html>`/`<body>` для корня).\nЕсли не задан — `ThemeScope` рендерит собственный wrapper `<div>` с этим набором."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useThemeAppearance": {
+    "displayName": "useThemeAppearance",
+    "propsTypeName": null,
+    "description": "Возвращает ближайшее (уже слитое по цепочке провайдеров) значение оформления. Реактивно к стору.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useThemeConfig": {
+    "displayName": "useThemeConfig",
+    "propsTypeName": "UseThemeProps",
+    "description": "Хук для работы с темами",
+    "props": {
+      "themeMap": {
+        "type": "Record<T, string>",
+        "required": true,
+        "description": "Объект с указанием соответсвия темы и css-класса",
+        "typeRefs": [
+          "T"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  }
+}

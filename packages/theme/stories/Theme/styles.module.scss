@@ -1,0 +1,68 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 100%;
+}
+
+.surface {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+
+  width: 100%;
+  padding: base.$sn-primitive-dimension-24;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.swatchGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  min-width: base.$sn-primitive-dimension-100;
+  padding: base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+}
+
+.swatchAccent {
+  color: base.$sn-theme-color-available-inversion-textMain;
+  background-color: base.$sn-theme-color-primary-background;
+}
+
+.swatchNeutral {
+  color: base.$sn-theme-color-neutral-text;
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.swatchCritical {
+  color: base.$sn-theme-color-available-inversion-textMain;
+  background-color: base.$sn-theme-color-red-background;
+}
+
+.swatchLabel {
+  font-weight: 600;
+}
+
+.classnames {
+  margin: 0;
+  padding: base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-dimension-1 dashed base.$sn-theme-color-neutral-decor;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: anywhere;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}

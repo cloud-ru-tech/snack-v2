@@ -1,0 +1,34 @@
+{
+  "name": "@ds/theme",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./ssr": {
+      "source": "./src/ssr.ts",
+      "types": "./dist/esm/ssr.d.ts",
+      "import": "./dist/esm/ssr.js",
+      "require": "./dist/cjs/ssr.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@ds/context-kit": "workspace:^",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

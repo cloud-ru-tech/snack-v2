@@ -1,0 +1,90 @@
+---
+title: Theme
+package: '@ds/theme'
+description: Провайдер оформления — оси (цветовая схема, бренд, плотность, акрил) живут в контексте, полный набор sn-* классов эмитится на DOM-границе.
+order: 88
+---
+
+import { BrandSwitch } from '../demos/examples/BrandSwitch'
+import BrandSwitchSrc from '../demos/examples/BrandSwitch.tsx?raw'
+import { ColorSchemeToggle } from '../demos/examples/ColorSchemeToggle'
+import ColorSchemeToggleSrc from '../demos/examples/ColorSchemeToggle.tsx?raw'
+import { LocalDensity } from '../demos/examples/LocalDensity'
+import LocalDensitySrc from '../demos/examples/LocalDensity.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import themeDoc from './props.json'
+
+# Theme
+
+`@ds/theme` управляет оформлением дизайн-системы. **Оси оформления живут в React-контексте, а полный набор CSS-классов `sn-*` эмитится на DOM-границу.** `RootThemeProvider` ставится один раз в корне и держит оси (`colorScheme`, `brand`, `brandRole`, `density`, `acrylic`), эмитя из них полный набор `sn-*` на `rootRef` (обычно `<html>`). Локальные переопределения в поддереве делает `ChildThemeProvider`, а компонент, фиксирующий ось у себя, — хук `useThemeClassnames`.
+
+Полное руководство по модели и подключению — в паттерне [Оформление — тема, бренд, плотность](/patterns/theme).
+
+## Когда использовать
+
+- Хост-приложение задаёт оформление в корне: `RootThemeProvider value={{ colorScheme, brand, density }}` (или `store` для multi-root / MFE через `getGlobalThemeStore().store`).
+- Цветовая схема light/dark берётся из `useColorScheme` (cookie + `prefers-color-scheme` + кросс-таб) и передаётся в `value.colorScheme`.
+- Часть дерева должна иметь другой бренд / плотность / схему — `ChildThemeProvider` сливает partial-переопределение с ближайшим контекстом.
+- Компонент локально фиксирует ось (мобильная обёртка с `density: 'comfort'`) — `useThemeClassnames({ density })` подмешивает текущие colorScheme/brand из контекста.
+
+> Полный набор `sn-*` обязателен на каждой границе: классы токенов не переопределяются по одной оси через CSS-каскад. Никогда не ставьте одиночный `sn-comfort` руками — для этого есть провайдеры и хук. Старый `ThemeProvider` / `useThemeConfig` (произвольные темы по `themeMap`) — отдельный legacy-механизм, не путать с `RootThemeProvider`.
+
+## Установка
+
+```bash
+pnpm add @ds/theme
+```
+
+```tsx
+import {
+  RootThemeProvider,
+  ChildThemeProvider,
+  useThemeClassnames,
+  useColorScheme,
+  getGlobalThemeStore,
+} from '@ds/theme'
+```
+
+## Примеры использования
+
+<Example
+  title='Бренд для поддерева'
+  description='`ChildThemeProvider` сливает ось `brand` с ближайшим контекстом и реэмитит полный набор `sn-*` на своей границе.'
+  code={BrandSwitchSrc}
+>
+  <BrandSwitch client:visible />
+</Example>
+
+<Example
+  title='Переключение цветовой схемы'
+  description='Поддерево рендерится в выбранной схеме (`sn-light` / `sn-dark`). В приложении схема — источник истины `useColorScheme`.'
+  code={ColorSchemeToggleSrc}
+>
+  <ColorSchemeToggle client:visible />
+</Example>
+
+<Example
+  title='Локальная плотность'
+  description='Компонент фиксирует `density` через `useThemeClassnames({ density })` — хук подмешивает текущие colorScheme/brand из контекста.'
+  code={LocalDensitySrc}
+>
+  <LocalDensity client:visible />
+</Example>
+
+## Props
+
+### RootThemeProvider
+
+<PropsTable data={themeDoc.RootThemeProvider} />
+
+### ChildThemeProvider
+
+<PropsTable data={themeDoc.ChildThemeProvider} />
+
+## Смотри также
+
+- [Оформление — тема, бренд, плотность](/patterns/theme) — полная модель подключения темы.
+- [Adaptive](/components/adaptive) — раскладка `layoutType` (источник `density` в приложении).
+- [Locale](/components/locale) — рантайм локализации.
+- [PortalContext](/components/portal-context) — корневой DOM-узел для порталов.

@@ -1,0 +1,14 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.themeWrapper {
+  width: 100%;
+  padding: base.$sn-primitive-dimension-16;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: base.$sn-primitive-dimension-16;
+  padding: base.$sn-primitive-dimension-16;
+}
