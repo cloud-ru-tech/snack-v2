@@ -1,5 +1,5 @@
 import { Sun } from '@ds/loader';
-import { getThemeClassnames } from '@ds/utils';
+import { useThemeClassnames } from '@ds/theme';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
@@ -57,11 +57,13 @@ export function AlertButton<T extends ElementType = 'button'>({
   }
 
   const iconNode = loading ? <Sun /> : icon;
+  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
+  const themeClassName = useThemeClassnames({ density: 'compact' });
 
   return (
     <Component
       ref={innerRef}
-      className={cn(styles.root, className, getThemeClassnames({ density: 'compact' }))}
+      className={cn(styles.root, className, themeClassName)}
       data-size={size}
       data-view={variantProp}
       data-variant={variant}

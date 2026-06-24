@@ -2,9 +2,10 @@ import { Button, VIEW } from '@ds/button';
 import { Divider, VARIANT as DIVIDER_VARIANT } from '@ds/divider';
 import { PLACEMENT, TRIGGER } from '@ds/popover-private';
 import { SkeletonContextProvider, SkeletonText, WithSkeleton } from '@ds/skeleton';
+import { useThemeClassnames } from '@ds/theme';
 import { QuestionTooltip, QuestionTooltipProps, Tooltip, TooltipProps } from '@ds/tooltip';
 import { TruncateString } from '@ds/truncate-string';
-import { extractSupportProps, getThemeClassnames } from '@ds/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
@@ -73,8 +74,11 @@ function renderRowActionButton(action: RowActionButton, loading: boolean) {
 }
 
 function RowActions({ actions, loading }: { actions: RowActionsPair; loading: boolean }) {
+  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
+  const themeClassName = useThemeClassnames({ density: 'compact' });
+
   return (
-    <div className={cn(getThemeClassnames({ density: 'compact' }), styles.rowActions)}>
+    <div className={cn(themeClassName, styles.rowActions)}>
       {renderRowActionButton(actions.first, loading)}
       {actions.second && renderRowActionButton(actions.second, loading)}
     </div>

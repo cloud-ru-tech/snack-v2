@@ -22,6 +22,7 @@
     "@ds/icons": "workspace:^",
     "@ds/popover-private": "workspace:^",
     "@ds/skeleton": "workspace:^",
+    "@ds/theme": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",

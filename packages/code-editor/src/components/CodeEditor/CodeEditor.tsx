@@ -1,7 +1,8 @@
 import { Spinner } from '@ds/loader';
+import { useThemeContext } from '@ds/theme';
 import { Typography } from '@ds/typography';
 import { CopyButton } from '@ds/uikit-product-copy';
-import { extractSupportProps, isBrowser, useLayoutEffect, useThemeContext, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, isBrowser, useLayoutEffect, WithSupportProps } from '@ds/utils';
 import { Editor, OnMount, useMonaco } from '@monaco-editor/react';
 import cn from 'classnames';
 import { useCallback, useId, useMemo, useRef, useState } from 'react';

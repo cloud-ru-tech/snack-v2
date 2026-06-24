@@ -1,7 +1,8 @@
 import { Button } from '@ds/button';
 import { ChipChoiceRow, FiltersState } from '@ds/chips';
 import { UpdateSVG } from '@ds/icons';
-import { extractSupportProps, getThemeClassnames, LAYOUT_TYPE } from '@ds/utils';
+import { useThemeClassnames } from '@ds/theme';
+import { extractSupportProps, LAYOUT_TYPE } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo, useRef } from 'react';
 
@@ -60,12 +61,12 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
 
   const showSeparatorAfterExtra = Boolean(showAfterSlot && (showDataView || filterButton || showMoreActionsMenu));
 
+  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
+  const themeClassName = useThemeClassnames({ density: isMobile ? 'comfort' : 'compact' });
+
   return (
     <div
-      className={cn(
-        isMobile ? getThemeClassnames({ density: 'comfort' }) : getThemeClassnames({ density: 'compact' }),
-        styles.containerWrapper,
-      )}
+      className={cn(themeClassName, styles.containerWrapper)}
       ref={containerWrapperRef}
       {...supportProps}
       data-test-id={supportProps['data-test-id'] ?? TEST_IDS.main}

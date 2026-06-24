@@ -2,9 +2,10 @@ import { Button, VIEW } from '@ds/button';
 import { Divider, VARIANT as DIVIDER_VARIANT } from '@ds/divider';
 import { PLACEMENT, TRIGGER } from '@ds/popover-private';
 import { SkeletonContextProvider, SkeletonText, WithSkeleton } from '@ds/skeleton';
+import { useThemeClassnames } from '@ds/theme';
 import { QuestionTooltip, Tooltip, TooltipProps } from '@ds/tooltip';
 import { TruncateString } from '@ds/truncate-string';
-import { extractSupportProps, getThemeClassnames } from '@ds/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode } from 'react';
 
@@ -49,11 +50,12 @@ export function MobileInfoRow({
 }: MobileInfoRowProps) {
   const showTruncate = labelTruncate != null && labelTruncate > 0;
 
+  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
+  const wrapperThemeClassName = useThemeClassnames({ density: 'comfort' });
+  const actionsThemeClassName = useThemeClassnames({ density: 'compact' });
+
   return (
-    <div
-      {...extractSupportProps(rest)}
-      className={cn(getThemeClassnames({ density: 'comfort' }), styles.wrapper, className)}
-    >
+    <div {...extractSupportProps(rest)} className={cn(wrapperThemeClassName, styles.wrapper, className)}>
       {topDivider && position !== POSITION.First && <Divider variant={DIVIDER_VARIANT.Regular} />}
 
       <div className={styles.infoRow} data-position={position}>
@@ -80,7 +82,7 @@ export function MobileInfoRow({
           </SkeletonContextProvider>
 
           {rowActions && (
-            <div className={cn(getThemeClassnames({ density: 'compact' }), styles.rowActions)}>
+            <div className={cn(actionsThemeClassName, styles.rowActions)}>
               {renderRowActionButton(rowActions.first, loading)}
               {rowActions.second && renderRowActionButton(rowActions.second, loading)}
             </div>

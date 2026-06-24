@@ -1,6 +1,7 @@
 import { BottomSheet } from '@ds/bottom-sheet';
 import { usePortalContext } from '@ds/portal-context';
-import { getThemeClassnames, useLayoutEffect } from '@ds/utils';
+import { useThemeClassnames } from '@ds/theme';
+import { useLayoutEffect } from '@ds/utils';
 import { useState } from 'react';
 
 import { toolbarLocale } from '../../../../locale';
@@ -42,9 +43,12 @@ export function MobileBulkActionsSheet({
     setBottomSheetKey('ready');
   }, []);
 
+  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
+  const themeClassName = useThemeClassnames({ density: 'comfort' });
+
   return (
     <BottomSheet
-      className={getThemeClassnames({ density: 'comfort' })}
+      className={themeClassName}
       key={bottomSheetKey}
       container={portalContext.current ?? undefined}
       open={open}

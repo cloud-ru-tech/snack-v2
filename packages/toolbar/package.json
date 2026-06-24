@@ -38,6 +38,7 @@
     "@ds/search": "workspace:^",
     "@ds/segment-control": "workspace:^",
     "@ds/tag": "workspace:^",
+    "@ds/theme": "workspace:^",
     "@ds/toggles": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",

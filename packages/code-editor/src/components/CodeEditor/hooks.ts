@@ -1,4 +1,5 @@
-import { useLayoutEffect, useThemeContext } from '@ds/utils';
+import { useThemeContext } from '@ds/theme';
+import { useLayoutEffect } from '@ds/utils';
 import { EditorProps as MonacoEditorProps, Monaco, useMonaco } from '@monaco-editor/react';
 import { configureMonacoYaml, SchemasSettings } from 'monaco-yaml';
 import { useCallback, useEffect, useMemo, useState } from 'react';

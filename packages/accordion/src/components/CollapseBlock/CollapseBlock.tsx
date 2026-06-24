@@ -5,9 +5,10 @@ import {
   type BackgroundPredefinedFill,
   backgroundPredefinedFillToAcrylic,
 } from '@ds/materials';
+import { useThemeClassnames } from '@ds/theme';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
-import { extractSupportProps, getThemeClassnames, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 
@@ -80,6 +81,9 @@ export function CollapseBlock({
 
   const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
 
+  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
+  const themeClassName = useThemeClassnames({ density: 'compact' });
+
   return (
     <div
       {...extractSupportProps(rest)}
@@ -133,7 +137,7 @@ export function CollapseBlock({
           )}
         </div>
         {showChevron && (
-          <div className={cn(styles.chevronWrapper, getThemeClassnames({ density: 'compact' }))}>
+          <div className={cn(styles.chevronWrapper, themeClassName)}>
             <Button
               view='function'
               size='m'

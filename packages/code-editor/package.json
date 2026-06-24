@@ -24,6 +24,7 @@
   "dependencies": {
     "@ds/loader": "workspace:^",
     "@ds/materials": "workspace:^",
+    "@ds/theme": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/uikit-product-copy": "workspace:^",
     "@ds/utils": "workspace:^",

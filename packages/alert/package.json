@@ -25,6 +25,7 @@
     "@ds/icons": "workspace:^",
     "@ds/loader": "workspace:^",
     "@ds/materials": "workspace:^",
+    "@ds/theme": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
