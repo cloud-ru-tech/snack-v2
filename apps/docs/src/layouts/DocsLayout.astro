@@ -7,10 +7,12 @@ import { SupportLink } from '../components/layout/SupportLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { SpriteHost } from '../components/layout/SpriteHost'
+import { ThemeHtmlApplier } from '../components/layout/ThemeHtmlApplier'
 import { NavProgress } from '../components/layout/NavProgress'
 import { TeamSnack } from '../components/layout/logo/TeamSnack'
 import { CloudRu } from '../components/layout/logo/CloudRu'
 import { ClientRouter } from 'astro:transitions'
+import { getThemeClassnames } from '@ds/theme/ssr'
 import '../styles/global.css'
 import '../styles/docs-layout.scss'
 
@@ -21,10 +23,14 @@ interface Props {
 
 const { title, description } = Astro.props
 const base = import.meta.env.BASE_URL
+
+// Дефолтный набор sn-* для <html> — единый источник из @ds/theme.
+// Inline-скрипт ниже корректирует оси по localStorage/системе до первой отрисовки.
+const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', brandRole: 'main', density: 'compact' })
 ---
 
 <!doctype html>
-<html lang="ru" class="sn-base-styles sn-components sn-figmaStyles sn-brandA sn-main sn-compact sn-light">
+<html lang="ru" class={htmlClass}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,6 +40,7 @@ const base = import.meta.env.BASE_URL
     <ClientRouter />
   </head>
   <body>
+    <ThemeHtmlApplier client:load transition:persist />
     <SpriteHost transition:persist />
     <NavProgress client:load transition:persist />
     <!-- Top header -->
@@ -78,8 +85,9 @@ const base = import.meta.env.BASE_URL
     </div>
 
     <script is:inline>
-      // Apply initial theme/brand/brandRole/density synchronously to avoid FOUC.
-      // React SettingsMenu handles clicks; this handles initial load and post-swap navigation.
+      // No-FOUC bootstrap: синхронно ставит классы осей из localStorage до первой отрисовки.
+      // is:inline сериализуется в строку без импортов, поэтому @ds/theme тут напрямую не доступен;
+      // после гидрации <html> ведёт ThemeHtmlApplier.
       (function () {
         function apply() {
           const cls = document.documentElement.classList

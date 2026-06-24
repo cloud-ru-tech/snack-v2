@@ -70,6 +70,7 @@
     "@ds/stepper": "workspace:*",
     "@ds/tabs": "workspace:*",
     "@ds/tag": "workspace:*",
+    "@ds/theme": "workspace:*",
     "@ds/timeline": "workspace:*",
     "@ds/toaster": "workspace:*",
     "@ds/toggles": "workspace:*",

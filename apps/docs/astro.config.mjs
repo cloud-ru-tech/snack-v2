@@ -70,6 +70,9 @@ export default defineConfig({
       alias: [
         ...Object.entries({
           '#docs': resolve(dir, 'src'),
+          // RSC-safe субпуть @ds/theme — должен идти ДО общего '@ds/theme' из
+          // dsWorkspaceSourceAliases(), иначе тот перехватит префикс.
+          '@ds/theme/ssr': resolve(root, 'packages/theme/src/ssr.ts'),
           '@sbercloud/snack-v2-locale': resolve(root, 'packages/locale/src/index.ts'),
           // Barrel dist/esm/index.js re-exports ./formatters/* without .js — SSR/prebundle fail.
         '@cloud-ru/ft-formatters': resolve(

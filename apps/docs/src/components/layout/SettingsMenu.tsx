@@ -2,48 +2,36 @@ import { Button } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
 import { DaySVG, NightSVG, ProductIcons, SettingsSVG } from '@ds/icons';
 import { PortalContextProvider } from '@ds/portal-context';
-import { SegmentControl } from '@ds/segment-control';
+import { type Segment, SegmentControl } from '@ds/segment-control';
+import { BRAND, BRAND_ROLE, COLOR_SCHEME, DENSITY, getGlobalThemeStore, useThemeAppearance } from '@ds/theme';
 import { useEffect, useRef, useState } from 'react';
 
+import { ensureThemeStore, setThemeAppearance } from '../../lib/themeStore';
 import styles from './SettingsMenu.module.scss';
 
 const { LaptopSVG, MobilePhoneSVG } = ProductIcons;
 
-type Theme = 'light' | 'dark';
-type Brand = 'brandA' | 'brandB' | 'brandC';
-type BrandRole = 'main' | 'alter' | 'alter2' | 'alter3' | 'alter4';
-type Density = 'compact' | 'comfort' | 'spacious';
+// Стор оформления инициализируется из localStorage до первого рендера компонента.
+ensureThemeStore();
 
-type Settings = {
-  theme: Theme;
-  brand: Brand;
-  brandRole: BrandRole;
-  density: Density;
-};
+// Оси выводятся из рантайм-констант @ds/theme: value-импорт hydration-safe в Astro,
+// в отличие от type-импорта (см. docs-dev-type-import-gotcha).
+type Theme = (typeof COLOR_SCHEME)[keyof typeof COLOR_SCHEME];
+type Brand = (typeof BRAND)[keyof typeof BRAND];
+type BrandRole = (typeof BRAND_ROLE)[keyof typeof BRAND_ROLE];
+type Density = (typeof DENSITY)[keyof typeof DENSITY];
 
-const STORAGE_KEYS = {
-  theme: 'ds-theme',
-  brand: 'ds-brand',
-  brandRole: 'ds-brandRole',
-  density: 'ds-density',
-} as const;
+type AppearancePatch = Parameters<ReturnType<typeof getGlobalThemeStore>['setAppearance']>[0];
 
-const DEFAULTS: Settings = {
-  theme: 'light',
-  brand: 'brandA',
-  brandRole: 'main',
-  density: 'compact',
-};
-
-const THEME_ITEMS = [
-  { value: 'light' as const, label: 'Light', icon: <DaySVG />, iconPosition: 'before' as const },
-  { value: 'dark' as const, label: 'Dark', icon: <NightSVG />, iconPosition: 'before' as const },
+const THEME_ITEMS: Segment<Theme>[] = [
+  { value: 'light', label: 'Light', icon: <DaySVG />, iconPosition: 'before' },
+  { value: 'dark', label: 'Dark', icon: <NightSVG />, iconPosition: 'before' },
 ];
 
-const BRAND_ITEMS = [
-  { value: 'brandA' as const, label: 'A' },
-  { value: 'brandB' as const, label: 'B' },
-  { value: 'brandC' as const, label: 'C' },
+const BRAND_ITEMS: Segment<Brand>[] = [
+  { value: 'brandA', label: 'A' },
+  { value: 'brandB', label: 'B' },
+  { value: 'brandC', label: 'C' },
 ];
 
 function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {
@@ -54,81 +42,27 @@ function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {
   );
 }
 
-const BRAND_ROLE_ITEMS = [
-  { value: 'main' as const, label: 'Main', icon: <BrandRoleRing strokeWidth={2.5} />, iconPosition: 'before' as const },
-  { value: 'alter' as const, label: 'Alter', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' as const },
-  {
-    value: 'alter2' as const,
-    label: 'Alter 2',
-    icon: <BrandRoleRing strokeWidth={1} />,
-    iconPosition: 'before' as const,
-  },
-  {
-    value: 'alter3' as const,
-    label: 'Alter 3',
-    icon: <BrandRoleRing strokeWidth={1} />,
-    iconPosition: 'before' as const,
-  },
-  {
-    value: 'alter4' as const,
-    label: 'Alter 4',
-    icon: <BrandRoleRing strokeWidth={1} />,
-    iconPosition: 'before' as const,
-  },
+const BRAND_ROLE_ITEMS: Segment<BrandRole>[] = [
+  { value: 'main', label: 'Main', icon: <BrandRoleRing strokeWidth={2.5} />, iconPosition: 'before' },
+  { value: 'alter', label: 'Alter', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
+  { value: 'alter2', label: 'Alter 2', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
+  { value: 'alter3', label: 'Alter 3', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
+  { value: 'alter4', label: 'Alter 4', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
 ];
 
-const DENSITY_ITEMS = [
-  { value: 'compact' as const, label: 'Compact', icon: <LaptopSVG />, iconPosition: 'before' as const },
-  { value: 'comfort' as const, label: 'Comfort', icon: <MobilePhoneSVG />, iconPosition: 'before' as const },
-  { value: 'spacious' as const, label: 'Spacious', icon: <LaptopSVG />, iconPosition: 'before' as const },
+const DENSITY_ITEMS: Segment<Density>[] = [
+  { value: 'compact', label: 'Compact', icon: <LaptopSVG />, iconPosition: 'before' },
+  { value: 'comfort', label: 'Comfort', icon: <MobilePhoneSVG />, iconPosition: 'before' },
+  { value: 'spacious', label: 'Spacious', icon: <LaptopSVG />, iconPosition: 'before' },
 ];
 
-function readBrand(cls: DOMTokenList): Brand {
-  if (cls.contains('sn-brandC')) return 'brandC';
-  if (cls.contains('sn-brandB')) return 'brandB';
-  return 'brandA';
-}
-
-function readBrandRole(cls: DOMTokenList): BrandRole {
-  if (cls.contains('sn-alter2')) return 'alter2';
-  if (cls.contains('sn-alter3')) return 'alter3';
-  if (cls.contains('sn-alter4')) return 'alter4';
-  if (cls.contains('sn-alter')) return 'alter';
-  return 'main';
-}
-
-function readDensity(cls: DOMTokenList): Density {
-  if (cls.contains('sn-spacious')) return 'spacious';
-  if (cls.contains('sn-comfort')) return 'comfort';
-  return 'compact';
-}
-
-function readSettings(): Settings {
-  const cls = document.documentElement.classList;
-  return {
-    theme: cls.contains('sn-dark') ? 'dark' : 'light',
-    brand: readBrand(cls),
-    brandRole: readBrandRole(cls),
-    density: readDensity(cls),
-  };
-}
-
-function applySettings(settings: Settings) {
-  const cls = document.documentElement.classList;
-  cls.toggle('sn-dark', settings.theme === 'dark');
-  cls.toggle('sn-light', settings.theme === 'light');
-  cls.toggle('sn-brandA', settings.brand === 'brandA');
-  cls.toggle('sn-brandB', settings.brand === 'brandB');
-  cls.toggle('sn-brandC', settings.brand === 'brandC');
-  cls.toggle('sn-main', settings.brandRole === 'main');
-  cls.toggle('sn-alter', settings.brandRole === 'alter');
-  cls.toggle('sn-alter2', settings.brandRole === 'alter2');
-  cls.toggle('sn-alter3', settings.brandRole === 'alter3');
-  cls.toggle('sn-alter4', settings.brandRole === 'alter4');
-  cls.toggle('sn-compact', settings.density === 'compact');
-  cls.toggle('sn-comfort', settings.density === 'comfort');
-  cls.toggle('sn-spacious', settings.density === 'spacious');
-}
+type SyncPayload = {
+  type: 'theme-sync';
+  theme: Theme;
+  brand: Brand;
+  brandRole: BrandRole;
+  density: Density;
+};
 
 function isStorybookFrame(frame: HTMLIFrameElement): boolean {
   // Сообщения шлём только в storybook-iframe'ы (StorybookEmbed). Figma и
@@ -136,25 +70,34 @@ function isStorybookFrame(frame: HTMLIFrameElement): boolean {
   return /\/storybook\/|:6006\//.test(frame.src);
 }
 
-function buildSyncPayload(settings: Settings) {
+/** Собирает storybook-payload из текущего оформления глобального стора (ключ `theme` ← `colorScheme`). */
+function buildSyncPayload(): SyncPayload {
+  const appearance = getGlobalThemeStore().getAppearance();
   return {
-    type: 'theme-sync' as const,
-    theme: settings.theme,
-    brand: settings.brand,
-    brandRole: settings.brandRole,
-    density: settings.density,
+    type: 'theme-sync',
+    theme: (appearance.colorScheme as Theme | undefined) ?? 'light',
+    brand: (appearance.brand as Brand | undefined) ?? 'brandA',
+    brandRole: (appearance.brandRole as BrandRole | undefined) ?? 'main',
+    density: (appearance.density as Density | undefined) ?? 'compact',
   };
 }
 
-function broadcastToStorybookFrames(settings: Settings) {
-  const payload = buildSyncPayload(settings);
+function broadcastToStorybookFrames() {
+  const payload = buildSyncPayload();
   document.querySelectorAll<HTMLIFrameElement>('iframe').forEach(frame => {
     if (!isStorybookFrame(frame)) return;
     frame.contentWindow?.postMessage(payload, '*');
   });
 }
 
-function SettingsContent({ settings, onChange }: { settings: Settings; onChange(next: Partial<Settings>): void }) {
+type SettingsView = {
+  theme: Theme;
+  brand: Brand;
+  brandRole: BrandRole;
+  density: Density;
+};
+
+function SettingsContent({ view, onChange }: { view: SettingsView; onChange(patch: AppearancePatch): void }) {
   return (
     <div className={styles.panel}>
       <div className={styles.row}>
@@ -163,8 +106,8 @@ function SettingsContent({ settings, onChange }: { settings: Settings; onChange(
           size='s'
           width='full'
           items={THEME_ITEMS}
-          value={settings.theme}
-          onChange={value => onChange({ theme: value })}
+          value={view.theme}
+          onChange={value => onChange({ colorScheme: value })}
         />
       </div>
       <div className={styles.row}>
@@ -173,7 +116,7 @@ function SettingsContent({ settings, onChange }: { settings: Settings; onChange(
           size='s'
           width='full'
           items={BRAND_ITEMS}
-          value={settings.brand}
+          value={view.brand}
           onChange={value => onChange({ brand: value })}
         />
       </div>
@@ -183,7 +126,7 @@ function SettingsContent({ settings, onChange }: { settings: Settings; onChange(
           size='s'
           width='full'
           items={BRAND_ROLE_ITEMS}
-          value={settings.brandRole}
+          value={view.brandRole}
           onChange={value => onChange({ brandRole: value })}
         />
       </div>
@@ -193,7 +136,7 @@ function SettingsContent({ settings, onChange }: { settings: Settings; onChange(
           size='s'
           width='full'
           items={DENSITY_ITEMS}
-          value={settings.density}
+          value={view.density}
           onChange={value => onChange({ density: value })}
         />
       </div>
@@ -202,38 +145,31 @@ function SettingsContent({ settings, onChange }: { settings: Settings; onChange(
 }
 
 export function SettingsMenu() {
-  // Lazy initializer читает классы из <html>, выставленные inline-скриптом
-  // в DocsLayout.astro до гидратации. Это убирает мигание между DEFAULTS
-  // и реальным состоянием на первом рендере.
-  const [settings, setSettings] = useState<Settings>(() =>
-    typeof document === 'undefined' ? DEFAULTS : readSettings(),
-  );
-  const [open, setOpen] = useState(false);
+  // Контекст @ds/theme дефолтит на глобальный стор, поэтому провайдер-родитель не нужен,
+  // а чтение реактивно к смене темы.
+  const { appearance } = useThemeAppearance();
+  const view: SettingsView = {
+    theme: (appearance.colorScheme as Theme | undefined) ?? 'light',
+    brand: (appearance.brand as Brand | undefined) ?? 'brandA',
+    brandRole: (appearance.brandRole as BrandRole | undefined) ?? 'main',
+    density: (appearance.density as Density | undefined) ?? 'compact',
+  };
 
-  // Ref на актуальные настройки нужен, чтобы handler theme-sync-request
-  // от вновь смонтированного storybook iframe всегда отдавал свежие значения.
-  const settingsRef = useRef(settings);
-  settingsRef.current = settings;
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleSyncRequest = (event: MessageEvent) => {
       if (event.data?.type !== 'theme-sync-request') return;
       const target = event.source as Window | null;
-      target?.postMessage(buildSyncPayload(settingsRef.current), '*');
+      target?.postMessage(buildSyncPayload(), '*');
     };
     window.addEventListener('message', handleSyncRequest);
     return () => window.removeEventListener('message', handleSyncRequest);
   }, []);
 
-  const update = (patch: Partial<Settings>) => {
-    const next: Settings = { ...settings, ...patch };
-    applySettings(next);
-    (Object.keys(patch) as Array<keyof Settings>).forEach(key => {
-      const value = next[key];
-      if (value) localStorage.setItem(STORAGE_KEYS[key], value);
-    });
-    broadcastToStorybookFrames(next);
-    setSettings(next);
+  const update = (patch: AppearancePatch) => {
+    setThemeAppearance(patch);
+    broadcastToStorybookFrames();
   };
 
   // На Astro view transitions body постоянно пересоздаётся, и popover, отрендеренный
@@ -251,7 +187,7 @@ export function SettingsMenu() {
           placement='bottom-end'
           widthStrategy='auto'
           triggerClassName={styles.trigger}
-          content={<SettingsContent settings={settings} onChange={update} />}
+          content={<SettingsContent view={view} onChange={update} />}
         >
           <Button
             size='m'

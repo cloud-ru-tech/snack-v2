@@ -1,8 +1,11 @@
-export type Theme = 'light' | 'dark';
-export type Brand = 'brandA' | 'brandB' | 'brandC';
-export type BrandRole = 'main' | 'alter' | 'alter2' | 'alter3' | 'alter4';
-export type Density = 'compact' | 'comfort' | 'spacious';
-export type Language = 'en-GB' | 'ru-RU';
+import { BUILTIN_LANGS } from '@ds/locale';
+import type { Brand, BrandRole, ColorScheme, Density } from '@ds/theme';
+
+export type { Brand, BrandRole, Density };
+// Storybook исторически зовёт цветовую схему Theme.
+export type Theme = ColorScheme;
+export type Language = (typeof BUILTIN_LANGS)[number];
+// Acrylic — UI-переключатель сторибука: в @ds/theme ось acrylic это boolean, строкового эквивалента нет.
 export type Acrylic = 'enabled' | 'disabled';
 
 export type ThemeSyncData = {

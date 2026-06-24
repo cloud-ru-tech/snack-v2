@@ -1,0 +1,196 @@
+---
+title: Оформление — тема, бренд, плотность
+description: Модель оформления @ds/theme — оси (цветовая схема, бренд, плотность, акрил) живут в контексте, полный набор sn-* классов эмитится на DOM-границу, провайдер устойчив к версиям в микрофронтах и безопасен для SSR.
+order: 3
+---
+
+# Оформление — тема, бренд, плотность
+
+Дизайн-система разделяет оформление на два слоя:
+
+- **Оси — в React-контексте.** Значения `colorScheme`, `brand`, `brandRole`, `density`, `acrylic` живут в контексте `@ds/theme`, а не в пропах каждого компонента. Источник — один `RootThemeProvider` в корне приложения.
+- **Классы — на DOM-границе.** Из осей контекста на границу провайдера эмитится **полный** набор CSS-классов `sn-*` из `@cloud-ru/figma-variables`. Контракт значения контекста (пять осей) не растёт с числом компонентов, поэтому он устойчив к версиям в **микрофронтах (MFE)** и безопасен для **SSR**.
+
+Поверх этого приложение может **переопределить любую ось в поддереве** (`ChildThemeProvider`), **зафиксировать ось в одном компоненте** (`useThemeClassnames`) и **управлять цветовой схемой light/dark** без моргания на загрузке (`useColorScheme` + SSR/bootstrap).
+
+> Полный набор `sn-*` обязателен на каждой границе: токены `@cloud-ru/figma-variables` не переопределяются по одной оси через CSS-каскад. Поэтому нельзя поставить одиночный `sn-comfort` руками — для этого есть провайдеры и хук, которые эмитят набор целиком. Старый `ThemeProvider` / `useThemeConfig` (произвольные темы по `themeMap`) — отдельный механизм, не путать с `RootThemeProvider` (см. раздел «Легаси» ниже).
+
+## TL;DR
+
+```tsx
+import { ChildThemeProvider, getGlobalThemeStore, RootThemeProvider, useColorScheme } from '@ds/theme';
+
+// Один React-корень (SSR): оси пропом. Цветовая схема — источник истины useColorScheme.
+function App({ children }: { children: ReactNode }) {
+  const { colorScheme } = useColorScheme();
+  return (
+    <RootThemeProvider value={{ colorScheme, brand: 'brandA', density: 'comfort' }} rootRef={htmlRef}>
+      {children}
+    </RootThemeProvider>
+  );
+}
+
+// Микрофронты: оси из общего стора, хост-контейнер переключает их одним вызовом.
+<RootThemeProvider store={getGlobalThemeStore().store} rootRef={htmlRef}>{mfe}</RootThemeProvider>;
+getGlobalThemeStore().setAppearance({ colorScheme: 'dark' });
+
+// Часть дерева в другом бренде — относительное переопределение поверх контекста.
+<ChildThemeProvider value={{ brand: 'brandB' }}>{section}</ChildThemeProvider>;
+```
+
+`rootRef` — внешний элемент (обычно `<html>`/`<body>`), на который ставится полный набор `sn-*`. Без него провайдер оборачивает children в собственный `<div>` с этим набором.
+
+## Оси оформления
+
+Все оси объявлены в `constants.ts` и спроецированы на классы `sn-*`. Тип значения — `ThemeAppearance` (все поля опциональны; незаданные наследуются от родителя).
+
+| Ось | Константа | Значения → класс |
+|---|---|---|
+| Цветовая схема | `COLOR_SCHEME` | `light` → `sn-light`, `dark` → `sn-dark` |
+| Бренд | `BRAND` | `brandA` / `brandB` / `brandC` → `sn-brandA` … |
+| Роль бренда (палитра) | `BRAND_ROLE` | `main` / `alter` / `alter2…4` → `sn-main` … |
+| Плотность | `DENSITY` | `comfort` / `compact` / `spacious` → `sn-comfort` … |
+| Акрил (blur-материал) | — (`boolean`) | `true` → `sn-yes`, `false` → `sn-no` |
+
+Базовые слои (`sn-primitive`, `sn-base-styles`, `sn-figmaStyles`, `sn-components`) эмитятся всегда — вместе с осями они образуют полный набор на границе.
+
+## Как эмитятся классы
+
+Полный набор собирается из осей одной чистой функцией и ставится на DOM-границу:
+
+- `getThemeClassnameList(appearance)` — список токенов `sn-*` (источник истины). Нужен для `element.classList.add(...)`, которому требуются отдельные классы.
+- `getThemeClassnames(appearance)` — та же форма строкой (через `join`). Используется на SSR (класс на `<html>`) и как основа хука `useThemeClassnames`.
+- `useThemeClassnames(overrides?)` — хук: берёт ближайшее оформление из контекста, накладывает `overrides` и возвращает строку классов. Навешивается на DOM-границу компонента, который фиксирует ось у себя.
+
+Внутри провайдеров эту работу делает `ThemeScope`: в режиме `rootRef` добавляет/снимает классы на внешнем элементе через эффект, иначе рендерит wrapper-`<div>` с набором.
+
+## Провайдер: оси пропом или из стора
+
+`RootThemeProvider` задаёт оформление **абсолютно** (с нуля). Источник значения — один из двух пропов:
+
+- **Один React-корень (Next SSR)** — `value` пропом. Оформление ограничивается рендером/запросом и между запросами не утекает.
+- **Несколько корней (single-spa)** — `store={getGlobalThemeStore().store}`. Хост-контейнер переключает оформление одним вызовом `setAppearance`, все подписанные провайдеры во всех микрофронтах перерисовываются без перерендера самого провайдера.
+- **Без провайдера.** `RootThemeProvider` опционален: дефолт контекста — глобальный стор оформления (`getGlobalThemeStore`). Компонент, вызывающий `useThemeClassnames` без провайдера в своём корне (мобильная обёртка, портал вне `<body>`), реэмитит набор не с пустым оформлением, а с тем, что задал хост-контейнер. Провайдер монтируется, когда нужно статическое оформление, собственный реактивный источник или явная DOM-граница.
+
+```tsx
+// хост-контейнер, один раз при смене оформления:
+getGlobalThemeStore().setAppearance({ colorScheme: 'dark', density: 'compact' });
+
+// в каждом независимом корне:
+<RootThemeProvider store={getGlobalThemeStore().store} rootRef={htmlRef}>{root}</RootThemeProvider>;
+```
+
+`setAppearance` принимает `Partial<ThemeAppearance>` и сливает патч с текущим состоянием — переданные оси меняются, остальные сохраняются.
+
+## Локальные переопределения
+
+Часть дерева может иметь другое оформление. Два инструмента — по тому, что именно переопределяется.
+
+### `ChildThemeProvider` — относительное переопределение поддерева
+
+В отличие от `RootThemeProvider` (абсолютное значение), `ChildThemeProvider` задаёт оформление **относительно**: читает ближайшего родителя и сливает поверх свои `value` (`Partial<ThemeAppearance>`). Незаданные оси наследуются, а не сбрасываются.
+
+```tsx
+// Всё приложение — brandA / comfort; одна секция — brandB, остальные оси от родителя.
+<RootThemeProvider value={{ brand: 'brandA', density: 'comfort', colorScheme }}>
+  <App />
+
+  <ChildThemeProvider value={{ brand: 'brandB' }}>
+    {/* brand=brandB, density=comfort и colorScheme унаследованы */}
+    <PromoSection />
+  </ChildThemeProvider>
+</RootThemeProvider>;
+```
+
+`ChildThemeProvider` — read-only: глобально менять оформление он не может (это умеет только `RootThemeProvider` / `getGlobalThemeStore`). Поставить в поддереве второй `RootThemeProvider` нельзя — он сбросил бы унаследованные оси в пусто и потерял реактивность глобальной темы.
+
+### `useThemeClassnames` — компонент фиксирует ось у себя
+
+Когда ось фиксирует **сам компонент** (мобильная обёртка всегда в `comfort`), он не оборачивает себя в провайдер, а навешивает классы напрямую:
+
+```tsx
+import { useThemeClassnames } from '@ds/theme';
+
+function MobileSheet({ children }: { children: ReactNode }) {
+  // density=comfort фиксирован; colorScheme/brand подмешиваются из контекста — scope самосогласован.
+  const className = useThemeClassnames({ density: 'comfort' });
+  return <div className={className}>{children}</div>;
+}
+```
+
+## Цветовая схема light/dark
+
+`useColorScheme` — источник истины для схемы в приложении. Резолвит выбор пользователя поверх системной темы и держит класс `sn-light`/`sn-dark` на корне.
+
+- `override` — выбор пользователя: `light` / `dark` / `system` (следовать `prefers-color-scheme`).
+- `colorScheme` — итог: явный `light`/`dark` побеждает; `system` резолвится по системной теме (`resolveColorScheme`). Поэтому «всегда светлая» остаётся светлой даже на тёмном устройстве.
+- `setOverride(next)` — сменить выбор и персистнуть его.
+
+```tsx
+import { useColorScheme } from '@ds/theme';
+
+function ThemeToggle() {
+  const { override, colorScheme, setOverride } = useColorScheme();
+  // override → подсветка переключателя; colorScheme → передаётся в RootThemeProvider value.
+  return <SegmentControl value={override} onChange={setOverride} items={['light', 'dark', 'system']} />;
+}
+```
+
+Персист по умолчанию — cookie (`createCookieColorSchemeStorage`) + `BroadcastChannel` для живой кросс-таб синхронизации. Cookie выбран потому, что читается и на сервере (SSR-резолв), и синхронно inline-bootstrap'ом. Реагирует на живое переключение темы ОС (`matchMedia`) и на внешние изменения (`storage.subscribe`).
+
+Хранение на бэкенде — через адаптер `ColorSchemeStorage` (проп `storage`): `read()` возвращает `undefined` (начальное даёт `initialOverride` из server-сессии), `write()` шлёт POST, `subscribe()` — push (SSE/ws). Модель хука при этом не меняется.
+
+## Без моргания: SSR и bootstrap
+
+Чтобы тёмная тема не «моргала» светлой до гидрации, корректный класс должен стоять на корне **до первой отрисовки**. Три точки работают вместе и читают одну cookie:
+
+- **SSR-класс.** `getColorSchemeFromHeaders(headers)` резолвит итоговую схему из cookie `ds-theme` (override) и client hint `Sec-CH-Prefers-Color-Scheme` (системная тема) — результат ставится классом на `<html>` при рендере на сервере.
+- **Детерминированный первый рендер.** `getThemeOverrideFromHeaders(headers)` отдаёт override из cookie; передаётся в `useColorScheme({ initialOverride })`. Первый клиентский рендер совпадает с SSR — без hydration mismatch и без прыжка подсветки переключателя.
+- **Inline-bootstrap.** `getThemeBootstrapScript()` возвращает строку синхронного скрипта для `<head>` (до `<body>`): читает cookie + `prefers-color-scheme` и ставит `sn-light`/`sn-dark` ещё до отрисовки. Вставляется через `<script dangerouslySetInnerHTML>` (Next) или статический `<script>` (single-spa).
+
+```tsx
+// SSR (Next App Router): класс на <html> + детерминированный override клиенту.
+import { getColorSchemeFromHeaders, getThemeBootstrapScript, getThemeOverrideFromHeaders } from '@ds/theme/ssr';
+
+const scheme = getColorSchemeFromHeaders(headers());      // 'light' | 'dark'
+const initialOverride = getThemeOverrideFromHeaders(headers());
+
+<html className={scheme === 'dark' ? 'sn-dark' : 'sn-light'}>
+  <head>
+    <script dangerouslySetInnerHTML={{ __html: getThemeBootstrapScript() }} />
+  </head>
+  <body>{children}</body>
+</html>;
+
+// клиент:
+const { colorScheme } = useColorScheme({ initialOverride });
+```
+
+Client hint `Sec-CH-Prefers-Color-Scheme` нужно включить ответными заголовками `Accept-CH` / `Critical-CH`, иначе на первом визите хинта нет (системная вернётся `light`), а корректную тему доставит inline-bootstrap до отрисовки.
+
+## MFE и SSR
+
+- **MFE.** Объект контекста оформления — `Symbol.for`-синглтон (`providerKey('theme-appearance', 1)`): потребитель в микрофронте читает ближайший провайдер независимо от версии пакета. Глобальный `getGlobalThemeStore()` (тоже `Symbol.for`) даёт один источник оформления на все корни и служит дефолтом контекста — поэтому MFE без `RootThemeProvider` всё равно эмитит корректные классы. Контракт значения (пять осей) не растёт с числом компонентов — ключ остаётся `v1`.
+- **SSR.** `getServerSnapshot` стора отдаёт пустое оформление (мутабельный глобал на сервере запрещён — утечёт между запросами). Стартовое оформление на сервере задаёт сам app: `value` пропом `RootThemeProvider` либо SSR-класс из `getColorSchemeFromHeaders`.
+- **RSC-safe субпуть.** `@ds/theme/ssr` экспортирует только чистые символы (константы, типы, `getThemeClassnames`, `resolveColorScheme`, `getColorSchemeFromHeaders`, `getThemeBootstrapScript`) — без React-контекста и хуков, поэтому импорт в React Server Components не тянет `createContext`.
+
+## Легаси: `ThemeProvider` / `useThemeConfig`
+
+`ThemeProvider` и `useThemeConfig` (`themeMap` / `changeTheme`) — отдельный механизм для **произвольных пользовательских тем** по соответствию «имя темы → CSS-класс». Он не связан с осями DS (`colorScheme`/`brand`/`density`/…) и эмитит один класс из `themeMap`, а не полный набор `sn-*`.
+
+Для оформления дизайн-системы используется `RootThemeProvider`, не `ThemeProvider`. Старый API сохранён для обратной совместимости — не путать их в одном дереве.
+
+## Частые проблемы
+
+- **Классы `sn-*` не на корне / тема не применилась.** `RootThemeProvider` без `rootRef` ставит набор на собственный wrapper-`<div>`, а не на `<html>`. Для глобального оформления передайте `rootRef` на корневой элемент. Если провайдера нет вовсе — оформление берётся из `getGlobalThemeStore`; проверьте, что хост-контейнер вызвал `setAppearance(...)`.
+- **Моргание light/dark на reload.** Нет inline `getThemeBootstrapScript` в `<head>` или нет SSR-класса на `<html>`. Корректный класс должен стоять до первой отрисовки — добавьте обе точки.
+- **Hydration mismatch цветовой схемы.** `useColorScheme` без `initialOverride` на SSR: сервер и клиент стартуют с разного override. Передайте `getThemeOverrideFromHeaders(headers)` в `initialOverride`.
+- **Одиночный `sn-comfort` руками не действует.** Токены не переопределяются по одной оси через каскад — нужен полный набор. Используйте `ChildThemeProvider value={{ density: 'comfort' }}` или `useThemeClassnames({ density: 'comfort' })`.
+- **Несколько копий `@ds/theme`.** Локаль оформления это ломать не должно: контекст и стор — `Symbol.for`-синглтоны, общие между копиями. При смешанных contract-версиях одного домена — только dev-warn; приколотите единый мажор провайдера.
+
+## Смотри также
+
+- [Theme](/components/theme) — справочник API пакета и живые примеры.
+- [Локализация — строки в пакетах](/patterns/localization) — та же двухслойная модель для строк.
+- [Adaptive](/components/adaptive) — раскладка `layoutType` (источник `density` в приложении).
+- [PortalContext](/components/portal-context) — корневой DOM-узел для порталов.

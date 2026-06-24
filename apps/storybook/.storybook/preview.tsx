@@ -4,12 +4,13 @@ import './global.scss';
 
 import { LocaleProvider } from '@ds/locale';
 import { PortalContextProvider } from '@ds/portal-context';
+import { RootThemeProvider } from '@ds/theme';
 import type { Preview } from '@storybook/react';
 import { useMemo, useState } from 'react';
 import { configure } from 'storybook/test';
 
 import { GLOBAL_KEYS, INITIAL_GLOBALS } from './addons/theme-controls';
-import { PreviewThemeProvider, StoryWrapper } from './components';
+import { StoryWrapper } from './components';
 import type { Acrylic, Brand, BrandRole, Density, Language, Theme } from './components/types';
 // Реп использует `data-test-id` (TEST_ID_ATTRIBUTE в playwright/constants/common.ts),
 // testing-library по умолчанию ищет `data-testid`. Синхронизируем, чтобы getByTestId
@@ -35,24 +36,20 @@ const preview: Preview = {
       const acrylic = (g[GLOBAL_KEYS.ACRYLIC] as Acrylic) ?? INITIAL_GLOBALS[GLOBAL_KEYS.ACRYLIC];
 
       return (
-        <PreviewThemeProvider theme={theme}>
+        <RootThemeProvider
+          value={{ colorScheme: theme, brand, brandRole, density, acrylic: acrylic === 'enabled' }}
+          rootRef={storyWrapperRef}
+        >
           <PortalContextProvider root={storyWrapperRef}>
             <LocaleProvider lang={language}>
-              <StoryWrapper
-                ref={setStoryWrapperEl}
-                theme={theme}
-                brand={brand}
-                brandRole={brandRole}
-                density={density}
-                acrylic={acrylic}
-              >
+              <StoryWrapper ref={setStoryWrapperEl}>
                 {/* Story монтируется только после появления wrapper-элемента — гарантия,
                     что порталы создаются уже с корректным root внутри theme-обёртки. */}
                 {storyWrapperEl ? <Story /> : null}
               </StoryWrapper>
             </LocaleProvider>
           </PortalContextProvider>
-        </PreviewThemeProvider>
+        </RootThemeProvider>
       );
     },
   ],
@@ -67,13 +64,8 @@ const preview: Preview = {
         date: /date$/i,
       },
     },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: 'oklch(98% 0 0)' },
-        { name: 'surface', value: 'oklch(96% 0 0)' },
-      ],
-    },
+    // Встроенный аддон Backgrounds выключен — фон сцены задаёт кастомный theme-controls (тема/бренд).
+    backgrounds: { disable: true },
 
     // Сортировка stories
     options: {

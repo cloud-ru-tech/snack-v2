@@ -231,6 +231,9 @@ importers:
       '@astrojs/react':
         specifier: 5.0.5
         version: 5.0.5(@types/node@22.19.17)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(less@4.6.4)(lightningcss@1.32.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.99.0)(stylus@0.62.0)(tsx@4.21.0)(yaml@2.8.3)
+      '@ds/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
       '@ds/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -454,6 +457,9 @@ importers:
       '@ds/tag':
         specifier: workspace:*
         version: link:../../packages/tag
+      '@ds/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
       '@ds/timeline':
         specifier: workspace:*
         version: link:../../packages/timeline
@@ -590,6 +596,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles
@@ -749,6 +758,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
@@ -1023,6 +1035,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography
@@ -1793,6 +1808,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography
@@ -1844,6 +1862,15 @@ importers:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/theme:
+    dependencies:
+      '@ds/context-kit':
+        specifier: workspace:^
+        version: link:../context-kit
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1952,6 +1979,9 @@ importers:
       '@ds/tag':
         specifier: workspace:^
         version: link:../tag
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles
@@ -2151,6 +2181,9 @@ importers:
       '@ds/skeleton':
         specifier: workspace:^
         version: link:../skeleton
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/tooltip':
         specifier: workspace:^
         version: link:../tooltip
