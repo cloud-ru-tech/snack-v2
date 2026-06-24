@@ -1,8 +1,10 @@
 # Utils
 
-`@ds/utils` — Хуки и хелперы для React-компонентов — темы, controlled/uncontrolled, дебаунс, свайпы, модалки, персист данных, пропы и SSR.
+`@ds/utils` — Хуки и хелперы для React-компонентов — controlled/uncontrolled, дебаунс, свайпы, модалки, персист данных, пропы и SSR.
 
-Пакет с хуками и хелперами для разработки React-компонентов: темы, controlled/uncontrolled состояние, дебаунс, свайпы, модалки, персист данных, работа с пропами и SSR.
+Пакет с хуками и хелперами для разработки React-компонентов: controlled/uncontrolled состояние, дебаунс, свайпы, модалки, персист данных, работа с пропами и SSR.
+
+> Оформление (тема, бренд, плотность, цветовая схема) переехало в `@ds/theme` — см. **Theme** и паттерн [Оформление](/patterns/theme).
 
 ## Установка
 
@@ -11,50 +13,6 @@ pnpm add @ds/utils
 ```
 
 ## Примеры использования
-
-### useThemeConfig
-
-Возвращает текущую тему, CSS-класс из `themeMap` и функцию переключения `changeTheme`.
-
-```tsx
-import { useThemeConfig } from '@ds/utils';
-
-const themeMap = { light: 'sn-light', dark: 'sn-dark' };
-
-function Example() {
-  const theme = useThemeConfig({ themeMap, defaultTheme: 'light' });
-  return (
-    <div className={theme.themeClassName}>
-      <button type="button" onClick={() => theme.changeTheme('dark')}>
-        Тёмная тема
-      </button>
-    </div>
-  );
-}
-```
-
-### ThemeProvider и useThemeContext
-
-**ThemeProvider** — провайдер темы по `themeMap` и `defaultTheme`. **useThemeContext** — доступ к текущей теме и `changeTheme` из контекста.
-
-```tsx
-import { ThemeProvider, useThemeContext } from '@ds/utils';
-
-const themeMap = { light: 'sn-light', dark: 'sn-dark' };
-
-function ThemedContent() {
-  const { theme, themeClassName, changeTheme } = useThemeContext();
-  return <div className={themeClassName}>Тема: {theme}</div>;
-}
-
-function App() {
-  return (
-    <ThemeProvider themeMap={themeMap} defaultTheme="light">
-      <ThemedContent />
-    </ThemeProvider>
-  );
-}
-```
 
 ### useValueControl
 
@@ -261,22 +219,4 @@ type ButtonProps = WithSupportProps<{
 
 ## Storybook
 
-Интерактивные примеры: **Utils / Theme Config** в локальном Storybook (`pnpm dev:storybook`).
-
-## ThemeProvider
-
-### Props `ThemeProviderProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | — | Дети, которые будут обёрнуты в провайдер |
-| `defaultTheme` | `string` | — | Значение темы по умолчанию |
-| `themeMap` | `Record<string, string>` | — | Объект с указанием соответсвия темы и css-класса |
-
-## useThemeConfig
-
-### Props `UseThemeProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `themeMap` | `T` | — | Объект с указанием соответсвия темы и css-класса |
+Интерактивные примеры — раздел **Utils** в локальном Storybook (`pnpm dev:storybook`).
