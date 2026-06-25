@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const regions: ItemProps[] = [
@@ -13,18 +12,16 @@ const regions: ItemProps[] = [
 export function SelectPinned() {
   const [value, setValue] = useState<ItemId | undefined>('ru-moscow-1');
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Регион'
-        placeholder='Выберите регион'
-        selection='single'
-        searchable
-        items={regions}
-        pinTop={[{ id: 'recommended', content: { option: 'ru-moscow-1', caption: 'Рекомендуемый' } }]}
-        pinBottom={[{ id: 'all-regions', content: { option: 'Показать все регионы' } }]}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Регион'
+      placeholder='Выберите регион'
+      selection='single'
+      searchable
+      items={regions}
+      pinTop={[{ id: 'recommended', content: { option: 'ru-moscow-1', caption: 'Рекомендуемый' } }]}
+      pinBottom={[{ id: 'all-regions', content: { option: 'Показать все регионы' } }]}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

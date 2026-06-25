@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
@@ -13,16 +12,14 @@ const options: ItemProps[] = [
 export function SelectMultiple() {
   const [value, setValue] = useState<ItemId[]>(['ru-1', 'ru-2']);
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Зоны доступности'
-        placeholder='Выберите зоны'
-        selection='multiple'
-        chips
-        items={options}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Зоны доступности'
+      placeholder='Выберите зоны'
+      selection='multiple'
+      chips
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

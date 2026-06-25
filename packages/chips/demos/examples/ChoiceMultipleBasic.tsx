@@ -1,5 +1,4 @@
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -13,8 +12,6 @@ export function ChoiceMultipleBasic() {
   const [value, setValue] = useState<(string | number)[]>(['news', 'releases']);
 
   return (
-    <PortalContextProvider>
-      <ChipChoice.Multiple label='Category' options={OPTIONS} value={value} onChange={next => setValue(next ?? [])} />
-    </PortalContextProvider>
+    <ChipChoice.Multiple label='Category' options={OPTIONS} value={value} onChange={next => setValue(next ?? [])} />
   );
 }

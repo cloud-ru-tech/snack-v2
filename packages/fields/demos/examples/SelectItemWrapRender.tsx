@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 // itemWrapRender оборачивает отрендеренный айтем в произвольный узел — типичный кейс:
@@ -25,16 +24,14 @@ const options: ItemProps[] = [
 export function SelectItemWrapRender() {
   const [value, setValue] = useState<ItemId | undefined>(undefined);
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Раздел'
-        placeholder='Выберите раздел'
-        hint='Каждый айтем обёрнут в навигационную ссылку через itemWrapRender'
-        selection='single'
-        items={options}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Раздел'
+      placeholder='Выберите раздел'
+      hint='Каждый айтем обёрнут в навигационную ссылку через itemWrapRender'
+      selection='single'
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

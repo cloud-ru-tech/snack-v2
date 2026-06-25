@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
@@ -14,18 +13,16 @@ const options: ItemProps[] = [
 export function SelectSearchable() {
   const [value, setValue] = useState<ItemId | undefined>(undefined);
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Образ ОС'
-        placeholder='Начните вводить название'
-        hint='Нечёткий поиск: «aple» найдёт «Alpine Linux»'
-        selection='single'
-        searchable
-        enableFuzzySearch
-        items={options}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Образ ОС'
+      placeholder='Начните вводить название'
+      hint='Нечёткий поиск: «aple» найдёт «Alpine Linux»'
+      selection='single'
+      searchable
+      enableFuzzySearch
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

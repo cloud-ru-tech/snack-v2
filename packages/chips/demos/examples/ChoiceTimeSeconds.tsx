@@ -1,5 +1,4 @@
 import { ChipChoice, ChipChoiceTimeProps } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceTimeSeconds() {
@@ -9,9 +8,5 @@ export function ChoiceTimeSeconds() {
     seconds: 15,
   });
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Time label='Время' showSeconds value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Time label='Время' showSeconds value={value} onChange={setValue} />;
 }

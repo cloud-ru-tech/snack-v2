@@ -1,5 +1,4 @@
 import { CHIP_CHOICE_TYPE, ChipChoiceRow } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const FILTERS = [
@@ -32,9 +31,5 @@ const FILTERS = [
 export function ChoiceRowPinned() {
   const [value, setValue] = useState({});
 
-  return (
-    <PortalContextProvider>
-      <ChipChoiceRow filters={FILTERS} value={value} onChange={setValue} showAddButton showClearButton />
-    </PortalContextProvider>
-  );
+  return <ChipChoiceRow filters={FILTERS} value={value} onChange={setValue} showAddButton showClearButton />;
 }

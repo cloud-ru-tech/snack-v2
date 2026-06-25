@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useMemo, useState } from 'react';
 
 const ALL_REGIONS: ItemProps[] = [
@@ -28,18 +27,16 @@ export function SelectAutocomplete() {
   }, [query]);
 
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Регион'
-        placeholder='Начните вводить название'
-        hint='autocomplete: фильтрует потребитель (серверный поиск), не сам компонент'
-        selection='single'
-        autocomplete
-        search={{ value: query, onChange: setQuery }}
-        items={items}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Регион'
+      placeholder='Начните вводить название'
+      hint='autocomplete: фильтрует потребитель (серверный поиск), не сам компонент'
+      selection='single'
+      autocomplete
+      search={{ value: query, onChange: setQuery }}
+      items={items}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

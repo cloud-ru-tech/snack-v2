@@ -1,5 +1,4 @@
 import { MarkdownEditor } from '@ds/markdown';
-import { PortalContextProvider } from '@ds/portal-context';
 
 const INITIAL = `# Заметка
 
@@ -7,9 +6,5 @@ const INITIAL = `# Заметка
 `;
 
 export function EditorUncontrolled() {
-  return (
-    <PortalContextProvider>
-      <MarkdownEditor defaultValue={INITIAL} placeholder='Начните писать…' />
-    </PortalContextProvider>
-  );
+  return <MarkdownEditor defaultValue={INITIAL} placeholder='Начните писать…' />;
 }

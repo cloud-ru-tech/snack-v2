@@ -1,6 +1,5 @@
-import { PortalContextProvider } from '@ds/portal-context';
 import { Tree, TreeNodeProps } from '@ds/tree';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const DATA: TreeNodeProps[] = [
   {
@@ -15,7 +14,6 @@ const DATA: TreeNodeProps[] = [
 ];
 
 export function WithActions() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState<string[]>(['project']);
   const [lastItemAction, setLastItemAction] = useState<string>('');
 
@@ -25,11 +23,9 @@ export function WithActions() {
   ];
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <Tree data={DATA} expandedNodes={expanded} onExpand={setExpanded} nodeActions={nodeActions} showLines />
-        <small>Last clicked item action: {lastItemAction || '—'}</small>
-      </div>
-    </PortalContextProvider>
+    <>
+      <Tree data={DATA} expandedNodes={expanded} onExpand={setExpanded} nodeActions={nodeActions} showLines />
+      <small>Last clicked item action: {lastItemAction || '—'}</small>
+    </>
   );
 }

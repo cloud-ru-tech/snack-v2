@@ -1,5 +1,4 @@
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -14,9 +13,5 @@ const OPTIONS = [
 export function ChoiceSingleSearchable() {
   const [value, setValue] = useState<string | number | undefined>('frontend');
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Single searchable label='Team' options={OPTIONS} value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Single searchable label='Team' options={OPTIONS} value={value} onChange={setValue} />;
 }

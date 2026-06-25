@@ -1,7 +1,5 @@
 import { LocaleProvider } from '@ds/locale';
-import { PortalContextProvider } from '@ds/portal-context';
 import { UPLOAD_STATUS, UploadFileItem, UploadFiles } from '@ds/uikit-product-upload-files';
-import { useRef } from 'react';
 
 async function upload(file: File) {
   return { url: `https://example.com/${file.name}` };
@@ -19,15 +17,9 @@ function buildValue(): UploadFileItem[] {
 }
 
 export function Disabled() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
     <LocaleProvider lang='ru-RU'>
-      <PortalContextProvider root={hostRef}>
-        <div ref={hostRef} style={{ position: 'relative' }}>
-          <UploadFiles label='Документы' disabled value={buildValue()} upload={upload} />
-        </div>
-      </PortalContextProvider>
+      <UploadFiles label='Документы' disabled value={buildValue()} upload={upload} />
     </LocaleProvider>
   );
 }

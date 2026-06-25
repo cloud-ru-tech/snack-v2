@@ -1,6 +1,5 @@
-import { PortalContextProvider } from '@ds/portal-context';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const periods = [
   { id: 'month', label: 'Month' },
@@ -8,7 +7,6 @@ const periods = [
 ];
 
 export function DesktopOpen() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [period, setPeriod] = useState(periods[0]);
 
   const items = periods.map(option => ({
@@ -17,11 +15,5 @@ export function DesktopOpen() {
     onClick: () => setPeriod(option),
   }));
 
-  return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <ButtonDropdown label={period.label} size='m' layoutType='desktop' open items={items} />
-      </div>
-    </PortalContextProvider>
-  );
+  return <ButtonDropdown label={period.label} size='m' layoutType='desktop' open items={items} />;
 }

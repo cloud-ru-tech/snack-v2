@@ -1,6 +1,5 @@
-import { PortalContextProvider } from '@ds/portal-context';
 import { QuotaItem, QuotaWidget } from '@ds/uikit-product-quota';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const QUOTAS: QuotaItem[] = [
   { name: 'vCPU', limit: 100, usage: 42, remains: 58, unitDisplayName: 'cores' },
@@ -8,7 +7,6 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetError() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,19 +19,17 @@ export function QuotaWidgetError() {
   };
 
   return (
-    <PortalContextProvider root={hostRef}>
-      {/* В продукте виджет живёт у правого края страницы — dropdown прижат к правому краю триггера */}
-      <div ref={hostRef} style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', position: 'relative' }}>
-        <QuotaWidget
-          quotas={QUOTAS}
-          projectName='ml-platform-production'
-          quotasUrl='#'
-          canEditQuota={false}
-          isLoading={isLoading}
-          isError={isError}
-          onRefresh={handleRefresh}
-        />
-      </div>
-    </PortalContextProvider>
+    // В продукте виджет живёт у правого края страницы — dropdown прижат к правому краю триггера
+    <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+      <QuotaWidget
+        quotas={QUOTAS}
+        projectName='ml-platform-production'
+        quotasUrl='#'
+        canEditQuota={false}
+        isLoading={isLoading}
+        isError={isError}
+        onRefresh={handleRefresh}
+      />
+    </div>
   );
 }

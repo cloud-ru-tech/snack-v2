@@ -1,5 +1,4 @@
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -15,14 +14,12 @@ export function ChoiceMultipleSearchable() {
   const [value, setValue] = useState<(string | number)[]>(['react', 'svelte']);
 
   return (
-    <PortalContextProvider>
-      <ChipChoice.Multiple
-        searchable
-        label='Tags'
-        options={OPTIONS}
-        value={value}
-        onChange={next => setValue(next ?? [])}
-      />
-    </PortalContextProvider>
+    <ChipChoice.Multiple
+      searchable
+      label='Tags'
+      options={OPTIONS}
+      value={value}
+      onChange={next => setValue(next ?? [])}
+    />
   );
 }

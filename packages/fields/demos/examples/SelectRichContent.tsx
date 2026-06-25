@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 // Айтемы @ds/list поддерживают option (лейбл) + caption + description.
@@ -23,17 +22,15 @@ const options: ItemProps[] = [
 export function SelectRichContent() {
   const [value, setValue] = useState<ItemId | undefined>('m');
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Размер инстанса'
-        placeholder='Выберите размер'
-        hint='Поиск ищет по названию, характеристикам и описанию'
-        selection='single'
-        searchable
-        items={options}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Размер инстанса'
+      placeholder='Выберите размер'
+      hint='Поиск ищет по названию, характеристикам и описанию'
+      selection='single'
+      searchable
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

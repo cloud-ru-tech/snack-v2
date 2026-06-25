@@ -1,5 +1,4 @@
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -11,9 +10,5 @@ const OPTIONS = [
 export function ChoiceSingleBasic() {
   const [value, setValue] = useState<string | number | undefined>('active');
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Single label='Status' options={OPTIONS} value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Single label='Status' options={OPTIONS} value={value} onChange={setValue} />;
 }

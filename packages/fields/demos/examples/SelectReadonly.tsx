@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 
 const options: ItemProps[] = [
   { id: 'm', content: { option: 'Medium (2 vCPU, 4 GB)' } },
@@ -8,9 +7,5 @@ const options: ItemProps[] = [
 ];
 
 export function SelectReadonly() {
-  return (
-    <PortalContextProvider>
-      <FieldSelect label='Размер инстанса' readonly selection='single' items={options} defaultValue='l' />
-    </PortalContextProvider>
-  );
+  return <FieldSelect label='Размер инстанса' readonly selection='single' items={options} defaultValue='l' />;
 }

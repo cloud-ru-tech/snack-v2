@@ -1,6 +1,5 @@
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
@@ -13,15 +12,13 @@ const options: ItemProps[] = [
 export function Select() {
   const [value, setValue] = useState<ItemId | undefined>('m');
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Размер инстанса'
-        placeholder='Выберите размер'
-        selection='single'
-        items={options}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Размер инстанса'
+      placeholder='Выберите размер'
+      selection='single'
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
   );
 }

@@ -1,11 +1,11 @@
 import { isBrowser } from '@ds/utils';
-import { RefObject } from 'react';
+import { MutableRefObject } from 'react';
 
 import { PORTAL_KEYS } from '../keys';
 
 const REGISTRY_KEY = Symbol.for(PORTAL_KEYS.store);
 
-type Registry = { [REGISTRY_KEY]?: RefObject<HTMLElement | null> };
+type Registry = { [REGISTRY_KEY]?: MutableRefObject<HTMLElement | null> };
 
 /**
  * Глобальный singleton-ref корня порталов, общий для всех React-корней процесса (микрофронты
@@ -22,7 +22,7 @@ type Registry = { [REGISTRY_KEY]?: RefObject<HTMLElement | null> };
  *
  * Для одного React-корня с нестандартным таргетом — `<PortalContextProvider root={ref} />`.
  */
-export function getGlobalPortalRoot(): RefObject<HTMLElement | null> {
+export function getGlobalPortalRoot(): MutableRefObject<HTMLElement | null> {
   const registry = globalThis as Registry;
 
   return (registry[REGISTRY_KEY] ??= { current: isBrowser() ? document.body : null });

@@ -1,5 +1,4 @@
 import { MarkdownEditor } from '@ds/markdown';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function EditorControlled() {
@@ -7,14 +6,6 @@ export function EditorControlled() {
   const [preview, setPreview] = useState(false);
 
   return (
-    <PortalContextProvider>
-      <MarkdownEditor
-        value={value}
-        onChange={setValue}
-        preview={preview}
-        onPreviewChange={setPreview}
-        label='Описание'
-      />
-    </PortalContextProvider>
+    <MarkdownEditor value={value} onChange={setValue} preview={preview} onPreviewChange={setPreview} label='Описание' />
   );
 }
