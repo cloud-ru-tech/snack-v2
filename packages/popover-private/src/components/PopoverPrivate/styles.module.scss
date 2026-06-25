@@ -1,3 +1,12 @@
+// `@floating-ui/react` рендерит свою обёртку портала `<div data-floating-ui-portal>` как обычный
+// in-flow блок. Если корень портала — flex/grid-контейнер с `gap` (например, тематический блок,
+// в который смонтированы порталы), пустая обёртка становится layout-элементом и съедает слот `gap`,
+// растягивая хост. `display: contents` убирает её собственный бокс из раскладки; позиционированный
+// контент тултипа/поповера (`position: fixed/absolute` через floatingStyles) рендерится без изменений.
+:global([data-floating-ui-portal]) {
+  display: contents;
+}
+
 .floating {
   display: flex;
   flex-direction: column;
