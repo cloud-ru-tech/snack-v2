@@ -17,7 +17,13 @@ catalog:
   sass: 1.99.0
   tabbable: 6.4.0
   typescript: 5.9.3
-  uncontrollable: 9.0.0
+  # 9.0.0 publishes a broken dual-package: `type:module` + `exports.require` pointing
+  # at `cjs/*.js` with no `cjs/package.json {"type":"commonjs"}` marker, so the CJS
+  # files load as ESM and trip strict bundlers (Turbopack/Next 16), forcing consumers
+  # to add the package to `transpilePackages`. 8.0.4 uses the plain main(cjs)+module(esm)
+  # convention that Node and every bundler resolve without conflict. API is identical
+  # (we only use `useUncontrolledProp`).
+  uncontrollable: 8.0.4
 
 ignoredBuiltDependencies:
   - ejs

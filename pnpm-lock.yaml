@@ -34,8 +34,8 @@ catalogs:
       specifier: 5.9.3
       version: 5.9.3
     uncontrollable:
-      specifier: 9.0.0
-      version: 9.0.0
+      specifier: 8.0.4
+      version: 8.0.4
 
 overrides:
   react: 18.3.1
@@ -688,7 +688,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/ai-reasoning:
     dependencies:
@@ -727,7 +727,7 @@ importers:
         version: 12.38.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/ai-tool:
     dependencies:
@@ -748,7 +748,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/alert:
     dependencies:
@@ -925,7 +925,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
       weekstart:
         specifier: 2.0.0
         version: 2.0.0
@@ -973,7 +973,7 @@ importers:
         version: 2.0.0(@types/react@18.3.28)
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/chips:
     dependencies:
@@ -1024,7 +1024,7 @@ importers:
         version: 2.0.0(@types/react@18.3.28)
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
     devDependencies:
       '@types/fuzzy-search':
         specifier: 2.1.5
@@ -1503,7 +1503,7 @@ importers:
         version: 4.0.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
     devDependencies:
       sass:
         specifier: 'catalog:'
@@ -1606,7 +1606,7 @@ importers:
         version: 19.2.4
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/portal-context:
     dependencies:
@@ -1660,7 +1660,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/scroll:
     dependencies:
@@ -1747,7 +1747,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/site-card-vacancy:
     dependencies:
@@ -1945,7 +1945,7 @@ importers:
         version: 2.0.0(@types/react@18.3.28)
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/toolbar:
     dependencies:
@@ -2002,7 +2002,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/tooltip:
     dependencies:
@@ -2020,7 +2020,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/tree:
     dependencies:
@@ -2068,7 +2068,7 @@ importers:
         version: 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/truncate-string:
     dependencies:
@@ -2288,7 +2288,7 @@ importers:
         version: 2.5.1
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
   packages/uikit-product-price-summary:
     dependencies:
@@ -2543,7 +2543,7 @@ importers:
         version: 7.0.2(react@18.3.1)
       uncontrollable:
         specifier: 'catalog:'
-        version: 9.0.0(react@18.3.1)
+        version: 8.0.4(react@18.3.1)
 
 packages:
 
@@ -10760,11 +10760,6 @@ packages:
 
   uncontrollable@8.0.4:
     resolution: {integrity: sha512-ulRWYWHvscPFc0QQXvyJjY6LIXU56f0h8pQFvhxiKk5V1fcI8gp9Ht9leVAhrVjzqMw0BgjspBINx9r6oyJUvQ==}
-    peerDependencies:
-      react: 18.3.1
-
-  uncontrollable@9.0.0:
-    resolution: {integrity: sha512-wPScOFmvRkHdvebf7qNPn9Wog9B1TL8Dqcx0Vecz6HYTKFKMfGKP6MJHTjiKL8kwd8KTW3YfIUke7pmRDtkcRQ==}
     peerDependencies:
       react: 18.3.1
 
@@ -20799,10 +20794,6 @@ snapshots:
       which-boxed-primitive: 1.1.1
 
   uncontrollable@8.0.4(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-
-  uncontrollable@9.0.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 

@@ -8,6 +8,13 @@
         "transform": "../../scripts/scss-extension-transformer.ts"
       },
       {
+        "transform": "../../scripts/esm-extension-transformer.ts"
+      },
+      {
+        "transform": "../../scripts/esm-extension-transformer.ts",
+        "afterDeclarations": true
+      },
+      {
         "name": "typescript-plugin-css-modules",
         "options": {
           "customRenderer": "../../scripts/compile/sass-custom-renderer.js"
