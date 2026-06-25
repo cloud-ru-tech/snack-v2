@@ -1,0 +1,126 @@
+---
+title: Порталы — корневой DOM-узел
+description: Модель @ds/portal-context — DOM-узел для порталов живёт в контексте, дефолт это глобальный singleton-ref корня (Symbol.for), общий для всех React-корней; провайдер опционален, безопасен для микрофронтов и SSR.
+order: 4
+---
+
+# Порталы — корневой DOM-узел
+
+Tooltip, Popover, Dropdown, Modal, Drawer рендерят свой слой через `createPortal` — не в месте вызова, а в отдельный DOM-узел. Где этот узел, дизайн-система решает двумя слоями:
+
+- **Узел — в React-контексте.** Целевой DOM-узел живёт в контексте `@ds/portal-context`, а не в пропах каждого портального компонента. Источник — один `PortalContextProvider` либо глобальный дефолт.
+- **Дефолт — глобальный singleton-ref.** Без провайдера контекст отдаёт `getGlobalPortalRoot()` — `Symbol.for`-синглтон корня порталов, общий для всех React-корней процесса. Поэтому потребитель без `PortalContextProvider` монтирует порталы в узел, который оболочка контейнера объявила один раз. Контракт значения (один `RefObject`) не растёт с числом компонентов, поэтому он устойчив к версиям в **микрофронтах (MFE)** и безопасен для **SSR**.
+
+Поверх этого приложение может **переопределить узел в поддереве** (`<PortalContextProvider root={ref} />`) — например, увести порталы внутрь shadow DOM, iframe или themed-контейнера.
+
+> Значение контекста — мутабельный `RefObject`, **не** реактивный стор. Порталы читают `.current` лениво в момент открытия, поэтому смена узла не вызывает перерендер и провайдеру не нужен `setAppearance`/`setLang`-эквивалент: оболочка контейнера присваивает `.current`.
+
+## TL;DR
+
+```tsx
+import { getGlobalPortalRoot, PortalContextProvider, usePortalContext } from '@ds/portal-context';
+
+// Без провайдера: порталы DS уже работают, монтируются в document.body по умолчанию.
+
+// Оболочка контейнера, один раз при инициализации — увести все порталы в themed-корень:
+getGlobalPortalRoot().current = document.querySelector('.sn-dark') ?? document.body;
+
+// Поддерево с нестандартным таргетом (shadow DOM, iframe, scoped stacking-контекст):
+<PortalContextProvider root={shadowRootRef}>{section}</PortalContextProvider>;
+
+// Внутри портального компонента — читать узел лениво при открытии:
+function FloatingLayer({ children }: { children: ReactNode }) {
+  const root = usePortalContext();
+  if (!root.current) return null; // SSR или узел ещё не задан
+  return createPortal(children, root.current);
+}
+```
+
+В обычном SPA провайдер не нужен — компоненты по умолчанию используют `document.body`.
+
+## Зачем нужен контекст
+
+`document.body` подходит большинству приложений, но не всем. Контекст нужен, когда корень `<body>` не годится:
+
+- **shadow DOM / iframe** — DS встроена в изолированный корень, и портал в `document.body` host-страницы вышел бы за пределы стилевого скоупа.
+- **Themed-контейнер** — стек порталов нужно держать внутри элемента с темой `sn-*` (см. [Оформление](/patterns/theme)), иначе всплывающий слой потеряет цветовую схему/плотность родителя.
+- **Scoped stacking-контекст** — все порталы поднимаются в один контейнер ради предсказуемого `z-index` и scoped CSS.
+- **Тесты** — портал нужно монтировать в фиксированный узел `iframe` Storybook/Playwright.
+
+## Контекст: значение — ref на DOM-узел
+
+Значение контекста — `RefObject<HTMLElement | null>`. Потребитель не получает узел напрямую, а читает `.current` в момент, когда реально открывает портал. Это и делает модель ленивой: узел может появиться (или смениться) уже после монтирования компонента — важно лишь, чтобы он был выставлен к первому открытию слоя.
+
+```tsx
+import { usePortalContext } from '@ds/portal-context';
+import { createPortal } from 'react-dom';
+
+function Tooltip({ children }: { children: ReactNode }) {
+  const root = usePortalContext();
+  // .current читается здесь, а не на монтировании — узел берётся «как есть» при открытии.
+  if (!root.current) return null;
+  return createPortal(children, root.current);
+}
+```
+
+## Провайдер: переопределить узел в поддереве
+
+`PortalContextProvider` опционален и задаёт узел **для своего поддерева**:
+
+```tsx
+type PortalContextProviderProps = {
+  root?: RefObject<HTMLElement | null>; // целевой узел; по умолчанию — глобальный singleton-ref
+  children: ReactNode;
+};
+```
+
+- **С `root`** — порталы поддерева монтируются в переданный ref. Используется для shadow DOM, iframe, themed-контейнера, фиксированного узла в тестах.
+- **Без `root`** — провайдер подставляет `getGlobalPortalRoot()`, то есть ведёт себя как дефолт. Оборачивать ради этого не нужно.
+
+```tsx
+function ScopedSection({ children }: { children: ReactNode }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  return (
+    <PortalContextProvider root={rootRef}>
+      {children}
+      {/* порталы этого поддерева сядут сюда, а не в document.body */}
+      <div ref={rootRef} />
+    </PortalContextProvider>
+  );
+}
+```
+
+## Глобальный singleton-ref: `getGlobalPortalRoot`
+
+Дефолт контекста — `getGlobalPortalRoot()`: один `RefObject` корня порталов, хранящийся в `globalThis` через `Symbol.for`. За счёт этого он общий для всех React-корней процесса (микрофронты single-spa, островки Astro) и переживает несколько копий пакета `@ds/portal-context` в бандле.
+
+Оболочка контейнера задаёт целевой узел **один раз** при инициализации, и все микрофронты без собственного `PortalContextProvider` монтируют порталы туда:
+
+```tsx
+import { getGlobalPortalRoot } from '@ds/portal-context';
+
+// в оболочке контейнера, до первого открытия любого портала:
+getGlobalPortalRoot().current = document.body; // или выделенный themed-root
+```
+
+Дефолтное значение ref — `document.body` (в браузере) либо `null` (SSR). Менять глобальный узел не обязательно: если он устраивает, ни оболочке, ни микрофронту делать ничего не нужно.
+
+Рецепт повторяет `getGlobalThemeStore` / `getGlobalLocaleStore` (см. [Оформление](/patterns/theme), [Локализация](/patterns/localization)), но с одним отличием: здесь это **мутабельный ref**, а не реактивный стор. Порталы читают `.current` императивно при открытии, поэтому подписки/перерендера на смену узла нет.
+
+## MFE и SSR
+
+- **MFE.** Объект контекста — `Symbol.for`-синглтон (`providerKey('portal-context', 1)`): потребитель в микрофронте читает ближайший провайдер независимо от версии пакета. Глобальный `getGlobalPortalRoot()` (тоже `Symbol.for`, ключ `@cloud-ru/ds:global-portal-root:v1`) даёт один корень порталов на все React-корни и служит дефолтом контекста — поэтому MFE без `PortalContextProvider` всё равно монтирует порталы в общий узел. Контракт значения (`RefObject`) не растёт с числом компонентов — оба ключа остаются `v1` и двигаются только при несовместимом изменении формы значения.
+- **SSR.** На сервере дефолтный ref — `{ current: null }` (мутабельный глобал с реальным `document.body` на сервере запрещён — утёк бы между запросами). Порталам нужен DOM, поэтому при `root.current === null` потребитель ничего не рендерит до гидрации, а реальный узел появляется на клиенте.
+
+## Частые проблемы
+
+- **Порталы монтируются в `document.body`, а не в нужный контейнер.** Нет `PortalContextProvider root={ref}` над компонентом, и глобальный узел не переопределён. Либо оберните поддерево провайдером с `root`, либо вызовите `getGlobalPortalRoot().current = el` в оболочке контейнера.
+- **Узел задан, но первый портал всё равно смонтировался в `document.body`.** `getGlobalPortalRoot().current = …` выполнен **после** того, как слой уже открылся. Присваивайте узел один раз при инициализации контейнера, до первого открытия портала.
+- **`root.current` === `null`, портал не рендерится.** Ref ещё не привязан к DOM (элемент-цель рендерится ниже по дереву или это SSR). Это ожидаемо: потребитель возвращает `null`, пока узла нет. Убедитесь, что элемент с `ref` смонтирован.
+- **Несколько копий `@ds/portal-context`.** Корень порталов это ломать не должно: контекст и глобальный ref — `Symbol.for`-синглтоны, общие между копиями. При смешанных contract-версиях одного домена — зафиксируйте единый мажор пакета.
+
+## Смотри также
+
+- [PortalContext](/components/portal-context) — справочник API пакета и живой пример.
+- [Оформление — тема, бренд, плотность](/patterns/theme) — тот же `Symbol.for`-рецепт для классов `sn-*`; themed-корень для порталов.
+- [Локализация — строки в пакетах](/patterns/localization) — та же двухслойная модель для строк.
