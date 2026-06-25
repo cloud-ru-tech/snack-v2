@@ -3,7 +3,7 @@ import { pathsMatch } from '../lib/base-url'
 import { buildNav, domainIdForPath } from '../lib/discovery'
 import type { NavItem } from '../lib/discovery'
 import { DOMAINS } from '../config/domains'
-import { GroupTooltip } from './sidebar/GroupTooltip'
+import { QuestionTooltip } from '@ds/tooltip'
 import { Counter } from '@ds/counter'
 import '../styles/sidebar.scss'
 
@@ -37,10 +37,11 @@ function isGroupActive(item: NavItem) {
         <h2 class="group-label">{group.label}</h2>
         {descByGroupId.get(group.id) && (
           <span class="group-info" onclick="event.preventDefault(); event.stopPropagation()">
-            <GroupTooltip
+            <QuestionTooltip
               client:visible
               tip={descByGroupId.get(group.id)!}
-              label={`О группе ${group.label}`}
+              triggerLabel={`О группе ${group.label}`}
+              placement='right'
             />
           </span>
         )}
