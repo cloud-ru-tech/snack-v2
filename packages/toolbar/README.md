@@ -63,27 +63,23 @@ import { Toolbar, LAYOUT_TYPE } from '@ds/toolbar';
 Поиск, обновление и меню «⋯»
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { Toolbar } from '@ds/toolbar';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function Basic() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState('');
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative', width: '100%', maxWidth: 720 }}>
-        <Toolbar
-          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-          onRefresh={() => setSearch('')}
-          moreActions={[
-            { content: { option: 'Экспорт' }, onClick: () => undefined },
-            { content: { option: 'Настройки' }, onClick: () => undefined },
-          ]}
-        />
-      </div>
-    </PortalContextProvider>
+    <div style={{ width: '100%', maxWidth: 720 }}>
+      <Toolbar
+        search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+        onRefresh={() => setSearch('')}
+        moreActions={[
+          { content: { option: 'Экспорт' }, onClick: () => undefined },
+          { content: { option: 'Настройки' }, onClick: () => undefined },
+        ]}
+      />
+    </div>
   );
 }
 ```
@@ -93,43 +89,39 @@ export function Basic() {
 Кнопка фильтров и строка ChipChoiceRow
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { Toolbar } from '@ds/toolbar';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function WithFilters() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState('');
   const [filtersOpen, setFiltersOpen] = useState(true);
   const [filterValue, setFilterValue] = useState<Record<string, unknown>>({});
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative', width: '100%', maxWidth: 720 }}>
-        <Toolbar
-          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-          onRefresh={() => setSearch('')}
-          filterRow={{
-            open: filtersOpen,
-            onOpenChange: setFiltersOpen,
-            value: filterValue,
-            onChange: setFilterValue,
-            filters: [
-              {
-                id: 'status',
-                type: 'single',
-                label: 'Статус',
-                options: [
-                  { value: 'active', label: 'Активные' },
-                  { value: 'archived', label: 'Архив' },
-                ],
-              },
-            ],
-            defaultValue: {},
-          }}
-        />
-      </div>
-    </PortalContextProvider>
+    <div style={{ width: '100%', maxWidth: 720 }}>
+      <Toolbar
+        search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+        onRefresh={() => setSearch('')}
+        filterRow={{
+          open: filtersOpen,
+          onOpenChange: setFiltersOpen,
+          value: filterValue,
+          onChange: setFilterValue,
+          filters: [
+            {
+              id: 'status',
+              type: 'single',
+              label: 'Статус',
+              options: [
+                { value: 'active', label: 'Активные' },
+                { value: 'archived', label: 'Архив' },
+              ],
+            },
+          ],
+          defaultValue: {},
+        }}
+      />
+    </div>
   );
 }
 ```
@@ -140,33 +132,29 @@ Bulk-панель под фильтрами с чекбоксом и tonal-кн�
 
 ```tsx
 import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons';
-import { PortalContextProvider } from '@ds/portal-context';
 import { Toolbar } from '@ds/toolbar';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function BulkActions() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState('');
   const [checked, setChecked] = useState(true);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative', width: '100%', maxWidth: 720 }}>
-        <Toolbar
-          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-          checked={checked}
-          indeterminate={false}
-          selectedCount={checked ? 5 : 0}
-          totalCount={100}
-          onCheck={() => setChecked(value => !value)}
-          bulkActions={[
-            { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
-            { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
-            { label: 'Копировать', icon: CopySVG, onClick: () => undefined },
-          ]}
-        />
-      </div>
-    </PortalContextProvider>
+    <div style={{ width: '100%', maxWidth: 720 }}>
+      <Toolbar
+        search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+        checked={checked}
+        indeterminate={false}
+        selectedCount={checked ? 5 : 0}
+        totalCount={100}
+        onCheck={() => setChecked(value => !value)}
+        bulkActions={[
+          { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
+          { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+          { label: 'Копировать', icon: CopySVG, onClick: () => undefined },
+        ]}
+      />
+    </div>
   );
 }
 ```
@@ -225,35 +213,31 @@ export function MobileLayout() {
 ```tsx
 import { Button } from '@ds/button';
 import { PlaceholderSVG } from '@ds/icons';
-import { PortalContextProvider } from '@ds/portal-context';
 import { Toolbar } from '@ds/toolbar';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function WithDataView() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState('');
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative', width: '100%', maxWidth: 720 }}>
-        <Toolbar
-          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-          onRefresh={() => setSearch('')}
-          after={
-            <Button
-              view='function'
-              appearance='neutral'
-              icon={<PlaceholderSVG />}
-              size='m'
-              aria-label='Дополнительное действие'
-              onClick={() => undefined}
-            />
-          }
-          dataView={{ show: true }}
-          moreActions={[{ content: { option: 'Ещё' }, onClick: () => undefined }]}
-        />
-      </div>
-    </PortalContextProvider>
+    <div style={{ width: '100%', maxWidth: 720 }}>
+      <Toolbar
+        search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+        onRefresh={() => setSearch('')}
+        after={
+          <Button
+            view='function'
+            appearance='neutral'
+            icon={<PlaceholderSVG />}
+            size='m'
+            aria-label='Дополнительное действие'
+            onClick={() => undefined}
+          />
+        }
+        dataView={{ show: true }}
+        moreActions={[{ content: { option: 'Ещё' }, onClick: () => undefined }]}
+      />
+    </div>
   );
 }
 ```

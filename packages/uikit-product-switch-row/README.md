@@ -104,19 +104,16 @@ export function Controlled() {
 ### С подсказкой у заголовка
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { SwitchRow } from '@ds/uikit-product-switch-row';
 
 export function WithTip() {
   return (
-    <PortalContextProvider>
-      <SwitchRow
-        title='Двухфакторная аутентификация'
-        description='Подтверждение входа кодом из приложения'
-        tip='Защищает аккаунт, даже если кто-то узнает пароль'
-        defaultChecked
-      />
-    </PortalContextProvider>
+    <SwitchRow
+      title='Двухфакторная аутентификация'
+      description='Подтверждение входа кодом из приложения'
+      tip='Защищает аккаунт, даже если кто-то узнает пароль'
+      defaultChecked
+    />
   );
 }
 ```
@@ -124,19 +121,16 @@ export function WithTip() {
 ### Disabled с тултипом поверх Switch
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { SwitchRow } from '@ds/uikit-product-switch-row';
 
 export function Disabled() {
   return (
-    <PortalContextProvider>
-      <SwitchRow
-        title='Push-уведомления'
-        description='Доступно после подтверждения email'
-        disabled
-        disabledToggleTip='Подтвердите email, чтобы включить'
-      />
-    </PortalContextProvider>
+    <SwitchRow
+      title='Push-уведомления'
+      description='Доступно после подтверждения email'
+      disabled
+      disabledToggleTip='Подтвердите email, чтобы включить'
+    />
   );
 }
 ```

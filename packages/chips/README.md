@@ -347,7 +347,6 @@ Single + Multiple + Date с кнопками добавления и сброс�
 
 ```tsx
 import { CHIP_CHOICE_TYPE, ChipChoiceRow } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const FILTERS = [
@@ -380,11 +379,7 @@ const FILTERS = [
 export function ChoiceRowBasic() {
   const [value, setValue] = useState({});
 
-  return (
-    <PortalContextProvider>
-      <ChipChoiceRow filters={FILTERS} value={value} onChange={setValue} showClearButton showAddButton />
-    </PortalContextProvider>
-  );
+  return <ChipChoiceRow filters={FILTERS} value={value} onChange={setValue} showClearButton showAddButton />;
 }
 ```
 
@@ -394,7 +389,6 @@ pinned: true держит чип в строке, остальные добав�
 
 ```tsx
 import { CHIP_CHOICE_TYPE, ChipChoiceRow } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const FILTERS = [
@@ -427,11 +421,7 @@ const FILTERS = [
 export function ChoiceRowPinned() {
   const [value, setValue] = useState({});
 
-  return (
-    <PortalContextProvider>
-      <ChipChoiceRow filters={FILTERS} value={value} onChange={setValue} showAddButton showClearButton />
-    </PortalContextProvider>
-  );
+  return <ChipChoiceRow filters={FILTERS} value={value} onChange={setValue} showAddButton showClearButton />;
 }
 ```
 
@@ -540,7 +530,6 @@ export function ChoiceRowPinned() {
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -552,11 +541,7 @@ const OPTIONS = [
 export function ChoiceSingleBasic() {
   const [value, setValue] = useState<string | number | undefined>('active');
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Single label='Status' options={OPTIONS} value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Single label='Status' options={OPTIONS} value={value} onChange={setValue} />;
 }
 ```
 
@@ -566,7 +551,6 @@ searchable добавляет поле поиска по опциям
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -581,11 +565,7 @@ const OPTIONS = [
 export function ChoiceSingleSearchable() {
   const [value, setValue] = useState<string | number | undefined>('frontend');
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Single searchable label='Team' options={OPTIONS} value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Single searchable label='Team' options={OPTIONS} value={value} onChange={setValue} />;
 }
 ```
 
@@ -595,7 +575,6 @@ autoApply={false} — футер с Apply/Cancel
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -607,11 +586,7 @@ const OPTIONS = [
 export function ChoiceSingleManualApply() {
   const [value, setValue] = useState<string | number | undefined>('anna');
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Single autoApply={false} label='Owner' options={OPTIONS} value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Single autoApply={false} label='Owner' options={OPTIONS} value={value} onChange={setValue} />;
 }
 ```
 
@@ -724,7 +699,6 @@ export function ChoiceSingleManualApply() {
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -738,9 +712,7 @@ export function ChoiceMultipleBasic() {
   const [value, setValue] = useState<(string | number)[]>(['news', 'releases']);
 
   return (
-    <PortalContextProvider>
-      <ChipChoice.Multiple label='Category' options={OPTIONS} value={value} onChange={next => setValue(next ?? [])} />
-    </PortalContextProvider>
+    <ChipChoice.Multiple label='Category' options={OPTIONS} value={value} onChange={next => setValue(next ?? [])} />
   );
 }
 ```
@@ -751,7 +723,6 @@ searchable добавляет поле поиска по опциям
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const OPTIONS = [
@@ -767,15 +738,13 @@ export function ChoiceMultipleSearchable() {
   const [value, setValue] = useState<(string | number)[]>(['react', 'svelte']);
 
   return (
-    <PortalContextProvider>
-      <ChipChoice.Multiple
-        searchable
-        label='Tags'
-        options={OPTIONS}
-        value={value}
-        onChange={next => setValue(next ?? [])}
-      />
-    </PortalContextProvider>
+    <ChipChoice.Multiple
+      searchable
+      label='Tags'
+      options={OPTIONS}
+      value={value}
+      onChange={next => setValue(next ?? [])}
+    />
   );
 }
 ```
@@ -879,17 +848,12 @@ export function ChoiceMultipleSearchable() {
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceDateBasic() {
   const [value, setValue] = useState<Date | undefined>(new Date(2024, 0, 15));
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Date label='Дата' value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Date label='Дата' value={value} onChange={setValue} />;
 }
 ```
 
@@ -899,17 +863,12 @@ mode='date-time' с отображением секунд
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceDateTime() {
   const [value, setValue] = useState<Date | undefined>(new Date(2024, 0, 15, 9, 30, 0));
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Date label='Дата и время' mode='date-time' showSeconds value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Date label='Дата и время' mode='date-time' showSeconds value={value} onChange={setValue} />;
 }
 ```
 
@@ -919,17 +878,12 @@ mode='month'
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceDateMonth() {
   const [value, setValue] = useState<Date | undefined>(new Date(2024, 0, 1));
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Date label='Месяц' mode='month' value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Date label='Месяц' mode='month' value={value} onChange={setValue} />;
 }
 ```
 
@@ -1013,17 +967,12 @@ export function ChoiceDateMonth() {
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceDateRangeBasic() {
   const [value, setValue] = useState<[Date, Date] | undefined>([new Date(2024, 0, 15), new Date(2024, 0, 22)]);
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.DateRange label='Период' value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.DateRange label='Период' value={value} onChange={setValue} />;
 }
 ```
 
@@ -1033,14 +982,9 @@ export function ChoiceDateRangeBasic() {
 
 ```tsx
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 
 export function ChoiceDateRangeUncontrolled() {
-  return (
-    <PortalContextProvider>
-      <ChipChoice.DateRange label='Период' defaultValue={[new Date(2024, 0, 15), new Date(2024, 0, 22)]} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.DateRange label='Период' defaultValue={[new Date(2024, 0, 15), new Date(2024, 0, 22)]} />;
 }
 ```
 
@@ -1122,7 +1066,6 @@ export function ChoiceDateRangeUncontrolled() {
 
 ```tsx
 import { ChipChoice, ChipChoiceTimeProps } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceTimeBasic() {
@@ -1131,11 +1074,7 @@ export function ChoiceTimeBasic() {
     minutes: 30,
   });
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Time label='Время' value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Time label='Время' value={value} onChange={setValue} />;
 }
 ```
 
@@ -1145,7 +1084,6 @@ showSeconds добавляет поле секунд
 
 ```tsx
 import { ChipChoice, ChipChoiceTimeProps } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ChoiceTimeSeconds() {
@@ -1155,11 +1093,7 @@ export function ChoiceTimeSeconds() {
     seconds: 15,
   });
 
-  return (
-    <PortalContextProvider>
-      <ChipChoice.Time label='Время' showSeconds value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <ChipChoice.Time label='Время' showSeconds value={value} onChange={setValue} />;
 }
 ```
 
@@ -1242,7 +1176,6 @@ content рендерит свой список, onChange + closeDroplist при�
 ```tsx
 import { Button } from '@ds/button';
 import { ChipChoice } from '@ds/chips';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const PRIORITIES = [
@@ -1255,30 +1188,28 @@ export function ChoiceCustomBasic() {
   const [value, setValue] = useState<string | undefined>(undefined);
 
   return (
-    <PortalContextProvider>
-      <ChipChoice.Custom
-        label='Приоритет'
-        value={value}
-        onChange={setValue}
-        valueRender={current => PRIORITIES.find(item => item.value === current)?.label ?? null}
-        content={({ closeDroplist, onChange }) => (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 8 }}>
-            {PRIORITIES.map(item => (
-              <Button
-                key={item.value}
-                view='function'
-                appearance='neutral'
-                label={item.label}
-                onClick={() => {
-                  onChange?.(item.value);
-                  closeDroplist();
-                }}
-              />
-            ))}
-          </div>
-        )}
-      />
-    </PortalContextProvider>
+    <ChipChoice.Custom
+      label='Приоритет'
+      value={value}
+      onChange={setValue}
+      valueRender={current => PRIORITIES.find(item => item.value === current)?.label ?? null}
+      content={({ closeDroplist, onChange }) => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 8 }}>
+          {PRIORITIES.map(item => (
+            <Button
+              key={item.value}
+              view='function'
+              appearance='neutral'
+              label={item.label}
+              onClick={() => {
+                onChange?.(item.value);
+                closeDroplist();
+              }}
+            />
+          ))}
+        </div>
+      )}
+    />
   );
 }
 ```

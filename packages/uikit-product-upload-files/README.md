@@ -51,9 +51,8 @@ import { UploadFiles } from '@ds/uikit-product-upload-files'
 
 ```tsx
 import { LocaleProvider } from '@ds/locale';
-import { PortalContextProvider } from '@ds/portal-context';
 import { UploadFileItem, UploadFiles } from '@ds/uikit-product-upload-files';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 async function upload(file: File) {
   await new Promise(resolve => setTimeout(resolve, 600));
@@ -62,16 +61,11 @@ async function upload(file: File) {
 }
 
 export function Basic() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [files, setFiles] = useState<UploadFileItem[]>([]);
 
   return (
     <LocaleProvider lang='ru-RU'>
-      <PortalContextProvider root={hostRef}>
-        <div ref={hostRef} style={{ position: 'relative' }}>
-          <UploadFiles label='Документы' value={files} onChange={setFiles} upload={upload} />
-        </div>
-      </PortalContextProvider>
+      <UploadFiles label='Документы' value={files} onChange={setFiles} upload={upload} />
     </LocaleProvider>
   );
 }
@@ -83,9 +77,8 @@ accept, maxFiles и maxSize настраивают допустимые типы
 
 ```tsx
 import { LocaleProvider } from '@ds/locale';
-import { PortalContextProvider } from '@ds/portal-context';
 import { UploadFileItem, UploadFiles, UploadFilesAcceptItem } from '@ds/uikit-product-upload-files';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 async function upload(file: File) {
   await new Promise(resolve => setTimeout(resolve, 600));
@@ -99,25 +92,20 @@ const accept: UploadFilesAcceptItem[] = [
 ];
 
 export function CustomFormats() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [files, setFiles] = useState<UploadFileItem[]>([]);
 
   return (
     <LocaleProvider lang='ru-RU'>
-      <PortalContextProvider root={hostRef}>
-        <div ref={hostRef} style={{ position: 'relative' }}>
-          <UploadFiles
-            label='Изображения'
-            hint='До 5 файлов, каждый не больше 2 МБ'
-            accept={accept}
-            maxFiles={5}
-            maxSize={2 * 1024 * 1024}
-            value={files}
-            onChange={setFiles}
-            upload={upload}
-          />
-        </div>
-      </PortalContextProvider>
+      <UploadFiles
+        label='Изображения'
+        hint='До 5 файлов, каждый не больше 2 МБ'
+        accept={accept}
+        maxFiles={5}
+        maxSize={2 * 1024 * 1024}
+        value={files}
+        onChange={setFiles}
+        upload={upload}
+      />
     </LocaleProvider>
   );
 }
@@ -129,9 +117,8 @@ optional=false + error: ошибка показывается, пока ни о�
 
 ```tsx
 import { LocaleProvider } from '@ds/locale';
-import { PortalContextProvider } from '@ds/portal-context';
 import { UPLOAD_STATUS, UploadFileItem, UploadFiles } from '@ds/uikit-product-upload-files';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 async function upload(file: File) {
   await new Promise(resolve => setTimeout(resolve, 600));
@@ -140,24 +127,19 @@ async function upload(file: File) {
 }
 
 export function FormField() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [files, setFiles] = useState<UploadFileItem[]>([]);
   const hasUploaded = files.some(item => item.status === UPLOAD_STATUS.Success);
 
   return (
     <LocaleProvider lang='ru-RU'>
-      <PortalContextProvider root={hostRef}>
-        <div ref={hostRef} style={{ position: 'relative' }}>
-          <UploadFiles
-            label='Договор'
-            optional={false}
-            value={files}
-            onChange={setFiles}
-            upload={upload}
-            error={hasUploaded ? undefined : 'Обязательное поле'}
-          />
-        </div>
-      </PortalContextProvider>
+      <UploadFiles
+        label='Договор'
+        optional={false}
+        value={files}
+        onChange={setFiles}
+        upload={upload}
+        error={hasUploaded ? undefined : 'Обязательное поле'}
+      />
     </LocaleProvider>
   );
 }
@@ -169,9 +151,7 @@ disabled блокирует выбор и удаление, сохраняя у�
 
 ```tsx
 import { LocaleProvider } from '@ds/locale';
-import { PortalContextProvider } from '@ds/portal-context';
 import { UPLOAD_STATUS, UploadFileItem, UploadFiles } from '@ds/uikit-product-upload-files';
-import { useRef } from 'react';
 
 async function upload(file: File) {
   return { url: `https://example.com/${file.name}` };
@@ -189,15 +169,9 @@ function buildValue(): UploadFileItem[] {
 }
 
 export function Disabled() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
     <LocaleProvider lang='ru-RU'>
-      <PortalContextProvider root={hostRef}>
-        <div ref={hostRef} style={{ position: 'relative' }}>
-          <UploadFiles label='Документы' disabled value={buildValue()} upload={upload} />
-        </div>
-      </PortalContextProvider>
+      <UploadFiles label='Документы' disabled value={buildValue()} upload={upload} />
     </LocaleProvider>
   );
 }

@@ -51,36 +51,29 @@ import { Modal, ModalCustom, MODE, WIDTH } from '@ds/modal'
 ```tsx
 import { Button, ButtonGroup } from '@ds/button';
 import { Modal } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function Basic() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <Modal
-          open={open}
-          onClose={close}
-          title='Заголовок'
-          subtitle='Короткое пояснение действия'
-          content='Основной контент тела модалки. Сюда помещается форма, предупреждение или подробный текст.'
-          footer={
-            <ButtonGroup
-              primaryAction={{ label: 'Продолжить', view: 'filled', onClick: close }}
-              secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
-            />
-          }
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Modal
+        open={open}
+        onClose={close}
+        title='Заголовок'
+        subtitle='Короткое пояснение действия'
+        content='Основной контент тела модалки. Сюда помещается форма, предупреждение или подробный текст.'
+        footer={
+          <ButtonGroup
+            primaryAction={{ label: 'Продолжить', view: 'filled', onClick: close }}
+            secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
+          />
+        }
+      />
+    </>
   );
 }
 ```
@@ -92,46 +85,39 @@ Critical primary, neutral outline secondary.
 ```tsx
 import { Button, ButtonGroup } from '@ds/button';
 import { Modal } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function WithFooter() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Удалить…' appearance='critical' view='outline' onClick={() => setOpen(true)} />
-        <Modal
-          open={open}
-          onClose={close}
-          title='Удалить запись'
-          subtitle='Действие необратимо.'
-          content='После подтверждения запись и все её ссылки исчезнут из списка.'
-          footer={
-            <ButtonGroup
-              primaryAction={{
-                label: 'Удалить',
-                appearance: 'critical',
-                view: 'filled',
-                onClick: close,
-              }}
-              secondaryAction={{
-                label: 'Отмена',
-                appearance: 'neutral',
-                view: 'outline',
-                onClick: close,
-              }}
-            />
-          }
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Удалить…' appearance='critical' view='outline' onClick={() => setOpen(true)} />
+      <Modal
+        open={open}
+        onClose={close}
+        title='Удалить запись'
+        subtitle='Действие необратимо.'
+        content='После подтверждения запись и все её ссылки исчезнут из списка.'
+        footer={
+          <ButtonGroup
+            primaryAction={{
+              label: 'Удалить',
+              appearance: 'critical',
+              view: 'filled',
+              onClick: close,
+            }}
+            secondaryAction={{
+              label: 'Отмена',
+              appearance: 'neutral',
+              view: 'outline',
+              onClick: close,
+            }}
+          />
+        }
+      />
+    </>
   );
 }
 ```
@@ -143,30 +129,23 @@ export function WithFooter() {
 ```tsx
 import { Button } from '@ds/button';
 import { Modal } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function Loading() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Запустить сохранение' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          title='Сохранение изменений'
-          subtitle='Пожалуйста, подождите'
-          content='Основной контент'
-          loading
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Запустить сохранение' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Сохранение изменений'
+        subtitle='Пожалуйста, подождите'
+        content='Основной контент'
+        loading
+      />
+    </>
   );
 }
 ```
@@ -178,37 +157,30 @@ export function Loading() {
 ```tsx
 import { Button, ButtonGroup } from '@ds/button';
 import { Modal, MODE } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function Forced() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Принять условия' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <Modal
-          open={open}
-          onClose={close}
-          mode={MODE.Forced}
-          title='Требуется действие'
-          subtitle='Без кнопки закрытия и Esc — закрыть можно только через футер.'
-          content='Закрытие по клику по overlay и по Escape отключено.'
-          footer={
-            <ButtonGroup
-              primaryAction={{ label: 'Принять', view: 'filled', onClick: close }}
-              secondaryAction={{ label: 'Отклонить', appearance: 'neutral', view: 'outline', onClick: close }}
-            />
-          }
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Принять условия' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Modal
+        open={open}
+        onClose={close}
+        mode={MODE.Forced}
+        title='Требуется действие'
+        subtitle='Без кнопки закрытия и Esc — закрыть можно только через футер.'
+        content='Закрытие по клику по overlay и по Escape отключено.'
+        footer={
+          <ButtonGroup
+            primaryAction={{ label: 'Принять', view: 'filled', onClick: close }}
+            secondaryAction={{ label: 'Отклонить', appearance: 'neutral', view: 'outline', onClick: close }}
+          />
+        }
+      />
+    </>
   );
 }
 ```
@@ -273,40 +245,33 @@ Header + Body + Footer собираются вручную.
 ```tsx
 import { Button } from '@ds/button';
 import { ModalCustom } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function CustomComposition() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <ModalCustom open={open} onClose={close} width='m'>
-          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-          <ModalCustom.Body
-            content={
-              <div style={{ padding: 24 }}>
-                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-              </div>
-            }
-          />
-          <ModalCustom.Footer>
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+    <>
+      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <ModalCustom open={open} onClose={close} width='m'>
+        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+        <ModalCustom.Body
+          content={
+            <div style={{ padding: 24 }}>
+              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
             </div>
-          </ModalCustom.Footer>
-        </ModalCustom>
-      </div>
-    </PortalContextProvider>
+          }
+        />
+        <ModalCustom.Footer>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+          </div>
+        </ModalCustom.Footer>
+      </ModalCustom>
+    </>
   );
 }
 ```
@@ -342,40 +307,33 @@ export function CustomComposition() {
 ```tsx
 import { Button } from '@ds/button';
 import { ModalCustom } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function CustomComposition() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <ModalCustom open={open} onClose={close} width='m'>
-          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-          <ModalCustom.Body
-            content={
-              <div style={{ padding: 24 }}>
-                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-              </div>
-            }
-          />
-          <ModalCustom.Footer>
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+    <>
+      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <ModalCustom open={open} onClose={close} width='m'>
+        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+        <ModalCustom.Body
+          content={
+            <div style={{ padding: 24 }}>
+              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
             </div>
-          </ModalCustom.Footer>
-        </ModalCustom>
-      </div>
-    </PortalContextProvider>
+          }
+        />
+        <ModalCustom.Footer>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+          </div>
+        </ModalCustom.Footer>
+      </ModalCustom>
+    </>
   );
 }
 ```
@@ -393,40 +351,33 @@ export function CustomComposition() {
 ```tsx
 import { Button } from '@ds/button';
 import { ModalCustom } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function CustomComposition() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <ModalCustom open={open} onClose={close} width='m'>
-          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-          <ModalCustom.Body
-            content={
-              <div style={{ padding: 24 }}>
-                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-              </div>
-            }
-          />
-          <ModalCustom.Footer>
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+    <>
+      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <ModalCustom open={open} onClose={close} width='m'>
+        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+        <ModalCustom.Body
+          content={
+            <div style={{ padding: 24 }}>
+              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
             </div>
-          </ModalCustom.Footer>
-        </ModalCustom>
-      </div>
-    </PortalContextProvider>
+          }
+        />
+        <ModalCustom.Footer>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+          </div>
+        </ModalCustom.Footer>
+      </ModalCustom>
+    </>
   );
 }
 ```
@@ -443,40 +394,33 @@ export function CustomComposition() {
 ```tsx
 import { Button } from '@ds/button';
 import { ModalCustom } from '@ds/modal';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function CustomComposition() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <ModalCustom open={open} onClose={close} width='m'>
-          <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-          <ModalCustom.Body
-            content={
-              <div style={{ padding: 24 }}>
-                <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-                <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-              </div>
-            }
-          />
-          <ModalCustom.Footer>
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+    <>
+      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <ModalCustom open={open} onClose={close} width='m'>
+        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
+        <ModalCustom.Body
+          content={
+            <div style={{ padding: 24 }}>
+              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
+              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
             </div>
-          </ModalCustom.Footer>
-        </ModalCustom>
-      </div>
-    </PortalContextProvider>
+          }
+        />
+        <ModalCustom.Footer>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+          </div>
+        </ModalCustom.Footer>
+      </ModalCustom>
+    </>
   );
 }
 ```

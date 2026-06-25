@@ -88,7 +88,6 @@ export function Partner() {
 PromoTagPredefined как ссылка: as={Link} и to для react-router-dom.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { PREVIEW_CONTEXT, PromoTagPredefined, VARIANTS } from '@ds/uikit-product-promo-tag-predefined';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
@@ -103,14 +102,12 @@ MockLink.displayName = 'MockLink';
 
 export function Polymorphic() {
   return (
-    <PortalContextProvider>
-      <PromoTagPredefined
-        as={MockLink}
-        to='https://example.com'
-        variant={VARIANTS.Preview}
-        context={PREVIEW_CONTEXT.Service}
-      />
-    </PortalContextProvider>
+    <PromoTagPredefined
+      as={MockLink}
+      to='https://example.com'
+      variant={VARIANTS.Preview}
+      context={PREVIEW_CONTEXT.Service}
+    />
   );
 }
 ```

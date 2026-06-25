@@ -40,20 +40,17 @@ import {
 
 ```tsx
 import { FieldColor } from '@ds/fields';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function ColorBasic() {
   const [value, setValue] = useState('#1976d2');
   return (
-    <PortalContextProvider>
-      <FieldColor
-        label='Цвет акцента'
-        hint='Откройте палитру шевроном или кликом по полю'
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldColor
+      label='Цвет акцента'
+      hint='Откройте палитру шевроном или кликом по полю'
+      value={value}
+      onChange={setValue}
+    />
   );
 }
 ```
@@ -123,16 +120,11 @@ export function ColorBasic() {
 
 ```tsx
 import { FieldDate } from '@ds/fields';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function DateBasic() {
   const [value, setValue] = useState<Date | undefined>(undefined);
-  return (
-    <PortalContextProvider>
-      <FieldDate label='Дата' hint='Маска DD.MM.YYYY или выбор в календаре' value={value} onChange={setValue} />
-    </PortalContextProvider>
-  );
+  return <FieldDate label='Дата' hint='Маска DD.MM.YYYY или выбор в календаре' value={value} onChange={setValue} />;
 }
 ```
 
@@ -334,7 +326,6 @@ export function Secure() {
 ```tsx
 import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
@@ -347,16 +338,14 @@ const options: ItemProps[] = [
 export function Select() {
   const [value, setValue] = useState<ItemId | undefined>('m');
   return (
-    <PortalContextProvider>
-      <FieldSelect
-        label='Размер инстанса'
-        placeholder='Выберите размер'
-        selection='single'
-        items={options}
-        value={value}
-        onChange={setValue}
-      />
-    </PortalContextProvider>
+    <FieldSelect
+      label='Размер инстанса'
+      placeholder='Выберите размер'
+      selection='single'
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
   );
 }
 ```
@@ -809,15 +798,12 @@ export function TextArea() {
 ```tsx
 import { TimeValue } from '@ds/calendar';
 import { FieldTime } from '@ds/fields';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function TimeBasic() {
   const [value, setValue] = useState<TimeValue | undefined>({ hours: 9, minutes: 30, seconds: 0 });
   return (
-    <PortalContextProvider>
-      <FieldTime label='Время' hint='Введите HH:MM:SS или выберите из дропдауна' value={value} onChange={setValue} />
-    </PortalContextProvider>
+    <FieldTime label='Время' hint='Введите HH:MM:SS или выберите из дропдауна' value={value} onChange={setValue} />
   );
 }
 ```

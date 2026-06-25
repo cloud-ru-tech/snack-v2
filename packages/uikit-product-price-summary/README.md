@@ -91,31 +91,23 @@ Function-ссылка внизу блока (по умолчанию текст 
 Базовая цена и строки скидок.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { PRICE_PERIOD, PriceSummary } from '@ds/uikit-product-price-summary';
-import { useRef } from 'react';
 
 import styles from '../demoSurface.module.scss';
 
 export function WithDiscount() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <div className={styles.surface}>
-          <PriceSummary
-            value={10800}
-            period={PRICE_PERIOD.Month}
-            periodOptions={[PRICE_PERIOD.Month]}
-            discount={{
-              price: 12000,
-              discounts: [{ value: 1200, percent: 10 }],
-            }}
-          />
-        </div>
-      </div>
-    </PortalContextProvider>
+    <div className={styles.surface}>
+      <PriceSummary
+        value={10800}
+        period={PRICE_PERIOD.Month}
+        periodOptions={[PRICE_PERIOD.Month]}
+        discount={{
+          price: 12000,
+          discounts: [{ value: 1200, percent: 10 }],
+        }}
+      />
+    </div>
   );
 }
 ```
@@ -125,34 +117,26 @@ export function WithDiscount() {
 Аккордеон с invoice-секциями.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { PRICE_PERIOD } from '@ds/uikit-product-price-summary';
-import { useRef } from 'react';
 
 import styles from '../demoSurface.module.scss';
 import { PriceSummaryControlled } from '../PriceSummaryControlled';
 
 export function WithInvoice() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <div className={styles.surface}>
-          <PriceSummaryControlled
-            value={10800}
-            period={PRICE_PERIOD.Month}
-            periodOptions={[PRICE_PERIOD.Month, PRICE_PERIOD.Year]}
-            invoice={[
-              {
-                title: 'Compute',
-                items: [{ label: 'vCPU', price: 8000, primary: true }],
-              },
-            ]}
-          />
-        </div>
-      </div>
-    </PortalContextProvider>
+    <div className={styles.surface}>
+      <PriceSummaryControlled
+        value={10800}
+        period={PRICE_PERIOD.Month}
+        periodOptions={[PRICE_PERIOD.Month, PRICE_PERIOD.Year]}
+        invoice={[
+          {
+            title: 'Compute',
+            items: [{ label: 'vCPU', price: 8000, primary: true }],
+          },
+        ]}
+      />
+    </div>
   );
 }
 ```
@@ -287,24 +271,16 @@ export function WithInvoice() {
 Итог и ссылка на стоимость.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { PriceSummarySmall } from '@ds/uikit-product-price-summary';
-import { useRef } from 'react';
 
 import { FIGMA_SHOWCASE_SMALL_ARGS } from '../stories/PriceSummarySmall/constants';
 import styles from './demoSurface.module.scss';
 
 export function PriceSummarySmallDemo() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <div className={styles.surface}>
-          <PriceSummarySmall {...FIGMA_SHOWCASE_SMALL_ARGS} />
-        </div>
-      </div>
-    </PortalContextProvider>
+    <div className={styles.surface}>
+      <PriceSummarySmall {...FIGMA_SHOWCASE_SMALL_ARGS} />
+    </div>
   );
 }
 ```
@@ -314,23 +290,15 @@ export function PriceSummarySmallDemo() {
 Состояние loading — skeleton вместо суммы.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { PriceSummarySmall } from '@ds/uikit-product-price-summary';
-import { useRef } from 'react';
 
 import styles from '../demoSurface.module.scss';
 
 export function SmallLoading() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <div className={styles.surface}>
-          <PriceSummarySmall value={undefined} loading />
-        </div>
-      </div>
-    </PortalContextProvider>
+    <div className={styles.surface}>
+      <PriceSummarySmall value={undefined} loading />
+    </div>
   );
 }
 ```
@@ -340,14 +308,12 @@ export function SmallLoading() {
 dataError с onRetry: повторный запрос показывает loading и затем сумму.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { PriceSummarySmall } from '@ds/uikit-product-price-summary';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import styles from '../demoSurface.module.scss';
 
 export function SmallError() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState(true);
 
@@ -361,13 +327,9 @@ export function SmallError() {
   };
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <div className={styles.surface}>
-          <PriceSummarySmall value={10800} loading={loading} dataError={dataError} onRetry={handleRetry} />
-        </div>
-      </div>
-    </PortalContextProvider>
+    <div className={styles.surface}>
+      <PriceSummarySmall value={10800} loading={loading} dataError={dataError} onRetry={handleRetry} />
+    </div>
   );
 }
 ```

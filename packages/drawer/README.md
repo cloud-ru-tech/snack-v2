@@ -44,37 +44,30 @@ import { Drawer, DrawerCustom, POSITION, WIDTH } from '@ds/drawer'
 ```tsx
 import { Button, ButtonGroup } from '@ds/button';
 import { Drawer } from '@ds/drawer';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function Basic() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <Drawer
-          open={open}
-          position='right'
-          onClose={close}
-          title='Заголовок'
-          subtitle='Короткое пояснение сценария'
-          content='Основной контент тела. Сюда помещается форма, предупреждение или подробный текст.'
-          footer={
-            <ButtonGroup
-              primaryAction={{ label: 'Продолжить', view: 'filled', onClick: close }}
-              secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
-            />
-          }
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Drawer
+        open={open}
+        position='right'
+        onClose={close}
+        title='Заголовок'
+        subtitle='Короткое пояснение сценария'
+        content='Основной контент тела. Сюда помещается форма, предупреждение или подробный текст.'
+        footer={
+          <ButtonGroup
+            primaryAction={{ label: 'Продолжить', view: 'filled', onClick: close }}
+            secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
+          />
+        }
+      />
+    </>
   );
 }
 ```
@@ -86,47 +79,40 @@ Critical primary, neutral outline secondary.
 ```tsx
 import { Button, ButtonGroup } from '@ds/button';
 import { Drawer } from '@ds/drawer';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function WithFooter() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Удалить…' appearance='critical' view='outline' onClick={() => setOpen(true)} />
-        <Drawer
-          open={open}
-          position='right'
-          onClose={close}
-          title='Удалить запись'
-          subtitle='Действие необратимо.'
-          content='После подтверждения запись и все её ссылки исчезнут из списка.'
-          footer={
-            <ButtonGroup
-              primaryAction={{
-                label: 'Удалить',
-                appearance: 'critical',
-                view: 'filled',
-                onClick: close,
-              }}
-              secondaryAction={{
-                label: 'Отмена',
-                appearance: 'neutral',
-                view: 'outline',
-                onClick: close,
-              }}
-            />
-          }
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Удалить…' appearance='critical' view='outline' onClick={() => setOpen(true)} />
+      <Drawer
+        open={open}
+        position='right'
+        onClose={close}
+        title='Удалить запись'
+        subtitle='Действие необратимо.'
+        content='После подтверждения запись и все её ссылки исчезнут из списка.'
+        footer={
+          <ButtonGroup
+            primaryAction={{
+              label: 'Удалить',
+              appearance: 'critical',
+              view: 'filled',
+              onClick: close,
+            }}
+            secondaryAction={{
+              label: 'Отмена',
+              appearance: 'neutral',
+              view: 'outline',
+              onClick: close,
+            }}
+          />
+        }
+      />
+    </>
   );
 }
 ```
@@ -138,40 +124,33 @@ export function WithFooter() {
 ```tsx
 import { Button } from '@ds/button';
 import { Drawer } from '@ds/drawer';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function WithMedia() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть онбординг' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <Drawer
-          open={open}
-          position='right'
-          width='m'
-          onClose={close}
-          media={
-            <div
-              style={{
-                height: 200,
-                background: 'linear-gradient(135deg, rgb(102 126 234), rgb(118 75 162))',
-              }}
-            />
-          }
-          title='Добро пожаловать'
-          subtitle='Кратко о том, что изменилось в этой версии.'
-          content='Список ключевых улучшений и ссылки на подробности могут размещаться в теле.'
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Открыть онбординг' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Drawer
+        open={open}
+        position='right'
+        width='m'
+        onClose={close}
+        media={
+          <div
+            style={{
+              height: 200,
+              background: 'linear-gradient(135deg, rgb(102 126 234), rgb(118 75 162))',
+            }}
+          />
+        }
+        title='Добро пожаловать'
+        subtitle='Кратко о том, что изменилось в этой версии.'
+        content='Список ключевых улучшений и ссылки на подробности могут размещаться в теле.'
+      />
+    </>
   );
 }
 ```
@@ -183,32 +162,25 @@ export function WithMedia() {
 ```tsx
 import { Button } from '@ds/button';
 import { Drawer } from '@ds/drawer';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function HeightAuto() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть bottom sheet' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <Drawer
-          open={open}
-          position='bottom'
-          heightAuto
-          onClose={close}
-          title='Bottom sheet'
-          subtitle='Высота рассчитывается по контенту'
-          content='Подходит для компактных подтверждений на мобильных устройствах.'
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Открыть bottom sheet' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <Drawer
+        open={open}
+        position='bottom'
+        heightAuto
+        onClose={close}
+        title='Bottom sheet'
+        subtitle='Высота рассчитывается по контенту'
+        content='Подходит для компактных подтверждений на мобильных устройствах.'
+      />
+    </>
   );
 }
 ```
@@ -220,11 +192,9 @@ export function HeightAuto() {
 ```tsx
 import { Button } from '@ds/button';
 import { Drawer } from '@ds/drawer';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function NestedDrawer() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [outerOpen, setOuterOpen] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
 
@@ -234,37 +204,32 @@ export function NestedDrawer() {
   };
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть родительский' appearance='primary' view='filled' onClick={() => setOuterOpen(true)} />
-        <Drawer
-          open={outerOpen}
-          position='right'
-          width='m'
-          onClose={closeAll}
-          title='Родительский Drawer'
-          subtitle='При открытии вложенного — родитель сдвигается влево.'
-          content={
-            <Button label='Открыть вложенный' appearance='primary' view='outline' onClick={() => setInnerOpen(true)} />
-          }
-          nestedDrawer={
-            <Drawer
-              open={innerOpen}
-              position='right'
-              width='s'
-              onClose={() => setInnerOpen(false)}
-              title='Вложенный Drawer'
-              subtitle='Кнопка «назад» возвращает к родителю'
-              onBackButtonClick={() => setInnerOpen(false)}
-              content='Вложенный Drawer рендерится через проп nestedDrawer родителя.'
-            />
-          }
-        />
-      </div>
-    </PortalContextProvider>
+    <>
+      <Button label='Открыть родительский' appearance='primary' view='filled' onClick={() => setOuterOpen(true)} />
+      <Drawer
+        open={outerOpen}
+        position='right'
+        width='m'
+        onClose={closeAll}
+        title='Родительский Drawer'
+        subtitle='При открытии вложенного — родитель сдвигается влево.'
+        content={
+          <Button label='Открыть вложенный' appearance='primary' view='outline' onClick={() => setInnerOpen(true)} />
+        }
+        nestedDrawer={
+          <Drawer
+            open={innerOpen}
+            position='right'
+            width='s'
+            onClose={() => setInnerOpen(false)}
+            title='Вложенный Drawer'
+            subtitle='Кнопка «назад» возвращает к родителю'
+            onBackButtonClick={() => setInnerOpen(false)}
+            content='Вложенный Drawer рендерится через проп nestedDrawer родителя.'
+          />
+        }
+      />
+    </>
   );
 }
 ```
@@ -356,40 +321,33 @@ Header + Body + Footer собираются вручную.
 ```tsx
 import { Button } from '@ds/button';
 import { DrawerCustom } from '@ds/drawer';
-import { PortalContextProvider } from '@ds/portal-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export function CustomComposition() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ position: 'relative', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
-      >
-        <Button label='Открыть custom drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-        <DrawerCustom open={open} position='right' width='s' onClose={close}>
-          <DrawerCustom.Header title='Ручная композиция' subtitle='Header + Body + Footer собираются вручную.' />
-          <DrawerCustom.Body
-            content={
-              <div style={{ padding: 24 }}>
-                <p>Тело Drawer собирается из произвольной разметки.</p>
-                <p>Скролл включается автоматически при большом содержимом.</p>
-              </div>
-            }
-          />
-          <DrawerCustom.Footer>
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-              <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-              <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+    <>
+      <Button label='Открыть custom drawer' appearance='primary' view='filled' onClick={() => setOpen(true)} />
+      <DrawerCustom open={open} position='right' width='s' onClose={close}>
+        <DrawerCustom.Header title='Ручная композиция' subtitle='Header + Body + Footer собираются вручную.' />
+        <DrawerCustom.Body
+          content={
+            <div style={{ padding: 24 }}>
+              <p>Тело Drawer собирается из произвольной разметки.</p>
+              <p>Скролл включается автоматически при большом содержимом.</p>
             </div>
-          </DrawerCustom.Footer>
-        </DrawerCustom>
-      </div>
-    </PortalContextProvider>
+          }
+        />
+        <DrawerCustom.Footer>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
+            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
+          </div>
+        </DrawerCustom.Footer>
+      </DrawerCustom>
+    </>
   );
 }
 ```

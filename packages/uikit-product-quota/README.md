@@ -71,9 +71,8 @@ import { QuotaWidget, QuotaWidgetMini, QuotaWidgetCard } from '@ds/uikit-product
 Counter исчерпанных квот на триггере, сетка карточек в dropdown
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { QuotaItem, QuotaWidget } from '@ds/uikit-product-quota';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const QUOTAS: QuotaItem[] = [
   { name: 'vCPU', limit: 100, usage: 42, remains: 58, unitDisplayName: 'cores' },
@@ -83,7 +82,6 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetBasic() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const reload = () => {
@@ -92,20 +90,18 @@ export function QuotaWidgetBasic() {
   };
 
   return (
-    <PortalContextProvider root={hostRef}>
-      {/* В продукте виджет живёт у правого края страницы — dropdown прижат к правому краю триггера */}
-      <div ref={hostRef} style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', position: 'relative' }}>
-        <QuotaWidget
-          quotas={QUOTAS}
-          projectName='ml-platform-production'
-          quotasUrl='#'
-          canEditQuota={false}
-          isLoading={isLoading}
-          isError={false}
-          onRefresh={reload}
-        />
-      </div>
-    </PortalContextProvider>
+    // В продукте виджет живёт у правого края страницы — dropdown прижат к правому краю триггера
+    <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+      <QuotaWidget
+        quotas={QUOTAS}
+        projectName='ml-platform-production'
+        quotasUrl='#'
+        canEditQuota={false}
+        isLoading={isLoading}
+        isError={false}
+        onRefresh={reload}
+      />
+    </div>
   );
 }
 ```
@@ -115,9 +111,8 @@ export function QuotaWidgetBasic() {
 isError показывает блок ошибки; onRefresh переключает в loading и восстанавливает список
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { QuotaItem, QuotaWidget } from '@ds/uikit-product-quota';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const QUOTAS: QuotaItem[] = [
   { name: 'vCPU', limit: 100, usage: 42, remains: 58, unitDisplayName: 'cores' },
@@ -125,7 +120,6 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetError() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -138,20 +132,18 @@ export function QuotaWidgetError() {
   };
 
   return (
-    <PortalContextProvider root={hostRef}>
-      {/* В продукте виджет живёт у правого края страницы — dropdown прижат к правому краю триггера */}
-      <div ref={hostRef} style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', position: 'relative' }}>
-        <QuotaWidget
-          quotas={QUOTAS}
-          projectName='ml-platform-production'
-          quotasUrl='#'
-          canEditQuota={false}
-          isLoading={isLoading}
-          isError={isError}
-          onRefresh={handleRefresh}
-        />
-      </div>
-    </PortalContextProvider>
+    // В продукте виджет живёт у правого края страницы — dropdown прижат к правому краю триггера
+    <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+      <QuotaWidget
+        quotas={QUOTAS}
+        projectName='ml-platform-production'
+        quotasUrl='#'
+        canEditQuota={false}
+        isLoading={isLoading}
+        isError={isError}
+        onRefresh={handleRefresh}
+      />
+    </div>
   );
 }
 ```
@@ -230,9 +222,8 @@ export function QuotaWidgetError() {
 isExpandedDefault + counter исчерпанной квоты в заголовке
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { QuotaItem, QuotaWidgetMini } from '@ds/uikit-product-quota';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const QUOTAS: QuotaItem[] = [
   { name: 'SSD', limit: 1000, usage: 1000, remains: 0, unitDisplayName: 'GB' },
@@ -241,7 +232,6 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetMiniExpanded() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const reload = () => {
@@ -250,19 +240,15 @@ export function QuotaWidgetMiniExpanded() {
   };
 
   return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <QuotaWidgetMini
-          quotas={QUOTAS}
-          projectName='ml-platform-production'
-          canEditQuota={false}
-          isExpandedDefault
-          isLoading={isLoading}
-          isError={false}
-          onRefresh={reload}
-        />
-      </div>
-    </PortalContextProvider>
+    <QuotaWidgetMini
+      quotas={QUOTAS}
+      projectName='ml-platform-production'
+      canEditQuota={false}
+      isExpandedDefault
+      isLoading={isLoading}
+      isError={false}
+      onRefresh={reload}
+    />
   );
 }
 ```
@@ -342,25 +328,16 @@ export function QuotaWidgetMiniExpanded() {
 Зелёный, жёлтый, красный пороги и исчерпанная квота
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { QuotaWidgetCard } from '@ds/uikit-product-quota';
-import { useRef } from 'react';
 
 export function QuotaCardLevels() {
-  const hostRef = useRef<HTMLDivElement>(null);
-
   return (
-    <PortalContextProvider root={hostRef}>
-      <div
-        ref={hostRef}
-        style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', position: 'relative' }}
-      >
-        <QuotaWidgetCard quota={{ name: 'Network', limit: 100, usage: 30, remains: 70, unitDisplayName: 'GB' }} />
-        <QuotaWidgetCard quota={{ name: 'RAM', limit: 100, usage: 75, remains: 25, unitDisplayName: 'GB' }} />
-        <QuotaWidgetCard quota={{ name: 'vCPU', limit: 100, usage: 95, remains: 5, unitDisplayName: 'cores' }} />
-        <QuotaWidgetCard quota={{ name: 'SSD', limit: 100, usage: 100, remains: 0, unitDisplayName: 'GB' }} />
-      </div>
-    </PortalContextProvider>
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <QuotaWidgetCard quota={{ name: 'Network', limit: 100, usage: 30, remains: 70, unitDisplayName: 'GB' }} />
+      <QuotaWidgetCard quota={{ name: 'RAM', limit: 100, usage: 75, remains: 25, unitDisplayName: 'GB' }} />
+      <QuotaWidgetCard quota={{ name: 'vCPU', limit: 100, usage: 95, remains: 5, unitDisplayName: 'cores' }} />
+      <QuotaWidgetCard quota={{ name: 'SSD', limit: 100, usage: 100, remains: 0, unitDisplayName: 'GB' }} />
+    </div>
   );
 }
 ```
@@ -382,14 +359,12 @@ export function QuotaCardLoading() {
 noData показывает InfoBlock; onRefresh возвращает карточку к данным
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { QuotaWidgetCard } from '@ds/uikit-product-quota';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const QUOTA = { name: 'Network', limit: 100, usage: 30, remains: 70, unitDisplayName: 'GB' };
 
 export function QuotaCardNoData() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [noData, setNoData] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -399,13 +374,7 @@ export function QuotaCardNoData() {
     setTimeout(() => setLoading(false), 800);
   };
 
-  return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <QuotaWidgetCard quota={QUOTA} noData={noData} loading={loading} onRefresh={handleRefresh} />
-      </div>
-    </PortalContextProvider>
-  );
+  return <QuotaWidgetCard quota={QUOTA} noData={noData} loading={loading} onRefresh={handleRefresh} />;
 }
 ```
 

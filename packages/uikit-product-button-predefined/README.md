@@ -82,9 +82,8 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 Базовый dropdown для выбора одного значения.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const periods = [
   { id: 'month', label: 'Month' },
@@ -92,7 +91,6 @@ const periods = [
 ];
 
 export function DesktopBasic() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [period, setPeriod] = useState(periods[0]);
 
   const items = periods.map(option => ({
@@ -101,13 +99,7 @@ export function DesktopBasic() {
     onClick: () => setPeriod(option),
   }));
 
-  return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <ButtonDropdown label={period.label} size='s' layoutType='desktop' items={items} closeDroplistOnItemClick />
-      </div>
-    </PortalContextProvider>
-  );
+  return <ButtonDropdown label={period.label} size='s' layoutType='desktop' items={items} closeDroplistOnItemClick />;
 }
 ```
 
@@ -116,9 +108,8 @@ export function DesktopBasic() {
 Открытое состояние dropdown (portal).
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const periods = [
   { id: 'month', label: 'Month' },
@@ -126,7 +117,6 @@ const periods = [
 ];
 
 export function DesktopOpen() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [period, setPeriod] = useState(periods[0]);
 
   const items = periods.map(option => ({
@@ -135,13 +125,7 @@ export function DesktopOpen() {
     onClick: () => setPeriod(option),
   }));
 
-  return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <ButtonDropdown label={period.label} size='m' layoutType='desktop' open items={items} />
-      </div>
-    </PortalContextProvider>
-  );
+  return <ButtonDropdown label={period.label} size='m' layoutType='desktop' open items={items} />;
 }
 ```
 
@@ -150,9 +134,8 @@ export function DesktopOpen() {
 layoutType=mobile открывает modal со списком.
 
 ```tsx
-import { PortalContextProvider } from '@ds/portal-context';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const periods = [
   { id: 'month', label: 'Month' },
@@ -160,7 +143,6 @@ const periods = [
 ];
 
 export function MobileLayout() {
-  const hostRef = useRef<HTMLDivElement>(null);
   const [period, setPeriod] = useState(periods[0]);
 
   const items = periods.map(option => ({
@@ -169,13 +151,7 @@ export function MobileLayout() {
     onClick: () => setPeriod(option),
   }));
 
-  return (
-    <PortalContextProvider root={hostRef}>
-      <div ref={hostRef} style={{ position: 'relative' }}>
-        <ButtonDropdown label={period.label} size='s' layoutType='mobile' closeDroplistOnItemClick items={items} />
-      </div>
-    </PortalContextProvider>
-  );
+  return <ButtonDropdown label={period.label} size='s' layoutType='mobile' closeDroplistOnItemClick items={items} />;
 }
 ```
 

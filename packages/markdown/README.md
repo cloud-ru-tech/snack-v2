@@ -196,7 +196,6 @@ defaultValue + onChange с дебаунсом
 
 ```tsx
 import { MarkdownEditor } from '@ds/markdown';
-import { PortalContextProvider } from '@ds/portal-context';
 
 const INITIAL = `# Заметка
 
@@ -204,11 +203,7 @@ const INITIAL = `# Заметка
 `;
 
 export function EditorUncontrolled() {
-  return (
-    <PortalContextProvider>
-      <MarkdownEditor defaultValue={INITIAL} placeholder='Начните писать…' />
-    </PortalContextProvider>
-  );
+  return <MarkdownEditor defaultValue={INITIAL} placeholder='Начните писать…' />;
 }
 ```
 
@@ -218,7 +213,6 @@ value/onChange и preview/onPreviewChange во внешнем стейте
 
 ```tsx
 import { MarkdownEditor } from '@ds/markdown';
-import { PortalContextProvider } from '@ds/portal-context';
 import { useState } from 'react';
 
 export function EditorControlled() {
@@ -226,15 +220,7 @@ export function EditorControlled() {
   const [preview, setPreview] = useState(false);
 
   return (
-    <PortalContextProvider>
-      <MarkdownEditor
-        value={value}
-        onChange={setValue}
-        preview={preview}
-        onPreviewChange={setPreview}
-        label='Описание'
-      />
-    </PortalContextProvider>
+    <MarkdownEditor value={value} onChange={setValue} preview={preview} onPreviewChange={setPreview} label='Описание' />
   );
 }
 ```
@@ -245,20 +231,17 @@ toolbar={[...]} оставляет только нужные действия
 
 ```tsx
 import { MarkdownEditor, TOOLBAR_ITEM } from '@ds/markdown';
-import { PortalContextProvider } from '@ds/portal-context';
 
 const INITIAL = `Оставьте в тулбаре только нужные кнопки через \`toolbar\`.
 `;
 
 export function EditorCustomToolbar() {
   return (
-    <PortalContextProvider>
-      <MarkdownEditor
-        defaultValue={INITIAL}
-        label='Комментарий'
-        toolbar={[TOOLBAR_ITEM.Bold, TOOLBAR_ITEM.Italic, TOOLBAR_ITEM.Link, TOOLBAR_ITEM.BulletList]}
-      />
-    </PortalContextProvider>
+    <MarkdownEditor
+      defaultValue={INITIAL}
+      label='Комментарий'
+      toolbar={[TOOLBAR_ITEM.Bold, TOOLBAR_ITEM.Italic, TOOLBAR_ITEM.Link, TOOLBAR_ITEM.BulletList]}
+    />
   );
 }
 ```
