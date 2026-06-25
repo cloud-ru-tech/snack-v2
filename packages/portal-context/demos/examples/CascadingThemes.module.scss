@@ -1,0 +1,28 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: flex-start;
+
+  padding: base.$sn-primitive-dimension-24;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-12;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.paneTitle {
+  margin: 0;
+
+  @include base.composite-var(base.$sn-regular-title-s);
+}

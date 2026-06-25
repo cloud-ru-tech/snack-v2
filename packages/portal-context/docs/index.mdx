@@ -7,6 +7,8 @@ order: 90
 
 import { CustomRoot } from '../demos/examples/CustomRoot'
 import CustomRootSrc from '../demos/examples/CustomRoot.tsx?raw'
+import { CascadingThemes } from '../demos/examples/CascadingThemes'
+import CascadingThemesSrc from '../demos/examples/CascadingThemes.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import portalContextDoc from './props.json'
@@ -37,6 +39,14 @@ import { PortalContextProvider } from '@ds/portal-context'
 
 <Example title='Кастомный root через PortalContext' description='Портал монтируется в указанный ref, а не в `document.body`.' code={CustomRootSrc}>
   <CustomRoot client:visible />
+</Example>
+
+<Example
+  title='Каскад тем: разные корни порталов'
+  description='Два блока со своей темой и своим корнем порталов. Тултип и поповер из тёмного блока рендерятся в тёмной теме, из светлого — в светлой, потому что каждый монтируется в DOM-узел своего блока.'
+  code={CascadingThemesSrc}
+>
+  <CascadingThemes client:visible />
 </Example>
 
 ## Props
