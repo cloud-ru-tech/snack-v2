@@ -124,27 +124,32 @@ function MobileSheet({ children }: { children: ReactNode }) {
 
 - `override` — выбор пользователя: `light` / `dark` / `system` (следовать `prefers-color-scheme`).
 - `colorScheme` — итог: явный `light`/`dark` побеждает; `system` резолвится по системной теме (`resolveColorScheme`). Поэтому «всегда светлая» остаётся светлой даже на тёмном устройстве.
-- `setOverride(next)` — сменить выбор и персистнуть его.
+- `setOverride(next)` — сменить выбор (персистится, только если подключён `storage`-адаптер; по умолчанию — in-memory, см. ниже).
 
 ```tsx
-import { useColorScheme } from '@ds/theme';
+import { createCookieColorSchemeStorage, useColorScheme } from '@ds/theme';
+
+const themeStorage = createCookieColorSchemeStorage();
 
 function ThemeToggle() {
-  const { override, colorScheme, setOverride } = useColorScheme();
+  const { override, colorScheme, setOverride } = useColorScheme({ storage: themeStorage });
   // override → подсветка переключателя; colorScheme → передаётся в RootThemeProvider value.
   return <SegmentControl value={override} onChange={setOverride} items={['light', 'dark', 'system']} />;
 }
 ```
 
-Персист по умолчанию — cookie (`createCookieColorSchemeStorage`) + `BroadcastChannel` для живой кросс-таб синхронизации. Cookie выбран потому, что читается и на сервере (SSR-резолв), и синхронно inline-bootstrap'ом. Реагирует на живое переключение темы ОС (`matchMedia`) и на внешние изменения (`storage.subscribe`).
+По умолчанию персиста нет: `useColorScheme` держит выбор in-memory (переживает ремаунты, синхронит несколько переключателей в пределах сессии, но не сохраняется между перезагрузками). DS намеренно не пишет в cookie/localStorage сам — хранилище подключает приложение через проп `storage` (`ColorSchemeStorage`):
 
-Хранение на бэкенде — через адаптер `ColorSchemeStorage` (проп `storage`): `read()` возвращает `undefined` (начальное даёт `initialOverride` из server-сессии), `write()` шлёт POST, `subscribe()` — push (SSE/ws). Модель хука при этом не меняется.
+- `createCookieColorSchemeStorage()` — cookie + `BroadcastChannel`. Единственный готовый адаптер: нужен для no-flash SSR, потому что cookie читается и на сервере (SSR-резолв), и синхронно inline-bootstrap'ом.
+- Свой адаптер (localStorage / бэкенд-сессия) — реализует тот же контракт из трёх методов: `read()` (синхронно отдать override; на сервере — `undefined`, начальное даёт `initialOverride`), `write()` (персист / POST), `subscribe()` (кросс-таб / push через SSE/ws).
+
+Контракт намеренно про одну ось — `override` цветовой схемы; brand/density/прочие оси персистит сам апп (пример — `themeStore` портала документации, который держит все оси в localStorage). Любой адаптер реагирует на живое переключение темы ОС (`matchMedia`) и на внешние изменения (`storage.subscribe`). Модель хука от выбора адаптера не зависит.
 
 ## Без моргания: SSR и bootstrap
 
-Чтобы тёмная тема не «моргала» светлой до гидрации, корректный класс должен стоять на корне **до первой отрисовки**. Три точки работают вместе и читают одну cookie:
+Чтобы тёмная тема не «моргала» светлой до гидрации, корректный класс должен стоять на корне **до первой отрисовки**. Этот сценарий требует cookie-персиста (`createCookieColorSchemeStorage` на клиенте) — три точки работают вместе и читают одну cookie (`snack-uikit-theme`):
 
-- **SSR-класс.** `getColorSchemeFromHeaders(headers)` резолвит итоговую схему из cookie `ds-theme` (override) и client hint `Sec-CH-Prefers-Color-Scheme` (системная тема) — результат ставится классом на `<html>` при рендере на сервере.
+- **SSR-класс.** `getColorSchemeFromHeaders(headers)` резолвит итоговую схему из cookie `snack-uikit-theme` (override) и client hint `Sec-CH-Prefers-Color-Scheme` (системная тема) — результат ставится классом на `<html>` при рендере на сервере.
 - **Детерминированный первый рендер.** `getThemeOverrideFromHeaders(headers)` отдаёт override из cookie; передаётся в `useColorScheme({ initialOverride })`. Первый клиентский рендер совпадает с SSR — без hydration mismatch и без прыжка подсветки переключателя.
 - **Inline-bootstrap.** `getThemeBootstrapScript()` возвращает строку синхронного скрипта для `<head>` (до `<body>`): читает cookie + `prefers-color-scheme` и ставит `sn-light`/`sn-dark` ещё до отрисовки. Вставляется через `<script dangerouslySetInnerHTML>` (Next) или статический `<script>` (single-spa).
 
@@ -162,17 +167,44 @@ const initialOverride = getThemeOverrideFromHeaders(headers());
   <body>{children}</body>
 </html>;
 
-// клиент:
-const { colorScheme } = useColorScheme({ initialOverride });
+// клиент (no-flash требует cookie-адаптера — ту же cookie читает SSR и bootstrap):
+const { colorScheme } = useColorScheme({ initialOverride, storage: createCookieColorSchemeStorage() });
 ```
 
 Client hint `Sec-CH-Prefers-Color-Scheme` нужно включить ответными заголовками `Accept-CH` / `Critical-CH`, иначе на первом визите хинта нет (системная вернётся `light`), а корректную тему доставит inline-bootstrap до отрисовки.
+
+### Своё имя ключа
+
+Имя cookie (`snack-uikit-theme` по умолчанию, константа `THEME_OVERRIDE_STORAGE_KEY`) переопределяется опцией `storageKey` — у cookie-адаптера и у всех SSR/bootstrap-хелперов:
+
+- `createCookieColorSchemeStorage({ storageKey })`
+- `getColorSchemeFromHeaders(headers, { storageKey })`
+- `getThemeOverrideFromHeaders(headers, { storageKey })`
+- `getThemeBootstrapScript({ storageKey })`
+
+Эти точки читают **одну и ту же cookie**, поэтому ключ переопределяется **согласованно во всех сразу** — иначе SSR, bootstrap и клиент прочитают разные cookie, и вернётся моргание / hydration mismatch. Один ключ задаётся константой приложения:
+
+```tsx
+const STORAGE_KEY = 'my-app-theme';
+
+// клиент
+useColorScheme({ initialOverride, storage: createCookieColorSchemeStorage({ storageKey: STORAGE_KEY }) });
+
+// SSR
+getColorSchemeFromHeaders(headers(), { storageKey: STORAGE_KEY });
+getThemeOverrideFromHeaders(headers(), { storageKey: STORAGE_KEY });
+
+// bootstrap
+getThemeBootstrapScript({ storageKey: STORAGE_KEY });
+```
+
+У самого `useColorScheme` опции `storageKey` нет: дефолтный адаптер in-memory ключа не использует, а ключ живёт только там, где реально пишется/читается хранилище (адаптер + SSR-хелперы). Свой не-cookie адаптер (localStorage / бэкенд) сам решает, под каким ключом хранить.
 
 ## MFE и SSR
 
 - **MFE.** Объект контекста оформления — `Symbol.for`-синглтон (`providerKey('theme-appearance', 1)`): потребитель в микрофронте читает ближайший провайдер независимо от версии пакета. Глобальный `getGlobalThemeStore()` (тоже `Symbol.for`) даёт один источник оформления на все корни и служит дефолтом контекста — поэтому MFE без `RootThemeProvider` всё равно эмитит корректные классы. Контракт значения (пять осей) не растёт с числом компонентов — ключ остаётся `v1`.
 - **SSR.** `getServerSnapshot` стора отдаёт пустое оформление (мутабельный глобал на сервере запрещён — утечёт между запросами). Стартовое оформление на сервере задаёт сам app: `value` пропом `RootThemeProvider` либо SSR-класс из `getColorSchemeFromHeaders`.
-- **RSC-safe субпуть.** `@ds/theme/ssr` экспортирует только чистые символы (константы, типы, `getThemeClassnames`, `resolveColorScheme`, `getColorSchemeFromHeaders`, `getThemeBootstrapScript`) — без React-контекста и хуков, поэтому импорт в React Server Components не тянет `createContext`.
+- **RSC-safe субпуть.** `@ds/theme/ssr` экспортирует только чистые символы (константы, типы, `getThemeClassnames`, `resolveColorScheme`, `getColorSchemeFromHeaders`, `getThemeBootstrapScript`) — без React-контекста и хуков, поэтому при импорте в React Server Components `createContext` не загружается.
 
 ## Легаси: `ThemeProvider` / `useThemeConfig`
 
@@ -186,7 +218,7 @@ Client hint `Sec-CH-Prefers-Color-Scheme` нужно включить ответ
 - **Моргание light/dark на reload.** Нет inline `getThemeBootstrapScript` в `<head>` или нет SSR-класса на `<html>`. Корректный класс должен стоять до первой отрисовки — добавьте обе точки.
 - **Hydration mismatch цветовой схемы.** `useColorScheme` без `initialOverride` на SSR: сервер и клиент стартуют с разного override. Передайте `getThemeOverrideFromHeaders(headers)` в `initialOverride`.
 - **Одиночный `sn-comfort` руками не действует.** Токены не переопределяются по одной оси через каскад — нужен полный набор. Используйте `ChildThemeProvider value={{ density: 'comfort' }}` или `useThemeClassnames({ density: 'comfort' })`.
-- **Несколько копий `@ds/theme`.** Локаль оформления это ломать не должно: контекст и стор — `Symbol.for`-синглтоны, общие между копиями. При смешанных contract-версиях одного домена — только dev-warn; приколотите единый мажор провайдера.
+- **Несколько копий `@ds/theme`.** На работу оформления это не влияет: контекст и стор — `Symbol.for`-синглтоны, общие между копиями. При смешанных contract-версиях одного домена — только dev-warn; зафиксируйте единый мажор провайдера.
 
 ## Смотри также
 

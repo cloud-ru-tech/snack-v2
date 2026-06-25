@@ -20,10 +20,16 @@
   "files": [],
   "references": [
     {
+      "path": "./context-kit/tsconfig.cjs.json"
+    },
+    {
       "path": "./icons/tsconfig.cjs.json"
     },
     {
       "path": "./locale/tsconfig.cjs.json"
+    },
+    {
+      "path": "./theme/tsconfig.cjs.json"
     },
     {
       "path": "./typography/tsconfig.cjs.json"

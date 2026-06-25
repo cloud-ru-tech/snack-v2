@@ -9,7 +9,7 @@
 ## Когда использовать
 
 - Хост-приложение задаёт оформление в корне: `RootThemeProvider value={{ colorScheme, brand, density }}` (или `store` для multi-root / MFE через `getGlobalThemeStore().store`).
-- Цветовая схема light/dark берётся из `useColorScheme` (cookie + `prefers-color-scheme` + кросс-таб) и передаётся в `value.colorScheme`.
+- Цветовая схема light/dark берётся из `useColorScheme` (`prefers-color-scheme` + опциональный персист-адаптер) и передаётся в `value.colorScheme`.
 - Часть дерева должна иметь другой бренд / плотность / схему — `ChildThemeProvider` сливает partial-переопределение с ближайшим контекстом.
 - Компонент локально фиксирует ось (мобильная обёртка с `density: 'comfort'`) — `useThemeClassnames({ density })` подмешивает текущие colorScheme/brand из контекста.
 

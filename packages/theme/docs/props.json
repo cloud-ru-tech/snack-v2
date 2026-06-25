@@ -134,7 +134,7 @@
   "RootThemeProvider": {
     "displayName": "RootThemeProvider",
     "propsTypeName": "RootThemeProviderProps",
-    "description": "Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей\n(`colorScheme`/`brand`/`brandRole`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень\n(`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),\nпоэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель\nчитает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.\n\nЭтот провайдер НЕ управляет состоянием цветовой схемы (cookie/system/cross-tab) — это `useColorScheme`;\nрезультат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).",
+    "description": "Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей\n(`colorScheme`/`brand`/`brandRole`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень\n(`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),\nпоэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель\nчитает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.\n\nЭтот провайдер НЕ управляет состоянием цветовой схемы (override/system/cross-tab) — это `useColorScheme`;\nрезультат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).",
     "props": {
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",

@@ -45,7 +45,7 @@ export function getThemeOverrideFromHeaders(
 
 /**
  * SSR-резолв итоговой схемы из заголовков (зеркало `getAdaptive(userAgent)` для adaptive):
- * cookie `ds-theme` даёт override, `Sec-CH-Prefers-Color-Scheme` (client hint) — системную тему.
+ * cookie `snack-uikit-theme` даёт override, `Sec-CH-Prefers-Color-Scheme` (client hint) — системную тему.
  * Включите client hint ответными заголовками `Accept-CH`/`Critical-CH`, иначе на первом визите
  * хинта нет (системная вернётся `light`), а корректную тему доставит inline-bootstrap до отрисовки.
  */

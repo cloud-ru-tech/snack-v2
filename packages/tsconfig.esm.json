@@ -18,10 +18,16 @@
   "files": [],
   "references": [
     {
+      "path": "./context-kit/tsconfig.esm.json"
+    },
+    {
       "path": "./icons/tsconfig.esm.json"
     },
     {
       "path": "./locale/tsconfig.esm.json"
+    },
+    {
+      "path": "./theme/tsconfig.esm.json"
     },
     {
       "path": "./typography/tsconfig.esm.json"

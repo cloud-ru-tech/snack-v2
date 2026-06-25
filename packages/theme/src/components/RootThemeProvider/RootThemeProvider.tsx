@@ -39,7 +39,7 @@ export type RootThemeProviderProps = {
  * поэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель
  * читает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.
  *
- * Этот провайдер НЕ управляет состоянием цветовой схемы (cookie/system/cross-tab) — это `useColorScheme`;
+ * Этот провайдер НЕ управляет состоянием цветовой схемы (override/system/cross-tab) — это `useColorScheme`;
  * результат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).
  */
 export function RootThemeProvider({ value, store, rootRef, className, children }: RootThemeProviderProps) {

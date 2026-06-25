@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { COLOR_SCHEME, THEME_OVERRIDE, THEME_OVERRIDE_STORAGE_KEY } from '../constants/colorScheme';
+import { COLOR_SCHEME, THEME_OVERRIDE } from '../constants/colorScheme';
 import { ColorScheme, ThemeOverride } from '../types/colorScheme';
+import { ColorSchemeStorage, createInMemoryColorSchemeStorage } from '../utils/colorSchemeStorage';
 import { resolveColorScheme } from '../utils/resolveColorScheme';
 
 /* eslint-disable @cloud-ru/ssr-safe-react/domApi -- guarded by isBrowser(); хук помечен 'use client' */
@@ -23,82 +24,9 @@ function applyColorScheme(target: HTMLElement, colorScheme: ColorScheme): void {
   target.classList.toggle('sn-light', colorScheme === COLOR_SCHEME.Light);
 }
 
-function isOverride(value: string | undefined): value is ThemeOverride {
-  return value === THEME_OVERRIDE.Light || value === THEME_OVERRIDE.Dark || value === THEME_OVERRIDE.System;
-}
-
-/**
- * Точка расширения персиста цветовой схемы. Дефолт — cookie (`createCookieColorSchemeStorage`),
- * чего достаточно для SSR-резолва без бэкенда. Сервис подменяет адаптер, чтобы хранить тему на
- * бэкенде: `read()` возвращает `undefined` (начальное даёт `initialOverride` из server-сессии),
- * `write()` шлёт POST, `subscribe()` — push (SSE/ws). Модель `useColorScheme` при этом не меняется.
- */
-export type ColorSchemeStorage = {
-  /** Синхронно прочитать сохранённый override. Для бэкенд-адаптера — `undefined` (см. `initialOverride`). */
-  read(): ThemeOverride | undefined;
-  /** Персистнуть выбор (cookie / POST на бэкенд). */
-  write(next: ThemeOverride): void;
-  /** Подписка на внешние изменения (кросс-таб / push). Возвращает отписку. */
-  subscribe(onChange: () => void): () => void;
-};
-
-function readCookieOverride(storageKey: string): ThemeOverride | undefined {
-  if (!isBrowser()) {
-    return undefined;
-  }
-  const match = document.cookie.match(new RegExp(`(?:^|; )${storageKey}=([^;]*)`));
-  const value = match ? decodeURIComponent(match[1]) : undefined;
-
-  return isOverride(value) ? value : undefined;
-}
-
-/**
- * Дефолтный storage-адаптер: cookie как источник истины (читается и на сервере, и inline-bootstrap'ом)
- * + `BroadcastChannel` для живой кросс-таб синхронизации. Создание SSR-безопасно: DOM/Channel
- * трогаются только при вызове методов, не в фабрике.
- */
-export function createCookieColorSchemeStorage(options?: {
-  storageKey?: string;
-  channelName?: string;
-}): ColorSchemeStorage {
-  const storageKey = options?.storageKey ?? THEME_OVERRIDE_STORAGE_KEY;
-  const channelName = options?.channelName ?? `${storageKey}-channel`;
-  let channel: BroadcastChannel | null = null;
-
-  const getChannel = (): BroadcastChannel | null => {
-    if (channel) {
-      return channel;
-    }
-    if (!isBrowser() || typeof BroadcastChannel === 'undefined') {
-      return null;
-    }
-    channel = new BroadcastChannel(channelName);
-
-    return channel;
-  };
-
-  return {
-    read: () => readCookieOverride(storageKey),
-    write: next => {
-      if (!isBrowser()) {
-        return;
-      }
-      // max-age ~1 год, lax — cookie уходит на сервер для SSR-резолва следующей загрузки.
-      document.cookie = `${storageKey}=${encodeURIComponent(next)};path=/;max-age=31536000;samesite=lax`;
-      getChannel()?.postMessage(next);
-    },
-    subscribe: onChange => {
-      const ch = getChannel();
-      if (!ch) {
-        return () => {};
-      }
-      const handler = () => onChange();
-      ch.addEventListener('message', handler);
-
-      return () => ch.removeEventListener('message', handler);
-    },
-  };
-}
+// Общий синглтон in-memory-адаптера: несколько `useColorScheme` без своего `storage` смотрят в один
+// источник, поэтому переключатели в разных поддеревьях синхронны в пределах сессии.
+const defaultColorSchemeStorage = createInMemoryColorSchemeStorage();
 
 export type UseColorSchemeOptions = {
   /**
@@ -107,10 +35,12 @@ export type UseColorSchemeOptions = {
    * hydration mismatch и без прыжка подсветки переключателя. Если не задан — старт с `system`.
    */
   initialOverride?: ThemeOverride;
-  /** Адаптер персиста. По умолчанию cookie + BroadcastChannel (`createCookieColorSchemeStorage`). */
+  /**
+   * Адаптер персиста. По умолчанию — in-memory (без персиста между перезагрузками): DS не пишет в
+   * cookie/localStorage сам. Подключите явно: `createCookieColorSchemeStorage()` (no-flash SSR) или
+   * собственный адаптер (localStorage / бэкенд-сессия).
+   */
   storage?: ColorSchemeStorage;
-  /** Ключ персиста (имя cookie). По умолчанию `'ds-theme'`. Игнорируется, если задан `storage`. */
-  storageKey?: string;
   /** Корень, на который вешается `sn-light`/`sn-dark`. По умолчанию `<html>`. */
   target?: HTMLElement;
 };
@@ -135,20 +65,19 @@ export type UseColorSchemeResult = {
  * @function React hook
  */
 export function useColorScheme(options?: UseColorSchemeOptions): UseColorSchemeResult {
-  const { initialOverride, storageKey, target } = options ?? {};
+  const { initialOverride, target } = options ?? {};
   const providedStorage = options?.storage;
 
-  const storage = useMemo(
-    () => providedStorage ?? createCookieColorSchemeStorage({ storageKey }),
-    [providedStorage, storageKey],
-  );
+  // Дефолт — общий in-memory-адаптер: DS не пишет в cookie/localStorage без явного `storage`.
+  const storage = useMemo(() => providedStorage ?? defaultColorSchemeStorage, [providedStorage]);
 
   // override инициализируется СИНХРОННО из источника правды, чтобы SegmentControl не «прыгал» с
   // System на реальный выбор после mount: `initialOverride` (server-resolved — бэкенд-сессия / SSR
-  // cookie, authoritative) → синхронное чтение store (`storage.read` — cookie) → `system`.
-  // SSR-консистентность: на сервере `storage.read()` обязан вернуть undefined (cookie-адаптер так и
-  // делает), поэтому и сервер, и первый клиентский рендер берут одно значение — мисматча нет. В чистом
-  // клиенте (single-spa) `initialOverride` нет → cookie читается сразу при первом рендере, без прыжка.
+  // cookie, authoritative) → синхронное чтение store (`storage.read`) → `system`.
+  // SSR-консистентность: на сервере `storage.read()` обязан вернуть undefined (in-memory- и cookie-
+  // адаптеры так и делают), поэтому и сервер, и первый клиентский рендер берут одно значение — мисматча
+  // нет. В чистом клиенте с персист-адаптером (cookie/localStorage) `read()` отдаёт сохранённый выбор
+  // сразу при первом рендере, без прыжка; дефолтный in-memory стартует с `system`.
   const [override, setOverrideState] = useState<ThemeOverride>(
     () => initialOverride ?? storage.read() ?? THEME_OVERRIDE.System,
   );

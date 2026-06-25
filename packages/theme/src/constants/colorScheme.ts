@@ -1,5 +1,6 @@
 // Цветовая схема = класс `sn-light`/`sn-dark` на корне. Чистый модуль (RSC-safe), реэкспорт из `@ds/theme/ssr`.
-// Источник персиста по умолчанию — cookie (читается и на сервере, и синхронно в inline-bootstrap).
+// Персиста по умолчанию нет: `useColorScheme` держит выбор in-memory, а cookie/localStorage подключает
+// потребитель явным адаптером. Этот ключ — дефолтное имя для опциональных адаптеров и SSR/bootstrap-хелперов.
 
 /** Разрешённая цветовая схема (то, что реально применяется на корень). */
 export const COLOR_SCHEME = {
@@ -14,5 +15,9 @@ export const THEME_OVERRIDE = {
   System: 'system',
 } as const;
 
-/** Ключ персиста override (имя cookie; тот же ключ читает inline-bootstrap и SSR). */
-export const THEME_OVERRIDE_STORAGE_KEY = 'ds-theme';
+/**
+ * Дефолтное имя ключа персиста override для опциональных адаптеров (cookie/localStorage) и
+ * SSR/bootstrap-хелперов. Namespace'нут под DS, чтобы не пересекаться с ключами хост-приложения.
+ * Конкретный адаптер может переопределить его через `storageKey`.
+ */
+export const THEME_OVERRIDE_STORAGE_KEY = 'snack-uikit-theme';
