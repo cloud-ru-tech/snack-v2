@@ -41,3 +41,5 @@ $docs-z-header: 50;
 $docs-z-overlay: 39;
 $docs-z-sidebar-mobile: 40;
 $docs-z-breadcrumb: 10;
+// Корень порталов (#ds-portal-root) — выше всего хрома доков, чтобы оверлеи DS перекрывали хедер.
+$docs-z-portal: 9999;

@@ -8,6 +8,7 @@ import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { SpriteHost } from '../components/layout/SpriteHost'
 import { ThemeHtmlApplier } from '../components/layout/ThemeHtmlApplier'
+import { PortalRootApplier } from '../components/layout/PortalRootApplier'
 import { NavProgress } from '../components/layout/NavProgress'
 import { TeamSnack } from '../components/layout/logo/TeamSnack'
 import { CloudRu } from '../components/layout/logo/CloudRu'
@@ -41,6 +42,7 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
   </head>
   <body>
     <ThemeHtmlApplier client:load transition:persist />
+    <PortalRootApplier client:load transition:persist />
     <SpriteHost transition:persist />
     <NavProgress client:load transition:persist />
     <!-- Top header -->
@@ -83,6 +85,10 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
         <slot />
       </main>
     </div>
+
+    <!-- Корень порталов: все оверлеи DS (Modal/Drawer/Popover/Tooltip) рендерятся сюда поверх
+         хрома доков. Внутри стек по DOM-порядку (z-index оверлеев = 0). См. PortalRootApplier. -->
+    <div id="ds-portal-root" transition:persist></div>
 
     <script is:inline>
       // No-FOUC bootstrap: синхронно ставит классы осей из localStorage до первой отрисовки.

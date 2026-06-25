@@ -2,9 +2,21 @@
 @use 'motion' as m;
 @use 'layout' as l;
 
-html, body {
-  overflow-x: clip;
+// Скролл страницы живёт на <body>, а не на <html>. Это совместимость со scroll-lock
+// портальных компонентов (Modal/Drawer оборачивают контент в react-remove-scroll, который
+// при открытии ставит body{overflow:hidden}). Когда скролл на body, блокировка замораживает
+// позицию на месте и sticky-сайдбар/TOC остаются на экране. При скролле на <html> body
+// становился чужим scroll-контейнером для sticky, и сайдбар/TOC прилипали к уехавшему body.
+html {
+  overflow: hidden;
   max-width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: clip auto;
+  max-width: 100%;
+  height: 100%;
 }
 
 // ─── Header ──────────────────────────────────────────────────────────────────
@@ -160,6 +172,15 @@ html, body {
   overflow-x: clip;
   flex: 1;
   min-width: 0;
+}
+
+// Корень всех порталов DS. position+z-index создают stacking-контекст выше хрома доков
+// (хедер z-index: 50), поэтому Modal/Drawer/Popover/Tooltip перекрывают и хедер, и сайдбар.
+// Внутри контейнера оверлеи стекаются по DOM-порядку (их собственный z-index = 0), так что
+// тултип, открытый из модалки, остаётся над ней.
+#ds-portal-root {
+  position: relative;
+  z-index: l.$docs-z-portal;
 }
 
 // ─── Mobile overlay ──────────────────────────────────────────────────────────
