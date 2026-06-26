@@ -15,7 +15,7 @@ Tooltip, Popover, Dropdown, Modal, Drawer рендерят свой слой ч�
 
 > Значение контекста — мутабельный `RefObject`, **не** реактивный стор. Порталы читают `.current` лениво в момент открытия, поэтому смена узла не вызывает перерендер и провайдеру не нужен `setAppearance`/`setLang`-эквивалент: оболочка контейнера присваивает `.current`.
 
-## TL;DR
+## Кратко
 
 ```tsx
 import { getGlobalPortalRoot, PortalContextProvider, usePortalContext } from '@ds/portal-context';

@@ -15,7 +15,7 @@ order: 3
 
 > Полный набор `sn-*` обязателен на каждой границе: токены `@cloud-ru/figma-variables` не переопределяются по одной оси через CSS-каскад. Поэтому нельзя поставить одиночный `sn-comfort` руками — для этого есть провайдеры и хук, которые эмитят набор целиком. Старый `ThemeProvider` / `useThemeConfig` (произвольные темы по `themeMap`) — отдельный механизм, не путать с `RootThemeProvider` (см. раздел «Легаси» ниже).
 
-## TL;DR
+## Кратко
 
 ```tsx
 import { ChildThemeProvider, getGlobalThemeStore, RootThemeProvider, useColorScheme } from '@ds/theme';
