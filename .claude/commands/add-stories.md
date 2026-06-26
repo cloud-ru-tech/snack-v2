@@ -1,5 +1,5 @@
 ---
-description: Сгенерировать Playground + VisualMatrix (+ оправданные дополнительные stories) для пакета `packages/<pkg>`
+description: Stories пакета packages/<pkg> (Playground + VisualMatrix + оправданные доп.) — когда просят написать/покрыть состояния сторями, создать VisualMatrix, обновить Playground, снять baselines. Обёртка над component-story-set.
 argument-hint: <pkg-name-or-path>
 ---
 

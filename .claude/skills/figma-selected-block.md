@@ -1,6 +1,5 @@
 ---
 name: figma-selected-block
-description: Получить SCSS стили выделенного слоя из Figma-ноды через CLI @sbercloud/figma-selected-block + Figma MCP. Вызывать, когда пользователь дал Figma URL и нужно сгенерировать стили одного слоя с токенами `base.$sn-*` / миксинами `composite-var`, не запуская сам плагин в Figma.
 ---
 
 # figma-selected-block — workflow для агента

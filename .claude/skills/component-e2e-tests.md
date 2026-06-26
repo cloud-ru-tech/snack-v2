@@ -130,6 +130,16 @@ test('loading', async ({ gotoStory, getByTestId }) => {
 - Не трогает stories — предполагает, что story-ID уже существуют.
 - Не трогает docs-тесты в `tests/docs/` — они живут отдельно.
 
+## Подводные камни
+
+Чаще всего бьют при написании specs (детали — [test-environment-pitfalls.md](../rules/test-environment-pitfalls.md), always-on):
+
+- кросс-пакетный импорт в spec тянет CSS-модули → дублируй константу локально / из leaf-файла
+- `getAnimations`/`playState` зависает на rc-drawer → жди `waitForStableBbox`
+- не дублируй play-ассерты в Playwright (в spec — только browser-specific) — [e2e-testing-standard.md](../rules/e2e-testing-standard.md)
+- visual baseline только chrome (`test.skip` по `VISUAL_BASELINE_PROJECT`) — [visual-regression-standard.md](../rules/visual-regression-standard.md)
+- `gotoStory` — только options-форма через `buildStoryOptions`, без хардкод story-id
+
 ## Связанное
 
 - [e2e-testing-standard.md](../rules/e2e-testing-standard.md)

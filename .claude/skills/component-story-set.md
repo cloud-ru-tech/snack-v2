@@ -119,6 +119,16 @@ export const <StoryName>: Story = {
 - Не пишет E2E — это [component-e2e-tests](./component-e2e-tests.md).
 - Не трогает docs — это `component-docs`.
 
+## Подводные камни
+
+Чаще всего бьют при генерации stories (детали — [test-environment-pitfalls.md](../rules/test-environment-pitfalls.md), always-on):
+
+- story IDs не угадываются по PascalCase → сверяй `helpers.ts::STORIES` с `index.json`
+- controlled-проп в URL-args не кликается → передавай uncontrolled (`defaultChecked`/`defaultValue`)
+- `data-test-id` у trigger/portal-компонента оседает на floating-узле → помечай слот `<span data-test-id>`
+- `{Space}` не активирует native `<button>` в storybook-test → проверяй через `{Enter}`
+- Context.Provider-only компонент без DOM-узла → оборачивай в `<div data-test-id>`
+
 ## Связанное
 
 - [stories-standard.md](../rules/stories-standard.md)

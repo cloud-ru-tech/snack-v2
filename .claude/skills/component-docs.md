@@ -134,6 +134,16 @@
 - Не добавляет Figma-узел. Если `figmaNode('<pkg>')` возвращает `undefined` (нет ключа в `FIGMA_NODES`) — возвращает предупреждение и просит пользователя запустить [figma-component-import](./figma-component-import.md). `<FigmaEmbed>` сам безопасно отрендерит `null`, секцию можно оставить.
 - Не правит frontmatter существующего MDX без явной команды.
 
+## Подводные камни
+
+Чаще всего бьют (детали — [docs-structure.md](../rules/docs-structure.md), always-on):
+
+- `<PropsTable>` с битым ключом крашит весь `build:docs` → после rename перегенери `props.json`, проверь `build:docs:fast`
+- инлайн-JSX в `<Example>` не гидрируется → отдельный файл `demos/examples/*` + `?raw` + `client:visible`
+- портал-демо требует `<PortalContextProvider>` внутри файла демо
+- интерактив — `client:visible`, не `client:load`; embed'ы — без `client:*`
+- никаких мёртвых примеров (`onChange={() => {}}`) → uncontrolled / `useState`
+
 ## Связанное
 
 - [docs-structure.md](../rules/docs-structure.md)

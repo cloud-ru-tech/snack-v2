@@ -1,5 +1,5 @@
 ---
-description: Создать план миграции компонента со старой дизайн-системы (@snack-uikit/*, @cloud-ru/*) в @ds/* (пишется в .claude/plan/<pkg>.md)
+description: План миграции компонента со старой ДС (@snack-uikit/*, @cloud-ru/*) в @ds/* в .claude/plan/<pkg>.md — когда просят спланировать перенос компонента.
 argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 ---
 

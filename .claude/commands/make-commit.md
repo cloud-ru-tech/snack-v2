@@ -1,5 +1,5 @@
 ---
-description: Создать git-коммит по conventional-commits из текущего staged diff
+description: Git-коммит по conventional-commits из staged diff — когда просят закоммитить, сделать/оформить commit.
 ---
 
 Последовательность шагов:

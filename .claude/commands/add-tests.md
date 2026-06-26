@@ -1,5 +1,5 @@
 ---
-description: Сгенерировать набор Playwright E2E specs для пакета `packages/<pkg>` по tier'у
+description: Playwright E2E пакета packages/<pkg> — когда просят написать e2e/playwright тесты, проверить взаимодействие. Обёртка над component-e2e-tests.
 argument-hint: <pkg-name-or-path>
 ---
 

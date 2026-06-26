@@ -55,6 +55,15 @@
 - Не генерирует сам компонент. Компонент пишется вручную после scaffold.
 - Не пушит в git. Только scaffold + артефакты.
 
+## Подводные камни
+
+Детали — в правилах (all always-on):
+
+- не уплощай `src/` при портировании из `storybook/` (1:1, без dot-prefix) — [package-src-structure.md](../rules/package-src-structure.md)
+- обнови все wire-точки (tsconfig references ×3 + dep в `apps/storybook`), иначе alias `@ds/<pkg>` не резолвится; `pnpm add-package` делает это сам — [reference-package-anatomy.md](../rules/reference-package-anatomy.md)
+- нет `react`/`react-dom`/`@types/react*` в `package.json`, версии строгие — [packages-deps.md](../rules/packages-deps.md)
+- группа в сайдбаре docs выводится из префикса имени пакета — отдельных действий не нужно
+
 ## Связанное
 
 - [reference-package-anatomy.md](../rules/reference-package-anatomy.md)

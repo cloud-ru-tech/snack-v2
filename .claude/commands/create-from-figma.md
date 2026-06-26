@@ -1,5 +1,5 @@
 ---
-description: Создать план нового пакета `@ds/<pkg>` на основе только Figma-ноды (без legacy-референса). API компонента предлагается из Figma variant-осей. План пишется в .claude/plan/<pkg>.md
+description: План НОВОГО пакета @ds/* только по Figma-ноде (без legacy) в .claude/plan/<pkg>.md — когда заводят пакет с нуля по дизайну.
 argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
 ---
 

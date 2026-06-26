@@ -1,5 +1,5 @@
 ---
-description: Проверить `packages/<pkg>/src/**/*.module.scss` на соответствие scss-styles-standard.md и поправить
+description: Привести SCSS пакета к стандарту (убрать хардкод, свернуть data-* в @each) — когда просят проверить scss или сделать scss-аудит пакета.
 ---
 
 Следуй инструкции из `.claude/skills/scss-styles-audit.md` в этом репо. Полный текст скилла (триггеры, шаги, правила, anti-patterns) — там; здесь только регистрация как slash-команды.

@@ -1,5 +1,5 @@
 ---
-description: Работа с комментариями GitLab MR через scripts/mr-comments/* (fetch / reply / post)
+description: Комментарии GitLab MR — забрать/ответить/оставить/закрыть ниты — когда просят обработать ревью или «GitLab MR <number>».
 ---
 
 Следуй инструкции из `.claude/skills/mr-comments.md` в этом репо. Краткая шпаргалка:

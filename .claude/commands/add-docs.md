@@ -1,5 +1,5 @@
 ---
-description: Сгенерировать `docs/index.mdx` + demos для пакета `packages/<pkg>` (плоская структура H2, порядок из docSections.mjs)
+description: MDX-документация пакета packages/<pkg> (docs/index.mdx + demos) — когда просят написать/обновить docs, страницу пакета, Storybook/Figma embed. Обёртка над component-docs.
 argument-hint: <pkg-name-or-path>
 ---
 
