@@ -1,0 +1,53 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: base.$sn-density-spacing-interval-m base.$sn-density-spacing-interval-l;
+}
+
+.tree {
+  // Дерево само рисует строки/отступы; подгоняем плотность под сайдбар.
+  width: 100%;
+}
+
+// Домен-группа (верхний уровень): uppercase-подпись, счётчик справа, sticky.
+.groupTitle {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  width: 100%;
+}
+
+.groupLabel {
+  color: base.$sn-theme-color-available-version-textMain;
+  text-transform: uppercase;
+
+  @include base.composite-var(base.$sn-regular-label-s);
+}
+
+.groupInfo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.groupCount {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+// Узлы верхнего уровня (домены) — sticky-заголовки секций.
+.tree > :global([data-node-id^='group:']) {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+// Раскрытая группа подсвечивает лейбл основным цветом (data-expanded стоит на шевроне).
+.tree :global([data-node-id^='group:']):has(:global([data-test-id='tree__node__chevron'][data-expanded]))
+  .groupLabel {
+  color: base.$sn-theme-color-primary-accent;
+}

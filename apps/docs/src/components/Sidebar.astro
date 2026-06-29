@@ -1,185 +1,68 @@
 ---
-import { pathsMatch } from '../lib/base-url'
-import { buildNav, domainIdForPath } from '../lib/discovery'
-import type { NavItem } from '../lib/discovery'
+import { buildNav } from '../lib/discovery'
 import { DOMAINS } from '../config/domains'
-import { QuestionTooltip } from '@ds/tooltip'
-import { Counter } from '@ds/counter'
-import '../styles/sidebar.scss'
+import { NavTree } from './layout/NavTree'
 
 const PATTERNS_DESCRIPTION = 'Гайды и паттерны проектирования: как собирать сценарии из компонентов, контрибьютить, стандарты и процессы.'
 
-const descByGroupId = new Map<string, string | undefined>(DOMAINS.map((d) => [d.id, d.description]))
-descByGroupId.set('patterns', PATTERNS_DESCRIPTION)
+// Описания групп для QuestionTooltip: домены из конфига + псевдо-группа patterns.
+const descriptions: Record<string, string> = {}
+for (const d of DOMAINS) {
+  if (d.description) descriptions[d.id] = d.description
+}
+descriptions.patterns = PATTERNS_DESCRIPTION
 
 const nav = await buildNav()
-const base = import.meta.env.BASE_URL
 const currentPath = Astro.url.pathname
-const currentDomainId = domainIdForPath(currentPath)
-const onPatterns = currentPath.includes('/patterns/')
-// Group is "in focus" when we're on one of its pages. On the home page nothing
-// is focused — all domain groups are collapsed; patterns stays open.
-const focusedGroupId = onPatterns ? 'patterns' : currentDomainId
-
-function isActive(href: string) {
-  return pathsMatch(currentPath, href)
-}
-
-function isGroupActive(item: NavItem) {
-  return isActive(item.href) || (item.children?.some((c) => isActive(c.href)) ?? false)
-}
 ---
 
-<nav class="nav" aria-label="Documentation">
-{nav.map((group, i) => (
-    <details class="group" open={focusedGroupId === group.id} data-group-id={group.id}>
-      <summary class="group-summary" style={`--group-index: ${i}`}>
-        <h2 class="group-label">{group.label}</h2>
-        {descByGroupId.get(group.id) && (
-          <span class="group-info" onclick="event.preventDefault(); event.stopPropagation()">
-            <QuestionTooltip
-              client:visible
-              tip={descByGroupId.get(group.id)!}
-              triggerLabel={`О группе ${group.label}`}
-              placement='right'
-            />
-          </span>
-        )}
-        <span class="group-count" aria-hidden="true">
-          <Counter value={group.items.length} appearance='neutral' size='xs' color='decor' />
-        </span>
-        <span class="group-toggle" aria-hidden="true">
-          <svg viewBox="0 0 12 12" width="12" height="12">
-            <path d="M4 2.5 L8 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </span>
-      </summary>
-      <ul class="list" role="list">
-        {group.items.map((item) =>
-          item.children?.length ? (
-            <li class="pkg">
-              <details class="pkg-details" open={isGroupActive(item)}>
-                <summary class="pkg-summary">
-                  <a
-                    href={item.href}
-                    class={`link pkg-label${isGroupActive(item) ? ' link--active' : ''}`}
-                    aria-current={isActive(item.href) ? 'page' : undefined}
-                    data-pkg-link
-                  >
-                    {item.title}
-                  </a>
-                  <span class="pkg-toggle" aria-hidden="true">
-                    <svg class="pkg-toggle-icon" viewBox="0 0 12 12" width="12" height="12">
-                      <path d="M4 2.5 L8 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-                </summary>
-                <ul class="sub-list" role="list">
-                  {item.children.map((child) => (
-                    <li>
-                      <a
-                        href={child.href}
-                        class={`link sub-link${isActive(child.href) ? ' link--active' : ''}`}
-                        aria-current={isActive(child.href) ? 'page' : undefined}
-                      >
-                        {child.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            </li>
-          ) : (
-            <li>
-              <a
-                href={item.href}
-                class={`link${isActive(item.href) ? ' link--active' : ''}`}
-                aria-current={isActive(item.href) ? 'page' : undefined}
-              >
-                {item.title}
-              </a>
-            </li>
-          )
-        )}
-      </ul>
-    </details>
-  ))}
-</nav>
+<!-- client:only: @ds/tree использует react-transition-state (CJS), который не SSR-ится под Astro prerender.
+     transition:persist переносит остров между переходами без ремоунта; на обёртке <aside> его держать нельзя —
+     атомарный moveBefore Astro падает с HierarchyRequestError. -->
+<NavTree client:only="react" transition:persist nav={nav} descriptions={descriptions} currentPath={currentPath}>
+  <!-- SSR-fallback: заполняет место до гидрации острова. -->
+  <div slot="fallback" class="nav-skeleton" aria-hidden="true">
+    {Array.from({ length: 14 }).map((_, i) => (
+      <span class="nav-skeleton-row" data-kind={i % 5 === 0 ? 'group' : 'item'} />
+    ))}
+  </div>
+</NavTree>
 
-<script>
-  import { navigate } from 'astro:transitions/client'
+<style lang="scss">
+  @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-  function initSidebar() {
-    // Clicking the package-header link inside <summary> would both toggle the
-    // <details> and navigate. We want navigation without toggling. preventDefault
-    // cancels both the anchor default and the summary-toggle default, so instead
-    // we stopPropagation (to skip the toggle) and drive the SPA nav ourselves.
-    document.querySelectorAll<HTMLAnchorElement>('[data-pkg-link]').forEach((link) => {
-      if ((link as HTMLAnchorElement & { __spaBound?: boolean }).__spaBound) return
-      ;(link as HTMLAnchorElement & { __spaBound?: boolean }).__spaBound = true
-      link.addEventListener('click', (e) => {
-        if (e.defaultPrevented) return
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
-        e.preventDefault()
-        e.stopPropagation()
-        navigate(link.href)
-      })
-    })
+  .nav-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: base.$sn-primitive-dimension-8;
+    padding: base.$sn-density-spacing-interval-m base.$sn-density-spacing-interval-l;
+  }
 
-    // The sidebar is transition:persist, so SSR'd active classes from the first
-    // render stay in DOM forever. Recompute active state on every SPA swap.
-    const normalize = (p: string) => {
-      const t = p.replace(/\/+$/, '')
-      return t === '' ? '/' : t
-    }
-    const current = normalize(location.pathname)
-    document.querySelectorAll<HTMLAnchorElement>('.nav a.link').forEach((link) => {
-      const href = normalize(new URL(link.href).pathname)
-      const isActive = href === current
-      link.classList.toggle('link--active', isActive)
-      if (isActive) link.setAttribute('aria-current', 'page')
-      else link.removeAttribute('aria-current')
-    })
-    // Propagate to the package <details>: a group is "active" if its own link or
-    // any child link matches. Open groups containing the active page.
-    document.querySelectorAll<HTMLDetailsElement>('.nav .pkg-details').forEach((d) => {
-      const hasActive = !!d.querySelector('a.link--active')
-      const pkgLink = d.querySelector<HTMLAnchorElement>('[data-pkg-link]')
-      if (pkgLink) pkgLink.classList.toggle('link--active', hasActive)
-      if (hasActive) d.open = true
-    })
+  .nav-skeleton-row {
+    height: base.$sn-primitive-dimension-16;
+    border-radius: base.$sn-primitive-dimension-4;
+    background: base.$sn-theme-color-neutral-decorTransparent;
+    animation: nav-skeleton-pulse 1.2s ease-in-out infinite;
 
-    // Domain-level <details>: open the group containing the active page,
-    // collapse the rest. On the home page nothing is active — leave whatever
-    // state the user manually set.
-    const domainGroups = document.querySelectorAll<HTMLDetailsElement>('.nav .group[data-group-id]')
-    const anyActive = !!document.querySelector('.nav a.link--active')
-    if (anyActive) {
-      domainGroups.forEach((d) => {
-        d.open = !!d.querySelector('a.link--active')
-      })
+    &[data-kind='group'] {
+      width: 55%;
+      margin-top: base.$sn-primitive-dimension-8;
     }
 
-
-    // Scroll the sidebar so the active link sits in the upper part of the viewport.
-    const scroller = document.getElementById('sidebar')
-    const active = document.querySelector<HTMLElement>('.nav .link--active')
-    if (scroller && active) {
-      const rect = active.getBoundingClientRect()
-      const scrollerRect = scroller.getBoundingClientRect()
-      const offsetWithinScroller = rect.top - scrollerRect.top + scroller.scrollTop
-      const target = offsetWithinScroller - scroller.clientHeight * 0.25
-      const desired = Math.max(0, target)
-      // Only scroll when the active item is actually out of the comfortable zone —
-      // avoids jumping the sidebar on every SPA navigation.
-      const viewportTop = scroller.scrollTop
-      const viewportBottom = viewportTop + scroller.clientHeight
-      if (offsetWithinScroller < viewportTop + 24 || offsetWithinScroller > viewportBottom - 48) {
-        scroller.scrollTop = desired
-      }
+    &[data-kind='item'] {
+      width: 80%;
+      margin-left: base.$sn-primitive-dimension-12;
     }
   }
 
-  initSidebar()
-  document.addEventListener('astro:page-load', initSidebar)
-</script>
+  @keyframes nav-skeleton-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+</style>

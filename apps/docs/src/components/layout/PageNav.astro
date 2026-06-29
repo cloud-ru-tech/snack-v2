@@ -1,0 +1,33 @@
+---
+import { Card } from '@ds/card'
+
+type NavLink = { title: string; href: string }
+
+interface Props {
+  prev: NavLink | null
+  next: NavLink | null
+}
+
+const { prev, next } = Astro.props
+---
+
+{(prev || next) && (
+  <nav class="page-nav" aria-label="Page navigation">
+    {prev ? (
+      <Card as="a" href={prev.href} view="outline" radius="m" className="page-nav-card page-nav-prev">
+        <span class="page-nav-content">
+          <span class="page-nav-dir">← Предыдущая</span>
+          <span class="page-nav-title">{prev.title}</span>
+        </span>
+      </Card>
+    ) : <span />}
+    {next ? (
+      <Card as="a" href={next.href} view="outline" radius="m" className="page-nav-card page-nav-next">
+        <span class="page-nav-content">
+          <span class="page-nav-dir">Следующая →</span>
+          <span class="page-nav-title">{next.title}</span>
+        </span>
+      </Card>
+    ) : <span />}
+  </nav>
+)}

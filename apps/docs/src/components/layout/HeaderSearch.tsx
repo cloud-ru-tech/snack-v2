@@ -1,3 +1,4 @@
+import { Dropdown } from '@ds/dropdown';
 import { Search } from '@ds/search';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -41,7 +42,6 @@ export function HeaderSearch() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<PagefindResultData[]>([]);
   const pagefindRef = useRef<PagefindModule | null>(null);
-  const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const loadPagefind = useCallback(async (): Promise<PagefindModule | null> => {
@@ -85,29 +85,17 @@ export function HeaderSearch() {
     };
   }, [value, loadPagefind]);
 
+  // Cmd/Ctrl+K фокусирует поле и открывает список. Escape, клик вне и позиционирование — на Dropdown.
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         inputRef.current?.focus();
-        return;
-      }
-      if (e.key === 'Escape' && open) {
-        setOpen(false);
-        inputRef.current?.blur();
+        setOpen(true);
       }
     }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [open]);
-
-  useEffect(() => {
-    function onClick(e: MouseEvent) {
-      if (!rootRef.current) return;
-      if (!rootRef.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener('mousedown', onClick);
-    return () => document.removeEventListener('mousedown', onClick);
   }, []);
 
   const showBadge = !value && !open;
@@ -115,39 +103,59 @@ export function HeaderSearch() {
 
   const items = useMemo(() => results.map(r => ({ ...r, displayTitle: r.meta.title ?? r.url })), [results]);
 
-  return (
-    <div className={styles.root} ref={rootRef}>
-      <Search
-        ref={inputRef}
-        size='m'
-        value={value}
-        placeholder='Поиск по документации…'
-        // loading={loading}
-        onChange={setValue}
-        onFocus={() => setOpen(true)}
-      />
-      {showBadge && (
-        <kbd className={styles.kbd} aria-hidden='true'>
-          ⌘K
-        </kbd>
-      )}
-      {open && hasQuery && (
-        <div className={styles.drawer} role='listbox'>
-          {items.length === 0 && !loading && <div className={styles.empty}>Ничего не найдено</div>}
-          {items.map(r => (
-            <a key={r.url} href={r.url} className={styles.result} role='option' aria-selected={false}>
-              <span className={styles.resultTitle}>{r.displayTitle}</span>
-              {r.excerpt && <span className={styles.resultExcerpt} dangerouslySetInnerHTML={{ __html: r.excerpt }} />}
-              {r.sub_results?.slice(0, 3).map(s => (
-                <a key={s.url} href={s.url} className={styles.subResult}>
-                  <span className={styles.subTitle}>{s.title}</span>
-                  {s.excerpt && <span className={styles.subExcerpt} dangerouslySetInnerHTML={{ __html: s.excerpt }} />}
-                </a>
-              ))}
+  // Загрузка и «ничего не найдено» — через встроенный `state` Dropdown; результаты — в `content`.
+  let dropdownState: { type: 'loading' } | { type: 'not-found'; description: string } | undefined;
+  if (loading) {
+    dropdownState = { type: 'loading' };
+  } else if (hasQuery && items.length === 0) {
+    dropdownState = { type: 'not-found', description: 'Ничего не найдено' };
+  }
+
+  const resultsContent = (
+    <div className={styles.results} role='listbox'>
+      {items.map(r => (
+        <a key={r.url} href={r.url} className={styles.result} role='option' aria-selected={false}>
+          <span className={styles.resultTitle}>{r.displayTitle}</span>
+          {r.excerpt && <span className={styles.resultExcerpt} dangerouslySetInnerHTML={{ __html: r.excerpt }} />}
+          {r.sub_results?.slice(0, 3).map(s => (
+            <a key={s.url} href={s.url} className={styles.subResult}>
+              <span className={styles.subTitle}>{s.title}</span>
+              {s.excerpt && <span className={styles.subExcerpt} dangerouslySetInnerHTML={{ __html: s.excerpt }} />}
             </a>
           ))}
-        </div>
-      )}
+        </a>
+      ))}
     </div>
+  );
+
+  return (
+    <Dropdown
+      open={open && hasQuery}
+      onOpenChange={setOpen}
+      trigger='click'
+      placement='bottom-start'
+      widthStrategy='eq'
+      offset={8}
+      triggerClassName={styles.trigger}
+      contentClassName={styles.body}
+      state={dropdownState}
+      content={resultsContent}
+    >
+      <div className={styles.root}>
+        <Search
+          ref={inputRef}
+          size='m'
+          value={value}
+          placeholder='Поиск по документации…'
+          onChange={setValue}
+          onFocus={() => setOpen(true)}
+        />
+        {showBadge && (
+          <kbd className={styles.kbd} aria-hidden='true'>
+            ⌘K
+          </kbd>
+        )}
+      </div>
+    </Dropdown>
   );
 }

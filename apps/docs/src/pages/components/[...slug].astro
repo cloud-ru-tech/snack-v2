@@ -5,6 +5,8 @@ import { withBase } from '../../lib/base-url'
 import { flatPages } from '../../lib/discovery'
 import { resolveDomain } from '../../config/domains'
 import { PageBreadcrumbs } from '../../components/layout/PageBreadcrumbs'
+import { TocTree } from '../../components/layout/TocTree'
+import PageNav from '../../components/layout/PageNav.astro'
 import '../../styles/doc-page.scss'
 
 export async function getStaticPaths() {
@@ -88,109 +90,20 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
       {tocTree.length > 0 && (
         <aside class="toc" aria-label="На странице">
           <p class="toc-label">На странице</p>
-          <ul class="toc-list">
-            {tocTree.map((h) => (
-              <li>
-                <a href={`#${h.slug}`} class="toc-link">{h.text}</a>
-                {h.children.length > 0 && (
-                  <ul class="toc-sublist">
-                    {h.children.map((c) => (
-                      <li>
-                        <a href={`#${c.slug}`} class="toc-link toc-link--sub">{c.text}</a>
-                        {c.children.length > 0 && (
-                          <ul class="toc-sublist toc-sublist--deep">
-                            {c.children.map((cc) => (
-                              <li>
-                                <a href={`#${cc.slug}`} class="toc-link toc-link--sub toc-link--deep">{cc.text}</a>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+          <TocTree client:only="react" nodes={tocTree}>
+            <div slot="fallback" class="toc-skeleton" aria-hidden="true">
+              {tocTree.map((h) => (
+                <Fragment>
+                  <span class="toc-skeleton-row" data-kind="top" />
+                  {h.children.map(() => <span class="toc-skeleton-row" data-kind="sub" />)}
+                </Fragment>
+              ))}
+            </div>
+          </TocTree>
         </aside>
       )}
     </div>
 
-    {(prev || next) && (
-      <nav class="page-nav" aria-label="Page navigation">
-        {prev ? (
-          <a href={prev.href} class="page-nav-link page-nav-prev">
-            <span class="page-nav-dir">← Предыдущая</span>
-            <span class="page-nav-title">{prev.title}</span>
-          </a>
-        ) : <span />}
-        {next ? (
-          <a href={next.href} class="page-nav-link page-nav-next">
-            <span class="page-nav-dir">Следующая →</span>
-            <span class="page-nav-title">{next.title}</span>
-          </a>
-        ) : <span />}
-      </nav>
-    )}
+    <PageNav prev={prev} next={next} />
   </div>
 </DocsLayout>
-
-<script>
-  // TOC active section via IntersectionObserver. Re-init on every SPA swap — the
-  // bundled script runs once, but ClientRouter replaces headings/links on each nav.
-  let currentObserver: IntersectionObserver | null = null
-
-  function initToc() {
-    currentObserver?.disconnect()
-    currentObserver = null
-
-    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc-link')
-    if (!tocLinks.length) return
-
-    // One observation target per TOC entry, by id from the link's href.
-    const targets: HTMLElement[] = []
-    tocLinks.forEach((link) => {
-      const id = link.getAttribute('href')?.replace(/^#/, '')
-      if (!id) return
-      const byId = document.getElementById(decodeURIComponent(id))
-      if (byId) targets.push(byId)
-    })
-    if (!targets.length) return
-
-    const tocEl = document.querySelector<HTMLElement>('.toc')
-    let activeId = ''
-    const setActive = (id: string) => {
-      if (id === activeId) return
-      activeId = id
-      let activeLink: HTMLAnchorElement | null = null
-      tocLinks.forEach((link) => {
-        const isActive = link.getAttribute('href') === `#${id}`
-        link.classList.toggle('toc-link--active', isActive)
-        if (isActive) activeLink = link
-      })
-      // Keep the active link within the (scrollable, sticky) TOC viewport.
-      if (activeLink && tocEl) {
-        const linkRect = (activeLink as HTMLElement).getBoundingClientRect()
-        const tocRect = tocEl.getBoundingClientRect()
-        if (linkRect.top < tocRect.top || linkRect.bottom > tocRect.bottom) {
-          (activeLink as HTMLElement).scrollIntoView({ block: 'nearest' })
-        }
-      }
-    }
-
-    currentObserver = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-        if (visible.length) setActive((visible[0].target as HTMLElement).id)
-      },
-      { rootMargin: '-56px 0px -60% 0px', threshold: 0 }
-    )
-    targets.forEach((t) => currentObserver!.observe(t))
-  }
-
-  initToc()
-  document.addEventListener('astro:page-load', initToc)
-</script>

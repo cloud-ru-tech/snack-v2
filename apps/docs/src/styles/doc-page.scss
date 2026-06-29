@@ -63,7 +63,7 @@
   overflow-y: auto;
 
   max-height: calc(100vh - #{l.$docs-header-height} - #{base.$sn-density-spacing-interval-l} * 2);
-  padding-left: 0;
+  padding-left: base.$sn-density-spacing-interval-s;
   border-left: 1px solid base.$sn-theme-color-neutral-decor;
 
   &::-webkit-scrollbar {
@@ -81,62 +81,40 @@
   // margin-bottom: base.$sn-primitive-dimension-12;
 }
 
-.toc-list {
+// Структуру TOC рендерит @ds/tree в <TocTree>; здесь только контейнер .toc и .toc-label.
+
+// SSR-fallback TOC: заполняет место до гидрации острова (нет «пустого» кадра).
+.toc-skeleton {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-2;
-  list-style: none;
+  gap: base.$sn-primitive-dimension-8;
 }
 
-.toc-link {
-  display: block;
+.toc-skeleton-row {
+  height: base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-primitive-dimension-4;
+  background: base.$sn-theme-color-neutral-decorTransparent;
+  animation: toc-skeleton-pulse 1.2s ease-in-out infinite;
 
-  padding: base.$sn-density-spacing-interval-s base.$sn-primitive-dimension-12;
-  border-left: 2px solid transparent;
+  &[data-kind='sub'] {
+    width: 60%;
+    margin-left: base.$sn-primitive-dimension-12;
+  }
 
-  color: base.$sn-theme-color-neutral-text;
-  text-decoration: none;
-
-  transition: color m.$docs-duration-fast, border-color m.$docs-duration-fast;
-
-  @include base.composite-var(base.$sn-regular-body-s);
+  &[data-kind='top'] {
+    width: 85%;
+  }
 }
 
-.toc-link:hover {
-  border-left-color: base.$sn-theme-color-neutral-decor;
-  color: base.$sn-theme-color-primary-accent;
-}
+@keyframes toc-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
 
-.toc-link--active {
-  border-left-color: base.$sn-theme-color-primary-accent !important;
-  color: base.$sn-theme-color-primary-accent !important;
-}
-
-.toc-sublist {
-  display: flex;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-2;
-
-  margin-left: base.$sn-primitive-dimension-12;
-
-  list-style: none;
-}
-
-.toc-link--sub {
-  padding-top: base.$sn-primitive-dimension-2;
-  padding-bottom: base.$sn-primitive-dimension-2;
-  color: base.$sn-theme-color-neutral-text;
-  opacity: 0.75;
-
-  @include base.composite-var(base.$sn-regular-body-s);
-}
-
-.toc-sublist--deep {
-  margin-left: base.$sn-primitive-dimension-12;
-}
-
-.toc-link--deep {
-  opacity: 0.6;
+  50% {
+    opacity: 0.5;
+  }
 }
 
 // Anchor-only headings injected by remark-example-headings: present in the
@@ -169,29 +147,22 @@
   border-top: 1px solid base.$sn-theme-color-neutral-decor;
 }
 
-.page-nav-link {
+// Поверхность (рамка, hover/press state-layer, focus-ring) даёт @ds/card view='outline'.
+.page-nav-card {
+  color: base.$sn-theme-color-neutral-text;
+  text-decoration: none;
+}
+
+// Внутренняя раскладка и отступы контента карточки.
+.page-nav-content {
   display: flex;
   flex-direction: column;
   gap: base.$sn-density-spacing-interval-s;
-
   padding: base.$sn-density-spacing-interval-l;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
-  border-radius: base.$sn-primitive-dimension-8;
-
-  color: base.$sn-theme-color-neutral-text;
-  text-decoration: none;
-
-  transition: border-color m.$docs-duration-fast, box-shadow m.$docs-duration-fast;
 }
 
-.page-nav-link:hover {
-  border-color: base.$sn-theme-color-primary-accent;
-  box-shadow: 0 0 0 3px base.$sn-theme-color-primary-decor;
-}
-
-.page-nav-next {
-  width: 100%;
-  margin-left: auto;
+.page-nav-next .page-nav-content {
+  align-items: flex-end;
   text-align: right;
 }
 

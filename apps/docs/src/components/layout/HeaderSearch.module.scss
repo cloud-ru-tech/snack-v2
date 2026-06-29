@@ -1,10 +1,15 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-.root {
-  position: relative;
+// Триггер Dropdown — прямой flex-ребёнок .header-inner, поэтому раскладка (ширина, отступ вправо) здесь.
+.trigger {
   flex-shrink: 1;
   width: clamp(200px, 28vw, 360px);
   margin-left: auto;
+}
+
+.root {
+  position: relative;
+  width: 100%;
 }
 
 .kbd {
@@ -28,31 +33,15 @@
   @include base.composite-var(base.$sn-regular-label-s);
 }
 
-.drawer {
-  position: absolute;
-  z-index: 50;
-  top: calc(100% + #{base.$sn-primitive-dimension-8});
-  right: 0;
-  left: 0;
-
+// Панель, позиционирование и состояния даёт @ds/dropdown. .body (contentClassName) — прокрутка списка.
+.body {
   overflow-y: auto;
-
   max-height: min(70vh, 560px);
-  padding: base.$sn-primitive-dimension-4;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
-  border-radius: base.$sn-primitive-dimension-8;
-
-  background: base.$sn-theme-color-neutral-background1Level;
-  box-shadow: 0 12px 32px
-    color-mix(in srgb, base.$sn-theme-color-neutral-background 40%, transparent);
 }
 
-.empty {
-  padding: base.$sn-primitive-dimension-12;
-  color: base.$sn-theme-color-neutral-accent;
-  text-align: center;
-
-  @include base.composite-var(base.$sn-regular-label-m);
+.results {
+  display: flex;
+  flex-direction: column;
 }
 
 .result {
@@ -131,20 +120,11 @@
 }
 
 @media (width <= 768px) {
-  .root {
+  .trigger {
     flex: 1;
     width: auto;
     min-width: 0;
     max-width: none;
-  }
-
-  .drawer {
-    position: fixed;
-    top: calc(52px + #{base.$sn-primitive-dimension-4});
-    right: base.$sn-primitive-dimension-8;
-    left: base.$sn-primitive-dimension-8;
-
-    max-height: calc(100dvh - 52px - #{base.$sn-primitive-dimension-12});
   }
 }
 
