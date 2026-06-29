@@ -7,6 +7,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { collectPackages, generateLlmsFiles, renderIndex, renderPackage } from './src/lib/llms.ts';
+import { patchAstroReactCheck } from './src/lib/patchAstroReactCheck.mjs';
 import { remarkExampleCode } from './src/plugins/remark-example-code.mjs';
 import { remarkExampleHeadings } from './src/plugins/remark-example-headings.mjs';
 import { remarkInternalBaseUrl } from './src/plugins/remark-internal-base-url.mjs';
@@ -105,6 +106,7 @@ export default defineConfig({
     // На astro build prerender ssr.noExternal не применяется (астра грузит модули через
     // Node native loader) — там компоненты с legacy-deps помечаются `client:only='react'`.
     plugins: [
+      patchAstroReactCheck(),
       // @cloud-ru/uikit-product-icons (транзитивно через @sbercloud/snack-v2-toolbar в @ds/table)
       // ESM-экспортирует sprite-system.symbol.svg; у корневого <svg> спрайта нет width/height,
       // и astro:assets падает на imageMetadata. Спрайт в доке не рендерится — заглушаем url-стабом.
@@ -121,6 +123,8 @@ export default defineConfig({
     ],
     ssr: {
       noExternal: [
+        // Workspace-пакеты резолвятся в src через alias — бандлим с тем же React, что и острова.
+        /^@ds\//,
         // Toolbar persist → @cloud-ru/ft-request-payload-transform.
         /^@cloud-ru\/ft-/,
         // Toolbar → @sbercloud/snack-v2-* (chips, bottom-sheet, …).
@@ -133,6 +137,8 @@ export default defineConfig({
       ],
     },
     resolve: {
+      // Один экземпляр React для Astro SSR и @ds/* (иначе — Invalid hook call в островах).
+      dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
       alias: [
         ...Object.entries({
           '#docs': resolve(dir, 'src'),
@@ -141,10 +147,11 @@ export default defineConfig({
           '@ds/theme/ssr': resolve(root, 'packages/theme/src/ssr.ts'),
           '@sbercloud/snack-v2-locale': resolve(root, 'packages/locale/src/index.ts'),
           // Barrel dist/esm/index.js re-exports ./formatters/* without .js — SSR/prebundle fail.
-        '@cloud-ru/ft-formatters': resolve(
-          root,
-          'node_modules/@cloud-ru/ft-formatters/dist/esm/formatters/formatNumber.js',
-        ),...dsWorkspaceSourceAliases(),
+          '@cloud-ru/ft-formatters': resolve(
+            root,
+            'node_modules/@cloud-ru/ft-formatters/dist/esm/formatters/formatNumber.js',
+          ),
+          ...dsWorkspaceSourceAliases(),
         }).map(([find, replacement]) => ({ find, replacement })),
       ],
     },
