@@ -55,6 +55,7 @@ const meta: Meta<StoryArgs> = {
     size: SIZE.M,
     showLines: true,
     showIcons: true,
+    titleMaxLines: 1,
     expandedNodes: ['fruits'],
     parentActions: false,
     nodeActions: false,

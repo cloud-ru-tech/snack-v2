@@ -86,6 +86,12 @@ export type TreeCommonProps = {
    * @default 'm'
    */
   size?: Size;
+  /**
+   * Максимальное число строк заголовка узла до обрезки многоточием.
+   * Значение больше 1 разрешает перенос; строка растёт по высоте.
+   * @default 1
+   */
+  titleMaxLines?: number;
   /** CSS-класс */
   className?: string;
 };

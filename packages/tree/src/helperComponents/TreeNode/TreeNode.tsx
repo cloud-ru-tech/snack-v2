@@ -60,6 +60,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
       showLines,
       showIcons,
       size = 'm',
+      titleMaxLines = 1,
     } = useTreeContext();
 
     const [isDroplistOpen, setDroplistOpen] = useState(false);
@@ -324,7 +325,9 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
 
           <Typography variant='body' size={size} as='div' className={styles.treeNodeTitle}>
             <TreeNodeHref href={href} onClick={handleAnchorClick} ref={anchorRef}>
-              {typeof title === 'string' && <TruncateString text={title} data-test-id={TEST_IDS.title} />}
+              {typeof title === 'string' && (
+                <TruncateString text={title} maxLines={titleMaxLines} data-test-id={TEST_IDS.title} />
+              )}
               {typeof title !== 'string' && title({ id, disabled, nested } as TreeNodeProps)}
             </TreeNodeHref>
           </Typography>

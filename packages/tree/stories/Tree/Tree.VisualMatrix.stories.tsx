@@ -31,6 +31,16 @@ const DEEP_TREE: TreeNodeProps[] = [
   },
 ];
 
+const LONG_TITLE_TREE: TreeNodeProps[] = [
+  {
+    id: 'long-parent',
+    title: 'Группа с очень длинным заголовком, который не помещается в одну строку',
+    nested: [{ id: 'long-child', title: 'TimePickerDropdownWithAVeryLongComponentName' }],
+  },
+];
+
+const titleMaxLinesVariants = [1, 2, 3];
+
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (
@@ -149,6 +159,22 @@ export const VisualMatrix: Story = {
                 />
               </div>,
             ],
+          },
+        ]}
+      />
+
+      <StoryTable
+        sectionTitle='Title max lines (длинный заголовок в узкой колонке)'
+        firstColumnHeader='titleMaxLines'
+        columnHeaders={titleMaxLinesVariants.map(String)}
+        rows={[
+          {
+            variantLabel: '',
+            cells: titleMaxLinesVariants.map(lines => (
+              <div key={lines} className={styles.storyNarrow}>
+                <Tree data={LONG_TITLE_TREE} expandedNodes={['long-parent']} titleMaxLines={lines} />
+              </div>
+            )),
           },
         ]}
       />

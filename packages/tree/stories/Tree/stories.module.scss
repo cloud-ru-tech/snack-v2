@@ -2,6 +2,12 @@
   width: 320px;
 }
 
+// Узкая колонка: длинный заголовок упирается в край и переносится/обрезается —
+// нужно для демонстрации titleMaxLines.
+.storyNarrow {
+  width: 180px;
+}
+
 .matrix {
   display: grid;
   gap: 1.5rem;

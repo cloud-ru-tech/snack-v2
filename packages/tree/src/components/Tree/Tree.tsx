@@ -21,6 +21,7 @@ export function Tree({
   showLines = true,
   showIcons = true,
   size = SIZE.M,
+  titleMaxLines = 1,
   className,
   ...rest
 }: TreeProps) {
@@ -39,6 +40,7 @@ export function Tree({
           showLines,
           showIcons,
           size,
+          titleMaxLines,
           ...extractSelectableProps(rest),
         }}
       >

@@ -328,6 +328,7 @@ export function AsyncLoad() {
 | `showLines` | `boolean` | `true` | Флаг отвечающий за отображение линий вложенности |
 | `showToggle` | `boolean` | — |  |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер строк дерева (Figma variant `size`). |
+| `titleMaxLines` | `number` | `1` | Максимальное число строк заголовка узла до обрезки многоточием. <br/> Значение больше 1 разрешает перенос; строка растёт по высоте. |
 
 #### Related types
 

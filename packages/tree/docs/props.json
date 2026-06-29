@@ -123,6 +123,12 @@
         "typeRefs": [
           "Size"
         ]
+      },
+      "titleMaxLines": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Максимальное число строк заголовка узла до обрезки многоточием.\nЗначение больше 1 разрешает перенос; строка растёт по высоте."
       }
     },
     "relatedTypes": {
