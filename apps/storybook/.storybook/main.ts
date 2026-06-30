@@ -3,9 +3,103 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import type { StorybookConfig } from '@storybook/react-vite';
+import { sanitize } from 'storybook/internal/csf';
+import type { Indexer, IndexInput } from 'storybook/internal/types';
+import type { Plugin } from 'vite';
+
+import {
+  CATEGORIES_BY_DOMAIN,
+  categoriesForDomain,
+  domainHasCategories,
+  OTHER_CATEGORY,
+  resolveCategoryId,
+} from '../../docs/src/config/categories.ts';
+import { DOMAINS, resolveDomainId } from '../../docs/src/config/domains.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..', '..', '..');
+
+const STORY_PKG_RE = /[\\/]packages[\\/]([^\\/]+)[\\/]stories[\\/]/;
+
+declare global {
+  var __DS_SB_ORDER__: { domains: string[]; categories: string[] } | undefined;
+}
+
+// Порядок групп сайдбара для storySort (preview.tsx). Storybook статически парсит
+// storySort и не исполняет его, поэтому импортнуть реестр внутри нельзя — прокидываем
+// порядок через globalThis (main.ts и eval storySort живут в одном Node-процессе).
+// Источник один: domains.ts + categories.ts.
+globalThis.__DS_SB_ORDER__ = {
+  domains: DOMAINS.map(d => d.storybookLabel),
+  categories: [
+    ...new Set([
+      ...Object.values(CATEGORIES_BY_DOMAIN)
+        .flat()
+        .map(c => c.label),
+      OTHER_CATEGORY.label,
+    ]),
+  ],
+};
+
+/**
+ * По пути стори-файла и исходному meta.title считает новый title с сегментом
+ * категории (домен → категория → компонент, как в доке; реестр — config/categories.ts)
+ * и стабильный id = sanitize(исходный title). Возвращает null, если домен без
+ * категорий или title уже преобразован. Категория берётся из пути, а не из title.
+ */
+function regroupTitle(fileName: string, originalTitle: string): { title: string; id: string } | null {
+  const pkg = fileName.match(STORY_PKG_RE)?.[1];
+  if (!pkg) return null;
+  const domain = resolveDomainId(pkg);
+  if (!domainHasCategories(domain)) return null;
+  const cat = categoriesForDomain(domain).find(c => c.id === resolveCategoryId(domain, pkg));
+  if (!cat) return null;
+  const domainLabel = DOMAINS.find(d => d.id === domain)?.storybookLabel ?? domain;
+  const prefix = `${domainLabel}/${cat.label}/`;
+  if (originalTitle.startsWith(prefix)) return null;
+  const rest = originalTitle.split('/').slice(1).join('/'); // отбрасываем исходный домен-сегмент
+  return { title: `${prefix}${rest}`, id: sanitize(originalTitle) };
+}
+
+/**
+ * Группировка stories в сайдбаре по категориям (как в доке) — без изменения story ID,
+ * поэтому StorybookEmbed в доках и e2e-хелперы продолжают работать. Нужны оба слоя:
+ *  - индексатор (`withCategoryGrouping`) — переписывает title записи индекса + `metaId`
+ *    (сайдбарное дерево + id записи в индексе);
+ *  - vite-трансформ (`categoryGroupingPlugin`) — инжектит `id` в рантайм-CSF, чтобы
+ *    рантайм story id совпал с индексным (иначе Storybook не находит стори).
+ * Оба считают (title, id) из одного `regroupTitle`. meta.title в файлах не трогаем.
+ *
+ * meta.title — единственный `title:` со слешем (args-проп title слеша не содержит).
+ */
+function categoryGroupingPlugin(): Plugin {
+  return {
+    name: 'ds-storybook-category-grouping',
+    enforce: 'pre',
+    transform(code, id) {
+      if (!/\.stories\.tsx?$/.test(id)) return null;
+      let changed = false;
+      const out = code.replace(/title:\s*'([^']*\/[^']*)'/g, (full, title: string) => {
+        const r = regroupTitle(id, title);
+        if (!r) return full;
+        changed = true;
+        return `title: '${r.title}', id: '${r.id}'`;
+      });
+      return changed ? { code: out, map: null } : null;
+    },
+  };
+}
+
+function withCategoryGrouping(indexers: Indexer[] = []): Indexer[] {
+  return indexers.map(indexer => ({
+    ...indexer,
+    createIndex: async (fileName, options) =>
+      (await indexer.createIndex(fileName, options)).map(input => {
+        const r = input.title ? regroupTitle(fileName, input.title) : null;
+        return r ? ({ ...input, title: r.title, metaId: (input as IndexInput).metaId ?? r.id } as IndexInput) : input;
+      }),
+  }));
+}
 
 /**
  * Автоматически собирает алиасы `@ds/<pkg>` для всех `packages/<pkg>` с `src/index.ts`.
@@ -74,7 +168,10 @@ const config: StorybookConfig = {
       propFilter: prop => !prop.parent || !prop.parent.fileName.includes('node_modules'),
     },
   },
+  experimental_indexers: withCategoryGrouping,
   async viteFinal(config) {
+    config.plugins = [categoryGroupingPlugin(), ...(config.plugins ?? [])];
+
     // Stories live under packages/* — ensure automatic JSX runtime so JSX works without `import React`.
     config.esbuild = {
       ...config.esbuild,

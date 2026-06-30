@@ -130,6 +130,8 @@ Stories из подпапок добавляют сегмент:
 | `@ds/button` | `Button` | `tests/Button.InteractionTest.stories.tsx` | `Components/Button/Button/Tests/Interaction` |
 | `@ds/toggles` | `Checkbox` | `tests/Checkbox.InteractionTest.stories.tsx` | `Components/Toggles/Checkbox/Tests/Interaction` |
 
+**Группировка сайдбара — автоматическая.** В файле title остаётся `Components/<…>`. Доменно-категорийную группировку сайдбара (`Snack/<Категория>/…`, как в доке) Storybook проставляет сам из `apps/docs/src/config/categories.ts` — `Snack` и категорию в title руками **не** пишут. Story ID выводится из исходного `Components/<…>`-title (не из сайдбарного label) и от группировки не меняется.
+
 **Последствие для story IDs**. Storybook генерит id из title kebab-case'ом. После переноса story в `examples/` или `tests/` id изменится:
 
 - `Components/Button/Button` + `Playground` → `components-button-button--playground`

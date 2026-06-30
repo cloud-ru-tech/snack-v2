@@ -71,25 +71,37 @@ const preview: Preview = {
     options: {
       // @ts-expect-error storybook не парсит TS-типы и ломается
       storySort: (a, b) => {
-        const TOP_ORDER = ['Introduction', 'Documentation', 'Materials', 'Icons', 'Utils', 'Components'];
-        const STORY_PRIORITY = {
-          Playground: 1,
-          VisualMatrix: 2,
+        // Storybook извлекает storySort из исходника и eval-ит отдельно — импорты внутри
+        // недоступны. Порядок групп приходит из globalThis.__DS_SB_ORDER__, который main.ts
+        // строит из domains.ts + categories.ts (один источник, без дубля списка здесь).
+        const order = globalThis.__DS_SB_ORDER__ || { domains: [], categories: [] };
+        const TOP_ORDER = ['Introduction', 'Documentation'].concat(order.domains);
+        const CATEGORY_ORDER = order.categories;
+        const STORY_PRIORITY = { Playground: 1, VisualMatrix: 2 };
+        // @ts-expect-error storybook eval-ит storySort как JS — TS-аннотации недопустимы
+        const rank = (arr, v) => {
+          const i = arr.indexOf(v);
+          return i === -1 ? 999 : i;
         };
 
-        // 1. Top-level group order
-        const aTop = a.title.split('/')[0];
-        const bTop = b.title.split('/')[0];
-        if (aTop !== bTop) {
-          const aIdx = TOP_ORDER.indexOf(aTop);
-          const bIdx = TOP_ORDER.indexOf(bTop);
-          if (aIdx === -1 && bIdx === -1) return aTop.localeCompare(bTop);
-          if (aIdx === -1) return 1;
-          if (bIdx === -1) return -1;
-          return aIdx - bIdx;
+        const at = a.title.split('/');
+        const bt = b.title.split('/');
+
+        // 1. Верхний уровень (домен)
+        if (at[0] !== bt[0]) {
+          const ar = rank(TOP_ORDER, at[0]);
+          const br = rank(TOP_ORDER, bt[0]);
+          return ar !== br ? ar - br : at[0].localeCompare(bt[0]);
         }
 
-        // 2. Same top-level, different titles — Tests subfolder идёт последним
+        // 2. Категория (второй сегмент)
+        if (at[1] !== bt[1]) {
+          const ar = rank(CATEGORY_ORDER, at[1]);
+          const br = rank(CATEGORY_ORDER, bt[1]);
+          if (ar !== br) return ar - br;
+        }
+
+        // 3. Tests-подпапка последней
         if (a.title !== b.title) {
           const aIsTests = a.title.endsWith('/Tests');
           const bIsTests = b.title.endsWith('/Tests');
@@ -97,7 +109,7 @@ const preview: Preview = {
           return a.title.localeCompare(b.title);
         }
 
-        // 3. Same title — Playground first, Visual Matrix second, остальное alphabet
+        // 4. Playground первым, VisualMatrix вторым, дальше alphabet
         // @ts-expect-error storybook не парсит TS-типы и ломается
         const aP = STORY_PRIORITY[a.name] ?? 99;
         // @ts-expect-error storybook не парсит TS-типы и ломается

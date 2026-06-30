@@ -3,6 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "paths": {
       "#storybook/components": [".storybook/components/index.ts"],
@@ -19,6 +20,8 @@
     ".storybook/**/*.tsx",
     "../../types/**/*.d.ts",
     "../docs/src/lib/figma.ts",
+    "../docs/src/config/categories.ts",
+    "../docs/src/config/domains.ts",
     "../../packages/*/src/**/*.ts",
     "../../packages/*/src/**/*.tsx",
     "../../packages/*/stories/**/*.ts",
