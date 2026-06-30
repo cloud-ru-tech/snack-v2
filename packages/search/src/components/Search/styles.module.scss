@@ -64,6 +64,7 @@ $sizes: 's', 'm', 'l';
   color: base.$sn-theme-color-available-version-textMain;
 
   input::placeholder {
+    color: inherit;
     opacity: base.$sn-theme-effect-opacity-disabled;
   }
 }
