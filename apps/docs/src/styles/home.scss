@@ -140,47 +140,7 @@
   }
 }
 
+// Карточка вынесена в HomeCard (@ds/card); здесь только grid.
 .card-grid > li {
   display: flex;
-}
-
-.card {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: base.$sn-density-spacing-interval-s;
-
-  min-height: 96px;
-  padding: base.$sn-density-spacing-interval-m;
-  border: 1px solid base.$sn-theme-color-neutral-decor;
-  border-radius: base.$sn-primitive-dimension-8;
-
-  color: base.$sn-theme-color-neutral-text;
-  text-decoration: none;
-
-  transition:
-    border-color m.$docs-duration-fast,
-    box-shadow m.$docs-duration-fast;
-}
-
-.card:hover {
-  border-color: base.$sn-theme-color-primary-accent;
-  box-shadow: 0 0 0 3px base.$sn-theme-color-primary-decor;
-}
-
-.card-title {
-  color: base.$sn-theme-color-neutral-text;
-
-  @include base.composite-var(base.$sn-regular-label-l);
-}
-
-.card-desc {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-
-  color: base.$sn-theme-color-neutral-text;
-
-  @include base.composite-var(base.$sn-regular-body-s);
 }

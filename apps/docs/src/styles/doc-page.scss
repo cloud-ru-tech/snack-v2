@@ -17,14 +17,15 @@
   gap: base.$sn-density-spacing-interval-m;
   align-items: center;
 
-  padding: base.$sn-density-spacing-interval-l base.$sn-primitive-dimension-48 0;
+  // Горизонталь общая с телом статьи, верх — как у сайдбара (крошки и «SNACK» в одну линию).
+  padding: l.$docs-content-pad-top l.$docs-content-pad-x 0;
 
   color: base.$sn-theme-color-neutral-text;
 
   @include base.composite-var(base.$sn-regular-body-s);
 
   @media (max-width: l.$docs-bp-small-mobile) {
-    padding: base.$sn-density-spacing-interval-l base.$sn-density-spacing-interval-l 0;
+    padding: l.$docs-content-pad-top l.$docs-content-pad-x-mobile 0;
   }
 }
 
@@ -83,37 +84,31 @@
 
 // Структуру TOC рендерит @ds/tree в <TocTree>; здесь только контейнер .toc и .toc-label.
 
-// SSR-fallback TOC: заполняет место до гидрации острова (нет «пустого» кадра).
+// SSR-fallback крошек до гидрации острова.
+.breadcrumb-skeleton {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.breadcrumb-skeleton-sep {
+  user-select: none;
+  color: base.$sn-theme-color-neutral-decor;
+}
+
+// SSR-fallback TOC до гидрации острова.
 .toc-skeleton {
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-8;
 }
 
+// Только отступы; бар рисует @ds/skeleton.
 .toc-skeleton-row {
-  height: base.$sn-primitive-dimension-12;
-  border-radius: base.$sn-primitive-dimension-4;
-  background: base.$sn-theme-color-neutral-decorTransparent;
-  animation: toc-skeleton-pulse 1.2s ease-in-out infinite;
+  display: block;
 
   &[data-kind='sub'] {
-    width: 60%;
     margin-left: base.$sn-primitive-dimension-12;
-  }
-
-  &[data-kind='top'] {
-    width: 85%;
-  }
-}
-
-@keyframes toc-skeleton-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
   }
 }
 
@@ -200,7 +195,7 @@
 
 @media (max-width: l.$docs-bp-small-mobile) {
   .doc {
-    padding: base.$sn-density-spacing-interval-l base.$sn-density-spacing-interval-l base.$sn-primitive-dimension-48;
+    padding: l.$docs-content-pad-top l.$docs-content-pad-x-mobile l.$docs-content-pad-bottom;
   }
 }
 

@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { collectPackages, generateLlmsFiles, renderIndex, renderPackage } from './src/lib/llms.ts';
 import { remarkExampleCode } from './src/plugins/remark-example-code.mjs';
 import { remarkExampleHeadings } from './src/plugins/remark-example-headings.mjs';
 import { remarkInternalBaseUrl } from './src/plugins/remark-internal-base-url.mjs';
@@ -14,6 +15,51 @@ import { remarkSectionOrder } from './src/plugins/remark-section-order.mjs';
 
 const dir = fileURLToPath(new URL('.', import.meta.url));
 const root = resolve(dir, '../..');
+
+/**
+ * Serves `llms.txt` (root index + per-package /components/<pkg>/llms.txt): written to
+ * the build output at build, and served live by a dev middleware so it's viewable in
+ * `astro dev` too. A middleware rather than an endpoint because `trailingSlash: 'always'`
+ * forces a slash on parameterized routes and the /components/[...slug] catch-all would
+ * shadow one. Content from src/lib/llms.ts.
+ */
+function llmsTxtIntegration() {
+  let base = '/';
+  const packagesDir = resolve(root, 'packages');
+  const baseSlash = () => (base.endsWith('/') ? base : `${base}/`);
+
+  return {
+    name: 'llms-txt',
+    hooks: {
+      'astro:config:done': ({ config }) => {
+        base = config.base;
+      },
+      'astro:server:setup': ({ server }) => {
+        server.middlewares.use((req, res, next) => {
+          const path = (req.url || '').split('?')[0];
+          const b = baseSlash();
+          const rel = path.startsWith(b) ? path.slice(b.length) : path.replace(/^\//, '');
+          const send = text => {
+            res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+            res.end(text);
+          };
+          if (rel === 'llms.txt') return send(renderIndex(collectPackages(packagesDir), b));
+          const m = rel.match(/^components\/([^/]+)\/llms\.txt$/);
+          if (m) {
+            const pkg = collectPackages(packagesDir).find(p => p.slug === m[1]);
+            if (pkg) return send(renderPackage(pkg, b));
+          }
+          return next();
+        });
+      },
+      'astro:build:done': ({ dir: outDir }) => {
+        const count = generateLlmsFiles({ outDir: fileURLToPath(outDir), base, root });
+        // eslint-disable-next-line no-console
+        console.log(`[llms-txt] wrote /llms.txt + ${count} package files`);
+      },
+    },
+  };
+}
 
 /** Vite aliases: @ds/* → package source so SCSS modules resolve in docs dev/build. */
 function dsWorkspaceSourceAliases() {
@@ -49,6 +95,7 @@ export default defineConfig({
     }),
     // Pagefind index is expensive (~2-4s). Skip it for local fast builds via SKIP_PAGEFIND=1.
     ...(process.env.SKIP_PAGEFIND ? [] : [pagefind()]),
+    llmsTxtIntegration(),
   ],
   vite: {
     // @snack-uikit/* ESM пакеты re-exports `./components` (директория без extensions).

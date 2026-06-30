@@ -3,49 +3,44 @@ import DocsLayout from '../layouts/DocsLayout.astro'
 import { getCollection } from 'astro:content'
 import { withBase } from '../lib/base-url'
 import { buildNav } from '../lib/discovery'
-import { DOMAINS } from '../config/domains'
 import { Counter } from '@ds/counter'
+import { LlmsLink } from '../components/LlmsLink'
+import { HomeCard } from '../components/HomeCard'
 import '../styles/home.scss'
 
-const PATTERNS_DESCRIPTION = 'Гайды и паттерны проектирования: как собирать сценарии из компонентов, контрибьютить, стандарты и процессы.'
-
-const descByDomain = new Map<string, string | undefined>(DOMAINS.map((d) => [d.id, d.description]))
-descByDomain.set('patterns', PATTERNS_DESCRIPTION)
-
-const PREVIEW_COUNT = 8
-
 const nav = await buildNav()
-const componentGroups = nav.filter((g) => g.id !== 'patterns')
-const patterns = await getCollection('patterns')
 
 type Card = { title: string; href: string; description?: string }
+type Subsection = { id: string; label?: string; cards: Card[] }
+type Section = { id: string; label: string; description?: string; subsections: Subsection[] }
 
+// Описания карточек — из контента (frontmatter), не из навигации.
 const componentEntries = await getCollection('components')
 const descByHref = new Map<string, string | undefined>()
 for (const e of componentEntries) {
   descByHref.set(withBase(`/components/${e.id}`), e.data.description)
 }
 
-const componentSections = componentGroups.map((g) => ({
-  id: g.id,
-  label: g.label,
-  cards: g.items.map<Card>((item) => ({
-    title: item.title,
-    href: item.href,
-    description: descByHref.get(item.href),
-  })),
-}))
+const toCard = (item: { title: string; href: string }): Card => ({
+  title: item.title,
+  href: item.href,
+  description: descByHref.get(item.href),
+})
 
-const patternsCards: Card[] = patterns.map((p) => ({
-  title: p.data.title,
-  href: withBase(`/patterns/${p.id}`),
-  description: p.data.description,
-}))
+// BASE_URL напрямую, без withBase — у файла не должно быть хвостового слеша.
+const llmsIndexHref = `${import.meta.env.BASE_URL}llms.txt`
 
-const allSections: { id: string; label: string; cards: Card[] }[] = [
-  ...componentSections,
-  { id: 'patterns', label: 'Patterns', cards: patternsCards },
-].filter((s) => s.cards.length > 0)
+// Каждый доменный блок — секция; домены с категориями дают под-секции, плоские — одну.
+const sections: Section[] = nav
+  .map((g) => ({
+    id: g.id,
+    label: g.label,
+    description: g.description,
+    subsections: g.categories
+      ? g.categories.map((c) => ({ id: c.id, label: c.label, cards: c.items.map(toCard) }))
+      : [{ id: g.id, cards: (g.items ?? []).map(toCard) }],
+  }))
+  .filter((s) => s.subsections.some((ss) => ss.cards.length > 0))
 ---
 
 <DocsLayout title="Home" description="Design System components and patterns.">
@@ -56,62 +51,66 @@ const allSections: { id: string; label: string; cards: Card[] }[] = [
         A collection of React components, design patterns, and guidelines
         for building consistent interfaces.
       </p>
+      <div class="hero-llms">
+        <LlmsLink href={llmsIndexHref} label="llms.txt — индекс для LLM" />
+      </div>
     </header>
 
-    {allSections.map((section) => {
-      const hasMore = section.cards.length > PREVIEW_COUNT
-      const previewCards = section.cards.slice(0, PREVIEW_COUNT)
-      const restCards = hasMore ? section.cards.slice(PREVIEW_COUNT) : []
+    {sections.map((section) => {
+      const total = section.subsections.reduce((n, ss) => n + ss.cards.length, 0)
       return (
         <section class="section" data-section-id={section.id}>
           <header class="section-head">
             <div class="section-head-row">
               <h2>{section.label}</h2>
-              <Counter value={section.cards.length} appearance='neutral' size='s' color='decor' />
+              <Counter value={total} appearance='neutral' size='s' color='decor' />
             </div>
-            {descByDomain.get(section.id) && (
-              <p class="section-desc">{descByDomain.get(section.id)}</p>
+            {section.description && (
+              <p class="section-desc">{section.description}</p>
             )}
           </header>
 
-          <ul class="card-grid" role="list">
-            {previewCards.map((pkg) => (
-              <li>
-                <a href={pkg.href} class="card">
-                  <span class="card-title">{pkg.title}</span>
-                  {pkg.description && (
-                    <span class="card-desc">{pkg.description}</span>
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {hasMore && (
-            <details class="more">
-              <summary class="more-toggle">
-                <span class="more-label-show">Показать ещё {restCards.length}</span>
-                <span class="more-label-hide">Свернуть</span>
-                <svg class="more-icon" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
-                  <path d="M2.5 4 L6 8 L9.5 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </summary>
+          {section.subsections.map((ss) => (
+            <Fragment>
+              {ss.label && (
+                <div class="subsection-head">
+                  <h3>{ss.label}</h3>
+                  <Counter value={ss.cards.length} appearance='neutral' size='xs' color='decor' />
+                </div>
+              )}
               <ul class="card-grid" role="list">
-                {restCards.map((pkg) => (
+                {ss.cards.map((pkg) => (
                   <li>
-                    <a href={pkg.href} class="card">
-                      <span class="card-title">{pkg.title}</span>
-                      {pkg.description && (
-                        <span class="card-desc">{pkg.description}</span>
-                      )}
-                    </a>
+                    <HomeCard href={pkg.href} title={pkg.title} description={pkg.description} />
                   </li>
                 ))}
               </ul>
-            </details>
-          )}
+            </Fragment>
+          ))}
         </section>
       )
     })}
   </div>
 </DocsLayout>
+
+<style lang="scss">
+  @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+  .subsection-head {
+    display: flex;
+    align-items: center;
+    gap: base.$sn-primitive-dimension-8;
+    margin: base.$sn-density-spacing-interval-l 0 base.$sn-density-spacing-interval-s;
+
+    h3 {
+      margin: 0;
+      font: inherit;
+      font-weight: 600;
+      color: base.$sn-theme-color-neutral-text;
+    }
+  }
+
+  .hero-llms {
+    margin: base.$sn-density-spacing-interval-m 0 0;
+  }
+</style>

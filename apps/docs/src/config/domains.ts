@@ -17,9 +17,11 @@ export type Domain = {
 
 export const DOMAINS: readonly Domain[] = [
   {
+    // id остаётся 'components' — на нём завязаны префикс-резолв, роутинг /components/* и
+    // ключи категорий; меняется только видимое имя блока.
     id: 'components',
-    label: 'Components',
-    storybookLabel: 'Components',
+    label: 'Snack',
+    storybookLabel: 'Snack',
     description:
       'Базовые UI-кирпичики дизайн-системы: кнопки, поля, навигация, оверлеи. Подходят для любого продукта поверх @ds.',
     isDefault: true,

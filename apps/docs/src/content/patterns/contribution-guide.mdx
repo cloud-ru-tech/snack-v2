@@ -254,9 +254,15 @@ Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / p
 | `uikit-product-*` | Uikit Product               |
 | `ai-*`            | AI                          |
 | `admin-*`         | Admin                       |
-| (остальное)       | Components                  |
+| (остальное)       | Snack                       |
 
 Резолвер `resolveDomain(pkg)` идёт по списку `DOMAINS` сверху вниз, первое попадание по `prefix` выигрывает. Порядок в массиве задаёт порядок секций на главной и групп в сайдбаре. Чтобы завести новый домен — добавить блок `{ id, label, storybookLabel, description, prefix }` и подобрать правильный префикс пакета. `description` показывается абзацем под заголовком секции на главной и внутри `QuestionTooltip` рядом с заголовком группы в сайдбаре.
+
+### Категории внутри домена
+
+Внутри домена пакеты разбиты на категории — под-группы сайдбара, секции главной и разделы `/llms.txt`: домен → категория → пакет. Категория задаётся вручную в [`apps/docs/src/config/categories.ts`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/apps/docs/src/config/categories.ts) (`CATEGORIES_BY_DOMAIN`); домен без записи рендерит пакеты плоско.
+
+Добавляя пакет в домен с категориями (Snack, Uikit Product, AI), впишите его имя (без `@ds/`-скоупа) в `packages` подходящей категории. Если категории нет — заведите новую запись (`id` / `label` / `description` / `packages`). Не отнесённый к категории пакет попадает в «Other» (build-warn). Порядок категорий в массиве = порядок в сайдбаре и на главной.
 
 ### Canvas, PropsTable, StorybookEmbed, FigmaEmbed
 

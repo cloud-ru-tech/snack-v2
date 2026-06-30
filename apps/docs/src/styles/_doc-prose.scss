@@ -21,7 +21,8 @@ $island-exclude: ':not(astro-island *)';
 .doc {
   overflow-x: clip;
   min-width: 0;
-  padding: base.$sn-density-spacing-interval-l base.$sn-primitive-dimension-48 base.$sn-primitive-dimension-64;
+  // Горизонталь общая с крошками (выравнивание); см. _layout.scss.
+  padding: l.$docs-content-pad-top l.$docs-content-pad-x l.$docs-content-pad-bottom;
 }
 
 @layer docs-prose {

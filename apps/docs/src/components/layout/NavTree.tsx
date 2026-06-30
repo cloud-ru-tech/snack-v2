@@ -15,21 +15,38 @@ export type NavItemData = {
   children?: NavItemData[];
 };
 
+export type NavCategoryData = {
+  id: string;
+  label: string;
+  description?: string;
+  items: NavItemData[];
+};
+
 export type NavGroupData = {
   id: string;
   label: string;
-  items: NavItemData[];
+  /** Domain block with a category sub-level. */
+  categories?: NavCategoryData[];
+  /** Flat domain / patterns — packages directly. */
+  items?: NavItemData[];
 };
 
 type NavTreeProps = {
   nav: NavGroupData[];
-  /** Описание группы (для QuestionTooltip), ключ — id группы. */
+  /** Описание группы/категории (для QuestionTooltip). Ключ — id группы или `${groupId}:${catId}`. */
   descriptions: Record<string, string>;
   /** Текущий путь (Astro.url.pathname) для корректного SSR-выделения до гидрации. */
   currentPath: string;
 };
 
 const GROUP_PREFIX = 'group:';
+const CAT_PREFIX = 'cat:';
+
+/** Tree-node id of a category within a domain block. */
+const catNodeId = (groupId: string, catId: string) => `${CAT_PREFIX}${groupId}:${catId}`;
+/** Plain items of a group (flat or flattened from categories). */
+const flatItems = (group: NavGroupData): NavItemData[] =>
+  group.categories ? group.categories.flatMap(c => c.items) : (group.items ?? []);
 
 function normPath(p: string): string {
   const t = p.replace(/\/+$/, '');
@@ -53,19 +70,28 @@ function handleLinkClick(href: string) {
   };
 }
 
-/** Плоская карта: нормализованный href узла → путь раскрытия [groupId, packageId?]. */
+/**
+ * Плоская карта: нормализованный href узла → путь раскрытия
+ * [groupId, categoryId?, packageId?]. Категория-уровень присутствует у доменов
+ * с категориями; на корневой странице пакета раскрываем и сам пакет (суб-страницы).
+ */
 function buildExpandIndex(nav: NavGroupData[]): Map<string, string[]> {
   const index = new Map<string, string[]>();
+  const addItem = (item: NavItemData, ancestors: string[]) => {
+    index.set(normPath(item.href), item.children?.length ? [...ancestors, item.href] : [...ancestors]);
+    if (item.children) {
+      for (const child of item.children) index.set(normPath(child.href), [...ancestors, item.href]);
+    }
+  };
   for (const group of nav) {
     const groupNodeId = GROUP_PREFIX + group.id;
-    for (const item of group.items) {
-      // На корневой странице пакета раскрываем и сам пакет — показать суб-страницы.
-      index.set(normPath(item.href), item.children?.length ? [groupNodeId, item.href] : [groupNodeId]);
-      if (item.children) {
-        for (const child of item.children) {
-          index.set(normPath(child.href), [groupNodeId, item.href]);
-        }
+    if (group.categories) {
+      for (const cat of group.categories) {
+        const node = catNodeId(group.id, cat.id);
+        for (const item of cat.items) addItem(item, [groupNodeId, node]);
       }
+    } else {
+      for (const item of group.items ?? []) addItem(item, [groupNodeId]);
     }
   }
   return index;
@@ -89,26 +115,36 @@ function GroupLabel({ label, count, desc }: GroupLabelProps) {
   );
 }
 
+function itemNode(item: NavItemData): TreeNode {
+  return item.children?.length
+    ? {
+        id: item.href,
+        title: item.title,
+        href: item.href,
+        onClick: handleLinkClick(item.href),
+        nested: item.children.map<TreeNode>(child => ({
+          id: child.href,
+          title: child.title,
+          href: child.href,
+          onClick: handleLinkClick(child.href),
+        })),
+      }
+    : { id: item.href, title: item.title, href: item.href, onClick: handleLinkClick(item.href) };
+}
+
 function buildTreeData(nav: NavGroupData[], descriptions: Record<string, string>): TreeData {
   return nav.map<TreeNode>(group => ({
     id: GROUP_PREFIX + group.id,
-    title: () => <GroupLabel label={group.label} count={group.items.length} desc={descriptions[group.id]} />,
-    nested: group.items.map<TreeNode>(item =>
-      item.children?.length
-        ? {
-            id: item.href,
-            title: item.title,
-            href: item.href,
-            onClick: handleLinkClick(item.href),
-            nested: item.children.map<TreeNode>(child => ({
-              id: child.href,
-              title: child.title,
-              href: child.href,
-              onClick: handleLinkClick(child.href),
-            })),
-          }
-        : { id: item.href, title: item.title, href: item.href, onClick: handleLinkClick(item.href) },
-    ),
+    title: () => <GroupLabel label={group.label} count={flatItems(group).length} desc={descriptions[group.id]} />,
+    nested: group.categories
+      ? group.categories.map<TreeNode>(cat => ({
+          id: catNodeId(group.id, cat.id),
+          title: () => (
+            <GroupLabel label={cat.label} count={cat.items.length} desc={descriptions[`${group.id}:${cat.id}`]} />
+          ),
+          nested: cat.items.map<TreeNode>(itemNode),
+        }))
+      : (group.items ?? []).map<TreeNode>(itemNode),
   }));
 }
 
@@ -120,7 +156,7 @@ export function NavTree({ nav, descriptions, currentPath }: NavTreeProps) {
     const m = new Map<string, string>();
     for (const [norm] of expandIndex) m.set(norm, norm);
     for (const group of nav) {
-      for (const item of group.items) {
+      for (const item of flatItems(group)) {
         m.set(normPath(item.href), item.href);
         item.children?.forEach(c => m.set(normPath(c.href), c.href));
       }

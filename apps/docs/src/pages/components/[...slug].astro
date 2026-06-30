@@ -6,6 +6,8 @@ import { flatPages } from '../../lib/discovery'
 import { resolveDomain } from '../../config/domains'
 import { PageBreadcrumbs } from '../../components/layout/PageBreadcrumbs'
 import { TocTree } from '../../components/layout/TocTree'
+import { LlmsLink } from '../../components/LlmsLink'
+import { Skeleton } from '@ds/skeleton'
 import PageNav from '../../components/layout/PageNav.astro'
 import '../../styles/doc-page.scss'
 
@@ -70,13 +72,29 @@ const currentHref = withBase(`/components/${entry.id}`)
 const currentIndex = pages.findIndex((p) => p.href === currentHref)
 const prev = currentIndex > 0 ? pages[currentIndex - 1] : null
 const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
+
+// На корне пакета (не суб-странице). BASE_URL напрямую: у .txt нет хвостового слеша.
+const llmsHref = `${import.meta.env.BASE_URL}components/${pkg}/llms.txt`
 ---
 
 <DocsLayout title={entry.data.title} description={entry.data.description}>
   <div class="page">
-    <!-- Breadcrumb -->
+    <!-- Breadcrumb + llms.txt link -->
     <div class="breadcrumb">
-      <PageBreadcrumbs client:only="react" items={crumbs} />
+      <PageBreadcrumbs client:only="react" items={crumbs}>
+        <!-- SSR-fallback крошек до гидрации острова. -->
+        <div slot="fallback" class="breadcrumb-skeleton" aria-hidden="true">
+          {crumbs.map((_, i) => (
+            <Fragment>
+              {i > 0 && <span class="breadcrumb-skeleton-sep">›</span>}
+              <Skeleton loading height={12} borderRadius={4} width={i === crumbs.length - 1 ? 72 : 44} />
+            </Fragment>
+          ))}
+        </div>
+      </PageBreadcrumbs>
+      <span class="llms-action">
+        <LlmsLink href={llmsHref} />
+      </span>
     </div>
 
     <!-- Two-column: content + TOC -->
@@ -94,8 +112,14 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
             <div slot="fallback" class="toc-skeleton" aria-hidden="true">
               {tocTree.map((h) => (
                 <Fragment>
-                  <span class="toc-skeleton-row" data-kind="top" />
-                  {h.children.map(() => <span class="toc-skeleton-row" data-kind="sub" />)}
+                  <span class="toc-skeleton-row" data-kind="top">
+                    <Skeleton loading height={12} borderRadius={4} width="85%" />
+                  </span>
+                  {h.children.map(() => (
+                    <span class="toc-skeleton-row" data-kind="sub">
+                      <Skeleton loading height={12} borderRadius={4} width="60%" />
+                    </span>
+                  ))}
                 </Fragment>
               ))}
             </div>
@@ -107,3 +131,10 @@ const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null
     <PageNav prev={prev} next={next} />
   </div>
 </DocsLayout>
+
+<style>
+  /* Кнопка llms.txt — инлайн сразу после крошек (а не отжата к правому краю над TOC). */
+  .llms-action {
+    flex-shrink: 0;
+  }
+</style>

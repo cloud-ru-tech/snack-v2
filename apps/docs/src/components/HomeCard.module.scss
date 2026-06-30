@@ -1,0 +1,32 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Двойной класс — поднять специфичность над корневым правилом @ds/card (оно
+// сбрасывает padding в 0): в прод-бандле порядок CSS-модулей недетерминирован.
+.card.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-s;
+
+  min-height: 96px;
+  padding: base.$sn-density-spacing-interval-m;
+
+  text-decoration: none;
+}
+
+.title {
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-label-l);
+}
+
+.desc {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  @include base.composite-var(base.$sn-regular-body-s);
+}

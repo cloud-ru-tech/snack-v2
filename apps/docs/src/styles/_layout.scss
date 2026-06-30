@@ -1,6 +1,15 @@
 // Layout constants — docs chrome sizes that don't map to @sbercloud/figma-variables.
 // All in px. Any value representable by a package spacing/size token should use the token directly, not a constant here.
 
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Отступ контента, общий для крошек и тела статьи (горизонталь — в одном месте,
+// чтобы они были выровнены). Значения — ссылки на токены-примитивы.
+$docs-content-pad-x: base.$sn-primitive-dimension-32;
+$docs-content-pad-x-mobile: base.$sn-density-spacing-interval-l;
+$docs-content-pad-top: base.$sn-density-spacing-interval-m;
+$docs-content-pad-bottom: base.$sn-primitive-dimension-32;
+
 // Chrome heights
 $docs-header-height: 52px;
 $docs-breadcrumb-height: 44px;
