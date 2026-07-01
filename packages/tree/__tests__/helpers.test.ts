@@ -1,3 +1,4 @@
+import { createHierarchicalSelectionHandlers } from '@ds/utils';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -169,11 +170,14 @@ describe('checkNestedNodesSelection', () => {
 });
 
 describe('lookupTreeForSelectedNodes', () => {
+  const { toggleSelection } = createHierarchicalSelectionHandlers({ includeParentsInValue: true });
+
   it('adds leaf id when not selected', () => {
     expect(
       lookupTreeForSelectedNodes({
         node: { id: 'apple', nested: undefined },
         selectedNodes: [],
+        toggleSelection,
       }),
     ).toEqual(['apple']);
   });
@@ -183,6 +187,7 @@ describe('lookupTreeForSelectedNodes', () => {
       lookupTreeForSelectedNodes({
         node: { id: 'apple', nested: undefined },
         selectedNodes: ['apple'],
+        toggleSelection,
       }),
     ).toEqual([]);
   });
@@ -192,6 +197,7 @@ describe('lookupTreeForSelectedNodes', () => {
     const result = lookupTreeForSelectedNodes({
       node: { id: parent.id, nested: parent.nested },
       selectedNodes: [],
+      toggleSelection,
     });
     expect(result.sort()).toEqual(['apple', 'banana', 'citrus', 'fruits', 'orange']);
   });
@@ -201,6 +207,7 @@ describe('lookupTreeForSelectedNodes', () => {
     const result = lookupTreeForSelectedNodes({
       node: { id: parent.id, nested: parent.nested },
       selectedNodes: ['apple', 'banana', 'citrus', 'orange', 'fruits', 'bread'],
+      toggleSelection,
     });
     expect(result.sort()).toEqual(['bread']);
   });
@@ -212,6 +219,7 @@ describe('lookupTreeForSelectedNodes', () => {
       node: { id: 'banana', nested: undefined },
       selectedNodes: ['apple', 'citrus', 'orange'],
       parentNode: parentNode,
+      toggleSelection,
     });
     expect(result).toContain('banana');
     expect(result).toContain('fruits');
@@ -224,6 +232,7 @@ describe('lookupTreeForSelectedNodes', () => {
       node: { id: 'apple', nested: undefined },
       selectedNodes: ['apple', 'banana', 'citrus', 'orange', 'fruits'],
       parentNode,
+      toggleSelection,
     });
     expect(result).not.toContain('apple');
     expect(result).not.toContain('fruits');

@@ -1,4 +1,5 @@
 export * from './getColumnId';
+export * from './rowSelectionState';
 export * from './tryParseLocalStorage';
 export * from './renderMasterSelectionToggle';
 export * from './renderColumnsSettingsOverflowButton';

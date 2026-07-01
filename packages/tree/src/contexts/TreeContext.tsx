@@ -1,3 +1,4 @@
+import { HierarchicalSelectionHandlers, useHierarchicalSelection } from '@ds/utils';
 import { createContext, Dispatch, ReactNode, SetStateAction, useCallback, useContext, useMemo, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
@@ -27,6 +28,8 @@ type TreeContextProps = Omit<
   resetFocusPosition(): void;
   setFocusIndex: Dispatch<SetStateAction<number | undefined>>;
   focusableNodeIds: TreeNodeId[];
+  getSelectionState: HierarchicalSelectionHandlers['getSelectionState'];
+  toggleSelection: HierarchicalSelectionHandlers['toggleSelection'];
 };
 
 type TreeContextProviderProps = {
@@ -48,6 +51,8 @@ export const TreeContext = createContext<TreeContextProps>({
   isMultiSelect: false,
   isSingleSelect: false,
   isSelectable: false,
+  getSelectionState: () => ({ checked: false, indeterminate: false }),
+  toggleSelection: ({ selectedIds }) => selectedIds,
 });
 
 export function TreeContextProvider({ children, value }: TreeContextProviderProps) {
@@ -63,6 +68,8 @@ export function TreeContextProvider({ children, value }: TreeContextProviderProp
   const isMultiSelect = selectionMode === SELECTION_MODE.Multi;
   const isSingleSelect = selectionMode === SELECTION_MODE.Single;
   const isSelectable = Boolean(selectionMode);
+
+  const { getSelectionState, toggleSelection } = useHierarchicalSelection({ includeParentsInValue: true });
 
   const [expandedNodes, onExpandHandler] = useUncontrolledProp<TreeNodeId[], NonNullable<TreeBaseProps['onExpand']>>(
     value.expandedNodes,
@@ -93,12 +100,17 @@ export function TreeContextProvider({ children, value }: TreeContextProviderProp
       }
 
       if (Array.isArray(selectedNodes)) {
-        const updatedSelectedNodes = lookupTreeForSelectedNodes({ node, parentNode, selectedNodes });
+        const updatedSelectedNodes = lookupTreeForSelectedNodes({
+          node,
+          parentNode,
+          selectedNodes,
+          toggleSelection,
+        });
 
         onSelectHandler(updatedSelectedNodes, node);
       }
     },
-    [isSingleSelect, onSelectHandler, selectedNodes, isSelectable],
+    [isSingleSelect, onSelectHandler, selectedNodes, isSelectable, toggleSelection],
   );
 
   const focusableNodeIds = useMemo(() => {
@@ -166,6 +178,8 @@ export function TreeContextProvider({ children, value }: TreeContextProviderProp
         resetFocusPosition,
         setFocusIndex,
         focusableNodeIds,
+        getSelectionState,
+        toggleSelection,
       }}
     >
       {children}

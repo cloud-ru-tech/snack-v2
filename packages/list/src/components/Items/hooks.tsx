@@ -1,3 +1,4 @@
+import { useHierarchicalSelection } from '@ds/utils';
 import { createRef, RefObject, useMemo } from 'react';
 
 import { ITEM_PREFIXES } from '../../constants';
@@ -130,6 +131,7 @@ type UseGroupItemSelectionProps = {
 export function useGroupItemSelection({ id, allChildIds }: UseGroupItemSelectionProps) {
   const selection = useSelectionContext();
   const { value, isSelectionMultiple } = selection;
+  const { getSelectionState, toggleSelection } = useHierarchicalSelection({ includeParentsInValue: false });
   // group-select работает только в multiple-режиме — там setValue оперирует ItemId[].
   const setMultipleValue = selection.isSelectionMultiple ? selection.setValue : undefined;
   const { flattenItems } = useNewListContext();
@@ -154,25 +156,35 @@ export function useGroupItemSelection({ id, allChildIds }: UseGroupItemSelection
     [baseChildIds, flattenItems],
   );
 
-  const checked = isSelectionMultiple
-    ? value && Boolean(value.length) && baseChildIds.every(childId => value?.includes(childId))
-    : undefined;
+  const selectionState = useMemo(
+    () =>
+      isSelectionMultiple
+        ? getSelectionState({
+            nodeId: id,
+            childIds: baseChildIds,
+            selectedIds: value ?? [],
+          })
+        : undefined,
+    [baseChildIds, getSelectionState, id, isSelectionMultiple, value],
+  );
 
-  const allEnabledChecked = isSelectionMultiple
-    ? value && Boolean(value.length) && enableChildIds.every(childId => value?.includes(childId))
-    : undefined;
-
-  const indeterminate = isSelectionMultiple
-    ? !checked && baseChildIds.some(childId => value?.includes(childId))
-    : baseChildIds.includes(value ?? '');
+  const checked = selectionState?.checked;
+  const indeterminate = isSelectionMultiple ? selectionState?.indeterminate : baseChildIds.includes(value ?? '');
 
   const handleOnSelect = () => {
-    if (checked || allEnabledChecked) {
-      setMultipleValue?.(prev => (prev ?? []).filter(itemId => itemId !== id && !enableChildIds.includes(itemId)));
+    if (!isSelectionMultiple) {
       return;
     }
 
-    setMultipleValue?.(prev => Array.from(new Set([...(prev ?? []), ...enableChildIds])));
+    setMultipleValue?.(prev =>
+      toggleSelection({
+        nodeId: id,
+        descendantIds: baseChildIds,
+        selectableDescendantIds: enableChildIds,
+        childIds: baseChildIds,
+        selectedIds: prev ?? [],
+      }),
+    );
   };
 
   return { checked, indeterminate, handleOnSelect };

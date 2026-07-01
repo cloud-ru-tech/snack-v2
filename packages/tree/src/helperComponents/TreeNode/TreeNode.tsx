@@ -9,7 +9,7 @@ import { FocusEvent, forwardRef, KeyboardEventHandler, MouseEvent, useEffect, us
 
 import { TEST_IDS } from '../../constants';
 import { useTreeContext } from '../../contexts/TreeContext';
-import { checkNestedNodesSelection } from '../../helpers';
+import { checkNestedNodesSelection, findAllChildNodeIds } from '../../helpers';
 import { TreeNodeProps } from '../../types';
 import { TreeLine } from '../TreeLine';
 import { TreeNodeActions, TreeNodeHref } from './components';
@@ -61,6 +61,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
       showIcons,
       size = 'm',
       titleMaxLines = 1,
+      getSelectionState,
     } = useTreeContext();
 
     const [isDroplistOpen, setDroplistOpen] = useState(false);
@@ -73,14 +74,40 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
     const isExpandable = Array.isArray(nested);
     const isExpanded = isExpandable ? expandedNodes?.includes(id) : undefined;
 
+    const selectedIds = useMemo(() => {
+      if (Array.isArray(selected)) {
+        return selected;
+      }
+
+      if (selected) {
+        return [selected];
+      }
+
+      return [];
+    }, [selected]);
+
+    const descendantIds = useMemo(() => (nested?.length ? findAllChildNodeIds(nested) : []), [nested]);
+
     const nestedNodesSelection = useMemo(() => {
       if (!nested || !selected) return undefined;
 
-      return checkNestedNodesSelection(nested, Array.isArray(selected) ? selected : [selected]);
-    }, [nested, selected]);
+      return checkNestedNodesSelection(nested, selectedIds);
+    }, [nested, selected, selectedIds]);
 
-    const isSelected =
-      (Array.isArray(selected) ? selected.includes(id) || nestedNodesSelection?.allSelected : selected === id) || false;
+    const multiSelectState = useMemo(() => {
+      if (!isMultiSelect) {
+        return { checked: false, indeterminate: false };
+      }
+
+      return getSelectionState({
+        nodeId: id,
+        childIds: descendantIds,
+        selectedIds,
+      });
+    }, [descendantIds, getSelectionState, id, isMultiSelect, selectedIds]);
+
+    const isSelected = isMultiSelect ? multiSelectState.checked : selected === id || false;
+    const isIndeterminate = isMultiSelect && multiSelectState.indeterminate;
 
     const isFocused = focusedNodeId === id;
 
@@ -298,7 +325,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
                   size={CONTROL_SIZE_BY_TREE_SIZE[size]}
                   disabled={disabled}
                   checked={isSelected}
-                  indeterminate={!isSelected && nestedNodesSelection?.someSelected}
+                  indeterminate={isIndeterminate}
                   onChange={handleSelect}
                   onClick={stopPropagationClick}
                   data-test-id={TEST_IDS.checkbox}

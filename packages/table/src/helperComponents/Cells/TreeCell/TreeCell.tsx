@@ -2,15 +2,21 @@ import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { ChevronRightSVG, FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons';
 import { Checkbox, Radio } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';
+import { useHierarchicalSelection } from '@ds/utils';
 import { CellContext, HeaderContext } from '@tanstack/react-table';
 import { MouseEvent, ReactNode, useCallback, useEffect, useMemo } from 'react';
 
 import { RowAppearance } from '../../../components/types';
 import { COLUMN_PIN_POSITION, TEST_IDS } from '../../../constants';
 import { useCellResize } from '../../../contexts';
-import { renderMasterSelectionToggle } from '../../../helpers';
+import {
+  renderMasterSelectionToggle,
+  rowSelectionStateToSelectedIds,
+  selectedIdsToRowSelectionState,
+} from '../../../helpers';
 import { ColumnDefinition } from '../../../types';
 import { TREE_CELL_ID } from './constants';
+import { getRowHierarchicalSelectionContext } from './rowHierarchicalSelection';
 import styles from './styles.module.scss';
 import { TreeLine } from './TreeLine';
 
@@ -150,23 +156,40 @@ export function getTreeColumnDef<TData>({
   isAllRowsMode,
 }: TreeColDefProps<TData>): ColumnDefinition<TData> {
   const cell = function TreeCell(ctx: CellContext<TData, unknown>) {
-    const { row, cell } = ctx;
+    const { row, cell, table } = ctx;
 
     const isExpanded = row.getIsExpanded();
     const isExpandable = row.getCanExpand();
     const isMultiSelect = row.getCanMultiSelect();
     const parent = row.getParentRow();
     const isRowsSelectionEnabled = row.getCanSelect();
-    const isAllSubRowsSelected = row.getIsAllSubRowsSelected();
-    const isSomeSubRowSelected = row.getIsSomeSelected();
     const isRowSelected = row.getIsSelected();
     const isLastChildRow = parent?.subRows.at(-1)?.id === row.id;
     const depth = row.depth;
     const shouldExtendHorizontalLine = Boolean(parent) && !isExpandable;
+    const rowSelection = table.getState().rowSelection;
 
     const { ref } = useCellResize(TREE_CELL_ID, cell);
 
+    const { getSelectionState, toggleSelection, checkGroupSelection } = useHierarchicalSelection({
+      includeParentsInValue: true,
+    });
+
     const isToggleHidden = !isRowsSelectionEnabled && rowSelectionAppearance === RowAppearance.HideToggler;
+
+    const hierarchicalSelectionContext = useMemo(() => getRowHierarchicalSelectionContext(row), [row]);
+
+    const selectedIds = useMemo(() => rowSelectionStateToSelectedIds(rowSelection), [rowSelection]);
+
+    const { checked: isCheckboxChecked, indeterminate: isCheckboxIndeterminate } = useMemo(
+      () =>
+        getSelectionState({
+          nodeId: row.id,
+          childIds: hierarchicalSelectionContext.descendantIds,
+          selectedIds,
+        }),
+      [getSelectionState, hierarchicalSelectionContext.descendantIds, row.id, selectedIds],
+    );
 
     const linesVisibilityByIndex = useMemo(() => {
       const parents: (typeof row | undefined)[] = [];
@@ -203,42 +226,49 @@ export function getTreeColumnDef<TData>({
         return;
       }
 
-      if (isAllSubRowsSelected && !isRowSelected) {
-        row.toggleSelected(true, { selectChildren: false });
+      const { allSelected } = checkGroupSelection(hierarchicalSelectionContext.descendantIds, selectedIds);
+      const parentInValue = selectedIds.includes(row.id);
+
+      if (allSelected && !parentInValue) {
+        table.setRowSelection(selectedIdsToRowSelectionState([...selectedIds, row.id]));
         return;
       }
 
-      // TODO: сделать одинаково в дереве, таблице и листе
-      if (isRowSelected && !isAllSubRowsSelected) {
-        row.toggleSelected(false, { selectChildren: false });
-        return;
+      if (parentInValue && !allSelected) {
+        table.setRowSelection(selectedIdsToRowSelectionState(selectedIds.filter(id => id !== row.id)));
       }
     }, [
-      isAllSubRowsSelected,
-      isSomeSubRowSelected,
-      row,
-      isRowSelected,
-      isMultiSelect,
+      checkGroupSelection,
+      hierarchicalSelectionContext.descendantIds,
       isExpandable,
+      isMultiSelect,
       isRowsSelectionEnabled,
+      row.id,
+      selectedIds,
+      table,
     ]);
 
     const toggleClickHandler = useCallback(
       (event: MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
 
-        if (enableSelection) {
-          if (isMultiSelect) {
-            const shouldToggleOn = !isAllSubRowsSelected && !isRowSelected;
-            const selectChildren = isAllSubRowsSelected || isSomeSubRowSelected || shouldToggleOn;
-            row.toggleSelected(shouldToggleOn, { selectChildren });
-            return;
-          }
-
-          row.toggleSelected(!isRowSelected, { selectChildren: false });
+        if (!enableSelection) {
+          return;
         }
+
+        if (isMultiSelect) {
+          const nextSelectedIds = toggleSelection({
+            ...hierarchicalSelectionContext,
+            selectedIds,
+          });
+
+          table.setRowSelection(selectedIdsToRowSelectionState(nextSelectedIds));
+          return;
+        }
+
+        row.toggleSelected(!isRowSelected, { selectChildren: false });
       },
-      [isMultiSelect, row, isAllSubRowsSelected, isSomeSubRowSelected, isRowSelected],
+      [hierarchicalSelectionContext, isMultiSelect, isRowSelected, row, selectedIds, table, toggleSelection],
     );
 
     const chevronClickHandler = useCallback(
@@ -283,9 +313,9 @@ export function getTreeColumnDef<TData>({
                 <Checkbox
                   size='xs'
                   disabled={!isRowsSelectionEnabled}
-                  checked={isRowSelected}
+                  checked={isCheckboxChecked}
                   data-test-id={TEST_IDS.tree.checkbox}
-                  indeterminate={isSomeSubRowSelected && !isAllSubRowsSelected}
+                  indeterminate={isCheckboxIndeterminate}
                 />
               ) : (
                 <Radio
@@ -300,7 +330,7 @@ export function getTreeColumnDef<TData>({
           <div
             className={styles.treeNodeContent}
             data-disabled={!isRowsSelectionEnabled || undefined}
-            data-selected={isRowSelected || undefined}
+            data-selected={(isMultiSelect ? isCheckboxChecked : isRowSelected) || undefined}
             data-multiselect={isMultiSelect || undefined}
           >
             <div

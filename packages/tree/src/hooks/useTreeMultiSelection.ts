@@ -1,4 +1,4 @@
-import { useValueControl } from '@ds/utils';
+import { applySelectionDiff, useValueControl } from '@ds/utils';
 import { useCallback } from 'react';
 
 import { PreloadNodeHandler, SelectHandler, TreeNodeProps } from '../types';
@@ -19,20 +19,6 @@ type UseTreeMultiSelectionParams<TTreeNode extends TreeNodeProps> = {
   selected?: string[];
   /** Вызывается при изменении набора выбранных id (controlled-сценарий). */
   onChangeSelected?: (newSelected: string[]) => void;
-};
-
-const getNewSelectedIds = (selectedIds: string[], added: string[], removed: string[]): string[] => {
-  const result = new Set(selectedIds);
-
-  added.forEach(id => {
-    result.add(id);
-  });
-
-  removed.forEach(id => {
-    result.delete(id);
-  });
-
-  return Array.from(result);
 };
 
 /**
@@ -68,7 +54,7 @@ export function useTreeMultiSelection<TTreeNode extends TreeNodeProps>({
       }
 
       const { added, removed } = onSelectProp({ selectedKeys, node: clonedNode, isSelected });
-      const updatedSelectedIds = getNewSelectedIds(selectedIds, added, removed);
+      const updatedSelectedIds = applySelectionDiff(selectedIds, added, removed);
       setSelectedIds(updatedSelectedIds);
     },
     [onDataLoad, onSelectProp, selectedIds, setSelectedIds],
