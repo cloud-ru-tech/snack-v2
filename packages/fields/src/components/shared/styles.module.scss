@@ -185,6 +185,16 @@ $sizes: 's', 'm', 'l';
   flex-direction: column;
   width: 100%;
 
+  // Сегментные слоты `elementBefore` / `elementAfter` — это вертикальные сегменты слева/справа
+  // от поля (между сегментом и инпутом стоит вертикальный `<Divider>`), поэтому при их наличии
+  // раскладка обёртки — строка, а не колонка. Без сегментов column безвреден: in-flow ребёнок
+  // только `fieldContainer` (backgroundWrapper — absolute), и направление оси не влияет.
+  &:has(> .elementWrapperBefore),
+  &:has(> .elementWrapperAfter) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
   @include m.has-state-layer-as-child(#{borderStateLayer});
 
   @each $size in $sizes {

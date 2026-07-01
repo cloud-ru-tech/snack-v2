@@ -2748,6 +2748,11 @@
       "DroplistProps": {
         "kind": "interface",
         "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
           "barHideStrategy": {
             "type": "BarHideStrategy | undefined",
             "required": false,
@@ -2858,6 +2863,11 @@
               "ScrollProps"
             ]
           },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
           "limitedScrollHeight": {
             "type": "boolean | undefined",
             "required": false,
@@ -2893,6 +2903,11 @@
             "typeRefs": [
               "EmptyStateProps"
             ]
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
           },
           "onOpenChange": {
             "type": "((isOpen: boolean) => void) | undefined",
@@ -3010,6 +3025,11 @@
             "typeRefs": [
               "Size"
             ]
+          },
+          "slotAfterHeadline": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
           },
           "trigger": {
             "type": "Trigger | undefined",
@@ -5230,6 +5250,32 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistMobileSlots": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+          },
+          "slotAfterHeadline": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          }
+        },
+        "own": false
+      },
       "EmptyState": {
         "kind": "interface",
         "props": {
@@ -5495,6 +5541,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistMobileSlots",
               "EmptyState",
               "FieldElementDroplistProps",
               "PublicListContextType",

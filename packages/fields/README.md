@@ -707,7 +707,7 @@ export function Affixes() {
 | `className` | `string \| undefined` | — | CSS-класс (передаётся обёрткой `Droplist` / `PopoverPrivate` на триггер) |
 | `data-test-id` | `string \| undefined` | — | data-test-id кнопки-слота |
 | `disabled` | `boolean \| undefined` | — | Деактивировано |
-| `droplist` | `EmptyState` \| `FieldElementDroplistProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist` |
+| `droplist` | `DroplistMobileSlots` \| `EmptyState` \| `FieldElementDroplistProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist` |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `onClick` | `(() => void) \| undefined` | — | Обработчик клика |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер (совпадает с размером поля) |

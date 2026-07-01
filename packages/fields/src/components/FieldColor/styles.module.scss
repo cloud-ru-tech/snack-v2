@@ -62,3 +62,59 @@ $swatch-sizes: (
     border-radius: base.simple-var(colorPicker.$colorPicker, 'anatomy', 'size', $tokenSize, 'previewColor', 'border-radius');
   }
 }
+
+// Mobile: заголовок sheet'а — текущий цвет (hex + круглый swatch).
+.sheetTitle {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.sheetSwatch {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border-radius: 50%;
+
+  background-color: var(--field-color-swatch-color, transparent);
+
+  // Шахматка прозрачности — та же конвенция, что у `.swatch` (литералы 8px/4px намеренные).
+  background-image:
+    linear-gradient(45deg, base.$sn-theme-color-available-borderColor 25%, transparent 25%),
+    linear-gradient(-45deg, base.$sn-theme-color-available-borderColor 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, base.$sn-theme-color-available-borderColor 75%),
+    linear-gradient(-45deg, transparent 75%, base.$sn-theme-color-available-borderColor 75%);
+  background-position:
+    0 0,
+    0 4px,
+    4px -4px,
+    -4px 0;
+  background-size: 8px 8px;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    background-color: var(--field-color-swatch-color, transparent);
+  }
+}
+
+.sheetFooter {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  justify-content: space-between;
+}
+
+// Прозрачная для layout обёртка палитры (несёт только `data-bottom-sheet-no-drag`): не должна влиять
+// на раскладку контента sheet'а / popover'а — `display: contents` убирает её из box-дерева, но не из DOM,
+// поэтому `closest()` drag-движка её по-прежнему находит.
+.pickerHost {
+  display: contents;
+}

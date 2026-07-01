@@ -1,4 +1,8 @@
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import {
@@ -48,5 +52,20 @@ test.describe('FieldColor — visual regression', () => {
     await expect(colorPickerRoot).toBeVisible();
     const png = await screenshotRegion(page, [trigger, colorPickerRoot], 16, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('open-picker.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
+  // Mobile: палитра открывается в BottomSheet (адаптивный @ds/dropdown), а не в popover — это
+  // full-viewport overlay, который не собирается в VisualMatrix. Форсим раскладку тулбар-глобалом
+  // `layoutType='mobile'` + mobile viewport; ColorPicker рендерится внутри sheet'а с компактной
+  // раскладкой (`withColorArea={false}`). Снимок — весь viewport (overlay перекрывает demo-shell).
+  test('open-picker-mobile', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, FIELD_COLOR_STORIES.open, { layoutType: 'mobile' }));
+    await waitForFonts();
+    await expect(getByTestId(COLOR_PICKER_ROOT_TEST_ID)).toBeVisible();
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
   });
 });

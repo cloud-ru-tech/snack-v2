@@ -1,4 +1,7 @@
-import { ColorPicker, ColorPickerProps, RawColor } from '@ds/color-picker';
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { NO_DRAG_ATTRIBUTE } from '@ds/bottom-sheet';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { ColorPicker, colorPickerLocale, ColorPickerProps, RawColor } from '@ds/color-picker';
 import { Dropdown } from '@ds/dropdown';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
 import { InputPrivate, InputPrivateProps, useButtonNavigation, useClearButton } from '@ds/input-private';
@@ -60,6 +63,8 @@ type FieldColorOwnProps = {
    * @default true
    */
   background?: boolean;
+  // Только desktop: `autoApply` действует на desktop-палитре; на mobile значение всегда коммитится
+  // по явному Apply в `BottomSheet` (autoApply форсится в `true`).
 } & Pick<ColorPickerProps, 'withAlpha' | 'autoApply' | 'availableModes'>;
 
 export type FieldColorProps = FieldColorDecoratorProps &
@@ -116,6 +121,8 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
   const [hover, setHover] = useState(false);
   const [openLocal, setOpenLocal] = useState(false);
   const open = openProp ?? openLocal;
+  const { layoutType } = useAdaptiveLayout();
+  const mobile = isMobileLayout(layoutType);
 
   const [value = '', onChange] = useValueControl<string>({
     value: valueProp,
@@ -139,12 +146,13 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
     [openProp, onOpenChange],
   );
 
-  // Фокус в поле при открытии пикера (паритет с легаси `@snack-uikit/fields`).
+  // Фокус в поле при открытии пикера (паритет с легаси `@snack-uikit/fields`). На mobile пикер
+  // открывается в `BottomSheet` поверх поля — фокус на скрытый под ним input не уводим.
   useEffect(() => {
-    if (open) {
+    if (open && !mobile) {
       localRef.current?.focus();
     }
-  }, [open]);
+  }, [open, mobile]);
 
   const onClear = useCallback(() => {
     onChange?.('');
@@ -206,6 +214,27 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
     },
     [onChange],
   );
+
+  const { t } = colorPickerLocale.useTranslations();
+
+  // Mobile: палитра в BottomSheet с явным Apply — правки в черновик, коммит в поле по Apply.
+  const [draft, setDraft] = useState(value);
+  const prevOpenRef = useRef(open);
+  useEffect(() => {
+    if (open && !prevOpenRef.current && mobile) {
+      setDraft(value);
+    }
+    prevOpenRef.current = open;
+  }, [open, mobile, value]);
+
+  const handleMobileApply = useCallback(() => {
+    onChange?.(draft ?? '');
+    handleOpenChange(false);
+  }, [onChange, draft, handleOpenChange]);
+
+  const handleMobileCancel = useCallback(() => {
+    handleOpenChange(false);
+  }, [handleOpenChange]);
 
   const handleMouseEnter = useCallback(() => {
     if (!readOnly && !disabled) {
@@ -328,16 +357,57 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
         widthStrategy='auto'
         open={showOpen}
         onOpenChange={handleOpenChange}
+        headerDivider={mobile}
+        footerDivider={mobile}
+        headline={
+          mobile ? (
+            <span className={styles.sheetTitle} data-test-id={TEST_IDS.fieldColorSheetTitle}>
+              {(draft || '').toUpperCase()}
+              <span
+                className={styles.sheetSwatch}
+                style={{ '--field-color-swatch-color': draft || 'transparent' } as CSSProperties}
+                aria-hidden
+              />
+            </span>
+          ) : undefined
+        }
+        footer={
+          mobile ? (
+            <div className={styles.sheetFooter}>
+              <Button
+                label={t('cancel')}
+                size={size}
+                view={VIEW.Function}
+                appearance={APPEARANCE.Neutral}
+                onClick={handleMobileCancel}
+                data-test-id={TEST_IDS.fieldColorCancel}
+              />
+              <Button
+                label={t('apply')}
+                size={size}
+                view={VIEW.Filled}
+                appearance={APPEARANCE.Primary}
+                onClick={handleMobileApply}
+                data-test-id={TEST_IDS.fieldColorApply}
+              />
+            </div>
+          ) : undefined
+        }
         content={
-          <ColorPicker
-            value={value || undefined}
-            size={size}
-            withAlpha={withAlpha}
-            autoApply={autoApply}
-            availableModes={availableModes}
-            onChange={handlePickerChange}
-            data-test-id={TEST_IDS.fieldColorPicker}
-          />
+          // На mobile палитра живёт в `BottomSheet`: помечаем её no-drag, иначе drag по слайдеру/области
+          // цвета одновременно потащил бы sheet к закрытию (свайп-дисмисс перехватывал бы жест контрола).
+          <div className={styles.pickerHost} {...(mobile ? { [NO_DRAG_ATTRIBUTE]: '' } : {})}>
+            <ColorPicker
+              value={(mobile ? draft : value) || undefined}
+              size={size}
+              withAlpha={withAlpha}
+              withColorArea={mobile ? false : undefined}
+              autoApply={mobile ? true : autoApply}
+              availableModes={availableModes}
+              onChange={mobile ? raw => setDraft(raw.hex) : handlePickerChange}
+              data-test-id={TEST_IDS.fieldColorPicker}
+            />
+          </div>
         }
       >
         {trigger}

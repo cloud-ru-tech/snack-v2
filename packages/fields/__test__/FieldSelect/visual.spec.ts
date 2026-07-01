@@ -1,4 +1,8 @@
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import {
@@ -72,6 +76,20 @@ test.describe('FieldSelect — visual regression', () => {
     await expect(items.first()).toBeVisible();
     const png = await screenshotRegion(page, [trigger, items.last()], 16, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('open-droplist.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
+  // Mobile: список открывается в BottomSheet (MobileDroplist, адаптивный @ds/list), full-viewport overlay.
+  // Форсим раскладку тулбар-глобалом `layoutType='mobile'` + mobile viewport; снимок — весь viewport.
+  test('open-mobile', async ({ page, gotoStory, waitForFonts }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, FIELD_SELECT_STORIES.open, { layoutType: 'mobile' }));
+    await waitForFonts();
+    const items = page.getByTestId(new RegExp(`^${LIST_BASE_ITEM_TEST_ID}`));
+    await expect(items.first()).toBeVisible();
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
   });
 
   for (const { ref, snapshot, contentTestId } of OPEN_SCENARIOS) {

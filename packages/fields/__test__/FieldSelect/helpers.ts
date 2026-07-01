@@ -31,10 +31,13 @@ export const FIELD_SELECT_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = FIELD_SELECT_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: ref.name,
     story: ref.story,
     props: { ...props },
+    globals,
   };
 }

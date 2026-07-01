@@ -60,6 +60,11 @@ export const TEST_IDS = {
   // (root рендерит `{...extractSupportProps(rest)}`). FieldColor проставляет этот id, чтобы
   // открытая палитра была адресуема в play/e2e.
   fieldColorPicker: 'field-color__picker',
+  // Mobile: ColorPicker открывается в BottomSheet (адаптивный Dropdown); текущий цвет —
+  // в title sheet'а, Cancel/Apply — в footer (Figma `colorPickerBottomSheet`).
+  fieldColorSheetTitle: 'field-color__sheet-title',
+  fieldColorCancel: 'field-color__cancel',
+  fieldColorApply: 'field-color__apply',
   fieldTime: 'field-time',
   fieldTimeInput: 'field-time__input',
   fieldTimeIcon: 'field-time__icon',

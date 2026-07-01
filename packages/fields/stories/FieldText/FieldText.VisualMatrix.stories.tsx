@@ -108,13 +108,13 @@ export const VisualMatrix: Story = {
             ],
           },
           {
-            variantLabel: 'prefixIcon (legacy alias → iconBefore)',
+            variantLabel: 'prefixIcon (alias → iconBefore)',
             cells: [
               <FieldText
                 key='pi'
                 size={SIZE.M}
                 validationState={VALIDATION_STATE.Default}
-                placeholder='Legacy prefixIcon'
+                placeholder='prefixIcon'
                 prefixIcon={<SearchSVG />}
               />,
             ],

@@ -1,4 +1,8 @@
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import {
@@ -44,5 +48,20 @@ test.describe('FieldDate — visual regression', () => {
     await expect(content).toBeVisible();
     const png = await screenshotRegion(page, [root, content], 16, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('open-calendar.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
+  // Mobile: календарь открывается в BottomSheet (адаптивный @ds/calendar), full-viewport overlay.
+  // Форсим раскладку тулбар-глобалом `layoutType='mobile'` + mobile viewport; снимок — весь viewport.
+  test('open-calendar-mobile', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions({ mode: 'date-time' }, FIELD_DATE_STORIES.playground, { layoutType: 'mobile' }));
+    await waitForFonts();
+    const root = getByTestId(TEST_IDS.fieldDate);
+    await root.getByTestId(TEST_IDS.fieldDateCalendar).click();
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toBeVisible();
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
   });
 });
