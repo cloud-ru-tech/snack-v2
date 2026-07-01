@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { AlertTop, APPEARANCE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
@@ -16,6 +17,15 @@ export default meta;
 type Story = StoryObj<typeof AlertTop>;
 
 const keyAppearances = Object.values(APPEARANCE);
+
+const adaptiveLayouts = [LAYOUT_TYPE.Desktop, LAYOUT_TYPE.Mobile] as const;
+
+// Длинный контент в узком (mobile-репрезентативном) контейнере — чтобы preset `collapsible`
+// (desktop false → mobile true) дал видимую разницу: плоский баннер с close-кнопкой на
+// desktop против свёрнутого с шевроном раскрытия на mobile.
+const ADAPTIVE_COLLAPSE_TITLE = 'Длинное системное уведомление, заголовок которого не помещается в одну строку';
+const ADAPTIVE_COLLAPSE_DESCRIPTION =
+  'Подробное описание системного события: что произошло, кого касается и какие действия нужно предпринять. На mobile этот текст скрыт до раскрытия по клику.';
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
@@ -66,6 +76,28 @@ export const VisualMatrix: Story = {
                 onClose={fn()}
               />
             </div>,
+          ],
+        }))}
+      />
+
+      <StoryTable
+        sectionTitle='Adaptive preset — collapsible (desktop плоский → mobile свёрнутый)'
+        firstColumnHeader='layoutType'
+        columnHeaders={['Длинный контент в узком контейнере']}
+        rows={adaptiveLayouts.map(layoutType => ({
+          variantLabel: layoutType,
+          cells: [
+            <AdaptiveProvider key={layoutType} layoutType={layoutType}>
+              <div className={styles.adaptiveCell}>
+                <AlertTop
+                  appearance={APPEARANCE.Warning}
+                  icon
+                  title={ADAPTIVE_COLLAPSE_TITLE}
+                  description={ADAPTIVE_COLLAPSE_DESCRIPTION}
+                  onClose={fn()}
+                />
+              </div>
+            </AdaptiveProvider>,
           ],
         }))}
       />

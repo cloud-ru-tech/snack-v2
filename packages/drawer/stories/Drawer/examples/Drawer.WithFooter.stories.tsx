@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -17,7 +17,9 @@ function WithFooterScenario() {
       <DemoPanel>
         <DemoTitle>WithFooter</DemoTitle>
         <DemoHint>
-          Подтверждение деструктивного действия в Drawer. Футер: critical-primary + neutral-secondary action.
+          Подтверждение деструктивного действия в Drawer. Футер — типизированные слоты `approveButton` / `cancelButton`
+          (+ `disclaimer`): на desktop ряд прижат вправо, на mobile (тулбар Layout) тот же футер уезжает в
+          `BottomSheet`.
         </DemoHint>
         <DemoActions align='center'>
           <Button
@@ -37,12 +39,9 @@ function WithFooterScenario() {
         title='Удалить запись'
         subtitle='Действие необратимо. Связанные данные также будут удалены.'
         content='После подтверждения запись и все её ссылки исчезнут из списка.'
-        footer={
-          <ButtonGroup
-            primaryAction={{ label: 'Удалить', appearance: 'critical', view: 'filled', onClick: close }}
-            secondaryAction={{ label: 'Отмена', appearance: 'neutral', view: 'outline', onClick: close }}
-          />
-        }
+        approveButton={{ label: 'Удалить', appearance: APPEARANCE.Critical, onClick: close }}
+        cancelButton={{ label: 'Отмена', onClick: close }}
+        disclaimer='Восстановить запись после удаления нельзя.'
       />
     </DemoPage>
   );

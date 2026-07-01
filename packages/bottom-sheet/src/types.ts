@@ -242,4 +242,10 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
    * `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`.
    */
   footer?: ReactNode;
+  /**
+   * Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional/disclaimer).
+   * По умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои
+   * `TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е.
+   */
+  footerTestIds?: { approve?: string; cancel?: string; additional?: string; disclaimer?: string };
 };

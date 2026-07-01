@@ -1,6 +1,10 @@
-import { LAYOUT_TYPE } from '@ds/utils';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
+import {
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+  STORYBOOK_ROOT_SELECTOR,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
@@ -46,16 +50,16 @@ test.describe('Toolbar — visual regression', () => {
     getByTestId,
     waitForFonts,
   }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(
       buildStoryOptions(
         {
-          layoutType: LAYOUT_TYPE.Mobile,
           showRefresh: true,
           showMoreActions: true,
           showExtraSlot: true,
         },
         TOOLBAR_STORIES.playground,
-        COMFORT_DENSITY_GLOBALS,
+        { ...COMFORT_DENSITY_GLOBALS, layoutType: LAYOUT_TYPE.Mobile },
       ),
     );
     await waitForFonts();
@@ -70,8 +74,12 @@ test.describe('Toolbar — visual regression', () => {
   });
 
   test('open-mobile-bulk (BottomSheet without backdrop)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(
-      buildStoryOptions({ 'data-test-id': TEST_IDS.mobile }, TOOLBAR_STORIES.mobile, COMFORT_DENSITY_GLOBALS),
+      buildStoryOptions({ 'data-test-id': TEST_IDS.mobile }, TOOLBAR_STORIES.mobile, {
+        ...COMFORT_DENSITY_GLOBALS,
+        layoutType: LAYOUT_TYPE.Mobile,
+      }),
     );
     await waitForFonts();
     await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();

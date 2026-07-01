@@ -2,7 +2,7 @@ import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwrigh
 import { expect, test } from '#playwright-tooling/fixtures';
 import { waitForStableBbox } from '#playwright-tooling/utils';
 
-import { BOTTOM_SHEET_STORIES, buildStoryOptions, MOBILE_PROJECTS, STORY_TEST_IDS, TEST_IDS } from './helpers';
+import { BOTTOM_SHEET_STORIES, buildStoryOptions, STORY_TEST_IDS, TEST_IDS } from './helpers';
 
 type OpenScenario = {
   ref: (typeof BOTTOM_SHEET_STORIES)[keyof typeof BOTTOM_SHEET_STORIES];
@@ -70,10 +70,11 @@ const OPEN_SCENARIOS: OpenScenario[] = [
 ];
 
 test.describe('BottomSheet — visual regression', () => {
-  // Mobile-only компонент: baselines снимаем только на mobile-движках (mobile-android / mobile-ios).
-  // Desktop-проекты пропускаем — у sheet'а нет desktop-сценария. Снимки разделены по `{projectName}`
-  // через `snapshotPathTemplate`.
-  const VISUAL_PROJECTS = new Set<string>([...MOBILE_PROJECTS].filter(p => p !== 'mobile'));
+  // Mobile-only компонент: baseline снимаем на одном mobile-движке (mobile-android). WebKit (mobile-ios)
+  // рендерит те же сцены с точностью до subpixel-antialiasing и re-wrap при чуть иной ширине — это шум,
+  // не сигнал (тот же принцип, что делает desktop-baselines chrome-only). Функциональные spec'и по-прежнему
+  // гоняются на обоих движках через `skipOnDesktop()` — дублируется только визуал.
+  const VISUAL_PROJECTS = new Set<string>(['mobile-android']);
 
   test.beforeEach(() => {
     test.skip(

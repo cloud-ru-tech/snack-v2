@@ -24,7 +24,7 @@ import toolbarDoc from './props.json';
 
 # Toolbar
 
-`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Режим `layoutType` переключает desktop- и mobile-поведение (Droplist vs BottomSheet, размер чипов фильтров).
+`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Панель адаптивна: на mobile меню «⋯» и bulk-действия переезжают в `BottomSheet`. Раскладку компонент берёт из `AdaptiveProvider` — отдельного пропа `layoutType` нет.
 
 ## Когда использовать
 
@@ -43,8 +43,8 @@ import toolbarDoc from './props.json';
 - ❌ Дублировать поиск и фильтры в header и в теле страницы.
 - ✅ Controlled `search` через `value` + `onChange`.
 - ❌ No-op `onChange` — строка поиска не реагирует на ввод.
-- ✅ `layoutType="mobile"` на узких viewport и в Storybook mobile-сценариях.
-- ❌ Desktop overflow «⋯» на мобильном без смены `layoutType`.
+- ✅ Один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается само.
+- ❌ Ручное ветвление desktop/mobile-вёрстки тулбара в обход контекста раскладки.
 - ✅ Уникальный `persist.id` на каждый инстанс.
 - ❌ Один `id` на несколько тулбаров — состояние фильтров смешается.
 
@@ -55,11 +55,6 @@ import toolbarDoc from './props.json';
 - **Строка панели** — `onRefresh`, `search`, `after`, `dataView`, кнопка фильтров, `moreActions`.
 - **Строка фильтров** — `ChipChoiceRow` / `MobileChipChoiceRow` при `filterRow`.
 - **Bulk-панель** — чекбокс, счётчик выбранных, tonal-кнопки; не влезшие действия — в «⋯».
-
-### Layout (default `desktop`)
-
-- `desktop` — overflow «⋯» в Droplist, чипы фильтров size `s`, bulk-действия в строке под чипами.
-- `mobile` — overflow в BottomSheet, чипы size `s`, bulk-действия в sheet без backdrop при активном выборе.
 
 ### Outline (default `false`)
 
@@ -73,7 +68,7 @@ pnpm add @ds/toolbar
 ```
 
 ```ts
-import { Toolbar, LAYOUT_TYPE } from '@ds/toolbar';
+import { Toolbar } from '@ds/toolbar';
 ```
 
 ## Примеры использования
@@ -96,14 +91,6 @@ import { Toolbar, LAYOUT_TYPE } from '@ds/toolbar';
   <BulkActions client:only='react' />
 </Example>
 
-<Example
-  title='Mobile layout'
-  description='layoutType mobile — включите чекбокс, чтобы открыть bulk-панель в BottomSheet внутри рамки'
-  code={MobileLayoutSrc}
->
-  <MobileLayout client:only='react' />
-</Example>
-
 <Example title='Слоты after и dataView' description='Дополнительная кнопка и SegmentControl' code={WithDataViewSrc}>
   <WithDataView client:only='react' />
 </Example>
@@ -111,6 +98,45 @@ import { Toolbar, LAYOUT_TYPE } from '@ds/toolbar';
 ## Props
 
 <PropsTable data={toolbarDoc.Toolbar} />
+
+## Адаптивность
+
+`Toolbar` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке панель перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — overflow «⋯» открывается в `Droplist`, bulk-действия идут строкой под чипами фильтров.
+- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+<Example
+  title='Mobile layout'
+  description='Mobile-раскладка — включите чекбокс, чтобы открыть bulk-панель в BottomSheet внутри рамки'
+  code={MobileLayoutSrc}
+>
+  <MobileLayout client:only='react' />
+</Example>
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Toolbar search={search} onRefresh={refresh} moreActions={actions} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Toolbar } from '@ds/toolbar'
+
+  const MobileToolbar = withLayoutType(Toolbar, 'mobile')
+  ```
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
 
 ## Storybook
 

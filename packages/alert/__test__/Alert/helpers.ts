@@ -13,6 +13,8 @@ export const ALERT_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = ALERT_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: ref.name,
@@ -22,6 +24,7 @@ export function buildStoryOptions(
       'data-test-id': TEST_IDS.alert.root,
       ...props,
     },
+    globals,
   };
 }
 

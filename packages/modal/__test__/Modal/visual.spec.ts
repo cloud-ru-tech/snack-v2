@@ -1,10 +1,14 @@
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { composeScreenshots } from '#playwright-tooling/utils';
+import { composeScreenshots, waitForStableBbox } from '#playwright-tooling/utils';
 
 import { MODE, WIDTH } from '../../src/constants';
-import { buildStoryOptions, MAIN_TEST_ID, MODAL_TRIGGER_TEST_ID } from './helpers';
+import { buildStoryOptions, MAIN_TEST_ID, MODAL_STORIES, MODAL_TRIGGER_TEST_ID } from './helpers';
 
 test.describe('Modal — visual regression', () => {
   // Modal — overlay+focus-trap; одновременно открыть несколько модалок нельзя.
@@ -123,6 +127,30 @@ test.describe('Modal — visual regression', () => {
     await waitForFonts();
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-loading.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
+  });
+
+  // Mobile-поверхность: тот же Modal открывается как BottomSheet. Нужны обе вещи одновременно —
+  // форс layoutType='mobile' через тулбар-глобал И mobile-viewport (иначе sheet
+  // рендерится на desktop-ширине). Sheet — full-viewport overlay → снимаем page.screenshot()
+  // (см. visual-regression-standard.md). Mobile-baseline = ground truth DS (Figma-parity не применим).
+  test('open-mobile (bottom sheet surface)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(
+      buildStoryOptions({ showAfterHeadline: false, showMedia: false }, MODAL_STORIES.playground, {
+        layoutType: 'mobile',
+      }),
+    );
+    await getByTestId(MODAL_TRIGGER_TEST_ID).click();
+    // На mobile потребительский `data-test-id` (MAIN_TEST_ID) оседает на корне BottomSheet'а.
+    const sheet = getByTestId(MAIN_TEST_ID);
+    await expect(sheet).toBeVisible();
+    await waitForFonts();
+    // JS-motion (slide-up): ждём стабилизацию bbox вместо document.getAnimations.
+    await waitForStableBbox(sheet);
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });

@@ -1,4 +1,4 @@
-import { LAYOUT_TYPE } from '@ds/utils';
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 
 import { TEST_IDS } from '../../testIds';
 import { BulkActionsCheckbox, BulkActionsControls, MobileBulkActionsSheet, SelectionLabel } from './components';
@@ -13,10 +13,10 @@ export function BulkActions({
   selectedCount = 0,
   totalCount,
   showBulkCheckbox = true,
-  layoutType = LAYOUT_TYPE.Desktop,
   resizingContainerRef,
 }: BulkActionsComponentProps) {
-  const isMobile = layoutType === LAYOUT_TYPE.Mobile;
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
   const hasSelection = Boolean(checked || indeterminate);
   const showActions = hasSelection && actions.length > 0;
   const showInlineActions = showActions && !isMobile;
@@ -32,12 +32,7 @@ export function BulkActions({
         <SelectionLabel selectedCount={selectedCount} totalCount={totalCount} hasSelection={hasSelection} />
 
         {showInlineActions && (
-          <BulkActionsControls
-            variant='toolbar'
-            actions={actions}
-            layoutType={layoutType}
-            resizingContainerRef={resizingContainerRef}
-          />
+          <BulkActionsControls variant='toolbar' actions={actions} resizingContainerRef={resizingContainerRef} />
         )}
       </div>
 

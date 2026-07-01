@@ -26,6 +26,17 @@ export const FOOTER_ACTIONS_ORIENTATION = {
 } as const;
 
 /**
+ * Data-атрибут escape-hatch: drag-to-dismiss bottom-sheet'а **не** начинается, если жест стартовал на
+ * элементе с этим атрибутом или его предке. Вешай его на собственный draggable-контент внутри sheet'а
+ * (слайдеры, color-picker, карты, canvas), иначе нативный drag контрола одновременно потащит sheet к
+ * закрытию. Аналог `touch-action`/`useSwipeable`-блокировки из легаси.
+ *
+ * @example
+ * <BottomSheet content={<div {...{ [NO_DRAG_ATTRIBUTE]: '' }}><ColorPicker … /></div>} />
+ */
+export const NO_DRAG_ATTRIBUTE = 'data-bottom-sheet-no-drag';
+
+/**
  * Стабильные `data-test-id` для слотов bottom-sheet'а.
  *
  * Используются для e2e-локаторов в Playwright и Storybook play-функциях. Реэкспортируется из

@@ -1,7 +1,7 @@
 import {
   MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
   SCREENSHOT_DEFAULT_OPTS,
-  STORYBOOK_ROOT_SELECTOR,
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
@@ -10,6 +10,7 @@ import {
   composeScreenshots,
   ScreenshotCell,
   screenshotRegion,
+  waitForStableBbox,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, DROPLIST_STORIES, LIST_INTERNAL_TEST_IDS, TEST_IDS } from './helpers';
@@ -100,11 +101,13 @@ test.describe('Droplist — visual regression', () => {
   test('open with search', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await gotoStory(buildStoryOptions(undefined, DROPLIST_STORIES.search));
     await waitForFonts();
-    await getByTestId(TEST_IDS.droplist.triggerOpen).click();
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
-      'open-with-search.png',
-      SCREENSHOT_DEFAULT_OPTS,
-    );
+    const trigger = getByTestId(TEST_IDS.droplist.triggerOpen);
+    await trigger.click();
+    const items = page.locator(`[data-test-id^="${LIST_INTERNAL_TEST_IDS.baseItem}_"]`);
+    await items.first().waitFor({ state: 'visible' });
+    // Кадр = union триггера, поля поиска и списка, без пустого вьюпорта вокруг поповера.
+    const png = await screenshotRegion(page, [trigger, items.first(), items.last()], 24);
+    expect(png).toMatchSnapshot('open-with-search.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
   // header / footer + dividers (topBar / bottomBar слоты Dropdown).
@@ -128,7 +131,24 @@ test.describe('Droplist — visual regression', () => {
     await trigger.click();
     const items = page.locator(`[data-test-id^="${LIST_INTERNAL_TEST_IDS.baseItem}_"]`);
     await items.first().waitFor({ state: 'visible' });
-    const png = await screenshotRegion(page, [trigger, items.first()], 24);
+    // Кадр включает весь отрендеренный оконный срез (first…last), а не только первый item —
+    // иначе «windowed render большой коллекции» визуально не читается.
+    const png = await screenshotRegion(page, [trigger, items.first(), items.last()], 24);
     expect(png).toMatchSnapshot('open-virtualized.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
+  // Mobile: список (size l) в BottomSheet (MobileDroplist). Форс layoutType=mobile через тулбар-глобал + mobile-вьюпорт.
+  test('open mobile (bottom sheet surface)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, DROPLIST_STORIES.playground, { layoutType: 'mobile' }));
+    await waitForFonts();
+    await getByTestId(TEST_IDS.droplist.triggerOpen).click();
+    const items = page.locator(`[data-test-id^="${LIST_INTERNAL_TEST_IDS.baseItem}_"]`);
+    await items.first().waitFor({ state: 'visible' });
+    await waitForStableBbox(getByTestId(LIST_INTERNAL_TEST_IDS.mobileDroplistRoot));
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
   });
 });

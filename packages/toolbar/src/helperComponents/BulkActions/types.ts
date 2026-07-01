@@ -2,8 +2,6 @@ import { TooltipProps } from '@ds/tooltip';
 import { WithSupportProps } from '@ds/utils';
 import { JSXElementConstructor, RefObject } from 'react';
 
-import { LayoutType } from '../../types';
-
 export type BulkAction = WithSupportProps<{
   label: string;
   icon: JSXElementConstructor<{ className?: string }>;
@@ -30,6 +28,5 @@ export type BulkActionsProps = WithSupportProps<{
 }>;
 
 export type BulkActionsComponentProps = BulkActionsProps & {
-  layoutType?: LayoutType;
   resizingContainerRef?: RefObject<HTMLDivElement>;
 };

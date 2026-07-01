@@ -191,26 +191,31 @@ export function Forced() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `additionalButton` | `BottomSheetActionButton` | — | Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`). |
+| `approveButton` | `BottomSheetActionButton` | — | Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`). |
+| `cancelButton` | `BottomSheetActionButton` | — | Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`). |
 | `className` | `string` | — | CSS-класс для окна |
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
-| `content` | `ReactNode` | — | Основной контент |
+| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. |
+| `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
 | `data-test-id` | `string` | — |  |
-| `footer` | `ReactNode` | — | Контент футера |
-| `heightAuto` | `boolean` | `true` | Растягивать по высоте в пределах контейнера |
-| `loading` | `boolean` | `false` | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
+| `disclaimer` | `ReactNode` | — | Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). |
+| `footer` | `ReactNode` | — | Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. |
+| `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `'horizontal'` | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. |
+| `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
+| `loading` | `boolean` | — | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
 | `loadingState` | `ReactNode` | — | Контент тела вместо спиннера при `loading` |
 | `media` | `ReactNode` | — | Медиа-контент |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. <br/> blur подложки — только у Aggressive и Forced. |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке «назад». Отсутствие скрывает кнопку |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
+| `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
-| `open` | `boolean` | `false` | Управление состоянием показан/не показан |
+| `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
-| `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
-| `subtitle` | `ReactNode` | — | Подзаголовок |
-| `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`). <br/> Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |
-| `width` | `"l"` \| `"m"` \| `"s"` | `s` | Размер окна |
+| `slotAfterHeadline` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком (на sheet используется `subHeadline`). |
+| `title` | `ReactNode` | — | Заголовок (Typography title-l). |
+| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | — | Усечение `title`/`subtitle` (TruncateString). |
+| `width` | `"l"` \| `"m"` \| `"s"` | — | Размер окна |
 
 ##### Related types
 
@@ -219,6 +224,47 @@ export function Forced() {
 - `ModalMode` = `"aggressive"` \| `"forced"` \| `"regular"`
 
 - `ModalWidth` = `"l"` \| `"m"` \| `"s"`
+
+### Адаптивность
+
+`Modal` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — центрированное модальное окно с overlay и focus-trap.
+- **mobile** — контент рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+#### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Modal open={open} onClose={close} content={…} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Modal } from '@ds/modal'
+
+  const MobileModal = withLayoutType(Modal, 'mobile')
+  ```
+
+#### Платформенные пропы
+
+Часть пропов управляет геометрией desktop-окна и на mobile молча игнорируется (у `BottomSheet` своя поверхность снизу). Таблица синхронизирована с type-level JSDoc у `ModalProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `mode`, `width`, `heightAuto`, `truncate` | используется | игнорируется |
+| `title`, `subtitle`, `slotAfterHeadline`, `onBackButtonClick`, `media`, `content`, `footer` | используется | используется |
+| `loading`, `loadingState`, `open`, `onClose`, `container`, `closeOnPopstate`, `className`, `rootClassName` | используется | используется |
+
+Подробнее о модели адаптивности — **Adaptive**.
 
 ## ModalCustom
 
@@ -285,14 +331,18 @@ export function CustomComposition() {
 | `children` | `ReactNode` | — | Содержимое окна (композиция Header/Body/Footer) |
 | `className` | `string` | — | CSS-класс окна |
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
+| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. |
 | `data-test-id` | `string` | — |  |
-| `heightAuto` | `boolean` | `true` | Растягивать по высоте в пределах контейнера |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. <br/> blur подложки — только у Aggressive и Forced. |
+| `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
-| `open` | `boolean` | `false` | Управление состоянием показан/не показан |
+| `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
-| `width` | `"l"` \| `"m"` \| `"s"` | `s` | Размер окна |
+| `safeArea` | `boolean` | `true` | Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом <br/> на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop) <br/> inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный. <br/> Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch). |
+| `showBackdrop` | `boolean` | `true` | Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside <br/> не закрывает sheet (нет backdrop-узла, по которому ловится клик). |
+| `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
+| `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
+| `width` | `"l"` \| `"m"` \| `"s"` | — | Размер окна |
 
 ##### Related types
 
@@ -301,139 +351,3 @@ export function CustomComposition() {
 - `ModalMode` = `"aggressive"` \| `"forced"` \| `"regular"`
 
 - `ModalWidth` = `"l"` \| `"m"` \| `"s"`
-
-## Body
-
-```tsx
-import { Button } from '@ds/button';
-import { ModalCustom } from '@ds/modal';
-import { useState } from 'react';
-
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-
-  return (
-    <>
-      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-      <ModalCustom open={open} onClose={close} width='m'>
-        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-        <ModalCustom.Body
-          content={
-            <div style={{ padding: 24 }}>
-              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-            </div>
-          }
-        />
-        <ModalCustom.Footer>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
-          </div>
-        </ModalCustom.Footer>
-      </ModalCustom>
-    </>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс для обёртки body |
-| `content` | `ReactNode` | — | Основной контент |
-| `data-test-id` | `string` | — |  |
-
-## Footer
-
-```tsx
-import { Button } from '@ds/button';
-import { ModalCustom } from '@ds/modal';
-import { useState } from 'react';
-
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-
-  return (
-    <>
-      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-      <ModalCustom open={open} onClose={close} width='m'>
-        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-        <ModalCustom.Body
-          content={
-            <div style={{ padding: 24 }}>
-              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-            </div>
-          }
-        />
-        <ModalCustom.Footer>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
-          </div>
-        </ModalCustom.Footer>
-      </ModalCustom>
-    </>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-
-## Header
-
-```tsx
-import { Button } from '@ds/button';
-import { ModalCustom } from '@ds/modal';
-import { useState } from 'react';
-
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-
-  return (
-    <>
-      <Button label='Открыть' appearance='primary' view='filled' onClick={() => setOpen(true)} />
-      <ModalCustom open={open} onClose={close} width='m'>
-        <ModalCustom.Header title='Ручная композиция' subtitle='Header, Body и Footer собираются вручную.' />
-        <ModalCustom.Body
-          content={
-            <div style={{ padding: 24 }}>
-              <p>В теле может быть любая разметка — скролл включается автоматически.</p>
-              <p>Это нужно, когда пресетной структуры Modal недостаточно.</p>
-            </div>
-          }
-        />
-        <ModalCustom.Footer>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-            <Button label='Закрыть' appearance='neutral' view='outline' onClick={close} />
-            <Button label='Подтвердить' appearance='primary' view='filled' onClick={close} />
-          </div>
-        </ModalCustom.Footer>
-      </ModalCustom>
-    </>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `onBackButtonClick` | `(() => void)` | — | Действие при клике по кнопке «назад». Отсутствие скрывает кнопку |
-| `slotAfterHeadline` | `ReactNode` | — | Слот после заголовка |
-| `subtitle` | `ReactNode` | — | Подзаголовок |
-| `title` | `string` | — | Заголовок |
-| `titleId` | `string` | — | id для aria-labelledby |
-| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | `title: 1; subtitle (string): 2` | Максимальное число строк перед обрезкой (`TruncateString`). <br/> Для `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется. |

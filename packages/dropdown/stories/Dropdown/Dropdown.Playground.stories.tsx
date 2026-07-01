@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { Dropdown } from '@ds/dropdown';
+import { Dropdown, DropdownProps } from '@ds/dropdown';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -8,7 +8,9 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
 
-const meta: Meta<typeof Dropdown> = {
+type StoryProps = DropdownProps;
+
+const meta: Meta<StoryProps> = {
   title: 'Components/Dropdown',
   component: Dropdown,
   parameters: { layout: 'fullscreen' },
@@ -22,21 +24,27 @@ const meta: Meta<typeof Dropdown> = {
     trigger: {
       control: 'radio',
       options: ['click', 'hover', 'focus'],
-      description: 'Тип триггера открытия',
+      description: 'Тип триггера открытия (только desktop-popover)',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     placement: {
       control: 'select',
       options: ['top-start', 'top', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'left', 'right'],
-      description: 'Позиция относительно триггера',
+      description: 'Позиция относительно триггера (только desktop-popover)',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     children: { table: { disable: true } },
+    // trigger-based: открытие — действие по триггеру, не arg; controlled-пропы прячем из панели.
+    open: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
   render: args => (
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>
-          Открыть выпадающий блок триггером ниже. Тип ({args.trigger}) и позиционирование — из Controls.
+          Открыть выпадающий блок триггером ниже. На desktop — popover (позиционирование из Controls), на mobile
+          (layoutType) — `BottomSheet` снизу.
         </DemoHint>
         <DemoActions align='center'>
           <Dropdown {...args}>
@@ -54,7 +62,7 @@ const meta: Meta<typeof Dropdown> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Dropdown>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

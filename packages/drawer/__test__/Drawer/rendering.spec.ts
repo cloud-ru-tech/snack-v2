@@ -1,6 +1,11 @@
+import { MOBILE_VIEWPORT } from '#playwright-tooling/constants/common';
 import { expect, test } from '#playwright-tooling/fixtures';
 
 import { buildStoryOptions, OVERLAY_SELECTOR, TEST_IDS } from './helpers';
+
+// Локальная копия `@ds/bottom-sheet` TEST_IDS.handle — маркер mobile-поверхности (swipe-handle
+// рендерит только BottomSheet). Кросс-пакетный импорт в spec ломает playwright-compile. Синхронизируй при изменении.
+const BOTTOM_SHEET_HANDLE_TEST_ID = 'bottom-sheet__handle';
 
 // Behavioral assertions (click to open, close button, controlled state) live in
 // stories/Drawer/tests/Drawer.InteractionTest.stories.tsx::play and Drawer.Controlled.
@@ -86,6 +91,24 @@ test.describe('Drawer — rendering', () => {
       await openDrawer(getByTestId);
       await expect(getByTestId(TEST_IDS.header)).toBeVisible();
       await expect(page.locator(OVERLAY_SELECTOR)).not.toBeAttached();
+    });
+  });
+
+  // Функциональная проверка адаптивного свапа surface (не визуальная): раскладка из тулбар-глобала
+  // `layoutType`. Desktop → боковой rc-drawer (нет BottomSheet-handle); mobile → BottomSheet (handle есть).
+  test.describe('adaptive surface swap', () => {
+    test('desktop layout opens side drawer (no bottom-sheet surface)', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ showAfterHeadline: false }, undefined, { layoutType: 'desktop' }));
+      await openDrawer(getByTestId);
+      await expect(getByTestId(TEST_IDS.header)).toBeVisible();
+      await expect(getByTestId(BOTTOM_SHEET_HANDLE_TEST_ID)).toHaveCount(0);
+    });
+
+    test('mobile layout swaps to bottom-sheet surface', async ({ page, gotoStory, getByTestId }) => {
+      await page.setViewportSize(MOBILE_VIEWPORT);
+      await gotoStory(buildStoryOptions({ showAfterHeadline: false }, undefined, { layoutType: 'mobile' }));
+      await openDrawer(getByTestId);
+      await expect(getByTestId(BOTTOM_SHEET_HANDLE_TEST_ID)).toBeVisible();
     });
   });
 });

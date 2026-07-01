@@ -22,6 +22,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/loader": "workspace:^",
     "@ds/materials": "workspace:^",

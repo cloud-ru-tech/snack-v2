@@ -1,4 +1,5 @@
-import { LAYOUT_TYPE, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
@@ -45,39 +46,41 @@ function AdaptiveExample() {
       <DemoPanel width='wide'>
         <DemoTitle>Adaptive</DemoTitle>
         <DemoHint>
-          Один компонент Toolbar с layoutType: desktop — Droplist и ChipChoiceRow size s; mobile — BottomSheet для «⋯» и
-          ChipChoiceRow size s. Откройте «⋯», чтобы увидеть разницу.
+          Один компонент Toolbar, раскладку задаёт AdaptiveProvider: desktop — Droplist и ChipChoiceRow size s; mobile —
+          BottomSheet для «⋯» и ChipChoiceRow size s. Откройте «⋯», чтобы увидеть разницу.
         </DemoHint>
         <DemoActions block>
           <section className={styles.adaptiveBlock}>
             <p className={styles.adaptiveLabel}>Desktop — Droplist, filter chips s</p>
             <div className={styles.containerAdaptive}>
-              <Toolbar
-                {...commonToolbarProps}
-                layoutType={LAYOUT_TYPE.Desktop}
-                data-test-id={TEST_IDS.adaptiveDesktop}
-                filterRow={{
-                  ...filterConfig,
-                  value: desktopFilterValue,
-                  onChange: setDesktopFilterValue,
-                }}
-              />
+              <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <Toolbar
+                  {...commonToolbarProps}
+                  data-test-id={TEST_IDS.adaptiveDesktop}
+                  filterRow={{
+                    ...filterConfig,
+                    value: desktopFilterValue,
+                    onChange: setDesktopFilterValue,
+                  }}
+                />
+              </AdaptiveProvider>
             </div>
           </section>
 
           <section className={styles.adaptiveBlock}>
             <p className={styles.adaptiveLabel}>Mobile — BottomSheet для «⋯», filter chips s</p>
             <div className={styles.containerAdaptiveMobile}>
-              <Toolbar
-                {...commonToolbarProps}
-                layoutType={LAYOUT_TYPE.Mobile}
-                data-test-id={TEST_IDS.adaptiveMobile}
-                filterRow={{
-                  ...filterConfig,
-                  value: mobileFilterValue,
-                  onChange: setMobileFilterValue,
-                }}
-              />
+              <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <Toolbar
+                  {...commonToolbarProps}
+                  data-test-id={TEST_IDS.adaptiveMobile}
+                  filterRow={{
+                    ...filterConfig,
+                    value: mobileFilterValue,
+                    onChange: setMobileFilterValue,
+                  }}
+                />
+              </AdaptiveProvider>
             </div>
           </section>
         </DemoActions>

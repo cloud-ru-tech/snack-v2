@@ -1,4 +1,4 @@
-import { AlertTop, APPEARANCE } from '@ds/alert';
+import { AlertTop, AlertTopProps, APPEARANCE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
@@ -6,7 +6,9 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from './testIds';
 
-const meta: Meta<typeof AlertTop> = {
+type AlertTopPlaygroundArgs = AlertTopProps;
+
+const meta: Meta<AlertTopPlaygroundArgs> = {
   title: 'Components/Alert/AlertTop',
   component: AlertTop,
   parameters: { layout: 'fullscreen' },
@@ -40,7 +42,7 @@ const meta: Meta<typeof AlertTop> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof AlertTop>;
+type Story = StoryObj<AlertTopPlaygroundArgs>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

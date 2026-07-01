@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { Alert, ALIGN, APPEARANCE, SIZE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
@@ -25,6 +26,13 @@ const keyAppearances = [
 ] as const;
 
 const keySizes = [SIZE.S, SIZE.M] as const;
+
+const adaptiveLayouts = [LAYOUT_TYPE.Desktop, LAYOUT_TYPE.Mobile] as const;
+
+// Длинный заголовок в узком контейнере — чтобы preset `truncate.title` (desktop 1 → mobile 2)
+// дал видимую разницу: одна строка с многоточием на desktop, две — на mobile.
+const ADAPTIVE_LONG_TITLE =
+  'Длинный заголовок уведомления, который не помещается в одну строку и усекается по-разному на desktop и mobile';
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
@@ -161,6 +169,27 @@ export const VisualMatrix: Story = {
               />
             </div>
           )),
+        }))}
+      />
+
+      <StoryTable
+        sectionTitle='Adaptive preset — truncate.title (desktop 1 строка → mobile 2)'
+        firstColumnHeader='layoutType'
+        columnHeaders={['Длинный заголовок в узком контейнере']}
+        rows={adaptiveLayouts.map(layoutType => ({
+          variantLabel: layoutType,
+          cells: [
+            <AdaptiveProvider key={layoutType} layoutType={layoutType}>
+              <div className={styles.adaptiveCell}>
+                <Alert
+                  appearance={APPEARANCE.Info}
+                  size='m'
+                  title={ADAPTIVE_LONG_TITLE}
+                  description='Краткое описание уведомления.'
+                />
+              </div>
+            </AdaptiveProvider>,
+          ],
         }))}
       />
     </div>

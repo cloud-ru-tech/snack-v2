@@ -856,12 +856,13 @@ export function DroplistWithHeader() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `actionButton` | `ReactNode` | — | Только mobile (`BottomSheet`): action-кнопка справа в шапке. |
 | `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | — | Управление скрытием скролл баров: <br/> <br> - `Never` - показывать всегда <br/> <br> - `Leave` - скрывать когда курсор покидает компонент <br/> <br> - `Scroll` - показывать только когда происходит скроллинг <br/> <br> - `Move` - показывать при движении курсора над компонентом |
 | `children` | `ReactNode \| ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хендлер ввода, для поддержки управления с клавиатуры` | — | Триггер для дроплиста |
 | `className` | `string` | — | CSS-класс |
 | `closeDroplistOnItemClick` | `boolean` | `false` | Закрывать выпадающий список после клика на базовый айтем. <br/> Работает в режимах selection: 'none' \| 'single' |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
-| `collapse` | `CollapseState` | `{}` | Настройки раскрытия элементов |
+| `collapse` | `CollapseState` | — | Настройки раскрытия элементов |
 | `container` | `RefObject<HTMLElement \| null>` | — | Контейнер портала (ref). Переопределяет `PortalContext` для этого дроплиста <br/> (по аналогии с `container` у Modal/Drawer). По умолчанию — из `PortalContextProvider`. |
 | `contentRender` | `((props: ContentRenderProps) => ReactNode)` | — | Рендер функция основного контента айтема |
 | `data-test-id` | `string` | — |  |
@@ -874,17 +875,19 @@ export function DroplistWithHeader() {
 | `header` | `ReactNode ;` | — | Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`. <br/> Подходит для заголовка / справочного блока над поиском. |
 | `headerDivider` | `boolean` | — | Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху) |
 | `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
+| `label` | `string` | — | Только mobile (`BottomSheet`): заголовок шапки. |
 | `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
 | `listRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент выпадающего списка |
 | `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
-| `marker` | `boolean` | `true` | Отображать ли маркер у выбранного элемента списка |
+| `marker` | `boolean` | — | Отображать ли маркер у выбранного элемента списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
+| `onBackButtonClick` | `(() => void)` | — | Только mobile (`BottomSheet`): callback back-кнопки. |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
 | `onScroll` | `OriginalScrollProps` | — | Колбек на скролл прокручиваемого списка |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
-| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | `[]` | Элементы списка, закрепленные снизу |
-| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | `[]` | Элементы списка, закрепленные сверху |
+| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные снизу |
+| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные сверху |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `scroll` | `boolean` | — | Включить ли скролл для основной части списка |
 | `scrollContainerClassName` | `string` | — | CSS-класс для scroll обертки основного списка айтемов |
@@ -893,12 +896,13 @@ export function DroplistWithHeader() {
 | `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `search` | `SearchState` | — | Настройки поисковой строки |
 | `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер списка |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер списка |
+| `slotAfterHeadline` | `ReactNode` | — | Только mobile (`BottomSheet`): slot справа от заголовка. |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerElemRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент-триггер для дроплиста |
-| `untouchableScrollbars` | `boolean` | `false` | Отключает возможность взаимодействовать со скролбарами мышью. |
-| `virtualized` | `boolean` | `false` | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
+| `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
+| `virtualized` | `boolean` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `auto` | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
 
 ##### Related types
@@ -1045,6 +1049,85 @@ export function DroplistWithHeader() {
 - `Escape` закрывает popover, `Tab` переключает на следующий focusable элемент страницы.
 - Стрелки, `Home` / `End`, `Enter` / `Space` работают так же, как в List.
 - Цвет не единственный индикатор выбранного значения: используется marker и фоновая заливка.
+
+### Адаптивность
+
+`Droplist` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — анкорный popover рядом с триггером.
+- **mobile** — список рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу с шапкой и крупными строками size `l`).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+#### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Droplist items={items}>{trigger}</Droplist>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Droplist } from '@ds/list'
+
+  const MobileDroplist = withLayoutType(Droplist, 'mobile')
+  ```
+
+#### Платформенные пропы
+
+Часть пропов привязана к одной поверхности и на другой молча игнорируется. Таблица синхронизирована с JSDoc-пометками у `DroplistProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `trigger`, `placement`, `widthStrategy`, `triggerElemRef`, `listRef`, `triggerClassName` | используется | игнорируется |
+| `label`, `actionButton`, `slotAfterHeadline`, `onBackButtonClick` | игнорируется | используется |
+| `items`, `selection`, `collapse`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
+| `open`, `onOpenChange`, `closeOnPopstate`, `size` | используется | используется |
+
+#### Mobile — BottomSheet
+
+Раскладка форсирована в mobile: по клику триггера список открывается в BottomSheet.
+
+```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { Button } from '@ds/button';
+import { Droplist } from '@ds/list';
+import { useState } from 'react';
+
+import styles from './styles.module.scss';
+
+export function MobileDroplist() {
+  const [value, setValue] = useState<string | number | undefined>('rub');
+
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <div className={styles.wrapper}>
+        <Droplist
+          label='Валюта'
+          closeDroplistOnItemClick
+          selection={{ mode: 'single', value, onChange: setValue }}
+          items={[
+            { id: 'usd', content: { option: 'USD — Доллар США' } },
+            { id: 'eur', content: { option: 'EUR — Евро' } },
+            { id: 'rub', content: { option: 'RUB — Российский рубль' } },
+            { id: 'cny', content: { option: 'CNY — Китайский юань' } },
+          ]}
+        >
+          <Button size='s' appearance='neutral' view='outline' label={`Валюта: ${String(value).toUpperCase()}`} />
+        </Droplist>
+      </div>
+    </AdaptiveProvider>
+  );
+}
+```
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
 
 ## ItemContent
 

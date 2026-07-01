@@ -18,6 +18,11 @@ $sizes: 's', 'm', 'l';
     }
   }
 
+  // Без 2D-области — на всю ширину (после @each по data-size, перебивает width colorArea).
+  &[data-no-color-area] {
+    width: 100%;
+  }
+
   // react-colorful по умолчанию имеет фиксированный height и flex-grow на saturation.
   // Нам нужен auto-height: saturation = квадрат по токену, hue/alpha — фикс ~16px.
   :global(.react-colorful) {

@@ -1,4 +1,4 @@
-import { PLACEMENT, QuestionTooltip, SIZE, TRIGGER } from '@ds/tooltip';
+import { PLACEMENT, QuestionTooltip, QuestionTooltipProps, SIZE, TRIGGER } from '@ds/tooltip';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -6,7 +6,28 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from '../testIds';
 
-const meta: Meta<typeof QuestionTooltip> = {
+type StoryProps = QuestionTooltipProps;
+
+function PlaygroundRender({ tip, ...rest }: StoryProps) {
+  return (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>
+          QuestionTooltip — иконка-триггер «?» для подсказок к полям форм. На desktop наведите на «?»; на mobile
+          (layoutType) — нажмите, подсказка откроется в `BottomSheet` снизу.
+        </DemoHint>
+        <DemoActions align='center'>
+          {/* tip оборачиваем в `<span data-test-id=...>` — гарантирует, что
+              `data-test-id` оседает на видимом контенте подсказки. */}
+          <QuestionTooltip {...rest} tip={<span data-test-id={TEST_IDS.questionTooltip.content}>{tip}</span>} />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
+}
+
+const meta: Meta<StoryProps> = {
   title: 'Components/Tooltip/QuestionTooltip',
   component: QuestionTooltip,
   parameters: { layout: 'fullscreen' },
@@ -17,36 +38,32 @@ const meta: Meta<typeof QuestionTooltip> = {
     size: SIZE.XS,
     triggerLabel: 'Подсказка',
   },
-  render: args => (
-    <DemoPage>
-      <DemoPanel>
-        <DemoTitle>Playground</DemoTitle>
-        <DemoHint>QuestionTooltip — иконка-триггер для подсказок к полям форм. Наведите на «?» ниже.</DemoHint>
-        <DemoActions align='center'>
-          {/* tip оборачиваем в `<span data-test-id=...>` — гарантирует, что
-              `data-test-id` оседает на видимом контенте тултипа. */}
-          <QuestionTooltip {...args} tip={<span data-test-id={TEST_IDS.questionTooltip.content}>{args.tip}</span>} />
-        </DemoActions>
-      </DemoPanel>
-    </DemoPage>
-  ),
   argTypes: {
     tip: { control: 'text' },
-    placement: { control: 'select', options: Object.values(PLACEMENT) },
-    trigger: { control: 'select', options: Object.values(TRIGGER) },
+    placement: {
+      control: 'select',
+      options: Object.values(PLACEMENT),
+      description: 'Позиция popover (только desktop)',
+      if: { global: 'layoutType', neq: 'mobile' },
+    },
+    trigger: {
+      control: 'select',
+      options: Object.values(TRIGGER),
+      description: 'Способ открытия popover (только desktop)',
+      if: { global: 'layoutType', neq: 'mobile' },
+    },
     size: { control: 'radio', options: Object.values(SIZE) },
     triggerLabel: { control: 'text', description: 'aria-label триггера-иконки' },
   },
+  render: PlaygroundRender,
 };
 
 export default meta;
-type Story = StoryObj<typeof QuestionTooltip>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    // QuestionTooltip рендерит свою кнопку-триггер без проксирования data-test-id —
-    // адресуем через aria-label (исключение из правила getByTestId-only).
-    await expect(within(canvasElement).getByRole('button', { name: 'Подсказка' })).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.questionTooltip.triggerOpen)).toBeVisible();
   },
 };

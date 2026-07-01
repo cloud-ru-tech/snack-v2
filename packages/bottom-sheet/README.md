@@ -673,7 +673,8 @@ export function NonModal() {
 | `defaultSnapIndex` | `number` | `0` | Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`. |
 | `disclaimer` | `ReactNode` | — | Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). |
 | `footer` | `ReactNode` | — | Произвольный футер. Если задан — имеет приоритет над <br/> `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. |
-| `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация кнопок футера, собранных из `approveButton` / `cancelButton` / `additionalButton`. <br/> Применяется **только при ровно двух** кнопках (canonical cancel/confirm): <br/> - `'horizontal'` — кнопки в ряд через space-between: secondary слева, primary справа, <br/> ширина по контенту. Точное соответствие Figma `bottomBar.buttonGroup`. <br/> - `'vertical'` — кнопки в столбик, full-width (primary сверху). <br/> Одна кнопка всегда рендерится full-width (одиночный CTA); три кнопки не помещаются в ряд на <br/> mobile-вьюпорте и всегда идут в столбик — для них значение игнорируется. <br/> Игнорируется при заданном `footer` (произвольная разметка футера). |
+| `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `'horizontal'` | Ориентация кнопок футера, собранных из `approveButton` / `cancelButton` / `additionalButton`. <br/> Применяется **только при ровно двух** кнопках (canonical cancel/confirm): <br/> - `'horizontal'` — кнопки в ряд через space-between: secondary слева, primary справа, <br/> ширина по контенту. Точное соответствие Figma `bottomBar.buttonGroup`. <br/> - `'vertical'` — кнопки в столбик, full-width (primary сверху). <br/> Одна кнопка всегда рендерится full-width (одиночный CTA); три кнопки не помещаются в ряд на <br/> mobile-вьюпорте и всегда идут в столбик — для них значение игнорируется. <br/> Игнорируется при заданном `footer` (произвольная разметка футера). |
+| `footerTestIds` | `{ approve?: string; cancel?: string; additional?: string \| undefined; disclaimer?: string \| undefined; } \| undefined` | — | Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional/disclaimer). <br/> По умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои <br/> `TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е. |
 | `lockScroll` | `boolean` | `true` | Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница <br/> под sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с <br/> которым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`. |
 | `media` | `BottomSheetMediaProps` | — | Media-блок над шапкой: изображение / иконка либо произвольный `ReactNode`. |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а рендерит ArrowLeft-кнопку. |
@@ -947,90 +948,6 @@ export function CustomScrollable() {
 - **Drawer** — выезжающая боковая панель (desktop / мульти-position).
 - **Modal** — модальное окно по центру.
 
-## Body
-
-```tsx
-import { BottomSheetCustom } from '@ds/bottom-sheet';
-import { Button } from '@ds/button';
-import { useState } from 'react';
-
-import { MobilePreview } from '../MobilePreview';
-
-/**
- * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
- * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
- */
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <MobilePreview>
-      <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
-      <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
-        <BottomSheetCustom.Body>
-          <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
-        </BottomSheetCustom.Body>
-        <BottomSheetCustom.Footer>
-          <Button fullWidth view='filled' appearance='primary' label='Готово' onClick={() => setOpen(false)} />
-        </BottomSheetCustom.Footer>
-      </BottomSheetCustom>
-    </MobilePreview>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `bodyPadding` | `boolean` | `true` | Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) — <br/> для карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`. |
-| `className` | `string` | — | CSS-класс контейнера body. |
-| `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
-| `data-test-id` | `string` | — |  |
-
-## Footer
-
-```tsx
-import { BottomSheetCustom } from '@ds/bottom-sheet';
-import { Button } from '@ds/button';
-import { useState } from 'react';
-
-import { MobilePreview } from '../MobilePreview';
-
-/**
- * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
- * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
- */
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <MobilePreview>
-      <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
-      <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
-        <BottomSheetCustom.Body>
-          <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
-        </BottomSheetCustom.Body>
-        <BottomSheetCustom.Footer>
-          <Button fullWidth view='filled' appearance='primary' label='Готово' onClick={() => setOpen(false)} />
-        </BottomSheetCustom.Footer>
-      </BottomSheetCustom>
-    </MobilePreview>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс контейнера footer'а. |
-| `data-test-id` | `string` | — |  |
-
 ## Handle
 
 ```tsx
@@ -1069,53 +986,6 @@ export function CustomComposition() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-
-## Header
-
-```tsx
-import { BottomSheetCustom } from '@ds/bottom-sheet';
-import { Button } from '@ds/button';
-import { useState } from 'react';
-
-import { MobilePreview } from '../MobilePreview';
-
-/**
- * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
- * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
- */
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <MobilePreview>
-      <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
-      <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
-        <BottomSheetCustom.Body>
-          <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
-        </BottomSheetCustom.Body>
-        <BottomSheetCustom.Footer>
-          <Button fullWidth view='filled' appearance='primary' label='Готово' onClick={() => setOpen(false)} />
-        </BottomSheetCustom.Footer>
-      </BottomSheetCustom>
-    </MobilePreview>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `actionButton` | `ReactNode` | — | Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой). |
-| `className` | `string` | — | CSS-класс контейнера header'а. |
-| `data-test-id` | `string` | — |  |
-| `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
-| `slotAfterHeadline` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
-| `subHeadline` | `ReactNode` | — | Slot под headline-строкой во весь блок subHeadlineWrapper — <br/> типично `SearchBar`, `SegmentControl` или `Filter`. |
-| `title` | `ReactNode` | — | Заголовок (Typography title-l). |
-| `titleId` | `string` | — | `id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name). |
 
 ## Media
 

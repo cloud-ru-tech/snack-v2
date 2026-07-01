@@ -33,6 +33,12 @@ export type ColorPickerProps = WithSupportProps<{
    */
   withAlpha?: boolean;
   /**
+   * Показывать 2D-область (saturation/value квадрат). `false` — только поля и слайдеры
+   * (раскладка для узких поверхностей, напр. мобильный BottomSheet).
+   * @default true
+   */
+  withColorArea?: boolean;
+  /**
    * Применять изменения автоматически. Если `false` — появляются кнопки Cancel/Apply.
    * По умолчанию `true` — без футера (паритет с Figma colorPicker, где Cancel/Apply нет).
    * @default true
@@ -68,6 +74,7 @@ export function ColorPicker({
   value,
   onChange,
   withAlpha = true,
+  withColorArea = true,
   autoApply = true,
   size = SIZE.M,
   className,
@@ -237,11 +244,16 @@ export function ColorPicker({
       className={cn(styles.container, className)}
       data-size={size}
       data-mode={colorMode}
+      data-no-color-area={!withColorArea || undefined}
       {...extractSupportProps(rest)}
     >
-      {colorMode === COLOR_MODE.Hex && <HexColorPicker onChange={handlePickerChange} color={pickerHexOpaque} />}
-      {colorMode === COLOR_MODE.Rgb && <RgbColorPicker onChange={handlePickerChange} color={rawValue.rgb} />}
-      {colorMode === COLOR_MODE.Hsv && <HsvColorPicker onChange={handlePickerChange} color={rawValue.hsv} />}
+      {withColorArea && (
+        <>
+          {colorMode === COLOR_MODE.Hex && <HexColorPicker onChange={handlePickerChange} color={pickerHexOpaque} />}
+          {colorMode === COLOR_MODE.Rgb && <RgbColorPicker onChange={handlePickerChange} color={rawValue.rgb} />}
+          {colorMode === COLOR_MODE.Hsv && <HsvColorPicker onChange={handlePickerChange} color={rawValue.hsv} />}
+        </>
+      )}
 
       <div className={styles.colorModel}>
         <SegmentControl<ColorMode>

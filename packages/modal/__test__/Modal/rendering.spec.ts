@@ -1,6 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, KEY_COMBOS, MODAL_TRIGGER_TEST_ID, TEST_IDS } from './helpers';
+import { BOTTOM_SHEET_HANDLE_TEST_ID, buildStoryOptions, KEY_COMBOS, MODAL_TRIGGER_TEST_ID, TEST_IDS } from './helpers';
 
 const MOCK = {
   title: 'test title',
@@ -107,6 +107,25 @@ test.describe('Modal — rendering', () => {
       await expect(root).toBeVisible();
       await expect(root).toHaveAttribute('role', 'dialog');
       await expect(root).toHaveAttribute('aria-modal', 'true');
+    });
+  });
+
+  // Функциональная проверка адаптивного свапа surface (не визуальная): раскладка из
+  // тулбар-глобала `layoutType`. На desktop рендерится DesktopModal (нет BottomSheet-handle),
+  // на mobile — MobileModal поверх BottomSheet (handle присутствует).
+  test.describe('adaptive surface swap', () => {
+    test('desktop layout renders desktop modal (no bottom-sheet surface)', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions(undefined, undefined, { layoutType: 'desktop' }));
+      await getByTestId(MODAL_TRIGGER_TEST_ID).click();
+      await expect(getByTestId(M.root)).toBeVisible();
+      await expect(getByTestId(BOTTOM_SHEET_HANDLE_TEST_ID)).toHaveCount(0);
+    });
+
+    test('mobile layout swaps to bottom-sheet surface', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions(undefined, undefined, { layoutType: 'mobile' }));
+      await getByTestId(MODAL_TRIGGER_TEST_ID).click();
+      await expect(getByTestId(M.root)).toBeVisible();
+      await expect(getByTestId(BOTTOM_SHEET_HANDLE_TEST_ID)).toBeVisible();
     });
   });
 });

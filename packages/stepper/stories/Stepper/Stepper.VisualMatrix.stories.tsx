@@ -1,4 +1,5 @@
-import { MobileStepper, STEP_STATE, Stepper, StepState } from '@ds/stepper';
+import { AdaptiveProvider } from '@ds/adaptive';
+import { STEP_STATE, Stepper, StepState } from '@ds/stepper';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactElement } from 'react';
 
@@ -29,27 +30,31 @@ function pickIndex(state: StepState): number {
 
 function desktopAtState(state: StepState): ReactElement {
   return (
-    <div className={styles.containerMatrixDesktop}>
-      <Stepper
-        steps={[{ title: 'One' }, { title: 'Two' }, { title: 'Three' }]}
-        defaultCurrentStepIndex={pickIndex(state)}
-      >
-        {({ stepper }) => stepper}
-      </Stepper>
-    </div>
+    <AdaptiveProvider layoutType='desktop'>
+      <div className={styles.containerMatrixDesktop}>
+        <Stepper
+          steps={[{ title: 'One' }, { title: 'Two' }, { title: 'Three' }]}
+          defaultCurrentStepIndex={pickIndex(state)}
+        >
+          {({ stepper }) => stepper}
+        </Stepper>
+      </div>
+    </AdaptiveProvider>
   );
 }
 
 function mobileAtState(state: StepState): ReactElement {
   return (
-    <div className={styles.containerMatrixMobile}>
-      <MobileStepper
-        steps={[{ title: 'One' }, { title: 'Two' }, { title: 'Three' }]}
-        defaultCurrentStepIndex={pickIndex(state)}
-      >
-        {({ stepper }) => stepper}
-      </MobileStepper>
-    </div>
+    <AdaptiveProvider layoutType='mobile'>
+      <div className={styles.containerMatrixMobile}>
+        <Stepper
+          steps={[{ title: 'One' }, { title: 'Two' }, { title: 'Three' }]}
+          defaultCurrentStepIndex={pickIndex(state)}
+        >
+          {({ stepper }) => stepper}
+        </Stepper>
+      </div>
+    </AdaptiveProvider>
   );
 }
 

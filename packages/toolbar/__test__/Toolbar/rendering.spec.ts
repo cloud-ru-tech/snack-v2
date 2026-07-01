@@ -1,4 +1,4 @@
-import { LAYOUT_TYPE } from '@ds/utils';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 
 import { expect, test } from '#playwright-tooling/fixtures';
 
@@ -65,9 +65,7 @@ test.describe('Toolbar — rendering', () => {
 
     test('desktop bulk selection renders inline bulk actions', async ({ gotoStory, getByTestId }) => {
       await gotoStory(
-        buildStoryOptions({
-          showBulkActions: true,
-          bulkChecked: true,
+        buildStoryOptions({ showBulkActions: true, bulkChecked: true }, TOOLBAR_STORIES.playground, {
           layoutType: LAYOUT_TYPE.Desktop,
         }),
       );
@@ -76,9 +74,7 @@ test.describe('Toolbar — rendering', () => {
 
     test('mobile bulk selection renders bottom sheet', async ({ gotoStory, getByTestId }) => {
       await gotoStory(
-        buildStoryOptions({
-          showBulkActions: true,
-          bulkChecked: true,
+        buildStoryOptions({ showBulkActions: true, bulkChecked: true }, TOOLBAR_STORIES.playground, {
           layoutType: LAYOUT_TYPE.Mobile,
         }),
       );
@@ -87,12 +83,15 @@ test.describe('Toolbar — rendering', () => {
 
     test('mobile hides refresh and after slots in toolbar row', async ({ gotoStory, getByTestId }) => {
       await gotoStory(
-        buildStoryOptions({
-          layoutType: LAYOUT_TYPE.Mobile,
-          showRefresh: true,
-          showMoreActions: true,
-          showExtraSlot: true,
-        }),
+        buildStoryOptions(
+          {
+            showRefresh: true,
+            showMoreActions: true,
+            showExtraSlot: true,
+          },
+          TOOLBAR_STORIES.playground,
+          { layoutType: LAYOUT_TYPE.Mobile },
+        ),
       );
 
       await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.refreshButton)).toBeHidden();
@@ -113,7 +112,8 @@ test.describe('Toolbar — rendering', () => {
         .join(' + ');
 
       test(label, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ ...combo }));
+        const { layoutType, ...comboProps } = combo;
+        await gotoStory(buildStoryOptions({ ...comboProps }, TOOLBAR_STORIES.playground, { layoutType }));
         await expect(getByTestId(TEST_IDS.root)).toBeVisible();
 
         if ('filterOpen' in combo && combo.filterOpen) {

@@ -33,11 +33,14 @@ export type DrawerStoryProps = Record<string, unknown>;
 export function buildStoryOptions(
   props?: DrawerStoryProps,
   ref: StoryRef = DRAWER_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: ref.name,
     group: ref.group,
     story: ref.story,
     props,
+    globals,
   };
 }

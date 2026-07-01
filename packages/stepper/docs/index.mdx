@@ -1,17 +1,31 @@
 ---
 title: Stepper
 package: '@ds/stepper'
-description: Индикатор прогресса для многошаговых сценариев — desktop, mobile и адаптивный варианты с единым render-prop API.
+description: Адаптивный индикатор прогресса для многошаговых сценариев — единый render-prop API, раскладка из AdaptiveProvider.
 order: 0
 ---
 
+import { BasicFlow } from '../demos/examples/BasicFlow'
+import BasicFlowSrc from '../demos/examples/BasicFlow.tsx?raw'
+import { WithValidator } from '../demos/examples/WithValidator'
+import WithValidatorSrc from '../demos/examples/WithValidator.tsx?raw'
+import { MobileLayout } from '../demos/examples/MobileLayout'
+import MobileLayoutSrc from '../demos/examples/MobileLayout.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import stepperDoc from './props.json'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
 # Stepper
 
-Пакет `@ds/stepper` предоставляет индикатор прогресса для многошаговых сценариев. Все варианты используют единый render-prop API и общую модель состояний шагов.
+Индикатор прогресса для многошаговых сценариев — список шагов с номером, заголовком и (опционально) описанием. Управляется через render-prop, поддерживает controlled и uncontrolled режимы. `Stepper` адаптивен: раскладку берёт из `AdaptiveProvider` (`@ds/adaptive`) — на desktop горизонтальный ряд шагов, на `mobile` компактный.
 
-- [**Stepper**](/components/stepper/stepper) — десктопный горизонтальный индикатор шагов.
-- [**MobileStepper**](/components/stepper/mobile-stepper) — компактный индикатор для мобильных экранов.
-- [**AdaptiveStepper**](/components/stepper/adaptive-stepper) — автоматически переключается между desktop и mobile по viewport.
+## Когда использовать
+
+- Многошаговые формы, где пользователю важно видеть прогресс и (на desktop) описание каждого шага.
+- Процессы с валидацией между шагами (submit → backend check → next).
 
 ## Установка
 
@@ -20,5 +34,71 @@ pnpm add @ds/stepper
 ```
 
 ```ts
-import { Stepper, MobileStepper, AdaptiveStepper } from '@ds/stepper'
+import { Stepper } from '@ds/stepper'
 ```
+
+## Примеры использования
+
+<Example title='Базовый flow' description='Три шага с Next/Prev' code={BasicFlowSrc}>
+  <BasicFlow client:visible />
+</Example>
+
+<Example title='С валидатором' description='Первая попытка реджектится, вторая проходит' code={WithValidatorSrc}>
+  <WithValidator client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={stepperDoc.Stepper} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-stepper-examples-basicflow--basic-flow' />
+
+## Анатомия
+
+### Step state
+Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
+
+### Layout type
+Раскладка: `desktop` — горизонтальная с подписями, `mobile` — компактная вертикальная.
+
+## Адаптивность
+
+`Stepper` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — горизонтальный ряд шагов с номером, заголовком и описанием.
+- **mobile** — компактный вертикальный индикатор: номер текущего шага и прогресс без полного ряда подписей.
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Stepper steps={steps}>{renderStep}</Stepper>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Stepper } from '@ds/stepper'
+
+  const MobileStepper = withLayoutType(Stepper, 'mobile')
+  ```
+
+Платформенных пропов у `Stepper` нет — обе поверхности используют один набор пропсов.
+
+<Example title='Mobile — компактный индикатор' description='Раскладка форсирована в mobile: вместо горизонтального ряда — компактный вертикальный индикатор шага.' code={MobileLayoutSrc}>
+  <MobileLayout client:visible />
+</Example>
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
+
+## Figma
+<FigmaEmbed node={figmaNode('stepper')} height={480} title='Stepper в Figma (Snack UI Kit)' />

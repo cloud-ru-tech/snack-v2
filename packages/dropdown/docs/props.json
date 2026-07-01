@@ -1,9 +1,197 @@
 {
+  "DesktopDropdown": {
+    "displayName": "DesktopDropdown",
+    "propsTypeName": null,
+    "description": "Desktop-поверхность Dropdown'а: popover (`PopoverPrivate`) с topBar / body / bottomBar.\nInternal — наружу не реэкспортится; рендерится адаптивным `Dropdown` по контексту раскладки.",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Паддинги body. `false` — убрать (контент во всю ширину; на mobile прокидывается в `BottomSheet`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса —\nпо аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Содержимое внутри поповера (body)"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот футера (bottomBar)"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Divider между body и футером"
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Divider между шапкой и body"
+      },
+      "headline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке (topBar)"
+      },
+      "headlineHint": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "search": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот поиска в шапке (topBar)"
+      },
+      "state": {
+        "type": "DropdownState",
+        "required": false,
+        "description": "Состояние"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "gte",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
+      }
+    },
+    "relatedTypes": {}
+  },
   "Dropdown": {
     "displayName": "Dropdown",
     "propsTypeName": "DropdownProps",
-    "description": "Dropdown компонент",
+    "description": "Адаптивный Dropdown. Раскладку берёт из `AdaptiveProvider` (контекст): на `mobile` рендерит\n`BottomSheet`, иначе — desktop-popover. Публичный API единый; форс платформы — через\n`<AdaptiveProvider layoutType=…>` / `withLayoutType` (см. `@ds/adaptive`), пропа `layoutType` нет.",
     "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Паддинги body. `false` — убрать (контент во всю ширину; на mobile прокидывается в `BottomSheet`)."
+      },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
         "required": false
@@ -33,11 +221,6 @@
         "type": "ReactNode",
         "required": true,
         "description": "Содержимое внутри поповера (body)"
-      },
-      "contentClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контентной обёртки (bodyWrapper). Позволяет потребителю переопределить\nпаддинги body — например, список (`@ds/list`) задаёт собственные паддинги айтемов\nи обнуляет паддинг bodyWrapper."
       },
       "data-test-id": {
         "type": "string",
@@ -132,7 +315,7 @@
           "top-end",
           "top-start"
         ],
-        "defaultValue": "bottom-start",
+        "defaultValue": "top",
         "description": "Положение поповера относительно своего триггера (children).",
         "typeRefs": [
           "Placement"
@@ -166,7 +349,6 @@
           "hoverAndFocus",
           "hoverAndFocusVisible"
         ],
-        "defaultValue": "click",
         "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
         "typeRefs": [
           "Trigger"
@@ -196,7 +378,7 @@
           "eq",
           "gte"
         ],
-        "defaultValue": "gte",
+        "defaultValue": "auto",
         "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
         "typeRefs": [
           "PopoverWidthStrategy"
@@ -367,5 +549,205 @@
         "own": false
       }
     }
+  },
+  "DropdownBody": {
+    "displayName": "DropdownBody",
+    "propsTypeName": null,
+    "description": "Тело Dropdown'а (body) — общее для desktop-popover и mobile-bottom-sheet поверхностей:\nрендерит контент либо одно из состояний (loading / notFound / noData / dataError).",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Паддинги body. `false` — убрать (контент во всю ширину; на mobile прокидывается в `BottomSheet`)."
+      },
+      "state": {
+        "type": "DropdownState",
+        "required": false,
+        "description": "Состояние"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileDropdown": {
+    "displayName": "MobileDropdown",
+    "propsTypeName": null,
+    "description": "Mobile-поверхность Dropdown'а: контент уезжает в `BottomSheet` из `@ds/bottom-sheet`.\nТриггер (`children`) клонируется для открытия sheet'а; `open`/`onOpenChange` поддерживают\ncontrolled-режим. Internal — наружу не реэкспортится; рендерится адаптивным `Dropdown` по контексту.",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Паддинги body. `false` — убрать (контент во всю ширину; на mobile прокидывается в `BottomSheet`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса —\nпо аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Содержимое внутри поповера (body)"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот футера (bottomBar)"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Divider между body и футером"
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Divider между шапкой и body"
+      },
+      "headline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке (topBar)"
+      },
+      "headlineHint": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "search": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот поиска в шапке (topBar)"
+      },
+      "state": {
+        "type": "DropdownState",
+        "required": false,
+        "description": "Состояние"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
+      }
+    },
+    "relatedTypes": {}
   }
 }

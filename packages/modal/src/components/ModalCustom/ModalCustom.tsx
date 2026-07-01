@@ -1,3 +1,5 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { BottomSheetCustom, BottomSheetCustomProps, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
 import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, isBrowser, useModalOpenState, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -7,13 +9,13 @@ import { RemoveScroll } from 'react-remove-scroll';
 
 import { MODE, TEST_IDS, WIDTH } from '../../constants';
 import {
-  Body as ModalBodyComponent,
-  BodyProps as ModalBodyPropsType,
   ButtonClose,
-  Footer as ModalFooterComponent,
-  FooterProps as ModalFooterPropsType,
-  Header as ModalHeaderComponent,
-  HeaderProps as ModalHeaderPropsType,
+  DialogBody,
+  DialogBodyProps,
+  DialogFooter,
+  DialogFooterProps,
+  DialogHeader,
+  DialogHeaderProps,
 } from '../../helperComponents';
 import { ModalMode, ModalWidth } from '../../types';
 import { useModalFocusTrap } from './hooks';
@@ -27,8 +29,7 @@ export type ModalCustomProps = WithSupportProps<{
   /** Колбэк закрытия */
   onClose(): void;
   /**
-   * Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.
-   * blur подложки — только у Aggressive и Forced.
+   * Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.
    * @default MODE.Regular
    */
   mode?: ModalMode;
@@ -42,16 +43,16 @@ export type ModalCustomProps = WithSupportProps<{
   width?: ModalWidth;
   /** Растягивать по высоте в пределах контейнера */
   heightAuto?: boolean;
-  /**
-   * Явный DOM-контейнер для `createPortal`.
-   * Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.
-   */
+  /** Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. */
   container?: ModalContainer;
   /** Закрытие при навигации по истории */
   closeOnPopstate?: boolean;
-}>;
+}> &
+  // Только mobile: управляют sheet-поверхностью (на desktop игнорируются).
+  Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeArea' | 'showBackdrop'>;
 
-export function ModalCustom({
+/** Desktop-frame модалки: портал + overlay + close-button + width/mode/heightAuto. Surface='modal'. */
+function ModalFrame({
   open = false,
   onClose,
   mode = MODE.Regular,
@@ -169,7 +170,7 @@ export function ModalCustom({
           tabIndex={-1}
           {...extractSupportProps(rest)}
         >
-          {children}
+          <OverlaySurfaceProvider surface={OVERLAY_SURFACE.Modal}>{children}</OverlaySurfaceProvider>
 
           {hasCloseButton && (
             <div className={styles.closeButtonWrapper}>
@@ -183,11 +184,55 @@ export function ModalCustom({
   );
 }
 
+/**
+ * Адаптивный low-level `ModalCustom`: на `mobile` — `BottomSheetCustom`, иначе — `ModalFrame`.
+ * Композиция одна (surface-aware слоты `.Header/.Body/.Footer`). Форс — `withLayoutType`.
+ */
+export function ModalCustom(props: ModalCustomProps) {
+  const { layoutType } = useAdaptiveLayout();
+
+  if (isMobileLayout(layoutType)) {
+    const {
+      open = false,
+      onClose,
+      children,
+      className,
+      rootClassName,
+      container,
+      closeOnPopstate,
+      snapPoints,
+      swipeEnabled,
+      safeArea,
+      showBackdrop,
+      ...rest
+    } = props;
+    return (
+      <BottomSheetCustom
+        open={open}
+        onClose={onClose}
+        container={container}
+        className={className}
+        rootClassName={rootClassName}
+        closeOnPopstate={closeOnPopstate}
+        snapPoints={snapPoints}
+        swipeEnabled={swipeEnabled}
+        safeArea={safeArea}
+        showBackdrop={showBackdrop}
+        {...extractSupportProps(rest)}
+      >
+        {children}
+      </BottomSheetCustom>
+    );
+  }
+
+  return <ModalFrame {...props} />;
+}
+
 export namespace ModalCustom {
-  export type HeaderProps = ModalHeaderPropsType;
-  export type BodyProps = ModalBodyPropsType;
-  export type FooterProps = ModalFooterPropsType;
-  export const Header = ModalHeaderComponent;
-  export const Body = ModalBodyComponent;
-  export const Footer = ModalFooterComponent;
+  export type HeaderProps = DialogHeaderProps;
+  export type BodyProps = DialogBodyProps;
+  export type FooterProps = DialogFooterProps;
+  export const Header = DialogHeader;
+  export const Body = DialogBody;
+  export const Footer = DialogFooter;
 }

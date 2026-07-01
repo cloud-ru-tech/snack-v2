@@ -26,11 +26,14 @@ export const DROPLIST_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = DROPLIST_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   // Trigger-based: data-test-id на portal-узел не оседает — id ставит сама story на триггер, не через URL-args.
   return {
     name: ref.name,
     story: ref.story,
     props: { ...props },
+    globals,
   };
 }

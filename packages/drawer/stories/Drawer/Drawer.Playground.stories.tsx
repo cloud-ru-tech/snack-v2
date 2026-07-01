@@ -125,7 +125,10 @@ function PlaygroundRender(args: StoryProps) {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Открыть Drawer триггером ниже. Положение, ширина, слоты — из Controls.</DemoHint>
+        <DemoHint>
+          Открыть Drawer триггером ниже. Положение, ширина, слоты — из Controls. На desktop — боковая панель, на mobile
+          (layoutType) — `BottomSheet` снизу.
+        </DemoHint>
         {widthClamped && (
           <DemoWarning>
             <code>width={String(width)}</code> не применяется при <code>position={position}</code> (horizontal).
@@ -265,15 +268,21 @@ export const Playground: Story = {
     position: {
       control: 'radio',
       options: Object.values(POSITION),
+      description: 'Сторона выезда панели (только desktop)',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     width: {
       control: 'radio',
       options: Object.values(WIDTH),
-      description: 'Активна при position=left/right; для top/bottom — игнорируется (runtime + DemoWarning)',
+      description:
+        'Активна при position=left/right; для top/bottom — игнорируется (runtime + DemoWarning). Только desktop',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     heightAuto: {
       control: 'boolean',
-      description: 'Активна при position=top/bottom; для left/right — игнорируется (runtime + DemoWarning)',
+      description:
+        'Активна при position=top/bottom; для left/right — игнорируется (runtime + DemoWarning). Только desktop',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     showMedia: { control: 'boolean' },
 

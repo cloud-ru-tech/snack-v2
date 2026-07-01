@@ -22,6 +22,8 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/bottom-sheet": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/popover-private": "workspace:^",
     "@ds/utils": "workspace:^",

@@ -1,12 +1,21 @@
 # Stepper
 
-`@ds/stepper` — Индикатор прогресса для многошаговых сценариев — desktop, mobile и адаптивный варианты с единым render-prop API.
+`@ds/stepper` — Адаптивный индикатор прогресса для многошаговых сценариев — единый render-prop API, раскладка из AdaptiveProvider.
 
-Пакет `@ds/stepper` предоставляет индикатор прогресса для многошаговых сценариев. Все варианты используют единый render-prop API и общую модель состояний шагов.
+Индикатор прогресса для многошаговых сценариев — список шагов с номером, заголовком и (опционально) описанием. Управляется через render-prop, поддерживает controlled и uncontrolled режимы. `Stepper` адаптивен: раскладку берёт из `AdaptiveProvider` (`@ds/adaptive`) — на desktop горизонтальный ряд шагов, на `mobile` компактный.
 
-- ****Stepper**** — десктопный горизонтальный индикатор шагов.
-- ****MobileStepper**** — компактный индикатор для мобильных экранов.
-- ****AdaptiveStepper**** — автоматически переключается между desktop и mobile по viewport.
+## Когда использовать
+
+- Многошаговые формы, где пользователю важно видеть прогресс и (на desktop) описание каждого шага.
+- Процессы с валидацией между шагами (submit → backend check → next).
+
+## Анатомия
+
+### Step state
+Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
+
+### Layout type
+Раскладка: `desktop` — горизонтальная с подписями, `mobile` — компактная вертикальная.
 
 ## Установка
 
@@ -15,31 +24,12 @@ pnpm add @ds/stepper
 ```
 
 ```ts
-import { Stepper, MobileStepper, AdaptiveStepper } from '@ds/stepper'
+import { Stepper } from '@ds/stepper'
 ```
 
-## Stepper
+## Примеры использования
 
-Десктопный степпер — горизонтальный ряд шагов с номером, заголовком и описанием.
-
-Десктопный степпер — горизонтальный список шагов с номером, заголовком и (опционально) описанием. Управляется через render-prop, поддерживает controlled и uncontrolled режимы.
-
-### Когда использовать
-
-- Многошаговые desktop-формы, где пользователю важно видеть описание каждого шага.
-- Процессы с валидацией между шагами (submit → backend check → next).
-
-### Анатомия
-
-#### Step state
-Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
-
-#### Layout type
-Раскладка: `desktop` — горизонтальная с подписями, `mobile` — компактная вертикальная.
-
-### Примеры использования
-
-#### Базовый flow
+### Базовый flow
 
 Три шага с Next/Prev
 
@@ -77,7 +67,7 @@ export function BasicFlow() {
 }
 ```
 
-#### С валидатором
+### С валидатором
 
 Первая попытка реджектится, вторая проходит
 
@@ -109,23 +99,23 @@ export function WithValidator() {
 }
 ```
 
-### Props
+## Props
 
 **StepperProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `allowFreeNavigation` | `boolean` | `false` | Позволяет свободно переключаться между разными шагами без валидации |
+| `allowFreeNavigation` | `boolean` | — | Позволяет свободно переключаться между разными шагами без валидации |
 | `children` | `StepperApi` | — | Render function. Принимает `stepper` — JSX-элемент степпера, а также api: <br/> `goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`, <br/> `currentStepIndex`, `stepCount`. |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — | data-test-id |
-| `defaultCurrentStepIndex` | `number` | `0` | Индекс текущего шага по-дефолту |
+| `defaultCurrentStepIndex` | `number` | — | Индекс текущего шага по-дефолту |
 | `onChangeCurrentStep` | `((newValue: number, prevValue: number) => void)` | — | Колбек смены текущего степа |
 | `onCompleteChange` | `((isCompleted: boolean) => void)` | — | Колбек изменения завершённости |
 | `steps` | `StepData` | — | Массив шагов |
 | `validator` | `StepsValidator` | — | Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. Возвращает Promise<boolean>: false → шаг помечается как Rejected. |
 
-##### Related types
+#### Related types
 
 **StepData**
 
@@ -149,164 +139,50 @@ export function WithValidator() {
 
 - `StepsValidator` = `(prevStepIndex: number, newStepIndex: number) => Promise<boolean>`
 
-## MobileStepper
+## Адаптивность
 
-Мобильный степпер — тонкий прогресс-трек с заголовком активного шага.
+`Stepper` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
 
-Мобильный вариант степпера. Занимает меньше по высоте: вместо ряда карточек — прогресс-трек и заголовок активного шага. API идентично `Stepper`, поэтому render-prop и валидатор работают так же.
+- **desktop** (по умолчанию) — горизонтальный ряд шагов с номером, заголовком и описанием.
+- **mobile** — компактный вертикальный индикатор: номер текущего шага и прогресс без полного ряда подписей.
 
-### Когда использовать
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
-- Когда у пользователя заведомо узкий экран (< 640 px).
-- В мобильном web-flow и внутри bottom-sheet'ов.
-- Когда desktop-вариант конкурирует с остальным контентом за место по высоте.
+### Как форсировать платформу
 
-Для автоматического переключения между desktop и mobile используйте **`AdaptiveStepper`**.
+Форс — только контекстом, не пропом:
 
-### Анатомия
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
 
-#### Step state
-Состояние шага: `completed` — пройден, `current` — текущий, `loading` — в процессе, `waiting` — ещё не пройден, `rejected` — отклонён/ошибка.
+  <AdaptiveProvider layoutType='mobile'>
+    <Stepper steps={steps}>{renderStep}</Stepper>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Stepper } from '@ds/stepper'
 
-### Примеры использования
+  const MobileStepper = withLayoutType(Stepper, 'mobile')
+  ```
 
-#### Мобильный flow
+Платформенных пропов у `Stepper` нет — обе поверхности используют один набор пропсов.
 
-Три шага с заголовками и описаниями
+### Mobile — компактный индикатор
 
-```tsx
-import { Button } from '@ds/button';
-import { MobileStepper } from '@ds/stepper';
-
-export function MobileFlow() {
-  return (
-    <MobileStepper
-      steps={[
-        { title: 'Заполните данные', description: 'Имя и фамилия' },
-        { title: 'Подтвердите', description: 'Проверьте данные' },
-        { title: 'Готово' },
-      ]}
-    >
-      {({ stepper, goNext, goPrev, currentStepIndex, stepCount, isCompleted }) => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {stepper}
-          <div style={{ display: 'flex', gap: 8 }}>
-            <Button
-              label='Назад'
-              view='outline'
-              appearance='neutral'
-              size='s'
-              onClick={() => goPrev()}
-              disabled={currentStepIndex === 0}
-            />
-            <Button
-              label={currentStepIndex === stepCount - 1 ? 'Завершить' : 'Далее'}
-              appearance='primary'
-              size='s'
-              onClick={() => goNext()}
-              disabled={isCompleted}
-            />
-          </div>
-        </div>
-      )}
-    </MobileStepper>
-  );
-}
-```
-
-### Props
-
-**MobileStepperProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `allowFreeNavigation` | `boolean` | `false` | Позволяет свободно переключаться между разными шагами без валидации |
-| `children` | `StepperApi` | — | Render function. Принимает `stepper` и api: <br/> `goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`, <br/> `currentStepIndex`, `stepCount`. |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — | data-test-id |
-| `defaultCurrentStepIndex` | `number` | `0` | Индекс текущего шага по-дефолту |
-| `onChangeCurrentStep` | `((newValue: number, prevValue: number) => void)` | — | Колбек смены текущего степа |
-| `onCompleteChange` | `((isCompleted: boolean) => void)` | — | Колбек изменения завершённости |
-| `steps` | `StepData` | — | Массив шагов |
-| `validator` | `StepsValidator` | — | Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. |
-
-##### Related types
-
-**StepData**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `description` | `string \| undefined` | — |  |
-| `title` | `string` | — |  |
-
-**StepperApi**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `currentStepIndex` | `number` | — |  |
-| `goNext` | `(stepIndex?: number) => void` | — |  |
-| `goPrev` | `(stepIndex?: number) => void` | — |  |
-| `isCompleted` | `boolean` | — |  |
-| `resetValidation` | `() => void` | — |  |
-| `setValidator` | `StepsValidator` | — |  |
-| `stepCount` | `number` | — |  |
-| `stepper` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — |  |
-
-- `StepsValidator` = `(prevStepIndex: number, newStepIndex: number) => Promise<boolean>`
-
-## AdaptiveStepper
-
-Адаптивный степпер — переключает desktop и mobile варианты через проп layoutType.
-
-Адаптивная обёртка, которая по пропу `layoutType` отрисовывает либо `Stepper`, либо `MobileStepper`. Удобна, когда решение о layout'е принимается выше по дереву — например, через media-query-хук или feature-flag.
-
-### Когда использовать
-
-- Когда точка переключения между вариантами известна заранее (например, из хука, читающего viewport).
-- Когда вы не хотите дублировать вызов Stepper / MobileStepper по условию в каждом месте использования.
-
-Если адаптив не нужен — используйте **`Stepper`** или **`MobileStepper`** напрямую.
-
-### Анатомия
-
-#### Step state
-
-Состояние шага:
-
-- `completed` — шаг завершён.
-- `current` — текущий шаг.
-- `loading` — шаг в процессе выполнения.
-- `waiting` — шаг ещё не начат.
-- `rejected` — шаг завершён с ошибкой.
-
-Раскладка (desktop/mobile) задаётся пропом `layoutType` — компонент не определяет её сам; значение передаётся снаружи (например, из media-query-хука приложения).
-
-### Примеры использования
-
-#### Переключение layout
-
-Toggle между desktop и mobile
+Раскладка форсирована в mobile: вместо горизонтального ряда — компактный вертикальный индикатор шага.
 
 ```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { Button } from '@ds/button';
-import { AdaptiveStepper } from '@ds/stepper';
-import { useState } from 'react';
+import { Stepper } from '@ds/stepper';
 
-export function AdaptiveFlow() {
-  const [isMobile, setIsMobile] = useState(false);
+export function MobileLayout() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Button
-        label={isMobile ? 'Показать desktop' : 'Показать mobile'}
-        view='outline'
-        appearance='neutral'
-        size='s'
-        onClick={() => setIsMobile(v => !v)}
-      />
-      <AdaptiveStepper
-        layoutType={isMobile ? 'mobile' : 'desktop'}
-        steps={[{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }]}
-      >
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <Stepper steps={[{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }]}>
         {({ stepper, goNext, goPrev, currentStepIndex, stepCount, isCompleted }) => (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {stepper}
@@ -329,49 +205,10 @@ export function AdaptiveFlow() {
             </div>
           </div>
         )}
-      </AdaptiveStepper>
-    </div>
+      </Stepper>
+    </AdaptiveProvider>
   );
 }
 ```
 
-### Props
-
-**AdaptiveStepperProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `allowFreeNavigation` | `boolean` | — | Позволяет свободно переключаться между разными шагами без валидации |
-| `children` | `StepperApi` | — | Render function. Принимает `stepper` — JSX-элемент степпера, а также api: <br/> `goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`, <br/> `currentStepIndex`, `stepCount`. |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — | data-test-id |
-| `defaultCurrentStepIndex` | `number` | — | Индекс текущего шага по-дефолту |
-| `layoutType` | `"desktop"` \| `"mobile"` | — | Режим отображения: desktop (по-умолчанию) или mobile |
-| `onChangeCurrentStep` | `((newValue: number, prevValue: number) => void)` | — | Колбек смены текущего степа |
-| `onCompleteChange` | `((isCompleted: boolean) => void)` | — | Колбек изменения завершённости |
-| `steps` | `StepData` | — | Массив шагов |
-| `validator` | `StepsValidator` | — | Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. Возвращает Promise<boolean>: false → шаг помечается как Rejected. |
-
-##### Related types
-
-**StepData**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `description` | `string \| undefined` | — |  |
-| `title` | `string` | — |  |
-
-**StepperApi**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `currentStepIndex` | `number` | — |  |
-| `goNext` | `(stepIndex?: number) => void` | — |  |
-| `goPrev` | `(stepIndex?: number) => void` | — |  |
-| `isCompleted` | `boolean` | — |  |
-| `resetValidation` | `() => void` | — |  |
-| `setValidator` | `StepsValidator` | — |  |
-| `stepCount` | `number` | — |  |
-| `stepper` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — |  |
-
-- `StepsValidator` = `(prevStepIndex: number, newStepIndex: number) => Promise<boolean>`
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).

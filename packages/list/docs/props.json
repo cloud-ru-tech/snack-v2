@@ -255,10 +255,292 @@
     },
     "relatedTypes": {}
   },
+  "DesktopDroplist": {
+    "displayName": "DesktopDroplist",
+    "propsTypeName": null,
+    "description": "Desktop-поверхность `Droplist`: анкорный popover (`Dropdown`) со списком. Internal — наружу\nне реэкспортится; рендерится адаптивным `Droplist` на не-mobile раскладке. Так как вызывается\nтолько на desktop-раскладке, внутренний адаптивный `Dropdown` всегда рендерит popover.",
+    "props": {
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "children": {
+        "type": "ReactNode | ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хендлер ввода, для поддержки управления с клавиатуры",
+        "required": true,
+        "description": "Триггер для дроплиста"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "defaultValue": "{}",
+        "description": "Настройки раскрытия элементов"
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого дроплиста\n(по аналогии с `container` у Modal/Drawer). По умолчанию — из `PortalContextProvider`."
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
+      "header": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка"
+      },
+      "limitedScrollHeight": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+      },
+      "listRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент выпадающего списка"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображать ли маркер у выбранного элемента списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии результатов поиска или фильтров"
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "pinBottom": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Элементы списка, закрепленные снизу"
+      },
+      "pinTop": {
+        "type": "Item[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Элементы списка, закрепленные сверху"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки"
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "s",
+        "description": "Размер списка"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerElemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент-триггер для дроплиста"
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      },
+      "widthStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "auto",
+          "eq",
+          "gte"
+        ],
+        "defaultValue": "auto",
+        "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета."
+      }
+    },
+    "relatedTypes": {}
+  },
   "Droplist": {
     "displayName": "Droplist",
     "propsTypeName": "DroplistProps",
+    "description": "Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит\nсписок (size `l`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).\nСлоты `label` / `actionButton` / `slotAfterHeadline` / `onBackButtonClick` применяются только на mobile.\nЧтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный\n`<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.",
     "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+      },
       "barHideStrategy": {
         "type": "enum",
         "required": false,
@@ -297,7 +579,6 @@
       "collapse": {
         "type": "CollapseState",
         "required": false,
-        "defaultValue": "{}",
         "description": "Настройки раскрытия элементов",
         "typeRefs": [
           "CollapseState"
@@ -371,6 +652,11 @@
           "ScrollProps"
         ]
       },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): заголовок шапки."
+      },
       "limitedScrollHeight": {
         "type": "boolean",
         "required": false,
@@ -389,7 +675,6 @@
       "marker": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true",
         "description": "Отображать ли маркер у выбранного элемента списка"
       },
       "noDataState": {
@@ -407,6 +692,11 @@
         "typeRefs": [
           "EmptyStateProps"
         ]
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): callback back-кнопки."
       },
       "onOpenChange": {
         "type": "((isOpen: boolean) => void)",
@@ -429,7 +719,6 @@
       "pinBottom": {
         "type": "Item[]",
         "required": false,
-        "defaultValue": "[]",
         "description": "Элементы списка, закрепленные снизу",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
@@ -441,7 +730,6 @@
       "pinTop": {
         "type": "Item[]",
         "required": false,
-        "defaultValue": "[]",
         "description": "Элементы списка, закрепленные сверху",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
@@ -523,11 +811,15 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
         "description": "Размер списка",
         "typeRefs": [
           "Size"
         ]
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
       },
       "trigger": {
         "type": "enum",
@@ -559,13 +851,11 @@
       "untouchableScrollbars": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
         "description": "Отключает возможность взаимодействовать со скролбарами мышью."
       },
       "virtualized": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
         "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
       },
       "widthStrategy": {
@@ -1699,6 +1989,235 @@
     },
     "relatedTypes": {}
   },
+  "MobileDroplist": {
+    "displayName": "MobileDroplist",
+    "propsTypeName": null,
+    "description": "Mobile-вариант `Droplist`: рендерит `List` (size `l`) внутри `BottomSheet` из `@ds/bottom-sheet`.\nТриггер (`children`) клонируется для открытия sheet'а по клику/Enter/Space. `next-list`-айтемы на mobile\nне открывают вложенный popover, а навигируют внутри sheet'а (drill-down): клик уводит на уровень\nвложенного списка, в шапке появляется его заголовок и кнопка «назад». Internal — наружу не реэкспортится;\nрендерится адаптивным `Droplist` на `layoutType='mobile'`.",
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+      },
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "children": {
+        "type": "ReactNode | ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хендлер ввода, для поддержки управления с клавиатуры",
+        "required": true,
+        "description": "Триггер для дроплиста"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "closeDroplistOnItemClick": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "collapse": {
+        "type": "CollapseState",
+        "required": false,
+        "description": "Настройки раскрытия элементов"
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "required": false,
+        "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого дроплиста\n(по аналогии с `container` у Modal/Drawer). По умолчанию — из `PortalContextProvider`."
+      },
+      "contentRender": {
+        "type": "((props: ContentRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер функция основного контента айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+      },
+      "errorDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при ошибке запроса"
+      },
+      "footer": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в конце списка"
+      },
+      "footerActiveElementsRefs": {
+        "type": "RefObject<HTMLElement>[]",
+        "required": false,
+        "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
+      "header": {
+        "type": "ReactNode ;",
+        "required": false,
+        "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+      },
+      "headerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): заголовок шапки."
+      },
+      "limitedScrollHeight": {
+        "type": "boolean",
+        "required": false,
+        "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за состояние загрузки списка"
+      },
+      "marker": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать ли маркер у выбранного элемента списка"
+      },
+      "noDataState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии данных"
+      },
+      "noResultsState": {
+        "type": "EmptyStateProps",
+        "required": false,
+        "description": "Экран при отсутствии результатов поиска или фильтров"
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "pinBottom": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Элементы списка, закрепленные снизу"
+      },
+      "pinTop": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Элементы списка, закрепленные сверху"
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для scroll обертки основного списка айтемов"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "scrollToSelectedItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+      },
+      "search": {
+        "type": "SearchState",
+        "required": false,
+        "description": "Настройки поисковой строки"
+      },
+      "selection": {
+        "type": "SelectionSingleState | SelectionMultipleState",
+        "required": false,
+        "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер списка"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      },
+      "virtualized": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+      }
+    },
+    "relatedTypes": {}
+  },
   "NewListContextProvider": {
     "displayName": "NewListContextProvider",
     "propsTypeName": null,
@@ -2069,6 +2588,13 @@
       }
     }
   },
+  "buildLevelItems": {
+    "displayName": "buildLevelItems",
+    "propsTypeName": null,
+    "description": "Готовит айтемы текущего уровня sheet'а:\n- `next-list` превращается в базовый айтем с шевроном `>`, клик по которому уводит на уровень вложенного\n  списка (drill-down), а не открывает второй BottomSheet (десктопный nested-popover на mobile неприменим);\n- `group` / `group-select` / `collapse` рекурсивно обрабатываются (внутри них тоже может быть `next-list`);\n- базовые айтемы (action-меню без `selection`) при `closeOnClick` закрывают sheet по клику.",
+    "props": {},
+    "relatedTypes": {}
+  },
   "isSelectionMultipleProps": {
     "displayName": "isSelectionMultipleProps",
     "propsTypeName": null,
@@ -2079,6 +2605,175 @@
     "displayName": "isSelectionSingleProps",
     "propsTypeName": null,
     "props": {},
+    "relatedTypes": {}
+  },
+  "nextListOption": {
+    "displayName": "nextListOption",
+    "propsTypeName": null,
+    "description": "Текст `option` next-list-айтема — заголовок шапки sheet'а при заходе во вложенный список.",
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "barHideStrategy": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом"
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляемое состояние выбранности айтема"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode | ItemContentProps",
+        "required": false,
+        "description": "Основной контент айтема"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dataError": {
+        "type": "boolean",
+        "required": false,
+        "description": "Загрузка вложенного списка завершилась ошибкой — показывается `errorDataState`"
+      },
+      "dataFiltered": {
+        "type": "boolean",
+        "required": false,
+        "description": "Вложенный список отфильтрован — пустой результат показывает `noResultsState`, а не `noDataState`"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг неактивности элемента"
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Уникальный идентификатор"
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на DOM-элемент айтема"
+      },
+      "itemWrapRender": {
+        "type": "((item: ReactNode) => ReactNode)",
+        "required": false,
+        "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки вложенного списка — показывается спиннер вместо элементов"
+      },
+      "onBlur": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки блюра"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки фокуса"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиши"
+      },
+      "onMouseDown": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "onScroll": {
+        "type": "((event?: Event) => void)",
+        "required": false,
+        "description": "Колбек на скролл прокручиваемого списка"
+      },
+      "onSublistOpenChanged": {
+        "type": "((open: boolean, id?: ItemId) => void)",
+        "required": false,
+        "description": "Колбек смены состояния вложенного списка (открыт/закрыт)"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start"
+        ],
+        "description": "Сторона, с которой раскрывается вложенный список относительно элемента"
+      },
+      "scroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включить ли скролл для основной части списка"
+      },
+      "scrollContainerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на контейнер, который скроллится"
+      },
+      "scrollRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+      },
+      "showSwitchIcon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения иконки у чекбоксов"
+      },
+      "type": {
+        "type": "\"next-list\"",
+        "required": true
+      },
+      "untouchableScrollbars": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+      }
+    },
     "relatedTypes": {}
   },
   "useCreateBaseItems": {

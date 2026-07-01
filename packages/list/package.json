@@ -31,6 +31,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/dropdown": "workspace:^",
@@ -38,6 +40,7 @@
     "@ds/info-block": "workspace:^",
     "@ds/loader": "workspace:^",
     "@ds/materials": "workspace:^",
+    "@ds/portal-context": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/search-private": "workspace:^",
     "@ds/toggles": "workspace:^",

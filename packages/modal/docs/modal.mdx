@@ -69,6 +69,49 @@ import { Modal, MODE, WIDTH } from '@ds/modal'
 
 <PropsTable data={modalDoc.Modal} />
 
+## Адаптивность
+
+`Modal` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — центрированное модальное окно с overlay и focus-trap.
+- **mobile** — контент рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Modal open={open} onClose={close} content={…} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Modal } from '@ds/modal'
+
+  const MobileModal = withLayoutType(Modal, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Часть пропов управляет геометрией desktop-окна и на mobile молча игнорируется (у `BottomSheet` своя поверхность снизу). Таблица синхронизирована с type-level JSDoc у `ModalProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `mode`, `width`, `heightAuto`, `truncate` | используется | игнорируется |
+| `title`, `subtitle`, `slotAfterHeadline`, `onBackButtonClick`, `media`, `content`, `footer` | используется | используется |
+| `loading`, `loadingState`, `open`, `onClose`, `container`, `closeOnPopstate`, `className`, `rootClassName` | используется | используется |
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='components-modal-modal--playground' globals={{ layoutType: 'mobile' }} height={520} />
+
 ## Storybook
 <StorybookEmbed storyId='components-modal-modal--playground' height={480} />
 

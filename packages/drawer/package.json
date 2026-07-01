@@ -25,6 +25,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/portal-context": "workspace:^",

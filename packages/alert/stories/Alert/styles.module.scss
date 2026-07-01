@@ -16,6 +16,14 @@
   max-width: 100%;
 }
 
+// Узкий (mobile-репрезентативный) демо-контейнер для adaptive-секций VisualMatrix:
+// фиксированная ширина заставляет длинный заголовок/контент переноситься, чтобы
+// preset-разница (truncate.title, collapsible) была видна в одном скриншоте.
+.adaptiveCell {
+  width: 320px;
+  max-width: 100%;
+}
+
 .matrix {
   display: grid;
   gap: base.$sn-primitive-dimension-24;

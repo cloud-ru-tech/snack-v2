@@ -80,7 +80,7 @@ export type ListProps = WithSupportProps<
     EmptyState
 >;
 
-export type DroplistProps = {
+export type BaseDroplistProps = {
   /** Ссылка на элемент-триггер для дроплиста */
   triggerElemRef?: RefObject<HTMLElement>;
   /**
@@ -110,6 +110,36 @@ export type DroplistProps = {
   'trigger' | 'placement' | 'widthStrategy' | 'open' | 'onOpenChange' | 'triggerClassName' | 'closeOnPopstate'
 > &
   Omit<ListProps, 'tabIndex' | 'onKeyDown' | 'hasListInFocusChain' | 'keyboardNavigationRef'>;
+
+/** Props popover-only десктопного `DesktopDroplist`. Совпадают с базовыми. */
+export type DesktopDroplistProps = BaseDroplistProps;
+
+/** Только mobile (`BottomSheet`)-слоты адаптивного `Droplist`. */
+type DroplistMobileSlots = {
+  /** Только mobile (`BottomSheet`): заголовок шапки. */
+  label?: string;
+  /** Только mobile (`BottomSheet`): action-кнопка справа в шапке. */
+  actionButton?: ReactNode;
+  /** Только mobile (`BottomSheet`): slot справа от заголовка. */
+  slotAfterHeadline?: ReactNode;
+  /** Только mobile (`BottomSheet`): callback back-кнопки. */
+  onBackButtonClick?(): void;
+};
+
+/**
+ * Props адаптивного `Droplist` (дефолтный droplist): базовые props + mobile-слоты `BottomSheet`.
+ * Раскладку берёт из `AdaptiveProvider` (контекст): на `mobile` рендерит `MobileDroplist`
+ * (список size `l` в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
+ * применяются только на mobile.
+ */
+export type DroplistProps = BaseDroplistProps & DroplistMobileSlots;
+
+/** Props mobile-`MobileDroplist` (`BottomSheet`): база без popover-пропов + mobile-слоты. */
+export type MobileDroplistProps = Omit<
+  BaseDroplistProps,
+  'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName'
+> &
+  DroplistMobileSlots;
 
 export type ListPrivateProps = Omit<ListProps, 'pinTop' | 'pinBottom' | 'items' | 'hasListInFocusChain'> & {
   nested?: boolean;

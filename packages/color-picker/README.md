@@ -123,6 +123,7 @@ export function WithoutAlpha() {
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента. |
 | `value` | `Alpha` \| `Color` \| `HslColor` \| `HsvColor` \| `RgbColor` | — | Текущее значение цвета. Если задано — компонент синхронизируется с ним при изменении. |
 | `withAlpha` | `boolean` | `true` | Управляет альфа-каналом палитры и наличием поля Alpha. |
+| `withColorArea` | `boolean` | `true` | Показывать 2D-область (saturation/value квадрат). `false` — только поля и слайдеры <br/> (раскладка для узких поверхностей, напр. мобильный BottomSheet). |
 
 #### Related types
 
@@ -161,3 +162,33 @@ export function WithoutAlpha() {
 | `r` | `number` | — |  |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
+
+## Адаптивность
+
+`ColorPicker` — презентационная палитра, управляемая пропсами: сам он раскладку из контекста не читает. Переключение поверхности (surface-swap) живёт на уровне поля-обёртки (`FieldColor`-сценарий): это поле берёт раскладку из `AdaptiveProvider` (`@ds/adaptive`) и на mobile открывает палитру в `BottomSheet` снизу, на desktop — в popover. Пропа `layoutType` у `ColorPicker` нет.
+
+> **Desktop-first.** Поставьте один `<AdaptiveProvider>` в корне приложения — адаптивное поле включит mobile-поверхность автоматически.
+
+Под узкую mobile-поверхность `ColorPicker` отдаёт два пропса раскладки:
+
+| Проп | desktop | mobile (BottomSheet) |
+|------|---------|----------------------|
+| `withColorArea` | 2D-область saturation/value (`true`) | компактная раскладка без 2D-квадрата, только поля и слайдеры (`false`) |
+| `autoApply` | коммит на каждое изменение (`true`) | коммит по явному Apply (`false`) |
+
+### Компактный режим (mobile)
+
+`withColorArea={false}` — без 2D-области saturation/value, только поля и слайдеры.
+
+```tsx
+import { ColorPicker } from '@ds/color-picker';
+import { useState } from 'react';
+
+export function Compact() {
+  const [color, setColor] = useState<string>('#389f74');
+
+  return <ColorPicker value={color} withColorArea={false} autoApply={false} onChange={raw => setColor(raw.hex)} />;
+}
+```
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).

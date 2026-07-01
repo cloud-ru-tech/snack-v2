@@ -1,6 +1,7 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { CheckSVG, CrossSVG } from '@ds/icons';
 import { Checkbox } from '@ds/toggles';
-import { LAYOUT_TYPE, Toolbar } from '@ds/toolbar';
+import { Toolbar } from '@ds/toolbar';
 import { useId, useState } from 'react';
 
 import { MobilePreview } from '../MobilePreview';
@@ -20,20 +21,21 @@ export function MobileLayout() {
         <span>Есть выбранные строки таблицы</span>
       </label>
       <MobilePreview>
-        <Toolbar
-          layoutType={LAYOUT_TYPE.Mobile}
-          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-          onRefresh={() => setSearch('')}
-          moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
-          checked={checked}
-          onCheck={() => setChecked(value => !value)}
-          selectedCount={checked ? 12 : 0}
-          totalCount={100}
-          bulkActions={[
-            { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
-            { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
-          ]}
-        />
+        <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+          <Toolbar
+            search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+            onRefresh={() => setSearch('')}
+            moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+            checked={checked}
+            onCheck={() => setChecked(value => !value)}
+            selectedCount={checked ? 12 : 0}
+            totalCount={100}
+            bulkActions={[
+              { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
+              { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+            ]}
+          />
+        </AdaptiveProvider>
       </MobilePreview>
     </div>
   );

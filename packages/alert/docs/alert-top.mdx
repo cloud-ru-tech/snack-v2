@@ -62,6 +62,60 @@ import { AlertTop } from '@ds/alert'
 
 <PropsTable data={alertDoc.AlertTop} />
 
+## Адаптивность
+
+`AlertTop` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста [`@ds/adaptive`](/components/adaptive) — отдельного пропа `layoutType` нет.
+
+> **Desktop-first.** Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-дефолты применяются автоматически. Override нужен только как escape-hatch.
+
+На mobile баннер становится **раскрываемым** (`collapsible`): длинный текст и действия скрыты до клика по баннеру, на месте close-кнопки появляется шеврон раскрытия. На desktop баннер плоский.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `collapsible` | `false` | `true` |
+
+Источник mobile-дефолтов — экспортируемая константа `ALERT_TOP_LAYOUT_PRESETS`.
+
+### Как переопределить
+
+**Desktop-first:** перенос пропа из desktop-макета не ломает mobile. Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `ALERT_TOP_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { AlertTop } from '@ds/alert'
+
+// 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся collapsible (mobile не ломается)
+<AlertTop collapsible={false} title='…' description='…' />
+
+// 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
+<AlertTop layoutPresets={{ mobile: { collapsible: false } }} title='…' description='…' />
+
+// 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
+<AlertTop layoutPresets={{ desktop: { collapsible: true } }} title='…' description='…' />
+```
+
+DS-пресет (`ALERT_TOP_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
+
+### Как форсировать раскладку
+
+Раскладка переключается только контекстом, не пропом:
+
+```tsx
+import { AdaptiveProvider, withLayoutType } from '@ds/adaptive'
+import { AlertTop } from '@ds/alert'
+
+// поддерево — вложенный провайдер
+<AdaptiveProvider layoutType='mobile'>
+  <AlertTop title='…' description='…' />
+</AdaptiveProvider>
+
+// компонент/секция — HOC (module-scope, не в рендере)
+const MobileAlertTop = withLayoutType(AlertTop, 'mobile')
+```
+
+Подробнее о модели раскладки — в [`@ds/adaptive`](/components/adaptive).
+
+<StorybookEmbed storyId='components-alert-alerttop--playground' globals={{ layoutType: 'mobile' }} height={220} />
+
 ## Storybook
 
 <StorybookEmbed storyId='components-alert-alerttop--playground' height={200} />

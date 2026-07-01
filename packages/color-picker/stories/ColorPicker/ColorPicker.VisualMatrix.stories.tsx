@@ -99,6 +99,40 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
+        sectionTitle='withColorArea (size m, Hex, autoApply)'
+        firstColumnHeader='withColorArea'
+        columnHeaders={['Layout']}
+        rows={[
+          {
+            variantLabel: 'true (2D area)',
+            cells: [
+              <ColorPicker
+                key='with-area'
+                size='m'
+                autoApply
+                withColorArea
+                value='#ff0000'
+                availableModes={[COLOR_MODE.Hex]}
+              />,
+            ],
+          },
+          {
+            variantLabel: 'false (compact)',
+            cells: [
+              <ColorPicker
+                key='no-area'
+                size='m'
+                autoApply
+                withColorArea={false}
+                value='#ff0000'
+                availableModes={[COLOR_MODE.Hex]}
+              />,
+            ],
+          },
+        ]}
+      />
+
+      <StoryTable
         sectionTitle='Full switcher (all modes, size × active mode)'
         firstColumnHeader='Active mode'
         columnHeaders={sizes.map(s => s.toUpperCase())}

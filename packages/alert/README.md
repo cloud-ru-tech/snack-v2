@@ -123,6 +123,7 @@ export function Collapsible() {
 | `data-test-id` | `string` | — |  |
 | `description` | `ReactNode` | — | Описание |
 | `icon` | `boolean` | — | Отображать иконку |
+| `layoutPresets` | `AlertLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `ALERT_LAYOUT_PRESETS`). <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
 | `onClose` | `(() => void)` | — | Колбек закрытия |
 | `outline` | `boolean` | — | Внешний бордер |
 | `size` | `"m"` \| `"s"` | — | Размер |
@@ -147,6 +148,12 @@ export function Collapsible() {
 | `size` | `"m"` \| `"s"` | — | Размер |
 | `variant` | `"onAccent"` \| `"onColor"` | — | Вариант оформления |
 
+**AlertLayoutDefaults**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `truncate` | `{ title?: number; } \| undefined` | — | Максимальное кол-во строк (только при `collapsible={false}`). |
+
 - `Align` = `"horizontal"` \| `"vertical"`
 
 - `Appearance` = `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"`
@@ -158,6 +165,81 @@ export function Collapsible() {
 - `Size` = `"m"` \| `"s"`
 
 - `Variant` = `"onAccent"` \| `"onColor"`
+
+### Адаптивность
+
+`Alert` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста **`@ds/adaptive`** — отдельного пропа `layoutType` нет.
+
+> **Desktop-first.** Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-дефолты применяются автоматически. Override нужен только как escape-hatch.
+
+На mobile заголовок усекается до **двух** строк вместо одной — на узких экранах это сохраняет читаемость без обрезки полезного текста.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `truncate.title` | `1` | `2` |
+
+Источник mobile-дефолтов — экспортируемая константа `ALERT_LAYOUT_PRESETS`.
+
+#### Как переопределить
+
+**Desktop-first:** перенос пропа из desktop-макета не ломает mobile. Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `ALERT_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { Alert } from '@ds/alert'
+
+// 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся 2 строки (mobile не ломается)
+<Alert truncate={{ title: 3 }} title='…' description='…' />
+
+// 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
+<Alert layoutPresets={{ mobile: { truncate: { title: 3 } } }} title='…' description='…' />
+
+// 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
+<Alert layoutPresets={{ desktop: { truncate: { title: 3 } } }} title='…' description='…' />
+```
+
+DS-пресет (`ALERT_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
+
+#### Как форсировать раскладку
+
+Раскладка переключается только контекстом, не пропом:
+
+```tsx
+import { AdaptiveProvider, withLayoutType } from '@ds/adaptive'
+import { Alert } from '@ds/alert'
+
+// поддерево — вложенный провайдер
+<AdaptiveProvider layoutType='mobile'>
+  <Alert title='…' description='…' />
+</AdaptiveProvider>
+
+// компонент/секция — HOC (module-scope, не в рендере)
+const MobileAlert = withLayoutType(Alert, 'mobile')
+```
+
+Подробнее о модели раскладки — в **`@ds/adaptive`**.
+
+#### Mobile — усечение заголовка
+
+Раскладка форсирована в mobile: на узком экране длинный заголовок усекается в две строки вместо одной.
+
+```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { Alert } from '@ds/alert';
+
+const LONG_TITLE = 'Плановые технические работы в дата-центре: часть сервисов будет недоступна с 02:00 до 04:00 МСК';
+
+export function AdaptiveTruncate() {
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <div style={{ maxWidth: 360 }}>
+        <Alert appearance='info' title={LONG_TITLE} description='На узком экране заголовок усекается в две строки.' />
+      </div>
+    </AdaptiveProvider>
+  );
+}
+```
+
+> Playground ниже показывает только переключение раскладки — сам текст короткий и не переносится ни на одной раскладке (кириллица в URL-args Storybook не резолвится, см. пример выше для наглядного усечения).
 
 ## AlertTop
 
@@ -216,6 +298,7 @@ export function SystemNotice() {
 | `data-test-id` | `string` | — |  |
 | `description` | `ReactNode` | — | Описание |
 | `icon` | `boolean` | — | Отображать иконку |
+| `layoutPresets` | `AlertTopLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `ALERT_TOP_LAYOUT_PRESETS`). <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
 | `onClose` | `(() => void)` | — | Колбек закрытия |
 | `size` | `"m"` \| `"s"` | — | Размер |
 | `title` | `string` | — | Заголовок |
@@ -239,6 +322,12 @@ export function SystemNotice() {
 | `size` | `"m"` \| `"s"` | — | Размер |
 | `variant` | `"onAccent"` \| `"onColor"` | — | Вариант оформления |
 
+**AlertTopLayoutDefaults**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `collapsible` | `boolean \| undefined` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop). <br/> При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
+
 - `Align` = `"horizontal"` \| `"vertical"`
 
 - `Appearance` = `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"`
@@ -250,3 +339,55 @@ export function SystemNotice() {
 - `Size` = `"m"` \| `"s"`
 
 - `Variant` = `"onAccent"` \| `"onColor"`
+
+### Адаптивность
+
+`AlertTop` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста **`@ds/adaptive`** — отдельного пропа `layoutType` нет.
+
+> **Desktop-first.** Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-дефолты применяются автоматически. Override нужен только как escape-hatch.
+
+На mobile баннер становится **раскрываемым** (`collapsible`): длинный текст и действия скрыты до клика по баннеру, на месте close-кнопки появляется шеврон раскрытия. На desktop баннер плоский.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `collapsible` | `false` | `true` |
+
+Источник mobile-дефолтов — экспортируемая константа `ALERT_TOP_LAYOUT_PRESETS`.
+
+#### Как переопределить
+
+**Desktop-first:** перенос пропа из desktop-макета не ломает mobile. Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `ALERT_TOP_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { AlertTop } from '@ds/alert'
+
+// 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся collapsible (mobile не ломается)
+<AlertTop collapsible={false} title='…' description='…' />
+
+// 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
+<AlertTop layoutPresets={{ mobile: { collapsible: false } }} title='…' description='…' />
+
+// 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
+<AlertTop layoutPresets={{ desktop: { collapsible: true } }} title='…' description='…' />
+```
+
+DS-пресет (`ALERT_TOP_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
+
+#### Как форсировать раскладку
+
+Раскладка переключается только контекстом, не пропом:
+
+```tsx
+import { AdaptiveProvider, withLayoutType } from '@ds/adaptive'
+import { AlertTop } from '@ds/alert'
+
+// поддерево — вложенный провайдер
+<AdaptiveProvider layoutType='mobile'>
+  <AlertTop title='…' description='…' />
+</AdaptiveProvider>
+
+// компонент/секция — HOC (module-scope, не в рендере)
+const MobileAlertTop = withLayoutType(AlertTop, 'mobile')
+```
+
+Подробнее о модели раскладки — в **`@ds/adaptive`**.

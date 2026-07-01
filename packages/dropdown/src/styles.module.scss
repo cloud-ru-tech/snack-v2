@@ -49,6 +49,11 @@
   padding: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bodyWrapper', 'padding');
 }
 
+// padding=false: body без паддинга (список задаёт паддинги айтемов сам).
+.bodyWrapper[data-no-padding] {
+  padding: 0;
+}
+
 .topBar {
   display: flex;
   flex-direction: column;

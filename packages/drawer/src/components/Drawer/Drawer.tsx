@@ -1,55 +1,15 @@
-import cn from 'classnames';
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 
-import { TEST_IDS } from '../../constants';
-import { DrawerCustom } from '../DrawerCustom';
-import { NESTED_DRAWER_PUSH_DISTANCE } from './constants';
-import styles from './styles.module.scss';
+import { DesktopDrawer } from '../../helperComponents/DesktopDrawer';
+import { MobileDrawer } from '../../helperComponents/MobileDrawer';
 import { DrawerProps } from './types';
 
 /**
- * Drawer компонент
+ * Адаптивный Drawer. Раскладка из `AdaptiveProvider`: на `mobile` — `BottomSheet`, иначе —
+ * desktop-панель. Форс — `<AdaptiveProvider layoutType=…>` / `withLayoutType`.
  */
-export function Drawer({
-  content,
-  media,
-  title,
-  slotAfterHeadline,
-  subtitle,
-  onBackButtonClick,
-  footer,
-  nestedDrawer,
-  className,
-  ...rest
-}: DrawerProps) {
-  const showHeader = Boolean(title || subtitle || slotAfterHeadline);
+export function Drawer(props: DrawerProps) {
+  const { layoutType } = useAdaptiveLayout();
 
-  return (
-    <DrawerCustom
-      {...rest}
-      className={cn(styles.drawer, className)}
-      push={Boolean(nestedDrawer) && { distance: NESTED_DRAWER_PUSH_DISTANCE }}
-    >
-      {media}
-
-      <div className={styles.safeAreaTop} />
-
-      {showHeader && (
-        <DrawerCustom.Header
-          title={title}
-          slotAfterHeadline={slotAfterHeadline}
-          subtitle={subtitle}
-          onBackButtonClick={onBackButtonClick}
-          data-test-id={TEST_IDS.header}
-        />
-      )}
-
-      <DrawerCustom.Body data-test-id={TEST_IDS.body} content={content} />
-
-      <div className={styles.safeAreaBottom} />
-
-      {footer && <DrawerCustom.Footer data-test-id={TEST_IDS.footer}>{footer}</DrawerCustom.Footer>}
-
-      {nestedDrawer}
-    </DrawerCustom>
-  );
+  return isMobileLayout(layoutType) ? <MobileDrawer {...props} /> : <DesktopDrawer {...props} />;
 }

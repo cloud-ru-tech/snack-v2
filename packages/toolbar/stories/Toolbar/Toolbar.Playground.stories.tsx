@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { CrossSVG, PlaceholderSVG } from '@ds/icons';
-import { LAYOUT_TYPE, LayoutType, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
+import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { expect, within } from 'storybook/test';
@@ -58,7 +58,6 @@ const PLAYGROUND_FILTER_VALUE: Record<string, unknown> = {
 };
 
 type ToolbarPlaygroundArgs = {
-  layoutType: LayoutType;
   outline: boolean;
   showSearch: boolean;
   showRefresh: boolean;
@@ -78,7 +77,6 @@ type ToolbarPlaygroundProps = ToolbarPlaygroundArgs & {
 };
 
 function ToolbarPlayground({
-  layoutType,
   outline,
   showSearch,
   showRefresh,
@@ -116,7 +114,6 @@ function ToolbarPlayground({
     : undefined;
 
   const commonProps = {
-    layoutType,
     outline,
     'data-test-id': TEST_IDS.root,
     search: showSearch ? { value: search, onChange: setSearch, placeholder: 'Поиск' } : undefined,
@@ -182,7 +179,6 @@ const meta: Meta<ToolbarPlaygroundArgs> = {
     <ToolbarPlayground {...args} onFilterOpenChange={open => updateArgs({ filterOpen: open })} />
   ),
   args: {
-    layoutType: LAYOUT_TYPE.Desktop,
     outline: true,
     showSearch: true,
     showRefresh: true,
@@ -197,10 +193,6 @@ const meta: Meta<ToolbarPlaygroundArgs> = {
     showDataView: false,
   },
   argTypes: {
-    layoutType: {
-      control: 'radio',
-      options: Object.values(LAYOUT_TYPE),
-    },
     showSearch: {
       name: '[Stories]: showSearch',
       control: 'boolean',
@@ -253,9 +245,6 @@ type Story = StoryObj<ToolbarPlaygroundArgs>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  args: {
-    layoutType: LAYOUT_TYPE.Desktop,
-  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
 
@@ -271,7 +260,8 @@ export const Playground: Story = {
       await expect(canvas.getByTestId(TOOLBAR_TEST_IDS.moreActionsButton)).toBeVisible();
     }
 
-    if (args.layoutType === 'desktop' && args.showRefresh) {
+    // Тулбар-глобал `layoutType` по умолчанию desktop — refresh-кнопка видна.
+    if (args.showRefresh) {
       await expect(canvas.getByTestId(TOOLBAR_TEST_IDS.refreshButton)).toBeVisible();
     }
   },

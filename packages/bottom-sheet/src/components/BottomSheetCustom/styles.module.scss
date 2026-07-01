@@ -3,10 +3,8 @@
 
 .root {
   pointer-events: none;
-  // `position: fixed` сам создаёт stacking context, поэтому z-index держим на 0 (как у Drawer):
-  // слой ложится поверх потока, а порталы, открытые ИЗ sheet'а (Tooltip / Search / Dropdown) и
-  // смонтированные позже в тот же portal-контейнер, корректно перекрывают его по DOM-порядку.
-  // Высокий z-index (1000) ломал это — подсказки уходили под sheet.
+  // z-index=0: `position: fixed` создаёт stacking context, а порталы из sheet'а (Tooltip/Search/
+  // Dropdown) перекрывают его по DOM-порядку. Высокий z-index ломал это.
   position: fixed;
   z-index: 0;
   inset: 0;
@@ -14,7 +12,7 @@
 
 .backdrop {
   pointer-events: auto;
-  // Гасим нативные жесты на подложке (pull-to-refresh / scroll фона) на стороне браузера.
+  // Гасим нативные жесты на подложке (pull-to-refresh / scroll фона).
   touch-action: none;
 
   position: absolute;
@@ -47,15 +45,13 @@
   display: flex;
   flex-direction: column;
 
-  // Верхний зазор для НЕ-full snap'ов: не накрываем весь экран (видна подложка = зона tap-to-dismiss)
-  // и уважаем notch (safe-area-inset-top, минимум 32px чтобы handle не уезжал под вырез).
+  // Верхний зазор для не-full snap'ов: видна подложка (tap-to-dismiss) + уважение notch (min 32px).
   max-height: calc(100% - max(#{base.$sn-primitive-dimension-32}, env(safe-area-inset-top)));
 
   transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
 
-  // Full-height (snap = 1 / 100dvh): sheet занимает весь вьюпорт без верхнего зазора — иначе на
-  // desktop/без notch'а оставался бы «висящий» отступ сверху (Full ≠ full). Notch при этом уважается
-  // padding-top'ом на `.content[data-full-height]` (см. ниже), поэтому здесь env не вычитаем.
+  // Full-height (snap = 1 / 100dvh): весь вьюпорт без верхнего зазора. Notch уважается
+  // padding-top'ом на `.content[data-full-height]`, поэтому здесь env не вычитаем.
   &[data-full-height] {
     max-height: 100%;
   }
@@ -70,9 +66,8 @@
 }
 
 .content {
-  // НЕ ставим здесь `touch-action: none`: `.content` — предок прокручиваемого `.body`, и `none`
-  // на предке заблокировал бы нативный скролл body. Жесты гасятся на листовых drag-зонах
-  // (handle / headline / footer / media / safeArea — `touch-action: none`), а `.body` оставлен `pan-y`.
+  // Без `touch-action: none`: `.content` — предок прокручиваемого `.body`. Жесты гасятся на
+  // листовых drag-зонах (handle/headline/footer/media/safeArea), а `.body` оставлен `pan-y`.
   position: relative;
 
   overflow: hidden;
@@ -90,10 +85,16 @@
   background-color: base.$sn-theme-color-neutral-background1Level;
   box-shadow: base.$sn-boxShadow-elevation-level5;
 
-  // Drag меняет высоту, привязанную к низу (sheet растёт вверх / сжимается, не отрываясь от низа).
-  // Во время drag'а движок выставляет inline `transition: none` (покадровое изменение высоты 1:1),
-  // на отпускании — возвращает этот transition; управление императивное, не через `[data-dragging]`.
+  // Drag меняет высоту, привязанную к низу. Во время drag'а движок ставит inline `transition: none`
+  // (покадрово), на отпускании возвращает этот transition; управление императивное.
   transition: height 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+
+  // `.content` (role=dialog) фокусируется при открытии (контейнер, не контрол) — гасим нативную
+  // focus-рамку; её показывают focusable-дети при клавиатурной навигации.
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 
   &[data-dragging] {
     cursor: grabbing;
@@ -104,18 +105,14 @@
     cursor: grab;
   }
 
-  // На full-height sheet упирается в верх вьюпорта — верхние углы квадратные (Figma при 100% без
-  // скруглений; скругление осмысленно только когда над sheet'ом виден фон).
+  // На full-height верхние углы квадратные (скругление осмысленно, только когда над sheet'ом виден фон).
   &[data-full-height] {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
 
-  // Safe-area: env-паддинг прямо на `.content` (без отдельных spacer-дивов). На устройстве без
-  // выреза / home-indicator (и на desktop) `env(...)` = 0 → лишнего отступа НЕТ; на notched —
-  // ровно нужный. Нижний — всегда (home-indicator снизу), верхний — только при full-height
-  // (тогда верх sheet'а уходит под notch). Низ безопасной зоны идёт под уже скруглённым углом —
-  // это ок: фон `.content` тянется до самого низа вьюпорта.
+  // Safe-area: env-паддинг прямо на `.content`. Нижний — всегда (home-indicator), верхний —
+  // только при full-height (верх уходит под notch). Без выреза `env(...)` = 0.
   &[data-safe-area] {
     padding-bottom: env(safe-area-inset-bottom);
   }
@@ -125,9 +122,8 @@
   }
 }
 
-// prefers-reduced-motion: гасим slide-up / fade / height-анимации (вестибулярная доступность,
-// WCAG 2.3.3 Animation from Interactions). Длительность сводим почти к нулю (а не `none`), чтобы
-// mount/unmount-последовательность по `CLOSING_TIMEOUT` и settle-логика drag-движка не ломались.
+// prefers-reduced-motion: гасим анимации (WCAG 2.3.3). Длительность сводим почти к нулю, а не `none`,
+// чтобы mount/unmount по `CLOSING_TIMEOUT` и settle-логика drag-движка не ломались.
 @media (prefers-reduced-motion: reduce) {
   .backdrop,
   .contentWrapper,

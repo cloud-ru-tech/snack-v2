@@ -122,6 +122,12 @@
         "required": false,
         "defaultValue": "true",
         "description": "Управляет альфа-каналом палитры и наличием поля Alpha."
+      },
+      "withColorArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать 2D-область (saturation/value квадрат). `false` — только поля и слайдеры\n(раскладка для узких поверхностей, напр. мобильный BottomSheet)."
       }
     },
     "relatedTypes": {

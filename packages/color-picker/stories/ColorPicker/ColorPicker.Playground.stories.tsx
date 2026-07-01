@@ -24,6 +24,7 @@ const meta: Meta<typeof ColorPicker> = {
   args: {
     size: SIZE.M,
     withAlpha: true,
+    withColorArea: true,
     autoApply: true,
     value: '#389f74',
     availableModes: [COLOR_MODE.Hex, COLOR_MODE.Hsv, COLOR_MODE.Rgb],

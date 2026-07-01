@@ -1,0 +1,25 @@
+@use '@sbercloud/figma-variables/build/scss/components/bottomSheet.module' as bottomSheet;
+
+.listWrapper {
+  flex: 1 1 auto;
+
+  box-sizing: border-box;
+  width: calc(100% + 2 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal});
+  min-height: 16px;
+  margin-block: calc(-1 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop})
+    calc(-1 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom});
+  margin-inline: calc(-1 * #{bottomSheet.$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal});
+
+  // Scrollable (virtualized / scroll) список заполняет body sheet'а по высоте — тогда внутренний
+  // скролл-контейнер получает определённую высоту и виртуализатор меряет реальный вьюпорт.
+  &[data-fill] {
+    height: 100%;
+  }
+}
+
+// Скролл-контейнер списка в sheet'е заполняет высоту wrapper'а (а не фиксированный desktop-cap),
+// чтобы список занимал доступное пространство sheet'а и скроллился внутри себя.
+.sheetScroll {
+  height: 100%;
+  max-height: 100%;
+}

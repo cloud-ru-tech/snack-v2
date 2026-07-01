@@ -1,8 +1,9 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button } from '@ds/button';
 import { ChipChoiceRow, FiltersState } from '@ds/chips';
 import { UpdateSVG } from '@ds/icons';
 import { useThemeClassnames } from '@ds/theme';
-import { extractSupportProps, LAYOUT_TYPE } from '@ds/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo, useRef } from 'react';
 
@@ -20,7 +21,6 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
   after,
   dataView,
   outline = true,
-  layoutType = LAYOUT_TYPE.Desktop,
   moreActions,
   onRefresh,
   search,
@@ -28,13 +28,14 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
   persist,
   ...rest
 }: ToolbarProps<TState>) {
+  const { layoutType } = useAdaptiveLayout();
   const { t } = toolbarLocale.useTranslations();
   const supportProps = extractSupportProps(rest);
   const needsBulkActions = isBulkActionsProps(rest);
-  const isMobile = layoutType === LAYOUT_TYPE.Mobile;
+  const isMobile = isMobileLayout(layoutType);
   const containerWrapperRef = useRef<HTMLDivElement>(null);
 
-  const { filterButton, filterRow } = useFilters<TState>({ filterRow: filterRowProps, layoutType });
+  const { filterButton, filterRow } = useFilters<TState>({ filterRow: filterRowProps });
 
   usePersistState({ persist, filter: filterRow?.value, search: search?.value });
 
@@ -126,7 +127,7 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
 
               {showMoreActionsMenu && effectiveMoreActions && (
                 <div className={styles.slot}>
-                  <MoreActions moreActions={effectiveMoreActions} layoutType={layoutType} />
+                  <MoreActions moreActions={effectiveMoreActions} />
                 </div>
               )}
             </>
@@ -137,11 +138,7 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
       {filterRow && <ChipChoiceRow<TState> {...filterRow} size='s' data-test-id={TEST_IDS.filterRow} />}
 
       {needsBulkActions && (
-        <BulkActions
-          {...extractBulkActionsProps(rest)}
-          layoutType={layoutType}
-          resizingContainerRef={containerWrapperRef}
-        />
+        <BulkActions {...extractBulkActionsProps(rest)} resizingContainerRef={containerWrapperRef} />
       )}
     </div>
   );

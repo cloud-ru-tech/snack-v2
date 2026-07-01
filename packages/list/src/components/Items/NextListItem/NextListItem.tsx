@@ -5,7 +5,6 @@ import { KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from
 import { ITEM_PREFIXES } from '../../../constants';
 import { useCollapseContext, useFocusListContext, useNewListContext, useSelectionContext } from '../../Lists/contexts';
 import { ListPrivate } from '../../Lists/ListPrivate';
-import listStyles from '../../Lists/styles.module.scss';
 import { BaseItem } from '../BaseItem';
 import { useGroupItemSelection } from '../hooks';
 import { FlattenNextListItem } from '../types';
@@ -109,7 +108,7 @@ export function NextListItem({
     <Dropdown
       outsideClick={handleOutsideClick}
       fallbackPlacements={FALLBACK_PLACEMENTS}
-      contentClassName={listStyles.droplistBody}
+      bodyPadding={false}
       content={
         <ListPrivate
           onKeyDown={handleListKeyDown}

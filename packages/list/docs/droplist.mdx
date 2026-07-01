@@ -15,6 +15,8 @@ import { DroplistAsFormSelect } from '../demos/examples/DroplistAsFormSelect'
 import DroplistAsFormSelectSrc from '../demos/examples/DroplistAsFormSelect.tsx?raw'
 import { DroplistWithHeader } from '../demos/examples/DroplistWithHeader'
 import DroplistWithHeaderSrc from '../demos/examples/DroplistWithHeader.tsx?raw'
+import { MobileDroplist } from '../demos/examples/MobileDroplist'
+import MobileDroplistSrc from '../demos/examples/MobileDroplist.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -179,6 +181,52 @@ import '@ds/list/style.css'
 ## Props
 
 <PropsTable data={listDoc.Droplist} />
+
+## Адаптивность
+
+`Droplist` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — анкорный popover рядом с триггером.
+- **mobile** — список рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу с шапкой и крупными строками size `l`).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Droplist items={items}>{trigger}</Droplist>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Droplist } from '@ds/list'
+
+  const MobileDroplist = withLayoutType(Droplist, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Часть пропов привязана к одной поверхности и на другой молча игнорируется. Таблица синхронизирована с JSDoc-пометками у `DroplistProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `trigger`, `placement`, `widthStrategy`, `triggerElemRef`, `listRef`, `triggerClassName` | используется | игнорируется |
+| `label`, `actionButton`, `slotAfterHeadline`, `onBackButtonClick` | игнорируется | используется |
+| `items`, `selection`, `collapse`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
+| `open`, `onOpenChange`, `closeOnPopstate`, `size` | используется | используется |
+
+<Example title='Mobile — BottomSheet' description='Раскладка форсирована в mobile: по клику триггера список открывается в BottomSheet.' code={MobileDroplistSrc}>
+  <MobileDroplist client:visible />
+</Example>
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
 
 ## Storybook
 

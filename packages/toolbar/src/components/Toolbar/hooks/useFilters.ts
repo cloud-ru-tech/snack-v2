@@ -1,17 +1,15 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { FiltersState, hasFilterBeenApplied } from '@ds/chips';
-import { LAYOUT_TYPE } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import { FilterButtonProps } from '../../../helperComponents';
-import { LayoutType } from '../../../types';
 import styles from '../styles.module.scss';
 import { FilterRow } from '../types';
 
 type UseFiltersProps<TState extends FiltersState> = {
   filterRow?: FilterRow<TState>;
-  layoutType?: LayoutType;
 };
 
 type UseFiltersReturnType<TState extends FiltersState> = {
@@ -21,9 +19,10 @@ type UseFiltersReturnType<TState extends FiltersState> = {
 
 export function useFilters<TState extends FiltersState>({
   filterRow,
-  layoutType = LAYOUT_TYPE.Desktop,
 }: UseFiltersProps<TState>): UseFiltersReturnType<TState> {
-  const defaultOpen = layoutType === LAYOUT_TYPE.Mobile ? (filterRow?.initialOpen ?? false) : false;
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
+  const defaultOpen = isMobile ? (filterRow?.initialOpen ?? false) : false;
 
   const [filtersOpen, setFiltersOpen] = useUncontrolledProp<boolean>(filterRow?.open, defaultOpen, newValue => {
     const result = typeof newValue === 'function' ? newValue(filtersOpen) : newValue;
@@ -51,7 +50,7 @@ export function useFilters<TState extends FiltersState>({
   const patchedFilters = useMemo(
     () =>
       (filterRow?.filters ?? []).map(filter => {
-        if (layoutType === LAYOUT_TYPE.Desktop && ['single', 'multiple'].includes(filter.type)) {
+        if (!isMobile && ['single', 'multiple'].includes(filter.type)) {
           return {
             ...filter,
             dropDownClassName: cn(filter.dropDownClassName, styles.list),
@@ -60,7 +59,7 @@ export function useFilters<TState extends FiltersState>({
 
         return filter;
       }),
-    [filterRow?.filters, layoutType],
+    [filterRow?.filters, isMobile],
   );
 
   const numberOfFilters = useMemo(

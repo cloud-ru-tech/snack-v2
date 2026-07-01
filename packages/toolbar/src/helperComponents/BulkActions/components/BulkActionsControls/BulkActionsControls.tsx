@@ -1,13 +1,12 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons';
+import { Droplist } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
-import { LAYOUT_TYPE, useDynamicList } from '@ds/utils';
+import { useDynamicList } from '@ds/utils';
 import { RefObject, useRef, useState } from 'react';
 
 import { toolbarLocale } from '../../../../locale';
 import { TEST_IDS } from '../../../../testIds';
-import { LayoutType } from '../../../../types';
-import { AdaptiveDroplist } from '../../../AdaptiveDroplist';
 import { BulkAction } from '../../types';
 import { getBulkActionIndex, getBulkActionKey, mapBulkActionToDroplistItem } from '../../utils';
 import { BulkActionsCheckbox } from '../BulkActionsCheckbox';
@@ -19,7 +18,6 @@ type BulkActionsControlsVariant = 'toolbar' | 'sheet';
 type BulkActionsControlsProps = {
   actions: BulkAction[];
   variant: BulkActionsControlsVariant;
-  layoutType?: LayoutType;
   checked?: boolean;
   indeterminate?: boolean;
   onCheck?(): void;
@@ -33,7 +31,6 @@ type BulkActionsControlsProps = {
 export function BulkActionsControls({
   actions,
   variant,
-  layoutType = LAYOUT_TYPE.Desktop,
   checked,
   indeterminate,
   onCheck,
@@ -93,8 +90,7 @@ export function BulkActionsControls({
       </div>
 
       {hiddenItems.length > 0 && (
-        <AdaptiveDroplist
-          layoutType={isSheet ? LAYOUT_TYPE.Mobile : layoutType}
+        <Droplist
           label={isSheet ? t('multipleActions') : undefined}
           // TODO: slotAfterHeadline должен расширяться на всю ширину, а section-label уходить вправо
           slotAfterHeadline={
@@ -132,7 +128,7 @@ export function BulkActionsControls({
               onKeyDown={onKeyDown}
             />
           )}
-        </AdaptiveDroplist>
+        </Droplist>
       )}
     </div>
   );

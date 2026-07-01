@@ -28,6 +28,8 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/icons": "workspace:^",

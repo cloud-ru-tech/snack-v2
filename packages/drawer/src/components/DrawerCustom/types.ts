@@ -1,3 +1,4 @@
+import { BottomSheetCustomProps } from '@ds/bottom-sheet';
 import { WithSupportProps } from '@ds/utils';
 import { DrawerProps as RcDrawerProps } from 'rc-drawer';
 import { PropsWithChildren, ReactElement } from 'react';
@@ -26,7 +27,6 @@ export type DrawerCustomProps = WithSupportProps<
     width?: Width | string | number;
     /**
      * Высота панели по контенту (только при `position: "top" | "bottom"`).
-     * При `position: "left" | "right"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка).
      * @default false
      */
     heightAuto?: boolean;
@@ -45,4 +45,6 @@ export type DrawerCustomProps = WithSupportProps<
     /** Футер */
     footer?: ReactElement;
   }>
->;
+> &
+  // Только mobile: управляют sheet-поверхностью (на desktop игнорируются).
+  Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeArea'>;

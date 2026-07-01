@@ -1,5 +1,7 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { CheckSVG, CrossSVG } from '@ds/icons';
-import { LAYOUT_TYPE, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
+import { NATIVE_INPUT_SUFFIX } from '@ds/toggles';
+import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -28,39 +30,40 @@ function InteractionDemo({ onRefresh, onCheck }: InteractionArgs) {
         <DemoHint>Refresh, bulk-checkbox и кнопка фильтров вызывают соответствующие колбэки.</DemoHint>
         <DemoActions block>
           <div className={styles.containerPlayground}>
-            <Toolbar
-              layoutType={LAYOUT_TYPE.Desktop}
-              data-test-id={TEST_IDS.root}
-              search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-              onRefresh={onRefresh}
-              filterRow={{
-                open: filtersOpen,
-                onOpenChange: open => {
-                  setFiltersOpen(open);
-                  onFilterOpenChange(open);
-                },
-                filters: [
-                  {
-                    id: 'status',
-                    type: 'single',
-                    label: 'Статус',
-                    options: [
-                      { value: 'active', label: 'Активные' },
-                      { value: 'archived', label: 'Архив' },
-                    ],
+            <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+              <Toolbar
+                data-test-id={TEST_IDS.root}
+                search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+                onRefresh={onRefresh}
+                filterRow={{
+                  open: filtersOpen,
+                  onOpenChange: open => {
+                    setFiltersOpen(open);
+                    onFilterOpenChange(open);
                   },
-                ],
-                defaultValue: {},
-              }}
-              checked
-              selectedCount={3}
-              totalCount={100}
-              onCheck={onCheck}
-              bulkActions={[
-                { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
-                { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
-              ]}
-            />
+                  filters: [
+                    {
+                      id: 'status',
+                      type: 'single',
+                      label: 'Статус',
+                      options: [
+                        { value: 'active', label: 'Активные' },
+                        { value: 'archived', label: 'Архив' },
+                      ],
+                    },
+                  ],
+                  defaultValue: {},
+                }}
+                checked
+                selectedCount={3}
+                totalCount={100}
+                onCheck={onCheck}
+                bulkActions={[
+                  { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
+                  { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+                ]}
+              />
+            </AdaptiveProvider>
           </div>
         </DemoActions>
       </DemoPanel>
@@ -93,7 +96,9 @@ export const InteractionTest: Story = {
     });
 
     await step('click: bulk checkbox calls onCheck', async () => {
-      await userEvent.click(canvas.getByTestId(TOOLBAR_TEST_IDS.checkbox));
+      // data-test-id чекбокса — на корневом span, а обработчик клика — на вложенном `<input>`
+      // (см. test-environment-pitfalls): `userEvent.click` по корню до input не доходит, кликаем сам input.
+      await userEvent.click(canvas.getByTestId(`${TOOLBAR_TEST_IDS.checkbox}${NATIVE_INPUT_SUFFIX}`));
       expect(args.onCheck).toHaveBeenCalledTimes(1);
     });
 

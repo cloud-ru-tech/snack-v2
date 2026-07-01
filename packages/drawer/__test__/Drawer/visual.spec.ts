@@ -1,4 +1,8 @@
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import { composeScreenshots, waitForStableBbox } from '#playwright-tooling/utils';
@@ -119,6 +123,36 @@ test.describe('Drawer — visual regression', () => {
 
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-no-blackout.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
+  });
+
+  // Mobile-поверхность: тот же Drawer открывается как BottomSheet. Нужны обе вещи одновременно —
+  // форс layoutType='mobile' через тулбар-глобал И mobile-viewport (иначе sheet
+  // рендерится на desktop-ширине). Sheet — full-viewport overlay → снимаем page.screenshot()
+  // (см. visual-regression-standard.md). Mobile-baseline = ground truth DS (Figma-parity не применим).
+  test('open-mobile (bottom sheet surface)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(
+      buildStoryOptions(
+        {
+          'data-test-id': TEST_IDS.drawer.root,
+          showAfterHeadline: false,
+          showMedia: false,
+        },
+        DRAWER_STORIES.playground,
+        { layoutType: 'mobile' },
+      ),
+    );
+    await getByTestId(TEST_IDS.drawer.triggerOpen).click();
+    // На mobile потребительский `data-test-id` оседает на корне BottomSheet'а.
+    const sheet = getByTestId(TEST_IDS.drawer.root);
+    await expect(sheet).toBeVisible();
+    await waitForFonts();
+    // rc-drawer/JS-motion (slide-up): ждём стабилизацию bbox вместо document.getAnimations.
+    await waitForStableBbox(sheet);
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });

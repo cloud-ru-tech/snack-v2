@@ -1,5 +1,6 @@
+import { withLayoutType } from '@ds/adaptive';
 import { Button } from '@ds/button';
-import { MobileStepper } from '@ds/stepper';
+import { Stepper } from '@ds/stepper';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -8,13 +9,17 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
-const meta: Meta<typeof MobileStepper> = {
+// Пример детерминированно демонстрирует мобильную раскладку — форсим её через withLayoutType,
+// не полагаясь на тулбар-глобал (иначе example «прыгал» бы между desktop/mobile).
+const MobileStepper = withLayoutType(Stepper, 'mobile');
+
+const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper/Examples/Mobile',
-  component: MobileStepper,
+  component: Stepper,
   parameters: { layout: 'fullscreen' },
 };
 export default meta;
-type Story = StoryObj<typeof MobileStepper>;
+type Story = StoryObj<typeof Stepper>;
 
 export const Mobile: Story = {
   tags: ['dev', 'test'],

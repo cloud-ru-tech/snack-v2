@@ -1,4 +1,18 @@
 {
+  "ALERT_LAYOUT_PRESETS": {
+    "displayName": "ALERT_LAYOUT_PRESETS",
+    "propsTypeName": null,
+    "description": "DS-пресет адаптива inline `Alert`: на mobile заголовок усечён до 2 строк (desktop — 1).",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "ALERT_TOP_LAYOUT_PRESETS": {
+    "displayName": "ALERT_TOP_LAYOUT_PRESETS",
+    "propsTypeName": null,
+    "description": "DS-пресет адаптива `AlertTop`: на mobile alert раскрываемый (`collapsible`), desktop — плоский.",
+    "props": {},
+    "relatedTypes": {}
+  },
   "Alert": {
     "displayName": "Alert",
     "propsTypeName": "AlertProps",
@@ -63,6 +77,15 @@
         "type": "boolean",
         "required": false,
         "description": "Отображать иконку"
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<AlertLayoutDefaults>>>",
+        "required": false,
+        "description": "Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `ALERT_LAYOUT_PRESETS`).\nEscape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.",
+        "typeRefs": [
+          "AlertLayoutDefaults",
+          "LayoutPresets"
+        ]
       },
       "onClose": {
         "type": "(() => void)",
@@ -188,6 +211,17 @@
         },
         "own": true
       },
+      "AlertLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "truncate": {
+            "type": "{ title?: number; } | undefined",
+            "required": false,
+            "description": "Максимальное кол-во строк (только при `collapsible={false}`)."
+          }
+        },
+        "own": true
+      },
       "Align": {
         "kind": "union",
         "values": [
@@ -215,6 +249,28 @@
           "before"
         ],
         "own": true
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
       },
       "PolymorphicRef": {
         "kind": "alias",
@@ -524,6 +580,15 @@
         "required": false,
         "description": "Отображать иконку"
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<AlertTopLayoutDefaults>>>",
+        "required": false,
+        "description": "Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `ALERT_TOP_LAYOUT_PRESETS`).\nEscape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.",
+        "typeRefs": [
+          "AlertTopLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
       "onClose": {
         "type": "(() => void)",
         "required": false,
@@ -643,6 +708,17 @@
         },
         "own": true
       },
+      "AlertTopLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "collapsible": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
+          }
+        },
+        "own": true
+      },
       "Align": {
         "kind": "union",
         "values": [
@@ -670,6 +746,28 @@
           "before"
         ],
         "own": true
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
       },
       "PolymorphicRef": {
         "kind": "alias",

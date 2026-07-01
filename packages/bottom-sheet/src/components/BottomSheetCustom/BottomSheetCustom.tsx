@@ -1,4 +1,5 @@
 import { usePortalContext } from '@ds/portal-context';
+import { useThemeClassnames } from '@ds/theme';
 import { extractSupportProps, isBrowser, useLayoutEffect, useModalOpenState } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useEffect, useRef } from 'react';
@@ -6,7 +7,8 @@ import { createPortal } from 'react-dom';
 import { RemoveScroll } from 'react-remove-scroll';
 
 import { TEST_IDS } from '../../constants';
-import { Body, Footer, Handle, Header, Media } from '../../helperComponents';
+import { OVERLAY_SURFACE, OverlaySurfaceProvider } from '../../context/overlaySurface';
+import { Handle, Media, SheetBody, SheetFooter, SheetHeader } from '../../helperComponents';
 import {
   BottomSheetBodyProps,
   BottomSheetCustomProps,
@@ -18,11 +20,7 @@ import { CLOSING_TIMEOUT } from './constants';
 import { useDragEngine, useFocusTrap, useTransitionPhase } from './hooks';
 import styles from './styles.module.scss';
 
-/**
- * Резолв portal-target'а. Вызывается только после того, как `useTransitionPhase` поднял
- * `isMounted = true` — это бывает только в браузере (rAF / setTimeout), поэтому глобальный
- * `document` здесь гарантированно доступен.
- */
+/** Резолв portal-target'а. Вызывается после `isMounted=true` (браузер), `document` доступен. */
 function resolveContainer(
   container: BottomSheetCustomProps['container'],
   portalContextNode: HTMLElement | null,
@@ -38,16 +36,7 @@ function resolveContainer(
 
 /**
  * Низкоуровневая обёртка bottom-sheet'а: portal + backdrop + slide-up motion + focus-trap +
- * Pointer-Events swipe / snap-engine. Рендеримся через `createPortal` напрямую; transition-фазами
- * управляет `useTransitionPhase`.
- *
- * Мобильная корректность:
- *  - `react-remove-scroll` лочит скролл фона и гасит pull-to-refresh / overscroll-bleed на iOS;
- *  - `touch-action` на слоях (см. `styles.module.scss`) убирает нативные жесты на поверхности sheet'а;
- *  - drag-движок (`useDragEngine`) отдаёт жест нативному скроллу, пока вложенный контент не упёрся
- *    в край — поэтому контент скроллится, а sheet не «дёргается».
- *
- * Высокоуровневая обёртка с готовой анатомией (header / body / media / footer) — `BottomSheet`.
+ * Pointer-Events swipe / snap-engine. Готовая анатомия — `BottomSheet`.
  */
 export function BottomSheetCustom(props: BottomSheetCustomProps) {
   const {
@@ -69,16 +58,13 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     ...rest
   } = props;
 
-  // Модальность: sheet модальный, если затемняет фон ИЛИ лочит скролл. Non-modal (оба false) оставляет
-  // фон видимым и интерактивным — тогда dialog НЕ должен прятать фон от AT (aria-modal), НЕ должен
-  // ловить фокус и должен закрываться по Esc даже когда фокус снаружи (на фоновом контенте).
+  // Sheet модальный, если затемняет фон или лочит скролл. Non-modal не прячет фон от AT,
+  // не ловит фокус и закрывается по Esc при фокусе снаружи.
   const isModal = showBackdrop || lockScroll;
 
   useModalOpenState(open, onClose, { closeOnPopstate });
 
-  // Возврат фокуса на триггер. Запоминаем активный элемент в момент open=true (до slide-up-задержки
-  // isActive: к ней триггер успевает потерять фокус → восстанавливать было бы некуда), возвращаем на
-  // open=false. Sheet к этому моменту ещё смонтирован (leave-анимация) — фокус уходит из него на триггер.
+  // Возврат фокуса на триггер: запоминаем активный элемент при open=true, возвращаем при open=false.
   const restoreFocusRef = useRef<HTMLElement | null>(null);
   const wasOpenRef = useRef(false);
   useLayoutEffect(() => {
@@ -103,18 +89,13 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   const { isMounted, isActive } = useTransitionPhase(open, CLOSING_TIMEOUT);
 
   const portalContextRef = usePortalContext();
-  // Фокус-trap только для модального sheet'а: в non-modal клавиатурный юзер должен иметь возможность
-  // уйти Tab'ом на фон (который для pointer-юзера уже доступен).
+  // Фокус-trap только для модального sheet'а: в non-modal Tab уходит на фон.
   const focusTrapRef = useFocusTrap(isActive && isModal);
 
-  // Esc → закрытие. `useModalOpenState` закрывает только через `CloseWatcher` (Chromium-only, плюс
-  // ловит Android-back). В Safari/Firefox его нет — навешиваем явный keydown-fallback ровно когда
-  // `CloseWatcher` недоступен (иначе на Chromium был бы двойной `onClose`).
-  //
-  // Nested-safe для МОДАЛЬНОГО sheet'а: закрываем, только если фокус сейчас внутри ЭТОЙ панели.
-  // `useFocusTrap` держит фокус в топовом sheet'е, поэтому на один Escape сработает лишь верхний слой.
-  // Для NON-MODAL фокус легитимно находится снаружи (на фоне) — там закрываем по Esc безусловно
-  // (иначе документированный «Esc закрывает» в Safari/Firefox молча не работал бы).
+  // Esc → закрытие. `useModalOpenState` закрывает через `CloseWatcher` (Chromium-only); в
+  // Safari/Firefox навешиваем keydown-fallback ровно когда `CloseWatcher` недоступен.
+  // Nested-safe для модального sheet'а: закрываем только если фокус внутри этой панели; для
+  // non-modal фокус снаружи — закрываем безусловно.
   useEffect(() => {
     if (!isActive || !isBrowser() || 'CloseWatcher' in window) return;
 
@@ -147,9 +128,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     isActive,
   });
 
-  // Верхний safe-area отступ нужен только когда sheet раскрыт на полный вьюпорт — тогда его верх
-  // попадает под notch. Для частичных snap'ов / auto-высоты верх ниже notch, отступ не нужен.
-  // Флаг отдаём в `data-full-height`; сам env-паддинг включает CSS на `.content[data-safe-area][data-full-height]`.
+  // Верхний safe-area отступ нужен только на full-height (верх под notch); флаг — в `data-full-height`.
   const activeSnap = snapPoints?.[activeSnapIndex ?? 0];
   const isFullHeight = activeSnap === 1 || (typeof activeSnap === 'string' && /^100(%|dvh|svh|lvh)$/.test(activeSnap));
 
@@ -165,6 +144,9 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     if (showBackdrop) onClose();
   }, [showBackdrop, onClose]);
 
+  // Мобильная поверхность — comfort-плотность.
+  const densityClassName = useThemeClassnames({ density: 'comfort' });
+
   if (!isMounted) return null;
 
   const targetNode = resolveContainer(container, portalContextRef.current);
@@ -173,10 +155,8 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   const supportProps = extractSupportProps(rest);
 
   return createPortal(
-    // RemoveScroll лочит фон-скролл и ставит `data-scroll-locked` на body (refcount для вложенных
-    // sheet'ов). На мобильном overlay-скроллбара нет, поэтому padding-компенсации/«уезжания» не
-    // возникает; на desktop bottom-sheet не используется (mobile-only).
-    // `enabled={lockScroll}` — для non-modal sheet'а (lockScroll=false) фон остаётся прокручиваемым.
+    // RemoveScroll лочит фон-скролл (refcount для вложенных sheet'ов); `enabled={lockScroll}` —
+    // для non-modal фон остаётся прокручиваемым.
     <RemoveScroll enabled={lockScroll}>
       <div className={cn(styles.root, rootClassName)} data-active={isActive || undefined}>
         {showBackdrop && (
@@ -186,20 +166,19 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
         <div
           className={styles.contentWrapper}
           data-active={isActive || undefined}
-          // Full-height снимает верхний зазор max-height на `.contentWrapper` (Full = весь вьюпорт).
+          // Full-height снимает верхний зазор max-height на `.contentWrapper`.
           data-full-height={isFullHeight || undefined}
         >
           <div
             ref={mergeRefCb}
-            className={cn(styles.content, className)}
+            className={cn(styles.content, densityClassName, className)}
             role='dialog'
-            // aria-modal только для модального sheet'а: для non-modal фон должен оставаться доступным AT.
+            // aria-modal только для модального sheet'а: non-modal оставляет фон доступным AT.
             aria-modal={isModal ? 'true' : undefined}
             data-test-id={TEST_IDS.root}
             data-safe-area={safeArea || undefined}
             data-snap-index={activeSnapIndex}
-            // Эффективное число snap'ов: пустой массив ведёт себя как single fit-content (как undefined),
-            // поэтому атрибут не выставляем (иначе data-snap-points="0" противоречил бы поведению).
+            // Пустой массив ведёт себя как single fit-content — атрибут не выставляем.
             data-snap-points={snapPoints && snapPoints.length > 0 ? snapPoints.length : undefined}
             data-swipe-enabled={swipeEnabled || undefined}
             data-dragging={isDragging || undefined}
@@ -208,7 +187,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
             {...(swipeEnabled ? dragHandlers : {})}
           >
             {swipeEnabled && <Handle />}
-            {children}
+            <OverlaySurfaceProvider surface={OVERLAY_SURFACE.Sheet}>{children}</OverlaySurfaceProvider>
           </div>
         </div>
       </div>
@@ -217,9 +196,9 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   );
 }
 
-BottomSheetCustom.Header = Header;
-BottomSheetCustom.Body = Body;
-BottomSheetCustom.Footer = Footer;
+BottomSheetCustom.Header = SheetHeader;
+BottomSheetCustom.Body = SheetBody;
+BottomSheetCustom.Footer = SheetFooter;
 BottomSheetCustom.Media = Media;
 
 export namespace BottomSheetCustom {

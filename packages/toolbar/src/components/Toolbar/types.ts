@@ -5,7 +5,6 @@ import { ReactNode } from 'react';
 import { RequestPayloadParams } from '@cloud-ru/ft-request-payload-transform';
 
 import { BulkActionsProps, DataViewProps, DataViewValue, MoreActionsProps, SearchProps } from '../../helperComponents';
-import { LayoutType } from '../../types';
 import { NeverOrUndefined, RequireAtLeastOne } from './typesUtils';
 
 export type ToolbarDataViewValue = DataViewValue;
@@ -19,7 +18,7 @@ type OptionalProps = {
   /** Колбек обновления */
   onRefresh?(): void;
   /** Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br>
-   *  На mobile (`layoutType="mobile"`) не рендерится в строке — кнопки переносятся в меню «⋯»
+   *  На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯»
    *  (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки
    *  или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. */
   after?: ReactNode;
@@ -42,8 +41,6 @@ export type CommonToolbarProps = {
   className?: string;
   /** Внешний бордер */
   outline?: boolean;
-  /** Режим отображения: desktop (по умолчанию) или mobile */
-  layoutType?: LayoutType;
 };
 
 export type ToolbarBulkActionProps = Omit<BulkActionsProps, 'actions'> & {

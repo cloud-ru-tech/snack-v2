@@ -18,6 +18,8 @@ export type DropdownStoryProps = Record<string, unknown>;
 export function buildStoryOptions(
   props?: DropdownStoryProps,
   ref: StoryRef = DROPDOWN_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: ref.name,
@@ -26,5 +28,6 @@ export function buildStoryOptions(
       'data-test-id': TEST_IDS.root,
       ...props,
     },
+    globals,
   };
 }

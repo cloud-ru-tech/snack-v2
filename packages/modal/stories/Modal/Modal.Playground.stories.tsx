@@ -73,7 +73,10 @@ function PlaygroundRender(args: PlaygroundStoryProps) {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Открыть модальное окно триггером ниже. Состав слотов и режим — из Controls.</DemoHint>
+        <DemoHint>
+          Открыть модальное окно триггером ниже. Состав слотов и режим — из Controls. На desktop — центрированное окно,
+          на mobile (layoutType) — `BottomSheet` снизу.
+        </DemoHint>
         <DemoActions align='center'>
           <Button
             data-test-id={STORY_TEST_IDS.triggerOpen}
@@ -177,17 +180,20 @@ const meta: Meta<PlaygroundStoryProps> = {
     width: {
       control: 'radio',
       options: Object.values(WIDTH),
-      description: 'Размер окна',
+      description: 'Размер окна (только desktop)',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     heightAuto: {
       control: 'boolean',
-      description: 'Растягивать ли модалку по высоте',
+      description: 'Растягивать ли модалку по высоте (только desktop)',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     mode: {
       control: 'radio',
       options: Object.values(MODE),
       description:
-        'Regular: overlay + Esc + кнопка, затемнение без blur. Aggressive/Forced: blur подложки (макет Figma); Aggressive — только кнопка закрытия; Forced — без кнопки.',
+        'Regular: overlay + Esc + кнопка, затемнение без blur. Aggressive/Forced: blur подложки (макет Figma); Aggressive — только кнопка закрытия; Forced — без кнопки. Только desktop.',
+      if: { global: 'layoutType', neq: 'mobile' },
     },
     footer: { table: { disable: true } },
     media: { table: { disable: true } },

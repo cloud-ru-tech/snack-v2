@@ -1,6 +1,6 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button } from '@ds/button';
-import { AdaptiveStepper } from '@ds/stepper';
-import { LAYOUT_TYPE, type LayoutType } from '@ds/utils';
+import { Stepper, StepperProps } from '@ds/stepper';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -9,32 +9,27 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
-const meta: Meta<typeof AdaptiveStepper> = {
+const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper/Examples/Adaptive',
-  component: AdaptiveStepper,
+  component: Stepper,
   parameters: { layout: 'fullscreen' },
-  argTypes: {
-    layoutType: { control: 'radio', options: Object.values(LAYOUT_TYPE) as LayoutType[] },
-  },
 };
 export default meta;
-type Story = StoryObj<typeof AdaptiveStepper>;
+type Story = StoryObj<typeof Stepper>;
 
-export const Adaptive: Story = {
-  tags: ['dev', 'test'],
-  args: {
-    layoutType: LAYOUT_TYPE.Desktop,
-    steps: [{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }],
-    'data-test-id': TEST_IDS.adaptive,
-  },
-  render: args => (
+// Раскладку даёт тулбар-глобал `layoutType` (AdaptiveProvider в preview). Контейнер выбираем
+// по той же раскладке через useAdaptiveLayout — поэтому render вынесен в компонент.
+function AdaptiveExample(props: Omit<StepperProps, 'children'>) {
+  const { layoutType } = useAdaptiveLayout();
+
+  return (
     <DemoPage>
       <DemoPanel width='wide'>
         <DemoTitle>Adaptive</DemoTitle>
         <DemoHint>Stepper переключает раскладку между desktop и mobile.</DemoHint>
         <DemoActions block>
-          <div className={args.layoutType === LAYOUT_TYPE.Mobile ? styles.containerMobile : styles.containerDesktop}>
-            <AdaptiveStepper {...args}>
+          <div className={isMobileLayout(layoutType) ? styles.containerMobile : styles.containerDesktop}>
+            <Stepper {...props}>
               {({ stepper, goNext, goPrev, currentStepIndex, stepCount, isCompleted }) => (
                 <div className={styles.stack}>
                   {stepper}
@@ -57,12 +52,21 @@ export const Adaptive: Story = {
                   </div>
                 </div>
               )}
-            </AdaptiveStepper>
+            </Stepper>
           </div>
         </DemoActions>
       </DemoPanel>
     </DemoPage>
-  ),
+  );
+}
+
+export const Adaptive: Story = {
+  tags: ['dev', 'test'],
+  args: {
+    steps: [{ title: 'Данные' }, { title: 'Проверка' }, { title: 'Готово' }],
+    'data-test-id': TEST_IDS.adaptive,
+  },
+  render: args => <AdaptiveExample {...args} />,
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(TEST_IDS.adaptive)).toBeVisible();
   },

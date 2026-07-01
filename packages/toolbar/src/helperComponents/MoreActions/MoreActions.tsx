@@ -1,13 +1,11 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons';
-import { BaseItem } from '@ds/list';
+import { BaseItem, Droplist } from '@ds/list';
 import { Tag } from '@ds/tag';
-import { extractSupportProps, LAYOUT_TYPE, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { MouseEvent, ReactNode, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../testIds';
-import { LayoutType } from '../../types';
-import { AdaptiveDroplist } from '../AdaptiveDroplist';
 import styles from './styles.module.scss';
 
 export type Action = {
@@ -19,16 +17,9 @@ export type Action = {
 export type MoreActionsProps = WithSupportProps<{
   /** Элементы выпадающего списка кнопки с действиями */
   moreActions: Action[];
-  /** Режим отображения: desktop (по умолчанию) или mobile */
-  layoutType?: LayoutType;
 }>;
 
-export function MoreActions({
-  moreActions,
-  layoutType = LAYOUT_TYPE.Desktop,
-  'data-test-id': dataTestId,
-  ...rest
-}: MoreActionsProps) {
+export function MoreActions({ moreActions, 'data-test-id': dataTestId, ...rest }: MoreActionsProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const supportProps = extractSupportProps(rest);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -49,9 +40,8 @@ export function MoreActions({
   }
 
   return (
-    <AdaptiveDroplist
+    <Droplist
       triggerClassName={styles.trigger}
-      layoutType={layoutType}
       trigger='clickAndFocusVisible'
       open={isOpen}
       {...supportProps}
@@ -74,6 +64,6 @@ export function MoreActions({
           onKeyDown={onKeyDown}
         />
       )}
-    </AdaptiveDroplist>
+    </Droplist>
   );
 }

@@ -1,4 +1,4 @@
-import { LAYOUT_TYPE } from '@ds/utils';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 

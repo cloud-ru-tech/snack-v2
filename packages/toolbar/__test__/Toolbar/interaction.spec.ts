@@ -1,4 +1,4 @@
-import { LAYOUT_TYPE } from '@ds/utils';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 
 import { expect, test } from '#playwright-tooling/fixtures';
 
@@ -20,12 +20,15 @@ test.describe('Toolbar — interaction', () => {
   // Browser-only: mobile overflow в BottomSheet — закрытие по клику вне портала.
   test('closes mobile more-actions bottom sheet on outside click', async ({ gotoStory, getByTestId, page }) => {
     await gotoStory(
-      buildStoryOptions({
-        layoutType: LAYOUT_TYPE.Mobile,
-        showRefresh: true,
-        showMoreActions: true,
-        showExtraSlot: true,
-      }),
+      buildStoryOptions(
+        {
+          showRefresh: true,
+          showMoreActions: true,
+          showExtraSlot: true,
+        },
+        undefined,
+        { layoutType: LAYOUT_TYPE.Mobile },
+      ),
     );
 
     await getByTestId(TOOLBAR_COMPONENT_TEST_IDS.moreActionsButton).click();

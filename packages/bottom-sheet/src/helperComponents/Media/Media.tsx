@@ -8,11 +8,7 @@ type MediaProps = BottomSheetMediaProps & {
   className?: string;
 };
 
-/**
- * Media-блок над headline:
- *  - `kind='image'` (по умолчанию) — изображение во всю ширину, высота 184px.
- *  - `kind='icon'`  — иконка с `padding-top: 24px`.
- */
+/** Media-блок над headline: `kind='image'` — во всю ширину, `kind='icon'` — иконка. */
 export function Media({ src, alt, kind = MEDIA_KIND.Image, className }: MediaProps) {
   return (
     <div className={cn(styles.wrapper, className)} data-media-kind={kind} data-test-id={TEST_IDS.media}>

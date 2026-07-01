@@ -1,6 +1,7 @@
 import { isBrowser, useLayoutEffect, useValueControl } from '@ds/utils';
 import { PointerEvent as ReactPointerEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { NO_DRAG_ATTRIBUTE } from '../../../constants';
 import { SnapPoint } from '../../../types';
 import { DRAG_START_THRESHOLD_PX, SCROLL_LOCK_COOLDOWN_MS, SINGLE_CLOSE_DISTANCE_RATIO } from '../constants';
 import { findScrollableAncestor, isScrolledToBottom, isScrolledToTop } from '../utils/scroll';
@@ -12,7 +13,7 @@ import {
 } from '../utils/snapPoints';
 
 /** Атрибут-флаг на интерактивном предке, отключающий захват drag'ом (слайдеры, карты и т.п.). */
-const NO_DRAG_SELECTOR = '[data-bottom-sheet-no-drag]';
+const NO_DRAG_SELECTOR = `[${NO_DRAG_ATTRIBUTE}]`;
 /** Длительность settle-анимации height (мс) — для отложенного восстановления `auto` у fit-content. */
 const SETTLE_TIMEOUT_MS = 260;
 

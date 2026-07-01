@@ -1,6 +1,7 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { CheckSVG, CrossSVG } from '@ds/icons';
 import { Checkbox } from '@ds/toggles';
-import { LAYOUT_TYPE, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
+import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useId, useState } from 'react';
 import { expect, within } from 'storybook/test';
@@ -35,21 +36,22 @@ function MobileExample() {
             <span className={styles.mobileSelectionControlLabel}>Есть выбранные строки таблицы</span>
           </label>
           <div className={styles.containerMobile}>
-            <Toolbar
-              layoutType={LAYOUT_TYPE.Mobile}
-              data-test-id={TEST_IDS.mobile}
-              search={{ value: search, onChange: setSearch }}
-              onRefresh={() => undefined}
-              moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
-              checked={checked}
-              onCheck={() => setChecked(v => !v)}
-              selectedCount={checked ? 12 : 0}
-              totalCount={100}
-              bulkActions={[
-                { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
-                { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
-              ]}
-            />
+            <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+              <Toolbar
+                data-test-id={TEST_IDS.mobile}
+                search={{ value: search, onChange: setSearch }}
+                onRefresh={() => undefined}
+                moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+                checked={checked}
+                onCheck={() => setChecked(v => !v)}
+                selectedCount={checked ? 12 : 0}
+                totalCount={100}
+                bulkActions={[
+                  { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
+                  { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+                ]}
+              />
+            </AdaptiveProvider>
           </div>
         </DemoActions>
       </DemoPanel>

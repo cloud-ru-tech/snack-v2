@@ -71,5 +71,48 @@ import { Drawer, POSITION, WIDTH } from '@ds/drawer'
 
 <PropsTable data={drawerDoc.Drawer} />
 
+## Адаптивность
+
+`Drawer` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — панель, выезжающая со стороны экрана (`left`/`right`/`top`/`bottom`).
+- **mobile** — контент рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Drawer open={open} onClose={close} content={…} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Drawer } from '@ds/drawer'
+
+  const MobileDrawer = withLayoutType(Drawer, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Часть пропов управляет геометрией desktop-панели и на mobile молча игнорируется (у `BottomSheet` своя поверхность снизу). Таблица синхронизирована с type-level JSDoc у `DrawerProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `position`, `width`, `heightAuto`, `nestedDrawer` | используется | игнорируется |
+| `title`, `subtitle`, `slotAfterHeadline`, `onBackButtonClick`, `media`, `content`, `footer` | используется | используется |
+| `open`, `onClose`, `showBlackout`, `container`, `closeOnPopstate`, `className`, `rootClassName` | используется | используется |
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='components-drawer-drawer--playground' globals={{ layoutType: 'mobile' }} height={520} />
+
 ## Storybook
 <StorybookEmbed storyId='components-drawer-drawer--playground' height={480} />

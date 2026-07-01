@@ -1,25 +1,4 @@
 {
-  "Body": {
-    "displayName": "Body",
-    "propsTypeName": null,
-    "props": {
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для обёртки body"
-      },
-      "content": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Основной контент"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
   "ButtonClose": {
     "displayName": "ButtonClose",
     "propsTypeName": null,
@@ -41,74 +20,26 @@
     },
     "relatedTypes": {}
   },
-  "Footer": {
-    "displayName": "Footer",
+  "DesktopModal": {
+    "displayName": "DesktopModal",
     "propsTypeName": null,
+    "description": "Desktop-поверхность Modal'а: `ModalCustom` с пресетной разметкой. Internal.",
     "props": {
-      "className": {
-        "type": "string",
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
         "required": false,
-        "description": "CSS-класс"
+        "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`)."
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "Header": {
-    "displayName": "Header",
-    "propsTypeName": null,
-    "props": {
-      "className": {
-        "type": "string",
+      "approveButton": {
+        "type": "BottomSheetActionButton",
         "required": false,
-        "description": "CSS-класс"
+        "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`)."
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onBackButtonClick": {
-        "type": "(() => void)",
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
         "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`)."
       },
-      "slotAfterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка"
-      },
-      "subtitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подзаголовок"
-      },
-      "title": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
-      },
-      "titleId": {
-        "type": "string",
-        "required": false,
-        "description": "id для aria-labelledby"
-      },
-      "truncate": {
-        "type": "{ title?: number; subtitle?: number; } | undefined",
-        "required": false,
-        "defaultValue": "title: 1; subtitle (string): 2",
-        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "Modal": {
-    "displayName": "Modal",
-    "propsTypeName": "ModalProps",
-    "description": "Модальное окно с пресетной разметкой (шапка, тело, футер) поверх ModalCustom.",
-    "props": {
       "className": {
         "type": "string",
         "required": false,
@@ -122,24 +53,36 @@
       "container": {
         "type": "ModalContainer",
         "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
-        "typeRefs": [
-          "ModalContainer"
-        ]
+        "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`."
       },
       "content": {
         "type": "ReactNode",
-        "required": true,
-        "description": "Основной контент"
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
       },
       "data-test-id": {
         "type": "string",
         "required": false
       },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
       "footer": {
         "type": "ReactNode",
         "required": false,
-        "description": "Контент футера"
+        "description": "Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "'horizontal'",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
       },
       "heightAuto": {
         "type": "boolean",
@@ -172,15 +115,12 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
-        "typeRefs": [
-          "ModalMode"
-        ]
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc."
       },
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
       "onClose": {
         "type": "() => void",
@@ -201,23 +141,22 @@
       "slotAfterHeadline": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот после заголовка"
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок"
+        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
       },
       "title": {
-        "type": "string",
+        "type": "ReactNode",
         "required": false,
-        "description": "Заголовок"
+        "description": "Заголовок (Typography title-l)."
       },
       "truncate": {
         "type": "{ title?: number; subtitle?: number; } | undefined",
         "required": false,
-        "defaultValue": "title: 1; subtitle (string): 2",
-        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
+        "description": "Усечение `title`/`subtitle` (TruncateString)."
       },
       "width": {
         "type": "enum",
@@ -228,6 +167,421 @@
           "s"
         ],
         "defaultValue": "s",
+        "description": "Размер окна"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DialogBody": {
+    "displayName": "DialogBody",
+    "propsTypeName": null,
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера body."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DialogFooter": {
+    "displayName": "DialogFooter",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера footer'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DialogHeader": {
+    "displayName": "DialogHeader",
+    "propsTypeName": null,
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера header'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение `title`/`subtitle` (TruncateString)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileModal": {
+    "displayName": "MobileModal",
+    "propsTypeName": null,
+    "description": "Mobile-поверхность Modal'а: контент в `BottomSheet`, слоты маппятся на API sheet'а\n(`subtitle→subHeadline`, остальное 1:1). Internal. Desktop-only пропы уходят в `...rest`.",
+    "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`)."
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`)."
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для окна"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "container": {
+        "type": "ModalContainer",
+        "required": false,
+        "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "'horizontal'",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "description": "Растягивать по высоте в пределах контейнера"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт"
+      },
+      "loadingState": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент тела вместо спиннера при `loading`"
+      },
+      "media": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Медиа-контент"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "MODE.Regular",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc."
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Управление состоянием показан/не показан"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого слоя портала"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение `title`/`subtitle` (TruncateString)."
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер окна"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Modal": {
+    "displayName": "Modal",
+    "propsTypeName": "ModalProps",
+    "description": "Адаптивное модальное окно. Раскладка из `AdaptiveProvider`: на `mobile` — `BottomSheet`,\nиначе — desktop-модалка. Форс — `<AdaptiveProvider layoutType=…>` / `withLayoutType`.",
+    "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для окна"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "container": {
+        "type": "ModalContainer",
+        "required": false,
+        "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`.",
+        "typeRefs": [
+          "ModalContainer"
+        ]
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
+      "footer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "'horizontal'",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+        "typeRefs": [
+          "FooterActionsOrientation"
+        ]
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "description": "Растягивать по высоте в пределах контейнера"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт"
+      },
+      "loadingState": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент тела вместо спиннера при `loading`"
+      },
+      "media": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Медиа-контент"
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "MODE.Regular",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+        "typeRefs": [
+          "ModalMode"
+        ]
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого слоя портала"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение `title`/`subtitle` (TruncateString)."
+      },
+      "width": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
         "description": "Размер окна",
         "typeRefs": [
           "ModalWidth"
@@ -235,6 +589,222 @@
       }
     },
     "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "BottomSheetActionButton": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "\"button\" | undefined",
+            "required": false,
+            "values": [
+              "button"
+            ],
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "FooterActionsOrientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": false
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
       "ModalContainer": {
         "kind": "alias",
         "type": "string | HTMLElement",
@@ -257,12 +827,58 @@
           "s"
         ],
         "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
       }
     }
+  },
+  "ModalBody": {
+    "displayName": "ModalBody",
+    "propsTypeName": null,
+    "description": "Body модалки (desktop): `Scroll` со скрытым баром.",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера body."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
   },
   "ModalCustom": {
     "displayName": "ModalCustom",
     "propsTypeName": "ModalCustomProps",
+    "description": "Адаптивный low-level `ModalCustom`: на `mobile` — `BottomSheetCustom`, иначе — `ModalFrame`.\nКомпозиция одна (surface-aware слоты `.Header/.Body/.Footer`). Форс — `withLayoutType`.",
     "props": {
       "children": {
         "type": "ReactNode",
@@ -282,7 +898,7 @@
       "container": {
         "type": "ModalContainer",
         "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
+        "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`.",
         "typeRefs": [
           "ModalContainer"
         ]
@@ -294,7 +910,6 @@
       "heightAuto": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true",
         "description": "Растягивать по высоте в пределах контейнера"
       },
       "mode": {
@@ -305,8 +920,8 @@
           "forced",
           "regular"
         ],
-        "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "defaultValue": "MODE.Regular",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -318,14 +933,39 @@
       },
       "open": {
         "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
+        "required": true,
         "description": "Управление состоянием показан/не показан"
       },
       "rootClassName": {
         "type": "string",
         "required": false,
         "description": "CSS-класс корневого слоя портала"
+      },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+      },
+      "showBackdrop": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+        "typeRefs": [
+          "SnapPoint"
+        ]
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "width": {
         "type": "enum",
@@ -335,7 +975,6 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
         "description": "Размер окна",
         "typeRefs": [
           "ModalWidth"
@@ -365,6 +1004,11 @@
           "s"
         ],
         "own": true
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": false
       }
     }
   },
@@ -372,15 +1016,21 @@
     "displayName": "ModalCustom.Body",
     "propsTypeName": null,
     "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс для обёртки body"
+        "description": "CSS-класс контейнера body."
       },
       "content": {
         "type": "ReactNode",
-        "required": true,
-        "description": "Основной контент"
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
       },
       "data-test-id": {
         "type": "string",
@@ -396,7 +1046,7 @@
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера footer'а."
       },
       "data-test-id": {
         "type": "string",
@@ -409,10 +1059,15 @@
     "displayName": "ModalCustom.Header",
     "propsTypeName": null,
     "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера header'а."
       },
       "data-test-id": {
         "type": "string",
@@ -421,33 +1076,111 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке «назад». Отсутствие скрывает кнопку"
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
       "slotAfterHeadline": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот после заголовка"
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
       },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок"
+        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
       },
       "title": {
-        "type": "string",
+        "type": "ReactNode",
         "required": false,
-        "description": "Заголовок"
+        "description": "Заголовок (Typography title-l)."
       },
       "titleId": {
         "type": "string",
         "required": false,
-        "description": "id для aria-labelledby"
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
       },
       "truncate": {
         "type": "{ title?: number; subtitle?: number; } | undefined",
         "required": false,
-        "defaultValue": "title: 1; subtitle (string): 2",
-        "description": "Максимальное число строк перед обрезкой (`TruncateString`).\nДля `subtitle` типа `string` — по умолчанию 2 строки; для произвольного `ReactNode` не применяется."
+        "description": "Усечение `title`/`subtitle` (TruncateString)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ModalFooter": {
+    "displayName": "ModalFooter",
+    "propsTypeName": null,
+    "description": "Footer модалки (desktop).",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера footer'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ModalHeader": {
+    "displayName": "ModalHeader",
+    "propsTypeName": null,
+    "description": "Header модалки (desktop).",
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера header'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение `title`/`subtitle` (TruncateString)."
       }
     },
     "relatedTypes": {}

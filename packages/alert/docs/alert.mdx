@@ -14,6 +14,8 @@ import { WithActions } from '../demos/examples/WithActions'
 import WithActionsSrc from '../demos/examples/WithActions.tsx?raw'
 import { Collapsible } from '../demos/examples/Collapsible'
 import CollapsibleSrc from '../demos/examples/Collapsible.tsx?raw'
+import { AdaptiveTruncate } from '../demos/examples/AdaptiveTruncate'
+import AdaptiveTruncateSrc from '../demos/examples/AdaptiveTruncate.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -78,6 +80,64 @@ import { Alert } from '@ds/alert'
 
 ## Props
 <PropsTable data={alertDoc.Alert} />
+
+## Адаптивность
+
+`Alert` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста [`@ds/adaptive`](/components/adaptive) — отдельного пропа `layoutType` нет.
+
+> **Desktop-first.** Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-дефолты применяются автоматически. Override нужен только как escape-hatch.
+
+На mobile заголовок усекается до **двух** строк вместо одной — на узких экранах это сохраняет читаемость без обрезки полезного текста.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `truncate.title` | `1` | `2` |
+
+Источник mobile-дефолтов — экспортируемая константа `ALERT_LAYOUT_PRESETS`.
+
+### Как переопределить
+
+**Desktop-first:** перенос пропа из desktop-макета не ломает mobile. Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `ALERT_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { Alert } from '@ds/alert'
+
+// 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся 2 строки (mobile не ломается)
+<Alert truncate={{ title: 3 }} title='…' description='…' />
+
+// 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
+<Alert layoutPresets={{ mobile: { truncate: { title: 3 } } }} title='…' description='…' />
+
+// 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
+<Alert layoutPresets={{ desktop: { truncate: { title: 3 } } }} title='…' description='…' />
+```
+
+DS-пресет (`ALERT_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
+
+### Как форсировать раскладку
+
+Раскладка переключается только контекстом, не пропом:
+
+```tsx
+import { AdaptiveProvider, withLayoutType } from '@ds/adaptive'
+import { Alert } from '@ds/alert'
+
+// поддерево — вложенный провайдер
+<AdaptiveProvider layoutType='mobile'>
+  <Alert title='…' description='…' />
+</AdaptiveProvider>
+
+// компонент/секция — HOC (module-scope, не в рендере)
+const MobileAlert = withLayoutType(Alert, 'mobile')
+```
+
+Подробнее о модели раскладки — в [`@ds/adaptive`](/components/adaptive).
+
+<Example title='Mobile — усечение заголовка' description='Раскладка форсирована в mobile: на узком экране длинный заголовок усекается в две строки вместо одной.' code={AdaptiveTruncateSrc}>
+  <AdaptiveTruncate client:visible />
+</Example>
+
+> Playground ниже показывает только переключение раскладки — сам текст короткий и не переносится ни на одной раскладке (кириллица в URL-args Storybook не резолвится, см. пример выше для наглядного усечения).
 
 ## Storybook
 <StorybookEmbed storyId='components-alert-alert--playground' height={400} />

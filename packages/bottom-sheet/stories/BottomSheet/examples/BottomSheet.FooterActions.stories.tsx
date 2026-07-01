@@ -9,7 +9,7 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../testIds';
 
 /**
- * Полный legacy-футер: `approveButton` + `cancelButton` + `additionalButton` + `disclaimer`.
+ * Полный футер: `approveButton` + `cancelButton` + `additionalButton` + `disclaimer`.
  * Три действия не помещаются в горизонтальный ряд на mobile-вьюпорте, поэтому собираются в
  * вертикальный full-width `ButtonGroup` (primary сверху), под ними — текст дисклеймера.
  * Горизонтальный ряд (space-between) применяется к паре cancel/confirm — см. Playground.
@@ -24,7 +24,7 @@ function FooterActionsRender() {
       <DemoPanel>
         <DemoTitle>Footer actions</DemoTitle>
         <DemoHint>
-          Три legacy-кнопки футера (<code>approve</code> / <code>cancel</code> / <code>additional</code>) и{' '}
+          Три кнопки футера (<code>approve</code> / <code>cancel</code> / <code>additional</code>) и{' '}
           <code>disclaimer</code>.
         </DemoHint>
         <DemoActions align='center'>

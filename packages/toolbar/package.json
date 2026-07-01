@@ -29,9 +29,12 @@
   ],
   "dependencies": {
     "@cloud-ru/ft-request-payload-transform": "0.3.0",
+    "@ds/adaptive": "workspace:^",
+    "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/chips": "workspace:^",
     "@ds/icons": "workspace:^",
+    "@ds/list": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/scroll": "workspace:^",
@@ -42,8 +45,6 @@
     "@ds/toggles": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "@ds/bottom-sheet": "workspace:^",
-    "@ds/list": "workspace:^",
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },

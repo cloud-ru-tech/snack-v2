@@ -22,3 +22,16 @@
 
   padding-bottom: base.simple-var(drawer.$drawer, 'anatomy', 'container', 'safeArea', 'padding-bottom');
 }
+
+// Desktop-футер: ряд кнопок прижат вправо.
+.footerActions {
+  align-self: flex-end;
+}
+
+.disclaimer {
+  @include base.composite-var(base.$sn-regular, 'label', 's');
+
+  align-self: stretch;
+  color: base.$sn-theme-color-neutral-text;
+  text-align: center;
+}

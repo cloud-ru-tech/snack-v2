@@ -44,13 +44,6 @@
   }
 }
 
-// Список задаёт собственные паддинги айтемов + вертикальный паддинг контейнера dropdown'а
-// (anatomy.container.paddingVertical). Горизонтального паддинга у body быть не должно —
-// обнуляем дефолтный bodyWrapper-паддинг @ds/dropdown (Figma: bodyWrapper заполняет контейнер).
-.droplistBody {
-  padding: 0;
-}
-
 .wrapper {
   position: relative;
 

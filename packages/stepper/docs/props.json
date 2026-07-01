@@ -1,146 +1,4 @@
 {
-  "AdaptiveStepper": {
-    "displayName": "AdaptiveStepper",
-    "propsTypeName": "AdaptiveStepperProps",
-    "props": {
-      "allowFreeNavigation": {
-        "type": "boolean",
-        "required": false,
-        "description": "Позволяет свободно переключаться между разными шагами без валидации"
-      },
-      "children": {
-        "type": "(params: StepperApi) => ReactElement<any, string | JSXElementConstructor<any>>",
-        "required": true,
-        "description": "Render function. Принимает `stepper` — JSX-элемент степпера, а также api:\n`goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`,\n`currentStepIndex`, `stepCount`.",
-        "typeRefs": [
-          "StepperApi"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false,
-        "description": "data-test-id"
-      },
-      "defaultCurrentStepIndex": {
-        "type": "number",
-        "required": false,
-        "description": "Индекс текущего шага по-дефолту"
-      },
-      "layoutType": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "desktop",
-          "mobile"
-        ],
-        "description": "Режим отображения: desktop (по-умолчанию) или mobile",
-        "typeRefs": [
-          "LayoutType"
-        ]
-      },
-      "onChangeCurrentStep": {
-        "type": "((newValue: number, prevValue: number) => void)",
-        "required": false,
-        "description": "Колбек смены текущего степа"
-      },
-      "onCompleteChange": {
-        "type": "((isCompleted: boolean) => void)",
-        "required": false,
-        "description": "Колбек изменения завершённости"
-      },
-      "steps": {
-        "type": "StepData[]",
-        "required": true,
-        "description": "Массив шагов",
-        "typeRefs": [
-          "StepData"
-        ]
-      },
-      "validator": {
-        "type": "StepsValidator",
-        "required": false,
-        "description": "Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. Возвращает Promise<boolean>: false → шаг помечается как Rejected.",
-        "typeRefs": [
-          "StepsValidator"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "LayoutType": {
-        "kind": "union",
-        "values": [
-          "desktop",
-          "mobile"
-        ],
-        "own": false
-      },
-      "StepData": {
-        "kind": "interface",
-        "props": {
-          "description": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "title": {
-            "type": "string",
-            "required": true
-          }
-        },
-        "own": true
-      },
-      "StepperApi": {
-        "kind": "interface",
-        "props": {
-          "currentStepIndex": {
-            "type": "number",
-            "required": true
-          },
-          "goNext": {
-            "type": "(stepIndex?: number) => void",
-            "required": true
-          },
-          "goPrev": {
-            "type": "(stepIndex?: number) => void",
-            "required": true
-          },
-          "isCompleted": {
-            "type": "boolean",
-            "required": true
-          },
-          "resetValidation": {
-            "type": "() => void",
-            "required": true
-          },
-          "setValidator": {
-            "type": "(validator: StepsValidator) => void",
-            "required": true,
-            "typeRefs": [
-              "StepsValidator"
-            ]
-          },
-          "stepCount": {
-            "type": "number",
-            "required": true
-          },
-          "stepper": {
-            "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-            "required": true
-          }
-        },
-        "own": true
-      },
-      "StepsValidator": {
-        "kind": "alias",
-        "type": "(prevStepIndex: number, newStepIndex: number) => Promise<boolean>",
-        "own": true
-      }
-    }
-  },
   "DesktopStep": {
     "displayName": "DesktopStep",
     "propsTypeName": null,
@@ -168,26 +26,9 @@
     },
     "relatedTypes": {}
   },
-  "MobileStep": {
-    "displayName": "MobileStep",
+  "DesktopStepper": {
+    "displayName": "DesktopStepper",
     "propsTypeName": null,
-    "props": {
-      "data-test-id": {
-        "type": "string",
-        "required": false,
-        "description": "data-test-id"
-      },
-      "step": {
-        "type": "StepViewData",
-        "required": true,
-        "description": "Данные шага для отображения"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "MobileStepper": {
-    "displayName": "MobileStepper",
-    "propsTypeName": "MobileStepperProps",
     "props": {
       "allowFreeNavigation": {
         "type": "boolean",
@@ -198,10 +39,7 @@
       "children": {
         "type": "(params: StepperApi) => ReactElement<any, string | JSXElementConstructor<any>>",
         "required": true,
-        "description": "Render function. Принимает `stepper` и api:\n`goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`,\n`currentStepIndex`, `stepCount`.",
-        "typeRefs": [
-          "StepperApi"
-        ]
+        "description": "Render function. Принимает `stepper` — JSX-элемент степпера, а также api:\n`goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`,\n`currentStepIndex`, `stepCount`."
       },
       "className": {
         "type": "string",
@@ -232,82 +70,86 @@
       "steps": {
         "type": "StepData[]",
         "required": true,
-        "description": "Массив шагов",
-        "typeRefs": [
-          "StepData"
-        ]
+        "description": "Массив шагов"
       },
       "validator": {
         "type": "StepsValidator",
         "required": false,
-        "description": "Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага.",
-        "typeRefs": [
-          "StepsValidator"
-        ]
+        "description": "Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. Возвращает Promise<boolean>: false → шаг помечается как Rejected."
       }
     },
-    "relatedTypes": {
-      "StepData": {
-        "kind": "interface",
-        "props": {
-          "description": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "title": {
-            "type": "string",
-            "required": true
-          }
-        },
-        "own": true
+    "relatedTypes": {}
+  },
+  "MobileStep": {
+    "displayName": "MobileStep",
+    "propsTypeName": null,
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "data-test-id"
       },
-      "StepperApi": {
-        "kind": "interface",
-        "props": {
-          "currentStepIndex": {
-            "type": "number",
-            "required": true
-          },
-          "goNext": {
-            "type": "(stepIndex?: number) => void",
-            "required": true
-          },
-          "goPrev": {
-            "type": "(stepIndex?: number) => void",
-            "required": true
-          },
-          "isCompleted": {
-            "type": "boolean",
-            "required": true
-          },
-          "resetValidation": {
-            "type": "() => void",
-            "required": true
-          },
-          "setValidator": {
-            "type": "(validator: StepsValidator) => void",
-            "required": true,
-            "typeRefs": [
-              "StepsValidator"
-            ]
-          },
-          "stepCount": {
-            "type": "number",
-            "required": true
-          },
-          "stepper": {
-            "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-            "required": true
-          }
-        },
-        "own": true
-      },
-      "StepsValidator": {
-        "kind": "alias",
-        "type": "(prevStepIndex: number, newStepIndex: number) => Promise<boolean>",
-        "own": true
+      "step": {
+        "type": "StepViewData",
+        "required": true,
+        "description": "Данные шага для отображения"
       }
-    }
+    },
+    "relatedTypes": {}
+  },
+  "MobileStepper": {
+    "displayName": "MobileStepper",
+    "propsTypeName": null,
+    "props": {
+      "allowFreeNavigation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Позволяет свободно переключаться между разными шагами без валидации"
+      },
+      "children": {
+        "type": "(params: StepperApi) => ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": true,
+        "description": "Render function. Принимает `stepper` — JSX-элемент степпера, а также api:\n`goNext`, `goPrev`, `resetValidation`, `setValidator`, `isCompleted`,\n`currentStepIndex`, `stepCount`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "data-test-id"
+      },
+      "defaultCurrentStepIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Индекс текущего шага по-дефолту"
+      },
+      "onChangeCurrentStep": {
+        "type": "((newValue: number, prevValue: number) => void)",
+        "required": false,
+        "description": "Колбек смены текущего степа"
+      },
+      "onCompleteChange": {
+        "type": "((isCompleted: boolean) => void)",
+        "required": false,
+        "description": "Колбек изменения завершённости"
+      },
+      "steps": {
+        "type": "StepData[]",
+        "required": true,
+        "description": "Массив шагов"
+      },
+      "validator": {
+        "type": "StepsValidator",
+        "required": false,
+        "description": "Валидатор шагов. Выполняется при смене шага. Принимает первым аргументом индекс текущего, вторым — индекс нового шага. Возвращает Promise<boolean>: false → шаг помечается как Rejected."
+      }
+    },
+    "relatedTypes": {}
   },
   "StepIcon": {
     "displayName": "StepIcon",
@@ -341,11 +183,11 @@
   "Stepper": {
     "displayName": "Stepper",
     "propsTypeName": "StepperProps",
+    "description": "Адаптивный Stepper. Раскладку берёт из `AdaptiveProvider` (контекст): на `mobile` рендерит\nкомпактный мобильный индикатор, иначе — desktop-степпер. Публичный API единый; форс платформы —\nчерез `<AdaptiveProvider layoutType=…>` / `withLayoutType` (см. `@ds/adaptive`), пропа `layoutType` нет.",
     "props": {
       "allowFreeNavigation": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
         "description": "Позволяет свободно переключаться между разными шагами без валидации"
       },
       "children": {
@@ -369,7 +211,6 @@
       "defaultCurrentStepIndex": {
         "type": "number",
         "required": false,
-        "defaultValue": "0",
         "description": "Индекс текущего шага по-дефолту"
       },
       "onChangeCurrentStep": {

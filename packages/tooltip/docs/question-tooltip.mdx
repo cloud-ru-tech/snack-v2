@@ -63,5 +63,47 @@ import { QuestionTooltip } from '@ds/tooltip'
 ### Size
 Размер триггера-иконки и тултипа: `xs` — для плотных форм, `s` — дефолт рядом с заголовками секций.
 
+## Адаптивность
+
+`QuestionTooltip` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — тултип-popover, открывается по наведению на иконку «?».
+- **mobile** — `tip` открывается в `BottomSheet` из `@ds/bottom-sheet` (панель снизу) по нажатию на «?».
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <QuestionTooltip tip='Подсказка о поле формы' />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { QuestionTooltip } from '@ds/tooltip'
+
+  const MobileQuestionTooltip = withLayoutType(QuestionTooltip, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Часть пропов настраивает desktop-popover и на mobile молча игнорируется (у `BottomSheet` своя поверхность снизу). Таблица синхронизирована с type-level JSDoc у `QuestionTooltipProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `placement`, `trigger`, `offset`, `hoverDelayOpen`, `hoverDelayClose`, `triggerRef`, `disableSpanWrapper`, `fallbackPlacements`, `disableMaxWidth`, `tooltipClassname` | используется | игнорируется |
+| `tip`, `open`, `onOpenChange`, `closeOnPopstate`, `triggerLabel`, `tabIndex`, `size`, `className` | используется | используется |
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='components-tooltip-questiontooltip--playground' globals={{ layoutType: 'mobile' }} height={420} />
+
 ## Figma
 <FigmaEmbed node={figmaNode('tooltip')} height={480} title='QuestionTooltip в Figma (Snack UI Kit)' />

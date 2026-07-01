@@ -20,11 +20,297 @@
     },
     "relatedTypes": {}
   },
+  "DesktopDrawer": {
+    "displayName": "DesktopDrawer",
+    "propsTypeName": null,
+    "description": "Desktop-поверхность Drawer'а: панель (`DrawerCustom`) с пресетной разметкой. Internal.",
+    "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`)."
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`)."
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом\nCSS-класс"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать дровер при перемещении по истории браузера"
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
+      "footer": {
+        "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
+        "required": false,
+        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "'horizontal'",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
+      },
+      "media": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Медиа-контент"
+      },
+      "nestedDrawer": {
+        "type": "ReactElement<DrawerProps, string | JSXElementConstructor<any>>",
+        "required": false,
+        "description": "Вложенный Drawer"
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onSnapIndexChange": {
+        "type": "((snapIndex: number) => void)",
+        "required": false,
+        "description": "Callback изменения активного snap'а (пересечение swipe-границы или click по UI).\nНе вызывается при программной смене controlled `snapIndex`."
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан."
+      },
+      "position": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "description": "Расположение"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для корневого элемента"
+      },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+      },
+      "showBlackout": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение темной подложки"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "snapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е;\nswipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен\nпередать новое значение."
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком."
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "'s'",
+        "description": "Ширина (только при position: \"left\" | \"right\")"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DialogBody": {
+    "displayName": "DialogBody",
+    "propsTypeName": null,
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера body."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DialogFooter": {
+    "displayName": "DialogFooter",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера footer'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DialogHeader": {
+    "displayName": "DialogHeader",
+    "propsTypeName": null,
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера header'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      }
+    },
+    "relatedTypes": {}
+  },
   "Drawer": {
     "displayName": "Drawer",
     "propsTypeName": "DrawerProps",
-    "description": "Drawer компонент",
+    "description": "Адаптивный Drawer. Раскладка из `AdaptiveProvider`: на `mobile` — `BottomSheet`, иначе —\ndesktop-панель. Форс — `<AdaptiveProvider layoutType=…>` / `withLayoutType`.",
     "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
         "required": false
@@ -46,23 +332,41 @@
       },
       "content": {
         "type": "ReactNode",
-        "required": true,
-        "description": "Контент"
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
       },
       "data-test-id": {
         "type": "string",
         "required": false
       },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
       "footer": {
         "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
         "required": false,
-        "description": "Футер"
+        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "'horizontal'",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+        "typeRefs": [
+          "FooterActionsOrientation"
+        ]
       },
       "heightAuto": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
       },
       "media": {
         "type": "ReactNode",
@@ -70,22 +374,27 @@
         "description": "Медиа-контент"
       },
       "nestedDrawer": {
-        "type": "(ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> & ReactElement<DrawerProps, string | JSXElementConstructor<...>>)",
+        "type": "ReactElement<DrawerProps, string | JSXElementConstructor<any>>",
         "required": false,
         "description": "Вложенный Drawer",
         "typeRefs": [
-          "DrawerCustomProps"
+          "DrawerProps"
         ]
       },
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
       "onClose": {
         "type": "() => void",
         "required": true,
         "description": "Колбэк закрытия"
+      },
+      "onSnapIndexChange": {
+        "type": "((snapIndex: number) => void)",
+        "required": false,
+        "description": "Callback изменения активного snap'а (пересечение swipe-границы или click по UI).\nНе вызывается при программной смене controlled `snapIndex`."
       },
       "open": {
         "type": "boolean",
@@ -106,15 +415,16 @@
           "Position"
         ]
       },
-      "push": {
-        "type": "boolean | PushConfig",
-        "required": false,
-        "description": "Смещение при открытии \"вложенного\" компонента"
-      },
       "rootClassName": {
         "type": "string",
         "required": false,
         "description": "CSS-класс для корневого элемента"
+      },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
       },
       "showBlackout": {
         "type": "boolean",
@@ -125,17 +435,36 @@
       "slotAfterHeadline": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот после заголовка"
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "snapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е;\nswipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен\nпередать новое значение."
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+        "typeRefs": [
+          "SnapPoint"
+        ]
       },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок"
+        "description": "Подзаголовок под заголовком."
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок"
+        "description": "Заголовок (Typography title-l)."
       },
       "width": {
         "type": "string | number",
@@ -148,9 +477,233 @@
       }
     },
     "relatedTypes": {
-      "DrawerCustomProps": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "BottomSheetActionButton": {
         "kind": "interface",
         "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "\"button\" | undefined",
+            "required": false,
+            "values": [
+              "button"
+            ],
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "DrawerProps": {
+        "kind": "interface",
+        "props": {
+          "additionalButton": {
+            "type": "BottomSheetActionButton | undefined",
+            "required": false,
+            "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`).",
+            "typeRefs": [
+              "BottomSheetActionButton"
+            ]
+          },
+          "approveButton": {
+            "type": "BottomSheetActionButton | undefined",
+            "required": false,
+            "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`).",
+            "typeRefs": [
+              "BottomSheetActionButton"
+            ]
+          },
+          "cancelButton": {
+            "type": "BottomSheetActionButton | undefined",
+            "required": false,
+            "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`).",
+            "typeRefs": [
+              "BottomSheetActionButton"
+            ]
+          },
           "children": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false
@@ -158,7 +711,7 @@
           "className": {
             "type": "string | undefined",
             "required": false,
-            "description": "CSS-класс для элемента с контентом"
+            "description": "CSS-класс для элемента с контентом\n\n\nCSS-класс"
           },
           "closeOnPopstate": {
             "type": "boolean | undefined",
@@ -170,32 +723,69 @@
             "required": false,
             "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
           },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Содержимое body (альтернатива `children`)."
+          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
           },
-          "footer": {
-            "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
+          "disclaimer": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Футер"
+            "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+          },
+          "footer": {
+            "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null)) | undefined",
+            "required": false,
+            "description": "Футер\n\n\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+          },
+          "footerActionsOrientation": {
+            "type": "FooterActionsOrientation | undefined",
+            "required": false,
+            "values": [
+              "horizontal",
+              "vertical"
+            ],
+            "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+            "typeRefs": [
+              "FooterActionsOrientation"
+            ]
           },
           "heightAuto": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+            "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
+          },
+          "media": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Медиа-контент"
           },
           "nestedDrawer": {
-            "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> | undefined",
+            "type": "ReactElement<DrawerProps, string | JSXElementConstructor<any>> | undefined",
             "required": false,
             "description": "Вложенный Drawer",
             "typeRefs": [
-              "DrawerCustomProps"
+              "DrawerProps"
             ]
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
           },
           "onClose": {
             "type": "() => void",
             "required": true,
             "description": "Колбэк закрытия"
+          },
+          "onSnapIndexChange": {
+            "type": "((snapIndex: number) => void) | undefined",
+            "required": false,
+            "description": "Callback изменения активного snap'а (пересечение swipe-границы или click по UI).\nНе вызывается при программной смене controlled `snapIndex`."
           },
           "open": {
             "type": "boolean",
@@ -216,20 +806,53 @@
               "Position"
             ]
           },
-          "push": {
-            "type": "boolean | PushConfig | undefined",
-            "required": false,
-            "description": "Смещение при открытии \"вложенного\" компонента"
-          },
           "rootClassName": {
             "type": "string | undefined",
             "required": false,
             "description": "CSS-класс для корневого элемента"
           },
+          "safeArea": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+          },
           "showBlackout": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Отображение темной подложки"
+          },
+          "slotAfterHeadline": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+          },
+          "snapIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е;\nswipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен\nпередать новое значение."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
+          "subtitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок под заголовком."
+          },
+          "swipeEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+          },
+          "title": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Заголовок (Typography title-l)."
           },
           "width": {
             "type": "string | number | undefined",
@@ -242,6 +865,27 @@
         },
         "own": true
       },
+      "FooterActionsOrientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": false
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
       "Position": {
         "kind": "union",
         "values": [
@@ -251,6 +895,23 @@
           "top"
         ],
         "own": true
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": false
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
       },
       "Width": {
         "kind": "union",
@@ -266,17 +927,23 @@
   "DrawerBody": {
     "displayName": "DrawerBody",
     "propsTypeName": null,
-    "description": "Вспомогательный компонент для добавления \"тела\" в DrawerCustom",
+    "description": "Body дровера (desktop): `Scroll`; высота-по-контенту — из overlay-контекста.",
     "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера body."
       },
       "content": {
         "type": "ReactNode",
-        "required": true,
-        "description": "Контент"
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
       },
       "data-test-id": {
         "type": "string",
@@ -288,6 +955,7 @@
   "DrawerCustom": {
     "displayName": "DrawerCustom",
     "propsTypeName": "DrawerCustomProps",
+    "description": "Адаптивный low-level `DrawerCustom`: на `mobile` — `BottomSheetCustom`, иначе — `DrawerFrame`.\nКомпозиция одна (surface-aware слоты `.Header/.Body/.Footer`). Форс — `withLayoutType`.",
     "props": {
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -321,7 +989,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
       },
       "nestedDrawer": {
         "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>>",
@@ -365,11 +1033,31 @@
         "required": false,
         "description": "CSS-класс для корневого элемента"
       },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+      },
       "showBlackout": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
         "description": "Отображение темной подложки"
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+        "typeRefs": [
+          "SnapPoint"
+        ]
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "width": {
         "type": "string | number",
@@ -416,7 +1104,7 @@
           "heightAuto": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`).\nПри `position: \"left\" | \"right\"` не используется — поведение и ширина задаются только `width` (`'s' | 'm' | 'l'` или число/строка)."
+            "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
           },
           "nestedDrawer": {
             "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> | undefined",
@@ -460,10 +1148,28 @@
             "required": false,
             "description": "CSS-класс для корневого элемента"
           },
+          "safeArea": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+          },
           "showBlackout": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Отображение темной подложки"
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
+          "swipeEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
           },
           "width": {
             "type": "string | number | undefined",
@@ -486,6 +1192,11 @@
         ],
         "own": true
       },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": false
+      },
       "Width": {
         "kind": "union",
         "values": [
@@ -501,15 +1212,21 @@
     "displayName": "DrawerCustom.Body",
     "propsTypeName": null,
     "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера body."
       },
       "content": {
         "type": "ReactNode",
-        "required": true,
-        "description": "Контент"
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
       },
       "data-test-id": {
         "type": "string",
@@ -525,7 +1242,7 @@
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера footer'а."
       },
       "data-test-id": {
         "type": "string",
@@ -538,10 +1255,15 @@
     "displayName": "DrawerCustom.Header",
     "propsTypeName": null,
     "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера header'а."
       },
       "data-test-id": {
         "type": "string",
@@ -550,33 +1272,32 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
       "slotAfterHeadline": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот после заголовка"
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
       },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок"
+        "description": "Подзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "DrawerCustomLayoutProvider": {
-    "displayName": "DrawerCustomLayoutProvider",
-    "propsTypeName": null,
-    "props": {
-      "value": {
-        "type": "DrawerCustomLayoutContextValue",
-        "required": true
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
       }
     },
     "relatedTypes": {}
@@ -584,12 +1305,12 @@
   "DrawerFooter": {
     "displayName": "DrawerFooter",
     "propsTypeName": null,
-    "description": "Вспомогательный компонент для добавления \"футера\" в DrawerCustom",
+    "description": "Footer дровера (desktop).",
     "props": {
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера footer'а."
       },
       "data-test-id": {
         "type": "string",
@@ -601,12 +1322,17 @@
   "DrawerHeader": {
     "displayName": "DrawerHeader",
     "propsTypeName": null,
-    "description": "Вспомогательный компонент для добавления \"шапки\" в DrawerCustom",
+    "description": "Header дровера (desktop).",
     "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
       "className": {
         "type": "string",
         "required": false,
-        "description": "CSS-класс"
+        "description": "CSS-класс контейнера header'а."
       },
       "data-test-id": {
         "type": "string",
@@ -615,22 +1341,200 @@
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
-        "description": "Действие при клике по кнопке \"назад\". Отсутствие скрывает кнопку"
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
       "slotAfterHeadline": {
         "type": "ReactNode",
         "required": false,
-        "description": "Слот после заголовка"
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "subHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
       },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок"
+        "description": "Подзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок"
+        "description": "Заголовок (Typography title-l)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileDrawer": {
+    "displayName": "MobileDrawer",
+    "propsTypeName": null,
+    "description": "Mobile-поверхность Drawer'а: контент в `BottomSheet`, слоты маппятся на API sheet'а\n(`subtitle→subHeadline`, `showBlackout→showBackdrop`, остальное 1:1). Internal. Desktop-only пропы\nуходят в `...rest`.",
+    "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка — пропсы `Button` (дефолт `view='simple'`, `appearance='neutral'`)."
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка действия — пропсы `Button` (дефолт `view='filled'`, `appearance='primary'`)."
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены — объект пропсов `Button` (по умолчанию `view='outline'`, `appearance='neutral'`)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом\nCSS-класс"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать дровер при перемещении по истории браузера"
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
+      },
+      "footer": {
+        "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
+        "required": false,
+        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "'horizontal'",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+      },
+      "heightAuto": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
+      },
+      "media": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Медиа-контент"
+      },
+      "nestedDrawer": {
+        "type": "ReactElement<DrawerProps, string | JSXElementConstructor<any>>",
+        "required": false,
+        "description": "Вложенный Drawer"
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onSnapIndexChange": {
+        "type": "((snapIndex: number) => void)",
+        "required": false,
+        "description": "Callback изменения активного snap'а (пересечение swipe-границы или click по UI).\nНе вызывается при программной смене controlled `snapIndex`."
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан."
+      },
+      "position": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "description": "Расположение"
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для корневого элемента"
+      },
+      "safeArea": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+      },
+      "showBlackout": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение темной подложки"
+      },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "snapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е;\nswipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен\nпередать новое значение."
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок под заголовком."
+      },
+      "swipeEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок (Typography title-l)."
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "'s'",
+        "description": "Ширина (только при position: \"left\" | \"right\")"
       }
     },
     "relatedTypes": {}

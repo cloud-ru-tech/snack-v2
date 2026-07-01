@@ -7,9 +7,13 @@ export const TEST_IDS = {
   slotAfterHeadline: 'modal__slot-after-headline',
   body: 'modal__body',
   footer: 'modal__footer',
+  footerApprove: 'modal__footer-approve',
+  footerCancel: 'modal__footer-cancel',
+  footerAdditional: 'modal__footer-additional',
+  footerDisclaimer: 'modal__footer-disclaimer',
   loadingSpinner: 'modal__loading-spinner',
   overlay: 'modal__overlay',
-};
+} as const;
 
 export const WIDTH = {
   S: 's',

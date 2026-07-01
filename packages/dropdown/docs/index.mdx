@@ -65,6 +65,53 @@ import { Dropdown, STATE } from '@ds/dropdown'
 ## Props
 <PropsTable data={dropdownDoc.Dropdown} />
 
+## Адаптивность
+
+`Dropdown` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — popover над триггером с позиционированием через floating-ui.
+- **mobile** — контент рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Dropdown content={…}>…</Dropdown>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Dropdown } from '@ds/dropdown'
+
+  const MobileDropdown = withLayoutType(Dropdown, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Часть пропов управляет позиционированием desktop-popover'а и на mobile молча игнорируется (у `BottomSheet` своё позиционирование снизу). Таблица синхронизирована с type-level JSDoc у `DropdownProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `placement`, `widthStrategy`, `offset`, `fallbackPlacements` | используется | игнорируется |
+| `hoverDelayOpen`, `hoverDelayClose`, `closeOnEscapeKey`, `triggerClickByKeys`, `outsideClick` | используется | игнорируется |
+| `disableSpanWrapper`, `triggerClassName`, `triggerRef`, `container` | используется | игнорируется |
+| `content`, `headline`, `headlineHint`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
+| `state`, `open`, `onOpenChange`, `closeOnPopstate`, `className` | используется | используется |
+
+На mobile портал `BottomSheet` берётся из `@ds/portal-context`, поэтому `container` не действует.
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='components-dropdown--playground' globals={{ layoutType: 'mobile' }} height={520} />
+
 ## Storybook
 <StorybookEmbed storyId='components-dropdown--playground' height={360} />
 

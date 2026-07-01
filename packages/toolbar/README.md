@@ -2,7 +2,7 @@
 
 `@ds/toolbar` — Панель инструментов списков и таблиц — поиск, фильтры, массовые действия, меню «Ещё».
 
-`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Режим `layoutType` переключает desktop- и mobile-поведение (Droplist vs BottomSheet, размер чипов фильтров).
+`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Панель адаптивна: на mobile меню «⋯» и bulk-действия переезжают в `BottomSheet`. Раскладку компонент берёт из `AdaptiveProvider` — отдельного пропа `layoutType` нет.
 
 ## Когда использовать
 
@@ -21,8 +21,8 @@
 - ❌ Дублировать поиск и фильтры в header и в теле страницы.
 - ✅ Controlled `search` через `value` + `onChange`.
 - ❌ No-op `onChange` — строка поиска не реагирует на ввод.
-- ✅ `layoutType="mobile"` на узких viewport и в Storybook mobile-сценариях.
-- ❌ Desktop overflow «⋯» на мобильном без смены `layoutType`.
+- ✅ Один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается само.
+- ❌ Ручное ветвление desktop/mobile-вёрстки тулбара в обход контекста раскладки.
 - ✅ Уникальный `persist.id` на каждый инстанс.
 - ❌ Один `id` на несколько тулбаров — состояние фильтров смешается.
 
@@ -33,11 +33,6 @@
 - **Строка панели** — `onRefresh`, `search`, `after`, `dataView`, кнопка фильтров, `moreActions`.
 - **Строка фильтров** — `ChipChoiceRow` / `MobileChipChoiceRow` при `filterRow`.
 - **Bulk-панель** — чекбокс, счётчик выбранных, tonal-кнопки; не влезшие действия — в «⋯».
-
-### Layout (default `desktop`)
-
-- `desktop` — overflow «⋯» в Droplist, чипы фильтров size `s`, bulk-действия в строке под чипами.
-- `mobile` — overflow в BottomSheet, чипы size `s`, bulk-действия в sheet без backdrop при активном выборе.
 
 ### Outline (default `false`)
 
@@ -51,7 +46,7 @@ pnpm add @ds/toolbar
 ```
 
 ```ts
-import { Toolbar, LAYOUT_TYPE } from '@ds/toolbar';
+import { Toolbar } from '@ds/toolbar';
 ```
 
 ## Примеры использования
@@ -159,53 +154,6 @@ export function BulkActions() {
 }
 ```
 
-### Mobile layout
-
-layoutType mobile — включите чекбокс, чтобы открыть bulk-панель в BottomSheet внутри рамки
-
-```tsx
-import { CheckSVG, CrossSVG } from '@ds/icons';
-import { Checkbox } from '@ds/toggles';
-import { LAYOUT_TYPE, Toolbar } from '@ds/toolbar';
-import { useId, useState } from 'react';
-
-import { MobilePreview } from '../MobilePreview';
-
-export function MobileLayout() {
-  const selectionToggleId = useId();
-  const [search, setSearch] = useState('');
-  const [checked, setChecked] = useState(true);
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-      <label
-        htmlFor={selectionToggleId}
-        style={{ display: 'inline-flex', gap: 8, alignItems: 'center', cursor: 'pointer' }}
-      >
-        <Checkbox id={selectionToggleId} size='s' checked={checked} onChange={setChecked} />
-        <span>Есть выбранные строки таблицы</span>
-      </label>
-      <MobilePreview>
-        <Toolbar
-          layoutType={LAYOUT_TYPE.Mobile}
-          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
-          onRefresh={() => setSearch('')}
-          moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
-          checked={checked}
-          onCheck={() => setChecked(value => !value)}
-          selectedCount={checked ? 12 : 0}
-          totalCount={100}
-          bulkActions={[
-            { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
-            { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
-          ]}
-        />
-      </MobilePreview>
-    </div>
-  );
-}
-```
-
 ### Слоты after и dataView
 
 Дополнительная кнопка и SegmentControl
@@ -248,7 +196,7 @@ export function WithDataView() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `after` | `ReactNode` | — | Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br> <br/> На mobile (`layoutType="mobile"`) не рендерится в строке — кнопки переносятся в меню «⋯» <br/> (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки <br/> или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. |
+| `after` | `ReactNode` | — | Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br> <br/> На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯» <br/> (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки <br/> или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. |
 | `api` | `ToolbarApi` | — | Бэкенд команд: WYSIWYG (TipTap) в preview-режиме либо markdown-исходник (textarea) в raw-режиме. |
 | `bulkActions` | `BulkAction[]` | — | Список массовых действий |
 | `checked` | `boolean` | — | Значение чекбокса |
@@ -258,7 +206,6 @@ export function WithDataView() {
 | `filterRow` | `FilterRow<TState>` | — |  |
 | `indeterminate` | `boolean` | — | Состояние частичного выбора |
 | `items` | `ToolbarItemId` | — |  |
-| `layoutType` | `"desktop"` \| `"mobile"` | `desktop` | Режим отображения: desktop (по умолчанию) или mobile |
 | `moreActions` | `Action[]` | — | Элементы выпадающего списка кнопки с действиями |
 | `onCheck` | `(() => void)` | — | Колбек смены значения чекбокса |
 | `onRefresh` | `(() => void)` | — | Колбек обновления |
@@ -273,3 +220,82 @@ export function WithDataView() {
 
 - **`Search`** — поле поиска внутри тулбара (`background={false}`).
 - **`SegmentControl`** — типичный контент слота `dataView`.
+## Адаптивность
+
+`Toolbar` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке панель перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — overflow «⋯» открывается в `Droplist`, bulk-действия идут строкой под чипами фильтров.
+- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Mobile layout
+
+Mobile-раскладка — включите чекбокс, чтобы открыть bulk-панель в BottomSheet внутри рамки
+
+```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { CheckSVG, CrossSVG } from '@ds/icons';
+import { Checkbox } from '@ds/toggles';
+import { Toolbar } from '@ds/toolbar';
+import { useId, useState } from 'react';
+
+import { MobilePreview } from '../MobilePreview';
+
+export function MobileLayout() {
+  const selectionToggleId = useId();
+  const [search, setSearch] = useState('');
+  const [checked, setChecked] = useState(true);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
+      <label
+        htmlFor={selectionToggleId}
+        style={{ display: 'inline-flex', gap: 8, alignItems: 'center', cursor: 'pointer' }}
+      >
+        <Checkbox id={selectionToggleId} size='s' checked={checked} onChange={setChecked} />
+        <span>Есть выбранные строки таблицы</span>
+      </label>
+      <MobilePreview>
+        <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+          <Toolbar
+            search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+            onRefresh={() => setSearch('')}
+            moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+            checked={checked}
+            onCheck={() => setChecked(value => !value)}
+            selectedCount={checked ? 12 : 0}
+            totalCount={100}
+            bulkActions={[
+              { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
+              { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+            ]}
+          />
+        </AdaptiveProvider>
+      </MobilePreview>
+    </div>
+  );
+}
+```
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Toolbar search={search} onRefresh={refresh} moreActions={actions} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Toolbar } from '@ds/toolbar'
+
+  const MobileToolbar = withLayoutType(Toolbar, 'mobile')
+  ```
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
