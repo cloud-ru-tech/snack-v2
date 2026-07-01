@@ -1,0 +1,95 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/button.module' as btn;
+
+$sizes: 's', 'm', 'l';
+$appearance-to-theme: (
+  'primary': 'primary',
+  'neutral': 'neutral',
+  'critical': 'red',
+);
+// filled кладёт контент на onAccent, остальные заливки — на text. outline не в карте: у него своя рамка.
+$view-foreground: (
+  'filled': 'onAccent',
+  'tonal': 'text',
+  'simple': 'text',
+  'elevated': 'text',
+  'function': 'text',
+);
+$divider-opacity: 15%; // Figma buttonCombo outline/borderDefault
+// Прямые токены: динамическое имя переменной внутри @each SCSS не поддерживает.
+$fn-text-padding: (
+  's': btn.$sn-button-anatomy-size-s-container-textWrapper-paddingHorizontal,
+  'm': btn.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal,
+  'l': btn.$sn-button-anatomy-size-l-container-textWrapper-paddingHorizontal,
+);
+
+.buttonComboWrapper {
+  display: inline-flex;
+  align-items: center;
+
+  &[data-full-width] {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .optionButton {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    // Разделитель 2px (Figma dividerWrapper). У outline части разделены собственными рамками.
+    &:not([data-view='outline']) {
+      border-right: base.$sn-primitive-strokeWeight-strokeSemiBold solid transparent;
+    }
+
+    @each $view, $role in $view-foreground {
+      @each $appearance, $token in $appearance-to-theme {
+        &[data-view='#{$view}'][data-appearance='#{$appearance}'] {
+          border-right-color: color-mix(
+            in srgb,
+            base.simple-var(base.$sn-theme, 'color', $token, $role) $divider-opacity,
+            transparent
+          );
+        }
+      }
+    }
+
+    // function: @ds/button убирает textWrapper-паддинг, в Figma он остаётся — зазор до разделителя.
+    @each $size, $pad in $fn-text-padding {
+      &[data-view='function'][data-size='#{$size}'] {
+        padding-right: $pad;
+      }
+    }
+  }
+
+  .dropdownButton {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    // function: chevron по ширине иконки (Figma без min-width); у остальных view — квадрат.
+    &[data-view='function'][data-variant='icon-only'] {
+      min-width: initial;
+    }
+  }
+
+  // Обёртка-триггер Droplist (display:block) из-за strut'а line-box'а на 1px выше кнопки —
+  // сбивает центрирование в ряду и даёт «ступеньку». flex убирает strut.
+  .trigger {
+    display: flex;
+  }
+
+  // elevated: тень (Figma) — на корне комбо, а не на частях, иначе тень chevron'а перекрывает основную.
+  &[data-view='elevated'] {
+    box-shadow: base.$sn-boxShadow-elevation-level3;
+
+    @each $size in $sizes {
+      &[data-size='#{$size}'] {
+        border-radius: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-radius');
+      }
+    }
+
+    .optionButton,
+    .dropdownButton {
+      box-shadow: none;
+    }
+  }
+}

@@ -121,6 +121,7 @@ export const FIGMA_NODES = {
   'bottom-sheet': { ...SNACK, nodeId: '12833-171561' }, // bottom-sheet → bottomSheet
   breadcrumbs: { ...SNACK, nodeId: '7422-10279' }, // breadcrumbs → breadcrumbs
   button: { ...SNACK, nodeId: '2507-25203' }, // button → button
+  'button-combo': { ...SNACK, nodeId: '7883-13864' }, // button-combo → buttonCombo
   card: { ...SNACK, nodeId: '5044-22704' }, // card → card
   calendar: {
     _: { ...SNACK, nodeId: '3839-193281' }, // calendar → calendar

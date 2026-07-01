@@ -1,0 +1,312 @@
+{
+  "ButtonCombo": {
+    "displayName": "ButtonCombo",
+    "propsTypeName": "ButtonComboProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "defaultValue": "primary",
+        "description": "Цветовое назначение обеих кнопок",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого контейнера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultLabel": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Начальный label основной кнопки, пока ничего не выбрано"
+      },
+      "defaultValue": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Начальный выбранный элемент (uncontrolled)",
+        "typeRefs": [
+          "ItemId"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключена"
+      },
+      "dropdownClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс выпадающего списка"
+      },
+      "dropdownTriggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс кнопки-триггера выпадающего списка"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Растянуть на всю ширину родителя"
+      },
+      "items": {
+        "type": "Item[]",
+        "required": true,
+        "description": "Основные элементы списка (действия)",
+        "typeRefs": [
+          "Item"
+        ]
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки"
+      },
+      "onChange": {
+        "type": "((value: ItemId) => void)",
+        "required": false,
+        "description": "Controlled: обработчик смены выбранного элемента"
+      },
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
+        "required": false,
+        "description": "Обработчик изменения видимости выпадающего списка"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет видимостью выпадающего списка"
+      },
+      "optionClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс основной (option) кнопки"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "HTML-атрибут tab-index корневого контейнера"
+      },
+      "value": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Controlled: выбранный элемент",
+        "typeRefs": [
+          "ItemId"
+        ]
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "defaultValue": "filled",
+        "description": "Вариант оформления обеих кнопок",
+        "typeRefs": [
+          "View"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "Item": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот после основного контента"
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот до основного контента"
+          },
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляемое состояние выбранности айтема"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+          },
+          "id": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Уникальный идентификатор",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "inactive": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТак же элемент пропадает из навигации с клавиатуры, и не может быть выбран (selection)"
+          },
+          "itemRef": {
+            "type": "RefObject<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на DOM-элемент айтема"
+          },
+          "itemWrapRender": {
+            "type": "((item: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Название действия: текст пункта списка и label основной кнопки при выборе"
+          },
+          "onClick": {
+            "type": "(e: MouseEvent<HTMLElement>) => void",
+            "required": true,
+            "description": "Колбек обработки клика"
+          },
+          "showSwitchIcon": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения иконки у чекбоксов"
+          },
+          "switch": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения состояния выбранного элемента через switch"
+          }
+        },
+        "own": true
+      },
+      "ItemContent": {
+        "kind": "interface",
+        "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "option": {
+            "type": "string | number",
+            "required": true
+          },
+          "truncate": {
+            "type": "TruncateProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TruncateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
+      }
+    }
+  }
+}

@@ -206,6 +206,9 @@
       "path": "./breadcrumbs/tsconfig.cjs.json"
     },
     {
+      "path": "./button-combo/tsconfig.cjs.json"
+    },
+    {
       "path": "./calendar/tsconfig.cjs.json"
     },
     {

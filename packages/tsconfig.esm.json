@@ -211,6 +211,9 @@
       "path": "./breadcrumbs/tsconfig.esm.json"
     },
     {
+      "path": "./button-combo/tsconfig.esm.json"
+    },
+    {
       "path": "./calendar/tsconfig.esm.json"
     },
     {

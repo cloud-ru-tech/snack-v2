@@ -18,7 +18,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       id: 'actions',
       label: 'Actions',
       description: 'Триггеры действий по клику: кнопки, ссылки, панели инструментов.',
-      packages: ['button', 'link', 'toolbar'],
+      packages: ['button', 'button-combo', 'link', 'toolbar'],
     },
     {
       id: 'inputs',

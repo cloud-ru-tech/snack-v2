@@ -1,0 +1,118 @@
+---
+title: Button Combo
+package: '@ds/button-combo'
+description: Кнопка с основным действием и выпадающим списком дополнительных действий.
+order: 1
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Views } from '../demos/examples/Views'
+import ViewsSrc from '../demos/examples/Views.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { FullWidth } from '../demos/examples/FullWidth'
+import FullWidthSrc from '../demos/examples/FullWidth.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import buttonComboDoc from './props.json'
+
+# Button Combo
+
+Комбинированная кнопка: основное действие слева и триггер выпадающего списка с остальными действиями справа. Обе части — `Button` из `@ds/button` с общими `view` / `appearance` / `size`; список — адаптивный `Droplist` из `@ds/list` (на мобильной раскладке раскрывается в `BottomSheet`). Выбор пункта делает его основным действием кнопки.
+
+## Когда использовать
+
+- Когда у действия есть основной сценарий и несколько родственных вариантов: Сохранить / Сохранить копию / Сохранить как шаблон.
+- Когда нужно сэкономить место: вместо ряда кнопок — одна с выпадающим списком.
+
+Когда **не** нужен:
+
+- Для единственного действия — обычный `Button` из `@ds/button`.
+- Для выбора значения (а не запуска действия) — `@ds/segment-control` или select.
+- Для равнозначных несвязанных действий — `ButtonGroup` из `@ds/button`.
+
+## Анатомия
+
+### View (default `filled`)
+
+Оформление обеих частей комбо. Совпадает с осью `view` у `@ds/button`:
+
+- `filled` — заполненная акцентом.
+- `tonal` — мягкая тонированная подложка.
+- `outline` — обводка без заливки.
+- `simple` — только текст, без фона и рамки.
+- `elevated` — светлая карточка с тенью.
+- `function` — компактная текстовая, минимум отступов.
+
+### Appearance (default `primary`)
+
+Цветовое назначение обеих частей:
+
+- `primary` — брендовый акцент, основное действие экрана.
+- `neutral` — нейтральное, второстепенное действие.
+- `critical` — деструктивное действие.
+
+### Size (default `m`)
+
+Размер комбо: `s`, `m`, `l`. Прокидывается и в кнопки, и в выпадающий список.
+
+## Установка
+
+```bash
+pnpm add @ds/button-combo
+```
+
+```ts
+import { ButtonCombo } from '@ds/button-combo'
+```
+
+## Примеры использования
+
+<Example
+  title='Основной сценарий'
+  description='Uncontrolled: defaultValue задаёт стартовое действие, выбор пункта меняет основную кнопку'
+  code={BasicSrc}
+>
+  <Basic client:visible />
+</Example>
+
+<Example title='Варианты оформления' description='Ось view: filled, tonal, outline, function' code={ViewsSrc}>
+  <Views client:visible />
+</Example>
+
+<Example
+  title='Controlled'
+  description='Выбранное действие и раскрытие списка управляются извне через пары value/onChange и open/onOpenChange'
+  code={ControlledSrc}
+>
+  <Controlled client:visible />
+</Example>
+
+<Example
+  title='На всю ширину'
+  description='fullWidth растягивает основную кнопку по контейнеру, триггер сохраняет свою ширину'
+  code={FullWidthSrc}
+>
+  <FullWidth client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={buttonComboDoc.ButtonCombo} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-buttoncombo--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('button-combo')} />
+
+## Смотри также
+
+- [`@ds/button`](/button) — одиночная кнопка и `ButtonGroup`.
+- [`@ds/list`](/list) — `Droplist`, лежащий в основе выпадающего списка.

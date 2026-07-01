@@ -1,0 +1,12 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+// Жёстко заданная ширина — story-level demo-обёртка для показа fullWidth, а не
+// дизайн-параметр компонента; токенного эквивалента нет.
+.narrow {
+  width: 320px;
+}
