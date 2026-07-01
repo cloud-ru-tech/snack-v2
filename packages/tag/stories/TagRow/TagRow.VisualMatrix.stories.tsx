@@ -80,7 +80,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'rowLimit=1',
             cells: [
               <div key='limit-1' className={styles.rowNarrow}>
-                <TagRow items={LONG_ITEMS} rowLimit={1} moreButtonLabel='+{count}' />
+                <TagRow items={LONG_ITEMS} rowLimit={1} moreButtonLabel='+' />
               </div>,
             ],
           },
@@ -88,7 +88,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'rowLimit=2',
             cells: [
               <div key='limit-2' className={styles.rowNarrow}>
-                <TagRow items={LONG_ITEMS} rowLimit={2} moreButtonLabel='+{count}' />
+                <TagRow items={LONG_ITEMS} rowLimit={2} moreButtonLabel='+' />
               </div>,
             ],
           },

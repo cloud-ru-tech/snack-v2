@@ -34,7 +34,7 @@ export const Truncated: Story = {
         <DemoHint>TagRow с ограничением в одну строку и кнопкой раскрытия.</DemoHint>
         <DemoActions align='center'>
           <div className={styles.rowNarrow}>
-            <TagRow items={items} rowLimit={1} moreButtonLabel='+{count}' data-test-id={TEST_IDS.tagRow.root} />
+            <TagRow items={items} rowLimit={1} moreButtonLabel='+' data-test-id={TEST_IDS.tagRow.root} />
           </div>
         </DemoActions>
       </DemoPanel>

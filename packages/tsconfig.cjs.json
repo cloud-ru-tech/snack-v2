@@ -38,6 +38,9 @@
       "path": "./utils/tsconfig.cjs.json"
     },
     {
+      "path": "./adaptive/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-button-chevron/tsconfig.cjs.json"
     },
     {

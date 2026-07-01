@@ -21,6 +21,7 @@
     "@ds/ai-reasoning": "workspace:*",
     "@ds/ai-shimmer": "workspace:*",
     "@ds/ai-suggestion": "workspace:*",
+    "@ds/adaptive": "workspace:*",
     "@ds/ai-tool": "workspace:*",
     "@ds/alert": "workspace:*",
     "@ds/attachment": "workspace:*",

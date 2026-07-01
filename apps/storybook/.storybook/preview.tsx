@@ -2,6 +2,7 @@ import '@sbercloud/figma-variables/build/css/tokens.css';
 
 import './global.scss';
 
+import { AdaptiveProvider, LAYOUT_TYPE, LayoutType } from '@ds/adaptive';
 import { LocaleProvider } from '@ds/locale';
 import { PortalContextProvider } from '@ds/portal-context';
 import { RootThemeProvider } from '@ds/theme';
@@ -18,6 +19,26 @@ import type { Acrylic, Brand, BrandRole, Density, Language, Theme } from './comp
 configure({ testIdAttribute: 'data-test-id' });
 
 const preview: Preview = {
+  // Адаптивная раскладка — глобал в тулбаре (по аналогии с theme/brand/density). Декоратор выше
+  // оборачивает каждую стори в единый `AdaptiveProvider`, поэтому адаптивным стори больше не нужны
+  // ни per-story `<AdaptiveProvider>`, ни контрол `layoutType` в args.
+  initialGlobals: {
+    layoutType: LAYOUT_TYPE.Desktop,
+  },
+  globalTypes: {
+    layoutType: {
+      description: 'Адаптивная раскладка (AdaptiveProvider)',
+      toolbar: {
+        title: 'Layout',
+        icon: 'mobile',
+        items: [
+          { value: LAYOUT_TYPE.Desktop, title: 'Desktop', icon: 'browser' },
+          { value: LAYOUT_TYPE.Mobile, title: 'Mobile', icon: 'mobile' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
   decorators: [
     (Story, context) => {
       // Ref через state, а не useRef, + отложенный рендер story (ниже): стори с initially-open
@@ -34,6 +55,11 @@ const preview: Preview = {
       const density = (g[GLOBAL_KEYS.DENSITY] as Density) ?? INITIAL_GLOBALS[GLOBAL_KEYS.DENSITY];
       const language = (g[GLOBAL_KEYS.LANGUAGE] as Language) ?? INITIAL_GLOBALS[GLOBAL_KEYS.LANGUAGE];
       const acrylic = (g[GLOBAL_KEYS.ACRYLIC] as Acrylic) ?? INITIAL_GLOBALS[GLOBAL_KEYS.ACRYLIC];
+      // Адаптивная раскладка из тулбара (см. globalTypes.layoutType выше). Один глобальный
+      // AdaptiveProvider избавляет адаптивные стори от per-story обёртки + контрола `layoutType`;
+      // VisualMatrix, рендерящие обе раскладки осью, ставят свои внутренние провайдеры (они
+      // переопределяют этот для своих поддеревьев). Форс конкретной стори — `withLayoutType`.
+      const layoutType = (g.layoutType as LayoutType) ?? LAYOUT_TYPE.Desktop;
 
       return (
         <RootThemeProvider
@@ -42,11 +68,13 @@ const preview: Preview = {
         >
           <PortalContextProvider root={storyWrapperRef}>
             <LocaleProvider lang={language}>
-              <StoryWrapper ref={setStoryWrapperEl}>
-                {/* Story монтируется только после появления wrapper-элемента — гарантия,
-                    что порталы создаются уже с корректным root внутри theme-обёртки. */}
-                {storyWrapperEl ? <Story /> : null}
-              </StoryWrapper>
+              <AdaptiveProvider layoutType={layoutType}>
+                <StoryWrapper ref={setStoryWrapperEl}>
+                  {/* Story монтируется только после появления wrapper-элемента — гарантия,
+                      что порталы создаются уже с корректным root внутри theme-обёртки. */}
+                  {storyWrapperEl ? <Story /> : null}
+                </StoryWrapper>
+              </AdaptiveProvider>
             </LocaleProvider>
           </PortalContextProvider>
         </RootThemeProvider>

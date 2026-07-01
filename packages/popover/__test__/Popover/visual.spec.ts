@@ -63,8 +63,11 @@ test.describe('Popover — visual regression', () => {
     await gotoStory(
       buildStoryOptions({
         trigger: 'click',
+        // Только буквы/цифры/пробелы — Storybook отбрасывает URL-args со спецсимволами
+        // и пунктуацией (значение целиком выкидывается санитайзером, content откатывается
+        // к дефолтному слоту). Длина строки здесь демонстрирует wrap и max-width.
         content:
-          'Это длинный контент popover. Используется для визуальной регрессии: проверяем wrap и max-width контейнера. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          'Long popover content used for visual regression to check wrap and max width of the container Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
       }),
     );
     await waitForFonts();

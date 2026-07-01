@@ -43,6 +43,9 @@
       "path": "./utils/tsconfig.esm.json"
     },
     {
+      "path": "./adaptive/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-button-chevron/tsconfig.esm.json"
     },
     {

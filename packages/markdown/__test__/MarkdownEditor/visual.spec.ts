@@ -1,4 +1,8 @@
-import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  SCREENSHOT_DEFAULT_OPTS,
+  STORYBOOK_ROOT_SELECTOR,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import { screenshotRegion } from '#playwright-tooling/utils';
@@ -30,6 +34,6 @@ test.describe('MarkdownEditor — visual regression', () => {
     const dropdown = getByTestId(TEST_IDS.headingDropdown);
     await dropdown.waitFor();
     const png = await screenshotRegion(page, [trigger, dropdown], 16);
-    expect(png).toMatchSnapshot('open-heading.png');
+    expect(png).toMatchSnapshot('open-heading.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 });

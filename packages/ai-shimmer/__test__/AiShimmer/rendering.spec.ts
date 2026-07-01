@@ -39,7 +39,8 @@ test.describe('AiShimmer — rendering', () => {
   });
 
   test('uses full container width', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ text: 'йцу' }));
+    // Кириллица в URL-args не резолвится Storybook'ом (падает на дефолт) — см. test-environment-pitfalls.md.
+    await gotoStory(buildStoryOptions({ text: 'abc' }));
 
     await expect
       .poll(async () => {
@@ -58,7 +59,7 @@ test.describe('AiShimmer — rendering', () => {
   });
 
   test('long text uses full container width in wide layout', async ({ gotoStory, getByTestId }) => {
-    const longText = 'Рандомный текст '.repeat(20).trim();
+    const longText = 'Random shimmer text '.repeat(20).trim();
 
     await gotoStory(buildStoryOptions({ text: longText }));
 
@@ -100,7 +101,7 @@ test.describe('AiShimmer — rendering', () => {
       .toBeGreaterThan(48);
   });
 
-  for (const text of ['as', 'йцу'] as const) {
+  for (const text of ['as', 'xyz'] as const) {
     test(`short text "${text}" stays on one line in wide container`, async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ text }));
 

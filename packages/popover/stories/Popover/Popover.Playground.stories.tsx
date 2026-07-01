@@ -91,7 +91,14 @@ const meta: Meta<PopoverProps> = {
   },
   render: args => {
     const { content: contentArg, ...rest } = args;
-    const content = contentArg != null && contentArg !== '' ? contentArg : <PopoverContentSlot />;
+    const content =
+      contentArg != null && contentArg !== '' ? (
+        <div className={styles.popoverContent} data-test-id={TEST_IDS.content}>
+          {contentArg}
+        </div>
+      ) : (
+        <PopoverContentSlot />
+      );
     return (
       <DemoPage>
         <DemoPanel>

@@ -1,6 +1,7 @@
+import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, screenshotRegion } from '#playwright-tooling/utils';
 
 import { PREVIEW_CONTEXT, VARIANTS } from '../../src/constants';
 import { buildStoryOptions, PROMO_TAG_PREDEFINED_STORIES, TEST_IDS } from './helpers';
@@ -21,7 +22,7 @@ test.describe('PromoTagPredefined — visual regression', () => {
     await assertVisualMatrixSnapshot(page);
   });
 
-  test('tooltip-open', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+  test('open-tooltip', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await gotoStory(
       buildStoryOptions({
         variant: VARIANTS.Preview,
@@ -31,9 +32,13 @@ test.describe('PromoTagPredefined — visual regression', () => {
     );
     await waitForFonts();
 
-    await expect(getByTestId(TEST_IDS.promoTag)).toBeVisible();
-    await expect(getByTestId(TEST_IDS.tooltipContent)).toBeVisible();
+    const promoTag = getByTestId(TEST_IDS.promoTag);
+    const tooltipContent = getByTestId(TEST_IDS.tooltipContent);
+    await expect(promoTag).toBeVisible();
+    await expect(tooltipContent).toBeVisible();
 
-    await expect(page).toHaveScreenshot('tooltip-open.png');
+    // Кадр = union триггера и контента тултипа, без пустого вьюпорта вокруг.
+    const png = await screenshotRegion(page, [promoTag, tooltipContent], 16, SCREENSHOT_DEFAULT_OPTS);
+    expect(png).toMatchSnapshot('open-tooltip.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 });

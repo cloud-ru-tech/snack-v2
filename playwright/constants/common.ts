@@ -28,6 +28,14 @@ export const STORYBOOK_ROOT_SELECTOR = '#storybook-root';
  */
 export const STORY_TABLE_TEST_ID = 'story-table';
 
+/**
+ * Вьюпорт телефона для mobile-baseline'ов адаптивных компонентов. Mobile-снимок требует двух вещей
+ * одновременно: переключить toolbar-global `layoutType='mobile'` (в e2e — через URL-globals, его
+ * раздаёт единый `AdaptiveProvider` в `preview.tsx`) И `setViewportSize` (иначе BottomSheet на
+ * desktop-ширине рендерится не как на телефоне). См. `adaptive-components.md`.
+ */
+export const MOBILE_VIEWPORT = { width: 390, height: 844 } as const;
+
 export const SCREENSHOT_DEFAULT_OPTS = {
   animations: 'disabled',
   caret: 'hide',
