@@ -1,5 +1,6 @@
+import { AdaptiveProvider, LAYOUT_TYPE, LayoutType } from '@ds/adaptive';
 import { WIDTH } from '@ds/segment-control';
-import { BUTTON_TYPE, Widget, WIDGET_STATE, WidgetLayoutType, WidgetState } from '@ds/uikit-product-widget';
+import { BUTTON_TYPE, Widget, WIDGET_STATE, WidgetState } from '@ds/uikit-product-widget';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
 
@@ -16,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof Widget>;
 
 const states = Object.values(WIDGET_STATE);
-const layoutTypes: WidgetLayoutType[] = ['desktop', 'mobile'];
+const layoutTypes: LayoutType[] = [LAYOUT_TYPE.Desktop, LAYOUT_TYPE.Mobile];
 
 const demoActions = [
   { label: 'Create', onClick: () => undefined },
@@ -47,7 +48,7 @@ const demoErrorState = {
   updateButtonLabel: 'Обновить',
 } satisfies ComponentProps<typeof Widget>['errorState'];
 
-function renderWidget(state: WidgetState, wide: boolean, extraProps: Partial<ComponentProps<typeof Widget>> = {}) {
+function renderWidget(state: WidgetState, wide: boolean) {
   const widthClass = wide ? styles.wide : styles.narrow;
 
   return (
@@ -60,7 +61,6 @@ function renderWidget(state: WidgetState, wide: boolean, extraProps: Partial<Com
         errorState={demoErrorState}
         segmentControl={demoSegmentControl}
         actions={demoActions}
-        {...extraProps}
       >
         Current usage: 8 instances, 2 alerts.
       </Widget>
@@ -90,8 +90,12 @@ export const VisualMatrix: Story = {
         rows={layoutTypes.map(layoutType => ({
           variantLabel: layoutType,
           cells: [
-            renderWidget(WIDGET_STATE.Default, false, { layoutType }),
-            renderWidget(WIDGET_STATE.Default, true, { layoutType }),
+            <AdaptiveProvider key={`${layoutType}-narrow`} layoutType={layoutType}>
+              {renderWidget(WIDGET_STATE.Default, false)}
+            </AdaptiveProvider>,
+            <AdaptiveProvider key={`${layoutType}-wide`} layoutType={layoutType}>
+              {renderWidget(WIDGET_STATE.Default, true)}
+            </AdaptiveProvider>,
           ],
         }))}
       />

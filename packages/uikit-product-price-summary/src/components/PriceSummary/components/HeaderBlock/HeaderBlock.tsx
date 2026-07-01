@@ -9,7 +9,7 @@ export type HeaderBlockProps = PeriodDropdownProps & {
   promoBadge?: Pick<PromoTagProps, 'text' | 'appearance'> | string;
 };
 
-export function HeaderBlock({ period, onPeriodChanged, periodOptions, promoBadge, layoutType }: HeaderBlockProps) {
+export function HeaderBlock({ period, onPeriodChanged, periodOptions, promoBadge }: HeaderBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   return (
@@ -21,12 +21,7 @@ export function HeaderBlock({ period, onPeriodChanged, periodOptions, promoBadge
       )}
 
       <div className={styles.headline}>
-        <PeriodDropdown
-          period={period}
-          onPeriodChanged={onPeriodChanged}
-          periodOptions={periodOptions}
-          layoutType={layoutType}
-        />
+        <PeriodDropdown period={period} onPeriodChanged={onPeriodChanged} periodOptions={periodOptions} />
 
         <Typography variant={VARIANT.body} size={SIZE.m} className={styles.vat}>
           {t('vat')}

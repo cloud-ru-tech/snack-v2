@@ -38,7 +38,7 @@ test.describe('Widget — rendering', () => {
   test.describe('props propagation', () => {
     for (const { state, wide, layoutType } of WIDGET_KEY_COMBOS) {
       test(`${state} + wide=${wide} + layoutType=${layoutType}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ state, wide, layoutType }));
+        await gotoStory(buildStoryOptions({ state, wide }, WIDGET_STORIES.playground, { layoutType }));
         const root = getByTestId(WIDGET_TEST_ID);
         await expect(root).toHaveAttribute('data-state', state);
 

@@ -34,7 +34,10 @@ export const Playground: Story = {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Function button with droplist (desktop) or modal list (mobile layoutType).</DemoHint>
+        <DemoHint>
+          Function button with droplist: anchored popover on desktop, bottom sheet on mobile. Layout is driven by the
+          global AdaptiveProvider — switch it via the toolbar layoutType global.
+        </DemoHint>
         <DemoActions align='center'>
           <div className={styles.panel}>
             <ButtonDropdown {...args} />

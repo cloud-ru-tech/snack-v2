@@ -2,6 +2,7 @@ import { Button } from '@ds/button';
 import { NotifierInfoFilledSVG } from '@ds/icons';
 import { LinkProps } from '@ds/link';
 import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
+import { QuestionTooltip } from '@ds/tooltip';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -9,7 +10,6 @@ import { ReactNode } from 'react';
 
 import { formatCurrency } from '../../helpers';
 import { priceSummaryLocale } from '../../locale';
-import { AdaptiveQuestionTooltip } from '../AdaptiveQuestionTooltip';
 import { ContentBlock, ContentBlockProps } from '../ContentBlock';
 import styles from './styles.module.scss';
 
@@ -59,9 +59,9 @@ export function PriceSummarySmall({
         <ContentBlock loading={loading} dataError={dataError} onRetry={onRetry}>
           <div className={styles.value}>
             {hintTooltipText ? (
-              <AdaptiveQuestionTooltip tip={hintTooltipText}>
+              <QuestionTooltip tip={hintTooltipText}>
                 <NotifierInfoFilledSVG size={16} className={styles.icon} />
-              </AdaptiveQuestionTooltip>
+              </QuestionTooltip>
             ) : (
               <NotifierInfoFilledSVG size={16} className={styles.icon} />
             )}

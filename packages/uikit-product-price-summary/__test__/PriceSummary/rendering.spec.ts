@@ -2,6 +2,8 @@ import { expect, test } from '#playwright-tooling/fixtures';
 
 import { buildStoryOptions, PRICE_SUMMARY_STORIES, TEST_IDS } from './helpers';
 
+const MOBILE_GLOBALS = { layoutType: 'mobile' };
+
 test.describe('PriceSummary — rendering', () => {
   test('renders with default props', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
@@ -22,7 +24,7 @@ test.describe('PriceSummary — rendering', () => {
   });
 
   test('layoutType mobile', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ layoutType: 'mobile' }));
+    await gotoStory(buildStoryOptions(undefined, PRICE_SUMMARY_STORIES.playground, MOBILE_GLOBALS));
 
     await expect(getByTestId(TEST_IDS.priceSummary)).toBeVisible();
   });

@@ -1,17 +1,16 @@
+import { QuestionTooltip } from '@ds/tooltip';
 import { TruncateString } from '@ds/truncate-string';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
-import { WithLayoutType } from '@ds/utils';
 
 import { formatQuantity } from '../../../../helpers';
 import { InvoiceItem } from '../../../../types';
-import { AdaptiveQuestionTooltip } from '../../../AdaptiveQuestionTooltip';
 import styles from './styles.module.scss';
 
-export type InvoiceItemLabelCellProps = WithLayoutType<{
+export type InvoiceItemLabelCellProps = {
   item: InvoiceItem;
-}>;
+};
 
-export function InvoiceItemLabelCell({ item, layoutType }: InvoiceItemLabelCellProps) {
+export function InvoiceItemLabelCell({ item }: InvoiceItemLabelCellProps) {
   const isLabelVisible = 'label' in item && item.label !== undefined;
 
   if (!isLabelVisible) {
@@ -25,13 +24,7 @@ export function InvoiceItemLabelCell({ item, layoutType }: InvoiceItemLabelCellP
           {item.labelMaxLines ? <TruncateString text={item.label} maxLines={item.labelMaxLines} /> : item.label}
         </Typography>
 
-        {item.labelTooltip && (
-          <AdaptiveQuestionTooltip
-            layoutType={layoutType}
-            tip={item.labelTooltip}
-            trigger={layoutType === 'mobile' ? 'click' : 'hover'}
-          />
-        )}
+        {item.labelTooltip && <QuestionTooltip tip={item.labelTooltip} />}
       </div>
 
       {item.quantity && (

@@ -1,6 +1,5 @@
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
-import { WithLayoutType } from '@ds/utils';
 
 import { PERIOD_OPTION_TEST_IDS, TEST_IDS } from '../../../../constants';
 import { usePeriodFormat } from '../../../../hooks';
@@ -8,13 +7,13 @@ import { priceSummaryLocale } from '../../../../locale';
 import { PricePeriod } from '../../../../types';
 import styles from './styles.module.scss';
 
-export type PeriodDropdownProps = WithLayoutType<{
+export type PeriodDropdownProps = {
   period: PricePeriod;
   periodOptions: PricePeriod[];
-  onPeriodChanged?: (period: PricePeriod) => void;
-}>;
+  onPeriodChanged?(period: PricePeriod): void;
+};
 
-export function PeriodDropdown({ period, onPeriodChanged = () => {}, periodOptions, layoutType }: PeriodDropdownProps) {
+export function PeriodDropdown({ period, onPeriodChanged = () => {}, periodOptions }: PeriodDropdownProps) {
   const { t } = priceSummaryLocale.useTranslations();
   const formatPeriod = usePeriodFormat();
 
@@ -47,7 +46,6 @@ export function PeriodDropdown({ period, onPeriodChanged = () => {}, periodOptio
           label={formatPeriod(period)}
           items={actions}
           closeDroplistOnItemClick
-          layoutType={layoutType}
           data-test-id={TEST_IDS.periodDropdown}
         />
       )}

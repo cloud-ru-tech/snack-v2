@@ -1,5 +1,4 @@
 import { SIZE, Typography, VARIANT } from '@ds/typography';
-import { WithLayoutType } from '@ds/utils';
 
 import { formatCurrency } from '../../../../helpers';
 import { priceSummaryLocale } from '../../../../locale';
@@ -10,13 +9,13 @@ import { Divider } from '../Divider';
 import { InvoiceItemLabelCell } from '../InvoiceItemLabelCell';
 import styles from './styles.module.scss';
 
-export type InvoiceItemBlockProps = WithLayoutType<{
+export type InvoiceItemBlockProps = {
   item: InvoiceItem;
   index: number;
   showCoveredByGrantLabel?: boolean;
-}>;
+};
 
-export function InvoiceItemBlock({ item, index, layoutType, showCoveredByGrantLabel }: InvoiceItemBlockProps) {
+export function InvoiceItemBlock({ item, index, showCoveredByGrantLabel }: InvoiceItemBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
   const isEven = (index + 1) % 2 === 0;
 
@@ -42,7 +41,7 @@ export function InvoiceItemBlock({ item, index, layoutType, showCoveredByGrantLa
         {'label' in item && item.label !== undefined && (
           <>
             <div className={styles.labelCell} data-secondary={isSecondary}>
-              <InvoiceItemLabelCell item={item} layoutType={layoutType} />
+              <InvoiceItemLabelCell item={item} />
             </div>
 
             <Typography
@@ -61,7 +60,7 @@ export function InvoiceItemBlock({ item, index, layoutType, showCoveredByGrantLa
         {item.discount && (
           <>
             <div className={styles.percentCell} data-secondary={isSecondary}>
-              <DiscountPercentCell discount={item.discount} layoutType={layoutType} />
+              <DiscountPercentCell discount={item.discount} />
             </div>
 
             <Typography

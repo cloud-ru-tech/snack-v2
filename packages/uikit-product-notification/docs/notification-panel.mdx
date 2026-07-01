@@ -1,18 +1,12 @@
 ---
 title: NotificationPanel
 package: '@ds/uikit-product-notification'
-description: Контейнер ленты уведомлений с заголовком, фильтрами, кнопкой «прочитать все», слотом-списком карточек и состояниями loading/blank. Namespace-субкомпоненты Stack/Group/Blank — композиции для слота content.
-order: 120
+description: Адаптивная обёртка панели уведомлений — на desktop открывает NotificationPanelContent в drawer, на mobile в bottom-sheet (выбор по layoutType).
+order: 130
 ---
 
-import { PanelBasic } from '../demos/examples/PanelBasic'
-import PanelBasicSrc from '../demos/examples/PanelBasic.tsx?raw'
-import { PanelLoading } from '../demos/examples/PanelLoading'
-import PanelLoadingSrc from '../demos/examples/PanelLoading.tsx?raw'
-import { PanelError } from '../demos/examples/PanelError'
-import PanelErrorSrc from '../demos/examples/PanelError.tsx?raw'
-import { PanelFull } from '../demos/examples/PanelFull'
-import PanelFullSrc from '../demos/examples/PanelFull.tsx?raw'
+import { PanelScenario } from '../demos/examples/PanelScenario'
+import PanelScenarioSrc from '../demos/examples/PanelScenario.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -22,30 +16,31 @@ import notificationDoc from './props.json'
 
 # NotificationPanel
 
-Контейнер ленты уведомлений. Содержит заголовок, опциональные фильтры (segmented control, chip toggle), кнопку «прочитать все», слот-список карточек и состояния `loading` / `blank`.
+Адаптивная обёртка [`NotificationPanelContent`](/components/uikit-product-notification/notification-panel). На desktop открывает панель в drawer, на mobile — в bottom-sheet. Выбор раскладки — по `layoutType` (как у `Widget` / `Toolbar`).
 
-Namespace `NotificationPanel.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
+Контент передаётся пропом `content` как элемент `<NotificationPanelContent />`, а не как пропсы.
 
 ## Когда использовать
 
-- Лента уведомлений в центре экрана или на отдельной странице.
-- Контент внутри [`NotificationPanelPopover`](/components/uikit-product-notification/notification-panel-popover).
+- Лента уведомлений, открываемая из иконки в шапке или тулбаре.
+- Один и тот же контент панели на desktop и mobile без дублирования разметки.
 
 ## Анатомия
 
-### Panel state
+### Layout type (default `desktop`)
 
-Состояния панели (соответствуют Figma variant `content`):
+Тип раскладки определяет обёртку:
 
-- `content` — стандартный список карточек через слот `content`.
-- `loading` — `loading={true}` показывает скелетоны (`skeletonsAmount`, default `2`).
-- `blank` — `content={<NotificationPanel.Blank />}` для пустого состояния и состояния ошибки.
+- `desktop` — drawer (Figma `notificationDrawer`).
+- `mobile` — bottom-sheet (Figma `notificationBottomSheet`).
 
-### Субкомпоненты слота `content`
+### Position (default `right`)
 
-- `NotificationPanel.Group` — группа карточек с заголовком.
-- `NotificationPanel.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
-- `NotificationPanel.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
+Сторона, с которой выезжает drawer. Только для `desktop`.
+
+### Width (default `s`)
+
+Ширина drawer. Только для `desktop`.
 
 ## Установка
 
@@ -54,67 +49,29 @@ pnpm add @ds/uikit-product-notification
 ```
 
 ```ts
-import { NotificationPanel } from '@ds/uikit-product-notification'
+import { NotificationPanelContent, NotificationPanel } from '@ds/uikit-product-notification'
 ```
 
 ## Примеры использования
 
 <Example
-  title='Базовая лента'
-  description='Список карточек через слот content, readAllButton помечает все прочитанными, onVisible — каждую при прокрутке.'
-  code={PanelBasicSrc}
+  title='Открытие из кнопки в шапке'
+  description='Триггер со счётчиком непрочитанных, useState для open/close, контент — <NotificationPanelContent /> с живыми карточками. Порталу нужен PortalContextProvider.'
+  code={PanelScenarioSrc}
 >
-  <PanelBasic client:visible />
-</Example>
-
-<Example
-  title='Загрузка'
-  description='loading + skeletonsAmount={4} вместо слота content; фильтры и readAllButton остаются на месте.'
-  code={PanelLoadingSrc}
->
-  <PanelLoading client:visible />
-</Example>
-
-<Example
-  title='Ошибка загрузки'
-  description='Состояние ошибки через content={<NotificationPanel.Blank />} с иконкой и текстом — сервер недоступен.'
-  code={PanelErrorSrc}
->
-  <PanelError client:visible />
-</Example>
-
-<Example
-  title='Полный сценарий продовой ленты'
-  description='Segments + chipToggle + settings + readAll, Group для критичных, Stack для повторяющихся алертов квоты по нескольким хостам.'
-  code={PanelFullSrc}
->
-  <PanelFull client:visible />
+  <PanelScenario client:visible />
 </Example>
 
 ## Props
 
-### NotificationPanel
-
 <PropsTable data={notificationDoc.NotificationPanel} />
-
-### NotificationPanel.Stack
-
-<PropsTable data={notificationDoc.NotificationCardStack} />
-
-### NotificationPanel.Group
-
-<PropsTable data={notificationDoc.NotificationPanelGroup} />
-
-### NotificationPanel.Blank
-
-<PropsTable data={notificationDoc.NotificationPanelBlank} />
 
 ## Storybook
 
 <StorybookEmbed storyId='uikit-product-notification-notificationpanel--playground' height={520} />
 
-<StorybookEmbed storyId='uikit-product-notification-notificationcardstack--playground' height={520} />
-
 ## Figma
 
-<FigmaEmbed node={figmaNode('uikit-product-notification', 'notification-panel')} />
+<FigmaEmbed node={figmaNode('uikit-product-notification', 'notification-drawer')} />
+
+<FigmaEmbed node={figmaNode('uikit-product-notification', 'notification-bottom-sheet')} />

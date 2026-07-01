@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { useState } from 'react';
 
@@ -15,5 +16,9 @@ export function DesktopBasic() {
     onClick: () => setPeriod(option),
   }));
 
-  return <ButtonDropdown label={period.label} size='s' layoutType='desktop' items={items} closeDroplistOnItemClick />;
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+      <ButtonDropdown label={period.label} size='s' items={items} closeDroplistOnItemClick />
+    </AdaptiveProvider>
+  );
 }

@@ -1,12 +1,12 @@
 # Notification
 
-`@ds/uikit-product-notification` — Пакет уведомлений — карточка NotificationCard, лента NotificationPanel со стеками и группами и адаптивная обёртка NotificationPanelPopover (drawer на desktop, bottom-sheet на mobile).
+`@ds/uikit-product-notification` — Пакет уведомлений — карточка NotificationCard, лента NotificationPanelContent со стеками и группами и адаптивная обёртка NotificationPanel (drawer на desktop, bottom-sheet на mobile).
 
 Пакет `@ds/uikit-product-notification` собирает ленту уведомлений из трёх уровней: одиночная карточка, контейнер-лента и адаптивная обёртка для открытия ленты в drawer или bottom-sheet.
 
 - ****NotificationCard**** — одиночная карточка уведомления: тип (`appearance`), состояние `unread`, ссылка, дата, кнопки действий и меню.
-- ****NotificationPanel**** — контейнер ленты: заголовок, фильтры, кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Namespace-субкомпоненты `Group`, `Stack`, `Blank`.
-- ****NotificationPanelPopover**** — адаптивная обёртка панели: на desktop открывает её в drawer, на mobile — в bottom-sheet (выбор по `layoutType`).
+- ****NotificationPanelContent**** — контейнер ленты: заголовок, фильтры, кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Namespace-субкомпоненты `Group`, `Stack`, `Blank`.
+- ****NotificationPanel**** — адаптивная обёртка панели: на desktop открывает её в drawer, на mobile — в bottom-sheet (выбор по `layoutType`).
 
 ## Установка
 
@@ -15,7 +15,7 @@ pnpm add @ds/uikit-product-notification
 ```
 
 ```ts
-import { NotificationCard, NotificationPanel, NotificationPanelPopover } from '@ds/uikit-product-notification'
+import { NotificationCard, NotificationPanelContent, NotificationPanel } from '@ds/uikit-product-notification'
 ```
 
 ## NotificationCard
@@ -26,7 +26,7 @@ import { NotificationCard, NotificationPanel, NotificationPanelPopover } from '@
 
 ### Когда использовать
 
-- Элемент ленты внутри **`NotificationPanel`**.
+- Элемент ленты внутри **`NotificationPanelContent`**.
 - Отдельная карточка статуса операции (деплой, бэкап, инцидент) в произвольном контейнере.
 
 ### Анатомия
@@ -236,18 +236,18 @@ export function DeployFailureCard() {
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 
-## NotificationPanel
+## NotificationPanelContent
 
 Контейнер ленты уведомлений с заголовком, фильтрами, кнопкой «прочитать все», слотом-списком карточек и состояниями loading/blank. Namespace-субкомпоненты Stack/Group/Blank — композиции для слота content.
 
 Контейнер ленты уведомлений. Содержит заголовок, опциональные фильтры (segmented control, chip toggle), кнопку «прочитать все», слот-список карточек и состояния `loading` / `blank`.
 
-Namespace `NotificationPanel.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
+Namespace `NotificationPanelContent.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
 
 ### Когда использовать
 
 - Лента уведомлений в центре экрана или на отдельной странице.
-- Контент внутри **`NotificationPanelPopover`**.
+- Контент внутри **`NotificationPanel`**.
 
 ### Анатомия
 
@@ -257,13 +257,13 @@ Namespace `NotificationPanel.{Blank, Group, Stack}` — субкомпонент
 
 - `content` — стандартный список карточек через слот `content`.
 - `loading` — `loading={true}` показывает скелетоны (`skeletonsAmount`, default `2`).
-- `blank` — `content={<NotificationPanel.Blank />}` для пустого состояния и состояния ошибки.
+- `blank` — `content={<NotificationPanelContent.Blank />}` для пустого состояния и состояния ошибки.
 
 #### Субкомпоненты слота `content`
 
-- `NotificationPanel.Group` — группа карточек с заголовком.
-- `NotificationPanel.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
-- `NotificationPanel.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
+- `NotificationPanelContent.Group` — группа карточек с заголовком.
+- `NotificationPanelContent.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
+- `NotificationPanelContent.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
 
 ### Примеры использования
 
@@ -272,7 +272,7 @@ Namespace `NotificationPanel.{Blank, Group, Stack}` — субкомпонент
 Список карточек через слот content, readAllButton помечает все прочитанными, onVisible — каждую при прокрутке.
 
 ```tsx
-import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
+import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
 import { useState } from 'react';
 
 export function PanelBasic() {
@@ -280,7 +280,7 @@ export function PanelBasic() {
   const markRead = (id: string) => setReadIds(prev => (prev.has(id) ? prev : new Set(prev).add(id)));
 
   return (
-    <NotificationPanel
+    <NotificationPanelContent
       title='Уведомления'
       readAllButton={{
         label: 'Прочитать всё',
@@ -339,11 +339,11 @@ export function PanelBasic() {
 loading + skeletonsAmount={4} вместо слота content; фильтры и readAllButton остаются на месте.
 
 ```tsx
-import { NotificationPanel } from '@ds/uikit-product-notification';
+import { NotificationPanelContent } from '@ds/uikit-product-notification';
 
 export function PanelLoading() {
   return (
-    <NotificationPanel
+    <NotificationPanelContent
       title='Уведомления'
       loading
       skeletonsAmount={4}
@@ -367,7 +367,7 @@ export function PanelLoading() {
 Segments + chipToggle + settings + readAll, Group для критичных, Stack для повторяющихся алертов квоты по нескольким хостам.
 
 ```tsx
-import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
+import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
 import { useMemo, useState } from 'react';
 
 type Filter = 'all' | 'unread' | 'mentions';
@@ -408,19 +408,19 @@ export function PanelFull() {
 
   if (muted) {
     return (
-      <NotificationPanel
+      <NotificationPanelContent
         title='Уведомления'
         settings={{
           button: { onClick: () => setMuted(false) },
           actions: [{ content: { option: 'Снять заглушение' }, onClick: () => setMuted(false) }],
         }}
-        content={<NotificationPanel.Blank />}
+        content={<NotificationPanelContent.Blank />}
       />
     );
   }
 
   return (
-    <NotificationPanel
+    <NotificationPanelContent
       title='Уведомления'
       segments={{
         items: [
@@ -451,7 +451,7 @@ export function PanelFull() {
       content={
         <>
           {attentionVisible && (
-            <NotificationPanel.Group title='Требуют внимания'>
+            <NotificationPanelContent.Group title='Требуют внимания'>
               {visible.inc && (
                 <NotificationCard
                   id='inc-4821'
@@ -482,12 +482,12 @@ export function PanelFull() {
                   onVisible={markRead}
                 />
               )}
-            </NotificationPanel.Group>
+            </NotificationPanelContent.Group>
           )}
 
           {visible.quota && (
             <>
-              <NotificationPanel.Stack
+              <NotificationPanelContent.Stack
                 title='Лимит дисковой квоты · 3 хоста'
                 unread={isUnread('stack-quota')}
                 actions={[
@@ -520,7 +520,7 @@ export function PanelFull() {
                   content='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
                   date='вчера · 23:50'
                 />
-              </NotificationPanel.Stack>
+              </NotificationPanelContent.Stack>
             </>
           )}
 
@@ -559,17 +559,16 @@ export function PanelFull() {
 
 ### Props
 
-#### NotificationPanel
+#### NotificationPanelContent
 
-**NotificationPanelProps**
+**NotificationPanelContentProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `chipToggle` | `{ label: string; checked: boolean; onChange(checked: boolean): void; }` | — | Переключатель для фильтрации |
 | `className` | `string` | — |  |
-| `content` | `ReactNode` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanel.Blank) |
+| `content` | `ReactNode` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanelContent.Blank) |
 | `data-test-id` | `string` | — |  |
-| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loading` | `boolean` | — | Состояние загрузки |
 | `readAllButton` | `ButtonProps` \| `TooltipProps` | — | Кнопка в "шапке" панели |
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
@@ -599,7 +598,7 @@ export function PanelFull() {
 | `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
 | `size` | `"m"` \| `"s"` | — |  |
 
-#### NotificationPanel.Stack
+#### NotificationPanelContent.Stack
 
 **NotificationCardStackProps**
 
@@ -625,7 +624,7 @@ export function PanelFull() {
 | `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбек обработки клика |
 | `tagLabel` | `string \| undefined` | — | Лейбл-тег справа от текста |
 
-#### NotificationPanel.Group
+#### NotificationPanelContent.Group
 
 **NotificationPanelGroupProps**
 
@@ -636,7 +635,7 @@ export function PanelFull() {
 | `data-test-id` | `string` | — |  |
 | `title` | `string` | — | Заголовок группы |
 
-#### NotificationPanel.Blank
+#### NotificationPanelContent.Blank
 
 **NotificationPanelBlankProps**
 
@@ -652,13 +651,13 @@ export function PanelFull() {
 
 - `Appearance` = `"default"` \| `"error"` \| `"success"` \| `"warning"`
 
-## NotificationPanelPopover
+## NotificationPanel
 
-Адаптивная обёртка панели уведомлений — на desktop открывает NotificationPanel в drawer, на mobile в bottom-sheet (выбор по layoutType).
+Адаптивная обёртка панели уведомлений — на desktop открывает NotificationPanelContent в drawer, на mobile в bottom-sheet (выбор по layoutType).
 
-Адаптивная обёртка **`NotificationPanel`**. На desktop открывает панель в drawer, на mobile — в bottom-sheet. Выбор раскладки — по `layoutType` (как у `Widget` / `Toolbar`).
+Адаптивная обёртка **`NotificationPanelContent`**. На desktop открывает панель в drawer, на mobile — в bottom-sheet. Выбор раскладки — по `layoutType` (как у `Widget` / `Toolbar`).
 
-Контент передаётся пропом `content` как элемент `<NotificationPanel />`, а не как пропсы.
+Контент передаётся пропом `content` как элемент `<NotificationPanelContent />`, а не как пропсы.
 
 ### Когда использовать
 
@@ -684,16 +683,15 @@ export function PanelFull() {
 
 ### Props
 
-**NotificationPanelPopoverProps**
+**NotificationPanelProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс для элемента с контентом |
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
 | `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
-| `content` | `NotificationPanelProps` | — | Контент панели (`NotificationPanel`), отображаемый внутри обёртки |
+| `content` | `NotificationPanelContentProps` | — | Контент панели (`NotificationPanelContent`), отображаемый внутри обёртки |
 | `data-test-id` | `string` | — |  |
-| `layoutType` | `"desktop"` \| `"mobile"` | `desktop` | Тип раскладки. `desktop` → Drawer (Figma `notificationDrawer`), <br/> `mobile` → BottomSheet (Figma `notificationBottomSheet`). |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | `right` | Расположение |
@@ -703,15 +701,14 @@ export function PanelFull() {
 
 ##### Related types
 
-**NotificationPanelProps**
+**NotificationPanelContentProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `chipToggle` | `{ label: string; checked: boolean; onChange(checked: boolean): void; } \| undefined` | — | Переключатель для фильтрации |
 | `className` | `string \| undefined` | — |  |
-| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanel.Blank) |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanelContent.Blank) |
 | `data-test-id` | `string \| undefined` | — |  |
-| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `readAllButton` | `ButtonProps` \| `TooltipProps` | — | Кнопка в "шапке" панели |
 | `scrollContainerRef` | `RefObject<HTMLElement> \| undefined` | — | Ссылка на контейнер, который скроллится |

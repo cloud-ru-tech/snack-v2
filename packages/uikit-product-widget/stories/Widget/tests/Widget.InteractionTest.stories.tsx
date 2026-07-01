@@ -25,7 +25,6 @@ export const InteractionTest: Story = {
     children: 'Widget body content.',
     state: WIDGET_STATE.Default,
     wide: false,
-    layoutType: 'desktop',
     segmentControl: {
       width: WIDTH.Full,
       defaultValue: 'overview',

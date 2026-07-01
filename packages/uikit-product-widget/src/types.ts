@@ -11,7 +11,6 @@ import { BUTTON_TYPE } from './constants';
 export type WidgetState = 'default' | 'loading' | 'error';
 
 export type WidgetLayoutType = 'desktop' | 'mobile';
-type WithLayoutType<T> = T & { layoutType?: WidgetLayoutType };
 
 export type WidgetHeaderProps = Pick<
   TitleClickableProps,
@@ -128,27 +127,25 @@ export type Action =
 
 export type WidgetAction = Action;
 
-export type WidgetProps = WithLayoutType<
-  WithSupportProps<{
-    /** Пропсы кликабельного заголовка. */
-    header: WidgetHeaderProps;
-    /** Контент виджета. */
-    children: ReactNode;
-    /** Действия в шапке/footer. */
-    actions?: Action[];
-    /** Дополнительный слот рядом с действиями. */
-    actionsChildren?: ReactNode;
-    /** Пропсы SegmentControl в шапке. */
-    segmentControl?: SegmentControlProps;
-    /** Desktop wide-layout. На mobile принудительно выключается. */
-    wide?: boolean;
-    /** Состояние виджета. */
-    state?: WidgetState;
-    /** Настройки loading-состояния. */
-    loadingState?: WidgetLoadingStateProps;
-    /** Настройки error-состояния. */
-    errorState?: WidgetErrorStateProps;
-    /** Дополнительный CSS-класс. */
-    className?: string;
-  }>
->;
+export type WidgetProps = WithSupportProps<{
+  /** Пропсы кликабельного заголовка. */
+  header: WidgetHeaderProps;
+  /** Контент виджета. */
+  children: ReactNode;
+  /** Действия в шапке/footer. */
+  actions?: Action[];
+  /** Дополнительный слот рядом с действиями. */
+  actionsChildren?: ReactNode;
+  /** Пропсы SegmentControl в шапке. */
+  segmentControl?: SegmentControlProps;
+  /** Только desktop: wide-раскладка виджета. На mobile принудительно выключается (`wide && !isMobile`). */
+  wide?: boolean;
+  /** Состояние виджета. */
+  state?: WidgetState;
+  /** Настройки loading-состояния. */
+  loadingState?: WidgetLoadingStateProps;
+  /** Настройки error-состояния. */
+  errorState?: WidgetErrorStateProps;
+  /** Дополнительный CSS-класс. */
+  className?: string;
+}>;

@@ -361,17 +361,6 @@
           "WidgetHeaderProps"
         ]
       },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ],
-        "typeRefs": [
-          "WidgetLayoutType"
-        ]
-      },
       "loadingState": {
         "type": "WidgetLoadingStateProps",
         "required": false,
@@ -404,7 +393,7 @@
       "wide": {
         "type": "boolean",
         "required": false,
-        "description": "Desktop wide-layout. На mobile принудительно выключается."
+        "description": "Только desktop: wide-раскладка виджета. На mobile принудительно выключается (`wide && !isMobile`)."
       }
     },
     "relatedTypes": {
@@ -1136,14 +1125,6 @@
             "description": "Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`)"
           }
         },
-        "own": true
-      },
-      "WidgetLayoutType": {
-        "kind": "union",
-        "values": [
-          "desktop",
-          "mobile"
-        ],
         "own": true
       },
       "WidgetLoadingStateProps": {

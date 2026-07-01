@@ -1,4 +1,4 @@
-import { NotificationCardProps, NotificationPanelProps } from '@ds/uikit-product-notification';
+import { NotificationCardProps, NotificationPanelContentProps } from '@ds/uikit-product-notification';
 import { fn } from 'storybook/test';
 
 export const BASE_PROPS: Pick<NotificationCardProps, 'id' | 'title' | 'content' | 'date' | 'link' | 'label'> = {
@@ -25,7 +25,7 @@ export const ACTIONS: NotificationCardProps['actions'] = [
   { content: { option: 'action 2' }, onClick: fn() },
 ];
 
-export const NOTIFICATION_PANEL_PROPS_MOCK: NotificationPanelProps = {
+export const NOTIFICATION_PANEL_PROPS_MOCK: NotificationPanelContentProps = {
   title: 'Уведомления',
   loading: false,
   readAllButton: { onClick: fn() },

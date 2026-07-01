@@ -1,4 +1,4 @@
-import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
+import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
 import { useMemo, useState } from 'react';
 
 type Filter = 'all' | 'unread' | 'mentions';
@@ -39,19 +39,19 @@ export function PanelFull() {
 
   if (muted) {
     return (
-      <NotificationPanel
+      <NotificationPanelContent
         title='Уведомления'
         settings={{
           button: { onClick: () => setMuted(false) },
           actions: [{ content: { option: 'Снять заглушение' }, onClick: () => setMuted(false) }],
         }}
-        content={<NotificationPanel.Blank />}
+        content={<NotificationPanelContent.Blank />}
       />
     );
   }
 
   return (
-    <NotificationPanel
+    <NotificationPanelContent
       title='Уведомления'
       segments={{
         items: [
@@ -82,7 +82,7 @@ export function PanelFull() {
       content={
         <>
           {attentionVisible && (
-            <NotificationPanel.Group title='Требуют внимания'>
+            <NotificationPanelContent.Group title='Требуют внимания'>
               {visible.inc && (
                 <NotificationCard
                   id='inc-4821'
@@ -113,12 +113,12 @@ export function PanelFull() {
                   onVisible={markRead}
                 />
               )}
-            </NotificationPanel.Group>
+            </NotificationPanelContent.Group>
           )}
 
           {visible.quota && (
             <>
-              <NotificationPanel.Stack
+              <NotificationPanelContent.Stack
                 title='Лимит дисковой квоты · 3 хоста'
                 unread={isUnread('stack-quota')}
                 actions={[
@@ -151,7 +151,7 @@ export function PanelFull() {
                   content='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
                   date='вчера · 23:50'
                 />
-              </NotificationPanel.Stack>
+              </NotificationPanelContent.Stack>
             </>
           )}
 

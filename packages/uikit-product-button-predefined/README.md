@@ -2,7 +2,7 @@
 
 `@ds/uikit-product-button-predefined` — Function-кнопка с выпадающим списком (desktop) или modal (mobile).
 
-Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `Droplist` из `@ds/list`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в **`PriceSummary`** для выбора периода биллинга.
+Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `Droplist` из `@ds/list`, на **mobile** — `@ds/modal` со списком. Раскладка определяется контекстом `AdaptiveProvider` (см. `@ds/adaptive`), а не пропом. Используется, в частности, в **`PriceSummary`** для выбора периода биллинга.
 
 ## Когда использовать
 
@@ -20,10 +20,12 @@
 
 `Button` `view='function'` `appearance='neutral'` (как `buttonFunctionNeutral` в Figma) с `label` и chevron up/down. При `open={true}` на триггер вешается `data-pressed` — в макете это `stateLayer/text/opacity` (прозрачность label/icon через `@ds/materials`).
 
-### AdaptiveDroplist
+### Droplist
 
-- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@ds/list`, позиционирование через popover.
-- **`layoutType='mobile'`** — `ModalCustom` + `List`; пункты из `items`.
+`ButtonDropdown` рендерит `Droplist` из `@ds/list` — он сам адаптивен (раскладку берёт из `AdaptiveProvider`, отдельного пропа нет):
+
+- **desktop** (по умолчанию) — список у триггера через popover.
+- **mobile** — список уходит в bottom-sheet (адаптивность `@ds/list`).
 
 ### items
 
@@ -64,7 +66,6 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 <ButtonDropdown
   label='Period'
   size='s'
-  layoutType='desktop'
   closeDroplistOnItemClick
   items={[
     { id: 'month', content: { option: 'Month' }, onClick: () => setPeriod('month') },
@@ -82,6 +83,7 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 Базовый dropdown для выбора одного значения.
 
 ```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { useState } from 'react';
 
@@ -99,7 +101,11 @@ export function DesktopBasic() {
     onClick: () => setPeriod(option),
   }));
 
-  return <ButtonDropdown label={period.label} size='s' layoutType='desktop' items={items} closeDroplistOnItemClick />;
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+      <ButtonDropdown label={period.label} size='s' items={items} closeDroplistOnItemClick />
+    </AdaptiveProvider>
+  );
 }
 ```
 
@@ -108,6 +114,7 @@ export function DesktopBasic() {
 Открытое состояние dropdown (portal).
 
 ```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { useState } from 'react';
 
@@ -125,15 +132,20 @@ export function DesktopOpen() {
     onClick: () => setPeriod(option),
   }));
 
-  return <ButtonDropdown label={period.label} size='m' layoutType='desktop' open items={items} />;
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+      <ButtonDropdown label={period.label} size='m' open items={items} />
+    </AdaptiveProvider>
+  );
 }
 ```
 
 ### Mobile layout
 
-layoutType=mobile открывает modal со списком.
+AdaptiveProvider layoutType=mobile открывает modal со списком.
 
 ```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { useState } from 'react';
 
@@ -151,7 +163,11 @@ export function MobileLayout() {
     onClick: () => setPeriod(option),
   }));
 
-  return <ButtonDropdown label={period.label} size='s' layoutType='mobile' closeDroplistOnItemClick items={items} />;
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <ButtonDropdown label={period.label} size='s' closeDroplistOnItemClick items={items} />
+    </AdaptiveProvider>
+  );
 }
 ```
 
@@ -174,7 +190,6 @@ export function MobileLayout() {
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
-| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loading` | `boolean` | — | Состояние загрузки |
 | `onOpenChange` | `((open: boolean) => void)` | — | Колбэк изменения раскрытия. |
 | `open` | `boolean` | — | Контролируемое состояние раскрытия. |

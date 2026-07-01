@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Skeleton } from '@ds/skeleton';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 import { extractSupportProps, useDynamicList } from '@ds/utils';
@@ -6,7 +7,7 @@ import { memo, useMemo, useRef } from 'react';
 
 import { BUTTON_TYPE, TEST_IDS, WIDGET_STATE } from '../../constants';
 import { Actions, ActionView, Content, ControlBlock, isVisibleAction } from '../../helperComponents';
-import { WidgetProps } from '../../types';
+import { WidgetLayoutType, WidgetProps } from '../../types';
 import styles from './styles.module.scss';
 
 function WidgetComponent({
@@ -18,12 +19,13 @@ function WidgetComponent({
   loadingState,
   errorState,
   className,
-  layoutType = 'desktop',
   actionsChildren,
   segmentControl,
   ...rest
 }: WidgetProps) {
-  const isMobile = layoutType === 'mobile';
+  const { layoutType: contextLayoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(contextLayoutType);
+  const layoutType: WidgetLayoutType = isMobile ? 'mobile' : 'desktop';
   const wide = wideProp && !isMobile;
 
   const containerRef = useRef<HTMLDivElement>(null);

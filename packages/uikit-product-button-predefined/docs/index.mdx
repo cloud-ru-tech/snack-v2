@@ -20,7 +20,7 @@ import buttonPredefinedDoc from './props.json'
 
 # ButtonDropdown
 
-Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `Droplist` из `@ds/list`, на **`layoutType='mobile'`** — `@ds/modal` со списком. Используется, в частности, в [`PriceSummary`](/components/uikit-product-price-summary/price-summary) для выбора периода биллинга.
+Кнопка `view='function'` с `AdaptiveDroplist`: на **desktop** — `Droplist` из `@ds/list`, на **mobile** — `@ds/modal` со списком. Раскладка определяется контекстом `AdaptiveProvider` (см. `@ds/adaptive`), а не пропом. Используется, в частности, в [`PriceSummary`](/components/uikit-product-price-summary/price-summary) для выбора периода биллинга.
 
 ## Когда использовать
 
@@ -38,10 +38,12 @@ import buttonPredefinedDoc from './props.json'
 
 `Button` `view='function'` `appearance='neutral'` (как `buttonFunctionNeutral` в Figma) с `label` и chevron up/down. При `open={true}` на триггер вешается `data-pressed` — в макете это `stateLayer/text/opacity` (прозрачность label/icon через `@ds/materials`).
 
-### AdaptiveDroplist
+### Droplist
 
-- **`layoutType='desktop'`** (по умолчанию) — `Droplist` из `@ds/list`, позиционирование через popover.
-- **`layoutType='mobile'`** — `ModalCustom` + `List`; пункты из `items`.
+`ButtonDropdown` рендерит `Droplist` из `@ds/list` — он сам адаптивен (раскладку берёт из `AdaptiveProvider`, отдельного пропа нет):
+
+- **desktop** (по умолчанию) — список у триггера через popover.
+- **mobile** — список уходит в bottom-sheet (адаптивность `@ds/list`).
 
 ### items
 
@@ -82,7 +84,6 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
 <ButtonDropdown
   label='Period'
   size='s'
-  layoutType='desktop'
   closeDroplistOnItemClick
   items={[
     { id: 'month', content: { option: 'Month' }, onClick: () => setPeriod('month') },
@@ -103,7 +104,7 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
   <DesktopOpen client:only="react" />
 </Example>
 
-<Example title='Mobile layout' description='layoutType=mobile открывает modal со списком.' code={MobileLayoutSrc}>
+<Example title='Mobile layout' description='AdaptiveProvider layoutType=mobile открывает modal со списком.' code={MobileLayoutSrc}>
   <MobileLayout client:only="react" />
 </Example>
 

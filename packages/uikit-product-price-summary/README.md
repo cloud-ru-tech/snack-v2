@@ -78,10 +78,6 @@ import { PricePeriod, PriceSummary, PriceSummarySmall } from '@ds/uikit-product-
 
 Function-ссылка внизу блока (по умолчанию текст из locale).
 
-#### layoutType
-
-`desktop` | `mobile` — пробрасывается в период, invoice и вложенные ячейки.
-
 ### Примеры использования
 
 {/* client:only — @cloud-ru/ft-formatters не для SSR */}
@@ -158,9 +154,8 @@ export function WithInvoice() {
 | `hintTooltipText` | `ReactNode` | — |  |
 | `invoice` | `InvoiceDetails` | — | Секции детализации заказа в аккордеоне. |
 | `invoiceExpandedDefault` | `boolean` | `true` | Начальное состояние раскрытия аккордеона invoice. |
-| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loading` | `boolean` | — |  |
-| `onPeriodChanged` | `PricePeriod` | — |  |
+| `onPeriodChanged` | `((period: PricePeriod) => void)` | — |  |
 | `onRetry` | `(() => void)` | — |  |
 | `period` | `"day"` \| `"hour"` \| `"minute"` \| `"month"` \| `"year"` | — |  |
 | `periodOptions` | `PricePeriod` | — |  |
@@ -224,6 +219,66 @@ export function WithInvoice() {
 - `PricePeriod` = `"day"` \| `"hour"` \| `"minute"` \| `"month"` \| `"year"`
 
 - `TotalSumType` = `"equal"` \| `"from"`
+
+### Адаптивность
+
+`PriceSummary` — адаптивный компонент: вёрстка перестраивается под mobile, а вложенные адаптивные блоки сами переключают поверхность. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — выбор периода открывается в `Droplist`, подсказки `QuestionTooltip` всплывают по наведению.
+- **mobile** — выбор периода открывается в modal, а подсказки `QuestionTooltip` раскрываются по нажатию в `BottomSheet`.
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+#### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <PriceSummary value={value} period={period} periodOptions={periodOptions} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { PriceSummary } from '@ds/uikit-product-price-summary'
+
+  const MobilePriceSummary = withLayoutType(PriceSummary, 'mobile')
+  ```
+
+#### Mobile
+
+Раскладка форсирована в mobile: выбор периода открывается в modal, подсказки — в BottomSheet.
+
+```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { PRICE_PERIOD, PriceSummary } from '@ds/uikit-product-price-summary';
+
+export function MobileLayout() {
+  return (
+    <div style={{ maxWidth: 360 }}>
+      <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+        <PriceSummary
+          value={10800}
+          period={PRICE_PERIOD.Month}
+          periodOptions={[PRICE_PERIOD.Month, PRICE_PERIOD.Year]}
+          discount={{
+            price: 12000,
+            discounts: [{ value: 1200, percent: 10 }],
+          }}
+          hint='Дополнительная информация'
+          hintTooltipText='Итоговая сумма с учётом скидки за выбранный период.'
+        />
+      </AdaptiveProvider>
+    </div>
+  );
+}
+```
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
 
 ## PriceSummarySmall
 

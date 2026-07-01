@@ -28,6 +28,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/dropdown": "workspace:^",

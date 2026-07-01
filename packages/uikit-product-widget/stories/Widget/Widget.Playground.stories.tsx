@@ -44,13 +44,12 @@ const meta: Meta<typeof Widget> = {
     ],
     state: WIDGET_STATE.Default,
     wide: false,
-    layoutType: 'desktop',
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     state: { control: 'radio', options: Object.values(WIDGET_STATE) },
-    wide: { control: 'boolean' },
-    layoutType: { control: 'radio', options: ['desktop', 'mobile'] },
+    // wide эффективен только на desktop — на mobile принудительно выключается.
+    wide: { control: 'boolean', if: { global: 'layoutType', neq: 'mobile' } },
   },
 };
 

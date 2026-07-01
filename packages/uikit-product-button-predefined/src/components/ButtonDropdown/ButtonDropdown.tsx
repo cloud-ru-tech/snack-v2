@@ -1,8 +1,9 @@
 import { Button, ButtonProps } from '@ds/button';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
-import { useValueControl, WithLayoutType, WithSupportProps } from '@ds/utils';
+import { Droplist, DroplistProps } from '@ds/list';
+import { useValueControl, WithSupportProps } from '@ds/utils';
 
-import { AdaptiveDroplist, AdaptiveDroplistProps } from '../../adaptive';
+import { TEST_IDS } from '../../constants';
 
 type ButtonDropdownSize = NonNullable<ButtonProps['size']> | 'xs';
 
@@ -20,11 +21,11 @@ type ButtonDropdownTriggerProps = WithSupportProps<
 >;
 
 type ButtonDropdownDroplistConfig = Pick<
-  AdaptiveDroplistProps,
+  DroplistProps,
   'items' | 'closeDroplistOnItemClick' | 'placement' | 'triggerClassName' | 'closeOnPopstate'
 >;
 
-export type ButtonDropdownProps = WithLayoutType<ButtonDropdownTriggerProps & ButtonDropdownDroplistConfig>;
+export type ButtonDropdownProps = ButtonDropdownTriggerProps & ButtonDropdownDroplistConfig;
 
 export function ButtonDropdown({
   size = 's',
@@ -32,7 +33,6 @@ export function ButtonDropdown({
   className,
   open: openProp,
   onOpenChange: onOpenChangeProp,
-  layoutType,
   items,
   closeDroplistOnItemClick,
   placement,
@@ -60,8 +60,8 @@ export function ButtonDropdown({
   );
 
   return (
-    <AdaptiveDroplist
-      layoutType={layoutType}
+    <Droplist
+      data-test-id={TEST_IDS.droplist}
       items={items}
       open={open}
       onOpenChange={onOpenChange}
@@ -70,8 +70,11 @@ export function ButtonDropdown({
       triggerClassName={triggerClassName}
       closeOnPopstate={closeOnPopstate}
       size={droplistSize}
+      // Desktop-поведение триггер-кнопки: открытие по клику, popover не уже кнопки.
+      trigger='click'
+      widthStrategy='gte'
     >
       {trigger}
-    </AdaptiveDroplist>
+    </Droplist>
   );
 }

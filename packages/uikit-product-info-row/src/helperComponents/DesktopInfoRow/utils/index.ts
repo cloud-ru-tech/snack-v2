@@ -1,0 +1,1 @@
+export { useGetContent } from '../../shared';

@@ -61,7 +61,6 @@ export const FIGMA_SHOWCASE_ARGS = {
   value: FIGMA_SHOWCASE_PRICE,
   period: PRICE_PERIOD.Month,
   periodOptions: [PRICE_PERIOD.Month, PRICE_PERIOD.Year],
-  layoutType: 'desktop' as const,
   loading: false,
   dataError: false,
   invoiceExpandedDefault: true,

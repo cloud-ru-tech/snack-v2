@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { useState } from 'react';
 
@@ -15,5 +16,9 @@ export function MobileLayout() {
     onClick: () => setPeriod(option),
   }));
 
-  return <ButtonDropdown label={period.label} size='s' layoutType='mobile' closeDroplistOnItemClick items={items} />;
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <ButtonDropdown label={period.label} size='s' closeDroplistOnItemClick items={items} />
+    </AdaptiveProvider>
+  );
 }

@@ -1,24 +1,26 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildInfoRowStoryOptions, INFO_ROW_STORIES } from './helpers';
+import { buildInfoRowStoryOptions, INFO_ROW_TEST_ID } from './helpers';
 
 test.describe('InfoRow — rendering', () => {
-  test.describe('render', () => {
-    test('playground', async ({ page, gotoStory }) => {
-      await gotoStory(buildInfoRowStoryOptions());
-      await expect(page.getByTestId('info-row')).toBeVisible();
-    });
+  test('renders desktop layout by default (delegates to InfoRow)', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildInfoRowStoryOptions(undefined, undefined, { layoutType: 'desktop' }));
 
-    test('visual matrix', async ({ page, gotoStory }) => {
-      await gotoStory(buildInfoRowStoryOptions(undefined, INFO_ROW_STORIES.visualMatrix));
-      await expect(page.getByTestId('info-row-matrix-fixed-false')).toBeVisible();
-    });
+    await expect(getByTestId(INFO_ROW_TEST_ID)).toBeVisible();
   });
 
-  test.describe('props propagation', () => {
-    test('loading', async ({ page, gotoStory }) => {
-      await gotoStory(buildInfoRowStoryOptions({ loading: true }));
-      await expect(page.getByTestId('info-row')).toBeVisible();
-    });
+  test('renders mobile layout when layoutType=mobile (delegates to MobileInfoRow)', async ({
+    gotoStory,
+    getByTestId,
+  }) => {
+    await gotoStory(buildInfoRowStoryOptions(undefined, undefined, { layoutType: 'mobile' }));
+
+    await expect(getByTestId(INFO_ROW_TEST_ID)).toBeVisible();
+  });
+
+  test('renders label text', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildInfoRowStoryOptions({ label: 'Custom adaptive label' }));
+
+    await expect(getByTestId(INFO_ROW_TEST_ID)).toContainText('Custom adaptive label');
   });
 });

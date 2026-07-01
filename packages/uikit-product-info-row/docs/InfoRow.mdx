@@ -14,6 +14,8 @@ import { figmaNode } from '#docs/lib/figma'
 import infoRowDoc from './props.json'
 import DataListSrc from '../demos/examples/DataListExample.tsx?raw'
 import { DataListExample } from '../demos/examples/DataListExample'
+import { MobileLayout } from '../demos/examples/MobileLayout'
+import MobileLayoutSrc from '../demos/examples/MobileLayout.tsx?raw'
 
 # InfoRow
 
@@ -47,8 +49,8 @@ import { DataListExample } from '../demos/examples/DataListExample'
 ## Когда лучше выбрать другой компонент
 
 - `InfoGroup` - когда данные уже описаны схемой полей и нужно вывести список строк по объекту.
-- `MobileInfoRow` - когда нужен мобильный вертикальный формат строки.
-- `AdaptiveInfoRow` - когда нужно переключение desktop/mobile по `layoutType`.
+
+`InfoRow` адаптивен сам по себе — на mobile (раскладка из `AdaptiveProvider`) он переключается в вертикальный comfort-формат, отдельный компонент для этого не нужен.
 
 ## Figma
 
@@ -79,6 +81,51 @@ import '@ds/uikit-product-info-row/style.css'
 ## Props
 
 <PropsTable data={infoRowDoc.InfoRow} />
+
+## Адаптивность
+
+`InfoRow` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — строка «метка — значение» в одну или две колонки.
+- **mobile** — вертикальный comfort-формат: метка и значение друг под другом, карточка со скруглением и разделителями.
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <InfoRow label='Статус' content='Активен' />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { InfoRow } from '@ds/uikit-product-info-row'
+
+  const MobileInfoRow = withLayoutType(InfoRow, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Таблица синхронизирована с JSDoc-пометками у `InfoRowProps`.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `position` (`first` / `inner` / `last`) | игнорируется | используется |
+
+`position` задаёт скругление и разделители мобильной карточки. Внутри `InfoGroup` он проставляется автоматически по месту строки в группе.
+
+<Example title='Mobile — карточка' description='Раскладка форсирована в mobile: строки превращаются в карточку (скругления и разделители по `position`).' code={MobileLayoutSrc}>
+  <MobileLayout client:visible />
+</Example>
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
 
 ## Storybook
 

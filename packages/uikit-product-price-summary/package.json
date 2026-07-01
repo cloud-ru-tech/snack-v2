@@ -30,6 +30,7 @@
   "dependencies": {
     "@cloud-ru/ft-formatters": "1.0.1",
     "@ds/accordion": "workspace:^",
+    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/link": "workspace:^",

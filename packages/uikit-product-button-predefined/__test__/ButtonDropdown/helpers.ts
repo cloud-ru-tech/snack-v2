@@ -33,6 +33,8 @@ export const BUTTON_DROPDOWN_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: UikitStoryRef = BUTTON_DROPDOWN_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     category: ref.category,
@@ -43,5 +45,6 @@ export function buildStoryOptions(
       'data-test-id': TEST_IDS.buttonDropdown,
       ...props,
     },
+    globals,
   };
 }

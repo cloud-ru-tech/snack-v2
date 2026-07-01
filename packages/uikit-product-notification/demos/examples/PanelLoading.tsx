@@ -1,8 +1,8 @@
-import { NotificationPanel } from '@ds/uikit-product-notification';
+import { NotificationPanelContent } from '@ds/uikit-product-notification';
 
 export function PanelLoading() {
   return (
-    <NotificationPanel
+    <NotificationPanelContent
       title='Уведомления'
       loading
       skeletonsAmount={4}

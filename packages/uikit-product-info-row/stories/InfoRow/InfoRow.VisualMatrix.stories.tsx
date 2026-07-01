@@ -1,17 +1,10 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { InfoRow, InfoRowProps } from '../../src';
+import { InfoRow, InfoRowProps, POSITION } from '../../src';
 import { TEST_IDS } from '../testIds';
-import styles from './styles.module.scss';
-
-const iconAction = (testId: string) => ({
-  icon: <PlaceholderSVG />,
-  'aria-label': 'Действие',
-  'data-test-id': testId,
-});
 
 const meta: Meta<InfoRowProps> = {
   title: 'Uikit Product/InfoRow/InfoRow',
@@ -23,15 +16,8 @@ export default meta;
 
 type Story = StoryObj<InfoRowProps>;
 
-const widths = ['fixed', 'full'] as const;
-const loadingStates = [false, true] as const;
-
-/** Три комбинации из матрицы Figma infoRow (без column=2 + maxWidth=false) */
-const figmaMatrix: Array<{ column: '1' | '2'; maxWidth: boolean; label: string }> = [
-  { column: '1', maxWidth: false, label: '1 / maxW false' },
-  { column: '1', maxWidth: true, label: '1 / maxW true' },
-  { column: '2', maxWidth: true, label: '2 / maxW true' },
-];
+const positions = [POSITION.First, POSITION.Inner, POSITION.Last] as const;
+const layouts = [LAYOUT_TYPE.Desktop, LAYOUT_TYPE.Mobile] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
@@ -39,106 +25,45 @@ export const VisualMatrix: Story = {
   render: () => (
     <>
       <StoryTable
-        sectionTitle='Figma matrix (column × maxWidth)'
-        firstColumnHeader='combo'
-        columnHeaders={['sample']}
-        rows={figmaMatrix.map(({ column, maxWidth, label }) => ({
-          variantLabel: label,
-          cells: [
-            <InfoRow
-              key={label}
-              label='Field A'
-              secondaryLabel={column === '2' ? 'Field B' : undefined}
-              content='Value A'
-              secondaryContent={column === '2' ? 'Value B' : undefined}
-              column={column}
-              maxWidth={maxWidth}
-              width='fixed'
-              topDivider
-              bottomDivider
-              data-test-id={TEST_IDS.infoRow.figma(column, maxWidth.toString())}
-              rowActions={{
-                first: iconAction(`info-row-figma-${column}-${maxWidth}-a1`),
-                ...(column === '1' ? { second: iconAction(`info-row-figma-${column}-${maxWidth}-a2`) } : {}),
-              }}
-              secondaryRowActions={
-                column === '2' ? { first: iconAction(`info-row-figma-${column}-${maxWidth}-b1`) } : undefined
-              }
-            />,
-          ],
-        }))}
-      />
-      <StoryTable
-        sectionTitle='Width × Loading'
-        firstColumnHeader='Width'
-        columnHeaders={loadingStates.map(l => (l ? 'loading' : 'idle'))}
-        rows={widths.map(width => ({
-          variantLabel: width,
-          cells: loadingStates.map(loading => (
-            <div key={`${width}-${loading}`} className={styles.widthDemoFrame}>
+        sectionTitle='LayoutType × Position'
+        firstColumnHeader='layoutType'
+        columnHeaders={positions as unknown as string[]}
+        rows={layouts.map(layoutType => ({
+          variantLabel: layoutType,
+          cells: positions.map(position => (
+            <AdaptiveProvider key={`${layoutType}-${position}`} layoutType={layoutType}>
               <InfoRow
-                label='Label'
-                content='Value'
-                width={width}
-                loading={loading}
-                column='1'
+                position={position}
+                label='Адаптивная метка'
+                content='Значение'
                 topDivider
                 bottomDivider
-                data-test-id={TEST_IDS.infoRow.matrix(width, loading.toString())}
-                rowActions={{
-                  first: iconAction(`info-row-matrix-${width}-${loading}-a1`),
-                  second: iconAction(`info-row-matrix-${width}-${loading}-a2`),
-                }}
+                data-test-id={TEST_IDS.infoRow.layout(layoutType, position)}
               />
-            </div>
+            </AdaptiveProvider>
           )),
         }))}
       />
       <StoryTable
-        sectionTitle='Dividers'
-        firstColumnHeader='top / bottom'
-        columnHeaders={['fixed']}
-        rows={[
-          {
-            variantLabel: 'both',
-            cells: [
+        sectionTitle='Loading'
+        firstColumnHeader='layoutType'
+        columnHeaders={['idle', 'loading']}
+        rows={layouts.map(layoutType => ({
+          variantLabel: layoutType,
+          cells: [false, true].map(loading => (
+            <AdaptiveProvider key={`${layoutType}-${loading}`} layoutType={layoutType}>
               <InfoRow
-                key='div-both'
-                label='L'
-                content='C'
+                position={POSITION.Inner}
+                label='Метка'
+                content='Значение'
+                loading={loading}
                 topDivider
                 bottomDivider
-                data-test-id={TEST_IDS.infoRow.divBoth}
-              />,
-            ],
-          },
-          {
-            variantLabel: 'top only',
-            cells: [
-              <InfoRow
-                key='div-top'
-                label='L'
-                content='C'
-                topDivider
-                bottomDivider={false}
-                data-test-id={TEST_IDS.infoRow.divTop}
-              />,
-            ],
-          },
-          {
-            variantLabel: 'bottom only',
-            cells: [
-              <InfoRow
-                key='div-bottom'
-                label='L'
-                content='C'
-                topDivider={false}
-                bottomDivider
-                data-test-id={TEST_IDS.infoRow.divBottom}
-              />,
-            ],
-          },
-        ]}
+                data-test-id={TEST_IDS.infoRow.loading(layoutType, loading.toString())}
+              />
+            </AdaptiveProvider>
+          )),
+        }))}
       />
     </>
   ),

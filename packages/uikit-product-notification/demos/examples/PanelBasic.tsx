@@ -1,4 +1,4 @@
-import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
+import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
 import { useState } from 'react';
 
 export function PanelBasic() {
@@ -6,7 +6,7 @@ export function PanelBasic() {
   const markRead = (id: string) => setReadIds(prev => (prev.has(id) ? prev : new Set(prev).add(id)));
 
   return (
-    <NotificationPanel
+    <NotificationPanelContent
       title='Уведомления'
       readAllButton={{
         label: 'Прочитать всё',

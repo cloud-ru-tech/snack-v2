@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -32,30 +33,15 @@ export const VisualMatrix: Story = {
         rows={sizes.map(size => ({
           variantLabel: size,
           cells: [
-            <ButtonDropdown key={`d-${size}-closed`} label='Period' size={size} items={items} layoutType='desktop' />,
+            <AdaptiveProvider key={`d-${size}-closed`} layoutType={LAYOUT_TYPE.Desktop}>
+              <ButtonDropdown label='Period' size={size} items={items} />
+            </AdaptiveProvider>,
           ],
         }))}
       />
 
-      <StoryTable
-        sectionTitle='desktop — open'
-        firstColumnHeader='size'
-        columnHeaders={['']}
-        rows={sizes.map(size => ({
-          variantLabel: size,
-          cells: [
-            <ButtonDropdown
-              key={`d-${size}-open`}
-              label='Period'
-              size={size}
-              items={items}
-              layoutType='desktop'
-              open
-            />,
-          ],
-        }))}
-      />
-
+      {/* Открытое состояние — отдельный снимок `open.png` (portal-overlay в StoryTable
+          перекрывает соседние ячейки, ломая сетку). В матрице держим только closed-оси. */}
       <StoryTable
         sectionTitle='mobile — closed'
         firstColumnHeader='size'
@@ -63,7 +49,11 @@ export const VisualMatrix: Story = {
         rows={[
           {
             variantLabel: 's',
-            cells: [<ButtonDropdown key='m-closed' label='Period' size='s' items={items} layoutType='mobile' />],
+            cells: [
+              <AdaptiveProvider key='m-closed' layoutType={LAYOUT_TYPE.Mobile}>
+                <ButtonDropdown label='Period' size='s' items={items} />
+              </AdaptiveProvider>,
+            ],
           },
         ]}
       />

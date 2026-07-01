@@ -532,7 +532,657 @@
   "NotificationPanel": {
     "displayName": "NotificationPanel",
     "propsTypeName": "NotificationPanelProps",
-    "description": "Контент панели уведомлений (header + scrollable body + footer). Помещается в обёртку `NotificationPanelPopover`.",
+    "description": "Адаптивная обёртка панели уведомлений. Рендерит `NotificationPanelContent` в `DrawerCustom`, который сам\nавто-свапается по `AdaptiveProvider`: на desktop — дровер, на mobile — bottom-sheet. Композит НЕ\nвыбирает поверхность сам (канон adaptive-components: swap у `DrawerCustom`) — контекст читается лишь\nдля surface-специфичного класса обёртки (на дровере нужен `height: 100%`, на sheet — нет).\n`position`/`width` — desktop-only (на mobile-поверхности игнорируются самим дровером).",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать дровер при перемещении по истории браузера"
+      },
+      "container": {
+        "type": "string | HTMLElement",
+        "required": false,
+        "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
+      },
+      "content": {
+        "type": "ReactElement<NotificationPanelContentProps, typeof NotificationPanelContent>",
+        "required": true,
+        "description": "Контент панели (`NotificationPanelContent`), отображаемый внутри обёртки",
+        "typeRefs": [
+          "NotificationPanelContentProps"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан."
+      },
+      "position": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "defaultValue": "right",
+        "description": "Расположение",
+        "typeRefs": [
+          "Position"
+        ]
+      },
+      "rootClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для корневого элемента"
+      },
+      "showBlackout": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение темной подложки"
+      },
+      "width": {
+        "type": "string | number",
+        "required": false,
+        "defaultValue": "s",
+        "description": "Ширина (только при position: \"left\" | \"right\")",
+        "typeRefs": [
+          "Width"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ButtonProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "fullWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "На всю ширину"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": false
+      },
+      "NotificationPanelContentProps": {
+        "kind": "interface",
+        "props": {
+          "chipToggle": {
+            "type": "{ label: string; checked: boolean; onChange(checked: boolean): void; } | undefined",
+            "required": false,
+            "description": "Переключатель для фильтрации"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент для отрисовки (e.g NotificationCard | NotificationPanelContent.Blank)"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "readAllButton": {
+            "type": "(Omit<ButtonProps, \"data-test-id\" | \"size\"> & { tooltip?: TooltipProps; }) | undefined",
+            "required": false,
+            "description": "Кнопка в \"шапке\" панели",
+            "typeRefs": [
+              "ButtonProps",
+              "TooltipProps"
+            ]
+          },
+          "scrollContainerRef": {
+            "type": "RefObject<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollEndRef": {
+            "type": "RefObject<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+          },
+          "segments": {
+            "type": "Omit<SegmentControlProps, \"data-test-id\" | \"size\"> | undefined",
+            "required": false,
+            "description": "Сегменты для фильтрации",
+            "typeRefs": [
+              "SegmentControlProps"
+            ]
+          },
+          "settings": {
+            "type": "NotificationPanelSettingsProps | undefined",
+            "required": false,
+            "description": "Кнопка настроек и выпадающий список",
+            "typeRefs": [
+              "NotificationPanelSettingsProps"
+            ]
+          },
+          "skeletonsAmount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество скелетонов карточек для отображения при загрузке"
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок панели"
+          }
+        },
+        "own": true
+      },
+      "NotificationPanelSettingsProps": {
+        "kind": "interface",
+        "props": {
+          "actions": {
+            "type": "Action[] | undefined",
+            "required": false,
+            "description": "Дополнительные действия панели",
+            "typeRefs": [
+              "Action"
+            ]
+          },
+          "button": {
+            "type": "Omit<ButtonProps<ElementType>, \"data-test-id\" | \"view\" | \"label\" | \"size\"> | undefined",
+            "required": false,
+            "description": "Кнопка дополнительного действия панели",
+            "typeRefs": [
+              "ButtonProps"
+            ]
+          },
+          "size": {
+            "type": "\"s\" | \"m\" | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Position": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "own": false
+      },
+      "SegmentControlProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "defaultValue": {
+            "type": "Value | undefined",
+            "required": false,
+            "description": "ID выбранного по умолчанию сегмента (uncontrolled).",
+            "typeRefs": [
+              "Value"
+            ]
+          },
+          "items": {
+            "type": "SegmentType<Value>[]",
+            "required": true,
+            "description": "Набор сегментов.",
+            "typeRefs": [
+              "Segment",
+              "SegmentType",
+              "Value"
+            ]
+          },
+          "name": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Имя поля (hidden input для формы)."
+          },
+          "onChange": {
+            "type": "((value: Value) => void) | undefined",
+            "required": false,
+            "description": "Колбек смены выбранного сегмента.",
+            "typeRefs": [
+              "Value"
+            ]
+          },
+          "outline": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Обводка."
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер компонента.",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "Value | undefined",
+            "required": false,
+            "description": "Value выбранного сегмента.",
+            "typeRefs": [
+              "Value"
+            ]
+          },
+          "width": {
+            "type": "Width | undefined",
+            "required": false,
+            "values": [
+              "auto",
+              "full"
+            ],
+            "description": "Управление шириной компонента.",
+            "typeRefs": [
+              "Width"
+            ]
+          }
+        },
+        "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "Width": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "full"
+        ],
+        "own": false
+      }
+    }
+  },
+  "NotificationPanelBlank": {
+    "displayName": "NotificationPanelBlank",
+    "propsTypeName": "NotificationPanelBlankProps",
+    "description": "Заглушка вместо карточек в панели",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "icon": {
+        "type": "IconPredefinedProps",
+        "required": false,
+        "description": "Иконка",
+        "typeRefs": [
+          "IconPredefinedProps"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error",
+          "success",
+          "warning"
+        ],
+        "own": true
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "decor": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "shape": {
+            "type": "\"round\" | \"square\" | undefined",
+            "required": false,
+            "values": [
+              "round",
+              "square"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "5xl",
+              "l",
+              "m"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      }
+    }
+  },
+  "NotificationPanelContent": {
+    "displayName": "NotificationPanelContent",
+    "propsTypeName": "NotificationPanelContentProps",
+    "description": "Контент панели уведомлений (header + scrollable body + footer). Помещается в обёртку `NotificationPanel`.",
     "props": {
       "chipToggle": {
         "type": "{ label: string; checked: boolean; onChange(checked: boolean): void; }",
@@ -546,22 +1196,11 @@
       "content": {
         "type": "ReactNode",
         "required": false,
-        "description": "Контент для отрисовки (e.g NotificationCard | NotificationPanel.Blank)"
+        "description": "Контент для отрисовки (e.g NotificationCard | NotificationPanelContent.Blank)"
       },
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ],
-        "typeRefs": [
-          "LayoutType"
-        ]
       },
       "loading": {
         "type": "boolean",
@@ -772,14 +1411,6 @@
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
-        "own": false
-      },
-      "LayoutType": {
-        "kind": "union",
-        "values": [
-          "desktop",
-          "mobile"
-        ],
         "own": false
       },
       "NotificationPanelSettingsProps": {
@@ -1129,8 +1760,8 @@
       }
     }
   },
-  "NotificationPanel.Blank": {
-    "displayName": "NotificationPanel.Blank",
+  "NotificationPanelContent.Blank": {
+    "displayName": "NotificationPanelContent.Blank",
     "propsTypeName": null,
     "props": {
       "className": {
@@ -1160,8 +1791,8 @@
     },
     "relatedTypes": {}
   },
-  "NotificationPanel.Group": {
-    "displayName": "NotificationPanel.Group",
+  "NotificationPanelContent.Group": {
+    "displayName": "NotificationPanelContent.Group",
     "propsTypeName": null,
     "props": {
       "children": {
@@ -1186,8 +1817,8 @@
     },
     "relatedTypes": {}
   },
-  "NotificationPanel.Stack": {
-    "displayName": "NotificationPanel.Stack",
+  "NotificationPanelContent.Stack": {
+    "displayName": "NotificationPanelContent.Stack",
     "propsTypeName": null,
     "props": {
       "actions": {
@@ -1227,126 +1858,6 @@
     },
     "relatedTypes": {}
   },
-  "NotificationPanelBlank": {
-    "displayName": "NotificationPanelBlank",
-    "propsTypeName": "NotificationPanelBlankProps",
-    "description": "Заглушка вместо карточек в панели",
-    "props": {
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "Дополнительный класс"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подзаголовок"
-      },
-      "icon": {
-        "type": "IconPredefinedProps",
-        "required": false,
-        "description": "Иконка",
-        "typeRefs": [
-          "IconPredefinedProps"
-        ]
-      },
-      "title": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
-      }
-    },
-    "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "default",
-          "error",
-          "success",
-          "warning"
-        ],
-        "own": true
-      },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "shape": {
-            "type": "\"round\" | \"square\" | undefined",
-            "required": false,
-            "values": [
-              "round",
-              "square"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "5xl",
-              "l",
-              "m"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
-        "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs"
-        ],
-        "own": false
-      }
-    }
-  },
   "NotificationPanelGroup": {
     "displayName": "NotificationPanelGroup",
     "propsTypeName": "NotificationPanelGroupProps",
@@ -1373,568 +1884,6 @@
       }
     },
     "relatedTypes": {}
-  },
-  "NotificationPanelPopover": {
-    "displayName": "NotificationPanelPopover",
-    "propsTypeName": "NotificationPanelPopoverProps",
-    "description": "Адаптивная обёртка панели уведомлений. На десктопе открывает `NotificationPanel`\nв дровере, на мобилке — в bottom-sheet'е (выбор по `layoutType`, как у `Widget`/`Toolbar`).",
-    "props": {
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для элемента с контентом"
-      },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрывать дровер при перемещении по истории браузера"
-      },
-      "container": {
-        "type": "string | HTMLElement",
-        "required": false,
-        "description": "Контейнер в котором будет рендерится Drawer. По-умолчанию - body"
-      },
-      "content": {
-        "type": "ReactElement<NotificationPanelProps, typeof NotificationPanel>",
-        "required": true,
-        "description": "Контент панели (`NotificationPanel`), отображаемый внутри обёртки",
-        "typeRefs": [
-          "NotificationPanelProps"
-        ]
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ],
-        "defaultValue": "desktop",
-        "description": "Тип раскладки. `desktop` → Drawer (Figma `notificationDrawer`),\n`mobile` → BottomSheet (Figma `notificationBottomSheet`).",
-        "typeRefs": [
-          "LayoutType"
-        ]
-      },
-      "onClose": {
-        "type": "() => void",
-        "required": true,
-        "description": "Колбэк закрытия"
-      },
-      "open": {
-        "type": "boolean",
-        "required": true,
-        "description": "Управление состоянием показан/не показан."
-      },
-      "position": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "bottom",
-          "left",
-          "right",
-          "top"
-        ],
-        "defaultValue": "right",
-        "description": "Расположение",
-        "typeRefs": [
-          "Position"
-        ]
-      },
-      "rootClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для корневого элемента"
-      },
-      "showBlackout": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Отображение темной подложки"
-      },
-      "width": {
-        "type": "string | number",
-        "required": false,
-        "defaultValue": "s",
-        "description": "Ширина (только при position: \"left\" | \"right\")",
-        "typeRefs": [
-          "Width"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "ButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "as": {
-            "type": "T | undefined",
-            "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "innerRef": {
-            "type": "PolymorphicRef<T> | undefined",
-            "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
-            "typeRefs": [
-              "PolymorphicRef",
-              "T"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": false
-      },
-      "LayoutType": {
-        "kind": "union",
-        "values": [
-          "desktop",
-          "mobile"
-        ],
-        "own": false
-      },
-      "NotificationPanelProps": {
-        "kind": "interface",
-        "props": {
-          "chipToggle": {
-            "type": "{ label: string; checked: boolean; onChange(checked: boolean): void; } | undefined",
-            "required": false,
-            "description": "Переключатель для фильтрации"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "content": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент для отрисовки (e.g NotificationCard | NotificationPanel.Blank)"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "layoutType": {
-            "type": "LayoutType | undefined",
-            "required": false,
-            "values": [
-              "desktop",
-              "mobile"
-            ],
-            "typeRefs": [
-              "LayoutType"
-            ]
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "readAllButton": {
-            "type": "(Omit<ButtonProps, \"data-test-id\" | \"size\"> & { tooltip?: TooltipProps; }) | undefined",
-            "required": false,
-            "description": "Кнопка в \"шапке\" панели",
-            "typeRefs": [
-              "ButtonProps",
-              "TooltipProps"
-            ]
-          },
-          "scrollContainerRef": {
-            "type": "RefObject<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на контейнер, который скроллится"
-          },
-          "scrollEndRef": {
-            "type": "RefObject<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
-          },
-          "segments": {
-            "type": "Omit<SegmentControlProps, \"data-test-id\" | \"size\"> | undefined",
-            "required": false,
-            "description": "Сегменты для фильтрации",
-            "typeRefs": [
-              "SegmentControlProps"
-            ]
-          },
-          "settings": {
-            "type": "NotificationPanelSettingsProps | undefined",
-            "required": false,
-            "description": "Кнопка настроек и выпадающий список",
-            "typeRefs": [
-              "NotificationPanelSettingsProps"
-            ]
-          },
-          "skeletonsAmount": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Количество скелетонов карточек для отображения при загрузке"
-          },
-          "title": {
-            "type": "string",
-            "required": true,
-            "description": "Заголовок панели"
-          }
-        },
-        "own": true
-      },
-      "NotificationPanelSettingsProps": {
-        "kind": "interface",
-        "props": {
-          "actions": {
-            "type": "Action[] | undefined",
-            "required": false,
-            "description": "Дополнительные действия панели",
-            "typeRefs": [
-              "Action"
-            ]
-          },
-          "button": {
-            "type": "Omit<ButtonProps<ElementType>, \"data-test-id\" | \"view\" | \"label\" | \"size\"> | undefined",
-            "required": false,
-            "description": "Кнопка дополнительного действия панели",
-            "typeRefs": [
-              "ButtonProps"
-            ]
-          },
-          "size": {
-            "type": "\"s\" | \"m\" | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s"
-            ]
-          }
-        },
-        "own": true
-      },
-      "Position": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "left",
-          "right",
-          "top"
-        ],
-        "own": false
-      },
-      "SegmentControlProps": {
-        "kind": "interface",
-        "props": {
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс контейнера."
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "defaultValue": {
-            "type": "Value | undefined",
-            "required": false,
-            "description": "ID выбранного по умолчанию сегмента (uncontrolled).",
-            "typeRefs": [
-              "Value"
-            ]
-          },
-          "items": {
-            "type": "SegmentType<Value>[]",
-            "required": true,
-            "description": "Набор сегментов.",
-            "typeRefs": [
-              "Segment",
-              "SegmentType",
-              "Value"
-            ]
-          },
-          "name": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Имя поля (hidden input для формы)."
-          },
-          "onChange": {
-            "type": "((value: Value) => void) | undefined",
-            "required": false,
-            "description": "Колбек смены выбранного сегмента.",
-            "typeRefs": [
-              "Value"
-            ]
-          },
-          "outline": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Обводка."
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер компонента.",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "value": {
-            "type": "Value | undefined",
-            "required": false,
-            "description": "Value выбранного сегмента.",
-            "typeRefs": [
-              "Value"
-            ]
-          },
-          "width": {
-            "type": "Width | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "full"
-            ],
-            "description": "Управление шириной компонента.",
-            "typeRefs": [
-              "Width"
-            ]
-          }
-        },
-        "own": false
-      },
-      "TooltipProps": {
-        "kind": "interface",
-        "props": {
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
-            "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
-            "typeRefs": [
-              "ChildrenFunction"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение ограничения ширины тултипа"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
-      },
-      "Width": {
-        "kind": "union",
-        "values": [
-          "auto",
-          "full"
-        ],
-        "own": false
-      }
-    }
   },
   "NotificationPanelSettings": {
     "displayName": "NotificationPanelSettings",

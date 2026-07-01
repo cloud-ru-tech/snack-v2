@@ -1,10 +1,15 @@
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
+import { expect, test } from '#playwright-tooling/fixtures';
+import { waitForStableBbox } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, STORIES } from './helpers';
+import { buildStoryOptions, DRAWER_TRIGGER_TEST_ID, STORIES, TEST_IDS } from './helpers';
 
-test.describe('NotificationPanelPopover — visual regression', () => {
+test.describe('NotificationPanel — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
   test.beforeEach(({}, testInfo) => {
     test.skip(
@@ -13,9 +18,25 @@ test.describe('NotificationPanelPopover — visual regression', () => {
     );
   });
 
-  test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
-    await gotoStory(buildStoryOptions(undefined, STORIES.visualMatrix));
+  test('open (right, width=s)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
     await waitForFonts();
-    await assertVisualMatrixSnapshot(page);
+    await getByTestId(DRAWER_TRIGGER_TEST_ID).click();
+    await waitForStableBbox(page.getByTestId(TEST_IDS.panel.title));
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot('open.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
+  // Mobile: панель свапается с desktop-drawer на BottomSheet (адаптивный surface). Форсим раскладку
+  // тулбар-глобалом `layoutType='mobile'` + mobile viewport; снимок — весь viewport (full-overlay).
+  test('open mobile (bottom sheet surface)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, STORIES.playground, { layoutType: 'mobile' }));
+    await waitForFonts();
+    await getByTestId(DRAWER_TRIGGER_TEST_ID).click();
+    await waitForStableBbox(page.getByTestId(TEST_IDS.panel.title));
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
   });
 });

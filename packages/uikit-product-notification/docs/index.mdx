@@ -1,7 +1,7 @@
 ---
 title: Notification
 package: '@ds/uikit-product-notification'
-description: Пакет уведомлений — карточка NotificationCard, лента NotificationPanel со стеками и группами и адаптивная обёртка NotificationPanelPopover (drawer на desktop, bottom-sheet на mobile).
+description: Пакет уведомлений — карточка NotificationCard, лента NotificationPanelContent со стеками и группами и адаптивная обёртка NotificationPanel (drawer на desktop, bottom-sheet на mobile).
 order: 100
 ---
 
@@ -13,8 +13,8 @@ import { figmaNode } from '#docs/lib/figma'
 Пакет `@ds/uikit-product-notification` собирает ленту уведомлений из трёх уровней: одиночная карточка, контейнер-лента и адаптивная обёртка для открытия ленты в drawer или bottom-sheet.
 
 - [**NotificationCard**](/components/uikit-product-notification/notification-card) — одиночная карточка уведомления: тип (`appearance`), состояние `unread`, ссылка, дата, кнопки действий и меню.
-- [**NotificationPanel**](/components/uikit-product-notification/notification-panel) — контейнер ленты: заголовок, фильтры, кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Namespace-субкомпоненты `Group`, `Stack`, `Blank`.
-- [**NotificationPanelPopover**](/components/uikit-product-notification/notification-panel-popover) — адаптивная обёртка панели: на desktop открывает её в drawer, на mobile — в bottom-sheet (выбор по `layoutType`).
+- [**NotificationPanelContent**](/components/uikit-product-notification/notification-panel-content) — контейнер ленты: заголовок, фильтры, кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Namespace-субкомпоненты `Group`, `Stack`, `Blank`.
+- [**NotificationPanel**](/components/uikit-product-notification/notification-panel) — адаптивная обёртка панели: на desktop открывает её в drawer, на mobile — в bottom-sheet (выбор по `layoutType`).
 
 ## Установка
 
@@ -23,7 +23,7 @@ pnpm add @ds/uikit-product-notification
 ```
 
 ```ts
-import { NotificationCard, NotificationPanel, NotificationPanelPopover } from '@ds/uikit-product-notification'
+import { NotificationCard, NotificationPanelContent, NotificationPanel } from '@ds/uikit-product-notification'
 ```
 
 ## Figma

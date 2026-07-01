@@ -12,23 +12,20 @@ pnpm add @ds/uikit-product-info-row
 
 ```ts
 import {
-  AdaptiveInfoGroup,
-  AdaptiveInfoRow,
   InfoGroup,
   InfoRow,
   NO_DATA_PLACEHOLDER,
   useGetContent,
 } from '@ds/uikit-product-info-row'
-import { LAYOUT_TYPE } from '@ds/utils'
 import '@ds/uikit-product-info-row/style.css'
 ```
 
 ## Состав пакета
 
-- ****InfoRow**** — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок.
-- ****InfoGroup**** — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`).
-- **MobileInfoRow** / **MobileInfoGroup** — вертикальная строка и список (comfort-раскладка); на корне включается **density `comfort`** (`getThemeClassnames`); разделители и отступы от **`position`** (`first` / `inner` / `last`).
-- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **desktop** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **mobile** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'desktop'` \| `'mobile'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
+- ****InfoRow**** — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок. **Адаптивен**: на desktop горизонтальная плотная раскладка, на mobile — вертикальная comfort (density `comfort`, отступы и разделители по `position`: `first` / `inner` / `last`).
+- ****InfoGroup**** — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`). **Адаптивен** так же, как `InfoRow`.
+
+Раскладку оба берут из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет — форс через `withLayoutType` / вложенный `<AdaptiveProvider>`. Desktop/mobile-поверхности — internal. Вспомогательная **`getPosition({ index, length })`** возвращает `position` строки в списке.
 
 ## Когда какой использовать
 
@@ -62,21 +59,17 @@ export function InfoGroupBasic() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — |  |
-| `columns` | `"double"` \| `"single"` | `single` |  |
+| `columns` | `"double"` \| `"single"` | — |  |
 | `data` | `T` | — |  |
 | `data-test-id` | `string` | — |  |
-| `formatBoolean` | `((value: boolean) => string)` | — | Локализация булевых значений при выводе по `accessorKey` (вместо peer `@cloud-ru/uikit-product-locale`) |
-| `items` | `InfoGroupItem` \| `InfoRowPropsBase` \| `T` | — |  |
+| `formatBoolean` | `((value: boolean) => string)` | — | Локализация булевых значений при выводе по `accessorKey` |
+| `items` | `DesktopInfoRowPropsBase` \| `InfoGroupItem` \| `T` | — |  |
 | `loading` | `boolean` | — |  |
-| `width` | `"fixed"` \| `"full"` | `fixed` |  |
+| `width` | `"fixed"` \| `"full"` | — |  |
 
 #### Related types
 
-- `InfoGroupItem` = `PropsWithRender<T> | PropsWithAccessorKey<T>`
-
-- `InfoRowColumn` = `"1"` \| `"2"`
-
-**InfoRowPropsBase**
+**DesktopInfoRowPropsBase**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -92,7 +85,7 @@ export function InfoGroupBasic() {
 | `loading` | `boolean \| undefined` | — |  |
 | `maxWidth` | `boolean \| undefined` | — | Ось Figma `maxWidth` |
 | `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
-| `rowActionsSlot` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры). <br/> Если задано, рендерится вместо `rowActions`. |
+| `rowActionsSlot` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомная область действий у первой колонки; рендерится вместо `rowActions`. |
 | `rowClassName` | `string \| undefined` | — |  |
 | `secondaryContent` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вторая колонка значений (только при `column="2"`, ось Figma) |
 | `secondaryLabel` | `string \| undefined` | — | Вторая метка слева от второго значения (только при `column="2"`) |
@@ -103,6 +96,10 @@ export function InfoGroupBasic() {
 | `secondaryRowActionsSlot` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
 | `topDivider` | `boolean \| undefined` | — | Разделитель над строкой |
 | `width` | `"fixed"` \| `"full"` | — | Ширина строки относительно контейнера |
+
+- `InfoGroupItem` = `PropsWithRender<T> | PropsWithAccessorKey<T>`
+
+- `InfoRowColumn` = `"1"` \| `"2"`
 
 **RowActionsPair**
 
@@ -172,34 +169,37 @@ export function DataListExample() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `bottomDivider` | `boolean` | `true` | Разделитель под строкой |
+| `bottomDivider` | `boolean` | — | Разделитель под строкой |
 | `className` | `string` | — |  |
-| `column` | `"1"` \| `"2"` | `1` | Ось Figma `column`: одна или две колонки значений |
+| `column` | `"1"` \| `"2"` | — | Ось Figma `column`: одна или две колонки значений |
 | `content` | `ReactNode` | — | Первая колонка значений (ось Figma `column=1` или левая при `column=2`) |
 | `data-test-id` | `string` | — |  |
 | `label` | `string` | — | Текст метки |
 | `labelClassName` | `string` | — |  |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка у метки: строка или пропсы QuestionTooltip |
-| `labelTruncate` | `number` | `1` | Максимальное число строк метки (TruncateString) |
+| `labelTruncate` | `number` | — | Максимальное число строк метки (TruncateString) |
 | `labelWidth` | `"auto"` \| `"fixed"` | — | Ширина колонки метки |
-| `loading` | `boolean` | `false` |  |
-| `maxWidth` | `boolean` | `false` | Ось Figma `maxWidth` |
+| `loading` | `boolean` | — |  |
+| `maxWidth` | `boolean` | — | Ось Figma `maxWidth` |
+| `position` | `"first"` \| `"inner"` \| `"last"` | — | Только mobile: позиция строки в группе (`first`/`inner`/`last`) — задаёт скругление/разделители <br/> мобильной карточки. На desktop игнорируется (обычно проставляется `InfoGroup` автоматически). |
 | `rowActions` | `RowActionsPair` | — | До двух кнопок `@ds/button` (tonal neutral, size m) у первой колонки; при `column="2"` в макете — одна (`first`). Игнорируется, если задан `rowActionsSlot` |
-| `rowActionsSlot` | `ReactNode` | — | Кастомная область действий у первой колонки (слот «info block» / макетные плейсхолдеры). <br/> Если задано, рендерится вместо `rowActions`. |
+| `rowActionsSlot` | `ReactNode` | — | Кастомная область действий у первой колонки; рендерится вместо `rowActions`. |
 | `rowClassName` | `string` | — |  |
 | `secondaryContent` | `ReactNode` | — | Вторая колонка значений (только при `column="2"`, ось Figma) |
-| `secondaryLabel` | `string` | `` | Вторая метка слева от второго значения (только при `column="2"`) |
+| `secondaryLabel` | `string` | — | Вторая метка слева от второго значения (только при `column="2"`) |
 | `secondaryLabelClassName` | `string` | — | Класс блока второй метки при `column="2"` |
 | `secondaryLabelTooltip` | `QuestionTooltipProps` | — | Подсказка у второй метки |
 | `secondaryLabelTruncate` | `number` | — | Макс. строк второй метки при `column="2"` |
 | `secondaryRowActions` | `RowActionsPair` | — | Кнопки у второй колонки значений; в макете при `column="2"` — одна (`first`) |
 | `secondaryRowActionsSlot` | `ReactNode` | — | Кастомные действия у второй колонки; если задано, вместо `secondaryRowActions` |
-| `topDivider` | `boolean` | `true` | Разделитель над строкой |
-| `width` | `"fixed"` \| `"full"` | `fixed` | Ширина строки относительно контейнера |
+| `topDivider` | `boolean` | — | Разделитель над строкой |
+| `width` | `"fixed"` \| `"full"` | — | Ширина строки относительно контейнера |
 
 #### Related types
 
 - `InfoRowColumn` = `"1"` \| `"2"`
+
+- `Position` = `"first"` \| `"inner"` \| `"last"`
 
 **RowActionButton**
 

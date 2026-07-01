@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -19,25 +20,26 @@ type Story = StoryObj<typeof ButtonDropdown>;
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <DemoPage>
-      <DemoPanel>
-        <DemoActions align='center'>
-          <div className={styles.panel}>
-            <ButtonDropdown
-              label='Period'
-              size='s'
-              layoutType='desktop'
-              closeDroplistOnItemClick
-              data-test-id={TEST_IDS.buttonDropdown}
-              items={[
-                { id: 'y', content: { option: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
-                { id: 'm', content: { option: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
-              ]}
-            />
-          </div>
-        </DemoActions>
-      </DemoPanel>
-    </DemoPage>
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+      <DemoPage>
+        <DemoPanel>
+          <DemoActions align='center'>
+            <div className={styles.panel}>
+              <ButtonDropdown
+                label='Period'
+                size='s'
+                closeDroplistOnItemClick
+                data-test-id={TEST_IDS.buttonDropdown}
+                items={[
+                  { id: 'y', content: { option: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
+                  { id: 'm', content: { option: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
+                ]}
+              />
+            </div>
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
+    </AdaptiveProvider>
   ),
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
@@ -58,36 +60,38 @@ export const InteractionTest: Story = {
 export const MobileInteractionTest: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <DemoPage>
-      <DemoPanel>
-        <DemoActions align='center'>
-          <div className={styles.panel}>
-            <ButtonDropdown
-              label='Period'
-              size='s'
-              layoutType='mobile'
-              closeDroplistOnItemClick
-              data-test-id={TEST_IDS.buttonDropdown}
-              items={[
-                { id: 'y', content: { option: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
-                { id: 'm', content: { option: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
-              ]}
-            />
-          </div>
-        </DemoActions>
-      </DemoPanel>
-    </DemoPage>
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <DemoPage>
+        <DemoPanel>
+          <DemoActions align='center'>
+            <div className={styles.panel}>
+              <ButtonDropdown
+                label='Period'
+                size='s'
+                closeDroplistOnItemClick
+                data-test-id={TEST_IDS.buttonDropdown}
+                items={[
+                  { id: 'y', content: { option: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
+                  { id: 'm', content: { option: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
+                ]}
+              />
+            </div>
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
+    </AdaptiveProvider>
   ),
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const body = within(document.body);
 
-    await step('mobile: opens modal on trigger click', async () => {
+    await step('mobile: opens bottom sheet on trigger click', async () => {
       await userEvent.click(canvas.getByTestId(TEST_IDS.buttonDropdown));
-      await waitFor(() => expect(body.getByTestId(TEST_IDS.droplist)).toBeVisible());
+      // На mobile список рендерится в BottomSheet; видимость айтема = sheet открыт.
+      await waitFor(() => expect(body.getByTestId(TEST_IDS.itemMonth)).toBeVisible());
     });
 
-    await step('mobile: selects item and closes modal', async () => {
+    await step('mobile: selects item and closes bottom sheet', async () => {
       await userEvent.click(body.getByTestId(TEST_IDS.itemMonth));
       await waitFor(() => expect(body.queryByTestId(TEST_IDS.itemMonth)).toBeNull());
     });

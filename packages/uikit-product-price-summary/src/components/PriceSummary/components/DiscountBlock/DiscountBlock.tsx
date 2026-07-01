@@ -1,5 +1,4 @@
 import { SIZE, Typography, VARIANT } from '@ds/typography';
-import { WithLayoutType } from '@ds/utils';
 import { Fragment } from 'react';
 
 import { formatCurrency } from '../../../../helpers';
@@ -8,11 +7,11 @@ import { DiscountDetails } from '../../../../types';
 import { DiscountPercentCell } from '../DiscountPercentCell';
 import styles from './styles.module.scss';
 
-export type DiscountBlockProps = WithLayoutType<{
+export type DiscountBlockProps = {
   value: DiscountDetails;
-}>;
+};
 
-export function DiscountBlock({ value, layoutType }: DiscountBlockProps) {
+export function DiscountBlock({ value }: DiscountBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   return (
@@ -30,7 +29,7 @@ export function DiscountBlock({ value, layoutType }: DiscountBlockProps) {
       <div className={styles.discountGrid}>
         {value.discounts.map((discount, index) => (
           <Fragment key={index}>
-            <DiscountPercentCell discount={discount} layoutType={layoutType} />
+            <DiscountPercentCell discount={discount} />
 
             <Typography variant={VARIANT.label} size={SIZE.m} as='div' className={styles.discountCell}>
               {formatCurrency(-Math.abs(discount.value))}

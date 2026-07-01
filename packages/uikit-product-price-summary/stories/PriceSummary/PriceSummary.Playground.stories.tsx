@@ -17,7 +17,6 @@ const meta: Meta<typeof PriceSummary> = {
     'data-test-id': TEST_IDS.priceSummary,
   },
   argTypes: {
-    layoutType: { control: 'radio', options: ['desktop', 'mobile'] },
     loading: { control: 'boolean' },
     dataError: { control: 'boolean' },
     invoiceExpandedDefault: { control: 'boolean' },

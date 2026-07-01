@@ -1,18 +1,17 @@
+import { QuestionTooltip } from '@ds/tooltip';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
-import { WithLayoutType } from '@ds/utils';
 
 import { formatNumber } from '@cloud-ru/ft-formatters';
 
-import { AdaptiveQuestionTooltip } from '../../../../components/AdaptiveQuestionTooltip';
 import { priceSummaryLocale } from '../../../../locale';
 import { DiscountItem } from '../../../../types';
 import styles from './styles.module.scss';
 
-export type DiscountPercentCellProps = WithLayoutType<{
+export type DiscountPercentCellProps = {
   discount: DiscountItem;
-}>;
+};
 
-export function DiscountPercentCell({ discount, layoutType }: DiscountPercentCellProps) {
+export function DiscountPercentCell({ discount }: DiscountPercentCellProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   return (
@@ -23,13 +22,7 @@ export function DiscountPercentCell({ discount, layoutType }: DiscountPercentCel
             {t('discount')} {formatNumber(-Math.abs(discount.percent))}%
           </Typography>
 
-          {discount.tooltip && (
-            <AdaptiveQuestionTooltip
-              layoutType={layoutType}
-              tip={discount.tooltip}
-              trigger={layoutType === 'mobile' ? 'click' : 'hover'}
-            />
-          )}
+          {discount.tooltip && <QuestionTooltip tip={discount.tooltip} />}
         </>
       )}
     </div>

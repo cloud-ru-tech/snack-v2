@@ -45,7 +45,7 @@ import widgetDoc from './props.json'
 - ❌ Оставлять `state='error'` без обработчика повтора — кнопка в `InfoBlock` не сможет восстановить контент.
 
 - ✅ На desktop с несколькими действиями включайте `wide`, чтобы primary и kebab жили в шапке.
-- ❌ Ожидать wide-layout на `layoutType='mobile'` — флаг принудительно отключается.
+- ❌ Ожидать wide-раскладку на mobile — флаг `wide` принудительно отключается.
 
 - ✅ Оборачивайте демо и страницу с kebab/droplist в `PortalContextProvider`, если порталы рендерятся вне корня приложения.
 - ❌ Полагаться на глобальный portal-context из layout docs-сайта — каждый `client:visible`-островок изолирован.
@@ -66,12 +66,7 @@ import widgetDoc from './props.json'
 ### Wide (default `false`)
 
 - `false` — legacy layout: overflow-действия в kebab шапки, primary-кнопки на всю ширину под контентом (кроме `error`).
-- `true` — primary и kebab в одной строке шапки рядом с `SegmentControl` / `actionsChildren`. На `layoutType='mobile'` игнорируется.
-
-### LayoutType (default `desktop`)
-
-- `desktop` — учитывает `wide` и динамическое схлопывание действий в kebab по ширине контейнера.
-- `mobile` — принудительно узкий режим: `wide` выключен, footer-кнопки для primary.
+- `true` — primary и kebab в одной строке шапки рядом с `SegmentControl` / `actionsChildren`. На mobile-раскладке игнорируется.
 
 ### Action variant
 
@@ -119,14 +114,6 @@ import { Widget, BUTTON_TYPE, WIDGET_STATE } from '@ds/uikit-product-widget'
   <WithActions client:visible />
 </Example>
 
-<Example
-  title='Mobile layout'
-  description='wide игнорируется, primary уезжает в footer'
-  code={MobileLayoutSrc}
->
-  <MobileLayout client:visible />
-</Example>
-
 <Example title='Loading' code={LoadingStateSrc}>
   <LoadingState client:visible />
 </Example>
@@ -142,6 +129,53 @@ import { Widget, BUTTON_TYPE, WIDGET_STATE } from '@ds/uikit-product-widget'
 ## Props
 
 <PropsTable data={widgetDoc.Widget} />
+
+## Адаптивность
+
+`Widget` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке карточка перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — учитывает `wide` и динамическое схлопывание действий в kebab по ширине контейнера.
+- **mobile** — узкий режим: `wide` принудительно выключен, primary-кнопки уезжают в footer.
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+<Example
+  title='Mobile layout'
+  description='wide игнорируется, primary уезжает в footer'
+  code={MobileLayoutSrc}
+>
+  <MobileLayout client:visible />
+</Example>
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Widget header={header} actions={actions}>{content}</Widget>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Widget } from '@ds/uikit-product-widget'
+
+  const MobileWidget = withLayoutType(Widget, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Таблица синхронизирована с JSDoc-пометками у `WidgetProps`.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `wide` | используется | игнорируется (принудительно выключен) |
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
 
 ## Storybook
 

@@ -7,7 +7,6 @@
 }
 
 .matrix {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: base.$sn-primitive-dimension-24;
 }

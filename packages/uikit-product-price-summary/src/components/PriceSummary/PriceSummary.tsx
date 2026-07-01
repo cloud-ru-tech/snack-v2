@@ -1,6 +1,6 @@
 import { Link, LinkProps } from '@ds/link';
 import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
-import { extractSupportProps, WithLayoutType, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
 import { priceSummaryLocale } from '../../locale';
@@ -12,26 +12,26 @@ import { InvoiceBlock } from './components/InvoiceBlock';
 import { TotalValueBlock, TotalValueBlockProps } from './components/TotalValueBlock';
 import styles from './styles.module.scss';
 
-export type PriceSummaryProps = WithLayoutType<
-  WithSupportProps<
-    TotalValueBlockProps &
-      HeaderBlockProps &
-      ContentBlockProps & {
-        /** Блок базовой цены и скидок. */
-        discount?: DiscountDetails;
-        /** Секции детализации заказа в аккордеоне. */
-        invoice?: InvoiceDetails[];
-        /** Начальное состояние раскрытия аккордеона invoice. */
-        invoiceExpandedDefault?: boolean;
-        /** Ссылка «Подробнее о расчёте». */
-        docsLink?: {
-          href?: LinkProps['href'];
-          text?: LinkProps['text'];
-        };
-        /** Дополнительный класс корневого контейнера. */
-        className?: string;
-      }
-  >
+export type PriceSummaryProps = WithSupportProps<
+  // Раскладку (desktop / mobile) внутренние блоки и адаптивные компоненты @ds/* читают из контекста
+  // `@ds/adaptive` сами — `layoutType` в публичном API не нужен.
+  TotalValueBlockProps &
+    HeaderBlockProps &
+    ContentBlockProps & {
+      /** Блок базовой цены и скидок. */
+      discount?: DiscountDetails;
+      /** Секции детализации заказа в аккордеоне. */
+      invoice?: InvoiceDetails[];
+      /** Начальное состояние раскрытия аккордеона invoice. */
+      invoiceExpandedDefault?: boolean;
+      /** Ссылка «Подробнее о расчёте». */
+      docsLink?: {
+        href?: LinkProps['href'];
+        text?: LinkProps['text'];
+      };
+      /** Дополнительный класс корневого контейнера. */
+      className?: string;
+    }
 >;
 
 export function PriceSummary({
@@ -50,7 +50,6 @@ export function PriceSummary({
   invoiceExpandedDefault = true,
   docsLink,
   className,
-  layoutType,
   hintAppearance,
   showHintTooltip = false,
   hintTooltipText,
@@ -77,11 +76,10 @@ export function PriceSummary({
           onPeriodChanged={onPeriodChanged}
           periodOptions={periodOptions}
           promoBadge={promoBadge}
-          layoutType={layoutType}
         />
 
         <ContentBlock loading={loading} dataError={dataError} onRetry={onRetry}>
-          {discount && <DiscountBlock value={discount} layoutType={layoutType} />}
+          {discount && <DiscountBlock value={discount} />}
 
           <TotalValueBlock
             value={value}
@@ -96,7 +94,7 @@ export function PriceSummary({
           />
 
           {invoice && invoice.length > 0 && (
-            <InvoiceBlock invoice={invoice} invoiceExpandedDefault={invoiceExpandedDefault} layoutType={layoutType} />
+            <InvoiceBlock invoice={invoice} invoiceExpandedDefault={invoiceExpandedDefault} />
           )}
 
           {docsLink?.href && <Link text={docsLink.text || t('docsLink')} href={docsLink.href} target='_blank' />}

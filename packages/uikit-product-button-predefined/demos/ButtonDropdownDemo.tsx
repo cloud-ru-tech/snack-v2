@@ -18,14 +18,12 @@ export function ButtonDropdownDemo() {
         label: 'Period',
         size: 's',
         appearance: 'neutral',
-        layoutType: 'desktop',
         closeDroplistOnItemClick: true,
         items,
       }}
       controls={{
         label: { type: 'text' },
         size: { type: 'select', options: ['xs', 's', 'm', 'l'] },
-        layoutType: { type: 'select', options: ['desktop', 'mobile'] },
         closeDroplistOnItemClick: { type: 'boolean' },
       }}
       excludeProps={['items', 'className', 'open', 'onOpenChange']}

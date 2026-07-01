@@ -23,7 +23,7 @@
 - ❌ Оставлять `state='error'` без обработчика повтора — кнопка в `InfoBlock` не сможет восстановить контент.
 
 - ✅ На desktop с несколькими действиями включайте `wide`, чтобы primary и kebab жили в шапке.
-- ❌ Ожидать wide-layout на `layoutType='mobile'` — флаг принудительно отключается.
+- ❌ Ожидать wide-раскладку на mobile — флаг `wide` принудительно отключается.
 
 - ✅ Оборачивайте демо и страницу с kebab/droplist в `PortalContextProvider`, если порталы рендерятся вне корня приложения.
 - ❌ Полагаться на глобальный portal-context из layout docs-сайта — каждый `client:visible`-островок изолирован.
@@ -44,12 +44,7 @@
 ### Wide (default `false`)
 
 - `false` — legacy layout: overflow-действия в kebab шапки, primary-кнопки на всю ширину под контентом (кроме `error`).
-- `true` — primary и kebab в одной строке шапки рядом с `SegmentControl` / `actionsChildren`. На `layoutType='mobile'` игнорируется.
-
-### LayoutType (default `desktop`)
-
-- `desktop` — учитывает `wide` и динамическое схлопывание действий в kebab по ширине контейнера.
-- `mobile` — принудительно узкий режим: `wide` выключен, footer-кнопки для primary.
+- `true` — primary и kebab в одной строке шапки рядом с `SegmentControl` / `actionsChildren`. На mobile-раскладке игнорируется.
 
 ### Action variant
 
@@ -159,46 +154,6 @@ export function WithActions() {
 }
 ```
 
-### Mobile layout
-
-wide игнорируется, primary уезжает в footer
-
-```tsx
-import { BUTTON_TYPE, Widget } from '@ds/uikit-product-widget';
-import { useState } from 'react';
-
-export function MobileLayout() {
-  const [lastAction, setLastAction] = useState<string | null>(null);
-
-  return (
-    <div style={{ maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Widget
-        layoutType='mobile'
-        wide
-        header={{ title: 'Object storage', href: '#' }}
-        actions={[
-          { label: 'Upload', onClick: () => setLastAction('Upload') },
-          {
-            variant: BUTTON_TYPE.Kebab,
-            list: {
-              items: [
-                {
-                  content: { option: 'Delete bucket' },
-                  onClick: () => setLastAction('Delete bucket'),
-                },
-              ],
-            },
-          },
-        ]}
-      >
-        On mobile, wide is ignored: primary actions move to the footer, overflow goes to kebab.
-      </Widget>
-      {lastAction ? <span>Last action: {lastAction}</span> : null}
-    </div>
-  );
-}
-```
-
 ### Loading
 
 ```tsx
@@ -259,11 +214,10 @@ export function ErrorState() {
 | `data-test-id` | `string` | — |  |
 | `errorState` | `WidgetErrorStateProps` | — | Настройки error-состояния. |
 | `header` | `WidgetHeaderProps` | — | Пропсы кликабельного заголовка. |
-| `layoutType` | `"desktop"` \| `"mobile"` | — |  |
 | `loadingState` | `WidgetLoadingStateProps` | — | Настройки loading-состояния. |
 | `segmentControl` | `SegmentControlProps` | — | Пропсы SegmentControl в шапке. |
 | `state` | `"default"` \| `"error"` \| `"loading"` | — | Состояние виджета. |
-| `wide` | `boolean` | — | Desktop wide-layout. На mobile принудительно выключается. |
+| `wide` | `boolean` | — | Только desktop: wide-раскладка виджета. На mobile принудительно выключается (`wide && !isMobile`). |
 
 #### Related types
 
@@ -322,8 +276,6 @@ export function ErrorState() {
 | `title` | `string \| undefined` | — | Заголовок |
 | `titleTag` | `ElementType \| undefined` | — | Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) |
 
-- `WidgetLayoutType` = `"desktop"` \| `"mobile"`
-
 **WidgetLoadingStateProps**
 
 | Prop | Type | Default | Description |
@@ -338,3 +290,83 @@ export function ErrorState() {
 - **`TitleClickable`** — заголовок-ссылка в шапке виджета.
 - **`SegmentControl`** — переключатель вкладок в шапке.
 - **`InfoBlock`** — блок ошибки внутри `state='error'`.
+## Адаптивность
+
+`Widget` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке карточка перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — учитывает `wide` и динамическое схлопывание действий в kebab по ширине контейнера.
+- **mobile** — узкий режим: `wide` принудительно выключен, primary-кнопки уезжают в footer.
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Mobile layout
+
+wide игнорируется, primary уезжает в footer
+
+```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { BUTTON_TYPE, Widget } from '@ds/uikit-product-widget';
+import { useState } from 'react';
+
+export function MobileLayout() {
+  const [lastAction, setLastAction] = useState<string | null>(null);
+
+  return (
+    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+      <div style={{ maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Widget
+          wide
+          header={{ title: 'Object storage', href: '#' }}
+          actions={[
+            { label: 'Upload', onClick: () => setLastAction('Upload') },
+            {
+              variant: BUTTON_TYPE.Kebab,
+              list: {
+                items: [
+                  {
+                    content: { option: 'Delete bucket' },
+                    onClick: () => setLastAction('Delete bucket'),
+                  },
+                ],
+              },
+            },
+          ]}
+        >
+          On mobile, wide is ignored: primary actions move to the footer, overflow goes to kebab.
+        </Widget>
+        {lastAction ? <span>Last action: {lastAction}</span> : null}
+      </div>
+    </AdaptiveProvider>
+  );
+}
+```
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <Widget header={header} actions={actions}>{content}</Widget>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { Widget } from '@ds/uikit-product-widget'
+
+  const MobileWidget = withLayoutType(Widget, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Таблица синхронизирована с JSDoc-пометками у `WidgetProps`.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `wide` | используется | игнорируется (принудительно выключен) |
+
+Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).

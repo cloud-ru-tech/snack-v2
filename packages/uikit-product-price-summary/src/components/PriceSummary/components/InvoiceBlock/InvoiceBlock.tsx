@@ -1,5 +1,4 @@
 import { Accordion } from '@ds/accordion';
-import { WithLayoutType } from '@ds/utils';
 import { useId } from 'react';
 
 import { TEST_IDS } from '../../../../constants';
@@ -8,12 +7,12 @@ import { InvoiceDetails } from '../../../../types';
 import { InvoiceDetailsBlock } from '../InvoiceDetailsBlock';
 import styles from './styles.module.scss';
 
-export type InvoiceBlockProps = WithLayoutType<{
+export type InvoiceBlockProps = {
   invoice: InvoiceDetails[];
   invoiceExpandedDefault?: boolean;
-}>;
+};
 
-export function InvoiceBlock({ invoice, invoiceExpandedDefault, layoutType }: InvoiceBlockProps) {
+export function InvoiceBlock({ invoice, invoiceExpandedDefault }: InvoiceBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   const invoiceBlockId = useId();
@@ -28,7 +27,7 @@ export function InvoiceBlock({ invoice, invoiceExpandedDefault, layoutType }: In
         >
           <div className={styles.accordionContent} data-test-id={TEST_IDS.orderDetailsContent}>
             {invoice.map((invoice, index) => (
-              <InvoiceDetailsBlock key={index} invoice={invoice} layoutType={layoutType} />
+              <InvoiceDetailsBlock key={index} invoice={invoice} />
             ))}
           </div>
         </Accordion.CollapseBlockTertiary>

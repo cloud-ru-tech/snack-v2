@@ -1,4 +1,4 @@
-/** Позиция строки в списке (мобильный `MobileInfoRow`): влияет на padding и разделители. */
+/** Позиция строки в mobile-раскладке `InfoRow`: влияет на padding и разделители. */
 export const POSITION = {
   Inner: 'inner',
   First: 'first',
@@ -8,6 +8,4 @@ export const POSITION = {
 export const TEST_IDS = {
   infoGroup: 'info-group',
   infoRow: 'info-row',
-  mobileInfoRow: 'mobile-info-row',
-  adaptiveInfoRow: 'adaptive-info-row',
 } as const;

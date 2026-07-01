@@ -11,10 +11,10 @@ order: 0
 
 ## Состав пакета
 
-- [**InfoRow**](/components/uikit-product-info-row/InfoRow) — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок.
-- [**InfoGroup**](/components/uikit-product-info-row/InfoGroup) — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`).
-- **MobileInfoRow** / **MobileInfoGroup** — вертикальная строка и список (comfort-раскладка); на корне включается **density `comfort`** (`getThemeClassnames`); разделители и отступы от **`position`** (`first` / `inner` / `last`).
-- **AdaptiveInfoRow** / **AdaptiveInfoGroup** — переключение **desktop** (горизонтальная плотная, `InfoRow` / `InfoGroup`) и **mobile** (вертикальная, `MobileInfoRow` / `MobileInfoGroup`) по **`layoutType`**: `'desktop'` \| `'mobile'`. Вспомогательная **`getPosition({ index, length })`** для `position` в списке.
+- [**InfoRow**](/components/uikit-product-info-row/InfoRow) — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок. **Адаптивен**: на desktop горизонтальная плотная раскладка, на mobile — вертикальная comfort (density `comfort`, отступы и разделители по `position`: `first` / `inner` / `last`).
+- [**InfoGroup**](/components/uikit-product-info-row/InfoGroup) — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`). **Адаптивен** так же, как `InfoRow`.
+
+Раскладку оба берут из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет — форс через `withLayoutType` / вложенный `<AdaptiveProvider>`. Desktop/mobile-поверхности — internal. Вспомогательная **`getPosition({ index, length })`** возвращает `position` строки в списке.
 
 ## Установка
 
@@ -24,14 +24,11 @@ pnpm add @ds/uikit-product-info-row
 
 ```ts
 import {
-  AdaptiveInfoGroup,
-  AdaptiveInfoRow,
   InfoGroup,
   InfoRow,
   NO_DATA_PLACEHOLDER,
   useGetContent,
 } from '@ds/uikit-product-info-row'
-import { LAYOUT_TYPE } from '@ds/utils'
 import '@ds/uikit-product-info-row/style.css'
 ```
 
@@ -42,5 +39,4 @@ import '@ds/uikit-product-info-row/style.css'
 | Одна строка полей или две пары «метка — значение» в одной строке | `InfoRow` |
 | Табличный список полей по одному объекту данных | `InfoGroup` |
 | Несколько однотипных строк без `InfoGroup` | `InfoRow` + `useGetContent` + `InfoRowFieldItem[]` |
-| Узкий экран / mobile-раскладка той же матрицы Figma | `MobileInfoRow` или `AdaptiveInfoRow` с `layoutType={LAYOUT_TYPE.Mobile}` |
-| Список полей с переключением desktop / mobile | `AdaptiveInfoGroup` |
+| Узкий экран / mobile-раскладка той же матрицы Figma | `InfoRow` / `InfoGroup` (раскладка из `AdaptiveProvider`) |

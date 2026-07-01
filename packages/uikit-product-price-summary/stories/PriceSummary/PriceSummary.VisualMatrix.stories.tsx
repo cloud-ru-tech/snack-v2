@@ -1,3 +1,4 @@
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
 import { PriceSummary } from '@ds/uikit-product-price-summary';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -35,14 +36,18 @@ export const VisualMatrix: Story = {
             variantLabel: 'false',
             cells: [
               <div key='d' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory {...baseProps} layoutType='desktop' />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory {...baseProps} />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
               <div key='m' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory {...baseProps} layoutType='mobile' />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory {...baseProps} />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
             ],
           },
@@ -50,14 +55,18 @@ export const VisualMatrix: Story = {
             variantLabel: 'true',
             cells: [
               <div key='d' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory {...baseProps} loading layoutType='desktop' />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory {...baseProps} loading />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
               <div key='m' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory {...baseProps} loading layoutType='mobile' />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory {...baseProps} loading />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
             ],
           },
@@ -73,9 +82,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'with discount + invoice',
             cells: [
               <div key='full' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory {...baseProps} discount={DEFAULT_DISCOUNT} invoice={DEFAULT_INVOICE} />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory {...baseProps} discount={DEFAULT_DISCOUNT} invoice={DEFAULT_INVOICE} />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
             ],
           },
@@ -83,9 +94,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'dataError',
             cells: [
               <div key='err' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory {...baseProps} dataError onRetry={() => undefined} />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory {...baseProps} dataError onRetry={() => undefined} />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
             ],
           },
@@ -93,19 +106,21 @@ export const VisualMatrix: Story = {
             variantLabel: 'hint + valueDelta',
             cells: [
               <div key='hint' className={styles.column}>
-                <PriceSummaryFigmaSurface>
-                  <PriceSummaryStory
-                    {...baseProps}
-                    totalSumType='from'
-                    hint='Promo applied'
-                    hintAppearance='warning'
-                    showHintTooltip
-                    hintTooltipText='Limited offer'
-                    showHintLink
-                    hintLink={{ href: 'https://example.com', text: 'Details' }}
-                    valueDelta={{ type: 'increased', value: 500 }}
-                  />
-                </PriceSummaryFigmaSurface>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                  <PriceSummaryFigmaSurface>
+                    <PriceSummaryStory
+                      {...baseProps}
+                      totalSumType='from'
+                      hint='Promo applied'
+                      hintAppearance='warning'
+                      showHintTooltip
+                      hintTooltipText='Limited offer'
+                      showHintLink
+                      hintLink={{ href: 'https://example.com', text: 'Details' }}
+                      valueDelta={{ type: 'increased', value: 500 }}
+                    />
+                  </PriceSummaryFigmaSurface>
+                </AdaptiveProvider>
               </div>,
             ],
           },

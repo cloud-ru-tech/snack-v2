@@ -1,5 +1,4 @@
 import { SIZE, Typography, VARIANT } from '@ds/typography';
-import { WithLayoutType } from '@ds/utils';
 
 import { formatCurrency, formatQuantity } from '../../../../helpers';
 import { priceSummaryLocale } from '../../../../locale';
@@ -9,11 +8,11 @@ import { Divider } from '../Divider';
 import { InvoiceItemBlock } from '../InvoiceItemBlock';
 import styles from './styles.module.scss';
 
-export type InvoiceDetailsBlockProps = WithLayoutType<{
+export type InvoiceDetailsBlockProps = {
   invoice: InvoiceDetails;
-}>;
+};
 
-export function InvoiceDetailsBlock({ invoice, layoutType }: InvoiceDetailsBlockProps) {
+export function InvoiceDetailsBlock({ invoice }: InvoiceDetailsBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   const primaryItems = invoice.items.filter(item => item.primary);
@@ -45,13 +44,7 @@ export function InvoiceDetailsBlock({ invoice, layoutType }: InvoiceDetailsBlock
       )}
 
       {invoice.items.map((item, index) => (
-        <InvoiceItemBlock
-          key={index}
-          item={item}
-          index={index}
-          layoutType={layoutType}
-          showCoveredByGrantLabel={showItemLabels}
-        />
+        <InvoiceItemBlock key={index} item={item} index={index} showCoveredByGrantLabel={showItemLabels} />
       ))}
 
       {invoice.price !== undefined && (

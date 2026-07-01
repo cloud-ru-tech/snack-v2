@@ -1,8 +1,10 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { TEST_IDS } from '../../src/constants';
+import { TEST_IDS } from '../../stories/testIds';
 
 export { TEST_IDS };
+
+export const DRAWER_TRIGGER_TEST_ID = TEST_IDS.drawer.triggerOpen;
 
 const CATEGORY = 'uikit-product';
 const GROUP = 'notification';
@@ -18,12 +20,8 @@ export const STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
-  return {
-    category: CATEGORY,
-    group: ref.group,
-    name: ref.name,
-    story: ref.story,
-    props: { 'data-test-id': TEST_IDS.panel.root, ...props },
-  };
+  return { category: CATEGORY, group: ref.group, name: ref.name, story: ref.story, props, globals };
 }

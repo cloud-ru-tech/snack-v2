@@ -13,10 +13,19 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/icons": "workspace:^",

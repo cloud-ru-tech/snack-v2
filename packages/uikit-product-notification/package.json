@@ -13,10 +13,16 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
-    "@ds/bottom-sheet": "workspace:^",
+    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/chips": "workspace:^",
     "@ds/drawer": "workspace:^",
@@ -39,5 +45,7 @@
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

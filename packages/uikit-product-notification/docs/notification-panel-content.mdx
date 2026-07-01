@@ -1,0 +1,120 @@
+---
+title: NotificationPanelContent
+package: '@ds/uikit-product-notification'
+description: Контейнер ленты уведомлений с заголовком, фильтрами, кнопкой «прочитать все», слотом-списком карточек и состояниями loading/blank. Namespace-субкомпоненты Stack/Group/Blank — композиции для слота content.
+order: 120
+---
+
+import { PanelBasic } from '../demos/examples/PanelBasic'
+import PanelBasicSrc from '../demos/examples/PanelBasic.tsx?raw'
+import { PanelLoading } from '../demos/examples/PanelLoading'
+import PanelLoadingSrc from '../demos/examples/PanelLoading.tsx?raw'
+import { PanelError } from '../demos/examples/PanelError'
+import PanelErrorSrc from '../demos/examples/PanelError.tsx?raw'
+import { PanelFull } from '../demos/examples/PanelFull'
+import PanelFullSrc from '../demos/examples/PanelFull.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import notificationDoc from './props.json'
+
+# NotificationPanelContent
+
+Контейнер ленты уведомлений. Содержит заголовок, опциональные фильтры (segmented control, chip toggle), кнопку «прочитать все», слот-список карточек и состояния `loading` / `blank`.
+
+Namespace `NotificationPanelContent.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
+
+## Когда использовать
+
+- Лента уведомлений в центре экрана или на отдельной странице.
+- Контент внутри [`NotificationPanel`](/components/uikit-product-notification/notification-panel).
+
+## Анатомия
+
+### Panel state
+
+Состояния панели (соответствуют Figma variant `content`):
+
+- `content` — стандартный список карточек через слот `content`.
+- `loading` — `loading={true}` показывает скелетоны (`skeletonsAmount`, default `2`).
+- `blank` — `content={<NotificationPanelContent.Blank />}` для пустого состояния и состояния ошибки.
+
+### Субкомпоненты слота `content`
+
+- `NotificationPanelContent.Group` — группа карточек с заголовком.
+- `NotificationPanelContent.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
+- `NotificationPanelContent.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-notification
+```
+
+```ts
+import { NotificationPanelContent } from '@ds/uikit-product-notification'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовая лента'
+  description='Список карточек через слот content, readAllButton помечает все прочитанными, onVisible — каждую при прокрутке.'
+  code={PanelBasicSrc}
+>
+  <PanelBasic client:visible />
+</Example>
+
+<Example
+  title='Загрузка'
+  description='loading + skeletonsAmount={4} вместо слота content; фильтры и readAllButton остаются на месте.'
+  code={PanelLoadingSrc}
+>
+  <PanelLoading client:visible />
+</Example>
+
+<Example
+  title='Ошибка загрузки'
+  description='Состояние ошибки через content={<NotificationPanelContent.Blank />} с иконкой и текстом — сервер недоступен.'
+  code={PanelErrorSrc}
+>
+  <PanelError client:visible />
+</Example>
+
+<Example
+  title='Полный сценарий продовой ленты'
+  description='Segments + chipToggle + settings + readAll, Group для критичных, Stack для повторяющихся алертов квоты по нескольким хостам.'
+  code={PanelFullSrc}
+>
+  <PanelFull client:visible />
+</Example>
+
+## Props
+
+### NotificationPanelContent
+
+<PropsTable data={notificationDoc.NotificationPanelContent} />
+
+### NotificationPanelContent.Stack
+
+<PropsTable data={notificationDoc.NotificationCardStack} />
+
+### NotificationPanelContent.Group
+
+<PropsTable data={notificationDoc.NotificationPanelGroup} />
+
+### NotificationPanelContent.Blank
+
+<PropsTable data={notificationDoc.NotificationPanelBlank} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-notification-notificationpanelcontent--playground' height={520} />
+
+<StorybookEmbed storyId='uikit-product-notification-notificationcardstack--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-notification', 'notification-panel-content')} />

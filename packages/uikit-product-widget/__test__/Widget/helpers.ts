@@ -29,6 +29,8 @@ export const WIDGET_KEY_COMBOS = [
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = WIDGET_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     category: WIDGET_CATEGORY,
@@ -36,5 +38,6 @@ export function buildStoryOptions(
     group: ref.group,
     story: ref.story,
     props: { 'data-test-id': WIDGET_TEST_ID, ...props },
+    globals,
   };
 }
