@@ -247,7 +247,7 @@ export const FIGMA_NODES = {
   'uikit-product-notification': {
     _: { ...PRODUCT, nodeId: '2924:49' }, // canvas: notification
     'notification-card': { ...PRODUCT, nodeId: '2924:6367' }, // notificationCard (status variants)
-    'notification-panel': { ...PRODUCT, nodeId: '2924:6572' }, // контент панели (content=data)
+    'notification-panel-content': { ...PRODUCT, nodeId: '2924:6572' }, // контент панели (content=data)
     'notification-drawer': { ...PRODUCT, nodeId: '3165:4972' }, // обёртка: notificationDrawer (desktop)
     'notification-bottom-sheet': { ...PRODUCT, nodeId: '3166:6162' }, // notificationBottomSheet (mobile)
   },

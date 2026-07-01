@@ -97,6 +97,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       description:
         'Инфраструктура поверх которой строятся компоненты: провайдеры, темы, локализация, шрифты, иконки, утилиты и внутренние пакеты.',
       packages: [
+        'adaptive',
         'theme',
         'context-kit',
         'portal-context',

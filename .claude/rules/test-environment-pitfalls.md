@@ -163,6 +163,14 @@ function Search({ 'data-test-id': dataTestId, ...rest }) {
 }
 ```
 
+## URL-args с кириллицей не резолвятся
+
+Storybook (URL args parser в `@storybook/preview-api`) не декодирует не-латинские символы в query-параметре `args` — значение молча падает на дефолт из `meta.args`, без ошибки в консоли. Затрагивает и `<StorybookEmbed args={{...}} />` в docs (`apps/docs/src/components/StorybookEmbed.tsx`), и прямые ссылки `?args=title:Кириллица`. Латиница (включая пробелы, дефисы) резолвится нормально.
+
+**Симптом**: меняешь `args` с русским текстом (через `StorybookEmbed` или руками в URL) — Playground показывает исходный дефолт компонента, будто проп не передался.
+
+**Решение**: не полагайся на `args` с кириллицей для демонстрации в докстраницах. Если нужен живой пример с русским текстом — используй `<Example>` (реальный React-компонент, не URL-параметры), а `<StorybookEmbed args={{...}} />` держи только для латиницы/переключения enum-осей (`globals={{ layoutType: 'mobile' }}` — работает, это не текстовое значение).
+
 ## Storybook ID kebab-casing
 
 ### Storybook 10 не разделяет PascalCase в title-сегментах дефисами

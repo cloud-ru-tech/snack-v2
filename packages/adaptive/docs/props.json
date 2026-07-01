@@ -1,0 +1,75 @@
+{
+  "AdaptiveProvider": {
+    "displayName": "AdaptiveProvider",
+    "propsTypeName": "AdaptiveProviderProps",
+    "description": "Провайдер текущей раскладки для `Adaptive*`-компонентов. Ставится один раз в корне; вложенные\n`Adaptive*` берут `layoutType` из контекста. Принимает статичный `layoutType` либо реактивный `store`.",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      },
+      "layoutType": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "desktop",
+          "desktopSmall",
+          "mobile",
+          "tablet"
+        ],
+        "description": "Статичная раскладка (SSR — значение на запрос, либо `useAdaptiveBootstrap()` в корне CSR). Реактивный источник — через `store`.",
+        "typeRefs": [
+          "LayoutType"
+        ]
+      },
+      "store": {
+        "type": "AdaptiveStore",
+        "required": false,
+        "description": "Внешний реактивный стор раскладки; приоритетнее `layoutType`, обновляет подписчиков без перерендера провайдера.",
+        "typeRefs": [
+          "AdaptiveStore"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AdaptiveStore": {
+        "kind": "interface",
+        "props": {
+          "getServerSnapshot": {
+            "type": "(() => AdaptiveContextValue) | undefined",
+            "required": false,
+            "description": "Значение для SSR/гидрации. Если не задан — используется `getSnapshot`."
+          },
+          "getSnapshot": {
+            "type": "() => AdaptiveContextValue",
+            "required": true,
+            "description": "Текущее значение. Обязан возвращать стабильную (по `Object.is`) ссылку, пока значение не менялось."
+          },
+          "subscribe": {
+            "type": "(onStoreChange: () => void) => () => void",
+            "required": true,
+            "description": "Подписка на изменения; возвращает функцию отписки."
+          }
+        },
+        "own": true
+      },
+      "LayoutType": {
+        "kind": "union",
+        "values": [
+          "desktop",
+          "desktopSmall",
+          "mobile",
+          "tablet"
+        ],
+        "own": true
+      }
+    }
+  },
+  "withLayoutType": {
+    "displayName": "withLayoutType",
+    "propsTypeName": "ComponentType",
+    "description": "HOC форса раскладки: оборачивает компонент в `<AdaptiveProvider layoutType=…>`, фиксируя раскладку\nдля него и поддерева. Дженерик-параметры стираются (для них — инлайновый `AdaptiveProvider`).\nВызывать на module-scope, не в теле рендера.",
+    "props": {},
+    "relatedTypes": {}
+  }
+}

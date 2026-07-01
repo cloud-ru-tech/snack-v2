@@ -137,9 +137,8 @@ export function HeaderSearch() {
       widthStrategy='eq'
       offset={8}
       triggerClassName={styles.trigger}
-      contentClassName={styles.body}
       state={dropdownState}
-      content={resultsContent}
+      content={<div className={styles.body}>{resultsContent}</div>}
     >
       <div className={styles.root}>
         <Search

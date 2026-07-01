@@ -1,0 +1,118 @@
+---
+title: Adaptive
+package: '@ds/adaptive'
+description: React Context текущей раскладки (layoutType) — переключает компоненты дизайн-системы между mobile и desktop поверхностями.
+order: 89
+---
+
+import { ProviderBasic } from '../demos/examples/ProviderBasic'
+import ProviderBasicSrc from '../demos/examples/ProviderBasic.tsx?raw'
+import { LayoutTypeOverride } from '../demos/examples/LayoutTypeOverride'
+import LayoutTypeOverrideSrc from '../demos/examples/LayoutTypeOverride.tsx?raw'
+import { CustomBreakpoints } from '../demos/examples/CustomBreakpoints'
+import CustomBreakpointsSrc from '../demos/examples/CustomBreakpoints.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import adaptiveDoc from './props.json'
+
+# Adaptive
+
+`@ds/adaptive` несёт через React Context текущую раскладку экрана — `layoutType` (`mobile` / `tablet` / `desktopSmall` / `desktop`). `AdaptiveProvider` ставится один раз в корне приложения, а адаптивные компоненты дизайн-системы (`Droplist`, `Modal`, `Drawer`, `Dropdown` и др.) сами читают раскладку из контекста и переключают поверхность: на `mobile` обычно открывается `BottomSheet`, иначе — десктопный popover / modal.
+
+Полное руководство по модели — в паттерне [Адаптивность — руководство](/patterns/adaptive).
+
+## Когда использовать
+
+- Приложение использует адаптивные компоненты дизайн-системы и должно переключать их между mobile и desktop поверхностями. Провайдер ставится один раз в корне.
+- Раскладка считается в корне через `useAdaptiveBootstrap()` (user-agent + media-query) и раздаётся вложенным компонентам без проброса пропа.
+- Микрофронт получает раскладку из реактивного стора хост-приложения — провайдер подключается через `store` (адаптер собирается `createAdaptiveStore`).
+- Серверный рендеринг: раскладка вычисляется из user-agent запроса через подпуть `@ds/adaptive/ssr` (чистые функции без React Context).
+
+Точечно зафиксировать платформу для поддерева можно вложенным `<AdaptiveProvider layoutType=…>` или HOC `withLayoutType(Component, …)` — он затеняет внешний контекст. Пропа `layoutType` у самих компонентов нет: форс идёт только через контекст.
+
+## Установка
+
+```bash
+pnpm add @ds/adaptive
+```
+
+```tsx
+import { AdaptiveProvider, withLayoutType, useAdaptiveBootstrap, useAdaptiveLayout, isMobileLayout, LAYOUT_TYPE } from '@ds/adaptive'
+```
+
+## Примеры использования
+
+<Example title='AdaptiveProvider в корне' description='Провайдер раздаёт `layoutType`; вложенный компонент читает его через `useAdaptiveLayout()` и `isMobileLayout()`.' code={ProviderBasicSrc}>
+  <ProviderBasic client:visible />
+</Example>
+
+<Example title='Форс раскладки в поддереве' description='Вложенный `<AdaptiveProvider layoutType=“desktop”>` (или HOC `withLayoutType`) фиксирует раскладку для поддерева, затеняя внешний контекст.' code={LayoutTypeOverrideSrc}>
+  <LayoutTypeOverride client:visible />
+</Example>
+
+<Example title='Свои брейкпоинты приложения' description='`useAdaptiveBootstrap({ breakpoints })` переопределяет пороги раскладки; набор тиров остаётся прежним.' code={CustomBreakpointsSrc}>
+  <CustomBreakpoints client:visible />
+</Example>
+
+## Раскладки и брейкпоинты
+
+`layoutType` выбирается по ширине окна (`max-width` в px). Дефолтные пороги:
+
+| layoutType | Порог | Назначение |
+|---|---|---|
+| `mobile` | ≤ 767 px | Телефон — единственный тир, уходящий в mobile-ветку (`BottomSheet`). |
+| `tablet` | ≤ 1023 px | Планшет — десктопная ветка. |
+| `desktopSmall` | ≤ 1279 px | Узкий десктоп — десктопная ветка. |
+| `desktop` | ≤ 1439 px | Десктоп — десктопная ветка. SSR-baseline. |
+
+Ширина ≥ 1440 px (`large`) достижима только через `useAdaptiveMatchMedia()` — в `layoutType` она не маппится. Пороги переопределяются на уровне приложения через `useAdaptiveBootstrap({ breakpoints })`.
+
+На сервере и до монтирования раскладка равна `desktop` (`DEFAULT_LAYOUT_TYPE`) — это baseline без доступа к вьюпорту, а не «всегда desktop». На сервере её можно выбрать по request-User-Agent (см. рецепт «Сервер» ниже). Зафиксировать раскладку для поддерева можно вложенным `<AdaptiveProvider layoutType=…>` или `withLayoutType(...)` — он затеняет внешний контекст.
+
+## Подписка на раскладку
+
+Раскладку **вычисляют один раз в корне** и раздают через `AdaptiveProvider`; компоненты её только **читают**. Утилиты:
+
+**Реактивный корень (CSR).** `useAdaptiveBootstrap()` вычисляет `layoutType` по user-agent + media-query и сам переподписывается на изменения вьюпорта (resize / поворот). Результат скармливается провайдеру:
+
+```tsx
+import { AdaptiveProvider, useAdaptiveBootstrap } from '@ds/adaptive'
+
+function Root({ app }) {
+  const { layoutType } = useAdaptiveBootstrap() // ре-вычисляется при смене ширины окна
+  return <AdaptiveProvider layoutType={layoutType}>{app}</AdaptiveProvider>
+}
+```
+
+**Чтение в компоненте.** `useAdaptiveLayout()` берёт раскладку из ближайшего `AdaptiveProvider` и ре-рендерит потребителя при её смене:
+
+```tsx
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive'
+
+const { layoutType } = useAdaptiveLayout()
+if (isMobileLayout(layoutType)) { /* mobile-ветка */ }
+```
+
+**Произвольные media-query.** Для условий вне `layoutType` (например, тир `large` ≥ 1440 px) — `useAdaptiveMatchMedia()`.
+
+**Сервер (SSR по User-Agent).** На сервере `navigator` недоступен, поэтому `useAdaptiveBootstrap` отдаёт `desktop`. Чтобы убрать flip при гидрации — резолвьте раскладку из request-UA через `getAdaptive` из серверобезопасного входа `@ds/adaptive/ssr` (без React-импортов) и передайте статикой:
+
+```tsx
+import { getAdaptive, INITIAL_ADAPTIVE_QUERIES_VALUE } from '@ds/adaptive/ssr'
+
+const { layoutType } = getAdaptive(INITIAL_ADAPTIVE_QUERIES_VALUE, headers().get('user-agent'))
+// <AdaptiveProvider layoutType={layoutType}>{children}</AdaptiveProvider>
+```
+
+## Props
+
+<PropsTable data={adaptiveDoc.AdaptiveProvider} />
+
+## Смотри также
+
+- [Адаптивность — руководство](/patterns/adaptive) — полная модель адаптивных компонентов `@ds`.
+- [Оформление — тема, бренд, плотность](/patterns/theme) — модель провайдера темы.
+- [Локализация — строки в пакетах](/patterns/localization) — модель провайдера локали.
+- [Порталы — корневой DOM-узел](/patterns/portal-context) — модель провайдера портала.
+- [Locale](/components/locale) — рантайм локализации.
+- [PortalContext](/components/portal-context) — корневой DOM-узел для порталов.

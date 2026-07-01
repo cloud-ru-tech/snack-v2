@@ -14,6 +14,7 @@
 | Coverage / unit-тесты | [coverage-standard](.claude/rules/coverage-standard.md) |
 | Новый пакет / анатомия / tier | [reference-package-anatomy](.claude/rules/reference-package-anatomy.md) · [complexity-tiers](.claude/rules/complexity-tiers.md) |
 | Перенос из Figma | [figma-to-code](.claude/rules/figma-to-code.md) · [figma-integration](.claude/rules/figma-integration.md) |
+| Адаптивный компонент (mobile-поверхность / mobile-дефолты, `@ds/adaptive`) | [adaptive-components](.claude/rules/adaptive-components.md) (surface-swap / preset-defaults, force = контекст, единый `XProps`) |
 
 **Действуют всегда (любая правка):** [dont-do-that](.claude/rules/dont-do-that.md) (запреты, безопасность) · [writing-style](.claude/rules/writing-style.md) (любой текст для людей) · [complexity-tiers](.claude/rules/complexity-tiers.md) (объём артефактов = поверхность API, «Критерий обоснованности»).
 

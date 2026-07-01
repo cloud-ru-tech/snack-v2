@@ -18,6 +18,7 @@ export const DOC_SECTIONS = [
   { id: 'install', title: 'Установка' },
   { id: 'examples', title: 'Примеры использования' },
   { id: 'props', title: 'Props' },
+  { id: 'adaptive', title: 'Адаптивность' },
   { id: 'storybook', title: 'Storybook' },
   { id: 'figma', title: 'Figma' },
   { id: 'see-also', title: 'Смотри также' },

@@ -1,0 +1,177 @@
+---
+title: Адаптивность — руководство
+description: Модель адаптивных компонентов @ds — единый AdaptiveProvider как источник раскладки, единый API без расхождения mobile/desktop, mobile из коробки с явным переопределением; плюс обзор того, как это решают другие библиотеки.
+order: 5
+---
+
+# Адаптивность — руководство
+
+Как пользоваться адаптивными компонентами `@ds` и как именно они адаптируются. Механика — пакет `@ds/adaptive`.
+
+## Суть одной строкой
+
+**Адаптив работает по умолчанию; mobile переопределяется только явно. Перенос пропов из desktop-макета не ломает mobile.**
+
+## Для потребителя
+
+### 1. Один провайдер в корне приложения
+
+```tsx
+import { AdaptiveProvider } from '@ds/adaptive'
+
+// статично — раскладка известна на старте (CSR-корень / SSR по UA)
+<AdaptiveProvider layoutType="desktop">{app}</AdaptiveProvider>
+
+// реактивно — подписка на внешний источник раскладки
+<AdaptiveProvider store={adaptiveStore}>{app}</AdaptiveProvider>
+```
+
+Дальше пиши компоненты как под desktop. Один и тот же компонент, **один и тот же набор пропов** — отдельного «мобильного» API нет. Mobile подхватывается сам.
+
+`store` — внешний стор в формате `useSyncExternalStore` (`{ subscribe, getSnapshot }`), тот же контракт `ExternalStore`, что у остальных провайдеров `@ds`. К конкретной библиотеке не привязан: собирается из любого реактивного источника (redux / zustand / signals / observable) через `createAdaptiveStore`:
+
+```tsx
+import { AdaptiveProvider, createAdaptiveStore } from '@ds/adaptive'
+
+const adaptiveStore = createAdaptiveStore({
+  getLayoutType: () => layoutSource.current, // прочитать текущую раскладку
+  subscribe: onChange => layoutSource.on('change', onChange), // вернуть функцию отписки
+})
+
+<AdaptiveProvider store={adaptiveStore}>{app}</AdaptiveProvider>
+```
+
+### 2. Как переопределить
+
+| Пишешь | desktop | mobile |
+|---|---|---|
+| `<AlertTop />` | DS-дефолт | DS-дефолт (адаптив) |
+| `<AlertTop collapsible={false} />` | `false` | **DS-дефолт** (проп = desktop, mobile не трогается) |
+| `<AlertTop layoutPresets={{ mobile: { collapsible: false } }} />` | DS-дефолт | `false` |
+| `<AlertTop layoutPresets={{ desktop: { collapsible: true } }} />` | `true` | DS-дефолт |
+
+Приоритет: **`layoutPresets[layout]` → DS-пресет → явный проп (= desktop-значение) → база**.
+
+**Бэйр-проп** (от bare — «голый») — это проп, переданный компоненту напрямую: `<AlertTop collapsible={false} />`, а не через `layoutPresets`. У пропов два вида, и бэйр-проп ведёт себя по-разному:
+
+- **Адаптивные пропы** — те, у которых mobile-дефолт отличается от desktop (перечислены в секции «Адаптивность» компонента; для `AlertTop` это `collapsible`). Для них **бэйр-проп задаёт только desktop-значение**, а mobile берёт DS-пресет и бэйр-пропом не меняется. Поменять mobile можно **только** через `layoutPresets.mobile` — это защищает mobile от случайной поломки, когда проп переносят из desktop-макета.
+- **Обычные пропы** — без mobile-дефолта (`title`, `appearance`, `description`, …). Для них бэйр-проп применяется **на всех раскладках** одинаково, `layoutPresets` им не нужен.
+
+Правило: если меняешь mobile-поведение адаптивного пропа — пиши `layoutPresets.mobile`, не бэйр-проп.
+
+### 3. Зафиксировать раскладку (редко)
+
+```tsx
+import { AdaptiveProvider, withLayoutType } from '@ds/adaptive'
+
+// поддерево (каскадит вниз и сквозь порталы)
+<AdaptiveProvider layoutType="desktop"><Section /></AdaptiveProvider>
+
+// компонент / секция (объявлять на module-scope)
+const DesktopDropdown = withLayoutType(Dropdown, 'desktop')
+```
+
+Пропа `layoutType` у компонента **нет** — раскладка только из контекста.
+
+### 4. Как именно адаптируются
+
+| Класс | Что меняется | Компоненты |
+|---|---|---|
+| **surface-swap** | поверхность: на mobile → `BottomSheet` | `dropdown`, `modal`, `drawer` |
+| **preset-defaults** | дефолты пропов, DOM один | `alert` |
+
+У каждого адаптивного компонента в доках — секция «Адаптивность» (что меняется + таблица пресетов).
+
+### 5. SSR (Next) — убрать мигание
+
+```tsx
+import { getAdaptive, INITIAL_ADAPTIVE_QUERIES_VALUE } from '@ds/adaptive/ssr'
+
+const { layoutType } = getAdaptive(INITIAL_ADAPTIVE_QUERIES_VALUE, headers().get('user-agent'))
+<AdaptiveProvider layoutType={layoutType}>{children}</AdaptiveProvider>
+```
+
+`@ds/adaptive/ssr` — серверобезопасный вход (чистые функции и константы, без React-импортов).
+
+## Для автора компонента
+
+Инвариант: **один публичный `XProps`** на обе поверхности. Платформенный проп (работает только на одной поверхности) — с грепабельной JSDoc-пометкой `Только mobile:` / `Только desktop:`. `DesktopX` / `MobileX` — internal-модули, наружу не реэкспортятся.
+
+### surface-swap
+
+```tsx
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive'
+
+export function Dropdown(props: DropdownProps) {
+  const { layoutType } = useAdaptiveLayout()
+  return isMobileLayout(layoutType) ? <MobileDropdown {...props} /> : <DesktopDropdown {...props} />
+}
+```
+
+Общее тело — в `internal/`. Mobile-поверхность портальных компонентов = `@ds/bottom-sheet`; слоты маппятся на API sheet'а.
+
+### preset-defaults
+
+```tsx
+import { LayoutPresets, mergePresets, useLayoutDefaults } from '@ds/adaptive'
+
+type AlertTopLayoutDefaults = Pick<AlertSharedFieldProps, 'collapsible'>
+export const ALERT_TOP_LAYOUT_PRESETS: LayoutPresets<AlertTopLayoutDefaults> = { mobile: { collapsible: true } }
+
+export function AlertTop({ collapsible, layoutPresets, ...props }: AlertTopProps) {
+  const { collapsible: resolved } = useLayoutDefaults<AlertTopLayoutDefaults>(
+    { collapsible: false },                                 // база (desktop; single source)
+    mergePresets(ALERT_TOP_LAYOUT_PRESETS, layoutPresets),  // DS-пресет + instance-override
+    { collapsible },                                        // явный проп = desktop-значение (без destructure-дефолта)
+  )
+  return <AlertBase {...props} collapsible={resolved} variant="top" />
+}
+```
+
+`X_LAYOUT_PRESETS` типизируй участвующими пропами (`Pick<…>`) и экспортируй. Композиты swap **не** реимплементят — делегируют базе.
+
+## Don't
+
+- Проп `layoutType` у компонента (форс — только контекст: `AdaptiveProvider` / `withLayoutType`).
+- Парные `mobile-*` пакеты; реимплементация surface-swap в композите.
+- `DesktopX` / `MobileX` / `*Props` в публичном барреле.
+- destructure-дефолт у preset-участвующего пропа (дефолт держи в `base`-аргументе `useLayoutDefaults`).
+- Менять mobile бэйр-пропом (он = desktop) — только `layoutPresets.mobile`.
+
+## API `@ds/adaptive`
+
+| Символ | Назначение |
+|---|---|
+| `AdaptiveProvider` | источник раскладки (`layoutType` или `store`) |
+| `useAdaptiveLayout()` | чтение раскладки компонентом |
+| `isMobileLayout(layoutType)` | ветвление (mobile строго на `mobile`) |
+| `withLayoutType(X, t)` | HOC-форс |
+| `LayoutPresets<P>` · `useLayoutDefaults(base, presets, explicit)` · `resolveByLayout(...)` · `mergePresets(...)` | preset-резолв (React / чистый) |
+| `@ds/adaptive/ssr` · `getAdaptive(...)` | серверный резолв по UA |
+
+`@ds/adaptive` подключается как `peerDependency` (провайдер-пакет — singleton у потребителя).
+
+---
+
+## Как это решают другие (результаты исследования)
+
+Наша модель сверена с зрелыми библиотеками. Главный водораздел индустрии — **единая библиотека с контекст-провайдером** против **парных пакетов**.
+
+| Библиотека | Модель | Единый API | swap или size | SSR |
+|---|---|---|---|---|
+| **VKUI** | `AdaptivityProvider` + `useAdaptivity` (`viewWidth`/`sizeX`/`hasPointer`) | да | surface-swap (sheet) | dual-source CSS + JS |
+| **Gravity UI** | `MobileProvider` + `useMobile` + `Sheet` | да | surface-swap (sheet) | флаг от приложения |
+| **shadcn Credenza** | контекст-адаптер Dialog↔Drawer, compound-субкомпоненты | да | surface-swap | matchMedia, initial `undefined` |
+| **Tamagui `<Adapt>`** | примитив `<Adapt>` + телепорт `<Adapt.Contents>` | да | surface-swap (Sheet) | медиа-токены |
+| **MUI / Mantine** | `useMediaQuery` + `Dialog fullScreen` | да | только size-toggle | `ssrMatchMedia` |
+| **Chakra** | `useBreakpointValue`, responsive array/object | да | responsive-дефолты | `ssr` / `fallback` |
+| **Taiga UI** (Angular) | `TUI_BREAKPOINT` + `WA_IS_MOBILE` + DI factory-провайдер | да | surface-swap через DI | UA на сервере |
+| **antd** | **antd + antd-mobile = отдельные пакеты** | нет | — | — |
+
+Выводы:
+- **Ближе всего к нам — VKUI и Gravity** (единая либа, контекст как источник раскладки, surface-swap подменой реализации, mobile = bottom-sheet). Это валидирует наш `AdaptiveProvider` + `isMobileLayout`.
+- **antd = парные пакеты** (`antd` + `antd-mobile`, разный API) — ровно наш легаси, анти-референс.
+- **MUI/Mantine `fullScreen`** — это size-toggle (тот же DOM), не настоящий surface-swap.
+- **Где мы строже:** запрет пропа `layoutType` (каскад только сквозь контекст/порталы), формализованный слоёный резолв (`useLayoutDefaults`/`LayoutPresets`), грепабельные JSDoc `Только mobile/desktop`, запрет реимплементации swap в композитах.
+
+Идеи к заимствованию (backlog): многоосность VKUI (`hasPointer`/`viewHeight` для тач-планшета), dual-source CSS для preset-дефолтов (убрать SSR-flip без UA), телепорт `<Adapt.Contents>` Tamagui (если slot-маппинг станет болезненным), `mobileFrom` — настраиваемый порог ухода в sheet.
