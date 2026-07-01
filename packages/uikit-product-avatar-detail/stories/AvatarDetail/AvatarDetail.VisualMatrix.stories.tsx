@@ -1,18 +1,20 @@
-import { APPEARANCE, SHAPE } from '@ds/avatar'
-import { APPEARANCE as STATUS_APPEARANCE } from '@ds/status'
-import { AvatarDetail } from '@ds/uikit-product-avatar-detail'
-import { Meta, StoryObj } from '@storybook/react'
+import { APPEARANCE, SHAPE } from '@ds/avatar';
+import { APPEARANCE as STATUS_APPEARANCE } from '@ds/status';
+import { AvatarDetail } from '@ds/uikit-product-avatar-detail';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components'
+import { StoryTable } from '#storybook/components';
+
+import styles from './styles.module.scss';
 
 const meta: Meta<typeof AvatarDetail> = {
   title: 'Uikit Product/AvatarDetail',
   component: AvatarDetail,
   parameters: { layout: 'padded' },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof AvatarDetail>
+export default meta;
+type Story = StoryObj<typeof AvatarDetail>;
 
 const keyAppearances = [
   APPEARANCE.Neutral,
@@ -21,11 +23,11 @@ const keyAppearances = [
   APPEARANCE.Green,
   APPEARANCE.Blue,
   APPEARANCE.Violet,
-] as const
+] as const;
 
-const keyShapes = Object.values(SHAPE)
+const keyShapes = Object.values(SHAPE);
 
-const keyStatuses = Object.values(STATUS_APPEARANCE)
+const keyStatuses = Object.values(STATUS_APPEARANCE);
 
 const PLACEHOLDER_AVATAR_SRC = `data:image/svg+xml;base64,${btoa(
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">' +
@@ -33,7 +35,7 @@ const PLACEHOLDER_AVATAR_SRC = `data:image/svg+xml;base64,${btoa(
     '<circle cx="32" cy="24" r="10" fill="#9E9E9E"/>' +
     '<path d="M12 56c0-11.046 8.954-20 20-20s20 8.954 20 20" fill="#9E9E9E"/>' +
     '</svg>',
-)}`
+)}`;
 
 const contentVariants = [
   { label: 'name only', props: { name: 'John Doe' } },
@@ -50,13 +52,13 @@ const contentVariants = [
       description: 'Some text about the user',
     },
   },
-] as const
+] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
   render: () => (
-    <div style={{ display: 'grid', gap: 24 }}>
+    <div className={styles.grid}>
       <StoryTable
         cellAlign='start'
         sectionTitle='Content combinations'
@@ -76,12 +78,7 @@ export const VisualMatrix: Story = {
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
           cells: keyShapes.map(shape => (
-            <AvatarDetail
-              key={shape}
-              name='John Doe'
-              contactData='jdoe@example.com'
-              avatar={{ appearance, shape }}
-            />
+            <AvatarDetail key={shape} name='John Doe' contactData='jdoe@example.com' avatar={{ appearance, shape }} />
           )),
         }))}
       />
@@ -94,12 +91,7 @@ export const VisualMatrix: Story = {
         rows={keyStatuses.map(status => ({
           variantLabel: status,
           cells: keyShapes.map(shape => (
-            <AvatarDetail
-              key={shape}
-              name='John Doe'
-              contactData='jdoe@example.com'
-              avatar={{ status, shape }}
-            />
+            <AvatarDetail key={shape} name='John Doe' contactData='jdoe@example.com' avatar={{ status, shape }} />
           )),
         }))}
       />
@@ -209,4 +201,4 @@ export const VisualMatrix: Story = {
       />
     </div>
   ),
-}
+};

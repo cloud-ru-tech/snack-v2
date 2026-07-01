@@ -13,6 +13,7 @@ import {
   ChipChoiceCustomStoryProps,
   useControlledStoryArgs,
 } from './playground.helpers';
+import customStyles from './styles.module.scss';
 
 const CUSTOM_OPTIONS = ['Alpha', 'Beta', 'Gamma'];
 
@@ -32,18 +33,16 @@ const Template = (args: StoryProps) => {
               {...args}
               {...controlledArgs}
               content={({ closeDroplist, value, onChange }) => (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 8 }}>
+                <div className={customStyles.customContent}>
                   {CUSTOM_OPTIONS.map(opt => (
                     <button
                       key={opt}
-                      style={{
-                        background: value === opt ? '#e0e8ff' : 'transparent',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: '4px 8px',
-                        textAlign: 'left',
-                        borderRadius: 4,
-                      }}
+                      type='button'
+                      className={
+                        value === opt
+                          ? `${customStyles.customOption} ${customStyles.customOptionSelected}`
+                          : customStyles.customOption
+                      }
                       onClick={() => {
                         onChange?.(opt);
                         closeDroplist();

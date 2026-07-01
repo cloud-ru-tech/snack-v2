@@ -5,6 +5,7 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { TEST_IDS } from '../../testIds';
+import styles from '../styles.module.scss';
 
 const CUSTOM_OPTIONS = ['Alpha', 'Beta', 'Gamma'];
 
@@ -34,19 +35,15 @@ export const InteractionTest: Story = {
           <ChipChoice.Custom
             {...args}
             content={({ closeDroplist, value, onChange }) => (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 8 }}>
+              <div className={styles.customContent}>
                 {CUSTOM_OPTIONS.map(opt => (
                   <button
                     key={opt}
+                    type='button'
                     data-test-id={`custom-option-${opt.toLowerCase()}`}
-                    style={{
-                      background: value === opt ? '#e0e8ff' : 'transparent',
-                      border: 'none',
-                      cursor: 'pointer',
-                      padding: '4px 8px',
-                      textAlign: 'left',
-                      borderRadius: 4,
-                    }}
+                    className={
+                      value === opt ? `${styles.customOption} ${styles.customOptionSelected}` : styles.customOption
+                    }
                     onClick={() => {
                       onChange?.(opt);
                       closeDroplist();

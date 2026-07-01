@@ -4,3 +4,27 @@
   display: grid;
   gap: base.$sn-primitive-dimension-24;
 }
+
+.customContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  padding: base.$sn-primitive-dimension-8;
+}
+
+.customOption {
+  cursor: pointer;
+
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8;
+  border: none;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  color: base.$sn-theme-color-primary-text;
+  text-align: left;
+
+  background: transparent;
+}
+
+.customOptionSelected {
+  background: base.$sn-theme-color-primary-background;
+}

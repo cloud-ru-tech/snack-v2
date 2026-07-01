@@ -58,7 +58,7 @@ function CodeEditorClient({
   const monaco = useMonaco();
   // TODO(FF-8312): live theme switch без перезагрузки страницы. useThemeContext
   // отдаёт класс из стора провайдера, который в микрофронт-режиме обновляется
-  // через явный re-publish от контейнера; в standalone (Storybook, docs) при
+  // через явный re-publish от хост-приложения; в standalone (Storybook, docs) при
   // toggle темы CSS-классы DS-провайдера меняются на корне, но themeClassName
   // отсюда не пересчитывается — нужен либо MutationObserver на родительские
   // theme-классы, либо подписка на сам тогглер. Сейчас обходится reload'ом.

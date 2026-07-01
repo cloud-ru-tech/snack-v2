@@ -133,7 +133,7 @@ export const MultiGroup: Story = {
       <DemoPanel>
         <DemoTitle>Multi group</DemoTitle>
         <DemoHint>Несколько parent&apos;ов в одном flex-wrap — layout spring переставляет соседей при toggle.</DemoHint>
-        <div className={styles.wrap} style={{ maxWidth: 600 }}>
+        <div className={`${styles.wrap} ${styles.wrapNarrow}`}>
           {multiGroups.map(group => (
             <AiSuggestionParent
               key={group.label}

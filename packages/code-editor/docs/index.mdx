@@ -79,13 +79,13 @@ import { CodeEditor, LazyCodeEditor, AsyncCodeEditor } from '@ds/code-editor'
 
 ## Микрофронтовая интеграция
 
-`monaco-editor` — крупный бандл (~3-5 MB после tree-shaking). В микрофронтовой архитектуре он должен грузиться **один раз** на уровне контейнера и переиспользоваться всеми routed-MFE, иначе каждый микрофронт тянет свою копию.
+`monaco-editor` — крупный бандл (~3-5 MB после tree-shaking). В микрофронтовой архитектуре он должен грузиться **один раз** на уровне хост-приложения (хоста микрофронтов) и переиспользоваться всеми routed-MFE, иначе каждый микрофронт тянет свою копию.
 
-Контракт реализован через глобальный реестр на `window['__snack-monaco-editor-loader__']`. Ключ совместим с `@snack-uikit/code-editor` и `@cloud-ru/uikit-product-code-editor` — миграция MFE на `@ds/code-editor` идёт без правок контейнера.
+Контракт реализован через глобальный реестр на `window['__snack-monaco-editor-loader__']`: хост регистрирует loader один раз, все MFE переиспользуют его без своей копии бандла.
 
-### Container — однократная регистрация loader'а
+### Хост — однократная регистрация loader'а
 
-В root-config контейнера (вызывается до маунта любого MFE):
+В корневой конфигурации хоста (single-spa root-config / Module Federation host; вызывается до маунта любого MFE):
 
 ```ts
 export function initCodeEditorConfig() {
@@ -96,7 +96,7 @@ export function initCodeEditorConfig() {
 }
 ```
 
-Контейнер содержит `monaco-editor` в собственных `dependencies` и в `monaco-editor-webpack-plugin` / Vite chunk-конфиге; MFE — **не должны его содержать**. Динамический `import('monaco-editor')` даёт отдельный chunk, который грузится только при первом обращении к `loadMonaco()`.
+Хост содержит `monaco-editor` в собственных `dependencies` и в `monaco-editor-webpack-plugin` / Vite chunk-конфиге; MFE — **не должны его содержать**. Динамический `import('monaco-editor')` даёт отдельный chunk, который грузится только при первом обращении к `loadMonaco()`.
 
 ### MFE — потребитель
 
@@ -112,7 +112,7 @@ export function ManifestPanel({ manifest }: { manifest: string }) {
 
 - Внутри `Suspense` происходит lazy loading `AsyncCodeEditor`-фабрики.
 - В фабрике вызывает `loadMonacoEditor()` — читает `window['__snack-monaco-editor-loader__']`.
-- Если ключа нет (например, MFE отрендерился в standalone-режиме вне контейнера) — fallback на дефолтный loader `@monaco-editor/react`, который тянет бандл с jsDelivr CDN.
+- Если ключа нет (например, MFE отрендерился в standalone-режиме вне хоста) — fallback на дефолтный loader `@monaco-editor/react`, который тянет бандл с jsDelivr CDN.
 
 Если нужен собственный `Suspense` (например, общий лоадер MFE), используй `AsyncCodeEditor` напрямую:
 
@@ -141,7 +141,7 @@ import { preloadMonacoEditor } from '@ds/code-editor'
 linkRef.current?.addEventListener('mouseenter', () => preloadMonacoEditor(), { once: true })
 ```
 
-Если контейнер ещё не зарегистрировал loader (`__snack-monaco-editor-loader__` отсутствует), `preloadMonacoEditor()` возвращает `null` — без ошибок.
+Если хост ещё не зарегистрировал loader (`__snack-monaco-editor-loader__` отсутствует), `preloadMonacoEditor()` возвращает `null` — без ошибок.
 
 ### SSR
 
@@ -151,8 +151,8 @@ linkRef.current?.addEventListener('mouseenter', () => preloadMonacoEditor(), { o
 
 | Сценарий | Что делать |
 |----------|------------|
-| Контейнер + MFE | Зарегистрируй loader в контейнере — `import('monaco-editor')`. MFE использует `LazyCodeEditor`. Один бандл на все MFE. |
-| Standalone-приложение (без контейнера) | Можешь либо зарегистрировать тот же loader локально, либо не делать ничего — `@monaco-editor/react` стянет бандл с jsDelivr CDN. Для продакшена предпочтительно self-hosted (offline, контроль версий, CSP). |
+| Хост + MFE | Зарегистрируй loader в хосте — `import('monaco-editor')`. MFE использует `LazyCodeEditor`. Один бандл на все MFE. |
+| Standalone-приложение (без хоста) | Можешь либо зарегистрировать тот же loader локально, либо не делать ничего — `@monaco-editor/react` стянет бандл с jsDelivr CDN. Для продакшена предпочтительно self-hosted (offline, контроль версий, CSP). |
 | Прямой `CodeEditor` (не Lazy/Async) | Использует дефолтный loader `@monaco-editor/react` (CDN). Lazy/Async-варианты — единственный способ self-host'а через `__snack-monaco-editor-loader__`. |
 
 <Example

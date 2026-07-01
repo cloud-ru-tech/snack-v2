@@ -908,6 +908,7 @@
           "ChipChoiceDateWithSeconds",
           "ChipChoiceRowFilter",
           "DropdownBridgeProps",
+          "DroplistMobileSlots",
           "EmptyState",
           "PublicListContextType",
           "ScrollProps",
@@ -1057,15 +1058,6 @@
         "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
         "own": true
       },
-      "ChipChoiceRowSize": {
-        "kind": "union",
-        "values": [
-          "l",
-          "m",
-          "s"
-        ],
-        "own": true
-      },
       "DropdownBridgeProps": {
         "kind": "interface",
         "props": {
@@ -1173,6 +1165,32 @@
             "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
             "required": false,
             "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "DroplistMobileSlots": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+          },
+          "slotAfterHeadline": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
           }
         },
         "own": false

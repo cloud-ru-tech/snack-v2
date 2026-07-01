@@ -25,12 +25,9 @@ const CUSTOM_OPTIONS = ['Alpha', 'Beta', 'Gamma'];
 
 const customProps = {
   content: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 8 }}>
+    <div className={styles.customContent}>
       {CUSTOM_OPTIONS.map(option => (
-        <button
-          key={option}
-          style={{ background: 'transparent', border: 'none', padding: '4px 8px', textAlign: 'left' }}
-        >
+        <button key={option} type='button' className={styles.customOption}>
           {option}
         </button>
       ))}
