@@ -13,7 +13,6 @@ export function DeleteModal({
   open,
   onClose,
   mode,
-  container,
   closeOnPopstate,
   objectType,
   titleTooltip,
@@ -57,7 +56,6 @@ export function DeleteModal({
       open={open}
       onClose={handleClose}
       mode={mode}
-      container={container}
       closeOnPopstate={closeOnPopstate}
       width={WIDTH.S}
       data-test-id={TEST_IDS.deleteModal}

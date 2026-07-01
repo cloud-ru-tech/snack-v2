@@ -1,3 +1,4 @@
+import { Button } from '@ds/button';
 import { DeleteModal } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
@@ -6,9 +7,7 @@ export function DeleteConfirmable() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open confirmable delete modal
-      </button>
+      <Button label='Open confirmable delete modal' view='filled' appearance='primary' onClick={() => setOpen(true)} />
       <DeleteModal
         open={open}
         onClose={() => setOpen(false)}

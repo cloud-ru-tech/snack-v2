@@ -1,3 +1,4 @@
+import { TEST_IDS as FIELDS_TEST_IDS } from '@ds/fields';
 import { DeleteModal, TEST_IDS } from '@ds/uikit-product-modal-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -34,7 +35,7 @@ export const InteractionTest: Story = {
 
     await step('valid confirm calls onDelete', async () => {
       const inputRoot = body.getByTestId(TEST_IDS.confirmInput);
-      await userEvent.type(within(inputRoot).getByRole('textbox'), 'vm-production-01');
+      await userEvent.type(within(inputRoot).getByTestId(FIELDS_TEST_IDS.fieldTextInput), 'vm-production-01');
       await userEvent.click(body.getByTestId(TEST_IDS.approveButton));
       await waitFor(() => expect(onDelete).toHaveBeenCalled());
     });

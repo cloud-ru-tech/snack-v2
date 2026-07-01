@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { DeleteModal } from '@ds/uikit-product-modal-predefined';
+import { CONFIRM_TEXT_VARIANT, DeleteModal } from '@ds/uikit-product-modal-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
@@ -9,22 +9,26 @@ import styles from '../styles.module.scss';
 
 const VM_TRIGGER_TEST_ID = (state: string) => `delete-modal-vm__${state}`;
 
-type State = 'regular' | 'confirmable' | 'deleting';
+type State = 'regular' | 'confirmable' | 'confirmableText' | 'deleting';
+
+const STATES = ['regular', 'confirmable', 'confirmableText', 'deleting'] as const;
 
 function VisualMatrixCanvas() {
   const [active, setActive] = useState<State | null>(null);
   const close = () => setActive(null);
+
+  const isConfirmable = active === 'confirmable' || active === 'confirmableText';
 
   return (
     <div className={styles.panel}>
       <StoryTable
         sectionTitle='states'
         firstColumnHeader='state'
-        columnHeaders={['regular', 'confirmable', 'deleting']}
+        columnHeaders={[...STATES]}
         rows={[
           {
             variantLabel: 'delete',
-            cells: (['regular', 'confirmable', 'deleting'] as const).map(state => (
+            cells: STATES.map(state => (
               <Button
                 key={state}
                 label={state}
@@ -44,8 +48,9 @@ function VisualMatrixCanvas() {
           onClose={close}
           objectType='виртуальную машину'
           description='После удаления восстановить объект будет невозможно.'
-          confirmable={active === 'confirmable'}
-          confirmText={active === 'confirmable' ? 'vm-production-01' : undefined}
+          confirmable={isConfirmable}
+          confirmText={isConfirmable ? 'vm-production-01' : undefined}
+          confirmTextVariant={active === 'confirmableText' ? CONFIRM_TEXT_VARIANT.Text : CONFIRM_TEXT_VARIANT.Name}
           deleting={active === 'deleting'}
           onDelete={closeModal => closeModal()}
         />

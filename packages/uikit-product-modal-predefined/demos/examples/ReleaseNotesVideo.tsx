@@ -1,4 +1,5 @@
-import { ReleaseNotesModal } from '@ds/uikit-product-modal-predefined';
+import { Button } from '@ds/button';
+import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
 import { releaseNotesItems } from './releaseNotesData';
@@ -8,10 +9,8 @@ export function ReleaseNotesVideo() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open video release notes
-      </button>
-      <ReleaseNotesModal
+      <Button label='Open video release notes' view='filled' appearance='primary' onClick={() => setOpen(true)} />
+      <ReleaseNotes
         open={open}
         onClose={() => setOpen(false)}
         items={[

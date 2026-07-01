@@ -1,0 +1,97 @@
+---
+title: ReleaseNotes
+package: '@ds/uikit-product-modal-predefined'
+description: Адаптивный release notes preset — модальное окно на desktop, bottom sheet на mobile.
+order: 3
+---
+
+import { ReleaseNotesData } from '../demos/examples/ReleaseNotesData'
+import ReleaseNotesDataSrc from '../demos/examples/ReleaseNotesData.tsx?raw'
+import { ReleaseNotesNoData } from '../demos/examples/ReleaseNotesNoData'
+import ReleaseNotesNoDataSrc from '../demos/examples/ReleaseNotesNoData.tsx?raw'
+import { ReleaseNotesError } from '../demos/examples/ReleaseNotesError'
+import ReleaseNotesErrorSrc from '../demos/examples/ReleaseNotesError.tsx?raw'
+import { ReleaseNotesVideo } from '../demos/examples/ReleaseNotesVideo'
+import ReleaseNotesVideoSrc from '../demos/examples/ReleaseNotesVideo.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# ReleaseNotes
+
+`ReleaseNotes` — адаптивный preset для показа новостей платформы. На desktop это модальное окно, на mobile — bottom sheet; поверхность выбирается автоматически по раскладке. Публичная визуальная ось `contentState` принимает `data`, `noData`, `error`.
+
+## Примеры использования
+
+<Example title='Данные' code={ReleaseNotesDataSrc}>
+  <ReleaseNotesData client:visible />
+</Example>
+
+<Example title='Нет данных' code={ReleaseNotesNoDataSrc}>
+  <ReleaseNotesNoData client:visible />
+</Example>
+
+<Example title='Ошибка загрузки' code={ReleaseNotesErrorSrc}>
+  <ReleaseNotesError client:visible />
+</Example>
+
+<Example title='Видео в новости' code={ReleaseNotesVideoSrc}>
+  <ReleaseNotesVideo client:visible />
+</Example>
+
+## Адаптивность
+
+`ReleaseNotes` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — модальное окно (`ModalCustom` из `@ds/modal`) с каруселью новостей и постраничной навигацией.
+- **mobile** — контент рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <ReleaseNotes open={open} onClose={close} items={items} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { ReleaseNotes } from '@ds/uikit-product-modal-predefined'
+
+  const MobileReleaseNotes = withLayoutType(ReleaseNotes, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Таблица синхронизирована с type-level JSDoc у `ReleaseNotesProps`.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `readLaterButtonProps` | игнорируется | используется |
+| `open`, `onClose`, `container`, `closeOnPopstate`, `contentState`, `items`, `loading`, `onReadLaterClick`, `onDataErrorRetryClick`, `onSlideChange` | используется | используется |
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='uikit-product-modalpredefined-releasenotes--playground' globals={{ layoutType: 'mobile' }} height={560} />
+
+## Props
+
+<PropsTable data={componentDoc.ReleaseNotes} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-modalpredefined-releasenotes--playground' height={560} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-modal-predefined', 'release-notes')} height={560} title='ReleaseNotes в Figma (Product UI Kit)' />

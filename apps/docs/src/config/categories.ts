@@ -140,6 +140,13 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       ],
     },
     {
+      id: 'overlays',
+      label: 'Overlays',
+      description:
+        'Продуктовые всплывающие поверхности: предопределённые модальные окна (удаление, отзыв, release notes).',
+      packages: ['uikit-product-modal-predefined'],
+    },
+    {
       id: 'feedback',
       label: 'Feedback',
       description: 'Статусы и уведомления: строка статуса загрузки, карточки и ленты уведомлений.',

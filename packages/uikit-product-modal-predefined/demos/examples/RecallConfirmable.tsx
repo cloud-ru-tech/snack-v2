@@ -1,3 +1,4 @@
+import { Button } from '@ds/button';
 import { RecallModal } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
@@ -6,9 +7,7 @@ export function RecallConfirmable() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open confirmable recall modal
-      </button>
+      <Button label='Open confirmable recall modal' view='filled' appearance='primary' onClick={() => setOpen(true)} />
       <RecallModal
         open={open}
         onClose={() => setOpen(false)}

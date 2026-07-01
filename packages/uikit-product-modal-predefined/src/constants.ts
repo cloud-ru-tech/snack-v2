@@ -12,8 +12,7 @@ export const CONFIRM_TEXT_VARIANT = {
 export const TEST_IDS = {
   deleteModal: 'delete-modal',
   recallModal: 'recall-modal',
-  releaseNotesModal: 'release-notes-modal',
-  releaseNotesBottomSheet: 'release-notes-bottom-sheet',
+  releaseNotes: 'release-notes',
   approveButton: 'modal-predefined__approve-button',
   cancelButton: 'modal-predefined__cancel-button',
   confirmInput: 'modal-predefined__confirm-input',

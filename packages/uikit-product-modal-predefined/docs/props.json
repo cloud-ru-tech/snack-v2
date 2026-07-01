@@ -32,14 +32,6 @@
         "defaultValue": "false",
         "description": "Состояние с подтверждением через ввод текста"
       },
-      "container": {
-        "type": "ModalContainer",
-        "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
-        "typeRefs": [
-          "ModalContainer"
-        ]
-      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -68,7 +60,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -113,11 +105,6 @@
         ],
         "own": true
       },
-      "ModalContainer": {
-        "kind": "alias",
-        "type": "string | HTMLElement",
-        "own": false
-      },
       "ModalMode": {
         "kind": "union",
         "values": [
@@ -128,6 +115,73 @@
         "own": false
       }
     }
+  },
+  "DesktopReleaseNotes": {
+    "displayName": "DesktopReleaseNotes",
+    "propsTypeName": null,
+    "props": {
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "contentState": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "defaultValue": "data",
+        "description": "Визуальное состояние контента по Figma"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "NoteItemProps[]",
+        "required": true,
+        "description": "Массив новостей"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки контента"
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onDataErrorRetryClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие перезагрузки на экране ошибки"
+      },
+      "onReadLaterClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие \"Ознакомиться позже\""
+      },
+      "onSlideChange": {
+        "type": "((slide: number) => void)",
+        "required": false,
+        "description": "Действие при смене слайда"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан"
+      },
+      "readLaterButtonProps": {
+        "type": "Partial<ButtonProps>",
+        "required": false,
+        "description": "Только mobile: дополнительные пропсы action-кнопки \"Ознакомиться позже\" (на desktop игнорируется)."
+      }
+    },
+    "relatedTypes": {}
   },
   "InputConfirm": {
     "displayName": "InputConfirm",
@@ -201,6 +255,73 @@
     },
     "relatedTypes": {}
   },
+  "MobileReleaseNotes": {
+    "displayName": "MobileReleaseNotes",
+    "propsTypeName": null,
+    "props": {
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрытие при навигации по истории"
+      },
+      "contentState": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "data",
+          "error",
+          "noData"
+        ],
+        "defaultValue": "data",
+        "description": "Визуальное состояние контента по Figma"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "NoteItemProps[]",
+        "required": true,
+        "description": "Массив новостей"
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки контента"
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбэк закрытия"
+      },
+      "onDataErrorRetryClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие перезагрузки на экране ошибки"
+      },
+      "onReadLaterClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Действие \"Ознакомиться позже\""
+      },
+      "onSlideChange": {
+        "type": "((slide: number) => void)",
+        "required": false,
+        "description": "Действие при смене слайда"
+      },
+      "open": {
+        "type": "boolean",
+        "required": true,
+        "description": "Управление состоянием показан/не показан"
+      },
+      "readLaterButtonProps": {
+        "type": "Partial<ButtonProps>",
+        "required": false,
+        "description": "Только mobile: дополнительные пропсы action-кнопки \"Ознакомиться позже\" (на desktop игнорируется)."
+      }
+    },
+    "relatedTypes": {}
+  },
   "NoteItem": {
     "displayName": "NoteItem",
     "propsTypeName": null,
@@ -257,14 +378,6 @@
         "defaultValue": "false",
         "description": "Состояние с подтверждением через ввод текста"
       },
-      "container": {
-        "type": "ModalContainer",
-        "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
-        "typeRefs": [
-          "ModalContainer"
-        ]
-      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -293,7 +406,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc.\nblur подложки — только у Aggressive и Forced.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -325,11 +438,6 @@
       }
     },
     "relatedTypes": {
-      "ModalContainer": {
-        "kind": "alias",
-        "type": "string | HTMLElement",
-        "own": false
-      },
       "ModalMode": {
         "kind": "union",
         "values": [
@@ -341,20 +449,15 @@
       }
     }
   },
-  "ReleaseNotesBottomSheet": {
-    "displayName": "ReleaseNotesBottomSheet",
-    "propsTypeName": "ReleaseNotesBottomSheetProps",
+  "ReleaseNotes": {
+    "displayName": "ReleaseNotes",
+    "propsTypeName": "ReleaseNotesProps",
+    "description": "Адаптивный release-notes: на `mobile` — bottom sheet, иначе — модальное окно. Поверхность выбирается\nпо `useAdaptiveLayout()` из `@ds/adaptive` и пропом не задаётся. Форс раскладки — через\n`withLayoutType(ReleaseNotes, 'mobile')` либо `AdaptiveProvider` в поддереве.",
     "props": {
       "closeOnPopstate": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true",
-        "description": "Закрывать sheet при `popstate` (browser-back на mobile)."
-      },
-      "container": {
-        "type": "string | HTMLElement",
-        "required": false,
-        "description": "Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`."
+        "description": "Закрытие при навигации по истории"
       },
       "contentState": {
         "type": "enum",
@@ -364,7 +467,6 @@
           "error",
           "noData"
         ],
-        "defaultValue": "data",
         "description": "Визуальное состояние контента по Figma",
         "typeRefs": [
           "ReleaseNotesContentState"
@@ -388,9 +490,9 @@
         "description": "Состояние загрузки контента"
       },
       "onClose": {
-        "type": "(() => void) & (() => void)",
+        "type": "() => void",
         "required": true,
-        "description": "Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back).\nКолбэк закрытия"
+        "description": "Колбэк закрытия"
       },
       "onDataErrorRetryClick": {
         "type": "(() => void)",
@@ -410,12 +512,12 @@
       "open": {
         "type": "boolean",
         "required": true,
-        "description": "Управление состоянием показан / не показан.\nУправление состоянием показан/не показан"
+        "description": "Управление состоянием показан/не показан"
       },
       "readLaterButtonProps": {
         "type": "Partial<ButtonProps>",
         "required": false,
-        "description": "Дополнительные пропсы action-кнопки \"Ознакомиться позже\"",
+        "description": "Только mobile: дополнительные пропсы action-кнопки \"Ознакомиться позже\" (на desktop игнорируется).",
         "typeRefs": [
           "ButtonProps"
         ]
@@ -843,122 +945,5 @@
       }
     },
     "relatedTypes": {}
-  },
-  "ReleaseNotesModal": {
-    "displayName": "ReleaseNotesModal",
-    "propsTypeName": "ReleaseNotesModalProps",
-    "props": {
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрытие при навигации по истории"
-      },
-      "container": {
-        "type": "ModalContainer",
-        "required": false,
-        "description": "Явный DOM-контейнер для `createPortal`.\nЕсли не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`.",
-        "typeRefs": [
-          "ModalContainer"
-        ]
-      },
-      "contentState": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "data",
-          "error",
-          "noData"
-        ],
-        "defaultValue": "data",
-        "description": "Визуальное состояние контента по Figma",
-        "typeRefs": [
-          "ReleaseNotesContentState"
-        ]
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "items": {
-        "type": "NoteItemProps[]",
-        "required": true,
-        "description": "Массив новостей",
-        "typeRefs": [
-          "NoteItemProps"
-        ]
-      },
-      "loading": {
-        "type": "boolean",
-        "required": false,
-        "description": "Состояние загрузки контента"
-      },
-      "onClose": {
-        "type": "() => void",
-        "required": true,
-        "description": "Колбэк закрытия"
-      },
-      "onDataErrorRetryClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Действие перезагрузки на экране ошибки"
-      },
-      "onReadLaterClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Действие \"Ознакомиться позже\""
-      },
-      "onSlideChange": {
-        "type": "((slide: number) => void)",
-        "required": false,
-        "description": "Действие при смене слайда"
-      },
-      "open": {
-        "type": "boolean",
-        "required": true,
-        "description": "Управление состоянием показан/не показан"
-      }
-    },
-    "relatedTypes": {
-      "ModalContainer": {
-        "kind": "alias",
-        "type": "string | HTMLElement",
-        "own": false
-      },
-      "NoteItemProps": {
-        "kind": "interface",
-        "props": {
-          "description": {
-            "type": "string",
-            "required": true,
-            "description": "Описание новости в markdown"
-          },
-          "image": {
-            "type": "{ src: string; alt: string; }",
-            "required": true,
-            "description": "Иллюстрация"
-          },
-          "title": {
-            "type": "string",
-            "required": true,
-            "description": "Заголовок новости"
-          },
-          "video": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Видео вместо статичной иллюстрации"
-          }
-        },
-        "own": true
-      },
-      "ReleaseNotesContentState": {
-        "kind": "union",
-        "values": [
-          "data",
-          "error",
-          "noData"
-        ],
-        "own": true
-      }
-    }
   }
 }

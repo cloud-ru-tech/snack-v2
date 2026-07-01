@@ -8,7 +8,11 @@ type StorybookBaseConfig = {
 };
 
 export function createBuildStoryOptions({ category, group, storyName, testId }: StorybookBaseConfig) {
-  return function buildStoryOptions(props: Record<string, unknown> = {}, story: string): StorybookUrlOptions {
+  return function buildStoryOptions(
+    props: Record<string, unknown> = {},
+    story: string,
+    globals?: Record<string, unknown>,
+  ): StorybookUrlOptions {
     return {
       category,
       group,
@@ -18,6 +22,7 @@ export function createBuildStoryOptions({ category, group, storyName, testId }: 
         'data-test-id': testId,
         ...props,
       },
+      ...(globals ? { globals } : {}),
     };
   };
 }

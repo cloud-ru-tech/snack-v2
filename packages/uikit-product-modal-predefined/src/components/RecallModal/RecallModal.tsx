@@ -13,7 +13,6 @@ export function RecallModal({
   open,
   onClose,
   mode,
-  container,
   closeOnPopstate,
   titleTooltip,
   onRecall,
@@ -52,7 +51,6 @@ export function RecallModal({
       open={open}
       onClose={handleClose}
       mode={mode}
-      container={container}
       closeOnPopstate={closeOnPopstate}
       width={WIDTH.S}
       data-test-id={TEST_IDS.recallModal}

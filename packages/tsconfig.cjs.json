@@ -263,6 +263,9 @@
       "path": "./uikit-product-load-status/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-modal-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-notification/tsconfig.cjs.json"
     },
     {
@@ -275,22 +278,19 @@
       "path": "./uikit-product-switch-row/tsconfig.cjs.json"
     },
     {
-      "path": "./uikit-product-toggles-predefined/tsconfig.cjs.json"
-    },
-    {
       "path": "./uikit-product-title-clickable/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-quota/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-toggles-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-upload-files/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
-    },
-    {
-      "path": "./uikit-product-modal-predefined/tsconfig.cjs.json"
     }
   ]
 }

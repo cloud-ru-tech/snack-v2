@@ -1,5 +1,6 @@
 import { Markdown } from '@ds/markdown';
 import { BAR_HIDE_STRATEGY, Scroll } from '@ds/scroll';
+import { Skeleton } from '@ds/skeleton';
 import { Typography } from '@ds/typography';
 import { useState } from 'react';
 
@@ -32,7 +33,11 @@ export function NoteItem({ title, description, image, video, surface = 'modal' }
               onError={() => setHasVideoError(true)}
               data-test-id={TEST_IDS.releaseNotesVideo}
             />
-            {!isVideoReady && <div className={styles.videoSkeleton} aria-hidden />}
+            {!isVideoReady && (
+              <div className={styles.videoSkeleton} aria-hidden>
+                <Skeleton loading width='100%' height='100%' />
+              </div>
+            )}
           </>
         )}
 

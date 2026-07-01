@@ -2413,53 +2413,50 @@ importers:
 
   packages/uikit-product-modal-predefined:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
       '@ds/bottom-sheet':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../bottom-sheet
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/carousel':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../carousel
       '@ds/fields':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../fields
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../info-block
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/markdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../markdown
       '@ds/modal':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../modal
-      '@ds/pagination':
-        specifier: workspace:*
-        version: link:../pagination
       '@ds/scroll':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../scroll
       '@ds/skeleton':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../skeleton
-      '@ds/truncate-string':
-        specifier: workspace:*
-        version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/uikit-product-copy':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../uikit-product-copy
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'

@@ -1,3 +1,4 @@
+import { TEST_IDS as FIELDS_TEST_IDS } from '@ds/fields';
 import { RecallModal, TEST_IDS } from '@ds/uikit-product-modal-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -33,7 +34,7 @@ export const InteractionTest: Story = {
 
     await step('valid confirm calls onRecall', async () => {
       const inputRoot = body.getByTestId(TEST_IDS.confirmInput);
-      await userEvent.type(within(inputRoot).getByRole('textbox'), 'recall-operation-01');
+      await userEvent.type(within(inputRoot).getByTestId(FIELDS_TEST_IDS.fieldTextInput), 'recall-operation-01');
       await userEvent.click(body.getByTestId(TEST_IDS.approveButton));
       await waitFor(() => expect(onRecall).toHaveBeenCalled());
     });

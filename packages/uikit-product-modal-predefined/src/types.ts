@@ -1,4 +1,3 @@
-import { BottomSheetProps } from '@ds/bottom-sheet';
 import { ButtonProps } from '@ds/button';
 import { ModalCustomProps } from '@ds/modal';
 import { ValueOf, WithSupportProps } from '@ds/utils';
@@ -24,7 +23,7 @@ export type NoteItemProps = {
   video?: string;
 };
 
-type BaseActionModalProps = Pick<ModalCustomProps, 'open' | 'onClose' | 'mode' | 'container' | 'closeOnPopstate'> & {
+type BaseActionModalProps = Pick<ModalCustomProps, 'open' | 'onClose' | 'mode' | 'closeOnPopstate'> & {
   /** Подсказка рядом с заголовком */
   titleTooltip?: ReactNode;
   /** Состояние с подтверждением через ввод текста */
@@ -61,8 +60,8 @@ export type RecallModalProps = WithSupportProps<
   }
 >;
 
-export type ReleaseNotesModalProps = WithSupportProps<
-  Pick<ModalCustomProps, 'open' | 'onClose' | 'container' | 'closeOnPopstate'> & {
+export type ReleaseNotesProps = WithSupportProps<
+  Pick<ModalCustomProps, 'open' | 'onClose' | 'closeOnPopstate'> & {
     /** Визуальное состояние контента по Figma */
     contentState?: ReleaseNotesContentState;
     /** Массив новостей */
@@ -75,13 +74,7 @@ export type ReleaseNotesModalProps = WithSupportProps<
     onDataErrorRetryClick?(): void;
     /** Действие при смене слайда */
     onSlideChange?(slide: number): void;
+    /** Только mobile: дополнительные пропсы action-кнопки "Ознакомиться позже" (на desktop игнорируется). */
+    readLaterButtonProps?: Partial<ButtonProps>;
   }
->;
-
-export type ReleaseNotesBottomSheetProps = WithSupportProps<
-  Pick<BottomSheetProps, 'open' | 'onClose' | 'container' | 'closeOnPopstate'> &
-    Omit<ReleaseNotesModalProps, 'container' | 'closeOnPopstate'> & {
-      /** Дополнительные пропсы action-кнопки "Ознакомиться позже" */
-      readLaterButtonProps?: Partial<ButtonProps>;
-    }
 >;

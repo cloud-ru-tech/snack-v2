@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { DeleteModal, DeleteModalProps, TEST_IDS } from '@ds/uikit-product-modal-predefined';
+import { CONFIRM_TEXT_VARIANT, DeleteModal, DeleteModalProps, TEST_IDS } from '@ds/uikit-product-modal-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
@@ -45,10 +45,19 @@ const meta: Meta<DeleteModalProps> = {
   args: {
     objectType: 'виртуальную машину',
     description: 'После удаления восстановить объект будет невозможно.',
+    subtitle: 'Действие необратимо',
+    titleTooltip: 'Удаление затронет все связанные ресурсы',
     confirmable: true,
     confirmText: 'vm-production-01',
+    confirmTextVariant: CONFIRM_TEXT_VARIANT.Name,
+    hideConfirmCopyButton: false,
     deleting: false,
     'data-test-id': TEST_IDS.deleteModal,
+  },
+  argTypes: {
+    open: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    onDelete: { table: { disable: true } },
   },
 };
 

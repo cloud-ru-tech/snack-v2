@@ -6,8 +6,7 @@
 
 - **DeleteModal** — удаление объекта с опциональным подтверждением через ввод текста.
 - **RecallModal** — отзыв действия с тем же Figma-first `confirmable` состоянием.
-- **ReleaseNotesModal** — desktop release notes surface с состояниями `data`, `noData`, `error`.
-- **ReleaseNotesBottomSheet** — mobile release notes surface по макету `releaseNotesBottomSheet`.
+- **ReleaseNotes** — адаптивный release notes: модальное окно на desktop, bottom sheet на mobile; состояния `data`, `noData`, `error`.
 
 ## Установка
 
@@ -16,12 +15,7 @@ pnpm add @ds/uikit-product-modal-predefined
 ```
 
 ```ts
-import {
-  DeleteModal,
-  RecallModal,
-  ReleaseNotesModal,
-  ReleaseNotesBottomSheet,
-} from '@ds/uikit-product-modal-predefined'
+import { DeleteModal, RecallModal, ReleaseNotes } from '@ds/uikit-product-modal-predefined'
 ```
 
 ## Figma
@@ -32,7 +26,7 @@ import {
 
 ## DeleteModal
 
-Preset-модалка удаления с Figma-first состоянием confirmable.
+Готовое модальное окно удаления с Figma-first состоянием confirmable.
 
 `DeleteModal` — готовый сценарий удаления объекта. Для варианта из макета `deleteModalConfirmable` используйте `confirmable` и `confirmText`.
 
@@ -41,6 +35,7 @@ Preset-модалка удаления с Figma-first состоянием confi
 #### Базовое удаление
 
 ```tsx
+import { Button } from '@ds/button';
 import { DeleteModal } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
@@ -49,9 +44,7 @@ export function DeleteBasic() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open delete modal
-      </button>
+      <Button label='Open delete modal' view='filled' appearance='primary' onClick={() => setOpen(true)} />
       <DeleteModal
         open={open}
         onClose={() => setOpen(false)}
@@ -66,6 +59,7 @@ export function DeleteBasic() {
 #### Удаление с подтверждением
 
 ```tsx
+import { Button } from '@ds/button';
 import { DeleteModal } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
@@ -74,9 +68,7 @@ export function DeleteConfirmable() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open confirmable delete modal
-      </button>
+      <Button label='Open confirmable delete modal' view='filled' appearance='primary' onClick={() => setOpen(true)} />
       <DeleteModal
         open={open}
         onClose={() => setOpen(false)}
@@ -100,12 +92,11 @@ export function DeleteConfirmable() {
 | `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения |
 | `confirmTextVariant` | `"name"` \| `"text"` | `name` | Тип текста подтверждения |
 | `confirmable` | `boolean` | `false` | Состояние с подтверждением через ввод текста |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
 | `data-test-id` | `string` | — |  |
 | `deleting` | `boolean` | — | Состояние загрузки кнопки удаления |
 | `description` | `ReactNode` | — | Описание |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. <br/> blur подложки — только у Aggressive и Forced. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
 | `objectType` | `string` | — | Тип удаляемого объекта, отображается в заголовке |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `onDelete` | `(onClose: () => void) => void` | — | Колбэк подтверждения удаления |
@@ -119,7 +110,7 @@ export function DeleteConfirmable() {
 
 ## RecallModal
 
-Preset-модалка отзыва действия с опциональным confirmable состоянием.
+Готовое модальное окно отзыва действия с опциональным confirmable состоянием.
 
 `RecallModal` — готовый сценарий отзыва действия. Визуальная ось `confirmable` соответствует макету `recallModalConfirmable`.
 
@@ -128,6 +119,7 @@ Preset-модалка отзыва действия с опциональным 
 #### Базовый отзыв
 
 ```tsx
+import { Button } from '@ds/button';
 import { RecallModal } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
@@ -136,9 +128,7 @@ export function RecallBasic() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open recall modal
-      </button>
+      <Button label='Open recall modal' view='filled' appearance='primary' onClick={() => setOpen(true)} />
       <RecallModal open={open} onClose={() => setOpen(false)} onRecall={close => close()} />
     </>
   );
@@ -148,6 +138,7 @@ export function RecallBasic() {
 #### Отзыв с подтверждением
 
 ```tsx
+import { Button } from '@ds/button';
 import { RecallModal } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
@@ -156,9 +147,7 @@ export function RecallConfirmable() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open confirmable recall modal
-      </button>
+      <Button label='Open confirmable recall modal' view='filled' appearance='primary' onClick={() => setOpen(true)} />
       <RecallModal
         open={open}
         onClose={() => setOpen(false)}
@@ -180,30 +169,30 @@ export function RecallConfirmable() {
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
 | `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения |
 | `confirmable` | `boolean` | `false` | Состояние с подтверждением через ввод текста |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
 | `data-test-id` | `string` | — |  |
 | `description` | `ReactNode` | — | Описание |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |
 | `loading` | `boolean` | — | Состояние загрузки кнопки отзыва |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay, Esc и кнопка; Aggressive — только кнопка; Forced — без кнопки и без overlay/Esc. <br/> blur подложки — только у Aggressive и Forced. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `onRecall` | `(onClose: () => void) => void` | — | Колбэк подтверждения отзыва |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `subtitle` | `ReactNode` | — | Подзаголовок |
 | `titleTooltip` | `ReactNode` | — | Подсказка рядом с заголовком |
 
-## ReleaseNotesModal
+## ReleaseNotes
 
-Desktop release notes preset с состояниями data, noData и error.
+Адаптивный release notes preset — модальное окно на desktop, bottom sheet на mobile.
 
-`ReleaseNotesModal` — desktop surface для release notes. Публичная визуальная ось `contentState` принимает `data`, `noData`, `error`.
+`ReleaseNotes` — адаптивный preset для показа новостей платформы. На desktop это модальное окно, на mobile — bottom sheet; поверхность выбирается автоматически по раскладке. Публичная визуальная ось `contentState` принимает `data`, `noData`, `error`.
 
 ### Примеры использования
 
 #### Данные
 
 ```tsx
-import { ReleaseNotesModal } from '@ds/uikit-product-modal-predefined';
+import { Button } from '@ds/button';
+import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
 import { releaseNotesItems } from './releaseNotesData';
@@ -213,10 +202,8 @@ export function ReleaseNotesData() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open release notes
-      </button>
-      <ReleaseNotesModal open={open} onClose={() => setOpen(false)} items={releaseNotesItems} />
+      <Button label='Open release notes' view='filled' appearance='primary' onClick={() => setOpen(true)} />
+      <ReleaseNotes open={open} onClose={() => setOpen(false)} items={releaseNotesItems} />
     </>
   );
 }
@@ -225,7 +212,8 @@ export function ReleaseNotesData() {
 #### Нет данных
 
 ```tsx
-import { ReleaseNotesModal } from '@ds/uikit-product-modal-predefined';
+import { Button } from '@ds/button';
+import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
 import { releaseNotesItems } from './releaseNotesData';
@@ -235,10 +223,8 @@ export function ReleaseNotesNoData() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open no-data release notes
-      </button>
-      <ReleaseNotesModal open={open} onClose={() => setOpen(false)} contentState='noData' items={releaseNotesItems} />
+      <Button label='Open no-data release notes' view='filled' appearance='primary' onClick={() => setOpen(true)} />
+      <ReleaseNotes open={open} onClose={() => setOpen(false)} contentState='noData' items={releaseNotesItems} />
     </>
   );
 }
@@ -247,7 +233,8 @@ export function ReleaseNotesNoData() {
 #### Ошибка загрузки
 
 ```tsx
-import { ReleaseNotesModal } from '@ds/uikit-product-modal-predefined';
+import { Button } from '@ds/button';
+import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
 import { releaseNotesItems } from './releaseNotesData';
@@ -257,10 +244,8 @@ export function ReleaseNotesError() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open error release notes
-      </button>
-      <ReleaseNotesModal
+      <Button label='Open error release notes' view='filled' appearance='primary' onClick={() => setOpen(true)} />
+      <ReleaseNotes
         open={open}
         onClose={() => setOpen(false)}
         contentState='error'
@@ -275,7 +260,8 @@ export function ReleaseNotesError() {
 #### Видео в новости
 
 ```tsx
-import { ReleaseNotesModal } from '@ds/uikit-product-modal-predefined';
+import { Button } from '@ds/button';
+import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
 import { releaseNotesItems } from './releaseNotesData';
@@ -285,10 +271,8 @@ export function ReleaseNotesVideo() {
 
   return (
     <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open video release notes
-      </button>
-      <ReleaseNotesModal
+      <Button label='Open video release notes' view='filled' appearance='primary' onClick={() => setOpen(true)} />
+      <ReleaseNotes
         open={open}
         onClose={() => setOpen(false)}
         items={[
@@ -305,13 +289,12 @@ export function ReleaseNotesVideo() {
 
 ### Props
 
-**ReleaseNotesModalProps**
+**ReleaseNotesProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`. <br/> Если не задан — используется `usePortalContext()` (например `PortalContextProvider` из `@design-system/portal-context`), иначе `document.body`. |
-| `contentState` | `"data"` \| `"error"` \| `"noData"` | `data` | Визуальное состояние контента по Figma |
+| `contentState` | `"data"` \| `"error"` \| `"noData"` | — | Визуальное состояние контента по Figma |
 | `data-test-id` | `string` | — |  |
 | `items` | `NoteItemProps` | — | Массив новостей |
 | `loading` | `boolean` | — | Состояние загрузки контента |
@@ -320,6 +303,7 @@ export function ReleaseNotesVideo() {
 | `onReadLaterClick` | `(() => void)` | — | Действие "Ознакомиться позже" |
 | `onSlideChange` | `((slide: number) => void)` | — | Действие при смене слайда |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
+| `readLaterButtonProps` | `ButtonProps` | — | Только mobile: дополнительные пропсы action-кнопки "Ознакомиться позже" (на desktop игнорируется). |
 
 ##### Related types
 
@@ -334,64 +318,42 @@ export function ReleaseNotesVideo() {
 
 - `ReleaseNotesContentState` = `"data"` \| `"error"` \| `"noData"`
 
-## ReleaseNotesBottomSheet
+### Адаптивность
 
-Mobile release notes preset на базе BottomSheet.
+`ReleaseNotes` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
 
-`ReleaseNotesBottomSheet` — mobile surface для release notes по макету `releaseNotesBottomSheet`. API совпадает с `ReleaseNotesModal` по данным и состояниям контента.
+- **desktop** (по умолчанию) — модальное окно (`ModalCustom` из `@ds/modal`) с каруселью новостей и постраничной навигацией.
+- **mobile** — контент рендерится в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
 
-### Примеры использования
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
-#### Mobile release notes
+#### Как форсировать платформу
 
-```tsx
-import { ReleaseNotesBottomSheet as ReleaseNotesBottomSheetComponent } from '@ds/uikit-product-modal-predefined';
-import { useState } from 'react';
+Форс — только контекстом, не пропом:
 
-import { releaseNotesItems } from './releaseNotesData';
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
 
-export function ReleaseNotesBottomSheet() {
-  const [open, setOpen] = useState(false);
+  <AdaptiveProvider layoutType='mobile'>
+    <ReleaseNotes open={open} onClose={close} items={items} />
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { ReleaseNotes } from '@ds/uikit-product-modal-predefined'
 
-  return (
-    <>
-      <button type='button' onClick={() => setOpen(true)}>
-        Open release notes bottom sheet
-      </button>
-      <ReleaseNotesBottomSheetComponent open={open} onClose={() => setOpen(false)} items={releaseNotesItems} />
-    </>
-  );
-}
-```
+  const MobileReleaseNotes = withLayoutType(ReleaseNotes, 'mobile')
+  ```
 
-### Props
+#### Платформенные пропы
 
-**ReleaseNotesBottomSheetProps**
+Таблица синхронизирована с type-level JSDoc у `ReleaseNotesProps`.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `closeOnPopstate` | `boolean` | `true` | Закрывать sheet при `popstate` (browser-back на mobile). |
-| `container` | `string \| HTMLElement` | — | Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`. |
-| `contentState` | `"data"` \| `"error"` \| `"noData"` | `data` | Визуальное состояние контента по Figma |
-| `data-test-id` | `string` | — |  |
-| `items` | `NoteItemProps` | — | Массив новостей |
-| `loading` | `boolean` | — | Состояние загрузки контента |
-| `onClose` | `(() => void) & (() => void)` | — | Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back). <br/> Колбэк закрытия |
-| `onDataErrorRetryClick` | `(() => void)` | — | Действие перезагрузки на экране ошибки |
-| `onReadLaterClick` | `(() => void)` | — | Действие "Ознакомиться позже" |
-| `onSlideChange` | `((slide: number) => void)` | — | Действие при смене слайда |
-| `open` | `boolean` | — | Управление состоянием показан / не показан. <br/> Управление состоянием показан/не показан |
-| `readLaterButtonProps` | `ButtonProps` | — | Дополнительные пропсы action-кнопки "Ознакомиться позже" |
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `readLaterButtonProps` | игнорируется | используется |
+| `open`, `onClose`, `container`, `closeOnPopstate`, `contentState`, `items`, `loading`, `onReadLaterClick`, `onDataErrorRetryClick`, `onSlideChange` | используется | используется |
 
-##### Related types
-
-**NoteItemProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `description` | `string` | — | Описание новости в markdown |
-| `image` | `{ src: string; alt: string; }` | — | Иллюстрация |
-| `title` | `string` | — | Заголовок новости |
-| `video` | `string \| undefined` | — | Видео вместо статичной иллюстрации |
-
-- `ReleaseNotesContentState` = `"data"` \| `"error"` \| `"noData"`
+Подробнее о модели адаптивности — **Adaptive**.
