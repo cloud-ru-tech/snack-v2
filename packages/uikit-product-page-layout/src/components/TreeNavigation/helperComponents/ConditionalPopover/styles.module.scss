@@ -1,0 +1,7 @@
+.popover {
+  max-height: 80%;
+
+  & > div {
+    overflow: auto;
+  }
+}

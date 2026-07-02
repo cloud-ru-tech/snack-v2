@@ -1,0 +1,47 @@
+---
+title: Headline
+package: '@ds/uikit-product-page-layout'
+description: Строка заголовка страницы — title, слоты до/после, действия и подзаголовок. Базовый слот, переиспользуемый раскладками.
+order: 6
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import pageLayoutDoc from './props.json'
+
+# Headline
+
+Строка заголовка страницы: заголовок (`title`), слоты до/после, действия и подзаголовок. Базовый слот, на котором собраны шапки [`PageCatalog`](/components/uikit-product-page-layout/page-catalog), [`PageServices`](/components/uikit-product-page-layout/page-services) и [`PageForm`](/components/uikit-product-page-layout/page-form).
+
+## Когда использовать
+
+- Шапка раздела внутри собственной раскладки, когда готовые `Page*` не подходят.
+- Нужна согласованная по DS строка «заголовок + статус + действия».
+
+## Анатомия
+
+- `title` — заголовок страницы.
+- `beforeHeadline` — слот перед заголовком (например, кнопка «назад»).
+- `afterHeadline` — слот после заголовка (например, статус).
+- `actions` — действия справа от заголовка.
+- `moreActions` — слот действий внутри строки заголовка (mobile-рендереры кладут сюда kebab / «ещё»).
+- `subHeader` — подзаголовок под заголовком.
+- `truncateTitle` — обрезать заголовок в одну строку с многоточием.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { Headline } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.Headline} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-headline--playground' height={360} />

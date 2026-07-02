@@ -295,6 +295,9 @@
       "path": "./uikit-product-quota/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-page-layout/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-toggles-predefined/tsconfig.esm.json"
     },
     {

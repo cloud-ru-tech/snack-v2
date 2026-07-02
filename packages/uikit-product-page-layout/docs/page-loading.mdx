@@ -1,0 +1,43 @@
+---
+title: PageLoading
+package: '@ds/uikit-product-page-layout'
+description: Заглушка-спиннер на всю область страницы на время загрузки данных раскладки.
+order: 8
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import pageLayoutDoc from './props.json'
+
+# PageLoading
+
+Заглушка с центрированным спиннером на всю область страницы. Показывается, пока грузятся данные раскладки.
+
+## Когда использовать
+
+- Первичная загрузка страницы продукта, до того как готовы данные для `Page*`-раскладки.
+- Нужен единый по DS лоадер во всю область контента вместо локальных спиннеров.
+
+## Анатомия
+
+- `className` — CSS-класс контейнера (например, чтобы задать высоту области).
+
+Внутри — `Spinner` размера `m` из [`@ds/loader`](/components/loader), центрированный по контейнеру.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { PageLoading } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.PageLoading} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-pageloading--playground' height={360} />

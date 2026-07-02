@@ -538,6 +538,9 @@ importers:
       '@ds/uikit-product-notification':
         specifier: workspace:*
         version: link:../../packages/uikit-product-notification
+      '@ds/uikit-product-page-layout':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-page-layout
       '@ds/uikit-product-price-summary':
         specifier: workspace:*
         version: link:../../packages/uikit-product-price-summary
@@ -2683,6 +2686,84 @@ importers:
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      uncontrollable:
+        specifier: 'catalog:'
+        version: 8.0.4(react@18.3.1)
+
+  packages/uikit-product-page-layout:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/bottom-sheet':
+        specifier: workspace:^
+        version: link:../bottom-sheet
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/dropdown':
+        specifier: workspace:^
+        version: link:../dropdown
+      '@ds/icon-predefined':
+        specifier: workspace:^
+        version: link:../icon-predefined
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/list':
+        specifier: workspace:^
+        version: link:../list
+      '@ds/loader':
+        specifier: workspace:^
+        version: link:../loader
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
+      '@ds/modal':
+        specifier: workspace:^
+        version: link:../modal
+      '@ds/popover':
+        specifier: workspace:^
+        version: link:../popover
+      '@ds/portal-context':
+        specifier: workspace:^
+        version: link:../portal-context
+      '@ds/search':
+        specifier: workspace:^
+        version: link:../search
+      '@ds/status':
+        specifier: workspace:^
+        version: link:../status
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@ds/tree':
+        specifier: workspace:^
+        version: link:../tree
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
+      '@ds/typography':
+        specifier: workspace:^
+        version: link:../typography
+      '@ds/uikit-product-button-predefined':
+        specifier: workspace:^
+        version: link:../uikit-product-button-predefined
+      '@ds/uikit-product-copy':
+        specifier: workspace:^
+        version: link:../uikit-product-copy
+      '@ds/uikit-product-quota':
+        specifier: workspace:^
+        version: link:../uikit-product-quota
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

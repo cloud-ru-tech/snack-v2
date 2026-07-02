@@ -1,0 +1,79 @@
+---
+title: PageLayout
+package: '@ds/uikit-product-page-layout'
+description: Набор страничных раскладок продуктового кабинета — каталог, детальная страница сервиса, форма, дерево-навигация, сайдбар и общие слоты — с адаптацией desktop/mobile через AdaptiveProvider.
+order: 0
+---
+
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# PageLayout
+
+`@ds/uikit-product-page-layout` — набор страничных раскладок продуктового кабинета. Раскладки построены на общих слотах (`Headline`, `Actions`, сайдбар) и переключаются между desktop- и mobile-представлением автоматически по `AdaptiveProvider`.
+
+## Когда использовать
+
+- Страницы продуктового кабинета, которым нужна единая адаптивная раскладка шапки, действий и сайдбара.
+- Одно и то же дерево разделов и набор действий нужны и на desktop, и на mobile без ручного дублирования вёрстки.
+
+Когда **не** нужен пакет:
+
+- Отдельная карточка или виджет внутри страницы:
+  - используйте [`@ds/uikit-product-widget`](/components/uikit-product-widget) или [`@ds/card`](/components/card).
+- Только панель действий без страничной обёртки:
+  - соберите `Button` / kebab напрямую.
+
+## Раскладки
+
+- [**PageCatalog**](/components/uikit-product-page-layout/page-catalog) — список/каталог сервисов: заголовок, действия в шапке, контент.
+- [**PageServices**](/components/uikit-product-page-layout/page-services) — детальная страница инстанса: селект раздела, заголовок со статусом, действия, контент.
+- [**PageForm**](/components/uikit-product-page-layout/page-form) — форма создания/настройки: степпер, сайд-блок и sticky-футер с оценкой бюджета.
+- [**TreeNavigation**](/components/uikit-product-page-layout/tree-navigation) — раскладка с деревом разделов в режимах `popover` / `aside` / `fixed`.
+- [**PageSidebar**](/components/uikit-product-page-layout/page-sidebar) — сайдбар разделов с поиском, группами и сворачиванием.
+
+Общие слоты, переиспользуемые внутри раскладок:
+
+- [**Headline**](/components/uikit-product-page-layout/headline) — строка заголовка: title, слоты до/после, действия, подзаголовок.
+- [**DefaultSubHeader**](/components/uikit-product-page-layout/default-sub-header) — подзаголовок «подпись + копируемое значение».
+- [**PageLoading**](/components/uikit-product-page-layout/page-loading) — заглушка-спиннер на время загрузки страницы.
+
+## Адаптивность
+
+`PageCatalog`, `PageServices` и `PageForm` — адаптивные: раскладку они берут из контекста `AdaptiveProvider` (`@ds/adaptive`), а не из пропа. Потребитель ставит один `<AdaptiveProvider>` в корне фичи — desktop работает по умолчанию, mobile подключается автоматически.
+
+- На `mobile` рендерится отдельное представление: сайдбар сворачивается в селект, действия — одно видимое плюс kebab.
+- Форс конкретной раскладки — `withLayoutType(Component, 'desktop')` или вложенный `<AdaptiveProvider layoutType='mobile'>`. Пропа `layoutType` у компонентов нет.
+
+Подробности по каждому представлению — на страницах соответствующих раскладок.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import {
+  PageCatalog,
+  PageServices,
+  PageForm,
+  TreeNavigation,
+  PageSidebar,
+  Headline,
+  DefaultSubHeader,
+  PageLoading,
+  TREE_NAVIGATION_MODE,
+} from '@ds/uikit-product-page-layout'
+```
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-page-layout')} height={480} />
+
+## Смотри также
+
+- [`@ds/uikit-product-widget`](/components/uikit-product-widget) — карточка-виджет внутри страницы.
+- [`@ds/segment-control`](/components/segment-control) — переключатель вкладок в шапках.
+- [`@ds/tree`](/components/tree) — дерево, на котором построен `TreeNavigation`.
+- [`@ds/adaptive`](/components/adaptive) — провайдер раскладки desktop/mobile.

@@ -290,6 +290,9 @@
       "path": "./uikit-product-quota/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-page-layout/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-toggles-predefined/tsconfig.cjs.json"
     },
     {

@@ -1,0 +1,58 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.headline {
+  display: flex;
+  flex-direction: column;
+}
+
+.headlineLayout {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+}
+
+.titleLayout {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+
+  width: 100%;
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.title {
+  min-width: 0;
+}
+
+.prefixButtonWrapper,
+.statusWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+// Слот «ещё»/kebab прижимается к правому краю строки заголовка (Figma node 6351:10197:
+// titleWrapper слева, buttonActions у правого края). afterHeadline-статус остаётся у заголовка.
+.moreActions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-left: auto;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.subHeader {
+  margin-top: base.$sn-primitive-dimension-4;
+  color: base.$sn-theme-color-available-version-textMain;
+}

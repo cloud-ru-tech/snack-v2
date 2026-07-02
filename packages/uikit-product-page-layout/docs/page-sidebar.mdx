@@ -1,0 +1,58 @@
+---
+title: PageSidebar
+package: '@ds/uikit-product-page-layout'
+description: Сайдбар разделов страницы — список с группами и сворачиванием, опциональный поиск, шапка title/back и подвал.
+order: 5
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import pageLayoutDoc from './props.json'
+
+# PageSidebar
+
+Боковая навигация страницы: список разделов (`items`) с группами и сворачиванием, опциональный поиск, шапка (`header`) и подвал (`footerItems`). Используется самостоятельно и как слот `sidebar` в [`PageServices`](/components/uikit-product-page-layout/page-services).
+
+## Когда использовать
+
+- Навигация по разделам внутри одной страницы продукта.
+- Нужен сворачиваемый сайдбар с группировкой пунктов, поиском и шапкой «назад» / «заголовок».
+
+## Анатомия
+
+### Элементы (`items`, `footerItems`)
+
+`SidebarItem` — либо ссылка (`href`), либо узел с вложенностью (`items`). Базовые поля: `id`, `label`, `onClick`, `beforeContent` / `afterContent`, `disabledReason` (+ `disabledReasonPlacement`).
+
+- `type` — `collapse` (по умолчанию, сворачиваемая группа) или `group`.
+- `divider` — разделитель после узла.
+
+### Шапка (`header`)
+
+- `type: 'title'` — заголовок с `label` и обязательной `icon`, опционально `afterContent`.
+- `type: 'back'` — кнопка «назад» с `label`, `href` или `onClick`.
+
+### Состояние и поведение
+
+- `open` / `defaultOpen` / `onOpenChanged` — раскрытие сайдбара (controlled / uncontrolled).
+- `selected` / `onSelect` — выбранный пункт и колбэк.
+- `hasSearch` — строка поиска по пунктам.
+- `collapse` — поведение сворачивания (пропсы [`@ds/list`](/components/list)).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { PageSidebar } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.PageSidebar} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-pagesidebar--playground' height={480} />

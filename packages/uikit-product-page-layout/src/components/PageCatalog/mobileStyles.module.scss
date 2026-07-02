@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-l;
+
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding: base.$sn-density-spacing-interval-l;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

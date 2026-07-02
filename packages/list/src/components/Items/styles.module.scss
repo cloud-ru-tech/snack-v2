@@ -47,6 +47,19 @@ $sizes: 's', 'm', 'l';
       }
     }
   }
+
+  // Миксин has-state-layer-as-child гасит hover/active state-layer только для
+  // data-disabled/data-loading. data-inactive — list-специфичный «неинтерактивный» флаг,
+  // миксин про него не знает → глушим state-layer и для него (перебиваем по специфичности).
+  &[data-inactive] {
+    &:hover,
+    &:active {
+      .stateLayer[data-state='regularFilled'],
+      .stateLayer[data-state='activatedFilled'] {
+        background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+      }
+    }
+  }
 }
 
 .listItem {

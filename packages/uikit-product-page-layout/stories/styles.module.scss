@@ -1,0 +1,287 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Глобальная StoryWrapper-обёртка (`.sb-story-wrapper`) на layout:fullscreen вылезает
+// на ~16px вправо (min-width: 100% + 32px) и даёт внешний горизонтальный скролл.
+// Гасим его на уровне iframe-документа; fixed-порталы и внутренний скролл `.fullPage` не затрагиваются.
+:global(html) {
+  overflow-x: hidden;
+}
+
+// Полноэкранный хост страничных компонентов (как легаси `.fullPageHeight`).
+// position: fixed + inset: 0 — компонент рисуется на весь iframe, минуя padding
+// глобальной StoryWrapper-обёртки; одновременно это positioned-контекст для absolute-сайдбара.
+.fullPage {
+  position: fixed;
+  inset: 0;
+
+  overflow: auto;
+
+  box-sizing: border-box;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// Хост одиночного сайдбара: full-bleed positioned-контекст под off-canvas-слайд.
+.sidebarHost {
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// Device-фреймы для VisualMatrix: положенный (контекст для absolute-сайдбара) и клиппящий
+// контейнер фикс. размера. Ширина/высота — preview-литералы под «экран», токена нет.
+// desktop ≥ 1248px (контент 992 + сайдбар 256), чтобы страница влезала без переполнения.
+.deviceDesktop {
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  width: 1280px;
+  height: 520px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.deviceMobile {
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  width: 360px;
+  height: 560px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// Desktop-фрейм для высоких страниц (PageForm): фикс. ширина «экрана», но высота — по контенту,
+// без overflow:hidden, чтобы карточный каркас формы не обрезался снизу.
+.deviceForm {
+  position: relative;
+
+  box-sizing: border-box;
+  width: 1280px;
+  min-height: 480px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 480px;
+}
+
+.columnNarrow {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 320px;
+}
+
+.frame {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+}
+
+.sidebarFrame {
+  // position: relative + overflow: hidden — контекст для absolute-сайдбара и клип off-canvas-слайда.
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  width: 280px;
+  height: 480px;
+}
+
+.treeFrame {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+  height: 480px;
+}
+
+// Фрейм-«область страницы» для PageLoading: даёт высоту, чтобы спиннер центрировался.
+.loadingFrame {
+  box-sizing: border-box;
+  width: 100%;
+  height: 360px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.demoBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 160px;
+  padding: base.$sn-primitive-dimension-24;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// --- Реалистичный контент демо-страниц ---
+
+// Карточка-секция info-страницы сервиса (заголовок + definition-list).
+// Рамка/фон — на корне Card; отступы контента — на внутреннем `.infoCardBody`,
+// т.к. корень `@ds/card` держит `padding: 0` и перебивает padding, заданный на нём через className.
+.infoCard {
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  // Белая панель контента на сером neutral-background странице.
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.infoCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  padding: base.$sn-primitive-dimension-20;
+}
+
+// Сетка карточек info-страницы и каталога. auto-fit + minmax: на узком контейнере
+// (mobile ≈360px) колонки схлопываются в одну, на широком — две и более.
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: base.$sn-primitive-dimension-16;
+}
+
+// Карточка сервиса в каталоге: иконка + текст + действие.
+// Рамка/фон — на корне Card; отступы контента — на внутреннем `.serviceCardBody`
+// (корень `@ds/card` держит `padding: 0` и перебивает padding через className).
+.serviceCard {
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  // Карточка кликабельна (Card as='a'), но текст внутри — обычная типографика,
+  // а не синяя подчёркнутая ссылка: гасим anchor-оформление.
+  color: base.$sn-theme-color-available-version-textMain;
+  text-decoration: none;
+
+  // Белая карточка на сером neutral-background странице.
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.serviceCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  padding: base.$sn-primitive-dimension-20;
+}
+
+// Описание сервис-карточки — вторичный цвет.
+.serviceCardDesc {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.serviceCardHead {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.serviceCardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: base.$sn-primitive-dimension-40;
+  height: base.$sn-primitive-dimension-40;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-primary-accent;
+
+  background-color: base.$sn-theme-color-primary-decorTransparent;
+}
+
+// Definition-list: «параметр → значение».
+.defList {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-24;
+}
+
+// Колонка контента страницы: вертикальный стек секций.
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+// Детализация стоимости (price-summary) и боковой блок справки.
+.summaryList {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+}
+
+.summaryRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.sideBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+// Стек аккордеон-секций формы с промежутком между ними.
+.formAccordions {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+// Стек элементов формы-плейсхолдера (поля как нейтральные строки).
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  max-width: 560px; // комфортная ширина формы; токена нет
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.formInput {
+  box-sizing: border-box;
+  height: base.$sn-primitive-dimension-40;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}

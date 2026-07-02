@@ -102,6 +102,7 @@
     "@ds/uikit-product-toggles-predefined": "workspace:*",
     "@ds/uikit-product-upload-files": "workspace:*",
     "@ds/uikit-product-widget": "workspace:*",
+    "@ds/uikit-product-page-layout": "workspace:*",
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
     "marked": "14.1.4",

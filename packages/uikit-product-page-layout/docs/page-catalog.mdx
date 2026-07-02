@@ -1,0 +1,61 @@
+---
+title: PageCatalog
+package: '@ds/uikit-product-page-layout'
+description: Раскладка каталога сервисов — строка заголовка с действиями и контентная область. Адаптивная — на mobile действия схлопываются в «основное + kebab».
+order: 1
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import pageLayoutDoc from './props.json'
+
+# PageCatalog
+
+Раскладка каталога/списка сервисов: строка заголовка (`title`) с панелью действий (`actions`) и контентная область (`children`). Раскладку берёт из `AdaptiveProvider`.
+
+## Когда использовать
+
+- Список или каталог сервисов, ресурсов, проектов с действиями в шапке.
+- Нужна одна и та же шапка с действиями на desktop и mobile без ручного дублирования.
+
+## Анатомия
+
+Заголовок (`title`) + панель действий (`actions`) + контент (`children`).
+
+### Действия
+
+`actions` — массив `Action`. Каждый элемент — дискриминированный union по `variant`:
+
+- `filled` / `outline` / `tonal` / `function` / `simple` — простая кнопка `@ds/button` с соответствующим `view`.
+- `dropdown` / `kebab` / `droplist` / `quota` — составные кнопки из предопределённых обёрток.
+
+Основное действие ставьте **первым** в массиве: на desktop (row-reverse) оно встаёт справа, на mobile — растягивается на доступную ширину.
+
+### Адаптивность
+
+- `desktop` — действия выстроены в строку шапки.
+- `mobile` — видимым остаётся первое (основное) действие, остальные уходят в kebab. Количество видимых регулируется `maxVisibleActionsItems`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { PageCatalog } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.PageCatalog} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-pagecatalog--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-page-layout', 'page-catalog')} height={480} />

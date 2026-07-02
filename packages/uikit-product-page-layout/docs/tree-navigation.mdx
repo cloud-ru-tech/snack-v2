@@ -1,0 +1,69 @@
+---
+title: TreeNavigation
+package: '@ds/uikit-product-page-layout'
+description: Раскладка с деревом разделов — шапка, дерево-меню и контент. Режимы popover / aside / fixed.
+order: 4
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import pageLayoutDoc from './props.json'
+
+# TreeNavigation
+
+Раскладка с деревом разделов: шапка (`header`), дерево-меню (`menu`) на [`@ds/tree`](/components/tree) и контентная область (`content`). Способ показа дерева задаёт `mode`.
+
+## Когда использовать
+
+- Страница с иерархической навигацией по разделам (документация, настройки, дерево ресурсов).
+- Нужно меню-дерево, которое можно держать сбоку, фиксировать или прятать в поповер.
+
+## Анатомия
+
+### Mode (default `aside`)
+
+- `popover` — дерево открывается в поповере под кнопкой-бургером.
+- `aside` — дерево в боковой колонке, сворачиваемое.
+- `fixed` — боковая колонка всегда раскрыта (Figma-состояние `treeMenu=fixed`).
+
+### Шапка (`header`)
+
+`title` обязателен; опционально `icon`, `description`, `status` (пропсы [`@ds/status`](/components/status)) и `actions`.
+
+### Меню (`menu`)
+
+- `items` — данные дерева (`TreeNodeProps[]` из [`@ds/tree`](/components/tree)).
+- `menuTitle` — заголовок меню.
+- `selected` / `onSelect` — выбранный узел и колбэк выбора.
+- `isMenuOpen` / `onMenuToggle` / `defaultMenuOpened` — управление раскрытием (в `popover`). В контролируемом режиме `onMenuToggle` обязателен.
+- `enableShrinkMenuButton` — кнопка «Свернуть всё».
+- `withDefaultOpenedMenuList` — раскрыть пункты меню по умолчанию.
+
+### Контент
+
+- `content` — контентная часть страницы.
+- `contentClassName` — класс контейнера контента.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { TreeNavigation, TREE_NAVIGATION_MODE } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.TreeNavigation} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-treenavigation--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-page-layout', 'tree-navigation')} height={480} />

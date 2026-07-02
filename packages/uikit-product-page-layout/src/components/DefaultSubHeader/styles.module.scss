@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.subheader {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.label {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}

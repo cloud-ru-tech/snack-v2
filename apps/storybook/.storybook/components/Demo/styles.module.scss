@@ -101,7 +101,9 @@
 // Уместно для full-width демо-блоков (Alert, ProgressBar, CodeEditor),
 // где сам компонент по дизайну тянется во весь доступный bounding box.
 .actionsBlock {
-  flex-direction: column;
+  // nowrap обязателен: унаследованный от `.actions` flex-wrap: wrap в колонке даёт
+  // потомку ширину по max-content (широкий контент вылезает за контейнер, ломая truncate).
+  flex-flow: column nowrap;
   align-items: stretch;
 }
 

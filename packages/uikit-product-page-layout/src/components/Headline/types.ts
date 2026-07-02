@@ -1,0 +1,19 @@
+import { WithSupportProps } from '@ds/utils';
+import { ReactNode } from 'react';
+
+export type HeadlineProps = WithSupportProps<{
+  /** Заголовок страницы */
+  title: string;
+  /** Слот перед заголовком (например, кнопка «назад») */
+  beforeHeadline?: ReactNode;
+  /** Слот после заголовка (например, статус) */
+  afterHeadline?: ReactNode;
+  /** Действия справа от заголовка */
+  actions?: ReactNode;
+  /** Слот действий внутри строки заголовка (mobile-рендереры кладут сюда kebab/«ещё») */
+  moreActions?: ReactNode;
+  /** Подзаголовок под заголовком */
+  subHeader?: ReactNode;
+  /** Обрезать заголовок в одну строку с многоточием */
+  truncateTitle?: boolean;
+}>;

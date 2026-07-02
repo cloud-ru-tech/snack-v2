@@ -1,0 +1,20 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.icon {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.title {
+  overflow: hidden;
+  flex-grow: 1;
+  flex-shrink: 1;
+  color: base.$sn-theme-color-available-version-textMain;
+}

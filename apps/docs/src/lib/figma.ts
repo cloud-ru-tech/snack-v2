@@ -275,6 +275,13 @@ export const FIGMA_NODES = {
     'quota-widget-mini': { ...PRODUCT, nodeId: '2950-5077' }, // quotaMini
     'quota-widget-card': { ...PRODUCT, nodeId: '2921-16397' }, // quotaCard
   },
+  'uikit-product-page-layout': {
+    _: { ...PRODUCT, nodeId: '2004:1133' }, // pageLayout canvas
+    'page-services': { ...PRODUCT, nodeId: '3334:55254' }, // pageLayoutService
+    'page-catalog': { ...PRODUCT, nodeId: '3449:33369' }, // pageLayoutCatalog
+    'page-form': { ...PRODUCT, nodeId: '3912:5153' }, // pageLayoutForm
+    'tree-navigation': { ...PRODUCT, nodeId: '4302:20315' }, // pageLayoutTreeNavigation
+  },
   'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
   'uikit-product-notification': {
     _: { ...PRODUCT, nodeId: '2924:49' }, // canvas: notification

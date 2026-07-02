@@ -1,0 +1,130 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Ширина сайдбара 256px — фиксированный layout-размер из Figma-мастера, токена нет.
+$width: 256px;
+// Ширина hover-ловушки слева от свёрнутого сайдбара.
+$catcherWidth: base.$sn-primitive-dimension-4;
+// Тайминги slide-анимации — анимационные литералы, токенов нет.
+$instantAnimation: left 0.15s ease-in-out;
+$delayedAnimation: left 0.15s 0.35s ease-in-out;
+
+.wrapper {
+  width: $width;
+
+  &[data-collapsed] {
+    width: 0;
+  }
+
+  .body {
+    position: absolute;
+
+    display: flex;
+
+    width: $width;
+    height: 100%;
+
+    transition: $delayedAnimation;
+
+    &[data-hover-off] {
+      pointer-events: none;
+      transition: $instantAnimation;
+    }
+
+    &[data-collapsed] {
+      left: calc(-1 * $width);
+
+      &::before {
+        content: ' ';
+
+        position: absolute;
+        right: calc(-1 * $catcherWidth);
+
+        width: $catcherWidth;
+        height: 100%;
+      }
+
+      &:hover {
+        left: 0;
+        transition: $instantAnimation;
+
+        &::before {
+          right: calc(-4 * $catcherWidth);
+          width: calc(4 * $catcherWidth);
+        }
+      }
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    box-sizing: border-box;
+    padding: base.$sn-primitive-dimension-4 0;
+    // Правый разделитель = stateLayer/regular/border color.
+    border-right: base.$sn-primitive-strokeWeight-strokeRegular solid
+      base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+
+    background-color: base.$sn-theme-color-neutral-background;
+
+    &[data-collapsed] {
+      margin: base.$sn-primitive-dimension-4;
+      border-right: none;
+      box-shadow: base.$sn-boxShadow-elevation-level3;
+    }
+  }
+
+  .list {
+    position: relative;
+
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .toggler {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: end;
+
+    padding: 0 base.$sn-primitive-dimension-4;
+  }
+
+  .expandButton {
+    position: fixed;
+    bottom: base.$sn-primitive-dimension-8;
+    left: base.$sn-primitive-dimension-8;
+  }
+}
+
+.button {
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+// Высота строки шапки 48px. 44 − 1px: разделитель-полоску listItemGroup (1px)
+// добавляет сверху хост @ds/list.
+.pinnedHeaderSlot {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  min-height: calc(base.$sn-primitive-dimension-44 - base.$sn-primitive-strokeWeight-strokeRegular);
+}
+
+.pinnedHeaderContent {
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+// Инсет под focus-outline поля: строка списка держит overflow: hidden и обрезала бы
+// рамку по краям. Только для поиска — иконка заголовка остаётся выровнена с навигацией.
+.pinnedHeaderSlotSearch {
+  padding-inline: base.$sn-primitive-dimension-4;
+}

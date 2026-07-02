@@ -1,0 +1,61 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+
+  min-width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  position: relative;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+  width: fit-content;
+  // 256px — ширина сайдбара из Figma-мастера, токена нет.
+  max-width: 256px;
+}
+
+.tempContainer {
+  position: relative;
+
+  overflow-y: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  box-sizing: border-box;
+  // 992px — минимальная ширина контентной области из Figma-мастера, токена нет.
+  min-width: 992px;
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-m;
+
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: base.$sn-density-spacing-interval-l;
+
+  &[data-limited='true'] {
+    // 1248px — десктопный фрейм страницы из Figma-мастера, токена нет.
+    max-width: 1248px;
+    margin: 0 auto;
+  }
+}
+
+.childWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  box-sizing: border-box;
+}

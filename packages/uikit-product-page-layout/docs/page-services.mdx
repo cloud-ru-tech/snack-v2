@@ -1,0 +1,59 @@
+---
+title: PageServices
+package: '@ds/uikit-product-page-layout'
+description: Детальная страница инстанса — селект раздела, заголовок со статусом, действия и контент. Адаптивная — на mobile селект выносится наверх full-bleed-строкой.
+order: 2
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import pageLayoutDoc from './props.json'
+
+# PageServices
+
+Детальная страница инстанса: селект раздела (`sidebar`), заголовок (`title`) со статусом в `afterHeadline`, действия (`actions`) и контент (`children`). Раскладку берёт из `AdaptiveProvider`.
+
+## Когда использовать
+
+- Страница конкретного ресурса/инстанса с навигацией по разделам и заголовком-статусом.
+- Нужен заголовок со статусом и панелью действий поверх адаптивной раскладки с боковым сайдбаром.
+
+## Анатомия
+
+- `sidebar` — селект/сайдбар разделов (пропсы [`PageSidebar`](/components/uikit-product-page-layout/page-sidebar)).
+- `title` — заголовок страницы (строка [`Headline`](/components/uikit-product-page-layout/headline)).
+- `beforeHeadline` / `afterHeadline` — слоты до/после заголовка; статус инстанса обычно кладут в `afterHeadline`.
+- `actions` — панель действий справа от заголовка.
+- `subHeader` — подзаголовок (например, [`DefaultSubHeader`](/components/uikit-product-page-layout/default-sub-header) с ID ресурса).
+- `children` — контент страницы.
+- `autoHeight` — снять расчёт высоты по глобальному хост-контейнеру single-spa.
+- `limitContentMaxWidth` — ограничить максимальную ширину контента.
+
+### Адаптивность
+
+- `desktop` — сайдбар сбоку, заголовок и действия в строке шапки.
+- `mobile` — селект раздела (`SidebarSelect`) выносится наверх как full-bleed-строка с разделителем снизу; ниже — заголовок со статусом, строка действий и контент с отступом.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { PageServices } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.PageServices} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-pageservices--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-page-layout', 'page-services')} height={480} />

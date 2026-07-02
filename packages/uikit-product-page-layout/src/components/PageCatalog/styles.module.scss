@@ -1,0 +1,23 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  // Figma-тело каталога (node 3449:33375): вертикальный gap=interval-m (16), как в PageServices.
+  gap: base.$sn-density-spacing-interval-m;
+
+  box-sizing: border-box;
+  min-width: 992px;
+
+  // 1248px — десктопный фрейм страницы, 992px — минимальная ширина body из Figma-мастера.
+  // Брейкпоинт-литералы: токена для ширины страницы в @sbercloud/figma-variables нет.
+  max-width: min(100%, 1248px);
+  margin: 0 auto;
+  padding: base.$sn-density-spacing-interval-l;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

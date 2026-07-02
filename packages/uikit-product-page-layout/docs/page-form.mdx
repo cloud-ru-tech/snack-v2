@@ -1,0 +1,76 @@
+---
+title: PageForm
+package: '@ds/uikit-product-page-layout'
+description: Раскладка формы создания/настройки — степпер, контент, сайд-блок и sticky-футер с оценкой бюджета. Адаптивная.
+order: 3
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import pageLayoutDoc from './props.json'
+
+# PageForm
+
+Раскладка формы создания или настройки ресурса: заголовок, степпер (`stepper`), контент (`children`), сайд-блок (`sideBlock`) и sticky-футер с оценкой бюджета (`priceSummary`) и кнопками (`footer`). Раскладку берёт из `AdaptiveProvider`.
+
+## Когда использовать
+
+- Многошаговые формы создания/аренды/настройки ресурса со степпером и итоговой ценой.
+- Нужен закреплённый футер с основной/вторичной кнопкой и сводкой бюджета.
+
+## Анатомия
+
+Тело PageForm — прозрачная колонка из block/l-карточек поверх серого фона страницы. Сверху на всю ширину идут карточка заголовка и карточка степпера, ниже — ряд `content` из трёх колонок:
+
+- `filters` — левая колонка фиксированной ширины 304px.
+- `children` — центральная колонка (`flex: 1`), контент текущего шага и карточка футера снизу.
+- helper-колонка фиксированной ширины 304px — карточки `priceSummary.content` и `sideBlock[i].content`.
+
+Колонки `filters` и helper отрисовываются только при переданных слотах; иначе центральная колонка занимает всё доступное место. На mobile раскладка одноколоночная: `filters` рендерится сверху тела, остальные слоты — стопкой.
+
+Слоты:
+
+- `title` / `subHeader` — заголовок формы и подзаголовок (карточка-заголовок на всю ширину).
+- `stepper` — степпер шагов (карточка на всю ширину); на mobile становится sticky сверху.
+- `filters` — слот фильтров: левая колонка 304px на desktop, верхний блок тела на mobile.
+- `children` — контент текущего шага в центральной колонке.
+- `sideBlock` — массив блоков `{ label, content }` в helper-колонке (подсказки, сводка конфигурации).
+- `priceSummary` — `{ total, content? }`: на desktop `content` идёт карточкой в helper-колонке, на mobile — оценкой бюджета в футере.
+- `footer` — кнопки футера (карточка снизу центральной колонки на desktop, sticky-футер на mobile).
+
+### Кнопки футера
+
+- `buttonPrimary` — основная кнопка. `variant` из набора (`continue`, `create`, `save`, `rent`, `send`, `restore`, `add`) задаёт локализованный лейбл; `variant: 'custom'` требует свой `label`.
+- `buttonSecondary` — вторичная кнопка (`cancel`, `back` или `custom`).
+- `buttonAdditional` — дополнительная кнопка `@ds/button`.
+
+Каждой кнопке можно передать `tooltip` (пропсы [`@ds/tooltip`](/components/tooltip)).
+
+### Адаптивность
+
+- `desktop` — сайд-блок сбоку, футер с бюджетом и кнопками внизу.
+- `mobile` — слот «ещё» (`moreActions`, kebab) прижимается к правому краю строки заголовка; степпер sticky сверху, футер с оценкой бюджета и кнопками — sticky снизу.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { PageForm } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.PageForm} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-pageform--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-page-layout', 'page-form')} height={480} />

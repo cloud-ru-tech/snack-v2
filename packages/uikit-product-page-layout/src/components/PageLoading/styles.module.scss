@@ -1,0 +1,17 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  color: base.$sn-theme-color-neutral-accent;
+}
+
+.spinner {
+  flex-shrink: 0;
+}

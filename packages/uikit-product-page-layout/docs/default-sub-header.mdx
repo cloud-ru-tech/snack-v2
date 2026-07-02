@@ -1,0 +1,43 @@
+---
+title: DefaultSubHeader
+package: '@ds/uikit-product-page-layout'
+description: Подзаголовок страницы «подпись + копируемое значение» с опциональной тултип-подсказкой.
+order: 7
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import pageLayoutDoc from './props.json'
+
+# DefaultSubHeader
+
+Подзаголовок страницы из подписи (`label`) и копируемого значения (`value`, пропсы [`CopyLine`](/components/uikit-product-copy)). Типичный слот `subHeader` для строки с ID ресурса.
+
+## Когда использовать
+
+- Подзаголовок детальной страницы с копируемым идентификатором (ID инстанса, ARN, адрес).
+- Нужна пара «подпись — значение» с кнопкой копирования и опциональной подсказкой.
+
+## Анатомия
+
+- `label` — подпись слева.
+- `value` — копируемое значение (пропсы `CopyLine` из [`@ds/uikit-product-copy`](/components/uikit-product-copy)).
+- `labelTooltip` — тултип-подсказка рядом с подписью (рендерится через `QuestionTooltip`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-page-layout
+```
+
+```ts
+import { DefaultSubHeader } from '@ds/uikit-product-page-layout'
+```
+
+## Props
+
+<PropsTable data={pageLayoutDoc.DefaultSubHeader} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-pagelayout-defaultsubheader--playground' height={360} />

@@ -1,0 +1,36 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+}
+
+// Триггер-селект «Информация» в шапке mobile-страницы — full-bleed строка,
+// отделённая от тела разделителем снизу (Figma node 3334:63034: mobileSidebar 360px).
+.sidebarSelect {
+  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+}
+
+// Тело страницы: контент с отступом 16 (compact density), селект выше — full-bleed.
+.body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: base.$sn-density-spacing-interval-l;
+
+  box-sizing: border-box;
+  padding: base.$sn-density-spacing-interval-l;
+}
+
+.childWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  box-sizing: border-box;
+}

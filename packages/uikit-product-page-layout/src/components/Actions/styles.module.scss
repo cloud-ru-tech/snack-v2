@@ -1,0 +1,36 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.desktopActionsWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  height: 100%;
+}
+
+.mobileActionsWrapper {
+  display: flex;
+  // row-reverse: kebab (первый в DOM) встаёт справа, видимые действия — слева (Figma 3334:63034).
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  width: 100%;
+}
+
+.button {
+  white-space: nowrap;
+
+  // Видимое action-кнопка на mobile растягивается на доступную ширину; kebab (icon-only)
+  // держит фикс. ширину справа (Figma 3334:63034: primaryAction 272 + gap 8 + kebab 48 = 328).
+  &[data-full-width]:not([data-variant='icon-only']) {
+    flex: 1 1 0;
+  }
+
+  &[data-variant='icon-only'] {
+    flex: 0 0 auto;
+  }
+}

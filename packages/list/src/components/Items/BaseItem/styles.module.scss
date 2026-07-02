@@ -216,6 +216,10 @@ $level: var(--level, 0);
       .groupIndicator {
         width: base.simple-var(icons.$iconSizeMap, $size);
         height: base.simple-var(icons.$iconSizeMap, $size);
+        // Строка выровнена по flex-start; centeredWrapper.padding-top сдвигает чеврон на центр
+        // первой строки текста (как у afterContent/beforeContent). margin (а не padding) —
+        // чтобы квадрат state-layer'а остался icon-сеткой, а не растянулся по вертикали.
+        margin-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
       }
 
       .markerContainer {
