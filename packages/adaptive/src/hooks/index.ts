@@ -1,3 +1,4 @@
 export * from './useAdaptiveBootstrap';
-export * from './useMatchMedia';
 export * from './useLayoutDefaults';
+export * from './useClientLayoutType';
+export * from './useMatchMedia';

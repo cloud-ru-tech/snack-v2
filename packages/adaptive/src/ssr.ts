@@ -3,11 +3,14 @@
 // (`createContext`/`useEffect`), поэтому его нельзя импортировать в React Server Component (Next App
 // Router завершается с ошибкой «needs use client»). Этот вход безопасно импортировать на сервере —
 // например, чтобы вычислить `layoutType` из request User-Agent в `layout.tsx`
-// (`getAdaptive(INITIAL_ADAPTIVE_QUERIES_VALUE, headers().get('user-agent'))`).
+// (`getSSRInitialLayoutType({ viewportWidth, userAgent })` + `getLayoutBootstrapScript()`).
 export * from './constants/adaptive';
 export * from './types/layoutTypes';
 export * from './types/presets';
 export * from './utils/getAdaptive';
+export * from './utils/getLayoutBootstrapScript';
+export * from './utils/getSSRInitialLayoutType';
 export * from './utils/getUserAgentInfo';
-export * from './utils/resolveLayoutType';
+export * from './utils/layoutTypeFromUserAgent';
 export * from './utils/resolveByLayout';
+export * from './utils/resolveLayoutType';

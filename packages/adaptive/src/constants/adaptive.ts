@@ -1,12 +1,20 @@
 import { LAYOUT_TYPE, LayoutType } from '../types/layoutTypes';
 
+/** Брейкпоинты adaptive-раскладки (max-width в px). Форма дефолта `ADAPTIVE_BREAKPOINT`. */
+export type AdaptiveBreakpoints = {
+  mobile: number;
+  tablet: number;
+  desktopSmall: number;
+  desktop: number;
+};
+
 /** Брейкпоинты adaptive-раскладки (max-width в px), по которым `useAdaptiveBootstrap` выбирает `layoutType`. */
-export const ADAPTIVE_BREAKPOINT = {
+export const ADAPTIVE_BREAKPOINT: AdaptiveBreakpoints = {
   mobile: 767,
   tablet: 1023,
   desktopSmall: 1279,
   desktop: 1439,
-} as const;
+};
 
 /** CSS media-query строки, собранные из `ADAPTIVE_BREAKPOINT`. */
 export const CSS_BREAKPOINTS = {
@@ -34,14 +42,6 @@ export const ADAPTIVE_QUERIES = {
   [ADAPTIVE_QUERY.IsDesktop]: CSS_BREAKPOINTS.desktop,
   [ADAPTIVE_QUERY.IsLarge]: CSS_BREAKPOINTS.large,
 } as const;
-
-/** Брейкпоинты adaptive-раскладки (max-width в px). Форма дефолта `ADAPTIVE_BREAKPOINT`. */
-export type AdaptiveBreakpoints = {
-  mobile: number;
-  tablet: number;
-  desktopSmall: number;
-  desktop: number;
-};
 
 /** Собирает карту adaptive media-query из произвольных брейкпоинтов — для per-app override. */
 export function buildAdaptiveQueries(breakpoints: AdaptiveBreakpoints) {
