@@ -9,7 +9,14 @@ export type ChipStoryProps = Record<string, unknown>;
 
 export const KEY_SIZES = Object.values(SIZE);
 
-function build(name: string, story: string, testId: string, props?: ChipStoryProps): StorybookUrlOptions {
+function build(
+  name: string,
+  story: string,
+  testId: string,
+  props?: ChipStoryProps,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
+): StorybookUrlOptions {
   return {
     name,
     group: CHIPS_GROUP,
@@ -18,6 +25,7 @@ function build(name: string, story: string, testId: string, props?: ChipStoryPro
       'data-test-id': testId,
       ...props,
     },
+    globals,
   };
 }
 
@@ -37,8 +45,9 @@ export function buildChipChoiceVariantStory(
   variant: 'custom' | 'date' | 'daterange' | 'multiple' | 'single' | 'time',
   props?: ChipStoryProps,
   story = 'playground',
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
-  return build(`chipchoice-${variant}`, story, TEST_IDS.chipChoice.root, props);
+  return build(`chipchoice-${variant}`, story, TEST_IDS.chipChoice.root, props, globals);
 }
 
 export function buildChipChoiceRowStory(props?: ChipStoryProps, story = 'playground'): StorybookUrlOptions {
