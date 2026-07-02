@@ -16,8 +16,7 @@ export type MobileFooterProps = {
 };
 
 /**
- * Мобильный футер календаря: строка «Выбрано: <значение>» над кнопками + `Current` / `Apply`.
- * Рендерится для всех режимов (на десктопе футер только для date-time). Значение и режим — из контекста.
+ * Строка «Выбрано:» (для всех режимов) + Current / Apply кнопки.
  */
 export function MobileFooter({ onApply, onCurrent, applyDisabled }: MobileFooterProps) {
   const { mode, value, dateAndTime, showSeconds, locale, getTestId } = useCalendarContext();
@@ -27,8 +26,7 @@ export function MobileFooter({ onApply, onCurrent, applyDisabled }: MobileFooter
 
   return (
     <div className={styles.footer}>
-      {/* Строку «Выбрано:» показываем только когда значение реально выбрано — иначе пустая строка рядом
-          с барабаном «сейчас» читается как «выбрано сейчас» (FF-8654, #3). */}
+      {/* Только когда выбрано (FF-8654, #3) */}
       {selected && (
         <div className={styles.selectedRow}>
           <span className={styles.selectedLabel}>{t('selected')}</span>

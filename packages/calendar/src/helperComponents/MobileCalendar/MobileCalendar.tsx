@@ -63,10 +63,7 @@ const keyboardNavStub: NonNullable<ListProps['keyboardNavigationRef']> = { curre
 const firstNotDisableCellStub: MutableRefObject<[number, number]> = { current: [0, 0] };
 
 /**
- * Мобильная поверхность календаря в `BottomSheet`: скролл периодов (широкий диапазон), шапка-дропдаун
- * переключения уровня (month → year → decade), футер «Выбрано:» + Current/Apply. Единственный
- * `CalendarContext.Provider` оборачивает sheet (контекст проходит сквозь портал), поэтому селекция
- * сохраняется между экранами. Селекция/значение — общие с десктопом (`useRange`, `normalizeRangeForMode`).
+ * BottomSheet со скроллом периодов, дропдаун-шапкой уровня, футером. Один CalendarContext для всех экранов.
  */
 export function MobileCalendar({
   open,
@@ -90,27 +87,17 @@ export function MobileCalendar({
 }: MobileCalendarProps) {
   const { t, lang: ctxLang } = calendarLocale.useTranslations();
 
-  // Модель «черновик + один Apply» (FF-8654, #4/#5): правки (тап дня, скролл времени) пишутся в локальный
-  // черновик, а наружу (`onChangeValue`) коммитятся ТОЛЬКО по «Применить». Закрытие/свайп = отмена (черновик
-  // пересобирается из закоммиченного значения при следующем открытии).
   const [committedValue, commit] = useUncontrolledProp<Range | undefined>(valueProp, defaultValue, onChangeValue);
-  // Актуальное закоммиченное значение для чтения в effect открытия без перезапуска на каждом его изменении.
   const committedRef = useRef(committedValue);
   committedRef.current = committedValue;
-  // Черновик диапазона для режимов date/month/year/*-range (для date-time черновик — `dateAndTime` ниже).
   const [draftRange, setDraftRange] = useState<Range | undefined>(committedValue);
   const today = useMemo(() => (typeof todayProp === 'number' ? new Date(todayProp) : todayProp), [todayProp]);
   const [origin] = useState(() => committedValue?.[0] || today || new Date());
   const locale = useMemo(() => getLocale({ localeProp, ctxLang }), [ctxLang, localeProp]);
-  // Ref барабана времени: форс-коммит незавершённого жеста при уходе с экрана времени (FF-8654, #2).
   const drumRef = useRef<TimePickerDrumHandle>(null);
 
   const [level, setLevel] = useState<ViewMode>(INITIAL_LEVEL[mode]);
-  // anchorDate — период, на который центрируется скролл (drill/level-up/Current); меняется ТОЛЬКО при
-  // навигации, не при свободном скролле и не при выборе видимого дня (иначе список «прыгал» бы).
   const [anchorDate, setAnchorDate] = useState<Date>(origin);
-  // headerDate — период, который показывает селектор в шапке: это ВЫБРАННОЕ/наведённое значение
-  // (а не состояние прокрутки). Обновляется при выборе, drill-навигации и Current.
   const [headerDate, setHeaderDate] = useState<Date>(origin);
   const [screen, setScreen] = useState<MobileScreen>('calendar');
 
@@ -127,18 +114,10 @@ export function MobileCalendar({
     isDateAndTimeFilled,
   } = useDateAndTime({ showSeconds, value: undefined });
 
-  // Актуальный `dateAndTime` для снятия снапшота времени при входе на экран времени без лишних зависимостей.
   const dateAndTimeRef = useRef(dateAndTime);
   dateAndTimeRef.current = dateAndTime;
-  // Снапшот времени на момент входа на экран времени: уход назад/свайпом откатывает правки барабана к нему
-  // (время «применяется» ТОЛЬКО кнопкой Apply экрана времени, FF-8654, #4). null — вне экрана времени.
   const timeSnapshotRef = useRef<Pick<DateAndTime, 'hours' | 'minutes' | 'seconds'> | null>(null);
 
-  // При каждом открытии sheet'а: возвращаем на главный экран (calendar) и начальный уровень (сброс
-  // под-экрана времени/пресетов и уровня года/декады), пересобираем черновик из закоммиченного значения
-  // (отмена незакоммиченных правок прошлой сессии) и центрируем скролл на ВЫБРАННОЕ значение (а не на
-  // сегодня) — если значения нет, на origin. useLayoutEffect — до отрисовки открытия (без мелькания
-  // под-экрана/компактной высоты и без рывка скролла).
   useLayoutEffect(() => {
     if (open) {
       const committed = committedRef.current;
@@ -167,7 +146,6 @@ export function MobileCalendar({
     }
   }, [open, mode, origin, setDateAndTime]);
 
-  // Вход на экран времени: снимаем снапшот времени (для отката при уходе назад без Apply).
   useEffect(() => {
     if (screen === 'time') {
       const { hours, minutes, seconds } = dateAndTimeRef.current;
@@ -179,8 +157,6 @@ export function MobileCalendar({
     setValue,
   });
 
-  // Значение для подсветки ячеек / строки «Выбрано» — из ЧЕРНОВИКА (live), а не из закоммиченного:
-  // для date-time собирается из `dateAndTime`, для остальных режимов — `draftRange`.
   const selectionValue = useMemo<Range | undefined>(() => {
     if (mode === CALENDAR_MODE.DateTime) {
       if (!isDateFilled()) {
@@ -219,8 +195,6 @@ export function MobileCalendar({
   const handlePresetSelect = useCallback(
     (range: Range) => {
       setValue(range);
-      // Возврат на календарь центрирует скролл на начало выбранного диапазона (а не на origin):
-      // скроллер при возврате ремаунтится и читает anchorDate, поэтому двигаем и его, и подпись шапки.
       const target = range[0];
       setAnchorDate(target);
       setHeaderDate(target);
@@ -230,8 +204,6 @@ export function MobileCalendar({
   );
 
   const handleBack = useCallback(() => {
-    // Уход с экрана времени назад/свайпом/оверлеем = ОТКАТ: правки барабана не «применяются», время
-    // возвращается к снапшоту на момент входа. Применить время можно только кнопкой Apply (FF-8654, #4).
     const snapshot = timeSnapshotRef.current;
     if (snapshot) {
       setDateAndTime(prev => ({ ...prev, ...snapshot }));
@@ -240,9 +212,6 @@ export function MobileCalendar({
     setScreen('calendar');
   }, [setDateAndTime]);
 
-  // Apply на экране времени: фиксирует ПОКАЗАННОЕ время (включая нетронутые колонки) в черновик и
-  // возвращает на календарь. В форму значение НЕ коммитит — это делает только Apply экрана календаря
-  // (FF-8654, #4/#5: единая точка коммита — календарь; время применяется только по кнопке).
   const handleTimeApply = useCallback(() => {
     const flushed = drumRef.current?.flush();
     if (flushed) {

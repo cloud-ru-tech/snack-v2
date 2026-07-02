@@ -10,10 +10,7 @@ import { MobileCalendar } from '../MobileCalendar';
 const SINGLE_VALUE_MODES: CalendarMode[] = ['date', 'date-time', 'month', 'year'];
 
 /**
- * Mobile-поверхность CalendarDropdown'а: контент уезжает в `BottomSheet` (`MobileCalendar`).
- * Триггер (`children`) клонируется для открытия; `open`/`onOpenChange` поддерживают controlled-режим.
- * Значение нормализуется в `Range` (как `Calendar`), а наружу отдаётся в форме режима (Date / Range).
- * Internal — наружу не реэкспортится; рендерится адаптивным `CalendarDropdown` по контексту.
+ * Адаптер: значение нормализуется в Range (внутри), наружу отдаётся в форме режима.
  */
 export function MobileCalendarDropdown(props: CalendarDropdownProps) {
   const {

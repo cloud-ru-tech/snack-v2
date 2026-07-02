@@ -11,13 +11,8 @@ import { TimeValue } from '../../types';
 import { TimePickerDrum, TimePickerDrumHandle } from '../TimePickerDrum';
 
 /**
- * Mobile-поверхность TimePickerDropdown'а: барабанный пикер (`TimePickerDrum`) уезжает в `BottomSheet`.
- * Триггер (`children`) клонируется для открытия; `open`/`onOpenChange` поддерживают controlled-режим.
- * Internal — наружу не реэкспортится; рендерится адаптивным `TimePickerDropdown` по контексту.
- *
- * Модель «черновик + один Apply» (FF-8654, #2): скролл барабана правит локальный черновик, наружу
- * (`onChangeValue`) значение коммитится ТОЛЬКО по «Применить»; закрытие/свайп = отмена. Это убирает
- * прежний непредсказуемый авто-коммит после каждого оседания скролла (быстрое закрытие терял значение).
+ * Черновик + Apply модель: правки берутся в локальный черновик, коммитятся наружу только по Apply.
+ * Закрытие/свайп = отмена (убирает авто-коммит после каждого оседания).
  */
 export function MobileTimePickerDropdown({
   children,

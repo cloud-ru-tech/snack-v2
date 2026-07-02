@@ -10,7 +10,6 @@ export type MobileTimeScreenProps = {
   drumRef?: Ref<TimePickerDrumHandle>;
 };
 
-/** Под-экран времени date-time: барабан (`TimePickerDrum`) на `dateAndTime` контекста + подпись выбранного дня. */
 export function MobileTimeScreen({ size, drumRef }: MobileTimeScreenProps) {
   const { dateAndTime, onTimeChange, showSeconds, isDateFilled, locale } = useCalendarContext();
 

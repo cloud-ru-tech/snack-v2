@@ -19,10 +19,7 @@ export type MobilePeriodBlockProps = {
 };
 
 /**
- * Один период бесконечного скролла: подпись (месяц+год / год / декада) + CSS-grid ячеек.
- * Ячейки соседнего периода (`another`) скрываются (`visible=false`) — каждая дата отображается ровно
- * один раз в своём блоке. Классификация (`checked`/`holiday`/`rangePosition`/`current`) — общая с
- * десктопом через `classifyCell`, селекция берётся из общего `CalendarContext`.
+ * Один период скролла: заголовок + грид ячеек. Ячейки соседних периодов скрыты.
  */
 export function MobilePeriodBlock({ date, level, config, size, onSelect }: MobilePeriodBlockProps) {
   const { mode, value, preselectedRange, dateAndTime, isDateFilled, showHolidays, today, buildCellProps, getTestId } =
