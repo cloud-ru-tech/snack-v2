@@ -47,7 +47,7 @@
     "@ds/truncate-string": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
-    "@tanstack/react-virtual": "3.11.2",
+    "@tanstack/react-virtual": "catalog:",
     "classnames": "catalog:",
     "merge-refs": "catalog:"
   },
