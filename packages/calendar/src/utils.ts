@@ -2,8 +2,8 @@ import { Lang } from '@ds/locale';
 import { isBrowser } from '@ds/utils';
 import { getWeekStartByLocale } from 'weekstart';
 
-import { RANGE_POSITION, VIEW_MODE } from './constants';
-import { DateAndTime, Range, RangePosition, TimeValue, ViewMode } from './types';
+import { CALENDAR_MODE, RANGE_POSITION, VIEW_MODE } from './constants';
+import { CalendarMode, DateAndTime, Range, RangePosition, TimeValue, ViewMode } from './types';
 
 export const isTheSameDecade = (date1: Date, date2: Date) =>
   Math.floor(date1.getFullYear() / 10) === Math.floor(date2.getFullYear() / 10);
@@ -104,6 +104,25 @@ export const getEndOfTheMonth = (date: Date) =>
 export const getStartOfTheYear = (date: Date) => new Date(new Date(date.getFullYear(), 0, 1).valueOf());
 
 export const getEndOfTheYear = (date: Date) => new Date(new Date(date.getFullYear() + 1, 0, 1).valueOf() - 1);
+
+/**
+ * Нормализует выбранный период под границы режима (`setValue` десктопа и мобайла дают одинаковый результат):
+ * month/month-range — границы месяца, year/year-range — границы года, иначе — конец дня для верхней границы.
+ */
+export function normalizeRangeForMode(mode: CalendarMode | 'time', dates: Range): Range {
+  const [first, last] = sortDates(dates) as Range;
+
+  switch (mode) {
+    case CALENDAR_MODE.Month:
+    case CALENDAR_MODE.MonthRange:
+      return [getStartOfTheMonth(first), getEndOfTheMonth(last)];
+    case CALENDAR_MODE.Year:
+    case CALENDAR_MODE.YearRange:
+      return [getStartOfTheYear(first), getEndOfTheYear(last)];
+    default:
+      return [first, getEndOfTheDay(last)];
+  }
+}
 
 export const getTestIdBuilder = (testId?: string) => (prefix: string) => (testId ? `${prefix}-${testId}` : undefined);
 

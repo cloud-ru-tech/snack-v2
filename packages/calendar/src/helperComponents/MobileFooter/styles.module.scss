@@ -1,0 +1,39 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$selectedTypography: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-s,
+  'l': base.$sn-regular-body-m,
+);
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  width: 100%;
+}
+
+.selectedRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: baseline;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.selectedLabel {
+  flex: 1 1 auto;
+  color: base.$sn-theme-color-available-version-textDisabled;
+
+  @include base.composite-var($selectedTypography, 'm');
+}
+
+.selectedValue {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-align: right;
+  white-space: nowrap;
+
+  @include base.composite-var($selectedTypography, 'm');
+}

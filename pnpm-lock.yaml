@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@tanstack/react-virtual':
+      specifier: 3.11.2
+      version: 3.11.2
     classnames:
       specifier: 2.5.1
       version: 2.5.1
@@ -993,6 +996,12 @@ importers:
 
   packages/calendar:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/bottom-sheet':
+        specifier: workspace:^
+        version: link:../bottom-sheet
       '@ds/button':
         specifier: workspace:^
         version: link:../button
@@ -1014,9 +1023,15 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/scroll':
+        specifier: workspace:^
+        version: link:../scroll
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+      '@tanstack/react-virtual':
+        specifier: 'catalog:'
+        version: 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1494,7 +1509,7 @@ importers:
         specifier: workspace:^
         version: link:../utils
       '@tanstack/react-virtual':
-        specifier: 3.11.2
+        specifier: 'catalog:'
         version: 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'

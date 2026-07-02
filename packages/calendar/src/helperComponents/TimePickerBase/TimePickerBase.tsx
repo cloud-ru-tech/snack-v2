@@ -196,8 +196,6 @@ export function TimePickerBase({ className, fixedWidth }: TimePickerBaseProps) {
           navigationStartRef={mode === 'time' ? navigationStartRef : undefined}
         />
 
-        <Divider className={styles.divider} orientation='vertical' />
-
         <TimeList
           className={styles.timeListColumn}
           value={minutes}
@@ -209,19 +207,15 @@ export function TimePickerBase({ className, fixedWidth }: TimePickerBaseProps) {
         />
 
         {showSeconds && (
-          <>
-            <Divider className={styles.divider} orientation='vertical' />
-
-            <TimeList
-              className={styles.timeListColumn}
-              value={seconds}
-              onChange={onSecondsChange}
-              data-test-id={getTestId('seconds')}
-              numberOfItems={SECONDS}
-              onKeyDownGetter={onSecondKeyDownGetter}
-              keyboardNavigationRef={secondsKeyboardNavigationRef}
-            />
-          </>
+          <TimeList
+            className={styles.timeListColumn}
+            value={seconds}
+            onChange={onSecondsChange}
+            data-test-id={getTestId('seconds')}
+            numberOfItems={SECONDS}
+            onKeyDownGetter={onSecondKeyDownGetter}
+            keyboardNavigationRef={secondsKeyboardNavigationRef}
+          />
         )}
       </div>
     </div>

@@ -30,6 +30,12 @@ pnpm add @ds/calendar
 import { Calendar, CALENDAR_MODE, TimePicker, TimePickerDropdown } from '@ds/calendar'
 ```
 
+## Адаптивность
+
+Триггерные `CalendarDropdown` и `TimePickerDropdown` переключают поверхность (surface-swap): на desktop — popover над триггером (`@ds/dropdown`), на mobile — `BottomSheet` из `@ds/bottom-sheet`. Раскладка берётся из `AdaptiveProvider` (контекст `@ds/adaptive`), пропа `layoutType` нет. Встраиваемые `Calendar` и `TimePicker` desktop-only и не адаптируются.
+
+Детали поведения на mobile — на страницах [Calendar](/components/calendar/calendar) и [TimePickerDropdown](/components/calendar/time-picker-dropdown). Общая модель — [Adaptive](/components/adaptive).
+
 ## Figma
 
 Макеты разбиты по узлам в библиотеке FF-8179 (сетка дней, месяцев, лет, барабан времени). Конкретные embed — на страницах компонентов ниже.

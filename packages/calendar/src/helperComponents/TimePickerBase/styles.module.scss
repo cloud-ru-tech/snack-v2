@@ -27,6 +27,10 @@ $typography: (
     &[data-size='#{$size}'] {
       width: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-width');
       height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-height');
+      // Figma listTimeDesktop: горизонтальный padding из gridDate — колонки/ячейки инсетятся от краёв
+      // панели, а разделитель под шапкой остаётся на всю ширину.
+      padding-right: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'padding-right');
+      padding-left: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'padding-left');
     }
   }
 
@@ -37,6 +41,32 @@ $typography: (
 
 .timeListColumn {
   flex: 1;
+
+  // Строка времени по высоте = Figma `itemCalendar.minHeight` (24/32/40 для s/m/l),
+  // а не дефолтная высота элемента `@ds/list` (20/24/32) — иначе колонка плотнее макета.
+  // `.timeListColumn` приземляется на wrapper `@ds/list`; item несёт `role='menuitem'` + `data-size`.
+  [role='menuitem'] {
+    // `@ds/list` выравнивает контент по `flex-start`; для тайм-строки число должно быть
+    // по центру ячейки, иначе на увеличенной высоте оно прилипает к верху и уезжает от
+    // фоновой заливки выбранного значения.
+    align-items: center;
+
+    @each $size in $sizes {
+      &[data-size='#{$size}'] {
+        min-height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'itemCalendar', 'min-height');
+        // Figma itemCalendar: скруглённые ячейки (по умолчанию @ds/list-item квадратный).
+        border-radius: base.simple-var(
+          calendar.$calendar,
+          'anatomy',
+          'size',
+          $size,
+          'itemCalendar',
+          'container',
+          'border-radius'
+        );
+      }
+    }
+  }
 }
 
 .header {

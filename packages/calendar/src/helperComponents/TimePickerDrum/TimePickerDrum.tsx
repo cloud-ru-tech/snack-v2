@@ -1,11 +1,11 @@
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { useEffect, useMemo } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 
 import { HOURS, MINUTES, SECONDS, SIZE } from '../../constants';
 import { noop, TEST_IDS } from './constants';
 import styles from './styles.module.scss';
-import { TimePickerDrumWheelColumn } from './TimePickerDrumWheelColumn';
+import { TimePickerDrumWheelColumn, TimePickerDrumWheelColumnHandle } from './TimePickerDrumWheelColumn';
 import { TimePickerDrumProps } from './types';
 import {
   buildColumnValues,
@@ -15,22 +15,47 @@ import {
   nearestInSortedValues,
 } from './utils';
 
-export function TimePickerDrum({
-  size = SIZE.S,
-  showSeconds = true,
-  selectedDateLabel,
-  hours,
-  minutes,
-  seconds,
-  onHoursChange,
-  onMinutesChange,
-  onSecondsChange,
-  customOptions,
-  className,
-  'data-test-id': dataTestId,
-  ...rest
-}: TimePickerDrumProps) {
+/** Императивный интерфейс барабана: форсит «оседание» всех колонок (см. FF-8654, комментарий #2). */
+export type TimePickerDrumHandle = {
+  /** Синхронно завершает незакоммиченные жесты во всех колонках и возвращает итоговое время. */
+  flush(): { hours: number; minutes: number; seconds: number };
+};
+
+export const TimePickerDrum = forwardRef<TimePickerDrumHandle, TimePickerDrumProps>(function TimePickerDrum(
+  {
+    size = SIZE.S,
+    showSeconds = true,
+    selectedDateLabel,
+    hours,
+    minutes,
+    seconds,
+    onHoursChange,
+    onMinutesChange,
+    onSecondsChange,
+    customOptions,
+    className,
+    'data-test-id': dataTestId,
+    ...rest
+  }: TimePickerDrumProps,
+  ref,
+) {
   const { itemHeight, pickerHeight } = useMemo(() => getSizeLimits(size), [size]);
+
+  const hoursColumnRef = useRef<TimePickerDrumWheelColumnHandle>(null);
+  const minutesColumnRef = useRef<TimePickerDrumWheelColumnHandle>(null);
+  const secondsColumnRef = useRef<TimePickerDrumWheelColumnHandle>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      flush: () => ({
+        hours: hoursColumnRef.current?.flush() ?? hours,
+        minutes: minutesColumnRef.current?.flush() ?? minutes,
+        seconds: secondsColumnRef.current?.flush() ?? seconds ?? 0,
+      }),
+    }),
+    [hours, minutes, seconds],
+  );
 
   const hourValues = useMemo(
     () => buildColumnValues(HOURS, customOptions?.allowedHours, customOptions?.minHour),
@@ -102,6 +127,9 @@ export function TimePickerDrum({
       className={cn(styles.root, className)}
       data-size={size}
       data-show-seconds={showSeconds || undefined}
+      // Барабан сам обрабатывает вертикальный pointer-жест — отключаем перехват drag'ом bottom-sheet'а
+      // (иначе свайп вниз по барабану закрывал бы sheet вместо прокрутки колонок).
+      data-bottom-sheet-no-drag
       data-test-id={dataTestId ?? TEST_IDS.root}
       {...extractSupportProps(rest)}
     >
@@ -119,6 +147,7 @@ export function TimePickerDrum({
 
       <div className={styles.drum} data-test-id={TEST_IDS.drum}>
         <TimePickerDrumWheelColumn
+          ref={hoursColumnRef}
           className={styles.column}
           value={hours}
           options={hourValues}
@@ -129,6 +158,7 @@ export function TimePickerDrum({
           onChange={onHoursChange}
         />
         <TimePickerDrumWheelColumn
+          ref={minutesColumnRef}
           className={styles.column}
           value={minutes}
           options={minuteValues}
@@ -140,6 +170,7 @@ export function TimePickerDrum({
         />
         {showSeconds && (
           <TimePickerDrumWheelColumn
+            ref={secondsColumnRef}
             className={styles.column}
             value={seconds ?? 0}
             options={secondValues}
@@ -153,4 +184,4 @@ export function TimePickerDrum({
       </div>
     </div>
   );
-}
+});

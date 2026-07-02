@@ -31,6 +31,8 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
   border-radius: 0;
 }
 
+// TODO FF-8727: соседние ячейки наезжают друг на друга — фон checked/hover-ячейки
+// перекрывает соседнюю (воспроизводится в доке, платформа Spacious).
 .container {
   position: relative;
 

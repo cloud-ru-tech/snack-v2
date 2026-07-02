@@ -21,12 +21,14 @@ export const CALENDAR_DROPDOWN_STORIES = {
 export function buildCalendarDropdownOptions(
   props?: Record<string, unknown>,
   story: string = CALENDAR_DROPDOWN_STORIES.playground,
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: CALENDAR_DROPDOWN_NAME,
     group: CALENDAR_DROPDOWN_GROUP,
     story,
     props,
+    globals,
   };
 }
 

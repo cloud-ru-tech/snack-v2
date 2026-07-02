@@ -35,6 +35,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/dropdown": "workspace:^",
@@ -42,7 +44,9 @@
     "@ds/list": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
+    "@ds/scroll": "workspace:^",
     "@ds/utils": "workspace:^",
+    "@tanstack/react-virtual": "catalog:",
     "classnames": "catalog:",
     "uncontrollable": "catalog:",
     "weekstart": "2.0.0"

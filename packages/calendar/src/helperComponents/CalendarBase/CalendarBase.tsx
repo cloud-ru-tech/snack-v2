@@ -19,16 +19,7 @@ import {
   Size,
   ViewMode,
 } from '../../types';
-import {
-  getEndOfTheDay,
-  getEndOfTheMonth,
-  getEndOfTheYear,
-  getLocale,
-  getStartOfTheMonth,
-  getStartOfTheYear,
-  getTestIdBuilder,
-  sortDates,
-} from '../../utils';
+import { getLocale, getTestIdBuilder, normalizeRangeForMode } from '../../utils';
 import { CalendarBody } from '../CalendarBody';
 import { CalendarContext, CalendarContextType } from '../CalendarContext';
 import { Header } from '../Header';
@@ -120,29 +111,7 @@ export function CalendarBase({
 
   const setValue = useCallback(
     (dates: Range) => {
-      const [first, last] = sortDates(dates);
-
-      if (mode === CALENDAR_MODE.Month) {
-        setValueState([getStartOfTheMonth(first), getEndOfTheMonth(last)]);
-        return;
-      }
-
-      if (mode === CALENDAR_MODE.Year) {
-        setValueState([getStartOfTheYear(first), getEndOfTheYear(last)]);
-        return;
-      }
-
-      if (mode === CALENDAR_MODE.MonthRange) {
-        setValueState([getStartOfTheMonth(first), getEndOfTheMonth(last)]);
-        return;
-      }
-
-      if (mode === CALENDAR_MODE.YearRange) {
-        setValueState([getStartOfTheYear(first), getEndOfTheYear(last)]);
-        return;
-      }
-
-      setValueState([first, getEndOfTheDay(last)]);
+      setValueState(normalizeRangeForMode(mode, dates));
     },
     [mode, setValueState],
   );

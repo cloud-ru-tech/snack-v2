@@ -1,0 +1,39 @@
+// Контейнер шапки календаря в subHeadline: строка управления + строка дней недели (на month-уровне).
+.calendarHeader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+// Шапка: пресеты | селектор уровня | время. Боковые слоты 1fr резервируют место, центр — auto и
+// остаётся по центру независимо от наличия боковых кнопок.
+.headerRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+.headerSlotStart {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.headerSlotCenter {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.headerSlotEnd {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+// Строка дней недели: те же 7 колонок, что и сетка месяца (горизонтальный inset даёт subHeadlineWrapper).
+.weekRow {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}

@@ -1,0 +1,37 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/calendar.module' as calendar;
+
+$sizes: 's', 'm', 'l';
+
+$captionTypography: (
+  's': base.$sn-regular-body-s,
+  'm': base.$sn-regular-body-m,
+  'l': base.$sn-regular-body-l,
+);
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.caption {
+  padding: base.$sn-primitive-dimension-6 0;
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-align: center;
+
+  @each $size in $sizes {
+    .block[data-size='#{$size}'] & {
+      @include base.composite-var($captionTypography, $size);
+    }
+  }
+}
+
+.grid {
+  display: grid;
+
+  @each $size in $sizes {
+    .block[data-size='#{$size}'] & {
+      @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate');
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { KeyboardEventHandler, useMemo } from 'react';
 
-import { CALENDAR_MODE, RANGE_POSITION } from '../constants';
-import { BaseGrid, BuildCellProps, Cell } from '../types';
-import { getInRangePosition, isWeekend, stringifyAddress } from '../utils';
+import { BaseGrid, Cell } from '../types';
+import { stringifyAddress } from '../utils';
+import { classifyCell } from './classifyCell';
 import { useCalendarContext } from './useCalendarContext';
 
 export type UseGridParams = {
@@ -47,66 +47,45 @@ export function useGrid({
     let hasFoundFirstNotDisableCell = false;
     const result = buildGrid(viewDate).map(row =>
       row.map<Cell>(({ date, address }) => {
-        let disabled = false;
-        let holiday: boolean | undefined;
-        let cellProps: BuildCellProps = { isDisabled: false };
-        if (buildCellProps) {
-          cellProps = buildCellProps(date, viewMode);
-          disabled = cellProps?.isDisabled ?? false;
-          holiday = cellProps.isHoliday;
-        }
+        const classification = classifyCell({
+          date,
+          viewDate,
+          viewMode,
+          mode,
+          value,
+          preselectedRange,
+          dateAndTime,
+          isDateFilled,
+          showHolidays,
+          today,
+          buildCellProps,
+          isTheSameItem,
+          isInPeriod,
+          getItemLabel,
+        });
 
-        if (holiday === undefined) {
-          holiday = showHolidays && isWeekend(date, viewMode);
-        }
-
-        if (!disabled) {
+        if (!classification.disabled) {
           if (firstNotDisableCell && !hasFoundFirstNotDisableCell) {
             firstNotDisableCell.current = address;
             hasFoundFirstNotDisableCell = true;
           }
         }
 
-        const dateTimeSelectedValue = isDateFilled()
-          ? new Date(dateAndTime?.year ?? 0, dateAndTime?.month ?? 0, dateAndTime?.day ?? 0)
-          : undefined;
-
-        const isRangeMode =
-          mode === CALENDAR_MODE.DateRange || mode === CALENDAR_MODE.MonthRange || mode === CALENDAR_MODE.YearRange;
-        const rangePosition = isRangeMode
-          ? getInRangePosition(date, viewMode, preselectedRange || value)
-          : RANGE_POSITION.Out;
-
-        const isSelectedValue =
-          value && !preselectedRange && !dateTimeSelectedValue
-            ? isTheSameItem(value[0], date) || isTheSameItem(value[1], date)
-            : false;
-        const isPreselected = preselectedRange ? isTheSameItem(preselectedRange[0], date) : false;
-        const isDateTimeValueSelected = dateTimeSelectedValue ? isTheSameItem(dateTimeSelectedValue, date) : false;
-
         const tabIndex = focus && stringifyAddress(address) === focus ? 0 : -1;
         hasFocusInGrid = tabIndex === 0 || hasFocusInGrid;
 
-        const current = isTheSameItem(today || new Date(), date);
-
         const cell: Cell = {
+          ...classification,
           date,
           onLeave,
           address,
           tabIndex,
           onSelect,
-          current,
-          disabled,
-          holiday,
           onPreselect,
-          rangePosition,
-          label: getItemLabel(date),
-          checked: isSelectedValue || isPreselected || isDateTimeValueSelected || rangePosition !== RANGE_POSITION.Out,
-          another: !isInPeriod(viewDate, date),
           onKeyDown,
         };
 
-        if (current) {
+        if (classification.current) {
           currentItem = cell;
         }
 
@@ -122,9 +101,7 @@ export function useGrid({
   }, [
     buildCellProps,
     buildGrid,
-    dateAndTime?.day,
-    dateAndTime?.month,
-    dateAndTime?.year,
+    dateAndTime,
     firstNotDisableCell,
     focus,
     getItemLabel,

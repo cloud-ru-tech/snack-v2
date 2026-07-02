@@ -14,9 +14,14 @@ export type FooterProps = {
   onApply?(): void;
   /** Колбек по клику на Current */
   onCurrent?(): void;
+  /**
+   * Футер используется в контейнере без паддинга `bodyWrapper` (например, dropdown с `bodyPadding={false}`),
+   * поэтому компенсирующие отрицательные margin'ы не нужны — футер и так на всю ширину.
+   */
+  flush?: boolean;
 };
 
-export function Footer({ onApply, onCurrent }: FooterProps) {
+export function Footer({ onApply, onCurrent, flush }: FooterProps) {
   const {
     size,
     viewMode,
@@ -108,7 +113,7 @@ export function Footer({ onApply, onCurrent }: FooterProps) {
   };
 
   return (
-    <div className={styles.footer} data-size={size}>
+    <div className={styles.footer} data-size={size} data-flush={flush || undefined}>
       <Divider className={styles.divider} />
 
       <ButtonGroup

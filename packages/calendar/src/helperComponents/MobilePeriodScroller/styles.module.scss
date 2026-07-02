@@ -1,0 +1,23 @@
+// Хост @ds/scroll заполняет body sheet'а: его OverlayScrollbars-viewport владеет вертикальным
+// скроллом списка (DS-пилюля), а body (тоже overflow-y:auto) при height:100% хоста не переполняется,
+// поэтому drag-движок sheet'а резолвит именно viewport как ближайший scrollable-ancestor.
+.scrollHost {
+  width: 100%;
+  height: 100%;
+}
+
+// Виртуальный список: контейнер на полную высоту totalSize, строки абсолютным позиционированием.
+.virtualContainer {
+  position: relative;
+  width: 100%;
+}
+
+.virtualRow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // Смещение строки виртуализатора приходит из JS переменной `--virtual-row-offset` (px).
+  transform: translateY(var(--virtual-row-offset, 0));
+
+  width: 100%;
+}

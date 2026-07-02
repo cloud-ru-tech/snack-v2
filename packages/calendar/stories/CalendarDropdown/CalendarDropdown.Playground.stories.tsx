@@ -69,6 +69,9 @@ export const Playground: Story = {
     children: { table: { disable: true } },
     today: { table: { disable: true } },
     bottomSlot: { table: { disable: true } },
+    // В дропдауне контейнер = сам календарь (fit-content), а mobile-поверхность всегда fit-to-container,
+    // поэтому переключение `fitToContainer` тут ни на что не влияет — прячем контрол (как в TimePickerDropdown).
+    fitToContainer: { table: { disable: true } },
     trigger: {
       control: 'radio',
       options: ['click', 'hover', 'focus'],

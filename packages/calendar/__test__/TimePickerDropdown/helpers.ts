@@ -32,12 +32,14 @@ export const TIME_PICKER_DROPDOWN_LIST_TEST_IDS = {
 export function buildTimePickerDropdownOptions(
   props?: Record<string, unknown>,
   story: string = TIME_PICKER_DROPDOWN_STORIES.playground,
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: TIME_PICKER_DROPDOWN_NAME,
     group: TIME_PICKER_DROPDOWN_GROUP,
     story,
     props,
+    globals,
   };
 }
 

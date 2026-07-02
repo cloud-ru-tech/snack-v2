@@ -4,7 +4,7 @@ import { createRef, RefObject, useImperativeHandle, useMemo } from 'react';
 
 import { useCalendarContext } from '../../hooks';
 import { OnKeyDownGetter } from '../../types';
-import { Item } from '../Item';
+import styles from './styles.module.scss';
 
 export type TimeListProps = WithSupportProps<{
   numberOfItems: number;
@@ -48,7 +48,11 @@ export function TimeList({
     () =>
       new Array(numberOfItems).fill(undefined).map((_, index) => ({
         id: index,
-        content: <Item label={String(index).padStart(2, '0')} size={size} />,
+        content: (
+          <span className={styles.label} data-size={size}>
+            {String(index).padStart(2, '0')}
+          </span>
+        ),
         'data-test-id': `${dataTestId}-${index}`,
         onKeyDown: onKeyDownGetter?.(index),
         itemRef: itemsRef[index] as BaseItemProps['itemRef'],

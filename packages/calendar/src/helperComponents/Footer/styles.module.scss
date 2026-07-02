@@ -17,6 +17,11 @@ $sizes: 's', 'm', 'l';
   margin:
     0 calc(-1 * #{dropdown.$sn-dropdown-anatomy-container-bodyWrapper-padding})
     calc(-1 * #{dropdown.$sn-dropdown-anatomy-container-bodyWrapper-padding});
+
+  // В контейнере без паддинга bodyWrapper (bodyPadding=false) футер уже на всю ширину — компенсация не нужна.
+  &[data-flush] {
+    margin: 0;
+  }
 }
 
 .buttonGroup {

@@ -1,13 +1,11 @@
-import { Dropdown, DropdownProps } from '@ds/dropdown';
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { DropdownProps } from '@ds/dropdown';
 import { WithSupportProps } from '@ds/utils';
-import cn from 'classnames';
-import { ReactNode, useCallback, useMemo } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
+import { ReactNode } from 'react';
 
-import { Footer } from '../../helperComponents';
-import { getTestIdBuilder } from '../../utils';
-import { Calendar, CalendarProps } from '../Calendar';
-import styles from './styles.module.scss';
+import { DesktopCalendarDropdown } from '../../helperComponents/DesktopCalendarDropdown';
+import { MobileCalendarDropdown } from '../../helperComponents/MobileCalendarDropdown';
+import { CalendarProps } from '../Calendar';
 
 type DropdownBridgeProps = Pick<
   DropdownProps,
@@ -27,6 +25,11 @@ type DropdownBridgeProps = Pick<
   | 'onOpenChange'
 >;
 
+/**
+ * Адаптивный календарь в триггере. На desktop открывается в popover (`@ds/dropdown`), на mobile —
+ * в `@ds/bottom-sheet` (раскладка берётся из `@ds/adaptive`; собственного пропа `layoutType` нет).
+ * Пропы позиционирования popover (`placement`, `fallbackPlacements`, `triggerRef`, …) на mobile игнорируются.
+ */
 export type CalendarDropdownProps = WithSupportProps<
   CalendarProps &
     DropdownBridgeProps & {
@@ -41,69 +44,8 @@ export type CalendarDropdownProps = WithSupportProps<
     }
 >;
 
-export function CalendarDropdown({
-  children,
-  closeOnApply = false,
-  onApply,
-  onCurrent,
-  open: openProp,
-  onOpenChange,
-  triggerClassName,
-  trigger = 'click',
-  placement = 'bottom-start',
-  hoverDelayOpen,
-  hoverDelayClose,
-  closeOnEscapeKey,
-  triggerClickByKeys,
-  triggerRef,
-  outsideClick,
-  fallbackPlacements,
-  disableSpanWrapper,
-  closeOnPopstate,
-  className,
-  'data-test-id': testId,
-  ...calendarProps
-}: CalendarDropdownProps) {
-  const [open, setOpen] = useUncontrolledProp(openProp, false, onOpenChange);
+export function CalendarDropdown(props: CalendarDropdownProps) {
+  const { layoutType } = useAdaptiveLayout();
 
-  const getTestId = useMemo(() => getTestIdBuilder(testId), [testId]);
-
-  const handleFooterApply = useCallback(() => {
-    onApply?.();
-
-    if (closeOnApply) {
-      setOpen(false);
-    }
-  }, [closeOnApply, onApply, setOpen]);
-
-  const content = (
-    <div className={cn(styles.calendarDropdownContent, className)} data-test-id={getTestId('content')}>
-      <Calendar {...calendarProps} bottomSlot={<Footer onApply={handleFooterApply} onCurrent={onCurrent} />} />
-    </div>
-  );
-
-  return (
-    <Dropdown
-      className={styles.dropdown}
-      data-test-id={testId}
-      triggerClassName={triggerClassName}
-      trigger={trigger}
-      placement={placement}
-      hoverDelayOpen={hoverDelayOpen}
-      hoverDelayClose={hoverDelayClose}
-      closeOnEscapeKey={closeOnEscapeKey}
-      triggerClickByKeys={triggerClickByKeys}
-      triggerRef={triggerRef}
-      outsideClick={outsideClick}
-      fallbackPlacements={fallbackPlacements}
-      disableSpanWrapper={disableSpanWrapper}
-      closeOnPopstate={closeOnPopstate}
-      open={open}
-      onOpenChange={setOpen}
-      content={content}
-      widthStrategy='gte'
-    >
-      {children}
-    </Dropdown>
-  );
+  return isMobileLayout(layoutType) ? <MobileCalendarDropdown {...props} /> : <DesktopCalendarDropdown {...props} />;
 }

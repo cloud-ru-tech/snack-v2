@@ -4,6 +4,7 @@ packages:
   - 'tests'
 
 catalog:
+  '@tanstack/react-virtual': 3.11.2
   '@types/react': 18.3.28
   '@types/react-dom': 18.3.7
   classnames: 2.5.1

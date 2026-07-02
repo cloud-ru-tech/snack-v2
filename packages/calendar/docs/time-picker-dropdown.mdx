@@ -75,6 +75,48 @@ import { TimePickerDropdown, SIZE } from '@ds/calendar'
 
 <PropsTable data={calendarPkgDoc.TimePickerDropdown} />
 
+## Адаптивность
+
+`TimePickerDropdown` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); встраиваемый `TimePicker` не адаптируется. Публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — барабан времени в popover над триггером (`@ds/dropdown`).
+- **mobile** — барабан времени в `BottomSheet` из `@ds/bottom-sheet` с кнопками «Сейчас» / «Применить».
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <TimePickerDropdown>…</TimePickerDropdown>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { TimePickerDropdown } from '@ds/calendar'
+
+  const MobileTimePickerDropdown = withLayoutType(TimePickerDropdown, 'mobile')
+  ```
+
+### Платформенные пропы
+
+Пропы позиционирования и открытия popover'а (`placement`, `fallbackPlacements`, `trigger`, `closeOnApply` и др.) применяются только на desktop; на mobile `BottomSheet` имеет своё позиционирование снизу и игнорирует их.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `placement`, `fallbackPlacements`, `trigger`, `closeOnApply` | используется | игнорируется |
+| `value`, `defaultValue`, `onChangeValue`, `showSeconds`, `open`, `onOpenChange` | используется | используется |
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='components-calendar-time-picker-dropdown--playground' globals={{ layoutType: 'mobile' }} height={520} />
+
 ## Storybook
 
 <StorybookEmbed storyId='components-calendar-time-picker-dropdown--playground' height={360} />

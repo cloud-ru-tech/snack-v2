@@ -50,6 +50,17 @@ export const TEST_IDS = {
   timePickerDropdownContent: 'content-time-picker-dropdown',
   timePickerDrum: 'time-picker-drum',
   calendarItem: 'calendar-item',
+  // Mobile (bottom-sheet) surfaces — FF-8654.
+  timePickerMobileApply: 'time-picker-mobile-apply',
+  timePickerMobileCurrent: 'time-picker-mobile-current',
+  calendarMobileHeaderLevel: 'calendar-mobile-header-level',
+  calendarMobileTimeButton: 'calendar-mobile-time-button',
+  calendarMobilePresetsButton: 'calendar-mobile-presets-button',
+  calendarMobilePeriodBlock: 'calendar-mobile-period-block',
+  calendarMobileApply: 'calendar-mobile-apply',
+  calendarMobileCurrent: 'calendar-mobile-current',
+  // Префикс для `getTestId` (даёт `selected-<testId>` на строке «Выбрано:»).
+  calendarMobileSelected: 'selected',
 } as const;
 
 export const HOURS = 24;

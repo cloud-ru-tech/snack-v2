@@ -3,7 +3,15 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { SIZE } from '../../src/constants';
 import { buildTimePickerDropdownOptions, TEST_IDS } from './helpers';
 
+// Playwright WebKit (mobile-ios) не симулирует hardware-клавиатуру: `page.keyboard.press(...)`
+// не дотягивает до DOM-listener'ов. На реальном iOS клавиатуры тоже обычно нет.
+const HAS_HW_KEYBOARD = (projectName: string) => projectName !== 'mobile-ios';
+
 test.describe('TimePickerDropdown — keyboard', () => {
+  test.beforeEach(() => {
+    test.skip(!HAS_HW_KEYBOARD(test.info().project.name), 'no hw keyboard on mobile-ios emulation');
+  });
+
   /** Триггер — кнопка вне панели; фокус с Tab должен попасть на неё до открытия dropdown. */
   test('Tab focuses trigger', async ({ page, gotoStory }) => {
     await gotoStory(buildTimePickerDropdownOptions({ size: SIZE.M }));

@@ -9,6 +9,8 @@ import { CalendarDateSingle } from '../demos/examples/CalendarDateSingle'
 import CalendarDateSingleSrc from '../demos/examples/CalendarDateSingle.tsx?raw'
 import { CalendarDateRange } from '../demos/examples/CalendarDateRange'
 import CalendarDateRangeSrc from '../demos/examples/CalendarDateRange.tsx?raw'
+import { CalendarWithPresets } from '../demos/examples/CalendarWithPresets'
+import CalendarWithPresetsSrc from '../demos/examples/CalendarWithPresets.tsx?raw'
 import { CalendarDateTime } from '../demos/examples/CalendarDateTime'
 import CalendarDateTimeSrc from '../demos/examples/CalendarDateTime.tsx?raw'
 import { CalendarMonthMode } from '../demos/examples/CalendarMonthMode'
@@ -91,6 +93,14 @@ import { Calendar, CALENDAR_MODE, SIZE } from '@ds/calendar'
   <CalendarDateRange client:only='react' />
 </Example>
 
+<Example
+  title='Диапазон с пресетами'
+  description='Быстрые периоды через presets={{ enabled: true }} (только date-range)'
+  code={CalendarWithPresetsSrc}
+>
+  <CalendarWithPresets client:only='react' />
+</Example>
+
 <Example title='Дата и время' description='Секунды включаются через showSeconds' code={CalendarDateTimeSrc}>
   <CalendarDateTime client:only='react' />
 </Example>
@@ -106,6 +116,56 @@ import { Calendar, CALENDAR_MODE, SIZE } from '@ds/calendar'
 ## Props
 
 <PropsTable data={calendarPkgDoc.Calendar} />
+
+## Адаптивность
+
+Адаптируется только триггерный `CalendarDropdown` — он переключает поверхность (surface-swap) в зависимости от раскладки из `AdaptiveProvider` (контекст `@ds/adaptive`). Встраиваемый `Calendar` остаётся desktop-only: его разметка не меняется от раскладки. Публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — календарь в popover над триггером (`@ds/dropdown`).
+- **mobile** — календарь в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <CalendarDropdown>…</CalendarDropdown>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { CalendarDropdown } from '@ds/calendar'
+
+  const MobileCalendarDropdown = withLayoutType(CalendarDropdown, 'mobile')
+  ```
+
+### Поведение на mobile
+
+- Бесконечная вертикальная прокрутка месяцев, лет и декад вместо постраничной навигации.
+- Заголовок — центрированный дропдаун уровня (`месяц → год → декада`, например `Январь 2026 ⌄`) с иконками-действиями: фильтр слева открывает пресеты периода отдельным подэкраном (только `date-range`), часы справа открывают барабан времени отдельным подэкраном (только `date-time`).
+- Футер показывает строку «Выбрано:» с текущим значением и кнопки «Сейчас» / «Применить» во всех режимах.
+- Выбранное значение отражается в заголовке, а не позицией прокрутки; при повторном открытии панель центрируется на выбранном значении.
+- Время на mobile выбирается барабаном (`TimePickerDrum`), а не колонками `TimePicker`.
+
+### Платформенные пропы
+
+Пропы позиционирования popover'а, унаследованные из `@ds/dropdown` (`placement`, `fallbackPlacements`, `offset`, `widthStrategy` и др.), на mobile молча игнорируются — у `BottomSheet` своё позиционирование снизу.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `placement`, `fallbackPlacements`, `offset`, `widthStrategy`, `trigger` | используется | игнорируется |
+| `mode`, `value`, `defaultValue`, `onChangeValue`, `presets`, `showHolidays`, `open`, `onOpenChange` | используется | используется |
+
+Подробнее о модели адаптивности — [Adaptive](/components/adaptive).
+
+<StorybookEmbed storyId='components-calendar-calendar-dropdown--playground' globals={{ layoutType: 'mobile' }} height={520} />
 
 ## Storybook
 

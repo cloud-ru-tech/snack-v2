@@ -32,6 +32,11 @@ import { Calendar, CALENDAR_MODE, TimePicker, TimePickerDropdown } from '@ds/cal
 ## Смотри также
 
 - [Паттерны календаря и времени](/patterns/calendar-patterns) — контролируемое значение, локаль и составление с полями формы.
+## Адаптивность
+
+Триггерные `CalendarDropdown` и `TimePickerDropdown` переключают поверхность (surface-swap): на desktop — popover над триггером (`@ds/dropdown`), на mobile — `BottomSheet` из `@ds/bottom-sheet`. Раскладка берётся из `AdaptiveProvider` (контекст `@ds/adaptive`), пропа `layoutType` нет. Встраиваемые `Calendar` и `TimePicker` desktop-only и не адаптируются.
+
+Детали поведения на mobile — на страницах **Calendar** и **TimePickerDropdown**. Общая модель — **Adaptive**.
 
 ## Calendar
 
@@ -120,6 +125,32 @@ export function CalendarDateRange() {
         fitToContainer
         mode={CALENDAR_MODE.DateRange}
         size={SIZE.M}
+        value={value}
+        onChangeValue={r => setValue(r)}
+      />
+    </div>
+  );
+}
+```
+
+#### Диапазон с пресетами
+
+Быстрые периоды через presets={{ enabled: true }} (только date-range)
+
+```tsx
+import { Calendar, CALENDAR_MODE, Range, SIZE } from '@ds/calendar';
+import { useState } from 'react';
+
+export function CalendarWithPresets() {
+  const [value, setValue] = useState<Range | undefined>();
+
+  return (
+    <div style={{ width: 520, maxWidth: '100%' }}>
+      <Calendar
+        fitToContainer
+        mode={CALENDAR_MODE.DateRange}
+        size={SIZE.M}
+        presets={{ enabled: true }}
         value={value}
         onChangeValue={r => setValue(r)}
       />
@@ -259,6 +290,53 @@ export function CalendarYearRange() {
 
 - **TimePicker** и **TimePickerDropdown** — выбор времени.
 - [Паттерны календаря и времени](/patterns/calendar-patterns).
+### Адаптивность
+
+Адаптируется только триггерный `CalendarDropdown` — он переключает поверхность (surface-swap) в зависимости от раскладки из `AdaptiveProvider` (контекст `@ds/adaptive`). Встраиваемый `Calendar` остаётся desktop-only: его разметка не меняется от раскладки. Публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — календарь в popover над триггером (`@ds/dropdown`).
+- **mobile** — календарь в `BottomSheet` из `@ds/bottom-sheet` (панель снизу со свайпом для закрытия).
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+#### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <CalendarDropdown>…</CalendarDropdown>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { CalendarDropdown } from '@ds/calendar'
+
+  const MobileCalendarDropdown = withLayoutType(CalendarDropdown, 'mobile')
+  ```
+
+#### Поведение на mobile
+
+- Бесконечная вертикальная прокрутка месяцев, лет и декад вместо постраничной навигации.
+- Заголовок — центрированный дропдаун уровня (`месяц → год → декада`, например `Январь 2026 ⌄`) с иконками-действиями: фильтр слева открывает пресеты периода отдельным подэкраном (только `date-range`), часы справа открывают барабан времени отдельным подэкраном (только `date-time`).
+- Футер показывает строку «Выбрано:» с текущим значением и кнопки «Сейчас» / «Применить» во всех режимах.
+- Выбранное значение отражается в заголовке, а не позицией прокрутки; при повторном открытии панель центрируется на выбранном значении.
+- Время на mobile выбирается барабаном (`TimePickerDrum`), а не колонками `TimePicker`.
+
+#### Платформенные пропы
+
+Пропы позиционирования popover'а, унаследованные из `@ds/dropdown` (`placement`, `fallbackPlacements`, `offset`, `widthStrategy` и др.), на mobile молча игнорируются — у `BottomSheet` своё позиционирование снизу.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `placement`, `fallbackPlacements`, `offset`, `widthStrategy`, `trigger` | используется | игнорируется |
+| `mode`, `value`, `defaultValue`, `onChangeValue`, `presets`, `showHolidays`, `open`, `onOpenChange` | используется | используется |
+
+Подробнее о модели адаптивности — **Adaptive**.
 
 ## TimePicker
 
@@ -522,14 +600,14 @@ export function TimePickerDropdownPlacement() {
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | Контент триггера открытия dropdown |
 | `className` | `string` | — | CSS-класс контейнера |
-| `closeOnApply` | `boolean` | `false` | Закрыть dropdown после нажатия кнопки Apply |
+| `closeOnApply` | `boolean` | — | Закрыть dropdown после нажатия кнопки Apply |
 | `closeOnEscapeKey` | `boolean` | `true` | Закрывать ли по нажатию на кнопку `Esc` |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `TimeValue` | — | Значение по-умолчанию для uncontrolled. |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
 | `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
-| `fitToContainer` | `boolean` | `false` | Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%). |
+| `fitToContainer` | `boolean` | `true` | Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%). |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
 | `navigationStartRef` | `RefObject<{ focus(): void; }>` | — | Ссылка на управление первым элементом навигации |
@@ -540,11 +618,11 @@ export function TimePickerDropdownPlacement() {
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
 | `outsideClick` | `OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `bottom-start` | Положение поповера относительно своего триггера (children). |
-| `showSeconds` | `boolean` | `true` | Показывать ли секунды |
+| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
+| `showSeconds` | `boolean` | — | Показывать ли секунды |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `today` | `number \| Date` | — | Дата сегодняшнего дня |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `click` | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerClickByKeys` | `boolean` | `true` | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
 | `triggerRef` | `ForwardedRef<ReferenceType \| HTMLElement \| null>` | — | Ref ссылка на триггер |
@@ -566,3 +644,42 @@ export function TimePickerDropdownPlacement() {
 
 - **TimePicker**
 - **Dropdown** — базовый выпадающий контейнер.
+### Адаптивность
+
+`TimePickerDropdown` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); встраиваемый `TimePicker` не адаптируется. Публичный API единый для обеих платформ:
+
+- **desktop** (по умолчанию) — барабан времени в popover над триггером (`@ds/dropdown`).
+- **mobile** — барабан времени в `BottomSheet` из `@ds/bottom-sheet` с кнопками «Сейчас» / «Применить».
+
+Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
+
+#### Как форсировать платформу
+
+Форс — только контекстом, не пропом:
+
+- Поддерево — вложенный провайдер:
+  ```tsx
+  import { AdaptiveProvider } from '@ds/adaptive'
+
+  <AdaptiveProvider layoutType='mobile'>
+    <TimePickerDropdown>…</TimePickerDropdown>
+  </AdaptiveProvider>
+  ```
+- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
+  ```tsx
+  import { withLayoutType } from '@ds/adaptive'
+  import { TimePickerDropdown } from '@ds/calendar'
+
+  const MobileTimePickerDropdown = withLayoutType(TimePickerDropdown, 'mobile')
+  ```
+
+#### Платформенные пропы
+
+Пропы позиционирования и открытия popover'а (`placement`, `fallbackPlacements`, `trigger`, `closeOnApply` и др.) применяются только на desktop; на mobile `BottomSheet` имеет своё позиционирование снизу и игнорирует их.
+
+| Пропы | desktop | mobile |
+|-------|---------|--------|
+| `placement`, `fallbackPlacements`, `trigger`, `closeOnApply` | используется | игнорируется |
+| `value`, `defaultValue`, `onChangeValue`, `showSeconds`, `open`, `onOpenChange` | используется | используется |
+
+Подробнее о модели адаптивности — **Adaptive**.

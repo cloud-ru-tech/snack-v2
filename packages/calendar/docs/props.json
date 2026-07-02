@@ -345,7 +345,6 @@
       "closeOnApply": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
         "description": "Закрыть dropdown после нажатия Apply."
       },
       "closeOnEscapeKey": {
@@ -480,7 +479,7 @@
           "top-end",
           "top-start"
         ],
-        "defaultValue": "bottom-start",
+        "defaultValue": "top",
         "description": "Положение поповера относительно своего триггера (children).",
         "typeRefs": [
           "Placement"
@@ -540,7 +539,6 @@
           "hoverAndFocus",
           "hoverAndFocusVisible"
         ],
-        "defaultValue": "click",
         "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
         "typeRefs": [
           "Trigger"
@@ -685,10 +683,438 @@
       }
     }
   },
+  "DesktopCalendarDropdown": {
+    "displayName": "DesktopCalendarDropdown",
+    "propsTypeName": null,
+    "props": {
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "Автофокус"
+      },
+      "bottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Рендерится после основной разметки календаря, внутри `CalendarContext` (например футер с Apply в дропдауне)."
+      },
+      "buildCellProps": {
+        "type": "(date: Date, viewMode: ViewMode) => { isDisabled?: boolean; isHoliday?: boolean } ;",
+        "required": false,
+        "description": "Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра:\n<br> `Date` - дата ячейки\n<br> `ViewMode`:\n<br>  - `month` отображение месяца, каждая ячейка - 1 день\n<br>  - `year` отображение года, каждая ячейка - 1 месяц\n<br>  - `decade` отображение декады, каждая ячейка - 1 год\n<br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Элемент открытия dropdown (триггер)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрыть dropdown после нажатия Apply."
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`"
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "locale": {
+        "type": "Intl.Locale",
+        "required": false,
+        "defaultValue": "Проставляется в соответствие с языком в настройках браузера",
+        "description": "Локаль, в соответствие с которой выставляется язык названий и первый день недели"
+      },
+      "mode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "date",
+          "date-range",
+          "date-time",
+          "month",
+          "month-range",
+          "year",
+          "year-range"
+        ],
+        "description": "Режим работы календаря: <br> - `date` - режим выбора даты\n<br> - `date-range` - режим выбора периода\n<br> - `month-range` - режим выбора периода из месяцев\n<br> - `year-range` - режим выбора периода из лет\n<br> - `month` - режим выбора месяца\n<br> - `date-time` - режим выбора даты и времени\n<br> - `year` - режим выбора года"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек после подтверждения в футере."
+      },
+      "onChangeValue": {
+        "type": "((value: Date) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Date) => void) | ((value: Date) => void) | ((value: Date) => void)",
+        "required": false,
+        "description": "Колбек выбора значения.<br> - в режиме date принимает тип `Date`\n<br> - в режиме date-range принимает тип `Range`\n<br> - в режиме month-range принимает тип `Range`\n<br> - в режиме year-range принимает тип `Range`\n<br> - в режиме month принимает тип `Date`\n<br> - в режиме date-time принимает тип `Date`\n<br> - в режиме year принимает тип `Date`"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по кнопке Current в футере."
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "presets": {
+        "type": "PresetsOptions",
+        "required": false,
+        "description": "Настройки секции с пресетами быстрого выбора периода. Доступны только при mode === 'date-range' и отсутствии buildCellProps (временно PDS-3139)"
+      },
+      "showHolidays": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрашивает субботу и воскресенье"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли секунды (только в режиме date-time)"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Объект со стилями на контейнер."
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "value": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Выбранное значение.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DesktopTimePickerDropdown": {
+    "displayName": "DesktopTimePickerDropdown",
+    "propsTypeName": null,
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент триггера открытия dropdown"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрыть dropdown после нажатия кнопки Apply"
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled."
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по нажатию Apply"
+      },
+      "onChangeValue": {
+        "type": "((value?: TimeValue) => void)",
+        "required": false,
+        "description": "Колбек выбора значения"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по нажатию Current"
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "bottom-start",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли секунды"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "defaultValue": "click",
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "value": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Выбранное значение."
+      }
+    },
+    "relatedTypes": {}
+  },
   "Footer": {
     "displayName": "Footer",
     "propsTypeName": null,
     "props": {
+      "flush": {
+        "type": "boolean",
+        "required": false,
+        "description": "Футер используется в контейнере без паддинга `bodyWrapper` (например, dropdown с `bodyPadding={false}`),\nпоэтому компенсирующие отрицательные margin'ы не нужны — футер и так на всю ширину."
+      },
       "onApply": {
         "type": "(() => void)",
         "required": false,
@@ -820,6 +1246,670 @@
         "required": false,
         "defaultValue": "true",
         "description": "Отображается ли в интерфейсе (ячейка без содержимого для мобильной сетки)"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileCalendar": {
+    "displayName": "MobileCalendar",
+    "propsTypeName": null,
+    "description": "Мобильная поверхность календаря в `BottomSheet`: скролл периодов (широкий диапазон), шапка-дропдаун\nпереключения уровня (month → year → decade), футер «Выбрано:» + Current/Apply. Единственный\n`CalendarContext.Provider` оборачивает sheet (контекст проходит сквозь портал), поэтому селекция\nсохраняется между экранами. Селекция/значение — общие с десктопом (`useRange`, `normalizeRangeForMode`).",
+    "props": {
+      "buildCellProps": {
+        "type": "BuildCellPropsFunction",
+        "required": false
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Range",
+        "required": false
+      },
+      "locale": {
+        "type": "Locale",
+        "required": false
+      },
+      "mode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "date",
+          "date-range",
+          "date-time",
+          "month",
+          "month-range",
+          "year",
+          "year-range"
+        ]
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onChangeValue": {
+        "type": "(value: Range) => void",
+        "required": true
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": true
+      },
+      "presets": {
+        "type": "PresetsOptions",
+        "required": false
+      },
+      "showHolidays": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m"
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false
+      },
+      "value": {
+        "type": "Range",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileCalendarDropdown": {
+    "displayName": "MobileCalendarDropdown",
+    "propsTypeName": null,
+    "description": "Mobile-поверхность CalendarDropdown'а: контент уезжает в `BottomSheet` (`MobileCalendar`).\nТриггер (`children`) клонируется для открытия; `open`/`onOpenChange` поддерживают controlled-режим.\nЗначение нормализуется в `Range` (как `Calendar`), а наружу отдаётся в форме режима (Date / Range).\nInternal — наружу не реэкспортится; рендерится адаптивным `CalendarDropdown` по контексту.",
+    "props": {
+      "autofocus": {
+        "type": "boolean",
+        "required": false,
+        "description": "Автофокус"
+      },
+      "bottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Рендерится после основной разметки календаря, внутри `CalendarContext` (например футер с Apply в дропдауне)."
+      },
+      "buildCellProps": {
+        "type": "(date: Date, viewMode: ViewMode) => { isDisabled?: boolean; isHoliday?: boolean } ;",
+        "required": false,
+        "description": "Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра:\n<br> `Date` - дата ячейки\n<br> `ViewMode`:\n<br>  - `month` отображение месяца, каждая ячейка - 1 день\n<br>  - `year` отображение года, каждая ячейка - 1 месяц\n<br>  - `decade` отображение декады, каждая ячейка - 1 год\n<br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Элемент открытия dropdown (триггер)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрыть dropdown после нажатия Apply."
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`"
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "locale": {
+        "type": "Intl.Locale",
+        "required": false,
+        "defaultValue": "Проставляется в соответствие с языком в настройках браузера",
+        "description": "Локаль, в соответствие с которой выставляется язык названий и первый день недели"
+      },
+      "mode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "date",
+          "date-range",
+          "date-time",
+          "month",
+          "month-range",
+          "year",
+          "year-range"
+        ],
+        "description": "Режим работы календаря: <br> - `date` - режим выбора даты\n<br> - `date-range` - режим выбора периода\n<br> - `month-range` - режим выбора периода из месяцев\n<br> - `year-range` - режим выбора периода из лет\n<br> - `month` - режим выбора месяца\n<br> - `date-time` - режим выбора даты и времени\n<br> - `year` - режим выбора года"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек после подтверждения в футере."
+      },
+      "onChangeValue": {
+        "type": "((value: Date) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Range) => void) | ((value: Date) => void) | ((value: Date) => void) | ((value: Date) => void)",
+        "required": false,
+        "description": "Колбек выбора значения.<br> - в режиме date принимает тип `Date`\n<br> - в режиме date-range принимает тип `Range`\n<br> - в режиме month-range принимает тип `Range`\n<br> - в режиме year-range принимает тип `Range`\n<br> - в режиме month принимает тип `Date`\n<br> - в режиме date-time принимает тип `Date`\n<br> - в режиме year принимает тип `Date`"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по кнопке Current в футере."
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "presets": {
+        "type": "PresetsOptions",
+        "required": false,
+        "description": "Настройки секции с пресетами быстрого выбора периода. Доступны только при mode === 'date-range' и отсутствии buildCellProps (временно PDS-3139)"
+      },
+      "showHolidays": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрашивает субботу и воскресенье"
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать ли секунды (только в режиме date-time)"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "Объект со стилями на контейнер."
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "value": {
+        "type": "Date | Range",
+        "required": false,
+        "description": "Выбранное значение.<br> - в режиме date тип `Date`\n<br> - в режиме date-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month-range тип `Range` (`[Date, Date]`)\n<br> - в режиме year-range тип `Range` (`[Date, Date]`)\n<br> - в режиме month тип `Date`\n<br> - в режиме date-time тип `Date`\n<br> - в режиме year тип `Date`"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileFooter": {
+    "displayName": "MobileFooter",
+    "propsTypeName": null,
+    "description": "Мобильный футер календаря: строка «Выбрано: <значение>» над кнопками + `Current` / `Apply`.\nРендерится для всех режимов (на десктопе футер только для date-time). Значение и режим — из контекста.",
+    "props": {
+      "applyDisabled": {
+        "type": "boolean",
+        "required": true,
+        "description": "Блокировка Apply (нет полного выбора)."
+      },
+      "onApply": {
+        "type": "() => void",
+        "required": true,
+        "description": "Подтверждение выбора."
+      },
+      "onCurrent": {
+        "type": "() => void",
+        "required": true,
+        "description": "Сброс к «сейчас» / переход к текущей дате."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobilePeriodBlock": {
+    "displayName": "MobilePeriodBlock",
+    "propsTypeName": null,
+    "description": "Один период бесконечного скролла: подпись (месяц+год / год / декада) + CSS-grid ячеек.\nЯчейки соседнего периода (`another`) скрываются (`visible=false`) — каждая дата отображается ровно\nодин раз в своём блоке. Классификация (`checked`/`holiday`/`rangePosition`/`current`) — общая с\nдесктопом через `classifyCell`, селекция берётся из общего `CalendarContext`.",
+    "props": {
+      "config": {
+        "type": "LevelConfig",
+        "required": true,
+        "description": "Конфиг уровня."
+      },
+      "date": {
+        "type": "Date",
+        "required": true,
+        "description": "Дата периода блока (1-е число месяца / 1 января года / 1 января старта декады)."
+      },
+      "level": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "decade",
+          "month",
+          "year"
+        ],
+        "description": "Текущий уровень (определяет сетку и гранулярность ячеек)."
+      },
+      "onSelect": {
+        "type": "(date: Date) => void",
+        "required": true,
+        "description": "Выбор ячейки (tap)."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер ячеек."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobilePeriodScroller": {
+    "displayName": "MobilePeriodScroller",
+    "propsTypeName": null,
+    "description": "Вертикальный скролл периодов (диапазон широкий — воспринимается безграничным). Скролл-контейнер — `@ds/scroll` (DS-пилюля); его\nOverlayScrollbars-viewport берётся виртуализатором как scroll-элемент. Хост `@ds/scroll` заполняет\nbody sheet'а (`.scrollHost` height:100%), поэтому именно viewport (computed `overflow-y:auto`)\nрезолвится drag-движком bottom-sheet'а как scrollable-ancestor — handoff drag-vs-scroll сохраняется.\nДиапазон фиксирован и симметричен (см. `levelConfig`), на маунте центрируется на `anchorDate`.\n\nКлючуется по `level` родителем — смена уровня даёт чистый remount (и реинициализацию OS).",
+    "props": {
+      "anchorDate": {
+        "type": "Date",
+        "required": true,
+        "description": "Дата, на период которой центрируется скролл (при маунте и смене)."
+      },
+      "config": {
+        "type": "LevelConfig",
+        "required": true
+      },
+      "level": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "decade",
+          "month",
+          "year"
+        ]
+      },
+      "onSelect": {
+        "type": "(date: Date) => void",
+        "required": true,
+        "description": "Выбор ячейки (tap)."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobilePresetsScreen": {
+    "displayName": "MobilePresetsScreen",
+    "propsTypeName": null,
+    "description": "Под-экран пресетов (date-range): список быстрого выбора периода. Тап по пресету выставляет значение\nи возвращает на экран календаря (логика возврата — в `MobileCalendar`).",
+    "props": {
+      "items": {
+        "type": "PresetItem[]",
+        "required": true
+      },
+      "onSelect": {
+        "type": "(range: Range) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileTimePickerDropdown": {
+    "displayName": "MobileTimePickerDropdown",
+    "propsTypeName": null,
+    "description": "Mobile-поверхность TimePickerDropdown'а: барабанный пикер (`TimePickerDrum`) уезжает в `BottomSheet`.\nТриггер (`children`) клонируется для открытия; `open`/`onOpenChange` поддерживают controlled-режим.\nInternal — наружу не реэкспортится; рендерится адаптивным `TimePickerDropdown` по контексту.\n\nМодель «черновик + один Apply» (FF-8654, #2): скролл барабана правит локальный черновик, наружу\n(`onChangeValue`) значение коммитится ТОЛЬКО по «Применить»; закрытие/свайп = отмена. Это убирает\nпрежний непредсказуемый авто-коммит после каждого оседания скролла (быстрое закрытие терял значение).",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Контент триггера открытия dropdown"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера"
+      },
+      "closeOnApply": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Закрыть dropdown после нажатия кнопки Apply"
+      },
+      "closeOnEscapeKey": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрывать ли по нажатию на кнопку `Esc`"
+      },
+      "closeOnPopstate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрывать ли поповер при переходе по истории браузера"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Значение по-умолчанию для uncontrolled."
+      },
+      "disableSpanWrapper": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+      },
+      "fallbackPlacements": {
+        "type": "Placement[]",
+        "required": false,
+        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
+      },
+      "fitToContainer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
+      },
+      "hoverDelayClose": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка закрытия по ховеру"
+      },
+      "hoverDelayOpen": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка открытия по ховеру"
+      },
+      "navigationStartRef": {
+        "type": "RefObject<{ focus(): void; }>",
+        "required": false,
+        "description": "Ссылка на управление первым элементом навигации"
+      },
+      "onApply": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по нажатию Apply"
+      },
+      "onChangeValue": {
+        "type": "((value?: TimeValue) => void)",
+        "required": false,
+        "description": "Колбек выбора значения"
+      },
+      "onCurrent": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек по нажатию Current"
+      },
+      "onFocusLeave": {
+        "type": "((direction: FocusDirection) => void)",
+        "required": false,
+        "description": "Колбек потери фокуса. Вызывается со значением `next`, когда фокус покидает компонент, передвигаясь вперед, по клавише `tab`. Со значением `prev` - по клавише стрелки вверх или `shift + tab`."
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляет состоянием показан/не показан."
+      },
+      "outsideClick": {
+        "type": "boolean | OutsideClickHandler",
+        "required": false,
+        "description": "Закрывать ли при клике вне поповера"
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "defaultValue": "top",
+        "description": "Положение поповера относительно своего триггера (children)."
+      },
+      "showSeconds": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли секунды"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер"
+      },
+      "today": {
+        "type": "number | Date",
+        "required": false,
+        "description": "Дата сегодняшнего дня"
+      },
+      "trigger": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
+      },
+      "triggerClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс триггера"
+      },
+      "triggerClickByKeys": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+      },
+      "triggerRef": {
+        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "required": false,
+        "description": "Ref ссылка на триггер"
+      },
+      "value": {
+        "type": "TimeValue",
+        "required": false,
+        "description": "Выбранное значение."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileTimeScreen": {
+    "displayName": "MobileTimeScreen",
+    "propsTypeName": null,
+    "description": "Под-экран времени date-time: барабан (`TimePickerDrum`) на `dateAndTime` контекста + подпись выбранного дня.",
+    "props": {
+      "drumRef": {
+        "type": "Ref<TimePickerDrumHandle>",
+        "required": false,
+        "description": "Ref барабана — для форс-коммита незавершённого жеста при уходе с экрана (см. FF-8654, комментарий #2)."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
       }
     },
     "relatedTypes": {}
@@ -1080,7 +2170,6 @@
       "closeOnApply": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
         "description": "Закрыть dropdown после нажатия кнопки Apply"
       },
       "closeOnEscapeKey": {
@@ -1122,7 +2211,7 @@
       "fitToContainer": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
+        "defaultValue": "true",
         "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
       },
       "hoverDelayClose": {
@@ -1195,7 +2284,7 @@
           "top-end",
           "top-start"
         ],
-        "defaultValue": "bottom-start",
+        "defaultValue": "top",
         "description": "Положение поповера относительно своего триггера (children).",
         "typeRefs": [
           "Placement"
@@ -1204,7 +2293,6 @@
       "showSeconds": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true",
         "description": "Показывать ли секунды"
       },
       "size": {
@@ -1238,7 +2326,6 @@
           "hoverAndFocus",
           "hoverAndFocusVisible"
         ],
-        "defaultValue": "click",
         "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
         "typeRefs": [
           "Trigger"
@@ -1454,6 +2541,13 @@
         "description": "Текущее выбранное значение; должно входить в `options` (иначе для отображения берётся ближайшее из списка)."
       }
     },
+    "relatedTypes": {}
+  },
+  "useOpenTrigger": {
+    "displayName": "useOpenTrigger",
+    "propsTypeName": null,
+    "description": "Триггер открытия mobile-dropdown'а: valid element клонируется с onClick, остальное — span с Enter/Space.",
+    "props": {},
     "relatedTypes": {}
   }
 }
