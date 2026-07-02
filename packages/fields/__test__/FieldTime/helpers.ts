@@ -18,10 +18,13 @@ export const FIELD_TIME_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = FIELD_TIME_STORIES.playground,
+  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: ref.name,
     story: ref.story,
     props: { 'data-test-id': TEST_IDS.fieldTime, ...props },
+    globals,
   };
 }
