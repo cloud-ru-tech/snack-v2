@@ -195,7 +195,7 @@ import { Button } from '@ds/button';
 import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
-import { releaseNotesItems } from './releaseNotesData';
+import { releaseNotesItems } from './releaseNotesItems';
 
 export function ReleaseNotesData() {
   const [open, setOpen] = useState(false);
@@ -216,7 +216,7 @@ import { Button } from '@ds/button';
 import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
-import { releaseNotesItems } from './releaseNotesData';
+import { releaseNotesItems } from './releaseNotesItems';
 
 export function ReleaseNotesNoData() {
   const [open, setOpen] = useState(false);
@@ -237,7 +237,7 @@ import { Button } from '@ds/button';
 import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
-import { releaseNotesItems } from './releaseNotesData';
+import { releaseNotesItems } from './releaseNotesItems';
 
 export function ReleaseNotesError() {
   const [open, setOpen] = useState(false);
@@ -264,7 +264,7 @@ import { Button } from '@ds/button';
 import { ReleaseNotes } from '@ds/uikit-product-modal-predefined';
 import { useState } from 'react';
 
-import { releaseNotesItems } from './releaseNotesData';
+import { releaseNotesItems } from './releaseNotesItems';
 
 export function ReleaseNotesVideo() {
   const [open, setOpen] = useState(false);
