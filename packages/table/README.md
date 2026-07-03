@@ -1914,9 +1914,9 @@ export function TreeTableWithSelection() {
 
 ## InfiniteTable
 
-Таблица с бесконечной прокруткой: infiniteLoading и scrollRef из коробки.
+Таблица с бесконечной прокруткой: infiniteLoading, scrollRef и виртуализация строк из коробки.
 
-`InfiniteTable` — preset для длинных списков без пагинации: включает `infiniteLoading`, подключает `scrollRef` и `IntersectionObserver` через `onLoadMore` / `hasMore`.
+`InfiniteTable` — preset для длинных списков без пагинации: включает `infiniteLoading`, подключает `scrollRef` и `IntersectionObserver` через `onLoadMore` / `hasMore`, по умолчанию включает виртуализацию строк (`enableRowVirtualization`).
 
 ### Когда использовать
 
@@ -1926,7 +1926,9 @@ export function TreeTableWithSelection() {
 Когда **не** нужен:
 
 - Классическая пагинация — `SimpleTable` / `ServerTable`.
-- Виртуализация больших датасетов — полный `Table` с `virtualization`.
+- Нужен полный контроль над виртуализацией колонок или кастомными параметрами virtualizer — базовый `Table`.
+
+Чтобы отключить виртуализацию строк: `enableRowVirtualization={false}`.
 
 ### Примеры использования
 

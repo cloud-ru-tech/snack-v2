@@ -19,7 +19,19 @@ export function toInfiniteTableProps<TData extends object>(
   input: InfiniteTableInput<TData>,
   scrollRef: Ref<HTMLElement> | null,
 ): InfiniteTableProps<TData> {
-  const { data, columns, getRowId, headlineKey, defaultView, view, onViewChange, renderCard, outline, ...rest } = input;
+  const {
+    data,
+    columns,
+    getRowId,
+    headlineKey,
+    defaultView,
+    view,
+    onViewChange,
+    renderCard,
+    outline,
+    enableRowVirtualization,
+    ...rest
+  } = input;
 
   return {
     ...rest,
@@ -28,6 +40,7 @@ export function toInfiniteTableProps<TData extends object>(
     columnDefinitions: defineColumns(columns),
     infiniteLoading: true,
     outline: outline ?? true,
+    enableRowVirtualization: enableRowVirtualization ?? true,
     getRowId: wrapGetRowId(getRowId),
     scrollRef: scrollRef ?? undefined,
   };
