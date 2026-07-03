@@ -102,6 +102,43 @@ export function DemoWarning({
 }
 
 /**
+ * Обёртка с ручкой изменения размера (`resize`).
+ * Оборачивает демонстрируемый компонент, чтобы в Playground можно было потянуть
+ * за угол и увидеть поведение при разной ширине (truncate, wrap, reflow).
+ *
+ * - `axis='horizontal' | 'both'` — по какой оси тянется ручка (по умолчанию `horizontal`).
+ * - `width` — стартовая ширина: пресет (`'default'` 320px · `'narrow'` 256px ·
+ *   `'fit'` по контенту · `'full'` 100%) либо число пикселей.
+ */
+export function DemoResizable({
+  className,
+  children,
+  axis = 'horizontal',
+  width = 'default',
+  style,
+  ...rest
+}: DivProps & { axis?: 'horizontal' | 'both'; width?: 'narrow' | 'default' | 'fit' | 'full' | number }) {
+  const numericWidth = typeof width === 'number';
+
+  return (
+    <div
+      {...rest}
+      style={numericWidth ? { ...style, width } : style}
+      className={cn(
+        styles.resizable,
+        axis === 'both' && styles.resizableBoth,
+        width === 'narrow' && styles.resizableNarrow,
+        width === 'fit' && styles.resizableFit,
+        width === 'full' && styles.resizableFull,
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
  * Ряд элементов в demo-панели.
  * - `align='start' | 'center'` — flex justify; уместно для группы триггеров.
  * - `block` — column-flex со stretch: дочерний элемент растягивается на 100%

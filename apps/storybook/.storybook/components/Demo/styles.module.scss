@@ -104,3 +104,34 @@
   flex-direction: column;
   align-items: stretch;
 }
+
+.resizable {
+  resize: horizontal;
+
+  overflow: auto;
+
+  width: 320px;
+  min-width: 200px;
+  max-width: 100%;
+  padding: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-s;
+}
+
+.resizableNarrow {
+  width: 256px;
+  min-width: 120px;
+}
+
+.resizableBoth {
+  resize: both;
+}
+
+.resizableFit {
+  width: fit-content;
+  min-width: 0;
+}
+
+.resizableFull {
+  width: 100%;
+}
