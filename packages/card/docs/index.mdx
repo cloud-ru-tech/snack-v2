@@ -5,7 +5,6 @@ description: Корневая карточка с осями radius, view и с�
 order: 0
 ---
 
-import { CardDemo } from '../demos/CardDemo'
 import { BackgroundFills } from '../demos/examples/BackgroundFills'
 import BackgroundFillsSrc from '../demos/examples/BackgroundFills.tsx?raw'
 import { DisabledCard } from '../demos/examples/DisabledCard'
@@ -26,10 +25,6 @@ import cardDoc from './props.json'
 # Card
 
 `Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'shadow'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
-
-## Демо
-
-<CardDemo client:visible />
 
 ## Когда использовать
 
@@ -135,7 +130,7 @@ import { Card, RADIUS, VIEW } from '@ds/card'
 
 ## Storybook
 
-<StorybookEmbed storyId='components-card--playground' height={440} />
+<StorybookEmbed storyId='components-card-card--playground' height={440} />
 
 ## Figma
 

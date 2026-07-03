@@ -31,7 +31,7 @@ function CardPlaygroundExampleContent() {
 }
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Components/Card/Card',
   component: Card,
   parameters: { layout: 'fullscreen' },
   args: {

@@ -8,7 +8,7 @@ import { StoryTable } from '#storybook/components';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Components/Card/Card',
   component: Card,
   parameters: { layout: 'padded' },
 };

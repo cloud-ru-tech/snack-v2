@@ -7,8 +7,8 @@ export { TEST_IDS };
 export const CARD_TEST_ID = TEST_IDS.root;
 
 export const CARD_STORIES = {
-  playground: { name: 'card', story: 'playground' },
-  visualMatrix: { name: 'card', story: 'visual-matrix' },
+  playground: { name: 'card-card', story: 'playground' },
+  visualMatrix: { name: 'card-card', story: 'visual-matrix' },
 } as const satisfies Record<string, StoryRef>;
 
 export type CardStoryProps = Record<string, unknown>;

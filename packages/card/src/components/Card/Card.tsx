@@ -56,6 +56,7 @@ export function Card<T extends ElementType = 'div'>({
       <Component
         ref={innerRef}
         className={cn(styles.card, className)}
+        data-card
         data-radius={radius}
         data-view={view}
         data-disabled={disabled || undefined}

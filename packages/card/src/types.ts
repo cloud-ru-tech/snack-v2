@@ -5,6 +5,8 @@ import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode
 import { RADIUS, VIEW } from './constants';
 
 export type Radius = ValueOf<typeof RADIUS>;
+/** Алиас `Radius` для обратной совместимости с Snack UI Kit Card API. */
+export type Size = Radius;
 export type View = ValueOf<typeof VIEW>;
 
 export type PolymorphicRef<T extends ElementType> = ComponentPropsWithRef<T>['ref'];

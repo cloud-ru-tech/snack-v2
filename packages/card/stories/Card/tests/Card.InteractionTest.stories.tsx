@@ -24,7 +24,7 @@ type InteractionStoryArgs = CardProps & {
 };
 
 const meta: Meta<InteractionStoryArgs> = {
-  title: 'Components/Card/Tests/Interaction',
+  title: 'Components/Card/Card/Tests/Interaction',
   component: Card,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {

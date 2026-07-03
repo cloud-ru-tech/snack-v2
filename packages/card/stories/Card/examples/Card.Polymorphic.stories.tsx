@@ -7,7 +7,7 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card/Examples/Polymorphic',
+  title: 'Components/Card/Card/Examples/Polymorphic',
   component: Card,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };
