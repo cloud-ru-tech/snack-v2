@@ -1,0 +1,45 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.promoBadge {
+  position: absolute;
+  z-index: 1;
+  top: base.$sn-primitive-dimension-4;
+  right: base.$sn-primitive-dimension-4;
+}
+
+.root {
+  box-sizing: border-box;
+  text-decoration: none;
+
+  &[data-size='m'] {
+    .content {
+      gap: base.$sn-primitive-dimension-8;
+      padding: base.$sn-primitive-dimension-16;
+    }
+  }
+
+  &[data-size='s'] {
+    .content {
+      gap: base.$sn-primitive-dimension-4;
+      padding: base.$sn-primitive-dimension-8;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+---
+title: CardBanner
+package: '@ds/uikit-product-card-predefined'
+description: Промо-баннер с заголовком, описанием, CTA-ссылкой и изображением. Поддерживает опциональную кнопку закрытия.
+order: 1
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { PolymorphicLink } from '../demos/examples/PolymorphicLink'
+import PolymorphicLinkSrc from '../demos/examples/PolymorphicLink.tsx?raw'
+import { WithClose } from '../demos/examples/WithClose'
+import WithCloseSrc from '../demos/examples/WithClose.tsx?raw'
+import { WithOnClick } from '../demos/examples/WithOnClick'
+import WithOnClickSrc from '../demos/examples/WithOnClick.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CardBanner
+
+Промо-баннер с заголовком, описанием, CTA-ссылкой и изображением. Поддерживает опциональную кнопку закрытия.
+
+## Когда использовать
+
+- Промо-блоки на главной или в каталоге сервисов.
+- Баннер с иллюстрацией и одним основным действием.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-card-predefined
+```
+
+```ts
+import { CardBanner } from '@ds/uikit-product-card-predefined'
+```
+
+## Примеры использования
+
+<Example title='Базовый пример' description='Иллюстрация 96×96 справа от текстового блока.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Обработка клика'
+  description='onClick передаётся в корневой Card — карточка интерактивна по умолчанию.'
+  code={WithOnClickSrc}
+>
+  <WithOnClick client:visible />
+</Example>
+
+<Example
+  title='Закрываемый баннер'
+  description='При передаче onClose в углу появляется кнопка закрытия; клик по ней не всплывает на карточку.'
+  code={WithCloseSrc}
+>
+  <WithClose client:visible />
+</Example>
+
+<Example
+  title='Ссылка (polymorphic)'
+  description='Через as и href карточка рендерится как якорь.'
+  code={PolymorphicLinkSrc}
+>
+  <PolymorphicLink client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.CardBanner} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-cardpredefined-cardbanner--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-card-predefined', 'card-banner')} />

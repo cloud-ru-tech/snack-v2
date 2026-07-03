@@ -1,0 +1,74 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.promoTagWrapper {
+  position: absolute;
+  top: calc(-1 * base.$sn-primitive-dimension-4);
+  right: calc(-1 * base.$sn-primitive-dimension-4);
+  display: flex;
+}
+
+.favouriteWrapper {
+  flex-shrink: 0;
+
+  &[data-visibility-strategy='hover'] {
+    display: none;
+  }
+
+  &[data-visibility-strategy='always'] {
+    display: flex;
+  }
+}
+
+.wrapper {
+  position: relative;
+
+  &:hover,
+  &:focus-within {
+    .favouriteWrapper[data-visibility-strategy='hover'] {
+      display: flex;
+    }
+  }
+}
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.contentLayout {
+  overflow: hidden;
+  display: block;
+  flex-grow: 1;
+
+  min-width: 0;
+  max-width: 100%;
+}
+
+.title {
+  overflow: hidden;
+  display: block;
+
+  max-width: 100%;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

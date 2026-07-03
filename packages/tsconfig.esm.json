@@ -250,6 +250,9 @@
       "path": "./uikit-product-button-predefined/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-card-predefined/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-copy/tsconfig.esm.json"
     },
     {

@@ -132,6 +132,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       description: 'Продуктовые блоки данных и виджеты: инфо-строки, цена, квоты, виджеты, промо-теги.',
       packages: [
         'uikit-product-avatar-detail',
+        'uikit-product-card-predefined',
         'uikit-product-info-row',
         'uikit-product-price-summary',
         'uikit-product-quota',

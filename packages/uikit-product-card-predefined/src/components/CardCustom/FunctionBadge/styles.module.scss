@@ -1,0 +1,52 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$function-badge-size: base.$sn-primitive-dimension-32;
+$function-badge-border-radius: base.$sn-brand-anatomy-radius-card-toggles-xs;
+$icon-size: base.$sn-density-size-icon-s;
+
+.button {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: $function-badge-size;
+  height: $function-badge-size;
+  border: 0;
+  border-radius: $function-badge-border-radius;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  background-color: transparent;
+  outline-color: transparent;
+
+  &:hover {
+    color: base.$sn-theme-color-available-version-textSecondary;
+  }
+
+  &:focus-visible {
+    color: base.$sn-theme-color-available-version-textSecondary;
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  &:active {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+
+  svg {
+    width: $icon-size !important; /* stylelint-disable-line declaration-no-important */
+    height: $icon-size !important; /* stylelint-disable-line declaration-no-important */
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.item {
+  width: max-content;
+}

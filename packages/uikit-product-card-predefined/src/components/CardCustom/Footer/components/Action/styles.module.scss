@@ -1,0 +1,20 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../../shared.module' as shared;
+
+.action {
+  display: flex;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+
+  @each $size in shared.$sizes {
+    &[data-size='#{$size}'] {
+      margin-top: base.simple-var(shared.$size-to-content-gap, $size);
+      padding-right: base.simple-var(shared.$size-to-content-padding, $size);
+      padding-bottom: base.simple-var(shared.$size-to-content-padding, $size);
+      padding-left: base.simple-var(shared.$size-to-content-padding, $size);
+    }
+  }
+}

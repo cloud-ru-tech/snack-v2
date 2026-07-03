@@ -1,0 +1,91 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.favouriteWrapper {
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
+
+  // Стратегия `hover`: кнопка вынута из потока (position: absolute) и скрыта.
+  // Так текст заголовка занимает всю ширину и не сжимается под зарезервированное
+  // место кнопки. При наведении/фокусе кнопка проявляется поверх контента, а в
+  // checked-состоянии возвращается в поток (см. `.root:hover`), раздвигая контент.
+  &[data-visibility-strategy='hover'] {
+    position: absolute;
+    top: 50%;
+    right: base.$sn-primitive-dimension-4;
+    transform: translateY(-50%);
+
+    visibility: hidden;
+  }
+
+  &[data-visibility-strategy='always'] {
+    visibility: visible;
+  }
+}
+
+.root {
+  cursor: pointer;
+  box-sizing: border-box;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-within {
+    .favouriteWrapper[data-visibility-strategy='hover'] {
+      visibility: visible;
+
+      &[data-checked] {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+      }
+    }
+  }
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-4;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: base.$sn-density-size-icon-s;
+  height: base.$sn-density-size-icon-s;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-24;
+}
+
+.title {
+  overflow: hidden;
+  display: block;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

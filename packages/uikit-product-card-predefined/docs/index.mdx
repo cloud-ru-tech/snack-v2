@@ -1,0 +1,38 @@
+---
+title: CardPredefined
+package: '@ds/uikit-product-card-predefined'
+description: Пресеты карточек Product UI Kit — CardBanner, CardService, CardServiceLight, CardServiceSmall, CardSuggest, CardCustom.
+order: 0
+---
+
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# CardPredefined
+
+Набор готовых карточек Product UI Kit на базе `@ds/card`:
+
+| Компонент | Назначение |
+|-----------|-----------|
+| [`CardBanner`](/components/uikit-product-card-predefined/card-banner) | Промо-баннер с изображением и CTA-действием |
+| [`CardService`](/components/uikit-product-card-predefined/card-service) | Карточка сервиса с иконкой-эмблемой и описанием |
+| [`CardServiceLight`](/components/uikit-product-card-predefined/card-service-light) | Компактная строка-сервис (icon + label + favourite) |
+| [`CardServiceSmall`](/components/uikit-product-card-predefined/card-service-small) | Компактная карточка сервиса |
+| [`CardSuggest`](/components/uikit-product-card-predefined/card-suggest) | Карточка подсказки (размер m/s) |
+| [`CardCustom`](/components/uikit-product-card-predefined/card-custom) | Ручная компоновка карточки из слотов Header / Image / FunctionBadge / Footer |
+
+Все компоненты поддерживают полиморфный `as` prop: `as='a'`, `as={Link}` и т.д.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-card-predefined
+```
+
+```ts
+import { CardBanner, CardService, CardServiceLight, CardSuggest } from '@ds/uikit-product-card-predefined'
+```
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-card-predefined')} />

@@ -1,0 +1,79 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../shared.module' as shared;
+
+$modes: 'little', 'middle', 'background';
+
+// Высоты little/middle-режимов заданы в Figma-мастере фиксированными px; в наборе
+// `@sbercloud/figma-variables` нет dimension-токена под 144/240 (максимум — 136).
+$image-little-height: 144px;
+$image-middle-height: 240px;
+
+// mask-image использует только альфа-канал стопов: RGB роли не играет, важна
+// прозрачность. Поэтому маска строится из `transparent` (скрыто) и surface-токена
+// (полностью видно); отдельного alpha-токена под промежуточный стоп в наборе нет.
+$image-fading-mask: linear-gradient(
+  90deg,
+  transparent 0%,
+  transparent 33%,
+  base.$sn-theme-color-neutral-background1Level 100%
+);
+
+.image {
+  display: block;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+
+  @each $mode in $modes {
+    &[data-mode='#{$mode}'] {
+      @if $mode == 'background' {
+        pointer-events: none;
+
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+
+        width: auto;
+        height: auto;
+
+        object-fit: cover;
+
+        &[data-fading] {
+          mask-image: $image-fading-mask;
+        }
+      }
+
+ @else {
+        position: relative;
+
+        @each $size in shared.$sizes {
+          &[data-size='#{$size}'] {
+            margin-bottom: base.simple-var(shared.$size-to-content-gap, $size);
+            padding-right: base.simple-var(shared.$size-to-content-padding, $size);
+            padding-left: base.simple-var(shared.$size-to-content-padding, $size);
+          }
+        }
+      }
+
+      @if $mode == 'little' {
+        height: $image-little-height;
+      }
+
+ @else if $mode == 'middle' {
+        height: $image-middle-height;
+      }
+    }
+  }
+
+  &[data-mode='little'],
+  &[data-mode='middle'] {
+    @each $size in shared.$sizes {
+      &[data-size='#{$size}'] {
+        padding-top: base.simple-var(shared.$size-to-content-padding, $size);
+      }
+    }
+  }
+}

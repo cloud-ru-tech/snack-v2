@@ -1,0 +1,16 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../shared.module' as shared;
+
+.body {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  @each $size in shared.$sizes {
+    &[data-size='#{$size}'] {
+      padding-right: base.simple-var(shared.$size-to-content-padding, $size);
+      padding-left: base.simple-var(shared.$size-to-content-padding, $size);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+// Общие оси и spacing-карты слотов CardCustom (Header / Image / Footer.*).
+// Один источник истины — раньше эти карты дублировались в 5 файлах слотов.
+
+$sizes: 's', 'm', 'l';
+
+$size-to-content-padding: (
+  's': base.$sn-primitive-dimension-8,
+  'm': base.$sn-primitive-dimension-16,
+  'l': base.$sn-primitive-dimension-24,
+);
+
+$size-to-content-gap: (
+  's': base.$sn-primitive-dimension-4,
+  'm': base.$sn-primitive-dimension-8,
+  'l': base.$sn-primitive-dimension-16,
+);

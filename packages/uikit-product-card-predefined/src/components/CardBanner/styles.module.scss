@@ -1,0 +1,59 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-16;
+  text-decoration: none;
+
+  .closeButton {
+    position: absolute;
+    top: base.$sn-primitive-dimension-8;
+    right: base.$sn-primitive-dimension-8;
+    visibility: hidden;
+
+    @media (hover: none) {
+      visibility: visible;
+    }
+  }
+
+  &:hover,
+  &:focus-within {
+    .closeButton {
+      visibility: visible;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+
+  min-width: 0;
+}
+
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.image {
+  flex-shrink: 0;
+  width: base.$sn-primitive-dimension-96;
+  height: base.$sn-primitive-dimension-96;
+  object-fit: cover;
+}

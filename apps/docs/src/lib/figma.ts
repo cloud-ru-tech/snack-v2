@@ -251,6 +251,14 @@ export const FIGMA_NODES = {
   },
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
   'uikit-product-widget': { ...PRODUCT, nodeId: '3024:759' }, // uikit-product-widget → widget
+  'uikit-product-card-predefined': {
+    _: { ...PRODUCT, nodeId: '2171-287' }, // canvas root
+    'card-banner': { ...PRODUCT, nodeId: '2171-1507' },
+    'card-service': { ...PRODUCT, nodeId: '2174-319' },
+    'card-service-small': { ...PRODUCT, nodeId: '2176-3032' },
+    'card-service-light': { ...PRODUCT, nodeId: '3226-23362' },
+    'card-suggest': { ...PRODUCT, nodeId: '3792-69244' },
+  },
   'uikit-product-avatar-detail': { ...PRODUCT, nodeId: '2157:3642' }, // uikit-product-avatar-detail → AvatarDetail
   'uikit-product-quota': {
     _: { ...PRODUCT, nodeId: '2917-49' }, // quota canvas

@@ -1,0 +1,55 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../shared.module' as shared;
+
+.titleLayout {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  @each $size in shared.$sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(shared.$size-to-content-gap, $size);
+
+      margin-bottom: base.simple-var(shared.$size-to-content-gap, $size);
+      padding-top: base.simple-var(shared.$size-to-content-padding, $size);
+      padding-right: base.simple-var(shared.$size-to-content-padding, $size);
+      padding-left: base.simple-var(shared.$size-to-content-padding, $size);
+    }
+  }
+}
+
+[data-card-custom-image] + .titleLayout {
+  @each $size in shared.$sizes {
+    &[data-size='#{$size}'] {
+      padding-top: 0;
+    }
+  }
+}
+
+.contentLayout {
+  overflow: hidden;
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.title {
+  display: block;
+  max-width: 100%;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.metadata {
+  max-width: 100%;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.description {
+  max-width: 100%;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

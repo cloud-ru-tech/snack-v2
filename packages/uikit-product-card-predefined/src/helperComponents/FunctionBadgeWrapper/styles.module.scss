@@ -1,0 +1,60 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$function-badge-padding: base.$sn-primitive-dimension-8;
+$function-badge-size: base.$sn-primitive-dimension-32;
+$function-badge-border-radius: base.$sn-brand-anatomy-radius-card-toggles-xs;
+
+.wrapper {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+
+  display: none;
+
+  padding-top: $function-badge-padding;
+  padding-right: $function-badge-padding;
+
+  &[data-visible] {
+    display: block;
+  }
+}
+
+@at-root {
+  @media (hover: hover) {
+    [data-card]:hover [data-function-badge-wrapper],
+    [data-card]:focus-within [data-function-badge-wrapper],
+    [data-card]:focus-visible [data-function-badge-wrapper] {
+      display: block;
+    }
+  }
+}
+
+.functionBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+.functionRow {
+  position: relative;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: $function-badge-size;
+    height: $function-badge-size;
+    border-radius: $function-badge-border-radius;
+
+    /* Полупрозрачная подложка под бейдж: в наборе нет opacity-токена под 0.8
+       (единственный — effect-opacity-disabled = 0.4), значение из Figma-мастера. */
+    opacity: 0.8;
+    background-color: base.$sn-theme-color-neutral-background1Level;
+    box-shadow: base.$sn-boxShadow-elevation-level2;
+  }
+}

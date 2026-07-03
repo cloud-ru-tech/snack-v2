@@ -1,0 +1,1423 @@
+{
+  "Body": {
+    "displayName": "Body",
+    "propsTypeName": null,
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Произвольное содержимое тела карточки"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CardAction": {
+    "displayName": "CardAction",
+    "propsTypeName": null,
+    "props": {
+      "actionLabel": {
+        "type": "string",
+        "required": true,
+        "description": "Текст кнопки действия"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "CardBanner": {
+    "displayName": "CardBanner",
+    "propsTypeName": "CardBannerProps",
+    "props": {
+      "actionLabel": {
+        "type": "string",
+        "required": true,
+        "description": "Текст кнопки действия"
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "image": {
+        "type": "{ src: string; alt: string; }",
+        "required": true,
+        "description": "Изображение"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "onClose": {
+        "type": "MouseEventHandler<HTMLElement>",
+        "required": false,
+        "description": "Колбэк закрытия. При наличии отображается кнопка «Закрыть»"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки"
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      }
+    }
+  },
+  "CardService": {
+    "displayName": "CardService",
+    "propsTypeName": "CardServiceProps",
+    "props": {
+      "actionLabel": {
+        "type": "string",
+        "required": true,
+        "description": "Текст кнопки действия"
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "emblem": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": true,
+        "description": "Эмблема — передавайте `<IconPredefined icon={...} />` или произвольный ReactElement"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки"
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      }
+    }
+  },
+  "CardServiceLight": {
+    "displayName": "CardServiceLight",
+    "propsTypeName": "CardServiceLightProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "favorite": {
+        "type": "FavoriteProps",
+        "required": false,
+        "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → фокус на Favourite; ArrowLeft на Favourite → фокус на карточку.",
+        "typeRefs": [
+          "FavoriteProps"
+        ]
+      },
+      "icon": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": false,
+        "description": "Иконка сервиса"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLElement>",
+        "required": false,
+        "description": "Колбэк нажатия клавиши клавиатуры на карточке"
+      },
+      "promoTag": {
+        "type": "PromoTagProps",
+        "required": false,
+        "description": "Настройки promo tag. При отсутствии не отображается",
+        "typeRefs": [
+          "PromoTagOwnProps",
+          "PromoTagProps"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "description": "Настройки обрезки текста заголовка"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "FavoriteProps": {
+        "kind": "interface",
+        "props": {
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние избранного (controlled)"
+          },
+          "enabled": {
+            "type": "boolean",
+            "required": true,
+            "description": "Включить отображение кнопки избранного"
+          },
+          "onChange": {
+            "type": "((value: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбэк изменения состояния избранного"
+          },
+          "visibilityStrategy": {
+            "type": "VisibilityStrategy | undefined",
+            "required": false,
+            "values": [
+              "always",
+              "hover"
+            ],
+            "description": "Формат отображения: всегда или при наведении и фокусе",
+            "typeRefs": [
+              "VisibilityStrategy"
+            ]
+          }
+        },
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PromoTagOwnProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "PromoTagProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "VisibilityStrategy": {
+        "kind": "union",
+        "values": [
+          "always",
+          "hover"
+        ],
+        "own": true
+      }
+    }
+  },
+  "CardServiceSmall": {
+    "displayName": "CardServiceSmall",
+    "propsTypeName": "CardServiceSmallProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выбранное состояние"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "emblem": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>> | { icon: JSXElementConstructor<{ className?: string | undefined; size?: number | undefined; }>; }",
+        "required": true,
+        "description": "Эмблема: объект с иконкой-компонентом.\nПринимает `{ icon: JSXElementConstructor }` или произвольный ReactElement."
+      },
+      "favorite": {
+        "type": "(FavoriteProps & { visibilityStrategy: \"hover\" | \"always\"; })",
+        "required": false,
+        "description": "Настройки кнопки «Избранное». `visibilityStrategy` обязателен.",
+        "typeRefs": [
+          "FavoriteProps"
+        ]
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "description": "Рамка вокруг карточки"
+      },
+      "promoBadge": {
+        "type": "PromoTagProps",
+        "required": false,
+        "description": "Промо-тег (бейдж). Тип — `PromoTagProps` из `@ds/promo-tag`.",
+        "typeRefs": [
+          "PromoTagOwnProps",
+          "PromoTagProps"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки"
+      },
+      "truncate": {
+        "type": "{ title?: number; }",
+        "required": false,
+        "description": "Настройки обрезки заголовка"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "FavoriteProps": {
+        "kind": "interface",
+        "props": {
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние избранного (controlled)"
+          },
+          "enabled": {
+            "type": "boolean",
+            "required": true,
+            "description": "Включить отображение кнопки избранного"
+          },
+          "onChange": {
+            "type": "((value: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбэк изменения состояния избранного"
+          },
+          "visibilityStrategy": {
+            "type": "VisibilityStrategy | undefined",
+            "required": false,
+            "values": [
+              "always",
+              "hover"
+            ],
+            "description": "Формат отображения: всегда или при наведении и фокусе",
+            "typeRefs": [
+              "VisibilityStrategy"
+            ]
+          }
+        },
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PromoTagOwnProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "PromoTagProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "VisibilityStrategy": {
+        "kind": "union",
+        "values": [
+          "always",
+          "hover"
+        ],
+        "own": true
+      }
+    }
+  },
+  "CardSuggest": {
+    "displayName": "CardSuggest",
+    "propsTypeName": "CardSuggestProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "promoBadge": {
+        "type": "PromoTagProps",
+        "required": false,
+        "description": "Промо-тег.\nИспользуйте `PromoTagProps` из `@ds/promo-tag`.",
+        "typeRefs": [
+          "PromoTagOwnProps",
+          "PromoTagProps"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер: управляет типографикой и отступами.\n`'m'` — roleTitle/m + roleBody/m, padding 16px;\n`'s'` — roleTitle/s + roleBody/s, padding 8px.",
+        "typeRefs": [
+          "CardSize"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; description?: number; } | undefined",
+        "required": false,
+        "description": "Настройки обрезки текста"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "CardSize": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PromoTagOwnProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "PromoTagProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "role": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль промо-тега",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "text": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          }
+        },
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      }
+    }
+  },
+  "Dimension": {
+    "displayName": "Dimension",
+    "propsTypeName": null,
+    "props": {
+      "currentValue": {
+        "type": "string",
+        "required": true,
+        "description": "Текущее значение"
+      },
+      "dimension": {
+        "type": "string",
+        "required": false,
+        "description": "Единица измерения"
+      },
+      "oldValue": {
+        "type": "string",
+        "required": false,
+        "description": "Старое значение"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Emblem": {
+    "displayName": "Emblem",
+    "propsTypeName": null,
+    "props": {
+      "alt": {
+        "type": "string",
+        "required": true
+      },
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "description": "Внешний вид"
+      },
+      "decor": {
+        "type": "boolean",
+        "required": false,
+        "description": "Наличие цветной подложки"
+      },
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number | undefined; className?: string | undefined; }>",
+        "required": true,
+        "description": "JSX иконки"
+      },
+      "shape": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "round",
+          "square"
+        ],
+        "description": "Форма: круглая или квадратная"
+      },
+      "src": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterAction": {
+    "displayName": "FooterAction",
+    "propsTypeName": null,
+    "props": {
+      "button": {
+        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"loading\" | \"icon\">",
+        "required": true,
+        "description": "Параметры для основной кнопки"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "secondaryButton": {
+        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"loading\" | \"icon\">",
+        "required": false,
+        "description": "Параметры для вторичной кнопки"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterCallToAction": {
+    "displayName": "FooterCallToAction",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Лейбл"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterPromo": {
+    "displayName": "FooterPromo",
+    "propsTypeName": null,
+    "props": {
+      "button": {
+        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"loading\" | \"icon\">",
+        "required": false,
+        "description": "Параметры для основной кнопки"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      },
+      "volume": {
+        "type": "DimensionProps",
+        "required": false,
+        "description": "Параметры для блока значений"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FunctionBadge": {
+    "displayName": "FunctionBadge",
+    "propsTypeName": null,
+    "props": {
+      "alwaysVisible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Всегда показывать FunctionBadge"
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка"
+      },
+      "options": {
+        "type": "Option[]",
+        "required": true,
+        "description": "Вложенные опции"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FunctionBadgeWrapper": {
+    "displayName": "FunctionBadgeWrapper",
+    "propsTypeName": null,
+    "props": {
+      "alwaysVisible": {
+        "type": "boolean",
+        "required": false,
+        "description": "Всегда показывать FunctionBadge"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Header": {
+    "displayName": "Header",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс для элемента с контентом"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Подзаголовок"
+      },
+      "emblem": {
+        "type": "EmblemProps",
+        "required": false,
+        "description": "Эмблема иконка/картинка"
+      },
+      "metadata": {
+        "type": "string",
+        "required": false,
+        "description": "Метаинформация"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; description?: number; metadata?: number | undefined; } | undefined",
+        "required": false,
+        "defaultValue": "'{ title: 1; description: 2; metadata: 1; }'",
+        "description": "Максимальное число строк\n- `title` — в заголовке\n- `description` — в описании\n- `metadata` — в метаинформации"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Image": {
+    "displayName": "Image",
+    "propsTypeName": null,
+    "props": {
+      "alt": {
+        "type": "string",
+        "required": true,
+        "description": "Описание картинки"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "hideFading": {
+        "type": "boolean",
+        "required": false
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "background",
+          "little",
+          "middle"
+        ],
+        "defaultValue": "little"
+      },
+      "src": {
+        "type": "string",
+        "required": true,
+        "description": "Путь до картинки"
+      }
+    },
+    "relatedTypes": {}
+  }
+}

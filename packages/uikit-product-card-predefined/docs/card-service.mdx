@@ -1,0 +1,43 @@
+---
+title: CardService
+package: '@ds/uikit-product-card-predefined'
+description: Карточка сервиса с эмблемой, заголовком, описанием и CTA-строкой.
+order: 2
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CardService
+
+Карточка сервиса с эмблемой, заголовком, описанием и CTA-строкой.
+
+## Когда использовать
+
+- Плитки сервисов в каталоге или дашборде.
+- Карточка с иконкой-эмблемой, заголовком и кратким описанием.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-card-predefined
+```
+
+```ts
+import { CardService } from '@ds/uikit-product-card-predefined'
+```
+
+## Props
+
+<PropsTable data={componentDoc.CardService} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-cardpredefined-cardservice--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-card-predefined', 'card-service')} />

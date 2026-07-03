@@ -1,0 +1,133 @@
+---
+title: CardServiceSmall
+package: '@ds/uikit-product-card-predefined'
+description: Компактная карточка сервиса — эмблема, заголовок, promo badge и кнопка «Избранное».
+order: 4
+---
+
+import { Basic } from '../demos/examples/card-service-small/Basic'
+import BasicSrc from '../demos/examples/card-service-small/Basic.tsx?raw'
+import { Disabled } from '../demos/examples/card-service-small/Disabled'
+import DisabledSrc from '../demos/examples/card-service-small/Disabled.tsx?raw'
+import { PolymorphicLink } from '../demos/examples/card-service-small/PolymorphicLink'
+import PolymorphicLinkSrc from '../demos/examples/card-service-small/PolymorphicLink.tsx?raw'
+import { WithChecked } from '../demos/examples/card-service-small/WithChecked'
+import WithCheckedSrc from '../demos/examples/card-service-small/WithChecked.tsx?raw'
+import { WithFavorite } from '../demos/examples/card-service-small/WithFavorite'
+import WithFavoriteSrc from '../demos/examples/card-service-small/WithFavorite.tsx?raw'
+import { WithFavoriteHover } from '../demos/examples/card-service-small/WithFavoriteHover'
+import WithFavoriteHoverSrc from '../demos/examples/card-service-small/WithFavoriteHover.tsx?raw'
+import { WithOnClick } from '../demos/examples/card-service-small/WithOnClick'
+import WithOnClickSrc from '../demos/examples/card-service-small/WithOnClick.tsx?raw'
+import { WithOutline } from '../demos/examples/card-service-small/WithOutline'
+import WithOutlineSrc from '../demos/examples/card-service-small/WithOutline.tsx?raw'
+import { WithPromoTag } from '../demos/examples/card-service-small/WithPromoTag'
+import WithPromoTagSrc from '../demos/examples/card-service-small/WithPromoTag.tsx?raw'
+import { WithTruncate } from '../demos/examples/card-service-small/WithTruncate'
+import WithTruncateSrc from '../demos/examples/card-service-small/WithTruncate.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CardServiceSmall
+
+Компактная интерактивная строка: эмблема + заголовок + promo badge + кнопка «Избранное».
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-card-predefined
+```
+
+```ts
+import { CardServiceSmall } from '@ds/uikit-product-card-predefined'
+```
+
+## Примеры использования
+
+<Example title='Базовый пример' description='Компактная строка с эмблемой и заголовком.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Promo badge'
+  description='Через promoBadge в правом верхнем углу отображается промо-бейдж.'
+  code={WithPromoTagSrc}
+>
+  <WithPromoTag client:visible />
+</Example>
+
+<Example
+  title='Обрезка заголовка'
+  description='truncate.title ограничивает число строк заголовка через TruncateString.'
+  code={WithTruncateSrc}
+>
+  <WithTruncate client:visible />
+</Example>
+
+<Example
+  title='Выбранное состояние'
+  description='checked подсвечивает карточку как выбранную.'
+  code={WithCheckedSrc}
+>
+  <WithChecked client:visible />
+</Example>
+
+<Example
+  title='Рамка (outline)'
+  description='outline добавляет контур вокруг карточки.'
+  code={WithOutlineSrc}
+>
+  <WithOutline client:visible />
+</Example>
+
+<Example
+  title='Кнопка «Избранное» (always)'
+  description='favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.'
+  code={WithFavoriteSrc}
+>
+  <WithFavorite client:visible />
+</Example>
+
+<Example
+  title='Кнопка «Избранное» (hover)'
+  description='favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.'
+  code={WithFavoriteHoverSrc}
+>
+  <WithFavoriteHover client:visible />
+</Example>
+
+<Example title='Неактивное состояние' description='disabled блокирует взаимодействие с карточкой.' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+<Example
+  title='Обработка клика'
+  description='onClick передаётся в корневой Card — карточка интерактивна по умолчанию.'
+  code={WithOnClickSrc}
+>
+  <WithOnClick client:visible />
+</Example>
+
+<Example
+  title='Ссылка (polymorphic)'
+  description='Через as и href карточка рендерится как якорь.'
+  code={PolymorphicLinkSrc}
+>
+  <PolymorphicLink client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.CardServiceSmall} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-cardpredefined-cardservicesmall--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-card-predefined', 'card-service-small')} />

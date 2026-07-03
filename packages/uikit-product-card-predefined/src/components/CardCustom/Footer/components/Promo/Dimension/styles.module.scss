@@ -1,0 +1,32 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.wrapper {
+  display: flex;
+  flex: 1 0 auto;
+  gap: base.$sn-primitive-dimension-4;
+  justify-content: flex-end;
+
+  box-sizing: border-box;
+}
+
+.valueContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+}
+
+.currentValue {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.oldValue {
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-decoration: line-through;
+}
+
+.dimension {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

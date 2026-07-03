@@ -1,0 +1,48 @@
+import { RADIUS, Size, TEST_IDS, useCardContext } from '@ds/card';
+import { IconPredefined, IconPredefinedProps, SIZE as ICON_SIZE } from '@ds/icon-predefined';
+
+import styles from './styles.module.scss';
+
+type PictureProps = {
+  src: string;
+  alt: string;
+};
+
+export type EmblemProps = PictureProps | Pick<IconPredefinedProps, 'icon' | 'decor' | 'appearance' | 'shape'>;
+
+function isPictureProps(props: EmblemProps): props is PictureProps {
+  return 'src' in props && 'alt' in props;
+}
+
+const ICON_SIZE_MAP: Record<Size, (typeof ICON_SIZE)[keyof typeof ICON_SIZE]> = {
+  [RADIUS.S]: ICON_SIZE.M,
+  [RADIUS.M]: ICON_SIZE.M,
+  [RADIUS.L]: ICON_SIZE.L,
+};
+
+export function Emblem(props: EmblemProps) {
+  const { radius } = useCardContext();
+
+  if (isPictureProps(props)) {
+    return (
+      <img
+        src={props.src}
+        alt={props.alt}
+        data-size={radius}
+        className={styles.img}
+        data-test-id={TEST_IDS.emblemPicture}
+      />
+    );
+  }
+
+  return (
+    <IconPredefined
+      icon={props.icon}
+      appearance={props.appearance ?? 'primary'}
+      decor={props.decor ?? true}
+      size={ICON_SIZE_MAP[radius]}
+      shape={props.shape ?? 'round'}
+      data-test-id={TEST_IDS.emblemIcon}
+    />
+  );
+}

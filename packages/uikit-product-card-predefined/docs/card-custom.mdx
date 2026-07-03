@@ -1,0 +1,40 @@
+---
+title: CardCustom
+package: '@ds/uikit-product-card-predefined'
+description: Готовые блоки Header, Image, FunctionBadge и Footer для типовой компоновки карточки поверх Card.
+order: 6
+---
+
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import { Basic as CardCustomBasic } from '../demos/examples/CardCustom/Basic'
+import CardCustomBasicSrc from '../demos/examples/CardCustom/Basic.tsx?raw'
+
+# CardCustom
+
+Готовые блоки `CardCustom.Header`, `CardCustom.Image`, `CardCustom.FunctionBadge` и `CardCustom.Footer.*` для типовой компоновки карточки. Body — через `Typography`. Собирается поверх `Card` из `@ds/card`.
+
+Собирается из слотов вручную — когда готовые пресеты (`CardService`, `CardServiceLight`, `CardBanner`) не подходят и нужна своя компоновка контента внутри карточки.
+
+## Установка
+
+```ts
+import { Card } from '@ds/card'
+import { CardCustom } from '@ds/uikit-product-card-predefined'
+```
+
+## Примеры использования
+
+<Example title='Базовая компоновка' code={CardCustomBasicSrc}>
+  <CardCustomBasic client:visible />
+</Example>
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-cardpredefined-cardcustom--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('card')} height={480} title='Card в Figma (Snack UI Kit)' />

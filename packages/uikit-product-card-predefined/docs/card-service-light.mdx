@@ -1,0 +1,118 @@
+---
+title: CardServiceLight
+package: '@ds/uikit-product-card-predefined'
+description: Компактная интерактивная строка — иконка, текст, promo tag и кнопка «Избранное».
+order: 3
+---
+
+import { Basic } from '../demos/examples/card-service-light/Basic'
+import BasicSrc from '../demos/examples/card-service-light/Basic.tsx?raw'
+import { Disabled } from '../demos/examples/card-service-light/Disabled'
+import DisabledSrc from '../demos/examples/card-service-light/Disabled.tsx?raw'
+import { PolymorphicLink } from '../demos/examples/card-service-light/PolymorphicLink'
+import PolymorphicLinkSrc from '../demos/examples/card-service-light/PolymorphicLink.tsx?raw'
+import { WithFavorite } from '../demos/examples/card-service-light/WithFavorite'
+import WithFavoriteSrc from '../demos/examples/card-service-light/WithFavorite.tsx?raw'
+import { WithFavoriteHover } from '../demos/examples/card-service-light/WithFavoriteHover'
+import WithFavoriteHoverSrc from '../demos/examples/card-service-light/WithFavoriteHover.tsx?raw'
+import { WithOnClick } from '../demos/examples/card-service-light/WithOnClick'
+import WithOnClickSrc from '../demos/examples/card-service-light/WithOnClick.tsx?raw'
+import { WithPromoTag } from '../demos/examples/card-service-light/WithPromoTag'
+import WithPromoTagSrc from '../demos/examples/card-service-light/WithPromoTag.tsx?raw'
+import { WithTruncate } from '../demos/examples/card-service-light/WithTruncate'
+import WithTruncateSrc from '../demos/examples/card-service-light/WithTruncate.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CardServiceLight
+
+Компактная интерактивная строка: иконка + текст + promo tag + кнопка «Избранное» (ArrowRight/Left keyboard nav).
+
+## Когда использовать
+
+- Компактные списки сервисов в сайдбаре или меню.
+- Строка с иконкой, названием и кнопкой «Избранное».
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-card-predefined
+```
+
+```ts
+import { CardServiceLight } from '@ds/uikit-product-card-predefined'
+```
+
+## Примеры использования
+
+<Example title='Базовый пример' description='Компактная строка с иконкой и заголовком.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Promo tag'
+  description='Через promoTag рядом с заголовком отображается промо-бейдж.'
+  code={WithPromoTagSrc}
+>
+  <WithPromoTag client:visible />
+</Example>
+
+<Example
+  title='Обрезка заголовка'
+  description='truncate.title ограничивает число строк заголовка через TruncateString.'
+  code={WithTruncateSrc}
+>
+  <WithTruncate client:visible />
+</Example>
+
+<Example
+  title='Кнопка «Избранное» (always)'
+  description='favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.'
+  code={WithFavoriteSrc}
+>
+  <WithFavorite client:visible />
+</Example>
+
+<Example
+  title='Кнопка «Избранное» (hover)'
+  description='favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.'
+  code={WithFavoriteHoverSrc}
+>
+  <WithFavoriteHover client:visible />
+</Example>
+
+<Example title='Неактивное состояние' description='disabled блокирует взаимодействие с карточкой.' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+<Example
+  title='Обработка клика'
+  description='onClick передаётся в корневой Card — карточка интерактивна по умолчанию.'
+  code={WithOnClickSrc}
+>
+  <WithOnClick client:visible />
+</Example>
+
+<Example
+  title='Ссылка (polymorphic)'
+  description='Через as и href карточка рендерится как якорь.'
+  code={PolymorphicLinkSrc}
+>
+  <PolymorphicLink client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.CardServiceLight} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-cardpredefined-cardservicelight--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-card-predefined', 'card-service-light')} />
