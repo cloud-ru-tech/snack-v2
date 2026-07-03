@@ -4,11 +4,11 @@ import { useMemo, useState } from 'react';
 
 import { buildUserColumns, SAMPLE_USERS, User } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/RowActions',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

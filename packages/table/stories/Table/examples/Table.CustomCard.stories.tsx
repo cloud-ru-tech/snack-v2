@@ -6,12 +6,12 @@ import { expect, within } from 'storybook/test';
 
 import { buildUserColumns, SAMPLE_USERS, userStatusLabel } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 import styles from './Table.CustomCard.module.scss';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/CustomCard',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

@@ -1,5 +1,3 @@
-// Filter-row тулбара (@ds/toolbar) рендерится чипами @ds/chips —
-// test-id'ы импортируются из их публичных констант.
 import { CHIP_CHOICE_ROW_TEST_IDS, CHIP_CHOICE_TEST_IDS } from '@ds/chips';
 import { DEFAULT_PAGE_SIZE, Table } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
@@ -16,11 +14,11 @@ import {
   UserTableFilters,
 } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/Filters',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

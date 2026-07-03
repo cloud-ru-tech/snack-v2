@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 import { buildUserColumns, SAMPLE_USERS } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/Selection',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

@@ -4,12 +4,13 @@ import { useState } from 'react';
 
 import { getUserSubRows, TREE_USERS, User } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/Tree',
-  component: Table,
+  ...tableExampleMeta,
   parameters: {
-    layout: 'fullscreen',
+    ...tableExampleMeta.parameters,
     design: [
       {
         type: 'figma',

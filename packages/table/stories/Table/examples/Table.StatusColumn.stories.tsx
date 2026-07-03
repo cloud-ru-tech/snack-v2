@@ -3,11 +3,11 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { mapUserStatusToAppearance, SAMPLE_USERS, User, userStatusLabel } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/StatusColumn',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

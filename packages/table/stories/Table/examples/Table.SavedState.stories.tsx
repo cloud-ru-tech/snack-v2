@@ -6,11 +6,12 @@ import { DemoActions, DemoHint, DemoPanel, DemoTitle } from '#storybook/componen
 
 import { buildUserColumns, SAMPLE_USERS } from '../../fixtures';
 import { SAVED_STATE_ID, TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/SavedState',
-  component: Table,
-  parameters: { layout: 'fullscreen', controls: { disable: true } },
+  ...tableExampleMeta,
+  parameters: { ...tableExampleMeta.parameters, controls: { disable: true } },
 };
 
 export default meta;

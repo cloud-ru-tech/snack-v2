@@ -5,12 +5,12 @@ import { expect, within } from 'storybook/test';
 
 import { buildUserColumns, makeUsers, User } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/InfiniteScroll',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

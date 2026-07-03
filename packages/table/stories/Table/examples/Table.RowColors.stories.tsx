@@ -4,11 +4,11 @@ import { expect, within } from 'storybook/test';
 
 import { buildUserColumns, SAMPLE_USERS, User } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/RowColors',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;

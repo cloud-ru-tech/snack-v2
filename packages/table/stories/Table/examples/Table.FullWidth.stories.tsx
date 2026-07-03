@@ -4,6 +4,7 @@ import { expect, within } from 'storybook/test';
 
 import { DemoHint } from '#storybook/components';
 
+import { withTableStorySurface } from '../../decorators';
 import { PRESET_USERS, presetUserColumns } from '../../presetFixtures';
 import { TEST_IDS } from '../../testIds';
 import styles from './styles.module.scss';
@@ -12,6 +13,7 @@ const meta: Meta<typeof SimpleTable> = {
   title: 'Components/Table/Table/Examples/FullWidth',
   component: SimpleTable,
   parameters: { layout: 'padded' },
+  decorators: [withTableStorySurface],
 };
 
 export default meta;

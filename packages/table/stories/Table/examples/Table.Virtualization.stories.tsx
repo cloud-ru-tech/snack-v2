@@ -4,12 +4,12 @@ import { expect, within } from 'storybook/test';
 
 import { buildUserColumns, makeUsers } from '../../fixtures';
 import { TEST_IDS } from '../../testIds';
+import { tableExampleMeta } from './sharedMeta';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table/Table/Examples/Virtualization',
-  component: Table,
-  parameters: { layout: 'fullscreen' },
+  ...tableExampleMeta,
 };
 
 export default meta;
