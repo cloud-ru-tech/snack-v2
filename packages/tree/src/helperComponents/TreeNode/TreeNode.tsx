@@ -271,27 +271,29 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
         data-size={size}
         ref={ref}
       >
-        {parentNode && (
-          <TreeLine halfWidth={isExpandable} horizontal visible={showLines} data-test-id={TEST_IDS.line} />
-        )}
+        {parentNode && <TreeLine halfWidth horizontal visible={showLines} data-test-id={TEST_IDS.line} />}
 
-        {isExpandable && (
-          <div className={styles.treeNodeExpandButtonWrapper}>
-            <button
-              type='button'
-              onClick={onChevronClick}
-              data-expanded={isExpanded || undefined}
-              className={styles.treeNodeExpandButton}
-              tabIndex={-1}
-              data-test-id={TEST_IDS.chevron}
-              aria-label={isExpanded ? 'Collapse' : 'Expand'}
-            >
-              <span className={styles.treeNodeExpandButtonStateLayer} aria-hidden data-state='regularFilled' />
-              {isLoading ? <Spinner size={CONTROL_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
-            </button>
-            <TreeLine visible={isExpanded && showLines} />
-          </div>
-        )}
+        <div className={styles.treeNodeExpandButtonWrapper}>
+          {isExpandable ? (
+            <>
+              <button
+                type='button'
+                onClick={onChevronClick}
+                data-expanded={isExpanded || undefined}
+                className={styles.treeNodeExpandButton}
+                tabIndex={-1}
+                data-test-id={TEST_IDS.chevron}
+                aria-label={isExpanded ? 'Collapse' : 'Expand'}
+              >
+                <span className={styles.treeNodeExpandButtonStateLayer} aria-hidden data-state='regularFilled' />
+                {isLoading ? <Spinner size={CONTROL_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
+              </button>
+              <TreeLine visible={isExpanded && showLines} />
+            </>
+          ) : (
+            <div className={styles.treeNodeExpandButtonSpacer} aria-hidden />
+          )}
+        </div>
 
         <div
           role='treeitem'

@@ -165,6 +165,11 @@ $sizes: ('s', 'm', 'l');
   border-radius: inherit;
 }
 
+// Пустой слот chevron у листьев — те же размеры, что у кнопки раскрытия.
+.treeNodeExpandButtonSpacer {
+  flex-shrink: 0;
+}
+
 // Колонка chevron-а: stretch на высоту строки, chevron по центру, TreeLine ниже.
 .treeNodeExpandButtonWrapper {
   position: relative;
@@ -231,6 +236,11 @@ $icon-size-by-size: (
         width: $icon-size;
         height: $icon-size;
       }
+    }
+
+    .treeNodeExpandButtonSpacer {
+      width: $centered-width;
+      height: $centered-width;
     }
 
     .treeNodeIcon svg {
