@@ -9,12 +9,12 @@ import { ColumnDefinition } from '../src/types';
 // они покрываются play-функциями stories, не unit'ами (см. coverage-standard.md).
 // Для unit-теста композиции колонок достаточно стабов-фабрик.
 vi.mock('../src/helperComponents', () => ({
-  getSelectionCellColumnDef: vi.fn((enableSelectPinned: boolean, isAllRowsMode: boolean) => ({
+  getSelectionCellColumnDef: vi.fn((enableSelectPinned: boolean, masterSelection: Record<string, unknown> = {}) => ({
     id: 'selection-column-stub',
     pinned: 'left',
     size: 32,
     enableSelectPinned,
-    isAllRowsMode,
+    masterSelection,
   })),
   getTreeColumnDef: vi.fn((props: Record<string, unknown>) => ({
     id: 'tree-column-stub',
@@ -60,7 +60,7 @@ describe('getTableColumnsDefinitions', () => {
     });
 
     expect(vi.mocked(getSelectionCellColumnDef)).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(getSelectionCellColumnDef)).toHaveBeenCalledWith(true, false);
+    expect(vi.mocked(getSelectionCellColumnDef)).toHaveBeenCalledWith(true, {});
     expect(result).toHaveLength(baseColumns.length + 1);
     expect(result[0]).toBe(vi.mocked(getSelectionCellColumnDef).mock.results[0]?.value);
     expect(result.slice(1)).toEqual(baseColumns);
@@ -81,20 +81,21 @@ describe('getTableColumnsDefinitions', () => {
     expect(result.slice(1)).toEqual(baseColumns);
   });
 
-  it('passes expandingColumnDefinition merged with selection flags into getTreeColumnDef', () => {
+  it('passes masterSelection into getTreeColumnDef', () => {
     getTableColumnsDefinitions({
       columnDefinitions: baseColumns,
       enableSelection: true,
       enableSelectPinned: false,
       expanding,
       rowSelectionAppearance: RowAppearance.HideToggler,
+      masterSelection: { isAllRowsMode: true },
     });
 
     expect(vi.mocked(getTreeColumnDef)).toHaveBeenCalledWith({
       ...expanding.expandingColumnDefinition,
       enableSelection: true,
       rowSelectionAppearance: RowAppearance.HideToggler,
-      isAllRowsMode: false,
+      isAllRowsMode: true,
     });
   });
 

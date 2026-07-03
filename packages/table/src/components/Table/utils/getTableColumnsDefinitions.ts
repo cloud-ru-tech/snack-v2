@@ -1,4 +1,5 @@
 import { getSelectionCellColumnDef, getTreeColumnDef } from '../../../helperComponents';
+import { MasterSelectionOptions } from '../../../helpers';
 import { ColumnDefinition } from '../../../types';
 import { RowAppearance, TableProps } from '../../types';
 
@@ -8,8 +9,8 @@ type GetTableColumnsDefinitionsProps<TData extends object> = {
   enableSelectPinned: boolean;
   expanding: TableProps<TData>['expanding'];
   rowSelectionAppearance?: RowAppearance;
-  /** Режим мастер-чекбокса: выбор всех строк (true) или только текущей страницы (false) */
-  isAllRowsMode?: boolean;
+  /** Параметры мастер-чекбокса выбора строк */
+  masterSelection?: MasterSelectionOptions;
 };
 
 /**
@@ -22,12 +23,12 @@ export function getTableColumnsDefinitions<TData extends object>({
   enableSelectPinned,
   expanding,
   rowSelectionAppearance = RowAppearance.Disabled,
-  isAllRowsMode = false,
+  masterSelection = {},
 }: GetTableColumnsDefinitionsProps<TData>): ColumnDefinition<TData>[] {
   let cols = columnDefinitions;
 
   if (enableSelection && !expanding) {
-    cols = [getSelectionCellColumnDef(enableSelectPinned, isAllRowsMode), ...cols];
+    cols = [getSelectionCellColumnDef(enableSelectPinned, masterSelection), ...cols];
   }
 
   if (expanding) {
@@ -36,7 +37,7 @@ export function getTableColumnsDefinitions<TData extends object>({
         ...expanding.expandingColumnDefinition,
         enableSelection,
         rowSelectionAppearance,
-        isAllRowsMode,
+        ...masterSelection,
       }),
       ...cols,
     ];

@@ -177,6 +177,8 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   const usePageStickyHeader = isStickyControls && !isCardsView;
   const isAllRowsMode = toolbarCheckBoxMode === ToolbarCheckBoxMode.AllRows;
 
+  const masterSelection = useMemo(() => ({ isAllRowsMode }), [isAllRowsMode]);
+
   const [globalFilter, onGlobalFilterChange] = useStateControl(search, '');
   const [rowSelection, onRowSelectionChange] = useStateControl(rowSelectionProp, DEFAULT_ROW_SELECTION);
 
@@ -204,9 +206,9 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
         enableSelectPinned,
         expanding,
         rowSelectionAppearance: rowSelectionProp?.appearance,
-        isAllRowsMode,
+        masterSelection,
       }),
-    [columnDefinitions, enableSelection, enableSelectPinned, expanding, rowSelectionProp?.appearance, isAllRowsMode],
+    [columnDefinitions, enableSelection, enableSelectPinned, expanding, masterSelection, rowSelectionProp?.appearance],
   );
 
   const pinnedGroups = useMemo(() => getPinnedGroups(allTableColumns), [allTableColumns]);
@@ -226,6 +228,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     rowSelection: rowSelectionProp,
     enableSelectPinned,
     expanding,
+    masterSelection,
   });
 
   const hideableColumnIds = useMemo(
@@ -289,7 +292,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     columnOrder,
     enableColumnsOrderSortByDrag,
     setColumnOrder,
-    isAllRowsMode,
+    masterSelection,
     infiniteLoading,
     loading,
     onRefresh,
@@ -397,7 +400,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     setFilterVisibility,
     enableSelection,
     multiRow,
-    isAllRowsMode,
+    masterSelection,
     handleOnToolbarCheck,
     bulkActions,
     areColumnsSettingsEnabled,

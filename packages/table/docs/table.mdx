@@ -149,9 +149,11 @@ import doc from './props.json';
 Bulk-бар в тулбаре (чекбокс «выбрать все» и счётчик выбранных) появляется только при `rowSelection.multiRow`:
 
 - `bulkActions` — массовые действия; `onClick` получает `selectionState` и `resetRowSelection`.
-- `toolbarCheckBoxMode` — охват чекбокса тулбара (ось `ToolbarCheckBoxMode`):
+- `toolbarCheckBoxMode` — охват мастер-чекбокса выбора (ось `ToolbarCheckBoxMode`, только клиентская `Table`):
   - `pageRows` — строки текущей страницы;
-  - `allRows` — все строки.
+  - `allRows` — все строки набора `data` (включая другие страницы пагинации).
+
+  В `view='table'` мастер-чекбокс в заголовке колонки выбора; в `view='cards'` — в bulk-баре тулбара.
 
 ### Поиск и фильтры
 

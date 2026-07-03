@@ -400,7 +400,7 @@ export type ClientTableProps<
   onLoadMore?: never;
   hasMore?: never;
   loadMoreTrigger?: never;
-  /** Как должен работать чекбокс в тулбаре (по всем страницам или по текущей) */
+  /** Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица) */
   toolbarCheckBoxMode?: ToolbarCheckBoxMode;
 };
 

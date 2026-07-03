@@ -30,5 +30,6 @@ export {
 } from './components/Table/hooks/useColumnSettings/utils';
 
 export { getPinnedGroups, getTableColumnsDefinitions } from './components/Table/utils';
+export type { MasterSelectionOptions } from './helpers/masterSelection';
 
 export * from './locale';

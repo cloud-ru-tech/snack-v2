@@ -10,6 +10,7 @@ import { RowAppearance } from '../../../components/types';
 import { COLUMN_PIN_POSITION, TEST_IDS } from '../../../constants';
 import { useCellResize } from '../../../contexts';
 import {
+  MasterSelectionOptions,
   renderMasterSelectionToggle,
   rowSelectionStateToSelectedIds,
   selectedIdsToRowSelectionState,
@@ -54,8 +55,7 @@ export type TreeColumnDefinitionProps<TData> = TreeColumnDef | TreeColumnDefWith
 type TreeColDefProps<TData> = TreeColumnDefinitionProps<TData> & {
   enableSelection?: boolean;
   rowSelectionAppearance?: RowAppearance;
-  isAllRowsMode?: boolean;
-};
+} & MasterSelectionOptions;
 
 function renderTreeHeaderLabel(headerContent: ReactNode) {
   if (typeof headerContent === 'string') {
@@ -82,8 +82,10 @@ function renderTreeColumnHeader<TData>(
   {
     enableSelection,
     showToggle,
-    isAllRowsMode = false,
-  }: Pick<TreeColDefProps<TData>, 'enableSelection' | 'showToggle' | 'isAllRowsMode'>,
+    masterSelection = {},
+  }: Pick<TreeColDefProps<TData>, 'enableSelection' | 'showToggle'> & {
+    masterSelection?: MasterSelectionOptions;
+  },
 ): ColumnDefinition<TData>['header'] {
   if (!enableSelection || !showToggle) {
     return userHeader;
@@ -94,7 +96,7 @@ function renderTreeColumnHeader<TData>(
 
     const masterToggle = renderMasterSelectionToggle({
       table: ctx.table,
-      isAllRowsMode,
+      masterSelection,
     });
 
     if (!masterToggle) {
@@ -155,6 +157,7 @@ export function getTreeColumnDef<TData>({
   minSize,
   isAllRowsMode,
 }: TreeColDefProps<TData>): ColumnDefinition<TData> {
+  const masterSelection: MasterSelectionOptions = { isAllRowsMode };
   const cell = function TreeCell(ctx: CellContext<TData, unknown>) {
     const { row, cell, table } = ctx;
 
@@ -365,7 +368,7 @@ export function getTreeColumnDef<TData>({
       skipOnExport: false,
     },
     enableSorting: false,
-    header: renderTreeColumnHeader(header, { enableSelection, showToggle, isAllRowsMode }),
+    header: renderTreeColumnHeader(header, { enableSelection, showToggle, masterSelection }),
     cell,
   };
 }

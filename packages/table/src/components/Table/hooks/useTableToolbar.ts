@@ -5,6 +5,7 @@ import { Table } from '@tanstack/react-table';
 import { useCallback, useMemo } from 'react';
 
 import { VIEW, View } from '../../../constants';
+import { getMasterSelectionState, getSelectionCounts, MasterSelectionOptions } from '../../../helpers';
 import {
   type ColumnsSettingsToolbarSlotResult,
   type ExportToolbarSlotResult,
@@ -50,7 +51,7 @@ type UseTableToolbarParams<TData extends object, TFilters extends FiltersState> 
   setFilterVisibility: (value: string[]) => void;
   enableSelection: boolean;
   multiRow: boolean;
-  isAllRowsMode: boolean;
+  masterSelection: MasterSelectionOptions;
   handleOnToolbarCheck: () => void;
   bulkActions?: TableProps<TData>['bulkActions'];
   areColumnsSettingsEnabled: boolean;
@@ -113,7 +114,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
   setFilterVisibility,
   enableSelection,
   multiRow,
-  isAllRowsMode,
+  masterSelection,
   handleOnToolbarCheck,
   bulkActions,
   areColumnsSettingsEnabled,
@@ -213,9 +214,8 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
     search: suppressSearch ? undefined : globalFilter,
   });
 
-  const { checked, indeterminate } = isAllRowsMode
-    ? { checked: table.getIsAllRowsSelected(), indeterminate: table.getIsSomeRowsSelected() }
-    : { checked: table.getIsAllPageRowsSelected(), indeterminate: table.getIsSomePageRowsSelected() };
+  const { checked, indeterminate } = getMasterSelectionState(table, masterSelection);
+  const { selectedCount, totalCount } = getSelectionCounts(table, masterSelection);
 
   const toolbarBulkProps =
     enableSelection && multiRow
@@ -224,8 +224,8 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
           indeterminate,
           onCheck: handleOnToolbarCheck,
           bulkActions,
-          selectedCount: table.getSelectedRowModel().flatRows.filter(r => !r.subRows.length).length,
-          totalCount: table.getFilteredRowModel().flatRows.filter(r => !r.subRows.length).length,
+          selectedCount,
+          totalCount,
           showBulkCheckbox: isCardsView,
         }
       : undefined;

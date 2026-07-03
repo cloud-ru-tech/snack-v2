@@ -211,9 +211,11 @@ flowchart TB
 Bulk-бар в тулбаре (чекбокс «выбрать все» и счётчик выбранных) появляется только при `rowSelection.multiRow`:
 
 - `bulkActions` — массовые действия; `onClick` получает `selectionState` и `resetRowSelection`.
-- `toolbarCheckBoxMode` — охват чекбокса тулбара (ось `ToolbarCheckBoxMode`):
+- `toolbarCheckBoxMode` — охват мастер-чекбокса выбора (ось `ToolbarCheckBoxMode`, только клиентская `Table`):
   - `pageRows` — строки текущей страницы;
-  - `allRows` — все строки.
+  - `allRows` — все строки набора `data` (включая другие страницы пагинации).
+
+  В `view='table'` мастер-чекбокс в заголовке колонки выбора; в `view='cards'` — в bulk-баре тулбара.
 
 #### Поиск и фильтры
 
@@ -974,7 +976,7 @@ export function FullWidth() {
 | `suppressSearch` | `boolean` | `false` | Отключение поиска |
 | `suppressToolbar` | `boolean` | `false` | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |
-| `toolbarCheckBoxMode` | `"allRows"` \| `"pageRows"` | — | Как должен работать чекбокс в тулбаре (по всем страницам или по текущей) |
+| `toolbarCheckBoxMode` | `"allRows"` \| `"pageRows"` | — | Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица) |
 | `view` | `"cards"` \| `"table"` | `'table'` | Режим отображения таблицы. <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида появляется в тулбаре только при задании одного из пропов <br/> `view` / `defaultView` / `onViewChange` / `headlineId`. |
 
 ##### Related types

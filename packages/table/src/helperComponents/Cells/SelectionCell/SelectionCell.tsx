@@ -3,7 +3,7 @@ import { Row, RowSelectionState } from '@tanstack/react-table';
 import { MouseEvent } from 'react';
 
 import { COLUMN_PIN_POSITION, DefaultColumns, TEST_IDS } from '../../../constants';
-import { renderMasterSelectionToggle } from '../../../helpers';
+import { MasterSelectionOptions, renderMasterSelectionToggle } from '../../../helpers';
 import { ColumnDefinition } from '../../../types';
 import styles from './styles.module.scss';
 
@@ -43,7 +43,7 @@ function getRowsToToggle<TData>(rows: Row<TData>[], clickedRowId: string, previo
 
 export function getSelectionCellColumnDef<TData>(
   enableSelectPinned: boolean,
-  isAllRowsMode: boolean,
+  masterSelection: MasterSelectionOptions = {},
 ): ColumnDefinition<TData> {
   let previousClickedRowId = '';
 
@@ -60,7 +60,7 @@ export function getSelectionCellColumnDef<TData>(
     header: ({ table }) => {
       const masterToggle = renderMasterSelectionToggle({
         table,
-        isAllRowsMode,
+        masterSelection,
         className: styles.selectionCell,
       });
 

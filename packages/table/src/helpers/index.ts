@@ -1,4 +1,5 @@
 export * from './getColumnId';
+export * from './masterSelection';
 export * from './rowSelectionState';
 export * from './tryParseLocalStorage';
 export * from './renderMasterSelectionToggle';

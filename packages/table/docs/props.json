@@ -427,7 +427,7 @@
           "allRows",
           "pageRows"
         ],
-        "description": "Как должен работать чекбокс в тулбаре (по всем страницам или по текущей)",
+        "description": "Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица)",
         "typeRefs": [
           "ToolbarCheckBoxMode"
         ]
@@ -3504,7 +3504,7 @@
           "allRows",
           "pageRows"
         ],
-        "description": "Как должен работать чекбокс в тулбаре (по всем страницам или по текущей)",
+        "description": "Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица)",
         "typeRefs": [
           "ToolbarCheckBoxMode"
         ]
@@ -3969,7 +3969,7 @@
               "allRows",
               "pageRows"
             ],
-            "description": "Как должен работать чекбокс в тулбаре (по всем страницам или по текущей)",
+            "description": "Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица)",
             "typeRefs": [
               "ToolbarCheckBoxMode"
             ]
@@ -7454,7 +7454,7 @@
           "allRows",
           "pageRows"
         ],
-        "description": "Как должен работать чекбокс в тулбаре (по всем страницам или по текущей)",
+        "description": "Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица)",
         "typeRefs": [
           "ToolbarCheckBoxMode"
         ]
@@ -8701,7 +8701,7 @@
           "allRows",
           "pageRows"
         ],
-        "description": "Как должен работать чекбокс в тулбаре (по всем страницам или по текущей)"
+        "description": "Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица)"
       },
       "view": {
         "type": "enum",
@@ -10584,7 +10584,7 @@
           "allRows",
           "pageRows"
         ],
-        "description": "Как должен работать чекбокс в тулбаре (по всем страницам или по текущей)",
+        "description": "Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица)",
         "typeRefs": [
           "ToolbarCheckBoxMode"
         ]
@@ -11448,9 +11448,10 @@
         "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
         "required": false
       },
-      "isAllRowsMode": {
-        "type": "boolean",
-        "required": true
+      "masterSelection": {
+        "type": "MasterSelectionOptions",
+        "required": false,
+        "defaultValue": "{}"
       },
       "rowSelectionAppearance": {
         "type": "enum",
@@ -11715,7 +11716,8 @@
       },
       "isAllRowsMode": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Режим «выбрать все строки» вместо только текущей страницы"
       },
       "minSize": {
         "type": "number",
@@ -11791,8 +11793,8 @@
         "type": "string",
         "required": false
       },
-      "isAllRowsMode": {
-        "type": "boolean",
+      "masterSelection": {
+        "type": "MasterSelectionOptions",
         "required": true
       },
       "table": {
@@ -11999,10 +12001,6 @@
         "type": "boolean",
         "required": true
       },
-      "isAllRowsMode": {
-        "type": "boolean",
-        "required": true
-      },
       "keepPinnedRows": {
         "type": "boolean",
         "required": true
@@ -12021,6 +12019,10 @@
       },
       "manualSorting": {
         "type": "boolean",
+        "required": true
+      },
+      "masterSelection": {
+        "type": "MasterSelectionOptions",
         "required": true
       },
       "onExpandedChange": {

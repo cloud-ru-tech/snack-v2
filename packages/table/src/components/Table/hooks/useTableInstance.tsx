@@ -19,7 +19,7 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 
 import { DEFAULT_PAGE_SIZE } from '../../../constants';
-import { getColumnId } from '../../../helpers';
+import { getColumnId, MasterSelectionOptions, toggleMasterSelection } from '../../../helpers';
 import { ColumnDefinition } from '../../../types';
 import { fuzzyFilter } from '../../../utils';
 import { RowAppearance, TableProps } from '../../types';
@@ -58,7 +58,7 @@ type UseTableInstanceParams<TData extends object> = {
   columnOrder: ColumnOrderState;
   enableColumnsOrderSortByDrag: boolean;
   setColumnOrder: OnChangeFn<ColumnOrderState>;
-  isAllRowsMode: boolean;
+  masterSelection: MasterSelectionOptions;
   infiniteLoading: boolean;
   loading: boolean;
   onRefresh?: () => void;
@@ -97,7 +97,7 @@ export function useTableInstance<TData extends object>({
   columnOrder,
   enableColumnsOrderSortByDrag,
   setColumnOrder,
-  isAllRowsMode,
+  masterSelection,
   infiniteLoading,
   loading,
   onRefresh,
@@ -215,9 +215,9 @@ export function useTableInstance<TData extends object>({
 
   const handleOnToolbarCheck = useCallback(() => {
     if (!loading && rowSelectionProp?.multiRow) {
-      isAllRowsMode ? table.toggleAllRowsSelected() : table.toggleAllPageRowsSelected();
+      toggleMasterSelection(table, masterSelection);
     }
-  }, [isAllRowsMode, loading, rowSelectionProp?.multiRow, table]);
+  }, [loading, masterSelection, rowSelectionProp?.multiRow, table]);
 
   return {
     table,
@@ -251,14 +251,14 @@ export function buildAllTableColumns<TData extends object>({
   enableSelectPinned,
   expanding,
   rowSelectionAppearance,
-  isAllRowsMode,
+  masterSelection = {},
 }: {
   columnDefinitions: TableProps<TData>['columnDefinitions'];
   enableSelection: boolean;
   enableSelectPinned: boolean;
   expanding?: TableProps<TData>['expanding'];
   rowSelectionAppearance?: RowAppearance;
-  isAllRowsMode: boolean;
+  masterSelection?: MasterSelectionOptions;
 }) {
   return getTableColumnsDefinitions({
     columnDefinitions,
@@ -266,6 +266,6 @@ export function buildAllTableColumns<TData extends object>({
     enableSelectPinned,
     expanding,
     rowSelectionAppearance,
-    isAllRowsMode,
+    masterSelection,
   });
 }

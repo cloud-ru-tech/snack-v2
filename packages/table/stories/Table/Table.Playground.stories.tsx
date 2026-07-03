@@ -191,6 +191,11 @@ const meta: Meta<StoryArgs> = {
       options: Object.values(VIEW),
       description: 'Режим отображения: таблица или карточки. Синхронизируется с переключателем в тулбаре.',
     },
+    toolbarCheckBoxMode: {
+      control: 'radio',
+      options: Object.values(ToolbarCheckBoxMode),
+      if: { arg: 'showSelection', eq: true },
+    },
     defaultView: { table: { disable: true } },
     // headlineId / cardColumns / cardMinWidth имеют смысл только в режиме карточек
     headlineId: { if: { arg: 'view', eq: VIEW.Cards } },

@@ -48,6 +48,7 @@ export const TABLE_STORIES = {
   visualMatrix: { name: 'table-table', story: 'visual-matrix' },
   sorting: { name: 'table-table-examples-sorting', story: 'sorting' },
   selection: { name: 'table-table-examples-selection', story: 'selection' },
+  selectionAllRows: { name: 'table-table-examples-selection', story: 'selection-all-rows' },
   rowActions: { name: 'table-table-examples-rowactions', story: 'row-actions' },
   statusColumn: { name: 'table-table-examples-statuscolumn', story: 'status-column' },
   tree: { name: 'table-table-examples-tree', story: 'tree' },

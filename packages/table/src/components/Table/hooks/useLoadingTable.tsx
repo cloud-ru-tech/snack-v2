@@ -35,7 +35,7 @@ export function useLoadingTable<TData extends object>({
 
     // for selection column
     if (enableSelection && !expanding) {
-      const selectionColumnDef = getSelectionCellColumnDef(enableSelectPinned ?? false, false);
+      const selectionColumnDef = getSelectionCellColumnDef(enableSelectPinned ?? false, {});
       // В скелетоне мастер-чекбокс не показываем — header пустой, ячейки — скелетон.
       const loadingSelectionColumn = {
         ...selectionColumnDef,

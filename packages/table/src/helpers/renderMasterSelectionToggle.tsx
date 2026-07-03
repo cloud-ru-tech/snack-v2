@@ -3,16 +3,17 @@ import type { Table } from '@tanstack/react-table';
 import { MouseEvent, ReactNode } from 'react';
 
 import { TEST_IDS } from '../constants';
+import { getMasterSelectionState, MasterSelectionOptions, toggleMasterSelection } from './masterSelection';
 
 type RenderMasterSelectionToggleParams<TData> = {
   table: Table<TData>;
-  isAllRowsMode: boolean;
+  masterSelection: MasterSelectionOptions;
   className?: string;
 };
 
 export function renderMasterSelectionToggle<TData>({
   table,
-  isAllRowsMode,
+  masterSelection,
   className,
 }: RenderMasterSelectionToggleParams<TData>): ReactNode {
   const { enableMultiRowSelection } = table.options;
@@ -22,13 +23,11 @@ export function renderMasterSelectionToggle<TData>({
     return null;
   }
 
-  const { checked, indeterminate } = isAllRowsMode
-    ? { checked: table.getIsAllRowsSelected(), indeterminate: table.getIsSomeRowsSelected() }
-    : { checked: table.getIsAllPageRowsSelected(), indeterminate: table.getIsSomePageRowsSelected() };
+  const { checked, indeterminate } = getMasterSelectionState(table, masterSelection);
 
   const handleMasterToggle = (event: MouseEvent) => {
     event.stopPropagation();
-    isAllRowsMode ? table.toggleAllRowsSelected() : table.toggleAllPageRowsSelected();
+    toggleMasterSelection(table, masterSelection);
   };
 
   return (

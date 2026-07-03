@@ -3,6 +3,7 @@ import { GroupSelectItemProps } from '@ds/list';
 import { isBrowser } from '@ds/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { MasterSelectionOptions } from '../../../../helpers';
 import { tableLocale } from '../../../../locale';
 import { ColumnDefinition } from '../../../../types';
 import { TableProps } from '../../../types';
@@ -20,6 +21,7 @@ type UseColumnSettingsProps<TData extends object, TFilters extends FiltersState>
 > &
   Required<Pick<TableProps<TData, TFilters>, 'enableSelectPinned'>> & {
     pinnedGroups: PinnedGroupsState<TData>;
+    masterSelection?: MasterSelectionOptions;
   };
 
 export function useColumnSettings<TData extends object, TFilters extends FiltersState>({
@@ -30,6 +32,7 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
   rowSelection,
   enableSelectPinned,
   expanding,
+  masterSelection = {},
 }: UseColumnSettingsProps<TData, TFilters>): {
   enabledColumns: string[];
   setEnabledColumns: (value: string[]) => void;
@@ -106,8 +109,16 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
         enableSelectPinned,
         expanding,
         rowSelectionAppearance: rowSelection?.appearance,
+        masterSelection,
       }),
-    [enableSelectPinned, enableSelection, enabledColumnsDefinitions, expanding, rowSelection?.appearance],
+    [
+      enableSelectPinned,
+      enableSelection,
+      enabledColumnsDefinitions,
+      expanding,
+      masterSelection,
+      rowSelection?.appearance,
+    ],
   );
 
   const areAllColumnsEnabled = enabledColumns.length === configurableColumns.length;

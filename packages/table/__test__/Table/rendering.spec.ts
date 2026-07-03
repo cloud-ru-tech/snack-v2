@@ -97,6 +97,13 @@ test.describe('Table — rendering', () => {
       expect(selectedIds).toEqual(['u-1', 'u-3']);
     });
 
+    test('selection allRows: master checkbox renders on paginated table', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.selectionAllRows));
+      await expect(getByTestId(TEST_IDS.table.root)).toBeVisible();
+      await expect(getByTestId(COMPONENT.selectAll)).toBeVisible();
+      await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(5);
+    });
+
     test('row actions: per-row droplist trigger renders', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions));
       await expect(getByTestId(COMPONENT.rowActions.droplistTrigger)).toHaveCount(PLAYGROUND_PAGE_SIZE);
