@@ -3,9 +3,7 @@ import { CalendarSVG, SearchSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 const meta: Meta<typeof FieldText> = {
   title: 'Components/Fields/FieldText',
@@ -68,9 +66,9 @@ const meta: Meta<typeof FieldText> = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Текстовое поле с настраиваемой валидацией, размером и слотами.</DemoHint>
         <DemoActions block>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldText {...args} />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

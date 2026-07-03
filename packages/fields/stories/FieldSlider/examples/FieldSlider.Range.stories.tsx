@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 // range — controlled-режим с number[]: две ручки слайдера ведёт родитель через useState.
@@ -19,7 +18,7 @@ function RangeDemo() {
         <DemoTitle>Range (диапазон)</DemoTitle>
         <DemoHint>Две ручки, controlled number[]. Текстовое поле readonly, формат «min – max».</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.rangeExampleRoot}
               label='Диапазон цены'
@@ -32,7 +31,7 @@ function RangeDemo() {
               value={value}
               onChange={v => setValue(v as number[])}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

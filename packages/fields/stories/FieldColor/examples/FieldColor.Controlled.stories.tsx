@@ -4,9 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 // Контролируемые open + value: потребитель сам ведёт оба стейта через onOpenChange + onChange.
 // Этот контракт не выражается uncontrolled-args Playground'а (там open живёт во внутреннем
@@ -34,7 +32,7 @@ function ControlledColor() {
           Родитель держит value и open в useState. Кнопка открывает палитру программно, выбор цвета меняет value.
         </DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <Button
               data-test-id={TOGGLE_BUTTON_TEST_ID}
               label={open ? 'Close picker' : 'Open picker'}
@@ -51,7 +49,7 @@ function ControlledColor() {
               onOpenChange={setOpen}
               autoApply
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

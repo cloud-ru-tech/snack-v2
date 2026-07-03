@@ -2,9 +2,7 @@ import { FieldColor, SIZE, TEST_IDS, VALIDATION_STATE } from '@ds/fields';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 const meta: Meta<typeof FieldColor> = {
   title: 'Components/Fields/FieldColor',
@@ -53,9 +51,9 @@ const meta: Meta<typeof FieldColor> = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Поле выбора цвета с ColorPicker в дропдауне.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldColor {...args} />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

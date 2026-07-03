@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 // textInputFormatter форматирует значение в текстовом поле, не меняя само значение:
@@ -19,7 +18,7 @@ function WithFormatterDemo() {
         <DemoTitle>Кастомный formatter</DemoTitle>
         <DemoHint>textInputFormatter форматирует отображение («75 %»), значение остаётся числом ({value}).</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.formatterExampleRoot}
               label='Громкость'
@@ -31,7 +30,7 @@ function WithFormatterDemo() {
               value={value}
               onChange={v => setValue(v as number)}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

@@ -5,9 +5,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 const meta: Meta<typeof FieldDecorator> = {
   title: 'Components/Fields/FieldDecorator/Examples/WithInput',
@@ -32,7 +30,7 @@ function WithInputDemo() {
             Декоратор оборачивает любой input: label / required / tooltip / hint / живой счётчик длины.
           </DemoHint>
           <DemoActions align='center'>
-            <ResizableWrapper>
+            <DemoResizable width='narrow'>
               <FieldDecorator
                 data-test-id={TEST_IDS.fieldDecorator}
                 label='Идентификатор'
@@ -43,7 +41,7 @@ function WithInputDemo() {
               >
                 <InputPrivate value={value} onChange={setValue} maxLength={MAX_LENGTH} placeholder='res-id' />
               </FieldDecorator>
-            </ResizableWrapper>
+            </DemoResizable>
           </DemoActions>
         </DemoPanel>
       </DemoPage>

@@ -2,10 +2,9 @@ import { MarkdownEditor, TOOLBAR_ITEM } from '@ds/markdown';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 import { TEST_IDS } from '../testIds';
-import styles from './styles.module.scss';
 
 const SAMPLE = `# Hello editor
 
@@ -62,9 +61,9 @@ const meta: Meta<typeof MarkdownEditor> = {
         <DemoTitle>MarkdownEditor</DemoTitle>
         <DemoHint>WYSIWYG-редактор markdown с тулбаром и preview-тоглом.</DemoHint>
         <DemoActions align='start'>
-          <div className={styles.resizableWrapper}>
+          <DemoResizable width='fit'>
             <MarkdownEditor {...args} />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
@@ -162,9 +162,9 @@ function ToolbarPlayground({
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Слоты тулбара: поиск, обновление, after, фильтры, bulk-actions и меню «Ещё».</DemoHint>
         <DemoActions block>
-          <div className={`${styles.resizableWrapper} ${styles.playgroundWrapper}`}>
+          <DemoResizable width='full' className={styles.playgroundWrapper}>
             <Toolbar {...commonProps} {...bulkProps} />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

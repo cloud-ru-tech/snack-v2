@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const onHiddenChange = fn();
@@ -23,7 +22,7 @@ function InteractionScenario() {
           не переключается изнутри.
         </DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSecure
               data-test-id={STORY_TEST_IDS.fieldSecure.editableRoot}
               label='Password'
@@ -50,7 +49,7 @@ function InteractionScenario() {
               onHiddenChange={onHiddenChange}
               showHideButton
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

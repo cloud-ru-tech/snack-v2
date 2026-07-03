@@ -4,9 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useRef, useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 // asyncValueGetter — функция, не URL-arg-driveable, поэтому стори отдельная (не Playground-arg).
@@ -69,7 +68,7 @@ function AsyncRevealScenario() {
           успешного запроса значение больше не запрашивается.
         </DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSecure
               data-test-id={STORY_TEST_IDS.fieldSecure.asyncRevealRoot}
               label='Deferred reveal'
@@ -117,7 +116,7 @@ function AsyncRevealScenario() {
               label='Pending reveal'
               asyncValueGetter={pendingGetter}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

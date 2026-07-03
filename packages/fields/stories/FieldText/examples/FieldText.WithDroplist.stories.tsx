@@ -4,9 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const ITEMS = [
@@ -38,7 +37,7 @@ function WithDroplistDemo() {
         <DemoTitle>elementBefore</DemoTitle>
         <DemoHint>Встроенный выпадающий список в слоте-кнопке слева.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldText
               data-test-id={STORY_TEST_IDS.fieldText.droplistBeforeRoot}
               size={SIZE.S}
@@ -69,7 +68,7 @@ function WithDroplistDemo() {
                 },
               }}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
 
@@ -77,7 +76,7 @@ function WithDroplistDemo() {
         <DemoTitle>elementAfter</DemoTitle>
         <DemoHint>Встроенный выпадающий список в слоте-кнопке справа.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldText
               data-test-id={STORY_TEST_IDS.fieldText.droplistAfterRoot}
               size={SIZE.S}
@@ -109,7 +108,7 @@ function WithDroplistDemo() {
                 },
               }}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
 
@@ -117,7 +116,7 @@ function WithDroplistDemo() {
         <DemoTitle>elementAfter — множественный выбор</DemoTitle>
         <DemoHint>Слот с множественным выбором (`selection.mode = multiple`); список остаётся открытым.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldText
               data-test-id={STORY_TEST_IDS.fieldText.droplistMultipleRoot}
               size={SIZE.S}
@@ -146,7 +145,7 @@ function WithDroplistDemo() {
                 },
               }}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

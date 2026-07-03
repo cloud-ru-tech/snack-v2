@@ -3,9 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
-import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
-
-import { ResizableWrapper } from '../../_shared';
+import { DemoActions, DemoPage, DemoPanel, DemoResizable } from '#storybook/components';
 
 function InteractionScenario(args: FieldStepperProps) {
   const [value, setValue] = useState(5);
@@ -19,7 +17,7 @@ function InteractionScenario(args: FieldStepperProps) {
     <DemoPage>
       <DemoPanel width='narrow'>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldStepper
               data-test-id={TEST_IDS.fieldStepper}
               label='Quantity'
@@ -30,7 +28,7 @@ function InteractionScenario(args: FieldStepperProps) {
               value={value}
               onChange={handleChange}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

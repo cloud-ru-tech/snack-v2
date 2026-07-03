@@ -3,9 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, userEvent, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 // Контролируемый режим: родитель держит value в useState, кнопки +/− и ручной ввод
 // отражают внешний стейт. Контракт не выражается uncontrolled-args Playground'а
@@ -23,7 +21,7 @@ function ControlledStepper() {
           Родитель держит value в useState. Кнопки +/− и ручной ввод меняют внешнее состояние, отражённое в подписи.
         </DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldStepper
               data-test-id={TEST_IDS.fieldStepper}
               label='Quantity'
@@ -33,7 +31,7 @@ function ControlledStepper() {
               value={value}
               onChange={setValue}
             />
-          </ResizableWrapper>
+          </DemoResizable>
           <span data-test-id={VALUE_LABEL_TEST_ID}>Текущее значение: {value}</span>
         </DemoActions>
       </DemoPanel>

@@ -3,9 +3,8 @@ import { TEST_IDS as SLIDER_TEST_IDS } from '@ds/slider';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fireEvent, fn, userEvent, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 // Метки вне сетки шага с числовыми подписями ≠ ключам: snapAndCommit идёт по веткам меток
@@ -22,7 +21,7 @@ function InteractionScenario(args: FieldSliderProps) {
           ручке), range-слайдер (readonly input min – max, ввод — no-op), снэп к меткам и unbindInputFromMarks.
         </DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.numericRoot}
               label='Volume'
@@ -32,8 +31,8 @@ function InteractionScenario(args: FieldSliderProps) {
               defaultValue={50}
               onChange={args.onChange}
             />
-          </ResizableWrapper>
-          <ResizableWrapper>
+          </DemoResizable>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.rangeRoot}
               label='Price range'
@@ -43,8 +42,8 @@ function InteractionScenario(args: FieldSliderProps) {
               step={1}
               defaultValue={[20, 80]}
             />
-          </ResizableWrapper>
-          <ResizableWrapper>
+          </DemoResizable>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.marksRoot}
               label='Quality'
@@ -54,8 +53,8 @@ function InteractionScenario(args: FieldSliderProps) {
               marks={OFF_GRID_MARKS}
               defaultValue={55}
             />
-          </ResizableWrapper>
-          <ResizableWrapper>
+          </DemoResizable>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.unboundRoot}
               label='Quality (unbound)'
@@ -66,7 +65,7 @@ function InteractionScenario(args: FieldSliderProps) {
               unbindInputFromMarks
               defaultValue={55}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

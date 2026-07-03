@@ -2,10 +2,9 @@ import { ChipAssist, ChipAssistProps } from '@ds/chips';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 import { COMMON_ARG_TYPES, COMMON_ARGS, CustomStoryProps, useIconProps } from '../playground.helpers';
-import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
 const Template: StoryFn<ChipAssistProps & CustomStoryProps> = args => {
@@ -17,9 +16,9 @@ const Template: StoryFn<ChipAssistProps & CustomStoryProps> = args => {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Кликабельный чип с иконкой и лейблом.</DemoHint>
         <DemoActions align='center'>
-          <div className={styles.resizableWrapper}>
+          <DemoResizable width='fit'>
             <ChipAssist {...args} {...iconProps} />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

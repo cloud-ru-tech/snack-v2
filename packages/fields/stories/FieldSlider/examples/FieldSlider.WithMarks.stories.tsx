@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, userEvent, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 // step=null + marks, чьи подписи (числа) не совпадают с ключами: ввод в текстовое поле
@@ -26,7 +25,7 @@ function WithMarksDemo() {
         <DemoTitle>Снэп к меткам</DemoTitle>
         <DemoHint>step=null + marks — ввод снэпит к ближайшей метке на Enter/blur.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.marksExampleRoot}
               label='Качество сжатия'
@@ -37,7 +36,7 @@ function WithMarksDemo() {
               value={value}
               onChange={v => setValue(v as number)}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
 
@@ -45,7 +44,7 @@ function WithMarksDemo() {
         <DemoTitle>Равномерные метки (marksEqualSpacing)</DemoTitle>
         <DemoHint>Нелинейные значения 1·2·4·8·16·32 распределяются по шкале равными промежутками.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSlider
               data-test-id={STORY_TEST_IDS.fieldSlider.equalSpacingExampleRoot}
               label='Размер кластера'
@@ -57,7 +56,7 @@ function WithMarksDemo() {
               value={equalSpacingValue}
               onChange={v => setEqualSpacingValue(v as number)}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

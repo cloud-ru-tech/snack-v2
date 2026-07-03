@@ -3,9 +3,8 @@ import { PlaceholderSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const ITEMS = [
@@ -28,7 +27,7 @@ function RovingScene() {
         <DemoTitle>RovingNavScene</DemoTitle>
         <DemoHint>Очистка + слот-кнопка справа в одной сцене для проверки roving-навигации.</DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldText
               data-test-id={STORY_TEST_IDS.fieldText.rovingSceneRoot}
               size={SIZE.M}
@@ -51,7 +50,7 @@ function RovingScene() {
                 },
               }}
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

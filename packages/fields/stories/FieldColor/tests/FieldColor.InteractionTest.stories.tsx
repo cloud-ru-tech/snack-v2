@@ -2,9 +2,7 @@ import { FieldColor, TEST_IDS } from '@ds/fields';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 // Кнопка очистки из @ds/input-private::useClearButton (нет в публичном TEST_IDS).
 const CLEAR_BUTTON_TEST_ID = 'button-clear-value';
@@ -36,7 +34,7 @@ function InteractionScenario() {
           сбрасывает поле, readonly показывает копирование.
         </DemoHint>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldColor
               data-test-id={MAIN_ROOT_TEST_ID}
               label='Color'
@@ -68,7 +66,7 @@ function InteractionScenario() {
               defaultValue='#0000ff'
               showClearButton
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

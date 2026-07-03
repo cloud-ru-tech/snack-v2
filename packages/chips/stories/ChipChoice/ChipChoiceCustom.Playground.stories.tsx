@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 import {
   CHIP_CHOICE_COMMON_ARG_TYPES,
@@ -28,7 +27,7 @@ const Template = (args: StoryProps) => {
         <DemoTitle>Playground (Custom)</DemoTitle>
         <DemoHint>Чип-фильтр с произвольным содержимым выпадающего меню.</DemoHint>
         <DemoActions align='center'>
-          <div className={styles.resizableWrapper}>
+          <DemoResizable width='fit'>
             <ChipChoice.Custom
               {...args}
               {...controlledArgs}
@@ -55,7 +54,7 @@ const Template = (args: StoryProps) => {
               )}
               valueRender={value => value ?? null}
             />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

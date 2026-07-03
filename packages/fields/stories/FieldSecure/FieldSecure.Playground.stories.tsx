@@ -2,9 +2,7 @@ import { FieldSecure, SIZE, TEST_IDS, VALIDATION_STATE } from '@ds/fields';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 const meta: Meta<typeof FieldSecure> = {
   title: 'Components/Fields/FieldSecure',
@@ -52,9 +50,9 @@ const meta: Meta<typeof FieldSecure> = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Поле для пароля с маскированием и кнопкой показать/скрыть.</DemoHint>
         <DemoActions block>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldSecure {...args} />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

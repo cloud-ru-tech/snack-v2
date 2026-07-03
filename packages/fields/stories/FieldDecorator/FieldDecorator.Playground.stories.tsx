@@ -3,9 +3,8 @@ import { PortalContextProvider } from '@ds/portal-context';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import { ResizableWrapper } from '../_shared';
 import styles from './stories.module.scss';
 
 const meta: Meta<typeof FieldDecorator> = {
@@ -51,9 +50,9 @@ const meta: Meta<typeof FieldDecorator> = {
           <DemoTitle>Playground</DemoTitle>
           <DemoHint>Низкоуровневая обёртка для полей: label / caption / hint / error / length / required.</DemoHint>
           <DemoActions block>
-            <ResizableWrapper>
+            <DemoResizable width='narrow'>
               <FieldDecorator {...args} />
-            </ResizableWrapper>
+            </DemoResizable>
           </DemoActions>
         </DemoPanel>
       </DemoPage>

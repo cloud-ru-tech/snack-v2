@@ -2,9 +2,8 @@ import { CHIP_CHOICE_TYPE, ChipChoiceRow, SIZE } from '@ds/chips';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
 const DEMO_FILTERS = [
@@ -46,9 +45,9 @@ const meta: Meta<typeof ChipChoiceRow> = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Строка фильтров — pinned и добавляемые чипы с кнопками управления.</DemoHint>
         <DemoActions align='start'>
-          <div className={styles.resizableWrapper}>
+          <DemoResizable width='fit'>
             <ChipChoiceRow {...args} />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

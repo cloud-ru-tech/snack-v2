@@ -3,9 +3,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
+import { DemoActions, DemoPage, DemoPanel, DemoResizable } from '#storybook/components';
 
-import { ResizableWrapper } from '../../_shared';
 import { CLEAR_BUTTON_TEST_ID, TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const onChange = fn();
@@ -19,7 +18,7 @@ function InteractionScenario() {
     <DemoPage>
       <DemoPanel width='narrow'>
         <DemoActions align='center'>
-          <ResizableWrapper>
+          <DemoResizable width='narrow'>
             <FieldText
               data-test-id={STORY_TEST_IDS.fieldText.editableRoot}
               label='Label'
@@ -63,7 +62,7 @@ function InteractionScenario() {
               onBlur={onBlur}
               showClearButton
             />
-          </ResizableWrapper>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

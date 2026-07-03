@@ -3,10 +3,9 @@ import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/internal/preview-api';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 import { COMMON_ARG_TYPES, COMMON_ARGS, CustomStoryProps, useIconProps } from '../playground.helpers';
-import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
 const Template: StoryFn<ChipToggleProps & CustomStoryProps> = args => {
@@ -19,14 +18,14 @@ const Template: StoryFn<ChipToggleProps & CustomStoryProps> = args => {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Чип с состоянием выбран/не выбран.</DemoHint>
         <DemoActions align='center'>
-          <div className={styles.resizableWrapper}>
+          <DemoResizable width='fit'>
             <ChipToggle
               {...args}
               {...iconProps}
               checked={checked}
               onChange={updatedValue => updateArgs({ checked: updatedValue })}
             />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

@@ -3295,33 +3295,8 @@
         "own": false
       },
       "Item": {
-        "kind": "interface",
-        "props": {
-          "href": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "JSXElementConstructor<{ size: number; }> | undefined",
-            "required": false
-          },
-          "id": {
-            "type": "string",
-            "required": true
-          },
-          "label": {
-            "type": "string",
-            "required": true
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> | undefined",
-            "required": false
-          },
-          "shortLabel": {
-            "type": "string | undefined",
-            "required": false
-          }
-        },
+        "kind": "alias",
+        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
         "own": false
       },
       "ItemProps": {

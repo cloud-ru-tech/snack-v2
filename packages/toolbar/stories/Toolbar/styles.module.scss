@@ -1,12 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-.resizableWrapper {
-  resize: horizontal;
-  overflow: auto;
-  box-sizing: border-box;
-  width: 100%;
-}
-
 .playgroundWrapper {
   // toolbar + 2 строки чипов + bulk-actions
   min-height: 240px;

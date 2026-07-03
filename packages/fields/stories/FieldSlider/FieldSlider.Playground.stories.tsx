@@ -3,9 +3,7 @@ import { PlaceholderSVG } from '@ds/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
-
-import { ResizableWrapper } from '../_shared';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 type StoryProps = FieldSliderProps & {
   /** Story-only: показать метки на шкале (`marks` — объект, не сериализуемый control). */
@@ -70,9 +68,9 @@ const meta: Meta<StoryProps> = {
           <DemoTitle>Playground</DemoTitle>
           <DemoHint>Слайдер с числовым input&apos;ом, шкалой и uncontrolled-value (defaultValue).</DemoHint>
           <DemoActions block>
-            <ResizableWrapper>
+            <DemoResizable width='narrow'>
               <FieldSlider {...args} marks={marks} textInputFormatter={textInputFormatter} postfixIcon={postfixIcon} />
-            </ResizableWrapper>
+            </DemoResizable>
           </DemoActions>
         </DemoPanel>
       </DemoPage>
