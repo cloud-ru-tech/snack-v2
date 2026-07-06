@@ -115,11 +115,10 @@ export const InteractionTest: Story = {
       await expect(clearBtn).toHaveFocus();
     });
 
-    await step('editable field with value shows clear only — copy виден только в readonly', async () => {
+    await step('editable field with value shows both clear and copy', async () => {
       const clearBtn = within(root).getByTestId(CLEAR_BUTTON_TEST_ID);
       await expect(clearBtn).toBeVisible();
-      expect(within(root).queryByTestId(TEST_IDS.fieldTextCopyButton)).toBeNull();
-      // Фокус на clear после предыдущего шага.
+      await expect(within(root).getByTestId(TEST_IDS.fieldTextCopyButton)).toBeVisible();
       await expect(clearBtn).toHaveFocus();
     });
 

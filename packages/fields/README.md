@@ -78,6 +78,7 @@ export function ColorBasic() {
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
@@ -112,6 +113,15 @@ export function ColorBasic() {
 
 #### Related types
 
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
+
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
 - `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
@@ -132,7 +142,7 @@ export function DateBasic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `autoFocus` | `boolean` | — | Автофокус input при монтировании |
+| `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `buildCellProps` | `BuildCellPropsFunction` | — | Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра: <br/> <br> `Date` - дата ячейки <br/> <br> `ViewMode`: <br/> <br> - `month` отображение месяца, каждая ячейка - 1 день <br/> <br> - `year` отображение года, каждая ячейка - 1 месяц <br/> <br> - `decade` отображение декады, каждая ячейка - 1 год <br/> <br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки. |
 | `caption` | `string` | — | Подпись |
@@ -153,6 +163,7 @@ export function DateBasic() {
 | `labelFrom` | `string` | `'Начало периода'` | `aria-label` поля начала периода (режим `date-range`). |
 | `labelTo` | `string` | `'Конец периода'` | `aria-label` поля конца периода (режим `date-range`). |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `locale` | `Intl.Locale` | `Проставляется в соответствие с языком в настройках браузера` | Локаль, в соответствие с которой выставляется язык названий и первый день недели |
 | `mode` | `"date"` \| `"date-range"` \| `"date-time"` | — | Режим выбора даты. По умолчанию `'date'`. <br/> Режим выбора периода |
@@ -189,6 +200,15 @@ export function DateBasic() {
 | `length` | `any` | — |  |
 
 - `DateValue` = `Date | undefined`
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
@@ -355,7 +375,7 @@ export function Select() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `addOptionByEnter` | `boolean` | `false` | Зафиксировать введённый текст как новый выбор по `Enter` (создание опции «на лету»). |
-| `autoFocus` | `boolean` | — | Автофокус input при монтировании |
+| `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `autocomplete` | `boolean` | `false` | Не фильтровать список на клиенте — фильтрацию обеспечивает потребитель (серверный поиск). <br/> Введённый текст уходит в `search.onChange`, список берётся из `items` как есть. |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `caption` | `string` | — | Подпись |
@@ -383,6 +403,7 @@ export function Select() {
 | `label` | `string` | — | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
 | `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
@@ -477,7 +498,7 @@ export function SliderRange() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `autoFocus` | `boolean` | — | Автофокус |
+| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `caption` | `string` | — | Подпись |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
@@ -492,6 +513,7 @@ export function SliderRange() {
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `marks` | `SliderMarks` | — | Метки на шкале |
 | `marksEqualSpacing` | `boolean` | `false` | Равномерно распределять метки по шкале при нелинейных значениях <br/> (например `1 2 4 8 16 32` — равные промежутки вместо логарифмических). |
@@ -520,6 +542,15 @@ export function SliderRange() {
 
 #### Related types
 
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
+
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
 - `SliderMarks` = `{ [x: string]: ReactNode | MarkObj; [x: number]: ReactNode | MarkObj; }`
@@ -547,7 +578,7 @@ export function Stepper() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `allowMoreThanLimits` | `boolean` | `true` | Разрешить ввод значений вне `min`/`max`. Если `false`, на blur значение клампится. |
-| `autoFocus` | `boolean` | — | Автофокус |
+| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `caption` | `string` | — | Подпись |
 | `clampTooltipText` | `{ min?: ((value: number) => string); max?: ((value: number) => string); } \| undefined` | `{ min: 'Значение должно быть больше либо равно {value}', max: 'Значение должно быть меньше либо равно {value}' }` | Тексты тултипа клампа (показывается на 2с после blur с выходом за `min`/`max`). |
@@ -563,6 +594,7 @@ export function Stepper() {
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `max` | `number` | — | Максимум |
 | `min` | `number` | — | Минимум |
@@ -585,6 +617,15 @@ export function Stepper() {
 | `value` | `number` | — | Значение (controlled-режим) |
 
 #### Related types
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
@@ -628,6 +669,7 @@ export function Affixes() {
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
@@ -694,6 +736,7 @@ export function Affixes() {
 | `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные сверху |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Положение поповера относительно своего триггера (children). |
 | `scroll` | `boolean \| undefined` | — | Включить ли скролл для основной части списка |
+| `scrollToSelectedItem` | `boolean \| undefined` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `search` | `SearchState` | — | Настройки поисковой строки |
 | `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
 | `virtualized` | `boolean \| undefined` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
@@ -713,6 +756,15 @@ export function Affixes() {
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер (совпадает с размером поля) |
 | `tabIndex` | `number \| undefined` | — | HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле) |
 | `withDropdownList` | `boolean \| undefined` | — | Показать шеврон раскрытия |
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
@@ -747,7 +799,7 @@ export function TextArea() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `allowMoreThanMaxLength` | `boolean` | `true` | Разрешить ввод свыше `maxLength` символов (счётчик продолжит расти). |
-| `autoFocus` | `boolean` | — | Автофокус |
+| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `caption` | `string` | — | Подпись |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
@@ -765,6 +817,7 @@ export function TextArea() {
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `maxLength` | `number` | — | Максимальное количество символов |
 | `maxRows` | `number` | `1000` | Максимальное количество строк (после — появляется скролл) |
@@ -789,6 +842,15 @@ export function TextArea() {
 
 #### Related types
 
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
+
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
 - `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
@@ -812,7 +874,7 @@ export function TimeBasic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `autoFocus` | `boolean` | — | Автофокус. |
+| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic). |
 | `caption` | `string` | — | Подпись |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
@@ -828,6 +890,7 @@ export function TimeBasic() {
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
 | `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
 | `name` | `string` | — | HTML name |
 | `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра input |
@@ -849,6 +912,15 @@ export function TimeBasic() {
 | `value` | `TimeValue` | — | Значение |
 
 #### Related types
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 

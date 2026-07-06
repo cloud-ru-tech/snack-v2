@@ -15,6 +15,7 @@ export type FieldElementDroplistProps = Pick<
   | 'selection'
   | 'search'
   | 'scroll'
+  | 'scrollToSelectedItem'
   | 'placement'
   | 'widthStrategy'
   | 'virtualized'

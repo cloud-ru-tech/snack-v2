@@ -51,8 +51,9 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
     opacity: 1;
   }
 
-  // disabled: плейсхолдер скрыт — паритет с .fieldInput::placeholder в FieldText
-  // (общий shell, но textarea рендерит свой класс, не .fieldInput).
+  // disabled-поле затемняется opacity 0.4, placeholder уже textDisabled → бледный «призрак».
+  // Прячем целиком, как в @ds/search (единый паттерн disabled в DS).
+  // TODO: выяснить у дизайнера ожидаемое поведение placeholder в disabled (скрывать / приглушать).
   &:disabled::placeholder {
     visibility: hidden;
   }

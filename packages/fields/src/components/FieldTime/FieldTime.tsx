@@ -7,6 +7,7 @@ import mergeRefs from 'merge-refs';
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { buildSegments, useSegmentedMask } from '../../segments';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, getAcrylicProps, toInputSize, useCopyButton } from '../shared';
@@ -66,8 +67,13 @@ type FieldTimeOwnProps = {
   disabled?: boolean;
   /** Только для чтения */
   readonly?: boolean;
-  /** Автофокус. */
+  /** Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) */
   autoFocus?: boolean;
+  /**
+   * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+   * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+   */
+  layoutPresets?: FieldLayoutPresets;
   /** HTML id */
   id?: string;
   /** HTML name */
@@ -109,6 +115,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
     disabled,
     readonly: readOnly,
     autoFocus,
+    layoutPresets,
     id,
     name,
     placeholder,
@@ -130,6 +137,8 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
 
   const [valueLocal, setValueLocal] = useState<TimeValue | undefined>(defaultValue);
   const value = valueProp ?? valueLocal;
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   const { mask: segMask, slots: segSlots } = useMemo(() => buildSegments('time', showSeconds), [showSeconds]);
   const placeholderMask = placeholder ?? segMask;
@@ -330,7 +339,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
                 onKeyDown={handleInputKeyDown}
                 id={id}
                 name={name}
-                autoFocus={autoFocus}
+                autoFocus={resolvedAutoFocus}
                 aria-haspopup='dialog'
                 aria-expanded={open}
                 {...extractSupportProps(rest)}

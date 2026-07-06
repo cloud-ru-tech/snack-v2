@@ -20,6 +20,7 @@ import {
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { TEST_IDS } from '../../constants';
+import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, FieldShell, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
@@ -50,8 +51,13 @@ type FieldTextAreaOwnProps = {
   disabled?: boolean;
   /** Только для чтения */
   readonly?: boolean;
-  /** Автофокус */
+  /** Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) */
   autoFocus?: boolean;
+  /**
+   * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+   * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+   */
+  layoutPresets?: FieldLayoutPresets;
   /** Режим виртуальной клавиатуры (`inputmode` нативного `<textarea>`) */
   inputMode?: HTMLAttributes<HTMLTextAreaElement>['inputMode'];
   /** Проверка орфографии */
@@ -138,6 +144,7 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
     disabled,
     readonly: readOnly,
     autoFocus,
+    layoutPresets,
     inputMode,
     spellCheck,
     minRows = 3,
@@ -162,6 +169,8 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
   const copyButtonRef = useRef<HTMLButtonElement>(null);
   const [focusVisible, setFocusVisible] = useState(false);
   const [hover, setHover] = useState(false);
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   // controlled/uncontrolled: useValueControl держит внутреннее состояние при отсутствии `value`,
   // событие в `onChange` пробрасываем сами (useValueControl передаёт только значение).
@@ -323,7 +332,7 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
               id={id}
               name={name}
               maxLength={allowMoreThanMaxLength ? undefined : maxLength}
-              autoFocus={autoFocus}
+              autoFocus={resolvedAutoFocus}
               inputMode={inputMode}
               spellCheck={spellCheck}
               minRows={minRows}

@@ -2,6 +2,7 @@ import { DroplistProps, ItemId, ItemProps } from '@ds/list';
 import { ValueOf } from '@ds/utils';
 import { FocusEvent, KeyboardEvent, ReactNode } from 'react';
 
+import { FieldLayoutPresets } from '../../hooks';
 import { FieldDecoratorProps, ValidationState } from '../FieldDecorator';
 import { SELECTION_MODE } from './constants';
 
@@ -131,8 +132,13 @@ type CommonSelectProps = FieldSelectDecoratorProps &
     id?: string;
     /** HTML-атрибут `name` для input */
     name?: string;
-    /** Автофокус input при монтировании */
+    /** Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) */
     autoFocus?: boolean;
+    /**
+     * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+     * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+     */
+    layoutPresets?: FieldLayoutPresets;
     /** Колбек фокуса input */
     onFocus?(event: FocusEvent<HTMLInputElement>): void;
     /** Колбек блюра input */

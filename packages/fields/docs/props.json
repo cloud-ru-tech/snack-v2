@@ -125,6 +125,14 @@
           "QuestionTooltipProps"
         ]
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
+        ]
+      },
       "length": {
         "type": "{ current: number; max?: number; }",
         "required": false,
@@ -332,6 +340,28 @@
           "rgb"
         ],
         "own": false
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": true
       },
       "InputMode": {
         "kind": "union",
@@ -570,7 +600,7 @@
       "autoFocus": {
         "type": "boolean",
         "required": false,
-        "description": "Автофокус input при монтировании"
+        "description": "Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`)"
       },
       "background": {
         "type": "boolean",
@@ -682,6 +712,14 @@
         "description": "Подсказка для заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
         ]
       },
       "length": {
@@ -889,6 +927,28 @@
       "DateValue": {
         "kind": "alias",
         "type": "Date | undefined",
+        "own": true
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
         "own": true
       },
       "Placement": {
@@ -2146,7 +2206,7 @@
       "autoFocus": {
         "type": "boolean",
         "required": false,
-        "description": "Автофокус input при монтировании"
+        "description": "Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`)"
       },
       "autocomplete": {
         "type": "boolean",
@@ -2308,6 +2368,14 @@
         "description": "Подсказка для заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
         ]
       },
       "length": {
@@ -3871,7 +3939,7 @@
       "autoFocus": {
         "type": "boolean",
         "required": false,
-        "description": "Автофокус"
+        "description": "Автофокус. На mobile выключается адаптивно (см. `layoutPresets`)"
       },
       "background": {
         "type": "boolean",
@@ -3948,6 +4016,14 @@
         "description": "Подсказка для заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
         ]
       },
       "length": {
@@ -4115,6 +4191,28 @@
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": true
       },
       "Placement": {
         "kind": "union",
@@ -4348,7 +4446,7 @@
       "autoFocus": {
         "type": "boolean",
         "required": false,
-        "description": "Автофокус"
+        "description": "Автофокус. На mobile выключается адаптивно (см. `layoutPresets`)"
       },
       "background": {
         "type": "boolean",
@@ -4428,6 +4526,14 @@
         "description": "Подсказка для заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
         ]
       },
       "length": {
@@ -4564,6 +4670,28 @@
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": true
       },
       "Placement": {
         "kind": "union",
@@ -5037,6 +5165,14 @@
           "QuestionTooltipProps"
         ]
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
+        ]
+      },
       "length": {
         "type": "{ current: number; max?: number; }",
         "required": false,
@@ -5475,6 +5611,11 @@
             "required": false,
             "description": "Включить ли скролл для основной части списка"
           },
+          "scrollToSelectedItem": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+          },
           "search": {
             "type": "SearchState | undefined",
             "required": false,
@@ -5581,6 +5722,28 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Показать шеврон раскрытия"
+          }
+        },
+        "own": true
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": true
@@ -5984,7 +6147,7 @@
       "autoFocus": {
         "type": "boolean",
         "required": false,
-        "description": "Автофокус"
+        "description": "Автофокус. На mobile выключается адаптивно (см. `layoutPresets`)"
       },
       "background": {
         "type": "boolean",
@@ -6084,6 +6247,14 @@
         "description": "Подсказка для заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
         ]
       },
       "length": {
@@ -6222,6 +6393,28 @@
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": true
       },
       "Placement": {
         "kind": "union",
@@ -6434,7 +6627,7 @@
       "autoFocus": {
         "type": "boolean",
         "required": false,
-        "description": "Автофокус."
+        "description": "Автофокус. На mobile выключается адаптивно (см. `layoutPresets`)"
       },
       "background": {
         "type": "boolean",
@@ -6518,6 +6711,14 @@
         "description": "Подсказка для заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
         ]
       },
       "length": {
@@ -6647,6 +6848,28 @@
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": true
       },
       "Placement": {
         "kind": "union",

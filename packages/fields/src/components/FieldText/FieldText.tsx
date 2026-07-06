@@ -6,6 +6,7 @@ import mergeRefs from 'merge-refs';
 import { FocusEvent, forwardRef, KeyboardEvent, ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import {
   ButtonSize,
@@ -90,6 +91,11 @@ type FieldTextSlotProps = {
   defaultValue?: string;
   /** Колбек смены значения */
   onChange?(value: string): void;
+  /**
+   * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+   * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+   */
+  layoutPresets?: FieldLayoutPresets;
 };
 
 export type FieldTextProps = FieldTextDecoratorProps &
@@ -141,8 +147,12 @@ export const FieldText = forwardRef<HTMLInputElement, FieldTextProps>(function F
     onKeyDown: onKeyDownProp,
     tabIndex: tabIndexProp,
     maxLength,
+    autoFocus,
+    layoutPresets,
     ...restInputProps
   } = inputProps;
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   // `prefixIcon` — легаси-псевдоним ведущей иконки; `iconBefore` приоритетнее.
   const iconBefore = iconBeforeProp ?? prefixIcon;
@@ -296,14 +306,16 @@ export const FieldText = forwardRef<HTMLInputElement, FieldTextProps>(function F
   const handleBlur = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
       setFocusVisible(false);
-      // Не пробрасываем consumer onBlur, если фокус ушёл на собственную кнопку поля
-      // (clear/copy/слот) — паритет с легаси handleBlur (relatedTarget guard).
+      // Не пробрасываем consumer onBlur, если фокус ушёл на собственную кнопку поля (clear/copy/слот).
+      // `next != null` обязателен: при blur «в никуда» relatedTarget и нерендеренные кнопки-рефы оба null,
+      // без него null === null ложно срабатывает и глотает onBlur.
       const next = event.relatedTarget;
       const movedToOwnButton =
-        next === clearButtonRef.current ||
-        next === copyButtonRef.current ||
-        next === elementBeforeRef.current ||
-        next === elementAfterRef.current;
+        next != null &&
+        (next === clearButtonRef.current ||
+          next === copyButtonRef.current ||
+          next === elementBeforeRef.current ||
+          next === elementAfterRef.current);
       if (!movedToOwnButton) {
         onBlurProp?.(event);
       }
@@ -426,6 +438,7 @@ export const FieldText = forwardRef<HTMLInputElement, FieldTextProps>(function F
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 {...restInputProps}
+                autoFocus={resolvedAutoFocus}
                 data-test-id={TEST_IDS.fieldTextInput}
               />
               {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}

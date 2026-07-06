@@ -16,6 +16,7 @@ import {
 } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { useAdaptiveAutoFocus } from '../../hooks';
 import { buildSegments, SegmentsMode, useSegmentedMask } from '../../segments';
 import { FieldDecorator, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import {
@@ -71,6 +72,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
     id,
     name,
     autoFocus,
+    layoutPresets,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
     'data-test-id': dataTestId = TEST_IDS.fieldDate,
@@ -91,6 +93,8 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
   const [focusVisible, setFocusVisible] = useState(false);
   const [openLocal, setOpenLocal] = useState(false);
   const open = openProp ?? openLocal;
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   const [singleLocal, setSingleLocal] = useState<DateValue>(!range ? (props.defaultValue as DateValue) : undefined);
   const [rangeLocal, setRangeLocal] = useState<DateRangeValue>(
@@ -492,7 +496,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
                     onChange={handleRangeInput(0)}
                     id={id}
                     name={name}
-                    autoFocus={autoFocus}
+                    autoFocus={resolvedAutoFocus}
                     aria-label={labelFrom}
                     data-test-id={TEST_IDS.fieldDateInputFrom}
                   />
@@ -534,7 +538,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
                   tabIndex={inputTabIndex}
                   id={id}
                   name={name}
-                  autoFocus={autoFocus}
+                  autoFocus={resolvedAutoFocus}
                   aria-haspopup='dialog'
                   aria-expanded={open}
                   data-test-id={TEST_IDS.fieldDateInput}

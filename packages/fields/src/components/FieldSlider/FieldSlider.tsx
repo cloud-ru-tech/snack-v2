@@ -20,6 +20,7 @@ import {
 } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, getAcrylicProps } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
@@ -101,8 +102,13 @@ type FieldSliderOwnProps = {
   id?: string;
   /** HTML name */
   name?: string;
-  /** Автофокус */
+  /** Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) */
   autoFocus?: boolean;
+  /**
+   * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+   * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+   */
+  layoutPresets?: FieldLayoutPresets;
   /** Колбек фокуса */
   onFocus?(event: FocusEvent<HTMLInputElement>): void;
   /** Колбек блюра */
@@ -148,6 +154,7 @@ export const FieldSlider = forwardRef<HTMLInputElement, FieldSliderProps>(functi
     id,
     name,
     autoFocus,
+    layoutPresets,
     onFocus,
     onBlur,
     'data-test-id': dataTestId,
@@ -161,6 +168,8 @@ export const FieldSlider = forwardRef<HTMLInputElement, FieldSliderProps>(functi
   const [hover, setHover] = useState(false);
   const [copied, setCopied] = useState(false);
   const copiedTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   useEffect(
     () => () => {
@@ -421,7 +430,7 @@ export const FieldSlider = forwardRef<HTMLInputElement, FieldSliderProps>(functi
                   onKeyDown={handleInputKeyDown}
                   id={id}
                   name={name}
-                  autoFocus={autoFocus}
+                  autoFocus={resolvedAutoFocus}
                   data-test-id={TEST_IDS.fieldSliderInput}
                   {...extractSupportProps(rest)}
                 />

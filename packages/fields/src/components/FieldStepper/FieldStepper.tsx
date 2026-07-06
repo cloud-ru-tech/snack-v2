@@ -22,6 +22,7 @@ import {
 } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, FieldElementButton, getAcrylicProps, VARIANT } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
@@ -63,8 +64,13 @@ type FieldStepperOwnProps = {
   id?: string;
   /** HTML name */
   name?: string;
-  /** Автофокус */
+  /** Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) */
   autoFocus?: boolean;
+  /**
+   * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+   * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+   */
+  layoutPresets?: FieldLayoutPresets;
   /**
    * Фон поля (acrylic)
    * @default true
@@ -130,6 +136,7 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
     id,
     name,
     autoFocus,
+    layoutPresets,
     prefix,
     postfix,
     plusButtonTooltip,
@@ -150,6 +157,8 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
   const [copied, setCopied] = useState(false);
   const clampTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const copiedTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   useEffect(
     () => () => {
@@ -386,7 +395,7 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
                 min={min}
                 max={max}
                 step={step}
-                autoFocus={autoFocus}
+                autoFocus={resolvedAutoFocus}
                 data-test-id={TEST_IDS.fieldStepperInput}
                 {...extractSupportProps(rest)}
               />

@@ -22,6 +22,7 @@ import {
 const SEARCH_INPUT_PLUG_MIN_WIDTH = 4;
 
 import { TEST_IDS } from '../../constants';
+import { useAdaptiveAutoFocus } from '../../hooks';
 import { FieldDecorator, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import {
   copyTextToClipboard,
@@ -75,6 +76,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     id,
     name,
     autoFocus,
+    layoutPresets,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
     enableFuzzySearch = true,
@@ -99,6 +101,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const chips = multiple ? (props.chips ?? true) : false;
   const removeByBackspace = multiple ? (props.removeByBackspace ?? true) : false;
   const closeDroplistOnItemClick = props.closeDroplistOnItemClick ?? !multiple;
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   const inputRef = useRef<HTMLInputElement>(null);
   // Реальный <input>: `inputRef` уходит в Droplist как `triggerElemRef`, а `PopoverPrivate`
@@ -516,7 +520,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       readonly={!searchable || readOnly}
       id={id}
       name={name}
-      autoFocus={autoFocus}
+      autoFocus={resolvedAutoFocus}
       tabIndex={inputTabIndex}
       onFocus={handleInputFocus}
       onBlur={handleInputBlur}

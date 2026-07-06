@@ -21,6 +21,7 @@ import {
 } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, getAcrylicProps, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
@@ -58,6 +59,11 @@ type FieldColorOwnProps = {
   showCopyButton?: boolean;
   /** Колбек после копирования значения. */
   onCopyButtonClick?(): void;
+  /**
+   * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+   * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+   */
+  layoutPresets?: FieldLayoutPresets;
   /**
    * Фон поля (acrylic).
    * @default true
@@ -98,6 +104,7 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
     withAlpha,
     autoApply,
     availableModes,
+    layoutPresets,
     disabled,
     readonly: readOnly,
     placeholder,
@@ -123,6 +130,8 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
   const open = openProp ?? openLocal;
   const { layoutType } = useAdaptiveLayout();
   const mobile = isMobileLayout(layoutType);
+
+  const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   const [value = '', onChange] = useValueControl<string>({
     value: valueProp,
@@ -312,7 +321,7 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
                 disabled={disabled}
                 readonly={readOnly}
                 placeholder={placeholder}
-                autoFocus={autoFocus}
+                autoFocus={resolvedAutoFocus}
                 tabIndex={tabIndexProp ?? inputTabIndex}
                 onKeyDown={handleKeyDown}
                 onFocus={handleInputFocus}

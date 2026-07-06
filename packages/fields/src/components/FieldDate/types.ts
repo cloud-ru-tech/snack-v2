@@ -2,6 +2,7 @@ import { CalendarDropdownProps } from '@ds/calendar';
 import { ValueOf, WithSupportProps } from '@ds/utils';
 import { FocusEvent, ReactNode } from 'react';
 
+import { FieldLayoutPresets } from '../../hooks';
 import { FieldDecoratorProps, Size, ValidationState } from '../FieldDecorator';
 import { DATE_MODE } from './constants';
 
@@ -84,8 +85,13 @@ type CommonFieldDateProps = WithSupportProps<
       id?: string;
       /** HTML-атрибут `name` для input */
       name?: string;
-      /** Автофокус input при монтировании */
+      /** Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) */
       autoFocus?: boolean;
+      /**
+       * Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен
+       * (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.
+       */
+      layoutPresets?: FieldLayoutPresets;
       /** Колбек фокуса input */
       onFocus?(event: FocusEvent<HTMLInputElement>): void;
       /** Колбек блюра input */
