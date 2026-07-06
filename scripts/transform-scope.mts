@@ -12,9 +12,10 @@
  *      - `name`: `<from>/<pkg>` → `<to>/<prefix><pkg>`
  *      - `dependencies` / `devDependencies` / `peerDependencies` /
  *        `optionalDependencies` keys: `<from>/<x>` → `<to>/<prefix><x>`
- *      - dep values: `workspace:*` / `workspace:^` / `workspace:~` and
- *        `catalog:` / `catalog:<alias>` are resolved to the concrete version
- *        (from the sibling package.json / `pnpm-workspace.yaml::catalog`).
+ *      - dep values: `workspace:*` / `workspace:^` / `workspace:~` are resolved
+ *        to semver ranges (`^` / `~`) from the sibling package.json version;
+ *        `catalog:` / `catalog:<alias>` — to the concrete version from
+ *        `pnpm-workspace.yaml::catalog`.
  *        After the scope rename the packages are no longer workspace members
  *        for pnpm, so neither `pnpm publish` nor `lerna publish` would resolve
  *        these protocols — we resolve them here so the published package.json
@@ -133,8 +134,8 @@ for (const dir of packageDirs) {
 }
 
 const renames = new Map<string, string>();
-// Карта `renamed → version` для резолва `workspace:*` ссылок в конкретную
-// версию из package.json соседнего пакета (он только что прошёл через
+// Карта `renamed → version` для резолва `workspace:*` ссылок в semver-диапазон
+// из package.json соседнего пакета (он только что прошёл через
 // `lerna version prerelease`, version актуальна). Без этого `pnpm publish`
 // требует второй `pnpm install` после transform-scope, чтобы resolver мог
 // найти workspace-пакеты под новыми именами в node_modules.
@@ -156,6 +157,13 @@ if (renames.size === 0) {
     `[transform-scope] no packages with scope ${fromScope}/* found; nothing to do.`,
   );
   process.exit(0);
+}
+
+function resolveWorkspaceSpec(spec: string, version: string): string {
+  const range = spec.slice('workspace:'.length);
+  if (range === '~') return `~${version}`;
+  // workspace:*, workspace:^, workspace: (bare) — semver-compatible.
+  return `^${version}`;
 }
 
 function resolveCatalogSpec(name: string, spec: string): string | null {
@@ -189,16 +197,16 @@ function rewriteDeps(deps: Record<string, string> | undefined):
 
     const renamed = renames.get(k);
     if (renamed) {
-      // Резолвим `workspace:*` (и `workspace:^`/`workspace:~`) в конкретную
-      // версию из package.json соседнего workspace-пакета. Иначе `pnpm
-      // publish` после transform-scope падает с
-      // ERR_PNPM_CANNOT_RESOLVE_WORKSPACE_PROTOCOL: lockfile и node_modules
-      // ещё указывают на старые имена @ds/*, и резолвер не находит пакет
-      // под новым именем @sbercloud/snack-v2-*. Резолв в строку «<version>»
-      // делает зависимость самодостаточной — install не требуется.
-      const resolved = value.startsWith('workspace:')
-        ? versions.get(renamed) ?? value
-        : value;
+      // Резолвим `workspace:*` / `workspace:^` / `workspace:~` в semver-диапазон
+      // из package.json соседнего workspace-пакета. Иначе `pnpm publish` после
+      // transform-scope падает с ERR_PNPM_CANNOT_RESOLVE_WORKSPACE_PROTOCOL:
+      // lockfile и node_modules ещё указывают на старые имена @ds/*, и резолвер
+      // не находит пакет под новым именем @sbercloud/snack-v2-*.
+      let resolved = value;
+      if (value.startsWith('workspace:')) {
+        const version = versions.get(renamed);
+        if (version) resolved = resolveWorkspaceSpec(value, version);
+      }
       next[renamed] = resolved;
       changed = true;
     } else {

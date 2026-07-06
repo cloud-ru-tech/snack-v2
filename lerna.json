@@ -15,6 +15,7 @@
       ]
     },
     "version": {
+      "exact": false,
       "changelogPreset": "@cloud-ru/ft-conventional-changelog-old",
       "ignoreChanges": [
         "**/*.md",
