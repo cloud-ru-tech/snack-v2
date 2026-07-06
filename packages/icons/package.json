@@ -1,6 +1,7 @@
 {
   "name": "@ds/icons",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "type": "module",
   "description": "Иконки React и SVG-спрайты для дизайн-системы",
   "main": "./dist/cjs/index.js",

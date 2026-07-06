@@ -1,6 +1,7 @@
 {
   "name": "@ds/ai-field-notice",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "description": "Композиция AiFieldBanner и AiQueue для контекстных уведомлений над AI-полем.",
   "type": "module",
   "main": "./dist/cjs/index.js",

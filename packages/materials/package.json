@@ -1,6 +1,7 @@
 {
   "name": "@ds/materials",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "type": "module",
   "description": "SCSS materials (acrylic, stateLayer) для дизайн-системы",
   "main": "./dist/cjs/index.js",
