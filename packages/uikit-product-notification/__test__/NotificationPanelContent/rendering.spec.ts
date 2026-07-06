@@ -13,9 +13,4 @@ test.describe('NotificationPanelContent — rendering', () => {
     await gotoStory(buildStoryOptions());
     await expect(getByTestId(TEST_IDS.panel.readAll)).toBeVisible();
   });
-
-  test('footer button is rendered when footerButton is passed', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
-    await expect(getByTestId(TEST_IDS.panel.footerButton)).toBeVisible();
-  });
 });

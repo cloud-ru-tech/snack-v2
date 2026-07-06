@@ -1,5 +1,3 @@
-export { SIZE } from '@ds/ai-field-banner';
-
 export const VARIANT = {
   Password: 'password',
   Ssh: 'ssh',

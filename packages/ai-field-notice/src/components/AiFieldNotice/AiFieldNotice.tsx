@@ -1,10 +1,10 @@
-import { AiFieldBanner, TYPE as BANNER_TYPE } from '@ds/ai-field-banner';
+import { AiFieldBanner, SIZE, TYPE as BANNER_TYPE } from '@ds/ai-field-banner';
 import { AiQueue } from '@ds/ai-queue';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactElement, ReactNode, useCallback, useMemo, useRef } from 'react';
 
-import { SIZE, TEST_IDS, VARIANT } from '../../constants';
+import { TEST_IDS, VARIANT } from '../../constants';
 import { resolveVariantBanner } from '../../resolveVariantBanner';
 import { AiFieldNoticeAnimatedDescriptionHandle, AiFieldNoticeProps } from '../../types';
 import { isDescriptionItemsArray } from '../../utils';

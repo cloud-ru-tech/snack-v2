@@ -26,6 +26,7 @@ const meta: Meta<typeof NotificationCard> = {
     ...BASE_PROPS,
     ...BUTTONS_PROPS,
     actions: ACTIONS,
+    onClick: fn(),
     'data-test-id': TEST_IDS.card.root,
   },
   argTypes: {

@@ -1,7 +1,6 @@
-import { VARIANT, VARIANT_ACTION_LABELS, VARIANT_MESSAGES } from '@ds/ai-field-notice';
-
 import { expect, test } from '#playwright-tooling/fixtures';
 
+import { VARIANT, VARIANT_ACTION_LABELS, VARIANT_MESSAGES } from '../../src/constants';
 import { AI_FIELD_NOTICE_STORIES, buildStoryOptions, TEST_IDS } from './helpers';
 
 test.describe('AiFieldNotice — rendering', () => {

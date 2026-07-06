@@ -12,11 +12,11 @@ test.describe('NotificationCardStack — rendering', () => {
 
   test('title button has aria-expanded=false by default', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
-    await expect(getByTestId(TEST_IDS.panel.cardStack.title)).toHaveAttribute('aria-expanded', 'false');
+    await expect(getByTestId(TEST_IDS.panel.cardStack.openButton)).toHaveAttribute('aria-expanded', 'false');
   });
 
   test('defaultOpen=true → aria-expanded=true', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ defaultOpen: true }));
-    await expect(getByTestId(TEST_IDS.panel.cardStack.title)).toHaveAttribute('aria-expanded', 'true');
+    await expect(getByTestId(TEST_IDS.panel.cardStack.openButton)).toHaveAttribute('aria-expanded', 'true');
   });
 });

@@ -24,7 +24,9 @@ const MockLink = forwardRef<HTMLAnchorElement, MockLinkProps>(({ to, onClick, ch
 ));
 MockLink.displayName = 'MockLink';
 
-const onAnchorClick = fn();
+// preventDefault, чтобы клик по реальному <a href> в play не навигировал страницу
+// (в harvester это настоящий переход на example.com → зависание coverage-teardown).
+const onAnchorClick = fn((event: { preventDefault(): void }) => event.preventDefault());
 
 export const Polymorphic: Story = {
   tags: ['dev', 'test'],

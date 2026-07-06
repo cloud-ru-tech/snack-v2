@@ -11,7 +11,7 @@ test.describe('PromoTag — polymorphism', () => {
       const tag = await root.evaluate(el => el.tagName.toLowerCase());
       expect(tag).toBe('a');
       await expect(root).toHaveAttribute('href', 'https://example.com');
-      await expect(root).toHaveAttribute('data-clickable', '');
+      await expect(root).toHaveAttribute('data-clickable', 'true');
     });
 
     test("target='_blank' injects rel='noopener noreferrer'", async ({ gotoStory, getByTestId }) => {

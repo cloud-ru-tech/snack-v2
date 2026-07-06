@@ -31,7 +31,12 @@ test.describe('AiQueue — rendering', () => {
     const content = page.getByTestId(TEST_IDS.content);
     await expect(content).toBeVisible();
 
-    const isScrollable = await content.evaluate(node => node.scrollHeight > node.clientHeight);
+    // data-test-id сидит на OverlayScrollbars-хосте; реальный скроллер — внутренний
+    // viewport, поэтому метрики скролла читаем именно с него.
+    const isScrollable = await content.evaluate(node => {
+      const viewport = node.querySelector('[data-overlayscrollbars-viewport]') ?? node;
+      return viewport.scrollHeight > viewport.clientHeight;
+    });
     expect(isScrollable).toBe(false);
   });
 
@@ -41,13 +46,16 @@ test.describe('AiQueue — rendering', () => {
     const content = page.getByTestId(TEST_IDS.content);
     await expect(content).toBeVisible();
 
-    const metrics = await content.evaluate(node => ({
-      scrollHeight: node.scrollHeight,
-      clientHeight: node.clientHeight,
-      overflowY: getComputedStyle(node).overflowY,
-    }));
+    const metrics = await content.evaluate(node => {
+      const viewport = node.querySelector('[data-overlayscrollbars-viewport]') ?? node;
+      return {
+        scrollHeight: viewport.scrollHeight,
+        clientHeight: viewport.clientHeight,
+        overflowY: getComputedStyle(viewport).overflowY,
+      };
+    });
 
     expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight);
-    expect(metrics.overflowY).toBe('auto');
+    expect(['auto', 'scroll']).toContain(metrics.overflowY);
   });
 });
