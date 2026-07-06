@@ -1,12 +1,13 @@
 import { Button } from '@ds/button';
 import { EmailSVG } from '@ds/icons';
 import { Link } from '@ds/link';
-import { useLocale } from '@ds/locale';
 import { Tag } from '@ds/tag';
-import { extractSupportProps, getThemeClassnames, isBrowser } from '@ds/utils';
+import { useThemeClassnames } from '@ds/theme';
+import { extractSupportProps, isBrowser } from '@ds/utils';
 import cn from 'classnames';
 
 import { ERROR_TYPE, LOGO_VARIANT, TEST_IDS } from '../../constants';
+import { errorPageLocale } from '../../locale';
 import { ErrorPageProps, ErrorTypeConfig } from '../../types';
 import {
   useGetButtonPropsByErrorType,
@@ -36,7 +37,9 @@ export function ErrorPage({
   custom,
   ...rest
 }: ErrorPageProps) {
-  const { t } = useLocale('ErrorPage');
+  const { t } = errorPageLocale.useTranslations();
+
+  const compactThemeClassName = useThemeClassnames({ density: 'compact' });
 
   const content = useGetContentByErrorType({ errorType, custom } as ErrorTypeConfig);
   const button = useGetButtonPropsByErrorType({ errorType, custom, mainPageUrl } as UseGetButtonPropsByErrorTypeParams);
@@ -67,11 +70,8 @@ export function ErrorPage({
               {content.title}
 
               {content.statusCode && (
-                // Фиксируем тег в compact-плотности независимо от глобального density-режима.
-                // getThemeClassnames даёт полный density-скоуп (примитивы + base/figma/components
-                // токены, включая типографику), иначе часть токенов наследуется со StoryWrapper.
                 <Tag
-                  className={cn(styles.statusCode, getThemeClassnames({ density: 'compact' }))}
+                  className={cn(styles.statusCode, compactThemeClassName)}
                   appearance='neutral'
                   size='s'
                   label={String(content.statusCode)}

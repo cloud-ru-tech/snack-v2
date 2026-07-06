@@ -11,17 +11,24 @@
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
     }
   },
   "files": ["dist", "src"],
   "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
-    "@ds/button": "workspace:*",
-    "@ds/icons": "workspace:*",
-    "@ds/link": "workspace:*",
-    "@ds/locale": "workspace:*",
-    "@ds/tag": "workspace:*",
-    "@ds/utils": "workspace:*",
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/link": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/tag": "workspace:^",
+    "@ds/theme": "workspace:^",
+    "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
   "publishConfig": { "access": "public" }

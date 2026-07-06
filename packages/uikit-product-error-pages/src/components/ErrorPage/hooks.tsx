@@ -1,15 +1,15 @@
 import { HomeSVG, UpdateSVG } from '@ds/icons';
-import { useLocale } from '@ds/locale';
 import { isBrowser } from '@ds/utils';
 import { ReactNode, useMemo } from 'react';
 
 import { ERROR_TYPE, LOGO_VARIANT } from '../../constants';
+import { errorPageLocale } from '../../locale';
 import { ErrorPageContent, ErrorTypeConfig, LogoVariant, MainButtonConfig } from '../../types';
 import { CloudLogo } from '../CloudLogo';
 import styles from './styles.module.scss';
 
 export function useGetContentByErrorType({ errorType, custom }: ErrorTypeConfig): ErrorPageContent {
-  const { t } = useLocale('ErrorPage');
+  const { t } = errorPageLocale.useTranslations();
 
   return useMemo(() => {
     switch (errorType) {
@@ -43,7 +43,7 @@ export function useGetButtonPropsByErrorType({
   mainPageUrl,
   custom,
 }: UseGetButtonPropsByErrorTypeParams): MainButtonConfig {
-  const { t } = useLocale('ErrorPage');
+  const { t } = errorPageLocale.useTranslations();
 
   return useMemo((): MainButtonConfig => {
     switch (true) {

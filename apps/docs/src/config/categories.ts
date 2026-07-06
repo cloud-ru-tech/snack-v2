@@ -150,8 +150,9 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
     {
       id: 'feedback',
       label: 'Feedback',
-      description: 'Статусы и уведомления: строка статуса загрузки, карточки и ленты уведомлений.',
-      packages: ['uikit-product-load-status', 'uikit-product-notification'],
+      description:
+        'Статусы и уведомления: строка статуса загрузки, карточки и ленты уведомлений, полноэкранные error-страницы.',
+      packages: ['uikit-product-load-status', 'uikit-product-notification', 'uikit-product-error-pages'],
     },
     {
       id: 'layout',

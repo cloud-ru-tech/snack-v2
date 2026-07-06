@@ -2492,22 +2492,25 @@ importers:
   packages/uikit-product-error-pages:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/link':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../link
       '@ds/locale':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../locale
       '@ds/tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tag
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
