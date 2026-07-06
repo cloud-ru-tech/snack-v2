@@ -439,7 +439,7 @@ export function Select() {
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
 | `value` | `ItemId` | — | Управляемое значение <br/> Управляемые значения |
-| `virtualized` | `boolean` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
+| `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `'eq' — равна ширине триггера` | Стратегия ширины дроплиста. |
 
 #### Related types
@@ -739,7 +739,7 @@ export function Affixes() {
 | `scrollToSelectedItem` | `boolean \| undefined` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `search` | `SearchState` | — | Настройки поисковой строки |
 | `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
-| `virtualized` | `boolean \| undefined` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
+| `virtualized` | `boolean \| undefined` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | — | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
 
 **FieldElementSlot**
@@ -750,7 +750,7 @@ export function Affixes() {
 | `className` | `string \| undefined` | — | CSS-класс (передаётся обёрткой `Droplist` / `PopoverPrivate` на триггер) |
 | `data-test-id` | `string \| undefined` | — | data-test-id кнопки-слота |
 | `disabled` | `boolean \| undefined` | — | Деактивировано |
-| `droplist` | `DroplistMobileSlots` \| `EmptyState` \| `FieldElementDroplistProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist` |
+| `droplist` | `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `FieldElementDroplistProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist` |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `onClick` | `(() => void) \| undefined` | — | Обработчик клика |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер (совпадает с размером поля) |

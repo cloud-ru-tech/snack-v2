@@ -1,4 +1,5 @@
-// Stories-level test ids для пакета @ds/list (multi-component: List + Droplist).
+// Stories-level test ids для пакета @ds/list (multi-component: List + Droplist +
+// ReorderableList + ReorderableDroplist).
 // Внутренние слоты компонентов адресуются через TEST_IDS из @ds/list/src/constants.
 export const TEST_IDS = {
   list: {
@@ -18,5 +19,12 @@ export const TEST_IDS = {
     renderFnTrigger: 'droplist-renderfn-trigger',
     controlledTrigger: 'droplist-controlled-trigger',
     controlledClose: 'droplist-controlled-close',
+  },
+  reorderableList: {
+    root: 'reorderable-list',
+  },
+  reorderableDroplist: {
+    root: 'reorderable-droplist',
+    triggerOpen: 'reorderable-droplist-trigger',
   },
 } as const;

@@ -9,6 +9,7 @@ import { AccordionItem } from './AccordionItem';
 import { BaseItem } from './BaseItem';
 import { GroupSelectItem } from './GroupSelectItem';
 import { NextListItem } from './NextListItem';
+import { SimpleGroupBlock, SimpleItem } from './SimpleItem';
 import {
   Flatten,
   FlattenAccordionItem,
@@ -16,16 +17,22 @@ import {
   FlattenGroupSelectListItem,
   FlattenItem,
   FlattenNextListItem,
+  FlattenSimpleItem,
   FocusFlattenItem,
   ItemId,
 } from './types';
-import { isAccordionItem, isGroupItem, isGroupSelectItem, isNextListItem } from './utils';
+import { isAccordionItem, isGroupItem, isGroupSelectItem, isNextListItem, isSimpleItem } from './utils';
 
 type GetRenderItemsProps = {
   focusCloseChildIds?: ItemId[];
   flattenItems: Record<string, FlattenItem>;
   focusFlattenItems: Record<string, FocusFlattenItem>;
   isSelectionMultiple?: boolean;
+  /**
+   * Id группы-родителя для строк режима переупорядочивания — передаётся в `data` `useSortable`
+   * (kind=row).
+   */
+  groupId?: ItemId;
 };
 
 function getRenderItems({
@@ -33,6 +40,7 @@ function getRenderItems({
   focusFlattenItems,
   flattenItems,
   isSelectionMultiple,
+  groupId,
 }: GetRenderItemsProps): (JSX.Element | null)[] {
   if (!focusCloseChildIds) {
     return [null];
@@ -47,12 +55,43 @@ function getRenderItems({
       isGroupItem(flattenItem) ||
       (!isSelectionMultiple && isGroupSelectItem<FlattenGroupSelectListItem>(flattenItem))
     ) {
+      // Группа в reorder-режиме: её строки размечены `type: Simple`. Заголовок + строки оборачиваются
+      // в единый сортируемый блок `SimpleGroupBlock` — за ручку заголовка группа перетаскивается
+      // целиком (строки едут вместе), а строки внутри блока переставляются собственным
+      // `SortableContext`. Переупорядочивание строго по уровням, см. `reorderReorderItems`.
+      const sortableChildIds = items
+        .map(focusId => focusFlattenItems[focusId]?.originalId)
+        .filter((childId): childId is ItemId => {
+          const child = childId != null ? flattenItems[childId] : undefined;
+          return Boolean(child && isSimpleItem(child));
+        });
+
+      const isSortableGroup = isGroupItem(flattenItem) && sortableChildIds.length > 0;
+
       const innerItemsJSX = getRenderItems({
         focusCloseChildIds: items,
         focusFlattenItems,
         flattenItems,
         isSelectionMultiple,
+        groupId: isSortableGroup ? originalId : groupId,
       });
+
+      if (isSortableGroup) {
+        return (
+          <SimpleGroupBlock
+            id={originalId}
+            label={flattenItem.label}
+            beforeContent={flattenItem.beforeContent}
+            truncate={flattenItem.truncate}
+            divider={flattenItem.divider}
+            groupVariant={flattenItem.groupVariant}
+            rowIds={sortableChildIds}
+            key={key}
+          >
+            {innerItemsJSX}
+          </SimpleGroupBlock>
+        );
+      }
 
       return [
         <Separator
@@ -74,6 +113,9 @@ function getRenderItems({
     }
     if (isNextListItem<FlattenNextListItem>(flattenItem)) {
       return <NextListItem {...flattenItem} focusId={id} items={items} itemRef={itemRef} key={key} />;
+    }
+    if (isSimpleItem<FlattenSimpleItem>(flattenItem)) {
+      return <SimpleItem {...flattenItem} items={items} itemRef={itemRef} groupId={groupId} key={key} />;
     }
 
     return <BaseItem {...flattenItem} itemRef={itemRef} key={key} />;

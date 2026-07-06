@@ -123,14 +123,14 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## PageServices
 
@@ -186,7 +186,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **Documentation**
 
@@ -571,7 +571,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## ButtonKebab
 
@@ -580,7 +580,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## ButtonQuota
 
@@ -776,14 +776,14 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## MobilePageForm
 
@@ -832,14 +832,14 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 - `SidebarItem` = `SidebarItemWithHref | SidebarItemWithItems`
 

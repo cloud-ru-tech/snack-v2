@@ -24,6 +24,7 @@ export const ITEM_TYPE = {
   Collapse: 'collapse',
   Group: 'group',
   GroupSelect: 'group-select',
+  Simple: 'simple',
 } as const;
 
 export const TEST_IDS = {
@@ -44,6 +45,7 @@ export const TEST_IDS = {
   pinBottomGroupItem: 'list__pin-bottom-group-item',
   accordionItem: 'list__accordion-item',
   groupIndicator: 'list__group-indicator',
+  dragHandle: 'list__drag-handle',
   mobileDroplistRoot: 'list__mobile-droplist-root',
   mobileDroplistTrigger: 'list__mobile-droplist-trigger',
 } as const;

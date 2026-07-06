@@ -39,6 +39,7 @@ import '@ds/list/style.css'
 
 - ****List**** — основной компонент. Принимает `items` (+ `pinTop` / `pinBottom` / `footer`), управляет выбором через `selection`, раскрытием групп через `collapse`, поиском через `search`. Поддерживает виртуализацию для 1000+ элементов.
 - ****Droplist**** — тот же список в popover. Оборачивает `children`-триггер и открывает список рядом с ним. Передаёт почти все пропсы `List`.
+- ****ReorderableList**** — список с drag&drop-переупорядочиванием строк через `@dnd-kit` (плюс `ReorderableDroplist` — то же в поповере).
 - ****ItemContent**** — каноничная разметка содержимого item: `option` (заголовок), `caption` (мета справа), `description` (подпись снизу). Используется как значение `item.content`.
 
 ## Общие принципы
@@ -540,11 +541,12 @@ export function ListItemWrap() {
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер списка |
 | `tabIndex` | `number` | `0` | `tabIndex` корневого элемента списка (для управления порядком фокуса) |
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
-| `virtualized` | `boolean` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
+| `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 
 ### Смотри также
 
 - **Droplist** — этот список в popover.
+- **ReorderableList** — тот же список, но с drag&drop-переупорядочиванием строк.
 - **ItemContent** — каноничная разметка item.
 ### Item types
 
@@ -896,13 +898,13 @@ export function DroplistWithHeader() {
 | `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `search` | `SearchState` | — | Настройки поисковой строки |
 | `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
-| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер списка |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер списка |
 | `slotAfterHeadline` | `ReactNode` | — | Только mobile (`BottomSheet`): slot справа от заголовка. |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerElemRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент-триггер для дроплиста |
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
-| `virtualized` | `boolean` | — | Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка |
+| `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `auto` | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
 
 ##### Related types
@@ -1342,3 +1344,70 @@ export function ItemContentTruncate() {
 - `caption` и `description` находятся в том же DOM-узле и читаются следом за заголовком.
 - Визуальные truncate-поведения реализованы через CSS `-webkit-line-clamp`, текст не вырезается из DOM и остаётся доступен скринридеру целиком.
 - Disabled-элементы получают уменьшенный контраст + `data-disabled`, но цвет не единственный сигнал: интерактивность выключается и на уровне родительского item'а.
+
+## ReorderableList
+
+```tsx
+import { ReorderableList, SimpleItem } from '@ds/list';
+import { useState } from 'react';
+
+import styles from './styles.module.scss';
+
+const INITIAL_ITEMS: SimpleItem[] = [
+  { id: 'inbox', content: { option: 'Входящие', caption: '12' } },
+  { id: 'sent', content: { option: 'Отправленные' } },
+  { id: 'archive', content: { option: 'Архив', caption: '238' } },
+  { id: 'trash', content: { option: 'Корзина', description: 'Удаляется через 30 дней' } },
+];
+
+export function ListReorder() {
+  const [items, setItems] = useState(INITIAL_ITEMS);
+
+  return (
+    <div className={styles.box}>
+      <ReorderableList size='s' items={items} onItemsReorder={setItems} />
+    </div>
+  );
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | — | Управление скрытием скролл баров: <br/> <br> - `Never` - показывать всегда <br/> <br> - `Leave` - скрывать когда курсор покидает компонент <br/> <br> - `Scroll` - показывать только когда происходит скроллинг <br/> <br> - `Move` - показывать при движении курсора над компонентом |
+| `className` | `string` | — | CSS-класс |
+| `collapse` | `CollapseState` | `{}` | Настройки раскрытия элементов |
+| `contentRender` | `((props: ContentRenderProps) => ReactNode)` | — | Рендер функция основного контента айтема |
+| `data-test-id` | `string` | — |  |
+| `dataError` | `boolean` | — | Загрузка данных завершилась ошибкой: показывается `errorDataState` |
+| `dataFiltered` | `boolean` | — | Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState` |
+| `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
+| `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
+| `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
+| `footerDivider` | `boolean` | — | Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу) |
+| `hasListInFocusChain` | `boolean` | `true` | Флаг, отвечающий за включение самого родительского контейнера листа в цепочку фокусирующихся элементов |
+| `header` | `ReactNode ;` | — | Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`. <br/> Подходит для заголовка / справочного блока над поиском. |
+| `headerDivider` | `boolean` | — | Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху) |
+| `items` | `ReorderItem[]` | `[]` | Основные элементы списка: строки `SimpleItem` и/или группы с заголовком `SimpleGroupItem` <br/> (`type: 'group'` + `label` + сортируемые `items`). |
+| `keyboardNavigationRef` | `RefObject<{ focusItem(id: ItemId): void; }>` | — | Ссылка на управление навигацией листа с клавиатуры |
+| `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
+| `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
+| `marker` | `boolean` | `true` | Отображать ли маркер у выбранного элемента списка |
+| `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
+| `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
+| `onItemsReorder` | `(items: ReorderItem[]) => void` | — | Колбек по завершению drag&drop-переупорядочивания элементов списка. Список остаётся <br/> управляемым: сам не хранит порядок, а отдаёт наружу целиком обновлённое дерево `items` — <br/> потребитель обновляет свой стейт этим значением. Переупорядочивание работает только среди <br/> «братьев» одного уровня (строки без группы либо строки внутри одной группы; перенос между <br/> группами не поддерживается). |
+| `onKeyDown` | `((e: KeyboardEvent<HTMLElement>) => void)` | — | Обработчик события по нажатию клавиш |
+| `onScroll` | `((event?: Event) => void)` | — | Колбек на скролл прокручиваемого списка |
+| `pinBottom` | `Item[]` | `[]` | Элементы списка, закрепленные снизу |
+| `pinTop` | `Item[]` | `[]` | Элементы списка, закрепленные сверху |
+| `scroll` | `boolean` | — | Включить ли скролл для основной части списка |
+| `scrollContainerClassName` | `string` | — | CSS-класс для scroll обертки основного списка айтемов |
+| `scrollContainerRef` | `Ref<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
+| `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
+| `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
+| `search` | `SearchState` | — | Настройки поисковой строки |
+| `selection` | `SelectionSingleState \| SelectionMultipleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер списка |
+| `tabIndex` | `number` | `0` | `tabIndex` корневого элемента списка (для управления порядком фокуса) |
+| `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |

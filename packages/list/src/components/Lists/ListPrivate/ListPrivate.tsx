@@ -1,20 +1,57 @@
+import {
+  closestCenter,
+  CollisionDetection,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
+  KeyboardSensor,
+  MeasuringStrategy,
+  MouseSensor,
+  pointerWithin,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Spinner } from '@ds/loader';
+import { usePortalContext } from '@ds/portal-context';
 import { Scroll } from '@ds/scroll';
-import { extractSupportProps, useLayoutEffect } from '@ds/utils';
+import { extractSupportProps, isBrowser, useLayoutEffect } from '@ds/utils';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
-import { ForwardedRef, forwardRef, Ref, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ForwardedRef, forwardRef, ReactNode, Ref, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { TEST_IDS } from '../../../constants';
 import { ListEmptyState, useEmptyState } from '../../../helperComponents';
 import { stopPropagation } from '../../../utils';
-import { ItemId, PinBottomGroupItem, PinTopGroupItem, SearchItem, useRenderItems } from '../../Items';
+import {
+  FlattenSimpleItem,
+  isGroupItem,
+  isSimpleItem,
+  ItemId,
+  PinBottomGroupItem,
+  PinTopGroupItem,
+  SearchItem,
+  useRenderItems,
+} from '../../Items';
+import { SimpleGroupBlockOverlay, SimpleItemOverlay } from '../../Items/SimpleItem';
 import { useNewListContext, useSelectionContext } from '../contexts';
 import commonStyles from '../styles.module.scss';
 import { ListPrivateProps } from '../types';
 import { ALL_SIZES, SPINNER_SIZE_MAP } from './constants';
 import styles from './styles.module.scss';
+
+// Отделяет клик (activation через `onClick` айтема) от начала перетаскивания — тот же порог активации,
+// что у `@ds/table` (`useColumnOrderByDrag`), для единообразия поведения по репо.
+const draggingOptions = { activationConstraint: { distance: 5 } };
+
+// Пересчитывать rect'ы droppable-строк на каждом кадре перетаскивания. В `Droplist` (popover) список лежит
+// в скролл-контейнере с трансформами: измеренные при монтировании rect'ы устаревают, коллизия
+// указывает на последнюю строку и строка «улетает» в конец. `Always` держит измерения свежими.
+const measuringConfig = { droppable: { strategy: MeasuringStrategy.Always } };
 
 type ScrollState = {
   virtualizer: ItemId | null;
@@ -70,15 +107,72 @@ export const ListPrivate = forwardRef(
       dataError,
       dataFiltered,
       scrollToSelectedItem = false,
-      virtualized = false,
+      virtualized: virtualizedProp = false,
       scrollContainerClassName,
       barHideStrategy = 'never',
+      onDragEnd,
+      sortableIds,
       ...props
     }: ListPrivateProps,
     ref: ForwardedRef<HTMLElement>,
   ) => {
     const { size = 'm', flattenItems, focusFlattenItems } = useNewListContext();
     const { value, isSelectionSingle } = useSelectionContext();
+    // `onDragEnd`/`SortableContext` конфликтуют с виртуализатором: обе стороны применяют свой
+    // `transform` к строке (см. JSDoc `ListPrivateProps.onDragEnd`) — запрещено уже на уровне
+    // типов (`ListProps`), здесь рантайм-зеркало на случай прямого использования `ListPrivate`.
+    const virtualized = virtualizedProp && !onDragEnd;
+    const sensors = useSensors(
+      useSensor(MouseSensor, draggingOptions),
+      useSensor(TouchSensor, {}),
+      useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+    );
+    // Id перетаскиваемой строки — для рендера её копии в `DragOverlay`. Копия живёт в портале
+    // над страницей и не режется `overflow: hidden` контейнера `List` (исходная строка остаётся
+    // на месте «призраком»). `null`, когда перетаскивание не идёт.
+    const [activeDragId, setActiveDragId] = useState<ItemId | null>(null);
+    const handleDragStart = useCallback((event: DragStartEvent) => setActiveDragId(event.active.id), []);
+    const handleDragEnd = useCallback(
+      (event: DragEndEvent) => {
+        setActiveDragId(null);
+        onDragEnd?.(event);
+      },
+      [onDragEnd],
+    );
+    const handleDragCancel = useCallback(() => setActiveDragId(null), []);
+    const activeOverlayItem = activeDragId != null ? flattenItems[activeDragId] : undefined;
+
+    // Переупорядочивание строго внутри одного sortable-контейнера: верхний уровень (строки без группы + сами
+    // группы — «братья») либо контейнер конкретной группы (её строки). Остаются только droppable
+    // того же контейнера, что и активный элемент (`container` в `data` ставят `SimpleItem`/
+    // `SimpleGroupBlock`).
+    const collisionDetection = useCallback<CollisionDetection>(args => {
+      const activeContainer = (args.active.data.current as { container?: ItemId } | undefined)?.container;
+      const droppableContainers = args.droppableContainers.filter(
+        container => (container.data.current as { container?: ItemId } | undefined)?.container === activeContainer,
+      );
+
+      // Сначала — droppable под курсором (`pointerWithin`). Группа сортируется целым блоком
+      // (`SimpleGroupBlock`: заголовок + строки), поэтому её droppable-rect высокий; `closestCenter`
+      // сравнивал бы расстояние до центра блока — курсор над заголовком группы был далеко от центра,
+      // и цель «перепрыгивала» через всю группу (строка вставала под неё). `pointerWithin` берёт тот
+      // блок, над которым реально курсор, — вставка идёт туда, где визуально находится указатель.
+      const pointerCollisions = pointerWithin({ ...args, droppableContainers });
+      if (pointerCollisions.length > 0) {
+        return pointerCollisions;
+      }
+
+      // Fallback для клавиатурного сенсора (у него нет координат указателя → `pointerWithin` пуст).
+      return closestCenter({ ...args, droppableContainers });
+    }, []);
+
+    // Портал `DragOverlay` — в themed-корень (`@ds/portal-context`), а не в `document.body`. Все
+    // `--sn-*` токены объявлены на theme-scope (`RootThemeProvider`), а не на `:root`; в `body`
+    // копия строки теряла их и падала на дефолты (раздутые паддинги/цвета — «гигантский призрак»).
+    // Корень портал-контекста лежит внутри theme-scope и не трансформирован, поэтому `position:
+    // fixed` у `DragOverlay` остаётся относительно вьюпорта (в т.ч. внутри popover-Droplist).
+    const portalRoot = usePortalContext();
+
     const innerScrollRef = useRef<HTMLElement | null>(null);
     // `@ds/scroll` (OverlayScrollbars) разрешает свой ref в viewport-элемент только после
     // инициализации инстанса. До этого `innerScrollRef.current` === null, и виртуализатор
@@ -266,29 +360,83 @@ export const ListPrivate = forwardRef(
       [hasNoItems, loading, size],
     );
 
-    const content = useMemo(
-      () => (
-        <>
-          {virtualized ? (
-            <div className={styles.virtualizedContainer} style={{ height: virtualizer.getTotalSize() }} tabIndex={-1}>
-              {virtualItems.map(virtualRow => (
-                <div
-                  key={virtualRow.key}
-                  data-index={virtualRow.index}
-                  ref={virtualizer.measureElement}
-                  tabIndex={-1}
-                  className={styles.virtualizedPositionBox}
-                  style={{
-                    transform: `translateY(${virtualRow.start}px)`,
-                  }}
-                >
-                  {itemsJSX[virtualRow.index]}
-                </div>
-              ))}
+    const content = useMemo(() => {
+      const itemsBody: ReactNode = virtualized ? (
+        <div className={styles.virtualizedContainer} style={{ height: virtualizer.getTotalSize() }} tabIndex={-1}>
+          {virtualItems.map(virtualRow => (
+            <div
+              key={virtualRow.key}
+              data-index={virtualRow.index}
+              ref={virtualizer.measureElement}
+              tabIndex={-1}
+              className={styles.virtualizedPositionBox}
+              style={{
+                transform: `translateY(${virtualRow.start}px)`,
+              }}
+            >
+              {itemsJSX[virtualRow.index]}
             </div>
-          ) : (
-            itemsJSX
-          )}
+          ))}
+        </div>
+      ) : (
+        itemsJSX
+      );
+
+      // Содержимое `DragOverlay`: копия строки (`SimpleItemOverlay`) либо заголовка группы
+      // (`SimpleGroupBlockOverlay`) — по типу активного элемента.
+      let dragOverlayContent: ReactNode = null;
+      if (activeOverlayItem && isSimpleItem(activeOverlayItem)) {
+        dragOverlayContent = <SimpleItemOverlay {...activeOverlayItem} />;
+      } else if (activeOverlayItem && isGroupItem(activeOverlayItem)) {
+        const rows = ((activeOverlayItem as { allChildIds?: ItemId[] }).allChildIds ?? [])
+          .map(rowId => flattenItems[rowId])
+          .filter((row): row is FlattenSimpleItem => isSimpleItem(row));
+        dragOverlayContent = (
+          <SimpleGroupBlockOverlay
+            size={size}
+            rows={rows}
+            label={activeOverlayItem.label}
+            beforeContent={activeOverlayItem.beforeContent}
+            truncate={activeOverlayItem.truncate}
+            divider={activeOverlayItem.divider}
+            groupVariant={activeOverlayItem.groupVariant}
+          />
+        );
+      }
+
+      // `SortableContext`/`DndContext` — чистые провайдеры контекста, не рендерят DOM-узлов,
+      // поэтому оборачивание всего блока (включая loader/empty-state) безопасно и не меняет
+      // разметку `<ul>`.
+      const body = onDragEnd ? (
+        <DndContext
+          sensors={sensors}
+          collisionDetection={collisionDetection}
+          measuring={measuringConfig}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragCancel}
+        >
+          <SortableContext items={sortableIds ?? []} strategy={verticalListSortingStrategy}>
+            {itemsBody}
+          </SortableContext>
+          {/* Портал в themed-корень портал-контекста (см. `portalRoot` выше): `DragOverlay`
+              позиционируется `position: fixed`, а корень не трансформирован — копия остаётся у
+              курсора и вне `overflow: hidden` контейнера `List` (в т.ч. в popover-Droplist), при
+              этом сохраняет `--sn-*` токены темы. `dropAnimation={null}`: порядок применяется
+              синхронно в `onItemsReorder`, копию не анимируем «в слот». */}
+          {isBrowser() &&
+            createPortal(
+              <DragOverlay dropAnimation={null}>{dragOverlayContent}</DragOverlay>,
+              portalRoot.current ?? document.body,
+            )}
+        </DndContext>
+      ) : (
+        itemsBody
+      );
+
+      return (
+        <>
+          {body}
           {loadingJSX}
 
           <ListEmptyState
@@ -300,22 +448,31 @@ export const ListPrivate = forwardRef(
             size={size}
           />
         </>
-      ),
-      [
-        dataError,
-        dataFiltered,
-        emptyStates,
-        hasNoItems,
-        itemsJSX,
-        loading,
-        loadingJSX,
-        search?.value,
-        size,
-        virtualItems,
-        virtualized,
-        virtualizer,
-      ],
-    );
+      );
+    }, [
+      activeOverlayItem,
+      collisionDetection,
+      dataError,
+      dataFiltered,
+      emptyStates,
+      flattenItems,
+      handleDragCancel,
+      handleDragEnd,
+      handleDragStart,
+      hasNoItems,
+      itemsJSX,
+      loading,
+      loadingJSX,
+      onDragEnd,
+      portalRoot,
+      search?.value,
+      sensors,
+      size,
+      sortableIds,
+      virtualItems,
+      virtualized,
+      virtualizer,
+    ]);
 
     const onScrollInitialized = useCallback(() => {
       // OverlayScrollbars инициализирован — ref указывает на viewport. Поднимаем флаг,

@@ -1,0 +1,118 @@
+---
+title: ReorderableList
+package: '@ds/list'
+description: Список с drag&drop-переупорядочиванием строк через @dnd-kit — ReorderableList и ReorderableDroplist.
+order: 2
+---
+
+import { ListReorder } from '../demos/examples/ListReorder'
+import ListReorderSrc from '../demos/examples/ListReorder.tsx?raw'
+import { ListReorderGroups } from '../demos/examples/ListReorderGroups'
+import ListReorderGroupsSrc from '../demos/examples/ListReorderGroups.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import listDoc from './props.json'
+
+# ReorderableList
+
+`ReorderableList` — список с drag&drop-переупорядочиванием строк через `@dnd-kit`. У каждой строки появляется ручка слева — потяните её, чтобы поменять порядок. В поповере то же самое даёт `ReorderableDroplist`.
+
+## Когда использовать
+
+- Пользователь сам управляет порядком строк: закладки, избранное, дашборд-виджеты, пункты меню в настройках.
+
+Когда **не** нужен:
+
+- Порядок строк не редактируется пользователем — обычный [List](/components/list/list) дешевле.
+- Нужна виртуализация (`virtualized`) — несовместима с переупорядочиванием, см. ниже.
+
+## Анатомия
+
+### Отдельный компонент, а не режим `List`
+
+`ReorderableList` — самостоятельный компонент, а не флаг на `List`, потому что у него другая модель айтемов: `items` типизируется как `ReorderItem[]` вместо обычного `Item[]`, то есть `collapse`/`group-select`/`next-list` недоступны на уровне типов. Верхний уровень `ReorderItem` — это либо строка `SimpleItem`, либо группа с заголовком `SimpleGroupItem`. Остальной функционал `List` (поиск, `pinTop`/`pinBottom`, `header`/`footer`, `loading`/empty-состояния, `selection`, scroll) продолжает работать без ограничений.
+
+`ReorderableDroplist` относится к `ReorderableList` так же, как `Droplist` к `List`: та же popover- и mobile-обвязка, та же модель айтемов.
+
+### Переупорядочивание — только внутри одного уровня
+
+Drag&drop работает **только** среди «братьев» одного уровня:
+
+- строки без группы переставляются между собой;
+- строки внутри группы переставляются внутри своей группы.
+
+Между группами строки **не** переносятся, и строку нельзя вынести из группы или вложить в неё перетаскиванием. Это ограничение, а не баг: оно упрощает контракт `onItemsReorder` и защищает от случайной потери структуры. Каждая группа получает собственный контекст сортировки, поэтому во время перетаскивания «расступаются» только строки той же группы.
+
+### `SimpleItem` — строка, `SimpleGroupItem` — группа
+
+`SimpleItem` — это форма `BaseItem` (тот же `content`/`beforeContent`/`afterContent`/`disabled`) с обязательным `id`, без вложенности. Ручка драга рендерится автоматически перед остальным содержимым строки, потребитель её не настраивает.
+
+`SimpleGroupItem` — группа: `type: 'group'`, заголовок `label` (плюс остальные поля группы — `beforeContent`, `divider`, `groupVariant`) и `items` — сортируемые строки этой группы. Заголовок группы неинтерактивен и в переупорядочивании не участвует.
+
+### Перетаскиваемая строка — в `DragOverlay`
+
+Копия строки во время драга рендерится в `DragOverlay` (портал над страницей) и едет за курсором в своей натуральной высоте, поэтому её не обрезает `overflow` контейнера `List` и не растягивает под строки другой высоты. Исходная строка остаётся на месте приглушённым «призраком» будущей позиции.
+
+### Виртуализации нет
+
+Виртуализация (`@tanstack/react-virtual`) и `@dnd-kit` конкурируют за CSS `transform` строки во время скролла/драга, поэтому у `ReorderableList` пропа `virtualized` нет вовсе — это одна из причин, по которой он отдельный компонент, а не режим `List`. Если виртуализация всё же включена в обход публичных типов (прямым обращением к `ListPrivate`), она принудительно отключается в рантайме.
+
+## Установка
+
+```bash
+pnpm add @ds/list
+```
+
+```ts
+import { ReorderableList, SimpleItem } from '@ds/list'
+import '@ds/list/style.css'
+```
+
+## Примеры использования
+
+<Example
+  title='Переупорядочивание строк'
+  description='Управляемый режим: onItemsReorder отдаёт обновлённый items целиком, потребитель сохраняет его в свой state.'
+  code={ListReorderSrc}
+>
+  <ListReorder client:visible />
+</Example>
+
+<Example
+  title='Группы с заголовками'
+  description='Элемент type: group с label — заголовок группы; его items — сортируемые строки. Перетаскивание работает внутри каждой группы независимо, между группами строки не переносятся.'
+  code={ListReorderGroupsSrc}
+>
+  <ListReorderGroups client:visible />
+</Example>
+
+## Controlled vs uncontrolled
+
+`ReorderableList` не хранит порядок строк сам — он всегда управляемый. По окончании драга компонент вызывает `onItemsReorder(items)` с целиком обновлённым списком `ReorderItem[]` (строки и группы в новом порядке), потребитель обновляет свой state этим значением. Поэтому `onItemsReorder` — обязательный проп: без него компонент не имел бы смысла.
+
+## Доступность
+
+- Ручка драга — фокусируемая кнопка с `aria-label` («Перетащить для изменения порядка» / «Drag to reorder»), поддерживает активацию и перемещение с клавиатуры (`Space` — взять, стрелки — переместить, `Space` — отпустить, `Escape` — отменить).
+- Контейнер и строки наследуют роли `menu`/`menuitem` от `List`/`BaseItem` — те же ARIA-паттерны, что у обычного списка.
+- `disabled` на строке отключает выбор и `Switch`, но **не** ручку перетаскивания — задизейбленную строку всё равно можно переупорядочить.
+
+## Props
+
+### ReorderableList
+
+<PropsTable data={listDoc.ReorderableList} />
+
+### ReorderableDroplist
+
+<PropsTable data={listDoc.ReorderableDroplist} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-list-reorderablelist--playground' height={420} />
+
+## Смотри также
+
+- [List](/components/list/list) — полнофункциональный список с группами, раскрытием, поиском и выбором.
+- [Droplist](/components/list/droplist) — тот же список в поповере. `ReorderableDroplist` относится к нему так же, как `ReorderableList` к `List` (включая mobile `BottomSheet` на корневом уровне; вложенный drill-down `next-list` с reorder не совмещается).
+- [ItemContent](/components/list/item-content) — каноничная разметка `content` строки.

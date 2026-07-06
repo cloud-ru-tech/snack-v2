@@ -24,6 +24,7 @@ export const LIST_STORIES = {
   bulkSelect: { name: 'list-list-examples-bulkselect', story: 'bulk-select' },
   virtualized: { name: 'list-list-examples-virtualized', story: 'virtualized' },
   polymorphic: { name: 'list-list-examples-polymorphic', story: 'polymorphic' },
+  reorderable: { name: 'list-reorderablelist', story: 'playground' },
   interactionStatesFixture: {
     name: 'list-list-tests-interactionstates',
     story: 'interaction-states-fixture',

@@ -3,9 +3,9 @@ import { usePortalContext } from '@ds/portal-context';
 import { useValueControl } from '@ds/utils';
 import { cloneElement, isValidElement, MouseEvent, useMemo, useRef, useState } from 'react';
 
-import { ItemId, NextListItem } from '../../components/Items';
+import { Item, ItemId, NextListItem, ReorderItem } from '../../components/Items';
 import { OnChangeHandler } from '../../components/Lists/contexts';
-import { List } from '../../components/Lists/List';
+import { List, ReorderableList } from '../../components/Lists/List';
 import { BaseDroplistProps, MobileDroplistProps } from '../../components/Lists/types';
 import { TEST_IDS } from '../../constants';
 import styles from './MobileDroplist.module.scss';
@@ -38,7 +38,9 @@ export function MobileDroplist({
   // `footer` уводим в sticky-футер `BottomSheet` (кнопки действия прилипают к низу sheet'а, а не
   // скроллятся вместе со списком). `header` + `headerDivider` / `footerDivider` НЕ деструктурируем —
   // они уходят в `...rest` на корневой `List` (он рендерит шапку и её divider).
+  // `onItemsReorder` — только на корне: drill-down `next-list` ортогонален дереву `SimpleItem`.
   footer,
+  onItemsReorder,
   ...rest
 }: MobileDroplistProps) {
   const portalContext = usePortalContext();
@@ -141,18 +143,46 @@ export function MobileDroplist({
       {trigger}
       {sheets.map(({ source, title, item }, levelIndex) => {
         const isRoot = levelIndex === 0;
-        // На этом уровне видны только его айтемы; next-list уводит на следующий уровень каскада.
-        const levelItems = buildLevelItems(
-          source,
-          next => setPath(prev => [...prev.slice(0, levelIndex), next]),
-          handleClose,
-          closeOnClick,
-        );
+        // Режим переупорядочивания (`onItemsReorder`) — только корень: дерево
+        // `SimpleItem`/`SimpleGroupItem` не проходит через `buildLevelItems` (там `Item[]`
+        // и drill-down `next-list`).
+        const reorderRoot = Boolean(isRoot && onItemsReorder);
+        const levelItems = reorderRoot
+          ? undefined
+          : buildLevelItems(
+              source as Item[],
+              next => setPath(prev => [...prev.slice(0, levelIndex), next]),
+              handleClose,
+              closeOnClick,
+            );
         // Поиск/виртуализация/footer/actions — только на корне; sublists всегда статичны по контенту.
         const searchable = isRoot && Boolean(search);
         const expanded = searchable || (isRoot && virtualized);
 
         const scrollable = isRoot && (virtualized || scroll);
+
+        const listCommonProps = {
+          selection: listSelection,
+          size,
+          search: searchable ? search : undefined,
+          loading: isRoot ? undefined : item?.loading,
+          dataError: isRoot ? undefined : item?.dataError,
+          dataFiltered: isRoot ? undefined : item?.dataFiltered,
+          noDataState: rest.noDataState,
+          noResultsState: rest.noResultsState,
+          errorDataState: rest.errorDataState,
+          ...(isRoot ? rest : null),
+          // Контролируемые scroll-пропсы идут после `...rest`, чтобы их не перебило значениями
+          // с десктопа. В sheet'е список заполняет body и скроллится внутри себя (`sheetScroll`,
+          // height:100%); фиксированный desktop-cap `limitedScrollHeight` (max-height 384px) не
+          // применяется — иначе на full-height sheet под ограниченным списком остаётся пустое место.
+          // `className` (dropDownClassName) — desktop-popover ширина; в sheet'е список full-width.
+          className: undefined,
+          scrollRef: scrollable ? scrollRef : undefined,
+          scroll: scrollable || undefined,
+          limitedScrollHeight: false as const,
+          scrollContainerClassName: scrollable ? styles.sheetScroll : undefined,
+        };
 
         const content = (
           <div
@@ -160,30 +190,11 @@ export function MobileDroplist({
             data-test-id={isRoot ? TEST_IDS.mobileDroplistRoot : undefined}
             data-fill={scrollable || undefined}
           >
-            <List
-              items={levelItems}
-              selection={listSelection}
-              size={size}
-              search={searchable ? search : undefined}
-              loading={isRoot ? undefined : item?.loading}
-              dataError={isRoot ? undefined : item?.dataError}
-              dataFiltered={isRoot ? undefined : item?.dataFiltered}
-              noDataState={rest.noDataState}
-              noResultsState={rest.noResultsState}
-              errorDataState={rest.errorDataState}
-              {...(isRoot ? rest : null)}
-              // Контролируемые scroll-пропсы — ПОСЛЕ `...rest`, чтобы их не перебило значениями с
-              // десктопа. В sheet'е список заполняет body и скроллится внутри себя (`sheetScroll`,
-              // height:100%); фиксированный desktop-cap `limitedScrollHeight` (max-height 384px) не
-              // используем — иначе на full-height sheet под капнутым списком зияет пустота.
-              // `className` (dropDownClassName) — desktop-popover ширина; в sheet'е список full-width.
-              className={undefined}
-              scrollRef={scrollable ? scrollRef : undefined}
-              scroll={scrollable || undefined}
-              virtualized={isRoot && virtualized}
-              limitedScrollHeight={false}
-              scrollContainerClassName={scrollable ? styles.sheetScroll : undefined}
-            />
+            {reorderRoot && onItemsReorder ? (
+              <ReorderableList {...listCommonProps} items={items as ReorderItem[]} onItemsReorder={onItemsReorder} />
+            ) : (
+              <List {...listCommonProps} items={levelItems ?? []} virtualized={isRoot && virtualized} />
+            )}
           </div>
         );
 

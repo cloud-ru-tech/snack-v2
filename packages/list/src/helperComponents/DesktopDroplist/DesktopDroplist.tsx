@@ -57,6 +57,7 @@ export function DesktopDroplist({
   headerDivider,
   footer,
   footerDivider,
+  onItemsReorder,
   ...props
 }: DesktopDroplistProps) {
   const {
@@ -70,6 +71,8 @@ export function DesktopDroplist({
     ids,
     expandedIds,
     firstItemId,
+    onDragEnd,
+    sortableIds,
   } = useListItemsModel({
     items: itemsProp,
     pinTop: pinTopProp,
@@ -78,6 +81,7 @@ export function DesktopDroplist({
     collapse,
     selectionMode: selection?.mode,
     footerActiveElementsRefs,
+    onItemsReorder,
   });
 
   const [open = false, setOpen] = useValueControl<boolean>({
@@ -269,6 +273,8 @@ export function DesktopDroplist({
                       }}
                       limitedScrollHeight
                       untouchableScrollbars={untouchableScrollbars}
+                      onDragEnd={onDragEnd}
+                      sortableIds={sortableIds}
                     />
                   </div>
                 }
@@ -292,6 +298,9 @@ export function DesktopDroplist({
                 open={open}
                 onOpenChange={handleOpenChange}
                 closeOnPopstate={closeOnPopstate}
+                // dnd-kit (`MouseSensor`/`TouchSensor`) слушает `mouseup`/`touchend` на document
+                // в bubble-фазе — гашение этих хендлеров на floating ломает завершение drag.
+                stopPropagation={onItemsReorder ? { onMouseUp: false, onTouchEnd: false } : undefined}
               >
                 {triggerElem}
               </Dropdown>

@@ -23,7 +23,8 @@ $sizes: 's', 'm', 'l';
 }
 
 .beforeContent,
-.afterContent {
+.afterContent,
+.dragHandle {
   display: inline-flex;
   flex-grow: 0;
   flex-shrink: 0;
@@ -37,6 +38,37 @@ $sizes: 's', 'm', 'l';
   svg {
     width: 100%;
     height: 100%;
+  }
+}
+
+// Ручка drag&drop (Figma `centeredWrapper`) — та же icon-сетка, что у beforeContent, но
+// с курсором «grab/grabbing»: сама кнопка и обработчики (`@dnd-kit`) приходят из `SimpleItem`
+// (режим `onItemsReorder` у `List`/`Droplist`), здесь только layout-слот.
+.dragHandle {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+
+    color: inherit;
+
+    appearance: none;
+    background: transparent;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -189,7 +221,8 @@ $level: var(--level, 0);
         padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
       }
 
-      .beforeContent {
+      .beforeContent,
+      .dragHandle {
         width: base.simple-var(icons.$iconSizeMap, $size);
         height: base.simple-var(icons.$iconSizeMap, $size);
 
@@ -263,7 +296,8 @@ $level: var(--level, 0);
       color: base.$sn-theme-color-available-version-textDisabled;
     }
 
-    .beforeContent {
+    .beforeContent,
+    .dragHandle {
       // TODO Phase 5 token missing: $opacity-a064 (аналог — effect-opacity-disabled 0.4)
       opacity: base.$sn-theme-effect-opacity-disabled;
     }

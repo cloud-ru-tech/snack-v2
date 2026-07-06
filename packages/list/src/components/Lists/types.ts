@@ -1,10 +1,11 @@
+import { DragEndEvent } from '@dnd-kit/core';
 import { DropdownProps } from '@ds/dropdown';
 import { WithSupportProps } from '@ds/utils';
 import { FocusEvent, KeyboardEvent, ReactNode, RefObject } from 'react';
 
 import { EmptyStateProps } from '../../helperComponents';
 import { ScrollProps, SearchState } from '../../types';
-import { FlattenBaseItem, Item, ItemId } from '../Items';
+import { FlattenBaseItem, Item, ItemId, ReorderItem } from '../Items';
 import { CollapseState, PublicListContextType, SelectionState } from './contexts';
 
 export type EmptyState = {
@@ -20,10 +21,8 @@ export type EmptyState = {
   errorDataState?: EmptyStateProps;
 };
 
-export type ListProps = WithSupportProps<
+type ListPropsCommon = WithSupportProps<
   {
-    /** Основные элементы списка */
-    items: Item[];
     /** Элементы списка, закрепленные сверху */
     pinTop?: Item[];
     /** Элементы списка, закрепленные снизу */
@@ -68,19 +67,59 @@ export type ListProps = WithSupportProps<
     scrollToSelectedItem?: boolean;
     /** CSS-класс для scroll обертки основного списка айтемов */
     scrollContainerClassName?: string;
-    /**
-     * Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка
-     */
-    virtualized?: boolean;
     /** Ограничить максимальную высоту скролл-контейнера в зависимости от `size` */
     limitedScrollHeight?: boolean;
   } & SelectionState &
-    PublicListContextType &
+    Omit<PublicListContextType, 'virtualized'> &
     ScrollProps &
     EmptyState
 >;
 
-export type BaseDroplistProps = {
+/** Props `List` — список обычных айтемов (все виды: base / collapse / group / next-list). */
+export type ListProps = ListPropsCommon & {
+  /** Основные элементы списка */
+  items: Item[];
+  /** Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. */
+  virtualized?: boolean;
+};
+
+/**
+ * Props `ReorderableList` — список с drag&drop-переупорядочиванием строк за ручку.
+ *
+ * Отдельный компонент, а не режим `List`: модель айтемов другая (`ReorderItem` — плоская строка
+ * либо группа с заголовком, без `collapse`/`next-list`/`group-select`), а виртуализация здесь
+ * невозможна в принципе — `@dnd-kit` и виртуализатор применяют к строке свой `transform`.
+ */
+export type ReorderableListProps = ListPropsCommon & {
+  /**
+   * Основные элементы списка: строки `SimpleItem` и/или группы с заголовком `SimpleGroupItem`
+   * (`type: 'group'` + `label` + сортируемые `items`).
+   */
+  items: ReorderItem[];
+  /**
+   * Колбек по завершению drag&drop-переупорядочивания элементов списка. Список остаётся
+   * управляемым: сам не хранит порядок, а отдаёт наружу целиком обновлённое дерево `items` —
+   * потребитель обновляет свой стейт этим значением. Переупорядочивание работает только среди
+   * «братьев» одного уровня (строки без группы либо строки внутри одной группы; перенос между
+   * группами не поддерживается).
+   */
+  onItemsReorder(items: ReorderItem[]): void;
+};
+
+/**
+ * @internal Props общей реализации `List`/`ReorderableList` — принимает обе модели айтемов сразу.
+ * Наружу не отдаётся: публичные `ListProps`/`ReorderableListProps` плоские, потому что union в
+ * публичном props-типе ломает `react-docgen-typescript` (`props.json` схлопывается в `alias`),
+ * вывод `Meta`/`StoryObj` и narrowing при spread'е.
+ */
+export type ListImplProps = ListPropsCommon & {
+  items: Item[] | ReorderItem[];
+  virtualized?: boolean;
+  onItemsReorder?(items: ReorderItem[]): void;
+};
+
+/** Собственные props дроплиста — всё, что не приходит из `List`. */
+type DroplistOwnProps = {
   /** Ссылка на элемент-триггер для дроплиста */
   triggerElemRef?: RefObject<HTMLElement>;
   /**
@@ -108,11 +147,22 @@ export type BaseDroplistProps = {
 } & Pick<
   DropdownProps,
   'trigger' | 'placement' | 'widthStrategy' | 'open' | 'onOpenChange' | 'triggerClassName' | 'closeOnPopstate'
-> &
-  Omit<ListProps, 'tabIndex' | 'onKeyDown' | 'hasListInFocusChain' | 'keyboardNavigationRef'>;
+>;
 
-/** Props popover-only десктопного `DesktopDroplist`. Совпадают с базовыми. */
-export type DesktopDroplistProps = BaseDroplistProps;
+/** Props списка, которые дроплист пробрасывает в `List` (навигацией управляет он сам). */
+type DroplistListProps<T> = Omit<T, 'tabIndex' | 'onKeyDown' | 'hasListInFocusChain' | 'keyboardNavigationRef'>;
+
+/** Базовые props дроплиста: собственные + props обычного `List`. */
+export type BaseDroplistProps = DroplistOwnProps & DroplistListProps<ListProps>;
+
+/** Базовые props дроплиста с drag&drop-переупорядочиванием: собственные + props `ReorderableList`. */
+export type ReorderableBaseDroplistProps = DroplistOwnProps & DroplistListProps<ReorderableListProps>;
+
+/**
+ * @internal Props общей реализации дроплиста (`DesktopDroplist`/`MobileDroplist`) — принимает обе
+ * модели айтемов. Публичные `DroplistProps`/`ReorderableDroplistProps` плоские, см. `ListImplProps`.
+ */
+export type DesktopDroplistProps = DroplistOwnProps & DroplistListProps<ListImplProps>;
 
 /** Только mobile (`BottomSheet`)-слоты адаптивного `Droplist`. */
 type DroplistMobileSlots = {
@@ -134,14 +184,29 @@ type DroplistMobileSlots = {
  */
 export type DroplistProps = BaseDroplistProps & DroplistMobileSlots;
 
-/** Props mobile-`MobileDroplist` (`BottomSheet`): база без popover-пропов + mobile-слоты. */
+/**
+ * Props адаптивного `ReorderableDroplist`: props `ReorderableList` + popover/mobile-обвязка
+ * `Droplist`. Отдельный компонент по той же причине, что и `ReorderableList`.
+ */
+export type ReorderableDroplistProps = ReorderableBaseDroplistProps & DroplistMobileSlots;
+
+/** @internal Props общей реализации адаптивного дроплиста: реализация + mobile-слоты. */
+export type DroplistImplProps = DesktopDroplistProps & DroplistMobileSlots;
+
+/**
+ * @internal Props mobile-реализации (`BottomSheet`): реализация дроплиста без popover-пропов
+ * + mobile-слоты.
+ */
 export type MobileDroplistProps = Omit<
-  BaseDroplistProps,
+  DesktopDroplistProps,
   'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName'
 > &
   DroplistMobileSlots;
 
-export type ListPrivateProps = Omit<ListProps, 'pinTop' | 'pinBottom' | 'items' | 'hasListInFocusChain'> & {
+export type ListPrivateProps = Omit<
+  ListImplProps,
+  'pinTop' | 'pinBottom' | 'items' | 'hasListInFocusChain' | 'onItemsReorder' | 'virtualized'
+> & {
   nested?: boolean;
   active?: boolean;
   tabIndex?: number;
@@ -154,4 +219,13 @@ export type ListPrivateProps = Omit<ListProps, 'pinTop' | 'pinBottom' | 'items' 
   pinTop?: ItemId[];
   items: ItemId[];
   pinBottom?: ItemId[];
+  /**
+   * @internal Обработчик завершения drag&drop-переупорядочивания (см. публичный `onItemsReorder`
+   * у `List`/`Droplist`) — вычисляется в `useListItemsModel` и оперирует исходным (не плоским)
+   * деревом `items`. Наличие принудительно включает невиртуализированный рендер и оборачивает айтемы в
+   * `DndContext`/`SortableContext`.
+   */
+  onDragEnd?(event: DragEndEvent): void;
+  /** @internal Плоский список id всех сортируемых элементов (все уровни) для `SortableContext` */
+  sortableIds?: ItemId[];
 };

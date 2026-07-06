@@ -862,7 +862,7 @@ export function FieldSelectCreateModal() {
 | `entityName` | `EntityName` | — | Название сущности в единственном и множественном числе — для кнопок и пустых состояний. |
 | `onRefetch` | `(() => void)` | — | Повтор загрузки в состоянии ошибки (кнопка «Обновить» в футере `errorDataState`). |
 | `permission` | `"canCreate"` \| `"canRead"` \| `"none"` | `canCreate` | Права пользователя: <br/> - `canCreate` (по умолчанию) — доступны и выбор, и создание; <br/> - `canRead` — поле активно, но создание недоступно (кнопки «Создать» с tooltip); <br/> - `none` — поле недоступно (с tooltip). |
-| `selectProps` | `DroplistMobileSlots` \| `EmptyState` \| `FieldSelectDecoratorProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectFieldProps` \| `SelectionState` | — | Пропсы, прокидываемые в `FieldSelect` (`@ds/fields`). |
+| `selectProps` | `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `FieldSelectDecoratorProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectFieldProps` \| `SelectionState` | — | Пропсы, прокидываемые в `FieldSelect` (`@ds/fields`). |
 | `submitHandler` | `() => Promise<string \| void>` | — | Действие создания опции: возвращает `value` новой опции, которая выбирается в поле (single-режим). |
 
 ##### Related types

@@ -3000,6 +3000,11 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -3250,7 +3255,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -3296,6 +3301,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "FieldElementDroplistProps",
@@ -4068,6 +4074,11 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -4318,7 +4329,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -4364,6 +4375,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "FieldElementDroplistProps",
@@ -5112,6 +5124,11 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -5362,7 +5379,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -5408,6 +5425,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "FieldElementDroplistProps",
@@ -6466,6 +6484,7 @@
         "required": true,
         "description": "Пропсы, прокидываемые в `FieldSelect` (`@ds/fields`).",
         "typeRefs": [
+          "DroplistListProps",
           "DroplistMobileSlots",
           "EmptyState",
           "FieldSelectDecoratorProps",
@@ -6604,77 +6623,9 @@
         },
         "own": false
       },
-      "EmptyState": {
-        "kind": "interface",
-        "props": {
-          "dataError": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
-          },
-          "dataFiltered": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
-          },
-          "errorDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при ошибке запроса",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии данных",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noResultsState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии результатов поиска или фильтров",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          }
-        },
-        "own": false
-      },
-      "EmptyStateProps": {
-        "kind": "interface",
-        "props": {
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "description": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Подзаголовок"
-          },
-          "footer": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Вложенный контент (например ButtonGroup)"
-          },
-          "icon": {
-            "type": "IconPredefinedProps | undefined",
-            "required": false,
-            "description": "Иконка",
-            "typeRefs": [
-              "IconPredefinedProps"
-            ]
-          }
-        },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "EntityName": {

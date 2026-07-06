@@ -139,9 +139,47 @@ export type FlattenGroupListItem = Omit<GroupItem, 'items'> & { id: ItemId };
 export type FlattenGroupSelectListItem = Flatten<Omit<GroupSelectItem, 'items'>, 'id'>;
 export type FlattenAccordionItem = Flatten<Omit<AccordionItem, 'items'>, 'id'>;
 
+/**
+ * Строка `List`/`Droplist` в режиме drag&drop-переупорядочивания (проп `onItemsReorder`) —
+ * облегчённый аналог `BaseItem` без `type`-дискриминатора и без вложенности: не поддерживает
+ * `collapse`/`group-select`/`next-list`. `id` обязателен (нужен `@dnd-kit` как identity
+ * сортируемого элемента). Верхний уровень reorder-дерева описывает `ReorderItem` (строка или
+ * группа с заголовком); переупорядочивание идёт только среди «братьев» — строк одного уровня
+ * (внутри одной группы либо между строками без группы), перенос между группами не поддерживается,
+ * см. `reorderReorderItems`.
+ *
+ * `disabled` блокирует выбор, `Switch` и клик, но **не** ручку перетаскивания — порядок можно менять и у
+ * задизейбленных строк.
+ */
+export type SimpleItem = Flatten<BaseItem, 'id'>;
+
+/**
+ * Группа reorder-режима: заголовок (`label` и остальные поля `GroupItem`) + сортируемые строки
+ * `items`. Строки переставляются **внутри** группы, а сама группа переставляется среди других
+ * групп верхнего уровня (за ручку на заголовке) — поэтому у группы обязателен `id` (identity для
+ * `@dnd-kit`). Вложенность ограничена одним уровнем: в `items` только листовые `SimpleItem`.
+ */
+export type SimpleGroupItem = CommonGroupItem & {
+  /** Идентификатор группы — нужен `@dnd-kit` для переупорядочивания групп между собой. */
+  id: ItemId;
+  items: SimpleItem[];
+  type: typeof ITEM_TYPE.Group;
+};
+
+/** Верхнеуровневый элемент reorder-дерева (`onItemsReorder`): строка или группа с заголовком. */
+export type ReorderItem = SimpleItem | SimpleGroupItem;
+
+export type FlattenSimpleItem = FlattenBaseItem & CommonFlattenProps;
+
 export type FlattenItem =
   | FlattenBaseItem
-  | ((FlattenNextListItem | FlattenGroupListItem | FlattenAccordionItem | FlattenGroupSelectListItem) &
+  | ((
+      | FlattenNextListItem
+      | FlattenGroupListItem
+      | FlattenAccordionItem
+      | FlattenGroupSelectListItem
+      | FlattenSimpleItem
+    ) &
       CommonFlattenProps);
 
 export type FocusFlattenItem = {

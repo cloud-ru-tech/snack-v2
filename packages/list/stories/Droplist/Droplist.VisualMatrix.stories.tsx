@@ -23,7 +23,7 @@ const items: Item[] = [
 
 const keySizes = Object.values(SIZE);
 
-function renderTrigger(props: Omit<DroplistProps, 'children'>) {
+function renderTrigger(props: { items: Item[]; size?: DroplistProps['size'] }) {
   return (
     <Droplist {...props}>
       <Button label={`Open (${String(props.size ?? 's').toUpperCase()})`} size='m' />

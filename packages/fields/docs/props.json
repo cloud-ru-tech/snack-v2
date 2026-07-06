@@ -2627,7 +2627,7 @@
       "virtualized": {
         "type": "boolean",
         "required": false,
-        "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+        "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
       },
       "widthStrategy": {
         "type": "enum",
@@ -3134,7 +3134,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -5386,6 +5386,11 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -5636,7 +5641,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -5682,6 +5687,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "FieldElementDroplistProps",

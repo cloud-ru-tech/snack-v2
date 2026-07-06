@@ -269,6 +269,7 @@
         "type": "Pick<DroplistProps, \"className\" | \"open\" | \"onOpenChange\" | \"items\" | \"closeDroplistOnItemClick\">",
         "required": true,
         "typeRefs": [
+          "DroplistListProps",
           "DroplistMobileSlots",
           "DroplistProps",
           "EmptyState",
@@ -510,6 +511,11 @@
             ]
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -859,7 +865,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -955,24 +961,6 @@
         "values": [
           "after",
           "before"
-        ],
-        "own": false
-      },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
         ],
         "own": false
       },
@@ -1261,6 +1249,7 @@
         "type": "Pick<DroplistProps, \"className\" | \"open\" | \"onOpenChange\" | \"items\" | \"closeDroplistOnItemClick\">",
         "required": true,
         "typeRefs": [
+          "DroplistListProps",
           "DroplistMobileSlots",
           "DroplistProps",
           "EmptyState",
@@ -1502,6 +1491,11 @@
             ]
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -1851,7 +1845,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -1947,24 +1941,6 @@
         "values": [
           "after",
           "before"
-        ],
-        "own": false
-      },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
         ],
         "own": false
       },
@@ -3581,7 +3557,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           }
         },
         "own": false
@@ -4068,6 +4044,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -4093,6 +4070,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -4264,6 +4242,11 @@
             ]
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -4613,7 +4596,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -5674,6 +5657,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -5699,6 +5683,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -5894,6 +5879,11 @@
             ]
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -6243,7 +6233,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -6932,6 +6922,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -6957,6 +6948,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -7128,6 +7120,11 @@
             ]
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -7477,7 +7474,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -8567,6 +8564,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
               "EmptyState",
@@ -8781,6 +8779,11 @@
           }
         },
         "own": true
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
       },
       "DroplistMobileSlots": {
         "kind": "interface",
@@ -9129,7 +9132,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",
@@ -9462,7 +9465,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           }
         },
         "own": false
@@ -10353,7 +10356,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           }
         },
         "own": false
@@ -11291,7 +11294,7 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить виртуализацию на компоненты списка. Рекомендуется если у вас от 1к элементов списка"
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
           },
           "widthStrategy": {
             "type": "PopoverWidthStrategy | undefined",

@@ -1,10 +1,20 @@
+import { DragEndEvent } from '@dnd-kit/core';
 import { preventScrollOnArrowKeys, useValueControl } from '@ds/utils';
 import { KeyboardEvent, RefObject, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import { ITEM_PREFIXES, ITEM_TYPE, MODE } from '../../constants';
 import { Mode, SearchState } from '../../types';
-import { extractActiveItems, FocusFlattenItem, Item, ItemId, kindFlattenItems, useCreateBaseItems } from '../Items';
+import {
+  extractActiveItems,
+  FocusFlattenItem,
+  Item,
+  ItemId,
+  kindFlattenItems,
+  ReorderItem,
+  useCreateBaseItems,
+} from '../Items';
 import { CollapseState } from './contexts';
+import { reorderItems } from './utils';
 
 // Селектор фокусируемых узлов для возврата фокуса на триггер при «выходе вверх» из списка.
 const FOCUSABLE_SELECTOR = 'input,textarea,select,button,a[href],[tabindex]';
@@ -24,13 +34,20 @@ function focusReturnTarget(el: HTMLElement | null | undefined) {
 }
 
 type UseListItemsModelProps = {
-  items: Item[];
+  items: Item[] | ReorderItem[];
   pinTop: Item[];
   pinBottom: Item[];
   search?: SearchState;
   collapse: CollapseState;
   selectionMode?: Mode;
   footerActiveElementsRefs?: RefObject<HTMLElement>[];
+  /**
+   * Колбек drag&drop-переупорядочивания (см. `ListProps.onItemsReorder`). Наличие переключает
+   * `items` в сортируемый режим: `kindFlattenItems` размечает каждый узел `type: ITEM_TYPE.Simple`,
+   * а хук дополнительно возвращает `onDragEnd`/`sortableIds` для `DndContext`/`SortableContext`
+   * (собираемых уже в `ListPrivate`).
+   */
+  onItemsReorder?(items: ReorderItem[]): void;
 };
 
 /**
@@ -48,8 +65,10 @@ export function useListItemsModel({
   collapse,
   selectionMode,
   footerActiveElementsRefs,
+  onItemsReorder,
 }: UseListItemsModelProps) {
   const hasSearch = useMemo(() => Boolean(search), [search]);
+  const sortable = Boolean(onItemsReorder);
 
   const [openCollapseItems = [], setOpenCollapsedItems] = useValueControl<ItemId[] | undefined>(collapse);
   const toggleOpenCollapseItem = useCallback(
@@ -75,6 +94,7 @@ export function useListItemsModel({
       items: itemsProp,
       prefix: ITEM_PREFIXES.default,
       parentId: ITEM_PREFIXES.default,
+      sortable,
     });
     const pinBottom = kindFlattenItems({
       items: pinBottomProp,
@@ -95,7 +115,7 @@ export function useListItemsModel({
     });
 
     return { items, pinTop, pinBottom, flattenItems, focusFlattenItems };
-  }, [itemsProp, pinTopProp, pinBottomProp, searchItem, footerItems]);
+  }, [itemsProp, pinTopProp, pinBottomProp, searchItem, footerItems, sortable]);
 
   const { ids, expandedIds } = useMemo(() => {
     const { pinTop, items, pinBottom } = memorizedItems;
@@ -126,6 +146,20 @@ export function useListItemsModel({
     return { ids, expandedIds };
   }, [footerItems, hasSearch, memorizedItems, openCollapseItems, searchItem.id, selectionMode]);
 
+  // Работает с исходным (не плоским) деревом `itemsProp` — гарантированно `ReorderItem[]`, когда
+  // `onItemsReorder` передан (см. дискриминированный `ListProps` — вызывающая сторона это
+  // обеспечивает на уровне типов, здесь только рантайм-каст).
+  const handleDragEnd = useCallback(
+    ({ active, over }: DragEndEvent) => {
+      if (!onItemsReorder || !over || active.id === over.id) {
+        return;
+      }
+
+      onItemsReorder(reorderItems(itemsProp as ReorderItem[], active.id, over.id));
+    },
+    [itemsProp, onItemsReorder],
+  );
+
   return {
     hasSearch,
     openCollapseItems,
@@ -138,6 +172,20 @@ export function useListItemsModel({
     ids,
     expandedIds,
     firstItemId: ids[0],
+    // Всегда `undefined`, когда `onItemsReorder` не передан — `ListPrivate` включает
+    // `DndContext`/`SortableContext` и принудительно отключает виртуализацию по наличию `onDragEnd`.
+    onDragEnd: sortable ? handleDragEnd : undefined,
+    // Внешний `SortableContext` держит сортируемые элементы верхнего уровня: строки без группы
+    // (`Simple`) и сами группы (`Group`) — группы переставляются между собой за ручку на заголовке.
+    // Строки внутри групп сортируются в собственных `SortableContext` (их разворачивает
+    // `getRenderItems`), чтобы переупорядочивание шло строго внутри группы. Для плоского списка —
+    // просто все id.
+    sortableIds: sortable
+      ? memorizedItems.items.focusCloseChildIds
+          .map(focusId => focusFlattenItems[focusId])
+          .filter(item => item?.type === ITEM_TYPE.Simple || item?.type === ITEM_TYPE.Group)
+          .map(item => item.originalId)
+      : undefined,
   };
 }
 

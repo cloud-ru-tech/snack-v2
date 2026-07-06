@@ -1,0 +1,149 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
+@use '../../../iconSizes' as icons;
+
+$sizes: 's', 'm', 'l';
+
+// Отступ слева и gap строки списка по размеру — чтобы ручка заголовка группы вставала ровно над
+// ручками строк. Используются плоские Figma-переменные (как в `BaseItem`), навигация по
+// `list.$list` тут не проходит.
+$listItemPaddingLeft: (
+  's': list.$sn-list-anatomy-size-s-listItem-paddingHorizontal,
+  'm': list.$sn-list-anatomy-size-m-listItem-paddingHorizontal,
+  'l': list.$sn-list-anatomy-size-l-listItem-paddingHorizontal,
+);
+$listItemGap: (
+  's': list.$sn-list-anatomy-size-s-listItem-gap,
+  'm': list.$sn-list-anatomy-size-m-listItem-gap,
+  'l': list.$sn-list-anatomy-size-l-listItem-gap,
+);
+// Асимметричные вертикальные отступы заголовка группы (`Separator`): сверху — `subtitle.paddingTop`
+// (визуальный зазор над группой), снизу — `listItem.paddingVertical`. Из-за перекоса текст стоит
+// ниже центра box'а, поэтому ручка перетаскивания сдвинута вниз на их разницу (см. `.dragHandle`
+// ниже).
+$subtitlePaddingTop: (
+  's': list.$sn-list-anatomy-size-s-subtitle-paddingTop,
+  'm': list.$sn-list-anatomy-size-m-subtitle-paddingTop,
+  'l': list.$sn-list-anatomy-size-l-subtitle-paddingTop,
+);
+$listItemPaddingVertical: (
+  's': list.$sn-list-anatomy-size-s-listItem-paddingVertical,
+  'm': list.$sn-list-anatomy-size-m-listItem-paddingVertical,
+  'l': list.$sn-list-anatomy-size-l-listItem-paddingVertical,
+);
+
+.item {
+  // Исходная строка во время переноса — приглушённый «призрак» на месте будущей позиции.
+  // Саму перетаскиваемую копию рендерит `DragOverlay` (`SimpleItemOverlay`) в портале.
+  &[data-dragging] {
+    position: relative;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  // Плавающая копия в `DragOverlay`: сплошная поверхность + elevation, чтобы строка читалась
+  // над фоном страницы (портал вне контейнера List, своего фона у строки нет).
+  &[data-overlay] {
+    cursor: grabbing;
+    opacity: 0.5;
+    background: base.$sn-theme-color-neutral-background2Level;
+    box-shadow: base.$sn-boxShadow-elevation-level2;
+  }
+}
+
+// Сортируемый блок группы (`SimpleGroupBlock`): заголовок + строки едут вместе (`useSortable` на
+// блоке). Во время перетаскивания блок целиком приглушён «призраком».
+.groupBlock {
+  &[data-dragging] {
+    position: relative;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  // Плавающая копия блока в `DragOverlay` (перетаскивание группы): сплошная поверхность + elevation
+  // на весь блок (заголовок + строки), чтобы читалась над фоном страницы.
+  &[data-overlay] {
+    cursor: grabbing;
+    opacity: 0.5;
+    background: base.$sn-theme-color-neutral-background2Level;
+    box-shadow: base.$sn-boxShadow-elevation-level2;
+  }
+
+  // Подсветка границ группы при переупорядочивании строки внутри неё (`data-reorder-boundary`):
+  // даёт понять, что перестановка ограничена группой, иначе остановка у границы читается как баг.
+  &[data-reorder-boundary] {
+    background: base.$sn-theme-color-neutral-background1Level;
+    box-shadow:
+      inset 0 6px 12px -12px base.$sn-theme-color-blackout,
+      inset 0 -6px 12px -12px base.$sn-theme-color-blackout;
+  }
+}
+
+// Строка-заголовок внутри блока группы: ручка перетаскивания + `Separator`. Отступ слева и gap — как у
+// строки (`listItem`), чтобы ручка заголовка стояла ровно над ручками строк.
+.groupHeader {
+  display: flex;
+  align-items: center;
+
+  // Separator занимает всю оставшуюся ширину.
+  > :last-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var($listItemGap, $size);
+      padding-left: base.simple-var($listItemPaddingLeft, $size);
+
+      // Собственный `padding-left` `Separator`'а компенсируется отрицательным margin: иначе левый
+      // отступ удваивается и контент заголовка не встаёт ровно над контентом строк.
+      > :last-child {
+        margin-left: calc(-1 * #{base.simple-var($listItemPaddingLeft, $size)});
+      }
+
+      // Ручка заголовка по icon-сетке строки (как before/after слоты у BaseItem).
+      .dragHandle {
+        width: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
+
+        // Верхний отступ `Separator`'а (`subtitle.paddingTop`) больше нижнего, поэтому текст стоит
+        // ниже центра box'а — ручка сдвинута вниз на разницу отступов, чтобы её центр совпал с текстом.
+        margin-top: calc(
+          #{base.simple-var($subtitlePaddingTop, $size)} - #{base.simple-var($listItemPaddingVertical, $size)}
+        );
+      }
+    }
+  }
+}
+
+// Ручка перетаскивания — плоская иконка-кнопка: дефолтные обводка и фон сброшены, цвет вторичный.
+// То же, что у ручки строки, которую `BaseItem` сбрасывает через свою `.dragHandle button`.
+.dragHandle {
+  cursor: grab;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  appearance: none;
+  background: transparent;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

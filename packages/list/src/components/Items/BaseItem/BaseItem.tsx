@@ -30,6 +30,12 @@ type AllBaseItemProps = FlattenBaseItem & {
    * со своим state-layer'ом, а клик по телу строки больше не переключает раскрытие.
    */
   onExpandIconClick?(e: MouseEvent<HTMLElement>): void;
+  /**
+   * Слот ручки drag&drop (Figma `centeredWrapper`) — рендерится первым в строке, перед
+   * маркером/чекбоксом. Интерактивность (обработчики `@dnd-kit`) и содержимое (иконка)
+   * приходят снаружи — `BaseItem` только позиционирует слот, ничего не знает про DnD.
+   */
+  dragHandle?: ReactNode;
 };
 
 export function BaseItem({
@@ -55,6 +61,7 @@ export function BaseItem({
   className,
   inactive,
   itemWrapRender,
+  dragHandle,
   ...rest
 }: AllBaseItemProps) {
   const interactive = !inactive;
@@ -198,6 +205,8 @@ export function BaseItem({
         data-level-more-one={level > 1 || undefined}
         data-checked={(isParentNode && (indeterminate || isChecked)) || (isChecked && !switchProp) || undefined}
       >
+        {dragHandle && <div className={styles.dragHandle}>{dragHandle}</div>}
+
         {!switchProp && isSelectionSingle && marker && !isParentNode && interactive && (
           <div className={styles.markerContainer} data-test-id={TEST_IDS.baseItemMarker} />
         )}

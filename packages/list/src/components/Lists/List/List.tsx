@@ -8,9 +8,9 @@ import { CollapseContext, FocusListContext, NewListContextProvider, SelectionPro
 import { useListItemsModel, useNewKeyboardNavigation } from '../hooks';
 import { ListPrivate } from '../ListPrivate';
 import styles from '../styles.module.scss';
-import { ListProps } from '../types';
+import { ListImplProps, ListProps, ReorderableListProps } from '../types';
 
-export const List = forwardRef(
+const ListImpl = forwardRef(
   (
     {
       items: itemsProp = [],
@@ -28,8 +28,9 @@ export const List = forwardRef(
       marker = true,
       keyboardNavigationRef,
       hasListInFocusChain = true,
+      onItemsReorder,
       ...props
-    }: ListProps,
+    }: ListImplProps,
     ref: ForwardedRef<HTMLElement>,
   ) => {
     const {
@@ -42,6 +43,8 @@ export const List = forwardRef(
       ids,
       expandedIds,
       firstItemId,
+      onDragEnd,
+      sortableIds,
     } = useListItemsModel({
       items: itemsProp,
       pinTop: pinTopProp,
@@ -50,6 +53,7 @@ export const List = forwardRef(
       collapse,
       selectionMode: selection?.mode,
       footerActiveElementsRefs,
+      onItemsReorder,
     });
 
     const listRef = useRef<HTMLElement>(null);
@@ -117,6 +121,8 @@ export const List = forwardRef(
                   tabIndex={hasListInFocusChain ? tabIndex : undefined}
                   search={search}
                   nested={false}
+                  onDragEnd={onDragEnd}
+                  sortableIds={sortableIds}
                 />
 
                 {hasListInFocusChain && <HiddenTabButton ref={btnRef} listRef={listRef} tabIndex={tabIndex} />}
@@ -128,3 +134,21 @@ export const List = forwardRef(
     );
   },
 );
+
+ListImpl.displayName = 'ListImpl';
+
+/** Список айтемов: base / collapse / group / next-list, с опциональной виртуализацией. */
+export const List = forwardRef((props: ListProps, ref: ForwardedRef<HTMLElement>) => <ListImpl {...props} ref={ref} />);
+
+List.displayName = 'List';
+
+/**
+ * Список с drag&drop-переупорядочиванием строк за ручку слева. Управляемый: порядок не хранит,
+ * а отдаёт обновлённое дерево в `onItemsReorder`. Модель айтемов — `ReorderItem` (плоская строка
+ * либо группа с заголовком); `collapse`/`next-list`/`group-select` и виртуализация не поддержаны.
+ */
+export const ReorderableList = forwardRef((props: ReorderableListProps, ref: ForwardedRef<HTMLElement>) => (
+  <ListImpl {...props} ref={ref} />
+));
+
+ReorderableList.displayName = 'ReorderableList';

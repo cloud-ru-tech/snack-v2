@@ -15,6 +15,9 @@ const LIST_MESSAGES = defineMessages({
       reset: 'Reset all',
       select: 'Select all',
     },
+    list: {
+      dragHandle: 'Drag to reorder',
+    },
   },
   'ru-RU': {
     noData: {
@@ -29,6 +32,9 @@ const LIST_MESSAGES = defineMessages({
     groupSelectButton: {
       reset: 'Сбросить все',
       select: 'Выбрать все',
+    },
+    list: {
+      dragHandle: 'Перетащить для изменения порядка',
     },
   },
 });

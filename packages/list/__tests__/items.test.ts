@@ -105,6 +105,28 @@ describe('kindFlattenItems', () => {
     expect(keys).toHaveLength(1);
     expect(keys[0]).toContain(String(ITEM_PREFIXES.default));
   });
+
+  // React key должен следовать за item.id, а не за позицией в дереве: иначе при
+  // onItemsReorder инстанс Switch/Checkbox остаётся в слоте и анимирует смену checked.
+  it('uses stable item id as React key (not positional autoId)', () => {
+    const email: Item = { id: 'email', content: { option: 'Email' }, switch: true };
+    const role: Item = { id: 'role', content: { option: 'Role' }, switch: true };
+    const { focusFlattenItems, focusCloseChildIds } = kindFlattenItems({
+      items: [email, role],
+      prefix: ITEM_PREFIXES.default,
+      sortable: true,
+    });
+
+    expect(focusCloseChildIds).toEqual([`${ITEM_PREFIXES.default}-0`, `${ITEM_PREFIXES.default}-1`]);
+    expect(focusCloseChildIds.map(id => focusFlattenItems[id]?.key)).toEqual(['email', 'role']);
+
+    const reordered = kindFlattenItems({
+      items: [role, email],
+      prefix: ITEM_PREFIXES.default,
+      sortable: true,
+    });
+    expect(reordered.focusCloseChildIds.map(id => reordered.focusFlattenItems[id]?.key)).toEqual(['role', 'email']);
+  });
 });
 
 describe('extractActiveItems', () => {

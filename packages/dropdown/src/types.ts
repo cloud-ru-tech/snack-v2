@@ -29,7 +29,7 @@ export type DropdownState =
  * и молча игнорируются на mobile (у `BottomSheet` своё позиционирование снизу):
  * `placement`, `widthStrategy`, `offset`, `fallbackPlacements`, `hoverDelayOpen`, `hoverDelayClose`,
  * `closeOnEscapeKey`, `triggerClickByKeys`, `outsideClick`, `disableSpanWrapper`, `triggerClassName`,
- * `triggerRef`, `container` (на mobile портал берётся из `@ds/portal-context`).
+ * `triggerRef`, `container` (на mobile портал берётся из `@ds/portal-context`), `stopPropagation`.
  * Кросс-платформенные: `content`, `headline`, `headlineHint`, `search`, `footer`, `headerDivider`,
  * `footerDivider`, `state`, `open`, `onOpenChange`, `closeOnPopstate`, `className`, `bodyPadding`.
  */
