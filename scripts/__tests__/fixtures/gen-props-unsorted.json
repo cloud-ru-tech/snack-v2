@@ -1,0 +1,39 @@
+{
+  "Zebra": {
+    "displayName": "Zebra",
+    "propsTypeName": null,
+    "props": {
+      "zebra": { "type": "string", "required": false }
+    },
+    "relatedTypes": {}
+  },
+  "Alpha": {
+    "displayName": "Alpha",
+    "propsTypeName": "AlphaProps",
+    "props": {
+      "zeta": {
+        "type": "enum",
+        "required": false,
+        "values": ["z", "a", "m"],
+        "typeRefs": ["Size", "Appearance"]
+      },
+      "alpha": { "type": "string", "required": true }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": ["m", "s", "xs"]
+      },
+      "Appearance": {
+        "kind": "interface",
+        "props": {
+          "tone": {
+            "type": "enum",
+            "required": false,
+            "values": ["dark", "light"]
+          }
+        }
+      }
+    }
+  }
+}

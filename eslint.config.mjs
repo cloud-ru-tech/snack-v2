@@ -58,11 +58,22 @@ export default [
       'apps/storybook/.storybook/**/*',
       'apps/docs/astro.config.mjs',
       'scripts/**/*.ts',
+      'scripts/**/*.mts',
       'eslint.config.mjs',
       'vitest.config.ts',
     ],
     rules: {
       'import/no-default-export': 'off',
+    },
+  },
+  {
+    files: ['scripts/**/*.mts'],
+    rules: {
+      // Tooling scripts: react-docgen `prop.parent`, TS helpers defined below use sites.
+      '@cloud-ru/ssr-safe-react/domApi': 'off',
+      'no-use-before-define': 'off',
+      '@typescript-eslint/no-use-before-define': 'off',
+      'no-nested-ternary': 'off',
     },
   },
   {

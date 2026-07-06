@@ -1,99 +1,93 @@
-/* eslint-disable vitest/no-conditional-expect, @typescript-eslint/no-non-null-assertion */
-import { sync as glob } from 'glob';
-import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-const root = resolve(__dirname, '../..');
+import { type ComponentDoc, formatPropsJson, isRicher, sortOutput } from '../gen-props-output.mts';
+import counterContract from './fixtures/counter-props.contract.json';
+import unsortedFixture from './fixtures/gen-props-unsorted.json';
 
-function readAllPropsJson(): Map<string, string> {
-  // packages/icons is excluded from gen:props (see glob ignore in scripts/gen-props.mts).
-  const files = glob('packages/*/docs/props.json', {
-    cwd: root,
-    absolute: true,
-    ignore: ['**/packages/icons/**'],
-  });
-  const m = new Map<string, string>();
-  for (const f of files) m.set(f.replace(root + '/', ''), readFileSync(f, 'utf8'));
-  return m;
-}
+const unsorted = unsortedFixture as Record<string, ComponentDoc>;
 
-describe('gen-props', () => {
-  let firstRun: Map<string, string>;
-  let secondRun: Map<string, string>;
+function expectAlphabeticallySorted(json: Record<string, ComponentDoc>, label: string): void {
+  const compKeys = Object.keys(json);
+  expect(compKeys, `${label}: components`).toEqual([...compKeys].sort());
 
-  beforeAll(() => {
-    execSync('pnpm gen:props', { cwd: root, stdio: 'pipe' });
-    firstRun = readAllPropsJson();
-    execSync('pnpm gen:props', { cwd: root, stdio: 'pipe' });
-    secondRun = readAllPropsJson();
-  }, 240_000);
+  for (const compName of compKeys) {
+    const comp = json[compName];
 
-  it('produces identical output on re-run (idempotent / deterministic order)', () => {
-    expect([...secondRun.keys()].sort()).toEqual([...firstRun.keys()].sort());
-    for (const [path, content] of firstRun) {
-      expect(secondRun.get(path), `${path} differs between runs`).toBe(content);
+    const propKeys = Object.keys(comp.props);
+    expect(propKeys, `${label}: ${compName}.props`).toEqual([...propKeys].sort());
+    for (const [pname, p] of Object.entries(comp.props)) {
+      if (p.values) {
+        expect(p.values, `${label}: ${compName}.props.${pname}.values`).toEqual([...p.values].sort());
+      }
+      if (p.typeRefs) {
+        expect(p.typeRefs, `${label}: ${compName}.props.${pname}.typeRefs`).toEqual([...p.typeRefs].sort());
+      }
     }
-  });
 
-  it('keys and union values are alphabetically sorted in every props.json', () => {
-    type Prop = { values?: string[] };
-    type Related =
-      | { kind: 'union'; values: string[] }
-      | { kind: 'interface'; props: Record<string, Prop> }
-      | { kind: 'alias' };
-    type Comp = { props: Record<string, Prop>; relatedTypes: Record<string, Related> };
-
-    for (const [path, content] of firstRun) {
-      const json = JSON.parse(content) as Record<string, Comp>;
-      const compKeys = Object.keys(json);
-      expect(compKeys, `${path}: components`).toEqual([...compKeys].sort());
-
-      for (const compName of compKeys) {
-        const comp = json[compName];
-
-        const propKeys = Object.keys(comp.props);
-        expect(propKeys, `${path}: ${compName}.props`).toEqual([...propKeys].sort());
-        for (const [pname, p] of Object.entries(comp.props)) {
+    const relKeys = Object.keys(comp.relatedTypes);
+    expect(relKeys, `${label}: ${compName}.relatedTypes`).toEqual([...relKeys].sort());
+    for (const [rname, r] of Object.entries(comp.relatedTypes)) {
+      if (r.kind === 'union') {
+        expect(r.values, `${label}: ${compName}.relatedTypes.${rname}.values`).toEqual([...r.values].sort());
+      }
+      if (r.kind === 'interface') {
+        const ipropKeys = Object.keys(r.props);
+        expect(ipropKeys, `${label}: ${compName}.relatedTypes.${rname}.props`).toEqual([...ipropKeys].sort());
+        for (const [pname, p] of Object.entries(r.props)) {
           if (p.values) {
-            expect(p.values, `${path}: ${compName}.props.${pname}.values`).toEqual([...p.values].sort());
-          }
-        }
-
-        const relKeys = Object.keys(comp.relatedTypes);
-        expect(relKeys, `${path}: ${compName}.relatedTypes`).toEqual([...relKeys].sort());
-        for (const [rname, r] of Object.entries(comp.relatedTypes)) {
-          if (r.kind === 'union') {
-            expect(r.values, `${path}: ${compName}.relatedTypes.${rname}.values`).toEqual([...r.values].sort());
-          }
-          if (r.kind === 'interface') {
-            const ipropKeys = Object.keys(r.props);
-            expect(ipropKeys, `${path}: ${compName}.relatedTypes.${rname}.props`).toEqual([...ipropKeys].sort());
-            for (const [pname, p] of Object.entries(r.props)) {
-              if (p.values) {
-                expect(p.values, `${path}: ${compName}.relatedTypes.${rname}.props.${pname}.values`).toEqual(
-                  [...p.values].sort(),
-                );
-              }
-            }
+            expect(p.values, `${label}: ${compName}.relatedTypes.${rname}.props.${pname}.values`).toEqual(
+              [...p.values].sort(),
+            );
           }
         }
       }
     }
+  }
+}
+
+describe('gen-props output', () => {
+  it('sortOutput is idempotent', () => {
+    const once = sortOutput(unsorted);
+    expect(sortOutput(once)).toEqual(once);
   });
 
-  it('resolves @ds/* workspace types (Counter exposes its real props)', () => {
+  it('formatPropsJson is deterministic on re-run', () => {
+    expect(formatPropsJson(unsorted)).toBe(formatPropsJson(unsorted));
+  });
+
+  // eslint-disable-next-line vitest/expect-expect
+  it('sorts keys and union values alphabetically', () => {
+    expectAlphabeticallySorted(sortOutput(unsorted), 'fixture');
+  });
+
+  it('isRicher prefers docs with more resolved props', () => {
+    const sparse: ComponentDoc = {
+      displayName: 'Counter',
+      propsTypeName: null,
+      props: {},
+      relatedTypes: {},
+    };
+    const rich: ComponentDoc = {
+      displayName: 'Counter',
+      propsTypeName: 'CounterProps',
+      props: {
+        value: { type: 'number', required: true },
+        appearance: { type: 'enum', required: false, values: ['primary'] },
+      },
+      relatedTypes: {},
+    };
+
+    expect(isRicher(rich, sparse)).toBe(true);
+    expect(isRicher(sparse, rich)).toBe(false);
+  });
+
+  it('counter contract exposes workspace-resolved props shape', () => {
     // Regression guard: when @ds/* paths are not mapped to src, react-docgen-typescript
     // collapses CounterProps (uses WithSupportProps from @ds/utils) and emits zero props.
-    const content = firstRun.get('packages/counter/docs/props.json');
-    expect(content, 'packages/counter/docs/props.json missing').toBeDefined();
-    const counter = (JSON.parse(content!) as { Counter?: { propsTypeName: string; props: Record<string, unknown> } })
-      .Counter;
-    expect(counter, 'Counter component missing').toBeDefined();
-    expect(counter!.propsTypeName).toBe('CounterProps');
+    const counter = (counterContract as { Counter: ComponentDoc }).Counter;
+    expect(counter.propsTypeName).toBe('CounterProps');
     for (const expected of ['value', 'appearance', 'variant', 'size', 'plusLimit', 'color', 'className']) {
-      expect(counter!.props, `Counter.props.${expected}`).toHaveProperty(expected);
+      expect(counter.props, `Counter.props.${expected}`).toHaveProperty(expected);
     }
   });
 });

@@ -2,7 +2,7 @@
 // entry тянет CSS-модули, ломает node-окружение vitest.
 import { describe, expect, it } from 'vitest';
 
-import { capitalize } from '../src/helpers/capitalize';
+import { capitalize } from '../src/components/FieldSelectCreate/utils';
 
 describe('capitalize', () => {
   it('uppercases the first letter of a lowercase word', () => {

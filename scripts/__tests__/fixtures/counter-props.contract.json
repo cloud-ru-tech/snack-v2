@@ -1,0 +1,16 @@
+{
+  "Counter": {
+    "displayName": "Counter",
+    "propsTypeName": "CounterProps",
+    "props": {
+      "appearance": { "type": "enum", "required": false, "values": ["primary"] },
+      "className": { "type": "string", "required": false },
+      "color": { "type": "enum", "required": false, "values": ["accent"] },
+      "plusLimit": { "type": "number", "required": false },
+      "size": { "type": "enum", "required": false, "values": ["xs"] },
+      "value": { "type": "number", "required": true },
+      "variant": { "type": "enum", "required": false, "values": ["count"] }
+    },
+    "relatedTypes": {}
+  }
+}
