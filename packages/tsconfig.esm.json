@@ -268,6 +268,9 @@
       "path": "./uikit-product-error-pages/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-fields-predefined/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-flex/tsconfig.esm.json"
     },
     {

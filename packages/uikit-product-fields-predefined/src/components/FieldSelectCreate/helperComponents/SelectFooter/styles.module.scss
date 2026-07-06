@@ -1,0 +1,8 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.footerWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: base.$sn-primitive-dimension-4;
+  border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+}

@@ -1,0 +1,89 @@
+---
+title: FieldChat
+package: '@ds/uikit-product-fields-predefined'
+description: Поле чата с многострочным вводом, прикреплением файлов и кнопкой отправки (Enter — отправка, Shift+Enter — перенос строки).
+order: 6
+---
+
+import { FieldChatBasic } from '../demos/examples/FieldChatBasic'
+import FieldChatBasicSrc from '../demos/examples/FieldChatBasic.tsx?raw'
+import { FieldChatWithAttachments } from '../demos/examples/FieldChatWithAttachments'
+import FieldChatWithAttachmentsSrc from '../demos/examples/FieldChatWithAttachments.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldChat
+
+Поле чата поверх `FieldTextArea`. Многострочный ввод с автоматическим ростом высоты (1–4 строки), футером действий (прикрепление файлов и отправка) и списком прикреплённых вложений. Enter отправляет сообщение, Shift+Enter переносит строку. Прикреплённые файлы на desktop показываются под полем, на mobile — над ним.
+
+## Когда использовать
+
+- Поле ввода сообщения в чате или диалоге с ассистентом.
+- Нужно прикрепление файлов рядом с вводом и отправка по Enter.
+
+Когда **не** нужен `FieldChat`:
+
+- Многострочное описание сущности без отправки/вложений — [`FieldDescription`](/components/uikit-product-fields-predefined/field-description).
+- Произвольный многострочный текст — [`FieldTextArea`](/components/fields).
+
+## Анатомия
+
+### Ввод
+
+`FieldTextArea` с `minRows=1` и `maxRows=4`: поле растёт по мере набора текста и дальше скроллится. Плейсхолдер берётся из локали.
+
+### Футер действий
+
+- Скрепка (`FileUpload`) — прикрепление файлов; видна только при переданном `attachment`. Тип допустимых файлов задаётся через `attachment.accept`.
+- Кнопка отправки — активна, когда есть непустой текст или хотя бы один файл; иначе disabled.
+
+### Вложения
+
+`attachment.files` рендерятся карточками: `AttachmentSquare` на desktop, полноширинный `Attachment` на mobile. Удаление — через `attachment.onFileDelete`.
+
+### Клавиатура
+
+- Enter — отправка (вызывает `handleSubmit(value)`), если ввод валиден.
+- Shift+Enter — перенос строки без отправки.
+
+## Примеры использования
+
+<Example title='Базовый' description='Многострочный ввод с отправкой по Enter.' code={FieldChatBasicSrc}>
+  <FieldChatBasic client:visible />
+</Example>
+
+<Example title='С вложениями' description='Прикрепление и удаление файлов, отправка очищает поле и список.' code={FieldChatWithAttachmentsSrc}>
+  <FieldChatWithAttachments client:visible />
+</Example>
+
+## Адаптивность
+
+Раскладку компонент берёт из `AdaptiveProvider` (`@ds/adaptive`) — отдельного пропа `layoutType` нет. На mobile прикреплённые файлы показываются **над** полем полноширинными карточками `Attachment` (на desktop — под полем, `AttachmentSquare`). Размер поля от раскладки не зависит.
+
+`autoFocus` на mobile выключается (наследуется из `@ds/fields`) — он открывает экранную клавиатуру без действия пользователя. Вернуть на mobile — через `layoutPresets`:
+
+```tsx
+<FieldChat autoFocus layoutPresets={{ mobile: { autoFocus: true } }} />
+```
+
+Mobile включается автоматически при одном `<AdaptiveProvider>` в корне приложения (desktop-first).
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldChat} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fieldchat--playground'
+  height={460}
+/>
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-fields-predefined', 'field-chat')} />

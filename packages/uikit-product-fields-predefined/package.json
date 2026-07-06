@@ -1,0 +1,62 @@
+{
+  "name": "@ds/uikit-product-fields-predefined",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/attachment": "workspace:^",
+    "@ds/button": "workspace:^",
+    "@ds/drawer": "workspace:^",
+    "@ds/dropzone": "workspace:^",
+    "@ds/fields": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/input-private": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/modal": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/tooltip": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "awesome-phonenumber": "7.5.0",
+    "classnames": "catalog:",
+    "imask": "7.6.1",
+    "merge-refs": "catalog:",
+    "react-imask": "7.6.1"
+  },
+  "peerDependencies": {
+    "react-hook-form": "7.79.0",
+    "yup": "1.7.1"
+  },
+  "devDependencies": {
+    "react-hook-form": "7.79.0",
+    "yup": "1.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

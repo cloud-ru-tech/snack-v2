@@ -1,0 +1,85 @@
+---
+title: FieldCode
+package: '@ds/uikit-product-fields-predefined'
+description: OTP-поле — код по ячейкам с автопереходом фокуса, вставкой кода целиком, resend-таймером и imperative ref.
+order: 7
+---
+
+import { FieldCodeBasic } from '../demos/examples/FieldCodeBasic'
+import FieldCodeBasicSrc from '../demos/examples/FieldCodeBasic.tsx?raw'
+import { FieldCodeValidation } from '../demos/examples/FieldCodeValidation'
+import FieldCodeValidationSrc from '../demos/examples/FieldCodeValidation.tsx?raw'
+import { FieldCodeResend } from '../demos/examples/FieldCodeResend'
+import FieldCodeResendSrc from '../demos/examples/FieldCodeResend.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import fieldsDoc from './props.json'
+
+# FieldCode
+
+Поле ввода одноразового кода (OTP): `codeLength` ячеек на `FieldText` из `@ds/fields`, автопереход фокуса при вводе, вставка кода целиком из буфера, колбек `onComplete` при заполнении всех ячеек. Опционально — кнопка повторной отправки кода с таймером (`resendCode`) и хук валидации `useFieldCodeValidate`.
+
+## Когда использовать
+
+- Подтверждение по SMS/email-коду: пользователь вводит фиксированное число цифр.
+- Нужен автопереход фокуса между ячейками и вставка кода целиком.
+
+Когда **не** нужен `FieldCode`:
+
+- Числовой код как обычная строка без ячеек — [`FieldMask`](/components/uikit-product-fields-predefined/field-mask) с маской `code`.
+
+## Анатомия
+
+### Size (default `m`)
+
+Размер ячеек и подписи наследуется от `FieldDecorator`:
+
+- `s` — компактный (ячейка 32px).
+- `m` — средний (ячейка 40px).
+- `l` — крупный (ячейка 52px).
+
+### Слоты и состояния
+
+- `label` — заголовок поля.
+- `error` / `invalidCode` — текст ошибки; `error` приоритетнее.
+- `showEmptyChars` — подсветка пустых ячеек (состояние «код не дописан»).
+- `spacing` — визуальный разрыв после указанных индексов (`[2]` для формата `XXX XXX`).
+- `stretchCells` — ячейки делят всю ширину контейнера; иначе фиксированная ширина по `size`.
+- `resendCode` — кнопка повторной отправки: заблокирована с таймером `mm:ss`, пока `secondsToNextResend > 0`.
+
+### Imperative ref (`FieldCodeRef`)
+
+- `moveFocus(index)` — перенести фокус на ячейку.
+- `blurFields()` — снять фокус со всех ячеек.
+- `resetCode()` — сбросить значение.
+
+## Примеры использования
+
+<Example title='Базовый' description='Uncontrolled-ввод кода с onComplete.' code={FieldCodeBasicSrc}>
+  <FieldCodeBasic client:visible />
+</Example>
+
+<Example title='Валидация' description='Хук useFieldCodeValidate: пустое значение и неполный код.' code={FieldCodeValidationSrc}>
+  <FieldCodeValidation client:visible />
+</Example>
+
+<Example title='Повторная отправка' description='resendCode c таймером обратного отсчёта.' code={FieldCodeResendSrc}>
+  <FieldCodeResend client:visible />
+</Example>
+
+## Адаптивность
+
+Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет. На mobile компонент не переносит фокус автоматически (ни при монтировании, ни при `resetCode`) — чтобы экранная клавиатура не открывалась без действия пользователя. Размер на mobile не меняется — база `m`.
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldCode} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fieldcode--playground'
+  height={420}
+/>

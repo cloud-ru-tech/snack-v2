@@ -1,0 +1,86 @@
+---
+title: FieldDescription
+package: '@ds/uikit-product-fields-predefined'
+description: Многострочное поле описания с yup-валидацией длины, опциональным раскрытием по кнопке и режимом react-hook-form.
+order: 4
+---
+
+import { FieldDescriptionBasic } from '../demos/examples/FieldDescriptionBasic'
+import FieldDescriptionBasicSrc from '../demos/examples/FieldDescriptionBasic.tsx?raw'
+import { FieldDescriptionWithAddButton } from '../demos/examples/FieldDescriptionWithAddButton'
+import FieldDescriptionWithAddButtonSrc from '../demos/examples/FieldDescriptionWithAddButton.tsx?raw'
+import { FieldDescriptionRHFExample } from '../demos/examples/FieldDescriptionRHF'
+import FieldDescriptionRHFSrc from '../demos/examples/FieldDescriptionRHF.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import fieldsDoc from './props.json'
+
+# FieldDescription
+
+Многострочное поле описания поверх `FieldTextArea` с встроенной yup-валидацией длины (до 255 символов, со счётчиком). По умолчанию необязательное. Доступно в двух вариантах: standalone (`FieldDescription`, локальный стейт + `onValidationError`) и `FieldDescriptionRHF` (react-hook-form через `Controller`). Опционально может сворачиваться в кнопку «Добавить описание».
+
+## Когда использовать
+
+- Ввод необязательного/обязательного описания сущности с ограничением длины.
+- В форме на react-hook-form — вариант `FieldDescriptionRHF`.
+- Когда описание необязательно и его лучше скрыть до клика — `addButton`.
+
+Когда **не** нужен `FieldDescription`:
+
+- Короткое однострочное имя — [`FieldName`](/components/uikit-product-fields-predefined/field-name).
+
+## Анатомия
+
+### Валидация
+
+Встроенная схема (yup): обрезка пробелов (`trim`) и ограничение длины `maxLength` (по умолчанию 255) с сообщением и счётчиком. `customSchema` конкатенируется к встроенной. При `required` добавляется проверка обязательности.
+
+### addButton
+
+Если `addButton` и поле необязательное (`required={false}`) — вместо textarea показывается кнопка «Добавить описание». Клик раскрывает поле и ставит в него фокус.
+
+### Режимы
+
+- `FieldDescription` — локальный стейт, ошибка отдаётся через `onValidationError(error)`.
+- `FieldDescriptionRHF` — `controllerProps` для react-hook-form.
+
+### Size (default `m`)
+
+Размер поля наследуется от `FieldTextArea`: `s`, `m`, `l`.
+
+## Примеры использования
+
+<Example title='Базовый' description='Standalone-режим с валидацией длины.' code={FieldDescriptionBasicSrc}>
+  <FieldDescriptionBasic client:visible />
+</Example>
+
+<Example title='С кнопкой «Добавить»' description='Необязательное поле, свёрнутое в кнопку.' code={FieldDescriptionWithAddButtonSrc}>
+  <FieldDescriptionWithAddButton client:visible />
+</Example>
+
+<Example title='React Hook Form' description='FieldDescriptionRHF внутри FormProvider.' code={FieldDescriptionRHFSrc}>
+  <FieldDescriptionRHFExample client:visible />
+</Example>
+
+## Адаптивность
+
+`autoFocus` на mobile выключается (наследуется из `@ds/fields`) — автофокус там открывает экранную клавиатуру без действия пользователя. Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет. Вернуть автофокус на mobile — пропом `layoutPresets`:
+
+```tsx
+<FieldDescription autoFocus layoutPresets={{ mobile: { autoFocus: true } }} />
+```
+
+`size` от раскладки не зависит — задаётся пропом (по умолчанию `m`) одинаково на всех раскладках.
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldDescription} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fielddescription--playground'
+  height={420}
+/>

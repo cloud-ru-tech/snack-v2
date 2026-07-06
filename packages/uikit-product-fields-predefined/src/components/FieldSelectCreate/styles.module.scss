@@ -1,0 +1,12 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.fieldSelectCreate {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.createButton {
+  // По макету кнопка «Создать» под полем не растянута, а прижата к левому краю.
+  align-self: flex-start;
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.cjs.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/cjs"
+  },
+  "include": ["./src", "../../types"],
+  "exclude": ["./dist", "./stories", "./__tests__", "./__test__", "./docs", "./demos", "node_modules"],
+  "references": [
+    { "path": "../adaptive/tsconfig.cjs.json" },
+    { "path": "../button/tsconfig.cjs.json" },
+    { "path": "../drawer/tsconfig.cjs.json" },
+    { "path": "../fields/tsconfig.cjs.json" },
+    { "path": "../icons/tsconfig.cjs.json" },
+    { "path": "../input-private/tsconfig.cjs.json" },
+    { "path": "../list/tsconfig.cjs.json" },
+    { "path": "../locale/tsconfig.cjs.json" },
+    { "path": "../modal/tsconfig.cjs.json" },
+    { "path": "../scroll/tsconfig.cjs.json" },
+    { "path": "../utils/tsconfig.cjs.json" }
+  ]
+}

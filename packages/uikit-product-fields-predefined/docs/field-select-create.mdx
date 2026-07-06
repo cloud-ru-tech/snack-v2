@@ -1,0 +1,118 @@
+---
+title: FieldSelectCreate
+package: '@ds/uikit-product-fields-predefined'
+description: Поле выбора из списка с действием «Создать» — под полем и в футере пустых состояний дроплиста; состояния data/error/noData/noResult и поиск.
+order: 5
+---
+
+import { FieldSelectCreateBasic } from '../demos/examples/FieldSelectCreateBasic'
+import FieldSelectCreateBasicSrc from '../demos/examples/FieldSelectCreateBasic.tsx?raw'
+import { FieldSelectCreateAsync } from '../demos/examples/FieldSelectCreateAsync'
+import FieldSelectCreateAsyncSrc from '../demos/examples/FieldSelectCreateAsync.tsx?raw'
+import { FieldSelectCreateModal } from '../demos/examples/FieldSelectCreateModal'
+import FieldSelectCreateModalSrc from '../demos/examples/FieldSelectCreateModal.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldSelectCreate
+
+Поле выбора поверх `FieldSelect` из `@ds/fields` со встроенной формой создания опции. Кнопка `+ Создать <entityName>` показывается под полем и в футере дроплиста; по клику открывается форма в `Drawer` или `Modal`. Пропсы поля передаются через `selectProps`, состояния списка и поиск — из `@ds/list`.
+
+## Когда использовать
+
+- Выбор из списка, где пользователь может тут же создать новый объект, если нужного нет.
+- Асинхронная подгрузка с состояниями загрузки/ошибки/пустого результата.
+
+Когда **не** нужен `FieldSelectCreate`:
+
+- Простой выбор без создания — используйте `FieldSelect` из `@ds/fields`.
+
+## Анатомия
+
+### Действие «Создать»
+
+Кнопка `+ Создать <entityName>` рендерится в двух местах: под полем и в футере дроплиста (`SelectFooter`). По клику открывается форма создания:
+
+- `Drawer` (по умолчанию) или `Modal` — задаётся через `createLayoutType`.
+- Содержимое формы и заголовок задаются в `createLayoutProps` (`content` — форма, `title` — заголовок).
+- Кнопки «Создать» / «Отмена» добавляет сам компонент; на «Создать» вызывается `submitHandler`.
+- `submitHandler` возвращает `value` новой опции — в single-режиме она выбирается в поле; `afterClose` — колбэк после закрытия.
+
+### entityName
+
+Название сущности в единственном (`single`, вин. падеж) и множественном (`plural`) числе. Из них собираются тексты: кнопка «Создать `single`», пустые состояния «`plural` не обнаружены / не найдены», ошибка «Не удалось загрузить `plural`».
+
+### Права (`permission`, default `canCreate`)
+
+Ограничивает доступ к чтению и созданию:
+
+- `canCreate` — доступны и выбор, и создание.
+- `canRead` — поле активно, но кнопки «Создать» недоступны (с tooltip причины).
+- `none` — поле недоступно (с tooltip).
+
+### Состояния списка
+
+Управляются `@ds/list` по флагам `loading` / `dataError` / `dataFiltered` (передаются через `selectProps`):
+
+- `data` — список опций.
+- `error` — «Не удалось загрузить `plural`» + кнопка «Обновить» (`onRefetch`).
+- `noData` — «`plural` не обнаружены»; иконку задаёт `entityIcon` (по умолчанию — поиск).
+- `noResult` — «`plural` не найдены. Измените запрос или создайте `single`».
+
+### Режим выбора (`selectProps.selection`, default `single`)
+
+Наследуется от `FieldSelect`: `single` — одна опция, `multiple` — несколько. В `multiple` возвращённое из `submitHandler` значение **не** выбирается автоматически — выбор оставляется потребителю.
+
+### Size (default `m`)
+
+Размер поля задаётся через `selectProps.size`: `s`, `m`, `l`.
+
+### Открытие на выбранном элементе (`selectProps.scrollToSelectedItem`)
+
+`FieldSelect` проксирует `scrollToSelectedItem` из `@ds/list` в дроплист — при открытии список прокручивается до выбранной опции:
+
+```tsx
+<FieldSelectCreate selectProps={{ scrollToSelectedItem: true }} … />
+```
+
+Работает и с `selectProps={{ virtualized: true }}`.
+
+## Примеры использования
+
+<Example title='Базовый' description='«Создать» открывает форму создания; submitHandler добавляет опцию и выбирает её.' code={FieldSelectCreateBasicSrc}>
+  <FieldSelectCreateBasic client:visible />
+</Example>
+
+<Example title='Асинхронная загрузка' description='Состояние ошибки с кнопкой «Обновить» (onRefetch).' code={FieldSelectCreateAsyncSrc}>
+  <FieldSelectCreateAsync client:visible />
+</Example>
+
+<Example title='Форма в модальном окне' description='createLayoutType=modal — форма создания открывается в модальном окне.' code={FieldSelectCreateModalSrc}>
+  <FieldSelectCreateModal client:visible />
+</Example>
+
+## Адаптивность
+
+Дроплист — адаптивный `Droplist` из `@ds/list`: на desktop анкорный popover, на mobile — список в `BottomSheet`. Раскладку даёт `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет.
+
+`size` на всех раскладках — база `m`. Автофокус поля выключается на mobile (наследуется из `FieldSelect` / `@ds/fields`); вернуть — через `selectProps={{ layoutPresets: { mobile: { autoFocus: true } } }}`.
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldSelectCreate} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fieldselectcreate--playground'
+  height={460}
+/>
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-fields-predefined', 'field-select-create')} />

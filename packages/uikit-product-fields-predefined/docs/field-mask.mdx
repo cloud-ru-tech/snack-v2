@@ -1,0 +1,82 @@
+---
+title: FieldMask
+package: '@ds/uikit-product-fields-predefined'
+description: Поле ввода с предустановленной маской — uuid, code, passport, snils, ipv4 — поверх @ds/fields FieldText.
+order: 1
+---
+
+import { FieldMaskMasks } from '../demos/examples/FieldMaskMasks'
+import FieldMaskMasksSrc from '../demos/examples/FieldMaskMasks.tsx?raw'
+import { FieldMaskControlled } from '../demos/examples/FieldMaskControlled'
+import FieldMaskControlledSrc from '../demos/examples/FieldMaskControlled.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import fieldsDoc from './props.json'
+
+# FieldMask
+
+Обёртка над `FieldText` из `@ds/fields` с предустановленной маской ввода на `react-imask`. Маска, плейсхолдер и `inputMode` выбираются по пропу `mask` — поле само форматирует ввод и отдаёт значение через `onChange(value, mask)`.
+
+## Когда использовать
+
+- Нужен ввод строго форматированного значения: идентификатор (UUID), код, паспорт, СНИЛС, IPv4-адрес.
+- Хочется готовую маску без ручной настройки `react-imask`.
+
+Когда **не** нужен `FieldMask`:
+
+- Произвольный текст без формата — [`FieldText`](/components/fields) напрямую.
+- Телефон с выбором страны — [`FieldPhone`](/components/uikit-product-fields-predefined/field-phone).
+
+## Анатомия
+
+### Mask
+
+Предустановленный набор масок (проп `mask`, константа `MASK`):
+
+- `uuid` — `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX` (hex).
+- `code` — `XXXX` (числовой код).
+- `passport` — `XXXX XXXXXX`.
+- `snils` — `XXXXXX-XXX XX`.
+- `ip-v4-address` — `0[00].0[00].0[00].0[00]`.
+- `ip-v4-address-with-mask` — IPv4 с CIDR-суффиксом `/NN`.
+
+### Size (default `m`)
+
+Размер поля наследуется от `FieldText`:
+
+- `s` — компактный.
+- `m` — средний.
+- `l` — крупный.
+
+## Примеры использования
+
+<Example title='Типы масок' description='Разные предустановленные маски в одном ряду.' code={FieldMaskMasksSrc}>
+  <FieldMaskMasks client:visible />
+</Example>
+
+<Example title='Controlled' description='Контролируемое значение через value + onChange.' code={FieldMaskControlledSrc}>
+  <FieldMaskControlled client:visible />
+</Example>
+
+## Адаптивность
+
+`autoFocus` на mobile выключается (наследуется из `@ds/fields`) — автофокус там открывает экранную клавиатуру без действия пользователя. Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет. Вернуть автофокус на mobile — пропом `layoutPresets`:
+
+```tsx
+<FieldMask mask='uuid' autoFocus layoutPresets={{ mobile: { autoFocus: true } }} />
+```
+
+`size` от раскладки не зависит — задаётся пропом (по умолчанию `m`) одинаково на всех раскладках.
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldMask} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fieldmask--playground'
+  height={420}
+/>

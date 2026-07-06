@@ -1,0 +1,1 @@
+export const DEFAULT_MAX_NAME_LENGTH = 64;

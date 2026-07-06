@@ -1,0 +1,84 @@
+---
+title: FieldPhone
+package: '@ds/uikit-product-fields-predefined'
+description: Телефонное поле с выбором страны, динамической маской по стране и авто-детектом страны при вставке номера.
+order: 2
+---
+
+import { FieldPhoneBasic } from '../demos/examples/FieldPhoneBasic'
+import FieldPhoneBasicSrc from '../demos/examples/FieldPhoneBasic.tsx?raw'
+import { FieldPhoneCountrySettings } from '../demos/examples/FieldPhoneCountrySettings'
+import FieldPhoneCountrySettingsSrc from '../demos/examples/FieldPhoneCountrySettings.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldPhone
+
+Телефонное поле поверх `FieldText`. В ведущем слоте — селектор страны (`AdaptiveDroplist` из `@ds/list`) с флагом и кодом; маска ввода динамически подстраивается под выбранную страну. При вставке номера из буфера страна определяется автоматически (`awesome-phonenumber`).
+
+## Когда использовать
+
+- Ввод телефона с международным выбором страны.
+- Нужен авто-детект страны по вставленному номеру и маскирование под формат страны.
+
+Когда **не** нужен `FieldPhone`:
+
+- Произвольный форматированный ввод без телефона — [`FieldMask`](/components/uikit-product-fields-predefined/field-mask).
+
+## Анатомия
+
+### Селектор страны
+
+Ведущий слот (`elementBefore`) — флаг выбранной страны + код (`+7`, `+1`, …). Клик открывает `AdaptiveDroplist` со списком стран и поиском. Если доступна одна страна — селектор скрывается, остаётся только код в префиксе.
+
+### Mask
+
+Маска ввода определяется выбранной страной (`country.mask`) и меняется при смене страны. Префикс с кодом страны добавляется к итоговому значению.
+
+### options — настройка списка стран
+
+Проп `options` (`CountrySettings`) ограничивает или переопределяет список (взаимоисключающие поля):
+
+- `includedCountries` — оставить только перечисленные страны.
+- `excludedCountries` — исключить перечисленные из встроенного списка.
+- `overriddenOptions` — полностью заменить список собственными опциями.
+
+### Size (default `m`)
+
+Размер поля наследуется от `FieldText`: `s`, `m`, `l`.
+
+## Примеры использования
+
+<Example title='Базовый' description='Телефон с полным списком стран и поиском.' code={FieldPhoneBasicSrc}>
+  <FieldPhoneBasic client:visible />
+</Example>
+
+<Example title='Ограниченный список стран' description='options.includedCountries оставляет только страны СНГ.' code={FieldPhoneCountrySettingsSrc}>
+  <FieldPhoneCountrySettings client:visible />
+</Example>
+
+## Адаптивность
+
+Выбор страны — адаптивный `Droplist` из `@ds/list`: на desktop анкорный popover, на mobile — список в `BottomSheet`. Раскладку даёт `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет.
+
+`autoFocus` на mobile выключается (наследуется из `@ds/fields`) — вернуть можно пропом `layoutPresets={{ mobile: { autoFocus: true } }}`.
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldPhone} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fieldphone--playground'
+  height={420}
+/>
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-fields-predefined', 'field-phone')} />

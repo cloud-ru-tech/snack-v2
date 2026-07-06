@@ -124,12 +124,13 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       id: 'inputs',
       label: 'Inputs & Forms',
       description:
-        'Продуктовый ввод: загрузка файлов, строки-настройки, карточки выбора (ToggleCard / ToggleGroup), chip-переключатели конфигурации.',
+        'Продуктовый ввод: загрузка файлов, строки-настройки, карточки выбора (ToggleCard / ToggleGroup), chip-переключатели конфигурации, предопределённые поля.',
       packages: [
         'uikit-product-upload-files',
         'uikit-product-switch-row',
         'uikit-product-toggles-predefined',
         'uikit-product-config-selector',
+        'uikit-product-fields-predefined',
       ],
     },
     {

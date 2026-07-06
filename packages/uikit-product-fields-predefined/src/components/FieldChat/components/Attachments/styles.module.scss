@@ -1,0 +1,19 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.attachmentsScroll {
+  // Flex-ребёнок колонки .fieldChat: без min-width:0 ряд превью распирает поле
+  // шире контейнера и вылезает за панель вместо горизонтального скролла.
+  min-width: 0;
+}
+
+.attachments {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  padding: base.$sn-primitive-dimension-1 0;
+
+  // Превью сохраняют свой размер и уезжают в горизонтальный скролл,
+  // а не сжимаются под ширину контейнера.
+  > * {
+    flex-shrink: 0;
+  }
+}

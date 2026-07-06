@@ -263,6 +263,9 @@
       "path": "./uikit-product-error-pages/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-fields-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-flex/tsconfig.cjs.json"
     },
     {

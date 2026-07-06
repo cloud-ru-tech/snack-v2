@@ -1,0 +1,30 @@
+---
+title: Fields Predefined
+package: '@ds/uikit-product-fields-predefined'
+description: Набор предопределённых полей формы поверх @ds/fields — телефон, маски, имя, описание, код и другие готовые сценарии ввода.
+order: 0
+---
+
+# Fields Predefined
+
+Пакет `@ds/uikit-product-fields-predefined` — это готовые поля формы поверх `@ds/fields` с заранее настроенным поведением: маски ввода, телефон с выбором страны, валидация имени и описания (yup + react-hook-form), код подтверждения. Каждое поле инкапсулирует свою логику (маскирование, детект страны, validation) и предоставляет чистое API в стиле `@ds`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-fields-predefined
+```
+
+```ts
+import { FieldMask, FieldPhone } from '@ds/uikit-product-fields-predefined'
+```
+
+## Состав пакета
+
+- [`FieldMask`](/components/uikit-product-fields-predefined/field-mask) — поле с предустановленной маской (uuid, code, passport, snils, ipv4).
+- [`FieldName`](/components/uikit-product-fields-predefined/field-name) — имя с yup-валидацией символов и длины; standalone и react-hook-form варианты.
+- [`FieldDescription`](/components/uikit-product-fields-predefined/field-description) — многострочное описание с валидацией длины, опциональным раскрытием по кнопке и react-hook-form вариантом.
+- [`FieldPhone`](/components/uikit-product-fields-predefined/field-phone) — телефон с выбором страны, динамической маской и авто-детектом страны при вставке.
+- [`FieldChat`](/components/uikit-product-fields-predefined/field-chat) — поле чата с многострочным вводом, прикреплением файлов и отправкой по Enter.
+- [`FieldSelectCreate`](/components/uikit-product-fields-predefined/field-select-create) — выбор из списка с действием «Создать» и состояниями загрузки/ошибки/пустого результата.
+- [`FieldCode`](/components/uikit-product-fields-predefined/field-code) — OTP-поле: код по ячейкам с автопереходом фокуса, resend-таймером и imperative ref.

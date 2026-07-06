@@ -1,0 +1,9 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.fieldPhone {
+  // Маска рендерится всегда (imask lazy:false) — в пустом поле приглушаем её как плейсхолдер.
+  // `.fieldPhone` — на корне FieldDecorator, `data-empty` — на вложенном input, поэтому селектор потомковый.
+  input[data-empty] {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+}

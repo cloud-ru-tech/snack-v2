@@ -1,0 +1,51 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$container-gaps: (
+  's': base.$sn-primitive-dimension-8,
+  'm': base.$sn-primitive-dimension-8,
+  'l': base.$sn-primitive-dimension-12,
+);
+
+.fieldCode {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  // align-items: stretch перебивает center — без него дети остаются по ширине контента.
+  &[data-stretch-cells] {
+    align-items: stretch;
+    width: 100%;
+  }
+}
+
+.fieldCodeScrollable {
+  overflow-x: auto;
+}
+
+.fieldDecorator {
+  width: unset;
+}
+
+.codeContainer {
+  display: flex;
+  justify-content: safe center;
+
+  &[data-stretch-cells] {
+    width: 100%;
+  }
+
+  @each $size, $gap in $container-gaps {
+    &[data-size='#{$size}'] {
+      gap: $gap;
+    }
+  }
+}
+
+.cellSpacing {
+  @each $size, $margin-right in $container-gaps {
+    &[data-size='#{$size}'] {
+      margin-right: $margin-right;
+    }
+  }
+}

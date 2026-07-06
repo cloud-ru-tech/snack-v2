@@ -1,0 +1,93 @@
+---
+title: FieldName
+package: '@ds/uikit-product-fields-predefined'
+description: Поле «Имя» с встроенной yup-валидацией (латиница/цифры/.-_, до 64 символов) и режимом react-hook-form.
+order: 3
+---
+
+import { FieldNameBasic } from '../demos/examples/FieldNameBasic'
+import FieldNameBasicSrc from '../demos/examples/FieldNameBasic.tsx?raw'
+import { FieldNameRHFExample } from '../demos/examples/FieldNameRHF'
+import FieldNameRHFSrc from '../demos/examples/FieldNameRHF.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import fieldsDoc from './props.json'
+
+# FieldName
+
+Поле ввода имени поверх `FieldText` с предустановленной yup-валидацией: только латиница, цифры, точка, дефис и подчёркивание; длина до 64 символов; по умолчанию обязательное. Лейбл и подпись подставляются из локали. Доступно в двух вариантах: standalone (`FieldName`, локальный стейт + `onValidationError`) и `FieldNameRHF` (интеграция с react-hook-form через `Controller`).
+
+## Когда использовать
+
+- Ввод технического имени сущности (сервис, ресурс, ключ) с ограничением на символы и длину.
+- В форме на react-hook-form — вариант `FieldNameRHF`.
+
+Когда **не** нужен `FieldName`:
+
+- Произвольный текст без правил валидации — [`FieldText`](/components/fields).
+- Многострочное описание — [`FieldDescription`](/components/uikit-product-fields-predefined/field-description).
+
+## Анатомия
+
+### Валидация
+
+Встроенная схема (yup):
+
+- символы — `^[a-zA-Z0-9.\-_]*$` (иначе ошибка «недопустимые символы»);
+- длина — до `maxLength` (по умолчанию 64), счётчик показывается при ошибке длины;
+- `required` (по умолчанию `true`) — ошибка обязательности появляется после blur.
+
+Через `customSchema` к встроенной схеме конкатенируются дополнительные правила. Так подключают data-зависимые проверки, которые компонент не может выполнить сам — например, уникальность имени по данным потребителя. Текст ошибки для этого случая уже есть в локали пакета (`FieldName.errorDuplicate` — «Такое название уже существует»):
+
+```tsx
+import { string } from 'yup'
+import { fieldsPredefinedLocale } from '@ds/uikit-product-fields-predefined/locale'
+
+const { t } = fieldsPredefinedLocale.useTranslations()
+
+const uniqueSchema = string().test('unique', t('FieldName.errorDuplicate'), value => !existingNames.includes(value ?? ''))
+
+<FieldName customSchema={uniqueSchema} />
+```
+
+### Режимы
+
+- `FieldName` — локальный стейт, ошибка отдаётся через `onValidationError(error)`.
+- `FieldNameRHF` — `controllerProps` для react-hook-form; валидация регистрируется как `validate` в `Controller`.
+
+### Size (default `m`)
+
+Размер поля наследуется от `FieldText`: `s`, `m`, `l`.
+
+## Примеры использования
+
+<Example title='Базовый' description='Standalone-режим с локальным стейтом и валидацией.' code={FieldNameBasicSrc}>
+  <FieldNameBasic client:visible />
+</Example>
+
+<Example title='React Hook Form' description='FieldNameRHF внутри FormProvider.' code={FieldNameRHFSrc}>
+  <FieldNameRHFExample client:visible />
+</Example>
+
+## Адаптивность
+
+`autoFocus` на mobile выключается (наследуется из `@ds/fields`) — автофокус там открывает экранную клавиатуру без действия пользователя. Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет. Вернуть автофокус на mobile — пропом `layoutPresets`:
+
+```tsx
+<FieldName autoFocus layoutPresets={{ mobile: { autoFocus: true } }} />
+```
+
+`size` от раскладки не зависит — задаётся пропом (по умолчанию `m`) одинаково на всех раскладках.
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldName} />
+
+## Storybook
+
+<StorybookEmbed
+  packageName='@ds/uikit-product-fields-predefined'
+  storyId='uikit-product-fieldspredefined-fieldname--playground'
+  height={420}
+/>

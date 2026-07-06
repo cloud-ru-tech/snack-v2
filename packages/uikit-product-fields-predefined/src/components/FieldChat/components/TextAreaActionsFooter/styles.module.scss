@@ -1,0 +1,29 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.actionsFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding-bottom: base.$sn-primitive-dimension-8;
+}
+
+.actionsLeft {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.actionsRight {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+  padding-right: base.$sn-primitive-dimension-8;
+}

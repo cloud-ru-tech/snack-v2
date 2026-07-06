@@ -1,0 +1,20 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.fieldChat {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  // Заполняем контейнер и не даём полю растягиваться под контент (ряд вложений):
+  // без этого `.fieldChat` shrink-wrap'ится по самому широкому ребёнку (скролл превью)
+  // и вылезает за родителя, а горизонтальный скролл вложений не включается.
+  width: 100%;
+  min-width: 0;
+
+  &[data-layout-type='mobile'] {
+    gap: base.$sn-primitive-dimension-8;
+  }
+}
+
+.uploadTooltip {
+  display: flex;
+}

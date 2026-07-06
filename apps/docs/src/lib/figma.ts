@@ -255,6 +255,13 @@ export const FIGMA_NODES = {
     'recall-modal-confirmable': { ...PRODUCT, nodeId: '3179:9390' }, // recallModalConfirmable
     'release-notes': { ...PRODUCT, nodeId: '3181:10621' }, // releaseNotes (desktop surface); mobile sheet — 3181:14803
   },
+  'uikit-product-fields-predefined': {
+    _: { ...PRODUCT, nodeId: '3033:1708' }, // fieldPredefined (root)
+    'field-phone': { ...PRODUCT, nodeId: '3033:16372' },
+    'field-chat': { ...PRODUCT, nodeId: '3033:16662' },
+    'field-select-create': { ...PRODUCT, nodeId: '3033:16497' },
+    // FieldMask Figma-ноды в 3033:1708 нет — стили из существующих токенов sn/field/*
+  },
   'uikit-product-price-summary': {
     _: { ...PRODUCT, nodeId: '2909-6589' },
     'price-summary': { ...PRODUCT, nodeId: '2909-5733' },

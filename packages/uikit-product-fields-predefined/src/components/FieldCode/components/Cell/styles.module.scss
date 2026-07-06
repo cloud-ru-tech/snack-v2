@@ -1,0 +1,27 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+$cell-widths: (
+  's': base.$sn-primitive-dimension-32,
+  'm': base.$sn-primitive-dimension-40,
+  'l': base.$sn-primitive-dimension-52,
+);
+
+.cell {
+  flex-shrink: 0;
+
+  input {
+    text-align: center;
+  }
+
+  @each $size, $width in $cell-widths {
+    &[data-size='#{$size}']:not(.stretch) {
+      width: $width;
+    }
+  }
+
+  // Класс, а не data-атрибут: FieldText роутит произвольные data-* на внутренний input, а не на корень .cell.
+  &.stretch {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
