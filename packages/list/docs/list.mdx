@@ -223,7 +223,7 @@ import '@ds/list/style.css'
 ## Виртуализация
 
 - Включайте `virtualized` при размере `items` от ~1000 элементов.
-- Виртуализация несовместима со `scrollToSelectedItem` — фокусирование строки в большом списке делайте вручную через `keyboardNavigationRef.current?.focusItem(id)`.
+- `scrollToSelectedItem` работает и с `virtualized`: список прокручивается до выбранной строки при открытии.
 - Внутри `Droplist` виртуализация работает так же — проп `virtualized` доступен и там.
 
 ## Доступность
