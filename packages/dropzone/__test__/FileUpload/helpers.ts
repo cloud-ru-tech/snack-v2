@@ -17,6 +17,11 @@ export const FILE_UPLOAD_STORIES = {
     group: 'dropzone',
     story: 'single-image',
   },
+  formField: {
+    name: 'fileupload-examples-formfield',
+    group: 'dropzone',
+    story: 'form-field',
+  },
   acceptImage: {
     name: 'fileupload-tests-acceptvariants',
     group: 'dropzone',

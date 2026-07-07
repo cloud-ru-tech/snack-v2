@@ -5,9 +5,17 @@
     "description": "Компонент — видимая зона для drag-n-drop загрузки файлов",
     "props": {
       "accept": {
-        "type": "string",
+        "type": "AcceptInput",
         "required": false,
-        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+        "description": "Разрешённые типы: MIME-тип (`image/png`), шаблон (`image/*`) или расширение (`.pdf`). Строка или массив.",
+        "typeRefs": [
+          "AcceptInput"
+        ]
+      },
+      "capture": {
+        "type": "boolean | \"user\" | \"environment\"",
+        "required": false,
+        "description": "Нативный `capture` скрытого input — источник захвата на мобильных (камера/микрофон)."
       },
       "children": {
         "type": "ReactNode",
@@ -29,6 +37,26 @@
         "defaultValue": "false",
         "description": "Деактивирован ли компонент"
       },
+      "form": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `form` скрытого input — привязка к форме по `id`."
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `id` скрытого input — для связи с `<label htmlFor>`."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLInputElement>",
+        "required": false,
+        "description": "Ссылка на нативный `<input type=\"file\">` — для интеграции с формами (react-hook-form `ref`)."
+      },
+      "maxSize": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальный размер одного файла в байтах. Превысившие уходят в `onFilesReject`."
+      },
       "mode": {
         "type": "enum",
         "required": false,
@@ -42,10 +70,30 @@
           "UploadMode"
         ]
       },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `name` скрытого input — для отправки формы и интеграции с form-библиотеками."
+      },
+      "onChange": {
+        "type": "ChangeEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Нативный `onChange` скрытого input. Вызывается до валидации с исходным событием."
+      },
+      "onFilesReject": {
+        "type": "((rejections: FileRejection[]) => void)",
+        "required": false,
+        "description": "Колбек с отклонёнными файлами и причиной (`maxSize` / `mime`)."
+      },
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек с принятыми файлами (прошедшими проверку `maxSize` и `accept`)."
+      },
+      "required": {
+        "type": "boolean",
+        "required": false,
+        "description": "Нативный `required` скрытого input."
       },
       "size": {
         "type": "enum",
@@ -63,6 +111,11 @@
       }
     },
     "relatedTypes": {
+      "AcceptInput": {
+        "kind": "alias",
+        "type": "string | string[] | undefined",
+        "own": true
+      },
       "Size": {
         "kind": "union",
         "values": [
@@ -87,17 +140,37 @@
     "propsTypeName": "FileUploadProps",
     "props": {
       "accept": {
-        "type": "string",
+        "type": "AcceptInput",
         "required": false,
-        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+        "description": "Разрешённые типы файлов: MIME-тип (`image/png`), шаблон (`image/*`) или расширение (`.pdf`).\nСтрока (через запятую, как нативный `accept`) или массив. Задаёт нативный `accept` и валидацию.",
+        "typeRefs": [
+          "AcceptInput"
+        ]
       },
       "children": {
         "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-        "required": true
+        "required": true,
+        "description": "Триггер открытия диалога выбора файлов (кнопка / лейбл). Клонируется, к нему добавляется `onClick`."
       },
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Деактивирует триггер и input."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLInputElement>",
+        "required": false,
+        "description": "Ссылка на нативный `<input type=\"file\">` — для интеграции с формами (react-hook-form `ref`)."
+      },
+      "maxSize": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальный размер одного файла в байтах. Превысившие уходят в `onFilesReject`."
       },
       "mode": {
         "type": "enum",
@@ -107,18 +180,33 @@
           "single"
         ],
         "defaultValue": "multiple",
-        "description": "Режим",
+        "description": "Режим выбора файлов",
         "typeRefs": [
           "UploadMode"
         ]
       },
+      "onChange": {
+        "type": "ChangeEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Нативный `onChange` скрытого input. Вызывается до валидации с исходным событием —\nточка интеграции с react-hook-form и другими form-библиотеками."
+      },
+      "onFilesReject": {
+        "type": "((rejections: FileRejection[]) => void)",
+        "required": false,
+        "description": "Колбек с отклонёнными файлами и причиной отказа (`maxSize` / `mime`).\nВызывается только когда задан `maxSize` и/или `accept` и есть отклонённые файлы."
+      },
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек с принятыми файлами (прошедшими проверку `maxSize` и `accept`)."
       }
     },
     "relatedTypes": {
+      "AcceptInput": {
+        "kind": "alias",
+        "type": "string | string[] | undefined",
+        "own": true
+      },
       "UploadMode": {
         "kind": "union",
         "values": [
@@ -135,9 +223,17 @@
     "description": "Компонент — скрытая дропзона, накрывающая произвольный контент (формы, карточки)",
     "props": {
       "accept": {
-        "type": "string",
+        "type": "AcceptInput",
         "required": false,
-        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+        "description": "Разрешённые типы: MIME-тип (`image/png`), шаблон (`image/*`) или расширение (`.pdf`). Строка или массив.",
+        "typeRefs": [
+          "AcceptInput"
+        ]
+      },
+      "capture": {
+        "type": "boolean | \"user\" | \"environment\"",
+        "required": false,
+        "description": "Нативный `capture` скрытого input — источник захвата на мобильных (камера/микрофон)."
       },
       "children": {
         "type": "ReactNode",
@@ -163,6 +259,26 @@
         "required": false,
         "description": "Деактивирован ли компонент"
       },
+      "form": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `form` скрытого input — привязка к форме по `id`."
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `id` скрытого input — для связи с `<label htmlFor>`."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLInputElement>",
+        "required": false,
+        "description": "Ссылка на нативный `<input type=\"file\">` — для интеграции с формами (react-hook-form `ref`)."
+      },
+      "maxSize": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальный размер одного файла в байтах. Превысившие уходят в `onFilesReject`."
+      },
       "mode": {
         "type": "enum",
         "required": false,
@@ -176,10 +292,30 @@
           "UploadMode"
         ]
       },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `name` скрытого input — для отправки формы и интеграции с form-библиотеками."
+      },
+      "onChange": {
+        "type": "ChangeEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Нативный `onChange` скрытого input. Вызывается до валидации с исходным событием."
+      },
+      "onFilesReject": {
+        "type": "((rejections: FileRejection[]) => void)",
+        "required": false,
+        "description": "Колбек с отклонёнными файлами и причиной (`maxSize` / `mime`)."
+      },
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек с принятыми файлами (прошедшими проверку `maxSize` и `accept`)."
+      },
+      "required": {
+        "type": "boolean",
+        "required": false,
+        "description": "Нативный `required` скрытого input."
       },
       "size": {
         "type": "enum",
@@ -197,6 +333,11 @@
       }
     },
     "relatedTypes": {
+      "AcceptInput": {
+        "kind": "alias",
+        "type": "string | string[] | undefined",
+        "own": true
+      },
       "Size": {
         "kind": "union",
         "values": [
@@ -221,9 +362,14 @@
     "propsTypeName": null,
     "props": {
       "accept": {
-        "type": "string",
+        "type": "AcceptInput",
         "required": false,
-        "description": "Показывает пользователю в открывшемся диалоговом окне файлы типов, которые вы указываете в значении атрибута"
+        "description": "Разрешённые типы: MIME-тип (`image/png`), шаблон (`image/*`) или расширение (`.pdf`). Строка или массив."
+      },
+      "capture": {
+        "type": "boolean | \"user\" | \"environment\"",
+        "required": false,
+        "description": "Нативный `capture` скрытого input — источник захвата на мобильных (камера/микрофон)."
       },
       "children": {
         "type": "ReactNode",
@@ -245,9 +391,29 @@
         "defaultValue": "false",
         "description": "Деактивирован ли компонент"
       },
+      "form": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `form` скрытого input — привязка к форме по `id`."
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `id` скрытого input — для связи с `<label htmlFor>`."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLInputElement>",
+        "required": false,
+        "description": "Ссылка на нативный `<input type=\"file\">` — для интеграции с формами (react-hook-form `ref`)."
+      },
       "isOver": {
         "type": "boolean",
         "required": true
+      },
+      "maxSize": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальный размер одного файла в байтах. Превысившие уходят в `onFilesReject`."
       },
       "mode": {
         "type": "enum",
@@ -259,10 +425,30 @@
         "defaultValue": "multiple",
         "description": "Режим"
       },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Нативный `name` скрытого input — для отправки формы и интеграции с form-библиотеками."
+      },
+      "onChange": {
+        "type": "ChangeEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Нативный `onChange` скрытого input. Вызывается до валидации с исходным событием."
+      },
+      "onFilesReject": {
+        "type": "((rejections: FileRejection[]) => void)",
+        "required": false,
+        "description": "Колбек с отклонёнными файлами и причиной (`maxSize` / `mime`)."
+      },
       "onFilesUpload": {
         "type": "(files: File[]) => void",
         "required": true,
-        "description": "Колбек загрузки файла"
+        "description": "Колбек с принятыми файлами (прошедшими проверку `maxSize` и `accept`)."
+      },
+      "required": {
+        "type": "boolean",
+        "required": false,
+        "description": "Нативный `required` скрытого input."
       },
       "size": {
         "type": "enum",

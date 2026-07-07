@@ -26,6 +26,8 @@ import { figmaNode } from '#docs/lib/figma'
 
 Когда **не** подходит: когда загрузка — первичный сценарий страницы и должна быть видна сразу — используйте [Dropzone](/components/dropzone/dropzone).
 
+Валидация (`accept`, `maxSize` → `onFilesReject`) и колбеки работают так же, как у `Dropzone`. Но скрытая зона рендерит нативный `<input type="file">` **только во время перетаскивания**, поэтому нативные form-атрибуты (`name`, `required`, submit по форме) на ней ненадёжны — для полноценного поля формы берите [Dropzone](/components/dropzone/dropzone) или [FileUpload](/components/dropzone/file-upload).
+
 ## Установка
 ```bash
 pnpm add @ds/dropzone

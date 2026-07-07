@@ -34,5 +34,17 @@ test.describe('FileUpload — rendering', () => {
       await gotoStory(buildStoryOptions());
       await expect(getByTestId(TEST_IDS.fileUpload.root)).toHaveAttribute('type', 'file');
     });
+
+    test('native form attributes (name, required) propagate to input', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ name: 'resume', required: true }));
+      const input = getByTestId(TEST_IDS.fileUpload.root);
+      await expect(input).toHaveAttribute('name', 'resume');
+      await expect(input).toHaveAttribute('required', '');
+    });
+
+    test('disabled propagates to input', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ disabled: true }));
+      await expect(getByTestId(TEST_IDS.fileUpload.root)).toBeDisabled();
+    });
   });
 });

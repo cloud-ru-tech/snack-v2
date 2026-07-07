@@ -44,5 +44,12 @@ test.describe('Dropzone — rendering', () => {
       await gotoStory(buildStoryOptions(undefined, DROPZONE_STORIES.acceptImage));
       await expect(getByTestId(TEST_IDS.dropzone.nativeInput)).toHaveAttribute('accept', 'image/*');
     });
+
+    test('native form attributes (name, required) propagate to input', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ name: 'files', required: true }));
+      const input = getByTestId(TEST_IDS.dropzone.nativeInput);
+      await expect(input).toHaveAttribute('name', 'files');
+      await expect(input).toHaveAttribute('required', '');
+    });
   });
 });

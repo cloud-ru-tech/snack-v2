@@ -16,18 +16,22 @@ const meta: Meta<typeof FileUpload> = {
   parameters: { layout: 'fullscreen' },
   args: {
     mode: UPLOAD_MODE.Multiple,
+    disabled: false,
     'data-test-id': TEST_IDS.fileUpload.root,
   },
   argTypes: {
     mode: {
       control: 'select',
       options: Object.values(UPLOAD_MODE),
-      description: 'Режим загрузки',
     },
-    accept: { control: 'text', description: 'Типы файлов (например image/*)' },
+    accept: { control: 'text' },
+    maxSize: { control: 'number' },
+    disabled: { control: 'boolean' },
+    onFilesReject: { table: { disable: true } },
+    onChange: { table: { disable: true } },
+    innerRef: { table: { disable: true } },
     'data-test-id': {
       control: 'text',
-      description: 'Test ID для автотестов',
       table: { category: 'HTML Attributes' },
     },
   },

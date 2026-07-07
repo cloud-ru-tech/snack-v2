@@ -8,6 +8,8 @@ order: 52
 import { FileUpload } from '@ds/dropzone'
 import { FileUploadBasic } from '../demos/examples/FileUploadBasic'
 import FileUploadBasicSrc from '../demos/examples/FileUploadBasic.tsx?raw'
+import { FileUploadFormField } from '../demos/examples/FileUploadFormField'
+import FileUploadFormFieldSrc from '../demos/examples/FileUploadFormField.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -31,6 +33,22 @@ import { figmaNode } from '#docs/lib/figma'
 ### Upload mode
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
+### Поле формы
+`FileUpload` проксирует нативные атрибуты `<input type="file">` на скрытый input — компонент работает как полноценное поле формы:
+
+- `name`, `id`, `required`, `capture`, `form` — стандартные атрибуты; `id` связывает input с `<label htmlFor>`.
+- `innerRef` — ссылка на нативный input (для интеграции с react-hook-form: `ref` из `register(name)`).
+- `onChange` — нативный `onChange` input, вызывается до валидации с исходным событием (точка интеграции с form-библиотеками).
+- `disabled` — деактивирует триггер и input.
+
+### Валидация
+Ограничения `accept` (MIME-тип, шаблон `image/*` или расширение `.pdf`; строка или массив) и `maxSize` (байты) разбивают выбранные файлы на две группы:
+
+- принятые уходят в `onFilesUpload(files)`;
+- отклонённые — в `onFilesReject(rejections)` с причиной `maxSize` или `mime`.
+
+Размер проверяется раньше типа: превысивший лимит файл отклоняется с причиной `maxSize`.
+
 ## Установка
 ```bash
 pnpm add @ds/dropzone
@@ -47,6 +65,14 @@ import { FileUpload } from '@ds/dropzone'
   code={FileUploadBasicSrc}
 >
   <FileUploadBasic client:visible />
+</Example>
+
+<Example
+  title='Поле формы с валидацией'
+  description='name/id/required, accept + maxSize, отказ через onFilesReject'
+  code={FileUploadFormFieldSrc}
+>
+  <FileUploadFormField client:visible />
 </Example>
 
 ## Props

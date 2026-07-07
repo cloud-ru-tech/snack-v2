@@ -11,6 +11,7 @@ export const TEST_IDS = {
     root: 'file-upload',
     trigger: 'file-upload-trigger',
     filesList: 'file-upload-files-list',
+    error: 'file-upload-error',
     nativeInput: PUBLIC_TEST_IDS.fileUpload.nativeInput,
   },
   hiddenDropZone: {
