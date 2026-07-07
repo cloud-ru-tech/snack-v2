@@ -25,6 +25,10 @@ catalog:
   # convention that Node and every bundler resolve without conflict. API is identical
   # (we only use `useUncontrolledProp`).
   uncontrollable: 8.0.4
+  vitest: 4.1.10
+  '@vitest/browser': 4.1.10
+  '@vitest/browser-playwright': 4.1.10
+  '@vitest/coverage-istanbul': 4.1.10
 
 ignoredBuiltDependencies:
   - ejs

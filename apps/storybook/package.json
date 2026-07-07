@@ -112,20 +112,20 @@
     "shiki": "3.23.0"
   },
   "devDependencies": {
-    "@storybook/addon-vitest": "10.4.0",
-    "@storybook/react": "10.4.0",
-    "@storybook/react-vite": "10.4.0",
+    "@storybook/addon-vitest": "10.4.6",
+    "@storybook/react": "10.4.6",
+    "@storybook/react-vite": "10.4.6",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitest/browser": "4.1.4",
-    "@vitest/browser-playwright": "4.1.4",
-    "@vitest/coverage-istanbul": "4.1.4",
+    "@vitest/browser": "catalog:",
+    "@vitest/browser-playwright": "catalog:",
+    "@vitest/coverage-istanbul": "catalog:",
     "playwright": "1.59.1",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
     "storybook": "10.4.0",
     "typescript": "catalog:",
-    "vitest": "4.1.4"
+    "vitest": "catalog:"
   }
 }
