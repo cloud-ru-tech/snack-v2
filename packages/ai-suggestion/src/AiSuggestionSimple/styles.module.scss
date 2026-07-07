@@ -130,7 +130,7 @@ $chip-interaction-transition:
       }
 
  @else {
-        border-color: base.$sn-theme-color-primary-accent;
+        border-color: base.$sn-theme-color-material-stateLayer-activated-default-filled;
 
         .icon,
         .label {
@@ -139,7 +139,7 @@ $chip-interaction-transition:
 
         @media (hover: hover) {
           &:hover:not(:disabled, [data-disabled]) {
-            border-color: base.$sn-theme-color-primary-text;
+            border-color: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
             background-color: base.$sn-theme-color-primary-background1Level;
           }
         }

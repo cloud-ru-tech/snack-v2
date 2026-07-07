@@ -122,7 +122,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -303,7 +303,7 @@
         "description": "Максимальное кол-во строк на страницу"
       },
       "pagination": {
-        "type": "{ state?: PaginationState; options?: number[]; optionsLabel?: string | undefined; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
+        "type": "{ state?: any; options?: number[]; optionsLabel?: string; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
         "required": false,
         "description": "Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`."
       },
@@ -331,7 +331,10 @@
       "rowPinning": {
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowVirtualizerInstanceRef": {
         "type": "MutableRefObject<RowVirtualizer>",
@@ -380,7 +383,7 @@
         ]
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -526,7 +529,7 @@
       },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -706,11 +709,6 @@
         },
         "own": false
       },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
-        "own": true
-      },
       "FilterRow": {
         "kind": "interface",
         "props": {
@@ -845,6 +843,7 @@
             "required": true,
             "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
             "typeRefs": [
+              "Row",
               "TData"
             ]
           },
@@ -853,7 +852,8 @@
             "required": true,
             "description": "Инстанс tanstack-таблицы",
             "typeRefs": [
-              "TData"
+              "TData",
+              "Table"
             ]
           }
         },
@@ -863,7 +863,7 @@
         "kind": "interface",
         "props": {
           "actionsGenerator": {
-            "type": "(cell: CellContext<T, unknown>) => DroplistProps[\"items\"]",
+            "type": "(cell: CellContext<TData, unknown>) => DroplistProps[\"items\"]",
             "required": true,
             "description": "Генератор пунктов меню действий строки",
             "typeRefs": [
@@ -1079,12 +1079,11 @@
             "description": "Выравнивание ячейки и заголовка"
           },
           "column": {
-            "type": "ColumnDefinition<T> | undefined",
+            "type": "any",
             "required": false,
             "description": "Полное определение колонки вместо маппинга",
             "typeRefs": [
               "ColumnDefinition",
-              "Except",
               "T"
             ]
           },
@@ -1192,7 +1191,7 @@
     "propsTypeName": null,
     "props": {
       "cell": {
-        "type": "Cell<TData, unknown>",
+        "type": "TableCell<TData, unknown>",
         "required": true
       },
       "className": {
@@ -1252,7 +1251,7 @@
         "required": false
       },
       "row": {
-        "type": "Row<TData>",
+        "type": "TableRow<TData>",
         "required": true
       },
       "rowAutoHeight": {
@@ -1354,7 +1353,7 @@
         "description": "CSS-класс"
       },
       "columnDefinitions": {
-        "type": "ColumnDefinition<T>[]",
+        "type": "any[]",
         "required": true,
         "description": "Определение внешнего вида и функционала колонок"
       },
@@ -1401,7 +1400,7 @@
         "required": false
       },
       "defaultSort": {
-        "type": "SortingState",
+        "type": "any",
         "required": false
       },
       "defaultView": {
@@ -1442,7 +1441,7 @@
         "description": "Экран при ошибке запроса"
       },
       "expanding": {
-        "type": "{ getSubRows: (element: T) => T[]; expandingColumnDefinition: TreeColumnDefinitionProps<T>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: T) => T[]; expandingColumnDefinition: TreeColumnDefinitionProps<T>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`."
       },
@@ -1458,7 +1457,7 @@
         "description": "Функция определения цвета фона строки по её данным.\nРаботает только в `view='table'` — карточки (`view='cards'`) не тонируются.\n@param data данные строки\n@returns цвет фона строки или `undefined`"
       },
       "getRowId": {
-        "type": "((originalRow: T, index: number, parent?: Row<T>) => string)",
+        "type": "((originalRow: T, index: number, parent?: any) => string)",
         "required": false,
         "description": "Функция получения уникального идентификатора строки"
       },
@@ -1590,7 +1589,7 @@
         "description": "Определение, какие строки должны быть закреплены в таблице"
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<T>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`."
       },
@@ -1867,7 +1866,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -2064,10 +2063,13 @@
       "rowPinning": {
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
         "typeRefs": [
@@ -2108,7 +2110,7 @@
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -2237,7 +2239,7 @@
       },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -2451,11 +2453,6 @@
         },
         "own": true
       },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
-        "own": true
-      },
       "FilterRow": {
         "kind": "interface",
         "props": {
@@ -2651,6 +2648,7 @@
             "required": true,
             "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
             "typeRefs": [
+              "Row",
               "TData"
             ]
           },
@@ -2659,7 +2657,8 @@
             "required": true,
             "description": "Инстанс tanstack-таблицы",
             "typeRefs": [
-              "TData"
+              "TData",
+              "Table"
             ]
           }
         },
@@ -2870,12 +2869,11 @@
             "description": "Выравнивание ячейки и заголовка"
           },
           "column": {
-            "type": "ColumnDefinition<T> | undefined",
+            "type": "any",
             "required": false,
             "description": "Полное определение колонки вместо маппинга",
             "typeRefs": [
               "ColumnDefinition",
-              "Except",
               "T"
             ]
           },
@@ -3162,7 +3160,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -3364,7 +3362,7 @@
         "description": "Максимальное кол-во строк на страницу"
       },
       "pagination": {
-        "type": "({ state?: PaginationState; options?: number[]; optionsLabel?: string | undefined; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } & { ...; }) | undefined",
+        "type": "({ state?: any; options?: number[]; optionsLabel?: string; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } & { ...; }) | undefined",
         "required": false,
         "description": "Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`.\nПараметры пагинации: `options`, `optionsLabel`"
       },
@@ -3392,10 +3390,13 @@
       "rowPinning": {
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
         "typeRefs": [
@@ -3452,7 +3453,7 @@
         ]
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -3541,7 +3542,7 @@
             ]
           },
           "initialState": {
-            "type": "RowSelectionState | undefined",
+            "type": "any",
             "required": false
           },
           "multiRow": {
@@ -3553,7 +3554,7 @@
             "required": false
           },
           "state": {
-            "type": "RowSelectionState | undefined",
+            "type": "any",
             "required": false
           }
         },
@@ -3591,12 +3592,11 @@
             "description": "CSS-класс"
           },
           "columnDefinitions": {
-            "type": "ColumnDefinition<TData>[]",
+            "type": "any[]",
             "required": true,
             "description": "Определение внешнего вида и функционала колонок",
             "typeRefs": [
               "ColumnDefinition",
-              "Except",
               "TData"
             ]
           },
@@ -3718,7 +3718,7 @@
             ]
           },
           "getRowId": {
-            "type": "((originalRow: TData, index: number, parent?: Row<TData> | undefined) => string) | undefined",
+            "type": "((originalRow: TData, index: number, parent?: Row<TData>) => string) | undefined",
             "required": false,
             "description": "Функция получения уникального идентификатора строки",
             "typeRefs": [
@@ -3876,10 +3876,13 @@
           "rowPinning": {
             "type": "Pick<RowPinningState, \"top\"> | undefined",
             "required": false,
-            "description": "Определение, какие строки должны быть закреплены в таблице"
+            "description": "Определение, какие строки должны быть закреплены в таблице",
+            "typeRefs": [
+              "RowPinningState"
+            ]
           },
           "rowSelection": {
-            "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
+            "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: RowSelectionOptions<TData>[\"enableRowSelection\"]; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
             "required": false,
             "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
             "typeRefs": [
@@ -4149,6 +4152,7 @@
             "required": true,
             "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
             "typeRefs": [
+              "Row",
               "TData"
             ]
           },
@@ -4157,7 +4161,8 @@
             "required": true,
             "description": "Инстанс tanstack-таблицы",
             "typeRefs": [
-              "TData"
+              "TData",
+              "Table"
             ]
           }
         },
@@ -4581,7 +4586,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -4788,10 +4793,13 @@
       "rowPinning": {
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
         "typeRefs": [
@@ -4837,7 +4845,7 @@
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -4969,7 +4977,7 @@
       },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -5183,11 +5191,6 @@
         },
         "own": true
       },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
-        "own": true
-      },
       "FilterRow": {
         "kind": "interface",
         "props": {
@@ -5383,6 +5386,7 @@
             "required": true,
             "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
             "typeRefs": [
+              "Row",
               "TData"
             ]
           },
@@ -5391,7 +5395,8 @@
             "required": true,
             "description": "Инстанс tanstack-таблицы",
             "typeRefs": [
-              "TData"
+              "TData",
+              "Table"
             ]
           }
         },
@@ -5602,12 +5607,11 @@
             "description": "Выравнивание ячейки и заголовка"
           },
           "column": {
-            "type": "ColumnDefinition<T> | undefined",
+            "type": "any",
             "required": false,
             "description": "Полное определение колонки вместо маппинга",
             "typeRefs": [
               "ColumnDefinition",
-              "Except",
               "T"
             ]
           },
@@ -5704,12 +5708,11 @@
         "description": "CSS-класс"
       },
       "columnDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true,
         "description": "Определение внешнего вида и функционала колонок",
         "typeRefs": [
           "ColumnDefinition",
-          "Except",
           "TData"
         ]
       },
@@ -5804,7 +5807,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -5828,7 +5831,7 @@
         ]
       },
       "getRowId": {
-        "type": "((originalRow: TData, index: number, parent?: Row<TData>) => string)",
+        "type": "((originalRow: TData, index: number, parent?: any) => string)",
         "required": false,
         "description": "Функция получения уникального идентификатора строки",
         "typeRefs": [
@@ -6004,10 +6007,13 @@
       "rowPinning": {
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
         "typeRefs": [
@@ -6053,7 +6059,7 @@
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -6218,7 +6224,7 @@
       },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -6430,11 +6436,6 @@
             "description": "Заголовок"
           }
         },
-        "own": true
-      },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
         "own": true
       },
       "FilterRow": {
@@ -6990,7 +6991,7 @@
         "description": "Включение/выключение сортировки"
       },
       "header": {
-        "type": "string | (string & ReactElement<any, string | JSXElementConstructor<any>>) | (string & Iterable<ReactNode>) | ... 10 more ...",
+        "type": "any",
         "required": false,
         "description": "Заголовок колонки"
       },
@@ -7167,7 +7168,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -7341,7 +7342,7 @@
         "description": "Количество строк на страницу\nМаксимальное кол-во строк на страницу"
       },
       "pagination": {
-        "type": "{ state?: PaginationState; options?: number[]; optionsLabel?: string | undefined; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
+        "type": "{ state?: any; options?: number[]; optionsLabel?: string; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
         "required": false,
         "description": "Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`."
       },
@@ -7361,10 +7362,13 @@
       "rowPinning": {
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
         "typeRefs": [
@@ -7410,7 +7414,7 @@
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -7548,7 +7552,7 @@
       },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -7762,11 +7766,6 @@
         },
         "own": true
       },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
-        "own": true
-      },
       "FilterRow": {
         "kind": "interface",
         "props": {
@@ -7962,6 +7961,7 @@
             "required": true,
             "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
             "typeRefs": [
+              "Row",
               "TData"
             ]
           },
@@ -7970,7 +7970,8 @@
             "required": true,
             "description": "Инстанс tanstack-таблицы",
             "typeRefs": [
-              "TData"
+              "TData",
+              "Table"
             ]
           }
         },
@@ -8181,12 +8182,11 @@
             "description": "Выравнивание ячейки и заголовка"
           },
           "column": {
-            "type": "ColumnDefinition<T> | undefined",
+            "type": "any",
             "required": false,
             "description": "Полное определение колонки вместо маппинга",
             "typeRefs": [
               "ColumnDefinition",
-              "Except",
               "T"
             ]
           },
@@ -8292,12 +8292,11 @@
         "description": "CSS-класс"
       },
       "columnDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true,
         "description": "Определение внешнего вида и функционала колонок",
         "typeRefs": [
           "ColumnDefinition",
-          "Except",
           "TData"
         ]
       },
@@ -8401,7 +8400,7 @@
         ]
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false,
         "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
         "typeRefs": [
@@ -8425,7 +8424,7 @@
         ]
       },
       "getRowId": {
-        "type": "((originalRow: TData, index: number, parent?: Row<TData>) => string)",
+        "type": "((originalRow: TData, index: number, parent?: any) => string)",
         "required": false,
         "description": "Функция получения уникального идентификатора строки",
         "typeRefs": [
@@ -8587,7 +8586,7 @@
         "description": "Максимальное кол-во строк на страницу"
       },
       "pagination": {
-        "type": "{ state?: PaginationState; options?: number[]; optionsLabel?: string | undefined; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
+        "type": "{ state?: any; options?: number[]; optionsLabel?: string; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
         "required": false,
         "description": "Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`."
       },
@@ -8604,10 +8603,13 @@
         "type": "Pick<RowPinningState, \"top\">",
         "required": false,
         "defaultValue": "{\n    top: [],\n  }",
-        "description": "Определение, какие строки должны быть закреплены в таблице"
+        "description": "Определение, какие строки должны быть закреплены в таблице",
+        "typeRefs": [
+          "RowPinningState"
+        ]
       },
       "rowSelection": {
-        "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
         "required": false,
         "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
         "typeRefs": [
@@ -8653,7 +8655,7 @@
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -8825,7 +8827,7 @@
       },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -9037,11 +9039,6 @@
             "description": "Заголовок"
           }
         },
-        "own": true
-      },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
         "own": true
       },
       "FilterRow": {
@@ -9597,7 +9594,7 @@
         "description": "Включение/выключение сортировки"
       },
       "header": {
-        "type": "string | (string & ReactElement<any, string | JSXElementConstructor<any>>) | (string & Iterable<ReactNode>) | ... 10 more ...",
+        "type": "any",
         "required": false,
         "description": "Заголовок колонки"
       },
@@ -9655,6 +9652,7 @@
         "required": true,
         "description": "Строка tanstack-таблицы, отрисовываемая как карточка",
         "typeRefs": [
+          "Row",
           "TData"
         ]
       },
@@ -9695,7 +9693,8 @@
         "required": true,
         "description": "Инстанс tanstack-таблицы",
         "typeRefs": [
-          "TData"
+          "TData",
+          "Table"
         ]
       }
     },
@@ -10283,11 +10282,11 @@
         ]
       },
       "expandingInitialState": {
-        "type": "ExpandedState",
+        "type": "any",
         "required": false
       },
       "expandingState": {
-        "type": "ExpandedState",
+        "type": "any",
         "required": false
       },
       "fullWidth": {
@@ -10466,7 +10465,7 @@
         "description": "Максимальное кол-во строк на страницу"
       },
       "pagination": {
-        "type": "{ state?: PaginationState; options?: number[]; optionsLabel?: string | undefined; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
+        "type": "{ state?: any; options?: number[]; optionsLabel?: string; onChange?(state: PaginationState): void; optionsRender?(value: string | number, idx: number): string | number; } | undefined",
         "required": false,
         "description": "Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`."
       },
@@ -10545,7 +10544,7 @@
         ]
       },
       "sorting": {
-        "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
+        "type": "{ initialState?: any; state?: any; onChange?(state: SortingState): void; }",
         "required": false,
         "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
       },
@@ -10671,9 +10670,14 @@
         },
         "own": false
       },
+      "ChipChoiceRowFilter": {
+        "kind": "alias",
+        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
+        "own": false
+      },
       "ColumnDefinition": {
         "kind": "alias",
-        "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
+        "type": "any",
         "own": true
       },
       "DropdownBridgeProps": {
@@ -10887,11 +10891,6 @@
         },
         "own": true
       },
-      "Except": {
-        "kind": "alias",
-        "type": "{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }",
-        "own": true
-      },
       "FilterRow": {
         "kind": "interface",
         "props": {
@@ -11087,6 +11086,7 @@
             "required": true,
             "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
             "typeRefs": [
+              "Row",
               "TData"
             ]
           },
@@ -11095,7 +11095,8 @@
             "required": true,
             "description": "Инстанс tanstack-таблицы",
             "typeRefs": [
-              "TData"
+              "TData",
+              "Table"
             ]
           }
         },
@@ -11306,12 +11307,11 @@
             "description": "Выравнивание ячейки и заголовка"
           },
           "column": {
-            "type": "ColumnDefinition<T> | undefined",
+            "type": "any",
             "required": false,
             "description": "Полное определение колонки вместо маппинга",
             "typeRefs": [
               "ColumnDefinition",
-              "Except",
               "T"
             ]
           },
@@ -11400,7 +11400,7 @@
             ]
           },
           "initialState": {
-            "type": "RowSelectionState | undefined",
+            "type": "any",
             "required": false
           },
           "multiRow": {
@@ -11412,7 +11412,7 @@
             "required": false
           },
           "state": {
-            "type": "RowSelectionState | undefined",
+            "type": "any",
             "required": false
           }
         },
@@ -11433,7 +11433,7 @@
     "propsTypeName": null,
     "props": {
       "columnDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "enableSelectPinned": {
@@ -11445,7 +11445,7 @@
         "required": true
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false
       },
       "masterSelection": {
@@ -11469,15 +11469,15 @@
     "propsTypeName": null,
     "props": {
       "left": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "right": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "unpinned": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       }
     },
@@ -11512,64 +11512,7 @@
   "getLoadingCell": {
     "displayName": "getLoadingCell",
     "propsTypeName": null,
-    "props": {
-      "align": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "left",
-          "right"
-        ],
-        "description": "Позиционирование контента ячейки в теле таблицы"
-      },
-      "cellClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для ячейки в теле таблицы"
-      },
-      "columnSettings": {
-        "type": "{ label?: string; mode?: ColumnSettingsMode; } | undefined",
-        "required": false
-      },
-      "headerAlign": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "left",
-          "right"
-        ],
-        "description": "Позиционирование заголовка колонки"
-      },
-      "headerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс для ячейки в шапке таблицы"
-      },
-      "noBodyCellPadding": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключить паддинг у ячейки в теле таблицы"
-      },
-      "noHeaderCellBorderOffset": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключить смещение бордера слева у ячейки хедера"
-      },
-      "noHeaderCellPadding": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключить паддинг у ячейки в шапке таблицы"
-      },
-      "pinned": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "left",
-          "right"
-        ],
-        "description": "Закрепление колонки слева/справа в таблице"
-      }
-    },
+    "props": {},
     "relatedTypes": {}
   },
   "getRowActionsColumnDef": {
@@ -11628,7 +11571,7 @@
         "description": "Включение/выключение сортировки"
       },
       "header": {
-        "type": "string | (string & ReactElement<any, string | JSXElementConstructor<any>>) | (string & Iterable<ReactNode>) | ... 10 more ...",
+        "type": "any",
         "required": false,
         "description": "Заголовок колонки"
       },
@@ -11704,7 +11647,7 @@
         "description": "Иконка элемента-родителя в открытом состоянии"
       },
       "header": {
-        "type": "string | (string & ReactElement<any, string | JSXElementConstructor<any>>) | (string & Iterable<ReactNode>) | ... 10 more ...",
+        "type": "any",
         "required": false,
         "description": "Рендер функция заголовка колонки"
       },
@@ -11903,7 +11846,7 @@
     "propsTypeName": null,
     "props": {
       "columnDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "columnPinning": {
@@ -11919,7 +11862,7 @@
         "required": false
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false
       },
       "pageSize": {
@@ -11974,11 +11917,11 @@
         "required": true
       },
       "enabledColumnsDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "enabledTableColumns": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "expanded": {
@@ -11986,11 +11929,11 @@
         "required": true
       },
       "expanding": {
-        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState | undefined; onChange?(state: ExpandedState): void; } | undefined",
+        "type": "{ getSubRows: (element: TData) => TData[]; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }",
         "required": false
       },
       "getRowId": {
-        "type": "((originalRow: TData, index: number, parent?: Row<TData>) => string)",
+        "type": "((originalRow: TData, index: number, parent?: any) => string)",
         "required": false
       },
       "globalFilter": {
@@ -12074,7 +12017,7 @@
         "required": true
       },
       "rowSelectionProp": {
-        "type": "{ initialState?: RowSelectionState | undefined; state?: RowSelectionState | undefined; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
+        "type": "{ initialState?: any; state?: any; enable?: any; multiRow?: boolean | undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance | undefined; } | undefined",
         "required": true
       },
       "setColumnOrder": {
@@ -12098,7 +12041,7 @@
         "defaultValue": "false"
       },
       "columnDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true
       },
       "enabledColumns": {
@@ -12106,7 +12049,7 @@
         "required": false
       },
       "sorting": {
-        "type": "SortingState",
+        "type": "any",
         "required": false
       },
       "table": {
@@ -12128,7 +12071,7 @@
         "description": "Включены ли настройки колонок"
       },
       "columnDefinitions": {
-        "type": "ColumnDefinition<TData>[]",
+        "type": "any[]",
         "required": true,
         "description": "Определения колонок"
       },
@@ -12143,7 +12086,7 @@
         "description": "Список включённых колонок (при включённых настройках колонок)"
       },
       "sorting": {
-        "type": "SortingState",
+        "type": "any",
         "required": false,
         "description": "Управляемое состояние сортировки (по умолчанию берётся из `table.getState().sorting`)"
       },

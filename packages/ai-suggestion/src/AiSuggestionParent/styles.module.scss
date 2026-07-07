@@ -18,6 +18,12 @@ $chip-padding-inline: (
   'm': base.$sn-primitive-dimension-8,
 );
 
+// Правый отступ LabelContainer меньше левого: шеврон визуально прижат к тексту
+$label-padding-inline-end: (
+  's': base.$sn-primitive-dimension-0,
+  'm': base.$sn-primitive-dimension-2,
+);
+
 $icon-size: base.$sn-density-size-icon-s;
 
 $outline-transition-duration: 120ms;
@@ -166,7 +172,7 @@ $chevron-transition-activated: transform $parent-transition-duration cubic-bezie
       }
 
       .labelContainer {
-        padding-inline: map.get($chip-padding-inline, $size);
+        padding-inline: map.get($chip-padding-inline, $size) map.get($label-padding-inline-end, $size);
       }
     }
   }
