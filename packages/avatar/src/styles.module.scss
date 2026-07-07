@@ -44,7 +44,10 @@ $typography: (
       }
 
       .border {
-        box-shadow: inset 0 0 0
+        box-shadow: inset
+          0
+          0
+          0
           base.simple-var(avatar.$avatar, 'anatomy', 'size', $size, 'border-width')
           base.$sn-theme-color-available-borderColor;
       }
@@ -56,14 +59,7 @@ $typography: (
 
       @each $shape in $shapes {
         &[data-shape='#{$shape}'] {
-          border-radius: base.simple-var(
-            avatar.$avatar,
-            'anatomy',
-            'size',
-            $size,
-            $shape,
-            'border-radius'
-          );
+          border-radius: base.simple-var(avatar.$avatar, 'anatomy', 'size', $size, $shape, 'border-radius');
         }
       }
     }
@@ -73,11 +69,6 @@ $typography: (
     &[data-appearance='#{$appearance}'] {
       background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
     }
-  }
-
-  .abbreviation {
-    position: relative;
-    z-index: 1;
   }
 
   .border {
