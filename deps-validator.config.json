@@ -1,13 +1,13 @@
 {
   "rootPackagesFolderPattern": "packages/*",
   "ignoredPackagesFolderFiles": ["packages/tsconfig.cjs.json", "packages/tsconfig.esm.json"],
-  "ignoreFilePatterns": ["dist", "__tests__", "docs", "stories"],
+  "ignoreFilePatterns": ["__tests__", "__test__", "dist", "demos", "docs", "stories", "scripts"],
   "ignorePackagePatterns": [
     "react",
     "react-dom",
     "@sbercloud/figma-variables",
-    "@design-system/materials",
     "vitest",
-    "@playwright/test"
+    "@playwright/test",
+    "sass"
   ]
 }

@@ -16,9 +16,7 @@ function Render(args: React.ComponentProps<typeof UploadFiles>) {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>
-          Простой вариант: любые файлы, не более 3 файлов, до 5 МБ. Обязательная функция upload.
-        </DemoHint>
+        <DemoHint>Простой вариант: любые файлы, не более 3 файлов, до 5 МБ. Обязательная функция upload.</DemoHint>
         <DemoActions align='center'>
           <div className={styles.uploadFilesStory}>
             <UploadFiles
@@ -70,6 +68,7 @@ export const Playground: Story = {
 };
 
 // Baked-args для e2e: через URL-args массив accept ненадёжно доходит до Storybook.
+// Отклонённые по формату файлы стор сам показывает error-вложениями — доп. обвязка не нужна.
 export const FormatRestricted: Story = {
   tags: ['test'],
   args: {

@@ -4,7 +4,7 @@ const { isBrowserMock } = vi.hoisted(() => ({
   isBrowserMock: vi.fn<() => boolean>(),
 }));
 
-vi.mock('@ds/utils', () => ({
+vi.mock('../src/utils/isBrowser', () => ({
   isBrowser: () => isBrowserMock(),
 }));
 
@@ -49,17 +49,14 @@ describe('copyToClipboard', () => {
       select: vi.fn(),
     };
     const execCommand = vi.fn();
-    vi.stubGlobal(
-      'document',
-      {
-        createElement: vi.fn(() => textarea),
-        body: {
-          appendChild: vi.fn(),
-          removeChild: vi.fn(),
-        },
-        execCommand,
-      } as unknown as Document,
-    );
+    vi.stubGlobal('document', {
+      createElement: vi.fn(() => textarea),
+      body: {
+        appendChild: vi.fn(),
+        removeChild: vi.fn(),
+      },
+      execCommand,
+    } as unknown as Document);
 
     await copyToClipboard('via-fallback');
 

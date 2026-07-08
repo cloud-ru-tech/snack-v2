@@ -20,7 +20,6 @@
   ],
   "sideEffects": false,
   "dependencies": {
-    "@ds/context-kit": "workspace:^",
     "react-swipeable": "7.0.2",
     "uncontrollable": "catalog:"
   },

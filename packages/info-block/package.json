@@ -23,9 +23,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:^",
     "@ds/icon-predefined": "workspace:^",
-    "@ds/icons": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

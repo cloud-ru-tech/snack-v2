@@ -39,7 +39,6 @@
     "@ds/loader": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
-    "@ds/portal-context": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",

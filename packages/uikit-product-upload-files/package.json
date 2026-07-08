@@ -34,8 +34,8 @@
     "@ds/dropzone": "workspace:^",
     "@ds/fields": "workspace:^",
     "@ds/icon-predefined": "workspace:^",
-    "@ds/icons": "workspace:^",
     "@ds/locale": "workspace:^",
+    "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "merge-refs": "catalog:"

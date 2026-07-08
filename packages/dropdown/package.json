@@ -36,6 +36,7 @@
     "@ds/icons": "workspace:^",
     "@ds/info-block": "workspace:^",
     "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
     "@ds/popover-private": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"

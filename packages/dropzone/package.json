@@ -25,7 +25,7 @@
   "dependencies": {
     "@ds/materials": "workspace:^",
     "@ds/utils": "workspace:^",
-    "@types/lodash.debounce": "4.0.9",
+    "@types/lodash.debounce": "catalog:",
     "classnames": "catalog:",
     "lodash.debounce": "catalog:"
   },

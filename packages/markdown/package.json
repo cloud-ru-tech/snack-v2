@@ -32,20 +32,21 @@
     "access": "public"
   },
   "dependencies": {
+    "@cloud-ru/ft-copy-to-clipboard": "0.1.0",
     "@ds/button": "workspace:^",
+    "@ds/divider": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/toggles": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "@cloud-ru/ft-copy-to-clipboard": "0.1.0",
-    "@ds/dropdown": "workspace:^",
     "@ds/fields": "workspace:^",
     "@ds/list": "workspace:^",
     "@ds/modal": "workspace:^",
     "@ds/portal-context": "workspace:^",
     "@ds/scroll": "workspace:^",
+    "@ds/typography": "workspace:^",
     "@tiptap/core": "3.23.6",
     "@tiptap/extension-code-block-lowlight": "3.23.6",
     "@tiptap/extension-image": "3.23.6",
@@ -62,9 +63,10 @@
     "highlight.js": "11.11.1",
     "lowlight": "3.3.0",
     "react-markdown": "10.1.0",
+    "react-textarea-autosize": "catalog:",
     "rehype-highlight": "7.0.2",
     "remark-gfm": "4.0.1",
-    "uncontrollable": "catalog:"
+    "unified": "catalog:"
   },
   "devDependencies": {
     "sass": "catalog:",

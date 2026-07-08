@@ -1,4 +1,4 @@
-import { FILE_REJECTION_REASON, partitionFiles } from '@ds/dropzone';
+import { FILE_REJECTION_REASON, FileRejection, partitionFiles } from '@ds/dropzone';
 import { useCallback, useEffect, useRef } from 'react';
 
 import { SUMMARY_ERROR_TYPE, UPLOAD_STATUS } from '../constants';
@@ -31,6 +31,7 @@ export type UseUploadFilesControllerResult<TResult> = {
   summaryError: string | undefined;
   summaryErrorType: SummaryErrorType;
   handleFilesUpload: (files: File[]) => void;
+  handleFilesReject: (rejections: FileRejection[]) => void;
   handleDelete: (id: string) => void;
 };
 
@@ -139,6 +140,28 @@ export function useUploadFilesController<TResult>({
     [accept, disabled, maxSize, messages, startUpload],
   );
 
+  // Отклонённые валидацией файлы (формат/размер) показываем в списке как error-вложения. Причина
+  // из `FileRejection` определяет текст: превышение размера vs недопустимый формат. Файлы не грузятся.
+  const handleFilesReject = useCallback(
+    (rejections: FileRejection[]) => {
+      if (disabled || !rejections.length) {
+        return;
+      }
+
+      const rejectedItems: UploadFileItem<TResult>[] = rejections.map(({ file, reason }) => ({
+        id: makeId(),
+        file,
+        status: UPLOAD_STATUS.Error,
+        error: reason === FILE_REJECTION_REASON.MaxSize ? messages.fileSizeError : messages.fileFormatError,
+      }));
+
+      const next = [...valueRef.current, ...rejectedItems];
+      valueRef.current = next;
+      onChangeRef.current(next);
+    },
+    [disabled, messages],
+  );
+
   const handleDelete = useCallback(
     (id: string) => {
       const controller = abortControllersRef.current.get(id);
@@ -170,6 +193,7 @@ export function useUploadFilesController<TResult>({
     summaryError,
     summaryErrorType,
     handleFilesUpload,
+    handleFilesReject,
     handleDelete,
   };
 }

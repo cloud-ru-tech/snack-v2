@@ -9,6 +9,9 @@ catalogs:
     '@tanstack/react-virtual':
       specifier: 3.11.2
       version: 3.11.2
+    '@types/lodash.debounce':
+      specifier: 4.0.9
+      version: 4.0.9
     '@vitest/browser':
       specifier: 4.1.10
       version: 4.1.10
@@ -48,6 +51,9 @@ catalogs:
     uncontrollable:
       specifier: 8.0.4
       version: 8.0.4
+    unified:
+      specifier: 11.0.5
+      version: 11.0.5
     vitest:
       specifier: 4.1.10
       version: 4.1.10
@@ -198,6 +204,9 @@ importers:
       sass:
         specifier: 'catalog:'
         version: 1.99.0
+      sharp:
+        specifier: 0.34.5
+        version: 0.34.5
       stylelint:
         specifier: 16.26.1
         version: 16.26.1(typescript@5.9.3)
@@ -741,12 +750,6 @@ importers:
       '@ds/alert':
         specifier: workspace:^
         version: link:../alert
-      '@ds/icons':
-        specifier: workspace:^
-        version: link:../icons
-      '@ds/materials':
-        specifier: workspace:^
-        version: link:../materials
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -831,6 +834,9 @@ importers:
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -912,9 +918,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
@@ -990,6 +993,9 @@ importers:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+      '@types/lodash.debounce':
+        specifier: 'catalog:'
+        version: 4.0.9
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1113,6 +1119,9 @@ importers:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+      '@types/lodash.debounce':
+        specifier: 'catalog:'
+        version: 4.0.9
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1155,6 +1164,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/toggles':
+        specifier: workspace:^
+        version: link:../toggles
       '@ds/tooltip':
         specifier: workspace:^
         version: link:../tooltip
@@ -1186,9 +1198,6 @@ importers:
       '@ds/loader':
         specifier: workspace:^
         version: link:../loader
-      '@ds/materials':
-        specifier: workspace:^
-        version: link:../materials
       '@ds/theme':
         specifier: workspace:^
         version: link:../theme
@@ -1211,6 +1220,9 @@ importers:
         specifier: 5.5.0
         version: 5.5.0(monaco-editor@0.55.1)
     devDependencies:
+      monaco-editor:
+        specifier: 0.55.1
+        version: 0.55.1
       sass:
         specifier: 'catalog:'
         version: 1.99.0
@@ -1223,9 +1235,6 @@ importers:
       '@ds/button':
         specifier: workspace:^
         version: link:../button
-      '@ds/icons':
-        specifier: workspace:^
-        version: link:../icons
       '@ds/input-private':
         specifier: workspace:^
         version: link:../input-private
@@ -1279,6 +1288,9 @@ importers:
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
       '@ds/portal-context':
         specifier: workspace:^
         version: link:../portal-context
@@ -1327,6 +1339,9 @@ importers:
       '@ds/locale':
         specifier: workspace:^
         version: link:../locale
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
       '@ds/popover-private':
         specifier: workspace:^
         version: link:../popover-private
@@ -1346,7 +1361,7 @@ importers:
         specifier: workspace:^
         version: link:../utils
       '@types/lodash.debounce':
-        specifier: 4.0.9
+        specifier: 'catalog:'
         version: 4.0.9
       classnames:
         specifier: 'catalog:'
@@ -1448,15 +1463,9 @@ importers:
 
   packages/info-block:
     dependencies:
-      '@ds/button':
-        specifier: workspace:^
-        version: link:../button
       '@ds/icon-predefined':
         specifier: workspace:^
         version: link:../icon-predefined
-      '@ds/icons':
-        specifier: workspace:^
-        version: link:../icons
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -1541,9 +1550,6 @@ importers:
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
-      '@ds/typography':
-        specifier: workspace:^
-        version: link:../typography
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -1574,9 +1580,6 @@ importers:
       '@types/lodash.merge':
         specifier: 4.6.9
         version: 4.6.9
-      classnames:
-        specifier: 'catalog:'
-        version: 2.5.1
       lodash.merge:
         specifier: 4.6.2
         version: 4.6.2
@@ -1589,9 +1592,9 @@ importers:
       '@ds/button':
         specifier: workspace:^
         version: link:../button
-      '@ds/dropdown':
+      '@ds/divider':
         specifier: workspace:^
-        version: link:../dropdown
+        version: link:../divider
       '@ds/fields':
         specifier: workspace:^
         version: link:../fields
@@ -1622,6 +1625,9 @@ importers:
       '@ds/tooltip':
         specifier: workspace:^
         version: link:../tooltip
+      '@ds/typography':
+        specifier: workspace:^
+        version: link:../typography
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -1673,15 +1679,18 @@ importers:
       react-markdown:
         specifier: 10.1.0
         version: 10.1.0(@types/react@18.3.28)(react@18.3.1)
+      react-textarea-autosize:
+        specifier: 'catalog:'
+        version: 8.5.9(@types/react@18.3.28)(react@18.3.1)
       rehype-highlight:
         specifier: 7.0.2
         version: 7.0.2
       remark-gfm:
         specifier: 4.0.1
         version: 4.0.1
-      uncontrollable:
+      unified:
         specifier: 'catalog:'
-        version: 8.0.4(react@18.3.1)
+        version: 11.0.5
     devDependencies:
       sass:
         specifier: 'catalog:'
@@ -1691,10 +1700,11 @@ importers:
         version: 5.9.3
 
   packages/materials:
-    devDependencies:
+    dependencies:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+    devDependencies:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1716,6 +1726,9 @@ importers:
       '@ds/loader':
         specifier: workspace:^
         version: link:../loader
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
       '@ds/portal-context':
         specifier: workspace:^
         version: link:../portal-context
@@ -1761,9 +1774,6 @@ importers:
       '@ds/popover-private':
         specifier: workspace:^
         version: link:../popover-private
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -1800,9 +1810,6 @@ importers:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
-      classnames:
-        specifier: 'catalog:'
-        version: 2.5.1
 
   packages/progress-bar:
     dependencies:
@@ -2043,12 +2050,6 @@ importers:
       '@ds/chips':
         specifier: workspace:^
         version: link:../chips
-      '@ds/divider':
-        specifier: workspace:^
-        version: link:../divider
-      '@ds/dropdown':
-        specifier: workspace:^
-        version: link:../dropdown
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
@@ -2067,24 +2068,18 @@ importers:
       '@ds/pagination':
         specifier: workspace:^
         version: link:../pagination
-      '@ds/popover':
-        specifier: workspace:^
-        version: link:../popover
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/scroll':
         specifier: workspace:^
         version: link:../scroll
-      '@ds/segment-control':
-        specifier: workspace:^
-        version: link:../segment-control
       '@ds/skeleton':
         specifier: workspace:^
         version: link:../skeleton
       '@ds/status':
         specifier: workspace:^
         version: link:../status
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles
@@ -2097,9 +2092,6 @@ importers:
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
-      '@ds/typography':
-        specifier: workspace:^
-        version: link:../typography
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -2112,6 +2104,9 @@ importers:
       '@tanstack/react-virtual':
         specifier: 'catalog:'
         version: 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@types/lodash.debounce':
+        specifier: 'catalog:'
+        version: 4.0.9
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
@@ -2202,9 +2197,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/scroll':
         specifier: workspace:^
         version: link:../scroll
@@ -2271,6 +2263,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/portal-context':
+        specifier: workspace:^
+        version: link:../portal-context
       '@ds/scroll':
         specifier: workspace:^
         version: link:../scroll
@@ -2343,9 +2338,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles
@@ -2428,9 +2420,6 @@ importers:
 
   packages/uikit-product-button-predefined:
     dependencies:
-      '@ds/adaptive':
-        specifier: workspace:^
-        version: link:../adaptive
       '@ds/button':
         specifier: workspace:^
         version: link:../button
@@ -2639,9 +2628,6 @@ importers:
       '@ds/divider':
         specifier: workspace:^
         version: link:../divider
-      '@ds/icons':
-        specifier: workspace:^
-        version: link:../icons
       '@ds/popover-private':
         specifier: workspace:^
         version: link:../popover-private
@@ -2771,12 +2757,12 @@ importers:
       '@ds/chips':
         specifier: workspace:^
         version: link:../chips
+      '@ds/divider':
+        specifier: workspace:^
+        version: link:../divider
       '@ds/drawer':
         specifier: workspace:^
         version: link:../drawer
-      '@ds/icon-predefined':
-        specifier: workspace:^
-        version: link:../icon-predefined
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
@@ -2792,9 +2778,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/scroll':
         specifier: workspace:^
         version: link:../scroll
@@ -2834,9 +2817,6 @@ importers:
       '@ds/adaptive':
         specifier: workspace:^
         version: link:../adaptive
-      '@ds/bottom-sheet':
-        specifier: workspace:^
-        version: link:../bottom-sheet
       '@ds/button':
         specifier: workspace:^
         version: link:../button
@@ -2858,18 +2838,12 @@ importers:
       '@ds/locale':
         specifier: workspace:^
         version: link:../locale
-      '@ds/materials':
-        specifier: workspace:^
-        version: link:../materials
       '@ds/modal':
         specifier: workspace:^
         version: link:../modal
       '@ds/popover':
         specifier: workspace:^
         version: link:../popover
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/search':
         specifier: workspace:^
         version: link:../search
@@ -2915,9 +2889,6 @@ importers:
       '@ds/accordion':
         specifier: workspace:^
         version: link:../accordion
-      '@ds/adaptive':
-        specifier: workspace:^
-        version: link:../adaptive
       '@ds/button':
         specifier: workspace:^
         version: link:../button
@@ -2936,12 +2907,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/popover-private':
-        specifier: workspace:^
-        version: link:../popover-private
-      '@ds/portal-context':
-        specifier: workspace:^
-        version: link:../portal-context
       '@ds/promo-tag':
         specifier: workspace:^
         version: link:../promo-tag
@@ -2978,9 +2943,6 @@ importers:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
-      classnames:
-        specifier: 'catalog:'
-        version: 2.5.1
 
   packages/uikit-product-quota:
     dependencies:
@@ -3122,12 +3084,12 @@ importers:
       '@ds/icon-predefined':
         specifier: workspace:^
         version: link:../icon-predefined
-      '@ds/icons':
-        specifier: workspace:^
-        version: link:../icons
       '@ds/locale':
         specifier: workspace:^
         version: link:../locale
+      '@ds/typography':
+        specifier: workspace:^
+        version: link:../typography
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -3182,9 +3144,6 @@ importers:
 
   packages/utils:
     dependencies:
-      '@ds/context-kit':
-        specifier: workspace:^
-        version: link:../context-kit
       react-swipeable:
         specifier: 7.0.2
         version: 7.0.2(react@18.3.1)
@@ -12845,8 +12804,7 @@ snapshots:
       '@iconify/types': 2.0.0
       import-meta-resolve: 4.2.0
 
-  '@img/colour@1.1.0':
-    optional: true
+  '@img/colour@1.1.0': {}
 
   '@img/sharp-darwin-arm64@0.34.5':
     optionalDependencies:
@@ -16692,8 +16650,7 @@ snapshots:
 
   detect-indent@5.0.0: {}
 
-  detect-libc@2.1.2:
-    optional: true
+  detect-libc@2.1.2: {}
 
   detect-node-es@1.1.0: {}
 
@@ -21117,7 +21074,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.5
       '@img/sharp-win32-ia32': 0.34.5
       '@img/sharp-win32-x64': 0.34.5
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:

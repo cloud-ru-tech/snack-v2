@@ -272,7 +272,7 @@ test('<axis> × state matrix', async ({ page, gotoStory, getByTestId }) => {
    rm packages/<pkg>/__test__/<Component>/__snapshots__/*.png
    ```
 2. Убедись, что Storybook запущен (`pnpm dev:storybook`) или что `reuseExistingServer` в корневом `playwright.config.ts` подключит dev-сервер.
-3. `pnpm test:e2e:update-snapshots packages/<pkg>` (только chrome).
+3. `pnpm test:e2e:update-snapshots packages/<pkg>` (только chrome). **На Mac** baseline'ы для CI снимай через Docker (Linux, образ пайпа): `pnpm test:e2e:docker:visual:update packages/<pkg>` — см. README §«Visual baselines на Mac».
 4. Ручной review каждого PNG — не пустой, не с артефактами от dev-инструментов.
 5. Коммить PNG отдельным коммитом `test(visual): update <pkg> baselines`.
 

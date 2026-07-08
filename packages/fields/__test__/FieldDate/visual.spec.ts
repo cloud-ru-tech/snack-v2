@@ -90,8 +90,9 @@ test.describe('FieldDate — visual regression', () => {
     expect(png).toMatchSnapshot('open-calendar.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
-  // Mobile-сценарий выбора одной даты (mode=date): поле → тап → выбор дня (автозакрытие) → поле.
-  // Календарь без value скроллится к текущему месяцу (2026-07); берём ВИДИМУЮ ячейку «15» — это июль.
+  // Mobile-сценарий выбора одной даты (mode=date): поле → тап → выбор дня (подсветка в черновике) →
+  // Apply → поле с применённой датой. Календарь без value скроллится к текущему месяцу (2026-07);
+  // берём ВИДИМУЮ ячейку «15» — это июль.
   test('date: mobile selection scenario', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions({ mode: 'date' }, FIELD_DATE_STORIES.playground, { layoutType: 'mobile' }));
@@ -109,26 +110,28 @@ test.describe('FieldDate — visual regression', () => {
     // Календарь автоскроллится к текущему месяцу (JS-скролл, `animations:disabled` его не замораживает).
     // Ждём стабилизации bbox ячейки дня, иначе клик/снимок ловят кадр прокрутки (флак под нагрузкой).
     await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
-    await frame('2. open');
+    await frame('2. open calendar');
 
-    // В mode=date выбор дня сразу закрывает шит и заполняет поле.
+    // В mode=date выбор дня фиксирует его в черновике (подсветка ячейки) и активирует Apply; шит остаётся
+    // открытым — коммит в поле только по Apply (FF-8654).
     await clickVisibleDay(page, '15');
-    await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeHidden();
-    await frame('3. field applied');
-
-    // Переоткрываем календарь — теперь у поля есть значение, и в сетке видно выбранный день (подсветка).
-    // (В mode=date клик по дню сразу закрывает шит, поэтому подсветку показываем повторным открытием.)
-    await getByTestId(TEST_IDS.fieldDate).getByTestId(TEST_IDS.fieldDateCalendar).click();
-    await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeVisible();
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
+    const dateApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
+    await expect(dateApply).toBeEnabled();
     await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
-    await frame('4. date selected in calendar');
+    await frame('3. date selected in calendar');
+
+    // Apply — шит закрывается, поле показывает применённую дату.
+    await dateApply.click();
+    await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeHidden();
+    await frame('4. field applied');
 
     const composite = await composeScreenshots(cells, { layout: 'row' });
     expect(composite).toMatchSnapshot('scenario-mobile-date.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
-  // Mobile-сценарий date-time: поле → тап → выбор дня → под-экран времени → скролл барабана → Apply → поле.
+  // Mobile-сценарий date-time: поле → тап → выбор дня → под-экран времени → скролл барабана → Apply времени
+  // (возврат на календарь с выбранными датой+временем) → Apply календаря → поле с применённым значением.
   test('date-time: mobile selection scenario', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions({ mode: 'date-time' }, FIELD_DATE_STORIES.playground, { layoutType: 'mobile' }));
@@ -175,10 +178,19 @@ test.describe('FieldDate — visual regression', () => {
     await expect(timeApply).toBeEnabled();
     await frame('4. time picked');
 
-    // Apply — шиты закрываются, поле показывает дату и время.
+    // Apply времени лишь фиксирует время в черновике и возвращает на экран календаря (в форму НЕ
+    // коммитит — FF-8654 #4). Календарный шит снова видим, его Apply теперь активен (дата+время заполнены).
     await timeApply.click();
+    const calendarApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
+    await expect(calendarApply).toBeEnabled();
+    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await frame('5. date & time selected');
+
+    // Финальный Apply экрана календаря — коммит значения в поле (closeOnApply=true): шит закрывается,
+    // поле показывает применённые дату и время.
+    await calendarApply.click();
     await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeHidden();
-    await frame('5. field applied');
+    await frame('6. field applied');
 
     const composite = await composeScreenshots(cells, { layout: 'row' });
     expect(composite).toMatchSnapshot('scenario-mobile-date-time.png', MATCH_SNAPSHOT_DEFAULT_OPTS);

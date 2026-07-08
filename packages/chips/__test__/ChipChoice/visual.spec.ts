@@ -114,10 +114,13 @@ test.describe('ChipChoice — visual regression', () => {
     await expect(getByTestId(MOBILE_APPLY_TEST_ID)).toBeEnabled();
     await frame('4. range selected');
 
-    // 5. Apply — шит закрывается, чип показывает выбранный период (текст обновляется асинхронно — ждём).
+    // 5. Apply — значение коммитится, шит закрывается. Значение на чипе появляется синхронно, а
+    // закрытие BottomSheet — JS-motion анимация: на throttled-CPU в CI она укладывается за ~3–4с,
+    // что перебивает дефолтный 5с `toBeHidden` (на Mac закрывается быстрее). Ждём коммит значения
+    // (детерминированный сигнал, что Apply отработал), затем закрытие с увеличенным таймаутом.
     await getByTestId(MOBILE_APPLY_TEST_ID).click();
-    await expect(getByTestId(CHIP_CHOICE_TEST_IDS.droplist)).toBeHidden();
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.value)).toContainText('10.07.2026');
+    await expect(getByTestId(CHIP_CHOICE_TEST_IDS.droplist)).toBeHidden({ timeout: 15000 });
     await frame('5. chip applied');
 
     // Сшиваем все шаги в один снимок — так сценарий читается слева направо одним кадром.

@@ -30,6 +30,7 @@
     "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
+    "@ds/materials": "workspace:^",
     "@ds/portal-context": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/typography": "workspace:^",

@@ -27,6 +27,7 @@
     "@ds/icons": "workspace:^",
     "@ds/pagination": "workspace:^",
     "@ds/utils": "workspace:^",
+    "@types/lodash.debounce": "catalog:",
     "classnames": "catalog:",
     "lodash.debounce": "catalog:",
     "merge-refs": "catalog:",

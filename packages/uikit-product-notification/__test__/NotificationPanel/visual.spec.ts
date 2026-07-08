@@ -23,6 +23,8 @@ test.describe('NotificationPanel — visual regression', () => {
     await waitForFonts();
     await getByTestId(DRAWER_TRIGGER_TEST_ID).click();
     await waitForStableBbox(page.getByTestId(TEST_IDS.panel.title));
+    // Убираем курсор с overlay'я — иначе он оставляет stray-hover на карточке (серый state-layer + «...» actions).
+    await page.mouse.move(0, 0);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot('open.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
@@ -34,6 +36,9 @@ test.describe('NotificationPanel — visual regression', () => {
     await waitForFonts();
     await getByTestId(DRAWER_TRIGGER_TEST_ID).click();
     await waitForStableBbox(page.getByTestId(TEST_IDS.panel.title));
+    // На mobile bottom-sheet выезжает на весь экран, и точка клика оказывается над первой карточкой —
+    // уводим курсор в угол, чтобы снять stray-hover.
+    await page.mouse.move(0, 0);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

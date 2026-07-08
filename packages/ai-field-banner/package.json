@@ -24,8 +24,6 @@
   ],
   "dependencies": {
     "@ds/alert": "workspace:^",
-    "@ds/icons": "workspace:^",
-    "@ds/materials": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

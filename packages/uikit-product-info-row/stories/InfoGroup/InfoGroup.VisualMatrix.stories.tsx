@@ -33,25 +33,33 @@ const widths = ['fixed', 'full'] as const;
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
+  // Каждый `width` — отдельная StoryTable с одной demo-колонкой. Демо-фрейм 920px нужен,
+  // чтобы `fixed` (cap ≈900px) визуально отличался от `full`. Две такие колонки рядом дали
+  // бы таблицу ~1900px, которая выходит за пределы кадра и обрезалась справа на снимке.
   render: () => (
-    <StoryTable
-      sectionTitle='columns × width'
-      firstColumnHeader='columns'
-      columnHeaders={widths.map(w => w)}
-      rows={columnsOpts.map(columns => ({
-        variantLabel: columns,
-        cells: widths.map(width => (
-          <div key={`${columns}-${width}`} className={styles.widthDemoFrame}>
-            <InfoGroup<Row>
-              data={data}
-              items={items}
-              columns={columns}
-              width={width}
-              data-test-id={TEST_IDS.infoGroup.matrix(columns, width)}
-            />
-          </div>
-        )),
-      }))}
-    />
+    <div className={styles.grid}>
+      {widths.map(width => (
+        <StoryTable
+          key={width}
+          sectionTitle={`width = ${width}`}
+          firstColumnHeader='columns'
+          columnHeaders={['rendered']}
+          rows={columnsOpts.map(columns => ({
+            variantLabel: columns,
+            cells: [
+              <div key={`${columns}-${width}`} className={styles.widthDemoFrame}>
+                <InfoGroup<Row>
+                  data={data}
+                  items={items}
+                  columns={columns}
+                  width={width}
+                  data-test-id={TEST_IDS.infoGroup.matrix(columns, width)}
+                />
+              </div>,
+            ],
+          }))}
+        />
+      ))}
+    </div>
   ),
 };

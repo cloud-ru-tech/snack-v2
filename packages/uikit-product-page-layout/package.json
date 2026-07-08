@@ -24,7 +24,6 @@
   "sideEffects": ["*.css", "**/*.css"],
   "dependencies": {
     "@ds/adaptive": "workspace:^",
-    "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/dropdown": "workspace:^",
     "@ds/icon-predefined": "workspace:^",
@@ -33,9 +32,7 @@
     "@ds/loader": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/modal": "workspace:^",
-    "@ds/materials": "workspace:^",
     "@ds/popover": "workspace:^",
-    "@ds/portal-context": "workspace:^",
     "@ds/search": "workspace:^",
     "@ds/status": "workspace:^",
     "@ds/tooltip": "workspace:^",

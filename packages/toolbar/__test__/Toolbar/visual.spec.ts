@@ -1,6 +1,7 @@
 import { LAYOUT_TYPE } from '@ds/adaptive';
 
 import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
   MOBILE_VIEWPORT,
   SCREENSHOT_DEFAULT_OPTS,
   STORYBOOK_ROOT_SELECTOR,
@@ -67,9 +68,11 @@ test.describe('Toolbar — visual regression', () => {
     await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.refreshOption)).toBeVisible();
     await expect(getByTestId(`${TOOLBAR_COMPONENT_TEST_IDS.afterOption}__0`)).toBeVisible();
 
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
+    // Mobile-выпадашка (Droplist → BottomSheet) — full-viewport overlay: снимаем viewport, а не
+    // `#storybook-root` (он выше мобильного вьюпорта → под sheet'ом зияет фон DemoPage).
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-more-actions.png',
-      SCREENSHOT_DEFAULT_OPTS,
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });
 
@@ -84,9 +87,11 @@ test.describe('Toolbar — visual regression', () => {
     await waitForFonts();
     await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();
 
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(
+    // Mobile bulk-actions — full-viewport BottomSheet overlay: снимаем viewport, а не `#storybook-root`
+    // (он выше мобильного вьюпорта → под sheet'ом зияет фон DemoPage).
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-bulk.png',
-      SCREENSHOT_DEFAULT_OPTS,
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });
 });

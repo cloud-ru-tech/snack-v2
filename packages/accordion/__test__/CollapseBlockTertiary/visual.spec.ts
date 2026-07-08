@@ -44,6 +44,9 @@ test.describe('CollapseBlockTertiary — visual regression', () => {
     await getByTestId(TEST_IDS.title).click();
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
     await expect(page.locator('[data-completely-close]')).toHaveCount(0);
+    // Раскрытие двухфазное (grid-rows → затем padding-bottom). Ждём финального состояния,
+    // иначе waitForStableBbox стабилизируется в паузе между фазами и снимок обрезает нижний паддинг.
+    await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-completely-open', 'true');
     await waitForStableBbox(getByTestId(TEST_IDS.collapseBlock));
 
     const png = await screenshotWithPadding(page, getByTestId(TEST_IDS.collapseBlock), 16, SCREENSHOT_DEFAULT_OPTS);

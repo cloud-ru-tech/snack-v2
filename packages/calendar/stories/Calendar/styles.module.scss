@@ -20,6 +20,16 @@
   }
 }
 
+// Обёртка VisualMatrix: две StoryTable по вертикали. width: fit-content, чтобы секции
+// сайзились по своей таблице (по контенту), а не растягивались на всю ширину вьюпорта —
+// иначе широкая date-time таблица переполняет секцию и снимок обрезается справа.
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+  width: fit-content;
+}
+
 .cell {
   min-width: 280px;
   padding: base.$sn-primitive-dimension-8;

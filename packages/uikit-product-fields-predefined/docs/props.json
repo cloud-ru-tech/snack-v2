@@ -1506,7 +1506,7 @@
         "description": "CSS-класс\nCSS-класс корня `FieldDecorator`"
       },
       "customSchema": {
-        "type": "any",
+        "type": "StringSchema<string, AnyObject, undefined, \"\">",
         "required": false,
         "description": "Дополнительная yup-схема, которая конкатенируется к встроенной"
       },
@@ -1619,7 +1619,7 @@
         "description": "Колбек нажатия клавиши"
       },
       "onValidationError": {
-        "type": "((error: any) => void)",
+        "type": "((error: ValidationError | null) => void)",
         "required": false,
         "description": "Колбэк, вызываемый при изменении ошибки валидации (только в standalone-режиме)"
       },
@@ -1963,14 +1963,10 @@
       "controllerProps": {
         "type": "Omit<ControllerProps<FieldValues>, \"disabled\" | \"render\" | \"rules\">",
         "required": true,
-        "description": "Режим контроллера с использованием react-hook-form",
-        "typeRefs": [
-          "ControllerProps",
-          "FieldValues"
-        ]
+        "description": "Режим контроллера с использованием react-hook-form"
       },
       "customSchema": {
-        "type": "any",
+        "type": "StringSchema<string, AnyObject, undefined, \"\">",
         "required": false,
         "description": "Дополнительная yup-схема, которая конкатенируется к встроенной"
       },
@@ -2566,7 +2562,7 @@
         "description": "Колбек обработки потери фокуса"
       },
       "onChange": {
-        "type": "((value: string, mask: InputMask) => void)",
+        "type": "((value: string, mask: InputMask<Record<string, unknown>>) => void)",
         "required": false,
         "description": "Колбек смены значения; вторым аргументом — экземпляр маски imask"
       },
@@ -3527,7 +3523,7 @@
         "description": "CSS-класс\nCSS-класс корня `FieldDecorator`"
       },
       "customSchema": {
-        "type": "any",
+        "type": "StringSchema<string, AnyObject, undefined, \"\">",
         "required": false,
         "description": "Дополнительная yup-схема, конкатенируется к встроенной (обязательность, длина, допустимые символы).\nЧерез неё подключают data-зависимые проверки, которые компонент не может выполнить сам — например,\nпроверку уникальности имени по данным потребителя. Текст ошибки можно взять из локали пакета:\n`fieldsPredefinedLocale.useTranslations().t('FieldName.errorDuplicate')`."
       },
@@ -3686,7 +3682,7 @@
         "description": "Колбек обработки вставки значения"
       },
       "onValidationError": {
-        "type": "((error: any) => void)",
+        "type": "((error: ValidationError | null) => void)",
         "required": false,
         "description": "Колбэк, вызываемый при изменении ошибки валидации"
       },
@@ -4573,14 +4569,10 @@
       "controllerProps": {
         "type": "Omit<ControllerProps<FieldValues>, \"disabled\" | \"render\" | \"rules\">",
         "required": true,
-        "description": "Режим контроллера с использованием react-hook-form",
-        "typeRefs": [
-          "ControllerProps",
-          "FieldValues"
-        ]
+        "description": "Режим контроллера с использованием react-hook-form"
       },
       "customSchema": {
-        "type": "any",
+        "type": "StringSchema<string, AnyObject, undefined, \"\">",
         "required": false,
         "description": "Дополнительная yup-схема, конкатенируется к встроенной (обязательность, длина, допустимые символы).\nЧерез неё подключают data-зависимые проверки, которые компонент не может выполнить сам — например,\nпроверку уникальности имени по данным потребителя. Текст ошибки можно взять из локали пакета:\n`fieldsPredefinedLocale.useTranslations().t('FieldName.errorDuplicate')`."
       },

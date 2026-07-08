@@ -102,6 +102,9 @@ pnpm --filter @ds/tests exec playwright install
 | `pnpm test:e2e:chrome`           | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>`                                                                             |
 | `pnpm test:e2e:ui`               | Playwright в интерактивном UI-режиме                                                                                                                                                        |
 | `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only)                                                                                                                                                  |
+| `pnpm test:e2e:docker`           | Playwright chrome в Docker (Linux, образ как на CI) — для проверки visual на Mac                                                                                                            |
+| `pnpm test:e2e:docker:update-snapshots` | Переснять baseline'ы в Linux (коммитить PNG после review)                                                                                                                            |
+| `pnpm test:e2e:docker:visual`    | Только `visual.spec.ts` в Docker                                                                                                                                                            |
 | `pnpm test:e2e:audit`            | Статический аудит Playwright spec'ов на соответствие [e2e-testing-standard.md](./.claude/rules/e2e-testing-standard.md). Опционально — фильтр по пакету: `pnpm test:e2e:audit button`         |
 
 Селективные команды для итеративной работы над одним пакетом — см. [`.claude/rules/fast-build-commands.md`](./.claude/rules/fast-build-commands.md).
@@ -126,13 +129,31 @@ pnpm release
 pnpm add-package                    # создаёт packages/<pkg>/ и подключает его к репо
 /add-stories <pkg>                  # Playground + VisualMatrix (+ examples/ / tests/ при необходимости)
 pnpm dev:storybook                  # в отдельном терминале
-pnpm test:e2e:update-snapshots packages/<pkg>   # снять baselines (chrome-only)
+pnpm test:e2e:update-snapshots packages/<pkg>   # baselines на Linux-хосте; на Mac — docker ниже
 /add-tests <pkg>                    # Playwright spec'и по rules
 /test-coverage <pkg>                # отчёт coverage + аудит E2E перед PR
 /add-docs <pkg>                     # docs/index.mdx + demos/
 pnpm gen:props && pnpm gen:readme   # автоген артефактов
 /make-commit                        # conventional commit из staged diff
 ```
+
+### Visual baselines на Mac (Linux как на CI)
+
+Baseline PNG для visual regression нужно снимать в **Linux** — иначе CI падает из‑за разницы рендеринга шрифтов (macOS CoreText vs Linux FreeType). Локально на Mac:
+
+```bash
+# ~/.npmrc с _authToken для pkg.sbercloud.tech — монтируется автоматически
+
+pnpm test:e2e:docker:visual                           # прогон visual-тестов в Linux
+pnpm test:e2e:docker:visual:update packages/calendar  # переснять один пакет
+pnpm test:e2e:docker:visual:update                    # все visual.spec.ts
+```
+
+Образ: `node:24.11.1-bookworm-slim` (Docker Hub). Playwright + chromium — в `run.sh` после `pnpm install` (кэш в volume `snack-v2-e2e-playwright-browsers`). Override — `DOCKER_E2E_IMAGE`.
+
+Первый прогон долгий (~10–20 мин): `playwright install --with-deps` + `build:packages` + `build:storybook`. Повторный быстрее: `DOCKER_E2E_SKIP_BROWSER_INSTALL=1` и `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1`.
+
+Если `build:packages` в Docker падает с `Cannot find module '@ds/...'` — это конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` временно прячет macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
 
 Перед первым PR прочитать [`.claude/rules/`](./.claude/rules/) — там стандарты на структуру, stories, тесты, документацию.
 

@@ -25,7 +25,6 @@
   "dependencies": {
     "@ds/context-kit": "workspace:^",
     "@types/lodash.merge": "4.6.9",
-    "classnames": "catalog:",
     "lodash.merge": "4.6.2"
   },
   "publishConfig": {

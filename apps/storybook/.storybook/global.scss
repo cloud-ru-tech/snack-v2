@@ -21,6 +21,16 @@ html {
   scrollbar-gutter: stable;
 }
 
+// Для fullscreen-сторей (trigger-based overlay'и: Modal/Drawer/BottomSheet/Dropdown, а также
+// full-page layout'ы и error-pages) gutter не нужен: их visual-тесты снимают весь `page.screenshot()`,
+// и зарезервированные 15px дают серую полосу справа на Linux (classic scrollbar; на macOS
+// overlay-scrollbar = 0px). Матрицы рендерятся с `padded`/`centered` и снимают локатор StoryTable —
+// им gutter по-прежнему нужен для стабильности ширины, поэтому правило скоупим по классу раскладки,
+// который Storybook вешает сам (`sb-main-fullscreen`). `:has()` — Chromium baseline.
+html:has(.sb-main-fullscreen) {
+  scrollbar-gutter: auto;
+}
+
 body {
   margin: 0;
   padding: 0;

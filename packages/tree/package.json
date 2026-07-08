@@ -28,7 +28,6 @@
     "@ds/list": "workspace:^",
     "@ds/loader": "workspace:^",
     "@ds/materials": "workspace:^",
-    "@ds/portal-context": "workspace:^",
     "@ds/toggles": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/typography": "workspace:^",

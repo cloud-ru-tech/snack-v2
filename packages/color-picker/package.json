@@ -30,7 +30,6 @@
   ],
   "dependencies": {
     "@ds/button": "workspace:^",
-    "@ds/icons": "workspace:^",
     "@ds/input-private": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/segment-control": "workspace:^",

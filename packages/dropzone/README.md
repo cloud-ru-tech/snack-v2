@@ -43,6 +43,19 @@ import { Dropzone, FileUpload, HiddenDropZone } from '@ds/dropzone'
 #### Upload mode
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
+#### Поле формы
+`Dropzone` проксирует нативные атрибуты скрытого `<input type="file">` — компонент работает как полноценное поле формы:
+
+- `name`, `id`, `required`, `capture`, `form` — стандартные атрибуты input.
+- `innerRef` — ссылка на нативный input (для интеграции с react-hook-form: `ref` из `register(name)`).
+- `onChange` — нативный `onChange` input, вызывается до валидации с исходным событием.
+
+#### Валидация
+Ограничения `accept` (MIME-тип, шаблон `image/*` или расширение `.pdf`; строка или массив) и `maxSize` (байты) применяются и к выбору через диалог, и к drag-n-drop:
+
+- принятые файлы уходят в `onFilesUpload(files)`;
+- отклонённые — в `onFilesReject(rejections)` с причиной `maxSize` или `mime`.
+
 ### Примеры использования
 #### Базовая зона
 
@@ -161,7 +174,7 @@ export function DropzoneDisabled() {
 `single` — один файл за раз, повторный выбор заменяет предыдущий; `multiple` — батч-загрузка, файлы накапливаются.
 
 #### Поле формы
-`FileUpload` проксирует нативные атрибуты `<input type="file">` на скрытый input — компонент работает как настоящее поле формы:
+`FileUpload` проксирует нативные атрибуты `<input type="file">` на скрытый input — компонент работает как полноценное поле формы:
 
 - `name`, `id`, `required`, `capture`, `form` — стандартные атрибуты; `id` связывает input с `<label htmlFor>`.
 - `innerRef` — ссылка на нативный input (для интеграции с react-hook-form: `ref` из `register(name)`).
@@ -231,8 +244,9 @@ export function FileUploadFormField() {
         maxSize={MAX_SIZE}
         onFilesReject={handleReject}
         onFilesUpload={files => {
+          if (!files.length) return;
           setError(null);
-          setFile(files[0] ?? null);
+          setFile(files[0]);
         }}
       >
         <Button type='button' label='Прикрепить резюме' />
@@ -278,6 +292,8 @@ export function FileUploadFormField() {
 - Массовая загрузка поверх полноэкранного списка.
 
 Когда **не** подходит: когда загрузка — первичный сценарий страницы и должна быть видна сразу — используйте **Dropzone**.
+
+Валидация (`accept`, `maxSize` → `onFilesReject`) и колбеки работают так же, как у `Dropzone`. Но скрытая зона рендерит нативный `<input type="file">` **только во время перетаскивания**, поэтому нативные form-атрибуты (`name`, `required`, submit по форме) на ней ненадёжны — для полноценного поля формы берите **Dropzone** или **FileUpload**.
 
 ### Примеры использования
 #### Оверлей над формой

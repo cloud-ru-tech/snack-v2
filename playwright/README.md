@@ -114,7 +114,21 @@ pnpm test:e2e:ui                  # UI-режим Playwright
 pnpm test:e2e:update-snapshots    # регенерация visual baselines (chrome)
 ```
 
-Перед запуском либо поднимите Storybook вручную (`pnpm dev:storybook`), либо положитесь на автоматический `webServer` из `playwright.config.ts` (`reuseExistingServer: true` в локале).
+### Docker (Linux baselines с Mac)
+
+На Mac baseline'ы для visual regression снимай в Docker — иначе PNG не совпадут с CI:
+
+```bash
+# ~/.npmrc с доступом к pkg.sbercloud.tech монтируется автоматически
+pnpm test:e2e:docker                              # e2e chrome в Linux
+pnpm test:e2e:docker packages/calendar            # один пакет
+pnpm test:e2e:docker:update-snapshots             # переснять все baseline'ы
+pnpm test:e2e:docker:visual:update packages/accordion
+```
+
+Скрипт: `scripts/docker-e2e.mts`, entrypoint: `docker/e2e/run.sh`. Образ: `node:24.11.1-bookworm-slim`; Playwright + chromium — в run.sh. Override — `DOCKER_E2E_IMAGE`.
+
+Порядок: `pnpm install` → `playwright install --with-deps chromium` → `build:packages` + `build:storybook` → `http-server` → тесты. Быстрый повтор: `DOCKER_E2E_SKIP_BROWSER_INSTALL=1` + `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1`.
 
 ## Env
 

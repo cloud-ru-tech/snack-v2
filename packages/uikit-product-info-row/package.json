@@ -29,7 +29,6 @@
     "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
-    "@ds/icons": "workspace:^",
     "@ds/popover-private": "workspace:^",
     "@ds/skeleton": "workspace:^",
     "@ds/theme": "workspace:^",

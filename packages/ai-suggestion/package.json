@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "@ds/icons": "workspace:^",
+    "@ds/materials": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
     "framer-motion": "12.38.0",

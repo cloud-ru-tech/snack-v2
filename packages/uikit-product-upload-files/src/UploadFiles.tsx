@@ -102,16 +102,17 @@ export const UploadFiles = forwardRef<HTMLDivElement, UploadFilesProps>(function
     [t, formatsConjunctionList, maxSizeLabel, maxFiles],
   );
 
-  const { items, summaryError, summaryErrorType, handleFilesUpload, handleDelete } = useUploadFilesController({
-    value,
-    onChange,
-    upload,
-    accept,
-    maxFiles,
-    maxSize,
-    disabled,
-    messages,
-  });
+  const { items, summaryError, summaryErrorType, handleFilesUpload, handleFilesReject, handleDelete } =
+    useUploadFilesController({
+      value,
+      onChange,
+      upload,
+      accept,
+      maxFiles,
+      maxSize,
+      disabled,
+      messages,
+    });
 
   const dropzoneDescription = useMemo(() => {
     const count = maxFiles ?? '';
@@ -185,6 +186,7 @@ export const UploadFiles = forwardRef<HTMLDivElement, UploadFilesProps>(function
       >
         <Dropzone
           onFilesUpload={handleFilesUpload}
+          onFilesReject={handleFilesReject}
           disabled={disabled}
           accept={acceptAttribute}
           aria-invalid={hasError || undefined}

@@ -916,7 +916,7 @@ export function FullWidth() {
 | `cardColumns` | `number` | — | Желаемое число колонок карточного вида (`view='cards'`). <br/> На широком контейнере рисуется ровно столько колонок; при сужении сетка <br/> схлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число <br/> колонок определяется только шириной контейнера и `cardMinWidth` (auto-fill). |
 | `cardMinWidth` | `number` | `292` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
 | `className` | `string` | — | CSS-класс |
-| `columnDefinitions` | `ColumnDefinition` \| `TData` | — | Определение внешнего вида и функционала колонок |
+| `columnDefinitions` | `ColumnDefinition` \| `Except` \| `TData` | — | Определение внешнего вида и функционала колонок |
 | `columnFilters` | `FilterRow` \| `TFilters` | — | Фильтры |
 | `columnVirtualizerInstanceRef` | `ColumnVirtualizer` | — | Ref на инстанс column-virtualizer'а для управления прокруткой снаружи |
 | `columnVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=3). |
@@ -958,10 +958,10 @@ export function FullWidth() {
 | `outline` | `boolean` | `false` | Внешний бордер для тулбара и таблицы |
 | `pageCount` | `number` | — | Кол-во страниц (для внешнего управления) |
 | `pageSize` | `number` | `10` | Максимальное кол-во строк на страницу |
-| `pagination` | `{ state?: any; options?: number[]; optionsLabel?: string; onChange?(state: PaginationState): void; optionsRender?(value: string \| number, idx: number): string \| number; } \| undefined` | — | Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`. |
+| `pagination` | `{ state?: PaginationState; options?: number[]; optionsLabel?: string \| undefined; onChange?(state: PaginationState): void; optionsRender?(value: string \| number, idx: number): string \| number; } \| undefined` | — | Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`. |
 | `renderCard` | `((context: RenderCardContext<TData>) => ReactNode)` | — | Кастомный рендер карточки в `view='cards'`. Получает контекст с tanstack <br/> `row` / `table` и `defaultRender` (готовый элемент дефолтной карточки — <br/> можно обернуть). Возврат заменяет дефолтную карточку. |
 | `rowAutoHeight` | `boolean` | — |  |
-| `rowPinning` | `RowPinningState` | `{     top: [],   }` | Определение, какие строки должны быть закреплены в таблице |
+| `rowPinning` | `Pick<RowPinningState, "top">` | `{     top: [],   }` | Определение, какие строки должны быть закреплены в таблице |
 | `rowSelection` | `RowAppearance` \| `TData` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
 | `rowVirtualizerInstanceRef` | `RowVirtualizer` | — | Ref на инстанс row-virtualizer'а для управления прокруткой снаружи |
 | `rowVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=10, estimateSize=40). |
@@ -969,7 +969,7 @@ export function FullWidth() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `search` | `{ initialState?: string; state?: string; placeholder?: string \| undefined; loading?: boolean \| undefined; onChange?(value: string): void; } \| undefined` | — | Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`. |
-| `sorting` | `{ initialState?: any; state?: any; onChange?(state: SortingState): void; }` | — | Параметры отвечают за возможность сортировки: <br/> `initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение. |
+| `sorting` | `{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } \| undefined` | — | Параметры отвечают за возможность сортировки: <br/> `initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение. |
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | `false` | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
 | `suppressPagination` | `boolean` | `false` | Отключение пагинации |
@@ -992,7 +992,7 @@ export function FullWidth() {
 | `onClick` | `((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) \| undefined` | — |  |
 | `tooltip` | `TooltipProps` | — |  |
 
-- `ColumnDefinition` = `any`
+- `ColumnDefinition` = `NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>`
 
 **EmptyStateProps**
 
@@ -1003,6 +1003,8 @@ export function FullWidth() {
 | `footer` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string \| undefined` | — | Заголовок |
+
+- `Except` = `{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }`
 
 - `RowClickHandler` = `(e: MouseEvent<HTMLDivElement>, row: RowInfo<TData>) => void`
 
@@ -1304,7 +1306,7 @@ export function ServerDriven() {
 | `cardColumns` | `number` | — | Желаемое число колонок карточного вида (`view='cards'`). <br/> На широком контейнере рисуется ровно столько колонок; при сужении сетка <br/> схлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число <br/> колонок определяется только шириной контейнера и `cardMinWidth` (auto-fill). |
 | `cardMinWidth` | `number` | `292` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
 | `className` | `string` | — | CSS-класс |
-| `columnDefinitions` | `ColumnDefinition` \| `TData` | — | Определение внешнего вида и функционала колонок |
+| `columnDefinitions` | `ColumnDefinition` \| `Except` \| `TData` | — | Определение внешнего вида и функционала колонок |
 | `columnFilters` | `FilterRow` \| `TFilters` | — | Фильтры |
 | `columnVirtualizerInstanceRef` | `ColumnVirtualizer` | — | Ref на инстанс column-virtualizer'а для управления прокруткой снаружи |
 | `columnVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=3). |
@@ -1350,7 +1352,7 @@ export function ServerDriven() {
 | `pagination` | `{ options?: number[]; optionsLabel?: string; } \| undefined` | — | Параметры пагинации: `options`, `optionsLabel` |
 | `renderCard` | `((context: RenderCardContext<TData>) => ReactNode)` | — | Кастомный рендер карточки в `view='cards'`. Получает контекст с tanstack <br/> `row` / `table` и `defaultRender` (готовый элемент дефолтной карточки — <br/> можно обернуть). Возврат заменяет дефолтную карточку. |
 | `rowAutoHeight` | `boolean` | — |  |
-| `rowPinning` | `RowPinningState` | — | Определение, какие строки должны быть закреплены в таблице |
+| `rowPinning` | `Pick<RowPinningState, "top">` | — | Определение, какие строки должны быть закреплены в таблице |
 | `rowSelection` | `RowAppearance` \| `TData` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
 | `rowVirtualizerInstanceRef` | `RowVirtualizer` | — | Ref на инстанс row-virtualizer'а для управления прокруткой снаружи |
 | `rowVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=10, estimateSize=40). |
@@ -1358,7 +1360,7 @@ export function ServerDriven() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `search` | `{ initialState?: string; state: string; placeholder?: string; loading?: boolean \| undefined; onChange(value: string): void; } \| undefined` | — | Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`. |
-| `sorting` | `{ initialState?: any; state?: any; onChange?(state: SortingState): void; }` | — | Параметры отвечают за возможность сортировки: <br/> `initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение. |
+| `sorting` | `{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } \| undefined` | — | Параметры отвечают за возможность сортировки: <br/> `initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение. |
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | — | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
 | `suppressPagination` | `boolean` | — | Отключение пагинации |
@@ -1381,7 +1383,7 @@ export function ServerDriven() {
 | `onClick` | `((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) \| undefined` | — |  |
 | `tooltip` | `TooltipProps` | — |  |
 
-- `ColumnDefinition` = `any`
+- `ColumnDefinition` = `NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>`
 
 **EmptyStateProps**
 
@@ -1392,6 +1394,8 @@ export function ServerDriven() {
 | `footer` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string \| undefined` | — | Заголовок |
+
+- `Except` = `{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }`
 
 - `RowClickHandler` = `(e: MouseEvent<HTMLDivElement>, row: RowInfo<TData>) => void`
 
@@ -2389,7 +2393,7 @@ export function EntitiesTableWithFilters() {
 | `cardColumns` | `number` | — | Желаемое число колонок карточного вида (`view='cards'`). <br/> На широком контейнере рисуется ровно столько колонок; при сужении сетка <br/> схлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число <br/> колонок определяется только шириной контейнера и `cardMinWidth` (auto-fill). |
 | `cardMinWidth` | `number` | `292` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
 | `className` | `string` | — | CSS-класс |
-| `columnDefinitions` | `any[]` | — | Определение внешнего вида и функционала колонок |
+| `columnDefinitions` | `ColumnDefinition<T>[]` | — | Определение внешнего вида и функционала колонок |
 | `columnFilters` | `(Omit<ChipChoiceRowProps<P>, "data-test-id" \| "size"> & { open?: boolean; initialOpen?: boolean; onOpenChange?(isOpen: boolean): void; } & { ...; }) \| undefined` | — | Фильтры |
 | `columnVirtualizerInstanceRef` | `MutableRefObject<ColumnVirtualizer>` | — | Ref на инстанс column-virtualizer'а для управления прокруткой снаружи |
 | `columnVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=3). |
@@ -2399,17 +2403,17 @@ export function EntitiesTableWithFilters() {
 | `defaultLimit` | `number` | — |  |
 | `defaultOffset` | `number` | — |  |
 | `defaultSearch` | `string` | — |  |
-| `defaultSort` | `any` | — |  |
+| `defaultSort` | `SortingState` | — |  |
 | `defaultView` | `"cards"` \| `"table"` | `'table'` | Начальный режим отображения для uncontrolled-режима. <br/> Задание пропа включает переключатель вида в тулбаре. |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
 | `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
 | `enableSelectPinned` | `boolean` | — | Параметр отвечает за чекбокс выбора закрепленных строк |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
-| `expanding` | `{ getSubRows: (element: T) => T[]; expandingColumnDefinition: TreeColumnDefinitionProps<T>; initialState?: any; state?: any; onChange?(state: ExpandedState): void; }` | — | Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`, <br/> `initialState`, `state`, `onChange`. |
+| `expanding` | `{ getSubRows: (element: T) => T[]; expandingColumnDefinition: TreeColumnDefinitionProps<T>; initialState?: ExpandedState; state?: ExpandedState \| undefined; onChange?(state: ExpandedState): void; } \| undefined` | — | Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`, <br/> `initialState`, `state`, `onChange`. |
 | `fullWidth` | `boolean` | `true` | Растягивать таблицу на всю ширину контейнера. <br/> При `false` ширина определяется суммой колонок (лучше всего, когда у всех колонок задан `size` / `width`). <br/> Явный проп = desktop-значение; на mobile всегда `true` (`TABLE_LAYOUT_PRESETS`). |
 | `getRowBackgroundColor` | `((data: T) => TableRowColor)` | — | Функция определения цвета фона строки по её данным. <br/> Работает только в `view='table'` — карточки (`view='cards'`) не тонируются. <br/> @param data данные строки <br/> @returns цвет фона строки или `undefined` |
-| `getRowId` | `((originalRow: T, index: number, parent?: any) => string)` | — | Функция получения уникального идентификатора строки |
+| `getRowId` | `((originalRow: T, index: number, parent?: Row<T>) => string)` | — | Функция получения уникального идентификатора строки |
 | `hasMore` | `undefined` | — |  |
 | `headerRowBackgroundColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Accent-тон фона строки заголовков колонок (`tableHeadLine`). <br/> Работает только в `view='table'`. |
 | `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре. |
@@ -2436,7 +2440,7 @@ export function EntitiesTableWithFilters() {
 | `renderCard` | `((context: RenderCardContext<T>) => ReactNode)` | — | Кастомный рендер карточки в `view='cards'`. Получает контекст с tanstack <br/> `row` / `table` и `defaultRender` (готовый элемент дефолтной карточки — <br/> можно обернуть). Возврат заменяет дефолтную карточку. |
 | `rowAutoHeight` | `boolean` | — |  |
 | `rowPinning` | `Pick<RowPinningState, "top">` | — | Определение, какие строки должны быть закреплены в таблице |
-| `rowSelection` | `{ initialState?: any; state?: any; enable?: any; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } \| undefined` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
+| `rowSelection` | `{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean \| ((row: Row<T>) => boolean) \| undefined; multiRow?: boolean \| undefined; onChange?(state: RowSelectionState): void; appearance?: RowAppearance \| undefined; } \| undefined` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
 | `rowVirtualizerInstanceRef` | `MutableRefObject<RowVirtualizer>` | — | Ref на инстанс row-virtualizer'а для управления прокруткой снаружи |
 | `rowVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=10, estimateSize=40). |
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |

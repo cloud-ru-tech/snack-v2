@@ -23,7 +23,6 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/list": "workspace:^",

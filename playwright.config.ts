@@ -20,7 +20,7 @@ export default defineConfig({
   outputDir: resolve(PLAYWRIGHT_ROOT_DIR, 'test-results'),
   testIgnore: [
     '**/node_modules/**',
-    // FF-8488 (temp): на CI пропускаем visual regression spec'и, чтобы не
+    // Пропускаем visual regression spec'и, чтобы не
     // блокировать пайплайн на расхождении macOS↔Linux font-rendering.
     // Включение обратно — снять переменную SKIP_VISUAL в CI.
     ...(process.env.SKIP_VISUAL ? ['**/__test__/**/visual.spec.ts'] : []),

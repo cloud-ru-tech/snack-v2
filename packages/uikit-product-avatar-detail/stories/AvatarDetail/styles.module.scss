@@ -4,3 +4,11 @@
   display: grid;
   gap: base.$sn-primitive-dimension-24;
 }
+
+// Хост для Playground: root компонента — width:100%, и без заданной ширины
+// в layout:'centered' он схлопывается до контентной ширины (карточка выглядит
+// сжатой). Фиксируем реалистичную ширину демо.
+.playgroundHost {
+  width: 320px;
+  max-width: 100%;
+}

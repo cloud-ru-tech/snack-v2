@@ -1,5 +1,6 @@
 # Dependencies
 node_modules
+node_modules.macos-bak
 .pnpm-store
 
 # Build outputs

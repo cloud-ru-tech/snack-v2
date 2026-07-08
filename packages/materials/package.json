@@ -21,9 +21,11 @@
     "dist",
     "README.md"
   ],
-  "devDependencies": {
-    "classnames": "catalog:",
+  "dependencies": {
     "@ds/utils": "workspace:^"
+  },
+  "devDependencies": {
+    "classnames": "catalog:"
   },
   "sideEffects": [
     "**/*.scss"

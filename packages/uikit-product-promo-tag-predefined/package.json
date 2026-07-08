@@ -32,8 +32,7 @@
     "@ds/locale": "workspace:^",
     "@ds/promo-tag": "workspace:^",
     "@ds/tooltip": "workspace:^",
-    "@ds/utils": "workspace:^",
-    "classnames": "catalog:"
+    "@ds/utils": "workspace:^"
   },
   "publishConfig": {
     "access": "public"

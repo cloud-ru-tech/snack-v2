@@ -24,7 +24,6 @@
   ],
   "dependencies": {
     "@ds/loader": "workspace:^",
-    "@ds/materials": "workspace:^",
     "@ds/theme": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/uikit-product-copy": "workspace:^",
@@ -33,7 +32,11 @@
     "classnames": "catalog:",
     "monaco-yaml": "5.5.0"
   },
+  "peerDependencies": {
+    "monaco-editor": "*"
+  },
   "devDependencies": {
+    "monaco-editor": "0.55.1",
     "sass": "catalog:",
     "typescript": "catalog:"
   },

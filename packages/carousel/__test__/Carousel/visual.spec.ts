@@ -37,6 +37,9 @@ test.describe('Carousel — visual regression', () => {
         await arrow.evaluate((el: HTMLElement) => el.focus({ focusVisible: true } as FocusOptions));
       },
       includePressed: true,
+      // Стрелки — position:absolute + translateX(±50%), поэтому выступают ~20px за
+      // пределы root-бокса слева и справа. Дефолтный padding=8 обрезал бы их — берём 32.
+      padding: 32,
       layout: 'col',
     });
   });

@@ -5,6 +5,7 @@ packages:
 
 catalog:
   '@tanstack/react-virtual': 3.11.2
+  '@types/lodash.debounce': 4.0.9
   '@types/react': 18.3.28
   '@types/react-dom': 18.3.7
   classnames: 2.5.1
@@ -25,6 +26,7 @@ catalog:
   # convention that Node and every bundler resolve without conflict. API is identical
   # (we only use `useUncontrolledProp`).
   uncontrollable: 8.0.4
+  unified: 11.0.5
   vitest: 4.1.10
   '@vitest/browser': 4.1.10
   '@vitest/browser-playwright': 4.1.10

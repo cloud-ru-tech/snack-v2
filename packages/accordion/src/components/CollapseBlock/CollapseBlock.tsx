@@ -91,6 +91,7 @@ export function CollapseBlock({
       data-acrylic-appearance={appearance}
       data-acrylic-level={level}
       data-expanded={isOpen}
+      data-completely-open={isCompletelyOpen || undefined}
       data-view={view}
       data-component={component}
       data-test-id={dataTestId ?? TEST_IDS.collapseBlock}

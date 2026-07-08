@@ -39,22 +39,17 @@ export const MOBILE_VIEWPORT = { width: 390, height: 844 } as const;
 export const SCREENSHOT_DEFAULT_OPTS = {
   animations: 'disabled',
   caret: 'hide',
-  // Threshold-параметры толерантны к suб-пиксельной разнице рендера между OS
-  // (macOS vs CI Linux noble): CoreText и FreeType/Skia рендерят один и тот же
-  // Inter с разным antialiasing на subpixel-уровне — diff ловит ~edge каждого
-  // глифа. Threshold подобран эмпирически так, чтобы такая разница (визуально
-  // идентичные снимки) проходила, а реальные регрессии (изменения цвета/
-  // раскладки/появление-исчезновение элементов) — нет.
+  // Threshold-параметры толерантны к суб-пиксельной разнице рендера: даже на
+  // одной ОС FreeType/Skia дают ~edge-шум на каждом глифе Inter. Baseline'ы
+  // сняты на Linux (CI-паритет), поэтому широкий macOS-vs-Linux коридор больше
+  // не нужен — пороги сужены до рабочих значений: реальные регрессии
+  // (изменения цвета/раскладки/появление-исчезновение элементов) их пробивают,
+  // а subpixel-antialiasing — нет.
   //
-  // TODO(FF-8488): значения широкие. После стабилизации baseline'ов и
-  // выравнивания font-rendering в CI попробовать сужать (например, до
-  // maxDiffPixelRatio: 0.05, threshold: 0.25) — pet-test override остаётся
-  // доступным через `expect(...).toHaveScreenshot(name, { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: ... })`.
-  // FF-8488 (temp): пороги намеренно завышены, чтобы не блокировать CI на
-  // расхождении macOS (локальные baseline'ы) vs Linux (CI). Сузить после
-  // выравнивания font-rendering / переснятия baseline'ов на Linux.
-  maxDiffPixelRatio: 0.5,
-  threshold: 0.5,
+  // Точечный override остаётся доступным через
+  // `expect(...).toHaveScreenshot(name, { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: ... })`.
+  maxDiffPixelRatio: 0.05,
+  threshold: 0.25,
 } as const;
 
 /**
@@ -65,6 +60,6 @@ export const SCREENSHOT_DEFAULT_OPTS = {
  * геометрии. Threshold те же, что в `SCREENSHOT_DEFAULT_OPTS`.
  */
 export const MATCH_SNAPSHOT_DEFAULT_OPTS = {
-  maxDiffPixelRatio: 0.5,
-  threshold: 0.5,
+  maxDiffPixelRatio: 0.05,
+  threshold: 0.25,
 } as const;

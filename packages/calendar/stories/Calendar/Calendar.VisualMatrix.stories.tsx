@@ -36,7 +36,8 @@ const dateValue = new Date(2026, 3, 10);
 const dateTimeValue = new Date(2026, 3, 10, 14, 30, 0);
 const rangeShort: Range = [new Date(2026, 3, 5), new Date(2026, 3, 25)];
 
-function matrixRow(size: Size): StoryTableRow {
+// date + date-range — узкие режимы, живут в одной таблице.
+function dateColumnsRow(size: Size): StoryTableRow {
   return {
     variantLabel: `size ${size}`,
     cells: [
@@ -62,6 +63,17 @@ function matrixRow(size: Size): StoryTableRow {
           value={rangeShort}
         />
       </div>,
+    ],
+  };
+}
+
+// date-time шире (календарь + тайм-панель): size L даёт ~504px, и вместе с date/date-range
+// таблица переполняет вьюпорт → секцию обрезает справа. Выносим в отдельную StoryTable,
+// чтобы кадр помещался целиком. `assertVisualMatrixSnapshot` склеит обе секции по вертикали.
+function dateTimeRow(size: Size): StoryTableRow {
+  return {
+    variantLabel: `size ${size}`,
+    cells: [
       <div key='date-time' className={styles.cell}>
         <Calendar
           data-test-id={`calendar-matrix-date-time-${size}`}
@@ -79,12 +91,20 @@ function matrixRow(size: Size): StoryTableRow {
 }
 
 const Template: StoryFn = () => (
-  <StoryTable
-    sectionTitle='Calendar — размер × режим (date / date-range / date-time)'
-    columnHeaders={['date', 'date-range', 'date-time']}
-    firstColumnHeader='Variant'
-    rows={sizes.map(size => matrixRow(size))}
-  />
+  <div className={styles.matrix}>
+    <StoryTable
+      sectionTitle='Calendar — размер × режим (date / date-range)'
+      columnHeaders={['date', 'date-range']}
+      firstColumnHeader='Variant'
+      rows={sizes.map(dateColumnsRow)}
+    />
+    <StoryTable
+      sectionTitle='Calendar — date-time (широкий режим)'
+      columnHeaders={['date-time']}
+      firstColumnHeader='Variant'
+      rows={sizes.map(dateTimeRow)}
+    />
+  </div>
 );
 
 export const VisualMatrix: Story = {

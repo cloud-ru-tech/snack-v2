@@ -1,6 +1,6 @@
 import { Markdown } from '@ds/markdown';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from 'storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
@@ -91,7 +91,7 @@ type Story = StoryObj<typeof Markdown>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  play: async ({ args, canvasElement, step }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const root = canvas.getByTestId(TEST_IDS.viewer);
     await expect(root).toBeVisible();
@@ -104,12 +104,8 @@ export const Playground: Story = {
       await expect(root.querySelector('pre code')).toBeTruthy();
     });
 
-    await step('Copy button on the code block fires onCodeCopyClick with the raw code', async () => {
-      const copy = canvas.getAllByTestId(TEST_IDS.viewerCodeCopy)[0];
-      await expect(copy).toBeVisible();
-      await userEvent.click(copy);
-      expect(args.onCodeCopyClick).toHaveBeenCalledTimes(1);
-      expect(args.onCodeCopyClick).toHaveBeenCalledWith(expect.stringContaining('export function add'));
-    });
+    // Клик по copy-кнопке и проверка onCodeCopyClick вынесены в tests/Markdown.InteractionTest —
+    // здесь play не мутирует состояние кнопки, иначе visual.spec (interaction-states) ловит
+    // остаточный `copied` (CheckSVG) вместо CopySVG. См. CodeBlock.tsx `COPIED_RESET_MS`.
   },
 };
