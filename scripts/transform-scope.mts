@@ -12,14 +12,12 @@
  *      - `name`: `<from>/<pkg>` → `<to>/<prefix><pkg>`
  *      - `dependencies` / `devDependencies` / `peerDependencies` /
  *        `optionalDependencies` keys: `<from>/<x>` → `<to>/<prefix><x>`
- *      - dep values: `workspace:*` / `workspace:^` / `workspace:~` are resolved
- *        to semver ranges (`^` / `~`) from the sibling package.json version;
- *        `catalog:` / `catalog:<alias>` — to the concrete version from
- *        `pnpm-workspace.yaml::catalog`.
- *        After the scope rename the packages are no longer workspace members
- *        for pnpm, so neither `pnpm publish` nor `lerna publish` would resolve
- *        these protocols — we resolve them here so the published package.json
- *        are self-contained.
+ *      - dep VALUES are left untouched: `workspace:*` / `workspace:^` /
+ *        `workspace:~` and `catalog:` stay as-is. The pipeline runs
+ *        `pnpm install` right after this rename (so the lockfile / node_modules
+ *        relink under the new names), then publishes with `pnpm publish`, which
+ *        resolves both protocols natively. This script only renames the scope;
+ *        it does NOT resolve any dependency protocol.
  *
  *   2. `packages/<pkg>/dist/**` (`.js`, `.mjs`, `.cjs`, `.d.ts`, `.d.mts`,
  *      `.d.cts`, `.map`): replaces every occurrence of `<from>/<x>` with
@@ -75,32 +73,6 @@ if (fromScope === toScope && namePrefix === '') {
   process.exit(0);
 }
 
-// Парсим `catalog:` секцию из pnpm-workspace.yaml в Map<name, version>.
-// Используется для замены `catalog:` / `catalog:default` / `catalog:<name>`
-// в deps на конкретную версию. Без этого после переименования scope (где
-// пакеты перестают быть workspace-членами для pnpm) `pnpm publish` оставит
-// `catalog:` в опубликованном package.json — потребитель получит
-// ERR_PNPM_SPEC_NOT_SUPPORTED_BY_ANY_RESOLVER.
-const catalogMap = new Map<string, string>();
-try {
-  const wsYaml = readFileSync(resolve(ROOT, 'pnpm-workspace.yaml'), 'utf8');
-  const catalogStart = wsYaml.search(/^catalog\s*:\s*$/m);
-  if (catalogStart !== -1) {
-    const rest = wsYaml.slice(catalogStart).split('\n').slice(1);
-    for (const rawLine of rest) {
-      // Окончание блока: либо пустая строка, либо строка не с отступом.
-      if (rawLine.trim() === '' || (!rawLine.startsWith(' ') && !rawLine.startsWith('\t'))) {
-        if (rawLine.trim() === '') continue;
-        break;
-      }
-      const match = rawLine.match(/^\s+['"]?([^'":]+?)['"]?\s*:\s*['"]?([^'"]+?)['"]?\s*$/);
-      if (match) catalogMap.set(match[1], match[2]);
-    }
-  }
-} catch {
-  // pnpm-workspace.yaml отсутствует — не страшно, просто не резолвим catalog:.
-}
-
 function isDir(p: string): boolean {
   try {
     return statSync(p).isDirectory();
@@ -134,12 +106,6 @@ for (const dir of packageDirs) {
 }
 
 const renames = new Map<string, string>();
-// Карта `renamed → version` для резолва `workspace:*` ссылок в semver-диапазон
-// из package.json соседнего пакета (он только что прошёл через
-// `lerna version prerelease`, version актуальна). Без этого `pnpm publish`
-// требует второй `pnpm install` после transform-scope, чтобы resolver мог
-// найти workspace-пакеты под новыми именами в node_modules.
-const versions = new Map<string, string>();
 for (const { raw } of allPackages) {
   const name = raw.name;
   if (typeof name !== 'string') continue;
@@ -147,9 +113,6 @@ for (const { raw } of allPackages) {
   const slug = name.slice(fromScope.length + 1);
   const renamed = `${toScope}/${namePrefix}${slug}`;
   renames.set(name, renamed);
-  if (typeof raw.version === 'string') {
-    versions.set(renamed, raw.version);
-  }
 }
 
 if (renames.size === 0) {
@@ -159,58 +122,22 @@ if (renames.size === 0) {
   process.exit(0);
 }
 
-function resolveWorkspaceSpec(spec: string, version: string): string {
-  const range = spec.slice('workspace:'.length);
-  if (range === '~') return `~${version}`;
-  // workspace:*, workspace:^, workspace: (bare) — semver-compatible.
-  return `^${version}`;
-}
-
-function resolveCatalogSpec(name: string, spec: string): string | null {
-  // Поддерживаемые формы catalog-протокола:
-  //   catalog:          → имя из ключа deps
-  //   catalog:default   → имя из ключа deps (default-каталог)
-  //   catalog:<alias>   → имя — alias из каталога (не используем у себя, но поддержим)
-  const colonAt = spec.indexOf(':');
-  const tail = colonAt === -1 ? '' : spec.slice(colonAt + 1);
-  const lookupName = tail === '' || tail === 'default' ? name : tail;
-  return catalogMap.get(lookupName) ?? null;
-}
-
 function rewriteDeps(deps: Record<string, string> | undefined):
   | { changed: boolean; next: Record<string, string> | undefined } {
   if (!deps) return { changed: false, next: deps };
   let changed = false;
   const next: Record<string, string> = {};
   for (const [k, v] of Object.entries(deps)) {
-    // `catalog:` резолвим для ЛЮБОГО dep (а не только переименованных), потому
-    // что после переименования scope пакеты перестают быть workspace-членами
-    // для pnpm, и `pnpm publish` не подставит конкретную версию автоматически.
-    let value = v;
-    if (value.startsWith('catalog:')) {
-      const resolved = resolveCatalogSpec(k, value);
-      if (resolved) {
-        value = resolved;
-        changed = true;
-      }
-    }
-
     const renamed = renames.get(k);
     if (renamed) {
-      // Резолвим `workspace:*` / `workspace:^` / `workspace:~` в semver-диапазон
-      // из package.json соседнего workspace-пакета. Иначе `pnpm publish` после
-      // transform-scope падает с ERR_PNPM_CANNOT_RESOLVE_WORKSPACE_PROTOCOL:
-      // lockfile и node_modules ещё указывают на старые имена @ds/*, и резолвер
-      // не находит пакет под новым именем @sbercloud/snack-v2-*.
-      let resolved = value;
-      if (value.startsWith('workspace:')) {
-        const version = versions.get(renamed);
-        if (version) resolved = resolveWorkspaceSpec(value, version);
-      }
-      next[renamed] = resolved;
+      // Переименовываем только КЛЮЧ (@ds/x → @sbercloud/snack-v2-x). Значение
+      // (`workspace:^` / `catalog:`) оставляем как есть — его развернёт
+      // `pnpm publish` после `pnpm install` (который пере-линкует воркспейс
+      // под новыми именами).
+      next[renamed] = v;
       changed = true;
     } else {
-      next[k] = value;
+      next[k] = v;
     }
   }
   return { changed, next };
