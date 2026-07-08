@@ -2,6 +2,7 @@
   "name": "@ds/ai-field-notice",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "author": "Артем Сауляк <avsaulyak@cloud.ru>",
   "description": "Композиция AiFieldBanner и AiQueue для контекстных уведомлений над AI-полем.",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -15,8 +16,15 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css", "**/*.scss"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css",
+    "**/*.scss"
+  ],
   "dependencies": {
     "@ds/ai-field-banner": "workspace:^",
     "@ds/ai-queue": "workspace:^",
@@ -24,5 +32,7 @@
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

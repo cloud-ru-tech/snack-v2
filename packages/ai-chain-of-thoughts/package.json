@@ -2,6 +2,7 @@
   "name": "@ds/ai-chain-of-thoughts",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "author": "Danil Panov <dapanov@cloud.ru>",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -20,8 +21,14 @@
       "require": "./dist/cjs/locale/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/ai-button-chevron": "workspace:^",
     "@ds/ai-icon-giga": "workspace:^",
@@ -31,5 +38,7 @@
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

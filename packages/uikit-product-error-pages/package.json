@@ -2,6 +2,7 @@
   "name": "@ds/uikit-product-error-pages",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "author": "Aleksey Alekseev <analekseev@cloud.ru>",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -20,8 +21,14 @@
       "require": "./dist/cjs/locale/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
@@ -32,5 +39,7 @@
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }

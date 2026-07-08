@@ -2,6 +2,7 @@
   "name": "@ds/fonts",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "author": "Nikita Ershov <niershov@cloud.ru>",
   "private": true,
   "exports": {
     "./scss": "./src/fonts.scss",

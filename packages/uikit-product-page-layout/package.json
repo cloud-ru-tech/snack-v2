@@ -2,6 +2,7 @@
   "name": "@ds/uikit-product-page-layout",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -20,8 +21,14 @@
       "require": "./dist/cjs/locale/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
   "dependencies": {
     "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
@@ -46,5 +53,7 @@
     "classnames": "catalog:",
     "uncontrollable": "catalog:"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }
