@@ -1,5 +1,5 @@
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
-import { Table, TABLE_CSS_VARS } from '@ds/table';
+import { Table, TABLE_CSS_VARS, VIEW } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -53,6 +53,8 @@ export const StickyControlsOffset: Story = {
               columnDefinitions={columns}
               layoutPresets={{
                 mobile: {
+                  // Дефолт mobile — cards; sticky-хром демонстрируется на table-view (строки + пагинация).
+                  defaultView: VIEW.Table,
                   stickyControls: {
                     enabled: true,
                     offsetTop: APP_HEADER_HEIGHT,

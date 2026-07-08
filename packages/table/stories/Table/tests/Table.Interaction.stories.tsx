@@ -97,7 +97,8 @@ function InteractiveTreeTable({ onRowClick }: InteractiveTreeTableProps) {
 }
 
 // Полностью uncontrolled клиентская таблица: поиск, пагинация со списком
-// rows-per-page и переключатель вида (defaultView включает dataView-сегмент).
+// rows-per-page и переключатель вида (`showDataView` включает dataView-сегмент;
+// `defaultView` задаёт стартовый вид).
 function ClientTable() {
   return (
     <Table
@@ -108,6 +109,7 @@ function ClientTable() {
       pageSize={5}
       pagination={{ options: [5, 10] }}
       defaultView={VIEW.Table}
+      showDataView
       headlineId='name'
       onExport={onExport}
       outline

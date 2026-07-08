@@ -363,6 +363,22 @@ export const VisualMatrix: Story = {
             ],
           },
           {
+            // сегмент-контрол table/cards в тулбаре
+            variantLabel: 'data view toggle',
+            cells: [
+              <div key='toolbar-data-view' className={styles.wideCell}>
+                <Table
+                  data={SMALL_DATA}
+                  columnDefinitions={columns}
+                  getRowId={getUserRowId}
+                  showDataView
+                  suppressPagination
+                  outline
+                />
+              </div>,
+            ],
+          },
+          {
             variantLabel: 'suppress search',
             cells: [
               <div key='toolbar-no-search' className={styles.cell}>

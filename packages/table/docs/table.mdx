@@ -74,18 +74,27 @@ import doc from './props.json';
 
 ## Анатомия
 
-### View (default `table`)
+### View (default `table`, на mobile — `cards`)
 
 Режим отображения данных (ось `VIEW`):
 
 - `table` — классическая сетка со строками и колонками.
 - `cards` — карточки с внешним бордером; заголовок карточки берётся из колонки `headlineId`, при множественном выборе на карточке отображается бэйдж выбора, при одиночном — radio; действия строки доступны на карточке.
 
+Начальный вид зависит от раскладки (адаптивный дефолт): `table` на desktop, `cards` на mobile. Явные `defaultView` / `view` перекрывают его.
+
 Управление режимом:
 
 - `defaultView` — начальный режим для uncontrolled-сценария.
 - `view` + `onViewChange` — управляемый режим.
-- Переключатель вида (сегмент-контрол в тулбаре) появляется только при задании хотя бы одного из пропов `view` / `defaultView` / `onViewChange` / `headlineId`.
+- `showDataView` (default `false`) — показывать ли переключатель вида (сегмент-контрол в тулбаре). Управляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.
+
+Три режима:
+
+- **Только таблица / только карточки** (дефолт — тоггла нет) — вид задаётся `defaultView` (или адаптивным дефолтом: desktop `table`, mobile `cards`).
+- **С переключателем** — `showDataView`; пользователь сам переключает table/cards, стартовый вид — `defaultView` / адаптивный дефолт.
+
+Для «только таблицы» на mobile учтите адаптивный дефолт (`cards`): нужен `layoutPresets={{ mobile: { defaultView: 'table' } }}`.
 
 Поведение в режиме карточек:
 
@@ -296,7 +305,7 @@ import { Table, getStatusColumnDef } from '@ds/table';
 
 <Example
   title='Режим карточек'
-  description='`defaultView="cards"` + `headlineId`; переключатель table/cards в тулбаре.'
+  description='`defaultView="cards"` + `showDataView` + `headlineId`; переключатель table/cards в тулбаре.'
   code={CardViewSrc}
 >
   <CardView client:only='react' />
@@ -338,6 +347,9 @@ import { Table, getStatusColumnDef } from '@ds/table';
 | `offsetBottom`          | — (sticky выключен)       | `0`                     |
 | `backgroundPredefined`  | — (sticky выключен)       | `neutralBackground1Level` |
 | `fullWidth`             | `true` (явный проп)       | `true` (`TABLE_LAYOUT_PRESETS`) |
+| `defaultView`           | `table`                   | `cards` (`TABLE_LAYOUT_PRESETS`) |
+
+Проп `showDataView` (видимость переключателя вида) **не** адаптивный — это обычный булев проп с дефолтом `false` на всех раскладках.
 
 Ненулевые `offsetTop` / `offsetBottom` на mobile — через `layoutPresets.mobile`. Объект `stickyControls` в пресете **заменяет** DS-дефолт целиком — передайте все нужные поля (`enabled`, offsets).
 

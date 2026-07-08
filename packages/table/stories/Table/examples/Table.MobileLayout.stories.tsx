@@ -1,5 +1,5 @@
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
-import { DEFAULT_PAGE_SIZE, Table, VIEW } from '@ds/table';
+import { DEFAULT_PAGE_SIZE, Table } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -40,7 +40,7 @@ export const MobileLayout: Story = {
               data-test-id={TEST_IDS.table.root}
               data={SAMPLE_USERS}
               columnDefinitions={columns}
-              defaultView={VIEW.Cards}
+              showDataView
               headlineId='name'
               rowSelection={{ enable: true, multiRow: true }}
               columnsSettings={{ enableSettingsMenu: true }}

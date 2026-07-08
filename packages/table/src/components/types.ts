@@ -70,6 +70,8 @@ export type TableLayoutDefaults = {
   stickyControls: StickyControlsLayoutDefaults;
   /** @default true; на mobile — всегда `true` (`TABLE_LAYOUT_PRESETS`) */
   fullWidth: boolean;
+  /** Начальный вид (uncontrolled). @default `table`; на mobile — `cards` (`TABLE_LAYOUT_PRESETS`) */
+  defaultView: View;
 };
 
 export const TABLE_STICKY_CONTROLS_BACKGROUND_PREDEFINED_OPTIONS = [
@@ -183,24 +185,32 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
   /** Колбэк клика по строке */
   onRowClick?: RowClickHandler<TData>;
   /**
-   * Режим отображения таблицы.
+   * Режим отображения таблицы (controlled).
    * `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).
-   * Переключатель вида появляется в тулбаре только при задании одного из пропов
-   * `view` / `defaultView` / `onViewChange` / `headlineId`.
-   * @default 'table'
+   * Переключатель вида в тулбаре включается отдельным пропом `showDataView`.
+   * @default 'table' (на mobile — `cards`)
    */
   view?: View;
   /**
-   * Начальный режим отображения для uncontrolled-режима.
-   * Задание пропа включает переключатель вида в тулбаре.
-   * @default 'table'
+   * Начальный режим отображения (uncontrolled).
+   * Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).
+   * @default 'table' (на mobile — `cards`)
    */
   defaultView?: View;
   /** Колбэк на смену режима отображения */
   onViewChange?(view: View): void;
   /**
+   * Показывать переключатель вида (таблица/карточки) в тулбаре.
+   * Управляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.
+   * По умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо
+   * адаптивный дефолт). Включите `showDataView`, чтобы дать пользователю
+   * переключать table/cards.
+   * @default false
+   */
+  showDataView?: boolean;
+  /**
    * Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.
-   * Имеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре.
+   * Имеет смысл только при `view='cards'`.
    */
   headlineId?: string;
   /**

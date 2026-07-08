@@ -259,13 +259,18 @@ test.describe('Table — visual regression', () => {
   });
 
   // Mobile surface-swap: column settings в BottomSheet — full-viewport (visual-regression-standard §portal).
+  // Дефолт mobile-вида — cards (TABLE_LAYOUT_PRESETS.mobile); column settings доступен и на cards
+  // (слот гейтится areColumnsSettingsEnabled, не isCardsView), сам BottomSheet view-независим.
   test('open-mobile column settings bottom sheet', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions({ showSorting: false }, TABLE_STORIES.playground, MOBILE_COMFORT_GLOBALS));
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.playground, MOBILE_COMFORT_GLOBALS));
     await waitForFonts();
 
+    // Mobile: слоты `after` уезжают в more-actions overflow. В cards-view порядок собранных
+    // слотов — [export, sorting, columnSettings] (sorting виден только на cards), значит column
+    // settings — afterOption__2 (toolbar перезаписывает собственный id слота на позиционный).
     await getByTestId(TEST_IDS.toolbar.moreActionsButton).click();
-    await getByTestId(`${TEST_IDS.toolbar.afterOption}__1`).click();
+    await getByTestId(`${TEST_IDS.toolbar.afterOption}__2`).click();
 
     const sheet = getByTestId(COMPONENT.columnSettings.droplist);
     await expect(sheet).toBeVisible();

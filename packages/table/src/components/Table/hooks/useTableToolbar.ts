@@ -35,10 +35,7 @@ type UseTableToolbarParams<TData extends object, TFilters extends FiltersState> 
   suppressToolbar: boolean;
   suppressSearch: boolean;
   isCardsView: boolean;
-  viewProp?: View;
-  defaultView?: View;
-  onViewChange?: (view: View) => void;
-  headlineId?: string;
+  showDataView: boolean;
   setView: (view: View) => void;
   globalFilter: string;
   onGlobalFilterChange: (value: string) => void;
@@ -78,9 +75,11 @@ type UseTableToolbarResult<TFilters extends FiltersState> = {
         showBulkCheckbox: boolean;
       }
     | undefined;
-  dataViewValue: ToolbarDataViewValue;
-  handleDataViewChange: (value: ToolbarDataViewValue) => void;
-  cardsViewEnabled: boolean;
+  dataView?: {
+    show: boolean;
+    value: ToolbarDataViewValue;
+    onChange: (value: ToolbarDataViewValue) => void;
+  };
   showToolbarSorting: boolean;
   exportToolbarSlot: ExportToolbarSlotResult;
   sortingToolbarSlot: TableSortingToolbarSlotResult;
@@ -98,10 +97,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
   suppressToolbar,
   suppressSearch,
   isCardsView,
-  viewProp,
-  defaultView,
-  onViewChange,
-  headlineId,
+  showDataView,
   setView,
   globalFilter,
   onGlobalFilterChange,
@@ -147,9 +143,6 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
   const hasSortableColumns = useMemo(() => columnDefinitions.some(column => column.enableSorting), [columnDefinitions]);
   const shouldShowSorting = Boolean(sortingProp) || hasSortableColumns;
 
-  const cardsViewEnabled =
-    viewProp !== undefined || defaultView !== undefined || onViewChange !== undefined || headlineId !== undefined;
-
   const dataViewValue: ToolbarDataViewValue = isCardsView ? 'compact' : 'list';
 
   const handleDataViewChange = useCallback(
@@ -158,6 +151,8 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
     },
     [setView],
   );
+
+  const dataView = showDataView ? { show: true, value: dataViewValue, onChange: handleDataViewChange } : undefined;
 
   const tableToolbarPersistConfig = useMemo(() => {
     if (!savedState?.id || !savedState?.filterQueryKey) {
@@ -256,9 +251,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
   return {
     tableToolbarPersistConfig: tableToolbarPersistConfig as ToolbarPersistConfig<TFilters> | undefined,
     toolbarBulkProps,
-    dataViewValue,
-    handleDataViewChange,
-    cardsViewEnabled,
+    dataView,
     showToolbarSorting,
     exportToolbarSlot,
     sortingToolbarSlot,

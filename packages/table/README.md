@@ -136,18 +136,27 @@ flowchart TB
 
 ### Анатомия
 
-#### View (default `table`)
+#### View (default `table`, на mobile — `cards`)
 
 Режим отображения данных (ось `VIEW`):
 
 - `table` — классическая сетка со строками и колонками.
 - `cards` — карточки с внешним бордером; заголовок карточки берётся из колонки `headlineId`, при множественном выборе на карточке отображается бэйдж выбора, при одиночном — radio; действия строки доступны на карточке.
 
+Начальный вид зависит от раскладки (адаптивный дефолт): `table` на desktop, `cards` на mobile. Явные `defaultView` / `view` перекрывают его.
+
 Управление режимом:
 
 - `defaultView` — начальный режим для uncontrolled-сценария.
 - `view` + `onViewChange` — управляемый режим.
-- Переключатель вида (сегмент-контрол в тулбаре) появляется только при задании хотя бы одного из пропов `view` / `defaultView` / `onViewChange` / `headlineId`.
+- `showDataView` (default `false`) — показывать ли переключатель вида (сегмент-контрол в тулбаре). Управляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.
+
+Три режима:
+
+- **Только таблица / только карточки** (дефолт — тоггла нет) — вид задаётся `defaultView` (или адаптивным дефолтом: desktop `table`, mobile `cards`).
+- **С переключателем** — `showDataView`; пользователь сам переключает table/cards, стартовый вид — `defaultView` / адаптивный дефолт.
+
+Для «только таблицы» на mobile учтите адаптивный дефолт (`cards`): нужен `layoutPresets={{ mobile: { defaultView: 'table' } }}`.
 
 Поведение в режиме карточек:
 
@@ -724,7 +733,7 @@ export function ColumnSettings() {
 
 #### Режим карточек
 
-`defaultView="cards"` + `headlineId`; переключатель table/cards в тулбаре.
+`defaultView="cards"` + `showDataView` + `headlineId`; переключатель table/cards в тулбаре.
 
 ```tsx
 import { ColumnDefinition, Table, VIEW } from '@ds/table';
@@ -758,8 +767,10 @@ export function CardView() {
     <Table
       data={USERS}
       columnDefinitions={columns}
-      // `defaultView` / `headlineId` включают переключатель вида (table/cards) в тулбаре.
+      // Стартовый вид — карточки; `showDataView` включает переключатель table/cards
+      // в тулбаре (по умолчанию его нет). `headlineId` задаёт заголовок карточки.
       defaultView={VIEW.Cards}
+      showDataView
       headlineId='name'
       getRowId={user => user.id}
       rowSelection={{ enable: true, multiRow: true }}
@@ -926,7 +937,7 @@ export function FullWidth() {
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — | Флаг, показывающий что произошла ошибка запроса при пустых данных |
 | `dataFiltered` | `boolean` | — | Флаг, показывающий что данные были отфильтрованы при пустых данных |
-| `defaultView` | `"cards"` \| `"table"` | `'table'` | Начальный режим отображения для uncontrolled-режима. <br/> Задание пропа включает переключатель вида в тулбаре. |
+| `defaultView` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Начальный режим отображения (uncontrolled). <br/> Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`). |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
 | `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
@@ -938,7 +949,7 @@ export function FullWidth() {
 | `getRowId` | `TData` | — | Функция получения уникального идентификатора строки |
 | `hasMore` | `boolean` | — | Есть ли ещё данные для загрузки. Управляет видимостью кнопки / активностью observer-а. |
 | `headerRowBackgroundColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Accent-тон фона строки заголовков колонок (`tableHeadLine`). <br/> Работает только в `view='table'`. |
-| `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре. |
+| `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. |
 | `infiniteLoading` | `boolean` | `false` | Режим работы "бесконечной" загрузки |
 | `keepPinnedRows` | `boolean` | `false` | Параметр отвечает за отображение закрепленных строк на всех страницах таблицы |
 | `layoutPresets` | `LayoutPresets` \| `TableLayoutDefaults` | — | Override дефолтов адаптива для этого инстанса (`mergePresets` поверх `TABLE_LAYOUT_PRESETS`). <br/> `stickyControls` в пресете tier'а заменяет DS-объект целиком — указывайте все нужные поля. <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
@@ -969,6 +980,7 @@ export function FullWidth() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `search` | `{ initialState?: string; state?: string; placeholder?: string \| undefined; loading?: boolean \| undefined; onChange?(value: string): void; } \| undefined` | — | Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`. |
+| `showDataView` | `boolean` | `false` | Показывать переключатель вида (таблица/карточки) в тулбаре. <br/> Управляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`. <br/> По умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо <br/> адаптивный дефолт). Включите `showDataView`, чтобы дать пользователю <br/> переключать table/cards. |
 | `sorting` | `{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } \| undefined` | — | Параметры отвечают за возможность сортировки: <br/> `initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение. |
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | `false` | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
@@ -977,7 +989,7 @@ export function FullWidth() {
 | `suppressToolbar` | `boolean` | `false` | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |
 | `toolbarCheckBoxMode` | `"allRows"` \| `"pageRows"` | — | Охват мастер-чекбокса выбора: текущая страница или все строки `data` (только клиентская таблица) |
-| `view` | `"cards"` \| `"table"` | `'table'` | Режим отображения таблицы. <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида появляется в тулбаре только при задании одного из пропов <br/> `view` / `defaultView` / `onViewChange` / `headlineId`. |
+| `view` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Режим отображения таблицы (controlled). <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида в тулбаре включается отдельным пропом `showDataView`. |
 
 ##### Related types
 
@@ -1039,6 +1051,9 @@ export function FullWidth() {
 | `offsetBottom`          | — (sticky выключен)       | `0`                     |
 | `backgroundPredefined`  | — (sticky выключен)       | `neutralBackground1Level` |
 | `fullWidth`             | `true` (явный проп)       | `true` (`TABLE_LAYOUT_PRESETS`) |
+| `defaultView`           | `table`                   | `cards` (`TABLE_LAYOUT_PRESETS`) |
+
+Проп `showDataView` (видимость переключателя вида) **не** адаптивный — это обычный булев проп с дефолтом `false` на всех раскладках.
 
 Ненулевые `offsetTop` / `offsetBottom` на mobile — через `layoutPresets.mobile`. Объект `stickyControls` в пресете **заменяет** DS-дефолт целиком — передайте все нужные поля (`enabled`, offsets).
 
@@ -1315,7 +1330,7 @@ export function ServerDriven() {
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — | Флаг, показывающий что произошла ошибка запроса при пустых данных |
 | `dataFiltered` | `boolean` | — | Флаг, показывающий что данные были отфильтрованы при пустых данных |
-| `defaultView` | `"cards"` \| `"table"` | `'table'` | Начальный режим отображения для uncontrolled-режима. <br/> Задание пропа включает переключатель вида в тулбаре. |
+| `defaultView` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Начальный режим отображения (uncontrolled). <br/> Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`). |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
 | `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
@@ -1327,7 +1342,7 @@ export function ServerDriven() {
 | `getRowId` | `TData` | — | Функция получения уникального идентификатора строки |
 | `hasMore` | `undefined` | — |  |
 | `headerRowBackgroundColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Accent-тон фона строки заголовков колонок (`tableHeadLine`). <br/> Работает только в `view='table'`. |
-| `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре. |
+| `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. |
 | `infiniteLoading` | `undefined` | — |  |
 | `items` | `TData` | — | Данные для отрисовки |
 | `keepPinnedRows` | `boolean` | `false` | Параметр отвечает за отображение закрепленных строк на всех страницах таблицы |
@@ -1360,6 +1375,7 @@ export function ServerDriven() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `search` | `{ initialState?: string; state: string; placeholder?: string; loading?: boolean \| undefined; onChange(value: string): void; } \| undefined` | — | Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`. |
+| `showDataView` | `boolean` | `false` | Показывать переключатель вида (таблица/карточки) в тулбаре. <br/> Управляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`. <br/> По умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо <br/> адаптивный дефолт). Включите `showDataView`, чтобы дать пользователю <br/> переключать table/cards. |
 | `sorting` | `{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } \| undefined` | — | Параметры отвечают за возможность сортировки: <br/> `initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение. |
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | — | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
@@ -1368,7 +1384,7 @@ export function ServerDriven() {
 | `suppressToolbar` | `boolean` | — | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |
 | `total` | `number` | `10` | Общее кол-во строк |
-| `view` | `"cards"` \| `"table"` | `'table'` | Режим отображения таблицы. <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида появляется в тулбаре только при задании одного из пропов <br/> `view` / `defaultView` / `onViewChange` / `headlineId`. |
+| `view` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Режим отображения таблицы (controlled). <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида в тулбаре включается отдельным пропом `showDataView`. |
 
 ##### Related types
 
@@ -2404,7 +2420,7 @@ export function EntitiesTableWithFilters() {
 | `defaultOffset` | `number` | — |  |
 | `defaultSearch` | `string` | — |  |
 | `defaultSort` | `SortingState` | — |  |
-| `defaultView` | `"cards"` \| `"table"` | `'table'` | Начальный режим отображения для uncontrolled-режима. <br/> Задание пропа включает переключатель вида в тулбаре. |
+| `defaultView` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Начальный режим отображения (uncontrolled). <br/> Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`). |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
 | `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
@@ -2416,7 +2432,7 @@ export function EntitiesTableWithFilters() {
 | `getRowId` | `((originalRow: T, index: number, parent?: Row<T>) => string)` | — | Функция получения уникального идентификатора строки |
 | `hasMore` | `undefined` | — |  |
 | `headerRowBackgroundColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Accent-тон фона строки заголовков колонок (`tableHeadLine`). <br/> Работает только в `view='table'`. |
-| `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре. |
+| `headlineId` | `string` | — | Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`. <br/> Имеет смысл только при `view='cards'`. |
 | `id` | `string` | — |  |
 | `infiniteLoading` | `undefined` | — |  |
 | `keepPinnedRows` | `boolean` | `false` | Параметр отвечает за отображение закрепленных строк на всех страницах таблицы |
@@ -2446,13 +2462,14 @@ export function EntitiesTableWithFilters() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `searchPlaceholder` | `string` | — |  |
+| `showDataView` | `boolean` | `false` | Показывать переключатель вида (таблица/карточки) в тулбаре. <br/> Управляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`. <br/> По умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо <br/> адаптивный дефолт). Включите `showDataView`, чтобы дать пользователю <br/> переключать table/cards. |
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | — | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
 | `suppressPagination` | `boolean` | — | Отключение пагинации |
 | `suppressSearch` | `boolean` | — | Отключение поиска |
 | `suppressToolbar` | `boolean` | — | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |
-| `view` | `"cards"` \| `"table"` | `'table'` | Режим отображения таблицы. <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида появляется в тулбаре только при задании одного из пропов <br/> `view` / `defaultView` / `onViewChange` / `headlineId`. |
+| `view` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Режим отображения таблицы (controlled). <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида в тулбаре включается отдельным пропом `showDataView`. |
 
 ### Смотри также
 

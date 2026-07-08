@@ -48,6 +48,18 @@ test.describe('Table — rendering', () => {
       await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(0);
     });
 
+    test('data view toggle: visible when showDataView=true', async ({ gotoStory, getByTestId }) => {
+      // Playground выставляет showDataView=true в args (демо свитчера); дефолт пропа — false.
+      await gotoStory(buildStoryOptions());
+      await expect(getByTestId(TEST_IDS.toolbar.dataView)).toBeVisible();
+    });
+
+    test('data view toggle: hidden when showDataView=false (default)', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ showDataView: false }));
+      await expect(getByTestId(TEST_IDS.table.root)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.toolbar.dataView)).toHaveCount(0);
+    });
+
     test('suppressToolbar removes toolbar and data-with-toolbar', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ suppressToolbar: true }));
       const root = getByTestId(TEST_IDS.table.root);
@@ -125,8 +137,11 @@ test.describe('Table — rendering', () => {
       await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(0);
     });
 
-    test('layoutType=mobile with defaultView=table renders grid rows', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ layoutType: 'mobile' }, TABLE_STORIES.playground, COMFORT_DENSITY_GLOBALS));
+    test('layoutType=mobile with view=table renders grid rows', async ({ gotoStory, getByTestId }) => {
+      // Mobile-дефолт — cards (TABLE_LAYOUT_PRESETS.mobile); table рендерится при явном controlled `view`.
+      await gotoStory(
+        buildStoryOptions({ layoutType: 'mobile', view: 'table' }, TABLE_STORIES.playground, COMFORT_DENSITY_GLOBALS),
+      );
       const root = getByTestId(TEST_IDS.table.root);
       await expect(root).toHaveAttribute('data-layout-type', 'mobile');
       await expect(root).toHaveAttribute('data-view', 'table');

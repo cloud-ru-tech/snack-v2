@@ -4,7 +4,7 @@ import { FiltersState } from '@ds/chips';
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { useThemeClassnames } from '@ds/theme';
 import { ToolbarPersistConfig } from '@ds/toolbar';
-import { extractSupportProps, useValueControl } from '@ds/utils';
+import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { CSSProperties, ReactNode, Ref, RefObject, useEffect, useMemo } from 'react';
 
@@ -15,7 +15,6 @@ import {
   DEFAULT_SORTING,
   DEFAULT_VIEW,
   VIEW,
-  View,
 } from '../../constants';
 import { CellAutoResizeContext, TableContext, useCellAutoResizeController } from '../../contexts';
 import {
@@ -50,6 +49,7 @@ import {
   useTableInstance,
   useTableScroll,
   useTableToolbar,
+  useTableView,
 } from './hooks';
 import { isFilterableColumn } from './hooks/useColumnSettings/utils';
 import styles from './styles.module.scss';
@@ -66,9 +66,10 @@ const BASE_STICKY_CONTROLS: TableLayoutDefaults['stickyControls'] = {
 const BASE_TABLE_LAYOUT_DEFAULTS: TableLayoutDefaults = {
   stickyControls: BASE_STICKY_CONTROLS,
   fullWidth: true,
+  defaultView: DEFAULT_VIEW,
 };
 
-/** DS-пресет адаптива `Table`: mobile-дефолты sticky-хрома и `fullWidth`. Desktop — `BASE_TABLE_LAYOUT_DEFAULTS`. */
+/** DS-пресет адаптива `Table`: mobile-дефолты sticky-хрома, `fullWidth` и стартовый вид `cards`. Desktop — `BASE_TABLE_LAYOUT_DEFAULTS`. */
 export const TABLE_LAYOUT_PRESETS: LayoutPresets<TableLayoutDefaults> = {
   mobile: {
     stickyControls: {
@@ -77,6 +78,7 @@ export const TABLE_LAYOUT_PRESETS: LayoutPresets<TableLayoutDefaults> = {
       offsetBottom: 0,
     },
     fullWidth: true,
+    defaultView: VIEW.Cards,
   },
 };
 
@@ -138,8 +140,9 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   headerRowBackgroundColor,
   toolbarCheckBoxMode,
   view: viewProp,
-  defaultView,
+  defaultView: defaultViewProp,
   onViewChange,
+  showDataView = false,
   headlineId,
   cardColumns,
   cardMinWidth,
@@ -155,10 +158,14 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   const { layoutType } = useAdaptiveLayout();
   const isMobile = isMobileLayout(layoutType);
 
-  const { stickyControls, fullWidth: resolvedFullWidth } = useLayoutDefaults<TableLayoutDefaults>(
+  const {
+    stickyControls,
+    fullWidth: resolvedFullWidth,
+    defaultView,
+  } = useLayoutDefaults<TableLayoutDefaults>(
     BASE_TABLE_LAYOUT_DEFAULTS,
     mergePresets(TABLE_LAYOUT_PRESETS, layoutPresets),
-    { stickyControls: stickyControlsProp, fullWidth },
+    { stickyControls: stickyControlsProp, fullWidth, defaultView: defaultViewProp },
   );
 
   const isStickyControls = stickyControls.enabled ?? false;
@@ -166,14 +173,9 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   const stickyControlsOffsetBottom = stickyControls.offsetBottom ?? 0;
   const stickyControlsBackgroundPredefined =
     stickyControlsProp?.backgroundPredefined ?? BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level;
-  const [view, setView] = useValueControl<View>({
-    value: viewProp,
-    defaultValue: defaultView ?? DEFAULT_VIEW,
-    onChange: onViewChange,
-  });
 
-  const resolvedView = view ?? DEFAULT_VIEW;
-  const isCardsView = resolvedView === VIEW.Cards;
+  const { view, isCardsView, setView } = useTableView({ view: viewProp, defaultView, onViewChange });
+
   const usePageStickyHeader = isStickyControls && !isCardsView;
   const isAllRowsMode = toolbarCheckBoxMode === ToolbarCheckBoxMode.AllRows;
 
@@ -353,7 +355,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     showToolbar,
     isCardsView,
     isMobile,
-    view: resolvedView,
+    view,
     isLoadingState,
     columnSizeVars: columnSizes.vars,
     scrollContainerRef,
@@ -366,9 +368,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   const {
     tableToolbarPersistConfig,
     toolbarBulkProps,
-    dataViewValue,
-    handleDataViewChange,
-    cardsViewEnabled,
+    dataView,
     showToolbarSorting,
     exportToolbarSlot,
     sortingToolbarSlot,
@@ -384,10 +384,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     suppressToolbar,
     suppressSearch,
     isCardsView,
-    viewProp,
-    defaultView,
-    onViewChange,
-    headlineId,
+    showDataView,
     setView,
     globalFilter,
     onGlobalFilterChange,
@@ -636,7 +633,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
       totalCount={toolbarBulkProps?.totalCount}
       showBulkCheckbox={toolbarBulkProps?.showBulkCheckbox}
       outline={outline}
-      dataView={cardsViewEnabled ? { show: true, value: dataViewValue, onChange: handleDataViewChange } : undefined}
+      dataView={dataView}
       after={
         toolbarAfter || onExport || areColumnsSettingsEnabled || showToolbarSorting ? (
           <>
@@ -696,7 +693,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     <div
       ref={wrapperRef}
       className={cn(styles.wrapper, className, themeClassName)}
-      data-view={resolvedView}
+      data-view={view}
       data-layout-type={layoutType}
       data-sticky-controls={isStickyControls || undefined}
       data-with-toolbar={showToolbar || undefined}
@@ -723,7 +720,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
             ) : null}
 
             <TableScrollHost
-              view={resolvedView}
+              view={view}
               isMobile={isMobile}
               isCardsView={isCardsView}
               usePageStickyHeader={usePageStickyHeader}

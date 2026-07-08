@@ -25,12 +25,16 @@ export const SERVER_TABLE_STORIES = {
 /** Storybook global `density` — mobile-сценарии рендерятся в comfort-плотности. */
 export const COMFORT_DENSITY_GLOBALS = { density: 'comfort' } as const;
 
-/** Ключевая выборка по осям Playground — не декартово произведение. */
+/**
+ * Ключевая выборка по осям Playground — не декартово произведение. Вид задаём
+ * controlled-пропом `view`: mobile-дефолт — cards (TABLE_LAYOUT_PRESETS.mobile),
+ * bare `defaultView` его не перебивает, а controlled `view` форсит детерминированно.
+ */
 export const SERVER_TABLE_KEY_COMBOS = [
-  { layoutType: 'desktop', defaultView: 'table' },
-  { layoutType: 'desktop', defaultView: 'cards' },
-  { layoutType: 'mobile', defaultView: 'table' },
-  { layoutType: 'mobile', defaultView: 'cards' },
+  { layoutType: 'desktop', view: 'table' },
+  { layoutType: 'desktop', view: 'cards' },
+  { layoutType: 'mobile', view: 'table' },
+  { layoutType: 'mobile', view: 'cards' },
 ] as const satisfies ReadonlyArray<Record<string, unknown>>;
 
 export type ServerTableStoryProps = Record<string, unknown>;

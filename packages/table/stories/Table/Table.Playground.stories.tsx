@@ -116,7 +116,8 @@ const meta: Meta<StoryArgs> = {
 
     // стабильные row-id из данных: selection/sorting-ассерты e2e адресуют строки по data-row-id
     getRowId: (user: User) => user.id,
-    view: VIEW.Table,
+    view: undefined,
+    showDataView: true,
     headlineId: 'name',
     cardColumns: undefined,
     cardMinWidth: 292,
@@ -266,7 +267,7 @@ function PlaygroundRender({
   stickyControlsOffsetTop,
   stickyControlsOffsetBottom,
   stickyControlsBackgroundPredefined,
-  view: viewFromArgs = VIEW.Table,
+  view: viewFromArgs,
   onViewChange,
   ...rest
 }: StoryArgs) {

@@ -85,8 +85,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения\nНачальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения\nНачальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -379,6 +379,12 @@
           "AdminTableSelectionConfig"
         ]
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -439,8 +445,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Управляемый режим отображения\nРежим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Управляемый режим отображения\nРежим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -1411,8 +1417,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре."
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`)."
       },
       "enableColumnVirtualization": {
         "type": "boolean",
@@ -1484,7 +1490,7 @@
       "headlineId": {
         "type": "string",
         "required": false,
-        "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре."
+        "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`."
       },
       "id": {
         "type": "string",
@@ -1618,6 +1624,12 @@
         "type": "string",
         "required": false
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "stickyControls": {
         "type": "StickyControls",
         "required": false,
@@ -1655,8 +1667,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Режим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`."
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Режим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`."
       }
     },
     "relatedTypes": {}
@@ -1830,8 +1842,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения\nНачальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения\nНачальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -2107,6 +2119,12 @@
         "required": false,
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -2155,8 +2173,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Управляемый режим отображения\nРежим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Управляемый режим отображения\nРежим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -3125,8 +3143,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения\nНачальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения\nНачальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -3451,6 +3469,12 @@
           "AdminTableSelectionConfig"
         ]
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -3522,8 +3546,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Управляемый режим отображения\nРежим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Управляемый режим отображения\nРежим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -3661,7 +3685,7 @@
               "cards",
               "table"
             ],
-            "description": "Начальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+            "description": "Начальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
             "typeRefs": [
               "View"
             ]
@@ -3750,7 +3774,7 @@
           "headlineId": {
             "type": "string | undefined",
             "required": false,
-            "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре."
+            "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`."
           },
           "infiniteLoading": {
             "type": "undefined",
@@ -3924,6 +3948,11 @@
             "required": false,
             "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
           },
+          "showDataView": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+          },
           "sorting": {
             "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
             "required": false,
@@ -3981,7 +4010,7 @@
               "cards",
               "table"
             ],
-            "description": "Режим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+            "description": "Режим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
             "typeRefs": [
               "View"
             ]
@@ -4238,6 +4267,18 @@
       "TableLayoutDefaults": {
         "kind": "interface",
         "props": {
+          "defaultView": {
+            "type": "\"table\" | \"cards\"",
+            "required": true,
+            "values": [
+              "cards",
+              "table"
+            ],
+            "description": "Начальный вид (uncontrolled).",
+            "typeRefs": [
+              "View"
+            ]
+          },
           "fullWidth": {
             "type": "boolean",
             "required": true
@@ -4544,8 +4585,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения\nНачальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения\nНачальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -4836,6 +4877,12 @@
         "required": false,
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -4887,8 +4934,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Управляемый режим отображения\nРежим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Управляемый режим отображения\nРежим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -5767,8 +5814,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -5860,7 +5907,7 @@
       "headlineId": {
         "type": "string",
         "required": false,
-        "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре."
+        "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`."
       },
       "infiniteLoading": {
         "type": "undefined",
@@ -6052,6 +6099,12 @@
         "required": false,
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -6103,8 +6156,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Режим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Режим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -7130,8 +7183,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения\nНачальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения\nНачальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -7409,6 +7462,12 @@
         "required": false,
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -7466,8 +7525,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Управляемый режим отображения\nРежим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Управляемый режим отображения\nРежим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -8252,7 +8311,7 @@
   "TABLE_LAYOUT_PRESETS": {
     "displayName": "TABLE_LAYOUT_PRESETS",
     "propsTypeName": null,
-    "description": "DS-пресет адаптива `Table`: mobile-дефолты sticky-хрома и `fullWidth`. Desktop — `BASE_TABLE_LAYOUT_DEFAULTS`.",
+    "description": "DS-пресет адаптива `Table`: mobile-дефолты sticky-хрома, `fullWidth` и стартовый вид `cards`. Desktop — `BASE_TABLE_LAYOUT_DEFAULTS`.",
     "props": {},
     "relatedTypes": {}
   },
@@ -8363,8 +8422,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -8458,7 +8517,7 @@
       "headlineId": {
         "type": "string",
         "required": false,
-        "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`. Задание пропа включает переключатель вида в тулбаре."
+        "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`."
       },
       "infiniteLoading": {
         "type": "boolean",
@@ -8652,6 +8711,12 @@
         "required": false,
         "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -8710,8 +8775,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Режим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Режим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]
@@ -10246,8 +10311,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Начальный режим отображения\nНачальный режим отображения для uncontrolled-режима.\nЗадание пропа включает переключатель вида в тулбаре.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Начальный режим отображения\nНачальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
         "typeRefs": [
           "View"
         ]
@@ -10544,6 +10609,12 @@
           "TreeTableSelectionConfig"
         ]
       },
+      "showDataView": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
+      },
       "sorting": {
         "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
         "required": false,
@@ -10596,8 +10667,8 @@
           "cards",
           "table"
         ],
-        "defaultValue": "'table'",
-        "description": "Управляемый режим отображения\nРежим отображения таблицы.\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида появляется в тулбаре только при задании одного из пропов\n`view` / `defaultView` / `onViewChange` / `headlineId`.",
+        "defaultValue": "'table' (на mobile — `cards`)",
+        "description": "Управляемый режим отображения\nРежим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
         "typeRefs": [
           "View"
         ]

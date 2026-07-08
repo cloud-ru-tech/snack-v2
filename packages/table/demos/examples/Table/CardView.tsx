@@ -29,8 +29,10 @@ export function CardView() {
     <Table
       data={USERS}
       columnDefinitions={columns}
-      // `defaultView` / `headlineId` включают переключатель вида (table/cards) в тулбаре.
+      // Стартовый вид — карточки; `showDataView` включает переключатель table/cards
+      // в тулбаре (по умолчанию его нет). `headlineId` задаёт заголовок карточки.
       defaultView={VIEW.Cards}
+      showDataView
       headlineId='name'
       getRowId={user => user.id}
       rowSelection={{ enable: true, multiRow: true }}

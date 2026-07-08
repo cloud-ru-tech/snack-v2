@@ -10,3 +10,4 @@ export * from './useColumnSizes';
 export * from './useTableScroll';
 export * from './useTableInstance';
 export * from './useTableToolbar';
+export * from './useTableView';
