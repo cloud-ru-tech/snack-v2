@@ -9,3 +9,4 @@ export * from './useDataPersist';
 export * from './usePopstateSubscription';
 export * from './useModalOpenState';
 export * from './useCopyToClipboard';
+export * from './useLocalStorage';
