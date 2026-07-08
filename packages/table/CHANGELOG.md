@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.1 (2026-07-08)
+
+### Bug Fixes
+
+- **FF-8678:** show cards on mobile by default ([d30099a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d30099aba2966356a1a176a367dd8d62831947bf))
+
 # 0.1.0 (2026-07-08)
 
 ### Bug Fixes
