@@ -1,6 +1,6 @@
 {
   "name": "@ds/fields",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",
@@ -45,8 +45,8 @@
     "@ds/tag": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "copy-to-clipboard": "3.3.3",
     "classnames": "catalog:",
+    "copy-to-clipboard": "3.3.3",
     "merge-refs": "catalog:",
     "react-textarea-autosize": "catalog:"
   }

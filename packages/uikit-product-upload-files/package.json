@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-upload-files",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "Сергей Шалагин <soshalagin@cloud.ru>",
   "type": "module",

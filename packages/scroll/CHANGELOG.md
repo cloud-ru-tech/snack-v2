@@ -1,0 +1,30 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2026-07-08)
+
+### Bug Fixes
+
+- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d3a6cdee67c93639280de71de623019203cc8d11))
+- **FF-7947:** improved state layers approach ([3bd8e87](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3bd8e874cebffc637a47558bab76c146436be1f3))
+- **FF-8212:** restored scroll state layers functionality ([5f9a232](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/5f9a232dd363cd7ef38055874c9f95264ca2ca44))
+- **FF-8405:** renamed stateLayers from Background to Filled in all usages ([c0070c8](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c0070c8cc45e93e0664d57e018a338811774c09f))
+- **FF-8456:** @ds/scroll track groove per Figma slider ([ab4da5a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ab4da5a2eb92037ec38981af3330fd7963b02171))
+
+### Dependencies
+
+- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/22b77dc4a9a0c866290843956d5a8e9334be83ad))
+
+### Features
+
+- **FF-0000:** self-contained README generation ([a40798a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a40798ac6f6626c39835dba33b370577eb5dd06d))
+- **FF-7951:** init scroll package ([812b50a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/812b50a7eb696e336fa741ce0ade672bf5eafe36))
+- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
+- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
+- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
+- **FF-8311:** add @ds/toaster package — 3 toast types, imperative API, stack/flat layout, swipe-dismiss, a11y, stories, e2e and docs ([3566b52](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3566b529ed35c73e7c15f47adc1e28e04415d7a3))
+- **FF-8488:** scroll — adopt unified stories/e2e canon ([3ce4f5f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3ce4f5f04eb15955565fe7d731f358361d80e07f))
+- **FF-8638:** storybook layoutType toolbar-global and adaptive rollout ([9115367](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9115367c9093680604dfd29b1781a2c304644a0d))
+- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))

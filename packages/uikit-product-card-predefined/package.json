@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-card-predefined",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",
@@ -26,11 +26,11 @@
   "dependencies": {
     "@ds/button": "workspace:*",
     "@ds/card": "workspace:*",
+    "@ds/icon-predefined": "workspace:^",
     "@ds/icons": "workspace:*",
     "@ds/list": "workspace:*",
-    "@ds/icon-predefined": "workspace:^",
-    "@ds/tag": "workspace:*",
     "@ds/promo-tag": "workspace:*",
+    "@ds/tag": "workspace:*",
     "@ds/toggles": "workspace:*",
     "@ds/truncate-string": "workspace:*",
     "@ds/typography": "workspace:*",

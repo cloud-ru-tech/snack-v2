@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-modal-predefined",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "Robert Kuzhin <rikuzhin@cloud.ru>",
   "type": "module",
@@ -40,8 +40,8 @@
     "@ds/locale": "workspace:^",
     "@ds/markdown": "workspace:^",
     "@ds/modal": "workspace:^",
-    "@ds/skeleton": "workspace:^",
     "@ds/scroll": "workspace:^",
+    "@ds/skeleton": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/uikit-product-copy": "workspace:^",
     "@ds/utils": "workspace:^",

@@ -1,6 +1,6 @@
 {
   "name": "@ds/modal",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "Anna Kozlova <apkozlova@cloud.ru>",
   "type": "module",
@@ -28,8 +28,8 @@
     "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
-    "@ds/materials": "workspace:^",
     "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
     "@ds/portal-context": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/truncate-string": "workspace:^",

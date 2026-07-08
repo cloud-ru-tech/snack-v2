@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2026-07-08)
+
+### Features
+
+- **FF-8027:** add @ds/button-combo split-button package ([91cffe1](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/91cffe11f9dc2d2d9b3ca95577ea3163fa0831de))
+- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
