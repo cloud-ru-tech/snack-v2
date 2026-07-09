@@ -29,8 +29,8 @@
     "@ds/tooltip": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "2.5.1",
-    "uncontrollable": "8.0.4"
+    "classnames": "catalog:",
+    "uncontrollable": "catalog:"
   },
   "publishConfig": {
     "access": "public"

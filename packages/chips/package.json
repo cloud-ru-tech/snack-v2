@@ -45,7 +45,7 @@
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
-    "fuzzy-search": "3.2.1",
+    "fuzzy-search": "^3.2.1",
     "merge-refs": "catalog:",
     "uncontrollable": "catalog:"
   },

@@ -30,7 +30,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@cloud-ru/ft-formatters": "1.0.1",
+    "@cloud-ru/ft-formatters": "^1.0.1",
     "@ds/accordion": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",

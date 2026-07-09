@@ -43,15 +43,15 @@
     "@ds/scroll": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "awesome-phonenumber": "7.5.0",
+    "awesome-phonenumber": "^7.5.0",
     "classnames": "catalog:",
-    "imask": "7.6.1",
+    "imask": "^7.6.1",
     "merge-refs": "catalog:",
-    "react-imask": "7.6.1"
+    "react-imask": "^7.6.1"
   },
   "peerDependencies": {
-    "react-hook-form": "7.79.0",
-    "yup": "1.7.1"
+    "react-hook-form": "^7.79.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "react-hook-form": "7.79.0",

@@ -51,6 +51,6 @@
     "@tanstack/react-virtual": "catalog:",
     "classnames": "catalog:",
     "uncontrollable": "catalog:",
-    "weekstart": "2.0.0"
+    "weekstart": "^2.0.0"
   }
 }

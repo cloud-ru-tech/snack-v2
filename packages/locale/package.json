@@ -25,8 +25,8 @@
   ],
   "dependencies": {
     "@ds/context-kit": "workspace:^",
-    "@types/lodash.merge": "4.6.9",
-    "lodash.merge": "4.6.2"
+    "@types/lodash.merge": "^4.6.9",
+    "lodash.merge": "^4.6.2"
   },
   "publishConfig": {
     "access": "public"

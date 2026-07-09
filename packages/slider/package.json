@@ -28,7 +28,7 @@
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
-    "rc-slider": "11.1.9"
+    "rc-slider": "^11.1.9"
   },
   "publishConfig": {
     "access": "public"

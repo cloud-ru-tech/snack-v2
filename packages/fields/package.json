@@ -46,7 +46,7 @@
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
-    "copy-to-clipboard": "3.3.3",
+    "copy-to-clipboard": "^3.3.3",
     "merge-refs": "catalog:",
     "react-textarea-autosize": "catalog:"
   }
