@@ -15,6 +15,7 @@ export type ScaffoldOptions = {
   componentKebab: string
   displayTitle: string
   description: string
+  author: string
   includeDemo: boolean
   includeE2E: boolean
   dryRun?: boolean
@@ -76,13 +77,15 @@ export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
     COMPONENT_KEBAB: opts.componentKebab,
     DISPLAY_TITLE: opts.displayTitle,
     DESCRIPTION: opts.description || `${opts.displayTitle} component.`,
+    AUTHOR: opts.author,
     DEMO_IMPORT: demoImport,
     DEMO_USAGE: demoUsage,
   }
 
   try {
-    // package metadata + tsconfigs
+    // package metadata + tsconfigs + license
     writeRendered(tpl('package.json'), out('package.json'), vars, opts.dryRun ?? false)
+    copyVerbatim(tpl('LICENSE'), out('LICENSE'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.esm.json'), out('tsconfig.esm.json'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.cjs.json'), out('tsconfig.cjs.json'), opts.dryRun ?? false)
 

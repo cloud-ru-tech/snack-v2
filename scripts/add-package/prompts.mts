@@ -1,13 +1,31 @@
+import { execSync } from 'child_process'
+
 import { input, confirm } from '@inquirer/prompts'
 import { validatePackageName, validateComponentName, packageExists, toPascal } from './validate.mts'
-
+ 
 export interface PackageOptions {
   readonly pkgName: string
   readonly componentName: string
   readonly displayTitle: string
   readonly description: string
+  readonly author: string
   readonly includeDemo: boolean
   readonly includeE2E: boolean
+}
+
+function gitConfig(key: string): string {
+  try {
+    return execSync(`git config ${key}`, { encoding: 'utf8' }).trim()
+  } catch {
+    return ''
+  }
+}
+
+function gitAuthor(): string {
+  const name = gitConfig('user.name')
+  const email = gitConfig('user.email')
+  if (name && email) return `${name} <${email}>`
+  return name || email
 }
 
 export async function collectOptions(): Promise<PackageOptions> {
@@ -63,6 +81,7 @@ export async function collectOptions(): Promise<PackageOptions> {
     componentName: componentName.trim(),
     displayTitle: componentName.trim(),
     description: description.trim(),
+    author: gitAuthor(),
     includeDemo,
     includeE2E,
   })

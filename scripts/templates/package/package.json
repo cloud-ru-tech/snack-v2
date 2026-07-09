@@ -2,6 +2,7 @@
   "name": "@ds/{{PKG_NAME}}",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "author": "{{AUTHOR}}",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
