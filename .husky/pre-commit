@@ -1,3 +1,3 @@
 # 1.3.0
 node_modules/.bin/lint-staged
-pnpx @cloud-ru/ft-deps-validator@2.1.1-preview-1f7840f.0
+pnpx @cloud-ru/ft-deps-validator@latest
