@@ -149,11 +149,11 @@ pnpm test:e2e:docker:visual:update packages/calendar  # переснять од�
 pnpm test:e2e:docker:visual:update                    # все visual.spec.ts
 ```
 
-Образ: `node:24.11.1-bookworm-slim` (Docker Hub). Playwright + chromium — в `run.sh` после `pnpm install` (кэш в volume `snack-v2-e2e-playwright-browsers`). Override — `DOCKER_E2E_IMAGE`.
+Образ: `snack-v2-e2e:local`, собирается из `docker/e2e/Dockerfile` (bookworm + вшитые chromium и его OS-deps — на рантайме браузер не докачивается). Первый build — минуты, дальше из кэша слоёв Docker (повторно ~1–2 сек, если Dockerfile и версия Playwright не менялись). Override — `DOCKER_E2E_IMAGE`.
 
-Первый прогон долгий (~10–20 мин): `playwright install --with-deps` + `build:packages` + `build:storybook`. Повторный быстрее: `DOCKER_E2E_SKIP_BROWSER_INSTALL=1` и `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1`.
+Первый прогон долгий (~10–15 мин): docker build образа + `build:storybook`. Повторный быстрее: `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1` (reuse предыдущей статики). `build:packages` по умолчанию **не** запускается — storybook static резолвит `@ds/*` → `packages/*/src` через vite-алиасы, dist не нужен (на CI пакеты перед e2e тоже не собираются). Форс сборки dist для диагностики — `DOCKER_E2E_BUILD_PACKAGES=1`.
 
-Если `build:packages` в Docker падает с `Cannot find module '@ds/...'` — это конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` временно прячет macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
+Если build в Docker падает с `Cannot find module '@ds/...'` — это конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` временно прячет macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
 
 Перед первым PR прочитать [`.claude/rules/`](./.claude/rules/) — там стандарты на структуру, stories, тесты, документацию.
 

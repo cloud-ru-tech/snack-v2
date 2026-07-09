@@ -20,7 +20,8 @@
  *   ~/.npmrc с доступом к pkg.sbercloud.tech (монтируется в контейнер автоматически)
  *
  * Порядок внутри контейнера:
- *   pnpm install → build → http-server → тесты (chromium уже вшит в образ)
+ *   pnpm install → build:storybook → http-server → тесты (chromium уже вшит в образ;
+ *   build:packages по умолчанию НЕ запускается — форс через DOCKER_E2E_BUILD_PACKAGES=1)
  *
  * Env:
  *   DOCKER_E2E_IMAGE                  — override образа (пропускает docker build; для CI-образа)
@@ -28,9 +29,9 @@
  *   DOCKER_E2E_PLATFORM               — default linux/amd64; пустая строка = без --platform
  *   DOCKER_E2E_INSTALL=0              — пропустить pnpm install (или флаг --no-install)
  *   DOCKER_E2E_NPMRC                  — путь к npmrc (default ~/.npmrc)
- *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не пересобирать ни packages, ни storybook static
- *   DOCKER_E2E_SKIP_PACKAGES_BUILD=1  — пропустить только build:packages (storybook static
- *                                       пересобирается из исходников — для правок сторей)
+ *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не пересобирать storybook static (reuse предыдущей сборки)
+ *   DOCKER_E2E_BUILD_PACKAGES=1       — форсить build:packages (по умолчанию НЕ собирается: storybook
+ *                                       static резолвит @ds/* → packages/<pkg>/src через алиасы, dist не нужен)
  */
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';

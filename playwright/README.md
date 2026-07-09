@@ -126,9 +126,9 @@ pnpm test:e2e:docker:update-snapshots             # переснять все ba
 pnpm test:e2e:docker:visual:update packages/accordion
 ```
 
-Скрипт: `scripts/docker-e2e.mts`, entrypoint: `docker/e2e/run.sh`. Образ: `node:24.11.1-bookworm-slim`; Playwright + chromium — в run.sh. Override — `DOCKER_E2E_IMAGE`.
+Скрипт: `scripts/docker-e2e.mts`, entrypoint: `docker/e2e/run.sh`. Образ: `snack-v2-e2e:local` из `docker/e2e/Dockerfile` (chromium вшит). Override — `DOCKER_E2E_IMAGE`.
 
-Порядок: `pnpm install` → `playwright install --with-deps chromium` → `build:packages` + `build:storybook` → `http-server` → тесты. Быстрый повтор: `DOCKER_E2E_SKIP_BROWSER_INSTALL=1` + `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1`.
+Порядок: `pnpm install` → `build:storybook` → `http-server` → тесты. `build:packages` по умолчанию **не** запускается (storybook static резолвит `@ds/*` → `packages/*/src` через алиасы; форс — `DOCKER_E2E_BUILD_PACKAGES=1`). Быстрый повтор: `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1`.
 
 ## Env
 

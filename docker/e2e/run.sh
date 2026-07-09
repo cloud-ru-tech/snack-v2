@@ -4,7 +4,7 @@
 #
 # Порядок:
 #   1. pnpm install
-#   2. build:packages + build:storybook (Linux static)
+#   2. build:storybook (Linux static; build:packages по умолчанию НЕ запускается — см. ниже)
 #   3. http-server apps/storybook/storybook-static &
 #   4. tsx scripts/coverage-serve.mts --wait-only
 #   5. playwright test
@@ -84,22 +84,24 @@ STORYBOOK_URL="http://127.0.0.1:${STORYBOOK_PORT}/"
 STATIC_DIR="/work/apps/storybook/storybook-static"
 
 # Static собираем в Linux (не reuse macOS storybook-static с хоста — иначе снова mac↔linux diff).
-# Как на CI: сначала packages, потом storybook static.
-#   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — зонтичный: пропустить и packages, и storybook static.
-#   DOCKER_E2E_SKIP_PACKAGES_BUILD=1  — пропустить только build:packages (storybook собирается
-#     из исходников через алиасы @ds/* → packages/*/src, поэтому правки сторей видны без dist).
-if [[ "${DOCKER_E2E_SKIP_PACKAGES_BUILD:-0}" != "1" && "${DOCKER_E2E_SKIP_STORYBOOK_BUILD:-0}" != "1" ]]; then
-  echo '→ pnpm build:packages'
+# build:packages по умолчанию НЕ запускается: Storybook static собирается из исходников через
+# vite-алиасы @ds/* → packages/*/src (apps/storybook/.storybook/main.ts → collectDsAliases), а
+# спеки гоняются против поднятой статики и dist не импортируют. На CI пакеты перед e2e тоже не
+# собираются. Форсить сборку dist (например, для диагностики самой сборки пакетов) —
+# DOCKER_E2E_BUILD_PACKAGES=1.
+#   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — пропустить и storybook static (reuse предыдущей сборки).
+if [[ "${DOCKER_E2E_BUILD_PACKAGES:-0}" == "1" && "${DOCKER_E2E_SKIP_STORYBOOK_BUILD:-0}" != "1" ]]; then
+  echo '→ pnpm build:packages (DOCKER_E2E_BUILD_PACKAGES=1)'
   pnpm build:packages
 else
-  echo '→ skip build:packages (DOCKER_E2E_SKIP_PACKAGES_BUILD/DOCKER_E2E_SKIP_STORYBOOK_BUILD=1)'
+  echo '→ skip build:packages (storybook static собирается из packages/*/src через алиасы)'
 fi
 
 if [[ "${DOCKER_E2E_SKIP_STORYBOOK_BUILD:-0}" != "1" ]]; then
   echo '→ pnpm build:storybook'
-  # storybook build идёт с дефолтным heap V8 (~2 ГБ) и падает OOM на большом наборе сторей.
-  # Поднимаем лимит только для этого шага (build:ts/css уже пинят 8192 в своих скриптах).
-  NODE_OPTIONS=--max-old-space-size=8192 pnpm build:storybook
+  # Heap-лимит V8 (8192) запинен в самом скрипте `storybook build`
+  # (apps/storybook/package.json) — дефолтные ~2 ГБ падают OOM на большом наборе сторей.
+  pnpm build:storybook
 else
   echo '→ skip build:storybook (DOCKER_E2E_SKIP_STORYBOOK_BUILD=1)'
 fi

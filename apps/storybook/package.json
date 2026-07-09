@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 storybook build",
     "test": "vitest run",
     "test:watch": "vitest",
     "clean": "rm -rf storybook-static"
