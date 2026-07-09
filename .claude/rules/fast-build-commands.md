@@ -16,8 +16,10 @@
 | Stylelint | `pnpm stylelint` | `pnpm exec stylelint --fix "packages/<pkg>/**/*.scss"` |
 | Stories play-tests | `pnpm test:stories` | `pnpm test:stories -- -t "<TitleSubstring>"` (jest `-t` по имени теста/title) |
 | E2E Playwright | `pnpm test:e2e` | `pnpm test:e2e:chrome packages/<pkg>` |
-| Visual baselines | `pnpm test:e2e:update-snapshots` | `pnpm test:e2e:update-snapshots packages/<pkg>` |
-| Visual baselines (Linux, с Mac) | `pnpm test:e2e:docker:visual:update` | `pnpm test:e2e:docker:visual:update packages/<pkg>` |
+| Visual baselines (все, `=all`) | `pnpm test:e2e:update-snapshots` | `pnpm test:e2e:update-snapshots packages/<pkg>` |
+| Visual baselines (только разошедшиеся, `=changed`) | `pnpm test:e2e:update-snapshots:changed` | `pnpm test:e2e:update-snapshots:changed packages/<pkg>` |
+| Visual baselines (Linux, с Mac, все) | `pnpm test:e2e:docker:visual:update` | `pnpm test:e2e:docker:visual:update packages/<pkg>` |
+| Visual baselines (Linux, с Mac, только разошедшиеся) | `pnpm test:e2e:docker:visual:update:changed` | `pnpm test:e2e:docker:visual:update:changed packages/<pkg>` |
 | E2E в Docker (Linux) | `pnpm test:e2e:docker` | `pnpm test:e2e:docker packages/<pkg>` |
 | Docs-сайт build (smoke) | `pnpm build:docs` | `pnpm build:docs:fast` |
 | Сборка пакетов + docs (без Storybook static) | `pnpm build` | `pnpm build:fast` (`build:packages` + `build:docs:fast`) |

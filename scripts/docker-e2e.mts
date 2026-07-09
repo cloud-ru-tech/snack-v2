@@ -117,7 +117,7 @@ function parseArgs(argv: string[]): ParsedArgs {
       playwrightArgs.push('--update-snapshots=all');
       continue;
     }
-    if (arg === '--update-snapshots=changed') {
+    if (arg === '--update-snapshots=all' || arg === '--update-snapshots=changed') {
       updateSnapshots = true;
       playwrightArgs.push(arg);
       continue;

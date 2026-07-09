@@ -101,10 +101,13 @@ pnpm --filter @ds/tests exec playwright install
 | `pnpm test:e2e`                  | Playwright по всем проектам (chrome+firefox+safari+mobile)                                                                                                                                  |
 | `pnpm test:e2e:chrome`           | Только chrome — дефолт во время разработки. Принимает path/`-g` фильтр: `pnpm test:e2e:chrome packages/<pkg>`                                                                             |
 | `pnpm test:e2e:ui`               | Playwright в интерактивном UI-режиме                                                                                                                                                        |
-| `pnpm test:e2e:update-snapshots` | Обновляет baseline скриншоты (chrome-only)                                                                                                                                                  |
+| `pnpm test:e2e:update-snapshots` | Обновляет **все** baseline скриншоты (chrome-only, `--update-snapshots=all` — переписывает и совпадающие)                                                                                    |
+| `pnpm test:e2e:update-snapshots:changed` | Обновляет **только разошедшиеся** baseline'ы (chrome-only, `--update-snapshots=changed`) — не churn'ит неизменные PNG, самолечит флейки                                             |
 | `pnpm test:e2e:docker`           | Playwright chrome в Docker (Linux, образ как на CI) — для проверки visual на Mac                                                                                                            |
-| `pnpm test:e2e:docker:update-snapshots` | Переснять baseline'ы в Linux (коммитить PNG после review)                                                                                                                            |
+| `pnpm test:e2e:docker:update-snapshots` | Переснять **все** baseline'ы в Linux (`=all`; коммитить PNG после review)                                                                                                             |
+| `pnpm test:e2e:docker:update-snapshots:changed` | Переснять в Linux **только разошедшиеся** baseline'ы (`=changed`)                                                                                                             |
 | `pnpm test:e2e:docker:visual`    | Только `visual.spec.ts` в Docker                                                                                                                                                            |
+| `pnpm test:e2e:docker:visual:update` / `:changed` | Только `visual.spec.ts` в Docker с пересъёмом baseline'ов — всех (`=all`) либо только разошедшихся (`:changed`)                                                              |
 | `pnpm test:e2e:audit`            | Статический аудит Playwright spec'ов на соответствие [e2e-testing-standard.md](./.claude/rules/e2e-testing-standard.md). Опционально — фильтр по пакету: `pnpm test:e2e:audit button`         |
 
 Селективные команды для итеративной работы над одним пакетом — см. [`.claude/rules/fast-build-commands.md`](./.claude/rules/fast-build-commands.md).
@@ -144,10 +147,13 @@ Baseline PNG для visual regression нужно снимать в **Linux** —
 ```bash
 # ~/.npmrc с _authToken для pkg.sbercloud.tech — монтируется автоматически
 
-pnpm test:e2e:docker:visual                           # прогон visual-тестов в Linux
-pnpm test:e2e:docker:visual:update packages/calendar  # переснять один пакет
-pnpm test:e2e:docker:visual:update                    # все visual.spec.ts
+pnpm test:e2e:docker:visual                                   # прогон visual-тестов в Linux
+pnpm test:e2e:docker:visual:update packages/calendar          # переснять один пакет (все baseline'ы, =all)
+pnpm test:e2e:docker:visual:update:changed packages/calendar  # переснять только разошедшиеся (=changed)
+pnpm test:e2e:docker:visual:update                            # все visual.spec.ts
 ```
+
+`=all` (`…:update`) переписывает **каждый** baseline пакета, включая совпадающие; `=changed` (`…:update:changed`) — **только** те, что реально разошлись с текущим рендером. `:changed` предпочтителен для точечной пересъёмки: не раздувает diff неизменными PNG и не фиксирует случайный флейк-рендер как новый эталон.
 
 Образ: `snack-v2-e2e:local`, собирается из `docker/e2e/Dockerfile` (bookworm + вшитые chromium и его OS-deps — на рантайме браузер не докачивается). Первый build — минуты, дальше из кэша слоёв Docker (повторно ~1–2 сек, если Dockerfile и версия Playwright не менялись). Override — `DOCKER_E2E_IMAGE`.
 

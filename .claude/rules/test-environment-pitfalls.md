@@ -223,11 +223,14 @@ import { waitForStableBbox } from '#playwright-tooling/utils';
 await waitForStableBbox(getByTestId(TEST_IDS.header));
 ```
 
-### Visual baselines под `SCREENSHOT_DEFAULT_OPTS` — оставлять threshold широким
+### Visual baselines под `SCREENSHOT_DEFAULT_OPTS` — пороги под Linux-baseline
 
-CoreText (macOS) vs FreeType/Skia (CI Linux) рендерят один Inter с разным subpixel-antialiasing. Это даёт diff'ы на каждом edge каждого глифа.
+Baseline'ы снимаются **только на Linux** (CI-паритет, см. `VISUAL_BASELINE_PROJECT`), поэтому широкий коридор под macOS↔Linux (разный subpixel-antialiasing CoreText vs FreeType/Skia) больше не нужен и пороги сужены до рабочих значений.
 
-`maxDiffPixelRatio: 0.15`, `threshold: 0.35` — широкие значения, **намеренные**. Реальные регрессии (изменения цвета/layout/появление-исчезновение) затрагивают тысячи пикселей и пробивают любой sub-пиксельный коридор. Не ужесточай глобально — расширяй per-test через `expect(...).toHaveScreenshot(name, { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: 0.05 })` если конкретный snapshot стал шумным.
+Текущие — **`maxDiffPixelRatio: 0.01`, `threshold: 0.25`**. Источник истины — `SCREENSHOT_DEFAULT_OPTS` / `MATCH_SNAPSHOT_DEFAULT_OPTS` в `#playwright-tooling/constants/common`; при изменении правь **там**, а не здесь (иначе это число снова разойдётся с кодом). Смысл: `threshold` — насколько цвет одного пикселя может уехать, чтобы он ещё не считался diff'ом (гасит subpixel-antialiasing глифов Inter); `maxDiffPixelRatio` — какая доля «пробивших threshold» пикселей допустима. Порог намеренно жёсткий (1%): baseline'ы Linux-only, run-to-run рендер стабилен, поэтому реальные регрессии видно сразу, а subpixel-шум `threshold` отсекает.
+
+Не тяни глобальный порог ради одного шумного снимка — он держит **самый флейкующий** кадр. Если конкретный снимок начал флейкать на `0.01` — ослабь **его** точечно, оставив глобал жёстким:
+`expect(...).toHaveScreenshot(name, { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: 0.05 })`.
 
 ## Cross-package imports в spec'ах
 

@@ -33,7 +33,7 @@
 - Baselines снимаются **только на `chrome`** (см. `VISUAL_BASELINE_PROJECT` из `#playwright-tooling/constants/projects`). Visual spec обязан делать `test.skip(testInfo.project.name !== VISUAL_BASELINE_PROJECT, …)` в `beforeEach`.
 - Baseline-файлы лежат **рядом** со спеком: `packages/<pkg>/__test__/<Component>/__snapshots__/<arg>-<projectName>.png`.
 - Имя snapshot-файла **без префикса пакета** (префикс несёт папка): `visual-matrix.png`, `interaction-hover.png`, не `button-visual-matrix.png`.
-- Обновление: `pnpm test:e2e:update-snapshots` (chrome-only).
+- Обновление: `pnpm test:e2e:update-snapshots` (chrome-only) — переснимает **все** baseline'ы (`=all`). Для точечной пересъёмки только разошедшихся снимков — `pnpm test:e2e:update-snapshots:changed` (`=changed`): не трогает совпадающие PNG и не фиксирует случайный флейк-рендер как эталон.
 
 ## Канонические имена snapshot-файлов
 
@@ -272,7 +272,7 @@ test('<axis> × state matrix', async ({ page, gotoStory, getByTestId }) => {
    rm packages/<pkg>/__test__/<Component>/__snapshots__/*.png
    ```
 2. Убедись, что Storybook запущен (`pnpm dev:storybook`) или что `reuseExistingServer` в корневом `playwright.config.ts` подключит dev-сервер.
-3. `pnpm test:e2e:update-snapshots packages/<pkg>` (только chrome). **На Mac** baseline'ы для CI снимай через Docker (Linux, образ пайпа): `pnpm test:e2e:docker:visual:update packages/<pkg>` — см. README §«Visual baselines на Mac».
+3. `pnpm test:e2e:update-snapshots packages/<pkg>` (только chrome; `=all` — все baseline'ы). Точечно, только разошедшиеся — `pnpm test:e2e:update-snapshots:changed packages/<pkg>` (`=changed`). **На Mac** baseline'ы для CI снимай через Docker (Linux, образ пайпа): `pnpm test:e2e:docker:visual:update packages/<pkg>` (или `…:update:changed` для только разошедшихся) — см. README §«Visual baselines на Mac».
 4. Ручной review каждого PNG — не пустой, не с артефактами от dev-инструментов.
 5. Коммить PNG отдельным коммитом `test(visual): update <pkg> baselines`.
 

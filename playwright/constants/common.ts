@@ -48,7 +48,7 @@ export const SCREENSHOT_DEFAULT_OPTS = {
   //
   // Точечный override остаётся доступным через
   // `expect(...).toHaveScreenshot(name, { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: ... })`.
-  maxDiffPixelRatio: 0.05,
+  maxDiffPixelRatio: 0.01,
   threshold: 0.25,
 } as const;
 
@@ -60,6 +60,6 @@ export const SCREENSHOT_DEFAULT_OPTS = {
  * геометрии. Threshold те же, что в `SCREENSHOT_DEFAULT_OPTS`.
  */
 export const MATCH_SNAPSHOT_DEFAULT_OPTS = {
-  maxDiffPixelRatio: 0.05,
+  maxDiffPixelRatio: 0.01,
   threshold: 0.25,
 } as const;
