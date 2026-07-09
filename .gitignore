@@ -101,3 +101,6 @@ tmp
 /coverage/
 playwright/coverage/.stories.json
 
+# Vitest JUnit report (@cloud-ru/ft-config-vitest)
+/reports/
+
