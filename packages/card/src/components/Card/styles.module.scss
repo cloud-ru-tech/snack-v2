@@ -89,6 +89,7 @@ $radius-to-badge-box-border-width: (
 .card {
   cursor: default;
 
+  isolation: isolate;
   position: relative;
 
   overflow: hidden;
