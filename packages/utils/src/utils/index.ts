@@ -4,3 +4,4 @@ export * from './isBrowser';
 export * from './copyToClipboard';
 export * from './keyboard';
 export * from './typeGuards';
+export * from './stopEventPropagation';
