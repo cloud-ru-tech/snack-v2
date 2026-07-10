@@ -124,7 +124,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
-    "storybook": "10.4.0",
+    "storybook": "10.4.6",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
