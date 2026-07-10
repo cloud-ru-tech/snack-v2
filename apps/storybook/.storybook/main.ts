@@ -21,6 +21,24 @@ const root = join(__dirname, '..', '..', '..');
 
 const STORY_PKG_RE = /[\\/]packages[\\/]([^\\/]+)[\\/]stories[\\/]/;
 
+/**
+ * Набор stories можно сузить до части пакетов через env `SB_PACKAGES`
+ * (через запятую, имена папок в `packages/`): `SB_PACKAGES=button,link`.
+ * Пусто/не задано — собираются все пакеты (дефолт). Используется в preview-джобе,
+ * чтобы собирать Storybook только по изменённым пакетам. Алиасы `@ds/*` при этом
+ * остаются полными (см. collectDsAliases) — отфильтрованные stories всё равно
+ * импортят соседние пакеты.
+ */
+function storiesGlob(): string {
+  const pkgs = (process.env.SB_PACKAGES ?? '')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
+  if (pkgs.length === 0) return '../../../packages/*/stories/**/*.stories.@(ts|tsx)';
+  const selector = pkgs.length === 1 ? pkgs[0] : `{${pkgs.join(',')}}`;
+  return `../../../packages/${selector}/stories/**/*.stories.@(ts|tsx)`;
+}
+
 declare global {
   var __DS_SB_ORDER__: { domains: string[]; categories: string[] } | undefined;
 }
@@ -133,7 +151,7 @@ const MANAGER_REACT_POLYFILL = `
 `;
 
 const config: StorybookConfig = {
-  stories: ['../../../packages/*/stories/**/*.stories.@(ts|tsx)'],
+  stories: [storiesGlob()],
   managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
   addons: [
     join(__dirname, 'addons/theme-controls/preset.ts'),
