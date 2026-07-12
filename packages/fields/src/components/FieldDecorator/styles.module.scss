@@ -123,6 +123,10 @@ $bodyTypography: (
   flex-direction: column;
   align-items: flex-start;
 
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       gap: base.simple-var(field.$field, 'anatomy', 'size', $size, 'gap');

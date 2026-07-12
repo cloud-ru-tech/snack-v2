@@ -40,6 +40,7 @@ $sizes: 's', 'm', 'l';
   &[data-align='vertical'] {
     flex-direction: column;
     align-items: center;
+    margin-inline: auto;
 
     .contentLayout {
       align-items: center;
