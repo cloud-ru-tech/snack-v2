@@ -11,6 +11,8 @@
   align-items: flex-start;
   align-self: stretch;
 
+  box-sizing: border-box;
+
   color: base.$sn-theme-color-available-version-textMain;
 
   @include base.composite-var(base.$sn-regular-body-m);

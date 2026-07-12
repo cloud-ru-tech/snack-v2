@@ -9,6 +9,8 @@
   align-items: flex-start;
   justify-content: center;
 
+  box-sizing: border-box;
+
   @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'header');
 }
 

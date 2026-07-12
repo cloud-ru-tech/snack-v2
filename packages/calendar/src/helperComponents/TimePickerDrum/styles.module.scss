@@ -178,7 +178,7 @@ $bodyTypography: (
 
 .wheelSlotLine {
   height: 0;
-  border-top: 1px solid base.$sn-theme-color-available-borderColor;
+  border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
 }
 
 .wheelTrack {

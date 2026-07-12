@@ -10,6 +10,7 @@
   overscroll-behavior: contain;
   flex: 1 1 auto;
 
+  box-sizing: border-box;
   min-height: 0;
   padding: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-top') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-right') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-bottom') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bodyWrapper', 'padding-left');
 

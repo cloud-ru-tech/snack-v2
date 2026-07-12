@@ -10,6 +10,8 @@
   align-self: stretch;
   justify-content: center;
 
+  box-sizing: border-box;
+
   @include base.composite-var(modal.$modal, 'anatomy', 'container', 'header');
 }
 

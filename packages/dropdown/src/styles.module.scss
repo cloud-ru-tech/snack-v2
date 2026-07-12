@@ -14,21 +14,25 @@
   @include base.composite-var(dropdown.$dropdown, 'anatomy', 'container');
 
   position: relative;
+
   display: flex;
   flex-direction: column;
-  // TODO: need check in figma
+
+  box-sizing: border-box;
+
   box-shadow: base.$sn-boxShadow-elevation-level2;
 
   @include m.with-material('acrylic', #{acrylic});
 }
 
 .defaultTriggerClassName {
-  // --offset: 12px; // TODO: where to get from? used to be styles-tokens-dropList.$space-drop-list-drop-offset
   --offset: #{popover.$sn-popover-anatomy-privatePopover-offset};
 }
 
 .infoBlock {
   @include base.composite-var(dropdown.$dropdown, 'anatomy', 'container', 'dropdownInfoBlock');
+
+  box-sizing: border-box;
 }
 
 .loaderWrapper {
@@ -39,6 +43,8 @@
   align-items: center;
   align-self: stretch;
   justify-content: center;
+
+  box-sizing: border-box;
 }
 
 .dropdownContent {
@@ -46,6 +52,7 @@
 }
 
 .bodyWrapper {
+  box-sizing: border-box;
   padding: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bodyWrapper', 'padding');
 }
 
@@ -67,12 +74,15 @@
   display: flex;
   gap: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'gap');
   align-items: center;
+
+  box-sizing: border-box;
   padding:
     0 base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'padding-right') 0
     base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'padding-left');
 }
 
 .bottomBar {
+  box-sizing: border-box;
   padding:
     base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-top')
     base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-right')

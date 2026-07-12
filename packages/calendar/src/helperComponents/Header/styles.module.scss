@@ -10,6 +10,8 @@ $sizes: 's', 'm', 'l';
   align-self: stretch;
   justify-content: space-between;
 
+  box-sizing: border-box;
+
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(calendar.$calendar, 'anatomy', 'size', $size, 'header');

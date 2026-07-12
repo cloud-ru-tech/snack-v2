@@ -14,6 +14,7 @@
   align-items: stretch;
   justify-content: center;
 
+  box-sizing: border-box;
   padding: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bottomBar', 'padding-top') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bottomBar', 'padding-right') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bottomBar', 'padding-bottom') base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'bottomBar', 'padding-left');
 }
 

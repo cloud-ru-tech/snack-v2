@@ -34,6 +34,12 @@ $widthSizes: 's', 'm', 'l';
 
 .mask {
   z-index: initial !important; /* stylelint-disable-line declaration-no-important */
+
+  // rc-drawer рендерит mask только при mask={showBlackout}, поэтому фон-затемнение
+  // ставим прямо на `.mask`: mask в DOM ⟺ blackout нужен. Раньше правило висело на
+  // `[data-content-wrapper][data-showblackout] .mask`, но mask — сосед content-wrapper'а,
+  // а не потомок, и селектор не срабатывал → оставался дефолт rc-drawer rgba(0,0,0,.5).
+  background-color: base.$sn-theme-color-blackout;
 }
 
 .badgeButtonClosed {
@@ -133,10 +139,6 @@ div[data-content-wrapper='true'] {
   }
 
   &[data-showblackout='true'] {
-    .mask {
-      background-color: base.$sn-theme-color-blackout;
-    }
-
     .drawer {
       box-shadow: base.$sn-boxShadow-elevation-level5;
     }

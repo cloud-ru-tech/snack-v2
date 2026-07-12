@@ -9,11 +9,6 @@
 $sizes: 'xs', 's', 'm';
 $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'violet', 'yellow';
 
-$typography: (
-  's': base.$sn-regular-label-s,
-  'm': base.$sn-regular-label-m,
-);
-
 .stateLayer {
   visibility: initial;
 }
@@ -35,6 +30,7 @@ $typography: (
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   border-width: 0;
 
   @include materials.has-state-layer-as-child(#{stateLayer});

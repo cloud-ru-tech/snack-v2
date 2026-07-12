@@ -66,15 +66,15 @@
 }
 
 .content {
-  // Без `touch-action: none`: `.content` — предок прокручиваемого `.body`. Жесты гасятся на
-  // листовых drag-зонах (handle/headline/footer/media/safeArea), а `.body` оставлен `pan-y`.
   position: relative;
 
   overflow: hidden;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-
+  // Без `touch-action: none`: `.content` — предок прокручиваемого `.body`. Жесты гасятся на
+  // листовых drag-зонах (handle/headline/footer/media/safeArea), а `.body` оставлен `pan-y`.
+  box-sizing: border-box;
   width: 100%;
   min-height: 0;
   max-height: 100%;

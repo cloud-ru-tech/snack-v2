@@ -3,11 +3,6 @@
 @use '@ds/materials' as m;
 
 $sizes: 's', 'm', 'l';
-$typography: (
-  's': base.$sn-regular-label-s,
-  'm': base.$sn-regular-label-m,
-  'l': base.$sn-regular-label-l,
-);
 
 // For reference only
 $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-position
@@ -198,6 +193,7 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 
   &:not([data-visible]) {
     pointer-events: none;

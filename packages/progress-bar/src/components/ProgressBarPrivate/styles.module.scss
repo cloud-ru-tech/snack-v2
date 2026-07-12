@@ -10,6 +10,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
 .progressBarContainer {
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
   background-color: base.$sn-theme-color-neutral-decor;
 
   @each $size in $sizes {

@@ -14,5 +14,7 @@
   align-items: flex-start;
   align-self: stretch;
 
+  box-sizing: border-box;
+
   @include base.composite-var(modal.$modal, 'anatomy', 'container', 'footer');
 }

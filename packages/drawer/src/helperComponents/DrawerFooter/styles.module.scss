@@ -8,6 +8,8 @@
   align-items: center;
   align-self: stretch;
 
+  box-sizing: border-box;
+
   @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'footer');
 }
 

@@ -14,6 +14,7 @@ $masks: (
 );
 
 .progressBarCircleContainer {
+  box-sizing: border-box;
   mask-mode: luminance;
 
   @each $size in $sizes {
