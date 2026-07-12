@@ -43,6 +43,7 @@ $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'v
 
   &:focus-visible {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: 0;
   }
 
   &[data-role='regular'] {

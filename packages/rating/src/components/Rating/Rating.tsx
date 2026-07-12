@@ -2,10 +2,10 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { KeyboardEventHandler, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { APPEARANCE, DEFAULT_RATING_VALUE, DEFAULT_STAR_COUNT, SIZE, TEST_IDS } from './constants';
-import { RatingStar, Value } from './helperComponents/RatingStar';
-import { Appearance, Size } from './types';
-import { getRatingStarValue, getStarValue } from './utils';
+import { APPEARANCE, DEFAULT_RATING_VALUE, DEFAULT_STAR_COUNT, SIZE, TEST_IDS } from '../../constants';
+import { RatingStar, Value } from '../../helperComponents';
+import { Appearance, Size } from '../../types';
+import { getRatingStarValue, getStarValue } from '../../utils';
 
 export type RatingProps = WithSupportProps<{
   /** Размер */

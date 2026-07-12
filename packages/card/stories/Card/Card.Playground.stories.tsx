@@ -36,7 +36,7 @@ const meta: Meta<typeof Card> = {
   parameters: { layout: 'fullscreen' },
   args: {
     radius: RADIUS.M,
-    view: VIEW.Simple,
+    view: VIEW.Outline,
     backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     disabled: false,
     checked: false,

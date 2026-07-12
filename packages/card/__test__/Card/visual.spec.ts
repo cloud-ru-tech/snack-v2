@@ -16,12 +16,13 @@ import { buildStoryOptions, CARD_STORIES, CARD_TEST_ID } from './helpers';
 const VIEWS = ['simple', 'outline', 'shadow'] as const;
 const RADII = ['s', 'm', 'l'] as const;
 const ROW_STATES = [
-  { key: 'default', disabled: false, checked: false, hover: false },
-  { key: 'hovered', disabled: false, checked: false, hover: true },
-  { key: 'disabled', disabled: true, checked: false, hover: false },
-  { key: 'checked', disabled: false, checked: true, hover: false },
-  { key: 'checked+hovered', disabled: false, checked: true, hover: true },
-  { key: 'checked+disabled', disabled: true, checked: true, hover: false },
+  { key: 'default', disabled: false, checked: false, hover: false, focused: false },
+  { key: 'hovered', disabled: false, checked: false, hover: true, focused: false },
+  { key: 'focused', disabled: false, checked: false, hover: false, focused: true },
+  { key: 'disabled', disabled: true, checked: false, hover: false, focused: false },
+  { key: 'checked', disabled: false, checked: true, hover: false, focused: false },
+  { key: 'checked+hovered', disabled: false, checked: true, hover: true, focused: false },
+  { key: 'checked+disabled', disabled: true, checked: true, hover: false, focused: false },
 ] as const;
 
 const CELL_PADDING = 8;
@@ -81,6 +82,12 @@ test.describe('Card — visual regression', () => {
           await page.mouse.move(0, 0);
           if (row.hover) {
             await card.hover();
+          }
+          if (row.focused) {
+            // :focus-visible ставится только клавиатурным фокусом (не программным .focus());
+            // карточка — первый focusable в story, поэтому один Tab фокусирует её.
+            await page.keyboard.press('Tab');
+            await expect(card).toBeFocused();
           }
 
           const png = await screenshotWithPadding(page, card, CELL_PADDING, SCREENSHOT_DEFAULT_OPTS);

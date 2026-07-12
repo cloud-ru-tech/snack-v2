@@ -116,9 +116,20 @@ $radius-to-badge-box-border-width: (
     opacity: base.$sn-theme-effect-opacity-disabled;
   }
 
-  &[data-interactive]:focus-visible {
-    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
-    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  // Аннотация Figma «фокус теперь внутри»: 2px `primary/accent` рамка ВНУТРИ карточки.
+  // Рисуем через `::after`, а не root-outline: позиционированные братья (acrylic,
+  // content, outlineBorder) с z-index:auto рисуются поверх собственного outline корня и
+  // перекрывают его прямые грани, оставляя видимыми только углы. `::after` — последний
+  // «ребёнок» в порядке рисования, поэтому кольцо ложится поверх всех оверлеев целиком.
+  &[data-interactive]:focus-visible::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+    border-radius: inherit;
   }
 
   &[data-view='simple'],
@@ -145,13 +156,6 @@ $radius-to-badge-box-border-width: (
     border-color: base.$sn-theme-color-primary-accent;
   }
 
-  @each $r in $radii {
-    &[data-view='outline'][data-radius='#{$r}'] .outlineBorder,
-    &[data-checked][data-radius='#{$r}'] .outlineBorder {
-      border-width: base.simple-var($radius-to-border-width, $r);
-    }
-  }
-
   @media (hover: hover) {
     &[data-interactive]:not([data-disabled]):hover {
       &[data-view='simple'] {
@@ -165,6 +169,13 @@ $radius-to-badge-box-border-width: (
       &[data-view='shadow'] {
         box-shadow: base.$sn-boxShadow-elevation-level3;
       }
+    }
+  }
+
+  @each $r in $radii {
+    &[data-view='outline'][data-radius='#{$r}'] .outlineBorder,
+    &[data-checked][data-radius='#{$r}'] .outlineBorder {
+      border-width: base.simple-var($radius-to-border-width, $r);
     }
   }
 

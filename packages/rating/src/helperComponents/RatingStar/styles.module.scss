@@ -3,7 +3,6 @@
 
 $sizes: 'xs', 's';
 $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
-$values: '0%', '50%', '100%';
 
 @mixin star-color-value($firstHalfColor, $secondHalfColor) {
   .firstStarContainer {
@@ -50,9 +49,12 @@ $values: '0%', '50%', '100%';
     }
   }
 
+  // TODO: в макете focus-радиус привязан к `bgSurface-cornerRadius` (ошибка дизайна) —
+  // после фикса заменить `dimension-2` на корректный radius-токен.
   &:focus-visible {
-    border-radius: 0;
+    border-radius: base.$sn-primitive-dimension-2;
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
   }
 
   @each $appearance in $appearances {

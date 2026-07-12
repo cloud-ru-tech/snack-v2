@@ -1,5 +1,5 @@
 import { HALF_STAR_VALUE } from './constants';
-import { VALUE, Value } from './helperComponents/RatingStar';
+import { VALUE, Value } from './helperComponents';
 
 export function getRatingStarValue(starIndex: number, rating: number, allowHalf: boolean): Value {
   const diff = rating - starIndex;
