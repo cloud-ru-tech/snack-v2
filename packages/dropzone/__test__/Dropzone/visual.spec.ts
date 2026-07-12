@@ -1,5 +1,5 @@
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
-import { test } from '#playwright-tooling/fixtures';
+import { expect, test } from '#playwright-tooling/fixtures';
 import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, DROPZONE_STORIES, TEST_IDS } from './helpers';
@@ -19,9 +19,39 @@ test.describe('Dropzone — visual regression', () => {
     await assertVisualMatrixSnapshot(page);
   });
 
-  test('interaction states (default × hover × focus)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+  // Drag-over добавлен 4-й cell'ой в тот же composite: активируется реальным dragover'ом,
+  // показывает activated-заливку (`material/stateLayer/activated/hovered/filled`) — состояние,
+  // невыразимое статикой.
+  test('interaction states (default × hover × focus × drag-over)', async ({
+    page,
+    gotoStory,
+    getByTestId,
+    waitForFonts,
+  }) => {
     await gotoStory(buildStoryOptions());
     await waitForFonts();
-    await assertInteractionStatesSnapshot(page, { target: getByTestId(TEST_IDS.dropzone.root) });
+    const root = getByTestId(TEST_IDS.dropzone.root);
+
+    await assertInteractionStatesSnapshot(page, {
+      target: root,
+      extraStates: [
+        {
+          label: 'drag-over',
+          activate: async () => {
+            await root.evaluate(el => {
+              const dt = new DataTransfer();
+              dt.items.add(new File(['x'], 'a.png', { type: 'image/png' }));
+              el.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: dt }));
+            });
+            await expect(root).toHaveAttribute('data-over', 'true');
+          },
+          deactivate: async () => {
+            await root.evaluate(el =>
+              el.dispatchEvent(new DragEvent('dragleave', { bubbles: true, cancelable: true })),
+            );
+          },
+        },
+      ],
+    });
   });
 });

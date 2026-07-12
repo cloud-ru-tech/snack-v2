@@ -22,6 +22,19 @@ test.describe('Carousel — rendering', () => {
       await gotoStory(buildStoryOptions({ pagination: true }));
       await expect(getByTestId(TEST_IDS.pagination)).toBeVisible();
     });
+
+    // Регрессия: при mouse-swipe нативный HTML5 drag контента слайдов (`<img>`)
+    // должен гаситься, иначе браузер тащит картинку-призрак вместо переключения слайда.
+    test('native drag of slide content is prevented on the track', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions());
+      const track = getByTestId(TEST_IDS.trackLine);
+      const prevented = await track.evaluate(el => {
+        const event = new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer: new DataTransfer() });
+        // dispatchEvent → false, если кто-то вызвал preventDefault (наш onDragStart).
+        return !el.dispatchEvent(event);
+      });
+      expect(prevented).toBe(true);
+    });
   });
 
   test.describe('props propagation', () => {

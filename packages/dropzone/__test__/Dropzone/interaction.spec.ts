@@ -31,6 +31,26 @@ test.describe('Dropzone — interaction (browser-specific)', () => {
     await expect(root).toBeVisible();
   });
 
+  test('drag over toggles data-over highlight', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
+    const root = getByTestId(TEST_IDS.dropzone.root);
+    await expect(root).toBeVisible();
+
+    // Реальный dragover с файлом → useDrag выставляет isOver → data-over (drag-подсветка).
+    await root.evaluate(el => {
+      const dt = new DataTransfer();
+      dt.items.add(new File(['x'], 'a.png', { type: 'image/png' }));
+      el.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: dt }));
+    });
+    await expect(root).toHaveAttribute('data-over', 'true');
+
+    // dragleave → подсветка снимается.
+    await root.evaluate(el => {
+      el.dispatchEvent(new DragEvent('dragleave', { bubbles: true, cancelable: true }));
+    });
+    await expect(root).not.toHaveAttribute('data-over', 'true');
+  });
+
   test('native file upload via setInputFiles propagates to input value', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ mode: 'multiple' }));
     const input = getByTestId(TEST_IDS.dropzone.nativeInput);

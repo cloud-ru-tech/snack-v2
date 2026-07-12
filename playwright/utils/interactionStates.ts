@@ -135,6 +135,15 @@ export type InteractionStatesOptions = {
   snapshotName?: string;
   /** Раскладка cell'ов в composite. По умолчанию `'row'`. Для широких component'ов (Alert, Breadcrumbs) — `'col'`. */
   layout?: 'row' | 'col';
+  /** Дополнительные состояния сверх default/hover/focus/[pressed] в том же composite.
+   * Каждое: `label` + `activate` (выставить состояние перед снимком). Перед каждым
+   * — `resetState`; после снимка вызывается `deactivate` (если задан). Пример — drag-over
+   * у Dropzone: `activate` диспатчит `dragover` с DataTransfer, `deactivate` — `dragleave`. */
+  extraStates?: Array<{
+    label: string;
+    activate: (page: Page) => Promise<void>;
+    deactivate?: (page: Page) => Promise<void>;
+  }>;
 };
 
 async function resetState(page: Page): Promise<void> {
@@ -171,6 +180,7 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
     padding = DEFAULT_PADDING,
     snapshotName = DEFAULT_SNAPSHOT_NAME,
     layout = 'row',
+    extraStates = [],
   } = options;
 
   const frameLocators = resolveFrame(frame);
@@ -216,6 +226,13 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
     } finally {
       await page.mouse.up();
     }
+  }
+
+  for (const { label, activate, deactivate } of extraStates) {
+    await resetState(page);
+    await activate(page);
+    cells.push({ label, png: await snap() });
+    await deactivate?.(page);
   }
 
   const composeLayout: ComposeLayout = layout === 'col' ? { type: 'col' } : { type: 'row' };

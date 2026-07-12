@@ -20,7 +20,20 @@ $sizes: 's', 'm', 'l';
 }
 
 .overLayer {
+  // Заливка drag-over (`data-state='activatedFilled'`) — absolute-оверлей поверх
+  // контейнера под контентом (`.content` z-index:1), показывается на `[data-over]`.
+  // Фон и раньше отсутствовал (миксин state-layer применялся только к `.borderLayer`),
+  // поэтому подсветка перетаскивания не работала. Absolute убирает overLayer из потока —
+  // иначе он (в потоке flex-колонки) смещал `.content` с центра.
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
   visibility: hidden;
+  background-color: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
 }
 
 .borderLayer {
@@ -56,7 +69,7 @@ $sizes: 's', 'm', 'l';
   text-decoration: none;
 
   background: transparent;
-  background-color: base.$sn-theme-color-neutral-background2Level;
+  background-color: base.$sn-theme-color-neutral-background1Level;
   outline: 0;
   outline-offset: 0;
 

@@ -187,6 +187,10 @@ export function ItemProvider({
         {...swipeProps}
         className={styles.itemTracker}
         data-test-id={TEST_IDS.trackLine}
+        // Гасим нативный HTML5 drag контента слайдов (`<img>` и т.п.): при mouse-swipe
+        // браузер иначе стартует перетаскивание картинки-призрака вместо переключения
+        // слайда. `-webkit-user-drag` на родителе не наследуется дочерними img.
+        onDragStart={event => event.preventDefault()}
         style={{
           transform: `translateX(${transform + drag.drag}px)`,
           transition: `transform ${transition}s ease 0s`,
