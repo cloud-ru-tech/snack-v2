@@ -22,6 +22,13 @@ const getTailTestId = getTestIdBuilder('_element-tail');
 const getStepTestId = getTestIdBuilder('_element-step');
 
 export function DesktopStep({ step, className, 'data-test-id': testId, hideTailLine }: DesktopStepProps) {
+  // hover/press state-layer есть только у кликабельных навигационных кружков —
+  // completed (назад) и waiting (вперёд). Current/loading/rejected по макету не
+  // реагируют на hover/press (активный/в процессе/ошибка — не цель навигации).
+  // Focus-ring — у всех (это outline на кнопке, не зависит от state-layer).
+  const hasStateLayer =
+    step.state !== STEP_STATE.Current && step.state !== STEP_STATE.Rejected && step.state !== STEP_STATE.Loading;
+
   return (
     <div className={cn(styles.step, className)} data-state={step.state}>
       <div className={styles.track}>
@@ -33,7 +40,7 @@ export function DesktopStep({ step, className, 'data-test-id': testId, hideTailL
           data-test-id={getStepTestId(testId)}
           data-state={step.state}
         >
-          <span className={styles.stateLayer} data-state='regularBorder' aria-hidden />
+          <span className={styles.stateLayer} data-state={hasStateLayer ? 'regularFilled' : undefined} aria-hidden />
           <StepIcon state={step.state} number={step.number} className={styles.icon} />
         </button>
 

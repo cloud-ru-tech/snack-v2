@@ -10,11 +10,9 @@ export const STEPPER_STORIES = {
   // Storybook 10 kebab-case'ит PascalCase-имя как одну группу: `BasicFlow` → `basicflow`,
   // `WithValidator` → `withvalidator` (НЕ `basic-flow`/`with-validator`). Story-часть id
   // же — `basic-flow` (от export name). Проверяй реальные id в `http://localhost:6006/index.json`.
-  basicFlow: { name: 'stepper-examples-basicflow', story: 'basic-flow' },
   withValidator: { name: 'stepper-examples-withvalidator', story: 'with-validator' },
-  mobile: { name: 'stepper-examples-mobile', story: 'mobile' },
-  adaptive: { name: 'stepper-examples-adaptive', story: 'adaptive' },
   interactionTest: { name: 'stepper-tests-interaction', story: 'interaction-test' },
+  interactionStates: { name: 'stepper-tests-interactionstates', story: 'interaction-states' },
 } as const satisfies Record<string, StoryRef>;
 
 export type StepperStoryProps = Record<string, unknown>;

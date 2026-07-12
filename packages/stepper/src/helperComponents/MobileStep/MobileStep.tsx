@@ -39,7 +39,6 @@ export function MobileStep({ step, 'data-test-id': testId }: MobileStepProps) {
       data-test-id={getStepTestId(testId)}
       data-state={step.state}
     >
-      <span className={styles.stateLayer} data-state='regularFilled' aria-hidden />
       <div className={styles.track} />
       <div className={styles.status}>{getContent(step.state)}</div>
     </button>

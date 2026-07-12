@@ -11,6 +11,13 @@ $typography: (
   'm': base.$sn-regular-label-l,
 );
 
+// Кнопка удаления = иконка: xs/s — icon-xs (16), m — icon-s (24).
+$removeButtonSize: (
+  'xs': base.$sn-density-size-icon-xs,
+  's': base.$sn-density-size-icon-xs,
+  'm': base.$sn-density-size-icon-s,
+);
+
 .tagButton {
   cursor: pointer;
 
@@ -97,22 +104,14 @@ $typography: (
     justify-content: center;
   }
 
-  &[data-size='xs'] .tagButton,
-  &[data-size='s'] .tagButton {
-    min-width: 16px;
-    min-height: 16px;
-  }
-
-  &[data-size='m'] .tagButton {
-    min-width: 24px;
-    min-height: 24px;
-  }
-
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container');
 
-      // height: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'min-height');
+      .tagButton {
+        min-width: base.simple-var($removeButtonSize, $size);
+        min-height: base.simple-var($removeButtonSize, $size);
+      }
 
       .textWrapper {
         @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'textWrapper');
@@ -126,16 +125,18 @@ $typography: (
     }
   }
 
+  // Цвет текста единый для всех appearance (Figma: available/version/textSecondary),
+  // не тонируется под цвет тега.
+  .label {
+    overflow: hidden;
+    color: base.$sn-theme-color-available-version-textSecondary;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
       background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
-
-      .label {
-        overflow: hidden;
-        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
 
       &[data-tag-link]:focus-visible,
       &[data-tag-link]:hover,

@@ -6,6 +6,10 @@ $tag-row-sizes: 'xs', 's', 'm';
 @mixin tag-row-flex-with-gap {
   display: flex;
   flex-wrap: wrap;
+  // Figma tagRow: items-start + content-start — теги не растягиваются по высоте
+  // ряда под самый высокий элемент (иначе xs 16 → 18 из-за соседнего триггера).
+  align-content: flex-start;
+  align-items: flex-start;
 
   @each $size in $tag-row-sizes {
     &[data-size='#{$size}'] {

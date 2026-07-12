@@ -56,6 +56,18 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
   min-width: 0;
 }
 
+// Цвет заголовка (типографику даёт Typography variant='title').
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+// Подзаголовок — обычный div: задаём и типографику body-m, и цвет.
+.subTitle {
+  @include base.composite-var(base.$sn-regular, 'body', 'm');
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
 .titleContent {
   @each $component in $components {
     [data-component='#{$component}'] & {
@@ -83,6 +95,8 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
   display: flex;
   align-items: stretch;
   justify-content: space-between;
+
+  box-sizing: border-box;
 
   &[data-chevron='before'] {
     flex-direction: row-reverse;
@@ -152,9 +166,9 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
 .container {
   @each $component in $components {
     [data-component='#{$component}'] & {
-      // @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container');
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'bodyContent');
 
+      box-sizing: border-box;
       padding-bottom: 0;
 
       &.containerCompletelyOpen[data-expanded] {

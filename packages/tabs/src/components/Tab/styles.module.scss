@@ -45,10 +45,11 @@ $sizes: 'm', 'l';
   flex-direction: row;
   align-items: center;
 
+  box-sizing: border-box;
   padding: 0;
   border-width: 0;
 
-  color: base.$sn-theme-color-neutral-text;
+  color: base.$sn-theme-color-available-version-textSecondary;
 
   background-color: transparent;
   outline: none;
@@ -102,9 +103,12 @@ $sizes: 'm', 'l';
 
   .container {
     position: relative;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    box-sizing: border-box;
   }
 
   &:focus-visible .container {

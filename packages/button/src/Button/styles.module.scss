@@ -17,6 +17,13 @@ $appearance-to-theme: (
   'neutral': 'neutral',
   'critical': 'red',
 );
+// Маппинг size кнопки -> размер типографики label (Figma смещает на тир вверх):
+// s -> label-m (12), m -> label-l (14), l -> label-l (14).
+$label-typo: (
+  's': 'm',
+  'm': 'l',
+  'l': 'l',
+);
 
 // --- Миксины: label/icon цвет ---
 @mixin label-icon-color($color) {
@@ -54,6 +61,7 @@ $appearance-to-theme: (
   position: relative;
 
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 
@@ -173,7 +181,13 @@ $appearance-to-theme: (
 .label {
   @each $size in $sizes {
     .root[data-size='#{$size}'] & {
-      @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', $size);
+      @include base.composite-var(
+        base.$base-styles,
+        'sn',
+        'regular',
+        'label',
+        base.simple-var($label-typo, $size)
+      );
     }
   }
 

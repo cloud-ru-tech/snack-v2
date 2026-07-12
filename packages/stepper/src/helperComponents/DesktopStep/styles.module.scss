@@ -1,21 +1,26 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/stepper.module' as base;
 @use '@ds/materials' as m;
 
 .step {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  gap: 8px;
+  gap: base.$sn-stepper-anatomy-stepRow-gap;
   align-items: flex-start;
 
+  box-sizing: border-box;
   min-width: 0;
 }
 
 .track {
   display: flex;
-  gap: 8px;
+  gap: base.$sn-stepper-anatomy-step-gap;
   align-items: center;
+
+  box-sizing: border-box;
   width: 100%;
+  padding-right: base.$sn-stepper-anatomy-step-paddingHorizontal;
+  padding-left: base.$sn-stepper-anatomy-step-paddingHorizontal;
 }
 
 .statusContainer {
@@ -30,6 +35,7 @@
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   border-radius: 50%;
 
   outline: none;
@@ -41,8 +47,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid base.$sn-theme-color-primary-accent;
-    outline-offset: 2px;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 }
 
@@ -57,12 +63,12 @@
 .tail {
   flex: 1 1 auto;
   min-width: 16px;
-  height: 2px;
+  height: base.$sn-stepper-anatomy-size-m-progressWrapper-progressLine-height;
 
   .tailLine {
     width: 100%;
     height: 100%;
-    border-radius: 1px;
+    border-radius: base.$sn-stepper-anatomy-size-m-progressWrapper-progressLine-borderRadius;
     background-color: base.$sn-theme-color-neutral-decor;
   }
 
@@ -77,12 +83,13 @@
   gap: 2px;
 
   min-width: 0;
-  padding-right: 16px;
+  padding-right: base.$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal;
+  padding-left: base.$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal;
 }
 
 .title {
   overflow: hidden;
-  color: base.$sn-theme-color-neutral-text;
+  color: base.$sn-theme-color-available-version-textMain;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -93,5 +100,5 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 
-  color: base.$sn-theme-color-neutral-accent;
+  color: base.$sn-theme-color-available-version-textTertiary;
 }

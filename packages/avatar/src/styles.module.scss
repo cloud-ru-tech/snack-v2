@@ -18,6 +18,9 @@ $typography: (
 .avatar {
   user-select: none;
 
+  // stacking context: удерживает `z-index` значка (`.badge`) внутри аватара,
+  // иначе он всплыл бы поверх портального контента (Modal, Drawer).
+  isolation: isolate;
   position: relative;
 
   display: inline-flex;
@@ -28,7 +31,7 @@ $typography: (
   box-sizing: border-box;
 
   line-height: 1;
-  color: base.$sn-theme-color-neutral-text;
+  color: base.$sn-theme-color-available-version-textSecondary;
   text-align: center;
 
   @each $size in $sizes {
@@ -44,6 +47,11 @@ $typography: (
         box-shadow: inset 0 0 0
           base.simple-var(avatar.$avatar, 'anatomy', 'size', $size, 'border-width')
           base.$sn-theme-color-available-borderColor;
+      }
+
+      .badge {
+        right: calc(#{base.simple-var(avatar.$avatar, 'anatomy', 'size', $size, 'badge', 'padding')} / 2);
+        bottom: calc(#{base.simple-var(avatar.$avatar, 'anatomy', 'size', $size, 'badge', 'padding')} / 2);
       }
 
       @each $shape in $shapes {
@@ -88,17 +96,15 @@ $typography: (
     object-position: center;
   }
 
-  // По Figma-рендеру индикатор лежит в правом-нижнем углу аватара так, что
-  // его bbox (включая собственную белую обводку StatusIndicator) упирается
-  // в BR корнер аватара. Поэтому никакого padding/offset на slot'е нет — он
-  // просто прижат `bottom: 0; right: 0`.
+  // Центр значка — в `badge/padding / 2` от нижне-правого угла (по Figma): `right`
+  // и `bottom` = padding/2 (блок @each выше), `translate(50%, 50%)` центрирует слот
+  // на этой точке, а не прижимает краем.
   .badge {
     pointer-events: none;
 
     position: absolute;
     z-index: 2;
-    right: 0;
-    bottom: 0;
+    transform: translate(50%, 50%);
 
     display: flex;
     align-items: center;

@@ -17,6 +17,7 @@ $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrappe
   display: flex;
   flex-direction: column;
   gap: md.$sn-markdown-anatomy-size-container-gap;
+  box-sizing: border-box;
 }
 
 // Шапка (headlineWrapper) — вне поля: тогл Preview слева, подпись справа.
@@ -60,7 +61,10 @@ $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrappe
 // position: relative — якорь для overlay-кнопки очистки.
 .contentArea {
   position: relative;
+
   display: flex;
+
+  box-sizing: border-box;
   width: 100%;
   padding: $content-padding-vertical $content-padding-horizontal;
 }

@@ -19,6 +19,7 @@ const meta: Meta<typeof Stepper> = {
       { title: 'Готово', description: 'Подтвердите создание' },
     ],
     defaultCurrentStepIndex: 0,
+    allowFreeNavigation: false,
     className: '',
     'data-test-id': TEST_IDS.root,
   },
@@ -28,6 +29,7 @@ const meta: Meta<typeof Stepper> = {
       control: { type: 'number', min: 0, step: 1 },
       description: 'Индекс шага, на котором степпер откроется изначально',
     },
+    allowFreeNavigation: { control: 'boolean' },
     className: { control: 'text', description: 'CSS-класс на корне степпера' },
     validator: { control: false },
     onChangeCurrentStep: { control: false },
@@ -47,7 +49,7 @@ export const Playground: Story = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Пошаговый мастер с кнопками навигации.</DemoHint>
         <DemoActions align='center'>
-          <div className={styles.containerPlayground}>
+          <div className={styles.containerPlayground} data-test-id={TEST_IDS.example}>
             <Stepper {...args}>
               {({ stepper, goNext, goPrev, currentStepIndex, stepCount, isCompleted }) => (
                 <div className={styles.stack}>

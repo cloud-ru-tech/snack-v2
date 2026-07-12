@@ -27,6 +27,30 @@
   width: 280px;
 }
 
+// Ручная композиция шагов в матрице (форсированные state'ы) — повторяет раскладку
+// DesktopStepper `.stepper` / MobileStepper `.steps`.
+.stepperRowDesktop {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.stepperRowMobile {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: base.$sn-primitive-dimension-4;
+  width: 100%;
+}
+
+// Колонка кружков-состояний для матричного interaction-снимка (visual.spec).
+.interactionMatrix {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 320px;
+}
+
 .stack {
   display: flex;
   flex-direction: column;

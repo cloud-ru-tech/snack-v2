@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/stepper.module' as base;
 
 .icon {
   display: flex;
@@ -6,12 +6,12 @@
   justify-content: center;
 
   box-sizing: border-box;
-  width: 32px;
-  height: 32px;
-  border: 1px solid transparent;
+  width: base.$sn-stepper-anatomy-size-m-stepStatus-width;
+  height: base.$sn-stepper-anatomy-size-m-stepStatus-height;
+  border: base.$sn-stepper-anatomy-size-m-stepStatus-borderWidth solid transparent;
   border-radius: 50%;
 
-  color: base.$sn-theme-color-neutral-text;
+  color: base.$sn-theme-color-available-version-textTertiary;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 
@@ -20,38 +20,35 @@
     color 150ms ease,
     border-color 150ms ease;
 
-  // Waiting — белый фон, серая рамка, серый номер.
+  // Waiting — белый фон, еле-заметный бордер, приглушённый номер.
   &[data-state='waiting'] {
-    border-color: base.$sn-theme-color-neutral-decor;
-    color: base.$sn-theme-color-neutral-accent;
-    background-color: transparent;
+    border-color: base.$sn-theme-color-available-borderColor;
+    color: base.$sn-theme-color-available-version-textTertiary;
+    background-color: base.$sn-theme-color-neutral-background1Level;
   }
 
-  // Current — сплошной тёмно-зелёный фон, белый номер.
+  // Current — сплошной тёмно-зелёный фон, светлый номер, без бордера.
   &[data-state='current'] {
-    border-color: base.$sn-theme-color-primary-accent;
-    color: base.$sn-theme-color-neutral-onAccent;
+    color: base.$sn-theme-color-primary-onAccent;
     background-color: base.$sn-theme-color-primary-accent;
   }
 
-  // Loading — светло-зелёный фон, тёмно-зелёный спиннер.
+  // Loading — нейтральный серый фон, еле-заметный бордер, серый спиннер («в процессе»).
   &[data-state='loading'] {
-    border-color: base.$sn-theme-color-primary-decor;
-    color: base.$sn-theme-color-primary-accent;
-    background-color: base.$sn-theme-color-primary-decor;
+    border-color: base.$sn-theme-color-available-borderColor;
+    color: base.$sn-theme-color-neutral-text;
+    background-color: base.$sn-theme-color-neutral-background;
   }
 
   // Completed — светло-зелёный фон, тёмно-зелёная галочка.
   &[data-state='completed'] {
-    border-color: base.$sn-theme-color-primary-decor;
     color: base.$sn-theme-color-primary-accent;
     background-color: base.$sn-theme-color-primary-decor;
   }
 
-  // Rejected — светло-красный фон, тёмно-красный крест.
+  // Rejected — сплошной красный фон, светлый крест.
   &[data-state='rejected'] {
-    border-color: base.$sn-theme-color-red-decor;
-    color: base.$sn-theme-color-red-accent;
-    background-color: base.$sn-theme-color-red-decor;
+    color: base.$sn-theme-color-red-onAccent;
+    background-color: base.$sn-theme-color-red-accent;
   }
 }

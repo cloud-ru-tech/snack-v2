@@ -1,6 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/tag.module' as tag;
-@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
 
 $sizes: 'xs', 's', 'm';
 
@@ -48,11 +47,16 @@ $typography: (
   }
 }
 
+// display:flex — обёртка-триггер Dropdown обжимает кнопку «+N» по высоте;
+// без него блочный line-box раздувает её (16 → 18 у xs) выше тегов в ряду.
+.moreTrigger {
+  display: flex;
+}
+
 .tagRowDroplistContainer {
   max-width: 256px;
 }
 
 .tagRowDroplistScroll {
   max-height: 200px;
-  padding: base.simple-var(popover.$popover, 'anatomy', 'container', 'padding');
 }

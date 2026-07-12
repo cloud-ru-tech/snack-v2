@@ -22,7 +22,7 @@ $sizes: 's', 'm', 'l';
 
   color: base.$sn-theme-color-available-version-textMain;
 
-  background-color: base.$sn-theme-color-neutral-background2Level;
+  background-color: base.$sn-theme-color-neutral-background1Level;
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {

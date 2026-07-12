@@ -80,6 +80,25 @@ export const VisualMatrix: Story = {
               />
             )),
           },
+          {
+            variantLabel: 'squared + badge',
+            cells: allSizes.map(size => (
+              <Avatar
+                key={size}
+                name='Jane Roe'
+                size={size}
+                shape={SHAPE.Squared}
+                src={placeholderSrc}
+                status={STATUS_APPEARANCE.Green}
+              />
+            )),
+          },
+          {
+            variantLabel: 'abbreviation + badge',
+            cells: allSizes.map(size => (
+              <Avatar key={size} name='Jane Roe' size={size} shape={SHAPE.Rounded} status={STATUS_APPEARANCE.Green} />
+            )),
+          },
         ]}
       />
     </div>

@@ -9,6 +9,8 @@
   display: flex;
   flex: 0 0 auto;
   gap: md.$sn-markdown-anatomy-size-buttons-gap;
+
+  box-sizing: border-box;
 }
 
 .group {

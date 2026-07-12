@@ -18,11 +18,12 @@
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   min-width: button.$sn-button-anatomy-size-s-container-iconOnly-minWidth;
   height: button.$sn-button-anatomy-size-s-container-minHeight;
   padding: 0;
   border: 0;
-  border-radius: button.$sn-button-anatomy-size-s-container-borderRadius;
+  border-radius: md.$sn-density-radius-2xs;
 
   color: md.$sn-theme-color-neutral-text;
 
@@ -43,9 +44,10 @@
     }
   }
 
+  // Figma focusedFrame/regular/outside: рамка снаружи вплотную (offset 0), strokeSemiBold.
   &:focus-visible {
-    outline: md.$sn-primitive-strokeWeight-strokeMedium solid md.$sn-theme-color-available-complementary;
-    outline-offset: calc(-1 * #{md.$sn-primitive-strokeWeight-strokeMedium});
+    outline: md.$sn-primitive-strokeWeight-strokeSemiBold solid md.$sn-theme-color-available-complementary;
+    outline-offset: 0;
   }
 
   &[data-checked] {
@@ -64,13 +66,13 @@
   display: inline-flex;
 }
 
+// Цвет наследуется от контейнера Tooltip (available/inversion/textMain) — свой не задаём.
 .tipTitle {
-  color: base.$sn-theme-color-invertNeutral-text;
   text-align: center;
 }
 
+// Подпись-подсказка приглушена: inversion/textTertiary (тот же текст @ 60%).
 .tipCaption {
-  color: base.$sn-theme-color-invertNeutral-text;
+  color: base.$sn-theme-color-available-inversion-textTertiary;
   text-align: center;
-  opacity: 0.64;
 }

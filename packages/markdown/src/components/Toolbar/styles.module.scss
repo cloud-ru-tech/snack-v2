@@ -9,6 +9,8 @@
   flex-shrink: 0;
   align-items: center;
 
+  box-sizing: border-box;
+
   // Padding строки — на обёртке, а не на helper
   // `Buttons`, чтобы More-кнопка справа не прилипала к краю fieldWrapper'а.
   padding: md.$sn-markdown-anatomy-size-buttons-paddingTop md.$sn-markdown-anatomy-size-buttons-paddingHorizontal

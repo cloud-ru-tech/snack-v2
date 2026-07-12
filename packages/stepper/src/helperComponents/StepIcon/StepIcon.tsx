@@ -20,9 +20,9 @@ export type StepIconProps = {
 function getContent(state: StepState, number: number): ReactNode {
   switch (state) {
     case STEP_STATE.Completed:
-      return <CheckSVG size={16} />;
+      return <CheckSVG size={24} />;
     case STEP_STATE.Rejected:
-      return <CrossSVG size={16} />;
+      return <CrossSVG size={24} />;
     case STEP_STATE.Loading:
       return <Sun size='s' />;
     default:

@@ -63,7 +63,6 @@ $sizes: 's', 'm', 'l';
   box-sizing: border-box;
   border-color: base.$sn-theme-color-neutral-onAccent;
   border-style: solid;
-  border-radius: 50%;
 
   background: var(--thumb-color, transparent);
   box-shadow: base.simple-var(base.$sn-boxShadow, 'elevation', 'level3');
@@ -80,6 +79,7 @@ $sizes: 's', 'm', 'l';
       width: var(--w);
       height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
       border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-width');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-radius');
     }
   }
 }

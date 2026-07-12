@@ -235,6 +235,13 @@ $level: var(--level, 0);
         }
       }
 
+      // Базовая типографика неструктурного content (fallback-ветка `<div class="content">`
+      // в BaseItem.tsx, когда content не `ContentItem`) — та же body/<size>, что у
+      // ItemContent `.label`, иначе raw-строка наследует шрифт вместо DS-типографики.
+      .content {
+        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', $size);
+      }
+
       // Phase 5: токен dropList item.<size>.headline composite ещё не выгружен из Figma —
       // типографика headline пока покрывается стилями ItemContent. Пустое правило не заводим.
     }

@@ -7,10 +7,12 @@
 
 .tooltipContainer {
   @include base.composite-var(popover.$popover, 'anatomy', 'container');
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
 
   display: flex;
   flex-direction: column;
+
+  box-sizing: border-box;
 
   color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: break-word;
@@ -19,13 +21,11 @@
   box-shadow: base.$sn-boxShadow-elevation-level2;
 
   &[data-disable-max-width='true'] {
-    max-width: calc(100vw - 16px);
+    max-width: calc(100vw - #{base.$sn-primitive-dimension-16});
   }
 }
 
 .pointerWrapper {
-  // @include base.composite-var(popover.$popover, 'anatomy', 'privatePopover', 'pointer');
-
   position: absolute;
 
   display: flex;

@@ -10,6 +10,12 @@ $sizes: 's', 'm', 'l';
 
 .itemWrapper {
   position: relative;
+
+  // Локальный stacking context: запирает внутренние z-index'ы строки (state-layer, .listItem
+  // z-index:1, marker) внутри item'а, чтобы они не всплывали в контекст страницы поверх
+  // портальных overlay'ев.
+  z-index: 0;
+
   min-width: 100%;
   margin: 0;
   padding: 0;

@@ -201,11 +201,7 @@ $appearance-to-token: (
 }
 
 .root[data-variant='inline'] .title {
-  @each $color in $theme-colors {
-    &[data-color='#{$color}'] {
-      color: base.simple-var(base.$sn-theme, 'color', $color, 'text');
-    }
-  }
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .root[data-variant='top'][data-appearance='neutral'] .title {

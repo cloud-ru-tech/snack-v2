@@ -19,7 +19,7 @@ $sizes: ('s', 'm', 'l');
 
   box-sizing: border-box;
 
-  color: base.$sn-theme-color-neutral-accent;
+  color: base.$sn-theme-color-available-version-textTertiary;
 }
 
 .treeNodeTitle {
@@ -31,7 +31,7 @@ $sizes: ('s', 'm', 'l');
   box-sizing: border-box;
   min-width: 0;
 
-  color: base.$sn-theme-color-neutral-text;
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .treeNodeActions {
@@ -193,7 +193,7 @@ $sizes: ('s', 'm', 'l');
   left: 0;
 
   width: 100%;
-  height: calc(50% - var(--tree-chevron-size, 24px) / 2);
+  height: calc(50% - var(--tree-chevron-size, #{base.$sn-density-size-icon-s}) / 2);
 }
 
 .treeNodeLink {

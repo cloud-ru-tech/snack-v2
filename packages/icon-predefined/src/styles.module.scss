@@ -16,6 +16,8 @@ $shapeMap: (
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
+
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
       color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
@@ -45,12 +47,8 @@ $shapeMap: (
   }
 }
 
-.decor[data-size='m'] svg.icon {
-  width: base.$sn-density-size-icon-xs !important;
-  height: base.$sn-density-size-icon-xs !important;
-}
-
-.decor[data-size='xl'] svg.icon {
+.decor[data-size='m'] svg.icon,
+.decor[data-size='l'] svg.icon {
   width: base.$sn-density-size-icon-s !important;
   height: base.$sn-density-size-icon-s !important;
 }

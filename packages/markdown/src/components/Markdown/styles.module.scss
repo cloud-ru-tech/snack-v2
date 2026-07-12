@@ -3,6 +3,7 @@
 @use '../../mixins' as mx;
 
 .root {
+  box-sizing: border-box;
   max-width: 100%;
 
   font-family: md.$sn-brand-font-fontFamily-regular-body;

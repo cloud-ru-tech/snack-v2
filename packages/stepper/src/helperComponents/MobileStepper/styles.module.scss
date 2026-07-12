@@ -21,7 +21,7 @@
 
 .title {
   overflow: hidden;
-  color: base.$sn-theme-color-neutral-text;
+  color: base.$sn-theme-color-available-version-textMain;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -32,5 +32,5 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 
-  color: base.$sn-theme-color-neutral-accent;
+  color: base.$sn-theme-color-available-version-textTertiary;
 }

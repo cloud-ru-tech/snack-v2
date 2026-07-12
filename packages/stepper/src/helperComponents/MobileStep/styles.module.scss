@@ -1,5 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/materials' as m;
+@use '@sbercloud/figma-variables/build/scss/components/stepper.module' as base;
 
 .step {
   all: unset;
@@ -17,28 +16,24 @@
 
   outline: none;
 
-  @include m.has-state-layer-as-child(stateLayer);
-
   &:disabled {
     cursor: default;
   }
 
   &:focus-visible {
     border-radius: 2px;
-    outline: 2px solid base.$sn-theme-color-primary-accent;
-    outline-offset: 2px;
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
-}
-
-.stateLayer {
-  border-radius: 2px;
 }
 
 // Track — горизонтальная полоса шага. По умолчанию waiting (серая).
 .track {
+  position: relative;
+
   width: 100%;
-  height: 4px;
-  border-radius: 2px;
+  height: base.$sn-stepper-anatomy-size-s-progressWrapper-progressLine-height;
+  border-radius: base.$sn-stepper-anatomy-size-s-progressWrapper-progressLine-borderRadius;
 
   background-color: base.$sn-theme-color-neutral-decor;
 
@@ -59,9 +54,44 @@
   align-items: center;
   justify-content: center;
 
-  width: 24px;
-  height: 24px;
+  width: base.$sn-stepper-anatomy-size-s-stepStatus-width;
+  height: base.$sn-stepper-anatomy-size-s-stepStatus-height;
   border-radius: 50%;
+}
+
+// State-layer: hover/pressed красят ТОЛЬКО полосу и круг (если он есть на этом
+// шаге), но триггерятся по всей кликабельной области `.step`. Оверлей клипится
+// формой родителя через `border-radius: inherit` (пилюля полосы / круг статуса),
+// поэтому большой прямоугольной плашки на всю кнопку больше нет.
+.track::after,
+.status::after {
+  pointer-events: none;
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background-color: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+
+  transition: background-color 150ms ease;
+}
+
+@media (hover: hover) {
+  .step:not(:disabled):hover {
+    .track::after,
+    .status::after {
+      background-color: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+    }
+  }
+}
+
+.step:not(:disabled):active {
+  .track::after,
+  .status::after {
+    background-color: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+  }
 }
 
 // Current — сплошная тёмно-зелёная полоса. Индикатор-круг не показывается.
@@ -80,24 +110,24 @@
   background-color: base.$sn-theme-color-primary-decor;
 }
 
-// Loading — светло-зелёная полоса + круг со спиннером.
+// Loading — нейтральная серая полоса + серый круг со спиннером («в процессе»).
 .step[data-state='loading'] .track {
-  background-color: base.$sn-theme-color-primary-decor;
+  background-color: base.$sn-theme-color-neutral-decor;
 }
 
 .step[data-state='loading'] .status {
   display: flex;
-  color: base.$sn-theme-color-primary-accent;
-  background-color: base.$sn-theme-color-primary-decor;
+  color: base.$sn-theme-color-neutral-text;
+  background-color: base.$sn-theme-color-neutral-background;
 }
 
-// Rejected — красная полоса + круг с крестом.
+// Rejected — сплошная красная полоса + круг с крестом (как current, активное состояние).
 .step[data-state='rejected'] .track {
-  background-color: base.$sn-theme-color-red-decor;
+  background-color: base.$sn-theme-color-red-accent;
 }
 
 .step[data-state='rejected'] .status {
   display: flex;
-  color: base.$sn-theme-color-red-accent;
-  background-color: base.$sn-theme-color-red-decor;
+  color: base.$sn-theme-color-red-onAccent;
+  background-color: base.$sn-theme-color-red-accent;
 }

@@ -8,10 +8,12 @@
 
 .tooltipContainer {
   @include base.composite-var(tooltip.$tooltip, 'anatomy', 'container');
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
 
   display: flex;
   flex-direction: column;
+
+  box-sizing: border-box;
 
   color: base.$sn-theme-color-available-inversion-textMain;
   overflow-wrap: break-word;
@@ -19,7 +21,7 @@
   background: base.$sn-theme-color-invertNeutral-background;
 
   &[data-disable-max-width='true'] {
-    max-width: calc(100vw - 16px);
+    max-width: calc(100vw - #{base.$sn-primitive-dimension-16});
   }
 }
 

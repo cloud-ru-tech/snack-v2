@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   gap: md.$sn-markdown-anatomy-size-tableSelect-container-gap;
+
+  box-sizing: border-box;
   padding: md.$sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal
     md.$sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal
     md.$sn-markdown-anatomy-size-tableSelect-container-paddingBottom;
@@ -36,6 +38,7 @@
   align-items: center;
   justify-content: space-between;
 
+  box-sizing: border-box;
   padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-12;
   border: none;
 

@@ -11,15 +11,10 @@ test.describe('Stepper — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
-  test('renders basic-flow story', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions(undefined, STEPPER_STORIES.basicFlow));
+  test('renders mobile layout', async ({ gotoStory, getByTestId }) => {
+    // Адаптивная раскладка — тулбар-глобал `layoutType`, форсим mobile через URL-globals.
+    await gotoStory(buildStoryOptions(undefined, STEPPER_STORIES.playground, { layoutType: 'mobile' }));
 
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
-  });
-
-  test('renders mobile story', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions(undefined, STEPPER_STORIES.mobile));
-
-    await expect(getByTestId(TEST_IDS.mobile)).toBeVisible();
   });
 });
