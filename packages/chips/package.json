@@ -31,6 +31,7 @@
     "**/*.scss"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/calendar": "workspace:^",
     "@ds/divider": "workspace:^",
@@ -40,7 +41,6 @@
     "@ds/loader": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
-    "@ds/toggles": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",

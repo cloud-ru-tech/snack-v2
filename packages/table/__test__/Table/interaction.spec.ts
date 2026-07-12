@@ -1,10 +1,11 @@
 import { Locator, Page } from '@playwright/test';
 
+import { MOBILE_VIEWPORT } from '#playwright-tooling/constants/common';
 import { expect, test } from '#playwright-tooling/fixtures';
 import { dataTestIdSelector, waitForStableBbox } from '#playwright-tooling/utils';
 
 import { SAVED_STATE_ID } from '../../stories/testIds';
-import { buildStoryOptions, headerCellById, TABLE_STORIES, TEST_IDS } from './helpers';
+import { buildStoryOptions, headerCellById, MOBILE_COMFORT_GLOBALS, TABLE_STORIES, TEST_IDS } from './helpers';
 
 // Только browser-specific сценарии из закрытого списка e2e-testing-standard,
 // не покрываемые Storybook play:
@@ -13,7 +14,9 @@ import { buildStoryOptions, headerCellById, TABLE_STORIES, TEST_IDS } from './he
 // 2. column reorder — real drag&drop через dnd-kit MouseSensor
 //    (activationConstraint.distance=5, серия mousemove);
 // 3. savedState — персистентность ширины в localStorage через перезагрузку story;
-// 4. infinite scroll — реальный скролл контейнера + IntersectionObserver.
+// 4. infinite scroll — реальный скролл контейнера + IntersectionObserver;
+// 5. mobile row-actions — тап по «⋮» в cards-view открывает actions BottomSheet
+//    (требует mobile viewport + layoutType-глобал, вне play).
 // Клик/клавиатура/колбэки — в stories/Table/tests/Table.Interaction::play.
 
 const COMPONENT = TEST_IDS.component;
@@ -140,5 +143,23 @@ test.describe('Table — interaction (real browser)', () => {
     // story добирает одну порцию (loading 400ms); skeleton-строки в процессе
     // транзиентны — toHaveCount ретраится до финальных 2×PAGE_LENGTH
     await expect(rows).toHaveCount(INFINITE_PAGE_LENGTH * 2, { timeout: 10_000 });
+  });
+
+  test('mobile row actions: tap on cards-view trigger opens the actions bottom sheet', async ({
+    page,
+    gotoStory,
+    getByTestId,
+  }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions, MOBILE_COMFORT_GLOBALS));
+
+    // На mobile layout table рендерится в cards-view; RowActionsButton — триггер MobileDroplist,
+    // открывающий actions-sheet кликом (onClick инжектится MobileDroplist в клонированный триггер).
+    // Регрессия-guard проброса props из RowActionsButton в <Button>: без него тап «⋮» не открывал sheet.
+    const trigger = getByTestId(COMPONENT.rowActions.droplistTrigger).first();
+    await trigger.click();
+
+    await expect(getByTestId(COMPONENT.rowActions.droplist)).toBeVisible();
+    await expect(getByTestId(COMPONENT.rowActions.option).first()).toBeVisible();
   });
 });

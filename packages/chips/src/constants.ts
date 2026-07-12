@@ -35,6 +35,8 @@ export const CHIP_CHOICE_TEST_IDS = {
   footer: 'chip-choice__footer',
   approveButton: 'chip-choice__approve-button',
   cancelButton: 'chip-choice__cancel-button',
+  resetButton: 'chip-choice__reset-button',
+  selectedCount: 'chip-choice__selected-count',
 } as const;
 
 export const CHIP_CHOICE_ROW_TEST_IDS = {

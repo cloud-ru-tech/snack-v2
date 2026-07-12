@@ -4,6 +4,8 @@
 // selection-controller'а и actions-кнопки.
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
+$cardPadding: base.$sn-primitive-dimension-16;
+
 .card {
   position: relative;
 
@@ -12,7 +14,7 @@
   gap: base.$sn-primitive-dimension-16;
 
   box-sizing: border-box;
-  padding: base.$sn-primitive-dimension-16;
+  padding: $cardPadding;
 }
 
 .content {
@@ -52,8 +54,8 @@
 
 .button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: calc(0px - $cardPadding);
+  right: calc(0px - $cardPadding);
   line-height: 0;
 
   // Row-actions cell is sized for table grid; in card view use intrinsic button size only.

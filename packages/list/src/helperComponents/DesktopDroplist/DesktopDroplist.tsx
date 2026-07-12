@@ -224,8 +224,11 @@ export function DesktopDroplist({
     [closeDroplistOnItemClick, closeDroplist],
   );
 
-  // virtualized-список не имеет собственной ширины (строки позиционируются absolute),
-  // поэтому `auto` схлопывает дроплист в 0 — минимально допустимая стратегия `gte`.
+  // virtualized-список не имеет собственной ширины: строки `position:absolute; width:100%`,
+  // контейнер `width:100%` — под `auto` вся цепочка `100%` от «ничего» схлопывается в 0.
+  // Поэтому для virtualized и дефолт (`undefined`), и явный `auto` поднимаем до `gte`
+  // (ширина ≥ триггера). Узкую ширину такой список получает не через `auto`, а явным
+  // `width` (например, `dropDownClassName` у ChipChoice — сам он не virtualized).
   const effectiveWidthStrategy =
     virtualized && (widthStrategy === undefined || widthStrategy === 'auto') ? 'gte' : widthStrategy;
 
@@ -271,7 +274,10 @@ export function DesktopDroplist({
                 }
                 bodyPadding={false}
                 headline={header}
-                headerDivider={headerDivider}
+                // Divider под topBar рисуется, если явно запрошен header'ом либо когда в topBar
+                // есть поиск: строка поиска визуально отделяется от тела списка (как в PinTopGroupItem
+                // у inline-List). @ds/dropdown рисует один divider на весь topBar (headline + search).
+                headerDivider={headerDivider || hasSearch}
                 search={searchNode}
                 footer={footerNode}
                 footerDivider={footerDivider}

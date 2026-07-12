@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Droplist, SelectionSingleValueType } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -17,7 +18,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
   options,
   onChange: onChangeProp,
   valueRender,
-  size = SIZE.S,
+  size = SIZE.M,
   label,
   searchable,
   contentRender,
@@ -54,12 +55,19 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
 
   const { t } = chipsLocale.useTranslations();
 
+  const { layoutType } = useAdaptiveLayout();
+  const mobile = isMobileLayout(layoutType);
+  const effectiveAutoApply = mobile ? false : autoApply;
+
   const [open, setOpen] = useUncontrolledProp(openProp, false, onOpenChange);
   const handleOnKeyDown = useHandleOnKeyDown({ setOpen });
 
   const flatMapOptions = useMemo(() => Object.values(flattenOptions), [flattenOptions]);
 
-  const dropListSelection = useMemo(() => (autoApply ? value : deferredValue), [autoApply, deferredValue, value]);
+  const dropListSelection = useMemo(
+    () => (effectiveAutoApply ? value : deferredValue),
+    [effectiveAutoApply, deferredValue, value],
+  );
 
   const selectedOptions = useMemo(
     () => (value && value.length ? value.map(id => flattenOptions[id]).filter(Boolean) : ([] as FlattenOption<T>[])),
@@ -89,7 +97,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
   const handleSelectionChange = useCallback(
     (newValue?: SelectionSingleValueType[]) => {
       if (newValue !== undefined) {
-        if (autoApply) {
+        if (effectiveAutoApply) {
           setValue(newValue);
         } else {
           setDeferredValue(newValue);
@@ -100,8 +108,12 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
         }
       }
     },
-    [autoApply, searchValue, setValue, setDeferredValue],
+    [effectiveAutoApply, searchValue, setValue, setDeferredValue],
   );
+
+  const handleOnResetClick = useCallback(() => {
+    setDeferredValue([]);
+  }, [setDeferredValue]);
 
   const handleOnCancelClick = useCallback(() => {
     onCancel && onCancel();
@@ -124,7 +136,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
     }
 
     if (!open) {
-      !autoApply && setDeferredValue(value);
+      !effectiveAutoApply && setDeferredValue(value);
       setSearchValue('');
     }
 
@@ -132,11 +144,16 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
   };
 
   const renderFooter = useAutoApply({
-    autoApply,
+    autoApply: effectiveAutoApply,
     size,
     onApprove: handleOnApproveClick,
     onCancel: handleOnCancelClick,
+    mobile,
+    selectedCount: dropListSelection?.length ?? 0,
+    onReset: handleOnResetClick,
   });
+
+  const { footer: footerNode, footerActiveElementsRefs, footerDivider } = renderFooter();
 
   useEffect(() => {
     if (searchValue && !open) {
@@ -163,6 +180,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
       triggerElemRef={chipRef}
       placement='bottom-start'
       widthStrategy={widthStrategy}
+      label={label}
       listRef={listRef}
       size={DROPLIST_SIZE_MAP[size]}
       data-test-id={CHIP_CHOICE_TEST_IDS.droplist}
@@ -170,6 +188,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
       onOpenChange={handleOpenChange}
       scroll
       className={dropDownClassName}
+      headerDivider={searchable}
       search={
         searchable
           ? {
@@ -178,7 +197,9 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
             }
           : undefined
       }
-      pinBottom={renderFooter()}
+      footer={footerNode}
+      footerDivider={footerDivider}
+      footerActiveElementsRefs={footerActiveElementsRefs}
     >
       <ChipChoiceBase
         {...rest}

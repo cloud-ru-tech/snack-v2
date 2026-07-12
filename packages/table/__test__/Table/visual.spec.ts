@@ -178,6 +178,42 @@ test.describe('Table — visual regression', () => {
     expect(png).toMatchSnapshot('open-row-actions.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
+  // Mobile cards-view row-actions по состояниям (composite, аналог desktop open-row-actions):
+  // - closed — «⋮» в правом верхнем углу карточки (`.button` в TableCard, offset −$cardPadding);
+  // - open — тап по «⋮» открывает actions BottomSheet со списком действий (full-viewport overlay).
+  // Один снимок фиксирует и позиционирование кнопки, и то, что она открывает.
+  test('mobile row-actions states (button placement × open sheet)', async ({
+    page,
+    gotoStory,
+    waitForFonts,
+    getByTestId,
+  }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions, MOBILE_COMFORT_GLOBALS));
+    await waitForFonts();
+
+    // В cards-view строка рендерится как <Card> (`COMPONENT.card`), а не `bodyRow`.
+    const firstCard = getByTestId(COMPONENT.card).first();
+    await waitForStableBbox(firstCard);
+    const closed = await screenshotWithPadding(page, firstCard, PORTAL_PADDING, SCREENSHOT_DEFAULT_OPTS);
+
+    // Открытие sheet: тап по «⋮» первой карточки. Sheet — full-viewport overlay → снимаем page.
+    await getByTestId(COMPONENT.rowActions.droplistTrigger).first().click();
+    const droplist = getByTestId(COMPONENT.rowActions.droplist);
+    await expect(droplist).toBeVisible();
+    await waitForStableBbox(droplist);
+    const open = await page.screenshot(SCREENSHOT_DEFAULT_OPTS);
+
+    const composite = await composeScreenshots(
+      [
+        { label: 'closed (button in card corner)', png: closed },
+        { label: 'open (actions bottom sheet)', png: open },
+      ],
+      { layout: 'row' },
+    );
+    expect(composite).toMatchSnapshot('mobile-row-actions.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
   test('open column settings menu', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     // columnsSettings.enableSettingsMenu включён в args Playground'а
     await gotoStory(buildStoryOptions());

@@ -17,7 +17,7 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
   options,
   onChange: onChangeProp,
   valueRender,
-  size = SIZE.S,
+  size = SIZE.M,
   label,
   searchable,
   contentRender,
@@ -132,6 +132,8 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
     onCancel: handleOnCancelClick,
   });
 
+  const { footer: footerNode, footerActiveElementsRefs, footerDivider } = renderFooter();
+
   useEffect(() => {
     if (searchValue && !open) {
       setSearchValue('');
@@ -158,12 +160,14 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
       trigger='click'
       triggerElemRef={chipRef}
       placement='bottom-start'
+      label={label}
       className={dropDownClassName}
       closeDroplistOnItemClick={autoApply}
       widthStrategy={widthStrategy}
       open={disabled || loading ? false : open}
       onOpenChange={handleOpenChange}
       scroll
+      headerDivider={searchable}
       search={
         searchable
           ? {
@@ -172,7 +176,9 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
             }
           : undefined
       }
-      pinBottom={renderFooter()}
+      footer={footerNode}
+      footerDivider={footerDivider}
+      footerActiveElementsRefs={footerActiveElementsRefs}
     >
       <ChipChoiceBase
         {...rest}

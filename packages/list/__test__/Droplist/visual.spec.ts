@@ -124,6 +124,9 @@ test.describe('Droplist — visual regression', () => {
 
   // Virtualized: оконный рендер (виден срез большой коллекции) + ширина не схлопывается
   // (widthStrategy=auto при virtualized резолвится в gte — регрессия MR!101).
+  // virtualized + `widthStrategy:auto`: список без собственной ширины (строки absolute) под
+  // чистым `auto` схлопнулся бы в 0, поэтому DesktopDroplist поднимает virtualized+auto до `gte`
+  // (дроплист по ширине триггера). Снимок фиксирует именно этот кейс — что коллапса нет.
   test('open virtualized', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await gotoStory(buildStoryOptions({ virtualized: true, widthStrategy: 'auto' }));
     await waitForFonts();
@@ -137,7 +140,8 @@ test.describe('Droplist — visual regression', () => {
     expect(png).toMatchSnapshot('open-virtualized.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
-  // Mobile: список (size l) в BottomSheet (MobileDroplist). Форс layoutType=mobile через тулбар-глобал + mobile-вьюпорт.
+  // Mobile: список (в переданном size — здесь Playground-дефолт) в BottomSheet (MobileDroplist).
+  // Форс layoutType=mobile через тулбар-глобал + mobile-вьюпорт.
   test('open mobile (bottom sheet surface)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions(undefined, DROPLIST_STORIES.playground, { layoutType: 'mobile' }));

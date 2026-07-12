@@ -7,6 +7,9 @@ const CHIPS_MESSAGES = defineMessages({
     cancel: 'Cancel',
     add: 'Add',
     clear: 'Clear',
+    select: 'Select',
+    resetAll: 'Reset all',
+    selectedCount: 'Selected: {{count}}',
     addButtonDisabledTip: 'No filters available to add',
   },
   'ru-RU': {
@@ -15,6 +18,9 @@ const CHIPS_MESSAGES = defineMessages({
     cancel: 'Отмена',
     add: 'Добавить',
     clear: 'Сбросить',
+    select: 'Выбрать',
+    resetAll: 'Сбросить все',
+    selectedCount: 'Выбрано: {{count}}',
     addButtonDisabledTip: 'Нет фильтров для добавления',
   },
 });

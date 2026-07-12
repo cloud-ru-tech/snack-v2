@@ -12,7 +12,7 @@ import styles from './MobileDroplist.module.scss';
 import { buildLevelItems, nextListOption } from './utils';
 
 /**
- * Mobile-вариант `Droplist`: рендерит `List` (size `l`) внутри `BottomSheet` из `@ds/bottom-sheet`.
+ * Mobile-вариант `Droplist`: рендерит `List` (в переданном `size`) внутри `BottomSheet` из `@ds/bottom-sheet`.
  * Триггер (`children`) клонируется для открытия sheet'а по клику/Enter/Space. `next-list`-айтемы на mobile
  * не открывают вложенный popover, а навигируют внутри sheet'а (drill-down): клик уводит на уровень
  * вложенного списка, в шапке появляется его заголовок и кнопка «назад». Internal — наружу не реэкспортится;
@@ -34,9 +34,11 @@ export function MobileDroplist({
   scroll,
   container,
   closeOnPopstate,
-  // `header` / `footer` + `headerDivider` / `footerDivider` НЕ деструктурируем — они уходят в `...rest`
-  // на корневой `List` (он рендерит шапку/футер и их divider'ы). В отличие от desktop'а, где их
-  // рисует контейнер-popover, в sheet'е это делает сам список — иначе footerDivider некуда применить.
+  size,
+  // `footer` уводим в sticky-футер `BottomSheet` (кнопки действия прилипают к низу sheet'а, а не
+  // скроллятся вместе со списком). `header` + `headerDivider` / `footerDivider` НЕ деструктурируем —
+  // они уходят в `...rest` на корневой `List` (он рендерит шапку и её divider).
+  footer,
   ...rest
 }: MobileDroplistProps) {
   const portalContext = usePortalContext();
@@ -161,7 +163,7 @@ export function MobileDroplist({
             <List
               items={levelItems}
               selection={listSelection}
-              size='l'
+              size={size}
               search={searchable ? search : undefined}
               loading={isRoot ? undefined : item?.loading}
               dataError={isRoot ? undefined : item?.dataError}
@@ -174,6 +176,8 @@ export function MobileDroplist({
               // десктопа. В sheet'е список заполняет body и скроллится внутри себя (`sheetScroll`,
               // height:100%); фиксированный desktop-cap `limitedScrollHeight` (max-height 384px) не
               // используем — иначе на full-height sheet под капнутым списком зияет пустота.
+              // `className` (dropDownClassName) — desktop-popover ширина; в sheet'е список full-width.
+              className={undefined}
               scrollRef={scrollable ? scrollRef : undefined}
               scroll={scrollable || undefined}
               virtualized={isRoot && virtualized}
@@ -185,8 +189,9 @@ export function MobileDroplist({
 
         // Уход с уровня вверх по стеку (для глубже-корня sheet'ов).
         const popLevel = () => setPath(prev => prev.slice(0, levelIndex - 1));
-        // «Назад»: на корне — `onBackButtonClick` (или закрытие при `label`); глубже — снять верхний sheet.
-        const handleBack = isRoot ? (onBackButtonClick ?? (label ? handleClose : undefined)) : popLevel;
+        // «Назад»: на корне — только явный `onBackButtonClick` (иначе back-стрелки нет — корневой
+        // droplist закрывается свайпом / backdrop'ом, как в легаси); глубже — снять верхний sheet.
+        const handleBack = isRoot ? onBackButtonClick : popLevel;
 
         return (
           <BottomSheet
@@ -197,13 +202,14 @@ export function MobileDroplist({
             // Dismiss (backdrop / swipe / Esc): на корне — закрыть весь droplist; глубже — вернуться на уровень вверх,
             // как ждёт пользователь на mobile (а не закрывать всю цепочку разом).
             onClose={isRoot ? handleClose : popLevel}
+            withDividers
             title={title}
             onBackButtonClick={handleBack}
             actionButton={isRoot ? actionButton : undefined}
             slotAfterHeadline={isRoot ? slotAfterHeadline : undefined}
             content={content}
+            footer={isRoot ? footer : undefined}
             snapPoints={expanded ? [1] : undefined}
-            withDividers={false}
             closeOnPopstate={closeOnPopstate ?? true}
           />
         );

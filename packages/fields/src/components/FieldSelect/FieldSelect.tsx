@@ -645,6 +645,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     >
       <Droplist
         items={filteredItems}
+        label={label}
         pinTop={filteredPinTop}
         pinBottom={filteredPinBottom}
         trigger='click'
@@ -665,6 +666,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         dataError={dataError}
         dataFiltered={dataFiltered ?? (searchable && typing && inputValue !== '')}
         virtualized={virtualized}
+        scroll
         scrollToSelectedItem={scrollToSelectedItem}
         limitedScrollHeight={limitedScrollHeight}
         untouchableScrollbars={untouchableScrollbars}

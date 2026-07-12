@@ -8,3 +8,21 @@
 
   box-sizing: border-box;
 }
+
+.choiceChipMobileFooter {
+  display: flex;
+  flex-direction: column;
+  gap: button.$sn-button-anatomy-buttonGroup-container-gap;
+  box-sizing: border-box;
+}
+
+.choiceChipFooterGroup {
+  display: flex;
+  gap: button.$sn-button-anatomy-buttonGroup-container-gap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.choiceChipFooterCount {
+  white-space: nowrap;
+}
