@@ -46,7 +46,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "l",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "variant": {

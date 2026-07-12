@@ -132,7 +132,7 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
   return (
     <div className={styles.mobileActionsWrapper} ref={containerRef}>
       {droplistItems.length > 0 && (
-        <Droplist open={isOpen} onOpenChange={setIsOpen} items={droplistItems}>
+        <Droplist size='m' open={isOpen} onOpenChange={setIsOpen} items={droplistItems}>
           <Button
             className={styles.button}
             view={VIEW.Outline}

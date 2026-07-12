@@ -1,39 +1,39 @@
-import { extractSupportProps, WithSupportProps } from '@ds/utils'
-import cn from 'classnames'
+import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import cn from 'classnames';
 
-import { APPEARANCE, COLOR, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from './constants'
-import styles from './styles.module.scss'
-import { Appearance, Color, Size, Variant } from './types'
-import { formatValue } from './utils'
+import { APPEARANCE, COLOR, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from './constants';
+import styles from './styles.module.scss';
+import { Appearance, Color, Size, Variant } from './types';
+import { formatValue } from './utils';
 
 export type CounterProps = WithSupportProps<{
   /** Значение */
-  value: number
+  value: number;
   /** Внешний вид */
-  appearance?: Appearance
+  appearance?: Appearance;
   /** Вариант форматирования */
-  variant?: Variant
+  variant?: Variant;
   /** Размер */
-  size?: Size
+  size?: Size;
   /** Порог сокращения значения для варианта `count-plus` */
-  plusLimit?: number
+  plusLimit?: number;
   /** Дополнительный CSS-класс */
-  className?: string
+  className?: string;
   /** Семантический цвет */
-  color?: Color
-}>
+  color?: Color;
+}>;
 
 export function Counter({
   value,
   appearance = APPEARANCE.Primary,
   variant = VARIANT.Count,
-  size = SIZE.XS,
+  size = SIZE.S,
   plusLimit = DEFAULT_PLUS_LIMIT,
   color = COLOR.Accent,
   className,
   ...rest
 }: CounterProps) {
-  const formattedValue = formatValue({ value, variant, plusLimit })
+  const formattedValue = formatValue({ value, variant, plusLimit });
 
   return (
     <div
@@ -46,5 +46,5 @@ export function Counter({
     >
       {formattedValue}
     </div>
-  )
+  );
 }

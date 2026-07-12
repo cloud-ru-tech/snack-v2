@@ -97,7 +97,7 @@ export function TransparentBackground() {
 | `outline` | `boolean` | `true` | Наличие разделителя между input и buttonField |
 | `placeholder` | `string` | — | Значение плейсхолдера |
 | `showClearButton` | `boolean` | `true` | Отображение кнопки Очистки поля |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — |  |
 | `value` | `string` | — | Значение input |
 

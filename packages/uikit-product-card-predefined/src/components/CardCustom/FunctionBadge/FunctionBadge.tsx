@@ -40,6 +40,7 @@ function FunctionBadgeButton({ icon, options }: Pick<FunctionBadgeProps, 'icon' 
   return (
     <span className={styles.wrapper}>
       <Droplist
+        size='m'
         trigger='clickAndFocusVisible'
         open={isOpen}
         onOpenChange={setIsOpen}

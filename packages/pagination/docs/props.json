@@ -40,7 +40,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "PaginationSize"
@@ -145,7 +145,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "PaginationSliderSize"

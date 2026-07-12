@@ -38,6 +38,15 @@ export function isContentItem(item: unknown): item is ItemContentProps {
   return isRecord(item) && item['option'] !== undefined;
 }
 
+/**
+ * Примитивный `content` (строка/число) — это шорткат для `{ option: content }`:
+ * такой айтем рендерится через `ItemContent` и получает размерную высоту строки
+ * (`min-height` по `size`), а не схлопывается до высоты текста, как произвольный ReactNode.
+ */
+export function isPrimitiveContent(item: unknown): item is string | number {
+  return typeof item === 'string' || typeof item === 'number';
+}
+
 // Публичные дискриминаторы пропсов айтемов (документированы в README, потребитель
 // сужает union `Item` по типу). Внутри пакета используются короткие формы `isBaseItem`
 // и т.д.; наружу отдаём `is<Kind>Props`, как в публичном API типов (`<Kind>Props`).

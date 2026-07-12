@@ -36,7 +36,7 @@ export function Separator({
   groupVariant = 'subtitleTertiary',
   selectButton,
 }: SeparatorProps) {
-  const { size = 's' } = useNewListContext();
+  const { size = 'm' } = useNewListContext();
   const { level = 0 } = useCollapseLevelContext();
 
   const { t } = listLocale.useTranslations();

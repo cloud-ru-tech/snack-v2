@@ -28,7 +28,7 @@ export function InfoBlock({
   title,
   description,
   icon,
-  size = SIZE.S,
+  size = SIZE.M,
   footer,
   align = ALIGN.Vertical,
   className,

@@ -23,7 +23,7 @@ export type TimePickerDrumHandle = {
 
 export const TimePickerDrum = forwardRef<TimePickerDrumHandle, TimePickerDrumProps>(function TimePickerDrum(
   {
-    size = SIZE.S,
+    size = SIZE.M,
     showSeconds = true,
     selectedDateLabel,
     hours,

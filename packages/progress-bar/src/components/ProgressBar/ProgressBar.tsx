@@ -3,6 +3,6 @@ import { ProgressBarPrivate, ProgressBarPrivateProps } from '../ProgressBarPriva
 
 export type ProgressBarProps = Omit<ProgressBarPrivateProps, 'animationDuration'>;
 
-export function ProgressBar({ size = PROGRESS_BAR_SIZE.XS, ...props }: ProgressBarProps) {
+export function ProgressBar({ size = PROGRESS_BAR_SIZE.S, ...props }: ProgressBarProps) {
   return <ProgressBarPrivate {...props} size={size} animationDuration={0} />;
 }

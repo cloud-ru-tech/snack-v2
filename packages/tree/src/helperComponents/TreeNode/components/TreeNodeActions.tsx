@@ -111,7 +111,7 @@ export function TreeNodeActions({
         items={droplistActions}
         closeDroplistOnItemClick
         placement='bottom-end'
-        size='m'
+        size={size}
       >
         <Button
           view='elevated'

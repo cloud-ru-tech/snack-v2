@@ -63,7 +63,7 @@ export function Basic() {
 | `onSubmit` | `((value: string) => void)` | — | Колбек на подтверждение поиска по строке |
 | `placeholder` | `string` | — | Значение плейсхолдера |
 | `showClearButton` | `boolean` | `true` | Отображение кнопки Очистки поля |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — |  |
 | `value` | `string` | `` | Значение input |
 

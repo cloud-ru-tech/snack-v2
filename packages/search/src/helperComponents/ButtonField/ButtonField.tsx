@@ -13,7 +13,7 @@ export type ButtonFieldProps = WithSupportProps<{
   variant: Variant;
   /**
    * Размер кнопки
-   * @default 's'
+   * @default 'm'
    */
   size?: Size;
   /** Состояние загрузки */
@@ -35,7 +35,7 @@ const SUN_SIZE_MAP = {
 };
 
 export function ButtonField({
-  size = SIZE.S,
+  size = SIZE.M,
   loading = false,
   disabled = false,
   onClick,

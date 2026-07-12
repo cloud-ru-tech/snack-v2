@@ -2,14 +2,13 @@ import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { CrossCircleSVG, PlusSVG } from '@ds/icons';
 import { Droplist, DroplistProps } from '@ds/list';
-import { SIZE } from '@ds/toggles';
 import { Tooltip } from '@ds/tooltip';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-import { CHIP_CHOICE_ROW_TEST_IDS } from '../../constants';
+import { CHIP_CHOICE_ROW_TEST_IDS, SIZE } from '../../constants';
 import { chipsLocale } from '../../locale';
 import { ForwardedChipChoice } from './components';
 import { MAP_ROW_SIZE_TO_BUTTON_SIZE } from './constants';
@@ -32,7 +31,7 @@ export type ChipChoiceRowProps<TState extends FiltersState> = WithSupportProps<{
   onChange?(filters: TState): void;
   /** Массив чипов */
   filters: ChipChoiceRowFilter[];
-  /** Размер @default 's' */
+  /** Размер @default 'm' */
   size?: ChipChoiceRowSize;
   /** CSS-класс */
   className?: string;
@@ -54,7 +53,7 @@ export function ChipChoiceRow<TState extends FiltersState>({
   className,
   value,
   defaultValue: defaultValueProp,
-  size = SIZE.S,
+  size = SIZE.M,
   visibleFilters: visibleFiltersProp,
   onVisibleFiltersChange,
   ...rest
@@ -237,6 +236,7 @@ export function ChipChoiceRow<TState extends FiltersState>({
               open={canAddChips && addListOpen}
               onOpenChange={setAddListOpen}
               items={addSelectorOptions}
+              size={size}
               triggerClassName={styles.inlineFlex}
               trigger='clickAndFocusVisible'
             >

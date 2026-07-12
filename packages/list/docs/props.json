@@ -478,7 +478,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер списка"
       },
       "trigger": {
@@ -811,6 +811,7 @@
           "m",
           "s"
         ],
+        "defaultValue": "m",
         "description": "Размер списка",
         "typeRefs": [
           "Size"
@@ -1718,7 +1719,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер списка"
       },
       "tabIndex": {
@@ -1992,7 +1993,7 @@
   "MobileDroplist": {
     "displayName": "MobileDroplist",
     "propsTypeName": null,
-    "description": "Mobile-вариант `Droplist`: рендерит `List` (size `l`) внутри `BottomSheet` из `@ds/bottom-sheet`.\nТриггер (`children`) клонируется для открытия sheet'а по клику/Enter/Space. `next-list`-айтемы на mobile\nне открывают вложенный popover, а навигируют внутри sheet'а (drill-down): клик уводит на уровень\nвложенного списка, в шапке появляется его заголовок и кнопка «назад». Internal — наружу не реэкспортится;\nрендерится адаптивным `Droplist` на `layoutType='mobile'`.",
+    "description": "Mobile-вариант `Droplist`: рендерит `List` (в переданном `size`) внутри `BottomSheet` из `@ds/bottom-sheet`.\nТриггер (`children`) клонируется для открытия sheet'а по клику/Enter/Space. `next-list`-айтемы на mobile\nне открывают вложенный popover, а навигируют внутри sheet'а (drill-down): клик уводит на уровень\nвложенного списка, в шапке появляется его заголовок и кнопка «назад». Internal — наружу не реэкспортится;\nрендерится адаптивным `Droplist` на `layoutType='mobile'`.",
     "props": {
       "actionButton": {
         "type": "ReactNode",

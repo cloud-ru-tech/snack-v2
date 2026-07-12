@@ -78,7 +78,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "Size"
@@ -172,7 +172,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -299,7 +299,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -457,7 +457,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -598,7 +598,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -831,7 +831,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -947,7 +947,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "ChipChoiceRowSize"
@@ -1741,7 +1741,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -1888,7 +1888,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер"
       },
       "tabIndex": {
@@ -1971,7 +1971,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "Size"
@@ -2301,6 +2301,11 @@
         "type": "boolean",
         "required": true
       },
+      "mobile": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
       "onApprove": {
         "type": "() => void",
         "required": true
@@ -2308,6 +2313,15 @@
       "onCancel": {
         "type": "() => void",
         "required": true
+      },
+      "onReset": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "selectedCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0"
       },
       "size": {
         "type": "enum",

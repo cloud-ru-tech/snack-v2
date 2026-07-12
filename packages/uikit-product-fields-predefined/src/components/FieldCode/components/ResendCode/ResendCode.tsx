@@ -13,7 +13,7 @@ export type ResendCodeProps = {
 } & Pick<ButtonProps, 'size' | 'disabled'>;
 
 export function ResendCode(props: ResendCodeProps) {
-  const { onResend, secondsToNextResend, disabled, ...buttonProps } = props;
+  const { onResend, secondsToNextResend, disabled, size = 'm', ...buttonProps } = props;
   const { t } = fieldsPredefinedLocale.useTranslations();
 
   const isResendCodeWithVia = secondsToNextResend > 0;
@@ -33,6 +33,7 @@ export function ResendCode(props: ResendCodeProps) {
       icon={<UpdateSVG />}
       iconPosition={ICON_POSITION.Before}
       disabled={isResendCodeWithVia || disabled}
+      size={size}
       data-test-id={TEST_IDS.fieldCodeResend}
       {...buttonProps}
     />

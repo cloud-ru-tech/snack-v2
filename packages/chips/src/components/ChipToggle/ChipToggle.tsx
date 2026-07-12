@@ -22,7 +22,7 @@ export type ChipToggleProps = WithSupportProps<
 /** Чип с состоянием выбран/не выбран */
 export function ChipToggle({
   icon,
-  size = SIZE.S,
+  size = SIZE.M,
   label,
   checked,
   disabled,

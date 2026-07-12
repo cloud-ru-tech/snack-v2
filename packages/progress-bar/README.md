@@ -113,7 +113,7 @@ export function Sizes() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 
 ##### Related types
 
@@ -180,7 +180,7 @@ export function CircleAppearances() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `progress` | `number` | — | Процент загрузки от 0 до 100 |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 
 ##### Related types
 

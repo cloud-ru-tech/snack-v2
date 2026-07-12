@@ -43,7 +43,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "ProgressBarSize"
@@ -122,7 +122,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "ProgressBarCircleSize"

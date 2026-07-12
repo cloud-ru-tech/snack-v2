@@ -122,7 +122,7 @@ export function CopyButtonWithHandler() {
 | `data-test-id` | `string` | — |  |
 | `label` | `string` | — | Текст рядом с иконкой. Если не задан — кнопка отображается только с иконкой. |
 | `onClick` | `MouseEventHandler<HTMLButtonElement>` | — | Доп. обработчик клика. |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер кнопки (s / m / l). По-умолчанию s. |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер кнопки (s / m / l). По-умолчанию s. |
 | `valueToCopy` | `string \| number` | — | Значение для копирования в буфер. |
 
 ### Смотри также

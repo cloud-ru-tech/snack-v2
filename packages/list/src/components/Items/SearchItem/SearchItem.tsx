@@ -25,7 +25,7 @@ export type SearchItemProps = {
 
 export function SearchItem({ search, itemRef, onNavKeyDown, onFocus, inTopBar }: SearchItemProps) {
   // Размер поиска следует за размером айтемов списка (size из контекста), а не фиксирован 's'.
-  const { firstItemId, size = 's' } = useNewListContext();
+  const { firstItemId, size = 'm' } = useNewListContext();
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     // Поиск — текстовый input: гасим только Up/Down (навигация по списку), горизонтальные

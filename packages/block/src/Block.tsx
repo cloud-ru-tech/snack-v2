@@ -63,7 +63,7 @@ export type BlockProps = {
 export function Block({
   children,
   variant = VARIANT.Simple,
-  size = SIZE.L,
+  size = SIZE.M,
   backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
   className,
   ...rest

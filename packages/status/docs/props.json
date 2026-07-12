@@ -60,7 +60,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер индикатора и подписи",
         "typeRefs": [
           "StatusSize"

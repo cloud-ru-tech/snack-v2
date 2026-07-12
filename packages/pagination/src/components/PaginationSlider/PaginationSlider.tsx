@@ -16,7 +16,7 @@ export type PaginationSliderProps = WithSupportProps<{
   /** CSS класснейм */
   className?: string;
   /** Размер
-   * @default 'xs'
+   * @default 's'
    */
   size?: PaginationSliderSize;
 }>;

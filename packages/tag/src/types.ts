@@ -43,7 +43,7 @@ export type TagBaseProps = WithSupportProps<{
  * кастомный компонент (например Link из react-router-dom), тогда в rest — его пропсы (to, etc.).
  */
 export type TagLinkProps<T extends ElementType = 'a'> = WithSupportProps<
-  CommonTagProps & {
+  Omit<CommonTagProps, 'onDelete'> & {
     /** Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) */
     as?: T;
   } & Omit<ComponentPropsWithoutRef<T>, keyof CommonTagProps | 'as'>

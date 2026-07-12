@@ -145,7 +145,7 @@ export function AssistStates() {
 | `label` | `string` | — | Текст чипа |
 | `loading` | `boolean` | — | Состояние загрузки |
 | `onClick` | `MouseEventHandler<HTMLButtonElement>` | — | Колбек обработки клика |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `middle` | Вариант обрезания строки |
 
@@ -280,7 +280,7 @@ export function ToggleStates() {
 | `label` | `string` | — | Текст чипа |
 | `loading` | `boolean` | — | Состояние загрузки |
 | `onChange` | `(checked: boolean, e: ChangeEvent<HTMLInputElement>) => void` | — | Колбек смены значения |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | `0` | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `middle` | Вариант обрезания строки |
 
@@ -439,7 +439,7 @@ export function ChoiceRowPinned() {
 | `onVisibleFiltersChange` | `((value: string[]) => void)` | — | Коллбек на изменение видимых фильтров |
 | `showAddButton` | `boolean` | `true` | Скрыть/показать кнопку добавления фильров |
 | `showClearButton` | `boolean` | `true` | Скрыть/показать кнопку очиски фильтров |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `value` | `TState` | — | Состояние фильтров |
 | `visibleFilters` | `string[]` | — | Состояние для видимых фильтров |
 
@@ -625,7 +625,7 @@ export function ChoiceSingleManualApply() {
 | `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `searchable` | `boolean` | — | Показывать строку поиска в дроплисте |
 | `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
 | `value` | `ItemId` | — | Controlled состояние |
@@ -784,7 +784,7 @@ export function ChoiceMultipleSearchable() {
 | `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `searchable` | `boolean` | — | Показывать строку поиска в дроплисте |
 | `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
 | `value` | `ItemId[]` | — | Controlled состояние |
@@ -906,7 +906,7 @@ export function ChoiceDateMonth() {
 | `open` | `boolean` | — | Управляет состоянием показан/не показан |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
 | `showSeconds` | `boolean` | — | Показывать секунды в выборе и отображении времени |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
 | `value` | `Date` | — | Значение компонента |
@@ -1005,7 +1005,7 @@ export function ChoiceDateRangeUncontrolled() {
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
 | `value` | `Range` | — | Значение компонента |
@@ -1114,7 +1114,7 @@ export function ChoiceTimeSeconds() {
 | `open` | `boolean` | — | Управляет состоянием показан/не показан |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Расположение выпадающего меню |
 | `showSeconds` | `boolean` | `true` | Показывать ли секунды |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
 | `value` | `TimeValue` | — | Выбранное значение. |
@@ -1230,7 +1230,7 @@ export function ChoiceCustomBasic() {
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `bottom-start` | Расположение выпадающего меню |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — | Индекс в порядке фокусировки |
 | `truncateVariant` | `"end"` \| `"middle"` | `'middle'` | Вариант обрезания строки <br/> Вариант обрезания значения |
 | `value` | `any` | — | Фактическое значение |

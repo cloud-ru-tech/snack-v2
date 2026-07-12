@@ -78,7 +78,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "Size"

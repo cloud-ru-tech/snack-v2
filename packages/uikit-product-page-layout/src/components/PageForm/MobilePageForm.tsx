@@ -47,6 +47,7 @@ function MobilePageFormBase({
         moreActions={
           sideBlock ? (
             <Droplist
+              size='m'
               open={openMore}
               onOpenChange={setOpenMore}
               items={sideBlock.map(({ label }, idx) => ({

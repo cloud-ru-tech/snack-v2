@@ -116,7 +116,7 @@ export function Polymorphic() {
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Явный проп вместо forwardRef — как в Button и AiToolBadge. |
 | `onClick` | `MouseEventHandler<HTMLElement>` | — | Колбэк для обработки клика на тег |
 | `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
-| `size` | `"m"` \| `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
 | `text` | `string` | — | Текст компонента |
 
 #### Related types

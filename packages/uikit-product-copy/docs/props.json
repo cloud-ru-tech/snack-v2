@@ -30,7 +30,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер кнопки (s / m / l). По-умолчанию s.",
         "typeRefs": [
           "ButtonProps"

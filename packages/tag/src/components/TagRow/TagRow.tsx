@@ -5,7 +5,7 @@ import { TagRowSimple, TagRowTruncated } from '../../helperComponents';
 import { TagRowProps } from '../../types';
 import { mapTagRowItem } from './utils';
 
-function TagRowInner({ items, rowLimit, size = SIZE.Xs, ...props }: TagRowProps) {
+function TagRowInner({ items, rowLimit, size = SIZE.S, ...props }: TagRowProps) {
   const coloredItems = useMemo(() => items.map(mapTagRowItem), [items]);
 
   if (rowLimit) {

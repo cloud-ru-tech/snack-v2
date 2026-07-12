@@ -29,7 +29,7 @@ export type ChipChoiceCustomProps = ChipChoiceCommonProps & {
 };
 
 export function ChipChoiceCustom({
-  size = SIZE.S,
+  size = SIZE.M,
   value: valueProp,
   onChange: onChangeProp,
   placement = 'bottom-start',

@@ -50,7 +50,7 @@ const LOADER_SIZE_MAP = {
 
 export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(function SearchPrivate(
   {
-    size = SIZE.S,
+    size = SIZE.M,
     value: valueProp = '',
     onChange: onChangeProp,
     showClearButton: showClearButtonProp = true,

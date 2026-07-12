@@ -26,7 +26,7 @@ export type PaginationProps = WithSupportProps<{
   /** CSS класснейм */
   className?: string;
   /** Размер
-   * @default 's'
+   * @default 'm'
    */
   size?: PaginationSize;
 }>;
@@ -42,7 +42,7 @@ export function Pagination({
   hrefFormatter,
   className,
   variant = VARIANT.Button,
-  size = PAGINATION_SIZE.S,
+  size = PAGINATION_SIZE.M,
   maxLength = MAX_LENGTH,
   ...rest
 }: PaginationProps) {

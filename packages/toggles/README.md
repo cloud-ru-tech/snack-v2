@@ -93,7 +93,7 @@ export function CheckboxStates() {
 | `onChange` | `((checked: boolean) => void)` | — | Колбек смены значения |
 | `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек клика |
 | `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек приобретения фокуса |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
@@ -189,7 +189,7 @@ export function RadioStates() {
 | `onChange` | `((checked: boolean) => void)` | — | Колбек смены значения |
 | `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек клика |
 | `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек приобретения фокуса |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
@@ -276,7 +276,7 @@ export function SwitchStates() {
 | `onChange` | `((checked: boolean) => void)` | — | Колбек смены значения |
 | `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек клика |
 | `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек приобретения фокуса |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 
@@ -362,7 +362,7 @@ export function FavouriteStates() {
 | `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек клика |
 | `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек приобретения фокуса |
 | `onKeyUp` | `KeyboardEventHandler<HTMLSpanElement>` | — | Обработчик keyup |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |
 

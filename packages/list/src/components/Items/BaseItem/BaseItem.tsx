@@ -13,8 +13,8 @@ import {
 } from '../../Lists/contexts';
 import commonStyles from '../styles.module.scss';
 import { FlattenBaseItem } from '../types';
-import { isContentItem } from '../utils';
-import { CHECKBOX_SIZE_MAP } from './constants';
+import { isContentItem, isPrimitiveContent } from '../utils';
+import { TOGGLE_SIZE_MAP } from './constants';
 import styles from './styles.module.scss';
 
 type AllBaseItemProps = FlattenBaseItem & {
@@ -59,7 +59,7 @@ export function BaseItem({
 }: AllBaseItemProps) {
   const interactive = !inactive;
 
-  const { size = 's', marker, contentRender, firstItemId, focusFlattenItems } = useNewListContext();
+  const { size = 'm', marker, contentRender, firstItemId, focusFlattenItems } = useNewListContext();
   const { level = 0 } = useCollapseLevelContext();
   const { closeDroplist, closeDroplistOnItemClick } = useOpenListContext();
   const { value, onChange, mode, isSelectionSingle, isSelectionMultiple } = useSelectionContext();
@@ -155,6 +155,17 @@ export function BaseItem({
 
   const props = extractSupportProps(rest);
 
+  let contentNode: ReactNode;
+  if (content && isContentItem(content)) {
+    contentNode = contentRender?.({ id, content, disabled }) ?? <ItemContent disabled={disabled} {...content} />;
+  } else if (isPrimitiveContent(content)) {
+    // Примитивный content — шорткат `{ option: content }`: рендерим через ItemContent,
+    // чтобы строка получила размерную высоту, а не схлопывалась до высоты текста.
+    contentNode = <ItemContent disabled={disabled} option={content} />;
+  } else {
+    contentNode = <div className={styles.content}> {content} </div>;
+  }
+
   const stateLayerState =
     isSelectionSingle && isChecked && !switchProp && !isParentNode ? 'activatedFilled' : 'regularFilled';
 
@@ -194,7 +205,7 @@ export function BaseItem({
         {!switchProp && isSelectionMultiple && interactive && (
           <div className={styles.checkbox}>
             <Checkbox
-              size={CHECKBOX_SIZE_MAP[size ?? 's']}
+              size={TOGGLE_SIZE_MAP[size ?? 's']}
               disabled={disabled}
               tabIndex={-1}
               onChange={isParentNode ? handleCheckboxChange : undefined}
@@ -207,15 +218,12 @@ export function BaseItem({
         )}
 
         {beforeContent && <div className={styles.beforeContent}>{beforeContent}</div>}
-        {content && isContentItem(content) ? (
-          (contentRender?.({ id, content, disabled }) ?? <ItemContent disabled={disabled} {...content} />)
-        ) : (
-          <div className={styles.content}> {content} </div>
-        )}
+        {contentNode}
         {afterContent && <div className={styles.afterContent}>{afterContent}</div>}
 
         {switchProp && interactive && (
           <Switch
+            size={TOGGLE_SIZE_MAP[size ?? 's']}
             disabled={disabled}
             checked={isChecked}
             data-test-id={TEST_IDS.baseItemSwitch}

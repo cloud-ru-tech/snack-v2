@@ -135,7 +135,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs"
+        "defaultValue": "s"
       },
       "tabIndex": {
         "type": "number",
@@ -181,11 +181,6 @@
         "type": "string",
         "required": true
       },
-      "onDelete": {
-        "type": "MouseEventHandler<HTMLButtonElement>",
-        "required": false,
-        "description": "Обработчик удаления тега. Если задан — отображается крестик-remove"
-      },
       "size": {
         "type": "enum",
         "required": false,
@@ -194,7 +189,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs"
+        "defaultValue": "s"
       },
       "tabIndex": {
         "type": "number",
@@ -227,7 +222,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs"
+        "defaultValue": "s"
       }
     },
     "relatedTypes": {}
@@ -256,7 +251,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs"
+        "defaultValue": "s"
       },
       "text": {
         "type": "string",

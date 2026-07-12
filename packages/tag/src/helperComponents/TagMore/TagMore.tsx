@@ -15,12 +15,13 @@ type TagMoreProps = {
   onItemRemove?(item: string): void;
 };
 
-export function TagMore({ items, text = '', size = SIZE.Xs, buttonRef, onItemRemove }: TagMoreProps) {
+export function TagMore({ items, text = '', size = SIZE.S, buttonRef, onItemRemove }: TagMoreProps) {
   return (
     // TODO: replace with Popover
     <Dropdown
       placement='bottom-end'
       trigger='hoverAndFocusVisible'
+      triggerClassName={styles.moreTrigger}
       content={
         <div className={styles.tagRowDroplistContainer} data-size={size}>
           <Scroll className={styles.tagRowDroplistScroll} size='s' barHideStrategy='move'>

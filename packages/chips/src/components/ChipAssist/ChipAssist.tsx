@@ -20,7 +20,7 @@ export type ChipAssistProps = WithSupportProps<
 /** Чип с лейблом */
 export function ChipAssist({
   icon,
-  size = SIZE.S,
+  size = SIZE.M,
   label,
   disabled,
   loading,

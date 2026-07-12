@@ -37,7 +37,7 @@ export function ItemContent({
   disabled,
   ...rest
 }: ItemContentProps) {
-  const { size = 's' } = useNewListContext();
+  const { size = 'm' } = useNewListContext();
 
   const truncate = useMemo(
     () => ({

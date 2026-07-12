@@ -80,5 +80,5 @@ export function Transparent() {
 | `children` | `ReactNode` | — | Содержимое |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 | `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
-| `size` | `"l"` \| `"m"` \| `"s"` | `l` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `variant` | `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |

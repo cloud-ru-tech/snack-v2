@@ -37,7 +37,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер кнопки"
       },
       "variant": {
@@ -158,7 +158,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "Size"

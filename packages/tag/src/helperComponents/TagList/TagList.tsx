@@ -26,7 +26,7 @@ function renderTag(size: Size, handleRemoveItem?: (item: TagRowItemInner) => OnD
   };
 }
 
-export function TagList({ items, size = SIZE.Xs, onItemRemove, setTagRef }: TagListProps) {
+export function TagList({ items, size = SIZE.S, onItemRemove, setTagRef }: TagListProps) {
   const handleRemoveItem = onItemRemove ? (item: TagRowItemInner) => () => onItemRemove(item.label) : undefined;
 
   return <>{items.map(renderTag(size, handleRemoveItem, setTagRef))}</>;

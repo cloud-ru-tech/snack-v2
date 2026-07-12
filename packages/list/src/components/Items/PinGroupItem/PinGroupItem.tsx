@@ -7,7 +7,7 @@ import { useNewListContext } from '../../Lists/contexts';
 import styles from './styles.module.scss';
 
 export function PinTopGroupItem({ children }: { children: ReactNode }) {
-  const { size = 's' } = useNewListContext();
+  const { size = 'm' } = useNewListContext();
 
   if (!children) {
     return null;
@@ -23,7 +23,7 @@ export function PinTopGroupItem({ children }: { children: ReactNode }) {
 }
 
 export function PinBottomGroupItem({ children }: { children: ReactNode }) {
-  const { size = 's' } = useNewListContext();
+  const { size = 'm' } = useNewListContext();
 
   if (!children) {
     return null;

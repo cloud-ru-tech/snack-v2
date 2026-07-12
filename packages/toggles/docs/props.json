@@ -90,7 +90,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "Size"
@@ -217,7 +217,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "Size"
@@ -334,7 +334,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "Size"
@@ -443,7 +443,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "xs",
+        "defaultValue": "s",
         "description": "Размер",
         "typeRefs": [
           "Size"

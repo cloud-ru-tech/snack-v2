@@ -1,4 +1,4 @@
-import { APPEARANCE, Tag } from '@ds/tag';
+import { APPEARANCE, Tag, TagBaseProps } from '@ds/tag';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
@@ -6,14 +6,14 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from '../../testIds';
 
-const meta: Meta<typeof Tag> = {
+const meta: Meta<TagBaseProps> = {
   title: 'Components/Tag/Tag/Examples/Removable',
   component: Tag,
   parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
-type Story = StoryObj<typeof Tag>;
+type Story = StoryObj<TagBaseProps>;
 
 export const Removable: Story = {
   tags: ['dev', 'test'],

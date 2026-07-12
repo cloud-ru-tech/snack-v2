@@ -9,7 +9,7 @@ import { fieldsPredefinedLocale } from '../../../locale';
 
 export function FieldWithAddButton({
   children,
-  size,
+  size = 'm',
   autoFocusRef,
 }: {
   children: ReactNode;

@@ -40,7 +40,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
     onSubmit,
     className,
     tabIndex,
-    size = SIZE.S,
+    size = SIZE.M,
     inputMode,
     'data-test-id': dataTestId,
     ...rest

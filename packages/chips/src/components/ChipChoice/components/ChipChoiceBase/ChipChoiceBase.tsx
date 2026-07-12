@@ -35,7 +35,7 @@ export type ChipChoiceBaseProps = Pick<
 export const ChipChoiceBase = forwardRef<HTMLDivElement, ChipChoiceBaseProps>(
   (
     {
-      size = SIZE.S,
+      size = SIZE.M,
       disabled,
       loading,
       icon,

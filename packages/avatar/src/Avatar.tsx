@@ -61,7 +61,7 @@ export function Avatar({
   name,
   src,
   appearance = APPEARANCE.Neutral,
-  size = SIZE.S,
+  size = SIZE.M,
   shape = SHAPE.Rounded,
   showTwoSymbols = false,
   badge,

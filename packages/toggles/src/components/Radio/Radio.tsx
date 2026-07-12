@@ -26,7 +26,7 @@ export function Radio({
   disabled = false,
   loading = false,
   className,
-  size = SIZE.XS,
+  size = SIZE.S,
   ...otherProps
 }: RadioProps) {
   const [checked, setChecked] = useUncontrolledProp(checkedProp, Boolean(defaultChecked), onChange);

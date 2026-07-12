@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 export function TagBase({
   label,
-  size = SIZE.Xs,
+  size = SIZE.S,
   appearance = APPEARANCE.Neutral,
   onDelete,
   className,

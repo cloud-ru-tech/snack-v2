@@ -21,7 +21,7 @@ export type ProgressBarCircleProps = WithSupportProps<{
 export function ProgressBarCircle({
   className,
   progress: progressRaw,
-  size = PROGRESS_BAR_CIRCLE_SIZE.XS,
+  size = PROGRESS_BAR_CIRCLE_SIZE.S,
   appearance = APPEARANCE.Primary,
   ...rest
 }: ProgressBarCircleProps) {

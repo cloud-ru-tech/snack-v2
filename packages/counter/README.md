@@ -95,7 +95,7 @@ export function Red() {
 | `color` | `"accent"` \| `"decor"` | `accent` | Семантический цвет |
 | `data-test-id` | `string` | — |  |
 | `plusLimit` | `number` | `10` | Порог сокращения значения для варианта `count-plus` |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `value` | `number` | — | Значение |
 | `variant` | `"count"` \| `"count-k"` \| `"count-plus"` | `count` | Вариант форматирования |
 

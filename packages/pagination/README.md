@@ -103,7 +103,7 @@ export function AsLinks() {
 | `maxLength` | `number` | `7` | Максимальное количество страниц/элементов, помещающихся до транкейта |
 | `onChange` | `(page: number, event?: MouseEvent<HTMLButtonElement \| HTMLAnchorElement, MouseEvent> \| undefined) => void` | — | Колбэк смены значения |
 | `page` | `number` | — | Текущая страница |
-| `size` | `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"m"` \| `"s"` | `m` | Размер |
 | `total` | `number` | — | Общее количество страниц |
 | `variant` | `"button"` \| `"link"` | `button` | Варианты тега кнопок: <a/> или <button/> |
 
@@ -166,7 +166,7 @@ export function SliderSizeS() {
 | `data-test-id` | `string` | — |  |
 | `onChange` | `(page: number) => void` | — | Колбек смены значения |
 | `page` | `number` | — | Текущая страница |
-| `size` | `"s"` \| `"xs"` | `xs` | Размер |
+| `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `total` | `number` | — | Общее количество страниц |
 
 ##### Related types

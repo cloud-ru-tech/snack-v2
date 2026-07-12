@@ -24,7 +24,7 @@ export const List = forwardRef(
       collapse = {},
       selection,
       contentRender,
-      size = 's',
+      size = 'm',
       marker = true,
       keyboardNavigationRef,
       hasListInFocusChain = true,

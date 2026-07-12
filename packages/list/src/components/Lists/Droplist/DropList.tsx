@@ -13,9 +13,7 @@ import { DroplistProps } from '../types';
  */
 export function Droplist({
   children,
-  // `size` относится только к desktop-popover: MobileDroplist фиксирует size `l` (макет mobile).
-  // Не пробрасываем его в MobileDroplist, иначе `...rest` перебил бы `size='l'` внутри списка.
-  size,
+  size = 'm',
   label,
   actionButton,
   slotAfterHeadline,

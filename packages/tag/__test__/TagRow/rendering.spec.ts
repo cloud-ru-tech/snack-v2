@@ -18,9 +18,8 @@ test.describe('TagRow — rendering', () => {
 
         const root = getByTestId(TEST_IDS.tagRow.root);
         await expect(root).toBeVisible();
-        // TagRow renders inner wrapper(s) with data-size; assert at least one is present.
-        const sized = root.locator(`[data-size="${size}"]`).first();
-        await expect(sized).toBeVisible();
+        // Root wrapper carries the propagated size (inner hiddenRow measurement row is display-hidden).
+        await expect(root).toHaveAttribute('data-size', size);
       });
     }
   });

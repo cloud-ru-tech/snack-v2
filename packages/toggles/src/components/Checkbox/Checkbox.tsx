@@ -56,7 +56,7 @@ export function Checkbox({
   onFocus,
   disabled = false,
   loading = false,
-  size = SIZE.XS,
+  size = SIZE.S,
   className,
   'data-test-id': dataTestId,
   ...otherProps

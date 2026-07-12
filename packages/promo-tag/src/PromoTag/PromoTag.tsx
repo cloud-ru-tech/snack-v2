@@ -9,7 +9,7 @@ import { getSpreadProps } from './utils';
 
 export function PromoTag<T extends ElementType = 'button'>({
   appearance = APPEARANCE.Primary,
-  size = SIZE.Xs,
+  size = SIZE.S,
   role = ROLE_APPEARANCE.Accent,
   className,
   text,

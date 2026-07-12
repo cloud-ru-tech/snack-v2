@@ -8,4 +8,4 @@ export const DEFAULT_FALLBACK_PLACEMENTS: DropdownProps['fallbackPlacements'] = 
  */
 export const FOCUS_DEFERRAL_TIMEOUT = 0;
 
-export const DEFAULT_SIZE = 's';
+export const DEFAULT_SIZE = 'm';

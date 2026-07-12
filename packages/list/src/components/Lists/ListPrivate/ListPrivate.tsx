@@ -77,7 +77,7 @@ export const ListPrivate = forwardRef(
     }: ListPrivateProps,
     ref: ForwardedRef<HTMLElement>,
   ) => {
-    const { size = 's', flattenItems, focusFlattenItems } = useNewListContext();
+    const { size = 'm', flattenItems, focusFlattenItems } = useNewListContext();
     const { value, isSelectionSingle } = useSelectionContext();
     const innerScrollRef = useRef<HTMLElement | null>(null);
     // `@ds/scroll` (OverlayScrollbars) разрешает свой ref в viewport-элемент только после

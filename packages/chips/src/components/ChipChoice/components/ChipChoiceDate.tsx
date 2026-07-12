@@ -39,7 +39,7 @@ export type ChipChoiceDateProps = ChipChoiceCommonProps & {
   );
 
 export function ChipChoiceDate({
-  size = SIZE.S,
+  size = SIZE.M,
   value,
   defaultValue,
   onChange,

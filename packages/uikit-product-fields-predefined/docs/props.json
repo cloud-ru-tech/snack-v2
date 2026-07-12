@@ -7164,7 +7164,8 @@
           "l",
           "m",
           "s"
-        ]
+        ],
+        "defaultValue": "m"
       }
     },
     "relatedTypes": {}

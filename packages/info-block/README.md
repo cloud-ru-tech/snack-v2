@@ -107,7 +107,7 @@ export function WithIcon() {
 | `description` | `ReactNode` | — | Подзаголовок |
 | `footer` | `ReactNode` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
-| `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `title` | `string` | — | Заголовок |
 
 #### Related types

@@ -24,7 +24,7 @@ export type ChipChoiceDateRangeProps = ChipChoiceCommonProps & {
 };
 
 export function ChipChoiceDateRange({
-  size = SIZE.S,
+  size = SIZE.M,
   value,
   defaultValue,
   onChange,

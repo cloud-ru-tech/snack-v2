@@ -41,7 +41,7 @@ export type ChipChoiceTimeProps = Omit<ChipChoiceCommonProps, 'widthStrategy'> &
   };
 
 export function ChipChoiceTime({
-  size = SIZE.S,
+  size = SIZE.M,
   value,
   defaultValue,
   onChange,

@@ -58,6 +58,7 @@ function SidebarSelectBase({
 
   return (
     <Droplist
+      size='m'
       selection={{ mode: 'single', value: selected, onChange: handleSelect }}
       items={allItems}
       open={isOpen}

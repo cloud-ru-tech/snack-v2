@@ -10,7 +10,7 @@ const TARGET_BLANK = '_blank';
 
 export function TagLink<T extends ElementType = 'a'>({
   label,
-  size = SIZE.Xs,
+  size = SIZE.S,
   appearance = APPEARANCE.Neutral,
   className,
   tabIndex,

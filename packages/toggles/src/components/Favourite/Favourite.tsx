@@ -60,7 +60,7 @@ export function Favourite({
   onFocus,
   disabled = false,
   loading = false,
-  size = SIZE.XS,
+  size = SIZE.S,
   className,
   'data-test-id': dataTestId,
   icon = FAVOURITE_ICON.Heart,

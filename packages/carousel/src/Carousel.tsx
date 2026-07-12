@@ -194,6 +194,7 @@ export function Carousel({
         <div className={styles.pagination}>
           <PaginationSlider
             data-test-id={TEST_IDS.pagination}
+            size='xs'
             page={page + 1}
             onChange={(page: number) => {
               setPage(page - 1);

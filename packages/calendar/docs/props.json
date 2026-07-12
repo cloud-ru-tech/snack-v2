@@ -2487,7 +2487,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
+        "defaultValue": "m",
         "description": "Размер по оси Figma `size` календаря (высота строк барабана и отступы)."
       }
     },
