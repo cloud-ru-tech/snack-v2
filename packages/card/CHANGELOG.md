@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.3 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8678:** add z-index stacking cotext ([4905d47](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/4905d47c057a083705cb55ad1480f67c9b163fb3))
+
 ## 1.0.2 (2026-07-13)
 
 ### Bug Fixes
