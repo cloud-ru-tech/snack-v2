@@ -145,7 +145,7 @@
           "s",
           "xs"
         ],
-        "defaultValue": "s",
+        "defaultValue": "xs",
         "description": "Размер",
         "typeRefs": [
           "PaginationSliderSize"

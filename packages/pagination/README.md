@@ -166,7 +166,7 @@ export function SliderSizeS() {
 | `data-test-id` | `string` | — |  |
 | `onChange` | `(page: number) => void` | — | Колбек смены значения |
 | `page` | `number` | — | Текущая страница |
-| `size` | `"s"` \| `"xs"` | `s` | Размер |
+| `size` | `"s"` \| `"xs"` | `xs` | Размер |
 | `total` | `number` | — | Общее количество страниц |
 
 ##### Related types
