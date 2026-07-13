@@ -388,27 +388,6 @@ export function FormHelp() {
   );
 }
 
-/** Боковой блок фильтров для слота `filters` (левая колонка advanced-раскладки PageForm). */
-export function FormFilters() {
-  const filters = ['Регион', 'Тип ресурса', 'Статус'];
-
-  return (
-    <div className={styles.formFields}>
-      <Typography variant={VARIANT.title} size='s'>
-        Фильтры
-      </Typography>
-      {filters.map(label => (
-        <div key={label} className={styles.formField}>
-          <Typography variant={VARIANT.body} size='s'>
-            {label}
-          </Typography>
-          <div className={styles.formInput} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /**
  * Контент главной колонки PageForm — стопка аккордеон-карточек (block/l).
  * Это то, что потребитель кладёт в `children`: в Figma slotContent = карточки,

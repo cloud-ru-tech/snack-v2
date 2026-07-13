@@ -1,9 +1,10 @@
 import { LAYOUT_TYPE, withLayoutType } from '@ds/adaptive';
-import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { APPEARANCE, Button, BUTTON_GROUP_ACTION_SLOT, ButtonGroup, VIEW } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
 import { ChevronRightSVG, KebabSVG } from '@ds/icons';
 import { Droplist } from '@ds/list';
 import { ModalCustom } from '@ds/modal';
+import { WithTooltip } from '@ds/tooltip';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -11,11 +12,22 @@ import { useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
 import { Headline } from '../Headline';
-import { useButtonWithTooltip, useGetButtonLabel } from './hooks';
+import { useGetButtonLabel } from './hooks';
 import styles from './mobileStyles.module.scss';
 import { DesktopPageFormProps } from './types';
 
 export type MobilePageFormProps = DesktopPageFormProps;
+
+/** Убирает PageForm-специфичные поля (`variant`/`tooltip`/`size`), оставляя пропсы `@ds/button` для `ButtonGroup`. */
+function stripFooterButton<T extends object>(button: T): Omit<T, 'variant' | 'tooltip' | 'size'> {
+  const buttonProps = { ...button } as Record<string, unknown>;
+
+  delete buttonProps.variant;
+  delete buttonProps.tooltip;
+  delete buttonProps.size;
+
+  return buttonProps as Omit<T, 'variant' | 'tooltip' | 'size'>;
+}
 
 function MobilePageFormBase({
   children,
@@ -24,58 +36,59 @@ function MobilePageFormBase({
   className,
   footer,
   stepper,
-  filters,
   priceSummary,
   sideBlock,
   ...rest
 }: MobilePageFormProps) {
-  const PrimaryButton = useButtonWithTooltip({ view: VIEW.Filled, tooltip: footer?.buttonPrimary.tooltip });
-  const SecondaryButton = useButtonWithTooltip({ view: VIEW.Outline, tooltip: footer?.buttonSecondary?.tooltip });
-  const AdditionalButton = useButtonWithTooltip({ view: VIEW.Simple, tooltip: footer?.buttonAdditional?.tooltip });
-
   const [openPriceSummary, setOpenPriceSummary] = useState(false);
   const [openMore, setOpenMore] = useState(false);
   const [openMoreContentIndex, setOpenMoreContentIndex] = useState<number | undefined>(undefined);
 
   const getButtonLabel = useGetButtonLabel();
 
+  const footerTooltips = footer && {
+    [BUTTON_GROUP_ACTION_SLOT.Primary]: footer.buttonPrimary.tooltip,
+    [BUTTON_GROUP_ACTION_SLOT.Secondary]: footer.buttonSecondary?.tooltip,
+    [BUTTON_GROUP_ACTION_SLOT.Tertiary]: footer.buttonAdditional?.tooltip,
+  };
+
   return (
     <div className={cn(styles.container, className)} {...extractSupportProps(rest)}>
-      <Headline
-        title={title}
-        subHeader={subHeader}
-        moreActions={
-          sideBlock ? (
-            <Droplist
-              size='m'
-              open={openMore}
-              onOpenChange={setOpenMore}
-              items={sideBlock.map(({ label }, idx) => ({
-                id: idx,
-                content: {
-                  option: label,
-                },
-                onClick: () => {
-                  setOpenMoreContentIndex(idx);
-                  setOpenMore(false);
-                },
-              }))}
-            >
-              <Button view={VIEW.Function} appearance={APPEARANCE.Neutral} icon={<KebabSVG />} size='m' />
-            </Droplist>
-          ) : undefined
-        }
-      />
+      <div className={styles.header}>
+        <Headline
+          title={title}
+          subHeader={subHeader}
+          moreActions={
+            sideBlock ? (
+              <Droplist
+                size='m'
+                open={openMore}
+                onOpenChange={setOpenMore}
+                items={sideBlock.map(({ label }, idx) => ({
+                  id: idx,
+                  content: {
+                    option: label,
+                  },
+                  onClick: () => {
+                    setOpenMoreContentIndex(idx);
+                    setOpenMore(false);
+                  },
+                }))}
+              >
+                <Button view={VIEW.Function} appearance={APPEARANCE.Neutral} icon={<KebabSVG />} size='m' />
+              </Droplist>
+            ) : undefined
+          }
+        />
+
+        {stepper}
+      </div>
 
       {sideBlock && (
         <ModalCustom open={openMoreContentIndex !== undefined} onClose={() => setOpenMoreContentIndex(undefined)}>
           <ModalCustom.Body content={sideBlock[openMoreContentIndex ?? 0].content} />
         </ModalCustom>
       )}
-
-      {stepper && <div className={styles.stepper}>{stepper}</div>}
-
-      {filters && <div className={styles.filters}>{filters}</div>}
 
       <div className={styles.body}>{children}</div>
 
@@ -106,40 +119,53 @@ function MobilePageFormBase({
           )}
 
           {footer && (
-            <div
-              className={styles.actions}
-              data-column={(footer.buttonAdditional && footer.buttonSecondary) || undefined}
-            >
-              {footer.buttonAdditional && (
-                <AdditionalButton {...footer.buttonAdditional} size='m' fullWidth appearance={APPEARANCE.Neutral} />
-              )}
+            <ButtonGroup
+              size='m'
+              filled
+              // 2 кнопки — в ряд (делят ширину); 3 — в столбик (правило футеров).
+              vertical={
+                [footer.buttonPrimary, footer.buttonSecondary, footer.buttonAdditional].filter(Boolean).length >= 3
+              }
+              renderAction={(button, slot) => {
+                const tooltip = footerTooltips?.[slot];
 
-              {footer.buttonSecondary && (
-                <SecondaryButton
-                  {...footer.buttonSecondary}
-                  size='m'
-                  fullWidth
-                  appearance={APPEARANCE.Neutral}
-                  label={
-                    footer.buttonSecondary.variant === 'custom'
-                      ? footer.buttonSecondary.label
-                      : getButtonLabel(footer.buttonSecondary.variant)
-                  }
-                />
-              )}
-
-              <PrimaryButton
-                {...footer.buttonPrimary}
-                size='m'
-                fullWidth
-                appearance={APPEARANCE.Primary}
-                label={
+                // disableSpanWrapper — чтобы кнопка осталась прямым flex-потомком группы (раскладка `filled`).
+                return (
+                  <WithTooltip tooltip={tooltip && { ...tooltip, disableSpanWrapper: true }}>{button}</WithTooltip>
+                );
+              }}
+              primaryAction={{
+                ...stripFooterButton(footer.buttonPrimary),
+                view: VIEW.Filled,
+                appearance: APPEARANCE.Primary,
+                label:
                   footer.buttonPrimary.variant === 'custom'
                     ? footer.buttonPrimary.label
-                    : getButtonLabel(footer.buttonPrimary.variant)
-                }
-              />
-            </div>
+                    : getButtonLabel(footer.buttonPrimary.variant),
+              }}
+              secondaryAction={
+                footer.buttonSecondary
+                  ? {
+                      ...stripFooterButton(footer.buttonSecondary),
+                      view: VIEW.Outline,
+                      appearance: APPEARANCE.Neutral,
+                      label:
+                        footer.buttonSecondary.variant === 'custom'
+                          ? footer.buttonSecondary.label
+                          : getButtonLabel(footer.buttonSecondary.variant),
+                    }
+                  : undefined
+              }
+              tertiaryAction={
+                footer.buttonAdditional
+                  ? {
+                      ...stripFooterButton(footer.buttonAdditional),
+                      view: VIEW.Simple,
+                      appearance: APPEARANCE.Neutral,
+                    }
+                  : undefined
+              }
+            />
           )}
         </div>
       )}

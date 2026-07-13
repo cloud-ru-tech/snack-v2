@@ -245,27 +245,22 @@ import {
 
 ### Анатомия
 
-Тело PageForm — прозрачная колонка из block/l-карточек поверх серого фона страницы. Сверху на всю ширину идут карточка заголовка и карточка степпера, ниже — ряд `content` из трёх колонок:
+Тело PageForm на desktop — одна карточка формы фиксированной ширины по центру страницы; справа при переданных слотах встаёт липкая колонка sideItems (304px). Внутри карточки вертикальным стеком идут заголовок, степпер, контент шага и футер.
 
-- `filters` — левая колонка фиксированной ширины 304px.
-- `children` — центральная колонка (`flex: 1`), контент текущего шага и карточка футера снизу.
-- helper-колонка фиксированной ширины 304px — карточки `priceSummary.content` и `sideBlock[i].content`.
-
-Колонки `filters` и helper отрисовываются только при переданных слотах; иначе центральная колонка занимает всё доступное место. На mobile раскладка одноколоночная: `filters` рендерится сверху тела, остальные слоты — стопкой.
+Боковая колонка отрисовывается только при переданных `priceSummary.content` / `sideBlock`; иначе карточка формы стоит одна по центру. На mobile раскладка одноколоночная: степпер sticky сверху, слоты — стопкой, футер sticky снизу.
 
 Слоты:
 
-- `title` / `subHeader` — заголовок формы и подзаголовок (карточка-заголовок на всю ширину).
-- `stepper` — степпер шагов (карточка на всю ширину); на mobile становится sticky сверху.
-- `filters` — слот фильтров: левая колонка 304px на desktop, верхний блок тела на mobile.
-- `children` — контент текущего шага в центральной колонке.
-- `sideBlock` — массив блоков `{ label, content }` в helper-колонке (подсказки, сводка конфигурации).
-- `priceSummary` — `{ total, content? }`: на desktop `content` идёт карточкой в helper-колонке, на mobile — оценкой бюджета в футере.
-- `footer` — кнопки футера (карточка снизу центральной колонки на desktop, sticky-футер на mobile).
+- `title` / `subHeader` — заголовок формы и подзаголовок.
+- `stepper` — степпер шагов; на mobile становится sticky сверху.
+- `children` — контент текущего шага.
+- `sideBlock` — массив блоков `{ label, content }` в боковой колонке (подсказки, сводка конфигурации).
+- `priceSummary` — `{ total, content? }`: на desktop `content` идёт карточкой боковой колонки, на mobile — оценкой бюджета в футере.
+- `footer` — кнопки футера (внизу карточки формы на desktop, sticky-футер на mobile). `stickyFooter` закрепляет его внизу при прокрутке длинной формы.
 
 #### Кнопки футера
 
-- `buttonPrimary` — основная кнопка. `variant` из набора (`continue`, `create`, `save`, `rent`, `send`, `restore`, `add`) задаёт локализованный лейбл; `variant: 'custom'` требует свой `label`.
+- `buttonPrimary` — основная кнопка. `variant` из набора (`continue`, `create`, `save`, `rent`, `send`, `restore`, `add`) задаёт локализованную подпись; `variant: 'custom'` требует свой `label`.
 - `buttonSecondary` — вторичная кнопка (`cancel`, `back` или `custom`).
 - `buttonAdditional` — дополнительная кнопка `@ds/button`.
 
@@ -285,11 +280,11 @@ import {
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `filters` | `ReactNode` | — | Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела. |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
 | `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
 | `stepper` | `ReactNode` | — |  |
+| `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
@@ -648,11 +643,11 @@ import {
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `filters` | `ReactNode` | — | Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела. |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
 | `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
 | `stepper` | `ReactNode` | — |  |
+| `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
@@ -799,11 +794,11 @@ import {
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `filters` | `ReactNode` | — | Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела. |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
 | `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
 | `stepper` | `ReactNode` | — |  |
+| `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
@@ -934,6 +929,13 @@ import {
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — |  |
 
 ## useSearchFilter
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+
+## useStickyFooterShadow
 
 ### Props
 

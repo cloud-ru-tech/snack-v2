@@ -5,7 +5,7 @@ import { PageForm, PageFormProps } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 
-import { FormFields, FormFilters, FormHelp, PriceBreakdown } from '../demoData';
+import { FormFields, FormHelp, PriceBreakdown } from '../demoData';
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
@@ -59,7 +59,6 @@ const footer: PageFormProps['footer'] = {
 type StoryProps = PageFormProps & {
   showSubHeader: boolean;
   showStepper: boolean;
-  showFilters: boolean;
   showPriceSummary: boolean;
   showSideBlock: boolean;
   showFooter: boolean;
@@ -73,7 +72,6 @@ const meta: Meta<StoryProps> = {
     title: 'Создание инстанса',
     subHeader: 'Заполните параметры конфигурации',
     stepper,
-    filters: <FormFilters />,
     priceSummary,
     sideBlock,
     footer,
@@ -81,7 +79,6 @@ const meta: Meta<StoryProps> = {
     'data-test-id': TEST_IDS.pageForm.root,
     showSubHeader: true,
     showStepper: true,
-    showFilters: true,
     showPriceSummary: true,
     showSideBlock: true,
     showFooter: true,
@@ -91,11 +88,9 @@ const meta: Meta<StoryProps> = {
     sideBlock: { table: { disable: true } },
     footer: { table: { disable: true } },
     stepper: { table: { disable: true } },
-    filters: { table: { disable: true } },
     children: { table: { disable: true } },
     showSubHeader: { name: '[Stories]: showSubHeader', control: 'boolean' },
     showStepper: { name: '[Stories]: showStepper', control: 'boolean' },
-    showFilters: { name: '[Stories]: showFilters', control: 'boolean' },
     showPriceSummary: { name: '[Stories]: showPriceSummary', control: 'boolean' },
     showSideBlock: { name: '[Stories]: showSideBlock', control: 'boolean' },
     showFooter: { name: '[Stories]: showFooter', control: 'boolean' },
@@ -107,13 +102,12 @@ type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: ({ showSubHeader, showStepper, showFilters, showPriceSummary, showSideBlock, showFooter, ...args }) => (
+  render: ({ showSubHeader, showStepper, showPriceSummary, showSideBlock, showFooter, ...args }) => (
     <div className={styles.fullPage}>
       <PageForm
         {...args}
         subHeader={showSubHeader ? args.subHeader : undefined}
         stepper={showStepper ? args.stepper : undefined}
-        filters={showFilters ? args.filters : undefined}
         priceSummary={showPriceSummary ? args.priceSummary : undefined}
         sideBlock={showSideBlock ? args.sideBlock : undefined}
         footer={showFooter ? args.footer : undefined}

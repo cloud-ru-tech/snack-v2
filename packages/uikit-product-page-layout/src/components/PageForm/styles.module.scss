@@ -1,24 +1,32 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/block.module' as block;
 
-// Прозрачная колонка тела: header/stepper/contentRow стопкой, без фона и радиуса.
-// Внешний padding и вертикальные зазоры — из Figma advanced-мастера (node 3603:15031).
-.page {
+.container {
   display: flex;
-  flex-direction: column;
-  gap: base.$sn-density-spacing-interval-xs;
+  gap: base.$sn-primitive-dimension-24;
+  justify-content: center;
 
   box-sizing: border-box;
+  min-width: fit-content;
   min-height: 100%;
   padding: base.$sn-density-spacing-interval-l;
 }
 
-// Карточка block/l (Figma node 3603:15035): бел. фон, радиус 4, padding 24.
-.card {
+.form {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-32;
+
   box-sizing: border-box;
-  // Figma: sn/block/anatomy/l/padding = 24. В figma-variables@3.1.1 это значение
-  // экспортируется как block-m-padding (= interval-l = 24); токена block-l-padding (=32) тут НЕ берём.
-  padding: base.$sn-density-spacing-block-m-padding;
-  border-radius: base.$sn-brand-anatomy-radius-block-l;
+  // 800px — фиксированная ширина карточки формы, токена нет.
+  width: 800px;
+  min-height: 100%;
+  padding: block.$sn-block-anatomy-l-padding;
+  border-radius: block.$sn-block-anatomy-l-borderRadius;
+
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
@@ -26,50 +34,12 @@
   position: relative;
 }
 
-// Ряд из трёх колонок: filters(304) | main(flex) | helper(304). align-items: flex-start —
-// колонки не растягиваются по высоте друг под друга.
-.contentRow {
-  display: flex;
-  gap: base.$sn-density-spacing-interval-xs;
-  align-items: flex-start;
-}
-
-.filters {
-  position: sticky;
-  // Липкая колонка: следует за скроллом длинной формы. top = отступ .page, чтобы не липла к краю.
-  top: base.$sn-density-spacing-interval-l;
-
-  flex-shrink: 0;
-  align-self: flex-start;
-  // Ширина колонки фильтров 304px — фиксированный layout-размер из Figma-мастера, токена нет.
-  width: 304px;
-}
-
-.mainColumn {
+.body {
   @include base.composite-var(base.$sn-regular-body-m);
 
-  display: flex;
-  flex: 1 1 0;
-  flex-direction: column;
-  gap: base.$sn-density-spacing-interval-xs;
-
-  min-width: 0;
-
+  flex: 1;
   color: base.$sn-theme-color-available-version-textMain;
-}
-
-.helperColumn {
-  position: sticky;
-  // Липкая боковая колонка (price summary / справка): остаётся на виду при скролле формы.
-  top: base.$sn-density-spacing-interval-l;
-
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  gap: base.$sn-density-spacing-interval-xs;
-  align-self: flex-start;
-  // Ширина боковой колонки 304px — фиксированный layout-размер из Figma-мастера, токена нет.
-  width: 304px;
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .footer {
@@ -78,9 +48,81 @@
   justify-content: space-between;
 }
 
+.footerSticky {
+  position: sticky;
+  bottom: 0;
+
+  box-sizing: border-box;
+  // Отрицательные margin'ы компенсируют padding карточки, растягивая футер до её кромок.
+  margin: calc(0px - block.$sn-block-anatomy-l-padding) calc(0px - block.$sn-block-anatomy-l-padding)
+    calc(0px - block.$sn-block-anatomy-l-padding);
+  padding: block.$sn-block-anatomy-l-padding;
+  border-radius: 0 0 block.$sn-block-anatomy-l-borderRadius block.$sn-block-anatomy-l-borderRadius;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  transition: border-radius 0.15s ease;
+
+  // clip-path обрезает тень до верхней кромки — остаётся только тень сверху.
+  &::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+    border-radius: inherit;
+
+    opacity: 0;
+
+    /* stylelint-disable-next-line declaration-property-value-allowed-list */
+    transition: opacity 0.15s ease;
+  }
+}
+
+.footerStuck {
+  &::before {
+    opacity: 1;
+  }
+}
+
+// Невидимый sentinel-элемент 1×1px для IntersectionObserver.
+.footerSentinel {
+  pointer-events: none;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: base.$sn-primitive-dimension-2;
+  height: base.$sn-primitive-dimension-1;
+}
+
 .mainActions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin-left: auto;
+}
+
+.sideItems {
+  position: sticky;
+  top: base.$sn-density-spacing-interval-l;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  align-self: flex-start;
+  // 304px — фиксированная ширина боковой колонки, токена нет.
+  width: 304px;
+}
+
+.card {
+  box-sizing: border-box;
+  padding: block.$sn-block-anatomy-l-padding;
+  border-radius: block.$sn-block-anatomy-l-borderRadius;
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }

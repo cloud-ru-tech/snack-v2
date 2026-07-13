@@ -2761,11 +2761,6 @@
         "type": "string",
         "required": false
       },
-      "filters": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела."
-      },
       "footer": {
         "type": "{ buttonPrimary: ({ variant: ButtonPrimaryVariant; } | { variant: \"custom\"; label: string; }) & { tooltip?: TooltipProps; } & Omit<ButtonProps, \"label\">; buttonSecondary?: (({ ...; } | { ...; }) & ... 1 more ... & Omit<...>); buttonAdditional?: ({ ...; } & ... 4 more ... & { ...; }) | undefin...",
         "required": false,
@@ -2787,6 +2782,11 @@
       "stepper": {
         "type": "ReactNode",
         "required": false
+      },
+      "stickyFooter": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрепляет футер внизу формы при прокрутке контента."
       },
       "subHeader": {
         "type": "ReactNode",
@@ -4976,11 +4976,6 @@
         "type": "string",
         "required": false
       },
-      "filters": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела."
-      },
       "footer": {
         "type": "{ buttonPrimary: ({ variant: ButtonPrimaryVariant; } | { variant: \"custom\"; label: string; }) & { tooltip?: TooltipProps; } & Omit<ButtonProps, \"label\">; buttonSecondary?: (({ ...; } | { ...; }) & ... 1 more ... & Omit<...>); buttonAdditional?: ({ ...; } & ... 4 more ... & { ...; }) | undefin...",
         "required": false,
@@ -5002,6 +4997,11 @@
       "stepper": {
         "type": "ReactNode",
         "required": false
+      },
+      "stickyFooter": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрепляет футер внизу формы при прокрутке контента."
       },
       "subHeader": {
         "type": "ReactNode",
@@ -7840,11 +7840,6 @@
         "type": "string",
         "required": false
       },
-      "filters": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела."
-      },
       "footer": {
         "type": "{ buttonPrimary: ({ variant: ButtonPrimaryVariant; } | { variant: \"custom\"; label: string; }) & { tooltip?: TooltipProps; } & Omit<ButtonProps, \"label\">; buttonSecondary?: (({ ...; } | { ...; }) & ... 1 more ... & Omit<...>); buttonAdditional?: ({ ...; } & ... 4 more ... & { ...; }) | undefin...",
         "required": false,
@@ -7866,6 +7861,11 @@
       "stepper": {
         "type": "ReactNode",
         "required": false
+      },
+      "stickyFooter": {
+        "type": "boolean",
+        "required": false,
+        "description": "Закрепляет футер внизу формы при прокрутке контента."
       },
       "subHeader": {
         "type": "ReactNode",
@@ -12012,6 +12012,13 @@
   "useSearchFilter": {
     "displayName": "useSearchFilter",
     "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useStickyFooterShadow": {
+    "displayName": "useStickyFooterShadow",
+    "propsTypeName": null,
+    "description": "Показывает тень у прилипшего футера, пока под ним есть прокручиваемый контент.\nВнизу формы стоит sentinel-элемент: когда он попадает в область видимости\n(прокрутка дошла до конца), тень скрывается.",
     "props": {},
     "relatedTypes": {}
   }

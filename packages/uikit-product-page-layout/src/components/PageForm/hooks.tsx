@@ -1,5 +1,6 @@
 import { Button, ButtonProps, View } from '@ds/button';
 import { Tooltip, TooltipProps } from '@ds/tooltip';
+import { useEffect, useRef, useState } from 'react';
 
 import { pageLayoutLocale } from '../../locale';
 import { ButtonPrimaryVariant, ButtonSecondaryVariant } from '../../types';
@@ -23,6 +24,34 @@ export function useButtonWithTooltip({ view, tooltip }: { view: View; tooltip?: 
   return function ButtonWithView(props: ButtonProps) {
     return <Button view={view} {...props} />;
   };
+}
+
+/**
+ * Показывает тень у прилипшего футера, пока под ним есть прокручиваемый контент.
+ * Внизу формы стоит sentinel-элемент: когда он попадает в область видимости
+ * (прокрутка дошла до конца), тень скрывается.
+ */
+export function useStickyFooterShadow(enabled?: boolean) {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [atBottom, setAtBottom] = useState(false);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+
+    if (!enabled || !sentinel || typeof IntersectionObserver === 'undefined') {
+      setAtBottom(false);
+
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => setAtBottom(entry.isIntersecting), { threshold: 1 });
+
+    observer.observe(sentinel);
+
+    return () => observer.disconnect();
+  }, [enabled]);
+
+  return { sentinelRef, atBottom };
 }
 
 export function useGetButtonLabel() {

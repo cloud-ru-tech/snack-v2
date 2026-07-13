@@ -6,7 +6,7 @@ import { fn } from 'storybook/test';
 
 import { StoryTable } from '#storybook/components';
 
-import { FormFields, FormFilters, FormHelp, FormSections, PriceBreakdown } from '../demoData';
+import { FormFields, FormHelp, FormSections, PriceBreakdown } from '../demoData';
 import styles from '../styles.module.scss';
 
 const meta: Meta<typeof PageForm> = {
@@ -43,7 +43,7 @@ export const VisualMatrix: Story = {
         columnHeaders={['']}
         rows={[
           {
-            variantLabel: 'advanced (filters + helper)',
+            variantLabel: 'with side items',
             cells: [
               <div key='adv' className={styles.deviceForm}>
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
@@ -51,7 +51,6 @@ export const VisualMatrix: Story = {
                     title='Создание инстанса'
                     subHeader='Заполните параметры конфигурации'
                     stepper={stepper}
-                    filters={<FormFilters />}
                     priceSummary={priceSummary}
                     sideBlock={[{ label: 'Справка', content: <FormHelp /> }]}
                     footer={footer}
@@ -63,7 +62,7 @@ export const VisualMatrix: Story = {
             ],
           },
           {
-            variantLabel: 'regular (no filters)',
+            variantLabel: 'plain form',
             cells: [
               <div key='reg' className={styles.deviceForm}>
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>

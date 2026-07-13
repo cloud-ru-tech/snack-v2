@@ -11,10 +11,10 @@ export type DesktopPageFormProps = WithSupportProps<
     Pick<HeadlineProps, 'title' | 'subHeader'> & {
       className?: string;
 
-      stepper?: ReactNode;
+      /** Закрепляет футер внизу формы при прокрутке контента. */
+      stickyFooter?: boolean;
 
-      /** Слот фильтров — левая колонка (304px) на desktop advanced-раскладке. На mobile рендерится сверху тела. */
-      filters?: ReactNode;
+      stepper?: ReactNode;
 
       priceSummary?: {
         total: ReactNode;

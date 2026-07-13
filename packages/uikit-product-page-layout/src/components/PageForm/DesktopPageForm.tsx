@@ -4,25 +4,27 @@ import cn from 'classnames';
 import { useMemo } from 'react';
 
 import { Headline } from '../Headline';
-import { useButtonWithTooltip, useGetButtonLabel } from './hooks';
+import { useButtonWithTooltip, useGetButtonLabel, useStickyFooterShadow } from './hooks';
 import styles from './styles.module.scss';
 import { DesktopPageFormProps } from './types';
 
 export function DesktopPageForm({
   children,
   stepper,
-  filters,
   title,
   subHeader,
   className,
   footer,
   sideBlock,
   priceSummary,
+  stickyFooter,
   ...rest
 }: DesktopPageFormProps) {
   const getButtonLabel = useGetButtonLabel();
 
-  const helperItems = useMemo(
+  const { sentinelRef, atBottom } = useStickyFooterShadow(stickyFooter);
+
+  const moreItems = useMemo(
     () => [priceSummary?.content].concat(sideBlock?.map(item => item.content)).filter(Boolean),
     [priceSummary?.content, sideBlock],
   );
@@ -32,68 +34,75 @@ export function DesktopPageForm({
   const AdditionalButton = useButtonWithTooltip({ view: VIEW.Simple, tooltip: footer?.buttonAdditional?.tooltip });
 
   return (
-    <div className={cn(styles.page, className)} {...extractSupportProps(rest)}>
-      <div className={styles.card}>
+    <div className={cn(styles.container, className)} {...extractSupportProps(rest)}>
+      <div className={styles.form}>
         <div className={styles.headline}>
           <Headline title={title} subHeader={subHeader} />
         </div>
-      </div>
 
-      {stepper && <div className={styles.card}>{stepper}</div>}
+        {stepper}
 
-      <div className={styles.contentRow}>
-        {filters && <div className={cn(styles.card, styles.filters)}>{filters}</div>}
+        <div className={styles.body}>{children}</div>
 
-        <div className={styles.mainColumn}>
-          {children}
+        {footer && (
+          <>
+            <div
+              className={cn(styles.footer, {
+                [styles.footerSticky]: stickyFooter,
+                [styles.footerStuck]: stickyFooter && !atBottom,
+              })}
+            >
+              {footer.buttonSecondary && (
+                <SecondaryButton
+                  {...footer.buttonSecondary}
+                  size={SIZE.M}
+                  appearance={APPEARANCE.Neutral}
+                  label={
+                    footer.buttonSecondary.variant === 'custom'
+                      ? footer.buttonSecondary.label
+                      : getButtonLabel(footer.buttonSecondary.variant)
+                  }
+                />
+              )}
 
-          {footer && (
-            <div className={styles.card}>
-              <div className={styles.footer}>
-                {footer.buttonSecondary && (
-                  <SecondaryButton
-                    {...footer.buttonSecondary}
-                    size={SIZE.M}
-                    appearance={APPEARANCE.Neutral}
-                    label={
-                      footer.buttonSecondary.variant === 'custom'
-                        ? footer.buttonSecondary.label
-                        : getButtonLabel(footer.buttonSecondary.variant)
-                    }
-                  />
+              <div className={styles.mainActions}>
+                {footer.buttonAdditional && (
+                  <AdditionalButton {...footer.buttonAdditional} size={SIZE.M} appearance={APPEARANCE.Neutral} />
                 )}
 
-                <div className={styles.mainActions}>
-                  {footer.buttonAdditional && (
-                    <AdditionalButton {...footer.buttonAdditional} size={SIZE.M} appearance={APPEARANCE.Neutral} />
-                  )}
-
-                  <PrimaryButton
-                    {...footer.buttonPrimary}
-                    size={SIZE.M}
-                    appearance={APPEARANCE.Primary}
-                    label={
-                      footer.buttonPrimary.variant === 'custom'
-                        ? footer.buttonPrimary.label
-                        : getButtonLabel(footer.buttonPrimary.variant)
-                    }
-                  />
-                </div>
+                <PrimaryButton
+                  {...footer.buttonPrimary}
+                  size={SIZE.M}
+                  appearance={APPEARANCE.Primary}
+                  label={
+                    footer.buttonPrimary.variant === 'custom'
+                      ? footer.buttonPrimary.label
+                      : getButtonLabel(footer.buttonPrimary.variant)
+                  }
+                />
               </div>
             </div>
-          )}
-        </div>
 
-        {helperItems.length > 0 && (
-          <div className={styles.helperColumn}>
-            {helperItems.map((item, index) => (
-              <div key={index} className={styles.card}>
-                {item}
-              </div>
-            ))}
-          </div>
+            {stickyFooter && (
+              <>
+                <div ref={sentinelRef} className={styles.footerSentinel} aria-hidden />
+                {/* Замыкающий пустой блок держит нижний отступ формы под прилипшим футером. */}
+                {/* <div /> */}
+              </>
+            )}
+          </>
         )}
       </div>
+
+      {moreItems.length > 0 && (
+        <div className={styles.sideItems}>
+          {moreItems.map((item, index) => (
+            <div key={index} className={styles.card}>
+              {item}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
