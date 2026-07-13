@@ -129,7 +129,7 @@
       },
       "title": {
         "type": "string",
-        "required": true,
+        "required": false,
         "description": "Начальное состояние раскрытия (uncontrolled)"
       },
       "view": {
@@ -270,7 +270,7 @@
       },
       "title": {
         "type": "string",
-        "required": true,
+        "required": false,
         "description": "Начальное состояние раскрытия (uncontrolled)"
       },
       "view": {
@@ -401,7 +401,7 @@
       },
       "title": {
         "type": "string",
-        "required": true,
+        "required": false,
         "description": "Начальное состояние раскрытия (uncontrolled)"
       },
       "view": {
@@ -511,7 +511,7 @@
       },
       "title": {
         "type": "string",
-        "required": true,
+        "required": false,
         "description": "Начальное состояние раскрытия (uncontrolled)"
       }
     },

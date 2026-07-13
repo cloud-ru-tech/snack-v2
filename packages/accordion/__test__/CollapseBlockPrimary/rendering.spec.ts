@@ -26,6 +26,16 @@ test.describe('CollapseBlockPrimary — rendering', () => {
       await expect(getByTestId(TEST_IDS.title)).toContainText('Custom title');
     });
 
+    test('hides title when title is not provided', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, title: '' }));
+      await expect(getByTestId(TEST_IDS.title)).toHaveCount(0);
+    });
+
+    test('renders block without title', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, title: '' }));
+      await expect(getByTestId(TEST_IDS.collapseBlock)).toBeVisible();
+    });
+
     test('renders subTitle when provided', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, subTitle: 'Custom subtitle' }));
 

@@ -53,6 +53,8 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  width: 100%;
   min-width: 0;
 }
 

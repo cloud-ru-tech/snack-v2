@@ -24,7 +24,7 @@ export type CollapseBlockProps = PropsWithChildren<
     /** Уникальный идентификатор блока в группе переключателей */
     id: string;
     /** Начальное состояние раскрытия (uncontrolled) */
-    title: string;
+    title?: string;
     /** Контент справа от заголовка */
     afterTitle?: ReactNode;
     /** Подзаголовок под строкой заголовка */
@@ -117,14 +117,16 @@ export function CollapseBlock({
       >
         <div className={styles.titleWrapper}>
           <div className={styles.titleLine}>
-            <Typography
-              size={MAP_COMPONENT_TO_TILE_SIZE[component]}
-              variant='title'
-              className={styles.title}
-              data-test-id={TEST_IDS.title}
-            >
-              {title && <TruncateString text={title} variant='end' />}
-            </Typography>
+            {title && (
+              <Typography
+                size={MAP_COMPONENT_TO_TILE_SIZE[component]}
+                variant='title'
+                className={styles.title}
+                data-test-id={TEST_IDS.title}
+              >
+                <TruncateString text={title} variant='end' />
+              </Typography>
+            )}
             {afterTitle && (
               <div data-test-id={TEST_IDS.afterTitle} className={styles.afterTitle}>
                 {afterTitle}
