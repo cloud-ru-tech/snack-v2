@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8770:** align component visuals with Figma tokens ([2af9b73](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2af9b73612790e2b838f44046609916ec9dff706))
+
+### Features
+
+- **FF-8770:** align droplist scroll and mobile bottom-sheet behavior with legacy parity ([2348dfa](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2348dfa2d9df0111a1a85624b724baca23dd1e26))
+- **FF-8770:** unify default component sizes across the design system ([0d1a705](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0d1a705c8d77f7eb59f64eada86d3b1d9f730181))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8770:** fix component width and flex sizing in containers ([1cde737](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1cde737558a2c3022e94f10b8384d25b09240e92))
+
+### Features
+
+- **FF-8770:** align droplist scroll and mobile bottom-sheet behavior with legacy parity ([2348dfa](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2348dfa2d9df0111a1a85624b724baca23dd1e26))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

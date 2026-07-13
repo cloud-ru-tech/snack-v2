@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.2 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8770:** add container box-sizing, tokenize values and drop dead styles ([6040eb6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6040eb65f731fd4ec73004cda0c1ad70a7f80b86))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

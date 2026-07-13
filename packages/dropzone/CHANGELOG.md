@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.2 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8770:** fix drag interactions in carousel and dropzone ([7601b8a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7601b8a30c81c04804fbabe37f283295af7a9460))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

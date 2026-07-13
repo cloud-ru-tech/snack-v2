@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.2 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8770:** align focus rings with Figma ([999489f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/999489f36baf4a92706e1f570953181368d06dd8))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies
