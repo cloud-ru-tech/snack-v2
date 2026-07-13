@@ -371,6 +371,7 @@ export function ButtonGroupBreak() {
 | `data-test-id` | `string` | — |  |
 | `filled` | `boolean` | `false` | Заливка контейнера |
 | `primaryAction` | `ActionProps` | — | Основное действие (filled) |
+| `renderAction` | `((button: ReactNode, slot: ButtonGroupActionSlot) => ReactNode)` | — | Обёртка каждой кнопки. Получает готовый `<Button>` и слот действия (`primary`/`secondary`/`tertiary`) <br/> и возвращает узел, который встанет на место кнопки. Позволяет обернуть кнопку в `Tooltip` на стороне <br/> потребителя (сам `@ds/button` не зависит от `@ds/tooltip`). Чтобы не ломать раскладку `filled`, обёртка <br/> не должна добавлять лишний DOM-узел между группой и кнопкой (`Tooltip` — с `disableSpanWrapper`). |
 | `secondaryAction` | `ActionProps` | — | Вторичное действие (outline), опционально |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер кнопок |
 | `tertiaryAction` | `ActionProps` | — | Третичное действие (simple/text-only), опционально |

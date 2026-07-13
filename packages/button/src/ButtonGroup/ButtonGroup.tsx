@@ -1,10 +1,20 @@
-import { WithSupportProps } from '@ds/utils';
+import { ValueOf, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
+import { ReactNode } from 'react';
 
 import { Button } from '../Button';
 import { SIZE } from '../Button/constants';
 import { ButtonProps, Size } from '../Button/types';
 import styles from './styles.module.scss';
+
+/** Идентификаторы слотов действий — передаются в `renderAction`, чтобы обернуть конкретную кнопку. */
+export const BUTTON_GROUP_ACTION_SLOT = {
+  Primary: 'primary',
+  Secondary: 'secondary',
+  Tertiary: 'tertiary',
+} as const;
+
+export type ButtonGroupActionSlot = ValueOf<typeof BUTTON_GROUP_ACTION_SLOT>;
 
 /** Пропсы действия — все пропсы Button, кроме size (задаётся на уровне группы) + нативные button-атрибуты */
 type ActionProps = WithSupportProps<Omit<ButtonProps<'button'>, 'size'>>;
@@ -26,13 +36,16 @@ export type ButtonGroupProps = WithSupportProps<{
   break?: boolean;
   /** Заливка контейнера */
   filled?: boolean;
+  /**
+   * Обёртка каждой кнопки. Получает готовый `<Button>` и слот действия (`primary`/`secondary`/`tertiary`)
+   * и возвращает узел, который встанет на место кнопки. Позволяет обернуть кнопку в `Tooltip` на стороне
+   * потребителя (сам `@ds/button` не зависит от `@ds/tooltip`). Чтобы не ломать раскладку `filled`, обёртка
+   * не должна добавлять лишний DOM-узел между группой и кнопкой (`Tooltip` — с `disableSpanWrapper`).
+   */
+  renderAction?(button: ReactNode, slot: ButtonGroupActionSlot): ReactNode;
   /** Дополнительный класс */
   className?: string;
 }>;
-
-function renderAction(props: ActionProps, size: Size) {
-  return <Button {...props} size={size} />;
-}
 
 export function ButtonGroup({
   primaryAction,
@@ -43,9 +56,16 @@ export function ButtonGroup({
   centered = false,
   break: breakProp = false,
   filled = false,
+  renderAction,
   className,
   ...rest
 }: ButtonGroupProps) {
+  function buildAction(props: ActionProps, slot: ButtonGroupActionSlot) {
+    const button = <Button {...props} size={size} />;
+
+    return renderAction ? renderAction(button, slot) : button;
+  }
+
   return (
     <div
       className={cn(styles.root, className)}
@@ -55,9 +75,9 @@ export function ButtonGroup({
       data-filled={vertical || filled || undefined}
       {...rest}
     >
-      {tertiaryAction && renderAction(tertiaryAction, size)}
-      {secondaryAction && renderAction(secondaryAction, size)}
-      {primaryAction && renderAction(primaryAction, size)}
+      {tertiaryAction && buildAction(tertiaryAction, BUTTON_GROUP_ACTION_SLOT.Tertiary)}
+      {secondaryAction && buildAction(secondaryAction, BUTTON_GROUP_ACTION_SLOT.Secondary)}
+      {primaryAction && buildAction(primaryAction, BUTTON_GROUP_ACTION_SLOT.Primary)}
     </div>
   );
 }

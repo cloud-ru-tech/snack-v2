@@ -1,4 +1,11 @@
 {
+  "BUTTON_GROUP_ACTION_SLOT": {
+    "displayName": "BUTTON_GROUP_ACTION_SLOT",
+    "propsTypeName": null,
+    "description": "Идентификаторы слотов действий — передаются в `renderAction`, чтобы обернуть конкретную кнопку.",
+    "props": {},
+    "relatedTypes": {}
+  },
   "Button": {
     "displayName": "Button",
     "propsTypeName": "ButtonProps",
@@ -307,6 +314,11 @@
         "typeRefs": [
           "ActionProps"
         ]
+      },
+      "renderAction": {
+        "type": "((button: ReactNode, slot: ButtonGroupActionSlot) => ReactNode)",
+        "required": false,
+        "description": "Обёртка каждой кнопки. Получает готовый `<Button>` и слот действия (`primary`/`secondary`/`tertiary`)\nи возвращает узел, который встанет на место кнопки. Позволяет обернуть кнопку в `Tooltip` на стороне\nпотребителя (сам `@ds/button` не зависит от `@ds/tooltip`). Чтобы не ломать раскладку `filled`, обёртка\nне должна добавлять лишний DOM-узел между группой и кнопкой (`Tooltip` — с `disableSpanWrapper`)."
       },
       "secondaryAction": {
         "type": "ActionProps",
