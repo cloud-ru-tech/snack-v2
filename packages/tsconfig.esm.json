@@ -64,9 +64,6 @@
       "path": "./ai-chain-of-thoughts/tsconfig.esm.json"
     },
     {
-      "path": "./ai-suggestion/tsconfig.esm.json"
-    },
-    {
       "path": "./counter/tsconfig.esm.json"
     },
     {
@@ -79,10 +76,16 @@
       "path": "./icon-predefined/tsconfig.esm.json"
     },
     {
+      "path": "./info-block/tsconfig.esm.json"
+    },
+    {
       "path": "./loader/tsconfig.esm.json"
     },
     {
       "path": "./materials/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {
       "path": "./block/tsconfig.esm.json"
@@ -92,9 +95,6 @@
     },
     {
       "path": "./dropzone/tsconfig.esm.json"
-    },
-    {
-      "path": "./info-block/tsconfig.esm.json"
     },
     {
       "path": "./input-private/tsconfig.esm.json"
