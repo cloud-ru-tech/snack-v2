@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-07-13)
+
+### Bug Fixes
+
+- **FF-8711:** align page-layout components spacing with Figma tokens ([1f2183c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1f2183c8044bb43c90d1a29abb3a62ec0a1b9c62))
+
+### Features
+
+- **FF-8711:** rework PageForm layout and footer to match Figma macro ([e2ab24a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e2ab24af2721c5c55b50e0aad14fa4b8c4c51328))
+
 # 1.1.0 (2026-07-13)
 
 ### Features

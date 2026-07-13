@@ -1,6 +1,6 @@
 {
   "name": "@ds/attachment",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

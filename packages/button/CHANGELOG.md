@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-13)
+
+### Features
+
+- **FF-8711:** add renderAction escape-hatch to ButtonGroup ([1cafbd5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1cafbd57b09db77a920db77b675ada90b708e6ee))
+
 ## 1.0.2 (2026-07-13)
 
 ### Bug Fixes
