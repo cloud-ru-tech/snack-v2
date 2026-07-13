@@ -29,14 +29,13 @@ const STORY_PKG_RE = /[\\/]packages[\\/]([^\\/]+)[\\/]stories[\\/]/;
  * остаются полными (см. collectDsAliases) — отфильтрованные stories всё равно
  * импортят соседние пакеты.
  */
-function storiesGlob(): string {
+function storiesGlobs(): string[] {
   const pkgs = (process.env.SB_PACKAGES ?? '')
     .split(',')
     .map(s => s.trim())
     .filter(Boolean);
-  if (pkgs.length === 0) return '../../../packages/*/stories/**/*.stories.@(ts|tsx)';
-  const selector = pkgs.length === 1 ? pkgs[0] : `{${pkgs.join(',')}}`;
-  return `../../../packages/${selector}/stories/**/*.stories.@(ts|tsx)`;
+  if (pkgs.length === 0) return ['../../../packages/*/stories/**/*.stories.@(ts|tsx)'];
+  return pkgs.map(p => `../../../packages/${p}/stories/**/*.stories.@(ts|tsx)`);
 }
 
 declare global {
@@ -151,7 +150,7 @@ const MANAGER_REACT_POLYFILL = `
 `;
 
 const config: StorybookConfig = {
-  stories: [storiesGlob()],
+  stories: storiesGlobs(),
   managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
   addons: [
     join(__dirname, 'addons/theme-controls/preset.ts'),
