@@ -16,8 +16,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: base.$sn-density-spacing-interval-s base.$sn-density-spacing-interval-l;
-  // Нижний разделитель = Divider с available/borderColor #0000001a (Figma node 4302:20318 → divider/line),
-  // не neutral/decor.
+  // Разделитель на available/borderColor (Figma), не neutral/decor.
   border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
 
   background-color: base.$sn-theme-color-neutral-background;
@@ -29,7 +28,6 @@
 
 .body {
   display: flex;
-  // bodyWrapper: gap=interval-m, padding=interval-l (Figma node 4310:40326).
   gap: base.$sn-density-spacing-interval-m;
 
   box-sizing: border-box;
@@ -52,7 +50,6 @@
 
 .titleWrapper {
   display: flex;
-  // Заголовок забирает свободное место и сжимается, действия справа остаются целыми.
   flex: 1 1 auto;
   flex-wrap: wrap;
   gap: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-16;
@@ -61,7 +58,6 @@
   min-width: 0;
 }
 
-// Контейнер действий шапки: фикс. ширина по контенту, не сжимается (Figma node 4302:20316).
 .headerActions {
   display: flex;
   flex-shrink: 0;
