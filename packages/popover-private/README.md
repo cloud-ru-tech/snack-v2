@@ -49,6 +49,7 @@ import { PopoverPrivate, Arrow } from '@ds/popover-private'
 | `outsideClick` | `OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `popoverContent` | `ReactNode \| ReactNode[]` | — | Контент поповера |
+| `stopPropagation` | `StopPropagationHandlers` | `{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }` | Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`). <br/> По умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите <br/> `onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`. |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerClickByKeys` | `boolean` | `true` | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
@@ -66,6 +67,17 @@ import { PopoverPrivate, Arrow } from '@ds/popover-private'
 - `PopoverHeightStrategy` = `"auto"` \| `"eq"` \| `"lte"`
 
 - `PopoverWidthStrategy` = `"auto"` \| `"eq"` \| `"gte"`
+
+**StopPropagationHandlers**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onClick` | `boolean \| undefined` | — |  |
+| `onMouseDown` | `boolean \| undefined` | — |  |
+| `onMouseUp` | `boolean \| undefined` | — |  |
+| `onTouchEnd` | `boolean \| undefined` | — |  |
+| `onTouchMove` | `boolean \| undefined` | — |  |
+| `onTouchStart` | `boolean \| undefined` | — |  |
 
 - `Trigger` = `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"`
 

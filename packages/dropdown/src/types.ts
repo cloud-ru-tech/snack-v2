@@ -76,6 +76,7 @@ export type DropdownProps = WithSupportProps<
       | 'disableSpanWrapper'
       | 'closeOnPopstate'
       | 'container'
+      | 'stopPropagation'
     > &
     Partial<Pick<PopoverPrivateProps, 'trigger' | 'placement'>>
 >;

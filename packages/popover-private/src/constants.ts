@@ -39,3 +39,13 @@ export const POPOVER_HEIGHT_STRATEGY = {
 } as const;
 
 export const DEFAULT_FALLBACK_PLACEMENTS = [PLACEMENT.Top, PLACEMENT.Right, PLACEMENT.Bottom, PLACEMENT.Left];
+
+/** Дефолт для `PopoverPrivateProps.stopPropagation`: гасить всплытие на всех хендлерах. */
+export const DEFAULT_STOP_PROPAGATION = {
+  onClick: true,
+  onMouseDown: true,
+  onMouseUp: true,
+  onTouchStart: true,
+  onTouchEnd: true,
+  onTouchMove: true,
+} as const;

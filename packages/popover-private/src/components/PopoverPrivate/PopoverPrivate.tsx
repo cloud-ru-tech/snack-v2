@@ -28,11 +28,12 @@ import { useUncontrolledProp } from 'uncontrollable';
 
 import {
   DEFAULT_FALLBACK_PLACEMENTS,
+  DEFAULT_STOP_PROPAGATION,
   PLACEMENT,
   POPOVER_HEIGHT_STRATEGY,
   POPOVER_WIDTH_STRATEGY,
 } from '../../constants';
-import { Placement, PopoverHeightStrategy, PopoverWidthStrategy, Trigger } from '../../types';
+import { Placement, PopoverHeightStrategy, PopoverWidthStrategy, StopPropagationHandlers, Trigger } from '../../types';
 import {
   getArrowOffset,
   getPopoverTriggerJSX,
@@ -145,6 +146,13 @@ export type PopoverPrivateProps = WithSupportProps<
      * Закрывать ли поповер при переходе по истории браузера
      */
     closeOnPopstate?: boolean;
+    /**
+     * Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`).
+     * По умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите
+     * `onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`.
+     * @default { onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }
+     */
+    stopPropagation?: StopPropagationHandlers;
   } & (
     | {
         /** Ref ссылка на триггер */
@@ -186,8 +194,10 @@ function PopoverPrivateComponent({
   disableSpanWrapper = false,
   closeOnPopstate,
   container,
+  stopPropagation: stopPropagationProp,
   ...rest
 }: PopoverPrivateProps) {
+  const stopPropagation = { ...DEFAULT_STOP_PROPAGATION, ...stopPropagationProp };
   const arrowRef = useRef<HTMLDivElement | null>(null);
   const portalContextRoot = usePortalContext();
   const portalRoot = container ?? portalContextRoot;
@@ -320,12 +330,12 @@ function PopoverPrivateComponent({
         style={floatingStyles}
         data-placement={placement}
         {...getFloatingProps({
-          onClick: stopPropagationMouse,
-          onMouseDown: stopPropagationMouse,
-          onMouseUp: stopPropagationMouse,
-          onTouchStart: stopPropagationTouch,
-          onTouchEnd: stopPropagationTouch,
-          onTouchMove: stopPropagationTouch,
+          ...(stopPropagation.onClick && { onClick: stopPropagationMouse }),
+          ...(stopPropagation.onMouseDown && { onMouseDown: stopPropagationMouse }),
+          ...(stopPropagation.onMouseUp && { onMouseUp: stopPropagationMouse }),
+          ...(stopPropagation.onTouchStart && { onTouchStart: stopPropagationTouch }),
+          ...(stopPropagation.onTouchEnd && { onTouchEnd: stopPropagationTouch }),
+          ...(stopPropagation.onTouchMove && { onTouchMove: stopPropagationTouch }),
         })}
       >
         {popoverContent}

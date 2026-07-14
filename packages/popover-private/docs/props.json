@@ -184,6 +184,15 @@
         "required": true,
         "description": "Контент поповера"
       },
+      "stopPropagation": {
+        "type": "StopPropagationHandlers",
+        "required": false,
+        "defaultValue": "{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }",
+        "description": "Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`).\nПо умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите\n`onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`.",
+        "typeRefs": [
+          "StopPropagationHandlers"
+        ]
+      },
       "trigger": {
         "type": "enum",
         "required": true,
@@ -277,6 +286,36 @@
           "eq",
           "gte"
         ],
+        "own": true
+      },
+      "StopPropagationHandlers": {
+        "kind": "interface",
+        "props": {
+          "onClick": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onMouseDown": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onMouseUp": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onTouchEnd": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onTouchMove": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onTouchStart": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
         "own": true
       },
       "Trigger": {
