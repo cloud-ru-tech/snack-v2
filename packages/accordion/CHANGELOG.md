@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-14)
+
+### Features
+
+- **SITE-11631:** upd collapseBlock ([8d393f2](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/8d393f26a2c43865a2407ce82a50fe22d9cd1398))
+
 ## 1.0.3 (2026-07-13)
 
 **Note:** Version bump only for package @ds/accordion
