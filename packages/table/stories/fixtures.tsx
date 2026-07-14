@@ -505,7 +505,7 @@ type ColumnsOptions = {
   /**
    * Навесить per-column `columnSettings` (меню настроек колонок): email →
    * DefaultTrue, role → DefaultFalse (изначально скрыта), amount → Hidden
-   * (не показывается в меню) — покрывает все значения COLUMN_SETTINGS_MODE.
+   * (в меню disabled, всегда видима) — покрывает все значения COLUMN_SETTINGS_MODE.
    */
   withColumnSettings?: boolean;
   /** Включить ручное изменение ширины колонок name/email (ResizeHandle) */

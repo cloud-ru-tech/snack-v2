@@ -4,9 +4,6 @@ import { prepareColumnsSettings } from '../src/components/Table/hooks/useColumnS
 import { PinnedGroupsState } from '../src/components/Table/utils/getPinnedGroups';
 import { COLUMN_PIN_POSITION, COLUMN_SETTINGS_MODE } from '../src/constants';
 
-// Барель utils реэкспортирует getTableColumnsDefinitions, который тянет JSX-heavy
-// helperComponents (покрываются play-функциями, см. coverage-standard.md).
-// Подменяем барель на реальные leaf-модули, нужные prepareColumnsSettings.
 vi.mock('../src/components/Table/utils', async () => {
   const getColumnIdentifier = await vi.importActual<typeof import('../src/components/Table/utils/getColumnIdentifier')>(
     '../src/components/Table/utils/getColumnIdentifier',
@@ -22,12 +19,17 @@ type Row = { name: string; age: number; status: string };
 
 type PrepareArgs = Parameters<typeof prepareColumnsSettings<Row>>[0];
 
-// Echo-стаб локализации: возвращает ключ с префиксом, чтобы ассертить, какой ключ запрошен.
 const t = ((key: string) => `t:${key}`) as unknown as PrepareArgs['t'];
 
-type SettingsOption = { id: string; content: { option: string }; switch: boolean; showSwitchIcon: boolean };
+type SettingsOption = {
+  id: string;
+  content: { option: string };
+  switch: boolean;
+  showSwitchIcon: boolean;
+  disabled?: boolean;
+  checked?: boolean;
+};
 
-// Сужение unknown: вложенные группы section.items имеют форму { divider, items, type: 'group' }.
 function asGroup(group: unknown): { divider: boolean; items: SettingsOption[]; type: string } {
   if (group && typeof group === 'object' && 'items' in group) {
     return group as { divider: boolean; items: SettingsOption[]; type: string };
@@ -38,20 +40,22 @@ function asGroup(group: unknown): { divider: boolean; items: SettingsOption[]; t
 
 const pinnedGroups: PinnedGroupsState<Row> = {
   left: [
-    // Служебная колонка без columnSettings — не должна попасть в настройки.
-    { id: 'selection', pinned: COLUMN_PIN_POSITION.Left, size: 32 },
+    // Служебная колонка selection — не должна попасть в настройки.
+    { id: 'selectionCell', pinned: COLUMN_PIN_POSITION.Left, size: 32 },
     { id: 'pinned-a', pinned: COLUMN_PIN_POSITION.Left, size: 100, columnSettings: { label: 'Pinned A' } },
   ],
   unpinned: [
-    { accessorKey: 'name', columnSettings: { label: 'Name' } },
-    // Скрытая из настроек колонка — исключается guard'ом isFilterableColumn.
+    { accessorKey: 'name', header: 'Name', columnSettings: { label: 'Name' } },
+    // mode: hidden — в меню есть, но disabled + checked.
     { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.Hidden } },
     { accessorKey: 'age', columnSettings: { label: 'Age' } },
+    // Без columnSettings — в меню есть, disabled + checked, label из header.
+    { accessorKey: 'createdAt', header: 'Created' },
   ],
   right: [{ id: 'actions', pinned: COLUMN_PIN_POSITION.Right, size: 48, columnSettings: { label: 'Actions' } }],
 };
 
-const columnOrder = ['selection', 'pinned-a', 'age', 'name', 'actions'];
+const columnOrder = ['selectionCell', 'pinned-a', 'age', 'name', 'status', 'createdAt', 'actions'];
 
 describe('prepareColumnsSettings', () => {
   it('returns a single group-select section with left/unpinned/right groups', () => {
@@ -68,13 +72,19 @@ describe('prepareColumnsSettings', () => {
     expect(section.items?.map(group => asGroup(group).type)).toEqual(['group', 'group', 'group']);
   });
 
-  it('builds options only from filterable columns', () => {
+  it('includes all user columns; excludes selection; marks inactive as disabled', () => {
     const [section] = prepareColumnsSettings({ pinnedGroups, columnOrder, areAllColumnsEnabled: false, t });
     const [leftGroup, unpinnedGroup, rightGroup] = (section.items ?? []).map(asGroup);
 
     expect(leftGroup?.items.map(item => item.id)).toEqual(['pinned-a']);
-    expect(unpinnedGroup?.items.map(item => item.id)).toEqual(['age', 'name']);
+    expect(unpinnedGroup?.items.map(item => item.id)).toEqual(['age', 'name', 'status', 'createdAt']);
     expect(rightGroup?.items.map(item => item.id)).toEqual(['actions']);
+
+    const status = unpinnedGroup.items.find(item => item.id === 'status');
+    const createdAt = unpinnedGroup.items.find(item => item.id === 'createdAt');
+
+    expect(status).toMatchObject({ disabled: true, checked: true, content: { option: 'Status' } });
+    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { option: 'Created' } });
   });
 
   it('sorts options inside a group according to columnOrder', () => {
@@ -86,10 +96,10 @@ describe('prepareColumnsSettings', () => {
     });
     const unpinnedGroup = asGroup(section.items?.[1]);
 
-    expect(unpinnedGroup.items.map(item => item.id)).toEqual(['name', 'age']);
+    expect(unpinnedGroup.items.map(item => item.id)).toEqual(['createdAt', 'status', 'name', 'age']);
   });
 
-  it('builds an option as a switch with the columnSettings label', () => {
+  it('builds an active option as a switch without disabled', () => {
     const [section] = prepareColumnsSettings({ pinnedGroups, columnOrder, areAllColumnsEnabled: false, t });
     const [option] = asGroup(section.items?.[0]).items;
 
@@ -98,6 +108,7 @@ describe('prepareColumnsSettings', () => {
       content: { option: 'Pinned A' },
       switch: true,
       showSwitchIcon: true,
+      disabled: false,
     });
   });
 

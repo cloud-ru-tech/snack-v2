@@ -13,6 +13,8 @@ import {
   isColumnEnabledInitially,
   isFilterableColumn,
   prepareColumnsSettings,
+  prepareReorderableColumnsSettings,
+  ReorderableColumnsSettings,
 } from './utils';
 
 type UseColumnSettingsProps<TData extends object, TFilters extends FiltersState> = Pick<
@@ -23,6 +25,17 @@ type UseColumnSettingsProps<TData extends object, TFilters extends FiltersState>
     pinnedGroups: PinnedGroupsState<TData>;
     masterSelection?: MasterSelectionOptions;
   };
+
+export type ColumnsSettingsListModel =
+  | {
+      enableReorder: false;
+      items: [GroupSelectItemProps];
+    }
+  | ({
+      enableReorder: true;
+      areAllColumnsEnabled: boolean;
+      allColumnIds: string[];
+    } & ReorderableColumnsSettings);
 
 export function useColumnSettings<TData extends object, TFilters extends FiltersState>({
   columnDefinitions,
@@ -38,7 +51,7 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
   setEnabledColumns: (value: string[]) => void;
   enabledColumnsDefinitions: ColumnDefinition<TData>[];
   enabledTableColumns: ColumnDefinition<TData>[];
-  getColumnsSettings: (columnOrder: string[]) => [GroupSelectItemProps];
+  getColumnsSettings: (columnOrder: string[]) => ColumnsSettingsListModel;
   areColumnsSettingsEnabled: boolean;
 } {
   const { t } = tableLocale.useTranslations();
@@ -84,6 +97,7 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
   );
 
   const areColumnsSettingsEnabled = Boolean(columnsSettings?.enableSettingsMenu);
+  const enableReorder = Boolean(columnsSettings?.enableDrag);
 
   const enabledColumnsDefinitions = useMemo(() => {
     if (!areColumnsSettingsEnabled) {
@@ -123,15 +137,30 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
 
   const areAllColumnsEnabled = enabledColumns.length === configurableColumns.length;
 
+  const allColumnIds = useMemo(() => configurableColumns.map(getColumnIdentifier), [configurableColumns]);
+
   const getColumnsSettings = useCallback(
-    (columnOrder: string[]) =>
-      prepareColumnsSettings({
-        pinnedGroups,
-        columnOrder,
-        areAllColumnsEnabled,
-        t,
-      }),
-    [areAllColumnsEnabled, pinnedGroups, t],
+    (columnOrder: string[]): ColumnsSettingsListModel => {
+      if (enableReorder) {
+        return {
+          enableReorder: true,
+          areAllColumnsEnabled,
+          allColumnIds,
+          ...prepareReorderableColumnsSettings({ pinnedGroups, columnOrder }),
+        };
+      }
+
+      return {
+        enableReorder: false,
+        items: prepareColumnsSettings({
+          pinnedGroups,
+          columnOrder,
+          areAllColumnsEnabled,
+          t,
+        }),
+      };
+    },
+    [allColumnIds, areAllColumnsEnabled, enableReorder, pinnedGroups, t],
   );
 
   return {

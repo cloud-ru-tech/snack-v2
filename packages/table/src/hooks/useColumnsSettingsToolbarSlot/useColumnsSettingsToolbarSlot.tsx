@@ -1,10 +1,15 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button, VIEW } from '@ds/button';
 import { FunctionSettingsSVG } from '@ds/icons/interface/system';
-import { Droplist, GroupSelectItemProps, SelectionMultipleState, SIZE } from '@ds/list';
+import { Droplist, ReorderableDroplist, ReorderItem, SelectionMultipleState, Separator, SIZE } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
-import { ReactNode, useState } from 'react';
+import { Dispatch, ReactNode, SetStateAction, useCallback, useState } from 'react';
 
+import type { ColumnsSettingsListModel } from '../../components/Table/hooks/useColumnSettings/useColumnSettings';
+import {
+  collectReorderLeafIds,
+  mergeColumnOrderFromSettings,
+} from '../../components/Table/hooks/useColumnSettings/utils';
 import { TEST_IDS } from '../../constants';
 import { renderColumnsSettingsOverflowButton } from '../../helpers';
 import tooltipStyles from '../../helpers/toolbarTooltipTrigger.module.scss';
@@ -14,7 +19,8 @@ import styles from './useColumnsSettingsToolbarSlot.module.scss';
 export type ColumnsSettingsProps = {
   enabledColumns: string[];
   setEnabledColumns(enabledColumns: string[]): void;
-  columnsSettings: [GroupSelectItemProps];
+  columnsSettings: ColumnsSettingsListModel;
+  setColumnOrder?: Dispatch<SetStateAction<string[]>>;
 };
 
 export type ColumnsSettingsToolbarSlotParams = ColumnsSettingsProps & {
@@ -32,52 +38,116 @@ export function useColumnsSettingsToolbarSlot({
   columnsSettings,
   enabledColumns,
   setEnabledColumns,
+  setColumnOrder,
 }: ColumnsSettingsToolbarSlotParams): ColumnsSettingsToolbarSlotResult {
   const { t } = tableLocale.useTranslations();
   const { layoutType } = useAdaptiveLayout();
   const isMobile = isMobileLayout(layoutType);
   const [open, setOpen] = useState(false);
 
-  const droplist = (
-    <Droplist
-      scroll
-      className={styles.columnsSettings}
-      size={SIZE.M}
-      items={columnsSettings}
-      selection={
-        {
-          value: enabledColumns,
-          onChange: value => setEnabledColumns(value as string[]),
-          mode: 'multiple',
-        } satisfies SelectionMultipleState
+  const selection = {
+    value: enabledColumns,
+    onChange: value => setEnabledColumns(value as string[]),
+    mode: 'multiple',
+  } satisfies SelectionMultipleState;
+
+  const handleSelectAll = useCallback(() => {
+    if (!columnsSettings.enableReorder) {
+      return;
+    }
+
+    setEnabledColumns(columnsSettings.areAllColumnsEnabled ? [] : columnsSettings.allColumnIds);
+  }, [columnsSettings, setEnabledColumns]);
+
+  const handleItemsReorder = useCallback(
+    (items: ReorderItem[]) => {
+      if (!setColumnOrder) {
+        return;
       }
-      placement='bottom-end'
-      label={t('settingsHeaderLabel')}
-      open={open}
-      onOpenChange={setOpen}
-      data-test-id={TEST_IDS.columnSettings.droplist}
-    >
-      {isMobile ? (
-        <span className={styles.hiddenTrigger} aria-hidden />
-      ) : (
-        <Tooltip
-          tip={t('settingsHeaderLabel')}
-          triggerClassName={tooltipStyles.trigger}
-          placement='bottom'
-          open={open ? false : undefined}
-        >
-          <Button
-            view={VIEW.Function}
-            appearance='neutral'
-            size='m'
-            data-test-id={TEST_IDS.columnSettings.trigger}
-            icon={<FunctionSettingsSVG />}
-            aria-label={t('settingsHeaderLabel')}
-          />
-        </Tooltip>
-      )}
-    </Droplist>
+
+      const settingsOrderedIds = collectReorderLeafIds(items);
+
+      setColumnOrder(prev => mergeColumnOrderFromSettings(prev, settingsOrderedIds));
+    },
+    [setColumnOrder],
   );
+
+  const trigger = isMobile ? (
+    <span className={styles.hiddenTrigger} aria-hidden />
+  ) : (
+    <Tooltip
+      tip={t('settingsHeaderLabel')}
+      triggerClassName={tooltipStyles.trigger}
+      placement='bottom'
+      open={open ? false : undefined}
+    >
+      <Button
+        view={VIEW.Function}
+        appearance='neutral'
+        size='m'
+        data-test-id={TEST_IDS.columnSettings.trigger}
+        icon={<FunctionSettingsSVG />}
+        aria-label={t('settingsHeaderLabel')}
+      />
+    </Tooltip>
+  );
+
+  // Общая обвязка дроплиста: различаются только модель айтемов и header с «показать/скрыть все».
+  const commonDroplistProps = {
+    scroll: true,
+    className: styles.columnsSettings,
+    size: SIZE.M,
+    selection,
+    placement: 'bottom-end',
+    label: t('settingsHeaderLabel'),
+    open,
+    onOpenChange: setOpen,
+    'data-test-id': TEST_IDS.columnSettings.droplist,
+  } as const;
+
+  function renderReorderableDroplist() {
+    if (!columnsSettings.enableReorder) {
+      return null;
+    }
+
+    const { areAllColumnsEnabled } = columnsSettings;
+
+    return (
+      <ReorderableDroplist
+        {...commonDroplistProps}
+        pinTop={columnsSettings.pinTop}
+        items={columnsSettings.items}
+        pinBottom={columnsSettings.pinBottom}
+        onItemsReorder={handleItemsReorder}
+        header={
+          <Separator
+            label={t('settingsHeaderLabel')}
+            selectButton={{
+              checked: areAllColumnsEnabled,
+              label: areAllColumnsEnabled ? t('groupSelectButton.hide') : t('groupSelectButton.show'),
+              onClick: handleSelectAll,
+            }}
+          />
+        }
+      >
+        {trigger}
+      </ReorderableDroplist>
+    );
+  }
+
+  function renderGroupSelectDroplist() {
+    if (columnsSettings.enableReorder) {
+      return null;
+    }
+
+    return (
+      <Droplist {...commonDroplistProps} items={columnsSettings.items}>
+        {trigger}
+      </Droplist>
+    );
+  }
+
+  const droplist = columnsSettings.enableReorder ? renderReorderableDroplist() : renderGroupSelectDroplist();
 
   if (!enabled) {
     return { afterContent: null, mobileMount: null };

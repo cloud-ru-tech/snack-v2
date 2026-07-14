@@ -11,7 +11,7 @@ export const COLUMN_ALIGN = {
 } as const;
 
 export const COLUMN_SETTINGS_MODE = {
-  /* Скрыто в настройках, значение всегда True */
+  /* В меню disabled (свитч нельзя выключить), колонка всегда видима */
   Hidden: 'hidden',
   DefaultTrue: 'defaultTrue',
   DefaultFalse: 'defaultFalse',

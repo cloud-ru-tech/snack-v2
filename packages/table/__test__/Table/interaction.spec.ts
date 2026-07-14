@@ -12,7 +12,8 @@ import { buildStoryOptions, headerCellById, MOBILE_COMFORT_GLOBALS, TABLE_STORIE
 // 1. column resize — непрерывный mouse-drag (down → move → up) по resize-handle,
 //    tanstack columnResizeMode='onEnd' применяет ширину на mouseup;
 // 2. column reorder — real drag&drop через dnd-kit MouseSensor
-//    (activationConstraint.distance=5, серия mousemove);
+//    (activationConstraint.distance=5, серия mousemove): заголовки таблицы и
+//    строки меню настроек колонок (onItemsReorder у @ds/list);
 // 3. savedState — персистентность ширины в localStorage через перезагрузку story;
 // 4. infinite scroll — реальный скролл контейнера + IntersectionObserver;
 // 5. mobile row-actions — тап по «⋮» в cards-view открывает actions BottomSheet
@@ -93,6 +94,42 @@ test.describe('Table — interaction (real browser)', () => {
         elements.map(el => el.getAttribute('data-header-id')),
       );
       expect(orderAfter.indexOf('email')).toBeLessThan(orderAfter.indexOf('name'));
+    }).toPass({ timeout: 3000 });
+  });
+
+  test('column reorder: settings menu drag updates table column order', async ({
+    page,
+    gotoStory,
+    getByTestId,
+    dragTo,
+  }) => {
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.columnsSettings));
+
+    const headerCells = getByTestId(COMPONENT.headerCell);
+    await expect(headerCells.first()).toBeVisible();
+
+    const orderBefore = await headerCells.evaluateAll(elements =>
+      elements.map(el => el.getAttribute('data-header-id')),
+    );
+    expect(orderBefore.indexOf('email')).toBeLessThan(orderBefore.indexOf('department'));
+
+    await getByTestId(COMPONENT.columnSettings.trigger).click();
+    const droplist = getByTestId(COMPONENT.columnSettings.droplist);
+    await expect(droplist).toBeVisible();
+
+    // enableDrag → onItemsReorder: ручка list__drag-handle у незакреплённых колонок.
+    const emailRow = page.locator('[data-test-id="list__base-item_email"]');
+    const departmentRow = page.locator('[data-test-id="list__base-item_department"]');
+    await expect(emailRow).toBeVisible();
+    await waitForStableBbox(emailRow);
+
+    await dragTo(emailRow.getByTestId('list__drag-handle'), { target: departmentRow, steps: 12 });
+
+    await expect(async () => {
+      const orderAfter = await headerCells.evaluateAll(elements =>
+        elements.map(el => el.getAttribute('data-header-id')),
+      );
+      expect(orderAfter.indexOf('department')).toBeLessThan(orderAfter.indexOf('email'));
     }).toPass({ timeout: 3000 });
   });
 

@@ -49,7 +49,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -525,11 +525,6 @@
         },
         "own": false
       },
-      "ChipChoiceRowFilter": {
-        "kind": "alias",
-        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
@@ -646,6 +641,11 @@
         },
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -742,6 +742,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -1806,7 +1807,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -2248,11 +2249,6 @@
         },
         "own": false
       },
-      "ChipChoiceRowFilter": {
-        "kind": "alias",
-        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
@@ -2367,6 +2363,11 @@
             "description": "Ref ссылка на триггер"
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -2499,6 +2500,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -3114,7 +3116,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -3649,7 +3651,7 @@
           "columnsSettings": {
             "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
             "required": false,
-            "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+            "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
           },
           "copyPinnedRows": {
             "type": "boolean | undefined",
@@ -4556,7 +4558,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -5009,11 +5011,6 @@
         },
         "own": false
       },
-      "ChipChoiceRowFilter": {
-        "kind": "alias",
-        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
@@ -5128,6 +5125,11 @@
             "description": "Ref ссылка на триггер"
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -5260,6 +5262,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -5785,7 +5788,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -6212,39 +6215,6 @@
         },
         "own": false
       },
-      "BulkAction": {
-        "kind": "interface",
-        "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true
-          },
-          "label": {
-            "type": "string",
-            "required": true
-          },
-          "onClick": {
-            "type": "((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) | undefined",
-            "required": false
-          },
-          "tooltip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
-          }
-        },
-        "own": true
-      },
       "ChipChoiceDateWithSeconds": {
         "kind": "interface",
         "props": {
@@ -6385,6 +6355,11 @@
         },
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -6515,6 +6490,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -6864,130 +6840,6 @@
         },
         "own": false
       },
-      "TooltipProps": {
-        "kind": "interface",
-        "props": {
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
-            "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
-            "typeRefs": [
-              "ChildrenFunction"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение ограничения ширины тултипа"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
-      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -7146,7 +6998,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -7600,11 +7452,6 @@
         },
         "own": false
       },
-      "ChipChoiceRowFilter": {
-        "kind": "alias",
-        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
@@ -7719,6 +7566,11 @@
             "description": "Ref ссылка на триггер"
           }
         },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -7851,6 +7703,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -8385,7 +8238,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -8831,39 +8684,6 @@
         },
         "own": false
       },
-      "BulkAction": {
-        "kind": "interface",
-        "props": {
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true
-          },
-          "label": {
-            "type": "string",
-            "required": true
-          },
-          "onClick": {
-            "type": "((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) | undefined",
-            "required": false
-          },
-          "tooltip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
-          }
-        },
-        "own": true
-      },
       "ChipChoiceDateWithSeconds": {
         "kind": "interface",
         "props": {
@@ -9004,6 +8824,11 @@
         },
         "own": false
       },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
       "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
@@ -9134,6 +8959,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -9479,130 +9305,6 @@
               "SelectionMultipleState",
               "SelectionSingleState"
             ]
-          }
-        },
-        "own": false
-      },
-      "TooltipProps": {
-        "kind": "interface",
-        "props": {
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
-            "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
-            "typeRefs": [
-              "ChildrenFunction"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение ограничения ширины тултипа"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
           }
         },
         "own": false
@@ -10275,7 +9977,7 @@
       "columnsSettings": {
         "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
         "required": false,
-        "description": "Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок."
+        "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
       },
       "copyPinnedRows": {
         "type": "boolean",
@@ -10747,115 +10449,9 @@
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
         "own": true
       },
-      "DropdownBridgeProps": {
-        "kind": "interface",
-        "props": {
-          "closeOnEscapeKey": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли по нажатию на кнопку `Esc`"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "outsideClick": {
-            "type": "boolean | OutsideClickHandler | undefined",
-            "required": false,
-            "description": "Закрывать ли при клике вне поповера",
-            "typeRefs": [
-              "OutsideClickHandler"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerClickByKeys": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -10988,6 +10584,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
               "PublicListContextType",
@@ -11933,7 +11530,7 @@
     "description": "Слот настроек колонок в тулбаре: `afterContent` — в `after`, `mobileMount` — BottomSheet вне строки тулбара.",
     "props": {
       "columnsSettings": {
-        "type": "[GroupSelectItem]",
+        "type": "ColumnsSettingsListModel",
         "required": true
       },
       "enabled": {
@@ -11944,6 +11541,10 @@
       "enabledColumns": {
         "type": "string[]",
         "required": true
+      },
+      "setColumnOrder": {
+        "type": "Dispatch<SetStateAction<string[]>>",
+        "required": false
       },
       "setEnabledColumns": {
         "type": "(enabledColumns: string[]) => void",

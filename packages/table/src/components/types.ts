@@ -138,7 +138,8 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
     onChange?(state: SortingState): void;
   };
   /**
-   * Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок.
+   * Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);
+   * `enableSettingsMenu` — меню показа колонок.
    */
   columnsSettings?: {
     enableDrag?: boolean;

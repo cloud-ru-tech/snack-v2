@@ -1,8 +1,7 @@
 import { FiltersState } from '@ds/chips';
-import { GroupSelectItemProps } from '@ds/list';
 import { ToolbarDataViewValue, ToolbarPersistConfig, usePersistState } from '@ds/toolbar';
 import { Table } from '@tanstack/react-table';
-import { useCallback, useMemo } from 'react';
+import { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
 
 import { VIEW, View } from '../../../constants';
 import { getMasterSelectionState, getSelectionCounts, MasterSelectionOptions } from '../../../helpers';
@@ -24,6 +23,7 @@ import {
   mapSortToTableState,
 } from '../utils/saveTableState/mappers';
 import { validateFilter, validatePaging, validateSorting } from '../utils/saveTableState/validators';
+import type { ColumnsSettingsListModel } from './useColumnSettings/useColumnSettings';
 
 type UseTableToolbarParams<TData extends object, TFilters extends FiltersState> = {
   table: Table<TData>;
@@ -53,8 +53,9 @@ type UseTableToolbarParams<TData extends object, TFilters extends FiltersState> 
   bulkActions?: TableProps<TData>['bulkActions'];
   areColumnsSettingsEnabled: boolean;
   enabledColumns: string[];
-  columnsSettings: [GroupSelectItemProps];
+  columnsSettings: ColumnsSettingsListModel;
   setEnabledColumns: (columns: string[]) => void;
+  setColumnOrder?: Dispatch<SetStateAction<string[]>>;
   outline?: boolean;
   moreActions?: TableProps<TData>['moreActions'];
   onExport?: TableProps<TData>['onExport'];
@@ -117,6 +118,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
   enabledColumns,
   columnsSettings,
   setEnabledColumns,
+  setColumnOrder,
   onExport,
 }: UseTableToolbarParams<TData, TFilters>): UseTableToolbarResult<TFilters> {
   const { t } = tableLocale.useTranslations();
@@ -244,6 +246,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
     columnsSettings,
     enabledColumns,
     setEnabledColumns,
+    setColumnOrder,
   });
 
   const hasMobileToolbarMounts = Boolean(sortingToolbarSlot.mobileMount || columnsSettingsToolbarSlot.mobileMount);

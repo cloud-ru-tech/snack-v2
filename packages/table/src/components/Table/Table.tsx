@@ -404,6 +404,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     enabledColumns,
     columnsSettings,
     setEnabledColumns,
+    setColumnOrder,
     outline,
     moreActions,
     onExport,

@@ -32,14 +32,21 @@ type Story = StoryObj<typeof Table>;
 
 const COMPONENT_TEST_IDS = TEST_IDS.component;
 
-// Уникален для этой story (вторая панель), поэтому инлайн — в общий
+// Уникальны для этой story (вторая/третья панели), поэтому инлайн — в общий
 // stories/testIds.ts переносим только повторяющиеся id.
 const CLIENT_TABLE_TEST_ID = 'table-client';
+const COLUMNS_SETTINGS_TABLE_TEST_ID = 'table-columns-settings';
 
 // Базовый id item'а droplist'а из @ds/list — общий для всех
 // droplist'ов (row actions и ChipChoice rows-per-page); значение уже
 // зафиксировано в src/constants.ts как rowActions.option.
 const LIST_OPTION_TEST_ID = COMPONENT_TEST_IDS.rowActions.option;
+
+/** data-test-id пункта меню настроек: `list__base-item_<columnId>` (BaseItem из @ds/list). */
+const settingsItemTestId = (columnId: string): string => `list__base-item_${columnId}`;
+
+// email → DefaultTrue, role → DefaultFalse (скрыта), amount → Hidden (в меню disabled).
+const columnsSettingsColumns = buildUserColumns({ withColumnSettings: true });
 
 const onSortingChange = fn();
 const onSelectionChange = fn();
@@ -117,6 +124,20 @@ function ClientTable() {
   );
 }
 
+function ColumnsSettingsTable() {
+  return (
+    <Table
+      data-test-id={COLUMNS_SETTINGS_TABLE_TEST_ID}
+      data={SAMPLE_USERS}
+      columnDefinitions={columnsSettingsColumns}
+      // DnD меню → порядок колонок ассертится в Playwright interaction.spec
+      // на Examples/ColumnsSettings (здесь только click/visibility).
+      columnsSettings={{ enableSettingsMenu: true }}
+      outline
+    />
+  );
+}
+
 export const Interaction: Story = {
   tags: ['test', 'dev'],
   render: args => (
@@ -137,6 +158,15 @@ export const Interaction: Story = {
           <ClientTable />
         </DemoActions>
       </DemoPanel>
+      <DemoPanel width='wide'>
+        <DemoTitle>Настройки колонок</DemoTitle>
+        <DemoHint>
+          Меню тулбара: показать скрытую колонку (DefaultFalse), проверить Hidden как disabled в списке.
+        </DemoHint>
+        <DemoActions align='start'>
+          <ColumnsSettingsTable />
+        </DemoActions>
+      </DemoPanel>
     </>
   ),
   play: async ({ args, canvasElement, step }) => {
@@ -145,6 +175,7 @@ export const Interaction: Story = {
     const body = within(canvasElement.ownerDocument.body);
     const treeRoot = canvas.getByTestId(TEST_IDS.table.root);
     const clientRoot = canvas.getByTestId(CLIENT_TABLE_TEST_ID);
+    const columnsSettingsRoot = canvas.getByTestId(COLUMNS_SETTINGS_TABLE_TEST_ID);
 
     await step('select: click tree node toggles selection', async () => {
       // Хендлер выбора висит на контейнере tree-ноды (TEST_IDS.tree.node),
@@ -261,6 +292,34 @@ export const Interaction: Story = {
       const exportTrigger = within(clientRoot).getByTestId(COMPONENT_TEST_IDS.export.trigger);
       await userEvent.click(exportTrigger);
       expect(onExport).toHaveBeenCalledTimes(1);
+    });
+
+    await step('column settings: меню настроек колонок открывается', async () => {
+      await userEvent.click(within(columnsSettingsRoot).getByTestId(COMPONENT_TEST_IDS.columnSettings.trigger));
+      await waitFor(() => expect(body.getByTestId(COMPONENT_TEST_IDS.columnSettings.droplist)).toBeVisible());
+    });
+
+    await step('column settings: включение колонки «Роль» добавляет header-cell', async () => {
+      // role → DefaultFalse: изначально скрыта
+      const headerCellsBefore = within(columnsSettingsRoot).getAllByTestId(COMPONENT_TEST_IDS.headerCell).length;
+
+      await userEvent.click(body.getByTestId(settingsItemTestId('role')));
+
+      await waitFor(() => {
+        expect(within(columnsSettingsRoot).getAllByTestId(COMPONENT_TEST_IDS.headerCell)).toHaveLength(
+          headerCellsBefore + 1,
+        );
+      });
+    });
+
+    await step('column settings: колонка с mode=hidden в меню disabled', async () => {
+      // amount → Hidden: всегда отрисована, в меню есть, `Switch` disabled
+      const amountItem = body.getByTestId(settingsItemTestId('amount'));
+
+      await expect(amountItem).toBeVisible();
+      // `data-disabled` на обёртке BaseItem, test-id — на внутреннем `li`.
+      await expect(amountItem.parentElement).toHaveAttribute('data-disabled');
+      await expect(body.getByTestId(settingsItemTestId('email'))).toBeVisible();
     });
   },
 };

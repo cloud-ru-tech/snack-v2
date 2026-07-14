@@ -251,16 +251,16 @@ Bulk-бар в тулбаре (чекбокс «выбрать все» и сч�
 
 #### Настройка колонок (`columnsSettings`)
 
-- `enableDrag` — переупорядочивание колонок перетаскиванием заголовков.
+- `enableDrag` — переупорядочивание колонок: перетаскивание заголовков в таблице и строк в меню настроек (через `onItemsReorder` у `@ds/list`). Оба канала пишут в один и тот же `columnOrder`.
 - `enableSettingsMenu` — меню видимости колонок в тулбаре.
 
 Поведение колонки в меню задаётся на самой колонке через `columnSettings.mode` (ось `COLUMN_SETTINGS_MODE`):
 
-- `hidden` — колонки нет в меню, она всегда видима.
-- `defaultTrue` — есть в меню, по умолчанию включена.
-- `defaultFalse` — есть в меню, по умолчанию выключена.
+- `hidden` — колонка есть в меню, но строка disabled (всегда видима, свитч нельзя выключить).
+- `defaultTrue` — в меню, по умолчанию включена.
+- `defaultFalse` — в меню, по умолчанию выключена.
 
-`columnSettings.label` — название колонки в меню настроек. Колонка попадает в меню только при заданном `columnSettings` (фабрики служебных колонок и **`defineColumns`** задают `label` автоматически; для ручных `columnDefinitions` — укажите `columnSettings` явно).
+`columnSettings.label` — название колонки в меню настроек. Колонки без `columnSettings` тоже показываются в меню (disabled, label из `header`); исключение — служебные `selection` / `rowActions`.
 
 `savedState` сохраняет состояние таблицы в localStorage и query-параметрах: `id` обязан быть уникальным в рамках приложения; `resize` / `columnSettings` включают сохранение ширин и видимости колонок; `serializer` / `parser` / `filterQueryKey` настраивают сериализацию фильтров.
 
@@ -678,7 +678,7 @@ export function Tree() {
 
 #### Настройка колонок
 
-Перетаскивание заголовков (`enableDrag`) и меню видимости (`enableSettingsMenu`).
+Перетаскивание заголовков и строк в меню настроек (`enableDrag`) плюс видимость колонок (`enableSettingsMenu`).
 
 ```tsx
 import { COLUMN_SETTINGS_MODE, ColumnDefinition, Table } from '@ds/table';
@@ -931,7 +931,7 @@ export function FullWidth() {
 | `columnFilters` | `FilterRow` \| `TFilters` | — | Фильтры |
 | `columnVirtualizerInstanceRef` | `ColumnVirtualizer` | — | Ref на инстанс column-virtualizer'а для управления прокруткой снаружи |
 | `columnVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=3). |
-| `columnsSettings` | `{ enableDrag?: boolean; enableSettingsMenu?: boolean; } \| undefined` | — | Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок. |
+| `columnsSettings` | `{ enableDrag?: boolean; enableSettingsMenu?: boolean; } \| undefined` | — | Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек); <br/> `enableSettingsMenu` — меню показа колонок. |
 | `copyPinnedRows` | `boolean` | `false` | Параметр отвечает за сохранение закрепленных строк в теле таблицы |
 | `data` | `TData` | — | Данные для отрисовки |
 | `data-test-id` | `string` | — |  |
@@ -992,17 +992,6 @@ export function FullWidth() {
 | `view` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Режим отображения таблицы (controlled). <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида в тулбаре включается отдельным пропом `showDataView`. |
 
 ##### Related types
-
-**BulkAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data-test-id` | `string \| undefined` | — |  |
-| `disabled` | `boolean \| undefined` | — |  |
-| `icon` | `((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — |  |
-| `label` | `string` | — |  |
-| `onClick` | `((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) \| undefined` | — |  |
-| `tooltip` | `TooltipProps` | — |  |
 
 - `ColumnDefinition` = `NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>`
 
@@ -1325,7 +1314,7 @@ export function ServerDriven() {
 | `columnFilters` | `FilterRow` \| `TFilters` | — | Фильтры |
 | `columnVirtualizerInstanceRef` | `ColumnVirtualizer` | — | Ref на инстанс column-virtualizer'а для управления прокруткой снаружи |
 | `columnVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=3). |
-| `columnsSettings` | `{ enableDrag?: boolean; enableSettingsMenu?: boolean; } \| undefined` | — | Настройки колонок: `enableDrag` — переупорядочивание перетаскиванием; `enableSettingsMenu` — меню показа колонок. |
+| `columnsSettings` | `{ enableDrag?: boolean; enableSettingsMenu?: boolean; } \| undefined` | — | Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек); <br/> `enableSettingsMenu` — меню показа колонок. |
 | `copyPinnedRows` | `boolean` | `false` | Параметр отвечает за сохранение закрепленных строк в теле таблицы |
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — | Флаг, показывающий что произошла ошибка запроса при пустых данных |
@@ -1387,17 +1376,6 @@ export function ServerDriven() {
 | `view` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Режим отображения таблицы (controlled). <br/> `table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`). <br/> Переключатель вида в тулбаре включается отдельным пропом `showDataView`. |
 
 ##### Related types
-
-**BulkAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data-test-id` | `string \| undefined` | — |  |
-| `disabled` | `boolean \| undefined` | — |  |
-| `icon` | `((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — |  |
-| `label` | `string` | — |  |
-| `onClick` | `((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) \| undefined` | — |  |
-| `tooltip` | `TooltipProps` | — |  |
 
 - `ColumnDefinition` = `NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>`
 

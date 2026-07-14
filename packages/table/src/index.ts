@@ -26,8 +26,12 @@ export {
   isColumnEnabledInitially,
   isColumnVisibilityConfigurable,
   isFilterableColumn,
+  isColumnsSettingsMenuItem,
   prepareColumnsSettings,
+  prepareReorderableColumnsSettings,
 } from './components/Table/hooks/useColumnSettings/utils';
+export type { ReorderableColumnsSettings } from './components/Table/hooks/useColumnSettings/utils';
+export type { ColumnsSettingsListModel } from './components/Table/hooks/useColumnSettings/useColumnSettings';
 
 export { getPinnedGroups, getTableColumnsDefinitions } from './components/Table/utils';
 export type { MasterSelectionOptions } from './helpers/masterSelection';

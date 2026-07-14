@@ -189,16 +189,16 @@ Bulk-бар в тулбаре (чекбокс «выбрать все» и сч�
 
 ### Настройка колонок (`columnsSettings`)
 
-- `enableDrag` — переупорядочивание колонок перетаскиванием заголовков.
+- `enableDrag` — переупорядочивание колонок: перетаскивание заголовков в таблице и строк в меню настроек (через `onItemsReorder` у `@ds/list`). Оба канала пишут в один и тот же `columnOrder`.
 - `enableSettingsMenu` — меню видимости колонок в тулбаре.
 
 Поведение колонки в меню задаётся на самой колонке через `columnSettings.mode` (ось `COLUMN_SETTINGS_MODE`):
 
-- `hidden` — колонки нет в меню, она всегда видима.
-- `defaultTrue` — есть в меню, по умолчанию включена.
-- `defaultFalse` — есть в меню, по умолчанию выключена.
+- `hidden` — колонка есть в меню, но строка disabled (всегда видима, свитч нельзя выключить).
+- `defaultTrue` — в меню, по умолчанию включена.
+- `defaultFalse` — в меню, по умолчанию выключена.
 
-`columnSettings.label` — название колонки в меню настроек. Колонка попадает в меню только при заданном `columnSettings` (фабрики служебных колонок и [`defineColumns`](/components/table/define-columns) задают `label` автоматически; для ручных `columnDefinitions` — укажите `columnSettings` явно).
+`columnSettings.label` — название колонки в меню настроек. Колонки без `columnSettings` тоже показываются в меню (disabled, label из `header`); исключение — служебные `selection` / `rowActions`.
 
 `savedState` сохраняет состояние таблицы в localStorage и query-параметрах: `id` обязан быть уникальным в рамках приложения; `resize` / `columnSettings` включают сохранение ширин и видимости колонок; `serializer` / `parser` / `filterQueryKey` настраивают сериализацию фильтров.
 
@@ -297,7 +297,7 @@ import { Table, getStatusColumnDef } from '@ds/table';
 
 <Example
   title='Настройка колонок'
-  description='Перетаскивание заголовков (`enableDrag`) и меню видимости (`enableSettingsMenu`).'
+  description='Перетаскивание заголовков и строк в меню настроек (`enableDrag`) плюс видимость колонок (`enableSettingsMenu`).'
   code={ColumnSettingsSrc}
 >
   <ColumnSettings client:only='react' />
