@@ -2,13 +2,17 @@ import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@
 
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { CHEVRON, VIEW } from '../../src/constants';
+import { CHEVRON_POSITION, VIEW } from '../../src/constants';
 import { buildStoryOptions, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
 
 const KEY_COMBOS = [
-  { view: VIEW.Simple, fill: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level, chevron: CHEVRON.After },
-  { view: VIEW.Outline, fill: BACKGROUND_PREDEFINED_FILL.PrimaryBackground, chevron: CHEVRON.Before },
-  { view: VIEW.Elevated, fill: BACKGROUND_PREDEFINED_FILL.Transparent, chevron: CHEVRON.After },
+  {
+    view: VIEW.Simple,
+    fill: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
+    chevronPosition: CHEVRON_POSITION.After,
+  },
+  { view: VIEW.Outline, fill: BACKGROUND_PREDEFINED_FILL.PrimaryBackground, chevronPosition: CHEVRON_POSITION.Before },
+  { view: VIEW.Elevated, fill: BACKGROUND_PREDEFINED_FILL.Transparent, chevronPosition: CHEVRON_POSITION.After },
 ] as const;
 
 test.describe('CollapseBlockPrimary — rendering', () => {
@@ -86,8 +90,8 @@ test.describe('CollapseBlockPrimary — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    for (const { view, fill, chevron } of KEY_COMBOS) {
-      test(`view=${view} + backgroundPredefined=${fill} + chevron=${chevron}`, async ({
+    for (const { view, fill, chevronPosition } of KEY_COMBOS) {
+      test(`view=${view} + backgroundPredefined=${fill} + chevronPosition=${chevronPosition}`, async ({
         gotoStory,
         getByTestId,
         page,
@@ -97,7 +101,7 @@ test.describe('CollapseBlockPrimary — rendering', () => {
             ...PLAYGROUND_DEFAULT_ARGS,
             view,
             backgroundPredefined: fill,
-            chevron,
+            chevronPosition,
           }),
         );
 
@@ -108,7 +112,7 @@ test.describe('CollapseBlockPrimary — rendering', () => {
         await expect(root).toHaveAttribute('data-acrylic-appearance', appearance);
         await expect(root).toHaveAttribute('data-acrylic-level', level);
 
-        await expect(page.locator(`[data-chevron="${chevron}"]`)).toBeVisible();
+        await expect(page.locator(`[data-chevron-position="${chevronPosition}"]`)).toBeVisible();
       });
     }
 

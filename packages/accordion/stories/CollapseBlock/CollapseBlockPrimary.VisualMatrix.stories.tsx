@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { Accordion, CollapseBlockPrimaryProps } from '../../src';
-import { CHEVRON, VIEW } from '../../src/constants';
+import { CHEVRON_POSITION, VIEW } from '../../src/constants';
 
 const meta: Meta<CollapseBlockPrimaryProps> = {
   title: 'Components/Accordion/CollapseBlockPrimary',
@@ -17,11 +17,14 @@ export default meta;
 type Story = StoryObj<CollapseBlockPrimaryProps>;
 
 const views = Object.values(VIEW);
-const chevrons = Object.values(CHEVRON);
+const chevronPositions = Object.values(CHEVRON_POSITION);
 
 const matrixBackgroundFills = Object.values(BACKGROUND_PREDEFINED_FILL);
 
-type MatrixCellProps = Pick<CollapseBlockPrimaryProps, 'view' | 'backgroundPredefined' | 'chevron' | 'showChevron'> & {
+type MatrixCellProps = Pick<
+  CollapseBlockPrimaryProps,
+  'view' | 'backgroundPredefined' | 'chevronPosition' | 'showChevron'
+> & {
   id: string;
 };
 
@@ -29,7 +32,7 @@ function CollapseBlockMatrixCell({
   id,
   view,
   backgroundPredefined,
-  chevron = CHEVRON.After,
+  chevronPosition = CHEVRON_POSITION.After,
   showChevron,
 }: MatrixCellProps) {
   return (
@@ -40,7 +43,7 @@ function CollapseBlockMatrixCell({
         subTitle='Subtitle'
         view={view}
         backgroundPredefined={backgroundPredefined}
-        chevron={chevron}
+        chevronPosition={chevronPosition}
         showChevron={showChevron}
       >
         Content
@@ -71,19 +74,19 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='Chevron placement'
+        sectionTitle='Chevron position'
         firstColumnHeader='Variant'
-        columnHeaders={chevrons.map(c => c)}
+        columnHeaders={chevronPositions.map(c => c)}
         rows={[
           {
             variantLabel: 'Default',
-            cells: chevrons.map(chevron => (
+            cells: chevronPositions.map(chevronPosition => (
               <CollapseBlockMatrixCell
-                key={chevron}
-                id={`vm-chevron-${chevron}`}
+                key={chevronPosition}
+                id={`vm-chevron-${chevronPosition}`}
                 view={VIEW.Simple}
                 backgroundPredefined={BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level}
-                chevron={chevron}
+                chevronPosition={chevronPosition}
               />
             )),
           },

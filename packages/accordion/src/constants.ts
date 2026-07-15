@@ -4,7 +4,7 @@ export const VIEW = {
   Elevated: 'elevated',
 } as const;
 
-export const CHEVRON = {
+export const CHEVRON_POSITION = {
   Before: 'before',
   After: 'after',
 } as const;

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { Accordion, CollapseBlockTertiaryProps } from '../../src';
-import { CHEVRON } from '../../src/constants';
+import { CHEVRON_POSITION } from '../../src/constants';
 
 const meta: Meta<CollapseBlockTertiaryProps> = {
   title: 'Components/Accordion/CollapseBlockTertiary',
@@ -15,18 +15,18 @@ export default meta;
 
 type Story = StoryObj<CollapseBlockTertiaryProps>;
 
-const chevrons = Object.values(CHEVRON);
+const chevronPositions = Object.values(CHEVRON_POSITION);
 
-type MatrixCellProps = Pick<CollapseBlockTertiaryProps, 'chevron' | 'showChevron'> & { id: string };
+type MatrixCellProps = Pick<CollapseBlockTertiaryProps, 'chevronPosition' | 'showChevron'> & { id: string };
 
-function CollapseBlockMatrixCell({ id, chevron = CHEVRON.After, showChevron }: MatrixCellProps) {
+function CollapseBlockMatrixCell({ id, chevronPosition = CHEVRON_POSITION.After, showChevron }: MatrixCellProps) {
   return (
     <Accordion>
       <Accordion.CollapseBlockTertiary
         id={id}
         title='Title'
         subTitle='Subtitle'
-        chevron={chevron}
+        chevronPosition={chevronPosition}
         showChevron={showChevron}
       >
         Content
@@ -40,14 +40,18 @@ export const VisualMatrix: Story = {
   render: () => (
     <>
       <StoryTable
-        sectionTitle='Chevron placement'
+        sectionTitle='Chevron position'
         firstColumnHeader='Variant'
-        columnHeaders={[...chevrons]}
+        columnHeaders={[...chevronPositions]}
         rows={[
           {
             variantLabel: 'Default',
-            cells: chevrons.map(chevron => (
-              <CollapseBlockMatrixCell key={chevron} id={`vm-chevron-${chevron}`} chevron={chevron} />
+            cells: chevronPositions.map(chevronPosition => (
+              <CollapseBlockMatrixCell
+                key={chevronPosition}
+                id={`vm-chevron-${chevronPosition}`}
+                chevronPosition={chevronPosition}
+              />
             )),
           },
         ]}

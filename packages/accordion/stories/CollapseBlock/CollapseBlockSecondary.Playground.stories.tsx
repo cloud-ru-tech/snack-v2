@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { Accordion, CollapseBlockSecondaryProps } from '../../src';
-import { CHEVRON, VIEW } from '../../src/constants';
+import { CHEVRON_POSITION, VIEW } from '../../src/constants';
 import styles from '../styles.module.scss';
 
 type PlaygroundArgs = CollapseBlockSecondaryProps & { showAfterTitleSlot: boolean };
@@ -21,7 +21,7 @@ const meta: Meta<PlaygroundArgs> = {
     subTitle: 'CollapseBlock subtitle',
     children: 'CollapseBlock content',
     view: 'simple',
-    chevron: 'after',
+    chevronPosition: 'after',
     showChevron: true,
     backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     keepMounted: false,
@@ -31,9 +31,9 @@ const meta: Meta<PlaygroundArgs> = {
       control: 'select',
       options: Object.values(VIEW),
     },
-    chevron: {
+    chevronPosition: {
       control: 'select',
-      options: Object.values(CHEVRON),
+      options: Object.values(CHEVRON_POSITION),
     },
     backgroundPredefined: {
       control: 'select',

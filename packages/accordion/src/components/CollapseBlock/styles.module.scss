@@ -100,7 +100,7 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
 
   box-sizing: border-box;
 
-  &[data-chevron='before'] {
+  &[data-chevron-position='before'] {
     flex-direction: row-reverse;
     justify-content: flex-end;
   }

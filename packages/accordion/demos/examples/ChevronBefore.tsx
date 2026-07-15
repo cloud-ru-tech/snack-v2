@@ -9,7 +9,7 @@ export function ChevronBefore() {
           id='summary'
           view='outline'
           title='Итого'
-          chevron='before'
+          chevronPosition='before'
           afterTitle='1 200 ₽'
         >
           Разбивка платежа по позициям.
@@ -18,7 +18,7 @@ export function ChevronBefore() {
           id='delivery'
           view='outline'
           title='Доставка'
-          chevron='before'
+          chevronPosition='before'
           afterTitle='бесплатно'
         >
           Курьер по Москве, 2–3 дня.

@@ -66,7 +66,7 @@
           "BackgroundPredefinedFill"
         ]
       },
-      "chevron": {
+      "chevronPosition": {
         "type": "enum",
         "required": false,
         "values": [
@@ -74,9 +74,9 @@
           "before"
         ],
         "defaultValue": "after",
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "description": "Положение шеврона-раскрытия относительно текста (`before` | `after`)",
         "typeRefs": [
-          "Chevron"
+          "ChevronPosition"
         ]
       },
       "children": {
@@ -165,7 +165,7 @@
         ],
         "own": false
       },
-      "Chevron": {
+      "ChevronPosition": {
         "kind": "union",
         "values": [
           "after",
@@ -223,16 +223,16 @@
           "BackgroundPredefinedFill"
         ]
       },
-      "chevron": {
+      "chevronPosition": {
         "type": "enum",
         "required": false,
         "values": [
           "after",
           "before"
         ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "description": "Положение шеврона-раскрытия относительно текста (`before` | `after`)",
         "typeRefs": [
-          "Chevron"
+          "ChevronPosition"
         ]
       },
       "children": {
@@ -305,7 +305,7 @@
         ],
         "own": false
       },
-      "Chevron": {
+      "ChevronPosition": {
         "kind": "union",
         "values": [
           "after",
@@ -354,16 +354,16 @@
           "BackgroundPredefinedFill"
         ]
       },
-      "chevron": {
+      "chevronPosition": {
         "type": "enum",
         "required": false,
         "values": [
           "after",
           "before"
         ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "description": "Положение шеврона-раскрытия относительно текста (`before` | `after`)",
         "typeRefs": [
-          "Chevron"
+          "ChevronPosition"
         ]
       },
       "children": {
@@ -436,7 +436,7 @@
         ],
         "own": false
       },
-      "Chevron": {
+      "ChevronPosition": {
         "kind": "union",
         "values": [
           "after",
@@ -464,16 +464,16 @@
         "required": false,
         "description": "Контент справа от заголовка"
       },
-      "chevron": {
+      "chevronPosition": {
         "type": "enum",
         "required": false,
         "values": [
           "after",
           "before"
         ],
-        "description": "Расположение шеврона относительно текста (`before` | `after`)",
+        "description": "Положение шеврона-раскрытия относительно текста (`before` | `after`)",
         "typeRefs": [
-          "Chevron"
+          "ChevronPosition"
         ]
       },
       "children": {
@@ -516,7 +516,7 @@
       }
     },
     "relatedTypes": {
-      "Chevron": {
+      "ChevronPosition": {
         "kind": "union",
         "values": [
           "after",

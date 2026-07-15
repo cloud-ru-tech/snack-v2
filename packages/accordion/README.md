@@ -1,6 +1,6 @@
 # Accordion
 
-`@ds/accordion` — Аккордеон дизайн-системы — контейнер Accordion и три уровня раскрываемых блоков CollapseBlock с общими токенами view, backgroundPredefined и chevron.
+`@ds/accordion` — Аккордеон дизайн-системы — контейнер Accordion и три уровня раскрываемых блоков CollapseBlock с общими токенами view, backgroundPredefined и chevronPosition.
 
 Пакет `@ds/accordion` даёт контейнер `Accordion` и три уровня раскрываемых блоков `CollapseBlockPrimary` / `CollapseBlockSecondary` / `CollapseBlockTertiary`. Контейнер отвечает за режим выбора (`single` / `multiple`) и controlled/uncontrolled состояние, блоки — за внешний вид и иерархию на странице.
 
@@ -117,7 +117,7 @@ export function MultipleMode() {
 
 ## CollapseBlock
 
-Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / backgroundPredefined / chevron.
+Семейство раскрываемых блоков аккордеона — Primary (l), Secondary (m), Tertiary (s). Общие пропсы title / subTitle / afterTitle / view / backgroundPredefined / chevronPosition.
 
 Три семантических уровня раскрываемого блока: `CollapseBlockPrimary`, `CollapseBlockSecondary`, `CollapseBlockTertiary`. Уровень задаёт размер типографики заголовка и плотность отступов; все три компонента используют одно и то же API — меняется только роль в иерархии.
 
@@ -134,8 +134,11 @@ export function MultipleMode() {
 #### backgroundPredefined
 Слой акрила через `BACKGROUND_PREDEFINED_FILL` из `@ds/materials` (как у `Card`). По умолчанию — `neutralBackground1Level`.
 
-#### Chevron
-Положение шеврона-раскрытия: `before` — слева от заголовка, `after` — справа.
+#### chevronPosition (default `after`)
+Положение шеврона-раскрытия относительно заголовка.
+
+- `before` — шеврон слева от заголовка.
+- `after` — шеврон справа от заголовка.
 
 #### showChevron (default `true`)
 Управляет наличием шеврона-раскрытия в строке заголовка.
@@ -213,7 +216,7 @@ export function ChevronBefore() {
           id='summary'
           view='outline'
           title='Итого'
-          chevron='before'
+          chevronPosition='before'
           afterTitle='1 200 ₽'
         >
           Разбивка платежа по позициям.
@@ -222,7 +225,7 @@ export function ChevronBefore() {
           id='delivery'
           view='outline'
           title='Доставка'
-          chevron='before'
+          chevronPosition='before'
           afterTitle='бесплатно'
         >
           Курьер по Москве, 2–3 дня.
@@ -301,7 +304,7 @@ export function NestedLevels() {
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
-| `chevron` | `"after"` \| `"before"` | `after` | Расположение шеврона относительно текста (`before` \| `after`) |
+| `chevronPosition` | `"after"` \| `"before"` | `after` | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `component` | `"accordionPrimary"` \| `"accordionSecondary"` \| `"accordionTertiary"` | — | Уровень аккордеона: размер типографики и отступы |
@@ -315,7 +318,7 @@ export function NestedLevels() {
 
 ##### Related types
 
-- `Chevron` = `"after"` \| `"before"`
+- `ChevronPosition` = `"after"` \| `"before"`
 
 - `Component` = `"accordionPrimary"` \| `"accordionSecondary"` \| `"accordionTertiary"`
 
@@ -351,7 +354,7 @@ export function AfterTitle() {
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
-| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
+| `chevronPosition` | `"after"` \| `"before"` | — | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
@@ -364,7 +367,7 @@ export function AfterTitle() {
 
 #### Related types
 
-- `Chevron` = `"after"` \| `"before"`
+- `ChevronPosition` = `"after"` \| `"before"`
 
 - `View` = `"elevated"` \| `"outline"` \| `"simple"`
 
@@ -382,7 +385,7 @@ export function ChevronBefore() {
           id='summary'
           view='outline'
           title='Итого'
-          chevron='before'
+          chevronPosition='before'
           afterTitle='1 200 ₽'
         >
           Разбивка платежа по позициям.
@@ -391,7 +394,7 @@ export function ChevronBefore() {
           id='delivery'
           view='outline'
           title='Доставка'
-          chevron='before'
+          chevronPosition='before'
           afterTitle='бесплатно'
         >
           Курьер по Москве, 2–3 дня.
@@ -408,7 +411,7 @@ export function ChevronBefore() {
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
-| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
+| `chevronPosition` | `"after"` \| `"before"` | — | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
@@ -421,7 +424,7 @@ export function ChevronBefore() {
 
 #### Related types
 
-- `Chevron` = `"after"` \| `"before"`
+- `ChevronPosition` = `"after"` \| `"before"`
 
 - `View` = `"elevated"` \| `"outline"` \| `"simple"`
 
@@ -463,7 +466,7 @@ export function NestedLevels() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
-| `chevron` | `"after"` \| `"before"` | — | Расположение шеврона относительно текста (`before` \| `after`) |
+| `chevronPosition` | `"after"` \| `"before"` | — | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
 | `data-test-id` | `string` | — |  |
@@ -475,4 +478,4 @@ export function NestedLevels() {
 
 #### Related types
 
-- `Chevron` = `"after"` \| `"before"`
+- `ChevronPosition` = `"after"` \| `"before"`

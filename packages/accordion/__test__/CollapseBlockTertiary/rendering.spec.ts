@@ -1,9 +1,9 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { CHEVRON } from '../../src/constants';
+import { CHEVRON_POSITION } from '../../src/constants';
 import { buildStoryOptions, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
 
-const KEY_CHEVRONS = [CHEVRON.Before, CHEVRON.After] as const;
+const KEY_CHEVRON_POSITIONS = [CHEVRON_POSITION.Before, CHEVRON_POSITION.After] as const;
 
 test.describe('CollapseBlockTertiary — rendering', () => {
   test('renders with default props', async ({ gotoStory, getByTestId }) => {
@@ -19,10 +19,10 @@ test.describe('CollapseBlockTertiary — rendering', () => {
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-component', 'accordionTertiary');
   });
 
-  test('chevron placement propagates to data-chevron', async ({ gotoStory, page }) => {
-    for (const chevron of KEY_CHEVRONS) {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, chevron }));
-      await expect(page.locator(`[data-chevron="${chevron}"]`)).toBeVisible();
+  test('chevron placement propagates to data-chevron-position', async ({ gotoStory, page }) => {
+    for (const chevronPosition of KEY_CHEVRON_POSITIONS) {
+      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, chevronPosition }));
+      await expect(page.locator(`[data-chevron-position="${chevronPosition}"]`)).toBeVisible();
     }
   });
 

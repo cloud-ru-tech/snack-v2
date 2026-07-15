@@ -12,8 +12,8 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { ANIMATION_DURATION, CHEVRON, TEST_IDS, VIEW } from '../../constants';
-import { Chevron, View } from '../../types';
+import { ANIMATION_DURATION, CHEVRON_POSITION, TEST_IDS, VIEW } from '../../constants';
+import { ChevronPosition, View } from '../../types';
 import { useCollapseState } from './hooks';
 import styles from './styles.module.scss';
 
@@ -33,8 +33,8 @@ export type CollapseBlockProps = PropsWithChildren<
     className?: string;
     /** Визуальный вариант обложки (`simple`, `outline`, `elevated`) */
     view?: View;
-    /** Расположение шеврона относительно текста (`before` | `after`) */
-    chevron?: Chevron;
+    /** Положение шеврона-раскрытия относительно текста (`before` | `after`) */
+    chevronPosition?: ChevronPosition;
     /** Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) */
     showChevron?: boolean;
     /**
@@ -66,7 +66,7 @@ export function CollapseBlock({
   children,
   className,
   view = VIEW.Simple,
-  chevron = CHEVRON.After,
+  chevronPosition = CHEVRON_POSITION.After,
   backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
   keepMounted = false,
   component,
@@ -112,7 +112,7 @@ export function CollapseBlock({
         className={styles.titleContent}
         data-expanded={isOpen || undefined}
         data-completely-close={isCompletelyClose || undefined}
-        data-chevron={chevron}
+        data-chevron-position={chevronPosition}
         onClick={toggleOpen}
       >
         <div className={styles.titleWrapper}>
