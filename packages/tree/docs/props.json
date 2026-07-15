@@ -73,7 +73,7 @@
       "onSelect": {
         "type": "((selectedKeys: string[], node: TreeNodeProps) => void) | ((selectedKey: string, node: TreeNodeProps) => void)",
         "required": false,
-        "description": "Колбэк при изменении выбраных элементов:\n<br> - При <strong>selectionMode</strong>=`Multi` - возвращает массив строк\n<br> - При <strong>selectionMode</strong>=`Single` - возвращает строку"
+        "description": "Колбэк при изменении выбраных элементов:\n<br> - При <strong>selectionMode</strong>=`Multiple` - возвращает массив строк\n<br> - При <strong>selectionMode</strong>=`Single` - возвращает строку"
       },
       "parentActions": {
         "type": "((node: TreeNodeProps) => Item[])",
@@ -83,13 +83,13 @@
       "selected": {
         "type": "string | string[]",
         "required": false,
-        "description": "Состояние для выбраных элементов:\n<br> - При <strong>selectionMode</strong>=`Multi` - принимает массив строк\n<br> - При <strong>selectionMode</strong>=`Single` - принимает строку"
+        "description": "Состояние для выбраных элементов:\n<br> - При <strong>selectionMode</strong>=`Multiple` - принимает массив строк\n<br> - При <strong>selectionMode</strong>=`Single` - принимает строку"
       },
       "selectionMode": {
         "type": "enum",
         "required": false,
         "values": [
-          "multi",
+          "multiple",
           "single"
         ],
         "description": "Режим выбора элементов:\n<br> - `Single` - одиночный выбор\n<br> - `Multi` - множественный выбор\n<br> - `undefined` - без выбора"

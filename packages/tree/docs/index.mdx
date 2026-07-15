@@ -1,7 +1,7 @@
 ---
 title: Tree
 package: '@ds/tree'
-description: Иерархический список с раскрывающимися узлами, выбором (single/multi), кастомными иконками, контекстными действиями и асинхронной подгрузкой потомков.
+description: Иерархический список с раскрывающимися узлами, выбором (single/multiple), кастомными иконками, контекстными действиями и асинхронной подгрузкой потомков.
 order: 0
 ---
 
@@ -50,7 +50,7 @@ import treeDoc from './props.json'
 
 - `undefined` — read-only режим, узлы только раскрываются.
 - `'single'` — один выбранный узел, рендерится `Radio` (если `showToggle`) либо подсвечивается строка.
-- `'multi'` — множественный выбор через `Checkbox` на каждом узле; родитель показывает indeterminate-состояние от детей.
+- `'multiple'` — множественный выбор через `Checkbox` на каждом узле; родитель показывает indeterminate-состояние от детей.
 
 ### Size (default `m`)
 
@@ -88,7 +88,7 @@ import { SELECTION_MODE, SIZE, Tree } from '@ds/tree'
   <SingleSelect client:only="react" />
 </Example>
 
-<Example title='Множественный выбор' description='selectionMode=multi: Checkbox на каждом узле, у родителя — indeterminate' code={MultiSelectSrc}>
+<Example title='Множественный выбор' description='selectionMode=multiple: Checkbox на каждом узле, у родителя — indeterminate' code={MultiSelectSrc}>
   <MultiSelect client:only="react" />
 </Example>
 

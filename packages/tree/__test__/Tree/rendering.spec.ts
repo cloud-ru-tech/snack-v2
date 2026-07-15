@@ -27,10 +27,10 @@ test.describe('Tree — rendering', () => {
       });
     }
 
-    test('selectionMode=multi renders checkboxes', async ({ gotoStory, page }) => {
+    test('selectionMode=multiple renders checkboxes', async ({ gotoStory, page }) => {
       await gotoStory(
         buildStoryOptions(undefined, {
-          selectionMode: SELECTION_MODE.Multi,
+          selectionMode: SELECTION_MODE.Multiple,
           expandedNodes: ['fruits'],
         }),
       );

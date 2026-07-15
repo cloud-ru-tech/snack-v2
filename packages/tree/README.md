@@ -1,6 +1,6 @@
 # Tree
 
-`@ds/tree` — Иерархический список с раскрывающимися узлами, выбором (single/multi), кастомными иконками, контекстными действиями и асинхронной подгрузкой потомков.
+`@ds/tree` — Иерархический список с раскрывающимися узлами, выбором (single/multiple), кастомными иконками, контекстными действиями и асинхронной подгрузкой потомков.
 
 Дерево с раскрывающимися узлами для навигации по иерархии (файлы, регионы, теги, ACL). Поддерживает одиночный и множественный выбор, кастомные иконки и асинхронную подгрузку.
 
@@ -25,7 +25,7 @@
 
 - `undefined` — read-only режим, узлы только раскрываются.
 - `'single'` — один выбранный узел, рендерится `Radio` (если `showToggle`) либо подсвечивается строка.
-- `'multi'` — множественный выбор через `Checkbox` на каждом узле; родитель показывает indeterminate-состояние от детей.
+- `'multiple'` — множественный выбор через `Checkbox` на каждом узле; родитель показывает indeterminate-состояние от детей.
 
 ### Size (default `m`)
 
@@ -146,7 +146,7 @@ export function SingleSelect() {
 
 ### Множественный выбор
 
-selectionMode=multi: Checkbox на каждом узле, у родителя — indeterminate
+selectionMode=multiple: Checkbox на каждом узле, у родителя — indeterminate
 
 ```tsx
 import { SELECTION_MODE, Tree, TreeNodeProps } from '@ds/tree';
@@ -179,7 +179,7 @@ export function MultiSelect() {
   return (
     <Tree
       data={DATA}
-      selectionMode={SELECTION_MODE.Multi}
+      selectionMode={SELECTION_MODE.Multiple}
       selected={selected}
       onSelect={setSelected}
       expandedNodes={expanded}
@@ -320,10 +320,10 @@ export function AsyncLoad() {
 | `onDataLoad` | `((node: TreeNodeProps) => Promise<unknown>)` | — | Колбэк для асинхронной загрузки данных при раскрытии дерева |
 | `onExpand` | `((expandedKeys: string[], node: TreeNodeProps) => void)` | — | Колбэк при раскрытии/закрытии элементов |
 | `onNodeClick` | `OnNodeClick` | — | Обработчик клика по элементу дерева |
-| `onSelect` | `((selectedKeys: string[], node: TreeNodeProps) => void) \| ((selectedKey: string, node: TreeNodeProps) => void)` | — | Колбэк при изменении выбраных элементов: <br/> <br> - При <strong>selectionMode</strong>=`Multi` - возвращает массив строк <br/> <br> - При <strong>selectionMode</strong>=`Single` - возвращает строку |
+| `onSelect` | `((selectedKeys: string[], node: TreeNodeProps) => void) \| ((selectedKey: string, node: TreeNodeProps) => void)` | — | Колбэк при изменении выбраных элементов: <br/> <br> - При <strong>selectionMode</strong>=`Multiple` - возвращает массив строк <br/> <br> - При <strong>selectionMode</strong>=`Single` - возвращает строку |
 | `parentActions` | `((node: TreeNodeProps) => Item[])` | — | Дополнительные действия для элемента-родителя |
-| `selected` | `string \| string[]` | — | Состояние для выбраных элементов: <br/> <br> - При <strong>selectionMode</strong>=`Multi` - принимает массив строк <br/> <br> - При <strong>selectionMode</strong>=`Single` - принимает строку |
-| `selectionMode` | `"multi"` \| `"single"` | — | Режим выбора элементов: <br/> <br> - `Single` - одиночный выбор <br/> <br> - `Multi` - множественный выбор <br/> <br> - `undefined` - без выбора |
+| `selected` | `string \| string[]` | — | Состояние для выбраных элементов: <br/> <br> - При <strong>selectionMode</strong>=`Multiple` - принимает массив строк <br/> <br> - При <strong>selectionMode</strong>=`Single` - принимает строку |
+| `selectionMode` | `"multiple"` \| `"single"` | — | Режим выбора элементов: <br/> <br> - `Single` - одиночный выбор <br/> <br> - `Multi` - множественный выбор <br/> <br> - `undefined` - без выбора |
 | `showIcons` | `boolean` | `true` | Флаг отвечающий за отображение иконок у элементов дерева |
 | `showLines` | `boolean` | `true` | Флаг отвечающий за отображение линий вложенности |
 | `showToggle` | `boolean` | — |  |

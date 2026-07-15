@@ -46,7 +46,7 @@ function LazyTree() {
   return (
     <Tree
       data={data}
-      selectionMode={SELECTION_MODE.Multi}
+      selectionMode={SELECTION_MODE.Multiple}
       selected={selected}
       onSelect={onSelect}
       expandedNodes={expanded}

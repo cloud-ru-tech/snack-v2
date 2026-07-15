@@ -1,6 +1,6 @@
 export const SELECTION_MODE = {
   Single: 'single',
-  Multi: 'multi',
+  Multiple: 'multiple',
 } as const;
 
 export const SIZE = {

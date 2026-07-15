@@ -65,7 +65,7 @@ export function TreeContextProvider({ children, value }: TreeContextProviderProp
     ...props
   } = value;
 
-  const isMultiSelect = selectionMode === SELECTION_MODE.Multi;
+  const isMultiSelect = selectionMode === SELECTION_MODE.Multiple;
   const isSingleSelect = selectionMode === SELECTION_MODE.Single;
   const isSelectable = Boolean(selectionMode);
 

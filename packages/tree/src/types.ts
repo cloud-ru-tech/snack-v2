@@ -113,15 +113,15 @@ export type TreeSingleSelect = Omit<TreeCommonProps, 'selected'> & {
 };
 
 export type TreeMultiSelect = Omit<TreeCommonProps, 'selected'> & {
-  selectionMode: 'multi';
+  selectionMode: 'multiple';
   /**
    * Состояние для выбраных элементов:
-   * <br> - При <strong>selectionMode</strong>=`Multi` - принимает массив строк
+   * <br> - При <strong>selectionMode</strong>=`Multiple` - принимает массив строк
    */
   selected?: TreeNodeId[];
   /**
    * Колбэк при изменении выбраных элементов:
-   * <br> - При <strong>selectionMode</strong>=`Multi` - возвращает массив строк
+   * <br> - При <strong>selectionMode</strong>=`Multiple` - возвращает массив строк
    */
   onSelect?(selectedKeys: TreeNodeId[], node: TreeNodeProps): void;
 };

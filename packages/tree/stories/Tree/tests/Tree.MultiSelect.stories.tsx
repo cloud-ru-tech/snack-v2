@@ -21,7 +21,7 @@ export const MultiSelect: Story = {
   tags: ['test', 'dev'],
   args: {
     data: SAMPLE_TREE,
-    selectionMode: SELECTION_MODE.Multi,
+    selectionMode: SELECTION_MODE.Multiple,
     expandedNodes: ['fruits', 'citrus'],
     'data-test-id': TEST_IDS.tree.root,
     onNodeClick: fn(),

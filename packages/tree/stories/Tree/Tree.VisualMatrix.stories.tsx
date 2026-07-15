@@ -67,16 +67,21 @@ export const VisualMatrix: Story = {
             ],
           },
           {
-            variantLabel: 'multi',
+            variantLabel: 'multiple',
             cells: [
               <div key='multi-u' className={styles.story}>
-                <Tree data={SAMPLE_TREE} expandedNodes={EXPANDED} selectionMode={SELECTION_MODE.Multi} selected={[]} />
+                <Tree
+                  data={SAMPLE_TREE}
+                  expandedNodes={EXPANDED}
+                  selectionMode={SELECTION_MODE.Multiple}
+                  selected={[]}
+                />
               </div>,
               <div key='multi-s' className={styles.story}>
                 <Tree
                   data={SAMPLE_TREE}
                   expandedNodes={EXPANDED}
-                  selectionMode={SELECTION_MODE.Multi}
+                  selectionMode={SELECTION_MODE.Multiple}
                   selected={['apple', 'orange']}
                 />
               </div>,

@@ -28,7 +28,7 @@ export function MultiSelect() {
   return (
     <Tree
       data={DATA}
-      selectionMode={SELECTION_MODE.Multi}
+      selectionMode={SELECTION_MODE.Multiple}
       selected={selected}
       onSelect={setSelected}
       expandedNodes={expanded}

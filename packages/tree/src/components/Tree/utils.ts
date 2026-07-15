@@ -9,7 +9,7 @@ export function extractSelectableProps({ selectionMode, selected, onSelect }: Se
   if (selectionMode === SELECTION_MODE.Single) {
     return { selectionMode, selected, onSelect } as SelectableProps<TreeSingleSelect>;
   }
-  if (selectionMode === SELECTION_MODE.Multi) {
+  if (selectionMode === SELECTION_MODE.Multiple) {
     return { selectionMode, selected, onSelect } as SelectableProps<TreeMultiSelect>;
   }
   return {} as SelectableProps<TreeView>;

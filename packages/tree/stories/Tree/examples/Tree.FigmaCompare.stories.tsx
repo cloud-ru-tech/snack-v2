@@ -75,7 +75,7 @@ function MultiTree(shared: SharedProps) {
       data={FIGMA_TREE}
       expandedNodes={expanded}
       onExpand={setExpanded}
-      selectionMode={SELECTION_MODE.Multi}
+      selectionMode={SELECTION_MODE.Multiple}
       selected={selected}
       onSelect={setSelected}
       parentActions={rowActions}
