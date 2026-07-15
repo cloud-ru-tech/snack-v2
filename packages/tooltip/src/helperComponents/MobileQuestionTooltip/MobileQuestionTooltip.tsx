@@ -2,6 +2,7 @@ import { BottomSheet } from '@ds/bottom-sheet';
 import { QuestionSVG } from '@ds/icons/interface/system';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
+import { RefObject } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 import styles from '../../components/QuestionTooltip/styles.module.scss';
@@ -24,6 +25,7 @@ export function MobileQuestionTooltip({
   closeOnPopstate,
   tabIndex = 0,
   size = SIZE.XS,
+  triggerRef,
   ...rest
 }: QuestionTooltipProps) {
   const [isOpen, setIsOpen] = useUncontrolledProp(open, false, onOpenChange);
@@ -39,6 +41,7 @@ export function MobileQuestionTooltip({
         data-size={size}
         data-test-id={TEST_IDS.questionTooltip.triggerOpen}
         onClick={() => setIsOpen(true)}
+        ref={triggerRef as RefObject<HTMLButtonElement>}
       >
         <QuestionSVG size={getIconSize(size)} />
       </button>
