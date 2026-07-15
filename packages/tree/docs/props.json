@@ -259,7 +259,7 @@
         "required": true,
         "description": "Идентификатор элемента"
       },
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": false
       },

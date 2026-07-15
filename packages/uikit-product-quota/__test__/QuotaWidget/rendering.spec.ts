@@ -10,7 +10,7 @@ test.describe('QuotaWidget — rendering', () => {
   });
 
   test('loading state renders without error', async ({ gotoStory, page }) => {
-    await gotoStory(buildStoryOptions({ isLoading: true }, QUOTA_WIDGET_STORIES.playground));
+    await gotoStory(buildStoryOptions({ loading: true }, QUOTA_WIDGET_STORIES.playground));
     await expect(page.getByTestId(TEST_IDS.quotaWidget.trigger)).toBeVisible();
   });
 

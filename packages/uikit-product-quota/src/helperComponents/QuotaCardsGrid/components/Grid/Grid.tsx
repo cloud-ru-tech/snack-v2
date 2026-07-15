@@ -18,16 +18,16 @@ function sortQuotas(quotas: QuotaItem[]): QuotaItem[] {
   });
 }
 
-type GridProps = Pick<QuotaWidgetPropsBase, 'quotas' | 'isLoading' | 'disableSorting'> & {
+type GridProps = Pick<QuotaWidgetPropsBase, 'quotas' | 'loading' | 'disableSorting'> & {
   isAccordion?: boolean;
 };
 
-export function Grid({ quotas, isLoading, disableSorting = false, isAccordion = false }: GridProps) {
+export function Grid({ quotas, loading, disableSorting = false, isAccordion = false }: GridProps) {
   const sortedQuotas = disableSorting ? quotas : sortQuotas(quotas);
 
   return (
-    <div className={styles.grid} data-single={(quotas.length <= 1 && !isLoading) || isAccordion}>
-      <QuotaWidgetCardsSkeleton isLoading={isLoading}>
+    <div className={styles.grid} data-single={(quotas.length <= 1 && !loading) || isAccordion}>
+      <QuotaWidgetCardsSkeleton loading={loading}>
         {sortedQuotas.map(quota => (
           <QuotaWidgetCard
             key={quota.name}

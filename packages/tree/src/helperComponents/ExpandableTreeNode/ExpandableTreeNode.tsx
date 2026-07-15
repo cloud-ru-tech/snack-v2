@@ -22,7 +22,7 @@ export const ExpandableTreeNode = forwardRef<HTMLDivElement, ExpandableTreeNodeP
     const isExpandable = Boolean(node.nested);
     const isExpanded = expandedNodes?.includes(node.id) || false;
 
-    const [isLoading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [state, toggle] = useTransition({
       timeout: TRANSITION_TIMING.accordionFolding,
@@ -111,7 +111,7 @@ export const ExpandableTreeNode = forwardRef<HTMLDivElement, ExpandableTreeNodeP
       >
         <TreeNode
           {...node}
-          isLoading={isLoading}
+          loading={loading}
           parentNode={parentNode}
           onChevronClick={toggleExpand}
           onKeyDown={handleKeyDown}

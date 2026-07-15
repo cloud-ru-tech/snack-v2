@@ -32,12 +32,12 @@ import componentDoc from './props.json'
 
 ### Заголовок
 
-`Accordion.CollapseBlockSecondary`: title «Квоты», после него `Counter appearance='critical'` с числом исчерпанных квот (скрыт при `isLoading` / `isError`), в подзаголовке — `projectName` с truncate.
+`Accordion.CollapseBlockSecondary`: title «Квоты», после него `Counter appearance='critical'` с числом исчерпанных квот (скрыт при `loading` / `isError`), в подзаголовке — `projectName` с truncate.
 
 ### Содержимое
 
 - Вертикальный список `QuotaWidgetCard`; исчерпанные квоты поднимаются в начало (`disableSorting` отключает).
-- `isLoading` — skeleton-карточки; `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
+- `loading` — skeleton-карточки; `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
 - Кнопка «Увеличить квоты» (`canEditQuota`, `onIncreaseQuotaClick`, скрывается `hideIncreaseQuotaButton`).
 
 ## Установка

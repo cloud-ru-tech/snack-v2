@@ -543,11 +543,10 @@ import {
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
 | `innerRef` | `((instance: HTMLButtonElement \| null) => void) \| RefObject<HTMLButtonElement> \| null` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `isError` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `isLoading` | `boolean` | — | Флаг загрузки квот |
 | `items` | `Item[]` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
 | `list` | `Pick<DroplistProps, "className" \| "open" \| "onOpenChange" \| "items" \| "closeDroplistOnItemClick">` | — |  |
-| `loading` | `boolean` | — | Состояние загрузки |
+| `loading` | `boolean` | — | Состояние загрузки <br/> Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onOpenChange` | `((open: boolean) => void)` | — | Колбэк изменения раскрытия. |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |
@@ -594,7 +593,7 @@ import {
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `isError` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `isLoading` | `boolean` | — | Флаг загрузки квот |
+| `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |
 | `onRefresh` | `() => void` | — | Колбек на обновление списка квот при ошибке |

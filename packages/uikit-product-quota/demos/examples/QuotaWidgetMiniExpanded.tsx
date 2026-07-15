@@ -8,11 +8,11 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetMiniExpanded() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const reload = () => {
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 800);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 800);
   };
 
   return (
@@ -21,7 +21,7 @@ export function QuotaWidgetMiniExpanded() {
       projectName='ml-platform-production'
       canEditQuota={false}
       isExpandedDefault
-      isLoading={isLoading}
+      loading={loading}
       isError={false}
       onRefresh={reload}
     />

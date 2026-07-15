@@ -17,7 +17,7 @@ export type QuotaWidgetPropsBase = {
   /** Флаг отключения сортировки квот */
   disableSorting?: boolean;
   /** Флаг загрузки квот */
-  isLoading: boolean;
+  loading: boolean;
   /** Флаг ошибки при загрузке квот */
   isError: boolean;
   /** Колбек на обновление списка квот при ошибке */

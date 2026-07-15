@@ -114,11 +114,6 @@
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "isLoading": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг загрузки квот"
-      },
       "items": {
         "type": "Item[]",
         "required": true,
@@ -136,7 +131,7 @@
       "loading": {
         "type": "boolean",
         "required": false,
-        "description": "Состояние загрузки"
+        "description": "Состояние загрузки\nФлаг загрузки квот"
       },
       "onIncreaseQuotaClick": {
         "type": "(() => void)",
@@ -2250,7 +2245,7 @@
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": true,
         "description": "Флаг загрузки квот"
@@ -4789,7 +4784,7 @@
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
           },
-          "isLoading": {
+          "loading": {
             "type": "boolean",
             "required": true,
             "description": "Флаг загрузки квот"
@@ -6426,7 +6421,7 @@
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
           },
-          "isLoading": {
+          "loading": {
             "type": "boolean",
             "required": true,
             "description": "Флаг загрузки квот"
@@ -7667,7 +7662,7 @@
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
           },
-          "isLoading": {
+          "loading": {
             "type": "boolean",
             "required": true,
             "description": "Флаг загрузки квот"

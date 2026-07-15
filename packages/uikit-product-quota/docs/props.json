@@ -14,7 +14,7 @@
         "required": false,
         "defaultValue": "false"
       },
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": true,
         "description": "Флаг загрузки квот"
@@ -87,7 +87,7 @@
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": true,
         "description": "Флаг загрузки квот"
@@ -163,7 +163,7 @@
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": true,
         "description": "Флаг загрузки квот"
@@ -561,7 +561,7 @@
     "displayName": "QuotaWidgetCardsSkeleton",
     "propsTypeName": null,
     "props": {
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": true
       }
@@ -601,7 +601,7 @@
         "required": false,
         "description": "Флаг раскрытия аккордиона по умолчанию"
       },
-      "isLoading": {
+      "loading": {
         "type": "boolean",
         "required": true,
         "description": "Флаг загрузки квот"

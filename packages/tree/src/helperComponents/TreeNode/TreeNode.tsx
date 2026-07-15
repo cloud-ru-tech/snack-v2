@@ -34,7 +34,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
       className,
       onChevronClick,
       onKeyDown,
-      isLoading,
+      loading,
       parentNode,
       tabIndexAvailable,
       href,
@@ -286,7 +286,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
                 aria-label={isExpanded ? 'Collapse' : 'Expand'}
               >
                 <span className={styles.treeNodeExpandButtonStateLayer} aria-hidden data-state='regularFilled' />
-                {isLoading ? <Spinner size={CONTROL_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
+                {loading ? <Spinner size={CONTROL_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
               </button>
               <TreeLine visible={isExpanded && showLines} />
             </>

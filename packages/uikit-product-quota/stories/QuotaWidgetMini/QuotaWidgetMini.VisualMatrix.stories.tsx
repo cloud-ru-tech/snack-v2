@@ -34,7 +34,7 @@ export const VisualMatrix: Story = {
         {
           variantLabel: 'true / loading',
           cells: [
-            <QuotaWidgetMini key='expanded-loading' {...BASE_QUOTA_WIDGET_MINI_PROPS} isExpandedDefault isLoading />,
+            <QuotaWidgetMini key='expanded-loading' {...BASE_QUOTA_WIDGET_MINI_PROPS} isExpandedDefault loading />,
           ],
         },
         {

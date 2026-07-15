@@ -61,7 +61,7 @@ import { QuotaWidget, QuotaWidgetMini, QuotaWidgetCard } from '@ds/uikit-product
 
 Сетка карточек `QuotaWidgetCard`. Исчерпанные квоты поднимаются в начало (отключается `disableSorting`). Состояния:
 
-- `isLoading` — skeleton-карточки.
+- `loading` — skeleton-карточки.
 - `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
 
 ### Примеры использования
@@ -82,11 +82,11 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetBasic() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const reload = () => {
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 800);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 800);
   };
 
   return (
@@ -97,7 +97,7 @@ export function QuotaWidgetBasic() {
         projectName='ml-platform-production'
         quotasUrl='#'
         canEditQuota={false}
-        isLoading={isLoading}
+        loading={loading}
         isError={false}
         onRefresh={reload}
       />
@@ -121,12 +121,12 @@ const QUOTAS: QuotaItem[] = [
 
 export function QuotaWidgetError() {
   const [isError, setIsError] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleRefresh = () => {
-    setIsLoading(true);
+    setLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
+      setLoading(false);
       setIsError(false);
     }, 800);
   };
@@ -139,7 +139,7 @@ export function QuotaWidgetError() {
         projectName='ml-platform-production'
         quotasUrl='#'
         canEditQuota={false}
-        isLoading={isLoading}
+        loading={loading}
         isError={isError}
         onRefresh={handleRefresh}
       />
@@ -160,7 +160,7 @@ export function QuotaWidgetError() {
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `isError` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `isLoading` | `boolean` | — | Флаг загрузки квот |
+| `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |
 | `onRefresh` | `() => void` | — | Колбек на обновление списка квот при ошибке |
@@ -207,12 +207,12 @@ export function QuotaWidgetError() {
 
 #### Заголовок
 
-`Accordion.CollapseBlockSecondary`: title «Квоты», после него `Counter appearance='critical'` с числом исчерпанных квот (скрыт при `isLoading` / `isError`), в подзаголовке — `projectName` с truncate.
+`Accordion.CollapseBlockSecondary`: title «Квоты», после него `Counter appearance='critical'` с числом исчерпанных квот (скрыт при `loading` / `isError`), в подзаголовке — `projectName` с truncate.
 
 #### Содержимое
 
 - Вертикальный список `QuotaWidgetCard`; исчерпанные квоты поднимаются в начало (`disableSorting` отключает).
-- `isLoading` — skeleton-карточки; `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
+- `loading` — skeleton-карточки; `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
 - Кнопка «Увеличить квоты» (`canEditQuota`, `onIncreaseQuotaClick`, скрывается `hideIncreaseQuotaButton`).
 
 ### Примеры использования
@@ -232,11 +232,11 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetMiniExpanded() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const reload = () => {
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 800);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 800);
   };
 
   return (
@@ -245,7 +245,7 @@ export function QuotaWidgetMiniExpanded() {
       projectName='ml-platform-production'
       canEditQuota={false}
       isExpandedDefault
-      isLoading={isLoading}
+      loading={loading}
       isError={false}
       onRefresh={reload}
     />
@@ -265,7 +265,7 @@ export function QuotaWidgetMiniExpanded() {
 | `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `isError` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `isExpandedDefault` | `boolean` | — | Флаг раскрытия аккордиона по умолчанию |
-| `isLoading` | `boolean` | — | Флаг загрузки квот |
+| `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onRefresh` | `() => void` | — | Колбек на обновление списка квот при ошибке |
 | `onWidgetOpen` | `(() => void)` | — | Колбек открытия виджета квот |

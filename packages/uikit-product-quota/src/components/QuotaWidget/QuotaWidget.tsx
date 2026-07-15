@@ -26,7 +26,7 @@ export type QuotaWidgetProps = WithSupportProps<
 export function QuotaWidget({
   quotas,
   disableSorting,
-  isLoading,
+  loading,
   isError,
   onRefresh,
   projectName,
@@ -76,7 +76,7 @@ export function QuotaWidget({
           <QuotaCardsGrid
             quotas={quotas}
             disableSorting={disableSorting}
-            isLoading={isLoading}
+            loading={loading}
             isError={isError}
             onRefresh={onRefresh}
           />

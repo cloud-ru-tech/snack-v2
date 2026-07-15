@@ -9,11 +9,11 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetBasic() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const reload = () => {
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 800);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 800);
   };
 
   return (
@@ -24,7 +24,7 @@ export function QuotaWidgetBasic() {
         projectName='ml-platform-production'
         quotasUrl='#'
         canEditQuota={false}
-        isLoading={isLoading}
+        loading={loading}
         isError={false}
         onRefresh={reload}
       />

@@ -8,12 +8,12 @@ const QUOTAS: QuotaItem[] = [
 
 export function QuotaWidgetError() {
   const [isError, setIsError] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleRefresh = () => {
-    setIsLoading(true);
+    setLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
+      setLoading(false);
       setIsError(false);
     }, 800);
   };
@@ -26,7 +26,7 @@ export function QuotaWidgetError() {
         projectName='ml-platform-production'
         quotasUrl='#'
         canEditQuota={false}
-        isLoading={isLoading}
+        loading={loading}
         isError={isError}
         onRefresh={handleRefresh}
       />

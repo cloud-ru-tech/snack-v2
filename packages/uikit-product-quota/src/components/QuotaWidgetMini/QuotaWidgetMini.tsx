@@ -23,7 +23,7 @@ const ACCORDION_ID = 'quotas-widget-accordion';
 export function QuotaWidgetMini({
   quotas,
   disableSorting,
-  isLoading,
+  loading,
   isError,
   onRefresh,
   projectName,
@@ -58,7 +58,7 @@ export function QuotaWidgetMini({
           data-test-id={TEST_IDS.quotaWidgetMini.trigger}
           title={t('quotas')}
           afterTitle={
-            !isError && !isLoading && exhaustedCount > 0 ? (
+            !isError && !loading && exhaustedCount > 0 ? (
               <Counter value={exhaustedCount} size='xs' appearance='red' />
             ) : undefined
           }
@@ -69,7 +69,7 @@ export function QuotaWidgetMini({
               isAccordion
               quotas={quotas}
               disableSorting={disableSorting}
-              isLoading={isLoading}
+              loading={loading}
               isError={isError}
               onRefresh={onRefresh}
             />
